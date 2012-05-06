@@ -1,3 +1,3 @@
 interface ElementParent {
-  void childInvalidate(Element child);
+  void childInvalidate(PElement child);
 }
