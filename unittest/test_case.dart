@@ -35,7 +35,7 @@ class TestCase {
 
   /** The group (or groups) under which this test is running. */
   final String currentGroup;
- 
+
   Date startTime;
 
   Duration runningTime;
@@ -49,15 +49,15 @@ class TestCase {
     result = _PASS;
   }
 
-  void fail(String message, String stackTrace) {
+  void fail(String msg, String stack) {
     result = _FAIL;
-    this.message = message;
-    this.stackTrace = stackTrace;
+    this.message = msg;
+    this.stackTrace = stack;
   }
 
-  void error(String message, String stackTrace) {
+  void error(String msg, String stack) {
     result = _ERROR;
-    this.message = message;
-    this.stackTrace = stackTrace;
+    this.message = msg;
+    this.stackTrace = stack;
   }
 }
