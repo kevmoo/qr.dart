@@ -1,4 +1,3 @@
 pl/pl.dart
-goog/_goog.dart
-monkey.dart
-goog/events/_events.dart
+tests/__runner.dart
+tests/_tests.dart

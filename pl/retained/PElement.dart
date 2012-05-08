@@ -1,4 +1,4 @@
-class PElement extends goog_events.gEventTarget{
+class PElement extends pEventTarget{
   num width, height;
 
   PElement(int width, int height, [bool enableCache = false])

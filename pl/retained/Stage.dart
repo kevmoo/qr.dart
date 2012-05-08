@@ -1,4 +1,4 @@
-class Stage extends goog_events.gEventTarget implements IElementParent {
+class Stage extends pEventTarget implements IElementParent {
   PElement _element;
   CanvasElement _canvas;
 
