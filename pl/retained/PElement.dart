@@ -1,4 +1,4 @@
-class PElement extends pEventTarget{
+class PElement extends PEventTarget{
   num width, height;
 
   PElement(int width, int height, [bool enableCache = false])

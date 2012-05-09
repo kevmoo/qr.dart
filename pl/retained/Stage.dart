@@ -1,4 +1,4 @@
-class Stage extends pEventTarget implements IElementParent {
+class Stage extends PEventTarget implements IElementParent {
   PElement _element;
   CanvasElement _canvas;
 

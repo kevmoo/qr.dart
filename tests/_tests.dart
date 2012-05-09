@@ -1,5 +1,7 @@
 #library('tests');
 
+#import('dart:html');
+
 #import('../unittest/unittest.dart');
 #import('../pl/pl.dart');
 
