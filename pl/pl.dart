@@ -8,6 +8,7 @@
 #source('math/Size.dart');
 
 #source('graphics/AffineTransform.dart');
+#source('graphics/gfx.dart');
 
 #source('events/impl.dart');
 #source('events/PEventTarget.dart');

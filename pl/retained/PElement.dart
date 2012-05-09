@@ -1,16 +1,17 @@
 class PElement extends PEventTarget{
-  num width, height;
+  num _width, _height, _alpha;
   Size _lastDrawSize;
   bool clip = false;
 
-  PElement(int width, int height, [bool enableCache = false])
+  PElement(int this._width, int this._height, [bool enableCache = false])
   {
-    this.width = width;
-    this.height = height;
-
     if(enableCache){
       // TODO: init magic here
     }
+  }
+
+  Size get size(){
+    return new Size(_width, _height);
   }
 
   AffineTransform getTransform() {
@@ -49,17 +50,33 @@ class PElement extends PEventTarget{
     ctx.save();
 
     // Translate to the starting position
-    pl.gfx.transform(ctx, tx);
+    gfx.transform(ctx, tx);
 
     // clip to the bounds of the object
     if (this.clip) {
       ctx.beginPath();
-      ctx.rect(0, 0, this.width, this.height);
+      ctx.rect(0, 0, _width, _height);
       ctx.clip();
     }
 
     this.drawCore(ctx);
     ctx.restore();
+  }
+
+  // abstract
+  void drawOverride(CanvasRenderingContext2D ctx){
+    // should throw here to inply subclass overriding
+  }
+
+  // protected
+  void drawCore(CanvasRenderingContext2D ctx){
+    if (_alpha != null) {
+      ctx.globalAlpha = _alpha;
+    }
+
+    // call the abstract draw method
+    drawOverride(ctx);
+    _lastDrawSize = this.size;
   }
 
   bool _isClipped(AffineTransform tx, CanvasRenderingContext2D ctx){
