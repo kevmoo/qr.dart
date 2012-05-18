@@ -41,4 +41,30 @@ class AffineTransform {
     this._m12 += tx._m02 * m0 + tx._m12 * m1;
     return this;
   }
+  
+  AffineTransform rotate(num theta, num x, num y) {
+    return this.concatenate(AffineTransform.getRotateInstance(theta, x, y));
+  }
+  
+  AffineTransform setToRotation(num theta, num x, num y) {
+    var cos = Math.cos(theta);
+    var sin = Math.sin(theta);
+    return this.setTransform(cos, sin, -sin, cos, 
+      x - x * cos + y * sin, y - x * sin - y * cos);
+  }
+  
+  AffineTransform setTransform (num m00, num m10, num m01,
+    num m11, num m02, num m12) {
+    this._m00 = m00;
+    this._m10 = m10;
+    this._m01 = m01;
+    this._m11 = m11;
+    this._m02 = m02;
+    this._m12 = m12;
+    return this;
+  }
+
+  static AffineTransform getRotateInstance(num theta, num x, num y) {
+    return new AffineTransform().setToRotation(theta, x, y);
+  }
 }
