@@ -2,9 +2,11 @@ class PElement extends PEventTarget{
   num _width, _height, _alpha;
   Size _lastDrawSize;
   bool clip = false;
+  List<AffineTransform> _transforms;
 
   PElement(int this._width, int this._height, [bool enableCache = false])
   {
+    _transforms = new List();
     if(enableCache){
       // TODO: init magic here
     }
@@ -16,12 +18,10 @@ class PElement extends PEventTarget{
 
   AffineTransform getTransform() {
     var tx = new AffineTransform();
-    /*
-    if (this._transforms) {
-      goog.array.forEach(this._transforms, function(t) {
-        tx.concatenate(t);
-      });
-    }*/
+
+    for(var t in _transforms){
+      tx.concatenate(t);
+    }
     return tx;
   }
 
@@ -34,6 +34,12 @@ class PElement extends PEventTarget{
 
   void update(){
     dispatchEvent('Update');
+  }
+  
+  AffineTransform addTransform(){
+    var tx = new AffineTransform();
+    _transforms.add(tx);
+    return tx;
   }
 
   void _drawInternal(CanvasRenderingContext2D ctx){
