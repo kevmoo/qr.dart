@@ -17,8 +17,10 @@ class Demo{
   
   Demo(CanvasElement canvas){
     _canvas = canvas;
-    _element = new Shape(100, 100);
-    this._tx = _element.addTransform();
+    _element = new Shape(200, 200);
+
+    _element.addTransform().translate((canvas.width - _element.width) / 2, (canvas.height - _element.height) / 2);
+this._tx = _element.addTransform();
     _stage = new Stage(_canvas, _element);
   }
   
@@ -27,7 +29,7 @@ class Demo{
   }
   
   bool _onFrame(num highResTime){
-    _tx.rotate(Math.PI * 0.001, 100, 100);
+    _tx.rotate(Math.PI * 0.01, 100, 100);
     _stage.draw();
     _requestFrame();    
   }

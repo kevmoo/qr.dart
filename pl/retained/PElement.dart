@@ -1,10 +1,10 @@
 class PElement extends PEventTarget{
-  num _width, _height, _alpha;
+  num width, height, _alpha;
   Size _lastDrawSize;
   bool clip = false;
   List<AffineTransform> _transforms;
 
-  PElement(int this._width, int this._height, [bool enableCache = false])
+  PElement(int this.width, int this.height, [bool enableCache = false])
   {
     _transforms = new List();
     if(enableCache){
@@ -13,7 +13,7 @@ class PElement extends PEventTarget{
   }
 
   Size get size(){
-    return new Size(_width, _height);
+    return new Size(width, height);
   }
 
   AffineTransform getTransform() {
@@ -61,7 +61,7 @@ class PElement extends PEventTarget{
     // clip to the bounds of the object
     if (this.clip) {
       ctx.beginPath();
-      ctx.rect(0, 0, _width, _height);
+      ctx.rect(0, 0, width, height);
       ctx.clip();
     }
 
