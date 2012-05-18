@@ -19,8 +19,10 @@ class Demo{
     _canvas = canvas;
     _element = new Shape(200, 200);
 
-    _element.addTransform().translate((canvas.width - _element.width) / 2, (canvas.height - _element.height) / 2);
-this._tx = _element.addTransform();
+    _element.addTransform().translate(
+      (canvas.width - _element.width) / 2, 
+      (canvas.height - _element.height) / 2);
+    this._tx = _element.addTransform();
     _stage = new Stage(_canvas, _element);
   }
   
