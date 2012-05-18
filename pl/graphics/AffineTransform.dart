@@ -46,6 +46,12 @@ class AffineTransform {
     return this.concatenate(AffineTransform.getRotateInstance(theta, x, y));
   }
   
+  AffineTransform translate(num dx, num dy) {
+    _m02 += dx * _m00 + dy * _m01;
+    _m12 += dx * _m10 + dy * _m11;
+    return this;
+  }
+
   AffineTransform setToRotation(num theta, num x, num y) {
     var cos = Math.cos(theta);
     var sin = Math.sin(theta);

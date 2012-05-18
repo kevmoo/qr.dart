@@ -23,5 +23,17 @@ class TestAffineTransform {
       expect(tx.translateX).approxEquals(7, 1e-9);
       expect(tx.translateY).approxEquals(10, 1e-9);
     });
+    
+    test('test translate', (){
+      var tx = new AffineTransform(1, 2, 3, 4, 5, 6);
+      tx.translate(2, 3);
+
+      expect(tx.scaleX).equals(1);
+      expect(tx.shearY).equals(2);
+      expect(tx.shearX).equals(3);
+      expect(tx.scaleY).equals(4);
+      expect(tx.translateX).equals(16);
+      expect(tx.translateY).equals(22);
+    });
   }  
 }
