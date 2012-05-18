@@ -6,4 +6,4 @@ Current idea: port enough of the [PL javascript library](https://github.com/thin
 
 Then...who knows...
 
-Building and running on Dart SDK [V7230](https://gsdview.appspot.com/dart-editor-archive-integration/7232/)
+Building and running on Dart SDK [V7696](https://gsdview.appspot.com/dart-editor-archive-integration/7696/)
