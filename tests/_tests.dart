@@ -7,3 +7,4 @@
 
 #source('TestHelloWorld.dart');
 #source('events/TestEventTarget.dart');
+#source('graphics/TestAffineTransform.dart');

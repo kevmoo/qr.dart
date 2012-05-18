@@ -7,5 +7,6 @@ main() {
   // just here to make sure everything is working smooth
   TestHelloWorld.run();
   TestEventTarget.run();
+  TestAffineTransform.run();
 }
 
