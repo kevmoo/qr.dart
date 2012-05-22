@@ -20,9 +20,11 @@ class Demo{
     
     PCanvas pCanvas = new PCanvas(200, 200);
     var blue = new Shape(100, 100, 'blue');
+    var green = new Shape(75, 75, 'green');
     var red = new Shape(50, 50, 'red');
 
     pCanvas.addElement(blue);
+    pCanvas.addElement(green);
     pCanvas.addElement(red);
     _element = pCanvas;
 
