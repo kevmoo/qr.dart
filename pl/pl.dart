@@ -15,5 +15,7 @@
 
 #source('retained/PElement.dart');
 #source('retained/IElementParent.dart');
+#source('retained/Panel.dart');
+#source('retained/PCanvas.dart');
 #source('retained/Stage.dart');
 #source('retained/Shape.dart');

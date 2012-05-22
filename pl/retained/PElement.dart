@@ -3,6 +3,7 @@ class PElement extends PEventTarget{
   Size _lastDrawSize;
   bool clip = false;
   List<AffineTransform> _transforms;
+  IElementParent _parent;
 
   PElement(int this.width, int this.height, [bool enableCache = false])
   {
@@ -28,7 +29,7 @@ class PElement extends PEventTarget{
   bool draw(CanvasRenderingContext2D ctx){
     update();
     var dirty = (_lastDrawSize == null);
-    _drawInternal(ctx);
+    drawInternal(ctx);
     return dirty;
   }
 
@@ -42,7 +43,54 @@ class PElement extends PEventTarget{
     return tx;
   }
 
-  void _drawInternal(CanvasRenderingContext2D ctx){
+  // protected
+  void drawCore(CanvasRenderingContext2D ctx){
+    if (_alpha != null) {
+      ctx.globalAlpha = _alpha;
+    }
+
+    // call the abstract draw method
+    drawOverride(ctx);
+    _lastDrawSize = this.size;
+  }
+
+  // abstract
+  void drawOverride(CanvasRenderingContext2D ctx){
+    throw "should override in subclass";
+  }
+
+  void invalidateDraw(){
+    _invalidateParent();
+  }
+  
+  bool hasVisualChild(PElement element){
+    var length = visualChildCount;
+    for(var i=0;i<length;i++){
+      if(element === getVisualChild(i)){
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  PElement getVisualChild(int index){
+    throw "no children for this type";    
+  }
+  
+  int get visualChildCount(){
+    return 0;
+  }
+  
+  void claim(IElementParent parent) {
+    assert(_parent == null);
+    _parent = parent;
+  }
+  
+  //
+  // Privates
+  //
+
+  void drawInternal(CanvasRenderingContext2D ctx){
     // until we ar rocking caching, just draw normal
     _drawNormal(ctx);
   }
@@ -69,27 +117,17 @@ class PElement extends PEventTarget{
     ctx.restore();
   }
 
-  // abstract
-  void drawOverride(CanvasRenderingContext2D ctx){
-    // should throw here to inply subclass overriding
-  }
-
-  // protected
-  void drawCore(CanvasRenderingContext2D ctx){
-    if (_alpha != null) {
-      ctx.globalAlpha = _alpha;
-    }
-
-    // call the abstract draw method
-    drawOverride(ctx);
-    _lastDrawSize = this.size;
-  }
-
   bool _isClipped(AffineTransform tx, CanvasRenderingContext2D ctx){
     if(clip){
       // a lot more impl to do here...
     }
     return false;
   }
-
+  
+  void _invalidateParent(){
+    if(_lastDrawSize != null){
+        assert(this._parent != null);
+      _parent.childInvalidated(this);
+    }
+  }
 }

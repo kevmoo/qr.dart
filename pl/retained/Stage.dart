@@ -4,6 +4,7 @@ class Stage extends PEventTarget implements IElementParent {
   CanvasRenderingContext2D _ctx;
 
   Stage(CanvasElement canvas, PElement rootElement){
+    rootElement.claim(this);
     _element = rootElement;
     _canvas = canvas;
   }
@@ -22,8 +23,7 @@ class Stage extends PEventTarget implements IElementParent {
     return this._element.draw(this._ctx);
   }
 
-  void childInvalidate(PElement child){
+  void childInvalidated(PElement child){
     dispatchEvent("Update");
   }
-
 }

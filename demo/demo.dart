@@ -17,7 +17,14 @@ class Demo{
   
   Demo(CanvasElement canvas){
     _canvas = canvas;
-    _element = new Shape(200, 200);
+    
+    PCanvas pCanvas = new PCanvas(200, 200);
+    var blue = new Shape(100, 100, 'blue');
+    var red = new Shape(50, 50, 'red');
+
+    pCanvas.addElement(blue);
+    pCanvas.addElement(red);
+    _element = pCanvas;
 
     _element.addTransform().translate(
       (canvas.width - _element.width) / 2, 

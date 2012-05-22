@@ -1,7 +1,7 @@
 class Shape extends PElement {
   final String _fillStyle = 'blue';
 
-  Shape(int w, int h):super(w, h)
+  Shape(int w, int h, [String this._fillStyle = 'blue']):super(w, h)
   {
 
   }
