@@ -5,6 +5,9 @@
 #source('IDisposable.dart');
 #source('Disposable.dart');
 
+#source('properties/IPropertyObject.dart');
+#source('properties/Property.dart');
+
 #source('math/Size.dart');
 
 #source('graphics/AffineTransform.dart');
