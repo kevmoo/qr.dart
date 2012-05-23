@@ -10,6 +10,7 @@
 
 #source('math/Size.dart');
 #source('math/Coordinate.dart');
+#source('math/Vec2.dart');
 
 #source('graphics/AffineTransform.dart');
 #source('graphics/gfx.dart');

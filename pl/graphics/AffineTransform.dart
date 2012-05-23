@@ -59,6 +59,10 @@ class AffineTransform {
       x - x * cos + y * sin, y - x * sin - y * cos);
   }
   
+  AffineTransform setToTranslation(num dx, num dy) {
+    return setTransform(1, 0, 0, 1, dx, dy);
+  }
+  
   AffineTransform setTransform (num m00, num m10, num m01,
     num m11, num m02, num m12) {
     this._m00 = m00;
@@ -68,6 +72,13 @@ class AffineTransform {
     this._m02 = m02;
     this._m12 = m12;
     return this;
+  }
+  
+  Coordinate transformCoordinate(point){
+    num x = point.X * _m00 + point.y * _m01 + _m02;
+    num y = point.X * _m10 + point.y * _m11 + _m12;
+
+    return new Coordinate(x, y);
   }
 
   static AffineTransform getRotateInstance(num theta, num x, num y) {
