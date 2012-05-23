@@ -5,11 +5,7 @@
 class _eventsImpl implements Events {
   final Map<String, EventListenerList> _listenerMap;
 
-  _eventsImpl._internal(this._listenerMap);
-  
-  factory _eventsImpl(){
-    return new _eventsImpl._internal(new Map<String, EventListenerList>());
-  }
+  _eventsImpl() : _listenerMap = new Map<String, EventListenerList>();
 
   EventListenerList operator [](String type) {
     return _listenerMap.putIfAbsent(type.toLowerCase(),
@@ -20,12 +16,8 @@ class _eventsImpl implements Events {
 class _eventListenerListImpl implements EventListenerList {
   final List<EventListener> _listenerList;
 
-  _eventListenerListImpl._internal(this._listenerList);
+  _eventListenerListImpl() : _listenerList = new List<EventListener>();
   
-  factory _eventListenerListImpl(){
-    return new _eventListenerListImpl._internal(new List<EventListener>());
-  }
-
   EventListenerList add(EventListener handler, [bool useCapture]) {
     // useCapture is ignored.
     _listenerList.add(handler);

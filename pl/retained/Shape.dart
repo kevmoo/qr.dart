@@ -1,10 +1,7 @@
 class Shape extends PElement {
   final String _fillStyle = 'blue';
 
-  Shape(int w, int h, [String this._fillStyle = 'blue']):super(w, h)
-  {
-
-  }
+  Shape(int w, int h, [String this._fillStyle = 'blue']):super(w, h);
 
   void drawOverride(CanvasRenderingContext2D ctx){
       ctx.fillStyle = _fillStyle;

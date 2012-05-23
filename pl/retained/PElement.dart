@@ -1,13 +1,12 @@
 class PElement extends PEventTarget{
+  final List<AffineTransform> _transforms;
   num width, height, _alpha;
   Size _lastDrawSize;
   bool clip = false;
-  List<AffineTransform> _transforms;
   IElementParent _parent;
 
-  PElement(int this.width, int this.height, [bool enableCache = false])
+  PElement(int this.width, int this.height, [bool enableCache = false]) : _transforms = new List<AffineTransform>()
   {
-    _transforms = new List();
     if(enableCache){
       // TODO: init magic here
     }

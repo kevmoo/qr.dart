@@ -1,12 +1,11 @@
 class Stage extends PEventTarget implements IElementParent {
-  PElement _element;
-  CanvasElement _canvas;
+  final CanvasElement _canvas;
+  final PElement _element;
   CanvasRenderingContext2D _ctx;
 
-  Stage(CanvasElement canvas, PElement rootElement){
+  Stage(CanvasElement canvas, PElement rootElement) : _canvas = canvas, _element = rootElement
+  {
     rootElement.claim(this);
-    _element = rootElement;
-    _canvas = canvas;
   }
 
   Size get size(){

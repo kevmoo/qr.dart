@@ -1,9 +1,7 @@
 class Panel extends PElement implements IElementParent  {
-  List<PElement> _children;
+  final List<PElement> _children;
 
-  Panel(int w, int h, [bool enableCache = false]):super(w, h, enableCache) {
-    _children = new List<PElement>();
-  }
+  Panel(int w, int h, [bool enableCache = false]) : _children = new List<PElement>(), super(w, h, enableCache);
 
   void addElement(PElement element){
     insertAt(element, _children.length);
