@@ -35,8 +35,12 @@ class Property implements Hashable{
     obj.propertyValues.remove(this);
   }
   
+  bool isSet(IPropertyObject obj){
+    return obj.propertyValues.containsKey(this);  
+  }
+  
   Object getCore(IPropertyObject obj){
-    if(obj.propertyValues.containsKey(this)){
+    if(isSet(obj)){
       return obj.propertyValues[this];
     }
     else{

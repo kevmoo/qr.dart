@@ -16,12 +16,15 @@ class TestProperties implements IPropertyObject {
   
         var object = new TestProperties();
         expect(testProperty.get(object)).equals(Property.Undefined);
+        expect(testProperty.isSet(object)).equals(false);
   
         testProperty.set(object, "the foo!");
         expect(testProperty.get(object)).equals("the foo!");
+        expect(testProperty.isSet(object)).equals(true);
   
         testProperty.clear(object);
         expect(testProperty.get(object)).equals(Property.Undefined);
+        expect(testProperty.isSet(object)).equals(false);
   
       });
       
@@ -30,12 +33,15 @@ class TestProperties implements IPropertyObject {
   
         var object = new TestProperties();
         expect(testProperty.get(object)).equals(42);
+        expect(testProperty.isSet(object)).equals(false);
   
         testProperty.set(object, "the foo!");
         expect(testProperty.get(object)).equals("the foo!");
+        expect(testProperty.isSet(object)).equals(true);
   
         testProperty.clear(object);
         expect(testProperty.get(object)).equals(42);  
+        expect(testProperty.isSet(object)).equals(false);
       });
       
       
