@@ -3,10 +3,12 @@
 // 2012-05-08
 
 class _eventsImpl implements Events {
-  Map<String, EventListenerList> _listenerMap;
+  final Map<String, EventListenerList> _listenerMap;
 
-  _eventsImpl() {
-    _listenerMap = new Map<String, EventListenerList>();
+  _eventsImpl._internal(this._listenerMap);
+  
+  factory _eventsImpl(){
+    return new _eventsImpl._internal(new Map<String, EventListenerList>());
   }
 
   EventListenerList operator [](String type) {
@@ -16,10 +18,12 @@ class _eventsImpl implements Events {
 }
 
 class _eventListenerListImpl implements EventListenerList {
-  List<EventListener> _listenerList;
+  final List<EventListener> _listenerList;
 
-  _eventListenerListImpl() {
-    _listenerList = new List<EventListener>();
+  _eventListenerListImpl._internal(this._listenerList);
+  
+  factory _eventListenerListImpl(){
+    return new _eventListenerListImpl._internal(new List<EventListener>());
   }
 
   EventListenerList add(EventListener handler, [bool useCapture]) {
