@@ -2,11 +2,9 @@
 // http://code.google.com/p/dart/source/browse/branches/bleeding_edge/dart/samples/ui_lib/base/Size.dart?r=4154
 
 class Size {
-  num width;
-  num height;
+  final num width, height;
 
-  Size(num this.width, num this.height) {
-  }
+  const Size(num this.width, num this.height);
 
   bool operator ==(Size other) {
     return other !== null && width == other.width && height == other.height;

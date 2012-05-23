@@ -6,11 +6,8 @@ class Property implements Hashable{
   final String name;
   final Object defaultValue;
   
-  Property._internal(this.name, this._id, this.defaultValue);
-
-  factory Property(String name, [Object defaultValue = Undefined]){
-    return new Property._internal(name, _globalId++, defaultValue);
-  }
+  const Property(this.name, [this.defaultValue = Undefined]) :
+    _id = _globalId++;
   
   Object get(IPropertyObject obj){
     var coreValue = getCore(obj);
