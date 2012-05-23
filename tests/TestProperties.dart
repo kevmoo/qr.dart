@@ -4,7 +4,7 @@ class TestProperties implements IPropertyObject {
   TestProperties() : propertyValues = new HashMap<Property, Object>();
   
   static void run(){
-    group('properties', (){
+    group('properties -- ', (){
       test('without default', (){
         var testProperty = new Property("Test Property");
   
