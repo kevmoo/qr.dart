@@ -9,6 +9,7 @@
 #source('properties/Property.dart');
 
 #source('math/Size.dart');
+#source('math/Coordinate.dart');
 
 #source('graphics/AffineTransform.dart');
 #source('graphics/gfx.dart');

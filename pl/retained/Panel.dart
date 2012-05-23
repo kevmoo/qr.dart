@@ -1,7 +1,10 @@
 class Panel extends PElement implements IElementParent  {
+  static final Property _containerTransformProperty = const Property("panelTransform");
   final List<PElement> _children;
 
-  Panel(int w, int h, [bool enableCache = false]) : _children = new List<PElement>(), super(w, h, enableCache);
+  Panel(int w, int h, [bool enableCache = false]) : 
+    _children = new List<PElement>(),
+    super(w, h, enableCache);
 
   void addElement(PElement element){
     insertAt(element, _children.length);
@@ -12,8 +15,8 @@ class Panel extends PElement implements IElementParent  {
     element.claim(this);
     _children.insertRange(index, 1, element);
     
-    // TODO: transform blah
-    
+    assert(!_containerTransformProperty.isSet(element));
+    _containerTransformProperty.set(element, element.addTransform());    
     onChildrenChanged();
   }
   
@@ -47,5 +50,12 @@ class Panel extends PElement implements IElementParent  {
       var element = getVisualChild(i);
       element.drawInternal(ctx);
     }
+  }
+  
+  AffineTransform getChildTransform(child) {
+    assert(hasVisualChild(child));
+    var tx = _containerTransformProperty.get(child);
+    assert(tx != null);
+    return tx;
   }
 }

@@ -1,11 +1,14 @@
-class PElement extends PEventTarget{
+class PElement extends PEventTarget implements IPropertyObject {
   final List<AffineTransform> _transforms;
+  final HashMap<Property, Object> propertyValues;
   num width, height, _alpha;
   Size _lastDrawSize;
   bool clip = false;
   IElementParent _parent;
 
-  PElement(int this.width, int this.height, [bool enableCache = false]) : _transforms = new List<AffineTransform>()
+  PElement(int this.width, int this.height, [bool enableCache = false]) : 
+    _transforms = new List<AffineTransform>(),
+    propertyValues = new HashMap<Property, Object>()
   {
     if(enableCache){
       // TODO: init magic here
