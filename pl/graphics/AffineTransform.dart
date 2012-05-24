@@ -74,9 +74,9 @@ class AffineTransform {
     return this;
   }
   
-  Coordinate transformCoordinate(point){
-    num x = point.X * _m00 + point.y * _m01 + _m02;
-    num y = point.X * _m10 + point.y * _m11 + _m12;
+  Coordinate transformCoordinate([Coordinate point = const Coordinate()]){
+    num x = point.x * _m00 + point.y * _m01 + _m02;
+    num y = point.x * _m10 + point.y * _m11 + _m12;
 
     return new Coordinate(x, y);
   }

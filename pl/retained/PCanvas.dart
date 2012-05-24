@@ -9,7 +9,7 @@ class PCanvas extends Panel{
   
   Coordinate getTopLeft(PElement element){
     var tx = getChildTransform(element);
-    return tx.transformCoordinate(new Coordinate());
+    return tx.transformCoordinate();
   }
 
   void setCenter(PElement element, Coordinate value){
