@@ -38,9 +38,7 @@ class Panel extends PElement implements IElementParent  {
   }
   
   void update(){
-    for(var e in _children){
-      e.update();
-    }
+    _children.forEach((e){e.update();});
     super.update();
   }
   
