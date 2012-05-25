@@ -52,6 +52,10 @@ class AffineTransform {
     return this;
   }
 
+  AffineTransform setToScale(sx, sy) {
+    return setTransform(sx, 0, 0, sy, 0, 0);
+  }
+  
   AffineTransform setToRotation(num theta, num x, num y) {
     var cos = Math.cos(theta);
     var sin = Math.sin(theta);
@@ -80,8 +84,27 @@ class AffineTransform {
 
     return new Coordinate(x, y);
   }
+  
+  num get determinant(){
+    return _m00 * _m11 - _m01 * _m10;
+  }
+  
+  AffineTransform createInverse() {
+    num det = determinant;
+    return new AffineTransform(
+        _m11 / det,
+        -_m10 / det,
+        -_m01 / det,
+        _m00 / det,
+        (_m01 * _m12 - _m11 * _m02) / det,
+        (_m10 * _m02 - _m00 * _m12) / det);
+  }
 
   static AffineTransform getRotateInstance(num theta, num x, num y) {
     return new AffineTransform().setToRotation(theta, x, y);
+  }
+
+  static AffineTransform getScaleInstance(sx, sy) {
+    return new AffineTransform().setToScale(sx, sy);
   }
 }
