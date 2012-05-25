@@ -1,15 +1,15 @@
-class Property implements Hashable{
+class Property<T> implements Hashable{
   static final Object Undefined = const UndefinedValue();
   static int _globalId = 0;
 
   final int _id;
   final String name;
-  final Object defaultValue;
-  
+  final T defaultValue;
+
   const Property(this.name, [this.defaultValue = Undefined]) :
     _id = _globalId++;
-  
-  Object get(IPropertyObject obj){
+
+  T get(IPropertyObject obj){
     var coreValue = getCore(obj);
     if(coreValue !== Undefined){
       return coreValue;
@@ -18,8 +18,8 @@ class Property implements Hashable{
       return defaultValue;
     }
   }
-  
-  void set(IPropertyObject obj, Object value){
+
+  void set(IPropertyObject obj, T value){
     if(value == Undefined){
       clear(obj);
     }
@@ -27,16 +27,16 @@ class Property implements Hashable{
       obj.propertyValues[this] = value;
     }
   }
-  
+
   void clear(IPropertyObject obj){
     obj.propertyValues.remove(this);
   }
-  
+
   bool isSet(IPropertyObject obj){
-    return obj.propertyValues.containsKey(this);  
+    return obj.propertyValues.containsKey(this);
   }
-  
-  Object getCore(IPropertyObject obj){
+
+  T getCore(IPropertyObject obj){
     if(isSet(obj)){
       return obj.propertyValues[this];
     }
@@ -44,7 +44,7 @@ class Property implements Hashable{
       return Undefined;
     }
   }
-  
+
   int hashCode(){
     return _id;
   }
