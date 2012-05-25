@@ -1,17 +1,18 @@
 class PElement extends PEventTarget implements IPropertyObject {
   final List<AffineTransform> _transforms;
   final HashMap<Property, Object> propertyValues;
+  final bool cacheEnabled;
   num width, height, _alpha;
   Size _lastDrawSize;
   bool clip = false;
   IElementParent _parent;
 
-  PElement(int this.width, int this.height, [bool enableCache = false]) : 
+  PElement(int this.width, int this.height, [bool this.cacheEnabled = false]) :
     _transforms = new List<AffineTransform>(),
     propertyValues = new HashMap<Property, Object>()
   {
-    if(enableCache){
-      // TODO: init magic here
+    if(cacheEnabled){
+      throw 'should probably implement this';
     }
   }
 
@@ -21,10 +22,16 @@ class PElement extends PEventTarget implements IPropertyObject {
 
   AffineTransform getTransform() {
     var tx = new AffineTransform();
-
-    for(var t in _transforms){
-      tx.concatenate(t);
+    _transforms.forEach(tx.concatenate);
+    return tx;
+  }
+  
+  AffineTransform getTransformToRoot(){
+    var tx = new AffineTransform();
+    if(_parent != null){
+      tx.concatenate(_parent.getTransformToRoot());
     }
+    tx.concatenate(getTransform());
     return tx;
   }
 
@@ -38,7 +45,7 @@ class PElement extends PEventTarget implements IPropertyObject {
   void update(){
     dispatchEvent('Update');
   }
-  
+
   AffineTransform addTransform(){
     var tx = new AffineTransform();
     _transforms.add(tx);
@@ -64,7 +71,7 @@ class PElement extends PEventTarget implements IPropertyObject {
   void invalidateDraw(){
     _invalidateParent();
   }
-  
+
   bool hasVisualChild(PElement element){
     var length = visualChildCount;
     for(var i=0;i<length;i++){
@@ -74,20 +81,20 @@ class PElement extends PEventTarget implements IPropertyObject {
     }
     return false;
   }
-  
+
   PElement getVisualChild(int index){
-    throw "no children for this type";    
+    throw "no children for this type";
   }
-  
+
   int get visualChildCount(){
     return 0;
   }
-  
+
   void claim(IElementParent parent) {
     assert(_parent == null);
     _parent = parent;
   }
-  
+
   //
   // Privates
   //
@@ -125,7 +132,7 @@ class PElement extends PEventTarget implements IPropertyObject {
     }
     return false;
   }
-  
+
   void _invalidateParent(){
     if(_lastDrawSize != null){
         assert(this._parent != null);

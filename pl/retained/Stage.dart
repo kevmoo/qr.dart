@@ -12,6 +12,17 @@ class Stage extends PEventTarget implements IElementParent {
     return new Size(_canvas.width, _canvas.height);
   }
 
+  PElement get rootElement(){
+    return _element;
+  }
+
+  CanvasRenderingContext2D get ctx(){
+    if (_ctx == null) {
+      _ctx = _canvas.getContext('2d');
+    }
+    return _ctx;
+  }
+
   bool draw(){
     if (_ctx == null) {
       _ctx = _canvas.getContext('2d');
@@ -24,5 +35,9 @@ class Stage extends PEventTarget implements IElementParent {
 
   void childInvalidated(PElement child){
     dispatchEvent("Update");
+  }
+
+  AffineTransform getTransformToRoot(){
+    return new AffineTransform();
   }
 }

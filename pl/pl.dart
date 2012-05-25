@@ -11,6 +11,7 @@
 #source('math/Size.dart');
 #source('math/Coordinate.dart');
 #source('math/Vec2.dart');
+#source('math/PRect.dart');
 
 #source('graphics/AffineTransform.dart');
 #source('graphics/gfx.dart');
@@ -18,6 +19,9 @@
 #source('events/impl.dart');
 #source('events/PEventTarget.dart');
 
+#source('retained/Mouse.dart');
+#source('retained/GFX.dart');
+#source('retained/Helper.dart');
 #source('retained/PElement.dart');
 #source('retained/IElementParent.dart');
 #source('retained/Panel.dart');
