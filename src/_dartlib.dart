@@ -1,4 +1,4 @@
-#library('pl');
+#library('dartlib');
 
 #import('dart:html');
 
