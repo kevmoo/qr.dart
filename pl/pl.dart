@@ -29,3 +29,4 @@
 #source('retained/PCanvas.dart');
 #source('retained/Stage.dart');
 #source('retained/Shape.dart');
+#source('retained/ShapeType.dart');

@@ -1,5 +1,26 @@
 class CanvasUtil {
+  /**
+   * 4 * ((√(2) - 1) / 3);
+   */
+  static final num kappa = 0.5522848;
+
   static void transform(CanvasRenderingContext2D ctx, AffineTransform tx){
     ctx.transform(tx.scaleX, tx.shearY, tx.shearX, tx.scaleY, tx.translateX, tx.translateY);
+  }
+
+  static void ellipse(CanvasRenderingContext2D ctx, num x, num y, num width, num height) {
+    var hB = (width / 2) * kappa,
+      vB = (height / 2) * kappa,
+      eX = x + width,
+      eY = y + height,
+      mX = x + width / 2,
+      mY = y + height / 2;
+    ctx.beginPath();
+    ctx.moveTo(x, mY);
+    ctx.bezierCurveTo(x, mY - vB, mX - hB, y, mX, y);
+    ctx.bezierCurveTo(mX + hB, y, eX, mY - vB, eX, mY);
+    ctx.bezierCurveTo(eX, mY + vB, mX + hB, eY, mX, eY);
+    ctx.bezierCurveTo(mX - hB, eY, x, mY + vB, x, mY);
+    ctx.closePath();
   }
 }

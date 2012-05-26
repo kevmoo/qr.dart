@@ -44,7 +44,7 @@ class Demo{
     return new Demo._internal(canvas, stage, tx);
   }
 
-  Demo._internal(CanvasElement this._canvas, this._stage, this._tx){
+  Demo._internal(CanvasElement this._canvas, Stage this._stage, AffineTransform this._tx){
     _canvas.on.mouseMove.add(_canvas_mouseMove);
     _canvas.on.mouseOut.add(_canvas_mouseOut);
   }

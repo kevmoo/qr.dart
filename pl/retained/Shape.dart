@@ -1,11 +1,22 @@
 class Shape extends PElement {
-  final String _fillStyle = 'blue';
+  final String fillStyle;
+  final ShapeType shapeType;
 
-  Shape(int w, int h, [String this._fillStyle = 'blue']):super(w, h);
+  Shape(int w, int h, [String this.fillStyle = 'blue', ShapeType this.shapeType = ShapeType.rect]):super(w, h);
 
   void drawOverride(CanvasRenderingContext2D ctx){
-      ctx.fillStyle = _fillStyle;
-      ctx.fillRect(0, 0, size.width, size.height);
+      ctx.fillStyle = fillStyle;
+      switch(shapeType){
+        case ShapeType.rect:
+          ctx.fillRect(0, 0, size.width, size.height);
+          break;
+        case ShapeType.ellipse:
+          CanvasUtil.ellipse(ctx, 0, 0, this.width, this.height);
+          ctx.fill();
+          break;
+        default:
+          throw "shape not known...";
+      }
   }
 
 }
