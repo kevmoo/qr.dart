@@ -17,7 +17,7 @@ class RetainedDebug {
 
     if(hits.length > 0){
       ctx.save();
-      ctx.lineWidth = 10;
+      ctx.lineWidth = 2;
 
       ctx.beginPath();
 
