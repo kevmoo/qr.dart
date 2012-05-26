@@ -1,9 +1,12 @@
-# Dart Hacking
+# dartlib
 
-Mostly by [Kevin Moore](http://j832.com)
+By [Kevin Moore](https://github.com/kevmoo) ([@kevmoo](http://twitter.com/kevmoo))
 
-Current idea: port enough of the [PL javascript library](https://github.com/thinkpixellab/pl) and Google's [Closure javascript library](https://developers.google.com/closure/library/) to get some of the [existing demos](http://thinkpixellab.github.com/pl/) working.
+Starting by porting bits of the [PL javascript library](https://github.com/thinkpixellab/pl) and Google's [Closure javascript library](https://developers.google.com/closure/library/) to enable some interesting scenarios.
 
-Then...who knows...
+### Current Status
 
-Building and running on Dart SDK [V7696](https://gsdview.appspot.com/dart-editor-archive-integration/7696/)
+ * Core classes from Closure: `Coordinate, Rect, Size, Vec2, AffineTransfrom`
+ * From PL: parts of the property model, a lot of the retained library, including panels and hit testing
+
+Building and running on Dart SDK [8022](https://gsdview.appspot.com/dart-editor-archive-continuous/8022/)
