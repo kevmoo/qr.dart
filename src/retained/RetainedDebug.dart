@@ -29,7 +29,7 @@ class RetainedDebug {
     }
   }
 
-  static void _borderElement(CanvasRenderingContext2D ctx, PElement element, [bool excludeChildren = false, bool filter(PEelement) = null]) {
+  static void _borderElement(CanvasRenderingContext2D ctx, PElement element, [bool excludeChildren = false, Predicate<PElement> filter = null]) {
     ctx.save();
     CanvasUtil.transform(ctx, element.getTransformToRoot());
 

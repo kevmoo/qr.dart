@@ -30,3 +30,5 @@
 #source('retained/Stage.dart');
 #source('retained/Shape.dart');
 #source('retained/ShapeType.dart');
+
+typedef bool Predicate<T>(T obj);
