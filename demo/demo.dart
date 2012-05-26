@@ -31,17 +31,17 @@ class Demo{
 
     pCanvas.addElement(red);
     pCanvas.setCenter(red, new Coordinate(50, 50));
-    
-    
+
+
     pCanvas.addTransform().translate(
       (canvas.width - pCanvas.width) / 2,
       (canvas.height - pCanvas.height) / 2);
-      
+
     this._tx = pCanvas.addTransform();
 
     var rootPanel = new PCanvas(500, 500);
     rootPanel.addElement(pCanvas);
-    
+
     _stage = new Stage(_canvas, rootPanel);
   }
 
@@ -53,7 +53,7 @@ class Demo{
     _tx.rotate(Math.PI * 0.01, 100, 100);
     _stage.draw();
     if(_mouseLocation != null){
-      Helper.borderHitTest(_stage, _mouseLocation);
+      RetainedDebug.borderHitTest(_stage, _mouseLocation);
     }
     //Helper.borderElements(_stage);
     _requestFrame();

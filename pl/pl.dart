@@ -19,9 +19,10 @@
 #source('events/impl.dart');
 #source('events/PEventTarget.dart');
 
+#source('retained/RetainedDebug.dart');
 #source('retained/Mouse.dart');
-#source('retained/GFX.dart');
-#source('retained/Helper.dart');
+#source('retained/CanvasUtil.dart');
+#source('retained/RetainedUtil.dart');
 #source('retained/PElement.dart');
 #source('retained/IElementParent.dart');
 #source('retained/Panel.dart');
