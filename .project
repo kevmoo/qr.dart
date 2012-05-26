@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>monkey</name>
 	<comment></comment>
 	<projects>
 	</projects>
+	<name>dartlib</name>
 	<buildSpec>
 		<buildCommand>
 			<name>com.google.dart.tools.core.dartBuilder</name>
