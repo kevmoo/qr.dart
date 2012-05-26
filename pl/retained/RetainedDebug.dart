@@ -21,10 +21,8 @@ class RetainedDebug {
 
       ctx.beginPath();
 
-      _borderElement(ctx, hits[0], true);
-
       hits.forEach((e) {
-        //_borderElement(ctx, e, true);
+        _borderElement(ctx, e, true);
       });
       ctx.stroke();
       ctx.restore();
