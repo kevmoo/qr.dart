@@ -5,19 +5,16 @@
 main(){
   CanvasElement canvas = document.query("#content");
   var demo = new Demo(canvas);
-  demo.start();
+  demo.requestFrame();
 }
 
 class Demo{
-  CanvasElement _canvas;
-  Stage _stage;
-  AffineTransform _tx;
+  final CanvasElement _canvas;
+  final Stage _stage;
+  final AffineTransform _tx;
   Coordinate _mouseLocation;
 
-  Demo(CanvasElement canvas){
-    _canvas = canvas;
-    _canvas.on.mouseMove.add(_canvas_mouseMove);
-    _canvas.on.mouseOut.add(_canvas_mouseOut);
+  factory Demo(CanvasElement canvas){
 
     PCanvas pCanvas = new PCanvas(200, 200);
     var blue = new Shape(100, 100, 'blue');
@@ -37,16 +34,23 @@ class Demo{
       (canvas.width - pCanvas.width) / 2,
       (canvas.height - pCanvas.height) / 2);
 
-    this._tx = pCanvas.addTransform();
+    var tx = pCanvas.addTransform();
 
     var rootPanel = new PCanvas(500, 500);
     rootPanel.addElement(pCanvas);
 
-    _stage = new Stage(_canvas, rootPanel);
+    var stage = new Stage(canvas, rootPanel);
+
+    return new Demo._internal(canvas, stage, tx);
   }
 
-  void start(){
-    _requestFrame();
+  Demo._internal(CanvasElement this._canvas, this._stage, this._tx){
+    _canvas.on.mouseMove.add(_canvas_mouseMove);
+    _canvas.on.mouseOut.add(_canvas_mouseOut);
+  }
+
+  void requestFrame(){
+    window.webkitRequestAnimationFrame(_onFrame);
   }
 
   bool _onFrame(num highResTime){
@@ -55,12 +59,7 @@ class Demo{
     if(_mouseLocation != null){
       RetainedDebug.borderHitTest(_stage, _mouseLocation);
     }
-    //Helper.borderElements(_stage);
-    _requestFrame();
-  }
-
-  void _requestFrame(){
-    window.webkitRequestAnimationFrame(_onFrame);
+    requestFrame();
   }
 
   void _canvas_mouseMove(MouseEvent e){
