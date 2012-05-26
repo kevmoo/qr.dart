@@ -2,13 +2,15 @@ class CanvasUtil {
   /**
    * 4 * ((√(2) - 1) / 3);
    */
-  static final num kappa = 0.5522848;
+  static final num kappa = 0.55228474983079339840225163227959743809289583383593;
 
   static void transform(CanvasRenderingContext2D ctx, AffineTransform tx){
-    ctx.transform(tx.scaleX, tx.shearY, tx.shearX, tx.scaleY, tx.translateX, tx.translateY);
+    ctx.transform(tx.scaleX, tx.shearY, tx.shearX,
+      tx.scaleY, tx.translateX, tx.translateY);
   }
 
-  static void ellipse(CanvasRenderingContext2D ctx, num x, num y, num width, num height) {
+  static void ellipse(CanvasRenderingContext2D ctx,
+                      num x, num y, num width, num height) {
     var hB = (width / 2) * kappa,
       vB = (height / 2) * kappa,
       eX = x + width,
