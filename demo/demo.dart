@@ -19,7 +19,7 @@ class Demo{
     PCanvas pCanvas = new PCanvas(200, 200);
     var blue = new Shape(100, 100, 'blue');
     var green = new Shape(70, 70, 'green');
-    var red = new Shape(40, 40, 'red');
+    var red = new Shape(40, 40, 'red', ShapeType.ellipse);
 
     pCanvas.addElement(blue);
 
