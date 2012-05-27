@@ -2,12 +2,12 @@ class PElement extends PEventTarget implements IPropertyObject {
   final List<AffineTransform> _transforms;
   final HashMap<Property, Object> propertyValues;
   final bool cacheEnabled;
-  num width, height, _alpha;
+  num _width, _height, _alpha;
   Size _lastDrawSize;
   bool clip = false;
   IElementParent _parent;
 
-  PElement(int this.width, int this.height, [bool this.cacheEnabled = false]) :
+  PElement(int this._width, int this._height, [bool this.cacheEnabled = false]) :
     _transforms = new List<AffineTransform>(),
     propertyValues = new HashMap<Property, Object>()
   {
@@ -17,8 +17,11 @@ class PElement extends PEventTarget implements IPropertyObject {
   }
 
   Size get size(){
-    return new Size(width, height);
+    return new Size(_width, _height);
   }
+  
+  num get width(){ return _width; }
+  num get height(){ return _height; }
 
   AffineTransform getTransform() {
     var tx = new AffineTransform();
@@ -69,7 +72,10 @@ class PElement extends PEventTarget implements IPropertyObject {
   }
 
   void invalidateDraw(){
-    _invalidateParent();
+    if(_lastDrawSize != null){
+      _lastDrawSize = null;
+      _invalidateParent();
+    }
   }
 
   bool hasVisualChild(PElement element){
@@ -134,9 +140,7 @@ class PElement extends PEventTarget implements IPropertyObject {
   }
 
   void _invalidateParent(){
-    if(_lastDrawSize != null){
-        assert(this._parent != null);
-      _parent.childInvalidated(this);
-    }
+    assert(this._parent != null);
+    _parent.childInvalidated(this);
   }
 }
