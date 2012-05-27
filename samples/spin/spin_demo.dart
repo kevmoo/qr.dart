@@ -3,17 +3,17 @@
 
 main(){
   CanvasElement canvas = document.query("#content");
-  var demo = new Demo(canvas);
+  var demo = new SpinDemo(canvas);
   demo.requestFrame();
 }
 
-class Demo{
+class SpinDemo{
   final CanvasElement _canvas;
   final Stage _stage;
   final AffineTransform _tx;
   Coordinate _mouseLocation;
 
-  factory Demo(CanvasElement canvas){
+  factory SpinDemo(CanvasElement canvas){
 
     PCanvas pCanvas = new PCanvas(200, 200);
     var blue = new Shape(100, 100, 'blue');
@@ -40,10 +40,10 @@ class Demo{
 
     var stage = new Stage(canvas, rootPanel);
 
-    return new Demo._internal(canvas, stage, tx);
+    return new SpinDemo._internal(canvas, stage, tx);
   }
 
-  Demo._internal(CanvasElement this._canvas, Stage this._stage, AffineTransform this._tx){
+  SpinDemo._internal(CanvasElement this._canvas, Stage this._stage, AffineTransform this._tx){
     _canvas.on.mouseMove.add(_canvas_mouseMove);
     _canvas.on.mouseOut.add(_canvas_mouseOut);
   }
