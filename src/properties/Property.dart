@@ -1,5 +1,5 @@
 class Property<T> implements Hashable{
-  static final Object Undefined = const UndefinedValue();
+  static final Object Undefined = const _UndefinedValue();
   static int _globalId = 0;
 
   final int _id;
@@ -19,30 +19,27 @@ class Property<T> implements Hashable{
     }
   }
 
+  Object getCore(IPropertyObject obj){
+    return obj.propertyValues._getValueOrUndefined(this);
+  }
+
   void set(IPropertyObject obj, T value){
     if(value == Undefined){
       clear(obj);
     }
     else{
-      obj.propertyValues[this] = value;
+      obj.propertyValues._set(this, value);
     }
   }
 
   void clear(IPropertyObject obj){
-    obj.propertyValues.remove(this);
+    obj.propertyValues._remove(this);
   }
 
   bool isSet(IPropertyObject obj){
-    return obj.propertyValues.containsKey(this);
+    return obj.propertyValues._isSet(this);
   }
 
-  Object getCore(IPropertyObject obj){
-    if(isSet(obj)){
-      return obj.propertyValues[this];
-    }
-    else{
-      return Undefined;
-    }
   }
 
   int hashCode(){
@@ -50,6 +47,8 @@ class Property<T> implements Hashable{
   }
 }
 
-class UndefinedValue{
-  const UndefinedValue();
+class _UndefinedValue{
+  const _UndefinedValue();
+  // TODO: toString?
 }
+

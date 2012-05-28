@@ -1,6 +1,6 @@
 class PElement extends PEventTarget implements IPropertyObject {
   final List<AffineTransform> _transforms;
-  final HashMap<Property, Object> propertyValues;
+  final PropertyValues propertyValues;
   final bool cacheEnabled;
   num _width, _height, _alpha;
   Size _lastDrawSize;
@@ -9,7 +9,7 @@ class PElement extends PEventTarget implements IPropertyObject {
 
   PElement(int this._width, int this._height, [bool this.cacheEnabled = false]) :
     _transforms = new List<AffineTransform>(),
-    propertyValues = new HashMap<Property, Object>()
+    propertyValues = new PropertyValues()
   {
     if(cacheEnabled){
       throw 'should probably implement this';
@@ -19,7 +19,7 @@ class PElement extends PEventTarget implements IPropertyObject {
   Size get size(){
     return new Size(_width, _height);
   }
-  
+
   num get width(){ return _width; }
   num get height(){ return _height; }
 
@@ -28,7 +28,7 @@ class PElement extends PEventTarget implements IPropertyObject {
     _transforms.forEach(tx.concatenate);
     return tx;
   }
-  
+
   AffineTransform getTransformToRoot(){
     var tx = new AffineTransform();
     if(_parent != null){

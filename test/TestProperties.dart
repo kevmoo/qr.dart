@@ -1,7 +1,7 @@
 class TestProperties implements IPropertyObject {
-  final HashMap<Property, Object> propertyValues;
+  final PropertyValues propertyValues;
 
-  TestProperties() : propertyValues = new HashMap<Property, Object>();
+  TestProperties() : propertyValues = new PropertyValues();
 
   static void run(){
     group('properties -- ', (){
