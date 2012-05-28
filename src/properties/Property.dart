@@ -6,7 +6,7 @@ class Property<T> implements Hashable{
   final String name;
   final T defaultValue;
 
-  const Property(this.name, [this.defaultValue = Undefined]) :
+  const Property(String this.name, [T this.defaultValue = null]) :
     _id = _globalId++;
 
   T get(IPropertyObject obj){
@@ -36,7 +36,7 @@ class Property<T> implements Hashable{
     return obj.propertyValues.containsKey(this);
   }
 
-  T getCore(IPropertyObject obj){
+  Object getCore(IPropertyObject obj){
     if(isSet(obj)){
       return obj.propertyValues[this];
     }
