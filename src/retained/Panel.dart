@@ -1,5 +1,5 @@
 class Panel extends PElement implements IElementParent  {
-  static final Property<AffineTransform> _containerTransformProperty = const Property("panelTransform");
+  static final Property<AffineTransform> _containerTransformProperty = const Property<AffineTransform>("panelTransform");
   final List<PElement> _children;
 
   Panel(int w, int h, [bool enableCache = false]) :
