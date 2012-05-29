@@ -5,6 +5,7 @@
 #source('internal/_SimpleSet.dart');
 
 #source('GlobalId.dart');
+#source('PEvent.dart');
 #source('IDisposable.dart');
 #source('Disposable.dart');
 
@@ -18,9 +19,6 @@
 
 #source('graphics/AffineTransform.dart');
 #source('graphics/gfx.dart');
-
-#source('events/impl.dart');
-#source('events/PEventTarget.dart');
 
 #source('retained/RetainedDebug.dart');
 #source('retained/Mouse.dart');

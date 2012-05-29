@@ -1,38 +1,50 @@
 class TestEventTarget {
+  final EventHandle<String> _testEventHandle;
+  
+  TestEventTarget(): _testEventHandle = new EventHandle<String>();
+
+  IEvent<String> get testEvent(){
+    return _testEventHandle.event;
+  }
+  
+  void fireTestEvent(String value){
+    _testEventHandle.fireEvent(this, value);
+  }
+
   static void run(){
     test('test basic event subscribe, fire, unsubscribe', () {
 
-      var target = new PEventTarget();
+      var target = new TestEventTarget();
 
-      var eventCount = 0;
+      String lastValue = null;
+      expect(lastValue).equals(null);
 
+      // before an event is registered, the value should still be null
+      target.fireTestEvent('bar');
+      expect(lastValue).equals(null);
 
-      // count should start at zero
-      expect(eventCount).equals(0);
+      var handler = (Object sender, String args) => lastValue = args;
 
+      var eventId = target.testEvent.add(handler);
 
-      // before an event is registered, the count should still be zero
-      target.dispatchEvent('bar');
-      expect(eventCount).equals(0);
+      // after registration, event should change value
+      target.fireTestEvent('bar');
+      expect(lastValue).equals('bar');
 
-      var handler = (Event event) => eventCount++;
+      // dispatching another event shouldn't change value
+      target.fireTestEvent('foo');
+      expect(lastValue).equals('foo');
 
-      target.addEventListener('bar', handler);
+      var didRemove = target.testEvent.remove(eventId);
+      expect(didRemove).equals(true);
 
-      // after registration, event should increment counter
-      target.dispatchEvent('bar');
-      expect(eventCount).equals(1);
+      // removing a second time should fail
+      didRemove = target.testEvent.remove(eventId);
+      expect(didRemove).equals(false);
 
-      // dispatching another event shouldn't increment counter
-      target.dispatchEvent('foo');
-      expect(eventCount).equals(1);
-
-      target.removeEventListener('bar', handler);
-
-      // after removing, event should not increment counter
-      target.dispatchEvent('bar');
-      expect(eventCount).equals(1);
-
+      // after removing, event should not change value
+      target.fireTestEvent('bar');
+      expect(lastValue).equals('foo');
     });
 
   }

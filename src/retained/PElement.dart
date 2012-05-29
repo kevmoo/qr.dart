@@ -1,7 +1,9 @@
-class PElement extends PEventTarget implements IPropertyObject {
+class PElement implements IPropertyObject {
   final List<AffineTransform> _transforms;
   final PropertyValues propertyValues;
   final bool cacheEnabled;
+  final EventHandle<EventArgs> _updatedEventHandle;
+  
   num _width, _height, _alpha;
   Size _lastDrawSize;
   bool clip = false;
@@ -9,7 +11,8 @@ class PElement extends PEventTarget implements IPropertyObject {
 
   PElement(int this._width, int this._height, [bool this.cacheEnabled = false]) :
     _transforms = new List<AffineTransform>(),
-    propertyValues = new PropertyValues()
+    propertyValues = new PropertyValues(),
+    _updatedEventHandle = new EventHandle<EventArgs>()
   {
     if(cacheEnabled){
       throw 'should probably implement this';
@@ -23,6 +26,10 @@ class PElement extends PEventTarget implements IPropertyObject {
   num get width(){ return _width; }
   num get height(){ return _height; }
 
+  IEvent<EventArgs> get updated(){
+    return _updatedEventHandle.event;
+  }
+  
   AffineTransform getTransform() {
     var tx = new AffineTransform();
     _transforms.forEach(tx.concatenate);
@@ -46,7 +53,7 @@ class PElement extends PEventTarget implements IPropertyObject {
   }
 
   void update(){
-    dispatchEvent('Update');
+    _updatedEventHandle.fireEvent(this, const EventArgs());
   }
 
   AffineTransform addTransform(){

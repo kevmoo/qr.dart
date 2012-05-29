@@ -1,9 +1,13 @@
-class Stage extends PEventTarget implements IElementParent {
+class Stage implements IElementParent {
   final CanvasElement _canvas;
   final PElement _element;
+  final EventHandle<EventArgs> _updatedEventHandle;
   CanvasRenderingContext2D _ctx;
 
-  Stage(CanvasElement canvas, PElement rootElement) : _canvas = canvas, _element = rootElement
+  Stage(CanvasElement canvas, PElement rootElement) : 
+    _canvas = canvas, 
+    _element = rootElement,
+    _updatedEventHandle = new EventHandle<EventArgs>()
   {
     rootElement.claim(this);
   }
@@ -12,6 +16,10 @@ class Stage extends PEventTarget implements IElementParent {
     return new Size(_canvas.width, _canvas.height);
   }
 
+  IEvent<EventArgs> get updated(){
+    return _updatedEventHandle.event;
+  }
+  
   PElement get rootElement(){
     return _element;
   }
@@ -34,7 +42,7 @@ class Stage extends PEventTarget implements IElementParent {
   }
 
   void childInvalidated(PElement child){
-    dispatchEvent("Update");
+    _updatedEventHandle.fireEvent(this, const EventArgs());
   }
 
   AffineTransform getTransformToRoot(){
