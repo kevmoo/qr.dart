@@ -1,19 +1,18 @@
 class Property<T> implements Hashable{
   static final Object Undefined = const _UndefinedValue();
-  static int _globalId = 0;
 
-  final int _id;
+  final GlobalId _id;
   final String name;
   final T defaultValue;
   final Func<T> _factory;
 
   const Property(String this.name, [T this.defaultValue = null]) :
-    _id = _globalId++,
+    _id = new GlobalId(),
     _factory = null;
 
   // TODO: must test factory methods, yo
   const Property.withFactory(String this.name, Func<T> this._factory) :
-    _id = _globalId++,
+    _id = new GlobalId(),
     defaultValue = null;
 
   T get(IPropertyObject obj){
@@ -54,7 +53,7 @@ class Property<T> implements Hashable{
   }  
 
   int hashCode(){
-    return _id;
+    return _id.hashCode();
   }
 }
 
