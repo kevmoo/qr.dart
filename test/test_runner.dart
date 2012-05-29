@@ -6,8 +6,8 @@
 
 #source('TestHelloWorld.dart');
 #source('TestProperties.dart');
-#source('events/TestEventTarget.dart');
-#source('graphics/TestAffineTransform.dart');
+#source('TestEventTarget.dart');
+#source('TestAffineTransform.dart');
 
 main() {
   useHtmlConfiguration();
