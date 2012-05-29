@@ -2,6 +2,8 @@
 
 #import('dart:html');
 
+#source('internal/_SimpleSet.dart');
+
 #source('GlobalId.dart');
 #source('IDisposable.dart');
 #source('Disposable.dart');
