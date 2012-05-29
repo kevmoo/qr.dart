@@ -32,3 +32,4 @@
 #source('retained/ShapeType.dart');
 
 typedef bool Predicate<T>(T obj);
+typedef T Func<T>();

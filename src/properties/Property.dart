@@ -5,13 +5,20 @@ class Property<T> implements Hashable{
   final int _id;
   final String name;
   final T defaultValue;
+  final Func<T> _factory;
 
   const Property(String this.name, [T this.defaultValue = null]) :
-    _id = _globalId++;
+    _id = _globalId++,
+    _factory = null;
+
+  // TODO: must test factory methods, yo
+  const Property.withFactory(String this.name, Func<T> this._factory) :
+    _id = _globalId++,
+    defaultValue = null;
 
   T get(IPropertyObject obj){
     var coreValue = getCore(obj);
-    if(coreValue !== Undefined){
+    if(coreValue != Undefined){
       return coreValue;
     }
     else{
@@ -20,7 +27,7 @@ class Property<T> implements Hashable{
   }
 
   Object getCore(IPropertyObject obj){
-    return obj.propertyValues._getValueOrUndefined(this);
+    return obj.propertyValues._getValueOrUndefined(this, _factory);
   }
 
   void set(IPropertyObject obj, T value){

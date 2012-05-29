@@ -19,13 +19,17 @@ class PropertyValues{
     _propertyValues.remove(key);
   }
 
-  Object _getValueOrUndefined(Property key){
+  Object _getValueOrUndefined(Property key, Func<Object> ifAbsent){
     if(_isSet(key)){
       return _propertyValues[key];
+    }
+    else if(ifAbsent != null){
+      var value = ifAbsent();
+      _set(key, value);
+      return value;
     }
     else{
       return Property.Undefined;
     }
   }
-
 }
