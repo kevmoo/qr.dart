@@ -8,6 +8,7 @@ class PropertyValues{
   PropertyValues() : _propertyValues = new HashMap<Property, Object>();
 
   void _set(Property key, Object value){
+    assert(value != Property.Undefined);
     _propertyValues[key] = value;
   }
 

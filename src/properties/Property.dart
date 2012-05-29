@@ -31,12 +31,8 @@ class Property<T> implements Hashable{
   }
 
   void set(IPropertyObject obj, T value){
-    if(value == Undefined){
-      clear(obj);
-    }
-    else{
-      obj.propertyValues._set(this, value);
-    }
+    assert(value != Undefined);
+    obj.propertyValues._set(this, value);
   }
 
   void clear(IPropertyObject obj){
