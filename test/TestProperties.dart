@@ -21,7 +21,25 @@ class TestProperties implements IPropertyObject {
         expect(testProperty.get(object)).equals(null);
         expect(testProperty.getCore(object)).equals(Property.Undefined);
         expect(testProperty.isSet(object)).equals(false);
+      });
 
+      test('with factories', (){
+        var prop = new Property<int>("withoutDefault");
+        testFactories(prop, 43, 18);
+        testFactories(prop, 43, null);
+        testFactories(prop, null, 18);
+        testFactories(prop, null, null);
+
+        prop = new Property<int>("withDefault", 24);
+        testFactories(prop, 43, 18);
+        testFactories(prop, 43, 24);
+        testFactories(prop, 43, null);
+        testFactories(prop, null, 18);
+        testFactories(prop, null, 24);
+        testFactories(prop, null, null);
+        testFactories(prop, 24, 18);
+        testFactories(prop, 24, 24);
+        testFactories(prop, 24, null);
       });
 
       test('with listeners', (){
@@ -97,5 +115,67 @@ class TestProperties implements IPropertyObject {
         expect(testProperty.isSet(object)).equals(false);
       });
     });
+  }
+  
+  static void testFactories(Property<int> prop, int setValue, int propFactoryValue){
+    var wodWatcher = new EventWatcher<Property>();
+    var propWatcher = new EventWatcher<Property>();
+    
+    var object = new TestProperties();
+
+    prop.addHandler(object, wodWatcher.handler);
+    object.propertyValues.propertyChanged.add(propWatcher.handler);
+    
+    //
+    // Checks
+    //
+    expect(prop.get(object)).equals(prop.defaultValue);
+    expect(prop.getCore(object)).equals(Property.Undefined);
+    expect(propWatcher.eventCount).equals(0);
+    expect(wodWatcher.eventCount).equals(0);
+
+    // set normally
+    prop.set(object, setValue);
+    
+    //
+    // Checks
+    //
+    expect(prop.get(object)).equals(setValue);
+    expect(prop.getCore(object)).equals(setValue);
+    expect(propWatcher.eventCount).equals(1);
+    expect(wodWatcher.eventCount).equals(1);
+
+    // get w/ factory should not change the value
+    var propFactory = (IPropertyObject obj){
+      return propFactoryValue;
+    };
+
+    //
+    // Checks
+    //
+    expect(prop.get(object, propFactory)).equals(setValue);
+    expect(prop.getCore(object)).equals(setValue);
+    expect(propWatcher.eventCount).equals(1);
+    expect(wodWatcher.eventCount).equals(1);
+
+    // clear then factory should do fun things, though
+    prop.clear(object);
+
+    //
+    // Checks
+    //
+    expect(propWatcher.eventCount).equals(2);
+    expect(wodWatcher.eventCount).equals(2);
+    expect(prop.get(object)).equals(prop.defaultValue);
+    expect(prop.getCore(object)).equals(Property.Undefined);
+
+    // call get w/ the propFactory
+    expect(prop.get(object, propFactory)).equals(propFactoryValue);
+    expect(prop.getCore(object)).equals(propFactoryValue);
+    
+    // NOTE: get w/ a factory (if the factory sets the value)
+    //       DOES cause property change events
+    expect(propWatcher.eventCount).equals(3);
+    expect(wodWatcher.eventCount).equals(3);
   }
 }
