@@ -30,12 +30,17 @@ class EventArgs {
 }
 
 class EventHandle<T> {
+  // TODO: ponder creating event instance on-demand
   final PEvent<T> event;
   
   EventHandle() : event = new PEvent<T>._internal();
 
   void fireEvent(Object sender, T args){
     event._fireEvent(sender, args);
+  }
+
+  int get handlerCount(){
+    return event._handlers.length;
   }
 }
 
