@@ -73,39 +73,27 @@ class TestPropertyEventIntegration implements IPropertyObject {
     test('TestPropertyEventIntegration', doTest);
   }
   
-  static void doTest(){
-    int nc = 0;
-    int ac = 0;
-    int pc = 0;
-    String lastChanged = null;
+  static void doTest(){    
+    var nh = new EventWatcher<EventArgs>();
     
-    EventHandler<EventArgs> nh = (sender, args) {
-      nc++;
-    };
-    
-    EventHandler<EventArgs> ah = (sender, args) {
-      ac++;
-    };
+    var ah = new EventWatcher<EventArgs>();
 
-    EventHandler<String> ph = (sender, args) {
-      pc++;
-      lastChanged = args;
-    };
+    var ph = new EventWatcher<String>();
 
     var obj = new TestPropertyEventIntegration();
-    obj.nameChanged.add(nh);
-    obj.ageChanged.add(ah);
-    obj.propertyChanged.add(ph);
+    obj.nameChanged.add(nh.handler);
+    obj.ageChanged.add(ah.handler);
+    obj.propertyChanged.add(ph.handler);
     
     //
     // Initial checks
     //
     expect(obj.name).equals(null);
     expect(obj.age).equals(0);
-    expect(nc).equals(0);
-    expect(ac).equals(0);
-    expect(pc).equals(0);
-    expect(lastChanged).equals(null);
+    expect(nh.eventCount).equals(0);
+    expect(ah.eventCount).equals(0);
+    expect(ph.eventCount).equals(0);
+    expect(ph.lastArgs).equals(null);
 
     obj.name = "Bob";
     
@@ -114,10 +102,10 @@ class TestPropertyEventIntegration implements IPropertyObject {
     //
     expect(obj.name).equals('Bob');
     expect(obj.age).equals(0);
-    expect(nc).equals(1);
-    expect(ac).equals(0);
-    expect(pc).equals(1);
-    expect(lastChanged).equals('name');
+    expect(nh.eventCount).equals(1);
+    expect(ah.eventCount).equals(0);
+    expect(ph.eventCount).equals(1);
+    expect(ph.lastArgs).equals('name');
 
     // NOTE: no checks for setting the same value twice
     obj.name = "Bob";
@@ -127,10 +115,10 @@ class TestPropertyEventIntegration implements IPropertyObject {
     //
     expect(obj.name).equals('Bob');
     expect(obj.age).equals(0);
-    expect(nc).equals(2);
-    expect(ac).equals(0);
-    expect(pc).equals(2);
-    expect(lastChanged).equals('name');
+    expect(nh.eventCount).equals(2);
+    expect(ah.eventCount).equals(0);
+    expect(ph.eventCount).equals(2);
+    expect(ph.lastArgs).equals('name');
 
     obj.age = 19;
     
@@ -139,10 +127,10 @@ class TestPropertyEventIntegration implements IPropertyObject {
     //
     expect(obj.name).equals('Bob');
     expect(obj.age).equals(19);
-    expect(nc).equals(2);
-    expect(ac).equals(1);
-    expect(pc).equals(3);
-    expect(lastChanged).equals('age');
+    expect(nh.eventCount).equals(2);
+    expect(ah.eventCount).equals(1);
+    expect(ph.eventCount).equals(3);
+    expect(ph.lastArgs).equals('age');
 
     // reset properties
     obj.reset();
@@ -152,14 +140,14 @@ class TestPropertyEventIntegration implements IPropertyObject {
     //
     expect(obj.name).equals(null);
     expect(obj.age).equals(0);
-    expect(nc).equals(3);
-    expect(ac).equals(2);
+    expect(nh.eventCount).equals(3);
+    expect(ah.eventCount).equals(2);
     
     // get 2 prop change events: for name and age 
-    expect(pc).equals(5);
+    expect(ph.eventCount).equals(5);
 
     // implementation detail
     // age is cleared 2nd in 'reset'
-    expect(lastChanged).equals('age');
+    expect(ph.lastArgs).equals('age');
   }
 }

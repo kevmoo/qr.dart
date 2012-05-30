@@ -32,58 +32,50 @@ class TestProperties implements IPropertyObject {
         expect(testProperty.getCore(object)).equals(Property.Undefined);
         expect(testProperty.isSet(object)).equals(false);
 
-        int v1 = 0;
-
-        // define handler 1
-        EventHandler<Property> h1 = (obj, prop) {
-          v1++;
-        };
+        var h1 = new EventWatcher<Property>();
+        
         // set handler 1 on prop
-        var g1 = testProperty.addHandler(object, h1);
-        expect(v1).equals(0);
+        var g1 = testProperty.addHandler(object, h1.handler);
+        expect(h1.eventCount).equals(0);
 
         // set prop
         testProperty.set(object, "the foo!");
         // - should fire
-        expect(v1).equals(1);
+        expect(h1.eventCount).equals(1);
 
         // clear prop
         testProperty.clear(object);
         // - should fire
-        expect(v1).equals(2);
+        expect(h1.eventCount).equals(2);
 
         // define handler 2 + set handler
-        int v2 = 0;
+        var h2 = new EventWatcher<Property>();
 
-        // define handler 1
-        EventHandler<Property> h2 = (obj, prop) {
-          v2++;
-        };
         // set handler 1 on prop
-        var g2 = testProperty.addHandler(object, h2);
-        expect(v2).equals(0);
+        var g2 = testProperty.addHandler(object, h2.handler);
+        expect(h2.eventCount).equals(0);
 
         // set prop
         testProperty.set(object, "the foo!");
         // - should fire both handlers
-        expect(v1).equals(3);
-        expect(v2).equals(1);
+        expect(h1.eventCount).equals(3);
+        expect(h2.eventCount).equals(1);
 
         // remove handler 1
         testProperty.removeHandler(object, g1);
         // clear prop
         testProperty.clear(object);
         // should fire h2, but not h1
-        expect(v1).equals(3);
-        expect(v2).equals(2);
+        expect(h1.eventCount).equals(3);
+        expect(h2.eventCount).equals(2);
 
         // remove handler 2
         testProperty.removeHandler(object, g2);
         // set prop
         testProperty.set(object, "the bar!");
         // should not fire either handler
-        expect(v1).equals(3);
-        expect(v2).equals(2);        
+        expect(h1.eventCount).equals(3);
+        expect(h2.eventCount).equals(2);        
       });
 
       test('with default', (){

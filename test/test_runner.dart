@@ -21,3 +21,26 @@ main() {
   TestPropertyEventIntegration.run();
 }
 
+class EventWatcher<T> {
+  Object _lastSender = null;
+  T _lastArgs = null;
+  int _eventCount = 0;
+
+  Object get lastSender(){
+    return _lastSender;
+  }
+  
+  T get lastArgs(){
+    return _lastArgs;
+  }
+  
+  int get eventCount(){
+    return _eventCount;
+  }
+  
+  void handler(Object sender, T args){
+    _lastSender = sender;
+    _lastArgs = args;
+    _eventCount++;
+  }  
+}
