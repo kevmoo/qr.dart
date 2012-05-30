@@ -4,6 +4,7 @@
 #import('../lib/unittest/unittest.dart');
 #import('../src/_dartlib.dart');
 
+#source('TestPropertyEventIntegration.dart');
 #source('TestHelloWorld.dart');
 #source('TestProperties.dart');
 #source('TestEventTarget.dart');
@@ -17,5 +18,6 @@ main() {
   TestProperties.run();
   TestEventTarget.run();
   TestAffineTransform.run();
+  TestPropertyEventIntegration.run();
 }
 
