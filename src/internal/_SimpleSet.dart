@@ -3,10 +3,11 @@ class _SimpleSet<T>{
 
   _SimpleSet():_items = new List<T>();
 
-  // NOTE: this is not 100% set-ish. 'add' should just ignore duplicates, not assert
+  // NOTE: set doesn't like dupes. Ignores extras
   void add(T item){
-    assert(_items.indexOf(item) == -1);
-    _items.add(item);
+    if(_items.indexOf(item) >= 0){
+      _items.add(item);
+    }
   }
   
   bool remove(T item){

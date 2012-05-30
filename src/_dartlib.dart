@@ -5,7 +5,7 @@
 #source('internal/_SimpleSet.dart');
 
 #source('GlobalId.dart');
-#source('PEvent.dart');
+#source('IEvent.dart');
 #source('IDisposable.dart');
 #source('Disposable.dart');
 
@@ -34,3 +34,4 @@
 
 typedef bool Predicate<T>(T obj);
 typedef T Func<T>();
+typedef TR Func1<T1, TR>(T1 param);

@@ -35,11 +35,11 @@ class TestProperties implements IPropertyObject {
         int v1 = 0;
 
         // define handler 1
-        PropertyChangedHandler h1 = (obj, prop) {
+        EventHandler<Property> h1 = (obj, prop) {
           v1++;
         };
         // set handler 1 on prop
-        testProperty.addHandler(object, h1);
+        var g1 = testProperty.addHandler(object, h1);
         expect(v1).equals(0);
 
         // set prop
@@ -56,11 +56,11 @@ class TestProperties implements IPropertyObject {
         int v2 = 0;
 
         // define handler 1
-        PropertyChangedHandler h2 = (obj, prop) {
+        EventHandler<Property> h2 = (obj, prop) {
           v2++;
         };
         // set handler 1 on prop
-        testProperty.addHandler(object, h2);
+        var g2 = testProperty.addHandler(object, h2);
         expect(v2).equals(0);
 
         // set prop
@@ -70,7 +70,7 @@ class TestProperties implements IPropertyObject {
         expect(v2).equals(1);
 
         // remove handler 1
-        testProperty.removeHandler(object, h1);
+        testProperty.removeHandler(object, g1);
         // clear prop
         testProperty.clear(object);
         // should fire h2, but not h1
@@ -78,7 +78,7 @@ class TestProperties implements IPropertyObject {
         expect(v2).equals(2);
 
         // remove handler 2
-        testProperty.removeHandler(object, h2);
+        testProperty.removeHandler(object, g2);
         // set prop
         testProperty.set(object, "the bar!");
         // should not fire either handler
