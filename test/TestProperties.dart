@@ -2,7 +2,7 @@ class TestProperties implements IPropertyObject {
   final PropertyValues propertyValues;
 
   TestProperties() : propertyValues = new PropertyValues();
-
+  
   static void run(){
     group('properties -- ', (){
       test('without default', (){
@@ -25,7 +25,7 @@ class TestProperties implements IPropertyObject {
       });
 
       test('with listeners', (){
-        var testProperty = new Property<String>("Test Property", null);
+        var testProperty = new Property<String>("Test Property");
 
         var object = new TestProperties();
         expect(testProperty.get(object)).equals(null);
