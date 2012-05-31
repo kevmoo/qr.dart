@@ -11,6 +11,7 @@
 #source('Disposable.dart');
 
 #source('properties/IPropertyObject.dart');
+#source('properties/PropertyObject.dart');
 #source('properties/PropertyValues.dart');
 #source('properties/Property.dart');
 

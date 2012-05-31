@@ -1,14 +1,12 @@
-class TestPropertyEventIntegration implements IPropertyObject {
+class TestPropertyEventIntegration extends PropertyObject {
   static final Property<String> _nameProperty = const Property<String>("name");
   static final Property<int> _ageProperty = const Property<int>("age", 0);
   
-  final PropertyValues propertyValues;
   final EventHandle<EventArgs> _nameChangedEventHandle;
   final EventHandle<EventArgs> _ageChangedEventHandle;
   final EventHandle<String> _propertyChangedEventHandle;
 
   TestPropertyEventIntegration() : 
-    propertyValues = new PropertyValues(),
     _nameChangedEventHandle = new EventHandle<EventArgs>(),
     _ageChangedEventHandle = new EventHandle<EventArgs>(),
     _propertyChangedEventHandle = new EventHandle<String>()

@@ -1,6 +1,5 @@
-class PElement extends Disposable implements IPropertyObject {
+class PElement extends PropertyObject {
   final List<AffineTransform> _transforms;
-  final PropertyValues propertyValues;
   final bool cacheEnabled;
   final EventHandle<EventArgs> _updatedEventHandle;
   
@@ -11,7 +10,6 @@ class PElement extends Disposable implements IPropertyObject {
 
   PElement(int this._width, int this._height, [bool this.cacheEnabled = false]) :
     _transforms = new List<AffineTransform>(),
-    propertyValues = new PropertyValues(),
     _updatedEventHandle = new EventHandle<EventArgs>()
   {
     if(cacheEnabled){
@@ -110,7 +108,6 @@ class PElement extends Disposable implements IPropertyObject {
   
   void disposeInternal(){
     super.disposeInternal();
-    propertyValues.dispose();
     _updatedEventHandle.dispose();
   }
 

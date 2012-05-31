@@ -1,7 +1,4 @@
-class TestProperties implements IPropertyObject {
-  final PropertyValues propertyValues;
-
-  TestProperties() : propertyValues = new PropertyValues();
+class TestProperties extends PropertyObject {
   
   static void run(){
     group('properties -- ', (){
