@@ -10,9 +10,9 @@ class Disposable implements IDisposable{
     }
   }
 
-  bool isDisposed(){
+  bool get isDisposed(){
+    return _disposed;
   }
-
 
   void disposeInternal(){
     // TODO: once we support dependency disposables, need to clean them up

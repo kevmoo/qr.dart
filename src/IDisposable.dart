@@ -1,4 +1,4 @@
 interface IDisposable {
 	void dispose();
-	bool isDisposed();
+	bool get isDisposed();
 }

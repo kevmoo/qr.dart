@@ -10,6 +10,7 @@
 #source('Disposable.dart');
 
 #source('properties/IPropertyObject.dart');
+#source('properties/PropertyValues.dart');
 #source('properties/Property.dart');
 
 #source('math/Size.dart');
