@@ -1,4 +1,4 @@
-class PElement implements IPropertyObject {
+class PElement extends Disposable implements IPropertyObject {
   final List<AffineTransform> _transforms;
   final PropertyValues propertyValues;
   final bool cacheEnabled;
@@ -106,6 +106,12 @@ class PElement implements IPropertyObject {
   void claim(IElementParent parent) {
     assert(_parent == null);
     _parent = parent;
+  }
+  
+  void disposeInternal(){
+    super.disposeInternal();
+    propertyValues.dispose();
+    _updatedEventHandle.dispose();
   }
 
   //

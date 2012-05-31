@@ -1,4 +1,4 @@
-class Stage implements IElementParent {
+class Stage extends Disposable implements IElementParent {
   final CanvasElement _canvas;
   final PElement _element;
   final EventHandle<EventArgs> _updatedEventHandle;
@@ -43,6 +43,11 @@ class Stage implements IElementParent {
 
   void childInvalidated(PElement child){
     _updatedEventHandle.fireEvent(this, const EventArgs());
+  }
+
+  void disposeInternal(){
+    super.disposeInternal();
+    _updatedEventHandle.dispose();
   }
 
   AffineTransform getTransformToRoot(){

@@ -1,3 +1,3 @@
-interface IPropertyObject {
+interface IPropertyObject extends IDisposable {
   PropertyValues get propertyValues();
 }
