@@ -1,12 +1,3 @@
-interface IEvent<T> {
-  GlobalId add(EventHandler<T> handler);
-  bool remove(GlobalId id);
-}
-
-class EventArgs {
-  const EventArgs();
-}
-
 class EventHandle<T> extends Disposable {
   _PEvent<T> _event;
   
@@ -42,8 +33,6 @@ class EventHandle<T> extends Disposable {
     }
   }
 }
-
-typedef EventHandler<T>(Object sender, T args);
 
 class _PEvent<T> extends Disposable implements IEvent<T> {
   final HashMap<GlobalId, EventHandler<T>> _handlers;

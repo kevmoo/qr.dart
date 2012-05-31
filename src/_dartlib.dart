@@ -5,7 +5,8 @@
 #source('internal/_SimpleSet.dart');
 
 #source('GlobalId.dart');
-#source('IEvent.dart');
+#source('events/IEvent.dart');
+#source('events/EventHandle.dart');
 #source('IDisposable.dart');
 #source('Disposable.dart');
 
