@@ -4,11 +4,11 @@
 #import('../lib/unittest/unittest.dart');
 #import('../src/_dartlib.dart');
 
-#source('TestPropertyEventIntegration.dart');
-#source('TestHelloWorld.dart');
-#source('TestProperties.dart');
-#source('TestEventTarget.dart');
-#source('TestAffineTransform.dart');
+#source('test_property_event_integration.dart');
+#source('test_hello_world.dart');
+#source('test_properties.dart');
+#source('test_event_target.dart');
+#source('test_affine_transform.dart');
 
 main() {
   useHtmlConfiguration();
