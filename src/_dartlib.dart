@@ -11,7 +11,7 @@
 
 #source('properties/property_object.dart');
 #source('properties/property_values.dart');
-#source('properties/Property.dart');
+#source('properties/property.dart');
 
 #source('math/size.dart');
 #source('math/coordinate.dart');
