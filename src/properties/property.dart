@@ -81,18 +81,7 @@ class _PropertyChangeHelper{
     var helper = _changeHelperProperty.get(obj);
     var handle = helper._handlers[property];
     if(handle != null){
-      handle.event.remove(handlerId);
-      if(handle.handlerCount == 0){
-        // if there are no handlers left, might as well clean things out
-        
-        var didRemove = obj.propertyValues.propertyChanged.remove(helper._propertyChangeHandleId);
-        // the event should be registered
-        assert(didRemove);
-
-        var removedValue = helper._handlers.remove(property);
-        // a value should be removed, too
-        assert(removedValue != null);
-      }
+      handle.remove(handlerId);
     }
   }
 

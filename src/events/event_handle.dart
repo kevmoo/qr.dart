@@ -15,15 +15,6 @@ class EventHandle<T> extends Disposable {
     }
   }
 
-  int get handlerCount(){
-    if(_event == null){
-      return 0;
-    }
-    else{
-      return _event._handlers.length;
-    }
-  }
-
   void disposeInternal(){
     super.disposeInternal();
     if(_event != null){
