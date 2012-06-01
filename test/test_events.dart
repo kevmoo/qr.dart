@@ -15,25 +15,24 @@ class TestEvents {
     test('test basic event subscribe, fire, unsubscribe', () {
 
       var target = new TestEvents();
+      
+      var watcher = new EventWatcher<String>();
 
-      String lastValue = null;
-      expect(lastValue).equals(null);
+      expect(watcher.lastArgs).equals(null);
 
       // before an event is registered, the value should still be null
       target.fireTestEvent('bar');
-      expect(lastValue).equals(null);
+      expect(watcher.lastArgs).equals(null);
 
-      var handler = (String args) => lastValue = args;
-
-      var eventId = target.testEvent.add(handler);
+      var eventId = target.testEvent.add(watcher.handler);
 
       // after registration, event should change value
       target.fireTestEvent('bar');
-      expect(lastValue).equals('bar');
+      expect(watcher.lastArgs).equals('bar');
 
       // dispatching another event shouldn't change value
       target.fireTestEvent('foo');
-      expect(lastValue).equals('foo');
+      expect(watcher.lastArgs).equals('foo');
 
       var didRemove = target.testEvent.remove(eventId);
       expect(didRemove).equals(true);
@@ -44,7 +43,7 @@ class TestEvents {
 
       // after removing, event should not change value
       target.fireTestEvent('bar');
-      expect(lastValue).equals('foo');
+      expect(watcher.lastArgs).equals('foo');
     });
 
   }
