@@ -14,7 +14,7 @@ class Stage extends Disposable implements IElementParent {
     return new Size(_canvas.width, _canvas.height);
   }
 
-  IEvent<EventArgs> get updated(){
+  EventRoot<EventArgs> get updated(){
     return _updatedEventHandle.event;
   }
   

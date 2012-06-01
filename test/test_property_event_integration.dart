@@ -36,7 +36,7 @@ class TestPropertyEventIntegration extends PropertyObject {
     _nameProperty.set(this, value);
   }
   
-  IEvent<EventArgs> get nameChanged(){
+  EventRoot<EventArgs> get nameChanged(){
     return _nameChangedEventHandle.event;
   }
   
@@ -51,14 +51,14 @@ class TestPropertyEventIntegration extends PropertyObject {
     _ageProperty.set(this, value);
   }
   
-  IEvent<EventArgs> get ageChanged(){
+  EventRoot<EventArgs> get ageChanged(){
     return _ageChangedEventHandle.event;
   }
 
   //
   // Property changed event
   //
-  IEvent<String> get propertyChanged(){
+  EventRoot<String> get propertyChanged(){
     return _propertyChangedEventHandle.event;
   }
   

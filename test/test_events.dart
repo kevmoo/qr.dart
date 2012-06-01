@@ -3,7 +3,7 @@ class TestEvents {
   
   TestEvents(): _testEventHandle = new EventHandle<String>();
 
-  IEvent<String> get testEvent(){
+  EventRoot<String> get testEvent(){
     return _testEventHandle.event;
   }
   

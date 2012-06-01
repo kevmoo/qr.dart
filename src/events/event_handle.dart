@@ -1,7 +1,7 @@
 class EventHandle<T> extends Disposable {
   _PEvent<T> _event;
   
-  IEvent<T> get event(){
+  EventRoot<T> get event(){
     assert(!isDisposed);
     if(_event == null){
       _event = new _PEvent<T>._internal();
@@ -34,7 +34,7 @@ class EventHandle<T> extends Disposable {
   }
 }
 
-class _PEvent<T> extends Disposable implements IEvent<T> {
+class _PEvent<T> extends Disposable implements EventRoot<T> {
   final HashMap<GlobalId, Action<T>> _handlers;
 
   _PEvent._internal() : _handlers = new HashMap<GlobalId, Action<T>>();

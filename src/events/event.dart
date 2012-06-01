@@ -1,4 +1,4 @@
-interface IEvent<T> {
+interface EventRoot<T> {
   GlobalId add(Action<T> handler);
   bool remove(GlobalId id);
 }

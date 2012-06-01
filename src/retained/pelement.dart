@@ -24,7 +24,7 @@ class PElement extends PropertyObject {
   num get width(){ return _width; }
   num get height(){ return _height; }
 
-  IEvent<EventArgs> get updated(){
+  EventRoot<EventArgs> get updated(){
     return _updatedEventHandle.event;
   }
   

@@ -26,7 +26,7 @@ class PropertyValues extends Disposable {
     }
   }
   
-  IEvent<Property> get propertyChanged(){
+  EventRoot<Property> get propertyChanged(){
     return _changeHandle.event;
   }
 
