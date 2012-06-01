@@ -4,7 +4,7 @@ class TestEvents {
   TestEvents(): _testEventHandle = new EventHandle<String>();
 
   EventRoot<String> get testEvent(){
-    return _testEventHandle.event;
+    return _testEventHandle;
   }
   
   void fireTestEvent(String value){

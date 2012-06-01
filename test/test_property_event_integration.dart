@@ -37,7 +37,7 @@ class TestPropertyEventIntegration extends PropertyObject {
   }
   
   EventRoot<EventArgs> get nameChanged(){
-    return _nameChangedEventHandle.event;
+    return _nameChangedEventHandle;
   }
   
   //
@@ -52,14 +52,14 @@ class TestPropertyEventIntegration extends PropertyObject {
   }
   
   EventRoot<EventArgs> get ageChanged(){
-    return _ageChangedEventHandle.event;
+    return _ageChangedEventHandle;
   }
 
   //
   // Property changed event
   //
   EventRoot<String> get propertyChanged(){
-    return _propertyChangedEventHandle.event;
+    return _propertyChangedEventHandle;
   }
   
   void reset(){

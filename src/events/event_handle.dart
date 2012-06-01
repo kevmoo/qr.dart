@@ -1,55 +1,39 @@
-class EventHandle<T> extends Disposable {
-  _PEvent<T> _event;
-  
-  EventRoot<T> get event(){
-    assert(!isDisposed);
-    if(_event == null){
-      _event = new _PEvent<T>._internal();
-    }
-    return _event;
-  }
-  
+class EventHandle<T> extends Disposable implements EventRoot<T> {
+  HashMap<GlobalId, Action<T>> _handlers;
+    
   void fireEvent(Object sender, T args){
-    if(_event != null){
-      _event._fireEvent(sender, args);
+    assert(!isDisposed);
+    if(_handlers != null){
+      _handlers.forEach((GlobalId id, Action<T> handler){
+        handler(args);
+      });
     }
   }
-
-  void disposeInternal(){
-    super.disposeInternal();
-    if(_event != null){
-      var e = _event;
-      _event = null;
-      e.dispose();
-    }
-  }
-}
-
-class _PEvent<T> extends Disposable implements EventRoot<T> {
-  final HashMap<GlobalId, Action<T>> _handlers;
-
-  _PEvent._internal() : _handlers = new HashMap<GlobalId, Action<T>>();
   
   GlobalId add(Action<T> handler){
     assert(!isDisposed);
     var id = new GlobalId();
+    if(_handlers == null){
+      _handlers = new HashMap<GlobalId, Action<T>>();
+    }
     _handlers[id] = handler;
     return id;
   }
 
   bool remove(GlobalId id){
-    return _handlers.remove(id) != null;
+    if(_handlers != null){
+      return _handlers.remove(id) != null;
+    }
+    else{
+      return false;
+    }
   }
   
   void disposeInternal(){
     super.disposeInternal();
-    _handlers.clear();
-  }
-
-  void _fireEvent(Object sender, T args){
-    assert(!isDisposed);
-    _handlers.forEach((GlobalId id, Action<T> handler){
-      handler(args);
-    });
+    if(_handlers != null){
+      _handlers.clear();
+      _handlers = null;
+    }
   }
 }

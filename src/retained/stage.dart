@@ -15,7 +15,7 @@ class Stage extends Disposable implements IElementParent {
   }
 
   EventRoot<EventArgs> get updated(){
-    return _updatedEventHandle.event;
+    return _updatedEventHandle;
   }
   
   PElement get rootElement(){

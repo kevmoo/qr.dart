@@ -25,7 +25,7 @@ class PElement extends PropertyObject {
   num get height(){ return _height; }
 
   EventRoot<EventArgs> get updated(){
-    return _updatedEventHandle.event;
+    return _updatedEventHandle;
   }
   
   AffineTransform getTransform() {

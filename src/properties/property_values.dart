@@ -27,7 +27,7 @@ class PropertyValues extends Disposable {
   }
   
   EventRoot<Property> get propertyChanged(){
-    return _changeHandle.event;
+    return _changeHandle;
   }
 
   void disposeInternal(){

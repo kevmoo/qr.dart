@@ -74,7 +74,7 @@ class _PropertyChangeHelper{
   static GlobalId addHandler(IPropertyObject obj, Property property, Action<Property> watcher){
     var helper = _changeHelperProperty.get(obj, createInstance);
     var handle = helper._handlers.putIfAbsent(property, () => new EventHandle<Property>());
-    return handle.event.add(watcher);
+    return handle.add(watcher);
   }
 
   static void removeHandler(IPropertyObject obj, Property property, GlobalId handlerId){
