@@ -14,7 +14,7 @@ Starting by porting bits of the [PL javascript library](https://github.com/think
 
 ### [The BSD 2-Clause License](http://www.opensource.org/licenses/bsd-license.php)
 
-    Copyright (c) 2012, Kevin Moore
+    Copyright (c) 2012, dartlib project authors
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
