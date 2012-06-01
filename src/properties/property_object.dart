@@ -1,3 +1,7 @@
+interface IPropertyObject extends IDisposable {
+  PropertyValues get propertyValues();
+}
+
 class PropertyObject extends Disposable implements IPropertyObject {
   final PropertyValues propertyValues;
 

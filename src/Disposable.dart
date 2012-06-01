@@ -1,3 +1,8 @@
+interface IDisposable {
+  void dispose();
+  bool get isDisposed();
+}
+
 class Disposable implements IDisposable{
 	bool _disposed = false;
 

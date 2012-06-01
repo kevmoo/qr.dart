@@ -2,38 +2,36 @@
 
 #import('dart:html');
 
-#source('internal/_SimpleSet.dart');
+#source('internal/_simple_set.dart');
 
-#source('GlobalId.dart');
+#source('global_id.dart');
 #source('events/IEvent.dart');
-#source('events/EventHandle.dart');
-#source('IDisposable.dart');
-#source('Disposable.dart');
+#source('events/event_handle.dart');
+#source('disposable.dart');
 
-#source('properties/IPropertyObject.dart');
-#source('properties/PropertyObject.dart');
-#source('properties/PropertyValues.dart');
+#source('properties/property_object.dart');
+#source('properties/property_values.dart');
 #source('properties/Property.dart');
 
-#source('math/Size.dart');
-#source('math/Coordinate.dart');
-#source('math/Vec2.dart');
-#source('math/PRect.dart');
+#source('math/size.dart');
+#source('math/coordinate.dart');
+#source('math/vec2.dart');
+#source('math/prect.dart');
 
-#source('graphics/AffineTransform.dart');
+#source('graphics/affine_transform.dart');
 #source('graphics/gfx.dart');
 
-#source('retained/RetainedDebug.dart');
-#source('retained/Mouse.dart');
-#source('retained/CanvasUtil.dart');
-#source('retained/RetainedUtil.dart');
-#source('retained/PElement.dart');
-#source('retained/IElementParent.dart');
-#source('retained/Panel.dart');
-#source('retained/PCanvas.dart');
-#source('retained/Stage.dart');
-#source('retained/Shape.dart');
-#source('retained/ShapeType.dart');
+#source('retained/retained_debug.dart');
+#source('retained/mouse.dart');
+#source('retained/canvas_util.dart');
+#source('retained/retained_util.dart');
+#source('retained/pelement.dart');
+#source('retained/element_parent.dart');
+#source('retained/panel.dart');
+#source('retained/pcanvas.dart');
+#source('retained/stage.dart');
+#source('retained/shape.dart');
+#source('retained/shape_type.dart');
 
 typedef bool Predicate<T>(T obj);
 typedef T Func<T>();
