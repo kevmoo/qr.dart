@@ -4,12 +4,10 @@ class Stage extends Disposable implements IElementParent {
   final EventHandle<EventArgs> _updatedEventHandle;
   CanvasRenderingContext2D _ctx;
 
-  Stage(CanvasElement canvas, PElement rootElement) : 
-    _canvas = canvas, 
-    _element = rootElement,
+  Stage(this._canvas, this._element) : 
     _updatedEventHandle = new EventHandle<EventArgs>()
   {
-    rootElement.claim(this);
+    _element.claim(this);
   }
 
   Size get size(){

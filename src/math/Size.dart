@@ -4,7 +4,7 @@
 class Size {
   final num width, height;
 
-  const Size(num this.width, num this.height);
+  const Size(this.width, this.height);
 
   bool operator ==(Size other) {
     return other !== null && width == other.width && height == other.height;

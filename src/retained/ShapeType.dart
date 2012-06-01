@@ -3,5 +3,5 @@ class ShapeType {
   static final ShapeType ellipse = const ShapeType._internal("Ellipse");
   final String name;
 
-  const ShapeType._internal(String this.name);
+  const ShapeType._internal(this.name);
 }

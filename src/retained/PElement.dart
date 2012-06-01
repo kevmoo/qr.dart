@@ -8,7 +8,7 @@ class PElement extends PropertyObject {
   bool clip = false;
   IElementParent _parent;
 
-  PElement(int this._width, int this._height, [bool this.cacheEnabled = false]) :
+  PElement(this._width, this._height, [this.cacheEnabled = false]) :
     _transforms = new List<AffineTransform>(),
     _updatedEventHandle = new EventHandle<EventArgs>()
   {

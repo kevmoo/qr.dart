@@ -2,7 +2,7 @@ class Shape extends PElement {
   final String fillStyle;
   final ShapeType shapeType;
 
-  Shape(int w, int h, [String this.fillStyle = 'blue', ShapeType this.shapeType = ShapeType.rect]):super(w, h);
+  Shape(int w, int h, [this.fillStyle = 'blue', this.shapeType = ShapeType.rect]):super(w, h);
 
   void drawOverride(CanvasRenderingContext2D ctx){
       ctx.fillStyle = fillStyle;
