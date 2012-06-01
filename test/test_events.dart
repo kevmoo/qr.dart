@@ -1,7 +1,7 @@
-class TestEventTarget {
+class TestEvents {
   final EventHandle<String> _testEventHandle;
   
-  TestEventTarget(): _testEventHandle = new EventHandle<String>();
+  TestEvents(): _testEventHandle = new EventHandle<String>();
 
   IEvent<String> get testEvent(){
     return _testEventHandle.event;
@@ -14,7 +14,7 @@ class TestEventTarget {
   static void run(){
     test('test basic event subscribe, fire, unsubscribe', () {
 
-      var target = new TestEventTarget();
+      var target = new TestEvents();
 
       String lastValue = null;
       expect(lastValue).equals(null);
