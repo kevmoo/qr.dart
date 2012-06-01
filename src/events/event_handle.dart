@@ -35,11 +35,11 @@ class EventHandle<T> extends Disposable {
 }
 
 class _PEvent<T> extends Disposable implements IEvent<T> {
-  final HashMap<GlobalId, EventHandler<T>> _handlers;
+  final HashMap<GlobalId, Action<T>> _handlers;
 
-  _PEvent._internal() : _handlers = new HashMap<GlobalId, EventHandler<T>>();
+  _PEvent._internal() : _handlers = new HashMap<GlobalId, Action<T>>();
   
-  GlobalId add(EventHandler<T> handler){
+  GlobalId add(Action<T> handler){
     assert(!isDisposed);
     var id = new GlobalId();
     _handlers[id] = handler;
@@ -57,8 +57,8 @@ class _PEvent<T> extends Disposable implements IEvent<T> {
 
   void _fireEvent(Object sender, T args){
     assert(!isDisposed);
-    _handlers.forEach((GlobalId id, EventHandler<T> handler){
-      handler(sender, args);
+    _handlers.forEach((GlobalId id, Action<T> handler){
+      handler(args);
     });
   }
 }

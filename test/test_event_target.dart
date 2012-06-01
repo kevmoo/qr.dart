@@ -23,7 +23,7 @@ class TestEventTarget {
       target.fireTestEvent('bar');
       expect(lastValue).equals(null);
 
-      var handler = (Object sender, String args) => lastValue = args;
+      var handler = (String args) => lastValue = args;
 
       var eventId = target.testEvent.add(handler);
 

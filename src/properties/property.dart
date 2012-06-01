@@ -35,7 +35,7 @@ class Property<T> implements Hashable{
     return obj.propertyValues._isSet(this);
   }
 
-  GlobalId addHandler(IPropertyObject obj, EventHandler<Property> handler){
+  GlobalId addHandler(IPropertyObject obj, Action<Property> handler){
     return _PropertyChangeHelper.addHandler(obj, this, handler);
   }
   
@@ -65,13 +65,13 @@ class _PropertyChangeHelper{
     _propertyChangeHandleId = id;
 
   static _PropertyChangeHelper createInstance(IPropertyObject obj){
-    var handlerId = obj.propertyValues.propertyChanged.add((sender, args){
+    var handlerId = obj.propertyValues.propertyChanged.add((args){
       _fireHandlers(obj, args);
     });
     return new _PropertyChangeHelper(handlerId);
   }
 
-  static GlobalId addHandler(IPropertyObject obj, Property property, EventHandler<Property> watcher){
+  static GlobalId addHandler(IPropertyObject obj, Property property, Action<Property> watcher){
     var helper = _changeHelperProperty.get(obj, createInstance);
     var handle = helper._handlers.putIfAbsent(property, () => new EventHandle<Property>());
     return handle.event.add(watcher);
