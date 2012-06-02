@@ -10,6 +10,7 @@ Starting by porting bits of the [PL javascript library](https://github.com/think
 
 ### Authors
  * [Kevin Moore](https://github.com/kevmoo) ([@kevmoo](http://twitter.com/kevmoo))
+ * [Andreas Köberle](https://github.com/eskimoblood) ([@eskimobloood](https://twitter.com/eskimobloood))
  * _You? File bugs. Fork and Fix bugs. Let's build this community._
 
 ### [The BSD 2-Clause License](http://www.opensource.org/licenses/bsd-license.php)
