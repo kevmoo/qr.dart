@@ -30,10 +30,6 @@ class TestVec2 {
         Expect.isTrue(const Vec2(2,2) === const Vec2(2,2));
       });
 
-      test('should get the distance to another point', (){
-        Expect.equals(5, new Vec2(0, 0).getDistance(new Vec2(3, 4)));
-      });
-
       test('should get length of the vector', (){
         Expect.equals(5, new Vec2(3, 4).length);
       });

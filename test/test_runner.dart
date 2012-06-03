@@ -9,6 +9,7 @@
 #source('test_properties.dart');
 #source('test_events.dart');
 #source('test_affine_transform.dart');
+#source('math/test_coordinate.dart');
 #source('math/test_vec2.dart');
 
 main() {
@@ -20,6 +21,7 @@ main() {
   TestEvents.run();
   TestAffineTransform.run();
   TestPropertyEventIntegration.run();
+  TestCoordinate.run();
   TestVec2.run();
 }
 
@@ -30,13 +32,13 @@ class EventWatcher<T> {
   T get lastArgs(){
     return _lastArgs;
   }
-  
+
   int get eventCount(){
     return _eventCount;
   }
-  
+
   void handler(T args){
     _lastArgs = args;
     _eventCount++;
-  }  
+  }
 }
