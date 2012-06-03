@@ -10,7 +10,7 @@
 #source('test_events.dart');
 #source('test_affine_transform.dart');
 #source('math/test_coordinate.dart');
-#source('math/test_vec2.dart');
+#source('math/test_vector.dart');
 
 main() {
   useHtmlConfiguration();
@@ -22,7 +22,7 @@ main() {
   TestAffineTransform.run();
   TestPropertyEventIntegration.run();
   TestCoordinate.run();
-  TestVec2.run();
+  TestVector.run();
 }
 
 class EventWatcher<T> {

@@ -5,7 +5,7 @@ Starting by porting bits of the [PL javascript library](https://github.com/think
 
 ### Current Status
 
- * Core classes from Closure: `Coordinate, Rect, Size, Vec2, AffineTransfrom`
+ * Core classes from Closure: `Coordinate, Rect, Size, Vector, AffineTransfrom`
  * From PL: parts of the property model, a lot of the retained library, including panels and hit testing
 
 ### Authors

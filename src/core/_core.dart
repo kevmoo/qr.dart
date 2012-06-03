@@ -9,7 +9,7 @@
 
 #source('math/size.dart');
 #source('math/coordinate.dart');
-#source('math/vec2.dart');
+#source('math/vector.dart');
 #source('math/rect.dart');
 
 typedef bool Predicate<T>(T obj);

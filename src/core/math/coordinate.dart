@@ -9,16 +9,16 @@ class Coordinate {
   num getDistance (Coordinate other) => (this - other).length;
 
   /**
-   * Subtract a [Coordinate] and returns the result as new [Vec2].
+   * Subtract a [Coordinate] and returns the result as new [Vector].
    **/
-  Vec2 operator -(Coordinate other) => difference(this, other);
+  Vector operator -(Coordinate other) => difference(this, other);
 
   bool operator ==(Coordinate other) {
     return other !== null && x == other.x && y == other.y;
   }
 
-  static Vec2 difference(Coordinate a, Coordinate b) {
-    return new Vec2(a.x - b.x, a.y - b.y);
+  static Vector difference(Coordinate a, Coordinate b) {
+    return new Vector(a.x - b.x, a.y - b.y);
   }
 
   Coordinate clone() => new Coordinate(x, y);

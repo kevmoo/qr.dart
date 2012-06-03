@@ -13,13 +13,13 @@ class PCanvas extends Panel{
   }
 
   void setCenter(PElement element, core.Coordinate value){
-    var sizeOffset = new core.Vec2(element.width/2, element.height/2);
+    var sizeOffset = new core.Vector(element.width/2, element.height/2);
     var delta = core.Coordinate.difference(value, sizeOffset);
     setTopLeft(element, delta);
   }
 
   core.Coordinate getCenter(PElement element){
-    var sizeOffset = new core.Vec2(element.width/2, element.height/2);
+    var sizeOffset = new core.Vector(element.width/2, element.height/2);
     return sizeOffset + getTopLeft(element);
   }
 }
