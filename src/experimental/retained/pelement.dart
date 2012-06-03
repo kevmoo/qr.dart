@@ -1,33 +1,33 @@
 class PElement extends PropertyObject {
   final List<AffineTransform> _transforms;
   final bool cacheEnabled;
-  final EventHandle<EventArgs> _updatedEventHandle;
-  
+  final core.EventHandle<core.EventArgs> _updatedEventHandle;
+
   num _width, _height, _alpha;
-  Size _lastDrawSize;
+  core.Size _lastDrawSize;
   bool clip = false;
   IElementParent _parent;
 
   PElement(this._width, this._height, [this.cacheEnabled = false]) :
     _transforms = new List<AffineTransform>(),
-    _updatedEventHandle = new EventHandle<EventArgs>()
+    _updatedEventHandle = new core.EventHandle<core.EventArgs>()
   {
     if(cacheEnabled){
       throw 'should probably implement this';
     }
   }
 
-  Size get size(){
-    return new Size(_width, _height);
+  core.Size get size(){
+    return new core.Size(_width, _height);
   }
 
   num get width(){ return _width; }
   num get height(){ return _height; }
 
-  EventRoot<EventArgs> get updated(){
+  core.EventRoot<core.EventArgs> get updated(){
     return _updatedEventHandle;
   }
-  
+
   AffineTransform getTransform() {
     var tx = new AffineTransform();
     _transforms.forEach(tx.concatenate);
@@ -51,7 +51,7 @@ class PElement extends PropertyObject {
   }
 
   void update(){
-    _updatedEventHandle.fireEvent(this, const EventArgs());
+    _updatedEventHandle.fireEvent(this, const core.EventArgs());
   }
 
   AffineTransform addTransform(){
@@ -105,7 +105,7 @@ class PElement extends PropertyObject {
     assert(_parent == null);
     _parent = parent;
   }
-  
+
   void disposeInternal(){
     super.disposeInternal();
     _updatedEventHandle.dispose();

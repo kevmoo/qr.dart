@@ -1,14 +1,14 @@
 class Property<T> implements Hashable{
   static final Object Undefined = const _UndefinedValue();
 
-  final GlobalId _id;
+  final core.GlobalId _id;
   final String name;
   final T defaultValue;
 
   const Property(String this.name, [T this.defaultValue = null]) :
-    _id = new GlobalId();
+    _id = new core.GlobalId();
 
-  T get(IPropertyObject obj, [Func1<IPropertyObject, T> ifAbsent = null]){
+  T get(IPropertyObject obj, [core.Func1<IPropertyObject, T> ifAbsent = null]){
     var coreValue = getCore(obj, ifAbsent);
     if(coreValue != Undefined){
       return coreValue;
@@ -18,7 +18,7 @@ class Property<T> implements Hashable{
     }
   }
 
-  Object getCore(IPropertyObject obj, [Func1<IPropertyObject, T> ifAbsent = null]){
+  Object getCore(IPropertyObject obj, [core.Func1<IPropertyObject, T> ifAbsent = null]){
     return obj.propertyValues._getValueOrUndefined(this, obj, ifAbsent);
   }
 
@@ -35,13 +35,13 @@ class Property<T> implements Hashable{
     return obj.propertyValues._isSet(this);
   }
 
-  GlobalId addHandler(IPropertyObject obj, Action<Property> handler){
+  core.GlobalId addHandler(IPropertyObject obj, core.Action<Property> handler){
     return _PropertyChangeHelper.addHandler(obj, this, handler);
   }
-  
-  bool removeHandler(IPropertyObject obj, GlobalId handlerId){
+
+  bool removeHandler(IPropertyObject obj, core.GlobalId handlerId){
     _PropertyChangeHelper.removeHandler(obj, this, handlerId);
-  }  
+  }
 
   int hashCode(){
     return _id.hashCode();
@@ -57,11 +57,11 @@ class _PropertyChangeHelper{
   // TODO: once we can define static final with 'new' instead of 'const', we can nuke the property redirection
   static final Property<_PropertyChangeHelper> _changeHelperProperty = const Property<_PropertyChangeHelper>("_changeHelperProperty");
 
-  final HashMap<Property, EventHandle<Property>> _handlers;
-  final GlobalId _propertyChangeHandleId;
+  final HashMap<Property, core.EventHandle<Property>> _handlers;
+  final core.GlobalId _propertyChangeHandleId;
 
-  _PropertyChangeHelper(GlobalId id) : 
-    _handlers = new HashMap<Property, EventHandle<Property>>(),
+  _PropertyChangeHelper(core.GlobalId id) :
+    _handlers = new HashMap<Property, core.EventHandle<Property>>(),
     _propertyChangeHandleId = id;
 
   static _PropertyChangeHelper createInstance(IPropertyObject obj){
@@ -71,13 +71,13 @@ class _PropertyChangeHelper{
     return new _PropertyChangeHelper(handlerId);
   }
 
-  static GlobalId addHandler(IPropertyObject obj, Property property, Action<Property> watcher){
+  static core.GlobalId addHandler(IPropertyObject obj, Property property, core.Action<Property> watcher){
     var helper = _changeHelperProperty.get(obj, createInstance);
-    var handle = helper._handlers.putIfAbsent(property, () => new EventHandle<Property>());
+    var handle = helper._handlers.putIfAbsent(property, () => new core.EventHandle<Property>());
     return handle.add(watcher);
   }
 
-  static void removeHandler(IPropertyObject obj, Property property, GlobalId handlerId){
+  static void removeHandler(IPropertyObject obj, Property property, core.GlobalId handlerId){
     var helper = _changeHelperProperty.get(obj);
     var handle = helper._handlers[property];
     if(handle != null){

@@ -2,7 +2,7 @@
 
 #import('dart:html');
 
-#import('../core/_core.dart');
+#import('../core/_core.dart', prefix:'core');
 
 #source('properties/property_object.dart');
 #source('properties/property_values.dart');

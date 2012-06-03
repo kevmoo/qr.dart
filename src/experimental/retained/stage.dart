@@ -1,23 +1,23 @@
-class Stage extends Disposable implements IElementParent {
+class Stage extends core.Disposable implements IElementParent {
   final CanvasElement _canvas;
   final PElement _element;
-  final EventHandle<EventArgs> _updatedEventHandle;
+  final core.EventHandle<core.EventArgs> _updatedEventHandle;
   CanvasRenderingContext2D _ctx;
 
-  Stage(this._canvas, this._element) : 
-    _updatedEventHandle = new EventHandle<EventArgs>()
+  Stage(this._canvas, this._element) :
+    _updatedEventHandle = new core.EventHandle<core.EventArgs>()
   {
     _element.claim(this);
   }
 
-  Size get size(){
-    return new Size(_canvas.width, _canvas.height);
+  core.Size get size(){
+    return new core.Size(_canvas.width, _canvas.height);
   }
 
-  EventRoot<EventArgs> get updated(){
+  core.EventRoot<core.EventArgs> get updated(){
     return _updatedEventHandle;
   }
-  
+
   PElement get rootElement(){
     return _element;
   }
@@ -40,7 +40,7 @@ class Stage extends Disposable implements IElementParent {
   }
 
   void childInvalidated(PElement child){
-    _updatedEventHandle.fireEvent(this, const EventArgs());
+    _updatedEventHandle.fireEvent(this, const core.EventArgs());
   }
 
   void disposeInternal(){

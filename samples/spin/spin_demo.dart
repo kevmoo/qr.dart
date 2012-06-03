@@ -1,5 +1,5 @@
 #import('dart:html');
-#import('../../src/core/_core.dart');
+#import('../../src/core/_core.dart', prefix:'core');
 #import('../../src/experimental/_experimental.dart');
 
 main(){
@@ -12,7 +12,7 @@ class SpinDemo{
   final CanvasElement _canvas;
   final Stage _stage;
   final AffineTransform _tx;
-  Coordinate _mouseLocation;
+  core.Coordinate _mouseLocation;
 
   factory SpinDemo(CanvasElement canvas){
 
@@ -24,10 +24,10 @@ class SpinDemo{
     pCanvas.addElement(blue);
 
     pCanvas.addElement(green);
-    pCanvas.setTopLeft(green, new Coordinate(15, 15));
+    pCanvas.setTopLeft(green, new core.Coordinate(15, 15));
 
     pCanvas.addElement(red);
-    pCanvas.setCenter(red, new Coordinate(50, 50));
+    pCanvas.setCenter(red, new core.Coordinate(50, 50));
 
 
     pCanvas.addTransform().translate(
@@ -63,7 +63,7 @@ class SpinDemo{
   }
 
   void _canvas_mouseMove(MouseEvent e){
-    _mouseLocation = new Coordinate(e.offsetX, e.offsetY);
+    _mouseLocation = new core.Coordinate(e.offsetX, e.offsetY);
   }
 
   void _canvas_mouseOut(MouseEvent e){

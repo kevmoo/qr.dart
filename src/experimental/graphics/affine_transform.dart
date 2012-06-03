@@ -41,11 +41,11 @@ class AffineTransform {
     this._m12 += tx._m02 * m0 + tx._m12 * m1;
     return this;
   }
-  
+
   AffineTransform rotate(num theta, num x, num y) {
     return this.concatenate(AffineTransform.getRotateInstance(theta, x, y));
   }
-  
+
   AffineTransform translate(num dx, num dy) {
     _m02 += dx * _m00 + dy * _m01;
     _m12 += dx * _m10 + dy * _m11;
@@ -55,18 +55,18 @@ class AffineTransform {
   AffineTransform setToScale(sx, sy) {
     return setTransform(sx, 0, 0, sy, 0, 0);
   }
-  
+
   AffineTransform setToRotation(num theta, num x, num y) {
     var cos = Math.cos(theta);
     var sin = Math.sin(theta);
-    return this.setTransform(cos, sin, -sin, cos, 
+    return this.setTransform(cos, sin, -sin, cos,
       x - x * cos + y * sin, y - x * sin - y * cos);
   }
-  
+
   AffineTransform setToTranslation(num dx, num dy) {
     return setTransform(1, 0, 0, 1, dx, dy);
   }
-  
+
   AffineTransform setTransform (num m00, num m10, num m01,
     num m11, num m02, num m12) {
     this._m00 = m00;
@@ -77,18 +77,18 @@ class AffineTransform {
     this._m12 = m12;
     return this;
   }
-  
-  Coordinate transformCoordinate([Coordinate point = const Coordinate()]){
+
+  core.Coordinate transformCoordinate([core.Coordinate point = const core.Coordinate()]){
     num x = point.x * _m00 + point.y * _m01 + _m02;
     num y = point.x * _m10 + point.y * _m11 + _m12;
 
-    return new Coordinate(x, y);
+    return new core.Coordinate(x, y);
   }
-  
+
   num get determinant(){
     return _m00 * _m11 - _m01 * _m10;
   }
-  
+
   AffineTransform createInverse() {
     num det = determinant;
     return new AffineTransform(

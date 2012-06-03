@@ -1,12 +1,12 @@
 class RetainedUtil {
-  static List<PElement> hitTest(Stage stage, Coordinate point){
+  static List<PElement> hitTest(Stage stage, core.Coordinate point){
     return _hitTest(stage.rootElement, point);
   }
 
-  static List<PElement> _hitTest(PElement element, Coordinate point){
+  static List<PElement> _hitTest(PElement element, core.Coordinate point){
     point = transformPointGlobalToLocal(element, point);
 
-    var bounds = new PRect(0, 0, element.width, element.height);
+    var bounds = new core.Rect(0, 0, element.width, element.height);
 
     var hits = new List<PElement>();
     if (bounds.contains(point)) {
@@ -26,12 +26,12 @@ class RetainedUtil {
     }
   }
 
-  static Coordinate transformPointLocalToGlobal(element, point) {
+  static core.Coordinate transformPointLocalToGlobal(element, point) {
     var tx = element.getTransformToRoot();
     return tx.transformCoordinate(point);
   }
 
-  static Coordinate transformPointGlobalToLocal(element, point) {
+  static core.Coordinate transformPointGlobalToLocal(element, point) {
     var tx = element.getTransform();
     return tx.createInverse().transformCoordinate(point);
   }

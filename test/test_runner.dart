@@ -1,7 +1,6 @@
-#import('../lib/unittest/html_config.dart');
-#import('dart:html');
-
 #import('../lib/unittest/unittest.dart');
+#import('../lib/unittest/html_config.dart');
+
 #import('../src/experimental/_experimental.dart');
 #import('../src/core/_core.dart');
 
