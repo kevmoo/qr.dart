@@ -2,7 +2,8 @@
 #import('dart:html');
 
 #import('../lib/unittest/unittest.dart');
-#import('../src/_dartlib.dart');
+#import('../src/experimental/_experimental.dart');
+#import('../src/core/_core.dart');
 
 #source('test_property_event_integration.dart');
 #source('test_hello_world.dart');
