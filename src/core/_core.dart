@@ -2,10 +2,11 @@
 
 #source('internal/_simple_set.dart');
 
+#source('cloneable.dart');
+#source('disposable.dart');
 #source('global_id.dart');
 #source('events/event.dart');
 #source('events/event_handle.dart');
-#source('disposable.dart');
 
 #source('math/size.dart');
 #source('math/coordinate.dart');
