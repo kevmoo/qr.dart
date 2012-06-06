@@ -1,9 +1,9 @@
 #library('dartlib_test_experimental');
 
-#import('../../lib/unittest/unittest.dart');
-#import('../../src/core/_core.dart');
-#import('../../src/experimental/_experimental.dart');
-#import('../../src/test/_test.dart');
+#import('../../vendor/unittest/unittest.dart');
+#import('../../lib/core/_core.dart');
+#import('../../lib/experimental/_experimental.dart');
+#import('../../lib/test/_test.dart');
 
 #source('test_property_event_integration.dart');
 #source('test_properties.dart');

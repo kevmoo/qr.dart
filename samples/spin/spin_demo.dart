@@ -1,6 +1,6 @@
 #import('dart:html');
-#import('../../src/core/_core.dart', prefix:'core');
-#import('../../src/experimental/_experimental.dart');
+#import('../../lib/core/_core.dart', prefix:'core');
+#import('../../lib/experimental/_experimental.dart');
 
 main(){
   CanvasElement canvas = document.query("#content");

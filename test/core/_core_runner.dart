@@ -1,8 +1,8 @@
 #library('dartlib_test_core');
 
-#import('../../lib/unittest/unittest.dart');
-#import('../../src/core/_core.dart');
-#import('../../src/test/_test.dart');
+#import('../../vendor/unittest/unittest.dart');
+#import('../../lib/core/_core.dart');
+#import('../../lib/test/_test.dart');
 
 #source('test_cloneable.dart');
 #source('test_events.dart');
