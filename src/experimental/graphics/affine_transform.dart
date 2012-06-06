@@ -1,4 +1,4 @@
-class AffineTransform {
+class AffineTransform implements core.Cloneable<AffineTransform> {
   num _m00, _m10, _m01, _m11, _m02, _m12;
 
   AffineTransform([this._m00 = 1, this._m10 = 0, this._m01 = 0, this._m11 = 1, this._m02 = 0, this._m12 = 0]);
@@ -98,6 +98,16 @@ class AffineTransform {
         _m00 / det,
         (_m01 * _m12 - _m11 * _m02) / det,
         (_m10 * _m02 - _m00 * _m12) / det);
+  }
+
+  AffineTransform clone(){
+    return new AffineTransform(_m00, _m10, _m01, _m11, _m02, _m12);
+  }
+
+  bool operator ==(AffineTransform other) {
+    return other !== null &&
+        _m00 == other._m00 && _m01 == other._m01 && _m02 == other._m02 &&
+        _m10 == other._m10 && _m11 == other._m11 && _m12 == other._m12;
   }
 
   static AffineTransform getRotateInstance(num theta, num x, num y) {
