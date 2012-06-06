@@ -16,28 +16,16 @@ if (navigator.webkitStartDart) {
     // replace them if they have a type that indicate that they source
     // in Dart code.
     //
-    //   <script type="application/dart" src="<file>.dart"></script>
-    //
-    // If the script tag has a 'data-compiler' attribute set to
-    // dart2js then we use the dart2js generated file rather than the
-    // one produced by frog:
-    //
-    //    <script ... data-compiler="dart2js"></script>
+    //   <script type="application/dart" src="..."></script>
     //
     var scripts = document.getElementsByTagName("script");
     var length = scripts.length;
     for (var i = 0; i < length; ++i) {
       if (scripts[i].type == "application/dart") {
-        // Remap foo.dart to foo.js or foo.js_ depending
-        // on the chosen compiler (frog or dart2js).
+        // Remap foo.dart to foo.dart.js.
         if (scripts[i].src && scripts[i].src != '') {
           var script = document.createElement('script');
-          var compiler = scripts[i].getAttribute('data-compiler');
-          if (compiler == "dart2js") {
-            script.src = scripts[i].src + '.js_';
-          } else {
-            script.src = scripts[i].src + '.js';
-          }
+          script.src = scripts[i].src + '.js';
           var parent = scripts[i].parentNode;
           parent.replaceChild(script, scripts[i]);
         }
