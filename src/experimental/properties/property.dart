@@ -10,7 +10,7 @@ class Property<T> implements Hashable{
 
   T get(IPropertyObject obj, [core.Func1<IPropertyObject, T> ifAbsent = null]){
     var coreValue = getCore(obj, ifAbsent);
-    if(coreValue != Undefined){
+    if(coreValue !== Undefined){
       return coreValue;
     }
     else{
@@ -23,7 +23,7 @@ class Property<T> implements Hashable{
   }
 
   void set(IPropertyObject obj, T value){
-    assert(value != Undefined);
+    assert(value !== Undefined);
     obj.propertyValues._set(this, value);
   }
 

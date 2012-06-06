@@ -7,7 +7,7 @@ class PropertyValues extends core.Disposable {
     _changeHandle = new core.EventHandle<Property>();
 
   void _set(Property key, Object value){
-    assert(value != Property.Undefined);
+    assert(value !== Property.Undefined);
     _propertyValues[key] = value;
     _changeHandle.fireEvent(this, key);
   }
