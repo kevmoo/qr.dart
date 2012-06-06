@@ -40,6 +40,4 @@ class Vector extends Coordinate {
    * Computes the angle between this and another [Vector].
    **/
   num getAngle (Vector other) => Math.acos(dot(other));
-
-  Vector clone() => new Vector(x, y);
 }

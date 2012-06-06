@@ -25,13 +25,6 @@ class Size {
   }
 
   /**
-   * Returns a new copy of the Size.
-   */
-  Size clone() {
-    return new Size(width, height);
-  }
-
-  /**
    * Returns true if this Size is the same size or smaller than the
    * [target] size in both dimensions.
    */

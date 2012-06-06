@@ -47,14 +47,6 @@ class TestVector {
         expect(n.length).approxEquals(4 * Math.SQRT2);
         expect(n.normal.length).approxEquals(1);
       });
-
-      test('should create a clone of itself', (){
-        Vector original = new Vector(1,2);
-        Vector copy = original.clone();
-        Expect.equals(copy.x, original.x);
-        Expect.equals(copy.y, original.y);
-        expect(original).equals(copy);
-      });
     });
   }
 }

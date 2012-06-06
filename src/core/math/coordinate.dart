@@ -21,7 +21,5 @@ class Coordinate {
     return new Vector(a.x - b.x, a.y - b.y);
   }
 
-  Coordinate clone() => new Coordinate(x, y);
-
   String toString() => '{"x":${x},"y":${y}}';
 }

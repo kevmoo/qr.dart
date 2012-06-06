@@ -22,14 +22,6 @@ class TestCoordinate {
       test('should get the distance to another point', (){
         Expect.equals(5, new Coordinate(0, 0).getDistance(new Coordinate(3, 4)));
       });
-
-      test('should create a clone of itself', (){
-        Coordinate original = new Coordinate(1,2);
-        Coordinate copy = original.clone();
-        Expect.equals(copy.x, original.x);
-        Expect.equals(copy.y, original.y);
-        expect(original).equals(copy);
-      });
     });
   }
 }
