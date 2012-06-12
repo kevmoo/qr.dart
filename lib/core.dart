@@ -4,6 +4,7 @@
 
 #source('core/internal/_simple_set.dart');
 
+#source('core/collection_util.dart');
 #source('core/cloneable.dart');
 #source('core/disposable.dart');
 #source('core/global_id.dart');
