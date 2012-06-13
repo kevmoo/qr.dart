@@ -6,6 +6,7 @@ class Shape extends PElement {
 
   void drawOverride(CanvasRenderingContext2D ctx){
       ctx.fillStyle = fillStyle;
+      // NOTE: warnings here will go away once dartbug.com/3342 is resolved
       switch(shapeType){
         case ShapeType.rect:
           ctx.fillRect(0, 0, size.width, size.height);
