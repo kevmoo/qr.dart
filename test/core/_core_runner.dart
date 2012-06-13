@@ -6,6 +6,7 @@
 
 #source('test_cloneable.dart');
 #source('test_events.dart');
+#source('test_collection_util.dart');
 #source('math/test_coordinate.dart');
 #source('math/test_vector.dart');
 
@@ -15,5 +16,6 @@ void runCoreTests() {
     TestEvents.run();
     TestCoordinate.run();
     TestVector.run();
+    TestCollectionUtil.run();
   });
 }

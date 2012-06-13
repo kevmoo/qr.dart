@@ -1,5 +1,4 @@
 class CollectionUtil {
-  // TODO: needs test
   static bool allUnique(List items) {
     assert(items != null);
     for(int i = 0; i < items.length; i++) {
