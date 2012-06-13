@@ -10,4 +10,15 @@ class CollectionUtil {
     }
     return true;
   }
+
+  static Object aggregate(Iterable source, Object seed, Func2 func) {
+    assert(source != null);
+    assert(func != null);
+
+    for (final Object local in source) {
+      seed = func(seed, local);
+    }
+
+    return seed;
+  }
 }
