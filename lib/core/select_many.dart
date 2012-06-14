@@ -1,5 +1,5 @@
 class SelectMany<TSource, TOutput>
-  implements Iterable<TOutput>, Iterator<TOutput> {
+  implements Iterable<TOutput> {
 
   final Iterable<TSource> _source;
   final Func1<TSource, Iterable<TOutput>> _func;
@@ -44,8 +44,8 @@ class _SelectManyIterator<TSource, TOutput>
 
     assert(_sourceIterator != null);
     if(_sourceIterator.hasNext()) {
-      var next = _sourceIterator.next();
-      _outputIterator = _func(next).iterator();
+      var nextOutputIterable = _sourceIterator.next();
+      _outputIterator = _func(nextOutputIterable).iterator();
       return _outputIterator.hasNext();
     }
     return false;
