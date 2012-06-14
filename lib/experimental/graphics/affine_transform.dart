@@ -32,6 +32,12 @@ class AffineTransform implements core.Cloneable<AffineTransform> {
     return _m10;
   }
 
+  bool get isIdentity() {
+    return _m00 == 1 && _m10 == 0 &&
+        _m01 == 0 && _m11 == 1 &&
+        _m02 == 0 && _m12 == 0;
+  }
+
   AffineTransform concatenate(tx) {
     var m0 = this._m00;
     var m1 = this._m01;

@@ -1,6 +1,17 @@
 class TestAffineTransform {
   static void run(){
     group('AffineTransform -- ', (){
+
+      test('identity', () {
+        var tx = new AffineTransform(1, 2, 3, 4, 5, 6);
+        expect(tx.isIdentity).isFalse();
+        tx.setTransform(1, 0, 0, 1, 0, 0);
+        expect(tx.isIdentity).isTrue();
+
+        tx = new AffineTransform();
+        expect(tx.isIdentity).isTrue();
+      });
+
       test('concatenate', () {
         var tx = new AffineTransform(1, 2, 3, 4, 5, 6);
         tx.concatenate(new AffineTransform(2, 1, 6, 5, 4, 3));
