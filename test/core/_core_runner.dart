@@ -4,6 +4,7 @@
 #import('../../lib/core.dart');
 #import('../../lib/test.dart');
 
+#source('test_select_many.dart');
 #source('test_cloneable.dart');
 #source('test_events.dart');
 #source('test_grouping.dart');
@@ -14,6 +15,7 @@
 
 void runCoreTests() {
   group('core -- ', (){
+    TestSelectMany.run();
     TestCloneable.run();
     TestEvents.run();
     TestCoordinate.run();

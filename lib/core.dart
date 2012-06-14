@@ -5,6 +5,7 @@
 #source('core/internal/_simple_set.dart');
 
 #source('core/util.dart');
+#source('core/select_many.dart');
 #source('core/collection_util.dart');
 #source('core/grouping.dart');
 #source('core/cloneable.dart');

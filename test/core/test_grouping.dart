@@ -24,6 +24,11 @@ class TestGrouping {
     //
     // Test 2
     //
+    Func2<String, String, int> sorter = (a,b) => a.compareTo(b);
+
+    var source = ['a', 'b', 'c', 'ab', 'bc', 'abc'];
+    source.sort(sorter);
+
     grouping = new Grouping<int, String>(
         ['a', 'b', 'c', 'ab', 'bc', 'abc'],
         keyFunc);
@@ -50,6 +55,14 @@ class TestGrouping {
 
     list = grouping[0];
     expect(list).isNull();
+
+    // verify all values
+    list = new List<String>.from(grouping.getValues());
+    list.sort(sorter);
+    expect(list.length).equals(6);
+    for(int i=0; i < list.length; i++) {
+      expect(list[i]).equals(source[i]);
+    }
   }
 
   static void _testSimpleGrouping() {

@@ -43,6 +43,10 @@ class Grouping<K extends Hashable, V> {
    */
   Collection<K> getKeys() => _values.getKeys();
 
+  Iterable<V> getValues() {
+    return new SelectMany<Iterable<V>, V>.flatten(_values.getValues());
+  }
+
   /**
    * The number of {key, value} pairs in the map.
    */
