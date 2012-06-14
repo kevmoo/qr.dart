@@ -1,7 +1,12 @@
 class AffineTransform implements core.Cloneable<AffineTransform> {
   num _m00, _m10, _m01, _m11, _m02, _m12;
 
-  AffineTransform([this._m00 = 1, this._m10 = 0, this._m01 = 0, this._m11 = 1, this._m02 = 0, this._m12 = 0]);
+  AffineTransform([num scaleX = 1, num shearY = 0,
+      num shearX = 0, num scaleY = 1,
+      num translateX = 0, num translateY = 0]) :
+        _m00 = scaleX, _m11 = scaleY,
+        _m02 = translateX, _m12 = translateY,
+        _m01 = shearX, _m10 = shearY;
 
   num get scaleX(){
     return _m00;
