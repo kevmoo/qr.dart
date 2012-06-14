@@ -6,6 +6,7 @@
 
 #source('core/util.dart');
 #source('core/collection_util.dart');
+#source('core/grouping.dart');
 #source('core/cloneable.dart');
 #source('core/disposable.dart');
 #source('core/global_id.dart');
