@@ -1,5 +1,5 @@
 interface EventRoot<T> {
-  GlobalId add(Action<T> handler);
+  GlobalId add(Action1<T> handler);
   bool remove(GlobalId id);
 }
 

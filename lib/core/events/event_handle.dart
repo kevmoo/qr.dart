@@ -1,20 +1,20 @@
 class EventHandle<T> extends Disposable implements EventRoot<T> {
-  HashMap<GlobalId, Action<T>> _handlers;
+  HashMap<GlobalId, Action1<T>> _handlers;
     
   void fireEvent(Object sender, T args){
     assert(!isDisposed);
     if(_handlers != null){
-      _handlers.forEach((GlobalId id, Action<T> handler){
+      _handlers.forEach((GlobalId id, Action1<T> handler){
         handler(args);
       });
     }
   }
   
-  GlobalId add(Action<T> handler){
+  GlobalId add(Action1<T> handler){
     assert(!isDisposed);
     var id = new GlobalId();
     if(_handlers == null){
-      _handlers = new HashMap<GlobalId, Action<T>>();
+      _handlers = new HashMap<GlobalId, Action1<T>>();
     }
     _handlers[id] = handler;
     return id;

@@ -35,7 +35,7 @@ class Property<T> implements Hashable{
     return obj.propertyValues._isSet(this);
   }
 
-  core.GlobalId addHandler(IPropertyObject obj, core.Action<Property> handler){
+  core.GlobalId addHandler(IPropertyObject obj, core.Action1<Property> handler){
     return _PropertyChangeHelper.addHandler(obj, this, handler);
   }
 
@@ -71,7 +71,7 @@ class _PropertyChangeHelper{
     return new _PropertyChangeHelper(handlerId);
   }
 
-  static core.GlobalId addHandler(IPropertyObject obj, Property property, core.Action<Property> watcher){
+  static core.GlobalId addHandler(IPropertyObject obj, Property property, core.Action1<Property> watcher){
     var helper = _changeHelperProperty.get(obj, createInstance);
     var handle = helper._handlers.putIfAbsent(property, () => new core.EventHandle<Property>());
     return handle.add(watcher);
