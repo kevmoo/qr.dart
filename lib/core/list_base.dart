@@ -54,7 +54,12 @@ class ListBase<E> implements Collection<E> {
    * predicate [f]. Returns false otherwise.
    */
   bool every(bool f(E element)) {
-    throw 'not implemented...yet';
+    for (var i = 0; i < length; i++) {
+      if(!f(this[i])) {
+        return false;
+      }
+    }
+    return true;
   }
 
   /**
@@ -62,7 +67,12 @@ class ListBase<E> implements Collection<E> {
    * predicate [f]. Returns false otherwise.
    */
   bool some(bool f(E element)) {
-    throw 'not implemented...yet';
+    for (var i = 0; i < length; i++) {
+      if(f(this[i])) {
+        return true;
+      }
+    }
+    return false;
   }
 
   /**

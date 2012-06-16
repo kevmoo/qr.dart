@@ -31,6 +31,7 @@ class TestListBase extends ListBase<int> {
       test('simple', _testSimple);
       test('map', _testMap);
       test('indexOf', _testIndexOf);
+      test('some and all', _testSomeAll);
     });
   }
 
@@ -78,4 +79,19 @@ class TestListBase extends ListBase<int> {
     expect(flipped.indexOf(0), equals(-1));
     expect(flipped.lastIndexOf(0), equals(-1));
   }
+
+  static void _testSomeAll() {
+    expect(flipped.every(_lt0), isFalse);
+    expect(flipped.some(_lt0), isFalse);
+
+    expect(flipped.every(_gt0), isTrue);
+    expect(flipped.some(_gt0), isTrue);
+
+    expect(flipped.every(_lt3), isFalse);
+    expect(flipped.some(_lt3), isTrue);
+  }
+
+  static bool _lt0(int a) => a < 0;
+  static bool _gt0(int a) => a > 0;
+  static bool _lt3(int a) => a < 3;
 }
