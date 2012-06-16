@@ -25,8 +25,8 @@ class ListBase<E> implements Collection<E> {
   }
 
   /**
-   * for each element [e] of this collection.
    * Returns a new collection with the elements [:f(e):]
+   * for each element [e] of this collection.
    *
    * Note on typing: the return type of f() could be an arbitrary
    * type and consequently the returned collection's
