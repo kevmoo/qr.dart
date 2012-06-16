@@ -1,0 +1,87 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>DisposableImpl Class / dartlib_core Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="dartlib_core" data-type="DisposableImpl">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../dartlib_core.html">dartlib_core</a> &rsaquo; <a href="../dartlib_core/DisposableImpl.html">DisposableImpl</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>DisposableImpl</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Subclasses</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../dartlib_core/EventHandle.html">EventHandle&lt;T&gt;</a></span></p>
+<h3>Implements</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../dartlib_core/Disposable.html">Disposable</a></span></p>
+<h3>Methods</h3>
+<div class="method"><h4 id="dispose">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>dispose</strong>() <a class="anchor-link" href="#dispose"
+              title="Permalink to DisposableImpl.dispose">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void dispose(){
+  if (!_disposed) {
+    // Set disposed_ to true first, in case during the chain of disposal this
+    // gets disposed recursively.
+    this._disposed = true;
+    this.disposeInternal();
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="disposeInternal">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>disposeInternal</strong>() <a class="anchor-link" href="#disposeInternal"
+              title="Permalink to DisposableImpl.disposeInternal">#</a></h4>
+<div class="doc">
+<p>Do not call this method directly. Call <a class="crossref" href="../dartlib_core/DisposableImpl.html#dispose">dispose</a> instead.
+Subclasses should override this method to implement <a class="crossref" href="../dartlib_core/Disposable.html">Disposable</a> behavior.</p>
+<pre class="source">
+void disposeInternal() {
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="get:isDisposed">
+<span class="show-code">Code</span>
+<a href="../dart_core/bool.html">bool</a> <strong>get isDisposed</strong>() <a class="anchor-link" href="#get:isDisposed"
+              title="Permalink to DisposableImpl.get isDisposed">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool get isDisposed() =&gt; _disposed;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          <div>This page generated at 2012-06-16 11:44:03.610</div>
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        
