@@ -24,10 +24,7 @@ class TestGrouping {
     //
     // Test 2
     //
-    Func2<String, String, int> sorter = (a,b) => a.compareTo(b);
-
     var source = ['a', 'b', 'c', 'ab', 'bc', 'abc'];
-    source.sort(sorter);
 
     grouping = new Grouping<int, String>(
         ['a', 'b', 'c', 'ab', 'bc', 'abc'],
@@ -37,32 +34,28 @@ class TestGrouping {
 
     list = grouping[1];
     expect(list.length, equals(3));
-    expect(list.indexOf('a') < 0, isFalse);
-    expect(list.indexOf('b') < 0, isFalse);
-    expect(list.indexOf('c') < 0, isFalse);
-    expect(list.indexOf('d') < 0, isTrue);
+    expect(list, contains('a'));
+    expect(list, contains('b'));
+    expect(list, contains('c'));
+    expect(list, isNot(contains('d')));
 
     list = grouping[2];
     expect(list.length, equals(2));
-    expect(list.indexOf('ab') < 0, isFalse);
-    expect(list.indexOf('bc') < 0, isFalse);
-    expect(list.indexOf('a') < 0, isTrue);
+    expect(list, contains('ab'));
+    expect(list, contains('bc'));
+    expect(list, isNot(contains('a')));
 
     list = grouping[3];
     expect(list.length, equals(1));
-    expect(list.indexOf('abc'), equals(0));
-    expect(list.indexOf('d') < 0, isTrue);
+    expect(list[0], equals('abc'));
+    expect(list, isNot(contains('d')));
 
     list = grouping[0];
     expect(list, isNull);
 
     // verify all values
     list = new List<String>.from(grouping.getValues());
-    list.sort(sorter);
-    expect(list.length, equals(6));
-    for(int i=0; i < list.length; i++) {
-      expect(list[i], equals(source[i]));
-    }
+    expect(list, unorderedEquals(source));
   }
 
   static void _testSimpleGrouping() {
@@ -98,15 +91,15 @@ class TestGrouping {
 
     list = grouping[1];
     expect(list.length, equals(3));
-    expect(list.every((i) => i == 1));
+    expect(list, everyElement(equals(1)));
 
     list = grouping[2];
     expect(list.length, equals(2));
-    expect(list.every((i) => i == 2));
+    expect(list, everyElement(equals(2)));
 
     list = grouping[3];
     expect(list.length, equals(1));
-    expect(list.every((i) => i == 3));
+    expect(list, everyElement(equals(3)));
 
     list = grouping[4];
     expect(list, isNull);
