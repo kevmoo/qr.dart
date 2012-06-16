@@ -1,9 +1,11 @@
 class TestListBase extends ListBase<int> {
   static final int _length = 5;
+  static final TestListBase instance = const TestListBase();
+  static final TestListBase flipped = const TestListBase(true);
 
   final bool flip;
 
-  TestListBase([this.flip = false]);
+  const TestListBase([this.flip = false]);
 
   /**
    * Returns the number of elements in this collection.
@@ -33,9 +35,8 @@ class TestListBase extends ListBase<int> {
   }
 
   static void _testSimple() {
-    var test = new TestListBase();
 
-    var list = new List<int>.from(test);
+    var list = new List<int>.from(instance);
     expect(list.length, equals(_length));
     expect(list, orderedEquals([5,4,3,2,1]));
   }
@@ -43,42 +44,38 @@ class TestListBase extends ListBase<int> {
   static void _testMap() {
     Func1<int, int> dub = (i) => i * 2;
 
-    var test = new TestListBase();
-
-    List<int> list = new List<int>.from(test.map(dub));
+    List<int> list = new List<int>.from(instance.map(dub));
     expect(list.length, equals(_length));
     expect(list, orderedEquals([10, 8, 6, 4, 2]));
   }
 
   static void _testIndexOf() {
-    var test = new TestListBase(true);
-
     //
     // All positive, start at 0
     //
     for (var i = 1; i <= _length; i++) {
-      expect(test.indexOf(i), equals(_length - i));
-      expect(test.lastIndexOf(i), equals(_length + i - 1));
+      expect(flipped.indexOf(i), equals(_length - i));
+      expect(flipped.lastIndexOf(i), equals(_length + i - 1));
     }
 
     //
     // Start at index `_length`
     //
     for (var i = 1; i <= _length; i++) {
-      expect(test.indexOf(i, _length), equals(_length + i - 1));
-      expect(test.lastIndexOf(i, _length), equals(_length + i - 1));
+      expect(flipped.indexOf(i, _length), equals(_length + i - 1));
+      expect(flipped.lastIndexOf(i, _length), equals(_length + i - 1));
     }
 
     //
     // look for '1' after the last '1'
     //
-    expect(test.indexOf(1, _length + 1), equals(-1));
-    expect(test.lastIndexOf(1, _length + 1), equals(-1));
+    expect(flipped.indexOf(1, _length + 1), equals(-1));
+    expect(flipped.lastIndexOf(1, _length + 1), equals(-1));
 
     //
     // look for '0' which isn't there
     //
-    expect(test.indexOf(0), equals(-1));
-    expect(test.lastIndexOf(0), equals(-1));
+    expect(flipped.indexOf(0), equals(-1));
+    expect(flipped.lastIndexOf(0), equals(-1));
   }
 }

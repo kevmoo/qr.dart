@@ -1,5 +1,7 @@
 class ListBase<E> implements Collection<E> {
 
+  const ListBase();
+
   //
   // Iterable bits
   //
