@@ -1,6 +1,6 @@
 class TestUtil {
   static void run() {
-    group('Util --', () {
+    group('Util', () {
       test('getHashcode', _testGetHashCode);
     });
 

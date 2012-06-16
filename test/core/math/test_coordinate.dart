@@ -1,6 +1,6 @@
 class TestCoordinate {
   static void run(){
-    group('Coordinate -- ', (){
+    group('Coordinate', (){
 
       test('should be subtract by other Coordinate', (){
         var coor = new Coordinate(5,3) - new Coordinate(2,1);

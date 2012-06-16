@@ -10,7 +10,7 @@
 #source('test_affine_transform.dart');
 
 void runExperimentalTests() {
-  group('experimental -- ', (){
+  group('experimental', (){
     TestProperties.run();
     TestAffineTransform.run();
     TestPropertyEventIntegration.run();

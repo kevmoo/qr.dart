@@ -1,6 +1,6 @@
 class TestVector {
   static void run(){
-    group('Vector -- ', (){
+    group('Vector', (){
       test('should be sum with other Vector', (){
         Vector v = new Vector(1,1) + new Vector(2,1);
         Expect.equals(3, v.x);

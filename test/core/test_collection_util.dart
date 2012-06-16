@@ -1,7 +1,7 @@
 class TestCollectionUtil {
 
   static void run() {
-    group('CollectionUtil --', () {
+    group('CollectionUtil', () {
       test('allUnique', _testAllUnique);
       test('aggregate', _testAggregate);
     });

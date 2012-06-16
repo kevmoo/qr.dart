@@ -17,7 +17,7 @@ class TestListBase extends ListBase<int> {
   }
 
   static void run() {
-    group('ListBase -- ', (){
+    group('ListBase', (){
       test('simple', _testSimple);
     });
   }

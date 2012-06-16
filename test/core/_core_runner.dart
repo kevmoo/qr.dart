@@ -15,7 +15,7 @@
 #source('math/test_vector.dart');
 
 void runCoreTests() {
-  group('core -- ', (){
+  group('core', (){
     TestListBase.run();
     TestSelectMany.run();
     TestCloneable.run();

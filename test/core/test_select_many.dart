@@ -1,6 +1,6 @@
 class TestSelectMany {
   static void run() {
-    group('SelectMany --', () {
+    group('SelectMany', () {
       test('simple', _testSimple);
     });
 

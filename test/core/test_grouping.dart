@@ -1,7 +1,7 @@
 class TestGrouping {
 
   static void run() {
-    group('Grouping --', () {
+    group('Grouping', () {
       test('complex', _testComplexGrouping);
       test('simple', _testSimpleGrouping);
     });
