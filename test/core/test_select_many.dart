@@ -12,9 +12,9 @@ class TestSelectMany {
     var select = new SelectMany(source, getChars);
 
     var charList = new List<String>.from(select);
-    expect(charList.length).equals(11);
-    expect(charList[6]).equals('i');
-    expect(charList[7]).equals('I');
+    expect(charList.length, equals(11));
+    expect(charList[6], equals('i'));
+    expect(charList[7], equals('I'));
   }
 
   static List<String> getChars(String input) {

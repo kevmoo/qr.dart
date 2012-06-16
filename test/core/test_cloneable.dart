@@ -29,19 +29,19 @@ class TestCloneable implements Cloneable<TestCloneable> {
   static void _test(){
     var val = new TestCloneable();
 
-    expect(val).equals(val);
-    expect(val).same(val);
+    expect(val, equals(val));
+    expect(val, same(val));
 
     var val2 = new TestCloneable();
 
-    expect(val2.id == val.id).isFalse();
-    expect(val2 == val).isFalse();
-    expect(val2 === val).isFalse();
+    expect(val2.id == val.id, isFalse);
+    expect(val2 == val, isFalse);
+    expect(val2, isNot(same(val)));
 
     var clone = val.clone();
-    expect(clone.id).equals(val.id);
-    expect(clone).equals(val);
-    expect(val === clone).isFalse();
+    expect(clone.id, equals(val.id));
+    expect(clone, equals(val));
+    expect(val, isNot(same(clone)));
 
   }
 }

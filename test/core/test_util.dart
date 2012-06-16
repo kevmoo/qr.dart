@@ -26,6 +26,6 @@ class TestUtil {
 
   static void _hashCodeFun(Iterable<Hashable> items, int expectedValue) {
     int hashCode = Util.getHashCode(items);
-    expect(hashCode).equals(expectedValue);
+    expect(hashCode, equals(expectedValue));
   }
 }

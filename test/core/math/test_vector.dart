@@ -20,13 +20,13 @@ class TestVector {
       });
 
       test('should be compared by other Vector', (){
-        expect(new Vector(2,2)).equals(new Vector(2,2));
-        Expect.isTrue(new Vector(2,1) != new Vector(2,2));
+        expect(new Vector(2,2), equals(new Vector(2,2)));
+        expect(new Vector(2,1), isNot(equals(new Vector(2,2))));
       });
 
       test('should obey const equality', (){
         Expect.isFalse(new Vector(2,2) === new Vector(2,2));
-        expect(const Vector(2,2)).same(const Vector(2,2));
+        expect(const Vector(2,2), same(const Vector(2,2)));
         Expect.isTrue(const Vector(2,2) === const Vector(2,2));
       });
 
@@ -44,8 +44,8 @@ class TestVector {
 
       test('should have valid normal', (){
         var n = new Vector(4, 4);
-        expect(n.length).approxEquals(4 * Math.SQRT2);
-        expect(n.normal.length).approxEquals(1);
+        Expect.approxEquals(4 * Math.SQRT2, n.length);
+        Expect.approxEquals(1, n.normal.length);
       });
     });
   }

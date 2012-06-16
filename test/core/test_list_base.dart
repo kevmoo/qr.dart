@@ -26,6 +26,6 @@ class TestListBase extends ListBase<int> {
     var test = new TestListBase();
 
     var list = new List<int>.from(test);
-    expect(list.length).equals(10);
+    expect(list.length, equals(10));
   }
 }
