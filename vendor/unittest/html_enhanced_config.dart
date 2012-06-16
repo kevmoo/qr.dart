@@ -165,7 +165,7 @@ class HtmlEnhancedConfiguration extends Configuration {
                 <div ${_isIE ? "style='display:inline-block' ": ""}>
                     ${test_.currentGroup}</div>
                 <div ${_isIE ? "style='display:inline-block' ": ""}>
-                    (${groupTestPassedCount}/${groupTotalTestCount})</div>
+                    &nbsp;(${groupTestPassedCount}/${groupTotalTestCount})</div>
               </div>
             </div>"""));
 

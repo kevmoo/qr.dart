@@ -199,6 +199,8 @@ final _PASS  = 'pass';
 final _FAIL  = 'fail';
 final _ERROR = 'error';
 
+final _GROUP_SEPARATOR = ' -- ';
+
 /** If set, then all other test cases will be ignored. */
 TestCase _soloTest;
 
@@ -511,7 +513,7 @@ void group(String description, void body()) {
   final oldGroup = _currentGroup;
   if (_currentGroup != '') {
     // Add a space.
-    _currentGroup = '$_currentGroup $description';
+    _currentGroup = '$_currentGroup$_GROUP_SEPARATOR$description';
   } else {
     // The first group.
     _currentGroup = description;
@@ -681,7 +683,7 @@ _completeTests() {
 
 String _fullSpec(String spec) {
   if (spec === null) return '$_currentGroup';
-  return _currentGroup != '' ? '$_currentGroup $spec' : spec;
+  return _currentGroup != '' ? '$_currentGroup$_GROUP_SEPARATOR$spec' : spec;
 }
 
 void _fail(String message) {
