@@ -1,6 +1,6 @@
-class EventHandle<T> extends Disposable implements EventRoot<T> {
+class EventHandle<T> extends DisposableImpl implements EventRoot<T> {
   HashMap<GlobalId, Action1<T>> _handlers;
-    
+
   void fireEvent(Object sender, T args){
     assert(!isDisposed);
     if(_handlers != null){
@@ -9,7 +9,7 @@ class EventHandle<T> extends Disposable implements EventRoot<T> {
       });
     }
   }
-  
+
   GlobalId add(Action1<T> handler){
     assert(!isDisposed);
     var id = new GlobalId();
@@ -28,7 +28,7 @@ class EventHandle<T> extends Disposable implements EventRoot<T> {
       return false;
     }
   }
-  
+
   void disposeInternal(){
     super.disposeInternal();
     if(_handlers != null){

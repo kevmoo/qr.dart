@@ -1,4 +1,4 @@
-class PropertyValues extends core.Disposable {
+class PropertyValues extends core.DisposableImpl {
   final HashMap<Property, Object> _propertyValues;
   final core.EventHandle<Property> _changeHandle;
 

@@ -12,6 +12,7 @@
 #source('core/grouping.dart');
 #source('core/cloneable.dart');
 #source('core/disposable.dart');
+#source('core/disposable_impl.dart');
 #source('core/global_id.dart');
 #source('core/events/event.dart');
 #source('core/events/event_handle.dart');
