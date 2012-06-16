@@ -29,7 +29,11 @@ class ListBase<E> implements Collection<E> {
    * typeis Collection.
    */
   Collection map(f(E element)) {
-    throw 'not implemented...yet';
+    var list = new List<E>(length);
+    for(var i = 0; i < length; i++) {
+      list[i] = f(this[i]);
+    }
+    return list;
   }
 
   /**
@@ -84,8 +88,13 @@ class ListBase<E> implements Collection<E> {
    * list from index [start] to the length of the list. Returns
    * -1 if [element] is not found.
    */
-  int indexOf(E element, [int start]) {
-    throw 'not implemented...yet';
+  int indexOf(E element, [int start=0]) {
+    for (var i = start; i < length; i++) {
+      if(this[i] == element) {
+        return i;
+      }
+    }
+    return -1;
   }
 
   /**
@@ -93,8 +102,14 @@ class ListBase<E> implements Collection<E> {
    * list from index [start] (inclusive) to 0. Returns -1 if
    * [element] is not found.
    */
-  int lastIndexOf(E element, [int start]) {
-    throw 'not implemented...yet';
+  int lastIndexOf(E element, [int start=0]) {
+    var lastIndex = -1;
+    for (var i = start; i < length; i++) {
+      if(this[i] == element) {
+        lastIndex = i;
+      }
+    }
+    return lastIndex;
   }
 
   /**
