@@ -9,6 +9,7 @@
 #source('core/collection_util.dart');
 #source('core/index_iterator.dart');
 #source('core/list_base.dart');
+#source('core/read_only_collection.dart');
 #source('core/grouping.dart');
 #source('core/cloneable.dart');
 #source('core/disposable.dart');
