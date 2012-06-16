@@ -1,0 +1,232 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>JavaScriptCallFrame Interface / html Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="html" data-type="JavaScriptCallFrame">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../html.html">html</a> &rsaquo; <a href="../html/JavaScriptCallFrame.html">JavaScriptCallFrame</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>JavaScriptCallFrame</strong>
+          Interface
+        </h2>
+        
+<div class="doc">
+<p>@domName JavaScriptCallFrame</p>
+</div>
+<h3>Static Fields</h3>
+<div class="field"><h4 id="CATCH_SCOPE">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>CATCH_SCOPE</strong> <a class="anchor-link"
+            href="#CATCH_SCOPE"
+            title="Permalink to JavaScriptCallFrame.CATCH_SCOPE">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int CATCH_SCOPE = 4;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="CLOSURE_SCOPE">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>CLOSURE_SCOPE</strong> <a class="anchor-link"
+            href="#CLOSURE_SCOPE"
+            title="Permalink to JavaScriptCallFrame.CLOSURE_SCOPE">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int CLOSURE_SCOPE = 3;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="GLOBAL_SCOPE">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>GLOBAL_SCOPE</strong> <a class="anchor-link"
+            href="#GLOBAL_SCOPE"
+            title="Permalink to JavaScriptCallFrame.GLOBAL_SCOPE">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int GLOBAL_SCOPE = 0;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="LOCAL_SCOPE">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>LOCAL_SCOPE</strong> <a class="anchor-link"
+            href="#LOCAL_SCOPE"
+            title="Permalink to JavaScriptCallFrame.LOCAL_SCOPE">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int LOCAL_SCOPE = 1;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="WITH_SCOPE">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>WITH_SCOPE</strong> <a class="anchor-link"
+            href="#WITH_SCOPE"
+            title="Permalink to JavaScriptCallFrame.WITH_SCOPE">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int WITH_SCOPE = 2;
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="evaluate">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>evaluate</strong>(<a href="../dart_core/String.html">String</a> script) <a class="anchor-link" href="#evaluate"
+              title="Permalink to JavaScriptCallFrame.evaluate">#</a></h4>
+<div class="doc">
+<p>@domName JavaScriptCallFrame.evaluate</p>
+<pre class="source">
+void evaluate(String script);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="scopeType">
+<span class="show-code">Code</span>
+<a href="../dart_core/int.html">int</a> <strong>scopeType</strong>(<a href="../dart_core/int.html">int</a> scopeIndex) <a class="anchor-link" href="#scopeType"
+              title="Permalink to JavaScriptCallFrame.scopeType">#</a></h4>
+<div class="doc">
+<p>@domName JavaScriptCallFrame.scopeType</p>
+<pre class="source">
+int scopeType(int scopeIndex);
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="caller">
+<span class="show-code">Code</span>
+final <a href="../html/JavaScriptCallFrame.html">JavaScriptCallFrame</a>         <strong>caller</strong> <a class="anchor-link"
+            href="#caller"
+            title="Permalink to JavaScriptCallFrame.caller">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName JavaScriptCallFrame.caller</p>
+<pre class="source">
+final JavaScriptCallFrame caller;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="column">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>column</strong> <a class="anchor-link"
+            href="#column"
+            title="Permalink to JavaScriptCallFrame.column">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName JavaScriptCallFrame.column</p>
+<pre class="source">
+final int column;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="functionName">
+<span class="show-code">Code</span>
+final <a href="../dart_core/String.html">String</a>         <strong>functionName</strong> <a class="anchor-link"
+            href="#functionName"
+            title="Permalink to JavaScriptCallFrame.functionName">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName JavaScriptCallFrame.functionName</p>
+<pre class="source">
+final String functionName;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="line">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>line</strong> <a class="anchor-link"
+            href="#line"
+            title="Permalink to JavaScriptCallFrame.line">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName JavaScriptCallFrame.line</p>
+<pre class="source">
+final int line;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="scopeChain">
+<span class="show-code">Code</span>
+final <a href="../dart_core/List.html">List</a>         <strong>scopeChain</strong> <a class="anchor-link"
+            href="#scopeChain"
+            title="Permalink to JavaScriptCallFrame.scopeChain">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName JavaScriptCallFrame.scopeChain</p>
+<pre class="source">
+final List scopeChain;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="sourceID">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>sourceID</strong> <a class="anchor-link"
+            href="#sourceID"
+            title="Permalink to JavaScriptCallFrame.sourceID">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName JavaScriptCallFrame.sourceID</p>
+<pre class="source">
+final int sourceID;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="thisObject">
+<span class="show-code">Code</span>
+final <a href="../dart_core/Object.html">Object</a>         <strong>thisObject</strong> <a class="anchor-link"
+            href="#thisObject"
+            title="Permalink to JavaScriptCallFrame.thisObject">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName JavaScriptCallFrame.thisObject</p>
+<pre class="source">
+final Object thisObject;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="type">
+<span class="show-code">Code</span>
+final <a href="../dart_core/String.html">String</a>         <strong>type</strong> <a class="anchor-link"
+            href="#type"
+            title="Permalink to JavaScriptCallFrame.type">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName JavaScriptCallFrame.type</p>
+<pre class="source">
+final String type;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

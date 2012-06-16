@@ -1,0 +1,93 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>CanvasUtil Class / dartlib_experimental Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="dartlib_experimental" data-type="CanvasUtil">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../dartlib_experimental.html">dartlib_experimental</a> &rsaquo; <a href="../dartlib_experimental/CanvasUtil.html">CanvasUtil</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>CanvasUtil</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Static Methods</h3>
+<div class="method"><h4 id="ellipse">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>ellipse</strong>(<a href="../html/CanvasRenderingContext2D.html">CanvasRenderingContext2D</a> ctx, <a href="../dart_core/num.html">num</a> x, <a href="../dart_core/num.html">num</a> y, <a href="../dart_core/num.html">num</a> width, <a href="../dart_core/num.html">num</a> height) <a class="anchor-link" href="#ellipse"
+              title="Permalink to CanvasUtil.ellipse">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static void ellipse(CanvasRenderingContext2D ctx,
+                    num x, num y, num width, num height) {
+  var hB = (width / 2) * kappa,
+    vB = (height / 2) * kappa,
+    eX = x + width,
+    eY = y + height,
+    mX = x + width / 2,
+    mY = y + height / 2;
+  ctx.beginPath();
+  ctx.moveTo(x, mY);
+  ctx.bezierCurveTo(x, mY - vB, mX - hB, y, mX, y);
+  ctx.bezierCurveTo(mX + hB, y, eX, mY - vB, eX, mY);
+  ctx.bezierCurveTo(eX, mY + vB, mX + hB, eY, mX, eY);
+  ctx.bezierCurveTo(mX - hB, eY, x, mY + vB, x, mY);
+  ctx.closePath();
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="transform">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>transform</strong>(<a href="../html/CanvasRenderingContext2D.html">CanvasRenderingContext2D</a> ctx, <a href="../dartlib_experimental/AffineTransform.html">AffineTransform</a> tx) <a class="anchor-link" href="#transform"
+              title="Permalink to CanvasUtil.transform">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static void transform(CanvasRenderingContext2D ctx, AffineTransform tx){
+  ctx.transform(tx.scaleX, tx.shearY, tx.shearX,
+    tx.scaleY, tx.translateX, tx.translateY);
+}
+</pre>
+</div>
+</div>
+<h3>Static Fields</h3>
+<div class="field"><h4 id="kappa">
+<span class="show-code">Code</span>
+final <a href="../dart_core/num.html">num</a>         <strong>kappa</strong> <a class="anchor-link"
+            href="#kappa"
+            title="Permalink to CanvasUtil.kappa">#</a>
+        </h4>
+        <div class="doc">
+<p>4 * ((√(2) - 1) / 3);</p>
+<pre class="source">
+static final num kappa = 0.55228474983079339840225163227959743809289583383593;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

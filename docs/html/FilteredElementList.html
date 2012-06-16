@@ -1,0 +1,391 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>FilteredElementList Class / html Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="html" data-type="FilteredElementList">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../html.html">html</a> &rsaquo; <a href="../html/FilteredElementList.html">FilteredElementList</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>FilteredElementList</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Implements</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../html/ElementList.html">ElementList</a></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="FilteredElementList">
+<span class="show-code">Code</span>
+new <strong>FilteredElementList</strong>(<a href="../html/Node.html">Node</a> node) <a class="anchor-link" href="#FilteredElementList"
+              title="Permalink to FilteredElementList.FilteredElementList">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+FilteredElementList(Node node): _childNodes = node.nodes, _node = node;
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id=":index">
+<span class="show-code">Code</span>
+<a href="../html/Element.html">Element</a> <strong>operator []</strong>(<a href="../dart_core/int.html">int</a> index) <a class="anchor-link" href="#:index"
+              title="Permalink to FilteredElementList.operator []">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Element operator [](int index) =&gt; _filtered[index];
+</pre>
+</div>
+</div>
+<div class="method"><h4 id=":setindex">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>operator []=</strong>(<a href="../dart_core/int.html">int</a> index, <a href="../html/Element.html">Element</a> value) <a class="anchor-link" href="#:setindex"
+              title="Permalink to FilteredElementList.operator []=">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void operator []=(int index, Element value) {
+  this[index].replaceWith(value);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="add">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>add</strong>(<a href="../html/Element.html">Element</a> value) <a class="anchor-link" href="#add"
+              title="Permalink to FilteredElementList.add">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void add(Element value) {
+  _childNodes.add(value);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="addAll">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>addAll</strong>(<a href="../dart_core/Collection.html">Collection</a> collection) <a class="anchor-link" href="#addAll"
+              title="Permalink to FilteredElementList.addAll">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void addAll(Collection&lt;Element&gt; collection) {
+  collection.forEach(add);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="addLast">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>addLast</strong>(<a href="../html/Element.html">Element</a> value) <a class="anchor-link" href="#addLast"
+              title="Permalink to FilteredElementList.addLast">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void addLast(Element value) {
+  add(value);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="clear">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>clear</strong>() <a class="anchor-link" href="#clear"
+              title="Permalink to FilteredElementList.clear">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void clear() {
+  // Currently, ElementList#clear clears even non-element nodes, so we follow
+  // that behavior.
+  _childNodes.clear();
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="copyFrom">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>copyFrom</strong>(<a href="../dart_core/List.html">List</a> src, <a href="../dart_core/int.html">int</a> srcStart, <a href="../dart_core/int.html">int</a> dstStart, <a href="../dart_core/int.html">int</a> count) <a class="anchor-link" href="#copyFrom"
+              title="Permalink to FilteredElementList.copyFrom">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void copyFrom(List&lt;Object&gt; src, int srcStart, int dstStart, int count) {
+  throw const NotImplementedException();
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="every">
+<span class="show-code">Code</span>
+<a href="../dart_core/bool.html">bool</a> <strong>every</strong>(<a href="../dart_core/bool.html">bool</a> f(<a href="../html/Element.html">Element</a> element)) <a class="anchor-link" href="#every"
+              title="Permalink to FilteredElementList.every">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool every(bool f(Element element)) =&gt; _filtered.every(f);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="filter">
+<span class="show-code">Code</span>
+<a href="../dart_core/Collection.html">Collection</a> <strong>filter</strong>(<a href="../dart_core/bool.html">bool</a> f(<a href="../html/Element.html">Element</a> element)) <a class="anchor-link" href="#filter"
+              title="Permalink to FilteredElementList.filter">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Collection&lt;Element&gt; filter(bool f(Element element)) =&gt; _filtered.filter(f);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="get:first">
+<span class="show-code">Code</span>
+<a href="../html/Element.html">Element</a> <strong>get first</strong>() <a class="anchor-link" href="#get:first"
+              title="Permalink to FilteredElementList.get first">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Element get first() {
+  for (final node in _childNodes) {
+    if (node is Element) {
+      return node;
+    }
+  }
+  return null;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="forEach">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>forEach</strong>(<a href="../dart_core/void.html">void</a> f(<a href="../html/Element.html">Element</a> element)) <a class="anchor-link" href="#forEach"
+              title="Permalink to FilteredElementList.forEach">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void forEach(void f(Element element)) {
+  _filtered.forEach(f);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getRange">
+<span class="show-code">Code</span>
+<a href="../dart_core/List.html">List</a> <strong>getRange</strong>(<a href="../dart_core/int.html">int</a> start, <a href="../dart_core/int.html">int</a> rangeLength) <a class="anchor-link" href="#getRange"
+              title="Permalink to FilteredElementList.getRange">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+List&lt;Element&gt; getRange(int start, int rangeLength) =&gt;
+  _filtered.getRange(start, rangeLength);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="indexOf">
+<span class="show-code">Code</span>
+<a href="../dart_core/int.html">int</a> <strong>indexOf</strong>(<a href="../html/Element.html">Element</a> element, [<a href="../dart_core/int.html">int</a> start = 0]) <a class="anchor-link" href="#indexOf"
+              title="Permalink to FilteredElementList.indexOf">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+int indexOf(Element element, [int start = 0]) =&gt;
+  _filtered.indexOf(element, start);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="insertRange">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>insertRange</strong>(<a href="../dart_core/int.html">int</a> start, <a href="../dart_core/int.html">int</a> rangeLength, [initialValue = null]) <a class="anchor-link" href="#insertRange"
+              title="Permalink to FilteredElementList.insertRange">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void insertRange(int start, int rangeLength, [initialValue = null]) {
+  throw const NotImplementedException();
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="isEmpty">
+<span class="show-code">Code</span>
+<a href="../dart_core/bool.html">bool</a> <strong>isEmpty</strong>() <a class="anchor-link" href="#isEmpty"
+              title="Permalink to FilteredElementList.isEmpty">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool isEmpty() =&gt; _filtered.isEmpty();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="iterator">
+<span class="show-code">Code</span>
+<a href="../dart_core/Iterator.html">Iterator</a> <strong>iterator</strong>() <a class="anchor-link" href="#iterator"
+              title="Permalink to FilteredElementList.iterator">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Iterator&lt;Element&gt; iterator() =&gt; _filtered.iterator();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="last">
+<span class="show-code">Code</span>
+<a href="../html/Element.html">Element</a> <strong>last</strong>() <a class="anchor-link" href="#last"
+              title="Permalink to FilteredElementList.last">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Element last() =&gt; _filtered.last();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="lastIndexOf">
+<span class="show-code">Code</span>
+<a href="../dart_core/int.html">int</a> <strong>lastIndexOf</strong>(<a href="../html/Element.html">Element</a> element, [<a href="../dart_core/int.html">int</a> start = null]) <a class="anchor-link" href="#lastIndexOf"
+              title="Permalink to FilteredElementList.lastIndexOf">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+int lastIndexOf(Element element, [int start = null]) {
+  if (start === null) start = length - 1;
+  return _filtered.lastIndexOf(element, start);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="get:length">
+<span class="show-code">Code</span>
+<a href="../dart_core/int.html">int</a> <strong>get length</strong>() <a class="anchor-link" href="#get:length"
+              title="Permalink to FilteredElementList.get length">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+int get length() =&gt; _filtered.length;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="set:length">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>set length</strong>(<a href="../dart_core/int.html">int</a> newLength) <a class="anchor-link" href="#set:length"
+              title="Permalink to FilteredElementList.set length">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void set length(int newLength) {
+  final len = this.length;
+  if (newLength &gt;= len) {
+    return;
+  } else if (newLength &lt; 0) {
+    throw const IllegalArgumentException("Invalid list length");
+  }
+
+  removeRange(newLength - 1, len - newLength);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="map">
+<span class="show-code">Code</span>
+<a href="../dart_core/Collection.html">Collection</a> <strong>map</strong>(f(<a href="../html/Element.html">Element</a> element)) <a class="anchor-link" href="#map"
+              title="Permalink to FilteredElementList.map">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Collection map(f(Element element)) =&gt; _filtered.map(f);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="removeLast">
+<span class="show-code">Code</span>
+<a href="../html/Element.html">Element</a> <strong>removeLast</strong>() <a class="anchor-link" href="#removeLast"
+              title="Permalink to FilteredElementList.removeLast">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Element removeLast() {
+  final result = this.last();
+  if (result != null) {
+    result.remove();
+  }
+  return result;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="removeRange">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>removeRange</strong>(<a href="../dart_core/int.html">int</a> start, <a href="../dart_core/int.html">int</a> rangeLength) <a class="anchor-link" href="#removeRange"
+              title="Permalink to FilteredElementList.removeRange">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void removeRange(int start, int rangeLength) {
+  _filtered.getRange(start, rangeLength).forEach((el) =&gt; el.remove());
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setRange">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>setRange</strong>(<a href="../dart_core/int.html">int</a> start, <a href="../dart_core/int.html">int</a> rangeLength, <a href="../dart_core/List.html">List</a> from, [<a href="../dart_core/int.html">int</a> startFrom = 0]) <a class="anchor-link" href="#setRange"
+              title="Permalink to FilteredElementList.setRange">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void setRange(int start, int rangeLength, List from, [int startFrom = 0]) {
+  throw const NotImplementedException();
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="some">
+<span class="show-code">Code</span>
+<a href="../dart_core/bool.html">bool</a> <strong>some</strong>(<a href="../dart_core/bool.html">bool</a> f(<a href="../html/Element.html">Element</a> element)) <a class="anchor-link" href="#some"
+              title="Permalink to FilteredElementList.some">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool some(bool f(Element element)) =&gt; _filtered.some(f);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="sort">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>sort</strong>(<a href="../dart_core/int.html">int</a> compare(<a href="../html/Element.html">Element</a> a, <a href="../html/Element.html">Element</a> b)) <a class="anchor-link" href="#sort"
+              title="Permalink to FilteredElementList.sort">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void sort(int compare(Element a, Element b)) {
+  throw const UnsupportedOperationException('TODO(jacobr): should we impl?');
+}
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

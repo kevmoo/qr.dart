@@ -1,0 +1,207 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>AudioBufferSourceNode Interface / html Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="html" data-type="AudioBufferSourceNode">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../html.html">html</a> &rsaquo; <a href="../html/AudioBufferSourceNode.html">AudioBufferSourceNode</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>AudioBufferSourceNode</strong>
+          Interface
+        </h2>
+        
+<div class="doc">
+<p>@domName AudioBufferSourceNode</p>
+</div>
+<h3>Extends</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../html/AudioSourceNode.html">AudioSourceNode</a></span></p>
+<h3>Static Fields</h3>
+<div class="field"><h4 id="FINISHED_STATE">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>FINISHED_STATE</strong> <a class="anchor-link"
+            href="#FINISHED_STATE"
+            title="Permalink to AudioBufferSourceNode.FINISHED_STATE">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int FINISHED_STATE = 3;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="PLAYING_STATE">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>PLAYING_STATE</strong> <a class="anchor-link"
+            href="#PLAYING_STATE"
+            title="Permalink to AudioBufferSourceNode.PLAYING_STATE">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int PLAYING_STATE = 2;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="SCHEDULED_STATE">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>SCHEDULED_STATE</strong> <a class="anchor-link"
+            href="#SCHEDULED_STATE"
+            title="Permalink to AudioBufferSourceNode.SCHEDULED_STATE">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int SCHEDULED_STATE = 1;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="UNSCHEDULED_STATE">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>UNSCHEDULED_STATE</strong> <a class="anchor-link"
+            href="#UNSCHEDULED_STATE"
+            title="Permalink to AudioBufferSourceNode.UNSCHEDULED_STATE">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int UNSCHEDULED_STATE = 0;
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="noteGrainOn">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>noteGrainOn</strong>(<a href="../dart_core/num.html">num</a> when, <a href="../dart_core/num.html">num</a> grainOffset, <a href="../dart_core/num.html">num</a> grainDuration) <a class="anchor-link" href="#noteGrainOn"
+              title="Permalink to AudioBufferSourceNode.noteGrainOn">#</a></h4>
+<div class="doc">
+<p>@domName AudioBufferSourceNode.noteGrainOn</p>
+<pre class="source">
+void noteGrainOn(num when, num grainOffset, num grainDuration);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="noteOff">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>noteOff</strong>(<a href="../dart_core/num.html">num</a> when) <a class="anchor-link" href="#noteOff"
+              title="Permalink to AudioBufferSourceNode.noteOff">#</a></h4>
+<div class="doc">
+<p>@domName AudioBufferSourceNode.noteOff</p>
+<pre class="source">
+void noteOff(num when);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="noteOn">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>noteOn</strong>(<a href="../dart_core/num.html">num</a> when) <a class="anchor-link" href="#noteOn"
+              title="Permalink to AudioBufferSourceNode.noteOn">#</a></h4>
+<div class="doc">
+<p>@domName AudioBufferSourceNode.noteOn</p>
+<pre class="source">
+void noteOn(num when);
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="buffer">
+<span class="show-code">Code</span>
+<a href="../html/AudioBuffer.html">AudioBuffer</a>         <strong>buffer</strong> <a class="anchor-link"
+            href="#buffer"
+            title="Permalink to AudioBufferSourceNode.buffer">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName AudioBufferSourceNode.buffer</p>
+<pre class="source">
+AudioBuffer buffer;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="gain">
+<span class="show-code">Code</span>
+final <a href="../html/AudioGain.html">AudioGain</a>         <strong>gain</strong> <a class="anchor-link"
+            href="#gain"
+            title="Permalink to AudioBufferSourceNode.gain">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName AudioBufferSourceNode.gain</p>
+<pre class="source">
+final AudioGain gain;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="loop">
+<span class="show-code">Code</span>
+<a href="../dart_core/bool.html">bool</a>         <strong>loop</strong> <a class="anchor-link"
+            href="#loop"
+            title="Permalink to AudioBufferSourceNode.loop">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName AudioBufferSourceNode.loop</p>
+<pre class="source">
+bool loop;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="looping">
+<span class="show-code">Code</span>
+<a href="../dart_core/bool.html">bool</a>         <strong>looping</strong> <a class="anchor-link"
+            href="#looping"
+            title="Permalink to AudioBufferSourceNode.looping">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName AudioBufferSourceNode.looping</p>
+<pre class="source">
+bool looping;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="playbackRate">
+<span class="show-code">Code</span>
+final <a href="../html/AudioParam.html">AudioParam</a>         <strong>playbackRate</strong> <a class="anchor-link"
+            href="#playbackRate"
+            title="Permalink to AudioBufferSourceNode.playbackRate">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName AudioBufferSourceNode.playbackRate</p>
+<pre class="source">
+final AudioParam playbackRate;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="playbackState">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>playbackState</strong> <a class="anchor-link"
+            href="#playbackState"
+            title="Permalink to AudioBufferSourceNode.playbackState">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName AudioBufferSourceNode.playbackState</p>
+<pre class="source">
+final int playbackState;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

@@ -1,14 +1,23 @@
 class ReadOnlyCollection<E> extends ListBase<E> {
   final List<E> _items;
 
-  ReadOnlyCollection.wrap(this._items);
+  /**
+   * Wraps [source]. Changes to [source] will be reflected.
+   **/
+  ReadOnlyCollection.wrap(List<E> source) :
+    _items = source;
 
   const ReadOnlyCollection.empty() :
     _items = const [];
 
-  factory ReadOnlyCollection(Iterable<E> source) {
-    return new ReadOnlyCollection<E>.wrap(source);
-  }
+  /**
+   * Copies all of the elements from [source] into a new collection.
+   * Add or removing items in source will not change the contents of the
+   * new collection.
+   * _Note: this is not a **deep** copy._
+   **/
+  ReadOnlyCollection(Iterable<E> source) :
+    _items = new List<E>.from(source);
 
   /**
    * Returns the number of elements in this collection.

@@ -1,0 +1,192 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>IDBCursor Interface / html Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="html" data-type="IDBCursor">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../html.html">html</a> &rsaquo; <a href="../html/IDBCursor.html">IDBCursor</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>IDBCursor</strong>
+          Interface
+        </h2>
+        
+<div class="doc">
+<p>@domName IDBCursor</p>
+</div>
+<h3>Subinterfaces</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../html/IDBCursorWithValue.html">IDBCursorWithValue</a></span></p>
+<h3>Static Fields</h3>
+<div class="field"><h4 id="NEXT">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>NEXT</strong> <a class="anchor-link"
+            href="#NEXT"
+            title="Permalink to IDBCursor.NEXT">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int NEXT = 0;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="NEXT_NO_DUPLICATE">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>NEXT_NO_DUPLICATE</strong> <a class="anchor-link"
+            href="#NEXT_NO_DUPLICATE"
+            title="Permalink to IDBCursor.NEXT_NO_DUPLICATE">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int NEXT_NO_DUPLICATE = 1;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="PREV">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>PREV</strong> <a class="anchor-link"
+            href="#PREV"
+            title="Permalink to IDBCursor.PREV">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int PREV = 2;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="PREV_NO_DUPLICATE">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>PREV_NO_DUPLICATE</strong> <a class="anchor-link"
+            href="#PREV_NO_DUPLICATE"
+            title="Permalink to IDBCursor.PREV_NO_DUPLICATE">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int PREV_NO_DUPLICATE = 3;
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="advance">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>advance</strong>(<a href="../dart_core/int.html">int</a> count) <a class="anchor-link" href="#advance"
+              title="Permalink to IDBCursor.advance">#</a></h4>
+<div class="doc">
+<p>@domName IDBCursor.advance</p>
+<pre class="source">
+void advance(int count);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="continueFunction">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>continueFunction</strong>([key]) <a class="anchor-link" href="#continueFunction"
+              title="Permalink to IDBCursor.continueFunction">#</a></h4>
+<div class="doc">
+<p>@domName IDBCursor.continueFunction</p>
+<pre class="source">
+void continueFunction([/*IDBKey*/ key]);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="delete">
+<span class="show-code">Code</span>
+<a href="../html/IDBRequest.html">IDBRequest</a> <strong>delete</strong>() <a class="anchor-link" href="#delete"
+              title="Permalink to IDBCursor.delete">#</a></h4>
+<div class="doc">
+<p>@domName IDBCursor.delete</p>
+<pre class="source">
+IDBRequest delete();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="update">
+<span class="show-code">Code</span>
+<a href="../html/IDBRequest.html">IDBRequest</a> <strong>update</strong>(value) <a class="anchor-link" href="#update"
+              title="Permalink to IDBCursor.update">#</a></h4>
+<div class="doc">
+<p>@domName IDBCursor.update</p>
+<pre class="source">
+IDBRequest update(/*SerializedScriptValue*/ value);
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="direction">
+<span class="show-code">Code</span>
+final <a href="../dart_core/String.html">String</a>         <strong>direction</strong> <a class="anchor-link"
+            href="#direction"
+            title="Permalink to IDBCursor.direction">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName IDBCursor.direction</p>
+<pre class="source">
+final String direction;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="key">
+<span class="show-code">Code</span>
+final         <strong>key</strong> <a class="anchor-link"
+            href="#key"
+            title="Permalink to IDBCursor.key">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName IDBCursor.key</p>
+<pre class="source">
+final Dynamic key;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="primaryKey">
+<span class="show-code">Code</span>
+final         <strong>primaryKey</strong> <a class="anchor-link"
+            href="#primaryKey"
+            title="Permalink to IDBCursor.primaryKey">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName IDBCursor.primaryKey</p>
+<pre class="source">
+final Dynamic primaryKey;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="source">
+<span class="show-code">Code</span>
+final         <strong>source</strong> <a class="anchor-link"
+            href="#source"
+            title="Permalink to IDBCursor.source">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName IDBCursor.source</p>
+<pre class="source">
+final Dynamic source;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

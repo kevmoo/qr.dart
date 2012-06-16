@@ -1,0 +1,351 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>PElement Class / dartlib_experimental Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="dartlib_experimental" data-type="PElement">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../dartlib_experimental.html">dartlib_experimental</a> &rsaquo; <a href="../dartlib_experimental/PElement.html">PElement</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>PElement</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Extends</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../dartlib_core/DisposableImpl.html">DisposableImpl</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../dartlib_experimental/PropertyObject.html">PropertyObject</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>PElement</strong></span></p>
+<h3>Subclasses</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../dartlib_experimental/Panel.html">Panel</a></span>, <span class="type-box"><span class="icon-class"></span><a href="../dartlib_experimental/Shape.html">Shape</a></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="PElement">
+<span class="show-code">Code</span>
+new <strong>PElement</strong>(_width, _height, [cacheEnabled = false]) <a class="anchor-link" href="#PElement"
+              title="Permalink to PElement.PElement">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+PElement(this._width, this._height, [this.cacheEnabled = false]) :
+  _transforms = new List&lt;AffineTransform&gt;(),
+  _updatedEventHandle = new core.EventHandle&lt;core.EventArgs&gt;()
+{
+  if(cacheEnabled){
+    throw 'should probably implement this';
+  }
+}
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="addTransform">
+<span class="show-code">Code</span>
+<a href="../dartlib_experimental/AffineTransform.html">AffineTransform</a> <strong>addTransform</strong>() <a class="anchor-link" href="#addTransform"
+              title="Permalink to PElement.addTransform">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+AffineTransform addTransform(){
+  var tx = new AffineTransform();
+  _transforms.add(tx);
+  return tx;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="claim">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>claim</strong>(<a href="../dartlib_experimental/IElementParent.html">IElementParent</a> parent) <a class="anchor-link" href="#claim"
+              title="Permalink to PElement.claim">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void claim(IElementParent parent) {
+  assert(_parent == null);
+  _parent = parent;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="disposeInternal">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>disposeInternal</strong>() <a class="anchor-link" href="#disposeInternal"
+              title="Permalink to PElement.disposeInternal">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void disposeInternal(){
+  super.disposeInternal();
+  _updatedEventHandle.dispose();
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="draw">
+<span class="show-code">Code</span>
+<a href="../dart_core/bool.html">bool</a> <strong>draw</strong>(<a href="../html/CanvasRenderingContext2D.html">CanvasRenderingContext2D</a> ctx) <a class="anchor-link" href="#draw"
+              title="Permalink to PElement.draw">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool draw(CanvasRenderingContext2D ctx){
+  update();
+  var dirty = (_lastDrawSize == null);
+  drawInternal(ctx);
+  return dirty;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="drawCore">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>drawCore</strong>(<a href="../html/CanvasRenderingContext2D.html">CanvasRenderingContext2D</a> ctx) <a class="anchor-link" href="#drawCore"
+              title="Permalink to PElement.drawCore">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void drawCore(CanvasRenderingContext2D ctx){
+  if (_alpha != null) {
+    ctx.globalAlpha = _alpha;
+  }
+
+  // call the abstract draw method
+  drawOverride(ctx);
+  _lastDrawSize = this.size;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="drawInternal">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>drawInternal</strong>(<a href="../html/CanvasRenderingContext2D.html">CanvasRenderingContext2D</a> ctx) <a class="anchor-link" href="#drawInternal"
+              title="Permalink to PElement.drawInternal">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void drawInternal(CanvasRenderingContext2D ctx){
+  // until we ar rocking caching, just draw normal
+  _drawNormal(ctx);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="drawOverride">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>drawOverride</strong>(<a href="../html/CanvasRenderingContext2D.html">CanvasRenderingContext2D</a> ctx) <a class="anchor-link" href="#drawOverride"
+              title="Permalink to PElement.drawOverride">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void drawOverride(CanvasRenderingContext2D ctx){
+  throw "should override in subclass";
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getTransform">
+<span class="show-code">Code</span>
+<a href="../dartlib_experimental/AffineTransform.html">AffineTransform</a> <strong>getTransform</strong>() <a class="anchor-link" href="#getTransform"
+              title="Permalink to PElement.getTransform">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+AffineTransform getTransform() {
+  var tx = new AffineTransform();
+  _transforms.forEach(tx.concatenate);
+  return tx;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getTransformToRoot">
+<span class="show-code">Code</span>
+<a href="../dartlib_experimental/AffineTransform.html">AffineTransform</a> <strong>getTransformToRoot</strong>() <a class="anchor-link" href="#getTransformToRoot"
+              title="Permalink to PElement.getTransformToRoot">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+AffineTransform getTransformToRoot(){
+  var tx = new AffineTransform();
+  if(_parent != null){
+    tx.concatenate(_parent.getTransformToRoot());
+  }
+  tx.concatenate(getTransform());
+  return tx;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getVisualChild">
+<span class="show-code">Code</span>
+<a href="../dartlib_experimental/PElement.html">PElement</a> <strong>getVisualChild</strong>(<a href="../dart_core/int.html">int</a> index) <a class="anchor-link" href="#getVisualChild"
+              title="Permalink to PElement.getVisualChild">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+PElement getVisualChild(int index){
+  throw "no children for this type";
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="hasVisualChild">
+<span class="show-code">Code</span>
+<a href="../dart_core/bool.html">bool</a> <strong>hasVisualChild</strong>(<a href="../dartlib_experimental/PElement.html">PElement</a> element) <a class="anchor-link" href="#hasVisualChild"
+              title="Permalink to PElement.hasVisualChild">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool hasVisualChild(PElement element){
+  var length = visualChildCount;
+  for(var i=0;i&lt;length;i++){
+    if(element === getVisualChild(i)){
+      return true;
+    }
+  }
+  return false;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="get:height">
+<span class="show-code">Code</span>
+<a href="../dart_core/num.html">num</a> <strong>get height</strong>() <a class="anchor-link" href="#get:height"
+              title="Permalink to PElement.get height">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+num get height(){ return _height; }
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="invalidateDraw">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>invalidateDraw</strong>() <a class="anchor-link" href="#invalidateDraw"
+              title="Permalink to PElement.invalidateDraw">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void invalidateDraw(){
+  if(_lastDrawSize != null){
+    _lastDrawSize = null;
+    _invalidateParent();
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="get:size">
+<span class="show-code">Code</span>
+<a href="../dartlib_core/Size.html">Size</a> <strong>get size</strong>() <a class="anchor-link" href="#get:size"
+              title="Permalink to PElement.get size">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+core.Size get size(){
+  return new core.Size(_width, _height);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="update">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>update</strong>() <a class="anchor-link" href="#update"
+              title="Permalink to PElement.update">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void update(){
+  _updatedEventHandle.fireEvent(this, const core.EventArgs());
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="get:updated">
+<span class="show-code">Code</span>
+<a href="../dartlib_core/EventRoot.html">EventRoot</a> <strong>get updated</strong>() <a class="anchor-link" href="#get:updated"
+              title="Permalink to PElement.get updated">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+core.EventRoot&lt;core.EventArgs&gt; get updated(){
+  return _updatedEventHandle;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="get:visualChildCount">
+<span class="show-code">Code</span>
+<a href="../dart_core/int.html">int</a> <strong>get visualChildCount</strong>() <a class="anchor-link" href="#get:visualChildCount"
+              title="Permalink to PElement.get visualChildCount">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+int get visualChildCount(){
+  return 0;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="get:width">
+<span class="show-code">Code</span>
+<a href="../dart_core/num.html">num</a> <strong>get width</strong>() <a class="anchor-link" href="#get:width"
+              title="Permalink to PElement.get width">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+num get width(){ return _width; }
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="cacheEnabled">
+<span class="show-code">Code</span>
+final <a href="../dart_core/bool.html">bool</a>         <strong>cacheEnabled</strong> <a class="anchor-link"
+            href="#cacheEnabled"
+            title="Permalink to PElement.cacheEnabled">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final bool cacheEnabled;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="clip">
+<span class="show-code">Code</span>
+<a href="../dart_core/bool.html">bool</a>         <strong>clip</strong> <a class="anchor-link"
+            href="#clip"
+            title="Permalink to PElement.clip">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+bool clip = false;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

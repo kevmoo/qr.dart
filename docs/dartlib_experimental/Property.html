@@ -1,0 +1,207 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>Property&lt;T&gt; Class / dartlib_experimental Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="dartlib_experimental" data-type="Property&amp;lt;T&amp;gt;">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../dartlib_experimental.html">dartlib_experimental</a> &rsaquo; <a href="../dartlib_experimental/Property.html">Property&lt;T&gt;</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>Property&lt;T&gt;</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Implements</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../dart_core/Hashable.html">Hashable</a></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="Property">
+<span class="show-code">Code</span>
+const <strong>Property</strong>(<a href="../dart_core/String.html">String</a> name, [defaultValue = null]) <a class="anchor-link" href="#Property"
+              title="Permalink to Property&lt;T&gt;.Property">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+const Property(String this.name, [T this.defaultValue = null]) :
+  _id = new core.GlobalId();
+</pre>
+</div>
+</div>
+<h3>Static Fields</h3>
+<div class="field"><h4 id="Undefined">
+<span class="show-code">Code</span>
+final <a href="../dart_core/Object.html">Object</a>         <strong>Undefined</strong> <a class="anchor-link"
+            href="#Undefined"
+            title="Permalink to Property&lt;T&gt;.Undefined">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final Object Undefined = const _UndefinedValue();
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="addHandler">
+<span class="show-code">Code</span>
+<a href="../dartlib_core/GlobalId.html">GlobalId</a> <strong>addHandler</strong>(<a href="../dartlib_experimental/IPropertyObject.html">IPropertyObject</a> obj, <a href="../dart_core/void.html">void</a> handler(param)) <a class="anchor-link" href="#addHandler"
+              title="Permalink to Property&lt;T&gt;.addHandler">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+core.GlobalId addHandler(IPropertyObject obj, core.Action1&lt;Property&gt; handler){
+  return _PropertyChangeHelper.addHandler(obj, this, handler);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="clear">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>clear</strong>(<a href="../dartlib_experimental/IPropertyObject.html">IPropertyObject</a> obj) <a class="anchor-link" href="#clear"
+              title="Permalink to Property&lt;T&gt;.clear">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void clear(IPropertyObject obj){
+  obj.propertyValues._remove(this);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="get">
+<span class="show-code">Code</span>
+<strong>get</strong>(<a href="../dartlib_experimental/IPropertyObject.html">IPropertyObject</a> obj, [ifAbsent(param) = null]) <a class="anchor-link" href="#get"
+              title="Permalink to Property&lt;T&gt;.get">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+T get(IPropertyObject obj, [core.Func1&lt;IPropertyObject, T&gt; ifAbsent = null]){
+  var coreValue = getCore(obj, ifAbsent);
+  if(coreValue !== Undefined){
+    return coreValue;
+  }
+  else{
+    return defaultValue;
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getCore">
+<span class="show-code">Code</span>
+<a href="../dart_core/Object.html">Object</a> <strong>getCore</strong>(<a href="../dartlib_experimental/IPropertyObject.html">IPropertyObject</a> obj, [ifAbsent(param) = null]) <a class="anchor-link" href="#getCore"
+              title="Permalink to Property&lt;T&gt;.getCore">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Object getCore(IPropertyObject obj, [core.Func1&lt;IPropertyObject, T&gt; ifAbsent = null]){
+  return obj.propertyValues._getValueOrUndefined(this, obj, ifAbsent);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="hashCode">
+<span class="show-code">Code</span>
+<a href="../dart_core/int.html">int</a> <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
+              title="Permalink to Property&lt;T&gt;.hashCode">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+int hashCode(){
+  return _id.hashCode();
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="isSet">
+<span class="show-code">Code</span>
+<a href="../dart_core/bool.html">bool</a> <strong>isSet</strong>(<a href="../dartlib_experimental/IPropertyObject.html">IPropertyObject</a> obj) <a class="anchor-link" href="#isSet"
+              title="Permalink to Property&lt;T&gt;.isSet">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool isSet(IPropertyObject obj){
+  return obj.propertyValues._isSet(this);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="removeHandler">
+<span class="show-code">Code</span>
+<a href="../dart_core/bool.html">bool</a> <strong>removeHandler</strong>(<a href="../dartlib_experimental/IPropertyObject.html">IPropertyObject</a> obj, <a href="../dartlib_core/GlobalId.html">GlobalId</a> handlerId) <a class="anchor-link" href="#removeHandler"
+              title="Permalink to Property&lt;T&gt;.removeHandler">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool removeHandler(IPropertyObject obj, core.GlobalId handlerId){
+  _PropertyChangeHelper.removeHandler(obj, this, handlerId);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="set">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>set</strong>(<a href="../dartlib_experimental/IPropertyObject.html">IPropertyObject</a> obj, value) <a class="anchor-link" href="#set"
+              title="Permalink to Property&lt;T&gt;.set">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void set(IPropertyObject obj, T value){
+  assert(value !== Undefined);
+  obj.propertyValues._set(this, value);
+}
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="defaultValue">
+<span class="show-code">Code</span>
+final         <strong>defaultValue</strong> <a class="anchor-link"
+            href="#defaultValue"
+            title="Permalink to Property&lt;T&gt;.defaultValue">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final T defaultValue;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="name">
+<span class="show-code">Code</span>
+final <a href="../dart_core/String.html">String</a>         <strong>name</strong> <a class="anchor-link"
+            href="#name"
+            title="Permalink to Property&lt;T&gt;.name">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final String name;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

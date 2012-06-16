@@ -1,0 +1,849 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>MediaElement Interface / html Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="html" data-type="MediaElement">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../html.html">html</a> &rsaquo; <a href="../html/MediaElement.html">MediaElement</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>MediaElement</strong>
+          Interface
+        </h2>
+        
+<div class="doc">
+<p>@domName HTMLMediaElement</p>
+</div>
+<h3>Extends</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../html/Element.html">Element</a></span></p>
+<h3>Subinterfaces</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../html/VideoElement.html">VideoElement</a></span>, <span class="type-box"><span class="icon-interface"></span><a href="../html/AudioElement.html">AudioElement</a></span></p>
+<h3>Static Fields</h3>
+<div class="field"><h4 id="EOS_DECODE_ERR">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>EOS_DECODE_ERR</strong> <a class="anchor-link"
+            href="#EOS_DECODE_ERR"
+            title="Permalink to MediaElement.EOS_DECODE_ERR">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int EOS_DECODE_ERR = 2;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="EOS_NETWORK_ERR">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>EOS_NETWORK_ERR</strong> <a class="anchor-link"
+            href="#EOS_NETWORK_ERR"
+            title="Permalink to MediaElement.EOS_NETWORK_ERR">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int EOS_NETWORK_ERR = 1;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="EOS_NO_ERROR">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>EOS_NO_ERROR</strong> <a class="anchor-link"
+            href="#EOS_NO_ERROR"
+            title="Permalink to MediaElement.EOS_NO_ERROR">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int EOS_NO_ERROR = 0;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="HAVE_CURRENT_DATA">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>HAVE_CURRENT_DATA</strong> <a class="anchor-link"
+            href="#HAVE_CURRENT_DATA"
+            title="Permalink to MediaElement.HAVE_CURRENT_DATA">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int HAVE_CURRENT_DATA = 2;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="HAVE_ENOUGH_DATA">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>HAVE_ENOUGH_DATA</strong> <a class="anchor-link"
+            href="#HAVE_ENOUGH_DATA"
+            title="Permalink to MediaElement.HAVE_ENOUGH_DATA">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int HAVE_ENOUGH_DATA = 4;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="HAVE_FUTURE_DATA">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>HAVE_FUTURE_DATA</strong> <a class="anchor-link"
+            href="#HAVE_FUTURE_DATA"
+            title="Permalink to MediaElement.HAVE_FUTURE_DATA">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int HAVE_FUTURE_DATA = 3;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="HAVE_METADATA">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>HAVE_METADATA</strong> <a class="anchor-link"
+            href="#HAVE_METADATA"
+            title="Permalink to MediaElement.HAVE_METADATA">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int HAVE_METADATA = 1;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="HAVE_NOTHING">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>HAVE_NOTHING</strong> <a class="anchor-link"
+            href="#HAVE_NOTHING"
+            title="Permalink to MediaElement.HAVE_NOTHING">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int HAVE_NOTHING = 0;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="NETWORK_EMPTY">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>NETWORK_EMPTY</strong> <a class="anchor-link"
+            href="#NETWORK_EMPTY"
+            title="Permalink to MediaElement.NETWORK_EMPTY">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int NETWORK_EMPTY = 0;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="NETWORK_IDLE">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>NETWORK_IDLE</strong> <a class="anchor-link"
+            href="#NETWORK_IDLE"
+            title="Permalink to MediaElement.NETWORK_IDLE">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int NETWORK_IDLE = 1;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="NETWORK_LOADING">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>NETWORK_LOADING</strong> <a class="anchor-link"
+            href="#NETWORK_LOADING"
+            title="Permalink to MediaElement.NETWORK_LOADING">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int NETWORK_LOADING = 2;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="NETWORK_NO_SOURCE">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>NETWORK_NO_SOURCE</strong> <a class="anchor-link"
+            href="#NETWORK_NO_SOURCE"
+            title="Permalink to MediaElement.NETWORK_NO_SOURCE">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int NETWORK_NO_SOURCE = 3;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="SOURCE_CLOSED">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>SOURCE_CLOSED</strong> <a class="anchor-link"
+            href="#SOURCE_CLOSED"
+            title="Permalink to MediaElement.SOURCE_CLOSED">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int SOURCE_CLOSED = 0;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="SOURCE_ENDED">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>SOURCE_ENDED</strong> <a class="anchor-link"
+            href="#SOURCE_ENDED"
+            title="Permalink to MediaElement.SOURCE_ENDED">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int SOURCE_ENDED = 2;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="SOURCE_OPEN">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>SOURCE_OPEN</strong> <a class="anchor-link"
+            href="#SOURCE_OPEN"
+            title="Permalink to MediaElement.SOURCE_OPEN">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int SOURCE_OPEN = 1;
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="addTextTrack">
+<span class="show-code">Code</span>
+<a href="../html/TextTrack.html">TextTrack</a> <strong>addTextTrack</strong>(<a href="../dart_core/String.html">String</a> kind, [<a href="../dart_core/String.html">String</a> label, <a href="../dart_core/String.html">String</a> language]) <a class="anchor-link" href="#addTextTrack"
+              title="Permalink to MediaElement.addTextTrack">#</a></h4>
+<div class="doc">
+<p>@domName HTMLMediaElement.addTextTrack</p>
+<pre class="source">
+TextTrack addTextTrack(String kind, [String label, String language]);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="canPlayType">
+<span class="show-code">Code</span>
+<a href="../dart_core/String.html">String</a> <strong>canPlayType</strong>(<a href="../dart_core/String.html">String</a> type, <a href="../dart_core/String.html">String</a> keySystem) <a class="anchor-link" href="#canPlayType"
+              title="Permalink to MediaElement.canPlayType">#</a></h4>
+<div class="doc">
+<p>@domName HTMLMediaElement.canPlayType</p>
+<pre class="source">
+String canPlayType(String type, String keySystem);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="load">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>load</strong>() <a class="anchor-link" href="#load"
+              title="Permalink to MediaElement.load">#</a></h4>
+<div class="doc">
+<p>@domName HTMLMediaElement.load</p>
+<pre class="source">
+void load();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="get:on">
+<span class="show-code">Code</span>
+<a href="../html/MediaElementEvents.html">MediaElementEvents</a> <strong>get on</strong>() <a class="anchor-link" href="#get:on"
+              title="Permalink to MediaElement.get on">#</a></h4>
+<div class="doc">
+<p>@domName EventTarget.addEventListener, EventTarget.removeEventListener, EventTarget.dispatchEvent</p>
+<pre class="source">
+MediaElementEvents get on();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="pause">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>pause</strong>() <a class="anchor-link" href="#pause"
+              title="Permalink to MediaElement.pause">#</a></h4>
+<div class="doc">
+<p>@domName HTMLMediaElement.pause</p>
+<pre class="source">
+void pause();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="play">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>play</strong>() <a class="anchor-link" href="#play"
+              title="Permalink to MediaElement.play">#</a></h4>
+<div class="doc">
+<p>@domName HTMLMediaElement.play</p>
+<pre class="source">
+void play();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="webkitAddKey">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>webkitAddKey</strong>(<a href="../dart_core/String.html">String</a> keySystem, <a href="../html/Uint8Array.html">Uint8Array</a> key, [<a href="../html/Uint8Array.html">Uint8Array</a> initData, <a href="../dart_core/String.html">String</a> sessionId]) <a class="anchor-link" href="#webkitAddKey"
+              title="Permalink to MediaElement.webkitAddKey">#</a></h4>
+<div class="doc">
+<p>@domName HTMLMediaElement.webkitAddKey</p>
+<pre class="source">
+void webkitAddKey(String keySystem, Uint8Array key, [Uint8Array initData, String sessionId]);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="webkitCancelKeyRequest">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>webkitCancelKeyRequest</strong>(<a href="../dart_core/String.html">String</a> keySystem, <a href="../dart_core/String.html">String</a> sessionId) <a class="anchor-link" href="#webkitCancelKeyRequest"
+              title="Permalink to MediaElement.webkitCancelKeyRequest">#</a></h4>
+<div class="doc">
+<p>@domName HTMLMediaElement.webkitCancelKeyRequest</p>
+<pre class="source">
+void webkitCancelKeyRequest(String keySystem, String sessionId);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="webkitGenerateKeyRequest">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>webkitGenerateKeyRequest</strong>(<a href="../dart_core/String.html">String</a> keySystem, [<a href="../html/Uint8Array.html">Uint8Array</a> initData]) <a class="anchor-link" href="#webkitGenerateKeyRequest"
+              title="Permalink to MediaElement.webkitGenerateKeyRequest">#</a></h4>
+<div class="doc">
+<p>@domName HTMLMediaElement.webkitGenerateKeyRequest</p>
+<pre class="source">
+void webkitGenerateKeyRequest(String keySystem, [Uint8Array initData]);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="webkitSourceAbort">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>webkitSourceAbort</strong>(<a href="../dart_core/String.html">String</a> id) <a class="anchor-link" href="#webkitSourceAbort"
+              title="Permalink to MediaElement.webkitSourceAbort">#</a></h4>
+<div class="doc">
+<p>@domName HTMLMediaElement.webkitSourceAbort</p>
+<pre class="source">
+void webkitSourceAbort(String id);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="webkitSourceAddId">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>webkitSourceAddId</strong>(<a href="../dart_core/String.html">String</a> id, <a href="../dart_core/String.html">String</a> type) <a class="anchor-link" href="#webkitSourceAddId"
+              title="Permalink to MediaElement.webkitSourceAddId">#</a></h4>
+<div class="doc">
+<p>@domName HTMLMediaElement.webkitSourceAddId</p>
+<pre class="source">
+void webkitSourceAddId(String id, String type);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="webkitSourceAppend">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>webkitSourceAppend</strong>(<a href="../dart_core/String.html">String</a> id, <a href="../html/Uint8Array.html">Uint8Array</a> data) <a class="anchor-link" href="#webkitSourceAppend"
+              title="Permalink to MediaElement.webkitSourceAppend">#</a></h4>
+<div class="doc">
+<p>@domName HTMLMediaElement.webkitSourceAppend</p>
+<pre class="source">
+void webkitSourceAppend(String id, Uint8Array data);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="webkitSourceBuffered">
+<span class="show-code">Code</span>
+<a href="../html/TimeRanges.html">TimeRanges</a> <strong>webkitSourceBuffered</strong>(<a href="../dart_core/String.html">String</a> id) <a class="anchor-link" href="#webkitSourceBuffered"
+              title="Permalink to MediaElement.webkitSourceBuffered">#</a></h4>
+<div class="doc">
+<p>@domName HTMLMediaElement.webkitSourceBuffered</p>
+<pre class="source">
+TimeRanges webkitSourceBuffered(String id);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="webkitSourceEndOfStream">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>webkitSourceEndOfStream</strong>(<a href="../dart_core/int.html">int</a> status) <a class="anchor-link" href="#webkitSourceEndOfStream"
+              title="Permalink to MediaElement.webkitSourceEndOfStream">#</a></h4>
+<div class="doc">
+<p>@domName HTMLMediaElement.webkitSourceEndOfStream</p>
+<pre class="source">
+void webkitSourceEndOfStream(int status);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="webkitSourceRemoveId">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>webkitSourceRemoveId</strong>(<a href="../dart_core/String.html">String</a> id) <a class="anchor-link" href="#webkitSourceRemoveId"
+              title="Permalink to MediaElement.webkitSourceRemoveId">#</a></h4>
+<div class="doc">
+<p>@domName HTMLMediaElement.webkitSourceRemoveId</p>
+<pre class="source">
+void webkitSourceRemoveId(String id);
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="autoplay">
+<span class="show-code">Code</span>
+<a href="../dart_core/bool.html">bool</a>         <strong>autoplay</strong> <a class="anchor-link"
+            href="#autoplay"
+            title="Permalink to MediaElement.autoplay">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.autoplay</p>
+<pre class="source">
+bool autoplay;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="buffered">
+<span class="show-code">Code</span>
+final <a href="../html/TimeRanges.html">TimeRanges</a>         <strong>buffered</strong> <a class="anchor-link"
+            href="#buffered"
+            title="Permalink to MediaElement.buffered">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.buffered</p>
+<pre class="source">
+final TimeRanges buffered;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="controller">
+<span class="show-code">Code</span>
+<a href="../html/MediaController.html">MediaController</a>         <strong>controller</strong> <a class="anchor-link"
+            href="#controller"
+            title="Permalink to MediaElement.controller">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.controller</p>
+<pre class="source">
+MediaController controller;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="controls">
+<span class="show-code">Code</span>
+<a href="../dart_core/bool.html">bool</a>         <strong>controls</strong> <a class="anchor-link"
+            href="#controls"
+            title="Permalink to MediaElement.controls">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.controls</p>
+<pre class="source">
+bool controls;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="currentSrc">
+<span class="show-code">Code</span>
+final <a href="../dart_core/String.html">String</a>         <strong>currentSrc</strong> <a class="anchor-link"
+            href="#currentSrc"
+            title="Permalink to MediaElement.currentSrc">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.currentSrc</p>
+<pre class="source">
+final String currentSrc;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="currentTime">
+<span class="show-code">Code</span>
+<a href="../dart_core/num.html">num</a>         <strong>currentTime</strong> <a class="anchor-link"
+            href="#currentTime"
+            title="Permalink to MediaElement.currentTime">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.currentTime</p>
+<pre class="source">
+num currentTime;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="defaultMuted">
+<span class="show-code">Code</span>
+<a href="../dart_core/bool.html">bool</a>         <strong>defaultMuted</strong> <a class="anchor-link"
+            href="#defaultMuted"
+            title="Permalink to MediaElement.defaultMuted">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.defaultMuted</p>
+<pre class="source">
+bool defaultMuted;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="defaultPlaybackRate">
+<span class="show-code">Code</span>
+<a href="../dart_core/num.html">num</a>         <strong>defaultPlaybackRate</strong> <a class="anchor-link"
+            href="#defaultPlaybackRate"
+            title="Permalink to MediaElement.defaultPlaybackRate">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.defaultPlaybackRate</p>
+<pre class="source">
+num defaultPlaybackRate;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="duration">
+<span class="show-code">Code</span>
+final <a href="../dart_core/num.html">num</a>         <strong>duration</strong> <a class="anchor-link"
+            href="#duration"
+            title="Permalink to MediaElement.duration">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.duration</p>
+<pre class="source">
+final num duration;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="ended">
+<span class="show-code">Code</span>
+final <a href="../dart_core/bool.html">bool</a>         <strong>ended</strong> <a class="anchor-link"
+            href="#ended"
+            title="Permalink to MediaElement.ended">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.ended</p>
+<pre class="source">
+final bool ended;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="error">
+<span class="show-code">Code</span>
+final <a href="../html/MediaError.html">MediaError</a>         <strong>error</strong> <a class="anchor-link"
+            href="#error"
+            title="Permalink to MediaElement.error">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.error</p>
+<pre class="source">
+final MediaError error;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="initialTime">
+<span class="show-code">Code</span>
+final <a href="../dart_core/num.html">num</a>         <strong>initialTime</strong> <a class="anchor-link"
+            href="#initialTime"
+            title="Permalink to MediaElement.initialTime">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.initialTime</p>
+<pre class="source">
+final num initialTime;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="loop">
+<span class="show-code">Code</span>
+<a href="../dart_core/bool.html">bool</a>         <strong>loop</strong> <a class="anchor-link"
+            href="#loop"
+            title="Permalink to MediaElement.loop">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.loop</p>
+<pre class="source">
+bool loop;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="mediaGroup">
+<span class="show-code">Code</span>
+<a href="../dart_core/String.html">String</a>         <strong>mediaGroup</strong> <a class="anchor-link"
+            href="#mediaGroup"
+            title="Permalink to MediaElement.mediaGroup">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.mediaGroup</p>
+<pre class="source">
+String mediaGroup;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="muted">
+<span class="show-code">Code</span>
+<a href="../dart_core/bool.html">bool</a>         <strong>muted</strong> <a class="anchor-link"
+            href="#muted"
+            title="Permalink to MediaElement.muted">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.muted</p>
+<pre class="source">
+bool muted;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="networkState">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>networkState</strong> <a class="anchor-link"
+            href="#networkState"
+            title="Permalink to MediaElement.networkState">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.networkState</p>
+<pre class="source">
+final int networkState;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="paused">
+<span class="show-code">Code</span>
+final <a href="../dart_core/bool.html">bool</a>         <strong>paused</strong> <a class="anchor-link"
+            href="#paused"
+            title="Permalink to MediaElement.paused">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.paused</p>
+<pre class="source">
+final bool paused;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="playbackRate">
+<span class="show-code">Code</span>
+<a href="../dart_core/num.html">num</a>         <strong>playbackRate</strong> <a class="anchor-link"
+            href="#playbackRate"
+            title="Permalink to MediaElement.playbackRate">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.playbackRate</p>
+<pre class="source">
+num playbackRate;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="played">
+<span class="show-code">Code</span>
+final <a href="../html/TimeRanges.html">TimeRanges</a>         <strong>played</strong> <a class="anchor-link"
+            href="#played"
+            title="Permalink to MediaElement.played">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.played</p>
+<pre class="source">
+final TimeRanges played;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="preload">
+<span class="show-code">Code</span>
+<a href="../dart_core/String.html">String</a>         <strong>preload</strong> <a class="anchor-link"
+            href="#preload"
+            title="Permalink to MediaElement.preload">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.preload</p>
+<pre class="source">
+String preload;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="readyState">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>readyState</strong> <a class="anchor-link"
+            href="#readyState"
+            title="Permalink to MediaElement.readyState">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.readyState</p>
+<pre class="source">
+final int readyState;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="seekable">
+<span class="show-code">Code</span>
+final <a href="../html/TimeRanges.html">TimeRanges</a>         <strong>seekable</strong> <a class="anchor-link"
+            href="#seekable"
+            title="Permalink to MediaElement.seekable">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.seekable</p>
+<pre class="source">
+final TimeRanges seekable;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="seeking">
+<span class="show-code">Code</span>
+final <a href="../dart_core/bool.html">bool</a>         <strong>seeking</strong> <a class="anchor-link"
+            href="#seeking"
+            title="Permalink to MediaElement.seeking">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.seeking</p>
+<pre class="source">
+final bool seeking;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="src">
+<span class="show-code">Code</span>
+<a href="../dart_core/String.html">String</a>         <strong>src</strong> <a class="anchor-link"
+            href="#src"
+            title="Permalink to MediaElement.src">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.src</p>
+<pre class="source">
+String src;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="startTime">
+<span class="show-code">Code</span>
+final <a href="../dart_core/num.html">num</a>         <strong>startTime</strong> <a class="anchor-link"
+            href="#startTime"
+            title="Permalink to MediaElement.startTime">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.startTime</p>
+<pre class="source">
+final num startTime;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="textTracks">
+<span class="show-code">Code</span>
+final <a href="../html/TextTrackList.html">TextTrackList</a>         <strong>textTracks</strong> <a class="anchor-link"
+            href="#textTracks"
+            title="Permalink to MediaElement.textTracks">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.textTracks</p>
+<pre class="source">
+final TextTrackList textTracks;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="volume">
+<span class="show-code">Code</span>
+<a href="../dart_core/num.html">num</a>         <strong>volume</strong> <a class="anchor-link"
+            href="#volume"
+            title="Permalink to MediaElement.volume">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.volume</p>
+<pre class="source">
+num volume;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="webkitAudioDecodedByteCount">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>webkitAudioDecodedByteCount</strong> <a class="anchor-link"
+            href="#webkitAudioDecodedByteCount"
+            title="Permalink to MediaElement.webkitAudioDecodedByteCount">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.webkitAudioDecodedByteCount</p>
+<pre class="source">
+final int webkitAudioDecodedByteCount;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="webkitClosedCaptionsVisible">
+<span class="show-code">Code</span>
+<a href="../dart_core/bool.html">bool</a>         <strong>webkitClosedCaptionsVisible</strong> <a class="anchor-link"
+            href="#webkitClosedCaptionsVisible"
+            title="Permalink to MediaElement.webkitClosedCaptionsVisible">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.webkitClosedCaptionsVisible</p>
+<pre class="source">
+bool webkitClosedCaptionsVisible;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="webkitHasClosedCaptions">
+<span class="show-code">Code</span>
+final <a href="../dart_core/bool.html">bool</a>         <strong>webkitHasClosedCaptions</strong> <a class="anchor-link"
+            href="#webkitHasClosedCaptions"
+            title="Permalink to MediaElement.webkitHasClosedCaptions">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.webkitHasClosedCaptions</p>
+<pre class="source">
+final bool webkitHasClosedCaptions;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="webkitMediaSourceURL">
+<span class="show-code">Code</span>
+final <a href="../dart_core/String.html">String</a>         <strong>webkitMediaSourceURL</strong> <a class="anchor-link"
+            href="#webkitMediaSourceURL"
+            title="Permalink to MediaElement.webkitMediaSourceURL">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.webkitMediaSourceURL</p>
+<pre class="source">
+final String webkitMediaSourceURL;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="webkitPreservesPitch">
+<span class="show-code">Code</span>
+<a href="../dart_core/bool.html">bool</a>         <strong>webkitPreservesPitch</strong> <a class="anchor-link"
+            href="#webkitPreservesPitch"
+            title="Permalink to MediaElement.webkitPreservesPitch">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.webkitPreservesPitch</p>
+<pre class="source">
+bool webkitPreservesPitch;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="webkitSourceState">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>webkitSourceState</strong> <a class="anchor-link"
+            href="#webkitSourceState"
+            title="Permalink to MediaElement.webkitSourceState">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.webkitSourceState</p>
+<pre class="source">
+final int webkitSourceState;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="webkitVideoDecodedByteCount">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>webkitVideoDecodedByteCount</strong> <a class="anchor-link"
+            href="#webkitVideoDecodedByteCount"
+            title="Permalink to MediaElement.webkitVideoDecodedByteCount">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName HTMLMediaElement.webkitVideoDecodedByteCount</p>
+<pre class="source">
+final int webkitVideoDecodedByteCount;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

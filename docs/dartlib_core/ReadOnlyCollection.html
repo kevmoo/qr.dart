@@ -32,6 +32,22 @@
 <h3>Constructors</h3>
 <div class="method"><h4 id="ReadOnlyCollection">
 <span class="show-code">Code</span>
+new <strong>ReadOnlyCollection</strong>(<a href="../dart_core/Iterable.html">Iterable</a> source) <a class="anchor-link" href="#ReadOnlyCollection"
+              title="Permalink to ReadOnlyCollection&lt;E&gt;.ReadOnlyCollection">#</a></h4>
+<div class="doc">
+<p>Copies all of the elements from 
+<span class="param">source</span> into a new collection.
+Add or removing items in source will not change the contents of the
+new collection.
+<em>Note: this is not a <strong>deep</strong> copy.</em></p>
+<pre class="source">
+ReadOnlyCollection(Iterable&lt;E&gt; source) :
+  _items = new List&lt;E&gt;.from(source);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="ReadOnlyCollection">
+<span class="show-code">Code</span>
 const <strong>ReadOnlyCollection</strong>.empty() <a class="anchor-link" href="#ReadOnlyCollection"
               title="Permalink to ReadOnlyCollection&lt;E&gt;.ReadOnlyCollection">#</a></h4>
 <div class="doc">
@@ -44,12 +60,15 @@ const ReadOnlyCollection.empty() :
 </div>
 <div class="method"><h4 id="ReadOnlyCollection">
 <span class="show-code">Code</span>
-new <strong>ReadOnlyCollection</strong>.wrap(_items) <a class="anchor-link" href="#ReadOnlyCollection"
+new <strong>ReadOnlyCollection</strong>.wrap(<a href="../dart_core/List.html">List</a> source) <a class="anchor-link" href="#ReadOnlyCollection"
               title="Permalink to ReadOnlyCollection&lt;E&gt;.ReadOnlyCollection">#</a></h4>
 <div class="doc">
-
+<p>Wraps 
+<span class="param">source</span>. Changes to 
+<span class="param">source</span> will be reflected.</p>
 <pre class="source">
-ReadOnlyCollection.wrap(this._items);
+ReadOnlyCollection.wrap(List&lt;E&gt; source) :
+  _items = source;
 </pre>
 </div>
 </div>

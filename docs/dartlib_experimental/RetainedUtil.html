@@ -1,0 +1,80 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>RetainedUtil Class / dartlib_experimental Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="dartlib_experimental" data-type="RetainedUtil">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../dartlib_experimental.html">dartlib_experimental</a> &rsaquo; <a href="../dartlib_experimental/RetainedUtil.html">RetainedUtil</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>RetainedUtil</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Static Methods</h3>
+<div class="method"><h4 id="hitTest">
+<span class="show-code">Code</span>
+<a href="../dart_core/List.html">List</a> <strong>hitTest</strong>(<a href="../dartlib_experimental/Stage.html">Stage</a> stage, <a href="../dartlib_core/Coordinate.html">Coordinate</a> point) <a class="anchor-link" href="#hitTest"
+              title="Permalink to RetainedUtil.hitTest">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static List&lt;PElement&gt; hitTest(Stage stage, core.Coordinate point){
+  return _hitTest(stage.rootElement, point);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="transformPointGlobalToLocal">
+<span class="show-code">Code</span>
+<a href="../dartlib_core/Coordinate.html">Coordinate</a> <strong>transformPointGlobalToLocal</strong>(element, point) <a class="anchor-link" href="#transformPointGlobalToLocal"
+              title="Permalink to RetainedUtil.transformPointGlobalToLocal">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static core.Coordinate transformPointGlobalToLocal(element, point) {
+  var tx = element.getTransform();
+  return tx.createInverse().transformCoordinate(point);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="transformPointLocalToGlobal">
+<span class="show-code">Code</span>
+<a href="../dartlib_core/Coordinate.html">Coordinate</a> <strong>transformPointLocalToGlobal</strong>(element, point) <a class="anchor-link" href="#transformPointLocalToGlobal"
+              title="Permalink to RetainedUtil.transformPointLocalToGlobal">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static core.Coordinate transformPointLocalToGlobal(element, point) {
+  var tx = element.getTransformToRoot();
+  return tx.transformCoordinate(point);
+}
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

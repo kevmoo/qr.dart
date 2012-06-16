@@ -1,0 +1,54 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>gfx Class / dartlib_experimental Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="dartlib_experimental" data-type="gfx">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../dartlib_experimental.html">dartlib_experimental</a> &rsaquo; <a href="../dartlib_experimental/gfx.html">gfx</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>gfx</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Static Methods</h3>
+<div class="method"><h4 id="transform">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>transform</strong>(<a href="../html/CanvasRenderingContext2D.html">CanvasRenderingContext2D</a> ctx, <a href="../dartlib_experimental/AffineTransform.html">AffineTransform</a> tx) <a class="anchor-link" href="#transform"
+              title="Permalink to gfx.transform">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static void transform(CanvasRenderingContext2D ctx, AffineTransform tx){
+  if (tx != null) {
+    ctx.transform(tx.scaleX, tx.shearY, tx.shearX, tx.scaleY, tx.translateX, tx.translateY);
+  }
+}
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

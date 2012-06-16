@@ -1,0 +1,567 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>Node Interface / html Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="html" data-type="Node">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../html.html">html</a> &rsaquo; <a href="../html/Node.html">Node</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>Node</strong>
+          Interface
+        </h2>
+        
+<div class="doc">
+<p>@domName Node</p>
+</div>
+<h3>Extends</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../html/EventTarget.html">EventTarget</a></span></p>
+<h3>Subinterfaces</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../html/EntityReference.html">EntityReference</a></span>, <span class="type-box"><span class="icon-interface"></span><a href="../html/Element.html">Element</a></span>, <span class="type-box"><span class="icon-interface"></span><a href="../html/ProcessingInstruction.html">ProcessingInstruction</a></span>, <span class="type-box"><span class="icon-interface"></span><a href="../html/CharacterData.html">CharacterData</a></span>, <span class="type-box"><span class="icon-interface"></span><a href="../html/Notation.html">Notation</a></span>, <span class="type-box"><span class="icon-interface"></span><a href="../html/Attr.html">Attr</a></span>, <span class="type-box"><span class="icon-interface"></span><a href="../html/Entity.html">Entity</a></span>, <span class="type-box"><span class="icon-interface"></span><a href="../html/DocumentType.html">DocumentType</a></span></p>
+<h3>Static Fields</h3>
+<div class="field"><h4 id="ATTRIBUTE_NODE">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>ATTRIBUTE_NODE</strong> <a class="anchor-link"
+            href="#ATTRIBUTE_NODE"
+            title="Permalink to Node.ATTRIBUTE_NODE">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int ATTRIBUTE_NODE = 2;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="CDATA_SECTION_NODE">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>CDATA_SECTION_NODE</strong> <a class="anchor-link"
+            href="#CDATA_SECTION_NODE"
+            title="Permalink to Node.CDATA_SECTION_NODE">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int CDATA_SECTION_NODE = 4;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="COMMENT_NODE">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>COMMENT_NODE</strong> <a class="anchor-link"
+            href="#COMMENT_NODE"
+            title="Permalink to Node.COMMENT_NODE">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int COMMENT_NODE = 8;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="DOCUMENT_FRAGMENT_NODE">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>DOCUMENT_FRAGMENT_NODE</strong> <a class="anchor-link"
+            href="#DOCUMENT_FRAGMENT_NODE"
+            title="Permalink to Node.DOCUMENT_FRAGMENT_NODE">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int DOCUMENT_FRAGMENT_NODE = 11;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="DOCUMENT_NODE">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>DOCUMENT_NODE</strong> <a class="anchor-link"
+            href="#DOCUMENT_NODE"
+            title="Permalink to Node.DOCUMENT_NODE">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int DOCUMENT_NODE = 9;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="DOCUMENT_POSITION_CONTAINED_BY">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>DOCUMENT_POSITION_CONTAINED_BY</strong> <a class="anchor-link"
+            href="#DOCUMENT_POSITION_CONTAINED_BY"
+            title="Permalink to Node.DOCUMENT_POSITION_CONTAINED_BY">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int DOCUMENT_POSITION_CONTAINED_BY = 0x10;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="DOCUMENT_POSITION_CONTAINS">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>DOCUMENT_POSITION_CONTAINS</strong> <a class="anchor-link"
+            href="#DOCUMENT_POSITION_CONTAINS"
+            title="Permalink to Node.DOCUMENT_POSITION_CONTAINS">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int DOCUMENT_POSITION_CONTAINS = 0x08;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="DOCUMENT_POSITION_DISCONNECTED">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>DOCUMENT_POSITION_DISCONNECTED</strong> <a class="anchor-link"
+            href="#DOCUMENT_POSITION_DISCONNECTED"
+            title="Permalink to Node.DOCUMENT_POSITION_DISCONNECTED">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int DOCUMENT_POSITION_DISCONNECTED = 0x01;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="DOCUMENT_POSITION_FOLLOWING">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>DOCUMENT_POSITION_FOLLOWING</strong> <a class="anchor-link"
+            href="#DOCUMENT_POSITION_FOLLOWING"
+            title="Permalink to Node.DOCUMENT_POSITION_FOLLOWING">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int DOCUMENT_POSITION_FOLLOWING = 0x04;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC</strong> <a class="anchor-link"
+            href="#DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC"
+            title="Permalink to Node.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC = 0x20;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="DOCUMENT_POSITION_PRECEDING">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>DOCUMENT_POSITION_PRECEDING</strong> <a class="anchor-link"
+            href="#DOCUMENT_POSITION_PRECEDING"
+            title="Permalink to Node.DOCUMENT_POSITION_PRECEDING">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int DOCUMENT_POSITION_PRECEDING = 0x02;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="DOCUMENT_TYPE_NODE">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>DOCUMENT_TYPE_NODE</strong> <a class="anchor-link"
+            href="#DOCUMENT_TYPE_NODE"
+            title="Permalink to Node.DOCUMENT_TYPE_NODE">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int DOCUMENT_TYPE_NODE = 10;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="ELEMENT_NODE">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>ELEMENT_NODE</strong> <a class="anchor-link"
+            href="#ELEMENT_NODE"
+            title="Permalink to Node.ELEMENT_NODE">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int ELEMENT_NODE = 1;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="ENTITY_NODE">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>ENTITY_NODE</strong> <a class="anchor-link"
+            href="#ENTITY_NODE"
+            title="Permalink to Node.ENTITY_NODE">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int ENTITY_NODE = 6;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="ENTITY_REFERENCE_NODE">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>ENTITY_REFERENCE_NODE</strong> <a class="anchor-link"
+            href="#ENTITY_REFERENCE_NODE"
+            title="Permalink to Node.ENTITY_REFERENCE_NODE">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int ENTITY_REFERENCE_NODE = 5;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="NOTATION_NODE">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>NOTATION_NODE</strong> <a class="anchor-link"
+            href="#NOTATION_NODE"
+            title="Permalink to Node.NOTATION_NODE">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int NOTATION_NODE = 12;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="PROCESSING_INSTRUCTION_NODE">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>PROCESSING_INSTRUCTION_NODE</strong> <a class="anchor-link"
+            href="#PROCESSING_INSTRUCTION_NODE"
+            title="Permalink to Node.PROCESSING_INSTRUCTION_NODE">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int PROCESSING_INSTRUCTION_NODE = 7;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="TEXT_NODE">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>TEXT_NODE</strong> <a class="anchor-link"
+            href="#TEXT_NODE"
+            title="Permalink to Node.TEXT_NODE">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int TEXT_NODE = 3;
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="clone">
+<span class="show-code">Code</span>
+<a href="../html/Node.html">Node</a> <strong>clone</strong>(<a href="../dart_core/bool.html">bool</a> deep) <a class="anchor-link" href="#clone"
+              title="Permalink to Node.clone">#</a></h4>
+<div class="doc">
+<p>@domName Node.cloneNode</p>
+<pre class="source">
+Node clone(bool deep);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="contains">
+<span class="show-code">Code</span>
+<a href="../dart_core/bool.html">bool</a> <strong>contains</strong>(<a href="../html/Node.html">Node</a> other) <a class="anchor-link" href="#contains"
+              title="Permalink to Node.contains">#</a></h4>
+<div class="doc">
+<p>@domName Node.contains</p>
+<pre class="source">
+bool contains(Node other);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="hasChildNodes">
+<span class="show-code">Code</span>
+<a href="../dart_core/bool.html">bool</a> <strong>hasChildNodes</strong>() <a class="anchor-link" href="#hasChildNodes"
+              title="Permalink to Node.hasChildNodes">#</a></h4>
+<div class="doc">
+<p>@domName Node.hasChildNodes</p>
+<pre class="source">
+bool hasChildNodes();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="insertBefore">
+<span class="show-code">Code</span>
+<a href="../html/Node.html">Node</a> <strong>insertBefore</strong>(<a href="../html/Node.html">Node</a> newChild, <a href="../html/Node.html">Node</a> refChild) <a class="anchor-link" href="#insertBefore"
+              title="Permalink to Node.insertBefore">#</a></h4>
+<div class="doc">
+<p>@domName Node.insertBefore</p>
+<pre class="source">
+Node insertBefore(Node newChild, Node refChild);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="get:nodes">
+<span class="show-code">Code</span>
+<a href="../html/NodeList.html">NodeList</a> <strong>get nodes</strong>() <a class="anchor-link" href="#get:nodes"
+              title="Permalink to Node.get nodes">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+NodeList get nodes();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="set:nodes">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>set nodes</strong>(<a href="../dart_core/Collection.html">Collection</a> value) <a class="anchor-link" href="#set:nodes"
+              title="Permalink to Node.set nodes">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void set nodes(Collection&lt;Node&gt; value);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="remove">
+<span class="show-code">Code</span>
+<a href="../html/Node.html">Node</a> <strong>remove</strong>() <a class="anchor-link" href="#remove"
+              title="Permalink to Node.remove">#</a></h4>
+<div class="doc">
+<p>Removes this node from the DOM.
+@domName Node.removeChild</p>
+<pre class="source">
+Node remove();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="replaceWith">
+<span class="show-code">Code</span>
+<a href="../html/Node.html">Node</a> <strong>replaceWith</strong>(<a href="../html/Node.html">Node</a> otherNode) <a class="anchor-link" href="#replaceWith"
+              title="Permalink to Node.replaceWith">#</a></h4>
+<div class="doc">
+<p>Replaces this node with another node.
+@domName Node.replaceChild</p>
+<pre class="source">
+Node replaceWith(Node otherNode);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="$dom_addEventListener">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>$dom_addEventListener</strong>(<a href="../dart_core/String.html">String</a> type, <a href="../dart_core/void.html">void</a> listener(<a href="../html/Event.html">Event</a> event), [<a href="../dart_core/bool.html">bool</a> useCapture]) <a class="anchor-link" href="#$dom_addEventListener"
+              title="Permalink to Node.$dom_addEventListener">#</a></h4>
+<div class="doc">
+<p>@domName Node.addEventListener</p>
+<pre class="source">
+void $dom_addEventListener(String type, EventListener listener, [bool useCapture]);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="$dom_appendChild">
+<span class="show-code">Code</span>
+<a href="../html/Node.html">Node</a> <strong>$dom_appendChild</strong>(<a href="../html/Node.html">Node</a> newChild) <a class="anchor-link" href="#$dom_appendChild"
+              title="Permalink to Node.$dom_appendChild">#</a></h4>
+<div class="doc">
+<p>@domName Node.appendChild</p>
+<pre class="source">
+Node $dom_appendChild(Node newChild);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="$dom_dispatchEvent">
+<span class="show-code">Code</span>
+<a href="../dart_core/bool.html">bool</a> <strong>$dom_dispatchEvent</strong>(<a href="../html/Event.html">Event</a> event) <a class="anchor-link" href="#$dom_dispatchEvent"
+              title="Permalink to Node.$dom_dispatchEvent">#</a></h4>
+<div class="doc">
+<p>@domName Node.dispatchEvent</p>
+<pre class="source">
+bool $dom_dispatchEvent(Event event);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="$dom_removeChild">
+<span class="show-code">Code</span>
+<a href="../html/Node.html">Node</a> <strong>$dom_removeChild</strong>(<a href="../html/Node.html">Node</a> oldChild) <a class="anchor-link" href="#$dom_removeChild"
+              title="Permalink to Node.$dom_removeChild">#</a></h4>
+<div class="doc">
+<p>@domName Node.removeChild</p>
+<pre class="source">
+Node $dom_removeChild(Node oldChild);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="$dom_removeEventListener">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>$dom_removeEventListener</strong>(<a href="../dart_core/String.html">String</a> type, <a href="../dart_core/void.html">void</a> listener(<a href="../html/Event.html">Event</a> event), [<a href="../dart_core/bool.html">bool</a> useCapture]) <a class="anchor-link" href="#$dom_removeEventListener"
+              title="Permalink to Node.$dom_removeEventListener">#</a></h4>
+<div class="doc">
+<p>@domName Node.removeEventListener</p>
+<pre class="source">
+void $dom_removeEventListener(String type, EventListener listener, [bool useCapture]);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="$dom_replaceChild">
+<span class="show-code">Code</span>
+<a href="../html/Node.html">Node</a> <strong>$dom_replaceChild</strong>(<a href="../html/Node.html">Node</a> newChild, <a href="../html/Node.html">Node</a> oldChild) <a class="anchor-link" href="#$dom_replaceChild"
+              title="Permalink to Node.$dom_replaceChild">#</a></h4>
+<div class="doc">
+<p>@domName Node.replaceChild</p>
+<pre class="source">
+Node $dom_replaceChild(Node newChild, Node oldChild);
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="document">
+<span class="show-code">Code</span>
+final <a href="../html/Document.html">Document</a>         <strong>document</strong> <a class="anchor-link"
+            href="#document"
+            title="Permalink to Node.document">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName Node.ownerDocument</p>
+<pre class="source">
+final Document document;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="nextNode">
+<span class="show-code">Code</span>
+final <a href="../html/Node.html">Node</a>         <strong>nextNode</strong> <a class="anchor-link"
+            href="#nextNode"
+            title="Permalink to Node.nextNode">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName Node.nextSibling</p>
+<pre class="source">
+final Node nextNode;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="parent">
+<span class="show-code">Code</span>
+final <a href="../html/Node.html">Node</a>         <strong>parent</strong> <a class="anchor-link"
+            href="#parent"
+            title="Permalink to Node.parent">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName Node.parentNode</p>
+<pre class="source">
+final Node parent;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="previousNode">
+<span class="show-code">Code</span>
+final <a href="../html/Node.html">Node</a>         <strong>previousNode</strong> <a class="anchor-link"
+            href="#previousNode"
+            title="Permalink to Node.previousNode">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName Node.previousSibling</p>
+<pre class="source">
+final Node previousNode;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="text">
+<span class="show-code">Code</span>
+<a href="../dart_core/String.html">String</a>         <strong>text</strong> <a class="anchor-link"
+            href="#text"
+            title="Permalink to Node.text">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName Node.textContent</p>
+<pre class="source">
+String text;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="$dom_attributes">
+<span class="show-code">Code</span>
+final <a href="../html/NamedNodeMap.html">NamedNodeMap</a>         <strong>$dom_attributes</strong> <a class="anchor-link"
+            href="#$dom_attributes"
+            title="Permalink to Node.$dom_attributes">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName Node.attributes</p>
+<pre class="source">
+final NamedNodeMap $dom_attributes;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="$dom_childNodes">
+<span class="show-code">Code</span>
+final <a href="../html/NodeList.html">NodeList</a>         <strong>$dom_childNodes</strong> <a class="anchor-link"
+            href="#$dom_childNodes"
+            title="Permalink to Node.$dom_childNodes">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName Node.childNodes</p>
+<pre class="source">
+final NodeList $dom_childNodes;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="$dom_firstChild">
+<span class="show-code">Code</span>
+final <a href="../html/Node.html">Node</a>         <strong>$dom_firstChild</strong> <a class="anchor-link"
+            href="#$dom_firstChild"
+            title="Permalink to Node.$dom_firstChild">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName Node.firstChild</p>
+<pre class="source">
+final Node $dom_firstChild;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="$dom_lastChild">
+<span class="show-code">Code</span>
+final <a href="../html/Node.html">Node</a>         <strong>$dom_lastChild</strong> <a class="anchor-link"
+            href="#$dom_lastChild"
+            title="Permalink to Node.$dom_lastChild">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName Node.lastChild</p>
+<pre class="source">
+final Node $dom_lastChild;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="$dom_nodeType">
+<span class="show-code">Code</span>
+final <a href="../dart_core/int.html">int</a>         <strong>$dom_nodeType</strong> <a class="anchor-link"
+            href="#$dom_nodeType"
+            title="Permalink to Node.$dom_nodeType">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName Node.nodeType</p>
+<pre class="source">
+final int $dom_nodeType;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

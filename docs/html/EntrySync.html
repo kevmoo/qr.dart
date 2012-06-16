@@ -1,0 +1,174 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>EntrySync Interface / html Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="html" data-type="EntrySync">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../html.html">html</a> &rsaquo; <a href="../html/EntrySync.html">EntrySync</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>EntrySync</strong>
+          Interface
+        </h2>
+        
+<div class="doc">
+<p>@domName EntrySync</p>
+</div>
+<h3>Subinterfaces</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../html/DirectoryEntrySync.html">DirectoryEntrySync</a></span>, <span class="type-box"><span class="icon-interface"></span><a href="../html/FileEntrySync.html">FileEntrySync</a></span></p>
+<h3>Methods</h3>
+<div class="method"><h4 id="copyTo">
+<span class="show-code">Code</span>
+<a href="../html/EntrySync.html">EntrySync</a> <strong>copyTo</strong>(<a href="../html/DirectoryEntrySync.html">DirectoryEntrySync</a> parent, <a href="../dart_core/String.html">String</a> name) <a class="anchor-link" href="#copyTo"
+              title="Permalink to EntrySync.copyTo">#</a></h4>
+<div class="doc">
+<p>@domName EntrySync.copyTo</p>
+<pre class="source">
+EntrySync copyTo(DirectoryEntrySync parent, String name);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getMetadata">
+<span class="show-code">Code</span>
+<a href="../html/Metadata.html">Metadata</a> <strong>getMetadata</strong>() <a class="anchor-link" href="#getMetadata"
+              title="Permalink to EntrySync.getMetadata">#</a></h4>
+<div class="doc">
+<p>@domName EntrySync.getMetadata</p>
+<pre class="source">
+Metadata getMetadata();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getParent">
+<span class="show-code">Code</span>
+<a href="../html/EntrySync.html">EntrySync</a> <strong>getParent</strong>() <a class="anchor-link" href="#getParent"
+              title="Permalink to EntrySync.getParent">#</a></h4>
+<div class="doc">
+<p>@domName EntrySync.getParent</p>
+<pre class="source">
+EntrySync getParent();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="moveTo">
+<span class="show-code">Code</span>
+<a href="../html/EntrySync.html">EntrySync</a> <strong>moveTo</strong>(<a href="../html/DirectoryEntrySync.html">DirectoryEntrySync</a> parent, <a href="../dart_core/String.html">String</a> name) <a class="anchor-link" href="#moveTo"
+              title="Permalink to EntrySync.moveTo">#</a></h4>
+<div class="doc">
+<p>@domName EntrySync.moveTo</p>
+<pre class="source">
+EntrySync moveTo(DirectoryEntrySync parent, String name);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="remove">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>remove</strong>() <a class="anchor-link" href="#remove"
+              title="Permalink to EntrySync.remove">#</a></h4>
+<div class="doc">
+<p>@domName EntrySync.remove</p>
+<pre class="source">
+void remove();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="toURL">
+<span class="show-code">Code</span>
+<a href="../dart_core/String.html">String</a> <strong>toURL</strong>() <a class="anchor-link" href="#toURL"
+              title="Permalink to EntrySync.toURL">#</a></h4>
+<div class="doc">
+<p>@domName EntrySync.toURL</p>
+<pre class="source">
+String toURL();
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="filesystem">
+<span class="show-code">Code</span>
+final <a href="../html/DOMFileSystemSync.html">DOMFileSystemSync</a>         <strong>filesystem</strong> <a class="anchor-link"
+            href="#filesystem"
+            title="Permalink to EntrySync.filesystem">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName EntrySync.filesystem</p>
+<pre class="source">
+final DOMFileSystemSync filesystem;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="fullPath">
+<span class="show-code">Code</span>
+final <a href="../dart_core/String.html">String</a>         <strong>fullPath</strong> <a class="anchor-link"
+            href="#fullPath"
+            title="Permalink to EntrySync.fullPath">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName EntrySync.fullPath</p>
+<pre class="source">
+final String fullPath;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="isDirectory">
+<span class="show-code">Code</span>
+final <a href="../dart_core/bool.html">bool</a>         <strong>isDirectory</strong> <a class="anchor-link"
+            href="#isDirectory"
+            title="Permalink to EntrySync.isDirectory">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName EntrySync.isDirectory</p>
+<pre class="source">
+final bool isDirectory;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="isFile">
+<span class="show-code">Code</span>
+final <a href="../dart_core/bool.html">bool</a>         <strong>isFile</strong> <a class="anchor-link"
+            href="#isFile"
+            title="Permalink to EntrySync.isFile">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName EntrySync.isFile</p>
+<pre class="source">
+final bool isFile;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="name">
+<span class="show-code">Code</span>
+final <a href="../dart_core/String.html">String</a>         <strong>name</strong> <a class="anchor-link"
+            href="#name"
+            title="Permalink to EntrySync.name">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName EntrySync.name</p>
+<pre class="source">
+final String name;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        
