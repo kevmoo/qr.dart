@@ -1,11 +1,14 @@
 class ReadOnlyCollection<E> extends ListBase<E> {
   final List<E> _items;
 
+  ReadOnlyCollection.wrap(this._items);
+
   const ReadOnlyCollection.empty() :
     _items = const [];
 
-  ReadOnlyCollection(Iterable<E> source) :
-    _items = new List<E>.from(source);
+  factory ReadOnlyCollection(Iterable<E> source) {
+    return new ReadOnlyCollection<E>.wrap(source);
+  }
 
   /**
    * Returns the number of elements in this collection.
