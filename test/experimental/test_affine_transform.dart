@@ -29,12 +29,12 @@ class TestAffineTransform {
         var tx = new AffineTransform(1, 2, 3, 4, 5, 6);
         tx.rotate(Math.PI / 2, 1, 1);
 
-        Expect.approxEquals(3, tx.scaleX);
-        Expect.approxEquals(4, tx.shearY);
-        Expect.approxEquals(-1, tx.shearX);
-        Expect.approxEquals(-2, tx.scaleY);
-        Expect.approxEquals(7, tx.translateX);
-        Expect.approxEquals(10, tx.translateY);
+        expect(tx.scaleX, closeTo(3, 0.001));
+        expect(tx.shearY, closeTo(4, 0.001));
+        expect(tx.shearX, closeTo(-1, 0.001));
+        expect(tx.scaleY, closeTo(-2, 0.001));
+        expect(tx.translateX, closeTo(7, 0.001));
+        expect(tx.translateY, closeTo(10, 0.001));
       });
 
       test('translate', (){
@@ -55,12 +55,12 @@ class TestAffineTransform {
         tx.rotate(Math.PI / 4, 5, 10);
         var inverse = tx.createInverse();
 
-        Expect.approxEquals(0.353553, inverse.scaleX);
-        Expect.approxEquals(-0.353553, inverse.shearY);
-        Expect.approxEquals(0.235702, inverse.shearX);
-        Expect.approxEquals(0.235702, inverse.scaleY);
-        Expect.approxEquals(-16.213203, inverse.translateX);
-        Expect.approxEquals(2.928932, inverse.translateY);
+        expect(inverse.scaleX, closeTo(0.353553, 0.001));
+        expect(inverse.shearY, closeTo(-0.353553, 0.001));
+        expect(inverse.shearX, closeTo(0.235702, 0.001));
+        expect(inverse.scaleY, closeTo(0.235702, 0.001));
+        expect(inverse.translateX, closeTo(-16.213203, 0.001));
+        expect(inverse.translateY, closeTo(2.928932, 0.001));
       });
 
       test('equals and clone', (){
