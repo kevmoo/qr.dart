@@ -3,7 +3,7 @@ class IndexIterator<T> implements Iterator<T> {
     _indexer = indexer,
     _length = length,
     _pos = 0 {
-    assert(_indexer != null);
+    requireArgumentNotNull(_indexer, '_indexer');
     assert(_length >= 0);
   }
 

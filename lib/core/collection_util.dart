@@ -1,7 +1,7 @@
 class CollectionUtil {
   static bool allUnique(Collection items) {
-    assert(items != null);
-    Func1 getter = _getterGetter(items);
+    requireArgumentNotNull(items, 'items');
+    final getter = _getterGetter(items);
 
     for(int i = 0; i < items.length; i++) {
       for(int j = i + 1; j < items.length; j++) {
@@ -14,8 +14,8 @@ class CollectionUtil {
   }
 
   static Object aggregate(Iterable source, Object seed, Func2 func) {
-    assert(source != null);
-    assert(func != null);
+    requireArgumentNotNull(source, 'source');
+    requireArgumentNotNull(func, 'func');
 
     for (final Object local in source) {
       seed = func(seed, local);

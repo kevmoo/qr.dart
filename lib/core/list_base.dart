@@ -152,9 +152,7 @@ class ListBase<E> implements Listish<E> {
    * [:start + count - 1:] are out of range.
    */
   List<E> getRange(int start, int count)  {
-    if(count < 0) {
-      throw const IllegalArgumentException();
-    }
+    requireArgument(count >= 0, 'count');
 
     final lastIndex = start + count - 1;
 

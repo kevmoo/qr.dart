@@ -4,6 +4,7 @@
 
 #source('core/internal/_simple_set.dart');
 
+#source('core/requires.dart');
 #source('core/util.dart');
 #source('core/select_many.dart');
 #source('core/collection_util.dart');
