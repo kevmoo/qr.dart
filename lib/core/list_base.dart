@@ -1,4 +1,4 @@
-class ListBase<E> implements Collection<E> {
+class ListBase<E> implements Listish<E> {
 
   const ListBase();
 

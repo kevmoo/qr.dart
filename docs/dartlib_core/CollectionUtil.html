@@ -49,16 +49,18 @@ static Object aggregate(Iterable source, Object seed, Func2 func) {
 </div>
 <div class="method"><h4 id="allUnique">
 <span class="show-code">Code</span>
-<a href="../dart_core/bool.html">bool</a> <strong>allUnique</strong>(<a href="../dart_core/List.html">List</a> items) <a class="anchor-link" href="#allUnique"
+<a href="../dart_core/bool.html">bool</a> <strong>allUnique</strong>(<a href="../dart_core/Collection.html">Collection</a> items) <a class="anchor-link" href="#allUnique"
               title="Permalink to CollectionUtil.allUnique">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-static bool allUnique(List items) {
+static bool allUnique(Collection items) {
   assert(items != null);
+  Func1 getter = _getterGetter(items);
+
   for(int i = 0; i &lt; items.length; i++) {
     for(int j = i + 1; j &lt; items.length; j++) {
-      if(items[i] == items[j]) {
+      if(getter(i) == getter(j)) {
         return false;
       }
     }

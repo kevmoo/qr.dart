@@ -4,7 +4,13 @@ class TestCollectionUtil {
     group('CollectionUtil', () {
       test('allUnique', _testAllUnique);
       test('aggregate', _testAggregate);
+      test('listish', _testListish);
     });
+  }
+
+  static void _testListish() {
+    var roc = new ReadOnlyCollection([1, 2]);
+    expect(CollectionUtil.allUnique(roc), isTrue);
   }
 
   static void _testAllUnique() {
