@@ -1,5 +1,5 @@
-class PElement extends PropertyObject {
-  final List<AffineTransform> _transforms;
+class PElement extends core.PropertyObject {
+  final List<core.AffineTransform> _transforms;
   final bool cacheEnabled;
   final core.EventHandle<core.EventArgs> _updatedEventHandle;
 
@@ -9,7 +9,7 @@ class PElement extends PropertyObject {
   IElementParent _parent;
 
   PElement(this._width, this._height, [this.cacheEnabled = false]) :
-    _transforms = new List<AffineTransform>(),
+    _transforms = new List<core.AffineTransform>(),
     _updatedEventHandle = new core.EventHandle<core.EventArgs>()
   {
     if(cacheEnabled){
@@ -28,14 +28,14 @@ class PElement extends PropertyObject {
     return _updatedEventHandle;
   }
 
-  AffineTransform getTransform() {
-    var tx = new AffineTransform();
+  core.AffineTransform getTransform() {
+    var tx = new core.AffineTransform();
     _transforms.forEach(tx.concatenate);
     return tx;
   }
 
-  AffineTransform getTransformToRoot(){
-    var tx = new AffineTransform();
+  core.AffineTransform getTransformToRoot(){
+    var tx = new core.AffineTransform();
     if(_parent != null){
       tx.concatenate(_parent.getTransformToRoot());
     }
@@ -54,8 +54,8 @@ class PElement extends PropertyObject {
     _updatedEventHandle.fireEvent(this, const core.EventArgs());
   }
 
-  AffineTransform addTransform(){
-    var tx = new AffineTransform();
+  core.AffineTransform addTransform(){
+    var tx = new core.AffineTransform();
     _transforms.add(tx);
     return tx;
   }
@@ -142,7 +142,7 @@ class PElement extends PropertyObject {
     ctx.restore();
   }
 
-  bool _isClipped(AffineTransform tx, CanvasRenderingContext2D ctx){
+  bool _isClipped(core.AffineTransform tx, CanvasRenderingContext2D ctx){
     if(clip){
       // a lot more impl to do here...
     }

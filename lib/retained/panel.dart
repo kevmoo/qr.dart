@@ -1,5 +1,6 @@
 class Panel extends PElement implements IElementParent  {
-  static final Property<AffineTransform> _containerTransformProperty = const Property<AffineTransform>("panelTransform");
+  static final core.Property<core.AffineTransform> _containerTransformProperty =
+      const core.Property<core.AffineTransform>("panelTransform");
   final List<PElement> _children;
 
   Panel(int w, int h, [bool enableCache = false]) :
@@ -50,7 +51,7 @@ class Panel extends PElement implements IElementParent  {
     }
   }
 
-  AffineTransform getChildTransform(child) {
+  core.AffineTransform getChildTransform(child) {
     assert(hasVisualChild(child));
     var tx = _containerTransformProperty.get(child);
     assert(tx != null);

@@ -24,3 +24,8 @@
 #source('core/math/coordinate.dart');
 #source('core/math/vector.dart');
 #source('core/math/rect.dart');
+#source('core/math/affine_transform.dart');
+
+#source('core/properties/property_object.dart');
+#source('core/properties/property_values.dart');
+#source('core/properties/property.dart');

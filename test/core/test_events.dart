@@ -12,7 +12,7 @@ class TestEvents {
   }
 
   static void run(){
-    test('test basic event subscribe, fire, unsubscribe', () {
+    test('Event, EventHandle', () {
 
       var target = new TestEvents();
 

@@ -1,10 +1,10 @@
-class PropertyValues extends core.DisposableImpl {
+class PropertyValues extends DisposableImpl {
   final HashMap<Property, Object> _propertyValues;
-  final core.EventHandle<Property> _changeHandle;
+  final EventHandle<Property> _changeHandle;
 
   PropertyValues() :
     _propertyValues = new HashMap<Property, Object>(),
-    _changeHandle = new core.EventHandle<Property>();
+    _changeHandle = new EventHandle<Property>();
 
   void _set(Property key, Object value){
     assert(value !== Property.Undefined);
@@ -26,16 +26,17 @@ class PropertyValues extends core.DisposableImpl {
     }
   }
 
-  core.EventRoot<Property> get propertyChanged(){
-    return _changeHandle;
-  }
+  EventRoot<Property> get propertyChanged() => _changeHandle;
 
   void disposeInternal(){
     super.disposeInternal();
     _changeHandle.dispose();
   }
 
-  Object _getValueOrUndefined(Property key, IPropertyObject obj, core.Func1<IPropertyObject, Object> ifAbsent){
+  Object _getValueOrUndefined(
+                              Property key,
+                              IPropertyObject obj,
+                              Func1<IPropertyObject, Object> ifAbsent){
     if(_isSet(key)){
       return _propertyValues[key];
     }

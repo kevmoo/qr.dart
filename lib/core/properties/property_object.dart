@@ -1,8 +1,8 @@
-interface IPropertyObject extends core.Disposable {
+interface IPropertyObject extends Disposable {
   PropertyValues get propertyValues();
 }
 
-class PropertyObject extends core.DisposableImpl implements IPropertyObject {
+class PropertyObject extends DisposableImpl implements IPropertyObject {
   final PropertyValues propertyValues;
 
   PropertyObject() : propertyValues = new PropertyValues();

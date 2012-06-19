@@ -1,6 +1,6 @@
 #import('dart:html');
 #import('../../lib/core.dart', prefix:'core');
-#import('../../lib/experimental.dart');
+#import('../../lib/retained.dart');
 
 main(){
   CanvasElement canvas = document.query("#content");
@@ -11,7 +11,7 @@ main(){
 class SpinDemo{
   final CanvasElement _canvas;
   final Stage _stage;
-  final AffineTransform _tx;
+  final core.AffineTransform _tx;
   core.Coordinate _mouseLocation;
 
   factory SpinDemo(CanvasElement canvas){
@@ -44,7 +44,7 @@ class SpinDemo{
     return new SpinDemo._internal(canvas, stage, tx);
   }
 
-  SpinDemo._internal(CanvasElement this._canvas, Stage this._stage, AffineTransform this._tx){
+  SpinDemo._internal(CanvasElement this._canvas, Stage this._stage, core.AffineTransform this._tx){
     _canvas.on.mouseMove.add(_canvas_mouseMove);
     _canvas.on.mouseOut.add(_canvas_mouseOut);
   }

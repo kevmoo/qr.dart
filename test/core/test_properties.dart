@@ -1,7 +1,7 @@
 class TestProperties extends PropertyObject {
 
   static void run(){
-    group('properties', (){
+    group('PropertyObject', (){
       test('without default', (){
         var testProperty = new Property("Test Property");
 

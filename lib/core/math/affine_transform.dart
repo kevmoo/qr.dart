@@ -1,4 +1,4 @@
-class AffineTransform implements core.Cloneable<AffineTransform> {
+class AffineTransform implements Cloneable<AffineTransform> {
   num _m00, _m10, _m01, _m11, _m02, _m12;
 
   AffineTransform([num scaleX = 1, num shearY = 0,
@@ -89,11 +89,11 @@ class AffineTransform implements core.Cloneable<AffineTransform> {
     return this;
   }
 
-  core.Coordinate transformCoordinate([core.Coordinate point = const core.Coordinate()]){
+  Coordinate transformCoordinate([Coordinate point = const Coordinate()]){
     num x = point.x * _m00 + point.y * _m01 + _m02;
     num y = point.x * _m10 + point.y * _m11 + _m12;
 
-    return new core.Coordinate(x, y);
+    return new Coordinate(x, y);
   }
 
   num get determinant(){

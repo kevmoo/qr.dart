@@ -13,17 +13,25 @@
 #source('test_util.dart');
 #source('math/test_coordinate.dart');
 #source('math/test_vector.dart');
+#source('math/test_affine_transform.dart');
+#source('test_property_event_integration.dart');
+#source('test_properties.dart');
 
 void runCoreTests() {
   group('core', (){
     TestListBase.run();
     TestSelectMany.run();
-    TestCloneable.run();
-    TestEvents.run();
+    TestGrouping.run();
+
     TestCoordinate.run();
     TestVector.run();
+    TestAffineTransform.run();
     TestCollectionUtil.run();
+
     TestUtil.run();
-    TestGrouping.run();
+    TestCloneable.run();
+    TestEvents.run();
+    TestProperties.run();
+    TestPropertyEventIntegration.run();
   });
 }

@@ -68,7 +68,7 @@ class TestPropertyEventIntegration extends PropertyObject {
   }
 
   static void run(){
-    test('TestPropertyEventIntegration', doTest);
+    test('PropertyObject, EventHandle', doTest);
   }
 
   static void doTest(){

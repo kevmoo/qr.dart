@@ -48,7 +48,7 @@ class Stage extends core.DisposableImpl implements IElementParent {
     _updatedEventHandle.dispose();
   }
 
-  AffineTransform getTransformToRoot(){
-    return new AffineTransform();
+  core.AffineTransform getTransformToRoot(){
+    return new core.AffineTransform();
   }
 }

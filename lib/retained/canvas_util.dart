@@ -4,7 +4,7 @@ class CanvasUtil {
    */
   static final num kappa = 0.55228474983079339840225163227959743809289583383593;
 
-  static void transform(CanvasRenderingContext2D ctx, AffineTransform tx){
+  static void transform(CanvasRenderingContext2D ctx, core.AffineTransform tx){
     core.requireArgumentNotNull(ctx, 'ctx');
     core.requireArgumentNotNull(tx, 'tx');
 
