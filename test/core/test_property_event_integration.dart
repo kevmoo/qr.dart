@@ -28,9 +28,7 @@ class TestPropertyEventIntegration extends PropertyObject {
   //
   // Name property
   //
-  String get name(){
-    return _nameProperty.get(this);
-  }
+  String get name() => _nameProperty.get(this);
 
   void set name(String value){
     _nameProperty.set(this, value);
@@ -43,9 +41,7 @@ class TestPropertyEventIntegration extends PropertyObject {
   //
   // Age property
   //
-  int get age(){
-    return _ageProperty.get(this);
-  }
+  int get age() => _ageProperty.get(this);
 
   void set age(int value){
     _ageProperty.set(this, value);
@@ -58,9 +54,7 @@ class TestPropertyEventIntegration extends PropertyObject {
   //
   // Property changed event
   //
-  EventRoot<String> get propertyChanged(){
-    return _propertyChangedEventHandle;
-  }
+  EventRoot<String> get propertyChanged() => _propertyChangedEventHandle;
 
   void reset(){
     _nameProperty.clear(this);
