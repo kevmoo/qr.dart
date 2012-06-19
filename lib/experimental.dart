@@ -9,7 +9,6 @@
 #source('experimental/properties/property.dart');
 
 #source('experimental/graphics/affine_transform.dart');
-#source('experimental/graphics/gfx.dart');
 
 #source('experimental/retained/retained_debug.dart');
 #source('experimental/retained/mouse.dart');

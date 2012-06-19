@@ -5,6 +5,9 @@ class CanvasUtil {
   static final num kappa = 0.55228474983079339840225163227959743809289583383593;
 
   static void transform(CanvasRenderingContext2D ctx, AffineTransform tx){
+    core.requireArgumentNotNull(ctx, 'ctx');
+    core.requireArgumentNotNull(tx, 'tx');
+
     ctx.transform(tx.scaleX, tx.shearY, tx.shearX,
       tx.scaleY, tx.translateX, tx.translateY);
   }

@@ -129,7 +129,7 @@ class PElement extends PropertyObject {
     ctx.save();
 
     // Translate to the starting position
-    gfx.transform(ctx, tx);
+    CanvasUtil.transform(ctx, tx);
 
     // clip to the bounds of the object
     if (this.clip) {
