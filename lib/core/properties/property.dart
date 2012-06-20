@@ -43,9 +43,7 @@ class Property<T> implements Hashable{
     _PropertyChangeHelper.removeHandler(obj, this, handlerId);
   }
 
-  int hashCode(){
-    return _id.hashCode();
-  }
+  int hashCode() => _id.hashCode();
 }
 
 class _UndefinedValue{
