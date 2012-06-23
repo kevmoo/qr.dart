@@ -61,12 +61,12 @@ static String collectionToString(Collection c) {
 </div>
 <div class="method"><h4 id="every">
 <span class="show-code">Code</span>
-<a href="../dart_core/bool.html">bool</a> <strong>every</strong>(<a href="../dart_core/Iterable.html">Iterable</a> iterable, <a href="../dart_core/bool.html">bool</a> f(<a href="../dart_core/Object.html">Object</a> o)) <a class="anchor-link" href="#every"
+<a href="../dart_core/bool.html">bool</a> <strong>every</strong>(<a href="../dart_core/Iterable.html">Iterable</a> iterable, <a href="../dart_core/bool.html">bool</a> f(o)) <a class="anchor-link" href="#every"
               title="Permalink to Collections.every">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-static bool every(Iterable&lt;Object&gt; iterable, bool f(Object o)) {
+static bool every(Iterable iterable, bool f(o)) {
   for (final e in iterable) {
     if (!f(e)) return false;
   }
@@ -77,14 +77,12 @@ static bool every(Iterable&lt;Object&gt; iterable, bool f(Object o)) {
 </div>
 <div class="method"><h4 id="filter">
 <span class="show-code">Code</span>
-<a href="../dart_core/List.html">List</a> <strong>filter</strong>(<a href="../dart_core/Iterable.html">Iterable</a> source, <a href="../dart_core/List.html">List</a> destination, <a href="../dart_core/bool.html">bool</a> f(<a href="../dart_core/Object.html">Object</a> o)) <a class="anchor-link" href="#filter"
+<a href="../dart_core/List.html">List</a> <strong>filter</strong>(<a href="../dart_core/Iterable.html">Iterable</a> source, <a href="../dart_core/List.html">List</a> destination, <a href="../dart_core/bool.html">bool</a> f(o)) <a class="anchor-link" href="#filter"
               title="Permalink to Collections.filter">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-static List&lt;Object&gt; filter(Iterable&lt;Object&gt; source,
-                           List&lt;Object&gt; destination,
-                           bool f(Object o)) {
+static List filter(Iterable source, List destination, bool f(o)) {
   for (final e in source) {
     if (f(e)) destination.add(e);
   }
@@ -95,12 +93,12 @@ static List&lt;Object&gt; filter(Iterable&lt;Object&gt; source,
 </div>
 <div class="method"><h4 id="forEach">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>forEach</strong>(<a href="../dart_core/Iterable.html">Iterable</a> iterable, <a href="../dart_core/void.html">void</a> f(<a href="../dart_core/Object.html">Object</a> o)) <a class="anchor-link" href="#forEach"
+<a href="../dart_core/void.html">void</a> <strong>forEach</strong>(<a href="../dart_core/Iterable.html">Iterable</a> iterable, <a href="../dart_core/void.html">void</a> f(o)) <a class="anchor-link" href="#forEach"
               title="Permalink to Collections.forEach">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-static void forEach(Iterable&lt;Object&gt; iterable, void f(Object o)) {
+static void forEach(Iterable iterable, void f(o)) {
   for (final e in iterable) {
     f(e);
   }
@@ -115,7 +113,7 @@ static void forEach(Iterable&lt;Object&gt; iterable, void f(Object o)) {
 <div class="doc">
 
 <pre class="source">
-static bool isEmpty(Iterable&lt;Object&gt; iterable) {
+static bool isEmpty(Iterable iterable) {
   return !iterable.iterator().hasNext();
 }
 </pre>
@@ -123,14 +121,12 @@ static bool isEmpty(Iterable&lt;Object&gt; iterable) {
 </div>
 <div class="method"><h4 id="map">
 <span class="show-code">Code</span>
-<a href="../dart_core/List.html">List</a> <strong>map</strong>(<a href="../dart_core/Iterable.html">Iterable</a> source, <a href="../dart_core/List.html">List</a> destination, f(<a href="../dart_core/Object.html">Object</a> o)) <a class="anchor-link" href="#map"
+<a href="../dart_core/List.html">List</a> <strong>map</strong>(<a href="../dart_core/Iterable.html">Iterable</a> source, <a href="../dart_core/List.html">List</a> destination, f(o)) <a class="anchor-link" href="#map"
               title="Permalink to Collections.map">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-static List&lt;Object&gt; map(Iterable&lt;Object&gt; source,
-                        List&lt;Object&gt; destination,
-                        f(Object o)) {
+static List map(Iterable source, List destination, f(o)) {
   for (final e in source) {
     destination.add(f(e));
   }
@@ -141,12 +137,12 @@ static List&lt;Object&gt; map(Iterable&lt;Object&gt; source,
 </div>
 <div class="method"><h4 id="some">
 <span class="show-code">Code</span>
-<a href="../dart_core/bool.html">bool</a> <strong>some</strong>(<a href="../dart_core/Iterable.html">Iterable</a> iterable, <a href="../dart_core/bool.html">bool</a> f(<a href="../dart_core/Object.html">Object</a> o)) <a class="anchor-link" href="#some"
+<a href="../dart_core/bool.html">bool</a> <strong>some</strong>(<a href="../dart_core/Iterable.html">Iterable</a> iterable, <a href="../dart_core/bool.html">bool</a> f(o)) <a class="anchor-link" href="#some"
               title="Permalink to Collections.some">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-static bool some(Iterable&lt;Object&gt; iterable, bool f(Object o)) {
+static bool some(Iterable iterable, bool f(o)) {
   for (final e in iterable) {
     if (f(e)) return true;
   }

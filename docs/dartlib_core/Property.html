@@ -2,19 +2,19 @@
         <html>
         <head>
                 <meta charset="utf-8">
-        <title>Property&lt;T&gt; Class / dartlib_experimental Library / Dart Documentation</title>
+        <title>Property&lt;T&gt; Class / dartlib_core Library / Dart Documentation</title>
         <link rel="stylesheet" type="text/css"
             href="../styles.css">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
         <link rel="shortcut icon" href="../favicon.ico">
         
         </head>
-        <body data-library="dartlib_experimental" data-type="Property&amp;lt;T&amp;gt;">
+        <body data-library="dartlib_core" data-type="Property&amp;lt;T&amp;gt;">
         <div class="page">
         <div class="header">
           <a href="../index.html"><div class="logo"></div></a>
           <a href="../index.html">Dart Documentation</a>
-         &rsaquo; <a href="../dartlib_experimental.html">dartlib_experimental</a> &rsaquo; <a href="../dartlib_experimental/Property.html">Property&lt;T&gt;</a></div>
+         &rsaquo; <a href="../dartlib_core.html">dartlib_core</a> &rsaquo; <a href="../dartlib_core/Property.html">Property&lt;T&gt;</a></div>
         <div class="nav">
         
 </div>
@@ -38,7 +38,7 @@ const <strong>Property</strong>(<a href="../dart_core/String.html">String</a> na
 
 <pre class="source">
 const Property(String this.name, [T this.defaultValue = null]) :
-  _id = new core.GlobalId();
+  _id = new GlobalId();
 </pre>
 </div>
 </div>
@@ -59,12 +59,12 @@ static final Object Undefined = const _UndefinedValue();
 <h3>Methods</h3>
 <div class="method"><h4 id="addHandler">
 <span class="show-code">Code</span>
-<a href="../dartlib_core/GlobalId.html">GlobalId</a> <strong>addHandler</strong>(<a href="../dartlib_experimental/IPropertyObject.html">IPropertyObject</a> obj, <a href="../dart_core/void.html">void</a> handler(param)) <a class="anchor-link" href="#addHandler"
+<a href="../dartlib_core/GlobalId.html">GlobalId</a> <strong>addHandler</strong>(<a href="../dartlib_core/IPropertyObject.html">IPropertyObject</a> obj, <a href="../dart_core/void.html">void</a> handler(param)) <a class="anchor-link" href="#addHandler"
               title="Permalink to Property&lt;T&gt;.addHandler">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-core.GlobalId addHandler(IPropertyObject obj, core.Action1&lt;Property&gt; handler){
+GlobalId addHandler(IPropertyObject obj, Action1&lt;Property&gt; handler){
   return _PropertyChangeHelper.addHandler(obj, this, handler);
 }
 </pre>
@@ -72,7 +72,7 @@ core.GlobalId addHandler(IPropertyObject obj, core.Action1&lt;Property&gt; handl
 </div>
 <div class="method"><h4 id="clear">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>clear</strong>(<a href="../dartlib_experimental/IPropertyObject.html">IPropertyObject</a> obj) <a class="anchor-link" href="#clear"
+<a href="../dart_core/void.html">void</a> <strong>clear</strong>(<a href="../dartlib_core/IPropertyObject.html">IPropertyObject</a> obj) <a class="anchor-link" href="#clear"
               title="Permalink to Property&lt;T&gt;.clear">#</a></h4>
 <div class="doc">
 
@@ -85,12 +85,12 @@ void clear(IPropertyObject obj){
 </div>
 <div class="method"><h4 id="get">
 <span class="show-code">Code</span>
-<strong>get</strong>(<a href="../dartlib_experimental/IPropertyObject.html">IPropertyObject</a> obj, [ifAbsent(param) = null]) <a class="anchor-link" href="#get"
+<strong>get</strong>(<a href="../dartlib_core/IPropertyObject.html">IPropertyObject</a> obj, [ifAbsent(param) = null]) <a class="anchor-link" href="#get"
               title="Permalink to Property&lt;T&gt;.get">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-T get(IPropertyObject obj, [core.Func1&lt;IPropertyObject, T&gt; ifAbsent = null]){
+T get(IPropertyObject obj, [Func1&lt;IPropertyObject, T&gt; ifAbsent = null]){
   var coreValue = getCore(obj, ifAbsent);
   if(coreValue !== Undefined){
     return coreValue;
@@ -104,12 +104,12 @@ T get(IPropertyObject obj, [core.Func1&lt;IPropertyObject, T&gt; ifAbsent = null
 </div>
 <div class="method"><h4 id="getCore">
 <span class="show-code">Code</span>
-<a href="../dart_core/Object.html">Object</a> <strong>getCore</strong>(<a href="../dartlib_experimental/IPropertyObject.html">IPropertyObject</a> obj, [ifAbsent(param) = null]) <a class="anchor-link" href="#getCore"
+<a href="../dart_core/Object.html">Object</a> <strong>getCore</strong>(<a href="../dartlib_core/IPropertyObject.html">IPropertyObject</a> obj, [ifAbsent(param) = null]) <a class="anchor-link" href="#getCore"
               title="Permalink to Property&lt;T&gt;.getCore">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-Object getCore(IPropertyObject obj, [core.Func1&lt;IPropertyObject, T&gt; ifAbsent = null]){
+Object getCore(IPropertyObject obj, [Func1&lt;IPropertyObject, T&gt; ifAbsent = null]){
   return obj.propertyValues._getValueOrUndefined(this, obj, ifAbsent);
 }
 </pre>
@@ -122,15 +122,13 @@ Object getCore(IPropertyObject obj, [core.Func1&lt;IPropertyObject, T&gt; ifAbse
 <div class="doc">
 
 <pre class="source">
-int hashCode(){
-  return _id.hashCode();
-}
+int hashCode() =&gt; _id.hashCode();
 </pre>
 </div>
 </div>
 <div class="method"><h4 id="isSet">
 <span class="show-code">Code</span>
-<a href="../dart_core/bool.html">bool</a> <strong>isSet</strong>(<a href="../dartlib_experimental/IPropertyObject.html">IPropertyObject</a> obj) <a class="anchor-link" href="#isSet"
+<a href="../dart_core/bool.html">bool</a> <strong>isSet</strong>(<a href="../dartlib_core/IPropertyObject.html">IPropertyObject</a> obj) <a class="anchor-link" href="#isSet"
               title="Permalink to Property&lt;T&gt;.isSet">#</a></h4>
 <div class="doc">
 
@@ -143,12 +141,12 @@ bool isSet(IPropertyObject obj){
 </div>
 <div class="method"><h4 id="removeHandler">
 <span class="show-code">Code</span>
-<a href="../dart_core/bool.html">bool</a> <strong>removeHandler</strong>(<a href="../dartlib_experimental/IPropertyObject.html">IPropertyObject</a> obj, <a href="../dartlib_core/GlobalId.html">GlobalId</a> handlerId) <a class="anchor-link" href="#removeHandler"
+<a href="../dart_core/bool.html">bool</a> <strong>removeHandler</strong>(<a href="../dartlib_core/IPropertyObject.html">IPropertyObject</a> obj, <a href="../dartlib_core/GlobalId.html">GlobalId</a> handlerId) <a class="anchor-link" href="#removeHandler"
               title="Permalink to Property&lt;T&gt;.removeHandler">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-bool removeHandler(IPropertyObject obj, core.GlobalId handlerId){
+bool removeHandler(IPropertyObject obj, GlobalId handlerId){
   _PropertyChangeHelper.removeHandler(obj, this, handlerId);
 }
 </pre>
@@ -156,7 +154,7 @@ bool removeHandler(IPropertyObject obj, core.GlobalId handlerId){
 </div>
 <div class="method"><h4 id="set">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>set</strong>(<a href="../dartlib_experimental/IPropertyObject.html">IPropertyObject</a> obj, value) <a class="anchor-link" href="#set"
+<a href="../dart_core/void.html">void</a> <strong>set</strong>(<a href="../dartlib_core/IPropertyObject.html">IPropertyObject</a> obj, value) <a class="anchor-link" href="#set"
               title="Permalink to Property&lt;T&gt;.set">#</a></h4>
 <div class="doc">
 

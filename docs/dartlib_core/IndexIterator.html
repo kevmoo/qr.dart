@@ -41,7 +41,7 @@ IndexIterator(int length, Func1&lt;int, T&gt; indexer) :
   _indexer = indexer,
   _length = length,
   _pos = 0 {
-  assert(_indexer != null);
+  requireArgumentNotNull(_indexer, '_indexer');
   assert(_length &gt;= 0);
 }
 </pre>

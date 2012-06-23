@@ -142,9 +142,7 @@ Throws an <code>IndexOutOfRangeException</code> if
 <code>start + count - 1</code> are out of range.</p>
 <pre class="source">
 List&lt;E&gt; getRange(int start, int count)  {
-  if(count &lt; 0) {
-    throw const IllegalArgumentException();
-  }
+  requireArgument(count &gt;= 0, 'count');
 
   final lastIndex = start + count - 1;
 

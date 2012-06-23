@@ -21,7 +21,44 @@
 <div class="content">
 <h2><strong>dartlib_core</strong> library</h2>
 <div class="doc"></div>
+<h3>Functions</h3>
+<div class="method"><h4 id="requireArgument">
+<span class="show-code">Code</span>
+<a href="dart_core/void.html">void</a> <strong>requireArgument</strong>(<a href="dart_core/bool.html">bool</a> truth, [<a href="dart_core/String.html">String</a> arg = ""]) <a class="anchor-link" href="#requireArgument"
+              title="Permalink to null.requireArgument">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void requireArgument(bool truth, [String arg = ""]) {
+  if(!truth) {
+    throw new IllegalArgumentException(arg);
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="requireArgumentNotNull">
+<span class="show-code">Code</span>
+<a href="dart_core/void.html">void</a> <strong>requireArgumentNotNull</strong>(argument, [<a href="dart_core/String.html">String</a> argName = ""]) <a class="anchor-link" href="#requireArgumentNotNull"
+              title="Permalink to null.requireArgumentNotNull">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void requireArgumentNotNull(argument, [String argName = ""]) {
+  if(argument == null) {
+    throw new IllegalArgumentException(argName);
+  }
+}
+</pre>
+</div>
+</div>
 <h3>Classes</h3>
+          <div class="type">
+          <h4>
+            <a href="dartlib_core/AffineTransform.html"><strong>AffineTransform</strong></a>
+          </h4>
+          </div>
+          
           <div class="type">
           <h4>
             <a href="dartlib_core/CollectionUtil.html"><strong>CollectionUtil</strong></a>
@@ -73,6 +110,24 @@
           <div class="type">
           <h4>
             <a href="dartlib_core/ListBase.html"><strong>ListBase&lt;E&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib_core/Property.html"><strong>Property&lt;T&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib_core/PropertyObject.html"><strong>PropertyObject</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib_core/PropertyValues.html"><strong>PropertyValues</strong></a>
           </h4>
           </div>
           
@@ -164,6 +219,12 @@
           <div class="type">
           <h4>
             <a href="dartlib_core/Func2.html"><strong>Func2&lt;T1, T2, TR&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib_core/IPropertyObject.html"><strong>IPropertyObject</strong></a>
           </h4>
           </div>
           

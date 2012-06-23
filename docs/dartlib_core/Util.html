@@ -35,12 +35,16 @@
 
 <pre class="source">
 static int getHashCode(Iterable&lt;Hashable&gt; source) {
-  int current = 0;
+  int hash = 0;
   for (final h in source) {
     int next = h == null ? 0 : h.hashCode();
-    current = ((current &lt;&lt; 5) + current) ^ next;
+    hash = 0x1fffffff &amp; (hash + next);
+    hash = 0x1fffffff &amp; (hash + ((0x0007ffff &amp; hash) &lt;&lt; 10));
+    hash ^= hash &gt;&gt; 6;
   }
-  return current;
+  hash = 0x1fffffff &amp; (hash + ((0x03ffffff &amp; hash) &lt;&lt; 3));
+  hash ^= hash &gt;&gt; 11;
+  return 0x1fffffff &amp; (hash + ((0x00003fff &amp; hash) &lt;&lt; 15));
 }
 </pre>
 </div>

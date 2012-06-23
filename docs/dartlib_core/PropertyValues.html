@@ -2,19 +2,19 @@
         <html>
         <head>
                 <meta charset="utf-8">
-        <title>PropertyValues Class / dartlib_experimental Library / Dart Documentation</title>
+        <title>PropertyValues Class / dartlib_core Library / Dart Documentation</title>
         <link rel="stylesheet" type="text/css"
             href="../styles.css">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
         <link rel="shortcut icon" href="../favicon.ico">
         
         </head>
-        <body data-library="dartlib_experimental" data-type="PropertyValues">
+        <body data-library="dartlib_core" data-type="PropertyValues">
         <div class="page">
         <div class="header">
           <a href="../index.html"><div class="logo"></div></a>
           <a href="../index.html">Dart Documentation</a>
-         &rsaquo; <a href="../dartlib_experimental.html">dartlib_experimental</a> &rsaquo; <a href="../dartlib_experimental/PropertyValues.html">PropertyValues</a></div>
+         &rsaquo; <a href="../dartlib_core.html">dartlib_core</a> &rsaquo; <a href="../dartlib_core/PropertyValues.html">PropertyValues</a></div>
         <div class="nav">
         
 </div>
@@ -39,7 +39,7 @@ new <strong>PropertyValues</strong>() <a class="anchor-link" href="#PropertyValu
 <pre class="source">
 PropertyValues() :
   _propertyValues = new HashMap&lt;Property, Object&gt;(),
-  _changeHandle = new core.EventHandle&lt;Property&gt;();
+  _changeHandle = new EventHandle&lt;Property&gt;();
 </pre>
 </div>
 </div>
@@ -65,9 +65,7 @@ void disposeInternal(){
 <div class="doc">
 
 <pre class="source">
-core.EventRoot&lt;Property&gt; get propertyChanged(){
-  return _changeHandle;
-}
+EventRoot&lt;Property&gt; get propertyChanged() =&gt; _changeHandle;
 </pre>
 </div>
 </div>

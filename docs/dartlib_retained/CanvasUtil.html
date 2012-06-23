@@ -2,19 +2,19 @@
         <html>
         <head>
                 <meta charset="utf-8">
-        <title>CanvasUtil Class / dartlib_experimental Library / Dart Documentation</title>
+        <title>CanvasUtil Class / dartlib_retained Library / Dart Documentation</title>
         <link rel="stylesheet" type="text/css"
             href="../styles.css">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
         <link rel="shortcut icon" href="../favicon.ico">
         
         </head>
-        <body data-library="dartlib_experimental" data-type="CanvasUtil">
+        <body data-library="dartlib_retained" data-type="CanvasUtil">
         <div class="page">
         <div class="header">
           <a href="../index.html"><div class="logo"></div></a>
           <a href="../index.html">Dart Documentation</a>
-         &rsaquo; <a href="../dartlib_experimental.html">dartlib_experimental</a> &rsaquo; <a href="../dartlib_experimental/CanvasUtil.html">CanvasUtil</a></div>
+         &rsaquo; <a href="../dartlib_retained.html">dartlib_retained</a> &rsaquo; <a href="../dartlib_retained/CanvasUtil.html">CanvasUtil</a></div>
         <div class="nav">
         
 </div>
@@ -55,12 +55,15 @@ static void ellipse(CanvasRenderingContext2D ctx,
 </div>
 <div class="method"><h4 id="transform">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>transform</strong>(<a href="../html/CanvasRenderingContext2D.html">CanvasRenderingContext2D</a> ctx, <a href="../dartlib_experimental/AffineTransform.html">AffineTransform</a> tx) <a class="anchor-link" href="#transform"
+<a href="../dart_core/void.html">void</a> <strong>transform</strong>(<a href="../html/CanvasRenderingContext2D.html">CanvasRenderingContext2D</a> ctx, <a href="../dartlib_core/AffineTransform.html">AffineTransform</a> tx) <a class="anchor-link" href="#transform"
               title="Permalink to CanvasUtil.transform">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-static void transform(CanvasRenderingContext2D ctx, AffineTransform tx){
+static void transform(CanvasRenderingContext2D ctx, core.AffineTransform tx){
+  core.requireArgumentNotNull(ctx, 'ctx');
+  core.requireArgumentNotNull(tx, 'tx');
+
   ctx.transform(tx.scaleX, tx.shearY, tx.shearX,
     tx.scaleY, tx.translateX, tx.translateY);
 }

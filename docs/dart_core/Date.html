@@ -27,7 +27,8 @@
 <p>Date is the public interface to a point in time.</p>
 <p>It can represent time values that are at a distance of at most
 8,640,000,000,000,000ms (100,000,000 days) from epoch (1970-01-01 UTC). In
-other words: <code>value.abs() &lt;= 8640000000000000</code>.</p>
+other words: <code>millisecondsSinceEpoch.abs() &lt;= 8640000000000000</code>.</p>
+<p>Also see <a class="crossref" href="../dart_core/Stopwatch.html">Stopwatch</a> for means to measure time-spans.</p>
 </div>
 <h3>Default class</h3>
 <p>
@@ -41,38 +42,43 @@ other words: <code>value.abs() &lt;= 8640000000000000</code>.</p>
 <h3>Constructors</h3>
 <div class="method"><h4 id="Date">
 <span class="show-code">Code</span>
-new <strong>Date</strong>(<a href="../dart_core/int.html">int</a> year, [<a href="../dart_core/int.html">int</a> month, <a href="../dart_core/int.html">int</a> day, <a href="../dart_core/int.html">int</a> hours, <a href="../dart_core/int.html">int</a> minutes, <a href="../dart_core/int.html">int</a> seconds, <a href="../dart_core/int.html">int</a> milliseconds, <a href="../dart_core/bool.html">bool</a> isUtc]) <a class="anchor-link" href="#Date"
+new <strong>Date</strong>(<a href="../dart_core/int.html">int</a> year, [<a href="../dart_core/int.html">int</a> month, <a href="../dart_core/int.html">int</a> day, <a href="../dart_core/int.html">int</a> hour, <a href="../dart_core/int.html">int</a> minute, <a href="../dart_core/int.html">int</a> second, <a href="../dart_core/int.html">int</a> millisecond, <a href="../dart_core/bool.html">bool</a> isUtc]) <a class="anchor-link" href="#Date"
               title="Permalink to Date.Date">#</a></h4>
 <div class="doc">
 <p>Constructs a <a class="crossref" href="../dart_core/Date.html">Date</a> instance based on the individual parts. The date is
 in the local time zone if 
 <span class="param">isUtc</span> is false.</p>
+<p>
+<span class="param">month</span> and 
+<span class="param">day</span> are one-based. For example
+<a class="crossref" href="../dart_coreimpl/DateImplementation.html#">:new Date(1038, 1, 10)</a> represents the 10th of January 1938.</p>
 <pre class="source">
 Date(int year,
      [int month,
       int day,
-      int hours,
-      int minutes,
-      int seconds,
-      int milliseconds,
+      int hour,
+      int minute,
+      int second,
+      int millisecond,
       bool isUtc]);
 </pre>
 </div>
 </div>
 <div class="method"><h4 id="Date">
 <span class="show-code">Code</span>
-new <strong>Date</strong>.fromEpoch(<a href="../dart_core/int.html">int</a> value, [<a href="../dart_core/bool.html">bool</a> isUtc]) <a class="anchor-link" href="#Date"
+new <strong>Date</strong>.fromMillisecondsSinceEpoch(<a href="../dart_core/int.html">int</a> millisecondsSinceEpoch, [<a href="../dart_core/bool.html">bool</a> isUtc]) <a class="anchor-link" href="#Date"
               title="Permalink to Date.Date">#</a></h4>
 <div class="doc">
 <p>Constructs a new <a class="crossref" href="../dart_core/Date.html">Date</a> instance with the given 
-<span class="param">value</span>. If 
-<span class="param">isUtc</span> is
-false then the date is in the local time zone.</p>
-<p>The constructed <a class="crossref" href="../dart_core/Date.html">Date</a> represents 1970-01-01T00:00:00Z + 
-<span class="param">value</span>ms in
-the given time zone (local or UTC).</p>
+<span class="param">millisecondsSinceEpoch</span>.
+If 
+<span class="param">isUtc</span> is false then the date is in the local time zone.</p>
+<p>The constructed <a class="crossref" href="../dart_core/Date.html">Date</a> represents
+1970-01-01T00:00:00Z + 
+<span class="param">millisecondsSinceEpoch</span>ms in the given
+time zone (local or UTC).</p>
 <pre class="source">
-Date.fromEpoch(int value, [bool isUtc]);
+Date.fromMillisecondsSinceEpoch(int millisecondsSinceEpoch, [bool isUtc]);
 </pre>
 </div>
 </div>
@@ -175,7 +181,7 @@ final <a href="../dart_core/int.html">int</a>         <strong>FRI</strong> <a cl
         <div class="doc">
 
 <pre class="source">
-static final int FRI = 4;
+static final int FRI = 5;
 </pre>
 </div>
 </div>
@@ -253,7 +259,7 @@ final <a href="../dart_core/int.html">int</a>         <strong>MON</strong> <a cl
         <div class="doc">
 
 <pre class="source">
-static final int MON = 0;
+static final int MON = 1;
 </pre>
 </div>
 </div>
@@ -292,7 +298,7 @@ final <a href="../dart_core/int.html">int</a>         <strong>SAT</strong> <a cl
         <div class="doc">
 
 <pre class="source">
-static final int SAT = 5;
+static final int SAT = 6;
 </pre>
 </div>
 </div>
@@ -318,7 +324,7 @@ final <a href="../dart_core/int.html">int</a>         <strong>SUN</strong> <a cl
         <div class="doc">
 
 <pre class="source">
-static final int SUN = 6;
+static final int SUN = 7;
 </pre>
 </div>
 </div>
@@ -331,7 +337,7 @@ final <a href="../dart_core/int.html">int</a>         <strong>THU</strong> <a cl
         <div class="doc">
 
 <pre class="source">
-static final int THU = 3;
+static final int THU = 4;
 </pre>
 </div>
 </div>
@@ -344,7 +350,7 @@ final <a href="../dart_core/int.html">int</a>         <strong>TUE</strong> <a cl
         <div class="doc">
 
 <pre class="source">
-static final int TUE = 1;
+static final int TUE = 2;
 </pre>
 </div>
 </div>
@@ -357,7 +363,7 @@ final <a href="../dart_core/int.html">int</a>         <strong>WED</strong> <a cl
         <div class="doc">
 
 <pre class="source">
-static final int WED = 2;
+static final int WED = 3;
 </pre>
 </div>
 </div>
@@ -447,7 +453,7 @@ Date add(Duration duration);
 <a href="../dart_core/int.html">int</a> <strong>get day</strong>() <a class="anchor-link" href="#get:day"
               title="Permalink to Date.get day">#</a></h4>
 <div class="doc">
-<p>Returns the day in the month <code>1..31</code>.</p>
+<p>Returns the day into the month <code>1..31</code>.</p>
 <pre class="source">
 int get day();
 </pre>
@@ -465,47 +471,60 @@ Duration difference(Date other);
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="get:hours">
+<div class="method"><h4 id="get:hour">
 <span class="show-code">Code</span>
-<a href="../dart_core/int.html">int</a> <strong>get hours</strong>() <a class="anchor-link" href="#get:hours"
-              title="Permalink to Date.get hours">#</a></h4>
+<a href="../dart_core/int.html">int</a> <strong>get hour</strong>() <a class="anchor-link" href="#get:hour"
+              title="Permalink to Date.get hour">#</a></h4>
 <div class="doc">
-<p>Returns the number of hours <code>0..23</code>.</p>
+<p>Returns the hour into the day <code>0..23</code>.</p>
 <pre class="source">
-int get hours();
+int get hour();
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="isUtc">
+<div class="method"><h4 id="get:isUtc">
 <span class="show-code">Code</span>
-<a href="../dart_core/bool.html">bool</a> <strong>isUtc</strong>() <a class="anchor-link" href="#isUtc"
-              title="Permalink to Date.isUtc">#</a></h4>
+<a href="../dart_core/bool.html">bool</a> <strong>get isUtc</strong>() <a class="anchor-link" href="#get:isUtc"
+              title="Permalink to Date.get isUtc">#</a></h4>
 <div class="doc">
-<p>Returns true if this <a class="crossref" href="../dart_core/Date.html">Date</a> is set to UTC time.</p>
+<p>True if this <a class="crossref" href="../dart_core/Date.html">Date</a> is set to UTC time.</p>
 <pre class="source">
-bool isUtc();
+bool get isUtc();
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="get:milliseconds">
+<div class="method"><h4 id="get:millisecond">
 <span class="show-code">Code</span>
-<a href="../dart_core/int.html">int</a> <strong>get milliseconds</strong>() <a class="anchor-link" href="#get:milliseconds"
-              title="Permalink to Date.get milliseconds">#</a></h4>
+<a href="../dart_core/int.html">int</a> <strong>get millisecond</strong>() <a class="anchor-link" href="#get:millisecond"
+              title="Permalink to Date.get millisecond">#</a></h4>
 <div class="doc">
-<p>Returns the number of milliseconds <code>0...999</code>.</p>
+<p>Returns the millisecond into the second <code>0...999</code>.</p>
 <pre class="source">
-int get milliseconds();
+int get millisecond();
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="get:minutes">
+<div class="method"><h4 id="get:millisecondsSinceEpoch">
 <span class="show-code">Code</span>
-<a href="../dart_core/int.html">int</a> <strong>get minutes</strong>() <a class="anchor-link" href="#get:minutes"
-              title="Permalink to Date.get minutes">#</a></h4>
+<a href="../dart_core/int.html">int</a> <strong>get millisecondsSinceEpoch</strong>() <a class="anchor-link" href="#get:millisecondsSinceEpoch"
+              title="Permalink to Date.get millisecondsSinceEpoch">#</a></h4>
 <div class="doc">
-<p>Returns the number of minutes <code>0...59</code>.</p>
+<p>The milliseconds since 1970-01-01T00:00:00Z (UTC). This value is
+independent of the time zone.</p>
+<p>See <a class="crossref" href="../dart_core/Stopwatch.html">Stopwatch</a> for means to measure time-spans.</p>
 <pre class="source">
-int get minutes();
+int get millisecondsSinceEpoch();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="get:minute">
+<span class="show-code">Code</span>
+<a href="../dart_core/int.html">int</a> <strong>get minute</strong>() <a class="anchor-link" href="#get:minute"
+              title="Permalink to Date.get minute">#</a></h4>
+<div class="doc">
+<p>Returns the minute into the hour <code>0...59</code>.</p>
+<pre class="source">
+int get minute();
 </pre>
 </div>
 </div>
@@ -514,20 +533,20 @@ int get minutes();
 <a href="../dart_core/int.html">int</a> <strong>get month</strong>() <a class="anchor-link" href="#get:month"
               title="Permalink to Date.get month">#</a></h4>
 <div class="doc">
-<p>Returns the month in the year <code>1..12</code>.</p>
+<p>Returns the month into the year <code>1..12</code>.</p>
 <pre class="source">
 int get month();
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="get:seconds">
+<div class="method"><h4 id="get:second">
 <span class="show-code">Code</span>
-<a href="../dart_core/int.html">int</a> <strong>get seconds</strong>() <a class="anchor-link" href="#get:seconds"
-              title="Permalink to Date.get seconds">#</a></h4>
+<a href="../dart_core/int.html">int</a> <strong>get second</strong>() <a class="anchor-link" href="#get:second"
+              title="Permalink to Date.get second">#</a></h4>
 <div class="doc">
-<p>Returns the number of seconds <code>0...59</code>.</p>
+<p>Returns the second into the minute <code>0...59</code>.</p>
 <pre class="source">
-int get seconds();
+int get second();
 </pre>
 </div>
 </div>
@@ -577,7 +596,7 @@ Duration get timeZoneOffset();
 <div class="doc">
 <p>Returns <code>this</code> in the local time zone. Returns itself if it is already in
 the local time zone. Otherwise, this method is equivalent to
-<code>new Date.fromEpoch(this.value, isUtc: false)</code>.</p>
+<code>new Date.fromMillisecondsSinceEpoch(millisecondsSinceEpoch, false)</code>.</p>
 <pre class="source">
 Date toLocal();
 </pre>
@@ -602,7 +621,7 @@ String toString();
 <div class="doc">
 <p>Returns <code>this</code> in UTC. Returns itself if it is already in UTC. Otherwise,
 this method is equivalent to
-<code>new Date.fromEpoch(this.value, isUtc: true)</code>.</p>
+<code>new Date.fromMillisecondsSinceEpoch(millisecondsSinceEpoch, true)</code>.</p>
 <pre class="source">
 Date toUtc();
 </pre>
@@ -613,7 +632,8 @@ Date toUtc();
 <a href="../dart_core/int.html">int</a> <strong>get weekday</strong>() <a class="anchor-link" href="#get:weekday"
               title="Permalink to Date.get weekday">#</a></h4>
 <div class="doc">
-<p>Returns the week day <code>MON..SUN</code></p>
+<p>Returns the week day <code>MON..SUN</code>. In accordance with ISO 8601
+a week starts with Monday which has the value 1.</p>
 <pre class="source">
 int get weekday();
 </pre>
@@ -627,21 +647,6 @@ int get weekday();
 <p>Returns the year.</p>
 <pre class="source">
 int get year();
-</pre>
-</div>
-</div>
-<h3>Fields</h3>
-<div class="field"><h4 id="value">
-<span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>value</strong> <a class="anchor-link"
-            href="#value"
-            title="Permalink to Date.value">#</a>
-        </h4>
-        <div class="doc">
-<p>Returns milliseconds from 1970-01-01T00:00:00Z (UTC).</p>
-<p>Note that this value is independent of the time zone.</p>
-<pre class="source">
-final int value;
 </pre>
 </div>
 </div>

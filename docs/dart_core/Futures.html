@@ -46,7 +46,7 @@ static Future&lt;List&gt; wait(List&lt;Future&gt; futures) {
   Completer completer = new Completer&lt;List&gt;();
   Future&lt;List&gt; result = completer.future;
   int remaining = futures.length;
-  List&lt;Object&gt; values = new List(futures.length);
+  List values = new List(futures.length);
 
   // As each future completes, put its value into the corresponding
   // position in the list of values.
