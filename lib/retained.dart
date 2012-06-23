@@ -1,4 +1,4 @@
-#library('dartlib_experimental');
+#library('dartlib_retained');
 
 #import('dart:html');
 
