@@ -29,3 +29,4 @@
 #source('core/properties/property_object.dart');
 #source('core/properties/property_values.dart');
 #source('core/properties/property.dart');
+#source('core/tuple.dart');
