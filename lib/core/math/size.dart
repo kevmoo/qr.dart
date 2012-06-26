@@ -13,16 +13,12 @@ class Size {
   /**
    * Returns the area of the size (width * height).
    */
-  num area() {
-    return width * height;
-  }
+  num area() => width * height;
 
   /**
    * Returns the ratio of the size's width to its height.
    */
-  num aspectRatio() {
-    return width / height;
-  }
+  num aspectRatio() => width / height;
 
   /**
    * Returns true if this Size is the same size or smaller than the
@@ -36,22 +32,16 @@ class Size {
    * Returns true if the size has zero area, false if both dimensions
    *     are non-zero numbers.
    */
-  bool isEmpty() {
-    return area() == 0;
-  }
+  bool isEmpty() => area() == 0;
 
   /**
    * Returns the perimeter of the size (width + height) * 2.
    */
-  num perimeter() {
-    return (width + height) * 2;
-  }
+  num perimeter() => (width + height) * 2;
 
   /**
    * Returns a nice string representing size.
    * Returns in the form (50 x 73).
    */
-  String toString() {
-    return "(${width} x ${height})";
-  }
+  String toString() => "(${width} x ${height})";
 }
