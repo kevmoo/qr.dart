@@ -103,12 +103,12 @@ class TestListBase extends ListBase<int> {
 
     Expect.listEquals([2, 3], roc([1, 2, 3, 4]).getRange(1, 2));
 
-    _expectIAE(() => mt.getRange(0, -1));
+    expect(() => mt.getRange(0, -1), throwsIllegalArgumentException);
 
-    _expectIOORE(() => mt.getRange(-1, 1));
-    _expectIOORE(() => mt.getRange(1, 1));
-    _expectIOORE(() => roc([1]).getRange(0, 2));
-    _expectIOORE(() => roc([1]).getRange(1, 1));
+    expect(() => mt.getRange(-1, 1), throwsIndexOutOfRangeException);
+    expect(() => mt.getRange(1, 1), throwsIndexOutOfRangeException);
+    expect(() => roc([1]).getRange(0, 2), throwsIndexOutOfRangeException);
+    expect(() => roc([1]).getRange(1, 1), throwsIndexOutOfRangeException);
   }
 
   static void _testForEach() {
@@ -154,13 +154,5 @@ class TestListBase extends ListBase<int> {
 
   static ReadOnlyCollection<int> roc(List<int> source) {
     return new ReadOnlyCollection(source);
-  }
-
-  static void _expectIOORE(Function f) {
-    Expect.throws(f, (e) => e is IndexOutOfRangeException);
-  }
-
-  static void _expectIAE(Function f) {
-    Expect.throws(f, (e) => e is IllegalArgumentException);
   }
 }
