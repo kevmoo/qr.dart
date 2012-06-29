@@ -171,4 +171,8 @@ class ListBase<E> implements Listish<E> {
     }
     return list;
   }
+
+  String toString() {
+    return Collections.collectionToString(this);
+  }
 }

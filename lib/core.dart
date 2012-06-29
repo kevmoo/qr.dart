@@ -1,5 +1,7 @@
 #library('dartlib_core');
 
+#import("dart:coreimpl");
+
 #source('core/typedefs.dart');
 
 #source('core/internal/_simple_set.dart');
