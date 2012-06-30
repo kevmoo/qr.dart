@@ -59,9 +59,7 @@ bool operator ==(Size other) {
 <div class="doc">
 <p>Returns the area of the size (width * height).</p>
 <pre class="source">
-num area() {
-  return width * height;
-}
+num area() =&gt; width * height;
 </pre>
 </div>
 </div>
@@ -72,9 +70,7 @@ num area() {
 <div class="doc">
 <p>Returns the ratio of the size's width to its height.</p>
 <pre class="source">
-num aspectRatio() {
-  return width / height;
-}
+num aspectRatio() =&gt; width / height;
 </pre>
 </div>
 </div>
@@ -102,9 +98,7 @@ bool fitsInside(Size target) {
 <pre><code>are non-zero numbers.
 </code></pre>
 <pre class="source">
-bool isEmpty() {
-  return area() == 0;
-}
+bool isEmpty() =&gt; area() == 0;
 </pre>
 </div>
 </div>
@@ -115,9 +109,7 @@ bool isEmpty() {
 <div class="doc">
 <p>Returns the perimeter of the size (width + height) * 2.</p>
 <pre class="source">
-num perimeter() {
-  return (width + height) * 2;
-}
+num perimeter() =&gt; (width + height) * 2;
 </pre>
 </div>
 </div>
@@ -129,9 +121,7 @@ num perimeter() {
 <p>Returns a nice string representing size.
 Returns in the form (50 x 73).</p>
 <pre class="source">
-String toString() {
-  return "(${width} x ${height})";
-}
+String toString() =&gt; "(${width} x ${height})";
 </pre>
 </div>
 </div>
