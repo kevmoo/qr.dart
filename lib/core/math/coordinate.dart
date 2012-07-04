@@ -8,6 +8,8 @@ class Coordinate {
    **/
   num getDistance (Coordinate other) => (this - other).length;
 
+  bool get isValid() => isValidNumber(x) && isValidNumber(y);
+
   /**
    * Subtract a [Coordinate] and returns the result as new [Vector].
    **/

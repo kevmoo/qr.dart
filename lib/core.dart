@@ -26,6 +26,7 @@
 #source('core/events/event.dart');
 #source('core/events/event_handle.dart');
 
+#source('core/math/math_functions.dart');
 #source('core/math/size.dart');
 #source('core/math/coordinate.dart');
 #source('core/math/vector.dart');

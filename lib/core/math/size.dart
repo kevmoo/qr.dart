@@ -39,6 +39,9 @@ class Size {
    */
   num perimeter() => (width + height) * 2;
 
+  bool get isValid() => isValidNumber(width) && isValidNumber(height) &&
+      width >= 0 && height >= 0;
+
   /**
    * Returns a nice string representing size.
    * Returns in the form (50 x 73).

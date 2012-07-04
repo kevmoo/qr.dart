@@ -3,6 +3,8 @@ class Rect{
 
   const Rect(this.left, this.top, this.width, this.height);
 
+  bool get isValid() => topLeft.isValid && size.isValid;
+
   bool contains(Coordinate point){
     return point.x >= left &&
         point.x <= left + width &&
