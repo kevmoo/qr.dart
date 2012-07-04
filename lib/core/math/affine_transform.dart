@@ -16,29 +16,19 @@ class AffineTransform implements Cloneable<AffineTransform> {
     return new AffineTransform().setToScale(sx, sy);
   }
 
-  num get scaleX(){
-    return _m00;
-  }
+  num get scaleX() => _m00;
 
-  num get scaleY(){
-    return _m11;
-  }
+  num get scaleY() => _m11;
 
-  num get translateX(){
-    return _m02;
-  }
+  num get translateX() => _m02;
 
-  num get translateY(){
-    return _m12;
-  }
+  num get translateY() => _m12;
 
-  num get shearX(){
-    return _m01;
-  }
+  num get shearX() => _m01;
 
-  num get shearY(){
-    return _m10;
-  }
+  num get shearY() => _m10;
+
+  num get determinant() => _m00 * _m11 - _m01 * _m10;
 
   bool get isIdentity() {
     return _m00 == 1 && _m10 == 0 &&
@@ -102,10 +92,6 @@ class AffineTransform implements Cloneable<AffineTransform> {
     num y = point.x * _m10 + point.y * _m11 + _m12;
 
     return new Coordinate(x, y);
-  }
-
-  num get determinant(){
-    return _m00 * _m11 - _m01 * _m10;
   }
 
   AffineTransform createInverse() {
