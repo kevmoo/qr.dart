@@ -17,12 +17,11 @@ class PElement extends core.PropertyObject {
     }
   }
 
-  core.Size get size(){
-    return new core.Size(_width, _height);
-  }
+  num get width() => _width;
 
-  num get width(){ return _width; }
-  num get height(){ return _height; }
+  num get height() => _height;
+
+  core.Size get size() => new core.Size(_width, _height);
 
   core.EventRoot<core.EventArgs> get updated(){
     return _updatedEventHandle;
