@@ -14,6 +14,7 @@
 #source('math/test_coordinate.dart');
 #source('math/test_vector.dart');
 #source('math/test_affine_transform.dart');
+#source('math/test_rect.dart');
 #source('test_property_event_integration.dart');
 #source('test_properties.dart');
 #source('graph/test_tarjan.dart');
@@ -23,11 +24,12 @@ void runCoreTests() {
     TestListBase.run();
     TestSelectMany.run();
     TestGrouping.run();
+    TestCollectionUtil.run();
 
     TestCoordinate.run();
+    TestRect.run();
     TestVector.run();
     TestAffineTransform.run();
-    TestCollectionUtil.run();
 
     TestUtil.run();
     TestCloneable.run();
