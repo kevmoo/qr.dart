@@ -12,6 +12,11 @@ class CanvasUtil {
       tx.scaleY, tx.translateX, tx.translateY);
   }
 
+  static void centeredCircle(CanvasRenderingContext2D ctx,
+                             num x, num y, num radius) {
+    ellipse(ctx, x - radius, y - radius, radius * 2, radius * 2);
+  }
+
   static void ellipse(CanvasRenderingContext2D ctx,
                       num x, num y, num width, num height) {
     var hB = (width / 2) * kappa,
