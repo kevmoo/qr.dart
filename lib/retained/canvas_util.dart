@@ -17,6 +17,54 @@ class CanvasUtil {
     ellipse(ctx, x - radius, y - radius, radius * 2, radius * 2);
   }
 
+  static void star(CanvasRenderingContext2D ctx, num x, num y,
+                   num outterRadius, [int pointCount = 5]) {
+    core.requireArgumentNotNull(ctx, 'ctx');
+    core.requireArgument(core.isValidNumber(x), 'x');
+    core.requireArgument(core.isValidNumber(y), 'y');
+    core.requireArgument(core.isValidNumber(outterRadius), 'outterRadius');
+    core.requireArgument(outterRadius >= 0, 'outterRadius');
+    core.requireArgument(core.isValidNumber(pointCount), 'pointCount');
+    core.requireArgument(pointCount >= 5, 'pointCount');
+
+    final sliceSize = Math.PI / pointCount;
+
+    // some day I'll document how I found this
+    // It was a lot of paper + WolframAlpha
+    // value is the ratio of the inner radius to the outter radius
+    // to give the star 'clean lines'
+    final innerRatio = Math.cos(sliceSize) - Math.sin(sliceSize) * Math.tan(sliceSize);
+
+    final center = new core.Coordinate(x, y);
+    final tx = new core.AffineTransform();
+    final outterVect = new core.Vector(0, -outterRadius);
+    final innerVect = outterVect.scale(innerRatio);
+
+    ctx.beginPath();
+
+    for(var i = 0; i < pointCount; i++) {
+      // outter point
+      var radians = i * 2 * sliceSize;
+      tx.setToRotation(radians, x, y);
+      var point = outterVect + center;
+      point = tx.transformCoordinate(point);
+      if(i == 0) {
+        ctx.moveTo(point.x, point.y);
+      }
+      else {
+        ctx.lineTo(point.x, point.y);
+      }
+
+      // inner point
+      radians = radians + sliceSize;
+      tx.setToRotation(radians, x, y);
+      point = innerVect + center;
+      point = tx.transformCoordinate(point);
+      ctx.lineTo(point.x, point.y);
+    }
+    ctx.closePath();
+  }
+
   static void ellipse(CanvasRenderingContext2D ctx,
                       num x, num y, num width, num height) {
     var hB = (width / 2) * kappa,
