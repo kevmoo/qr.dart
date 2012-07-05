@@ -33,7 +33,7 @@ class CanvasUtil {
     // It was a lot of paper + WolframAlpha
     // value is the ratio of the inner radius to the outter radius
     // to give the star 'clean lines'
-    final innerRatio = Math.cos(sliceSize) - Math.sin(sliceSize) * Math.tan(sliceSize);
+    final innerRatio = Math.cos(2 * sliceSize) / Math.cos(sliceSize);
 
     final center = new core.Coordinate(x, y);
     final tx = new core.AffineTransform();
