@@ -11,14 +11,14 @@ class RgbColor {
     return new RgbColor._internal(r, g, b);
   }
 
-  static void _validateComponent(int c, String name) {
-    requireArgument(isValidNumber(c), name);
-    requireArgument(c >= 0 && c <= 255, name);
-  }
-
   bool operator ==(RgbColor other) {
     return other !== null && other.r == r && other.g == g && other.b == b;
   }
 
   String toString() => '{RgbColor: $r, $g, $b}';
+
+  static void _validateComponent(int c, String name) {
+    requireArgument(isValidNumber(c), name);
+    requireArgument(c >= 0 && c <= 255, name);
+  }
 }
