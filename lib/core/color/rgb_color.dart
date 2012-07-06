@@ -1,7 +1,7 @@
 // RGB-HSL conversion logic borrowed with love from Google Closure Library
 // http://code.google.com/p/closure-library/source/browse/trunk/closure/goog/color/color.js
 
-class RgbColor {
+class RgbColor implements Hashable {
   final int r, g, b;
 
   const RgbColor._internal(this.r, this.g, this.b);
@@ -48,6 +48,8 @@ class RgbColor {
     // Make sure the hue falls between 0 and 360.
     return new HslColor(h, s, l);
   }
+
+  int hashCode() => Util.getHashCode([r,g,b]);
 
   bool operator ==(RgbColor other) {
     return other !== null && other.r == r && other.g == g && other.b == b;
