@@ -1,3 +1,6 @@
+// RGB-HSL conversion logic borrowed with love from Google Closure Library
+// http://code.google.com/p/closure-library/source/browse/trunk/closure/goog/color/color.js
+
 class HslColor {
   final num h, s, l;
 
@@ -15,9 +18,50 @@ class HslColor {
     return new HslColor._internal(h, s, l);
   }
 
+  RgbColor toRgb() {
+    final normH = h / 360; // normalize h to fall in [0, 1]
+
+    num r, g, b;
+
+    if (s == 0) {
+      r = g = b = l * 255;
+    } else {
+      var temp1 = 0;
+      var temp2 = 0;
+      if (l < 0.5) {
+        temp2 = l * (1 + s);
+      } else {
+        temp2 = l + s - (s * l);
+      }
+      temp1 = 2 * l - temp2;
+      r = 255 * _hueToRgb(temp1, temp2, normH + (1 / 3));
+      g = 255 * _hueToRgb(temp1, temp2, normH);
+      b = 255 * _hueToRgb(temp1, temp2, normH - (1 / 3));
+    }
+
+    return new RgbColor(r.round().toInt(), g.round().toInt(), b.round().toInt());
+  }
+
   bool operator ==(HslColor other) {
     return other !== null && other.h == h && other.s == s && other.l == l;
   }
 
   String toString() => '{HslColor: $h, $s, $l}';
+
+  static num _hueToRgb(num v1, num v2, num vH) {
+    if (vH < 0) {
+      vH += 1;
+    } else if (vH > 1) {
+      vH -= 1;
+    }
+    if ((6 * vH) < 1) {
+      return (v1 + (v2 - v1) * 6 * vH);
+    } else if (2 * vH < 1) {
+      return v2;
+    } else if (3 * vH < 2) {
+      return (v1 + (v2 - v1) * ((2 / 3) - vH) * 6);
+    }
+    return v1;
+  }
+
 }
