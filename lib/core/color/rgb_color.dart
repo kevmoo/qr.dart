@@ -45,7 +45,6 @@ class RgbColor implements Hashable {
       }
     }
 
-    // Make sure the hue falls between 0 and 360.
     return new HslColor(h, s, l);
   }
 
