@@ -51,11 +51,8 @@ class HslColor implements Hashable {
   String toString() => '{HslColor: $h, $s, $l}';
 
   static num _hueToRgb(num v1, num v2, num vH) {
-    if (vH < 0) {
-      vH += 1;
-    } else if (vH > 1) {
-      vH -= 1;
-    }
+    vH %= 1.0;
+
     if ((6 * vH) < 1) {
       return (v1 + (v2 - v1) * 6 * vH);
     } else if (2 * vH < 1) {
