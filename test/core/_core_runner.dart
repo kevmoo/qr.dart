@@ -18,6 +18,7 @@
 #source('test_property_event_integration.dart');
 #source('test_properties.dart');
 #source('graph/test_tarjan.dart');
+#source('color/test_rgb_color.dart');
 
 void runCoreTests() {
   group('core', (){
@@ -38,6 +39,8 @@ void runCoreTests() {
     TestPropertyEventIntegration.run();
 
     TestTarjanCycleDetect.run();
+
+    TestRgbColor.run();
 
     test('Tuple', (){
       var t1 = new Tuple<int, int>(5, 4);

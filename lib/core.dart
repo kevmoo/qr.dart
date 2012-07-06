@@ -39,3 +39,4 @@
 
 #source('core/graph/tarjan_cycle_detect.dart');
 #source('core/husl_converter.dart');
+#source('core/color/rgb_color.dart');
