@@ -63,6 +63,6 @@ class TestRgbColor {
   static void _expectHslRoundTrip(RgbColor rgb) {
     final hsl = rgb.toHsl();
     final rgb2 = hsl.toRgb();
-    expect(rgb, equals(rgb2));
+    expect(rgb2, equals(rgb));
   }
 }
