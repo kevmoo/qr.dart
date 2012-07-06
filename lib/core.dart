@@ -38,3 +38,4 @@
 #source('core/properties/property.dart');
 
 #source('core/graph/tarjan_cycle_detect.dart');
+#source('core/husl_converter.dart');
