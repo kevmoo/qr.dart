@@ -1,0 +1,187 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>HuslConverter Class / dartlib_core Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="dartlib_core" data-type="HuslConverter">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../dartlib_core.html">dartlib_core</a> &rsaquo; <a href="../dartlib_core/HuslConverter.html">HuslConverter</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>HuslConverter</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Static Methods</h3>
+<div class="method"><h4 id="HUSLtoRGB">
+<span class="show-code">Code</span>
+<a href="../dart_core/List.html">List</a> <strong>HUSLtoRGB</strong>(<a href="../dart_core/num.html">num</a> h, <a href="../dart_core/num.html">num</a> s, <a href="../dart_core/num.html">num</a> l) <a class="anchor-link" href="#HUSLtoRGB"
+              title="Permalink to HuslConverter.HUSLtoRGB">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static List&lt;num&gt; HUSLtoRGB(num h, num s, num l) {
+  return _XYZ_RGB(_LUV_XYZ(_LCH_LUV(_HUSL_LCH([h, s, l]))));
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="get:m">
+<span class="show-code">Code</span>
+<a href="../dart_core/List.html">List</a> <strong>get m</strong>() <a class="anchor-link" href="#get:m"
+              title="Permalink to HuslConverter.get m">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static List&lt;List&lt;num&gt;&gt; get m() {
+  return [[3.2406, -1.5372, -0.4986],
+          [-0.9689, 1.8758, 0.0415],
+          [0.0557, -0.2040, 1.0570]];
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="get:m_inv">
+<span class="show-code">Code</span>
+<a href="../dart_core/List.html">List</a> <strong>get m_inv</strong>() <a class="anchor-link" href="#get:m_inv"
+              title="Permalink to HuslConverter.get m_inv">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static List&lt;List&lt;num&gt;&gt; get m_inv() {
+  return [[0.4124, 0.3576, 0.1805],
+          [0.2126, 0.7152, 0.0722],
+          [0.0193, 0.1192, 0.9505]];
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="RGBtoHUSL">
+<span class="show-code">Code</span>
+<a href="../dart_core/List.html">List</a> <strong>RGBtoHUSL</strong>(<a href="../dart_core/num.html">num</a> r, <a href="../dart_core/num.html">num</a> g, <a href="../dart_core/num.html">num</a> b) <a class="anchor-link" href="#RGBtoHUSL"
+              title="Permalink to HuslConverter.RGBtoHUSL">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static List&lt;num&gt; RGBtoHUSL( num r, num g, num b ) {
+  return _LCH_HUSL(_LUV_LCH(_XYZ_LUV(_RGB_XYZ([r, g, b]))));
+}
+</pre>
+</div>
+</div>
+<h3>Static Fields</h3>
+<div class="field"><h4 id="lab_e">
+<span class="show-code">Code</span>
+final <a href="../dart_core/num.html">num</a>         <strong>lab_e</strong> <a class="anchor-link"
+            href="#lab_e"
+            title="Permalink to HuslConverter.lab_e">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final num lab_e = 0.008856;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="lab_k">
+<span class="show-code">Code</span>
+final <a href="../dart_core/num.html">num</a>         <strong>lab_k</strong> <a class="anchor-link"
+            href="#lab_k"
+            title="Permalink to HuslConverter.lab_k">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final num lab_k = 903.3;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="refU">
+<span class="show-code">Code</span>
+final <a href="../dart_core/num.html">num</a>         <strong>refU</strong> <a class="anchor-link"
+            href="#refU"
+            title="Permalink to HuslConverter.refU">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final num refU = 0.19784;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="refV">
+<span class="show-code">Code</span>
+final <a href="../dart_core/num.html">num</a>         <strong>refV</strong> <a class="anchor-link"
+            href="#refV"
+            title="Permalink to HuslConverter.refV">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final num refV = 0.46834;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="refX">
+<span class="show-code">Code</span>
+final <a href="../dart_core/num.html">num</a>         <strong>refX</strong> <a class="anchor-link"
+            href="#refX"
+            title="Permalink to HuslConverter.refX">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final num refX = 0.95047;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="refY">
+<span class="show-code">Code</span>
+final <a href="../dart_core/num.html">num</a>         <strong>refY</strong> <a class="anchor-link"
+            href="#refY"
+            title="Permalink to HuslConverter.refY">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final num refY = 1.00000;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="refZ">
+<span class="show-code">Code</span>
+final <a href="../dart_core/num.html">num</a>         <strong>refZ</strong> <a class="anchor-link"
+            href="#refZ"
+            title="Permalink to HuslConverter.refZ">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final num refZ = 1.08883;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

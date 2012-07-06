@@ -91,6 +91,17 @@ num getDistance (Coordinate other) =&gt; (this - other).length;
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="get:isValid">
+<span class="show-code">Code</span>
+<a href="../dart_core/bool.html">bool</a> <strong>get isValid</strong>() <a class="anchor-link" href="#get:isValid"
+              title="Permalink to Coordinate.get isValid">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool get isValid() =&gt; isValidNumber(x) &amp;&amp; isValidNumber(y);
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="toString">
 <span class="show-code">Code</span>
 <a href="../dart_core/String.html">String</a> <strong>toString</strong>() <a class="anchor-link" href="#toString"
@@ -98,7 +109,7 @@ num getDistance (Coordinate other) =&gt; (this - other).length;
 <div class="doc">
 
 <pre class="source">
-String toString() =&gt; '{"x":${x},"y":${y}}';
+String toString() =&gt; '{x:${x}, y:${y}}';
 </pre>
 </div>
 </div>

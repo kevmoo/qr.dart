@@ -46,33 +46,6 @@ AffineTransform([num scaleX = 1, num shearY = 0,
 </pre>
 </div>
 </div>
-<h3>Static Methods</h3>
-<div class="method"><h4 id="getRotateInstance">
-<span class="show-code">Code</span>
-<a href="../dartlib_core/AffineTransform.html">AffineTransform</a> <strong>getRotateInstance</strong>(<a href="../dart_core/num.html">num</a> theta, <a href="../dart_core/num.html">num</a> x, <a href="../dart_core/num.html">num</a> y) <a class="anchor-link" href="#getRotateInstance"
-              title="Permalink to AffineTransform.getRotateInstance">#</a></h4>
-<div class="doc">
-
-<pre class="source">
-static AffineTransform getRotateInstance(num theta, num x, num y) {
-  return new AffineTransform().setToRotation(theta, x, y);
-}
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="getScaleInstance">
-<span class="show-code">Code</span>
-<a href="../dartlib_core/AffineTransform.html">AffineTransform</a> <strong>getScaleInstance</strong>(sx, sy) <a class="anchor-link" href="#getScaleInstance"
-              title="Permalink to AffineTransform.getScaleInstance">#</a></h4>
-<div class="doc">
-
-<pre class="source">
-static AffineTransform getScaleInstance(sx, sy) {
-  return new AffineTransform().setToScale(sx, sy);
-}
-</pre>
-</div>
-</div>
 <h3>Methods</h3>
 <div class="method"><h4 id=":eq">
 <span class="show-code">Code</span>
@@ -153,9 +126,7 @@ AffineTransform createInverse() {
 <div class="doc">
 
 <pre class="source">
-num get determinant(){
-  return _m00 * _m11 - _m01 * _m10;
-}
+num get determinant() =&gt; _m00 * _m11 - _m01 * _m10;
 </pre>
 </div>
 </div>
@@ -182,7 +153,7 @@ bool get isIdentity() {
 
 <pre class="source">
 AffineTransform rotate(num theta, num x, num y) {
-  return this.concatenate(AffineTransform.getRotateInstance(theta, x, y));
+  return this.concatenate(new AffineTransform.rotate(theta, x, y));
 }
 </pre>
 </div>
@@ -194,9 +165,7 @@ AffineTransform rotate(num theta, num x, num y) {
 <div class="doc">
 
 <pre class="source">
-num get scaleX(){
-  return _m00;
-}
+num get scaleX() =&gt; _m00;
 </pre>
 </div>
 </div>
@@ -207,9 +176,7 @@ num get scaleX(){
 <div class="doc">
 
 <pre class="source">
-num get scaleY(){
-  return _m11;
-}
+num get scaleY() =&gt; _m11;
 </pre>
 </div>
 </div>
@@ -282,9 +249,7 @@ AffineTransform setTransform (num m00, num m10, num m01,
 <div class="doc">
 
 <pre class="source">
-num get shearX(){
-  return _m01;
-}
+num get shearX() =&gt; _m01;
 </pre>
 </div>
 </div>
@@ -295,9 +260,7 @@ num get shearX(){
 <div class="doc">
 
 <pre class="source">
-num get shearY(){
-  return _m10;
-}
+num get shearY() =&gt; _m10;
 </pre>
 </div>
 </div>
@@ -339,9 +302,7 @@ AffineTransform translate(num dx, num dy) {
 <div class="doc">
 
 <pre class="source">
-num get translateX(){
-  return _m02;
-}
+num get translateX() =&gt; _m02;
 </pre>
 </div>
 </div>
@@ -352,9 +313,7 @@ num get translateX(){
 <div class="doc">
 
 <pre class="source">
-num get translateY(){
-  return _m12;
-}
+num get translateY() =&gt; _m12;
 </pre>
 </div>
 </div>

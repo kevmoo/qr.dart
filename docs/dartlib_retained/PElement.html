@@ -229,7 +229,7 @@ bool hasVisualChild(PElement element){
 <div class="doc">
 
 <pre class="source">
-num get height(){ return _height; }
+num get height() =&gt; _height;
 </pre>
 </div>
 </div>
@@ -256,9 +256,7 @@ void invalidateDraw(){
 <div class="doc">
 
 <pre class="source">
-core.Size get size(){
-  return new core.Size(_width, _height);
-}
+core.Size get size() =&gt; new core.Size(_width, _height);
 </pre>
 </div>
 </div>
@@ -308,7 +306,7 @@ int get visualChildCount(){
 <div class="doc">
 
 <pre class="source">
-num get width(){ return _width; }
+num get width() =&gt; _width;
 </pre>
 </div>
 </div>

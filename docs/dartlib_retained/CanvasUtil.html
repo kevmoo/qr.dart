@@ -27,6 +27,20 @@
 
 </div>
 <h3>Static Methods</h3>
+<div class="method"><h4 id="centeredCircle">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>centeredCircle</strong>(<a href="../html/CanvasRenderingContext2D.html">CanvasRenderingContext2D</a> ctx, <a href="../dart_core/num.html">num</a> x, <a href="../dart_core/num.html">num</a> y, <a href="../dart_core/num.html">num</a> radius) <a class="anchor-link" href="#centeredCircle"
+              title="Permalink to CanvasUtil.centeredCircle">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static void centeredCircle(CanvasRenderingContext2D ctx,
+                           num x, num y, num radius) {
+  ellipse(ctx, x - radius, y - radius, radius * 2, radius * 2);
+}
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="ellipse">
 <span class="show-code">Code</span>
 <a href="../dart_core/void.html">void</a> <strong>ellipse</strong>(<a href="../html/CanvasRenderingContext2D.html">CanvasRenderingContext2D</a> ctx, <a href="../dart_core/num.html">num</a> x, <a href="../dart_core/num.html">num</a> y, <a href="../dart_core/num.html">num</a> width, <a href="../dart_core/num.html">num</a> height) <a class="anchor-link" href="#ellipse"
@@ -48,6 +62,63 @@ static void ellipse(CanvasRenderingContext2D ctx,
   ctx.bezierCurveTo(mX + hB, y, eX, mY - vB, eX, mY);
   ctx.bezierCurveTo(eX, mY + vB, mX + hB, eY, mX, eY);
   ctx.bezierCurveTo(mX - hB, eY, x, mY + vB, x, mY);
+  ctx.closePath();
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="star">
+<span class="show-code">Code</span>
+<a href="../dart_core/void.html">void</a> <strong>star</strong>(<a href="../html/CanvasRenderingContext2D.html">CanvasRenderingContext2D</a> ctx, <a href="../dart_core/num.html">num</a> x, <a href="../dart_core/num.html">num</a> y, <a href="../dart_core/num.html">num</a> outterRadius, [<a href="../dart_core/int.html">int</a> pointCount = 5]) <a class="anchor-link" href="#star"
+              title="Permalink to CanvasUtil.star">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static void star(CanvasRenderingContext2D ctx, num x, num y,
+                 num outterRadius, [int pointCount = 5]) {
+  core.requireArgumentNotNull(ctx, 'ctx');
+  core.requireArgument(core.isValidNumber(x), 'x');
+  core.requireArgument(core.isValidNumber(y), 'y');
+  core.requireArgument(core.isValidNumber(outterRadius), 'outterRadius');
+  core.requireArgument(outterRadius &gt;= 0, 'outterRadius');
+  core.requireArgument(core.isValidNumber(pointCount), 'pointCount');
+  core.requireArgument(pointCount &gt;= 5, 'pointCount');
+
+  final sliceSize = Math.PI / pointCount;
+
+  // some day I'll document how I found this
+  // It was a lot of paper + WolframAlpha
+  // value is the ratio of the inner radius to the outter radius
+  // to give the star 'clean lines'
+  final innerRatio = Math.cos(2 * sliceSize) / Math.cos(sliceSize);
+
+  final center = new core.Coordinate(x, y);
+  final tx = new core.AffineTransform();
+  final outterVect = new core.Vector(0, -outterRadius);
+  final innerVect = outterVect.scale(innerRatio);
+
+  ctx.beginPath();
+
+  for(var i = 0; i &lt; pointCount; i++) {
+    // outter point
+    var radians = i * 2 * sliceSize;
+    tx.setToRotation(radians, x, y);
+    var point = outterVect + center;
+    point = tx.transformCoordinate(point);
+    if(i == 0) {
+      ctx.moveTo(point.x, point.y);
+    }
+    else {
+      ctx.lineTo(point.x, point.y);
+    }
+
+    // inner point
+    radians = radians + sliceSize;
+    tx.setToRotation(radians, x, y);
+    point = innerVect + center;
+    point = tx.transformCoordinate(point);
+    ctx.lineTo(point.x, point.y);
+  }
   ctx.closePath();
 }
 </pre>
@@ -78,7 +149,7 @@ final <a href="../dart_core/num.html">num</a>         <strong>kappa</strong> <a 
             title="Permalink to CanvasUtil.kappa">#</a>
         </h4>
         <div class="doc">
-<p>4 * ((√(2) - 1) / 3);</p>
+<p>(√2 - 1) * 4 / 3;</p>
 <pre class="source">
 static final num kappa = 0.55228474983079339840225163227959743809289583383593;
 </pre>

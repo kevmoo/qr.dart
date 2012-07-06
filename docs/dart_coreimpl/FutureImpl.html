@@ -55,7 +55,7 @@ FutureImpl()
 Future chain(Function transformation) {
   final completer = new Completer();
   handleException((e) {
-    completer.completeException(e);
+    completer.completeException(e, this.stackTrace);
     return true;
   });
   then((v) {
@@ -67,7 +67,7 @@ Future chain(Function transformation) {
       return;
     }
     future.handleException((e) {
-      completer.completeException(e);
+      completer.completeException(e, future.stackTrace);
       return true;
     });
     future.then((b) =&gt; completer.complete(b));
@@ -203,7 +203,7 @@ void then(void onSuccess(T value)) {
 Future transform(Function transformation) {
   final completer = new Completer();
   handleException((e) {
-    completer.completeException(e);
+    completer.completeException(e, this.stackTrace);
     return true;
   });
   then((v) {
