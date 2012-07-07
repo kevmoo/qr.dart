@@ -14,6 +14,25 @@ class RgbColor implements Hashable {
     return new RgbColor._internal(r, g, b);
   }
 
+  factory RgbColor.fromHex(String hexColor) {
+    requireArgumentNotNull(hexColor, 'hexColor');
+    hexColor = _normalizeHex(hexColor);
+    var r = Math.parseInt('0x'.concat(hexColor.substring(1, 3)));
+    var g = Math.parseInt('0x'.concat(hexColor.substring(3, 5)));
+    var b = Math.parseInt('0x'.concat(hexColor.substring(5, 7)));
+
+    return new RgbColor(r,g,b);
+  }
+
+  String toHex() {
+    final buffer = new StringBuffer('#');
+    var comps = [r,g,b].map((c) {
+      return _prependZeroIfNecessaryHelper(c.toRadixString(16));
+    });
+    buffer.addAll(comps);
+    return buffer.toString();
+  }
+
   HslColor toHsl() {
     // First must normalize r, g, b to be between 0 and 1.
     final normR = r / 255;
@@ -59,5 +78,24 @@ class RgbColor implements Hashable {
   static void _validateComponent(int c, String name) {
     requireArgument(isValidNumber(c), name);
     requireArgument(c >= 0 && c <= 255, name);
+  }
+
+  static String _prependZeroIfNecessaryHelper(String hex) {
+    return hex.length == 1 ? '0'.concat(hex) : hex;
+  }
+
+  // TODO: support colors in the format #rgb
+  //       right now we only support #rrggbb
+  static String _normalizeHex(String hexColor) {
+    if (!_isValidHexColor(hexColor)) {
+      throw new IllegalArgumentException("'$hexColor' is not a valid hex color");
+    }
+    return hexColor.toLowerCase();
+  }
+
+  static final RegExp _validHexColorRe = const RegExp('^#(?:[0-9a-f]{6})\$', false, true);
+
+  static bool _isValidHexColor(String str) {
+    return _validHexColorRe.hasMatch(str);
   }
 }

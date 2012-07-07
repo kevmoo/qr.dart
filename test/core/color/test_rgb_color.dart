@@ -4,6 +4,9 @@ class TestRgbColor {
       test('Equals', _testEquals);
       test('Invalid', _testInvalid);
       test('HslColor round-trip', _testHslRoundTrip);
+      test('Hex round-trip', _testHexRoundTrip);
+      test('fromHex', _testFromHex);
+      test('invalid hex', _testInvalidHex);
     });
   }
 
@@ -40,6 +43,43 @@ class TestRgbColor {
     }
   }
 
+  static void _testHexRoundTrip() {
+    final colors = _getCoreColors();
+
+    for(final rgb in colors) {
+      _expectHexRoundTrip(rgb);
+    }
+
+    for(int i = 0; i < 100; i++) {
+      _expectHexRoundTrip(_getRandom());
+    }
+  }
+
+  static void _testFromHex() {
+    var knownSet = new HashMap<String, RgbColor>();
+    knownSet['#ffffff'] = new RgbColor(255,255,255);
+    knownSet['#FFFFFF'] = new RgbColor(255,255,255);
+    knownSet['#000000'] = new RgbColor(0,0,0);
+    knownSet['#FF0000'] = new RgbColor(255,0,0);
+    knownSet['#ff0000'] = new RgbColor(255,0,0);
+    knownSet['#00ff00'] = new RgbColor(0,255,0);
+    knownSet['#0000ff'] = new RgbColor(0,0,255);
+    knownSet['#336699'] = new RgbColor(51,102,153);
+
+    knownSet.forEach((hex, rgb) {
+      var rgb2 = new RgbColor.fromHex(hex);
+      expect(rgb2, equals(rgb));
+      expect(hex.toLowerCase(), equals(rgb.toHex()));
+    });
+  }
+
+  static void _testInvalidHex() {
+    var badHex = ['aoeu', 'ffffff', 'fff', '#ffffffff', 'white', '', null];
+    badHex.forEach((hex) {
+      expect( () => new RgbColor.fromHex(hex), throwsIllegalArgumentException);
+    });
+  }
+
   static List<RgbColor> _getCoreColors() {
     return [
             new RgbColor(0,0,0),
@@ -63,6 +103,12 @@ class TestRgbColor {
   static void _expectHslRoundTrip(RgbColor rgb) {
     final hsl = rgb.toHsl();
     final rgb2 = hsl.toRgb();
+    expect(rgb2, equals(rgb));
+  }
+
+  static void _expectHexRoundTrip(RgbColor rgb) {
+    final hex = rgb.toHex();
+    final rgb2 = new RgbColor.fromHex(hex);
     expect(rgb2, equals(rgb));
   }
 }
