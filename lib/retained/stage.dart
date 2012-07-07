@@ -10,17 +10,11 @@ class Stage extends core.DisposableImpl implements IElementParent {
     _element.claim(this);
   }
 
-  core.Size get size(){
-    return new core.Size(_canvas.width, _canvas.height);
-  }
+  core.Size get size() => new core.Size(_canvas.width, _canvas.height);
 
-  core.EventRoot<core.EventArgs> get updated(){
-    return _updatedEventHandle;
-  }
+  core.EventRoot<core.EventArgs> get updated() => _updatedEventHandle;
 
-  PElement get rootElement(){
-    return _element;
-  }
+  PElement get rootElement() => _element;
 
   CanvasRenderingContext2D get ctx(){
     if (_ctx == null) {
@@ -48,7 +42,5 @@ class Stage extends core.DisposableImpl implements IElementParent {
     _updatedEventHandle.dispose();
   }
 
-  core.AffineTransform getTransformToRoot(){
-    return new core.AffineTransform();
-  }
+  core.AffineTransform getTransformToRoot() => new core.AffineTransform();
 }
