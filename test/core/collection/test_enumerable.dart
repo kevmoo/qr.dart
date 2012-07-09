@@ -8,7 +8,13 @@ class TestEnumerable {
         test('complex', _testComplexGrouping);
         test('simple', _testSimpleGrouping);
       });
+      test('select', _testSelect);
     });
+  }
+
+  static void _testSelect() {
+    final e = $([1,2,3,4,5,6]).select((x) => x * 2);
+    expect(e, orderedEquals([2,4,6,8,10,12]));
   }
 
   static void _testAggregate() {
@@ -28,7 +34,6 @@ class TestEnumerable {
     String str = strsEnumerable.aggregate('', prepender);
     expect(str, equals('thirdsecondfirst'));
   }
-
 
   //
   // Select Many

@@ -53,10 +53,12 @@ class Enumerable<T> implements Iterable<T> {
     return false;
   }
 
+  Enumerable select(Func1 f) => new _SelectEnumerable(this, f);
+
+  ReadOnlyCollection<T> toReadOnlyCollection() => new ReadOnlyCollection(this);
+
   // TODO: forEach
-  // TODO: select
   // TODO: where
-  // TODO: toReadOnlyCollection
   // TODO: toList
 }
 
@@ -66,4 +68,26 @@ class _EnumerableWrapper<T> extends Enumerable<T> {
   const _EnumerableWrapper(this.source) : super._internal();
 
   Iterator iterator() => source.iterator();
+}
+
+class _SelectEnumerable<TSource, TOutput> extends Enumerable<TOutput> {
+  final Enumerable<TSource> _source;
+  final Func1<TSource, TOutput> _func;
+
+  const _SelectEnumerable(this._source, this._func) : super._internal();
+
+  Iterator<TOutput> iterator() {
+    return new _SelectIterator<TSource, TOutput>(_source.iterator(), _func);
+  }
+}
+
+class _SelectIterator<TSource, TOutput> implements Iterator<TOutput> {
+  final Iterator<TSource> _source;
+  final Func1<TSource, TOutput> _func;
+
+  const _SelectIterator(this._source, this._func);
+
+  bool hasNext() => _source.hasNext();
+
+  TOutput next() => _func(_source.next());
 }
