@@ -76,9 +76,7 @@ class _FuncEnumerable<TSource, TOutput> extends Enumerable<TOutput> {
 
   const _FuncEnumerable(this._source, this._func) : super._internal();
 
-  Iterator<TOutput> iterator() {
-    return _func(_source.iterator());
-  }
+  Iterator<TOutput> iterator() => _func(_source.iterator());
 }
 
 class _SelectIterator<TSource, TOutput> implements Iterator<TOutput> {
