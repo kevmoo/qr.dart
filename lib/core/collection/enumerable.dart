@@ -1,3 +1,7 @@
+Enumerable $(Iterable source) {
+  return new Enumerable(source);
+}
+
 class Enumerable<T> implements Iterable<T> {
 
   const Enumerable._internal();

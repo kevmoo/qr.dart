@@ -14,9 +14,7 @@ class TestEnumerable {
   static void _testAggregate() {
     Func2<int, int, int> summer = (current, next) => current + next;
 
-    final values = [1,2,3];
-
-    final valEnumerable = new Enumerable<num>(values);
+    final valEnumerable = $([1,2,3]);
 
     int sum = valEnumerable.aggregate(0, summer);
     expect(sum, equals(6));
@@ -25,8 +23,7 @@ class TestEnumerable {
       return next.concat(current);
     };
 
-    final strs = ['first', 'second', 'third'];
-    final strsEnumerable = new Enumerable<String>(strs);
+    final strsEnumerable = $(['first', 'second', 'third']);
 
     String str = strsEnumerable.aggregate('', prepender);
     expect(str, equals('thirdsecondfirst'));
@@ -37,8 +34,7 @@ class TestEnumerable {
   // Select Many
   //
   static void _testSelectMany() {
-    final source = ['Okoboji', 'Iowa'];
-    final sourceEnum = new Enumerable<String>(source);
+    final sourceEnum = $(['Okoboji', 'Iowa']);
 
     var select = sourceEnum.selectMany(_getChars);
 
@@ -82,8 +78,7 @@ class TestEnumerable {
     //
     // Test 1
     //
-    var grouping = (new Enumerable(['a']))
-        .group(keyFunc);
+    var grouping = $(['a']).group(keyFunc);
 
     expect(grouping.length, equals(1));
 
@@ -94,10 +89,8 @@ class TestEnumerable {
     //
     // Test 2
     //
-    var source = ['a', 'b', 'c', 'ab', 'bc', 'abc'];
-
-    grouping = (new Enumerable(['a', 'b', 'c', 'ab', 'bc', 'abc']))
-        .group(keyFunc);
+    final source = ['a', 'b', 'c', 'ab', 'bc', 'abc'];
+    grouping = $(source).group(keyFunc);
 
     expect(grouping.length, equals(3));
 
@@ -131,7 +124,7 @@ class TestEnumerable {
     //
     // Test 1
     //
-    var grouping = (new Enumerable([1])).group();
+    var grouping = $([1]).group();
 
     expect(grouping.length, equals(1));
 
@@ -142,7 +135,7 @@ class TestEnumerable {
     //
     // Test 2
     //
-    grouping = (new Enumerable<int>([1, 1])).group();
+    grouping = $([1, 1]).group();
 
     expect(grouping.length, equals(1));
 
@@ -154,7 +147,7 @@ class TestEnumerable {
     //
     // Test 3
     //
-    grouping = (new Enumerable([1, 2, 3, 1, 2, 1])).group();
+    grouping = $([1, 2, 3, 1, 2, 1]).group();
 
     expect(grouping.length, equals(3));
 
