@@ -1,10 +1,10 @@
 class SelectMany<TSource, TOutput>
-  implements Iterable<TOutput> {
+  extends Enumerable<TOutput> {
 
   final Iterable<TSource> _source;
   final Func1<TSource, Iterable<TOutput>> _func;
 
-  SelectMany(this._source, this._func);
+  const SelectMany(this._source, this._func) : super._internal();
 
   factory SelectMany.flatten(Iterable<Iterable<TOutput>> source) {
     Func1<Iterable<TOutput>, Iterable<TOutput>> func = (a) => a;

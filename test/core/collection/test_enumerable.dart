@@ -36,7 +36,6 @@ class TestEnumerable {
   //
   // Select Many
   //
-
   static void _testSelectMany() {
     final source = ['Okoboji', 'Iowa'];
     final sourceEnum = new Enumerable<String>(source);
@@ -47,6 +46,11 @@ class TestEnumerable {
     expect(charList.length, equals(11));
     expect(charList[6], equals('i'));
     expect(charList[7], equals('I'));
+
+    // now group 'em
+    var grouped = select.group();
+    // 11 letters, o repeated three times
+    expect(grouped.length, equals(9));
   }
 
   static List<String> _getChars(String input) {
@@ -61,8 +65,6 @@ class TestEnumerable {
   //
   // Grouping
   //
-
-
   static void _testComplexGrouping() {
     final Func1<String, int> keyFunc = (str) => str.length;
 
