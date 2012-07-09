@@ -1,6 +1,6 @@
-class ListBase<E> implements Listish<E> {
+class ListBase<E> extends Enumerable<E> implements Listish<E> {
 
-  const ListBase();
+  const ListBase() : super._internal();
 
   //
   // Iterable bits
