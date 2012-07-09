@@ -40,16 +40,14 @@ class TestListBase extends ListBase<int> {
   }
 
   static void _testSimple() {
-
-    var list = new List<int>.from(instance);
-    expect(list.length, equals(_length));
-    expect(list, orderedEquals([5,4,3,2,1]));
+    expect(instance.length, equals(_length));
+    expect(instance, orderedEquals([5,4,3,2,1]));
   }
 
   static void _testMap() {
     Func1<int, int> dub = (i) => i * 2;
 
-    List<int> list = new List<int>.from(instance.map(dub));
+    var list = instance.map(dub);
     expect(list.length, equals(_length));
     expect(list, orderedEquals([10, 8, 6, 4, 2]));
   }
@@ -86,22 +84,22 @@ class TestListBase extends ListBase<int> {
 
   static void _testRange() {
     var mt = roc([]);
-    Expect.listEquals([], mt.getRange(0, 0));
+    expect(mt.getRange(0, 0), orderedEquals([]));
 
-    Expect.listEquals([], mt.getRange(-1, 0));
+    expect(mt.getRange(-1, 0), orderedEquals([]));
 
     var oneTwo = roc([1, 2]);
-    Expect.listEquals([1, 2], oneTwo.getRange(0, 2));
+    expect(oneTwo.getRange(0, 2), orderedEquals([1, 2]));
 
-    Expect.listEquals([1], oneTwo.getRange(0, 1));
+    expect(oneTwo.getRange(0, 1), orderedEquals([1]));
 
-    Expect.listEquals([2], oneTwo.getRange(1, 1));
+    expect(oneTwo.getRange(1, 1), orderedEquals([2]));
 
-    Expect.listEquals([], oneTwo.getRange(0, 0));
+    expect(oneTwo.getRange(0, 0), orderedEquals([]));
 
-    Expect.listEquals([2, 3], roc([1, 2, 3, 4]).getRange(1, 2));
+    expect(roc([1, 2, 3, 4]).getRange(1, 2), orderedEquals([2, 3]));
 
-    Expect.listEquals([2, 3], roc([1, 2, 3, 4]).getRange(1, 2));
+    expect(roc([1, 2, 3, 4]).getRange(1, 2), orderedEquals([2, 3]));
 
     expect(() => mt.getRange(0, -1), throwsIllegalArgumentException);
 
