@@ -25,19 +25,17 @@ $$.HashMapImplementation = {"":
   var t1 = ({});
   var list = $.List($.get$length(this));
   $.setRuntimeTypeInfo(list, ({E: 'V'}));
-  t1.list_11 = list;
-  t1.i_20 = 0;
-  this.forEach$1(new $.Closure28(t1));
-  return t1.list_11;
+  t1.i_10 = 0;
+  this.forEach$1(new $.Closure28(list, t1));
+  return list;
  },
  getKeys$0: function() {
   var t1 = ({});
   var list = $.List($.get$length(this));
   $.setRuntimeTypeInfo(list, ({E: 'K'}));
-  t1.list_1 = list;
-  t1.i_2 = 0;
-  this.forEach$1(new $.Closure25(t1));
-  return t1.list_1;
+  t1.i_1 = 0;
+  this.forEach$1(new $.Closure25(list, t1));
+  return list;
  },
  forEach$1: function(f) {
   var length$ = $.get$length(this._keys);
@@ -410,18 +408,13 @@ $$.HashSetImplementation = {"":
   return $.isEmpty(this._backingMap);
  },
  filter$1: function(f) {
-  var t1 = ({});
-  t1.f_11 = f;
   var result = $.HashSetImplementation$0();
   $.setRuntimeTypeInfo(result, ({E: 'E'}));
-  t1.result_2 = result;
-  $.forEach(this._backingMap, new $.Closure11(t1));
-  return t1.result_2;
+  $.forEach(this._backingMap, new $.Closure11(result, f));
+  return result;
  },
  forEach$1: function(f) {
-  var t1 = ({});
-  t1.f_10 = f;
-  $.forEach(this._backingMap, new $.Closure10(t1));
+  $.forEach(this._backingMap, new $.Closure10(f));
  },
  addAll$1: function(collection) {
   $.forEach(collection, new $.Closure9(this));
@@ -582,27 +575,23 @@ $$.LinkedHashMapImplementation = {"":
   return this._map.containsKey$1(key);
  },
  forEach$1: function(f) {
-  var t1 = ({});
-  t1.f_14 = f;
-  $.forEach(this._lib2_list, new $.Closure19(t1));
+  $.forEach(this._lib2_list, new $.Closure19(f));
  },
  getValues$0: function() {
   var t1 = ({});
   var list = $.List($.get$length(this));
   $.setRuntimeTypeInfo(list, ({E: 'V'}));
-  t1.list_12 = list;
-  t1.index_20 = 0;
-  $.forEach(this._lib2_list, new $.Closure31(t1));
-  return t1.list_12;
+  t1.index_10 = 0;
+  $.forEach(this._lib2_list, new $.Closure31(list, t1));
+  return list;
  },
  getKeys$0: function() {
   var t1 = ({});
   var list = $.List($.get$length(this));
   $.setRuntimeTypeInfo(list, ({E: 'K'}));
-  t1.list_10 = list;
-  t1.index_2 = 0;
-  $.forEach(this._lib2_list, new $.Closure26(t1));
-  return t1.list_10;
+  t1.index_1 = 0;
+  $.forEach(this._lib2_list, new $.Closure26(list, t1));
+  return list;
  },
  remove$1: function(key) {
   var entry = this._map.remove$1(key);
@@ -1014,18 +1003,15 @@ $$.ConstantMap = {"":
   return $.eq($.get$length(this), 0);
  },
  getValues$0: function() {
-  var t1 = ({});
-  t1.result_10 = [];
-  $.forEach(this._lib1_keys, new $.Closure29(this, t1));
-  return t1.result_10;
+  var result = [];
+  $.forEach(this._lib1_keys, new $.Closure29(this, result));
+  return result;
  },
  getKeys$0: function() {
   return this._lib1_keys;
  },
  forEach$1: function(f) {
-  var t1 = ({});
-  t1.f_12 = f;
-  $.forEach(this._lib1_keys, new $.Closure15(this, t1));
+  $.forEach(this._lib1_keys, new $.Closure15(this, f));
  },
  operator$index$1: function(key) {
   if (this.containsKey$1(key) !== true) return;
@@ -1426,10 +1412,8 @@ $$._ChildrenElementList = {"":
   return t1 == null;
  },
  filter$1: function(f) {
-  var t1 = ({});
-  t1.f_1 = f;
   var output = [];
-  this.forEach$1(new $.Closure7(t1, output));
+  this.forEach$1(new $.Closure7(f, output));
   return $._FrozenElementList$_wrap$1(output);
  },
  forEach$1: function(f) {
@@ -1748,9 +1732,7 @@ $$._DataAttributeMap = {"":
   return keys;
  },
  forEach$1: function(f) {
-  var t1 = ({});
-  t1.f_13 = f;
-  $.forEach(this.$$dom_attributes, new $.Closure17(this, t1));
+  $.forEach(this.$$dom_attributes, new $.Closure17(this, f));
  },
  clear$0: function() {
   for (var t1 = $.iterator(this.getKeys$0()); t1.hasNext$0() === true; ) {
@@ -1812,9 +1794,7 @@ $$._CssClassSet = {"":
   this._modify$1(new $.Closure14());
  },
  addAll$1: function(collection) {
-  var t1 = ({});
-  t1.collection_1 = collection;
-  this._modify$1(new $.Closure13(t1));
+  this._modify$1(new $.Closure13(collection));
  },
  remove$1: function(value) {
   var s = this._read$0();
@@ -1823,9 +1803,7 @@ $$._CssClassSet = {"":
   return result;
  },
  add$1: function(value) {
-  var t1 = ({});
-  t1.value_1 = value;
-  this._modify$1(new $.Closure12(t1));
+  this._modify$1(new $.Closure12(value));
  },
  contains$1: function(value) {
   return $.contains$1(this._read$0(), value);
@@ -3892,69 +3870,64 @@ $$.Closure = {"":
 };
 
 $$.Closure0 = {"":
- ["box_0"],
+ ["result_3", "box_0", "visiting_2"],
  super: "Closure35",
  $call$2: function(k, v) {
-  var t1 = this.box_0;
-  t1.first_3 !== true && $.add$1(t1.result_1, ', ');
-  this.box_0.first_3 = false;
-  t1 = this.box_0;
-  $._emitObject(k, t1.result_1, t1.visiting_2);
-  $.add$1(this.box_0.result_1, ': ');
-  var t2 = this.box_0;
-  $._emitObject(v, t2.result_1, t2.visiting_2);
+  this.box_0.first_1 !== true && $.add$1(this.result_3, ', ');
+  this.box_0.first_1 = false;
+  $._emitObject(k, this.result_3, this.visiting_2);
+  $.add$1(this.result_3, ': ');
+  $._emitObject(v, this.result_3, this.visiting_2);
  }
 };
 
 $$.Closure1 = {"":
- ["box_0", "request_2"],
+ ["onSuccess_1", "request_0"],
  super: "Closure35",
  $call$1: function(e) {
-  if ($.eqB(this.request_2.get$readyState(), 4)) {
-    var t1 = $.eqB(this.request_2.get$status(), 200) || $.eqB(this.request_2.get$status(), 0);
+  if ($.eqB(this.request_0.get$readyState(), 4)) {
+    var t1 = $.eqB(this.request_0.get$status(), 200) || $.eqB(this.request_0.get$status(), 0);
   } else t1 = false;
-  t1 && this.box_0.onSuccess_1.$call$1(this.request_2);
+  t1 && this.onSuccess_1.$call$1(this.request_0);
  }
 };
 
 $$.Closure2 = {"":
- ["box_0"],
+ ["closure_0"],
  super: "Closure35",
  $call$0: function() {
-  return this.box_0.closure_1.$call$0();
+  return this.closure_0.$call$0();
  }
 };
 
 $$.Closure3 = {"":
- ["box_0"],
+ ["closure_2", "arg1_1"],
  super: "Closure35",
  $call$0: function() {
-  var t1 = this.box_0;
-  return t1.closure_1.$call$1(t1.arg1_2);
+  return this.closure_2.$call$1(this.arg1_1);
  }
 };
 
 $$.Closure4 = {"":
- ["box_0"],
+ ["closure_5", "arg1_4", "arg2_3"],
  super: "Closure35",
  $call$0: function() {
-  var t1 = this.box_0;
-  return t1.closure_1.$call$2(t1.arg1_2, t1.arg2_3);
+  return this.closure_5.$call$2(this.arg1_4, this.arg2_3);
  }
 };
 
 $$.Closure5 = {"":
- ["box_0"],
+ ["pre_0"],
  super: "Closure35",
  $call$1: function(e) {
-  if ($.contains$1(this.box_0.pre_1.get$classes(), 'expanded') === true) this.box_0.pre_1.get$classes().remove$1('expanded');
+  if ($.contains$1(this.pre_0.get$classes(), 'expanded') === true) this.pre_0.get$classes().remove$1('expanded');
   else {
-    if ($.contains$1(this.box_0.pre_1.get$classes(), 'formatted') !== true) {
-      var t1 = $.classifySource($.SourceFile$2('', this.box_0.pre_1.get$text()));
-      this.box_0.pre_1.set$innerHTML(t1);
-      $.add$1(this.box_0.pre_1.get$classes(), 'formatted');
+    if ($.contains$1(this.pre_0.get$classes(), 'formatted') !== true) {
+      var t1 = $.classifySource($.SourceFile$2('', this.pre_0.get$text()));
+      this.pre_0.set$innerHTML(t1);
+      $.add$1(this.pre_0.get$classes(), 'formatted');
     }
-    $.add$1(this.box_0.pre_1.get$classes(), 'expanded');
+    $.add$1(this.pre_0.get$classes(), 'expanded');
   }
  }
 };
@@ -3968,10 +3941,10 @@ $$.Closure6 = {"":
 };
 
 $$.Closure7 = {"":
- ["box_0", "output_2"],
+ ["f_1", "output_0"],
  super: "Closure35",
  $call$1: function(element) {
-  this.box_0.f_1.$call$1(element) === true && $.add$1(this.output_2, element);
+  this.f_1.$call$1(element) === true && $.add$1(this.output_0, element);
  }
 };
 
@@ -3992,34 +3965,34 @@ $$.Closure9 = {"":
 };
 
 $$.Closure10 = {"":
- ["box_0"],
+ ["f_0"],
  super: "Closure35",
  $call$2: function(key, value) {
-  this.box_0.f_10.$call$1(key);
+  this.f_0.$call$1(key);
  }
 };
 
 $$.Closure11 = {"":
- ["box_0"],
+ ["result_1", "f_0"],
  super: "Closure35",
  $call$2: function(key, value) {
-  this.box_0.f_11.$call$1(key) === true && $.add$1(this.box_0.result_2, key);
+  this.f_0.$call$1(key) === true && $.add$1(this.result_1, key);
  }
 };
 
 $$.Closure12 = {"":
- ["box_0"],
+ ["value_0"],
  super: "Closure35",
  $call$1: function(s) {
-  return $.add$1(s, this.box_0.value_1);
+  return $.add$1(s, this.value_0);
  }
 };
 
 $$.Closure13 = {"":
- ["box_0"],
+ ["collection_0"],
  super: "Closure35",
  $call$1: function(s) {
-  return $.addAll(s, this.box_0.collection_1);
+  return $.addAll(s, this.collection_0);
  }
 };
 
@@ -4032,10 +4005,10 @@ $$.Closure14 = {"":
 };
 
 $$.Closure15 = {"":
- ["this_2", "box_0"],
+ ["this_1", "f_0"],
  super: "Closure35",
  $call$1: function(key) {
-  return this.box_0.f_12.$call$2(key, $.index(this.this_2, key));
+  return this.f_0.$call$2(key, $.index(this.this_1, key));
  }
 };
 
@@ -4048,10 +4021,10 @@ $$.Closure16 = {"":
 };
 
 $$.Closure17 = {"":
- ["this_2", "box_0"],
+ ["this_1", "f_0"],
  super: "Closure35",
  $call$2: function(key, value) {
-  this.this_2._matches$1(key) === true && this.box_0.f_13.$call$2(this.this_2._strip$1(key), value);
+  this.this_1._matches$1(key) === true && this.f_0.$call$2(this.this_1._strip$1(key), value);
  }
 };
 
@@ -4065,10 +4038,10 @@ $$.Closure18 = {"":
 };
 
 $$.Closure19 = {"":
- ["box_0"],
+ ["f_0"],
  super: "Closure35",
  $call$1: function(entry) {
-  this.box_0.f_14.$call$2(entry.get$key(), entry.get$value());
+  this.f_0.$call$2(entry.get$key(), entry.get$value());
  }
 };
 
@@ -4081,31 +4054,31 @@ $$.Closure20 = {"":
 };
 
 $$.Closure21 = {"":
- ["box_0"],
+ ["html_0"],
  super: "Closure35",
  $call$2: function(icon, type) {
-  $.add$1(this.box_0.html_1, '<li>');
+  $.add$1(this.html_0, '<li>');
   var t1 = $.eqB($.currentType, $.index(type, 'name'));
-  var t2 = this.box_0;
-  if (t1) $.add$1(t2.html_1, '<div class="icon-' + $.S(icon) + '"></div><strong>' + $.S($.index(type, 'name')) + '</strong>');
-  else $.add$1(t2.html_1, '          <a href="' + $.S($.prefix) + $.S($.index(type, 'url')) + '">\n            <div class="icon-' + $.S(icon) + '"></div>' + $.S($.index(type, 'name')) + '\n          </a>\n          ');
-  $.add$1(this.box_0.html_1, '</li>');
+  var t2 = this.html_0;
+  if (t1) $.add$1(t2, '<div class="icon-' + $.S(icon) + '"></div><strong>' + $.S($.index(type, 'name')) + '</strong>');
+  else $.add$1(t2, '          <a href="' + $.S($.prefix) + $.S($.index(type, 'url')) + '">\n            <div class="icon-' + $.S(icon) + '"></div>' + $.S($.index(type, 'name')) + '\n          </a>\n          ');
+  $.add$1(this.html_0, '</li>');
  }
 };
 
 $$.Closure22 = {"":
- ["writeType_2"],
+ ["writeType_1"],
  super: "Closure35",
  $call$1: function(type) {
-  return this.writeType_2.$call$2($.index(type, 'kind'), type);
+  return this.writeType_1.$call$2($.index(type, 'kind'), type);
  }
 };
 
 $$.Closure23 = {"":
- ["writeType_3"],
+ ["writeType_2"],
  super: "Closure35",
  $call$1: function(type) {
-  return this.writeType_3.$call$2('exception', type);
+  return this.writeType_2.$call$2('exception', type);
  }
 };
 
@@ -4118,28 +4091,26 @@ $$.Closure24 = {"":
 };
 
 $$.Closure25 = {"":
- ["box_0"],
+ ["list_2", "box_0"],
  super: "Closure35",
  $call$2: function(key, value) {
-  var t1 = this.box_0;
-  var t2 = t1.list_1;
-  t1 = t1.i_2;
-  var i = $.add(t1, 1);
-  this.box_0.i_2 = i;
-  $.indexSet(t2, t1, key);
+  var t1 = this.list_2;
+  var t2 = this.box_0.i_1;
+  var i = $.add(t2, 1);
+  this.box_0.i_1 = i;
+  $.indexSet(t1, t2, key);
  }
 };
 
 $$.Closure26 = {"":
- ["box_0"],
+ ["list_2", "box_0"],
  super: "Closure35",
  $call$1: function(entry) {
-  var t1 = this.box_0;
-  var t2 = t1.list_10;
-  t1 = t1.index_2;
-  var index = $.add(t1, 1);
-  this.box_0.index_2 = index;
-  $.indexSet(t2, t1, entry.get$key());
+  var t1 = this.list_2;
+  var t2 = this.box_0.index_1;
+  var index = $.add(t2, 1);
+  this.box_0.index_1 = index;
+  $.indexSet(t1, t2, entry.get$key());
  }
 };
 
@@ -4152,23 +4123,22 @@ $$.Closure27 = {"":
 };
 
 $$.Closure28 = {"":
- ["box_0"],
+ ["list_2", "box_0"],
  super: "Closure35",
  $call$2: function(key, value) {
-  var t1 = this.box_0;
-  var t2 = t1.list_11;
-  t1 = t1.i_20;
-  var i = $.add(t1, 1);
-  this.box_0.i_20 = i;
-  $.indexSet(t2, t1, value);
+  var t1 = this.list_2;
+  var t2 = this.box_0.i_10;
+  var i = $.add(t2, 1);
+  this.box_0.i_10 = i;
+  $.indexSet(t1, t2, value);
  }
 };
 
 $$.Closure29 = {"":
- ["this_2", "box_0"],
+ ["this_1", "result_0"],
  super: "Closure35",
  $call$1: function(key) {
-  return $.add$1(this.box_0.result_10, $.index(this.this_2, key));
+  return $.add$1(this.result_0, $.index(this.this_1, key));
  }
 };
 
@@ -4181,15 +4151,14 @@ $$.Closure30 = {"":
 };
 
 $$.Closure31 = {"":
- ["box_0"],
+ ["list_2", "box_0"],
  super: "Closure35",
  $call$1: function(entry) {
-  var t1 = this.box_0;
-  var t2 = t1.list_12;
-  t1 = t1.index_20;
-  var index = $.add(t1, 1);
-  this.box_0.index_20 = index;
-  $.indexSet(t2, t1, entry.get$value());
+  var t1 = this.list_2;
+  var t2 = this.box_0.index_10;
+  var index = $.add(t2, 1);
+  this.box_0.index_10 = index;
+  $.indexSet(t1, t2, entry.get$value());
  }
 };
 
@@ -4826,13 +4795,9 @@ $.StringMatch$3 = function(_start, str, pattern) {
 };
 
 $.invokeClosure = function(closure, isolate, numberOfArguments, arg1, arg2) {
-  var t1 = ({});
-  t1.arg2_3 = arg2;
-  t1.arg1_2 = arg1;
-  t1.closure_1 = closure;
-  if ($.eqB(numberOfArguments, 0)) return $._callInIsolate(isolate, new $.Closure2(t1));
-  if ($.eqB(numberOfArguments, 1)) return $._callInIsolate(isolate, new $.Closure3(t1));
-  if ($.eqB(numberOfArguments, 2)) return $._callInIsolate(isolate, new $.Closure4(t1));
+  if ($.eqB(numberOfArguments, 0)) return $._callInIsolate(isolate, new $.Closure2(closure));
+  if ($.eqB(numberOfArguments, 1)) return $._callInIsolate(isolate, new $.Closure3(closure, arg1));
+  if ($.eqB(numberOfArguments, 2)) return $._callInIsolate(isolate, new $.Closure4(closure, arg1, arg2));
   throw $.captureStackTrace($.ExceptionImplementation$1('Unsupported number of arguments for wrapped closure'));
 };
 
@@ -5063,12 +5028,10 @@ $.regExpExec = function(regExp, str) {
 };
 
 $.get = function(url, onSuccess) {
-  var t1 = ({});
-  t1.onSuccess_1 = onSuccess;
   var request = $.XMLHttpRequest();
   request.open$3('GET', url, true);
   request.set$withCredentials(true);
-  $.add$1(request.get$on().get$readyStateChange(), new $.Closure1(t1, request));
+  $.add$1(request.get$on().get$readyStateChange(), new $.Closure1(onSuccess, request));
   request.send$0();
   return request;
 };
@@ -5207,14 +5170,12 @@ $._emitObject = function(o, result, visiting) {
 
 $._emitMap = function(m, result, visiting) {
   var t1 = ({});
-  t1.visiting_2 = visiting;
-  t1.result_1 = result;
-  $.add$1(t1.visiting_2, m);
-  $.add$1(t1.result_1, '{');
-  t1.first_3 = true;
-  $.forEach(m, new $.Closure0(t1));
-  $.add$1(t1.result_1, '}');
-  $.removeLast(t1.visiting_2);
+  $.add$1(visiting, m);
+  $.add$1(result, '{');
+  t1.first_1 = true;
+  $.forEach(m, new $.Closure0(result, t1, visiting));
+  $.add$1(result, '}');
+  $.removeLast(visiting);
 };
 
 $._IDBDatabaseEventsImpl$1 = function(_ptr) {
@@ -5277,26 +5238,24 @@ $.stringReplaceJS = function(receiver, replacer, to) {
 };
 
 $.buildLibraryNavigation = function(html, library) {
-  var t1 = ({});
-  t1.html_1 = html;
   var types = [];
   var exceptions = [];
-  for (var t2 = $.iterator(library); t2.hasNext$0() === true; ) {
-    var t3 = t2.next$0();
-    if ($.endsWith($.index(t3, 'name'), 'Exception') === true) $.add$1(exceptions, t3);
-    else $.add$1(types, t3);
+  for (var t1 = $.iterator(library); t1.hasNext$0() === true; ) {
+    var t2 = t1.next$0();
+    if ($.endsWith($.index(t2, 'name'), 'Exception') === true) $.add$1(exceptions, t2);
+    else $.add$1(types, t2);
   }
-  t2 = types.length;
-  if (t2 === 0) {
-    t2 = exceptions.length;
-    t2 = t2 === 0;
-  } else t2 = false;
-  if (t2) return;
-  t2 = new $.Closure21(t1);
-  $.add$1(t1.html_1, '<ul class="icon">');
-  $.forEach(types, new $.Closure22(t2));
-  $.forEach(exceptions, new $.Closure23(t2));
-  $.add$1(t1.html_1, '</ul>');
+  t1 = types.length;
+  if (t1 === 0) {
+    t1 = exceptions.length;
+    t1 = t1 === 0;
+  } else t1 = false;
+  if (t1) return;
+  t1 = new $.Closure21(html);
+  $.add$1(html, '<ul class="icon">');
+  $.forEach(types, new $.Closure22(t1));
+  $.forEach(exceptions, new $.Closure23(t1));
+  $.add$1(html, '</ul>');
 };
 
 $.UnsupportedOperationException$1 = function(_message) {
@@ -6701,12 +6660,11 @@ $.captureStackTrace = function(ex) {
 
 $.enableCodeBlocks = function() {
   for (var t1 = $.iterator($.document().queryAll$1('.method, .field')); t1.hasNext$0() === true; ) {
-    var t2 = ({});
-    var t3 = t1.next$0();
-    var showCode = t3.query$1('.show-code');
+    var t2 = t1.next$0();
+    var showCode = t2.query$1('.show-code');
     if (showCode == null) continue;
-    t2.pre_1 = t3.query$1('pre.source');
-    $.add$1(showCode.get$on().get$click(), new $.Closure5(t2));
+    var pre = t2.query$1('pre.source');
+    $.add$1(showCode.get$on().get$click(), new $.Closure5(pre));
   }
 };
 

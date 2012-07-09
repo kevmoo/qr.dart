@@ -118,9 +118,7 @@ bool draw(){
 <div class="doc">
 
 <pre class="source">
-core.AffineTransform getTransformToRoot(){
-  return new core.AffineTransform();
-}
+core.AffineTransform getTransformToRoot() =&gt; new core.AffineTransform();
 </pre>
 </div>
 </div>
@@ -131,9 +129,7 @@ core.AffineTransform getTransformToRoot(){
 <div class="doc">
 
 <pre class="source">
-PElement get rootElement(){
-  return _element;
-}
+PElement get rootElement() =&gt; _element;
 </pre>
 </div>
 </div>
@@ -144,9 +140,7 @@ PElement get rootElement(){
 <div class="doc">
 
 <pre class="source">
-core.Size get size(){
-  return new core.Size(_canvas.width, _canvas.height);
-}
+core.Size get size() =&gt; new core.Size(_canvas.width, _canvas.height);
 </pre>
 </div>
 </div>
@@ -157,9 +151,7 @@ core.Size get size(){
 <div class="doc">
 
 <pre class="source">
-core.EventRoot&lt;core.EventArgs&gt; get updated(){
-  return _updatedEventHandle;
-}
+core.EventRoot&lt;core.EventArgs&gt; get updated() =&gt; _updatedEventHandle;
 </pre>
 </div>
 </div>

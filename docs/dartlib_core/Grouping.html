@@ -80,14 +80,12 @@ Collection&lt;K&gt; getKeys() =&gt; _values.getKeys();
 </div>
 <div class="method"><h4 id="getValues">
 <span class="show-code">Code</span>
-<a href="../dart_core/Iterable.html">Iterable</a> <strong>getValues</strong>() <a class="anchor-link" href="#getValues"
+<a href="../dartlib_core/Enumerable.html">Enumerable</a> <strong>getValues</strong>() <a class="anchor-link" href="#getValues"
               title="Permalink to Grouping&lt;K, V&gt;.getValues">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-Iterable&lt;V&gt; getValues() {
-  return new SelectMany&lt;Iterable&lt;V&gt;, V&gt;.flatten(_values.getValues());
-}
+Enumerable&lt;V&gt; getValues() =&gt; $(_values.getValues()).selectMany((a) =&gt; a);
 </pre>
 </div>
 </div>
@@ -110,6 +108,17 @@ bool get isEmpty() =&gt; _values.isEmpty();
 <p>The number of {key, value} pairs in the map.</p>
 <pre class="source">
 int get length() =&gt; _values.length;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="toString">
+<span class="show-code">Code</span>
+<a href="../dart_core/String.html">String</a> <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to Grouping&lt;K, V&gt;.toString">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+String toString() =&gt; _values.toString();
 </pre>
 </div>
 </div>

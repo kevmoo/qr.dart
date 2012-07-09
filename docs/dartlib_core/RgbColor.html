@@ -54,6 +54,24 @@ int hashCode() =&gt; Util.getHashCode([r,g,b]);
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="toHex">
+<span class="show-code">Code</span>
+<a href="../dart_core/String.html">String</a> <strong>toHex</strong>() <a class="anchor-link" href="#toHex"
+              title="Permalink to RgbColor.toHex">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+String toHex() {
+  final buffer = new StringBuffer('#');
+  var comps = [r,g,b].map((c) {
+    return _prependZeroIfNecessaryHelper(c.toRadixString(16));
+  });
+  buffer.addAll(comps);
+  return buffer.toString();
+}
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="toHsl">
 <span class="show-code">Code</span>
 <a href="../dartlib_core/HslColor.html">HslColor</a> <strong>toHsl</strong>() <a class="anchor-link" href="#toHsl"
@@ -92,7 +110,6 @@ HslColor toHsl() {
     }
   }
 
-  // Make sure the hue falls between 0 and 360.
   return new HslColor(h, s, l);
 }
 </pre>
