@@ -55,4 +55,6 @@ class Grouping<K extends Hashable, V> {
    * Returns true if there is no {key, value} pair in the map.
    */
   bool get isEmpty() => _values.isEmpty();
+
+  String toString() => _values.toString();
 }
