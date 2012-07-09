@@ -47,10 +47,21 @@ class TestEnumerable {
     expect(charList[6], equals('i'));
     expect(charList[7], equals('I'));
 
+    //
     // now group 'em
+    //
     var grouped = select.group();
     // 11 letters, o repeated three times
     expect(grouped.length, equals(9));
+
+    //
+    // Some and Every
+    //
+    expect(select.some((e) => e == 'k'), isTrue);
+    expect(select.some((e) => e == 'z'), isFalse);
+
+    expect(select.every((e) => e == 'z'), isFalse);
+    expect(select.every((e) => e != 'z'), isTrue);
   }
 
   static List<String> _getChars(String input) {

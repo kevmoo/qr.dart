@@ -22,6 +22,32 @@ class Enumerable<T> implements Iterable<T> {
   Grouping<Object, T> group([Func1<T, Object> keyFunc = null]) {
     return new Grouping(this, keyFunc);
   }
+
+  /**
+   * Returns true if every elements of this collection satisify the
+   * predicate [f]. Returns false otherwise.
+   */
+  bool every(bool f(T element)) {
+    for (final e in this) {
+      if(!f(e)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /**
+   * Returns true if one element of this collection satisfies the
+   * predicate [f]. Returns false otherwise.
+   */
+  bool some(bool f(T element)) {
+    for (final e in this) {
+      if(f(e)) {
+        return true;
+      }
+    }
+    return false;
+  }
 }
 
 class _EnumerableWrapper<T> extends Enumerable<T> {
