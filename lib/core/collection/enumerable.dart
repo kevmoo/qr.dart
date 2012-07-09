@@ -65,9 +65,15 @@ class Enumerable<T> implements Iterable<T> {
 
   ReadOnlyCollection<T> toReadOnlyCollection() => new ReadOnlyCollection(this);
 
-  // TODO: forEach
+  void forEach(Action1<T> f) {
+    for(final e in this) {
+      f(e);
+    }
+  }
+
+  List<T> toList() => new List<T>.from(this);
+
   // TODO: where
-  // TODO: toList
 }
 
 class _FuncEnumerable<TSource, TOutput> extends Enumerable<TOutput> {

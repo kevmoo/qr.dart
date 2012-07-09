@@ -9,12 +9,20 @@ class TestEnumerable {
         test('simple', _testSimpleGrouping);
       });
       test('select', _testSelect);
+      test('forEach', _testForEach);
     });
   }
 
   static void _testSelect() {
     final e = $([1,2,3,4,5,6]).select((x) => x * 2);
     expect(e, orderedEquals([2,4,6,8,10,12]));
+  }
+
+  static void _testForEach() {
+    final e = $([1,2,3,4,5,6]);
+    int sum = 0;
+    e.forEach((a) => sum += a);
+    expect(sum, equals(7 * 3));
   }
 
   static void _testAggregate() {
