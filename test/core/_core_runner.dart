@@ -4,12 +4,14 @@
 #import('../../lib/core.dart');
 #import('../../lib/test.dart');
 
-#source('test_list_base.dart');
-#source('test_select_many.dart');
 #source('test_cloneable.dart');
 #source('test_events.dart');
-#source('test_grouping.dart');
-#source('test_collection_util.dart');
+
+#source('collection/test_list_base.dart');
+#source('collection/test_select_many.dart');
+#source('collection/test_grouping.dart');
+#source('collection/test_collection_util.dart');
+
 #source('test_util.dart');
 #source('math/test_coordinate.dart');
 #source('math/test_vector.dart');
