@@ -42,9 +42,7 @@ class Grouping<K extends Hashable, V> {
    */
   Collection<K> getKeys() => _values.getKeys();
 
-  Iterable<V> getValues() {
-    return new SelectMany<Iterable<V>, V>.flatten(_values.getValues());
-  }
+  Enumerable<V> getValues() => $(_values.getValues()).selectMany((a) => a);
 
   /**
    * The number of {key, value} pairs in the map.
