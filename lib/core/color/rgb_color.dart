@@ -26,10 +26,9 @@ class RgbColor implements Hashable {
 
   String toHex() {
     final buffer = new StringBuffer('#');
-    var comps = [r,g,b].map((c) {
-      return _prependZeroIfNecessaryHelper(c.toRadixString(16));
+    [r,g,b].forEach((c) {
+      buffer.add(_prependZeroIfNecessaryHelper(c.toRadixString(16)));
     });
-    buffer.addAll(comps);
     return buffer.toString();
   }
 
