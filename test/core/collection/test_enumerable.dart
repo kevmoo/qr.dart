@@ -9,8 +9,14 @@ class TestEnumerable {
         test('simple', _testSimpleGrouping);
       });
       test('select', _testSelect);
+      test('where', _testWhere);
       test('forEach', _testForEach);
     });
+  }
+
+  static void _testWhere() {
+    final e = $([1,2,3,4,5,6]).where((x) => x % 2 == 0);
+    expect(e, orderedEquals([2,4,6]));
   }
 
   static void _testSelect() {

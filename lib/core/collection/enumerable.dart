@@ -73,7 +73,10 @@ class Enumerable<T> implements Iterable<T> {
 
   List<T> toList() => new List<T>.from(this);
 
-  // TODO: where
+  Enumerable<T> where(Func1<T, bool> f) {
+    requireArgumentNotNull(f, 'f');
+    return new _FuncEnumerable(this, (s) => new _WhereIterator(s, f));
+  }
 }
 
 class _FuncEnumerable<TSource, TOutput> extends Enumerable<TOutput> {
@@ -94,6 +97,38 @@ class _SelectIterator<TSource, TOutput> implements Iterator<TOutput> {
   bool hasNext() => _source.hasNext();
 
   TOutput next() => _func(_source.next());
+}
+
+class _WhereIterator<T> implements Iterator<T> {
+  final Iterator<T> _source;
+  final Func1<T, bool> _func;
+  bool _next;
+  T _current;
+
+  _WhereIterator(this._source, this._func);
+
+  bool hasNext() {
+    if(_next == null) {
+      _next = false;
+      while(_source.hasNext()) {
+        _current = _source.next();
+        if(_func(_current)) {
+          _next = true;
+          break;
+        }
+      }
+    }
+    return _next;
+  }
+
+  T next() {
+    if(!hasNext()) {
+      throw const NoMoreElementsException();
+    }
+    assert(_func(_current));
+    _next = null;
+    return _current;
+  }
 }
 
 class _SelectManyIterator<TSource, TOutput>
