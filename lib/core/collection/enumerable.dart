@@ -7,6 +7,7 @@ class Enumerable<T> implements Iterable<T> {
   const Enumerable._internal();
 
   factory Enumerable(Iterable<T> source) {
+    requireArgumentNotNull(source, 'source');
     return new _FuncEnumerable<T, T>(source, (s) => s);
   }
 
@@ -14,14 +15,15 @@ class Enumerable<T> implements Iterable<T> {
     throw const NotImplementedException();
   }
 
-  Object aggregate(Object seed, Func2<Object, T, Object> func) {
-    return CollectionUtil.aggregate(this, seed, func);
+  Object aggregate(Object seed, Func2<Object, T, Object> f) {
+    requireArgumentNotNull(f, 'f');
+    return CollectionUtil.aggregate(this, seed, f);
   }
 
-  Enumerable selectMany(Func1<T, Iterable> func) {
-    requireArgumentNotNull(func, 'func');
+  Enumerable selectMany(Func1<T, Iterable> f) {
+    requireArgumentNotNull(f, 'f');
     return new _FuncEnumerable(this,
-      (s) => new _SelectManyIterator._internal(s, func));
+      (s) => new _SelectManyIterator._internal(s, f));
   }
 
   Grouping<Object, T> group([Func1<T, Object> keyFunc = null]) {
@@ -33,6 +35,7 @@ class Enumerable<T> implements Iterable<T> {
    * predicate [f]. Returns false otherwise.
    */
   bool every(bool f(T element)) {
+    requireArgumentNotNull(f, 'f');
     for (final e in this) {
       if(!f(e)) {
         return false;
@@ -46,6 +49,7 @@ class Enumerable<T> implements Iterable<T> {
    * predicate [f]. Returns false otherwise.
    */
   bool some(bool f(T element)) {
+    requireArgumentNotNull(f, 'f');
     for (final e in this) {
       if(f(e)) {
         return true;
@@ -55,6 +59,7 @@ class Enumerable<T> implements Iterable<T> {
   }
 
   Enumerable select(Func1 f) {
+    requireArgumentNotNull(f, 'f');
     return new _FuncEnumerable(this, (s) => new _SelectIterator(s, f));
   }
 

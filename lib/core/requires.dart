@@ -6,6 +6,6 @@ void requireArgument(bool truth, [String arg = ""]) {
 
 void requireArgumentNotNull(argument, [String argName = ""]) {
   if(argument == null) {
-    throw new IllegalArgumentException(argName);
+    throw new NullArgumentException(argName);
   }
 }

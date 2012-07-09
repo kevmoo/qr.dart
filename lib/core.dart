@@ -12,6 +12,7 @@
 #source('core/global_id.dart');
 #source('core/tuple.dart');
 
+#source('core/null_argument_exception.dart');
 #source('core/requires.dart');
 #source('core/util.dart');
 
