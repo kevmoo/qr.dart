@@ -9,7 +9,6 @@
 
 #source('collection/test_enumerable.dart');
 #source('collection/test_list_base.dart');
-#source('collection/test_grouping.dart');
 #source('collection/test_collection_util.dart');
 
 #source('test_util.dart');
@@ -28,7 +27,6 @@ void runCoreTests() {
   group('core', (){
     TestEnumerable.run();
     TestListBase.run();
-    TestGrouping.run();
     TestCollectionUtil.run();
 
     TestCoordinate.run();

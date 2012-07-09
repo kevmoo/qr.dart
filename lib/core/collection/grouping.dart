@@ -1,9 +1,13 @@
 class Grouping<K extends Hashable, V> {
   final HashMap<K, List<V>> _values;
 
-  Grouping._internal(this._values);
+  const Grouping._internal(this._values);
 
-  factory Grouping(Iterable<V> source, Func1<V, K> keyFunc) {
+  factory Grouping(Iterable<V> source, [Func1<V, K> keyFunc = null]) {
+    if(keyFunc == null) {
+      keyFunc = (v) => v;
+    }
+
     var map = new HashMap<K, List<V>>();
 
     for (final V value in source) {
@@ -13,11 +17,6 @@ class Grouping<K extends Hashable, V> {
     }
 
     return new Grouping._internal(map);
-  }
-
-  factory Grouping.from(Iterable<V> source) {
-    Func1<V, K> identFunc = (v) => v;
-    return new Grouping(source, identFunc);
   }
 
   /**

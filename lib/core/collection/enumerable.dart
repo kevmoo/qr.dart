@@ -13,4 +13,8 @@ class Enumerable<T> implements Iterable<T> {
     requireArgumentNotNull(func, 'func');
     return new SelectMany(this, func);
   }
+
+  Grouping<Object, T> group([Func1<T, Object> keyFunc = null]) {
+    return new Grouping(this, keyFunc);
+  }
 }
