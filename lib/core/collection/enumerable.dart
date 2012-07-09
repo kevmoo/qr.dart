@@ -52,6 +52,12 @@ class Enumerable<T> implements Iterable<T> {
     }
     return false;
   }
+
+  // TODO: forEach
+  // TODO: select
+  // TODO: where
+  // TODO: toReadOnlyCollection
+  // TODO: toList
 }
 
 class _EnumerableWrapper<T> extends Enumerable<T> {
