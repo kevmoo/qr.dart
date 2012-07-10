@@ -15,21 +15,6 @@ class Enumerable<T> implements Iterable<T> {
     throw const NotImplementedException();
   }
 
-  Object aggregate(Object seed, Func2<Object, T, Object> f) {
-    requireArgumentNotNull(f, 'f');
-    return CollectionUtil.aggregate(this, seed, f);
-  }
-
-  Enumerable selectMany(Func1<T, Iterable> f) {
-    requireArgumentNotNull(f, 'f');
-    return new _FuncEnumerable(this,
-      (s) => new _SelectManyIterator._internal(s, f));
-  }
-
-  Grouping<Object, T> group([Func1<T, Object> keyFunc = null]) {
-    return new Grouping(this, keyFunc);
-  }
-
   /**
    * Returns true if every elements of this collection satisify the
    * predicate [f]. Returns false otherwise.
@@ -73,10 +58,30 @@ class Enumerable<T> implements Iterable<T> {
 
   Enumerable select(Func1<T, Object> f) {
     requireArgumentNotNull(f, 'f');
-    return new _FuncEnumerable(this, (s) => new _SelectIterator(s, f));
+    return new _FuncEnumerable(this, (s) => new _SelectIterator<T, Object>(s, f));
   }
 
-  ReadOnlyCollection<T> toReadOnlyCollection() => new ReadOnlyCollection(this);
+  Enumerable<T> where(Func1<T, bool> f) {
+    requireArgumentNotNull(f, 'f');
+    return new _FuncEnumerable(this, (s) => new _WhereIterator<T>(s, f));
+  }
+
+  Enumerable selectMany(Func1<T, Iterable> f) {
+    requireArgumentNotNull(f, 'f');
+    return new _FuncEnumerable(this,
+      (s) => new _SelectManyIterator._internal(s, f));
+  }
+
+  Object aggregate(Object seed, Func2<Object, T, Object> f) {
+    requireArgumentNotNull(f, 'f');
+    return CollectionUtil.aggregate(this, seed, f);
+  }
+
+  Grouping<Object, T> group([Func1<T, Object> keyFunc = null]) {
+    return new Grouping(this, keyFunc);
+  }
+
+  ReadOnlyCollection<T> toReadOnlyCollection() => new ReadOnlyCollection<T>(this);
 
   void forEach(Action1<T> f) {
     for(final e in this) {
@@ -85,11 +90,6 @@ class Enumerable<T> implements Iterable<T> {
   }
 
   List<T> toList() => new List<T>.from(this);
-
-  Enumerable<T> where(Func1<T, bool> f) {
-    requireArgumentNotNull(f, 'f');
-    return new _FuncEnumerable(this, (s) => new _WhereIterator(s, f));
-  }
 
   // TODO: test -> with and without f
   HashSet toHashSet([Func1<T, Hashable> f]) {
@@ -126,7 +126,7 @@ class Enumerable<T> implements Iterable<T> {
 
   NumberEnumerable selectNumbers(Func1<T, num> f) {
     requireArgumentNotNull(f, 'f');
-    return new _FuncNumEnumerable<T>(this, (s) => new _SelectIterator(s, f));
+    return new _FuncNumEnumerable<T>(this, (s) => new _SelectIterator<T, num>(s, f));
   }
 
   // TODO:
