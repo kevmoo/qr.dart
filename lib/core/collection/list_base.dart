@@ -144,19 +144,19 @@ class ListBase<E> extends Enumerable<E> implements Listish<E> {
   E last() => this[this.length-1];
 
   /**
-   * Returns a new list containing [count] elements from the list,
+   * Returns a new list containing [itemCount] elements from the list,
    * starting at [start].
-   * Returns an empty list if [count] is 0.
-   * Throws an [IllegalArgumentException] if [count] is negative.
+   * Returns an empty list if [itemCount] is 0.
+   * Throws an [IllegalArgumentException] if [itemCount] is negative.
    * Throws an [IndexOutOfRangeException] if [start] or
-   * [:start + count - 1:] are out of range.
+   * [:start + itemCount - 1:] are out of range.
    */
-  List<E> getRange(int start, int count)  {
-    requireArgument(count >= 0, 'count');
+  List<E> getRange(int start, int itemCount)  {
+    requireArgument(itemCount >= 0, 'count');
 
-    final lastIndex = start + count - 1;
+    final lastIndex = start + itemCount - 1;
 
-    if(count > 0) {
+    if(itemCount > 0) {
       if(start < 0) {
         throw new IndexOutOfRangeException(start);
       }

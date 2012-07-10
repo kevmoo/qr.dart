@@ -58,6 +58,19 @@ class Enumerable<T> implements Iterable<T> {
     return false;
   }
 
+  int count([Func1<T, bool> f = null]) {
+    if(f == null) {
+      f = (a) => true;
+    }
+    int c = 0;
+    for(final e in this) {
+      if(f(e)) {
+        c++;
+      }
+    }
+    return c;
+  }
+
   Enumerable select(Func1<T, Object> f) {
     requireArgumentNotNull(f, 'f');
     return new _FuncEnumerable(this, (s) => new _SelectIterator(s, f));

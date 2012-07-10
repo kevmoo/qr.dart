@@ -11,7 +11,17 @@ class TestEnumerable {
       test('select', _testSelect);
       test('where', _testWhere);
       test('forEach', _testForEach);
+      test('count', _testCount);
     });
+  }
+
+  static void _testCount() {
+    final e = $([1,2,3,4,5,6]);
+
+    expect(e.count(), equals(6));
+
+    var count = e.count((x) => x % 2 == 0);
+    expect(count, equals(3));
   }
 
   static void _testWhere() {
