@@ -99,26 +99,27 @@ class Enumerable<T> implements Iterable<T> {
     }
   }
 
-  // TODO: test
   HashMap toHashMap(Func1<T, Object> valueFunc, [Func1<T, Hashable> keyFunc]) {
     Iterable source;
     if(keyFunc == null) {
       keyFunc = (a) => a;
     }
 
-    var k, e;
-    bool populated = false;
+    var e;
+    bool duplicate;
     Func populate = () {
-      if(populated) {
-        throw 'damn!';
-      }
+      duplicate = false;
       return valueFunc(e);
     };
 
     final map = new HashMap();
     for(e in this) {
-      k = keyFunc(e);
+      final k = keyFunc(e);
+      duplicate = true;
       map.putIfAbsent(k, populate);
+      if(duplicate) {
+        throw new UnsupportedOperationException("The key '$k' is duplicated");
+      }
     }
     return map;
   }

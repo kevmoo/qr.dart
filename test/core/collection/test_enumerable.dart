@@ -14,6 +14,7 @@ class TestEnumerable {
       test('forEach', _testForEach);
       test('count', _testCount);
       test('toHashSet', _testToHashSet);
+      test('toHashMap', _testToHashMap);
     });
   }
 
@@ -29,6 +30,38 @@ class TestEnumerable {
     expect(hashSet, unorderedEquals(noDupes));
     hashSet = noDupes.toHashSet((s) => s.length);
     expect(hashSet, unorderedEquals([3,2,5]));
+  }
+
+  static void _testToHashMap() {
+    final noDupes = $(['the', 'kitty', 'is', 'super']);
+
+    //
+    // where the item is the key
+    //
+    var hashMap = noDupes.toHashMap((s) => s.length);
+    hashMap.forEach((k,v) {
+      expect(k.length, equals(v));
+    });
+    expect(hashMap.getKeys(), unorderedEquals(noDupes));
+
+    //
+    // where the key is produced by a func, too
+    //
+    hashMap = noDupes.toHashMap((s) => s, (s) => s[0]);
+    hashMap.forEach((k,v) {
+      expect(k, equals(v[0]));
+    });
+    expect(hashMap.getValues(), unorderedEquals(noDupes));
+
+    //
+    // doesn't support duplicate keys
+    //
+    expect(() => noDupes.toHashMap((s) => s, (s) => s.length),
+        throwsUnsupportedOperationException);
+
+    final withDupes = $(['the', 'cat', 'is', 'the', 'super', 'cat']);
+    expect(() => withDupes.toHashMap((s) => s.length),
+        throwsUnsupportedOperationException);
   }
 
   static void _testCount() {
