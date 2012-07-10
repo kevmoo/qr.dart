@@ -129,27 +129,27 @@ void forEach(void f(E element)) {
 </div>
 <div class="method"><h4 id="getRange">
 <span class="show-code">Code</span>
-<a href="../dart_core/List.html">List</a> <strong>getRange</strong>(<a href="../dart_core/int.html">int</a> start, <a href="../dart_core/int.html">int</a> count) <a class="anchor-link" href="#getRange"
+<a href="../dart_core/List.html">List</a> <strong>getRange</strong>(<a href="../dart_core/int.html">int</a> start, <a href="../dart_core/int.html">int</a> itemCount) <a class="anchor-link" href="#getRange"
               title="Permalink to ListBase&lt;E&gt;.getRange">#</a></h4>
 <div class="doc">
 <p>Returns a new list containing 
-<span class="param">count</span> elements from the list,
+<span class="param">itemCount</span> elements from the list,
 starting at 
 <span class="param">start</span>.
 Returns an empty list if 
-<span class="param">count</span> is 0.
+<span class="param">itemCount</span> is 0.
 Throws an <code>IllegalArgumentException</code> if 
-<span class="param">count</span> is negative.
+<span class="param">itemCount</span> is negative.
 Throws an <code>IndexOutOfRangeException</code> if 
 <span class="param">start</span> or
-<code>start + count - 1</code> are out of range.</p>
+<code>start + itemCount - 1</code> are out of range.</p>
 <pre class="source">
-List&lt;E&gt; getRange(int start, int count)  {
-  requireArgument(count &gt;= 0, 'count');
+List&lt;E&gt; getRange(int start, int itemCount)  {
+  requireArgument(itemCount &gt;= 0, 'count');
 
-  final lastIndex = start + count - 1;
+  final lastIndex = start + itemCount - 1;
 
-  if(count &gt; 0) {
+  if(itemCount &gt; 0) {
     if(start &lt; 0) {
       throw new IndexOutOfRangeException(start);
     }

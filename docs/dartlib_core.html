@@ -48,6 +48,19 @@ bool isValidNumber(num value) {
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="n$">
+<span class="show-code">Code</span>
+<a href="dartlib_core/NumberEnumerable.html">NumberEnumerable</a> <strong>n$</strong>(<a href="dart_core/Iterable.html">Iterable</a> source) <a class="anchor-link" href="#n$"
+              title="Permalink to null.n$">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+NumberEnumerable n$(Iterable&lt;num&gt; source) {
+  return new NumberEnumerable(source);
+}
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="requireArgument">
 <span class="show-code">Code</span>
 <a href="dart_core/void.html">void</a> <strong>requireArgument</strong>(<a href="dart_core/bool.html">bool</a> truth, [<a href="dart_core/String.html">String</a> arg = ""]) <a class="anchor-link" href="#requireArgument"
@@ -72,7 +85,7 @@ void requireArgument(bool truth, [String arg = ""]) {
 <pre class="source">
 void requireArgumentNotNull(argument, [String argName = ""]) {
   if(argument == null) {
-    throw new IllegalArgumentException(argName);
+    throw new NullArgumentException(argName);
   }
 }
 </pre>
@@ -154,6 +167,12 @@ void requireArgumentNotNull(argument, [String argName = ""]) {
           <div class="type">
           <h4>
             <a href="dartlib_core/ListBase.html"><strong>ListBase&lt;E&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib_core/NumberEnumerable.html"><strong>NumberEnumerable&lt;T&gt;</strong></a>
           </h4>
           </div>
           
@@ -305,6 +324,13 @@ void requireArgumentNotNull(argument, [String argName = ""]) {
           <div class="type">
           <h4>
             <a href="dartlib_core/Predicate.html"><strong>Predicate&lt;T&gt;</strong></a>
+          </h4>
+          </div>
+          
+<h3>Exceptions</h3>
+          <div class="type">
+          <h4>
+            <a href="dartlib_core/NullArgumentException.html"><strong>NullArgumentException</strong></a>
           </h4>
           </div>
           
