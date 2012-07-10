@@ -90,6 +90,51 @@ class Enumerable<T> implements Iterable<T> {
     requireArgumentNotNull(f, 'f');
     return new _FuncEnumerable(this, (s) => new _WhereIterator(s, f));
   }
+
+  // TODO: test -> with and without f
+  HashSet toHashSet([Func1<T, Hashable> f]) {
+    if(f == null) {
+      return new HashSet.from(this);
+    } else {
+      return new HashSet.from(this.select(f));
+    }
+  }
+
+  // TODO: test
+  HashMap toHashMap(Func1<T, Object> valueFunc, [Func1<T, Hashable> keyFunc]) {
+    Iterable source;
+    if(keyFunc == null) {
+      keyFunc = (a) => a;
+    }
+
+    var k, e;
+    bool populated = false;
+    Func populate = () {
+      if(populated) {
+        throw 'damn!';
+      }
+      return valueFunc(e);
+    };
+
+    final map = new HashMap();
+    for(e in this) {
+      k = keyFunc(e);
+      map.putIfAbsent(k, populate);
+    }
+    return map;
+  }
+
+  // TODO:
+  // first
+  // firstOrDefault
+  // last
+  // take
+  // takeWhile
+  // skip
+  // skipWhile
+  // single
+  // singleOrDefault
+  // isEmpty
 }
 
 class _FuncEnumerable<TSource, TOutput> extends Enumerable<TOutput> {
