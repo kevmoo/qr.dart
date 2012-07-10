@@ -17,6 +17,7 @@
 #source('core/util.dart');
 
 #source('core/collection/enumerable.dart');
+#source('core/collection/number_enumerable.dart');
 #source('core/collection/collection_util.dart');
 #source('core/collection/index_iterator.dart');
 #source('core/collection/listish.dart');

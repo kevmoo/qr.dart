@@ -8,6 +8,7 @@
 #source('test_events.dart');
 
 #source('collection/test_enumerable.dart');
+#source('collection/test_number_enumerable.dart');
 #source('collection/test_list_base.dart');
 #source('collection/test_collection_util.dart');
 
@@ -26,6 +27,7 @@
 void runCoreTests() {
   group('core', (){
     TestEnumerable.run();
+    TestNumberEnumerable.run();
     TestListBase.run();
     TestCollectionUtil.run();
 
