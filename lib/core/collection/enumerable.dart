@@ -124,6 +124,11 @@ class Enumerable<T> implements Iterable<T> {
     return map;
   }
 
+  NumberEnumerable selectNumbers(Func1<T, num> f) {
+    requireArgumentNotNull(f, 'f');
+    return new _FuncNumEnumerable<T>(this, (s) => new _SelectIterator(s, f));
+  }
+
   // TODO:
   // first
   // firstOrDefault

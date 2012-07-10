@@ -9,6 +9,7 @@ class TestEnumerable {
         test('simple', _testSimpleGrouping);
       });
       test('select', _testSelect);
+      test('selectNumbers', _testSelectNumbers);
       test('where', _testWhere);
       test('forEach', _testForEach);
       test('count', _testCount);
@@ -32,6 +33,14 @@ class TestEnumerable {
   static void _testSelect() {
     final e = $([1,2,3,4,5,6]).select((x) => x * 2);
     expect(e, orderedEquals([2,4,6,8,10,12]));
+  }
+
+  static void _testSelectNumbers() {
+    final e = $(['a', 'cat', 'is', 'super']).selectNumbers((x) => x.length);
+    expect(e, orderedEquals([1,3,2,5]));
+
+    final sum = e.sum();
+    expect(sum, equals(11));
   }
 
   static void _testForEach() {

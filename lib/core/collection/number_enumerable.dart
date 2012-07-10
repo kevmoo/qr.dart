@@ -53,3 +53,12 @@ class _SimpleNumEnumerable<T extends num> extends NumberEnumerable<T> {
 
   Iterator<T> iterator() => _source.iterator();
 }
+
+class _FuncNumEnumerable<TSource> extends NumberEnumerable {
+  final Iterable<TSource> _source;
+  final Func1<Iterator<TSource>, Iterator<num>> _func;
+
+  const _FuncNumEnumerable(this._source, this._func) : super._internal();
+
+  Iterator<num> iterator() => _func(_source.iterator());
+}
