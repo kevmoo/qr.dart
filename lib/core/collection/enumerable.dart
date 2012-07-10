@@ -8,7 +8,7 @@ class Enumerable<T> implements Iterable<T> {
 
   factory Enumerable(Iterable<T> source) {
     requireArgumentNotNull(source, 'source');
-    return new _FuncEnumerable<T, T>(source, (s) => s);
+    return new _SimpleEnumerable<T>(source);
   }
 
   Iterator iterator() {
@@ -135,6 +135,14 @@ class Enumerable<T> implements Iterable<T> {
   // single
   // singleOrDefault
   // isEmpty
+}
+
+class _SimpleEnumerable<T> extends Enumerable<T> {
+  final Iterable<T> _source;
+
+  const _SimpleEnumerable(this._source) : super._internal();
+
+  Iterator<T> iterator() => _source.iterator();
 }
 
 class _FuncEnumerable<TSource, TOutput> extends Enumerable<TOutput> {
