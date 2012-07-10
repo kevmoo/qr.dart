@@ -34,7 +34,7 @@ class Enumerable<T> implements Iterable<T> {
    * Returns true if every elements of this collection satisify the
    * predicate [f]. Returns false otherwise.
    */
-  bool every(bool f(T element)) {
+  bool every(Func1<T, bool> f) {
     requireArgumentNotNull(f, 'f');
     for (final e in this) {
       if(!f(e)) {
@@ -48,7 +48,7 @@ class Enumerable<T> implements Iterable<T> {
    * Returns true if one element of this collection satisfies the
    * predicate [f]. Returns false otherwise.
    */
-  bool some(bool f(T element)) {
+  bool some(Func1<T, bool> f) {
     requireArgumentNotNull(f, 'f');
     for (final e in this) {
       if(f(e)) {
@@ -58,7 +58,7 @@ class Enumerable<T> implements Iterable<T> {
     return false;
   }
 
-  Enumerable select(Func1 f) {
+  Enumerable select(Func1<T, Object> f) {
     requireArgumentNotNull(f, 'f');
     return new _FuncEnumerable(this, (s) => new _SelectIterator(s, f));
   }
