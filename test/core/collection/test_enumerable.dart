@@ -13,7 +13,22 @@ class TestEnumerable {
       test('where', _testWhere);
       test('forEach', _testForEach);
       test('count', _testCount);
+      test('toHashSet', _testToHashSet);
     });
+  }
+
+  static void _testToHashSet() {
+    final noDupes = $(['the', 'cat', 'is', 'super']);
+    var hashSet = noDupes.toHashSet();
+    expect(hashSet, unorderedEquals(noDupes));
+    hashSet = noDupes.toHashSet((s) => s.length);
+    expect(hashSet, unorderedEquals([3,2,5]));
+
+    final withDupes = $(['the', 'cat', 'is', 'the', 'super', 'cat']);
+    hashSet = withDupes.toHashSet();
+    expect(hashSet, unorderedEquals(noDupes));
+    hashSet = noDupes.toHashSet((s) => s.length);
+    expect(hashSet, unorderedEquals([3,2,5]));
   }
 
   static void _testCount() {

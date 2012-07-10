@@ -91,7 +91,6 @@ class Enumerable<T> implements Iterable<T> {
 
   List<T> toList() => new List<T>.from(this);
 
-  // TODO: test -> with and without f
   HashSet toHashSet([Func1<T, Hashable> f]) {
     if(f == null) {
       return new HashSet.from(this);
