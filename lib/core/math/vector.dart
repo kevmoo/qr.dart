@@ -40,4 +40,16 @@ class Vector extends Coordinate {
    * Computes the angle between this and another [Vector].
    **/
   num getAngle (Vector other) => Math.acos(dot(other));
+
+  Vector rotate(num angle) {
+    var cos = Math.cos(angle);
+    var sin = Math.sin(angle);
+    var newX = this.x * cos - this.y * sin;
+    var newY = this.y * cos + this.x * sin;
+    return new Vector(newX, newY);
+  }
+
+  Vector rotateAroundPoint(Coordinate axisPoint, num angle) {
+    return (this - axisPoint).rotate(angle) + axisPoint;
+  }
 }
