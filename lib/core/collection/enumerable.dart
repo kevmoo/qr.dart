@@ -89,6 +89,13 @@ class Enumerable<T> implements Iterable<T> {
     }
   }
 
+  void forEachWithIndex(Action2<T, int> f) {
+    int i = 0;
+    for(final e in this) {
+      f(e, i++);
+    }
+  }
+
   List<T> toList() => new List<T>.from(this);
 
   HashSet toHashSet([Func1<T, Hashable> f]) {

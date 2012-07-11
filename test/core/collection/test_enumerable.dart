@@ -12,9 +12,17 @@ class TestEnumerable {
       test('selectNumbers', _testSelectNumbers);
       test('where', _testWhere);
       test('forEach', _testForEach);
+      test('forEachWithIndex', _testForEachWithIndex);
       test('count', _testCount);
       test('toHashSet', _testToHashSet);
       test('toHashMap', _testToHashMap);
+    });
+  }
+
+  static void _testForEachWithIndex() {
+    final enum = $([0,1,2,3]);
+    enum.forEachWithIndex((e,i) {
+      expect(i, equals(e));
     });
   }
 
