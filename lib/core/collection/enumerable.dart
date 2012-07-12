@@ -77,7 +77,7 @@ class Enumerable<T> implements Iterable<T> {
     return CollectionUtil.aggregate(this, seed, f);
   }
 
-  Grouping<Object, T> group([Func1<T, Object> keyFunc = null]) {
+  Grouping<Dynamic, T> group([Func1<T, Object> keyFunc = null]) {
     return new Grouping(this, keyFunc);
   }
 
