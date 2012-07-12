@@ -1,4 +1,4 @@
-class Rect{
+class Rect implements Hashable{
   final num left, top, width, height;
 
   const Rect(this.left, this.top, this.width, this.height);
@@ -26,4 +26,6 @@ class Rect{
   }
 
   String toString() => "Location: $topLeft, Size: $size";
+
+  int hashCode() => Util.getHashCode([left, top, width, height]);
 }
