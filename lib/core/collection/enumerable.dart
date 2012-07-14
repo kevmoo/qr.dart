@@ -185,6 +185,7 @@ class Enumerable<T> implements Iterable<T> {
   // single
   // singleOrDefault
   // isEmpty
+  String toString() => "[${this.join()}]";
 }
 
 class _SimpleEnumerable<T> extends Enumerable<T> {

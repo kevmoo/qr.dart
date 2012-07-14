@@ -171,8 +171,4 @@ class ListBase<E> extends Enumerable<E> implements Listish<E> {
     }
     return list;
   }
-
-  String toString() {
-    return Collections.collectionToString(this);
-  }
 }
