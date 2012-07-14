@@ -1,5 +1,9 @@
 Enumerable $(Iterable source) {
-  return new Enumerable(source);
+  if(source is Enumerable) {
+    return source;
+  } else {
+    return new Enumerable(source);
+  }
 }
 
 class Enumerable<T> implements Iterable<T> {
