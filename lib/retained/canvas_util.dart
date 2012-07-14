@@ -4,6 +4,10 @@ class CanvasUtil {
    */
   static final num kappa = 0.55228474983079339840225163227959743809289583383593;
 
+  static core.Size getCanvasSize(CanvasElement canvasElement) {
+    return new core.Size(canvasElement.width, canvasElement.height);
+  }
+
   static void transform(CanvasRenderingContext2D ctx, core.AffineTransform tx){
     core.requireArgumentNotNull(ctx, 'ctx');
     core.requireArgumentNotNull(tx, 'tx');
