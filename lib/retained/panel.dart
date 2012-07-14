@@ -25,13 +25,9 @@ class Panel extends PElement implements IElementParent  {
     invalidateDraw();
   }
 
-  PElement getVisualChild(index){
-    return _children[index];
-  }
+  PElement getVisualChild(index) => _children[index];
 
-  int get visualChildCount(){
-    return _children.length;
-  }
+  int get visualChildCount() => _children.length;
 
   void childInvalidated(PElement child){
     assert(hasVisualChild(child));
