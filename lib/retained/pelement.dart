@@ -2,6 +2,7 @@ class PElement extends core.PropertyObject {
   final List<core.AffineTransform> _transforms;
   final bool cacheEnabled;
   final core.EventHandle<core.EventArgs> _updatedEventHandle;
+  CanvasElement _cacheCanvas;
 
   num _width, _height, _alpha;
   core.Size _lastDrawSize;
@@ -10,12 +11,7 @@ class PElement extends core.PropertyObject {
 
   PElement(this._width, this._height, [this.cacheEnabled = false]) :
     _transforms = new List<core.AffineTransform>(),
-    _updatedEventHandle = new core.EventHandle<core.EventArgs>()
-  {
-    if(cacheEnabled){
-      throw 'should probably implement this';
-    }
-  }
+    _updatedEventHandle = new core.EventHandle<core.EventArgs>();
 
   num get width() => _width;
 
@@ -71,9 +67,7 @@ class PElement extends core.PropertyObject {
   }
 
   // abstract
-  void drawOverride(CanvasRenderingContext2D ctx){
-    throw "should override in subclass";
-  }
+  abstract void drawOverride(CanvasRenderingContext2D ctx);
 
   void invalidateDraw(){
     if(_lastDrawSize != null){
@@ -115,8 +109,33 @@ class PElement extends core.PropertyObject {
   //
 
   void drawInternal(CanvasRenderingContext2D ctx){
-    // until we ar rocking caching, just draw normal
-    _drawNormal(ctx);
+    if(cacheEnabled) {
+      _drawCached(ctx);
+    } else {
+      _drawNormal(ctx);
+    }
+  }
+
+  void _drawCached(CanvasRenderingContext2D ctx) {
+    if (_cacheCanvas == null || CanvasUtil.getCanvasSize(this._cacheCanvas) != this._lastDrawSize) {
+      if (this._cacheCanvas == null) {
+        this._cacheCanvas = new CanvasElement();
+      }
+
+      this._cacheCanvas.width = this.width;
+      this._cacheCanvas.height = this.height;
+
+      var cacheCtx = _cacheCanvas.context2d;
+
+      this.drawCore(cacheCtx);
+    }
+
+    ctx.save();
+    var tx = this.getTransform();
+    CanvasUtil.transform(ctx, tx);
+
+    ctx.drawImage(this._cacheCanvas, 0, 0);
+    ctx.restore();
   }
 
   void _drawNormal(CanvasRenderingContext2D ctx){
