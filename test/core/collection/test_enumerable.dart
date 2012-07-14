@@ -13,6 +13,7 @@ class TestEnumerable {
         test('complex', _testComplexGrouping);
         test('simple', _testSimpleGrouping);
       });
+      test('join', _testJoin);
       test('select', _testSelect);
       test('selectMany', _testSelectMany);
       test('selectNumbers', _testSelectNumbers);
@@ -20,6 +21,12 @@ class TestEnumerable {
       test('toHashSet', _testToHashSet);
       test('where', _testWhere);
     });
+  }
+
+  static void _testJoin() {
+    final enum = $([0,1,2]);
+    expect(enum.join(), equals('0, 1, 2'));
+    expect(enum.join('-'), equals('0-1-2'));
   }
 
   static void _testContains() {

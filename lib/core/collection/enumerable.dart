@@ -69,6 +69,17 @@ class Enumerable<T> implements Iterable<T> {
     return c;
   }
 
+  String join([String separator = ', ']) {
+    final StringBuffer sb = new StringBuffer();
+    for(final e in this) {
+      if(sb.length > 0) {
+        sb.add(separator);
+      }
+      sb.add(e);
+    }
+    return sb.toString();
+  }
+
   Enumerable select(Func1<T, Object> f) {
     requireArgumentNotNull(f, 'f');
     return new _FuncEnumerable(this, (s) => new _SelectIterator<T, Object>(s, f));
