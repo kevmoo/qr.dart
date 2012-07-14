@@ -7,6 +7,17 @@ Enumerable $(Iterable source) {
 }
 
 class Enumerable<T> implements Iterable<T> {
+  // TODO:
+  // first
+  // firstOrDefault
+  // last
+  // take
+  // takeWhile
+  // skip
+  // skipWhile
+  // single
+  // singleOrDefault
+  // isEmpty
 
   const Enumerable._internal();
 
@@ -174,17 +185,6 @@ class Enumerable<T> implements Iterable<T> {
     return new _FuncNumEnumerable<T>(this, (s) => new _SelectIterator<T, num>(s, f));
   }
 
-  // TODO:
-  // first
-  // firstOrDefault
-  // last
-  // take
-  // takeWhile
-  // skip
-  // skipWhile
-  // single
-  // singleOrDefault
-  // isEmpty
   String toString() => "[${this.join()}]";
 }
 
