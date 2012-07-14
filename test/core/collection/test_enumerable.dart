@@ -3,20 +3,29 @@ class TestEnumerable {
   static void run() {
     group('Enumerable', () {
       test('aggregate', _testAggregate);
-      test('selectMany', _testSelectMany);
-      group('Group', () {
+      test('count', _testCount);
+      solo_test('distinct', _testDistinct);
+      test('forEach', _testForEach);
+      test('forEachWithIndex', _testForEachWithIndex);
+      group('group', () {
         test('complex', _testComplexGrouping);
         test('simple', _testSimpleGrouping);
       });
       test('select', _testSelect);
+      test('selectMany', _testSelectMany);
       test('selectNumbers', _testSelectNumbers);
-      test('where', _testWhere);
-      test('forEach', _testForEach);
-      test('forEachWithIndex', _testForEachWithIndex);
-      test('count', _testCount);
-      test('toHashSet', _testToHashSet);
       test('toHashMap', _testToHashMap);
+      test('toHashSet', _testToHashSet);
+      test('where', _testWhere);
     });
+  }
+
+  static void _testDistinct() {
+    final enum = $([0,0,1,1,2,2,0,1,2,3,4,5]);
+    expect(enum.distinct(), unorderedEquals([0,1,2,3,4,5]));
+
+    final oddsAndEvens = enum.distinct((a,b) => a % 2 == b % 2);
+    expect(oddsAndEvens, unorderedEquals([0,1]));
   }
 
   static void _testForEachWithIndex() {

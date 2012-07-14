@@ -72,6 +72,13 @@ class Enumerable<T> implements Iterable<T> {
       (s) => new _SelectManyIterator._internal(s, f));
   }
 
+  Enumerable<T> distinct([Func2<T, T, bool> comparer = null]) {
+    if(comparer == null) {
+      comparer = (a,b) => a == b;
+    }
+    return new _FuncEnumerable(this, (s) => new _DistinctIterator(s, comparer));
+  }
+
   Object aggregate(Object seed, Func2<Object, T, Object> f) {
     requireArgumentNotNull(f, 'f');
     return CollectionUtil.aggregate(this, seed, f);
@@ -204,6 +211,42 @@ class _WhereIterator<T> implements Iterator<T> {
       throw const NoMoreElementsException();
     }
     assert(_func(_current));
+    _next = null;
+    return _current;
+  }
+}
+
+class _DistinctIterator<T> implements Iterator<T> {
+  final Iterator<T> _source;
+  final Func2<T, T, bool> _comparer;
+
+  // TODO: nice to have a universal hashability so we can use a hash here
+  final List<T> _found;
+  bool _next;
+  T _current;
+
+  _DistinctIterator(this._source, this._comparer) :
+    _found = new List<T>();
+
+  bool hasNext() {
+    if(_next == null) {
+      _next = false;
+      while(_source.hasNext()) {
+        _current = _source.next();
+        if(_found.every((e) => !_comparer(e, _current))) {
+          _next = true;
+          _found.add(_current);
+          break;
+        }
+      }
+    }
+    return _next;
+  }
+
+  T next() {
+    if(!hasNext()) {
+      throw const NoMoreElementsException();
+    }
     _next = null;
     return _current;
   }
