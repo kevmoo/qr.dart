@@ -5,8 +5,7 @@ class Stage extends core.DisposableImpl implements IElementParent {
   CanvasRenderingContext2D _ctx;
 
   Stage(this._canvas, this._element) :
-    _updatedEventHandle = new core.EventHandle<core.EventArgs>()
-  {
+    _updatedEventHandle = new core.EventHandle<core.EventArgs>() {
     _element.claim(this);
   }
 
@@ -16,16 +15,16 @@ class Stage extends core.DisposableImpl implements IElementParent {
 
   PElement get rootElement() => _element;
 
-  CanvasRenderingContext2D get ctx(){
-    if (_ctx == null) {
-      _ctx = _canvas.getContext('2d');
+  CanvasRenderingContext2D get ctx() {
+    if(_ctx == null) {
+      _ctx = _canvas.context2d;
     }
     return _ctx;
   }
 
   bool draw(){
     if (_ctx == null) {
-      _ctx = _canvas.getContext('2d');
+      _ctx = _canvas.context2d;
     } else {
       this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
     }
