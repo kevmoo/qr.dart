@@ -3,8 +3,10 @@ class TestEnumerable {
   static void run() {
     group('Enumerable', () {
       test('aggregate', _testAggregate);
+      test('contains', _testContains);
       test('count', _testCount);
       test('distinct', _testDistinct);
+      test('exclude', _testExclude);
       test('forEach', _testForEach);
       test('forEachWithIndex', _testForEachWithIndex);
       group('group', () {
@@ -18,6 +20,19 @@ class TestEnumerable {
       test('toHashSet', _testToHashSet);
       test('where', _testWhere);
     });
+  }
+
+  static void _testContains() {
+    final enum = $([0,1,2]);
+    expect(enum.contains(1), isTrue);
+    expect(enum.contains(3), isFalse);
+  }
+
+  static void _testExclude() {
+    final enum = $([0,1,2,3,4]);
+    expect(enum.exclude([]), orderedEquals(enum));
+    expect(enum.exclude([5, -1]), orderedEquals(enum));
+    expect(enum.exclude([1,3]), orderedEquals([0,2,4]));
   }
 
   static void _testDistinct() {

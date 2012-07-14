@@ -29,6 +29,15 @@ class Enumerable<T> implements Iterable<T> {
     return true;
   }
 
+  bool contains(T item) {
+    for (final e in this) {
+      if(e == item) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   /**
    * Returns true if one element of this collection satisfies the
    * predicate [f]. Returns false otherwise.
@@ -63,6 +72,13 @@ class Enumerable<T> implements Iterable<T> {
 
   Enumerable<T> where(Func1<T, bool> f) {
     requireArgumentNotNull(f, 'f');
+    return new _FuncEnumerable(this, (s) => new _WhereIterator<T>(s, f));
+  }
+
+  Enumerable<T> exclude(Iterable<T> items) {
+    requireArgumentNotNull(items, 'items');
+    final iEnum = $(items);
+    Func1<T, bool> f = (e) => !iEnum.contains(e);
     return new _FuncEnumerable(this, (s) => new _WhereIterator<T>(s, f));
   }
 
