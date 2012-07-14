@@ -4,7 +4,7 @@ class TestEnumerable {
     group('Enumerable', () {
       test('aggregate', _testAggregate);
       test('count', _testCount);
-      solo_test('distinct', _testDistinct);
+      test('distinct', _testDistinct);
       test('forEach', _testForEach);
       test('forEachWithIndex', _testForEachWithIndex);
       group('group', () {
