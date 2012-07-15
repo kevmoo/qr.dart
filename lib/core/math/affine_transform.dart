@@ -76,6 +76,14 @@ class AffineTransform implements Cloneable<AffineTransform> {
     return setTransform(1, 0, 0, 1, dx, dy);
   }
 
+  // TODO: test!!
+  AffineTransform setFromTransfrom(AffineTransform tx) {
+    requireArgumentNotNull(tx, 'tx');
+    return setTransform(tx._m00, tx._m10,
+      tx._m01, tx._m11,
+      tx._m02, tx._m12);
+  }
+
   AffineTransform setTransform (num m00, num m10, num m01,
     num m11, num m02, num m12) {
     this._m00 = m00;
