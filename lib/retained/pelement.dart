@@ -90,10 +90,9 @@ class PElement extends core.PropertyObject {
     throw "no children for this type";
   }
 
-  int get visualChildCount(){
-    return 0;
-  }
+  int get visualChildCount() => 0;
 
+  // TODO: need a better name for this...set Parent?
   void claim(IElementParent parent) {
     assert(_parent == null);
     _parent = parent;
