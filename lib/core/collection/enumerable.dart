@@ -8,7 +8,6 @@ Enumerable $(Iterable source) {
 
 class Enumerable<T> implements Iterable<T> {
   // TODO:
-  // first
   // firstOrDefault
   // last
   // take
@@ -112,6 +111,14 @@ class Enumerable<T> implements Iterable<T> {
     requireArgumentNotNull(f, 'f');
     return new _FuncEnumerable(this,
       (s) => new _SelectManyIterator._internal(s, f));
+  }
+
+  T first([Func1<T, bool> f = null]) {
+    if(f == null) {
+      f = (e) => true;
+    }
+    final iter = new _WhereIterator<T>(this.iterator(), f);
+    return iter.next();
   }
 
   Enumerable<T> distinct([Func2<T, T, bool> comparer = null]) {

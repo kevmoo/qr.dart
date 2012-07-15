@@ -7,6 +7,7 @@ class TestEnumerable {
       test('count', _testCount);
       test('distinct', _testDistinct);
       test('exclude', _testExclude);
+      solo_test('first', _testFirst);
       test('forEach', _testForEach);
       test('forEachWithIndex', _testForEachWithIndex);
       group('group', () {
@@ -22,6 +23,17 @@ class TestEnumerable {
       test('where', _testWhere);
     });
   }
+
+  static void _testFirst() {
+    final enum = $([0,1,2]);
+    expect(enum.first(), equals(0));
+
+    expect(() => $([]).first(), throwsException);
+
+    expect(enum.first((e) => e == 1), equals(1));
+
+    expect(() => enum.first((e) => e == 4), throwsException);
+}
 
   static void _testJoin() {
     final enum = $([0,1,2]);
