@@ -31,7 +31,10 @@ class RetainedDebug {
 
   static void _borderElement(CanvasRenderingContext2D ctx, PElement element, [bool excludeChildren = false, core.Predicate<PElement> filter = null]) {
     ctx.save();
-    CanvasUtil.transform(ctx, element.getTransformToRoot());
+    final tx = element.getTransformToRoot();
+    CanvasUtil.transform(ctx, tx);
+
+    ctx.lineWidth = 2 / ((tx.scaleX + tx.scaleY) / 2);
 
     if (filter == null || filter(element)) {
       _borderElementCore(ctx, element);
