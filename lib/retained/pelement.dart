@@ -92,8 +92,7 @@ class PElement extends core.PropertyObject {
 
   int get visualChildCount() => 0;
 
-  // TODO: need a better name for this...set Parent?
-  void claim(ElementParent parent) {
+  void registerParent(ElementParent parent) {
     assert(_parent == null);
     _parent = parent;
   }

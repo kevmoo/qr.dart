@@ -13,7 +13,7 @@ class Panel extends PElement implements ElementParent  {
 
   void insertAt(PElement element, [int index=null]){
     index = (index == null) ? 0 : index;
-    element.claim(this);
+    element.registerParent(this);
     _children.insertRange(index, 1, element);
 
     assert(!_containerTransformProperty.isSet(element));

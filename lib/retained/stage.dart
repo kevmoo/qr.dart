@@ -7,7 +7,7 @@ class Stage extends core.PropertyObject
 
   Stage(this._canvas, this._element) :
     _updatedEventHandle = new core.EventHandle<core.EventArgs>() {
-    _element.claim(this);
+    _element.registerParent(this);
   }
 
   core.Size get size() => new core.Size(_canvas.width, _canvas.height);
