@@ -118,6 +118,9 @@ class Enumerable<T> implements Iterable<T> {
       f = (e) => true;
     }
     final iter = new _WhereIterator<T>(this.iterator(), f);
+    if(!iter.hasNext()) {
+      throw const InvalidOperationException('The input sequence is empty.');
+    }
     return iter.next();
   }
 

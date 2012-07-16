@@ -28,12 +28,12 @@ class TestEnumerable {
     final enum = $([0,1,2]);
     expect(enum.first(), equals(0));
 
-    expect(() => $([]).first(), throwsException);
+    expect(() => $([]).first(), throwsInvalidOperationException);
 
     expect(enum.first((e) => e == 1), equals(1));
 
-    expect(() => enum.first((e) => e == 4), throwsException);
-}
+    expect(() => enum.first((e) => e == 4), throwsInvalidOperationException);
+  }
 
   static void _testJoin() {
     final enum = $([0,1,2]);
