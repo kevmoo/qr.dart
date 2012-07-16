@@ -20,6 +20,15 @@ class Rect implements Hashable{
         point.y <= top + height;
   }
 
+  List<Coordinate> getCorners() {
+    return [
+      new Coordinate(left, top),
+      new Coordinate(left + width, top),
+      new Coordinate(left + width, top + height),
+      new Coordinate(left, top + height)
+    ];
+  }
+
   bool operator ==(Rect other) {
     return other !== null && other.left == left && other.top == top &&
         other.width == width && other.height == height;
