@@ -35,7 +35,7 @@ class Panel extends PElement implements ElementParent  {
   }
 
   void update(){
-    _children.forEach((e){e.update();});
+    _children.forEach((e) => e.update());
     super.update();
   }
 
