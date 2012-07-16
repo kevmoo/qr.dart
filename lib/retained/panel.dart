@@ -3,7 +3,7 @@ class Panel extends PElement implements ElementParent  {
       const core.Property<core.AffineTransform>("panelTransform");
   final List<PElement> _children;
 
-  Panel(int w, int h, [bool enableCache = false]) :
+  Panel(num w, num h, [bool enableCache = false]) :
     _children = new List<PElement>(),
     super(w, h, enableCache);
 
