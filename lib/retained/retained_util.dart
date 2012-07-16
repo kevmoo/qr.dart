@@ -26,13 +26,23 @@ class RetainedUtil {
     }
   }
 
-  static core.Coordinate transformPointLocalToGlobal(element, point) {
+  static core.Coordinate transformPointLocalToGlobal(PElement element,
+                                                     core.Coordinate point) {
     var tx = element.getTransformToRoot();
     return tx.transformCoordinate(point);
   }
 
-  static core.Coordinate transformPointGlobalToLocal(element, point) {
+  static core.Coordinate transformPointGlobalToLocal(PElement element,
+                                                     core.Coordinate point) {
     var tx = element.getTransform();
     return tx.createInverse().transformCoordinate(point);
+  }
+
+  static List<core.Coordinate> getCorners(PElement element) {
+    final rect = new core.Rect(0,0,element.width, element.height);
+    final points = rect.getCorners();
+    return core.$(points).select((p) {
+      return transformPointLocalToGlobal(element, p);
+    }).toList();
   }
 }
