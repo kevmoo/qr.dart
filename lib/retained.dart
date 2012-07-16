@@ -10,6 +10,7 @@
 #source('retained/retained_util.dart');
 #source('retained/pelement.dart');
 #source('retained/element_parent.dart');
+#source('retained/element_parent_impl.dart');
 #source('retained/panel.dart');
 #source('retained/pcanvas.dart');
 #source('retained/stage.dart');

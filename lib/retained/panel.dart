@@ -1,4 +1,4 @@
-class Panel extends PElement implements ElementParent  {
+class Panel extends ElementParentImpl {
   static final core.Property<core.AffineTransform> _containerTransformProperty =
       const core.Property<core.AffineTransform>("panelTransform");
   final List<PElement> _children;
@@ -21,31 +21,9 @@ class Panel extends PElement implements ElementParent  {
     onChildrenChanged();
   }
 
-  void onChildrenChanged(){
-    invalidateDraw();
-  }
-
   PElement getVisualChild(index) => _children[index];
 
   int get visualChildCount() => _children.length;
-
-  void childInvalidated(PElement child){
-    assert(hasVisualChild(child));
-    invalidateDraw();
-  }
-
-  void update(){
-    _children.forEach((e) => e.update());
-    super.update();
-  }
-
-  void drawOverride(CanvasRenderingContext2D ctx){
-    var length = visualChildCount;
-    for(var i=0;i<length;i++){
-      var element = getVisualChild(i);
-      element.drawInternal(ctx);
-    }
-  }
 
   core.AffineTransform getChildTransform(child) {
     assert(hasVisualChild(child));
