@@ -7,7 +7,7 @@ class TestEnumerable {
       test('count', _testCount);
       test('distinct', _testDistinct);
       test('exclude', _testExclude);
-      solo_test('first', _testFirst);
+      test('first', _testFirst);
       test('forEach', _testForEach);
       test('forEachWithIndex', _testForEachWithIndex);
       group('group', () {
