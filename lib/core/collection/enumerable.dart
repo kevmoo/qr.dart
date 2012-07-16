@@ -124,6 +124,21 @@ class Enumerable<T> implements Iterable<T> {
     return iter.next();
   }
 
+  T single([Func1<T, bool> f = null]) {
+    if(f == null) {
+      f = (e) => true;
+    }
+    final iter = new _WhereIterator<T>(this.iterator(), f);
+    if(!iter.hasNext()) {
+      throw const InvalidOperationException('The input sequence is empty.');
+    }
+    final value = iter.next();
+    if(iter.hasNext()) {
+      throw const InvalidOperationException('The input sequence contains more than one element.');
+    }
+    return value;
+  }
+
   Enumerable<T> distinct([Func2<T, T, bool> comparer = null]) {
     if(comparer == null) {
       comparer = (a,b) => a == b;

@@ -18,6 +18,7 @@ class TestEnumerable {
       test('select', _testSelect);
       test('selectMany', _testSelectMany);
       test('selectNumbers', _testSelectNumbers);
+      test('single', _testSingle);
       test('toHashMap', _testToHashMap);
       test('toHashSet', _testToHashSet);
       test('where', _testWhere);
@@ -33,6 +34,16 @@ class TestEnumerable {
     expect(enum.first((e) => e == 1), equals(1));
 
     expect(() => enum.first((e) => e == 4), throwsInvalidOperationException);
+  }
+
+  static void _testSingle() {
+    expect($([42]).single(), equals(42));
+    expect(() => $([]).single(), throwsInvalidOperationException);
+    expect(() => $([1, 2]).single(), throwsInvalidOperationException);
+
+    expect($([3,4,5]).single((e) => e % 2 == 0), equals(4));
+    expect(() => $([3,4,5]).single((e) => e % 2 == 1), throwsInvalidOperationException);
+    expect(() => $([3,5,7]).single((e) => e % 2 == 0), throwsInvalidOperationException);
   }
 
   static void _testJoin() {
