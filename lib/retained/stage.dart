@@ -1,4 +1,5 @@
-class Stage extends core.DisposableImpl implements IElementParent {
+class Stage extends core.PropertyObject
+  implements IElementParent {
   final CanvasElement _canvas;
   final PElement _element;
   final core.EventHandle<core.EventArgs> _updatedEventHandle;
