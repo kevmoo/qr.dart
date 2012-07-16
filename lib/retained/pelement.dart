@@ -7,7 +7,7 @@ class PElement extends core.PropertyObject {
   num _width, _height, _alpha;
   core.Size _lastDrawSize;
   bool clip = false;
-  IElementParent _parent;
+  ElementParent _parent;
 
   PElement(this._width, this._height, [this.cacheEnabled = false]) :
     _transforms = new List<core.AffineTransform>(),
@@ -93,7 +93,7 @@ class PElement extends core.PropertyObject {
   int get visualChildCount() => 0;
 
   // TODO: need a better name for this...set Parent?
-  void claim(IElementParent parent) {
+  void claim(ElementParent parent) {
     assert(_parent == null);
     _parent = parent;
   }

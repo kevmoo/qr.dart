@@ -1,5 +1,5 @@
 class Stage extends core.PropertyObject
-  implements IElementParent {
+  implements ElementParent {
   final CanvasElement _canvas;
   final PElement _element;
   final core.EventHandle<core.EventArgs> _updatedEventHandle;

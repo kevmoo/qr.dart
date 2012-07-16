@@ -1,4 +1,4 @@
-class Panel extends PElement implements IElementParent  {
+class Panel extends PElement implements ElementParent  {
   static final core.Property<core.AffineTransform> _containerTransformProperty =
       const core.Property<core.AffineTransform>("panelTransform");
   final List<PElement> _children;
