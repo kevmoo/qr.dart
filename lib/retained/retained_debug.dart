@@ -30,12 +30,6 @@ class RetainedDebug {
   }
 
   static void _borderElement(CanvasRenderingContext2D ctx, PElement element, [bool excludeChildren = false, core.Predicate<PElement> filter = null]) {
-    ctx.save();
-    final tx = element.getTransformToRoot();
-    CanvasUtil.transform(ctx, tx);
-
-    ctx.lineWidth = 2 / ((tx.scaleX + tx.scaleY) / 2);
-
     if (filter == null || filter(element)) {
       _borderElementCore(ctx, element);
     }
@@ -43,12 +37,9 @@ class RetainedDebug {
     if (!excludeChildren) {
       for (var i = 0; i < element.visualChildCount; i++) {
         var e = element.getVisualChild(i);
-        ctx.save();
         _borderElement(ctx, e, false, filter);
-        ctx.restore();
       }
     }
-    ctx.restore();
   }
 
   static void _borderElementCore(CanvasRenderingContext2D ctx, PElement element) {
@@ -61,6 +52,12 @@ class RetainedDebug {
     } else {
       ctx.strokeStyle = 'orange';
     }
-    ctx.strokeRect(0, 0, element.width, element.height);
+
+    final corners = RetainedUtil.getCorners(element);
+
+    ctx.moveTo(corners[3].x, corners[3].y);
+    for(final p in corners) {
+      ctx.lineTo(p.x, p.y);
+    }
   }
 }
