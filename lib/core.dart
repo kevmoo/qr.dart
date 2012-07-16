@@ -13,6 +13,7 @@
 #source('core/tuple.dart');
 
 #source('core/exceptions/null_argument_exception.dart');
+#source('core/exceptions/invalid_operation_exception.dart');
 
 #source('core/requires.dart');
 #source('core/util.dart');
