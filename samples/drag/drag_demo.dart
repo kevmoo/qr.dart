@@ -17,6 +17,7 @@ class DraggerDemo{
 
   core.Coordinate _mouseLocation;
   bool _frameRequested = false;
+  bool _overShape = false;
 
   factory DraggerDemo(CanvasElement canvas){
 
@@ -37,6 +38,7 @@ class DraggerDemo{
     _canvas.on.mouseMove.add(_canvas_mouseMove);
     _canvas.on.mouseOut.add(_canvas_mouseOut);
     _dragger.dragDelta.add(_onDrag);
+    _dragger.dragStart.add(_onDragStart);
   }
 
   void requestFrame(){
@@ -51,11 +53,14 @@ class DraggerDemo{
     requestFrame();
   }
 
+  void _onDragStart(core.CancelableEventArgs e) {
+    if(!_overShape) {
+      e.cancel();
+    }
+  }
+
   bool _onFrame(num highResTime){
     _stage.draw();
-    if(_mouseLocation != null){
-      RetainedDebug.borderHitTest(_stage, _mouseLocation);
-    }
     _frameRequested = false;
   }
 
@@ -69,6 +74,14 @@ class DraggerDemo{
 
   void _setMouse(core.Coordinate value) {
     _mouseLocation = value;
+    final hits = Mouse.markMouseOver(_stage, _mouseLocation);
+    if(hits != null && hits.length > 0 && hits[0] is Shape) {
+      _canvas.style.cursor = 'pointer';
+      _overShape = true;
+    } else {
+      _canvas.style.cursor = 'auto';
+      _overShape = false;
+    }
     requestFrame();
   }
 }
