@@ -8,7 +8,7 @@ class TestEvents {
   }
 
   void fireTestEvent(String value){
-    _testEventHandle.fireEvent(this, value);
+    _testEventHandle.fireEvent(value);
   }
 
   static void run(){

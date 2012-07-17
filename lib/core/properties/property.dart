@@ -87,7 +87,7 @@ class _PropertyChangeHelper{
     var helper = _changeHelperProperty.get(obj);
     var handle = helper._handlers[property];
     if(handle != null){
-      handle.fireEvent(obj, property);
+      handle.fireEvent(property);
     }
   }
 }

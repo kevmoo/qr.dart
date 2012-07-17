@@ -1,7 +1,7 @@
 class EventHandle<T> extends DisposableImpl implements EventRoot<T> {
   HashMap<GlobalId, Action1<T>> _handlers;
 
-  void fireEvent(Object sender, T args){
+  void fireEvent(T args){
     assert(!isDisposed);
     if(_handlers != null){
       _handlers.forEach((GlobalId id, Action1<T> handler){

@@ -13,15 +13,15 @@ class TestPropertyEventIntegration extends PropertyObject {
     {
 
     _nameProperty.addHandler(this, (args){
-      _nameChangedEventHandle.fireEvent(this, const EventArgs());
+      _nameChangedEventHandle.fireEvent(const EventArgs());
     });
 
     _ageProperty.addHandler(this, (args){
-      _ageChangedEventHandle.fireEvent(this, const EventArgs());
+      _ageChangedEventHandle.fireEvent(const EventArgs());
     });
 
     propertyValues.propertyChanged.add((args){
-      _propertyChangedEventHandle.fireEvent(this, args.name);
+      _propertyChangedEventHandle.fireEvent(args.name);
     });
   }
 

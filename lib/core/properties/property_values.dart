@@ -9,7 +9,7 @@ class PropertyValues extends DisposableImpl {
   void _set(Property key, Object value){
     assert(value !== Property.Undefined);
     _propertyValues[key] = value;
-    _changeHandle.fireEvent(this, key);
+    _changeHandle.fireEvent(key);
   }
 
   bool _isSet(Property key){
@@ -22,7 +22,7 @@ class PropertyValues extends DisposableImpl {
     // TODO: ponder null-ish value to avoid these double access scenarios? Maybe?
     _propertyValues.remove(key);
     if(exists){
-      _changeHandle.fireEvent(this, key);
+      _changeHandle.fireEvent(key);
     }
   }
 
