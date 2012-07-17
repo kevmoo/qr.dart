@@ -57,6 +57,7 @@ class TestCase {
       _setup();
     }
     try {
+      _config.onTestStart(this);
       test();
     } finally {
       if (_teardown != null) {
@@ -67,17 +68,20 @@ class TestCase {
 
   void pass() {
     result = _PASS;
+    _config.onTestResult(this);
   }
 
-  void fail(String msg, String stack) {
+  void fail(String messageText, String stack) {
     result = _FAIL;
-    this.message = msg;
-    this.stackTrace = stack;
+    message = messageText;
+    stackTrace = stack;
+    _config.onTestResult(this);
   }
 
-  void error(String msg, String stack) {
+  void error(String messageText, String stack) {
     result = _ERROR;
-    this.message = msg;
-    this.stackTrace = stack;
+    message = messageText;
+    stackTrace = stack;
+    _config.onTestResult(this);
   }
 }

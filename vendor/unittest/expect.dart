@@ -26,7 +26,7 @@
  * library.
  *
  * See [Hamcrest] http://en.wikipedia.org/wiki/Hamcrest
- *     [Hamcrest] http://http://code.google.com/p/hamcrest/
+ *     [Hamcrest] http://code.google.com/p/hamcrest/
  *     [dart-matchers] https://github.com/Ladicek/dart-matchers
  */
 void expect(actual, [matcher = isTrue, String reason = null,
@@ -112,8 +112,9 @@ String _defaultErrorFormatter(actual, Matcher matcher, String reason) {
   description.add('Expected: ').addDescriptionOf(matcher).
       add('\n     but: ');
   matcher.describeMismatch(actual, description);
+  description.add('.\n');
   if (reason != null) {
-    description.add('\n').add(reason).add('\n');
+    description.add(reason).add('\n');
   }
   return description.toString();
 }
