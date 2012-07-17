@@ -5,11 +5,13 @@
 class Dragger {
   final Element _element;
   final core.EventHandle<core.Vector> _dragDeltaHandle;
+  final core.EventHandle<core.CancelableEventArgs> _dragStartHandle;
 
   core.Coordinate _clientLoc;
 
   Dragger(this._element) :
-    _dragDeltaHandle = new core.EventHandle<core.Vector>() {
+    _dragDeltaHandle = new core.EventHandle<core.Vector>(),
+    _dragStartHandle = new core.EventHandle<core.CancelableEventArgs>() {
     _element.on.mouseDown.add(_onMouseDown);
     window.on.mouseMove.add(_handleMove);
     window.on.mouseUp.add(_endDrag);
@@ -18,12 +20,18 @@ class Dragger {
 
   core.EventRoot<core.Vector> get dragDelta() => _dragDeltaHandle;
 
+  core.EventRoot<core.CancelableEventArgs> get dragStart() => _dragStartHandle;
+
   bool get isDragging() => _clientLoc != null;
 
   void _onMouseDown(MouseEvent event) {
     assert(!isDragging);
-    event.preventDefault();
-    _clientLoc = new core.Coordinate(event.clientX, event.clientY);
+    final args = new core.CancelableEventArgs();
+    _dragStartHandle.fireEvent(args);
+    if(!args.isCanceled) {
+      event.preventDefault();
+      _clientLoc = new core.Coordinate(event.clientX, event.clientY);
+    }
   }
 
   void _handleMove(MouseEvent event) {
