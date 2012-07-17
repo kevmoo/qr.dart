@@ -44,7 +44,7 @@ class SpinDemo{
     return new SpinDemo._internal(canvas, stage, tx);
   }
 
-  SpinDemo._internal(CanvasElement this._canvas, Stage this._stage, core.AffineTransform this._tx){
+  SpinDemo._internal(this._canvas, this._stage, this._tx){
     _canvas.on.mouseMove.add(_canvas_mouseMove);
     _canvas.on.mouseOut.add(_canvas_mouseOut);
   }
