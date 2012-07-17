@@ -46,7 +46,7 @@ class PElement extends core.PropertyObject {
   }
 
   void update(){
-    _updatedEventHandle.fireEvent(const core.EventArgs());
+    _updatedEventHandle.fireEvent(core.EventArgs.Empty);
   }
 
   core.AffineTransform addTransform(){

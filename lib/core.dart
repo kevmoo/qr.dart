@@ -29,6 +29,7 @@
 
 #source('core/events/event.dart');
 #source('core/events/event_handle.dart');
+#source('core/events/event_args.dart');
 
 #source('core/math/math_functions.dart');
 #source('core/math/size.dart');

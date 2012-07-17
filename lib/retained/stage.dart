@@ -35,7 +35,7 @@ class Stage extends core.PropertyObject
 
   void childInvalidated(PElement child){
     assert(child == _element);
-    _updatedEventHandle.fireEvent(const core.EventArgs());
+    _updatedEventHandle.fireEvent(core.EventArgs.Empty);
   }
 
   void disposeInternal(){
