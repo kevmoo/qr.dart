@@ -5,7 +5,7 @@
 #import('../../lib/test.dart');
 
 #source('test_cloneable.dart');
-#source('test_events.dart');
+#source('events/test_events.dart');
 
 #source('collection/test_enumerable.dart');
 #source('collection/test_number_enumerable.dart');
