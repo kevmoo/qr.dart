@@ -48,3 +48,5 @@
 #source('core/color/husl_converter.dart');
 
 #source('core/graph/tarjan_cycle_detect.dart');
+
+#source('core/async/slow_mapper.dart');

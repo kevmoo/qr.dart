@@ -1,4 +1,5 @@
 #import('dart:html');
+#import('dart:isolate');
 #import('../../lib/core.dart', prefix:'core');
 #import('../../lib/html.dart');
 #import('../../lib/retained.dart');
@@ -14,6 +15,7 @@ class DraggerDemo{
   final Stage _stage;
   final core.AffineTransform _tx;
   final Dragger _dragger;
+  final _DemoMapper _demoMapper;
 
   core.Coordinate _mouseLocation;
   bool _frameRequested = false;
@@ -34,11 +36,14 @@ class DraggerDemo{
     return new DraggerDemo._internal(canvas, stage, tx, dragger);
   }
 
-  DraggerDemo._internal(this._canvas, this._stage, this._tx, this._dragger){
+  DraggerDemo._internal(this._canvas, this._stage, this._tx, this._dragger) :
+    _demoMapper = new _DemoMapper() {
     _canvas.on.mouseMove.add(_canvas_mouseMove);
     _canvas.on.mouseOut.add(_canvas_mouseOut);
     _dragger.dragDelta.add(_onDrag);
     _dragger.dragStart.add(_onDragStart);
+
+    _demoMapper.outputChanged.add((e) => requestFrame());
   }
 
   void requestFrame(){
@@ -50,6 +55,7 @@ class DraggerDemo{
 
   void _onDrag(core.Vector delta) {
     _tx.translate(delta.x, delta.y);
+    _demoMapper.input = delta;
     requestFrame();
   }
 
@@ -61,6 +67,9 @@ class DraggerDemo{
 
   bool _onFrame(num highResTime){
     _stage.draw();
+    _stage.ctx.fillStyle = 'black';
+    _stage.ctx.font = '10px';
+    _stage.ctx.fillText(_demoMapper.output.toString(), 10,10);
     _frameRequested = false;
   }
 
@@ -85,3 +94,27 @@ class DraggerDemo{
     requestFrame();
   }
 }
+
+class _DemoMapper extends core.SlowMapper<core.Coordinate, int> {
+  Future<int> getFuture(value) {
+    final sendPort = spawnFunction(_demoIsolate);
+    return sendPort.call(value);
+  }
+}
+
+void _demoIsolate() {
+  port.receive((core.Coordinate input,
+      SendPort reply) {
+
+    final start = new Date.now();
+    Duration delta;
+    do {
+      delta = (new Date.now().difference(start));
+    } while(delta.inSeconds < 1);
+
+    final int output = input.x * input.y;
+    reply.send(output);
+  });
+}
+
+
