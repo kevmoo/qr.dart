@@ -26,6 +26,7 @@
 #source('core/collection/list_base.dart');
 #source('core/collection/read_only_collection.dart');
 #source('core/collection/grouping.dart');
+#source('core/collection/none_hash_map.dart');
 
 #source('core/events/event.dart');
 #source('core/events/event_handle.dart');

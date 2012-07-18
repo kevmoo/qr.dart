@@ -1,5 +1,5 @@
 class Grouping<K extends Hashable, V> {
-  final HashMap<K, List<V>> _values;
+  final NoneHashMap<K, List<V>> _values;
 
   const Grouping._internal(this._values);
 
@@ -8,7 +8,7 @@ class Grouping<K extends Hashable, V> {
       keyFunc = (v) => v;
     }
 
-    var map = new HashMap<K, List<V>>();
+    var map = new NoneHashMap<K, List<V>>();
 
     for (final V value in source) {
       K key = keyFunc(value);
