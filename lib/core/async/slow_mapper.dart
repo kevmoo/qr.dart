@@ -1,7 +1,8 @@
 // TODO: real tests
 class SlowMapper<TInput, TOutput> {
   SlowMapper() :
-    _outputChangedHandle = new EventHandle<EventArgs>();
+    _outputChangedHandle = new EventHandle<EventArgs>(),
+    _inputChangedHandle = new EventHandle<EventArgs>();
 
   TInput get input() => _input;
 
@@ -12,12 +13,13 @@ class SlowMapper<TInput, TOutput> {
     } else {
       _pending = true;
     }
+    _inputChangedHandle.fireEvent(EventArgs.empty);
   }
 
   TOutput get output() => _output;
 
-  EventRoot<EventArgs> get outputChanged() =>
-      _outputChangedHandle;
+  EventRoot<EventArgs> get outputChanged() => _outputChangedHandle;
+  EventRoot<EventArgs> get inputChanged() => _inputChangedHandle;
 
   abstract Future<TOutput> getFuture(TInput value);
 
@@ -45,4 +47,5 @@ class SlowMapper<TInput, TOutput> {
   bool _pending = false;
 
   final EventHandle<EventArgs> _outputChangedHandle;
+  final EventHandle<EventArgs> _inputChangedHandle;
 }
