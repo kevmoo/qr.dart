@@ -15,6 +15,11 @@ class Coordinate {
    **/
   Vector operator -(Coordinate other) => difference(this, other);
 
+  Coordinate operator +(Vector other) =>
+      new Coordinate(x + other.x, y + other.y);
+
+  Vector toVector() => new Vector(x, y);
+
   bool operator ==(Coordinate other) {
     return other !== null && x == other.x && y == other.y;
   }
