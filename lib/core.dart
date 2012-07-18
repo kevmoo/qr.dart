@@ -43,7 +43,8 @@
 #source('core/properties/property_values.dart');
 #source('core/properties/property.dart');
 
-#source('core/graph/tarjan_cycle_detect.dart');
-#source('core/husl_converter.dart');
 #source('core/color/rgb_color.dart');
 #source('core/color/hsl_color.dart');
+#source('core/color/husl_converter.dart');
+
+#source('core/graph/tarjan_cycle_detect.dart');
