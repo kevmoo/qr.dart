@@ -21,7 +21,7 @@ Starting by porting bits of the [PL javascript library](https://github.com/think
 Bugs blocking me from compiling to Javascript.
 
 ### Allow `final static` fields to be non-constants.
-  * __Scenario:__ Allowing classes to define a `Property` using `static final Property<bool> isMouseOver Property = new Property<bool>('isMouseOver');`
+  * __Scenario:__ Allowing classes to define a `Property` using `static final Property<bool> isMouseOver = new Property<bool>('isMouseOver');`
   * __Work-around__
       * Define `Property` constructor as `const` even though it is not -- it creates a non-const GlobalId.
       * Create instances of `Property` with const constructor.
