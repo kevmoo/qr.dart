@@ -1,0 +1,144 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>Isolate Class / dart:isolate Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="dart:isolate" data-type="Isolate">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../dart_isolate.html">dart:isolate</a> &rsaquo; <a href="../dart_isolate/Isolate.html">Isolate</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>Isolate</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+<p>NOTE: This API will be deprecated soon.</p>
+<p>The <a class="crossref" href="../dart_isolate/Isolate.html#new:Isolate.heavy">Isolate</a> class serves two purposes: (1) as template for spawning a new
+isolate, and (2) as entry-point for the newly spawned isolate.</p>
+<p>New isolates are spawned by sub-classing <a class="crossref" href="../dart_isolate/Isolate.html#new:Isolate.heavy">Isolate</a> and then invoking
+<code>spawn</code> on the instance. This will spawn a new isolate, which creates a
+new instance of the class, initializes the instance's <a class="crossref" href="../dart_isolate/Isolate.html#port">port</a> field
+and invokes the instance method <a class="crossref" href="../dart_isolate/Isolate.html#main">main</a>.</p>
+<p>The new instance is created by invoking the default constructor of the
+class that served as template for spawning the new isolate. This means, that
+sub-classes must have a default constructor (i.e. no-argument constructor).</p>
+<p>Isolates may be "heavy" or "light". Heavy isolates live in their own thread,
+whereas "light" isolates live in the same thread as the isolate which spawned
+them.</p>
+<p>NOTE: once <a class="crossref" href="../dart_isolate.html#spawnFunction">spawnFunction</a> and <a class="crossref" href="../dart_isolate.html#spawnUri">spawnUri</a> are supported in both frog and the
+dartvm, this class will be removed. The distinction of heavy and light will
+be removed too. Thus far the main use for 'light' isolates is for running
+isolates that share access to the DOM. A special API will be added for this
+purpose soon. See the library top-level comments for more details.</p>
+</div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="Isolate">
+<span class="show-code">Code</span>
+new <strong>Isolate</strong>() <a class="anchor-link" href="#Isolate"
+              title="Permalink to Isolate.Isolate">#</a></h4>
+<div class="doc">
+<p>Redirects to <code>Isolate.light</code>.</p>
+<pre class="source">
+Isolate() : this.light();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="Isolate">
+<span class="show-code">Code</span>
+new <strong>Isolate</strong>.light() <a class="anchor-link" href="#Isolate"
+              title="Permalink to Isolate.Isolate">#</a></h4>
+<div class="doc">
+<p>Creates a new isolate-template for a light isolate.</p>
+<pre class="source">
+Isolate.light() : _isLight = true;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="Isolate">
+<span class="show-code">Code</span>
+new <strong>Isolate</strong>.heavy() <a class="anchor-link" href="#Isolate"
+              title="Permalink to Isolate.Isolate">#</a></h4>
+<div class="doc">
+<p>Creates a new isolate-template for a heavy isolate.</p>
+<pre class="source">
+Isolate.heavy() : _isLight = false;
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="main">
+<span class="show-code">Code</span>
+void <strong>main</strong>() <a class="anchor-link" href="#main"
+              title="Permalink to Isolate.main">#</a></h4>
+<div class="doc">
+<p>When isolates are created, an instance of the template's class is
+instantiated in the new isolate. After the <a class="crossref" href="../dart_isolate/Isolate.html#port">port</a> has been set up, this
+<a class="crossref" href="../dart_isolate/Isolate.html#main">main</a> method is invoked on the instance.</p>
+<pre class="source">
+abstract void main();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="port">
+<span class="show-code">Code</span>
+<a href="../dart_isolate/ReceivePort.html">ReceivePort</a> <strong>get port</strong>() <a class="anchor-link" href="#port"
+              title="Permalink to Isolate.get port">#</a></h4>
+<div class="doc">
+<p>When <a class="crossref" href="../dart_isolate/Isolate.html#new:Isolate.heavy">Isolate</a>s are used as entry-points, the <a class="crossref" href="../dart_isolate/Isolate.html#port">port</a> field contains a
+<a class="crossref" href="../dart_isolate/ReceivePort.html">ReceivePort</a>. The isolate that initiated the spawn holds a corresponding
+<a class="crossref" href="../dart_isolate/SendPort.html">SendPort</a>.</p>
+<p>Note that isolates should generally close their <a class="crossref" href="../dart_isolate/ReceivePort.html">ReceivePort</a>s when they
+are done, including this port.</p>
+<pre class="source">
+ReceivePort get port() {
+  return _port;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="spawn">
+<span class="show-code">Code</span>
+<a href="../core/Future.html">Future</a>&lt;<a href="../dart_isolate/SendPort.html">SendPort</a>&gt; <strong>spawn</strong>() <a class="anchor-link" href="#spawn"
+              title="Permalink to Isolate.spawn">#</a></h4>
+<div class="doc">
+<p>Spawns a new isolate, using this instance as template.</p>
+<p>The new isolate lives in a new thread (for heavy templates)
+or in the same thread as the current isolate (for light templates), if
+possible.</p>
+<p>During the initialization of the new isolate a <a class="crossref" href="../dart_isolate/ReceivePort.html">ReceivePort</a> is created
+inside the new isolate and stored in the read-only field <a class="crossref" href="../dart_isolate/Isolate.html#port">port</a>.
+ A corresponding <a class="crossref" href="../dart_isolate/SendPort.html">SendPort</a> is sent to the isolate that invoked <a class="crossref" href="../dart_isolate/Isolate.html#spawn">spawn</a>.
+Since spawning an isolate is an asynchronous operation this method returns
+a <code>Future</code> of this <a class="crossref" href="../dart_isolate/SendPort.html">SendPort</a>.</p>
+<p>A common pattern to instantiate new isolates is to enqueue the instructions
+using <code>Future.then</code>.
+<code>myIsolate.spawn().then((SendPort port) { port.send('hi there'); });</code></p>
+<pre class="source">
+Future&lt;SendPort&gt; spawn() {
+  return _IsolateNatives.spawn(this, _isLight);
+}
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

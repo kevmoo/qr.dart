@@ -1,0 +1,232 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>WebSocket Interface / io Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="io" data-type="WebSocket">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../io.html">io</a> &rsaquo; <a href="../io/WebSocket.html">WebSocket</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>WebSocket</strong>
+          Interface
+        </h2>
+        
+<div class="doc">
+<p>Alternative web socket client interface. This interface is compliant
+with the W3C browser API for web sockets specified in
+http://dev.w3.org/html5/websockets/.</p>
+</div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="WebSocket">
+<span class="show-code">Code</span>
+new <strong>WebSocket</strong>(<a href="../core/String.html">String</a> url, [protocols]) <a class="anchor-link" href="#WebSocket"
+              title="Permalink to WebSocket.WebSocket">#</a></h4>
+<div class="doc">
+<p>Create a new web socket connection. The URL supplied in 
+<span class="param">url</span>
+must use the scheme <code>ws</code>. The 
+<span class="param">protocols</span> argument is either a
+<code>String</code> or <code>List&lt;String&gt;</code> specifying the subprotocols the
+client is willing to speak.</p>
+<pre class="source">
+WebSocket(String url, [protocols]);
+</pre>
+</div>
+</div>
+<h3>Static Fields</h3>
+<div class="field"><h4 id="CLOSED">
+<span class="show-code">Code</span>
+final <a href="../core/int.html">int</a>         <strong>CLOSED</strong> <a class="anchor-link"
+            href="#CLOSED"
+            title="Permalink to WebSocket.CLOSED">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int CLOSED = 3;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="CLOSING">
+<span class="show-code">Code</span>
+final <a href="../core/int.html">int</a>         <strong>CLOSING</strong> <a class="anchor-link"
+            href="#CLOSING"
+            title="Permalink to WebSocket.CLOSING">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int CLOSING = 2;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="CONNECTING">
+<span class="show-code">Code</span>
+final <a href="../core/int.html">int</a>         <strong>CONNECTING</strong> <a class="anchor-link"
+            href="#CONNECTING"
+            title="Permalink to WebSocket.CONNECTING">#</a>
+        </h4>
+        <div class="doc">
+<p>Possible states of the connection.</p>
+<pre class="source">
+static final int CONNECTING = 0;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="OPEN">
+<span class="show-code">Code</span>
+final <a href="../core/int.html">int</a>         <strong>OPEN</strong> <a class="anchor-link"
+            href="#OPEN"
+            title="Permalink to WebSocket.OPEN">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int OPEN = 1;
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="bufferedAmount">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a> <strong>get bufferedAmount</strong>() <a class="anchor-link" href="#bufferedAmount"
+              title="Permalink to WebSocket.get bufferedAmount">#</a></h4>
+<div class="doc">
+<p>Returns the number of bytes currently buffered for transmission.</p>
+<pre class="source">
+int get bufferedAmount();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="close">
+<span class="show-code">Code</span>
+void <strong>close</strong>(<a href="../core/int.html">int</a> code, <a href="../core/String.html">String</a> reason) <a class="anchor-link" href="#close"
+              title="Permalink to WebSocket.close">#</a></h4>
+<div class="doc">
+<p>Closes the web socket connection.</p>
+<pre class="source">
+void close(int code, String reason);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="extensions">
+<span class="show-code">Code</span>
+<a href="../core/String.html">String</a> <strong>get extensions</strong>() <a class="anchor-link" href="#extensions"
+              title="Permalink to WebSocket.get extensions">#</a></h4>
+<div class="doc">
+<p>The extensions property is initially the empty string. After the
+web socket connection is established this string reflects the
+extensions used by the server.</p>
+<pre class="source">
+String get extensions();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onclose">
+<span class="show-code">Code</span>
+void <strong>set onclose</strong>(callback) <a class="anchor-link" href="#onclose"
+              title="Permalink to WebSocket.set onclose">#</a></h4>
+<div class="doc">
+<p>Sets the callback to be called when the web socket connection is
+closed.</p>
+<pre class="source">
+void set onclose(void callback(CloseEvent event));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onerror">
+<span class="show-code">Code</span>
+void <strong>set onerror</strong>(callback) <a class="anchor-link" href="#onerror"
+              title="Permalink to WebSocket.set onerror">#</a></h4>
+<div class="doc">
+<p>Sets the callback to be called when the web socket connection
+encountered an error.</p>
+<pre class="source">
+void set onerror(void callback(e));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onmessage">
+<span class="show-code">Code</span>
+void <strong>set onmessage</strong>(callback) <a class="anchor-link" href="#onmessage"
+              title="Permalink to WebSocket.set onmessage">#</a></h4>
+<div class="doc">
+<p>Sets the callback to be called when a message have been
+received.</p>
+<pre class="source">
+void set onmessage(void callback(MessageEvent event));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onopen">
+<span class="show-code">Code</span>
+void <strong>set onopen</strong>(callback) <a class="anchor-link" href="#onopen"
+              title="Permalink to WebSocket.set onopen">#</a></h4>
+<div class="doc">
+<p>Sets the callback to be called when a web socket connection has
+been established.</p>
+<pre class="source">
+void set onopen(void callback());
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="protocol">
+<span class="show-code">Code</span>
+<a href="../core/String.html">String</a> <strong>get protocol</strong>() <a class="anchor-link" href="#protocol"
+              title="Permalink to WebSocket.get protocol">#</a></h4>
+<div class="doc">
+<p>The protocol property is initially the empty string. After the
+web socket connection is established the value is the subprotocol
+selected by the server. If no subprotocol is negotiated the
+value will remain <code>null</code>.</p>
+<pre class="source">
+String get protocol();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="readyState">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a> <strong>get readyState</strong>() <a class="anchor-link" href="#readyState"
+              title="Permalink to WebSocket.get readyState">#</a></h4>
+<div class="doc">
+<p>Returns the current state of the connection.</p>
+<pre class="source">
+int get readyState();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="send">
+<span class="show-code">Code</span>
+void <strong>send</strong>(data) <a class="anchor-link" href="#send"
+              title="Permalink to WebSocket.send">#</a></h4>
+<div class="doc">
+<p>Sends data on the web socket connection. The data in 
+<span class="param">data</span> must
+be either a <code>String</code> or <code>List&lt;int&gt;</code> holding bytes.</p>
+<pre class="source">
+void send(data);
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

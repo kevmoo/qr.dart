@@ -28,11 +28,37 @@
 </div>
 <h3>Extends</h3>
 <p>
-<span class="type-box"><span class="icon-class"></span><a href="../dartlib_core/Enumerable.html">Enumerable&lt;T&gt;</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>NumberEnumerable&lt;T&gt;</strong></span></p>
+<span class="type-box"><span class="icon-class"></span><a href="../dartlib_core/Enumerable.html">Enumerable</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>NumberEnumerable&lt;T&gt;</strong></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="NumberEnumerable">
+<span class="show-code">Code</span>
+const <strong>NumberEnumerable</strong>._internal() <a class="anchor-link" href="#NumberEnumerable"
+              title="Permalink to NumberEnumerable&lt;T&gt;.NumberEnumerable">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+const NumberEnumerable._internal() : super._internal();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="NumberEnumerable">
+<span class="show-code">Code</span>
+factory <strong>NumberEnumerable</strong>(<a href="../core/Iterable.html">Iterable</a>&lt;<a href="../dartlib_core/NumberEnumerable.html">T</a>&gt; source) <a class="anchor-link" href="#NumberEnumerable"
+              title="Permalink to NumberEnumerable&lt;T&gt;.NumberEnumerable">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+factory NumberEnumerable(Iterable&lt;T&gt; source) {
+  requireArgumentNotNull(source, 'source');
+  return new _SimpleNumEnumerable&lt;T&gt;(source);
+}
+</pre>
+</div>
+</div>
 <h3>Methods</h3>
 <div class="method"><h4 id="average">
 <span class="show-code">Code</span>
-<a href="../dart_core/num.html">num</a> <strong>average</strong>() <a class="anchor-link" href="#average"
+<a href="../core/num.html">num</a> <strong>average</strong>() <a class="anchor-link" href="#average"
               title="Permalink to NumberEnumerable&lt;T&gt;.average">#</a></h4>
 <div class="doc">
 
@@ -51,7 +77,7 @@ num average() {
 </div>
 <div class="method"><h4 id="max">
 <span class="show-code">Code</span>
-<a href="../dart_core/num.html">num</a> <strong>max</strong>() <a class="anchor-link" href="#max"
+<a href="../core/num.html">num</a> <strong>max</strong>() <a class="anchor-link" href="#max"
               title="Permalink to NumberEnumerable&lt;T&gt;.max">#</a></h4>
 <div class="doc">
 
@@ -68,7 +94,7 @@ num max() {
 </div>
 <div class="method"><h4 id="min">
 <span class="show-code">Code</span>
-<a href="../dart_core/num.html">num</a> <strong>min</strong>() <a class="anchor-link" href="#min"
+<a href="../core/num.html">num</a> <strong>min</strong>() <a class="anchor-link" href="#min"
               title="Permalink to NumberEnumerable&lt;T&gt;.min">#</a></h4>
 <div class="doc">
 
@@ -85,7 +111,7 @@ num min() {
 </div>
 <div class="method"><h4 id="sum">
 <span class="show-code">Code</span>
-<a href="../dart_core/num.html">num</a> <strong>sum</strong>() <a class="anchor-link" href="#sum"
+<a href="../core/num.html">num</a> <strong>sum</strong>() <a class="anchor-link" href="#sum"
               title="Permalink to NumberEnumerable&lt;T&gt;.sum">#</a></h4>
 <div class="doc">
 

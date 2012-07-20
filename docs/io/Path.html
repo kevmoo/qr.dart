@@ -1,0 +1,312 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>Path Interface / io Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="io" data-type="Path">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../io.html">io</a> &rsaquo; <a href="../io/Path.html">Path</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>Path</strong>
+          Interface
+        </h2>
+        
+<div class="doc">
+<p>A Path, which is a String interpreted as a sequence of path segments,
+which are strings, separated by forward slashes.
+Paths are immutable wrappers of a String, that offer member functions for
+useful path manipulations and queries.  Joining of paths and normalization
+interpret '.' and '..' in the usual way.</p>
+</div>
+<h3>Extends</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../core/Hashable.html">Hashable</a></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="Path">
+<span class="show-code">Code</span>
+const <strong>Path</strong>(<a href="../core/String.html">String</a> source) <a class="anchor-link" href="#Path"
+              title="Permalink to Path.Path">#</a></h4>
+<div class="doc">
+<p>Creates a Path from the String 
+<span class="param">source</span>.  
+<span class="param">source</span> is used as-is, so if
+the string does not consist of segments separated by forward slashes, the
+behavior may not be as expected.  Paths are immutable, and constant
+Path objects may be constructed from constant Strings.</p>
+<pre class="source">
+const Path(String source);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="Path">
+<span class="show-code">Code</span>
+new <strong>Path</strong>.fromNative(<a href="../core/String.html">String</a> source) <a class="anchor-link" href="#Path"
+              title="Permalink to Path.Path">#</a></h4>
+<div class="doc">
+<p>Creates a Path from a String that uses the native filesystem's conventions.
+On Windows, this converts '\' to '/', and adds a '/' before a drive letter.
+A path starting with '/c:/' (or any other character instead of 'c') is
+treated specially.  Backwards links ('..') cannot cancel the drive letter.</p>
+<pre class="source">
+Path.fromNative(String source);
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="append">
+<span class="show-code">Code</span>
+<a href="../io/Path.html">Path</a> <strong>append</strong>(<a href="../core/String.html">String</a> finalSegment) <a class="anchor-link" href="#append"
+              title="Permalink to Path.append">#</a></h4>
+<div class="doc">
+<p>Appends 
+<span class="param">finalSegment</span> to a path as a new segment.  Adds a path separator
+between the path and 
+<span class="param">finalSegment</span> if the path does not already end in
+a path separator.  The path is not canonicalized, and 
+<span class="param">finalSegment</span> may
+contain path separators.</p>
+<pre class="source">
+Path append(String finalSegment);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="canonicalize">
+<span class="show-code">Code</span>
+<a href="../io/Path.html">Path</a> <strong>canonicalize</strong>() <a class="anchor-link" href="#canonicalize"
+              title="Permalink to Path.canonicalize">#</a></h4>
+<div class="doc">
+<p>Make a path canonical by dropping segments that are '.', cancelling
+segments that are '..' with preceding segments, if possible,
+and combining consecutive path separators.  Leading '..' segments
+are kept on relative paths, and dropped from absolute paths.</p>
+<pre class="source">
+Path canonicalize();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="directoryPath">
+<span class="show-code">Code</span>
+<a href="../io/Path.html">Path</a> <strong>get directoryPath</strong>() <a class="anchor-link" href="#directoryPath"
+              title="Permalink to Path.get directoryPath">#</a></h4>
+<div class="doc">
+<p>Drops the final path separator and whatever follows it from this Path,
+and returns the resulting Path object.  If the only path separator in
+this Path is the first character, returns '/' instead of the empty string.
+If there is no path separator in the Path, returns the empty string.</p>
+<pre><code>new Path('../images/dot.gif').directoryPath == '../images'
+new Path('/usr/geoffrey/www/').directoryPath == '/usr/geoffrey/www'
+new Path('lost_file_old').directoryPath == ''
+new Path('/src').directoryPath == '/'
+Note: new Path('/D:/src').directoryPath == '/D:'
+</code></pre>
+<pre class="source">
+Path get directoryPath();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="extension">
+<span class="show-code">Code</span>
+<a href="../core/String.html">String</a> <strong>get extension</strong>() <a class="anchor-link" href="#extension"
+              title="Permalink to Path.get extension">#</a></h4>
+<div class="doc">
+<p>The part of <a class="crossref" href="../io/Path.html#filename">filename</a> after the last '.', or '' if <a class="crossref" href="../io/Path.html#filename">filename</a>
+contains no '.'.  If <a class="crossref" href="../io/Path.html#filename">filename</a> is '.' or '..', returns ''.</p>
+<pre><code>new Path('tiger.svg').extension == 'svg'
+new Path('/src/dart/dart_secrets').extension == ''
+</code></pre>
+<pre class="source">
+String get extension();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="filename">
+<span class="show-code">Code</span>
+<a href="../core/String.html">String</a> <strong>get filename</strong>() <a class="anchor-link" href="#filename"
+              title="Permalink to Path.get filename">#</a></h4>
+<div class="doc">
+<p>The part of the path after the last path separator, or the entire path if
+it contains no path separator.</p>
+<pre><code>new Path('images/DSC_0027.jpg).filename == 'DSC_0027.jpg'
+new Path('users/fred/').filename == ''
+</code></pre>
+<pre class="source">
+String get filename();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="filenameWithoutExtension">
+<span class="show-code">Code</span>
+<a href="../core/String.html">String</a> <strong>get filenameWithoutExtension</strong>() <a class="anchor-link" href="#filenameWithoutExtension"
+              title="Permalink to Path.get filenameWithoutExtension">#</a></h4>
+<div class="doc">
+<p>The part of <a class="crossref" href="../io/Path.html#filename">filename</a> before the last '.', or the entire filename if it
+contains no '.'.  If <a class="crossref" href="../io/Path.html#filename">filename</a> is '.' or '..' it is unchanged.</p>
+<pre><code>new Path('/c:/My Documents/Heidi.txt').filenameWithoutExtension
+would return 'Heidi'.
+new Path('not what I would call a path').filenameWithoutExtension
+would return 'not what I would call a path'.
+</code></pre>
+<pre class="source">
+String get filenameWithoutExtension();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="hasTrailingSeparator">
+<span class="show-code">Code</span>
+<a href="../core/bool.html">bool</a> <strong>get hasTrailingSeparator</strong>() <a class="anchor-link" href="#hasTrailingSeparator"
+              title="Permalink to Path.get hasTrailingSeparator">#</a></h4>
+<div class="doc">
+<p>Does this path end with a path separator?</p>
+<pre class="source">
+bool get hasTrailingSeparator();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="isAbsolute">
+<span class="show-code">Code</span>
+<a href="../core/bool.html">bool</a> <strong>get isAbsolute</strong>() <a class="anchor-link" href="#isAbsolute"
+              title="Permalink to Path.get isAbsolute">#</a></h4>
+<div class="doc">
+<p>Is this path an absolute path, beginning with a path separator?</p>
+<pre class="source">
+bool get isAbsolute();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="isCanonical">
+<span class="show-code">Code</span>
+<a href="../core/bool.html">bool</a> <strong>get isCanonical</strong>() <a class="anchor-link" href="#isCanonical"
+              title="Permalink to Path.get isCanonical">#</a></h4>
+<div class="doc">
+<p>Does this path contain no consecutive path separators, no segments that
+are '.' unless the path is exactly '.', and segments that are '..' only
+as the leading segments on a relative path?</p>
+<pre class="source">
+bool get isCanonical();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="isEmpty">
+<span class="show-code">Code</span>
+<a href="../core/bool.html">bool</a> <strong>get isEmpty</strong>() <a class="anchor-link" href="#isEmpty"
+              title="Permalink to Path.get isEmpty">#</a></h4>
+<div class="doc">
+<p>Is this path the empty string?</p>
+<pre class="source">
+bool get isEmpty();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="join">
+<span class="show-code">Code</span>
+<a href="../io/Path.html">Path</a> <strong>join</strong>(<a href="../io/Path.html">Path</a> further) <a class="anchor-link" href="#join"
+              title="Permalink to Path.join">#</a></h4>
+<div class="doc">
+<p>Joins the relative path 
+<span class="param">further</span> to this path.  Canonicalizes the
+resulting joined path using <a class="crossref" href="../io/Path.html#canonicalize">canonicalize</a>,
+interpreting '.' and '..' as directory traversal commands, and removing
+consecutive path separators.</p>
+<p>If 
+<span class="param">further</span> is an absolute path, an IllegalArgument exception is thrown.</p>
+<p>Examples:
+  <code>new Path('/a/b/c').join(new Path('d/e'))</code> returns the Path object
+  containing <code>'a/b/c/d/e'</code>.</p>
+<p>  <code>new Path('a/b/../c/').join(new Path('d/./e//')</code> returns the Path
+  containing <code>'a/c/d/e/'</code>.</p>
+<p>  <code>new Path('a/b/c').join(new Path('d/../../e')</code> returns the Path
+  containing <code>'a/b/e'</code>.</p>
+<p>Note that the join operation does not drop the last segment of the
+base path, the way URL joining does.  That would be accomplished with
+basepath.directoryPath.join(further).</p>
+<p>If you want to avoid joins that traverse
+parent directories in the base, you can check whether
+<code>further.canonicalize()</code> starts with '../' or equals '..'.</p>
+<pre class="source">
+Path join(Path further);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="relativeTo">
+<span class="show-code">Code</span>
+<a href="../io/Path.html">Path</a> <strong>relativeTo</strong>(<a href="../io/Path.html">Path</a> base) <a class="anchor-link" href="#relativeTo"
+              title="Permalink to Path.relativeTo">#</a></h4>
+<div class="doc">
+<p>Returns a path <code>relative</code> such that
+   <code>base.join(relative) == this.canonicalize()</code>.
+Throws an exception if such a path is impossible.
+For example, if 
+<span class="param">base</span> is '../../a/b' and <code>this</code> is '.'.
+The computation is independent of the file system and current directory.</p>
+<pre class="source">
+Path relativeTo(Path base);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="segments">
+<span class="show-code">Code</span>
+<a href="../core/List.html">List</a>&lt;<a href="../core/String.html">String</a>&gt; <strong>segments</strong>() <a class="anchor-link" href="#segments"
+              title="Permalink to Path.segments">#</a></h4>
+<div class="doc">
+<p>Gets the segments of a Path.  Paths beginning or ending with the
+path separator do not have leading or terminating empty segments.
+Other than that, the segments are just the result of splitting the
+path on the path separator.</p>
+<pre><code>new Path('/a/b/c/d').segments() == ['a', 'b', 'c', d'];
+new Path(' foo bar //../') == [' foo bar ', '', '..'];
+</code></pre>
+<pre class="source">
+List&lt;String&gt; segments();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="toNativePath">
+<span class="show-code">Code</span>
+<a href="../core/String.html">String</a> <strong>toNativePath</strong>() <a class="anchor-link" href="#toNativePath"
+              title="Permalink to Path.toNativePath">#</a></h4>
+<div class="doc">
+<p>Converts a path to a string using the native filesystem's conventions.</p>
+<p>On Windows, converts path separators to backwards slashes, and removes
+the leading path separator if the path starts with a drive specification.
+For most valid Windows paths, this should be the inverse of the
+constructor Path.fromNative.</p>
+<pre class="source">
+String toNativePath();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="toString">
+<span class="show-code">Code</span>
+<a href="../core/String.html">String</a> <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to Path.toString">#</a></h4>
+<div class="doc">
+<p>Returns the path as a string.  If this path is constructed using
+new Path() or new Path.fromNative() on a non-Windows system, the
+returned value is the original string argument to the constructor.</p>
+<pre class="source">
+String toString();
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

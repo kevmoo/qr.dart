@@ -1,0 +1,121 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>OSError Class / io Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="io" data-type="OSError">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../io.html">io</a> &rsaquo; <a href="../io/OSError.html">OSError</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>OSError</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+<p>An <a class="crossref" href="../io/OSError.html#new:OSError">OSError</a> object holds information about an error from the
+operating system.</p>
+</div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="OSError">
+<span class="show-code">Code</span>
+const <strong>OSError</strong>([<a href="../core/String.html">String</a> message, <a href="../core/int.html">int</a> errorCode]) <a class="anchor-link" href="#OSError"
+              title="Permalink to OSError.OSError">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+const OSError([String this.message = "", int this.errorCode = noErrorCode]);
+</pre>
+</div>
+</div>
+<h3>Static Fields</h3>
+<div class="field"><h4 id="noErrorCode">
+<span class="show-code">Code</span>
+final <a href="../core/int.html">int</a>         <strong>noErrorCode</strong> <a class="anchor-link"
+            href="#noErrorCode"
+            title="Permalink to OSError.noErrorCode">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int noErrorCode = -1;
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="toString">
+<span class="show-code">Code</span>
+<a href="../core/String.html">String</a> <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to OSError.toString">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+String toString() {
+  StringBuffer sb = new StringBuffer();
+  sb.add("OS Error");
+  if (!message.isEmpty()) {
+    sb.add(": ");
+    sb.add(message);
+    if (errorCode != noErrorCode) {
+      sb.add(", errno = ");
+      sb.add(errorCode.toString());
+    }
+  } else if (errorCode != noErrorCode) {
+    sb.add(": errno = ");
+    sb.add(errorCode.toString());
+  }
+  return sb.toString();
+}
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="errorCode">
+<span class="show-code">Code</span>
+final <a href="../core/int.html">int</a>         <strong>errorCode</strong> <a class="anchor-link"
+            href="#errorCode"
+            title="Permalink to OSError.errorCode">#</a>
+        </h4>
+        <div class="doc">
+<p>Error code supplied by the operating system. Will have the value
+<a class="crossref" href="../io/OSError.html#noErrorCode">noErrorCode</a> if there is no error code associated with the error.</p>
+<pre class="source">
+final int errorCode;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="message">
+<span class="show-code">Code</span>
+final <a href="../core/String.html">String</a>         <strong>message</strong> <a class="anchor-link"
+            href="#message"
+            title="Permalink to OSError.message">#</a>
+        </h4>
+        <div class="doc">
+<p>Error message supplied by the operating system. null if no message is
+associated with the error.</p>
+<pre class="source">
+final String message;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

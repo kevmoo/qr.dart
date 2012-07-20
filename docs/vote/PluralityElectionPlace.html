@@ -1,0 +1,85 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>PluralityElectionPlace&lt;TCandidate&gt; Class / vote Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="vote" data-type="PluralityElectionPlace&amp;lt;TCandidate&amp;gt;">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../vote.html">vote</a> &rsaquo; <a href="../vote/PluralityElectionPlace.html">PluralityElectionPlace&lt;TCandidate&gt;</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>PluralityElectionPlace&lt;TCandidate extends Player&gt;</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Extends</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../dartlib_core/Enumerable.html">Enumerable</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../dartlib_core/ListBase.html">ListBase</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../dartlib_core/ReadOnlyCollection.html">ReadOnlyCollection</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../vote/ElectionPlace.html">ElectionPlace</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>PluralityElectionPlace&lt;TCandidate&gt;</strong></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="PluralityElectionPlace">
+<span class="show-code">Code</span>
+new <strong>PluralityElectionPlace</strong>(<a href="../core/int.html">int</a> place, <a href="../core/Iterable.html">Iterable</a>&lt;<a href="../vote/PluralityElectionPlace.html">TCandidate</a>&gt; candidates, voteCount) <a class="anchor-link" href="#PluralityElectionPlace"
+              title="Permalink to PluralityElectionPlace&lt;TCandidate&gt;.PluralityElectionPlace">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+PluralityElectionPlace(
+  int place, Iterable&lt;TCandidate&gt; candidates, this.voteCount) :
+  super(place, candidates) {
+    assert(voteCount &gt;= 0);
+  }
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="toString">
+<span class="show-code">Code</span>
+<a href="../core/String.html">String</a> <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to PluralityElectionPlace&lt;TCandidate&gt;.toString">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+String toString() {
+  return "Votes: $voteCount; ${super.toString()}";
+}
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="voteCount">
+<span class="show-code">Code</span>
+final <a href="../core/int.html">int</a>         <strong>voteCount</strong> <a class="anchor-link"
+            href="#voteCount"
+            title="Permalink to PluralityElectionPlace&lt;TCandidate&gt;.voteCount">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final int voteCount;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

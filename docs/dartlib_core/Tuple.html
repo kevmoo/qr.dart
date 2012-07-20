@@ -28,7 +28,7 @@
 </div>
 <h3>Subclasses</h3>
 <p>
-<span class="type-box"><span class="icon-class"></span><a href="../dartlib_core/Tuple3.html">Tuple3&lt;T1, T2, T3&gt;</a></span></p>
+<span class="type-box"><span class="icon-class"></span><a href="../vote/CondorcetPair.html">CondorcetPair&lt;TVoter, TCandidate&gt;</a></span>, <span class="type-box"><span class="icon-class"></span><a href="../dartlib_core/Tuple3.html">Tuple3&lt;T1, T2, T3&gt;</a></span></p>
 <h3>Constructors</h3>
 <div class="method"><h4 id="Tuple">
 <span class="show-code">Code</span>
@@ -42,9 +42,9 @@ const Tuple(this.Item1, this.Item2);
 </div>
 </div>
 <h3>Methods</h3>
-<div class="method"><h4 id=":eq">
+<div class="method"><h4 id="operator">
 <span class="show-code">Code</span>
-<a href="../dart_core/bool.html">bool</a> <strong>operator ==</strong>(<a href="../dartlib_core/Tuple.html">Tuple</a> other) <a class="anchor-link" href="#:eq"
+<a href="../core/bool.html">bool</a> <strong>operator ==</strong>(<a href="../dartlib_core/Tuple.html">Tuple</a>&lt;<a href="../dartlib_core/Tuple.html">T1</a>, <a href="../dartlib_core/Tuple.html">T2</a>&gt; other) <a class="anchor-link" href="#operator"
               title="Permalink to Tuple&lt;T1, T2&gt;.operator ==">#</a></h4>
 <div class="doc">
 
@@ -57,19 +57,19 @@ bool operator ==(Tuple&lt;T1, T2&gt; other) {
 </div>
 <div class="method"><h4 id="toString">
 <span class="show-code">Code</span>
-<a href="../dart_core/String.html">String</a> <strong>toString</strong>() <a class="anchor-link" href="#toString"
+<a href="../core/String.html">String</a> <strong>toString</strong>() <a class="anchor-link" href="#toString"
               title="Permalink to Tuple&lt;T1, T2&gt;.toString">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-String toString() =&gt; "Tuple: $Item1, Item2: $Item2";
+String toString() =&gt; "Tuple: Item1: $Item1, Item2: $Item2";
 </pre>
 </div>
 </div>
 <h3>Fields</h3>
 <div class="field"><h4 id="Item1">
 <span class="show-code">Code</span>
-final         <strong>Item1</strong> <a class="anchor-link"
+final <a href="../dartlib_core/Tuple.html">T1</a>         <strong>Item1</strong> <a class="anchor-link"
             href="#Item1"
             title="Permalink to Tuple&lt;T1, T2&gt;.Item1">#</a>
         </h4>
@@ -82,7 +82,7 @@ final T1 Item1;
 </div>
 <div class="field"><h4 id="Item2">
 <span class="show-code">Code</span>
-final         <strong>Item2</strong> <a class="anchor-link"
+final <a href="../dartlib_core/Tuple.html">T2</a>         <strong>Item2</strong> <a class="anchor-link"
             href="#Item2"
             title="Permalink to Tuple&lt;T1, T2&gt;.Item2">#</a>
         </h4>

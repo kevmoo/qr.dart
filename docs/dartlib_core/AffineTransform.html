@@ -28,11 +28,24 @@
 </div>
 <h3>Implements</h3>
 <p>
-<span class="type-box"><span class="icon-interface"></span><a href="../dartlib_core/Cloneable.html">Cloneable<dartlib_core.AffineTransform>&lt;T&gt;</a></span></p>
+<span class="type-box"><span class="icon-interface"></span><a href="../dartlib_core/Cloneable.html">Cloneable</a></span></p>
 <h3>Constructors</h3>
 <div class="method"><h4 id="AffineTransform">
 <span class="show-code">Code</span>
-new <strong>AffineTransform</strong>([<a href="../dart_core/num.html">num</a> scaleX = 1, <a href="../dart_core/num.html">num</a> shearY = 0, <a href="../dart_core/num.html">num</a> shearX = 0, <a href="../dart_core/num.html">num</a> scaleY = 1, <a href="../dart_core/num.html">num</a> translateX = 0, <a href="../dart_core/num.html">num</a> translateY = 0]) <a class="anchor-link" href="#AffineTransform"
+factory <strong>AffineTransform</strong>.scale(sx, sy) <a class="anchor-link" href="#AffineTransform"
+              title="Permalink to AffineTransform.AffineTransform">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+factory AffineTransform.scale(sx, sy) {
+  return new AffineTransform().setToScale(sx, sy);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="AffineTransform">
+<span class="show-code">Code</span>
+new <strong>AffineTransform</strong>([<a href="../core/num.html">num</a> scaleX, <a href="../core/num.html">num</a> shearY, <a href="../core/num.html">num</a> shearX, <a href="../core/num.html">num</a> scaleY, <a href="../core/num.html">num</a> translateX, <a href="../core/num.html">num</a> translateY]) <a class="anchor-link" href="#AffineTransform"
               title="Permalink to AffineTransform.AffineTransform">#</a></h4>
 <div class="doc">
 
@@ -46,22 +59,20 @@ AffineTransform([num scaleX = 1, num shearY = 0,
 </pre>
 </div>
 </div>
-<h3>Methods</h3>
-<div class="method"><h4 id=":eq">
+<div class="method"><h4 id="AffineTransform">
 <span class="show-code">Code</span>
-<a href="../dart_core/bool.html">bool</a> <strong>operator ==</strong>(<a href="../dartlib_core/AffineTransform.html">AffineTransform</a> other) <a class="anchor-link" href="#:eq"
-              title="Permalink to AffineTransform.operator ==">#</a></h4>
+factory <strong>AffineTransform</strong>.rotate(<a href="../core/num.html">num</a> theta, <a href="../core/num.html">num</a> x, <a href="../core/num.html">num</a> y) <a class="anchor-link" href="#AffineTransform"
+              title="Permalink to AffineTransform.AffineTransform">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-bool operator ==(AffineTransform other) {
-  return other !== null &amp;&amp;
-      _m00 == other._m00 &amp;&amp; _m01 == other._m01 &amp;&amp; _m02 == other._m02 &amp;&amp;
-      _m10 == other._m10 &amp;&amp; _m11 == other._m11 &amp;&amp; _m12 == other._m12;
+factory AffineTransform.rotate(num theta, num x, num y) {
+  return new AffineTransform().setToRotation(theta, x, y);
 }
 </pre>
 </div>
 </div>
+<h3>Methods</h3>
 <div class="method"><h4 id="clone">
 <span class="show-code">Code</span>
 <a href="../dartlib_core/AffineTransform.html">AffineTransform</a> <strong>clone</strong>() <a class="anchor-link" href="#clone"
@@ -119,9 +130,9 @@ AffineTransform createInverse() {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="get:determinant">
+<div class="method"><h4 id="determinant">
 <span class="show-code">Code</span>
-<a href="../dart_core/num.html">num</a> <strong>get determinant</strong>() <a class="anchor-link" href="#get:determinant"
+<a href="../core/num.html">num</a> <strong>get determinant</strong>() <a class="anchor-link" href="#determinant"
               title="Permalink to AffineTransform.get determinant">#</a></h4>
 <div class="doc">
 
@@ -130,9 +141,9 @@ num get determinant() =&gt; _m00 * _m11 - _m01 * _m10;
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="get:isIdentity">
+<div class="method"><h4 id="isIdentity">
 <span class="show-code">Code</span>
-<a href="../dart_core/bool.html">bool</a> <strong>get isIdentity</strong>() <a class="anchor-link" href="#get:isIdentity"
+<a href="../core/bool.html">bool</a> <strong>get isIdentity</strong>() <a class="anchor-link" href="#isIdentity"
               title="Permalink to AffineTransform.get isIdentity">#</a></h4>
 <div class="doc">
 
@@ -145,9 +156,24 @@ bool get isIdentity() {
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="operator">
+<span class="show-code">Code</span>
+<a href="../core/bool.html">bool</a> <strong>operator ==</strong>(<a href="../dartlib_core/AffineTransform.html">AffineTransform</a> other) <a class="anchor-link" href="#operator"
+              title="Permalink to AffineTransform.operator ==">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool operator ==(AffineTransform other) {
+  return other !== null &amp;&amp;
+      _m00 == other._m00 &amp;&amp; _m01 == other._m01 &amp;&amp; _m02 == other._m02 &amp;&amp;
+      _m10 == other._m10 &amp;&amp; _m11 == other._m11 &amp;&amp; _m12 == other._m12;
+}
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="rotate">
 <span class="show-code">Code</span>
-<a href="../dartlib_core/AffineTransform.html">AffineTransform</a> <strong>rotate</strong>(<a href="../dart_core/num.html">num</a> theta, <a href="../dart_core/num.html">num</a> x, <a href="../dart_core/num.html">num</a> y) <a class="anchor-link" href="#rotate"
+<a href="../dartlib_core/AffineTransform.html">AffineTransform</a> <strong>rotate</strong>(<a href="../core/num.html">num</a> theta, <a href="../core/num.html">num</a> x, <a href="../core/num.html">num</a> y) <a class="anchor-link" href="#rotate"
               title="Permalink to AffineTransform.rotate">#</a></h4>
 <div class="doc">
 
@@ -158,9 +184,9 @@ AffineTransform rotate(num theta, num x, num y) {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="get:scaleX">
+<div class="method"><h4 id="scaleX">
 <span class="show-code">Code</span>
-<a href="../dart_core/num.html">num</a> <strong>get scaleX</strong>() <a class="anchor-link" href="#get:scaleX"
+<a href="../core/num.html">num</a> <strong>get scaleX</strong>() <a class="anchor-link" href="#scaleX"
               title="Permalink to AffineTransform.get scaleX">#</a></h4>
 <div class="doc">
 
@@ -169,9 +195,9 @@ num get scaleX() =&gt; _m00;
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="get:scaleY">
+<div class="method"><h4 id="scaleY">
 <span class="show-code">Code</span>
-<a href="../dart_core/num.html">num</a> <strong>get scaleY</strong>() <a class="anchor-link" href="#get:scaleY"
+<a href="../core/num.html">num</a> <strong>get scaleY</strong>() <a class="anchor-link" href="#scaleY"
               title="Permalink to AffineTransform.get scaleY">#</a></h4>
 <div class="doc">
 
@@ -180,9 +206,25 @@ num get scaleY() =&gt; _m11;
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="setFromTransfrom">
+<span class="show-code">Code</span>
+<a href="../dartlib_core/AffineTransform.html">AffineTransform</a> <strong>setFromTransfrom</strong>(<a href="../dartlib_core/AffineTransform.html">AffineTransform</a> tx) <a class="anchor-link" href="#setFromTransfrom"
+              title="Permalink to AffineTransform.setFromTransfrom">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+AffineTransform setFromTransfrom(AffineTransform tx) {
+  requireArgumentNotNull(tx, 'tx');
+  return setTransform(tx._m00, tx._m10,
+    tx._m01, tx._m11,
+    tx._m02, tx._m12);
+}
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="setToRotation">
 <span class="show-code">Code</span>
-<a href="../dartlib_core/AffineTransform.html">AffineTransform</a> <strong>setToRotation</strong>(<a href="../dart_core/num.html">num</a> theta, <a href="../dart_core/num.html">num</a> x, <a href="../dart_core/num.html">num</a> y) <a class="anchor-link" href="#setToRotation"
+<a href="../dartlib_core/AffineTransform.html">AffineTransform</a> <strong>setToRotation</strong>(<a href="../core/num.html">num</a> theta, <a href="../core/num.html">num</a> x, <a href="../core/num.html">num</a> y) <a class="anchor-link" href="#setToRotation"
               title="Permalink to AffineTransform.setToRotation">#</a></h4>
 <div class="doc">
 
@@ -211,7 +253,7 @@ AffineTransform setToScale(sx, sy) {
 </div>
 <div class="method"><h4 id="setToTranslation">
 <span class="show-code">Code</span>
-<a href="../dartlib_core/AffineTransform.html">AffineTransform</a> <strong>setToTranslation</strong>(<a href="../dart_core/num.html">num</a> dx, <a href="../dart_core/num.html">num</a> dy) <a class="anchor-link" href="#setToTranslation"
+<a href="../dartlib_core/AffineTransform.html">AffineTransform</a> <strong>setToTranslation</strong>(<a href="../core/num.html">num</a> dx, <a href="../core/num.html">num</a> dy) <a class="anchor-link" href="#setToTranslation"
               title="Permalink to AffineTransform.setToTranslation">#</a></h4>
 <div class="doc">
 
@@ -224,7 +266,7 @@ AffineTransform setToTranslation(num dx, num dy) {
 </div>
 <div class="method"><h4 id="setTransform">
 <span class="show-code">Code</span>
-<a href="../dartlib_core/AffineTransform.html">AffineTransform</a> <strong>setTransform</strong>(<a href="../dart_core/num.html">num</a> m00, <a href="../dart_core/num.html">num</a> m10, <a href="../dart_core/num.html">num</a> m01, <a href="../dart_core/num.html">num</a> m11, <a href="../dart_core/num.html">num</a> m02, <a href="../dart_core/num.html">num</a> m12) <a class="anchor-link" href="#setTransform"
+<a href="../dartlib_core/AffineTransform.html">AffineTransform</a> <strong>setTransform</strong>(<a href="../core/num.html">num</a> m00, <a href="../core/num.html">num</a> m10, <a href="../core/num.html">num</a> m01, <a href="../core/num.html">num</a> m11, <a href="../core/num.html">num</a> m02, <a href="../core/num.html">num</a> m12) <a class="anchor-link" href="#setTransform"
               title="Permalink to AffineTransform.setTransform">#</a></h4>
 <div class="doc">
 
@@ -242,9 +284,9 @@ AffineTransform setTransform (num m00, num m10, num m01,
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="get:shearX">
+<div class="method"><h4 id="shearX">
 <span class="show-code">Code</span>
-<a href="../dart_core/num.html">num</a> <strong>get shearX</strong>() <a class="anchor-link" href="#get:shearX"
+<a href="../core/num.html">num</a> <strong>get shearX</strong>() <a class="anchor-link" href="#shearX"
               title="Permalink to AffineTransform.get shearX">#</a></h4>
 <div class="doc">
 
@@ -253,9 +295,9 @@ num get shearX() =&gt; _m01;
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="get:shearY">
+<div class="method"><h4 id="shearY">
 <span class="show-code">Code</span>
-<a href="../dart_core/num.html">num</a> <strong>get shearY</strong>() <a class="anchor-link" href="#get:shearY"
+<a href="../core/num.html">num</a> <strong>get shearY</strong>() <a class="anchor-link" href="#shearY"
               title="Permalink to AffineTransform.get shearY">#</a></h4>
 <div class="doc">
 
@@ -266,7 +308,7 @@ num get shearY() =&gt; _m10;
 </div>
 <div class="method"><h4 id="transformCoordinate">
 <span class="show-code">Code</span>
-<a href="../dartlib_core/Coordinate.html">Coordinate</a> <strong>transformCoordinate</strong>([<a href="../dartlib_core/Coordinate.html">Coordinate</a> point = const Coordinate()]) <a class="anchor-link" href="#transformCoordinate"
+<a href="../dartlib_core/Coordinate.html">Coordinate</a> <strong>transformCoordinate</strong>([<a href="../dartlib_core/Coordinate.html">Coordinate</a> point]) <a class="anchor-link" href="#transformCoordinate"
               title="Permalink to AffineTransform.transformCoordinate">#</a></h4>
 <div class="doc">
 
@@ -282,7 +324,7 @@ Coordinate transformCoordinate([Coordinate point = const Coordinate()]){
 </div>
 <div class="method"><h4 id="translate">
 <span class="show-code">Code</span>
-<a href="../dartlib_core/AffineTransform.html">AffineTransform</a> <strong>translate</strong>(<a href="../dart_core/num.html">num</a> dx, <a href="../dart_core/num.html">num</a> dy) <a class="anchor-link" href="#translate"
+<a href="../dartlib_core/AffineTransform.html">AffineTransform</a> <strong>translate</strong>(<a href="../core/num.html">num</a> dx, <a href="../core/num.html">num</a> dy) <a class="anchor-link" href="#translate"
               title="Permalink to AffineTransform.translate">#</a></h4>
 <div class="doc">
 
@@ -295,9 +337,9 @@ AffineTransform translate(num dx, num dy) {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="get:translateX">
+<div class="method"><h4 id="translateX">
 <span class="show-code">Code</span>
-<a href="../dart_core/num.html">num</a> <strong>get translateX</strong>() <a class="anchor-link" href="#get:translateX"
+<a href="../core/num.html">num</a> <strong>get translateX</strong>() <a class="anchor-link" href="#translateX"
               title="Permalink to AffineTransform.get translateX">#</a></h4>
 <div class="doc">
 
@@ -306,9 +348,9 @@ num get translateX() =&gt; _m02;
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="get:translateY">
+<div class="method"><h4 id="translateY">
 <span class="show-code">Code</span>
-<a href="../dart_core/num.html">num</a> <strong>get translateY</strong>() <a class="anchor-link" href="#get:translateY"
+<a href="../core/num.html">num</a> <strong>get translateY</strong>() <a class="anchor-link" href="#translateY"
               title="Permalink to AffineTransform.get translateY">#</a></h4>
 <div class="doc">
 

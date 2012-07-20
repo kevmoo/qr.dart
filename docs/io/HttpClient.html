@@ -1,0 +1,168 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>HttpClient Interface / io Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="io" data-type="HttpClient">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../io.html">io</a> &rsaquo; <a href="../io/HttpClient.html">HttpClient</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>HttpClient</strong>
+          Interface
+        </h2>
+        
+<div class="doc">
+<p>HTTP client factory. The <a class="crossref" href="../io/HttpClient.html#new:HttpClient">HttpClient</a> handles all the sockets associated
+with the <a class="crossref" href="../io/HttpClientConnection.html">HttpClientConnection</a>s and when the endpoint supports it, it will
+try to reuse opened sockets for several requests to support HTTP 1.1
+persistent connections. This means that sockets will be kept open for some
+time after a requests have completed, unless HTTP procedures indicate that it
+must be closed as part of completing the request. Use <code>HttpClient.shutdown</code>
+to force close the idle sockets.</p>
+</div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="HttpClient">
+<span class="show-code">Code</span>
+new <strong>HttpClient</strong>() <a class="anchor-link" href="#HttpClient"
+              title="Permalink to HttpClient.HttpClient">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+HttpClient();
+</pre>
+</div>
+</div>
+<h3>Static Fields</h3>
+<div class="field"><h4 id="DEFAULT_HTTP_PORT">
+<span class="show-code">Code</span>
+final <a href="../core/int.html">int</a>         <strong>DEFAULT_HTTP_PORT</strong> <a class="anchor-link"
+            href="#DEFAULT_HTTP_PORT"
+            title="Permalink to HttpClient.DEFAULT_HTTP_PORT">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static final int DEFAULT_HTTP_PORT = 80;
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="get">
+<span class="show-code">Code</span>
+<a href="../io/HttpClientConnection.html">HttpClientConnection</a> <strong>get</strong>(<a href="../core/String.html">String</a> host, <a href="../core/int.html">int</a> port, <a href="../core/String.html">String</a> path) <a class="anchor-link" href="#get"
+              title="Permalink to HttpClient.get">#</a></h4>
+<div class="doc">
+<p>Opens a HTTP connection using the GET method. See <a class="crossref" href="../io/HttpClient.html#open">open</a> for
+details. Using this method to open a HTTP connection will set the
+content length to 0.</p>
+<pre class="source">
+HttpClientConnection get(String host, int port, String path);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getUrl">
+<span class="show-code">Code</span>
+<a href="../io/HttpClientConnection.html">HttpClientConnection</a> <strong>getUrl</strong>(<a href="../uri/Uri.html">Uri</a> url) <a class="anchor-link" href="#getUrl"
+              title="Permalink to HttpClient.getUrl">#</a></h4>
+<div class="doc">
+<p>Opens a HTTP connection using the GET method. See <a class="crossref" href="../io/HttpClient.html#openUrl">openUrl</a> for
+details. Using this method to open a HTTP connection will set the
+content length to 0.</p>
+<pre class="source">
+HttpClientConnection getUrl(Uri url);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="open">
+<span class="show-code">Code</span>
+<a href="../io/HttpClientConnection.html">HttpClientConnection</a> <strong>open</strong>(<a href="../core/String.html">String</a> method, <a href="../core/String.html">String</a> host, <a href="../core/int.html">int</a> port, <a href="../core/String.html">String</a> path) <a class="anchor-link" href="#open"
+              title="Permalink to HttpClient.open">#</a></h4>
+<div class="doc">
+<p>Opens a HTTP connection. The returned <a class="crossref" href="../io/HttpClientConnection.html">HttpClientConnection</a> is
+used to register callbacks for asynchronous events on the HTTP
+connection. The "Host" header for the request will be set to the
+value 
+<span class="param">host</span>:
+<span class="param">port</span>. This can be overridden through the
+HttpClientRequest interface before the request is sent. NOTE if
+
+<span class="param">host</span> is an IP address this will still be set in the "Host"
+header.</p>
+<pre class="source">
+HttpClientConnection open(String method, String host, int port, String path);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="openUrl">
+<span class="show-code">Code</span>
+<a href="../io/HttpClientConnection.html">HttpClientConnection</a> <strong>openUrl</strong>(<a href="../core/String.html">String</a> method, <a href="../uri/Uri.html">Uri</a> url) <a class="anchor-link" href="#openUrl"
+              title="Permalink to HttpClient.openUrl">#</a></h4>
+<div class="doc">
+<p>Opens a HTTP connection. The returned <a class="crossref" href="../io/HttpClientConnection.html">HttpClientConnection</a> is
+used to register callbacks for asynchronous events on the HTTP
+connection. The "Host" header for the request will be set based
+the host and port specified in 
+<span class="param">url</span>. This can be overridden
+through the HttpClientRequest interface before the request is
+sent. NOTE if the host is specified as an IP address this will
+still be set in the "Host" header.</p>
+<pre class="source">
+HttpClientConnection openUrl(String method, Uri url);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="post">
+<span class="show-code">Code</span>
+<a href="../io/HttpClientConnection.html">HttpClientConnection</a> <strong>post</strong>(<a href="../core/String.html">String</a> host, <a href="../core/int.html">int</a> port, <a href="../core/String.html">String</a> path) <a class="anchor-link" href="#post"
+              title="Permalink to HttpClient.post">#</a></h4>
+<div class="doc">
+<p>Opens a HTTP connection using the POST method. See <a class="crossref" href="../io/HttpClient.html#open">open</a> for details.</p>
+<pre class="source">
+HttpClientConnection post(String host, int port, String path);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="postUrl">
+<span class="show-code">Code</span>
+<a href="../io/HttpClientConnection.html">HttpClientConnection</a> <strong>postUrl</strong>(<a href="../uri/Uri.html">Uri</a> url) <a class="anchor-link" href="#postUrl"
+              title="Permalink to HttpClient.postUrl">#</a></h4>
+<div class="doc">
+<p>Opens a HTTP connection using the POST method. See <a class="crossref" href="../io/HttpClient.html#openUrl">openUrl</a> for details.</p>
+<pre class="source">
+HttpClientConnection postUrl(Uri url);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="shutdown">
+<span class="show-code">Code</span>
+void <strong>shutdown</strong>() <a class="anchor-link" href="#shutdown"
+              title="Permalink to HttpClient.shutdown">#</a></h4>
+<div class="doc">
+<p>Shutdown the HTTP client releasing all resources.</p>
+<pre class="source">
+void shutdown();
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

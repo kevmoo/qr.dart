@@ -1,0 +1,97 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>IterableUtf16Decoder Class / utf Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="utf" data-type="IterableUtf16Decoder">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../utf.html">utf</a> &rsaquo; <a href="../utf/IterableUtf16Decoder.html">IterableUtf16Decoder</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>IterableUtf16Decoder</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+<p>Return type of <a class="crossref" href="../utf.html#decodeUtf16AsIterable">decodeUtf16AsIterable</a> and variants. The Iterable type
+provides an iterator on demand and the iterator will only translate bytes
+as requested by the user of the iterator. (Note: results are not cached.)</p>
+</div>
+<h3>Implements</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../core/Iterable.html">Iterable</a></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="IterableUtf16Decoder">
+<span class="show-code">Code</span>
+new <strong>IterableUtf16Decoder</strong>._(codeunitsProvider, <a href="../core/int.html">int</a> replacementCodepoint) <a class="anchor-link" href="#IterableUtf16Decoder"
+              title="Permalink to IterableUtf16Decoder.IterableUtf16Decoder">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+IterableUtf16Decoder._(_ListRangeIterator this.codeunitsProvider(),
+    int this.replacementCodepoint);
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="iterator">
+<span class="show-code">Code</span>
+<a href="../utf/Utf16CodeUnitDecoder.html">Utf16CodeUnitDecoder</a> <strong>iterator</strong>() <a class="anchor-link" href="#iterator"
+              title="Permalink to IterableUtf16Decoder.iterator">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Utf16CodeUnitDecoder iterator() =&gt;
+    new Utf16CodeUnitDecoder.fromListRangeIterator(codeunitsProvider(),
+        replacementCodepoint);
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="codeunitsProvider">
+<span class="show-code">Code</span>
+final <a href="../core/Function.html">Function</a>         <strong>codeunitsProvider</strong> <a class="anchor-link"
+            href="#codeunitsProvider"
+            title="Permalink to IterableUtf16Decoder.codeunitsProvider">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final Function codeunitsProvider;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="replacementCodepoint">
+<span class="show-code">Code</span>
+final <a href="../core/int.html">int</a>         <strong>replacementCodepoint</strong> <a class="anchor-link"
+            href="#replacementCodepoint"
+            title="Permalink to IterableUtf16Decoder.replacementCodepoint">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final int replacementCodepoint;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

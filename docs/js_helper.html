@@ -1,0 +1,2310 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>js_helper Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="favicon.ico">
+        
+        </head>
+        <body data-library="js_helper">
+        <div class="page">
+        <div class="header">
+          <a href="index.html"><div class="logo"></div></a>
+          <a href="index.html">Dart Documentation</a>
+         &rsaquo; <a href="js_helper.html">js_helper</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+<h2><strong>js_helper</strong> library</h2>
+<div class="doc"></div>
+<h3>Methods</h3>
+<div class="method"><h4 id="S">
+<span class="show-code">Code</span>
+<a href="core/String.html">String</a> <strong>S</strong>(value) <a class="anchor-link" href="#S"
+              title="Permalink to S">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+String S(value) {
+  var res = value.toString();
+  if (res is !String) throw new IllegalArgumentException(value);
+  return res;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="add">
+<span class="show-code">Code</span>
+<strong>add</strong>(a, b) <a class="anchor-link" href="#add"
+              title="Permalink to add">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+add(var a, var b) =&gt; (a is num &amp;&amp; b is num)
+    ? JS('num', @'# + #', a, b)
+    : add$slow(a, b);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="add$slow">
+<span class="show-code">Code</span>
+<strong>add$slow</strong>(a, b) <a class="anchor-link" href="#add$slow"
+              title="Permalink to add$slow">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+add$slow(var a, var b) {
+  if (checkNumbers(a, b)) {
+    return JS('num', @'# + #', a, b);
+  }
+  return UNINTERCEPTED(a + b);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="allMatchesInStringUnchecked">
+<span class="show-code">Code</span>
+<a href="core/List.html">List</a>&lt;<a href="core/Match.html">Match</a>&gt; <strong>allMatchesInStringUnchecked</strong>(<a href="core/String.html">String</a> needle, <a href="core/String.html">String</a> haystack) <a class="anchor-link" href="#allMatchesInStringUnchecked"
+              title="Permalink to allMatchesInStringUnchecked">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+List&lt;Match&gt; allMatchesInStringUnchecked(String needle, String haystack) {
+  // Copied from StringBase.allMatches in
+  // ../../../runtime/lib/string.dart
+  List&lt;Match&gt; result = new List&lt;Match&gt;();
+  int length = haystack.length;
+  int patternLength = needle.length;
+  int startIndex = 0;
+  while (true) {
+    int position = haystack.indexOf(needle, startIndex);
+    if (position == -1) {
+      break;
+    }
+    result.add(new StringMatch(position, haystack, needle));
+    int endIndex = position + patternLength;
+    if (endIndex == length) {
+      break;
+    } else if (position == endIndex) {
+      ++startIndex;  // empty match, advance and restart
+    } else {
+      startIndex = endIndex;
+    }
+  }
+  return result;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="and">
+<span class="show-code">Code</span>
+<strong>and</strong>(a, b) <a class="anchor-link" href="#and"
+              title="Permalink to and">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+and(var a, var b) {
+  // TODO(floitsch): inputs must be integers.
+  if (checkNumbers(a, b)) {
+    return JS('num', @'(# &amp; #) &gt;&gt;&gt; 0', a, b);
+  }
+  return UNINTERCEPTED(a &amp; b);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="boolTypeCast">
+<span class="show-code">Code</span>
+<strong>boolTypeCast</strong>(value) <a class="anchor-link" href="#boolTypeCast"
+              title="Permalink to boolTypeCast">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+boolTypeCast(value) {
+  if (value is bool || value === null) return value;
+  throw new CastException(Primitives.objectTypeName(value), 'bool');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="boolTypeCheck">
+<span class="show-code">Code</span>
+<strong>boolTypeCheck</strong>(value) <a class="anchor-link" href="#boolTypeCheck"
+              title="Permalink to boolTypeCheck">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+boolTypeCheck(value) {
+  if (value === null) return value;
+  if (value is bool) return value;
+  throw new TypeError('$value does not implement bool');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="buildDynamicMetadata">
+<span class="show-code">Code</span>
+<a href="core/List.html">List</a>&lt;<a href="js_helper/MetaInfo.html">MetaInfo</a>&gt; <strong>buildDynamicMetadata</strong>(<a href="core/List.html">List</a>&lt;<a href="core/List.html">List</a>&lt;<a href="core/String.html">String</a>&gt;&gt; inputTable) <a class="anchor-link" href="#buildDynamicMetadata"
+              title="Permalink to buildDynamicMetadata">#</a></h4>
+<div class="doc">
+<p>Builds the metadata used for encoding the class hierarchy of native
+classes. The following example:</p>
+<p>class A native "<em>A" {}
+class B extends A native "</em>B" {}</p>
+<p>Will generate:
+<code>'A', 'A|B'</code></p>
+<p>This method returns a list of <a class="crossref" href="js_helper/MetaInfo.html">MetaInfo</a> objects.</p>
+<pre class="source">
+List &lt;MetaInfo&gt; buildDynamicMetadata(List&lt;List&lt;String&gt;&gt; inputTable) {
+  List&lt;MetaInfo&gt; result = &lt;MetaInfo&gt;[];
+  for (int i = 0; i &lt; inputTable.length; i++) {
+    String tag = inputTable[i][0];
+    String tags = inputTable[i][1];
+    Set&lt;String&gt; set = new Set&lt;String&gt;();
+    List&lt;String&gt; tagNames = tags.split('|');
+    for (int j = 0; j &lt; tagNames.length; j++) {
+      set.add(tagNames[j]);
+    }
+    result.add(new MetaInfo(tag, tags, set));
+  }
+  return result;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="callTypeCast">
+<span class="show-code">Code</span>
+<strong>callTypeCast</strong>(value, property) <a class="anchor-link" href="#callTypeCast"
+              title="Permalink to callTypeCast">#</a></h4>
+<div class="doc">
+<p>For types that are supertypes of native (eg DOM) types, we emit a
+call because we cannot add a JS property to their prototype at load
+time.</p>
+<pre class="source">
+callTypeCast(value, property) {
+  if (value === null
+      || ((JS('bool', 'typeof # === "object"', value))
+          &amp;&amp; JS('bool', '#[#]()', value, property))) {
+    return value;
+  }
+  propertyTypeCastError(value, property);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="callTypeCheck">
+<span class="show-code">Code</span>
+<strong>callTypeCheck</strong>(value, property) <a class="anchor-link" href="#callTypeCheck"
+              title="Permalink to callTypeCheck">#</a></h4>
+<div class="doc">
+<p>For types that are supertypes of native (eg DOM) types, we emit a
+call because we cannot add a JS property to their prototype at load
+time.</p>
+<pre class="source">
+callTypeCheck(value, property) {
+  if (value === null) return value;
+  if ((JS('String', 'typeof #', value) === 'object')
+      &amp;&amp; JS('bool', '#[#]()', value, property)) {
+    return value;
+  }
+  propertyTypeError(value, property);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="captureStackTrace">
+<span class="show-code">Code</span>
+<strong>captureStackTrace</strong>(ex) <a class="anchor-link" href="#captureStackTrace"
+              title="Permalink to captureStackTrace">#</a></h4>
+<div class="doc">
+<p>Called by generated code to capture the stacktrace before throwing
+an exception.</p>
+<pre class="source">
+captureStackTrace(ex) {
+  if (ex === null) ex = const NullPointerException();
+  var jsError = JS('Object', @'new Error()');
+  JS('void', @'#.dartException = #', jsError, ex);
+  JS('void', @'''#.toString = #''', jsError,
+     DART_CLOSURE_TO_JS(toStringWrapper));
+  return jsError;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="checkBool">
+<span class="show-code">Code</span>
+<strong>checkBool</strong>(value) <a class="anchor-link" href="#checkBool"
+              title="Permalink to checkBool">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+checkBool(value) {
+  if (value is !bool) {
+    checkNull(value);
+    throw new IllegalArgumentException(value);
+  }
+  return value;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="checkGrowable">
+<span class="show-code">Code</span>
+<strong>checkGrowable</strong>(list, reason) <a class="anchor-link" href="#checkGrowable"
+              title="Permalink to checkGrowable">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+checkGrowable(list, reason) {
+  if (JS('bool', @'!!(#.fixed$length)', list)) {
+    throw new UnsupportedOperationException(reason);
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="checkInt">
+<span class="show-code">Code</span>
+<strong>checkInt</strong>(value) <a class="anchor-link" href="#checkInt"
+              title="Permalink to checkInt">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+checkInt(value) {
+  if (value is !int) {
+    checkNull(value);
+    throw new IllegalArgumentException(value);
+  }
+  return value;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="checkMutable">
+<span class="show-code">Code</span>
+<strong>checkMutable</strong>(list, reason) <a class="anchor-link" href="#checkMutable"
+              title="Permalink to checkMutable">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+checkMutable(list, reason) {
+  if (JS('bool', @'!!(#.immutable$list)', list)) {
+    throw new UnsupportedOperationException(reason);
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="checkNull">
+<span class="show-code">Code</span>
+<strong>checkNull</strong>(object) <a class="anchor-link" href="#checkNull"
+              title="Permalink to checkNull">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+checkNull(object) {
+  if (object === null) throw new NullPointerException();
+  return object;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="checkNum">
+<span class="show-code">Code</span>
+<strong>checkNum</strong>(value) <a class="anchor-link" href="#checkNum"
+              title="Permalink to checkNum">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+checkNum(value) {
+  if (value is !num) {
+    checkNull(value);
+    throw new IllegalArgumentException(value);
+  }
+  return value;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="checkNumbers">
+<span class="show-code">Code</span>
+<a href="core/bool.html">bool</a> <strong>checkNumbers</strong>(a, b) <a class="anchor-link" href="#checkNumbers"
+              title="Permalink to checkNumbers">#</a></h4>
+<div class="doc">
+<p>Returns true if both arguments are numbers.</p>
+<p>If only the first argument is a number, an
+<code>IllegalArgumentException</code> with the other argument is thrown.</p>
+<pre class="source">
+bool checkNumbers(var a, var b) {
+  if (a is num) {
+    if (b is num) {
+      return true;
+    } else {
+      checkNull(b);
+      throw new IllegalArgumentException(b);
+    }
+  }
+  return false;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="checkString">
+<span class="show-code">Code</span>
+<strong>checkString</strong>(value) <a class="anchor-link" href="#checkString"
+              title="Permalink to checkString">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+checkString(value) {
+  if (value is !String) {
+    checkNull(value);
+    throw new IllegalArgumentException(value);
+  }
+  return value;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="constructorNameFallback">
+<span class="show-code">Code</span>
+<a href="core/String.html">String</a> <strong>constructorNameFallback</strong>(obj) <a class="anchor-link" href="#constructorNameFallback"
+              title="Permalink to constructorNameFallback">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+String constructorNameFallback(obj) {
+  var constructor = JS('var', "#.constructor", obj);
+  if (JS('String', "typeof(#)", constructor) === 'function') {
+    // The constructor isn't null or undefined at this point. Try
+    // to grab hold of its name.
+    var name = JS('var', '#.name', constructor);
+    // If the name is a non-empty string, we use that as the type
+    // name of this object. On Firefox, we often get 'Object' as
+    // the constructor name even for more specialized objects so
+    // we have to fall through to the toString() based implementation
+    // below in that case.
+    if (JS('String', "typeof(#)", name) === 'string'
+        &amp;&amp; !name.isEmpty()
+        &amp;&amp; name !== 'Object') {
+      return name;
+    }
+  }
+  String string = JS('String', 'Object.prototype.toString.call(#)', obj);
+  return string.substring(8, string.length - 1);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="convertDartClosureToJS">
+<span class="show-code">Code</span>
+<strong>convertDartClosureToJS</strong>(closure, <a href="core/int.html">int</a> arity) <a class="anchor-link" href="#convertDartClosureToJS"
+              title="Permalink to convertDartClosureToJS">#</a></h4>
+<div class="doc">
+<p>Called by generated code to convert a Dart closure to a JS
+closure when the Dart closure is passed to the DOM.</p>
+<pre class="source">
+convertDartClosureToJS(closure, int arity) {
+  if (closure === null) return null;
+  var function = JS('var', @'#.$identity', closure);
+  if (JS('bool', @'!!#', function)) return function;
+
+  function = JS("var", @"""function() {
+    return #(#, #, #, arguments[0], arguments[1]);
+  }""",
+  DART_CLOSURE_TO_JS(invokeClosure),
+  closure,
+  JS_CURRENT_ISOLATE(),
+  arity);
+
+  JS('void', @'#.$identity = #', closure, function);
+  return function;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="defineProperty">
+<span class="show-code">Code</span>
+void <strong>defineProperty</strong>(obj, <a href="core/String.html">String</a> property, value) <a class="anchor-link" href="#defineProperty"
+              title="Permalink to defineProperty">#</a></h4>
+<div class="doc">
+<p>Sets a JavaScript property on an object.</p>
+<pre class="source">
+void defineProperty(var obj, String property, var value) {
+  JS('void', """Object.defineProperty(#, #,
+      {value: #, enumerable: false, writable: true, configurable: true})""",
+      obj,
+      property,
+      value);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="div">
+<span class="show-code">Code</span>
+<strong>div</strong>(a, b) <a class="anchor-link" href="#div"
+              title="Permalink to div">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+div(var a, var b) =&gt; (a is num &amp;&amp; b is num)
+    ? JS('num', @'# / #', a, b)
+    : div$slow(a, b);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="div$slow">
+<span class="show-code">Code</span>
+<strong>div$slow</strong>(a, b) <a class="anchor-link" href="#div$slow"
+              title="Permalink to div$slow">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+div$slow(var a, var b) {
+  if (checkNumbers(a, b)) {
+    return JS('num', @'# / #', a, b);
+  }
+  return UNINTERCEPTED(a / b);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="doubleTypeCast">
+<span class="show-code">Code</span>
+<strong>doubleTypeCast</strong>(value) <a class="anchor-link" href="#doubleTypeCast"
+              title="Permalink to doubleTypeCast">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+doubleTypeCast(value) {
+  if (value is double || value === null) return value;
+  throw new CastException(Primitives.objectTypeName(value), 'double');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="doubleTypeCheck">
+<span class="show-code">Code</span>
+<strong>doubleTypeCheck</strong>(value) <a class="anchor-link" href="#doubleTypeCheck"
+              title="Permalink to doubleTypeCheck">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+doubleTypeCheck(value) {
+  if (value === null) return value;
+  if (value is double) return value;
+  throw new TypeError('$value does not implement double');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="dynamicBind">
+<span class="show-code">Code</span>
+<strong>dynamicBind</strong>(obj, <a href="core/String.html">String</a> name, methods, <a href="core/List.html">List</a> arguments) <a class="anchor-link" href="#dynamicBind"
+              title="Permalink to dynamicBind">#</a></h4>
+<div class="doc">
+<p>This method looks up the type name of 
+<span class="param">obj</span> in 
+<span class="param">methods</span>. 
+<span class="param">methods</span>
+is a Javascript object. If it cannot find it, it looks into the
+<code>_dynamicMetadata</code> array. If the method can still not be found, it
+creates a method that will throw a <code>NoSuchMethodException</code>.</p>
+<p>Once it has a method, the prototype of 
+<span class="param">obj</span> is patched with that
+method, on the property 
+<span class="param">name</span>. The method is then invoked.</p>
+<p>This method returns the result of invoking the found method.</p>
+<pre class="source">
+dynamicBind(var obj,
+            String name,
+            var methods,
+            List arguments) {
+  String tag = getTypeNameOf(obj);
+  var method = JS('var', '#[#]', methods, tag);
+
+  if (method === null &amp;&amp; _dynamicMetadata !== null) {
+    for (int i = 0; i &lt; _dynamicMetadata.length; i++) {
+      MetaInfo entry = _dynamicMetadata[i];
+      if (entry.set.contains(tag)) {
+        method = JS('var', '#[#]', methods, entry.tag);
+        if (method !== null) break;
+      }
+    }
+  }
+
+  if (method === null) {
+    method = JS('var', "#['Object']", methods);
+  }
+
+  var proto = JS('var', 'Object.getPrototypeOf(#)', obj);
+  if (method === null) {
+    // If the method cannot be found, we use a trampoline method that
+    // will throw a [NoSuchMethodException] if the object is of the
+    // exact prototype, or will call [dynamicBind] again if the object
+    // is a subclass.
+    method = JS('var',
+        'function () {'
+          'if (Object.getPrototypeOf(this) === #) {'
+            '#(this, #, Array.prototype.slice.call(arguments));'
+          '} else {'
+            'return Object.prototype[#].apply(this, arguments);'
+          '}'
+        '}',
+      proto, DART_CLOSURE_TO_JS(throwNoSuchMethod), name, name);
+  }
+
+  if (JS('bool', '!#.hasOwnProperty(#)', proto, name)) {
+    defineProperty(proto, name, method);
+  }
+
+  return JS('var', '#.apply(#, #)', method, obj, arguments);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="dynamicFunction">
+<span class="show-code">Code</span>
+<strong>dynamicFunction</strong>(name) <a class="anchor-link" href="#dynamicFunction"
+              title="Permalink to dynamicFunction">#</a></h4>
+<div class="doc">
+<p>Code for doing the dynamic dispatch on JavaScript prototypes that are not
+available at compile-time. Each property of a native Dart class
+is registered through this function, which is called with the
+following pattern:</p>
+<p>dynamicFunction('propertyName').prototypeName = // JS code</p>
+<p>What this function does is:
+- Creates a map of { prototypeName: JS code }.
+- Attaches 'propertyName' to the JS Object prototype that will
+  intercept at runtime all calls to propertyName.
+- Sets the value of 'propertyName' to the returned method from
+  <a class="crossref" href="js_helper.html#dynamicBind">dynamicBind</a>.</p>
+<pre class="source">
+dynamicFunction(name) {
+  var f = JS('var', 'Object.prototype[#]', name);
+  if (f !== null &amp;&amp; JS('bool', '!!#.methods', f)) {
+    return JS('var', '#.methods', f);
+  }
+
+  // TODO(ngeoffray): We could make this a map if the code we
+  // generate plays well with a Dart map.
+  var methods = JS('var', '{}');
+  // If there is a method attached to the Dart Object class, use it as
+  // the method to call in case no method is registered for that type.
+  var dartMethod = JS('var', 'Object.getPrototypeOf(#)[#]', const Object(), name);
+  if (dartMethod !== null) JS('void', "#['Object'] = #", methods, dartMethod);
+
+  var bind = JS('var',
+      'function() {'
+        'return #(this, #, #, Array.prototype.slice.call(arguments));'
+      '}',
+    DART_CLOSURE_TO_JS(dynamicBind), name, methods);
+
+  JS('void', '#.methods = #', bind, methods);
+  defineProperty(JS('var', 'Object.prototype'), name, bind);
+  return methods;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="dynamicSetMetadata">
+<span class="show-code">Code</span>
+void <strong>dynamicSetMetadata</strong>(<a href="core/List.html">List</a>&lt;<a href="core/List.html">List</a>&lt;<a href="core/String.html">String</a>&gt;&gt; inputTable) <a class="anchor-link" href="#dynamicSetMetadata"
+              title="Permalink to dynamicSetMetadata">#</a></h4>
+<div class="doc">
+<p>Called by the compiler to setup <code>_dynamicMetadata</code>.</p>
+<pre class="source">
+void dynamicSetMetadata(List&lt;List&lt;String&gt;&gt; inputTable) {
+  _dynamicMetadata = buildDynamicMetadata(inputTable);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="eq">
+<span class="show-code">Code</span>
+<strong>eq</strong>(a, b) <a class="anchor-link" href="#eq"
+              title="Permalink to eq">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+eq(var a, var b) {
+  if (JS('bool', @'# == null', a)) return JS('bool', @'# == null', b);
+  if (JS('bool', @'# == null', b)) return false;
+  if (JS('bool', @'typeof # === "object"', a)) {
+    if (JS_HAS_EQUALS(a)) {
+      return UNINTERCEPTED(a == b);
+    }
+  }
+  // TODO(lrn): is NaN === NaN ? Is -0.0 === 0.0 ?
+  return JS('bool', @'# === #', a, b);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="eqB">
+<span class="show-code">Code</span>
+<a href="core/bool.html">bool</a> <strong>eqB</strong>(a, b) <a class="anchor-link" href="#eqB"
+              title="Permalink to eqB">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool eqB(var a, var b) {
+  if (JS('bool', @'# == null', a)) return JS('bool', @'# == null', b);
+  if (JS('bool', @'# == null', b)) return false;
+  if (JS('bool', @'typeof # === "object"', a)) {
+    if (JS_HAS_EQUALS(a)) {
+      return UNINTERCEPTED(a == b) === true;
+    }
+  }
+  // TODO(lrn): is NaN === NaN ? Is -0.0 === 0.0 ?
+  return JS('bool', @'# === #', a, b);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="eqq">
+<span class="show-code">Code</span>
+<strong>eqq</strong>(a, b) <a class="anchor-link" href="#eqq"
+              title="Permalink to eqq">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+eqq(var a, var b) {
+  return JS('bool', @'# === #', a, b);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="functionTypeCast">
+<span class="show-code">Code</span>
+<strong>functionTypeCast</strong>(value) <a class="anchor-link" href="#functionTypeCast"
+              title="Permalink to functionTypeCast">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+functionTypeCast(value) {
+  if (value is Function || value === null) return value;
+  throw new CastException(Primitives.objectTypeName(value), 'Function');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="functionTypeCheck">
+<span class="show-code">Code</span>
+<strong>functionTypeCheck</strong>(value) <a class="anchor-link" href="#functionTypeCheck"
+              title="Permalink to functionTypeCheck">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+functionTypeCheck(value) {
+  if (value === null) return value;
+  if (value is Function) return value;
+  throw new TypeError('$value does not implement Function');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="ge">
+<span class="show-code">Code</span>
+<strong>ge</strong>(a, b) <a class="anchor-link" href="#ge"
+              title="Permalink to ge">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+ge(var a, var b) =&gt; (a is num &amp;&amp; b is num)
+    ? JS('bool', @'# &gt;= #', a, b)
+    : ge$slow(a, b);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="ge$slow">
+<span class="show-code">Code</span>
+<strong>ge$slow</strong>(a, b) <a class="anchor-link" href="#ge$slow"
+              title="Permalink to ge$slow">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+ge$slow(var a, var b) {
+  if (checkNumbers(a, b)) {
+    return JS('bool', @'# &gt;= #', a, b);
+  }
+  return UNINTERCEPTED(a &gt;= b);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="geB">
+<span class="show-code">Code</span>
+<strong>geB</strong>(a, b) <a class="anchor-link" href="#geB"
+              title="Permalink to geB">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+geB(var a, var b) =&gt; (a is num &amp;&amp; b is num)
+    ? JS('bool', @'# &gt;= #', a, b)
+    : ge$slow(a, b) === true;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getFallThroughError">
+<span class="show-code">Code</span>
+<strong>getFallThroughError</strong>() <a class="anchor-link" href="#getFallThroughError"
+              title="Permalink to getFallThroughError">#</a></h4>
+<div class="doc">
+<p>Called at the end of unaborted switch cases to get the singleton
+FallThroughError exception that will be thrown.</p>
+<pre class="source">
+getFallThroughError() =&gt; const FallThroughError();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getFunctionForTypeNameOf">
+<span class="show-code">Code</span>
+<a href="core/Function.html">Function</a> <strong>getFunctionForTypeNameOf</strong>() <a class="anchor-link" href="#getFunctionForTypeNameOf"
+              title="Permalink to getFunctionForTypeNameOf">#</a></h4>
+<div class="doc">
+<p>Returns the function to use to get the type name of an object.</p>
+<pre class="source">
+Function getFunctionForTypeNameOf() {
+  // If we're not in the browser, we're almost certainly running on v8.
+  if (JS('String', 'typeof(navigator)') !== 'object') return typeNameInChrome;
+
+  String userAgent = JS('String', "navigator.userAgent");
+  if (userAgent.contains(const RegExp('Chrome|DumpRenderTree'))) {
+    return typeNameInChrome;
+  } else if (userAgent.contains('Firefox')) {
+    return typeNameInFirefox;
+  } else if (userAgent.contains('MSIE')) {
+    return typeNameInIE;
+  } else {
+    return constructorNameFallback;
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getRuntimeTypeInfo">
+<span class="show-code">Code</span>
+<strong>getRuntimeTypeInfo</strong>(target) <a class="anchor-link" href="#getRuntimeTypeInfo"
+              title="Permalink to getRuntimeTypeInfo">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+getRuntimeTypeInfo(target) {
+  if (target === null) return null;
+  return JS('var', @'#.builtin$typeInfo', target);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getTraceFromException">
+<span class="show-code">Code</span>
+<a href="js_helper/StackTrace.html">StackTrace</a> <strong>getTraceFromException</strong>(exception) <a class="anchor-link" href="#getTraceFromException"
+              title="Permalink to getTraceFromException">#</a></h4>
+<div class="doc">
+<p>Called by generated code to fetch the stack trace from an
+exception.</p>
+<pre class="source">
+StackTrace getTraceFromException(exception) {
+  return new StackTrace(JS("var", @"#.stack", exception));
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getTypeNameOf">
+<span class="show-code">Code</span>
+<a href="core/String.html">String</a> <strong>getTypeNameOf</strong>(obj) <a class="anchor-link" href="#getTypeNameOf"
+              title="Permalink to getTypeNameOf">#</a></h4>
+<div class="doc">
+<p>Returns the type name of 
+<span class="param">obj</span>.</p>
+<pre class="source">
+String getTypeNameOf(var obj) {
+  if (_getTypeNameOf === null) _getTypeNameOf = getFunctionForTypeNameOf();
+  return _getTypeNameOf(obj);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="gt">
+<span class="show-code">Code</span>
+<strong>gt</strong>(a, b) <a class="anchor-link" href="#gt"
+              title="Permalink to gt">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+gt(var a, var b) =&gt; (a is num &amp;&amp; b is num)
+    ? JS('bool', @'# &gt; #', a, b)
+    : gt$slow(a, b);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="gt$slow">
+<span class="show-code">Code</span>
+<strong>gt$slow</strong>(a, b) <a class="anchor-link" href="#gt$slow"
+              title="Permalink to gt$slow">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+gt$slow(var a, var b) {
+  if (checkNumbers(a, b)) {
+    return JS('bool', @'# &gt; #', a, b);
+  }
+  return UNINTERCEPTED(a &gt; b);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="gtB">
+<span class="show-code">Code</span>
+<strong>gtB</strong>(a, b) <a class="anchor-link" href="#gtB"
+              title="Permalink to gtB">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+gtB(var a, var b) =&gt; (a is num &amp;&amp; b is num)
+    ? JS('bool', @'# &gt; #', a, b)
+    : gt$slow(a, b) === true;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="iae">
+<span class="show-code">Code</span>
+<strong>iae</strong>(argument) <a class="anchor-link" href="#iae"
+              title="Permalink to iae">#</a></h4>
+<div class="doc">
+<p>Called by generated code to throw an illegal-argument exception,
+for example, if a non-integer index is given to an optimized
+indexed access.</p>
+<pre class="source">
+iae(argument) {
+  throw new IllegalArgumentException(argument);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="index">
+<span class="show-code">Code</span>
+<strong>index</strong>(a, index) <a class="anchor-link" href="#index"
+              title="Permalink to index">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+index(var a, var index) {
+  // The type test may cause a NullPointerException to be thrown but
+  // that matches the specification of what the indexing operator is
+  // supposed to do.
+  bool isJsArrayOrString = JS('bool',
+      @'typeof # == "string" || #.constructor === Array',
+      a, a);
+  if (isJsArrayOrString) {
+    var key = JS('int', '# &gt;&gt;&gt; 0', index);
+    if (key === index &amp;&amp; key &lt; JS('int', @'#.length', a)) {
+      return JS('var', @'#[#]', a, key);
+    }
+  }
+  return index$slow(a, index);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="index$slow">
+<span class="show-code">Code</span>
+<strong>index$slow</strong>(a, index) <a class="anchor-link" href="#index$slow"
+              title="Permalink to index$slow">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+index$slow(var a, var index) {
+  if (a is String || isJsArray(a)) {
+    if (index is !int) {
+      if (index is !num) throw new IllegalArgumentException(index);
+      if (index.truncate() !== index) throw new IllegalArgumentException(index);
+    }
+    if (index &lt; 0 || index &gt;= a.length) {
+      throw new IndexOutOfRangeException(index);
+    }
+    return JS('Object', @'#[#]', a, index);
+  }
+  return UNINTERCEPTED(a[index]);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="indexSet">
+<span class="show-code">Code</span>
+<strong>indexSet</strong>(a, index, value) <a class="anchor-link" href="#indexSet"
+              title="Permalink to indexSet">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+indexSet(var a, var index, var value) {
+  // The type test may cause a NullPointerException to be thrown but
+  // that matches the specification of what the indexing operator is
+  // supposed to do.
+  bool isMutableJsArray = JS('bool',
+      @'#.constructor === Array &amp;&amp; !#.immutable$list',
+      a, a);
+  if (isMutableJsArray) {
+    var key = JS('int', '# &gt;&gt;&gt; 0', index);
+    if (key === index &amp;&amp; key &lt; JS('int', @'#.length', a)) {
+      JS('void', @'#[#] = #', a, key, value);
+      return;
+    }
+  }
+  indexSet$slow(a, index, value);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="indexSet$slow">
+<span class="show-code">Code</span>
+void <strong>indexSet$slow</strong>(a, index, value) <a class="anchor-link" href="#indexSet$slow"
+              title="Permalink to indexSet$slow">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void indexSet$slow(var a, var index, var value) {
+  if (isJsArray(a)) {
+    if (index is !int) {
+      throw new IllegalArgumentException(index);
+    }
+    if (index &lt; 0 || index &gt;= a.length) {
+      throw new IndexOutOfRangeException(index);
+    }
+    checkMutable(a, 'indexed set');
+    JS('Object', @'#[#] = #', a, index, value);
+    return;
+  }
+  UNINTERCEPTED(a[index] = value);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="intTypeCast">
+<span class="show-code">Code</span>
+<strong>intTypeCast</strong>(value) <a class="anchor-link" href="#intTypeCast"
+              title="Permalink to intTypeCast">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+intTypeCast(value) {
+  if (value is int || value === null) return value;
+  throw new CastException(Primitives.objectTypeName(value), 'int');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="intTypeCheck">
+<span class="show-code">Code</span>
+<strong>intTypeCheck</strong>(value) <a class="anchor-link" href="#intTypeCheck"
+              title="Permalink to intTypeCheck">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+intTypeCheck(value) {
+  if (value === null) return value;
+  if (value is int) return value;
+  throw new TypeError('$value does not implement int');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="invokeClosure">
+<span class="show-code">Code</span>
+<strong>invokeClosure</strong>(<a href="core/Function.html">Function</a> closure, isolate, <a href="core/int.html">int</a> numberOfArguments, arg1, arg2) <a class="anchor-link" href="#invokeClosure"
+              title="Permalink to invokeClosure">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+invokeClosure(Function closure,
+              var isolate,
+              int numberOfArguments,
+              var arg1,
+              var arg2) {
+  if (numberOfArguments == 0) {
+    return JS_CALL_IN_ISOLATE(isolate, () =&gt; closure());
+  } else if (numberOfArguments == 1) {
+    return JS_CALL_IN_ISOLATE(isolate, () =&gt; closure(arg1));
+  } else if (numberOfArguments == 2) {
+    return JS_CALL_IN_ISOLATE(isolate, () =&gt; closure(arg1, arg2));
+  } else {
+    throw new Exception(
+        'Unsupported number of arguments for wrapped closure');
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="ioore">
+<span class="show-code">Code</span>
+<strong>ioore</strong>(index) <a class="anchor-link" href="#ioore"
+              title="Permalink to ioore">#</a></h4>
+<div class="doc">
+<p>Called by generated code to throw an index-out-of-range exception,
+for example, if a bounds check fails in an optimized indexed
+access.</p>
+<pre class="source">
+ioore(index) {
+  throw new IndexOutOfRangeException(index);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="isJsArray">
+<span class="show-code">Code</span>
+<a href="core/bool.html">bool</a> <strong>isJsArray</strong>(value) <a class="anchor-link" href="#isJsArray"
+              title="Permalink to isJsArray">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool isJsArray(var value) {
+  return value !== null &amp;&amp; JS('bool', @'#.constructor === Array', value);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="jsHasOwnProperty">
+<span class="show-code">Code</span>
+<a href="core/bool.html">bool</a> <strong>jsHasOwnProperty</strong>(jsObject, <a href="core/String.html">String</a> property) <a class="anchor-link" href="#jsHasOwnProperty"
+              title="Permalink to jsHasOwnProperty">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool jsHasOwnProperty(var jsObject, String property) {
+  return JS('bool', @'#.hasOwnProperty(#)', jsObject, property);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="jsPropertyAccess">
+<span class="show-code">Code</span>
+<strong>jsPropertyAccess</strong>(jsObject, <a href="core/String.html">String</a> property) <a class="anchor-link" href="#jsPropertyAccess"
+              title="Permalink to jsPropertyAccess">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+jsPropertyAccess(var jsObject, String property) {
+  return JS('var', @'#[#]', jsObject, property);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="le">
+<span class="show-code">Code</span>
+<strong>le</strong>(a, b) <a class="anchor-link" href="#le"
+              title="Permalink to le">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+le(var a, var b) =&gt; (a is num &amp;&amp; b is num)
+    ? JS('bool', @'# &lt;= #', a, b)
+    : le$slow(a, b);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="le$slow">
+<span class="show-code">Code</span>
+<strong>le$slow</strong>(a, b) <a class="anchor-link" href="#le$slow"
+              title="Permalink to le$slow">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+le$slow(var a, var b) {
+  if (checkNumbers(a, b)) {
+    return JS('bool', @'# &lt;= #', a, b);
+  }
+  return UNINTERCEPTED(a &lt;= b);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="leB">
+<span class="show-code">Code</span>
+<strong>leB</strong>(a, b) <a class="anchor-link" href="#leB"
+              title="Permalink to leB">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+leB(var a, var b) =&gt; (a is num &amp;&amp; b is num)
+    ? JS('bool', @'# &lt;= #', a, b)
+    : le$slow(a, b) === true;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="listInsertRange">
+<span class="show-code">Code</span>
+<strong>listInsertRange</strong>(receiver, start, length, initialValue) <a class="anchor-link" href="#listInsertRange"
+              title="Permalink to listInsertRange">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+listInsertRange(receiver, start, length, initialValue) {
+  if (length === 0) {
+    return;
+  }
+  checkNull(start); // TODO(ahe): This is not specified but co19 tests it.
+  checkNull(length); // TODO(ahe): This is not specified but co19 tests it.
+  if (length is !int) throw new IllegalArgumentException(length);
+  if (length &lt; 0) throw new IllegalArgumentException(length);
+  if (start is !int) throw new IllegalArgumentException(start);
+
+  var receiverLength = JS('num', @'#.length', receiver);
+  if (start &lt; 0 || start &gt; receiverLength) {
+    throw new IndexOutOfRangeException(start);
+  }
+  receiver.length = receiverLength + length;
+  Arrays.copy(receiver,
+              start,
+              receiver,
+              start + length,
+              receiverLength - start);
+  if (initialValue !== null) {
+    for (int i = start; i &lt; start + length; i++) {
+      receiver[i] = initialValue;
+    }
+  }
+  receiver.length = receiverLength + length;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="listSuperNativeTypeCast">
+<span class="show-code">Code</span>
+<strong>listSuperNativeTypeCast</strong>(value, property) <a class="anchor-link" href="#listSuperNativeTypeCast"
+              title="Permalink to listSuperNativeTypeCast">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+listSuperNativeTypeCast(value, property) {
+  if (value is List || value === null) return value;
+  if (JS('bool', '#[#]()', value, property)) return value;
+  propertyTypeCastError(value, property);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="listSuperNativeTypeCheck">
+<span class="show-code">Code</span>
+<strong>listSuperNativeTypeCheck</strong>(value, property) <a class="anchor-link" href="#listSuperNativeTypeCheck"
+              title="Permalink to listSuperNativeTypeCheck">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+listSuperNativeTypeCheck(value, property) {
+  if (value === null) return value;
+  if (value is List) return value;
+  if (JS('bool', '#[#]()', value, property)) return value;
+  propertyTypeError(value, property);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="listSuperTypeCast">
+<span class="show-code">Code</span>
+<strong>listSuperTypeCast</strong>(value, property) <a class="anchor-link" href="#listSuperTypeCast"
+              title="Permalink to listSuperTypeCast">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+listSuperTypeCast(value, property) {
+  if (value is List) return value;
+  return propertyTypeCast(value, property);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="listSuperTypeCheck">
+<span class="show-code">Code</span>
+<strong>listSuperTypeCheck</strong>(value, property) <a class="anchor-link" href="#listSuperTypeCheck"
+              title="Permalink to listSuperTypeCheck">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+listSuperTypeCheck(value, property) {
+  if (value === null) return value;
+  if (value is List) return value;
+  if (JS('bool', '!!#[#]', value, property)) return value;
+  propertyTypeError(value, property);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="listTypeCast">
+<span class="show-code">Code</span>
+<strong>listTypeCast</strong>(value) <a class="anchor-link" href="#listTypeCast"
+              title="Permalink to listTypeCast">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+listTypeCast(value) {
+  if (value is List || value === null) return value;
+  throw new CastException(Primitives.objectTypeName(value), 'List');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="listTypeCheck">
+<span class="show-code">Code</span>
+<strong>listTypeCheck</strong>(value) <a class="anchor-link" href="#listTypeCheck"
+              title="Permalink to listTypeCheck">#</a></h4>
+<div class="doc">
+<p>Specialization of the type check for List and its supertypes,
+since 
+<span class="param">value</span> can be a JS array.</p>
+<pre class="source">
+listTypeCheck(value) {
+  if (value === null) return value;
+  if (value is List) return value;
+  throw new TypeError('$value does not implement List');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="lt">
+<span class="show-code">Code</span>
+<strong>lt</strong>(a, b) <a class="anchor-link" href="#lt"
+              title="Permalink to lt">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+lt(var a, var b) =&gt; (a is num &amp;&amp; b is num)
+    ? JS('bool', @'# &lt; #', a, b)
+    : lt$slow(a, b);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="lt$slow">
+<span class="show-code">Code</span>
+<strong>lt$slow</strong>(a, b) <a class="anchor-link" href="#lt$slow"
+              title="Permalink to lt$slow">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+lt$slow(var a, var b) {
+  if (checkNumbers(a, b)) {
+    return JS('bool', @'# &lt; #', a, b);
+  }
+  return UNINTERCEPTED(a &lt; b);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="ltB">
+<span class="show-code">Code</span>
+<strong>ltB</strong>(a, b) <a class="anchor-link" href="#ltB"
+              title="Permalink to ltB">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+ltB(var a, var b) =&gt; (a is num &amp;&amp; b is num)
+    ? JS('bool', @'# &lt; #', a, b)
+    : lt$slow(a, b) === true;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="makeLiteralListConst">
+<span class="show-code">Code</span>
+<strong>makeLiteralListConst</strong>(list) <a class="anchor-link" href="#makeLiteralListConst"
+              title="Permalink to makeLiteralListConst">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+makeLiteralListConst(list) {
+  JS('bool', @'#.immutable$list = #', list, true);
+  JS('bool', @'#.fixed$length = #', list, true);
+  return list;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="makeLiteralMap">
+<span class="show-code">Code</span>
+<strong>makeLiteralMap</strong>(<a href="core/List.html">List</a> keyValuePairs) <a class="anchor-link" href="#makeLiteralMap"
+              title="Permalink to makeLiteralMap">#</a></h4>
+<div class="doc">
+<p>Called by generated code to build a map literal. 
+<span class="param">keyValuePairs</span> is
+a list of key, value, key, value, ..., etc.</p>
+<pre class="source">
+makeLiteralMap(List keyValuePairs) {
+  Iterator iterator = keyValuePairs.iterator();
+  Map result = new LinkedHashMap();
+  while (iterator.hasNext()) {
+    String key = iterator.next();
+    var value = iterator.next();
+    result[key] = value;
+  }
+  return result;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="mod">
+<span class="show-code">Code</span>
+<strong>mod</strong>(a, b) <a class="anchor-link" href="#mod"
+              title="Permalink to mod">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+mod(var a, var b) {
+  if (checkNumbers(a, b)) {
+    // Euclidean Modulo.
+    int result = JS('num', @'# % #', a, b);
+    if (result == 0) return 0;  // Make sure we don't return -0.0.
+    if (result &gt; 0) return result;
+    // TODO(floitsch): Find cleaner way of forcing the type.
+    b = JS('num', '#', b);
+    if (b &lt; 0) {
+      return result - b;
+    } else {
+      return result + b;
+    }
+  }
+  return UNINTERCEPTED(a % b);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="mul">
+<span class="show-code">Code</span>
+<strong>mul</strong>(a, b) <a class="anchor-link" href="#mul"
+              title="Permalink to mul">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+mul(var a, var b) =&gt; (a is num &amp;&amp; b is num)
+    ? JS('num', @'# * #', a, b)
+    : mul$slow(a, b);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="mul$slow">
+<span class="show-code">Code</span>
+<strong>mul$slow</strong>(a, b) <a class="anchor-link" href="#mul$slow"
+              title="Permalink to mul$slow">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+mul$slow(var a, var b) {
+  if (checkNumbers(a, b)) {
+    return JS('num', @'# * #', a, b);
+  }
+  return UNINTERCEPTED(a * b);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="neg">
+<span class="show-code">Code</span>
+<strong>neg</strong>(a) <a class="anchor-link" href="#neg"
+              title="Permalink to neg">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+neg(var a) {
+  if (JS('bool', @'typeof # === "number"', a)) return JS('num', @'-#', a);
+  return UNINTERCEPTED(-a);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="not">
+<span class="show-code">Code</span>
+<strong>not</strong>(a) <a class="anchor-link" href="#not"
+              title="Permalink to not">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+not(var a) {
+  if (JS('bool', @'typeof # === "number"', a)) {
+    return JS('num', @'(~#) &gt;&gt;&gt; 0', a);
+  }
+  return UNINTERCEPTED(~a);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="numTypeCast">
+<span class="show-code">Code</span>
+<strong>numTypeCast</strong>(value) <a class="anchor-link" href="#numTypeCast"
+              title="Permalink to numTypeCast">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+numTypeCast(value) {
+  if (value is num || value === null) return value;
+  throw new CastException(Primitives.objectTypeName(value), 'num');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="numTypeCheck">
+<span class="show-code">Code</span>
+<strong>numTypeCheck</strong>(value) <a class="anchor-link" href="#numTypeCheck"
+              title="Permalink to numTypeCheck">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+numTypeCheck(value) {
+  if (value === null) return value;
+  if (value is num) return value;
+  throw new TypeError('$value does not implement num');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="or">
+<span class="show-code">Code</span>
+<strong>or</strong>(a, b) <a class="anchor-link" href="#or"
+              title="Permalink to or">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+or(var a, var b) {
+  // TODO(floitsch): inputs must be integers.
+  if (checkNumbers(a, b)) {
+    return JS('num', @'(# | #) &gt;&gt;&gt; 0', a, b);
+  }
+  return UNINTERCEPTED(a | b);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="propertyTypeCast">
+<span class="show-code">Code</span>
+<strong>propertyTypeCast</strong>(value, property) <a class="anchor-link" href="#propertyTypeCast"
+              title="Permalink to propertyTypeCast">#</a></h4>
+<div class="doc">
+<p>For types that are not supertypes of native (eg DOM) types,
+we emit a simple property check to check that an object implements
+that type.</p>
+<pre class="source">
+propertyTypeCast(value, property) {
+  if (value === null || JS('bool', '!!#[#]', value, property)) return value;
+  propertyTypeCastError(value, property);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="propertyTypeCastError">
+<span class="show-code">Code</span>
+void <strong>propertyTypeCastError</strong>(value, property) <a class="anchor-link" href="#propertyTypeCastError"
+              title="Permalink to propertyTypeCastError">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void propertyTypeCastError(value, property) {
+  // Cuts the property name to the class name.
+  String actualType = Primitives.objectTypeName(value);
+  String expectedType = property.substring(3, property.length);
+  throw new CastException(actualType, expectedType);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="propertyTypeCheck">
+<span class="show-code">Code</span>
+<strong>propertyTypeCheck</strong>(value, property) <a class="anchor-link" href="#propertyTypeCheck"
+              title="Permalink to propertyTypeCheck">#</a></h4>
+<div class="doc">
+<p>For types that are not supertypes of native (eg DOM) types,
+we emit a simple property check to check that an object implements
+that type.</p>
+<pre class="source">
+propertyTypeCheck(value, property) {
+  if (value === null) return value;
+  if (JS('bool', '!!#[#]', value, property)) return value;
+  propertyTypeError(value, property);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="propertyTypeError">
+<span class="show-code">Code</span>
+void <strong>propertyTypeError</strong>(value, property) <a class="anchor-link" href="#propertyTypeError"
+              title="Permalink to propertyTypeError">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void propertyTypeError(value, property) {
+  // Cuts the property name to the class name.
+  String name = property.substring(3, property.length);
+  throw new TypeError('$value does not implement $name');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="regExpAttachGlobalNative">
+<span class="show-code">Code</span>
+<strong>regExpAttachGlobalNative</strong>(<a href="coreimpl/JSSyntaxRegExp.html">JSSyntaxRegExp</a> regExp) <a class="anchor-link" href="#regExpAttachGlobalNative"
+              title="Permalink to regExpAttachGlobalNative">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+regExpAttachGlobalNative(JSSyntaxRegExp regExp) {
+  JS('var', @'#._re = #', regExp, regExpMakeNative(regExp, global: true)); 
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="regExpExec">
+<span class="show-code">Code</span>
+<a href="core/List.html">List</a> <strong>regExpExec</strong>(<a href="coreimpl/JSSyntaxRegExp.html">JSSyntaxRegExp</a> regExp, <a href="core/String.html">String</a> str) <a class="anchor-link" href="#regExpExec"
+              title="Permalink to regExpExec">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+List regExpExec(JSSyntaxRegExp regExp, String str) {
+  var nativeRegExp = regExpGetNative(regExp);
+  var result = JS('List', @'#.exec(#)', nativeRegExp, str);
+  if (JS('bool', @'# === null', result)) return null;
+  return result; 
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="regExpGetNative">
+<span class="show-code">Code</span>
+<strong>regExpGetNative</strong>(<a href="coreimpl/JSSyntaxRegExp.html">JSSyntaxRegExp</a> regExp) <a class="anchor-link" href="#regExpGetNative"
+              title="Permalink to regExpGetNative">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+regExpGetNative(JSSyntaxRegExp regExp) {
+  var r = JS('var', @'#._re', regExp);
+  if (r === null) {
+    r = JS('var', @'#._re = #', regExp, regExpMakeNative(regExp));
+  }
+  return r; 
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="regExpMakeNative">
+<span class="show-code">Code</span>
+<strong>regExpMakeNative</strong>(<a href="coreimpl/JSSyntaxRegExp.html">JSSyntaxRegExp</a> regExp, [<a href="core/bool.html">bool</a> global]) <a class="anchor-link" href="#regExpMakeNative"
+              title="Permalink to regExpMakeNative">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+regExpMakeNative(JSSyntaxRegExp regExp, [bool global = false]) {
+  String pattern = regExp.pattern;
+  bool multiLine = regExp.multiLine;
+  bool ignoreCase = regExp.ignoreCase;
+  checkString(pattern);
+  StringBuffer sb = new StringBuffer();
+  if (multiLine) sb.add('m');
+  if (ignoreCase) sb.add('i');
+  if (global) sb.add('g');
+  try {
+    return JS('Object', @'new RegExp(#, #)', pattern, sb.toString());
+  } catch (var e) {
+    throw new IllegalJSRegExpException(pattern,
+                                       JS('String', @'String(#)', e));
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="regExpMatchStart">
+<span class="show-code">Code</span>
+<a href="core/int.html">int</a> <strong>regExpMatchStart</strong>(m) <a class="anchor-link" href="#regExpMatchStart"
+              title="Permalink to regExpMatchStart">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+int regExpMatchStart(m) =&gt; JS('int', @'#.index', m);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="regExpTest">
+<span class="show-code">Code</span>
+<a href="core/bool.html">bool</a> <strong>regExpTest</strong>(<a href="coreimpl/JSSyntaxRegExp.html">JSSyntaxRegExp</a> regExp, <a href="core/String.html">String</a> str) <a class="anchor-link" href="#regExpTest"
+              title="Permalink to regExpTest">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool regExpTest(JSSyntaxRegExp regExp, String str) {
+  var nativeRegExp = regExpGetNative(regExp);
+  return JS('bool', @'#.test(#)', nativeRegExp, str);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setRuntimeTypeInfo">
+<span class="show-code">Code</span>
+<strong>setRuntimeTypeInfo</strong>(target, typeInfo) <a class="anchor-link" href="#setRuntimeTypeInfo"
+              title="Permalink to setRuntimeTypeInfo">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+setRuntimeTypeInfo(target, typeInfo) {
+  // We have to check for null because factories may return null.
+  if (target !== null) JS('var', @'#.builtin$typeInfo = #', target, typeInfo);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="shl">
+<span class="show-code">Code</span>
+<strong>shl</strong>(a, b) <a class="anchor-link" href="#shl"
+              title="Permalink to shl">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+shl(var a, var b) {
+  // TODO(floitsch): inputs must be integers.
+  if (checkNumbers(a, b)) {
+    // TODO(floitsch): Find cleaner way of forcing the type.
+    a = JS('num', '#', a);
+    b = JS('num', '#', b);
+    if (b &lt; 0) throw new IllegalArgumentException(b);
+    // JavaScript only looks at the last 5 bits of the shift-amount. Shifting
+    // by 33 is hence equivalent to a shift by 1.
+    if (b &gt; 31) return 0;
+    return JS('num', @'(# &lt;&lt; #) &gt;&gt;&gt; 0', a, b);
+  }
+  return UNINTERCEPTED(a &lt;&lt; b);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="shr">
+<span class="show-code">Code</span>
+<strong>shr</strong>(a, b) <a class="anchor-link" href="#shr"
+              title="Permalink to shr">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+shr(var a, var b) {
+  // TODO(floitsch): inputs must be integers.
+  if (checkNumbers(a, b)) {
+    // TODO(floitsch): Find cleaner way of forcing the type.
+    a = JS('num', '#', a);
+    b = JS('num', '#', b);
+    if (b &lt; 0) throw new IllegalArgumentException(b);
+    if (a &gt; 0) {
+      // JavaScript only looks at the last 5 bits of the shift-amount. In JS
+      // shifting by 33 is hence equivalent to a shift by 1. Shortcut the
+      // computation when that happens.
+      if (b &gt; 31) return 0;
+      // Given that 'a' is positive we must not use '&gt;&gt;'. Otherwise a number
+      // that has the 31st bit set would be treated as negative and shift in
+      // ones.
+      return JS('num', @'# &gt;&gt;&gt; #', a, b);
+    }
+    // For negative numbers we just clamp the shift-by amount. 'a' could be
+    // negative but not have its 31st bit set. The "&gt;&gt;" would then shift in
+    // 0s instead of 1s. Therefore we cannot simply return 0xFFFFFFFF.
+    if (b &gt; 31) b = 31;
+    return JS('num', @'(# &gt;&gt; #) &gt;&gt;&gt; 0', a, b);
+  }
+  return UNINTERCEPTED(a &gt;&gt; b);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="stringContainsUnchecked">
+<span class="show-code">Code</span>
+<strong>stringContainsUnchecked</strong>(receiver, other, startIndex) <a class="anchor-link" href="#stringContainsUnchecked"
+              title="Permalink to stringContainsUnchecked">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+stringContainsUnchecked(receiver, other, startIndex) {
+  if (other is String) {
+    return receiver.indexOf(other, startIndex) !== -1;
+  } else if (other is JSSyntaxRegExp) {
+    return other.hasMatch(receiver.substring(startIndex));
+  } else {
+    var substr = receiver.substring(startIndex);
+    return other.allMatches(substr).iterator().hasNext();
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="stringJoinUnchecked">
+<span class="show-code">Code</span>
+<strong>stringJoinUnchecked</strong>(array, separator) <a class="anchor-link" href="#stringJoinUnchecked"
+              title="Permalink to stringJoinUnchecked">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+stringJoinUnchecked(array, separator) {
+  return JS('String', @'#.join(#)', array, separator);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="stringLastIndexOfUnchecked">
+<span class="show-code">Code</span>
+<strong>stringLastIndexOfUnchecked</strong>(receiver, element, start) <a class="anchor-link" href="#stringLastIndexOfUnchecked"
+              title="Permalink to stringLastIndexOfUnchecked">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+stringLastIndexOfUnchecked(receiver, element, start)
+  =&gt; JS('int', @'#.lastIndexOf(#, #)', receiver, element, start);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="stringReplaceAllUnchecked">
+<span class="show-code">Code</span>
+<strong>stringReplaceAllUnchecked</strong>(receiver, from, to) <a class="anchor-link" href="#stringReplaceAllUnchecked"
+              title="Permalink to stringReplaceAllUnchecked">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+stringReplaceAllUnchecked(receiver, from, to) {
+  if (from is String) {
+    if (from == "") {
+      if (receiver == "") {
+        return to;
+      } else {
+        StringBuffer result = new StringBuffer();
+        int length = receiver.length;
+        result.add(to);
+        for (int i = 0; i &lt; length; i++) {
+          result.add(receiver[i]);
+          result.add(to);
+        }
+        return result.toString();
+      }
+    } else {
+      RegExp quoteRegExp =
+          const JSSyntaxRegExp(@'[-[\]{}()*+?.,\\^$|#\s]', false, false);
+      var quoter = regExpMakeNative(quoteRegExp, global: true);
+      var quoted = JS('String', @'#.replace(#, "\\$&amp;")', from, quoter);
+      RegExp replaceRegExp = new JSSyntaxRegExp(quoted, false, false);
+      var replacer = regExpMakeNative(replaceRegExp, global: true);
+      return stringReplaceJS(receiver, replacer, to);
+    }
+  } else if (from is JSSyntaxRegExp) {
+    var re = regExpMakeNative(from, global: true);
+    return stringReplaceJS(receiver, re, to);
+  } else {
+    checkNull(from);
+    // TODO(floitsch): implement generic String.replace (with patterns).
+    throw "StringImplementation.replaceAll(Pattern) UNIMPLEMENTED";
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="stringReplaceFirstUnchecked">
+<span class="show-code">Code</span>
+<strong>stringReplaceFirstUnchecked</strong>(receiver, from, to) <a class="anchor-link" href="#stringReplaceFirstUnchecked"
+              title="Permalink to stringReplaceFirstUnchecked">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+stringReplaceFirstUnchecked(receiver, from, to) {
+  if (from is String) {
+    return stringReplaceJS(receiver, from, to);
+  } else if (from is JSSyntaxRegExp) {
+    var re = regExpGetNative(from);
+    return stringReplaceJS(receiver, re, to);
+  } else {
+    checkNull(from);
+    // TODO(floitsch): implement generic String.replace (with patterns).
+    throw "StringImplementation.replace(Pattern) UNIMPLEMENTED";
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="stringReplaceJS">
+<span class="show-code">Code</span>
+<strong>stringReplaceJS</strong>(receiver, replacer, to) <a class="anchor-link" href="#stringReplaceJS"
+              title="Permalink to stringReplaceJS">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+stringReplaceJS(receiver, replacer, to) {
+  // The JavaScript String.replace method recognizes replacement
+  // patterns in the replacement string. Dart does not have that
+  // behavior.
+  to = JS('String', @"#.replace('$', '$$$$')", to);
+  return JS('String', @'#.replace(#, #)', receiver, replacer, to);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="stringSplitUnchecked">
+<span class="show-code">Code</span>
+<strong>stringSplitUnchecked</strong>(receiver, pattern) <a class="anchor-link" href="#stringSplitUnchecked"
+              title="Permalink to stringSplitUnchecked">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+stringSplitUnchecked(receiver, pattern) {
+  if (pattern is String) {
+    return JS('List', @'#.split(#)', receiver, pattern);
+  } else if (pattern is JSSyntaxRegExp) {
+    var re = regExpGetNative(pattern);
+    return JS('List', @'#.split(#)', receiver, re);
+  } else {
+    throw "StringImplementation.split(Pattern) UNIMPLEMENTED";
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="stringSuperNativeTypeCast">
+<span class="show-code">Code</span>
+<strong>stringSuperNativeTypeCast</strong>(value, property) <a class="anchor-link" href="#stringSuperNativeTypeCast"
+              title="Permalink to stringSuperNativeTypeCast">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+stringSuperNativeTypeCast(value, property) {
+  if (value is String || value === null) return value;
+  if (JS('bool', '#[#]()', value, property)) return value;
+  propertyTypeCastError(value, property);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="stringSuperNativeTypeCheck">
+<span class="show-code">Code</span>
+<strong>stringSuperNativeTypeCheck</strong>(value, property) <a class="anchor-link" href="#stringSuperNativeTypeCheck"
+              title="Permalink to stringSuperNativeTypeCheck">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+stringSuperNativeTypeCheck(value, property) {
+  if (value === null) return value;
+  if (value is String) return value;
+  if (JS('bool', '#[#]()', value, property)) return value;
+  propertyTypeError(value, property);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="stringSuperTypeCast">
+<span class="show-code">Code</span>
+<strong>stringSuperTypeCast</strong>(value, property) <a class="anchor-link" href="#stringSuperTypeCast"
+              title="Permalink to stringSuperTypeCast">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+stringSuperTypeCast(value, property) {
+  if (value is String) return value;
+  return propertyTypeCast(value, property);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="stringSuperTypeCheck">
+<span class="show-code">Code</span>
+<strong>stringSuperTypeCheck</strong>(value, property) <a class="anchor-link" href="#stringSuperTypeCheck"
+              title="Permalink to stringSuperTypeCheck">#</a></h4>
+<div class="doc">
+<p>Specialization of the type check for String and its supertype
+since 
+<span class="param">value</span> can be a JS primitive.</p>
+<pre class="source">
+stringSuperTypeCheck(value, property) {
+  if (value === null) return value;
+  if (value is String) return value;
+  if (JS('bool', '!!#[#]', value, property)) return value;
+  propertyTypeError(value, property);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="stringTypeCast">
+<span class="show-code">Code</span>
+<strong>stringTypeCast</strong>(value) <a class="anchor-link" href="#stringTypeCast"
+              title="Permalink to stringTypeCast">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+stringTypeCast(value) {
+  if (value is String || value === null) return value;
+  // TODO(lrn): When reified types are available, pass value.class and String.
+  throw new CastException(Primitives.objectTypeName(value), 'String');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="stringTypeCheck">
+<span class="show-code">Code</span>
+<strong>stringTypeCheck</strong>(value) <a class="anchor-link" href="#stringTypeCheck"
+              title="Permalink to stringTypeCheck">#</a></h4>
+<div class="doc">
+<p>The following methods are called by the runtime to implement
+checked mode and casts. We specialize each primitive type (eg int, bool), and
+use the compiler's convention to do is-checks on regular objects.</p>
+<pre class="source">
+stringTypeCheck(value) {
+  if (value === null) return value;
+  if (value is String) return value;
+  throw new TypeError('$value does not implement String');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="sub">
+<span class="show-code">Code</span>
+<strong>sub</strong>(a, b) <a class="anchor-link" href="#sub"
+              title="Permalink to sub">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+sub(var a, var b) =&gt; (a is num &amp;&amp; b is num)
+    ? JS('num', @'# - #', a, b)
+    : sub$slow(a, b);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="sub$slow">
+<span class="show-code">Code</span>
+<strong>sub$slow</strong>(a, b) <a class="anchor-link" href="#sub$slow"
+              title="Permalink to sub$slow">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+sub$slow(var a, var b) {
+  if (checkNumbers(a, b)) {
+    return JS('num', @'# - #', a, b);
+  }
+  return UNINTERCEPTED(a - b);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="substringUnchecked">
+<span class="show-code">Code</span>
+<strong>substringUnchecked</strong>(receiver, startIndex, endIndex) <a class="anchor-link" href="#substringUnchecked"
+              title="Permalink to substringUnchecked">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+substringUnchecked(receiver, startIndex, endIndex)
+  =&gt; JS('String', @'#.substring(#, #)', receiver, startIndex, endIndex);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="tdiv">
+<span class="show-code">Code</span>
+<strong>tdiv</strong>(a, b) <a class="anchor-link" href="#tdiv"
+              title="Permalink to tdiv">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+tdiv(var a, var b) {
+  if (checkNumbers(a, b)) {
+    // TODO(floitsch): Find cleaner way of forcing the type.
+    a = JS('num', '#', a);
+    b = JS('num', '#', b);
+    return (a / b).truncate();
+  }
+  return UNINTERCEPTED(a ~/ b);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="throwNoSuchMethod">
+<span class="show-code">Code</span>
+void <strong>throwNoSuchMethod</strong>(obj, name, arguments) <a class="anchor-link" href="#throwNoSuchMethod"
+              title="Permalink to throwNoSuchMethod">#</a></h4>
+<div class="doc">
+<p>Helper method to throw a <code>NoSuchMethodException</code> for a invalid call
+on a native object.</p>
+<pre class="source">
+void throwNoSuchMethod(obj, name, arguments) {
+  throw new NoSuchMethodException(obj, name, arguments);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="toStringForNativeObject">
+<span class="show-code">Code</span>
+<a href="core/String.html">String</a> <strong>toStringForNativeObject</strong>(obj) <a class="anchor-link" href="#toStringForNativeObject"
+              title="Permalink to toStringForNativeObject">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+String toStringForNativeObject(var obj) {
+  return 'Instance of ${getTypeNameOf(obj)}';
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="toStringWrapper">
+<span class="show-code">Code</span>
+<strong>toStringWrapper</strong>() <a class="anchor-link" href="#toStringWrapper"
+              title="Permalink to toStringWrapper">#</a></h4>
+<div class="doc">
+<p>This method is installed as JavaScript toString method on exception
+objects in <a class="crossref" href="js_helper.html#captureStackTrace">captureStackTrace</a>. So JavaScript 'this' binds to an
+instance of JavaScript Error to which we have added a property
+'dartException' which holds a Dart object.</p>
+<pre class="source">
+toStringWrapper() =&gt; JS('Object', @'this.dartException').toString();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="typeNameInChrome">
+<span class="show-code">Code</span>
+<a href="core/String.html">String</a> <strong>typeNameInChrome</strong>(obj) <a class="anchor-link" href="#typeNameInChrome"
+              title="Permalink to typeNameInChrome">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+String typeNameInChrome(obj) {
+  String name = JS('String', "#.constructor.name", obj);
+  if (name == 'Window') return 'DOMWindow';
+  if (name == 'CanvasPixelArray') return 'Uint8ClampedArray';
+  return name;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="typeNameInFirefox">
+<span class="show-code">Code</span>
+<a href="core/String.html">String</a> <strong>typeNameInFirefox</strong>(obj) <a class="anchor-link" href="#typeNameInFirefox"
+              title="Permalink to typeNameInFirefox">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+String typeNameInFirefox(obj) {
+  String name = constructorNameFallback(obj);
+  if (name == 'Window') return 'DOMWindow';
+  if (name == 'Document') return 'HTMLDocument';
+  if (name == 'XMLDocument') return 'Document';
+  if (name == 'WorkerMessageEvent') return 'MessageEvent';
+  return name;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="typeNameInIE">
+<span class="show-code">Code</span>
+<a href="core/String.html">String</a> <strong>typeNameInIE</strong>(obj) <a class="anchor-link" href="#typeNameInIE"
+              title="Permalink to typeNameInIE">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+String typeNameInIE(obj) {
+  String name = constructorNameFallback(obj);
+  if (name == 'Window') return 'DOMWindow';
+  if (name == 'Document') {
+    // IE calls both HTML and XML documents 'Document', so we check for the
+    // xmlVersion property, which is the empty string on HTML documents.
+    if (JS('bool', '!!#.xmlVersion', obj)) return 'Document';
+    return 'HTMLDocument';
+  }
+  if (name == 'HTMLTableDataCellElement') return 'HTMLTableCellElement';
+  if (name == 'HTMLTableHeaderCellElement') return 'HTMLTableCellElement';
+  if (name == 'MSStyleCSSProperties') return 'CSSStyleDeclaration';
+  if (name == 'CanvasPixelArray') return 'Uint8ClampedArray';
+  if (name == 'HTMLPhraseElement') return 'HTMLElement';
+  if (name == 'MouseWheelEvent') return 'WheelEvent';
+  return name;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="unwrapException">
+<span class="show-code">Code</span>
+<strong>unwrapException</strong>(ex) <a class="anchor-link" href="#unwrapException"
+              title="Permalink to unwrapException">#</a></h4>
+<div class="doc">
+<p>Called from catch blocks in generated code to extract the Dart
+exception from the thrown value. The thrown value may have been
+created by <a class="crossref" href="js_helper.html#captureStackTrace">captureStackTrace</a> or it may be a 'native' JS
+exception.</p>
+<p>Some native exceptions are mapped to new Dart instances, others are
+returned unmodified.</p>
+<pre class="source">
+unwrapException(ex) {
+  // Note that we are checking if the object has the property. If it
+  // has, it could be set to null if the thrown value is null.
+  if (JS('bool', @'"dartException" in #', ex)) {
+    return JS('Object', @'#.dartException', ex);
+  }
+
+  // Grab hold of the exception message. This field is available on
+  // all supported browsers.
+  var message = JS('var', @'#.message', ex);
+
+  if (JS('bool', @'# instanceof TypeError', ex)) {
+    // The type and arguments fields are Chrome specific but they
+    // allow us to get very detailed information about what kind of
+    // exception occurred.
+    var type = JS('var', @'#.type', ex);
+    var name = JS('var', @'#.arguments ? #.arguments[0] : ""', ex, ex);
+    if (type == 'property_not_function' ||
+        type == 'called_non_callable' ||
+        type == 'non_object_property_call' ||
+        type == 'non_object_property_load') {
+      if (name is String &amp;&amp; name.startsWith(@'$call$')) {
+        return new ObjectNotClosureException();
+      } else {
+        return new NullPointerException();
+      }
+    } else if (type == 'undefined_method') {
+      if (name is String &amp;&amp; name.startsWith(@'$call$')) {
+        return new ObjectNotClosureException();
+      } else {
+        return new NoSuchMethodException('', name, []);
+      }
+    }
+
+    // If we cannot use [type] to determine what kind of exception
+    // we're dealing with we fall back on looking at the exception
+    // message if it is available and a string.
+    if (message is String) {
+      if (message.endsWith('is null') ||
+          message.endsWith('is undefined') ||
+          message.endsWith('is null or undefined')) {
+        return new NullPointerException();
+      } else if (message.endsWith('is not a function')) {
+        // TODO(kasperl): Compute the right name if possible.
+        return new NoSuchMethodException('', '&lt;unknown&gt;', []);
+      }
+    }
+
+    // If we cannot determine what kind of error this is, we fall back
+    // to reporting this as a generic exception. It's probably better
+    // than nothing.
+    return new Exception(message is String ? message : '');
+  }
+
+  if (JS('bool', @'# instanceof RangeError', ex)) {
+    if (message is String &amp;&amp; message.contains('call stack')) {
+      return new StackOverflowException();
+    }
+
+    // In general, a RangeError is thrown when trying to pass a number
+    // as an argument to a function that does not allow a range that
+    // includes that number.
+    return new IllegalArgumentException();
+  }
+
+  // Check for the Firefox specific stack overflow signal.
+  if (JS('bool',
+         @"typeof InternalError == 'function' &amp;&amp; # instanceof InternalError",
+         ex)) {
+    if (message is String &amp;&amp; message == 'too much recursion') {
+      return new StackOverflowException();
+    }
+  }
+
+  // Just return the exception. We should not wrap it because in case
+  // the exception comes from the DOM, it is a JavaScript
+  // object backed by a native Dart class.
+  return ex;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="xor">
+<span class="show-code">Code</span>
+<strong>xor</strong>(a, b) <a class="anchor-link" href="#xor"
+              title="Permalink to xor">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+xor(var a, var b) {
+  // TODO(floitsch): inputs must be integers.
+  if (checkNumbers(a, b)) {
+    return JS('num', @'(# ^ #) &gt;&gt;&gt; 0', a, b);
+  }
+  return UNINTERCEPTED(a ^ b);
+}
+</pre>
+</div>
+</div>
+<h3>Classes</h3>
+          <div class="type">
+          <h4>
+            <a href="js_helper/Closure.html"><strong>Closure</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="js_helper/ConstantMap.html"><strong>ConstantMap&lt;V&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="js_helper/ConstantProtoMap.html"><strong>ConstantProtoMap&lt;V&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="js_helper/ListIterator.html"><strong>ListIterator&lt;T&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="js_helper/MathNatives.html"><strong>MathNatives</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="js_helper/MetaInfo.html"><strong>MetaInfo</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="js_helper/Null.html"><strong>Null</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="js_helper/Primitives.html"><strong>Primitives</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="js_helper/StackTrace.html"><strong>StackTrace</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="js_helper/StringMatch.html"><strong>StringMatch</strong></a>
+          </h4>
+          </div>
+          
+<h3>Interfaces</h3>
+          <div class="type">
+          <h4>
+            <a href="js_helper/Dynamic.html"><strong>Dynamic</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="js_helper/JavaScriptIndexingBehavior.html"><strong>JavaScriptIndexingBehavior</strong></a>
+          </h4>
+          </div>
+          
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="client-live-nav.js"></script>
+        </body></html>
+        

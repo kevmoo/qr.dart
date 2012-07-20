@@ -1,0 +1,69 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>ListFactory&lt;E&gt; Class / coreimpl Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="coreimpl" data-type="ListFactory&amp;lt;E&amp;gt;">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../coreimpl.html">coreimpl</a> &rsaquo; <a href="../coreimpl/ListFactory.html">ListFactory&lt;E&gt;</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>ListFactory&lt;E&gt;</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="List">
+<span class="show-code">Code</span>
+factory <strong>List</strong>([<a href="../core/int.html">int</a> length]) <a class="anchor-link" href="#List"
+              title="Permalink to ListFactory&lt;E&gt;.List">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+factory List([int length]) =&gt; Primitives.newList(length);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="List">
+<span class="show-code">Code</span>
+factory <strong>List</strong>.from(<a href="../core/Iterable.html">Iterable</a>&lt;<a href="../coreimpl/ListFactory.html">E</a>&gt; other) <a class="anchor-link" href="#List"
+              title="Permalink to ListFactory&lt;E&gt;.List">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+factory List.from(Iterable&lt;E&gt; other) {
+  List&lt;E&gt; result = new List&lt;E&gt;();
+  // TODO(ahe): Use for-in when it is implemented correctly.
+  Iterator&lt;E&gt; iterator = other.iterator();
+  while (iterator.hasNext()) {
+    result.add(iterator.next());
+  }
+  return result;
+}
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

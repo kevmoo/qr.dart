@@ -1,0 +1,157 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>MapPlayer Class / vote_map Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="vote_map" data-type="MapPlayer">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../vote_map.html">vote_map</a> &rsaquo; <a href="../vote_map/MapPlayer.html">MapPlayer</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>MapPlayer</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Implements</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../vote/Player.html">Player</a></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="MapPlayer">
+<span class="show-code">Code</span>
+new <strong>MapPlayer</strong>(<a href="../dartlib_core/Coordinate.html">Coordinate</a> value) <a class="anchor-link" href="#MapPlayer"
+              title="Permalink to MapPlayer.MapPlayer">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+MapPlayer(Coordinate value) :
+  _id = new GlobalId() {
+  location = value;
+}
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="compareTo">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a> <strong>compareTo</strong>(<a href="../vote_map/MapPlayer.html">MapPlayer</a> other) <a class="anchor-link" href="#compareTo"
+              title="Permalink to MapPlayer.compareTo">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+int compareTo(MapPlayer other) =&gt; _id.compareTo(other._id);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="hashCode">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a> <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
+              title="Permalink to MapPlayer.hashCode">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+int hashCode() =&gt; _id.hashCode();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="id">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a> <strong>get id</strong>() <a class="anchor-link" href="#id"
+              title="Permalink to MapPlayer.get id">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+int get id() =&gt; _id.id;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="location">
+<span class="show-code">Code</span>
+<a href="../dartlib_core/Coordinate.html">Coordinate</a> <strong>get location</strong>() <a class="anchor-link" href="#location"
+              title="Permalink to MapPlayer.get location">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Coordinate get location() =&gt; _location;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="location">
+<span class="show-code">Code</span>
+void <strong>set location</strong>(<a href="../dartlib_core/Coordinate.html">Coordinate</a> value) <a class="anchor-link" href="#location"
+              title="Permalink to MapPlayer.set location">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void set location(Coordinate value) {
+  requireArgumentNotNull(value, 'value');
+  _location = value;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="operator">
+<span class="show-code">Code</span>
+<a href="../core/bool.html">bool</a> <strong>operator ==</strong>(<a href="../vote_map/MapPlayer.html">MapPlayer</a> other) <a class="anchor-link" href="#operator"
+              title="Permalink to MapPlayer.operator ==">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool operator ==(MapPlayer other) =&gt; other !== null &amp;&amp; other._id == _id;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="toString">
+<span class="show-code">Code</span>
+<a href="../core/String.html">String</a> <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to MapPlayer.toString">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+String toString() {
+  if(name == null) {
+    return "MapPlayer at [${_location.x.toStringAsFixed(1)}, ${_location.y.toStringAsFixed(1)}]";
+  } else {
+    return name;
+  }
+}
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="name">
+<span class="show-code">Code</span>
+<a href="../core/String.html">String</a>         <strong>name</strong> <a class="anchor-link"
+            href="#name"
+            title="Permalink to MapPlayer.name">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+String name;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

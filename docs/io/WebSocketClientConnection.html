@@ -1,0 +1,175 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>WebSocketClientConnection Interface / io Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="io" data-type="WebSocketClientConnection">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../io.html">io</a> &rsaquo; <a href="../io/WebSocketClientConnection.html">WebSocketClientConnection</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>WebSocketClientConnection</strong>
+          Interface
+        </h2>
+        
+<div class="doc">
+<p>Client web socket connection.</p>
+</div>
+<h3>Extends</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../core/Hashable.html">Hashable</a></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="WebSocketClientConnection">
+<span class="show-code">Code</span>
+new <strong>WebSocketClientConnection</strong>(<a href="../io/HttpClientConnection.html">HttpClientConnection</a> conn, [<a href="../core/List.html">List</a>&lt;<a href="../core/String.html">String</a>&gt; protocols]) <a class="anchor-link" href="#WebSocketClientConnection"
+              title="Permalink to WebSocketClientConnection.WebSocketClientConnection">#</a></h4>
+<div class="doc">
+<p>Creates a new web socket client connection based on a HTTP client
+connection. The HTTP client connection must be freshly opened.</p>
+<pre class="source">
+WebSocketClientConnection(HttpClientConnection conn,
+                          [List&lt;String&gt; protocols]);
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="close">
+<span class="show-code">Code</span>
+<strong>close</strong>([<a href="../core/int.html">int</a> status, <a href="../core/String.html">String</a> reason]) <a class="anchor-link" href="#close"
+              title="Permalink to WebSocketClientConnection.close">#</a></h4>
+<div class="doc">
+<p>Close the web socket connection. The default value for 
+<span class="param">status</span>
+and 
+<span class="param">reason</span> are <code>null</code>.</p>
+<pre class="source">
+close([int status, String reason]);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="hashCode">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a> <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
+              title="Permalink to WebSocketClientConnection.hashCode">#</a></h4>
+<div class="doc">
+<p>WebSocketClientConnection is hashable.</p>
+<pre class="source">
+int hashCode();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onClosed">
+<span class="show-code">Code</span>
+void <strong>set onClosed</strong>(callback) <a class="anchor-link" href="#onClosed"
+              title="Permalink to WebSocketClientConnection.set onClosed">#</a></h4>
+<div class="doc">
+<p>Sets the callback to be called when the web socket connection is
+closed.</p>
+<pre class="source">
+void set onClosed(void callback(int status, String reason));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onError">
+<span class="show-code">Code</span>
+void <strong>set onError</strong>(callback) <a class="anchor-link" href="#onError"
+              title="Permalink to WebSocketClientConnection.set onError">#</a></h4>
+<div class="doc">
+<p>Sets the callback to be called when the web socket connection
+encountered an error.</p>
+<pre class="source">
+void set onError(void callback(e));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onMessage">
+<span class="show-code">Code</span>
+void <strong>set onMessage</strong>(callback) <a class="anchor-link" href="#onMessage"
+              title="Permalink to WebSocketClientConnection.set onMessage">#</a></h4>
+<div class="doc">
+<p>Sets the callback to be called when a message have been
+received. The type of <code>message</code> is either <code>String</code> or
+<code>List&lt;int&gt;</code> depending on whether it is a text or binary
+message. If the message is empty <code>message</code> will be <code>null</code>.</p>
+<pre class="source">
+void set onMessage(void callback(message));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onNoUpgrade">
+<span class="show-code">Code</span>
+void <strong>set onNoUpgrade</strong>(callback) <a class="anchor-link" href="#onNoUpgrade"
+              title="Permalink to WebSocketClientConnection.set onNoUpgrade">#</a></h4>
+<div class="doc">
+<p>Sets the callback to be called when the response object for the
+opening handshake did not cause a web socket connection
+upgrade. This will be called in case the response status code is
+not 101 (Switching Protocols). If this callback is not set the
+<code>onError</code> callback will be called if the server did not upgrade
+the connection.</p>
+<pre class="source">
+void set onNoUpgrade(void callback(HttpClientResponse response));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onOpen">
+<span class="show-code">Code</span>
+void <strong>set onOpen</strong>(callback) <a class="anchor-link" href="#onOpen"
+              title="Permalink to WebSocketClientConnection.set onOpen">#</a></h4>
+<div class="doc">
+<p>Sets the callback to be called when a web socket connection has
+been established.</p>
+<pre class="source">
+void set onOpen(void callback());
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onRequest">
+<span class="show-code">Code</span>
+void <strong>set onRequest</strong>(callback) <a class="anchor-link" href="#onRequest"
+              title="Permalink to WebSocketClientConnection.set onRequest">#</a></h4>
+<div class="doc">
+<p>Sets the callback to be called when the request object for the
+opening handshake request is ready. This callback can be used if
+one need to add additional headers to the opening handshake
+request.</p>
+<pre class="source">
+void set onRequest(void callback(HttpClientRequest request));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="send">
+<span class="show-code">Code</span>
+<strong>send</strong>(message) <a class="anchor-link" href="#send"
+              title="Permalink to WebSocketClientConnection.send">#</a></h4>
+<div class="doc">
+<p>Sends a message. The 
+<span class="param">message</span> must be a <code>String</code> or a
+<code>List&lt;int&gt;</code>. To send an empty message use either an empty
+<code>String</code> or an empty <code>List&lt;int&gt;</code>. <code>null</code> cannot be used.</p>
+<pre class="source">
+send(message);
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

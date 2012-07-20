@@ -1,0 +1,96 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>ReceivePort Interface / dart:isolate Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="dart:isolate" data-type="ReceivePort">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../dart_isolate.html">dart:isolate</a> &rsaquo; <a href="../dart_isolate/ReceivePort.html">ReceivePort</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>ReceivePort</strong>
+          Interface
+        </h2>
+        
+<div class="doc">
+<p><a class="crossref" href="../dart_isolate/ReceivePort.html#new:ReceivePort">ReceivePort</a>s, together with <a class="crossref" href="../dart_isolate/SendPort.html">SendPort</a>s, are the only means of
+communication between isolates. <a class="crossref" href="../dart_isolate/ReceivePort.html#new:ReceivePort">ReceivePort</a>s have a <code>toSendPort</code> method
+which returns a <a class="crossref" href="../dart_isolate/SendPort.html">SendPort</a>. Any message that is sent through this <a class="crossref" href="../dart_isolate/SendPort.html">SendPort</a>
+is delivered to the <a class="crossref" href="../dart_isolate/ReceivePort.html#new:ReceivePort">ReceivePort</a> it has been created from. There, they are
+dispatched to the callback that has been registered on the receive port.</p>
+<p>A <a class="crossref" href="../dart_isolate/ReceivePort.html#new:ReceivePort">ReceivePort</a> may have many <a class="crossref" href="../dart_isolate/SendPort.html">SendPort</a>s.</p>
+</div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="ReceivePort">
+<span class="show-code">Code</span>
+new <strong>ReceivePort</strong>() <a class="anchor-link" href="#ReceivePort"
+              title="Permalink to ReceivePort.ReceivePort">#</a></h4>
+<div class="doc">
+<p>Opens a long-lived port for receiving messages. The returned port
+must be explicitly closed through <a class="crossref" href="../dart_isolate/ReceivePort.html#close">ReceivePort.close</a>.</p>
+<pre class="source">
+ReceivePort();
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="close">
+<span class="show-code">Code</span>
+void <strong>close</strong>() <a class="anchor-link" href="#close"
+              title="Permalink to ReceivePort.close">#</a></h4>
+<div class="doc">
+<p>Closes this receive port immediately. Pending messages will not
+be processed and it is impossible to re-open the port. Single-shot
+reply ports, such as those created through <a class="crossref" href="../dart_isolate/SendPort.html#call">SendPort.call</a>, are
+automatically closed when the reply has been received. Multiple
+invocations of <a class="crossref" href="../dart_isolate/ReceivePort.html#close">close</a> are allowed but ignored.</p>
+<pre class="source">
+void close();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="receive">
+<span class="show-code">Code</span>
+void <strong>receive</strong>(callback) <a class="anchor-link" href="#receive"
+              title="Permalink to ReceivePort.receive">#</a></h4>
+<div class="doc">
+<p>Sets up a callback function for receiving pending or future
+messages on this receive port.</p>
+<pre class="source">
+void receive(void callback(var message, SendPort replyTo));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="toSendPort">
+<span class="show-code">Code</span>
+<a href="../dart_isolate/SendPort.html">SendPort</a> <strong>toSendPort</strong>() <a class="anchor-link" href="#toSendPort"
+              title="Permalink to ReceivePort.toSendPort">#</a></h4>
+<div class="doc">
+<p>Creates a new send port that sends to this receive port. It is legal to
+create several <a class="crossref" href="../dart_isolate/SendPort.html">SendPort</a>s from the same <a class="crossref" href="../dart_isolate/ReceivePort.html#new:ReceivePort">ReceivePort</a>.</p>
+<pre class="source">
+SendPort toSendPort();
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

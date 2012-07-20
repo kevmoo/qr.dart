@@ -1,0 +1,104 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>RankedBallot&lt;TVoter, TCandidate&gt; Class / vote Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="vote" data-type="RankedBallot&amp;lt;TVoter, TCandidate&amp;gt;">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../vote.html">vote</a> &rsaquo; <a href="../vote/RankedBallot.html">RankedBallot&lt;TVoter, TCandidate&gt;</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>RankedBallot&lt;TVoter extends Player, TCandidate extends Player&gt;</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Extends</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../vote/Ballot.html">Ballot</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../vote/PluralityBallot.html">PluralityBallot</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>RankedBallot&lt;TVoter, TCandidate&gt;</strong></span></p>
+<h3>Subclasses</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../vote_map/DistanceBallot.html">DistanceBallot&lt;TVoter, TCandidate&gt;</a></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="RankedBallot">
+<span class="show-code">Code</span>
+new <strong>RankedBallot</strong>.protected(<a href="../vote/RankedBallot.html">TVoter</a> voter, <a href="../dartlib_core/ReadOnlyCollection.html">ReadOnlyCollection</a>&lt;<a href="../vote/RankedBallot.html">TCandidate</a>&gt; items) <a class="anchor-link" href="#RankedBallot"
+              title="Permalink to RankedBallot&lt;TVoter, TCandidate&gt;.RankedBallot">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+RankedBallot.protected(TVoter voter, ReadOnlyCollection&lt;TCandidate&gt; items):
+  super(voter, items[0]),
+  rank = items;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="RankedBallot">
+<span class="show-code">Code</span>
+factory <strong>RankedBallot</strong>(<a href="../vote/RankedBallot.html">TVoter</a> voter, <a href="../core/Iterable.html">Iterable</a>&lt;<a href="../vote/RankedBallot.html">TCandidate</a>&gt; rank) <a class="anchor-link" href="#RankedBallot"
+              title="Permalink to RankedBallot&lt;TVoter, TCandidate&gt;.RankedBallot">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+factory RankedBallot(TVoter voter, Iterable&lt;TCandidate&gt; rank) {
+  requireArgumentNotNull(voter, 'voter');
+  requireArgumentNotNull(rank, 'rank');
+
+  var items = new ReadOnlyCollection(rank);
+  requireArgument(items.length &gt; 0, 'rank');
+  requireArgument(CollectionUtil.allUnique(items), 'rank');
+
+  return new RankedBallot.protected(voter, items);
+}
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="toString">
+<span class="show-code">Code</span>
+<a href="../core/String.html">String</a> <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to RankedBallot&lt;TVoter, TCandidate&gt;.toString">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+String toString() =&gt; "[RankedBallot for '$voter', ranked ${rank.length} candidates]";
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="rank">
+<span class="show-code">Code</span>
+final <a href="../dartlib_core/ReadOnlyCollection.html">ReadOnlyCollection</a>&lt;<a href="../vote/RankedBallot.html">TCandidate</a>&gt;         <strong>rank</strong> <a class="anchor-link"
+            href="#rank"
+            title="Permalink to RankedBallot&lt;TVoter, TCandidate&gt;.rank">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final ReadOnlyCollection&lt;TCandidate&gt; rank;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

@@ -1,0 +1,152 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>HttpResponse Interface / io Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="io" data-type="HttpResponse">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../io.html">io</a> &rsaquo; <a href="../io/HttpResponse.html">HttpResponse</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>HttpResponse</strong>
+          Interface
+        </h2>
+        
+<div class="doc">
+<p>HTTP response to be send back to the client.</p>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="cookies">
+<span class="show-code">Code</span>
+<a href="../core/List.html">List</a>&lt;<a href="../io/Cookie.html">Cookie</a>&gt; <strong>get cookies</strong>() <a class="anchor-link" href="#cookies"
+              title="Permalink to HttpResponse.get cookies">#</a></h4>
+<div class="doc">
+<p>Cookies to set in the client (in the Set-Cookie header).</p>
+<pre class="source">
+List&lt;Cookie&gt; get cookies();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="detachSocket">
+<span class="show-code">Code</span>
+<a href="../io/DetachedSocket.html">DetachedSocket</a> <strong>detachSocket</strong>() <a class="anchor-link" href="#detachSocket"
+              title="Permalink to HttpResponse.detachSocket">#</a></h4>
+<div class="doc">
+<p>Detach the underlying socket from the HTTP server. When the
+socket is detached the HTTP server will no longer perform any
+operations on it.</p>
+<p>This is normally used when a HTTP upgrade request is received
+and the communication should continue with a different protocol.</p>
+<pre class="source">
+DetachedSocket detachSocket();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="headers">
+<span class="show-code">Code</span>
+<a href="../io/HttpHeaders.html">HttpHeaders</a> <strong>get headers</strong>() <a class="anchor-link" href="#headers"
+              title="Permalink to HttpResponse.get headers">#</a></h4>
+<div class="doc">
+<p>Returns the response headers.</p>
+<pre class="source">
+HttpHeaders get headers();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="outputStream">
+<span class="show-code">Code</span>
+<a href="../io/OutputStream.html">OutputStream</a> <strong>get outputStream</strong>() <a class="anchor-link" href="#outputStream"
+              title="Permalink to HttpResponse.get outputStream">#</a></h4>
+<div class="doc">
+<p>Returns the output stream for the response. This is used to write
+the response data. When all response data has been written close
+the stream to indicate the end of the response.</p>
+<p>When this is accessed for the first time the response header is
+send. Calling any methods that will change the header after
+having retrieved the output stream will throw an exception.</p>
+<pre class="source">
+OutputStream get outputStream();
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="contentLength">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a>         <strong>contentLength</strong> <a class="anchor-link"
+            href="#contentLength"
+            title="Permalink to HttpResponse.contentLength">#</a>
+        </h4>
+        <div class="doc">
+<p>Gets and sets the content length of the response. If the size of
+the response is not known in advance set the content length to
+-1 - which is also the default if not set.</p>
+<pre class="source">
+int contentLength;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="persistentConnection">
+<span class="show-code">Code</span>
+<a href="../core/bool.html">bool</a>         <strong>persistentConnection</strong> <a class="anchor-link"
+            href="#persistentConnection"
+            title="Permalink to HttpResponse.persistentConnection">#</a>
+        </h4>
+        <div class="doc">
+<p>Gets and sets the persistent connection state. The initial value
+of this property is the persistent connection state from the
+request.</p>
+<pre class="source">
+bool persistentConnection;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="reasonPhrase">
+<span class="show-code">Code</span>
+<a href="../core/String.html">String</a>         <strong>reasonPhrase</strong> <a class="anchor-link"
+            href="#reasonPhrase"
+            title="Permalink to HttpResponse.reasonPhrase">#</a>
+        </h4>
+        <div class="doc">
+<p>Gets and sets the reason phrase. If no reason phrase is explicitly
+set a default reason phrase is provided.</p>
+<pre class="source">
+String reasonPhrase;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="statusCode">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a>         <strong>statusCode</strong> <a class="anchor-link"
+            href="#statusCode"
+            title="Permalink to HttpResponse.statusCode">#</a>
+        </h4>
+        <div class="doc">
+<p>Gets and sets the status code. Any integer value is accepted, but
+for the official HTTP status codes use the fields from
+<a class="crossref" href="../io/HttpStatus.html">HttpStatus</a>.</p>
+<pre class="source">
+int statusCode;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

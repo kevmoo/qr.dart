@@ -21,24 +21,28 @@
 <div class="content">
 <h2><strong>dartlib_core</strong> library</h2>
 <div class="doc"></div>
-<h3>Functions</h3>
+<h3>Methods</h3>
 <div class="method"><h4 id="$">
 <span class="show-code">Code</span>
-<a href="dartlib_core/Enumerable.html">Enumerable</a> <strong>$</strong>(<a href="dart_core/Iterable.html">Iterable</a> source) <a class="anchor-link" href="#$"
-              title="Permalink to null.$">#</a></h4>
+<a href="dartlib_core/Enumerable.html">Enumerable</a> <strong>$</strong>(<a href="core/Iterable.html">Iterable</a> source) <a class="anchor-link" href="#$"
+              title="Permalink to $">#</a></h4>
 <div class="doc">
 
 <pre class="source">
 Enumerable $(Iterable source) {
-  return new Enumerable(source);
+  if(source is Enumerable) {
+    return source;
+  } else {
+    return new Enumerable(source);
+  }
 }
 </pre>
 </div>
 </div>
 <div class="method"><h4 id="isValidNumber">
 <span class="show-code">Code</span>
-<a href="dart_core/bool.html">bool</a> <strong>isValidNumber</strong>(<a href="dart_core/num.html">num</a> value) <a class="anchor-link" href="#isValidNumber"
-              title="Permalink to null.isValidNumber">#</a></h4>
+<a href="core/bool.html">bool</a> <strong>isValidNumber</strong>(<a href="core/num.html">num</a> value) <a class="anchor-link" href="#isValidNumber"
+              title="Permalink to isValidNumber">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -50,8 +54,8 @@ bool isValidNumber(num value) {
 </div>
 <div class="method"><h4 id="n$">
 <span class="show-code">Code</span>
-<a href="dartlib_core/NumberEnumerable.html">NumberEnumerable</a> <strong>n$</strong>(<a href="dart_core/Iterable.html">Iterable</a> source) <a class="anchor-link" href="#n$"
-              title="Permalink to null.n$">#</a></h4>
+<a href="dartlib_core/NumberEnumerable.html">NumberEnumerable</a> <strong>n$</strong>(<a href="core/Iterable.html">Iterable</a>&lt;<a href="core/num.html">num</a>&gt; source) <a class="anchor-link" href="#n$"
+              title="Permalink to n$">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -63,8 +67,8 @@ NumberEnumerable n$(Iterable&lt;num&gt; source) {
 </div>
 <div class="method"><h4 id="requireArgument">
 <span class="show-code">Code</span>
-<a href="dart_core/void.html">void</a> <strong>requireArgument</strong>(<a href="dart_core/bool.html">bool</a> truth, [<a href="dart_core/String.html">String</a> arg = ""]) <a class="anchor-link" href="#requireArgument"
-              title="Permalink to null.requireArgument">#</a></h4>
+void <strong>requireArgument</strong>(<a href="core/bool.html">bool</a> truth, [<a href="core/String.html">String</a> arg]) <a class="anchor-link" href="#requireArgument"
+              title="Permalink to requireArgument">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -78,8 +82,8 @@ void requireArgument(bool truth, [String arg = ""]) {
 </div>
 <div class="method"><h4 id="requireArgumentNotNull">
 <span class="show-code">Code</span>
-<a href="dart_core/void.html">void</a> <strong>requireArgumentNotNull</strong>(argument, [<a href="dart_core/String.html">String</a> argName = ""]) <a class="anchor-link" href="#requireArgumentNotNull"
-              title="Permalink to null.requireArgumentNotNull">#</a></h4>
+void <strong>requireArgumentNotNull</strong>(argument, [<a href="core/String.html">String</a> argName]) <a class="anchor-link" href="#requireArgumentNotNull"
+              title="Permalink to requireArgumentNotNull">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -95,6 +99,12 @@ void requireArgumentNotNull(argument, [String argName = ""]) {
           <div class="type">
           <h4>
             <a href="dartlib_core/AffineTransform.html"><strong>AffineTransform</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib_core/CancelableEventArgs.html"><strong>CancelableEventArgs</strong></a>
           </h4>
           </div>
           
@@ -172,6 +182,12 @@ void requireArgumentNotNull(argument, [String argName = ""]) {
           
           <div class="type">
           <h4>
+            <a href="dartlib_core/NoneHashMap.html"><strong>NoneHashMap&lt;K, V&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
             <a href="dartlib_core/NumberEnumerable.html"><strong>NumberEnumerable&lt;T&gt;</strong></a>
           </h4>
           </div>
@@ -220,6 +236,12 @@ void requireArgumentNotNull(argument, [String argName = ""]) {
           
           <div class="type">
           <h4>
+            <a href="dartlib_core/SlowMapper.html"><strong>SlowMapper&lt;TInput, TOutput&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
             <a href="dartlib_core/TarjanCycleDetect.html"><strong>TarjanCycleDetect&lt;TNode&gt;</strong></a>
           </h4>
           </div>
@@ -257,19 +279,19 @@ void requireArgumentNotNull(argument, [String argName = ""]) {
           
           <div class="type">
           <h4>
-            <a href="dartlib_core/Action1.html"><strong>Action1&lt;T&gt;</strong></a>
+            <a href="dartlib_core/Action1.html"><strong>Action1</strong></a>
           </h4>
           </div>
           
           <div class="type">
           <h4>
-            <a href="dartlib_core/Action2.html"><strong>Action2&lt;T1, T2&gt;</strong></a>
+            <a href="dartlib_core/Action2.html"><strong>Action2</strong></a>
           </h4>
           </div>
           
           <div class="type">
           <h4>
-            <a href="dartlib_core/Action3.html"><strong>Action3&lt;T1, T2, T3&gt;</strong></a>
+            <a href="dartlib_core/Action3.html"><strong>Action3</strong></a>
           </h4>
           </div>
           
@@ -293,19 +315,19 @@ void requireArgumentNotNull(argument, [String argName = ""]) {
           
           <div class="type">
           <h4>
-            <a href="dartlib_core/Func.html"><strong>Func&lt;T&gt;</strong></a>
+            <a href="dartlib_core/Func.html"><strong>Func</strong></a>
           </h4>
           </div>
           
           <div class="type">
           <h4>
-            <a href="dartlib_core/Func1.html"><strong>Func1&lt;T1, TR&gt;</strong></a>
+            <a href="dartlib_core/Func1.html"><strong>Func1</strong></a>
           </h4>
           </div>
           
           <div class="type">
           <h4>
-            <a href="dartlib_core/Func2.html"><strong>Func2&lt;T1, T2, TR&gt;</strong></a>
+            <a href="dartlib_core/Func2.html"><strong>Func2</strong></a>
           </h4>
           </div>
           
@@ -323,11 +345,17 @@ void requireArgumentNotNull(argument, [String argName = ""]) {
           
           <div class="type">
           <h4>
-            <a href="dartlib_core/Predicate.html"><strong>Predicate&lt;T&gt;</strong></a>
+            <a href="dartlib_core/Predicate.html"><strong>Predicate</strong></a>
           </h4>
           </div>
           
 <h3>Exceptions</h3>
+          <div class="type">
+          <h4>
+            <a href="dartlib_core/InvalidOperationException.html"><strong>InvalidOperationException</strong></a>
+          </h4>
+          </div>
+          
           <div class="type">
           <h4>
             <a href="dartlib_core/NullArgumentException.html"><strong>NullArgumentException</strong></a>

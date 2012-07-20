@@ -1,0 +1,93 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>DirectoryLister Interface / io Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="io" data-type="DirectoryLister">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../io.html">io</a> &rsaquo; <a href="../io/DirectoryLister.html">DirectoryLister</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>DirectoryLister</strong>
+          Interface
+        </h2>
+        
+<div class="doc">
+<p>A <a class="crossref" href="../io/DirectoryLister.html">DirectoryLister</a> represents an actively running listing operation.</p>
+<p>For each file and directory, the file or directory handler is
+called. When all directories have been listed the done handler is
+called. If the listing operation is recursive, the error handler is
+called if a subdirectory cannot be opened for listing.</p>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="onDir">
+<span class="show-code">Code</span>
+void <strong>set onDir</strong>(onDir) <a class="anchor-link" href="#onDir"
+              title="Permalink to DirectoryLister.set onDir">#</a></h4>
+<div class="doc">
+<p>Sets the directory handler that is called for all directories
+during listing. The directory handler is called with the full
+path of the directory.</p>
+<pre class="source">
+void set onDir(void onDir(String dir));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onDone">
+<span class="show-code">Code</span>
+void <strong>set onDone</strong>(onDone) <a class="anchor-link" href="#onDone"
+              title="Permalink to DirectoryLister.set onDone">#</a></h4>
+<div class="doc">
+<p>Set the handler that is called when a listing is done. The
+handler is called with an indication of whether or not the
+listing operation completed.</p>
+<pre class="source">
+void set onDone(void onDone(bool completed));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onError">
+<span class="show-code">Code</span>
+void <strong>set onError</strong>(onError) <a class="anchor-link" href="#onError"
+              title="Permalink to DirectoryLister.set onError">#</a></h4>
+<div class="doc">
+<p>Sets the handler that is called if there is an error while
+listing directories.</p>
+<pre class="source">
+void set onError(void onError(e));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onFile">
+<span class="show-code">Code</span>
+void <strong>set onFile</strong>(onFile) <a class="anchor-link" href="#onFile"
+              title="Permalink to DirectoryLister.set onFile">#</a></h4>
+<div class="doc">
+<p>Sets the handler that is called for all files during listing. The
+file handler is called with the full path of the file.</p>
+<pre class="source">
+void set onFile(void onFile(String file));
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

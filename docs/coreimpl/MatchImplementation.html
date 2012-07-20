@@ -1,0 +1,158 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>MatchImplementation Class / coreimpl Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="coreimpl" data-type="MatchImplementation">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../coreimpl.html">coreimpl</a> &rsaquo; <a href="../coreimpl/MatchImplementation.html">MatchImplementation</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>MatchImplementation</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Implements</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../core/Match.html">Match</a></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="MatchImplementation">
+<span class="show-code">Code</span>
+const <strong>MatchImplementation</strong>(<a href="../core/String.html">String</a> pattern, <a href="../core/String.html">String</a> str, <a href="../core/int.html">int</a> _start, <a href="../core/int.html">int</a> _end, <a href="../core/List.html">List</a>&lt;<a href="../core/String.html">String</a>&gt; _groups) <a class="anchor-link" href="#MatchImplementation"
+              title="Permalink to MatchImplementation.MatchImplementation">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+const MatchImplementation(
+    String this.pattern,
+    String this.str,
+    int this._start,
+    int this._end,
+    List&lt;String&gt; this._groups);
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="end">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a> <strong>end</strong>() <a class="anchor-link" href="#end"
+              title="Permalink to MatchImplementation.end">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+int end() =&gt; _end;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="group">
+<span class="show-code">Code</span>
+<a href="../core/String.html">String</a> <strong>group</strong>(<a href="../core/int.html">int</a> index) <a class="anchor-link" href="#group"
+              title="Permalink to MatchImplementation.group">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+String group(int index) =&gt; _groups[index];
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="groupCount">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a> <strong>groupCount</strong>() <a class="anchor-link" href="#groupCount"
+              title="Permalink to MatchImplementation.groupCount">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+int groupCount() =&gt; _groups.length - 1;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="groups">
+<span class="show-code">Code</span>
+<a href="../core/List.html">List</a>&lt;<a href="../core/String.html">String</a>&gt; <strong>groups</strong>(<a href="../core/List.html">List</a>&lt;<a href="../core/int.html">int</a>&gt; groups) <a class="anchor-link" href="#groups"
+              title="Permalink to MatchImplementation.groups">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+List&lt;String&gt; groups(List&lt;int&gt; groups) {
+  List&lt;String&gt; out = [];
+  for (int i in groups) {
+    out.add(group(i));
+  }
+  return out;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="operator">
+<span class="show-code">Code</span>
+<a href="../core/String.html">String</a> <strong>operator []</strong>(<a href="../core/int.html">int</a> index) <a class="anchor-link" href="#operator"
+              title="Permalink to MatchImplementation.operator []">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+String operator [](int index) =&gt; group(index);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="start">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a> <strong>start</strong>() <a class="anchor-link" href="#start"
+              title="Permalink to MatchImplementation.start">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+int start() =&gt; _start;
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="pattern">
+<span class="show-code">Code</span>
+final <a href="../core/String.html">String</a>         <strong>pattern</strong> <a class="anchor-link"
+            href="#pattern"
+            title="Permalink to MatchImplementation.pattern">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final String pattern;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="str">
+<span class="show-code">Code</span>
+final <a href="../core/String.html">String</a>         <strong>str</strong> <a class="anchor-link"
+            href="#str"
+            title="Permalink to MatchImplementation.str">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final String str;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

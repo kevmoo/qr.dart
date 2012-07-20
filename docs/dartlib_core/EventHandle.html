@@ -31,11 +31,11 @@
 <span class="type-box"><span class="icon-class"></span><a href="../dartlib_core/DisposableImpl.html">DisposableImpl</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>EventHandle&lt;T&gt;</strong></span></p>
 <h3>Implements</h3>
 <p>
-<span class="type-box"><span class="icon-interface"></span><a href="../dartlib_core/EventRoot.html">EventRoot&lt;T&gt;</a></span></p>
+<span class="type-box"><span class="icon-interface"></span><a href="../dartlib_core/EventRoot.html">EventRoot</a></span></p>
 <h3>Methods</h3>
 <div class="method"><h4 id="add">
 <span class="show-code">Code</span>
-<a href="../dartlib_core/GlobalId.html">GlobalId</a> <strong>add</strong>(<a href="../dart_core/void.html">void</a> handler(param)) <a class="anchor-link" href="#add"
+<a href="../dartlib_core/GlobalId.html">GlobalId</a> <strong>add</strong>(<a href="../dartlib_core/Action1.html">Action1</a> handler) <a class="anchor-link" href="#add"
               title="Permalink to EventHandle&lt;T&gt;.add">#</a></h4>
 <div class="doc">
 
@@ -54,7 +54,7 @@ GlobalId add(Action1&lt;T&gt; handler){
 </div>
 <div class="method"><h4 id="disposeInternal">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>disposeInternal</strong>() <a class="anchor-link" href="#disposeInternal"
+void <strong>disposeInternal</strong>() <a class="anchor-link" href="#disposeInternal"
               title="Permalink to EventHandle&lt;T&gt;.disposeInternal">#</a></h4>
 <div class="doc">
 
@@ -71,12 +71,12 @@ void disposeInternal(){
 </div>
 <div class="method"><h4 id="fireEvent">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>fireEvent</strong>(<a href="../dart_core/Object.html">Object</a> sender, args) <a class="anchor-link" href="#fireEvent"
+void <strong>fireEvent</strong>(<a href="../dartlib_core/EventHandle.html">T</a> args) <a class="anchor-link" href="#fireEvent"
               title="Permalink to EventHandle&lt;T&gt;.fireEvent">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-void fireEvent(Object sender, T args){
+void fireEvent(T args){
   assert(!isDisposed);
   if(_handlers != null){
     _handlers.forEach((GlobalId id, Action1&lt;T&gt; handler){
@@ -89,7 +89,7 @@ void fireEvent(Object sender, T args){
 </div>
 <div class="method"><h4 id="remove">
 <span class="show-code">Code</span>
-<a href="../dart_core/bool.html">bool</a> <strong>remove</strong>(<a href="../dartlib_core/GlobalId.html">GlobalId</a> id) <a class="anchor-link" href="#remove"
+<a href="../core/bool.html">bool</a> <strong>remove</strong>(<a href="../dartlib_core/GlobalId.html">GlobalId</a> id) <a class="anchor-link" href="#remove"
               title="Permalink to EventHandle&lt;T&gt;.remove">#</a></h4>
 <div class="doc">
 

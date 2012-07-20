@@ -21,17 +21,46 @@
 <div class="content">
 <h2><strong>dartlib_test</strong> library</h2>
 <div class="doc"></div>
-<h3>Functions</h3>
+<h3>Methods</h3>
 <div class="method"><h4 id="pending">
 <span class="show-code">Code</span>
-<a href="dart_core/void.html">void</a> <strong>pending</strong>() <a class="anchor-link" href="#pending"
-              title="Permalink to null.pending">#</a></h4>
+void <strong>pending</strong>() <a class="anchor-link" href="#pending"
+              title="Permalink to pending">#</a></h4>
 <div class="doc">
 
 <pre class="source">
 void pending() {
   throw new ExpectException('Not implemented');
 }
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="throwsInvalidOperationException">
+<span class="show-code">Code</span>
+final <a href="unittest/Matcher.html">Matcher</a>         <strong>throwsInvalidOperationException</strong> <a class="anchor-link"
+            href="#throwsInvalidOperationException"
+            title="Permalink to throwsInvalidOperationException">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final Matcher throwsInvalidOperationException =
+  const _Throws(const _InvalidOperationException());
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="throwsNullArgumentException">
+<span class="show-code">Code</span>
+final <a href="unittest/Matcher.html">Matcher</a>         <strong>throwsNullArgumentException</strong> <a class="anchor-link"
+            href="#throwsNullArgumentException"
+            title="Permalink to throwsNullArgumentException">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final Matcher throwsNullArgumentException =
+  const _Throws(const _NullArgumentException());
 </pre>
 </div>
 </div>

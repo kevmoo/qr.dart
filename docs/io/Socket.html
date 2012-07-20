@@ -1,0 +1,243 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>Socket Interface / io Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="io" data-type="Socket">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../io.html">io</a> &rsaquo; <a href="../io/Socket.html">Socket</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>Socket</strong>
+          Interface
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Extends</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../core/Hashable.html">Hashable</a></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="Socket">
+<span class="show-code">Code</span>
+new <strong>Socket</strong>(<a href="../core/String.html">String</a> host, <a href="../core/int.html">int</a> port) <a class="anchor-link" href="#Socket"
+              title="Permalink to Socket.Socket">#</a></h4>
+<div class="doc">
+<p>Constructs a new socket and initiate connecting it to the given
+host on the given port. The returned socket is not yet connected
+but ready for registration of callbacks.</p>
+<pre class="source">
+Socket(String host, int port);
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="available">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a> <strong>available</strong>() <a class="anchor-link" href="#available"
+              title="Permalink to Socket.available">#</a></h4>
+<div class="doc">
+<p>Returns the number of received and non-read bytes in the socket that
+can be read.</p>
+<pre class="source">
+int available();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="close">
+<span class="show-code">Code</span>
+void <strong>close</strong>([<a href="../core/bool.html">bool</a> halfClose]) <a class="anchor-link" href="#close"
+              title="Permalink to Socket.close">#</a></h4>
+<div class="doc">
+<p>Closes the socket. Calling <a class="crossref" href="../io/Socket.html#close">close</a> will never throw an exception
+and calling it several times is supported. If 
+<span class="param">halfClose</span> is true
+the socket will only be closed for writing and it might still be
+possible to read data. Calling <a class="crossref" href="../io/Socket.html#close">close</a> will not trigger a call to
+<a class="crossref" href="../io/Socket.html#onClosed">onClosed</a>.</p>
+<pre class="source">
+void close([bool halfClose]);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="hashCode">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a> <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
+              title="Permalink to Socket.hashCode">#</a></h4>
+<div class="doc">
+<p>Socket is hashable.</p>
+<pre class="source">
+int hashCode();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="inputStream">
+<span class="show-code">Code</span>
+<a href="../io/InputStream.html">InputStream</a> <strong>get inputStream</strong>() <a class="anchor-link" href="#inputStream"
+              title="Permalink to Socket.get inputStream">#</a></h4>
+<div class="doc">
+<p>Returns input stream to the socket.</p>
+<pre class="source">
+InputStream get inputStream();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onClosed">
+<span class="show-code">Code</span>
+void <strong>set onClosed</strong>(callback) <a class="anchor-link" href="#onClosed"
+              title="Permalink to Socket.set onClosed">#</a></h4>
+<div class="doc">
+<p>The close handler gets called when a the last byte have been read
+from a socket. At this point the socket might still be open for
+writing for sending more data.</p>
+<pre class="source">
+void set onClosed(void callback());
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onConnect">
+<span class="show-code">Code</span>
+void <strong>set onConnect</strong>(callback) <a class="anchor-link" href="#onConnect"
+              title="Permalink to Socket.set onConnect">#</a></h4>
+<div class="doc">
+<p>The connect handler gets called when connection to a given host
+succeeded.</p>
+<pre class="source">
+void set onConnect(void callback());
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onData">
+<span class="show-code">Code</span>
+void <strong>set onData</strong>(callback) <a class="anchor-link" href="#onData"
+              title="Permalink to Socket.set onData">#</a></h4>
+<div class="doc">
+<p>The data handler gets called when data becomes available at the socket.</p>
+<pre class="source">
+void set onData(void callback());
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onError">
+<span class="show-code">Code</span>
+void <strong>set onError</strong>(callback) <a class="anchor-link" href="#onError"
+              title="Permalink to Socket.set onError">#</a></h4>
+<div class="doc">
+<p>The error handler gets called when a socket error occurs.</p>
+<pre class="source">
+void set onError(void callback(e));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onWrite">
+<span class="show-code">Code</span>
+void <strong>set onWrite</strong>(callback) <a class="anchor-link" href="#onWrite"
+              title="Permalink to Socket.set onWrite">#</a></h4>
+<div class="doc">
+<p>The write handler gets called once when the socket becomes
+available for writing. Then the handler is automatically reset to null.
+This handler is mainly used when writeList has reported an incomplete
+write, to schedule writing the remaining data to the socket.</p>
+<pre class="source">
+void set onWrite(void callback());
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="outputStream">
+<span class="show-code">Code</span>
+<a href="../io/OutputStream.html">OutputStream</a> <strong>get outputStream</strong>() <a class="anchor-link" href="#outputStream"
+              title="Permalink to Socket.get outputStream">#</a></h4>
+<div class="doc">
+<p>Returns output stream of the socket.</p>
+<pre class="source">
+OutputStream get outputStream();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="port">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a> <strong>get port</strong>() <a class="anchor-link" href="#port"
+              title="Permalink to Socket.get port">#</a></h4>
+<div class="doc">
+<p>Returns the port used by this socket.</p>
+<pre class="source">
+int get port();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="readList">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a> <strong>readList</strong>(<a href="../core/List.html">List</a>&lt;<a href="../core/int.html">int</a>&gt; buffer, <a href="../core/int.html">int</a> offset, <a href="../core/int.html">int</a> count) <a class="anchor-link" href="#readList"
+              title="Permalink to Socket.readList">#</a></h4>
+<div class="doc">
+<p>Reads up to 
+<span class="param">count</span> bytes of data from the socket and stores them into
+buffer after buffer offset 
+<span class="param">offset</span>. The number of successfully read
+bytes is returned. This function is non-blocking and will only read data
+if data is available.</p>
+<pre class="source">
+int readList(List&lt;int&gt; buffer, int offset, int count);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="remoteHost">
+<span class="show-code">Code</span>
+<a href="../core/String.html">String</a> <strong>get remoteHost</strong>() <a class="anchor-link" href="#remoteHost"
+              title="Permalink to Socket.get remoteHost">#</a></h4>
+<div class="doc">
+<p>Returns the remote host connected to by this socket.</p>
+<pre class="source">
+String get remoteHost();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="remotePort">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a> <strong>get remotePort</strong>() <a class="anchor-link" href="#remotePort"
+              title="Permalink to Socket.get remotePort">#</a></h4>
+<div class="doc">
+<p>Returns the remote port connected to by this socket.</p>
+<pre class="source">
+int get remotePort();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="writeList">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a> <strong>writeList</strong>(<a href="../core/List.html">List</a>&lt;<a href="../core/int.html">int</a>&gt; buffer, <a href="../core/int.html">int</a> offset, <a href="../core/int.html">int</a> count) <a class="anchor-link" href="#writeList"
+              title="Permalink to Socket.writeList">#</a></h4>
+<div class="doc">
+<p>Writes up to 
+<span class="param">count</span> bytes of the buffer from 
+<span class="param">offset</span> buffer offset to
+the socket. The number of successfully written bytes is returned. This
+function is non-blocking and will only write data if buffer space is
+available in the socket.</p>
+<pre class="source">
+int writeList(List&lt;int&gt; buffer, int offset, int count);
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

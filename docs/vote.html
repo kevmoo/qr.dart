@@ -1,0 +1,135 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>vote Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="favicon.ico">
+        
+        </head>
+        <body data-library="vote">
+        <div class="page">
+        <div class="header">
+          <a href="index.html"><div class="logo"></div></a>
+          <a href="index.html">Dart Documentation</a>
+         &rsaquo; <a href="vote.html">vote</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+<h2><strong>vote</strong> library</h2>
+<div class="doc"></div>
+<h3>Methods</h3>
+<div class="method"><h4 id="log">
+<span class="show-code">Code</span>
+void <strong>log</strong>(<a href="core/String.html">String</a> message) <a class="anchor-link" href="#log"
+              title="Permalink to log">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void log(String message) {
+  final now = new Date.now();
+  if(_last != null) {
+    final delta = now.difference(_last);
+    print([delta, message]);
+  }
+  else {
+    print(message);
+  }
+  _last = now;
+}
+</pre>
+</div>
+</div>
+<h3>Classes</h3>
+          <div class="type">
+          <h4>
+            <a href="vote/Ballot.html"><strong>Ballot&lt;TVoter, TCandidate&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="vote/CondorcetCandidateProfile.html"><strong>CondorcetCandidateProfile&lt;TCandidate&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="vote/CondorcetElection.html"><strong>CondorcetElection&lt;TVoter, TCandidate&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="vote/CondorcetPair.html"><strong>CondorcetPair&lt;TVoter, TCandidate&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="vote/Election.html"><strong>Election&lt;TVoter, TCandidate&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="vote/ElectionPlace.html"><strong>ElectionPlace&lt;TCandidate&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="vote/IrvElection.html"><strong>IrvElection&lt;TVoter, TCandidate&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="vote/IrvRound.html"><strong>IrvRound&lt;TVoter, TCandidate&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="vote/PluralityBallot.html"><strong>PluralityBallot&lt;TVoter, TCandidate&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="vote/PluralityElection.html"><strong>PluralityElection&lt;TVoter, TCandidate&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="vote/PluralityElectionPlace.html"><strong>PluralityElectionPlace&lt;TCandidate&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="vote/RankedBallot.html"><strong>RankedBallot&lt;TVoter, TCandidate&gt;</strong></a>
+          </h4>
+          </div>
+          
+<h3>Interfaces</h3>
+          <div class="type">
+          <h4>
+            <a href="vote/Player.html"><strong>Player</strong></a>
+          </h4>
+          </div>
+          
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="client-live-nav.js"></script>
+        </body></html>
+        

@@ -1,0 +1,127 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>SlowMapper&lt;TInput, TOutput&gt; Class / dartlib_core Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="dartlib_core" data-type="SlowMapper&amp;lt;TInput, TOutput&amp;gt;">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../dartlib_core.html">dartlib_core</a> &rsaquo; <a href="../dartlib_core/SlowMapper.html">SlowMapper&lt;TInput, TOutput&gt;</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>SlowMapper&lt;TInput, TOutput&gt;</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="SlowMapper">
+<span class="show-code">Code</span>
+new <strong>SlowMapper</strong>() <a class="anchor-link" href="#SlowMapper"
+              title="Permalink to SlowMapper&lt;TInput, TOutput&gt;.SlowMapper">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+SlowMapper() :
+  _outputChangedHandle = new EventHandle&lt;EventArgs&gt;(),
+  _inputChangedHandle = new EventHandle&lt;EventArgs&gt;();
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="getFuture">
+<span class="show-code">Code</span>
+<a href="../core/Future.html">Future</a>&lt;<a href="../dartlib_core/SlowMapper.html">TOutput</a>&gt; <strong>getFuture</strong>(<a href="../dartlib_core/SlowMapper.html">TInput</a> value) <a class="anchor-link" href="#getFuture"
+              title="Permalink to SlowMapper&lt;TInput, TOutput&gt;.getFuture">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+abstract Future&lt;TOutput&gt; getFuture(TInput value);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="input">
+<span class="show-code">Code</span>
+<a href="../dartlib_core/SlowMapper.html">TInput</a> <strong>get input</strong>() <a class="anchor-link" href="#input"
+              title="Permalink to SlowMapper&lt;TInput, TOutput&gt;.get input">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+TInput get input() =&gt; _input;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="input">
+<span class="show-code">Code</span>
+void <strong>set input</strong>(<a href="../dartlib_core/SlowMapper.html">TInput</a> value) <a class="anchor-link" href="#input"
+              title="Permalink to SlowMapper&lt;TInput, TOutput&gt;.set input">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void set input(TInput value) {
+  _input = value;
+  if(_future == null) {
+    _startFuture();
+  } else {
+    _pending = true;
+  }
+  _inputChangedHandle.fireEvent(EventArgs.empty);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="inputChanged">
+<span class="show-code">Code</span>
+<a href="../dartlib_core/EventRoot.html">EventRoot</a>&lt;<a href="../dartlib_core/EventArgs.html">EventArgs</a>&gt; <strong>get inputChanged</strong>() <a class="anchor-link" href="#inputChanged"
+              title="Permalink to SlowMapper&lt;TInput, TOutput&gt;.get inputChanged">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+EventRoot&lt;EventArgs&gt; get inputChanged() =&gt; _inputChangedHandle;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="output">
+<span class="show-code">Code</span>
+<a href="../dartlib_core/SlowMapper.html">TOutput</a> <strong>get output</strong>() <a class="anchor-link" href="#output"
+              title="Permalink to SlowMapper&lt;TInput, TOutput&gt;.get output">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+TOutput get output() =&gt; _output;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="outputChanged">
+<span class="show-code">Code</span>
+<a href="../dartlib_core/EventRoot.html">EventRoot</a>&lt;<a href="../dartlib_core/EventArgs.html">EventArgs</a>&gt; <strong>get outputChanged</strong>() <a class="anchor-link" href="#outputChanged"
+              title="Permalink to SlowMapper&lt;TInput, TOutput&gt;.get outputChanged">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+EventRoot&lt;EventArgs&gt; get outputChanged() =&gt; _outputChangedHandle;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

@@ -1,0 +1,2109 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>unittest Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="favicon.ico">
+        
+        </head>
+        <body data-library="unittest">
+        <div class="page">
+        <div class="header">
+          <a href="index.html"><div class="logo"></div></a>
+          <a href="index.html">Dart Documentation</a>
+         &rsaquo; <a href="unittest.html">unittest</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+<h2><strong>unittest</strong> library</h2>
+<div class="doc"><p>A library for writing dart unit tests.</p>
+<p>To import this library, specify the relative path to
+lib/unittest/unittest.dart.</p>
+<h2>Concepts</h2><ul><li>
+<p>Tests: Tests are specified via the top-level function <a class="crossref" href="unittest.html#test">test</a>, they can be
+   organized together using <a class="crossref" href="unittest.html#group">group</a>.</p></li><li>Checks: Test expectations can be specified via <a class="crossref" href="unittest.html#expect">expect</a></li><li>Matchers: <a class="crossref" href="unittest.html#expect">expect</a> assertions are written declaratively using <a class="crossref" href="unittest/Matcher.html">Matcher</a>s</li><li>
+<p>Configuration: The framework can be adapted by calling <a class="crossref" href="unittest.html#configure">configure</a> with a
+   <a class="crossref" href="unittest/Configuration.html">Configuration</a>.  Common configurations can be found in this package
+   under: 'dom\<em>config.dart' (deprecated), 'html\</em>config.dart' (for running
+   tests compiled to Javascript in a browser), and 'vm\_config.dart' (for
+   running native Dart tests on the VM).</p></li></ul>
+<h2>Examples</h2>
+<p>A trivial test:</p>
+<pre><code>#import('path-to-dart/lib/unittest/unitest.dart');
+main() {
+  test('this is a test', () {
+    int x = 2 + 3;
+    expect(x, equals(5));
+  });
+}
+</code></pre>
+<p>Multiple tests:</p>
+<pre><code>#import('path-to-dart/lib/unittest/unitest.dart');
+main() {
+  test('this is a test', () {
+    int x = 2 + 3;
+    expect(x, equals(5));
+  });
+  test('this is another test', () {
+    int x = 2 + 3;
+    expect(x, equals(5));
+  });
+}
+</code></pre>
+<p>Multiple tests, grouped by category:</p>
+<pre><code>#import('path-to-dart/lib/unittest/unitest.dart');
+main() {
+  group('group A', () {
+    test('test A.1', () {
+      int x = 2 + 3;
+      expect(x, equals(5));
+    });
+    test('test A.2', () {
+      int x = 2 + 3;
+      expect(x, equals(5));
+    });
+  });
+  group('group B', () {
+    test('this B.1', () {
+      int x = 2 + 3;
+      expect(x, equals(5));
+    });
+  });
+}
+</code></pre>
+<p>Asynchronous tests: if callbacks expect between 0 and 2 positional arguments,
+depending on the suffix of expectAsyncX(). expectAsyncX() will wrap a
+function into a new callback and will not consider the test complete until
+that callback is run. A count argument can be provided to specify the number
+of times the callback should be called (the default is 1).</p>
+<pre><code>#import('path-to-dart/lib/unittest/unitest.dart');
+#import('dart:dom_deprecated');
+main() {
+  test('calllback is executed once', () {
+    // wrap the callback of an asynchronous call with [expectAsync0] if
+    // the callback takes 0 arguments...
+    window.setTimeout(expectAsync0(() {
+      int x = 2 + 3;
+      expect(x, equals(5));
+    }), 0);
+  });
+</code></pre>
+<pre><code>  test('calllback is executed twice', () {
+    var callback = expectAsync0(() {
+      int x = 2 + 3;
+      expect(x, equals(5));
+    }, count: 2); // &lt;-- we can indicate multiplicity to [expectAsync0]
+    window.setTimeout(callback, 0);
+    window.setTimeout(callback, 0);
+  });
+}
+</code></pre>
+<p>expectAsyncX() will wrap the callback code in a try/catch handler to handle
+exceptions (treated as test failures). There may be times when the number of
+times a callback should be called is non-deterministic. In this case a dummy
+callback can be created with expectAsync0((){}) and this can be called from
+the real callback when it is finally complete. In this case the body of the
+callback should be protected within a call to guardAsync(); this will ensure
+that exceptions are properly handled.</p>
+<p>Note: due to some language limitations we have to use different functions
+depending on the number of positional arguments of the callback. In the
+future, we plan to expose a single <code>expectAsync</code> function that can be used
+regardless of the number of positional arguments. This requires new langauge
+features or fixes to the current spec (e.g. see
+<a href="http://dartbug.com/2706">Issue 2706</a>).</p>
+<p>Meanwhile, we plan to add this alternative API for callbacks of more than 2
+arguments or that take named parameters. (this is not implemented yet,
+but will be coming here soon).</p>
+<pre><code>#import('path-to-dart/lib/unittest/unitest.dart');
+#import('dart:dom_deprecated');
+main() {
+  test('calllback is executed', () {
+    // indicate ahead of time that an async callback is expected.
+    var async = startAsync();
+    window.setTimeout(() {
+      // Guard the body of the callback, so errors are propagated
+      // correctly
+      guardAsync(() {
+        int x = 2 + 3;
+        expect(x, equals(5));
+      });
+      // indicate that the asynchronous callback was invoked.
+      async.complete();
+    }), 0);
+  });
+</code></pre></div>
+<h3>Methods</h3>
+<div class="method"><h4 id="allOf">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>allOf</strong>(arg0, [arg1, arg2, arg3, arg4, arg5, arg6]) <a class="anchor-link" href="#allOf"
+              title="Permalink to allOf">#</a></h4>
+<div class="doc">
+<p>This returns a matcher that matches if all of the matchers passed as
+arguments (up to 7) match. Instead of passing the matchers separately
+they can be passed as a single List argument.
+Any argument that is not a matcher is implicitly wrapped in a
+Matcher to check for equality.</p>
+<pre class="source">
+Matcher allOf(arg0,
+             [arg1 = null,
+              arg2 = null,
+              arg3 = null,
+              arg4 = null,
+              arg5 = null,
+              arg6 = null]) {
+  if (arg0 is List) {
+    expect(arg1, isNull);
+    expect(arg2, isNull);
+    expect(arg3, isNull);
+    expect(arg4, isNull);
+    expect(arg5, isNull);
+    expect(arg6, isNull);
+    for (int i = 0; i &lt; arg0.length; i++) {
+      arg0[i] = wrapMatcher(arg0[i]);
+    }
+    return new _AllOf(arg0);
+  } else {
+    List matchers = new List();
+    if (arg0 != null) {
+      matchers.add(wrapMatcher(arg0));
+    }
+    if (arg1 != null) {
+      matchers.add(wrapMatcher(arg1));
+    }
+    if (arg2 != null) {
+      matchers.add(wrapMatcher(arg2));
+    }
+    if (arg3 != null) {
+      matchers.add(wrapMatcher(arg3));
+    }
+    if (arg4 != null) {
+      matchers.add(wrapMatcher(arg4));
+    }
+    if (arg5 != null) {
+      matchers.add(wrapMatcher(arg5));
+    }
+    if (arg6 != null) {
+      matchers.add(wrapMatcher(arg6));
+    }
+    return new _AllOf(matchers);
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="alwaysReturned">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>alwaysReturned</strong>(value) <a class="anchor-link" href="#alwaysReturned"
+              title="Permalink to alwaysReturned">#</a></h4>
+<div class="doc">
+<p><a class="crossref" href="unittest.html#alwaysReturned">alwaysReturned</a> asserts that all matching calls to a method returned
+a value that matched 
+<span class="param">value</span>.</p>
+<pre class="source">
+Matcher alwaysReturned(value) =&gt;
+    new _ResultSetMatcher(_Action.RETURN, wrapMatcher(value), _Frequency.ALL);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="alwaysThrew">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>alwaysThrew</strong>(value) <a class="anchor-link" href="#alwaysThrew"
+              title="Permalink to alwaysThrew">#</a></h4>
+<div class="doc">
+<p><a class="crossref" href="unittest.html#alwaysThrew">alwaysThrew</a> asserts that all matching calls to a method threw
+a value that matched 
+<span class="param">value</span>.</p>
+<pre class="source">
+Matcher alwaysThrew(value) =&gt;
+    new _ResultSetMatcher(_Action.THROW, wrapMatcher(value), _Frequency.ALL);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="anyOf">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>anyOf</strong>(arg0, [arg1, arg2, arg3, arg4, arg5, arg6]) <a class="anchor-link" href="#anyOf"
+              title="Permalink to anyOf">#</a></h4>
+<div class="doc">
+<p>Matches if any of the given matchers evaluate to true. The
+arguments can be a set of matchers as separate parameters
+(up to 7), or a List of matchers.</p>
+<p>The matchers are evaluated from left to right using short-circuit
+evaluation, so evaluation stops as soon as a matcher returns true.</p>
+<p>Any argument that is not a matcher is implicitly wrapped in a
+Matcher to check for equality.</p>
+<pre class="source">
+Matcher anyOf(arg0,
+               [arg1 = null,
+                arg2 = null,
+                arg3 = null,
+                arg4 = null,
+                arg5 = null,
+                arg6 = null]) {
+  if (arg0 is List) {
+    expect(arg1, isNull);
+    expect(arg2, isNull);
+    expect(arg3, isNull);
+    expect(arg4, isNull);
+    expect(arg5, isNull);
+    expect(arg6, isNull);
+    for (int i = 0; i &lt; arg0.length; i++) {
+      arg0[i] = wrapMatcher(arg0[i]);
+    }
+    return new _AnyOf(arg0);
+  } else {
+    List matchers = new List();
+    if (arg0 != null) {
+      matchers.add(wrapMatcher(arg0));
+    }
+    if (arg1 != null) {
+      matchers.add(wrapMatcher(arg1));
+    }
+    if (arg2 != null) {
+      matchers.add(wrapMatcher(arg2));
+    }
+    if (arg3 != null) {
+      matchers.add(wrapMatcher(arg3));
+    }
+    if (arg4 != null) {
+      matchers.add(wrapMatcher(arg4));
+    }
+    if (arg5 != null) {
+      matchers.add(wrapMatcher(arg5));
+    }
+    if (arg6 != null) {
+      matchers.add(wrapMatcher(arg6));
+    }
+    return new _AnyOf(matchers);
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="asyncTest">
+<span class="show-code">Code</span>
+void <strong>asyncTest</strong>(<a href="core/String.html">String</a> spec, <a href="core/int.html">int</a> callbacks, <a href="unittest/TestFunction.html">TestFunction</a> body) <a class="anchor-link" href="#asyncTest"
+              title="Permalink to asyncTest">#</a></h4>
+<div class="doc">
+<p>(Deprecated) Creates a new async test case with the given description
+and body. The description will include the descriptions of any surrounding
+group() calls.</p>
+<pre class="source">
+void asyncTest(String spec, int callbacks, TestFunction body) {
+  ensureInitialized();
+
+  final testCase = new TestCase(
+      _tests.length + 1, _fullSpec(spec), body, callbacks);
+  _tests.add(testCase);
+
+  if (callbacks &lt; 1) {
+    testCase.error(
+        'Async tests must wait for at least one callback ', '');
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="callbackDone">
+<span class="show-code">Code</span>
+void <strong>callbackDone</strong>() <a class="anchor-link" href="#callbackDone"
+              title="Permalink to callbackDone">#</a></h4>
+<div class="doc">
+<p>Temporary hack: expose old API.
+TODO(gram) remove this when WebKit tests are working with new framework</p>
+<pre class="source">
+void callbackDone() { _handleAllCallbacksDone(); }
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="callsTo">
+<span class="show-code">Code</span>
+<a href="unittest/CallMatcher.html">CallMatcher</a> <strong>callsTo</strong>([method, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9]) <a class="anchor-link" href="#callsTo"
+              title="Permalink to callsTo">#</a></h4>
+<div class="doc">
+<p>Returns a <a class="crossref" href="unittest/CallMatcher.html">CallMatcher</a> for the specified signature. 
+<span class="param">method</span> can be
+null to match anything, or a literal <code>String</code>, a predicate <code>Function</code>,
+or a <a class="crossref" href="unittest/Matcher.html">Matcher</a>. The various arguments can be scalar values or <a class="crossref" href="unittest/Matcher.html">Matcher</a>s.</p>
+<pre class="source">
+CallMatcher callsTo([method,
+                     arg0 = _noArg,
+                     arg1 = _noArg,
+                     arg2 = _noArg,
+                     arg3 = _noArg,
+                     arg4 = _noArg,
+                     arg5 = _noArg,
+                     arg6 = _noArg,
+                     arg7 = _noArg,
+                     arg8 = _noArg,
+                     arg9 = _noArg]) {
+  return new CallMatcher(method, arg0, arg1, arg2, arg3, arg4,
+      arg5, arg6, arg7, arg8, arg9);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="closeTo">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>closeTo</strong>(value, delta) <a class="anchor-link" href="#closeTo"
+              title="Permalink to closeTo">#</a></h4>
+<div class="doc">
+<p>Returns a matcher which matches if the match argument is within 
+<span class="param">delta</span>
+of some 
+<span class="param">value</span>; i.e. if the match argument is greater than
+than or equal 
+<span class="param">value</span>-
+<span class="param">delta</span> and less than or equal to 
+<span class="param">value</span>+
+<span class="param">delta</span>.</p>
+<pre class="source">
+Matcher closeTo(value, delta) =&gt; new _IsCloseTo(value, delta);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="collapseWhitespace">
+<span class="show-code">Code</span>
+<a href="core/String.html">String</a> <strong>collapseWhitespace</strong>(_string) <a class="anchor-link" href="#collapseWhitespace"
+              title="Permalink to collapseWhitespace">#</a></h4>
+<div class="doc">
+<p>Utility function to collapse whitespace runs to single spaces
+and strip leading/trailing whitespace.</p>
+<pre class="source">
+String collapseWhitespace(_string) {
+  bool isWhitespace(String ch) =&gt; (' \n\r\t'.indexOf(ch) &gt;= 0);
+  StringBuffer result = new StringBuffer();
+  bool skipSpace = true;
+  for (var i = 0; i &lt; _string.length; i++) {
+    var character = _string[i];
+    if (isWhitespace(character)) {
+      if (!skipSpace) {
+        result.add(' ');
+        skipSpace = true;
+      }
+    } else {
+      result.add(character);
+      skipSpace = false;
+    }
+  }
+  return result.toString().trim();
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="completion">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>completion</strong>(matcher) <a class="anchor-link" href="#completion"
+              title="Permalink to completion">#</a></h4>
+<div class="doc">
+<p>Matches a <code>Future</code> that completes succesfully with a value that matches
+
+<span class="param">matcher</span>. Note that this creates an asynchronous expectation. The call to
+<code>expect()</code> that includes this will return immediately and execution will
+continue. Later, when the future completes, the actual expectation will run.</p>
+<p>To test that a Future completes with an exception, you can use <a class="crossref" href="unittest.html#throws">throws</a> and
+<a class="crossref" href="unittest.html#throwsA">throwsA</a>.</p>
+<pre class="source">
+Matcher completion(matcher) =&gt; new _Completes(wrapMatcher(matcher));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="configure">
+<span class="show-code">Code</span>
+<a href="unittest/Configuration.html">Configuration</a> <strong>configure</strong>(<a href="unittest/Configuration.html">Configuration</a> config) <a class="anchor-link" href="#configure"
+              title="Permalink to configure">#</a></h4>
+<div class="doc">
+<p>Set the <a class="crossref" href="unittest/Configuration.html">Configuration</a> used by the unittest library. Returns any
+previous configuration.</p>
+<pre class="source">
+Configuration configure(Configuration config) {
+  Configuration _oldConfig = _config;
+  _config = config;
+  return _oldConfig;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="configureExpectFailureHandler">
+<span class="show-code">Code</span>
+void <strong>configureExpectFailureHandler</strong>([<a href="unittest/FailureHandler.html">FailureHandler</a> handler]) <a class="anchor-link" href="#configureExpectFailureHandler"
+              title="Permalink to configureExpectFailureHandler">#</a></h4>
+<div class="doc">
+<p>Changes or resets to the default the failure handler for expect()
+
+<span class="param">handler</span> is a reference to the new handler; if this is omitted
+or null then the failure handler is reset to the default, which
+throws <code>ExpectExceptions</code> on <a class="crossref" href="unittest.html#expect">expect</a> assertion failures.</p>
+<pre class="source">
+void configureExpectFailureHandler([FailureHandler handler = null]) {
+  if (handler == null) {
+    handler = new DefaultFailureHandler();
+  }
+  _assertFailureHandler = handler;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="configureExpectFormatter">
+<span class="show-code">Code</span>
+<a href="unittest/ErrorFormatter.html">ErrorFormatter</a> <strong>configureExpectFormatter</strong>([<a href="unittest/ErrorFormatter.html">ErrorFormatter</a> formatter]) <a class="anchor-link" href="#configureExpectFormatter"
+              title="Permalink to configureExpectFormatter">#</a></h4>
+<div class="doc">
+<p>Changes or resets to default the failure message formatter for expect().
+
+<span class="param">formatter</span> is a reference to the new formatter; if this is omitted or
+null then the failure formatter is reset to the default. The new
+formatter is returned; this allows custom expect handlers to easily
+get a reference to the default formatter.</p>
+<pre class="source">
+ErrorFormatter configureExpectFormatter([ErrorFormatter formatter = null]) {
+  if (formatter == null) {
+    formatter = _defaultErrorFormatter;
+  }
+  return _assertErrorFormatter = formatter;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="contains">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>contains</strong>(expected) <a class="anchor-link" href="#contains"
+              title="Permalink to contains">#</a></h4>
+<div class="doc">
+<p>Returns a matcher that matches if the match argument contains
+the expected value. For <code>String</code>s this means substring matching;
+for <code>Map</code>s is means the map has the key, and for <code>Collection</code>s it
+means the collection has a matching element. In the case of collections,
+
+<span class="param">expected</span> can itself be a matcher.</p>
+<pre class="source">
+Matcher contains(expected) =&gt; new _Contains(expected);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="containsPair">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>containsPair</strong>(key, value) <a class="anchor-link" href="#containsPair"
+              title="Permalink to containsPair">#</a></h4>
+<div class="doc">
+<p>Returns a matcher which matches maps containing the key-value pair
+with 
+<span class="param">key</span> => 
+<span class="param">value</span>.</p>
+<pre class="source">
+Matcher containsPair(key, value) =&gt;
+    new _ContainsMapping(key, wrapMatcher(value));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="containsValue">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>containsValue</strong>(value) <a class="anchor-link" href="#containsValue"
+              title="Permalink to containsValue">#</a></h4>
+<div class="doc">
+<p>Returns a matcher which matches maps containing the given 
+<span class="param">value</span>.</p>
+<pre class="source">
+Matcher containsValue(value) =&gt; new _ContainsValue(value);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="endsWith">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>endsWith</strong>(<a href="core/String.html">String</a> suffixString) <a class="anchor-link" href="#endsWith"
+              title="Permalink to endsWith">#</a></h4>
+<div class="doc">
+<p>Returns a matcher that matches if the match argument is a string and
+ends with 
+<span class="param">suffixString</span>.</p>
+<pre class="source">
+Matcher endsWith(String suffixString) =&gt; new _StringEndsWith(suffixString);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="ensureInitialized">
+<span class="show-code">Code</span>
+<strong>ensureInitialized</strong>() <a class="anchor-link" href="#ensureInitialized"
+              title="Permalink to ensureInitialized">#</a></h4>
+<div class="doc">
+<p>Lazily initializes the test library if not already initialized.</p>
+<pre class="source">
+ensureInitialized() {
+  if (_state != _UNINITIALIZED) return;
+
+  _tests = &lt;TestCase&gt;[];
+  _uncaughtErrorMessage = null;
+  _currentTest = 0;
+  _currentGroup = '';
+  _state = _READY;
+  _testRunner = _nextBatch;
+
+  if (_config == null) {
+    _config = new Configuration();
+  }
+  _config.onInit();
+
+  // Immediately queue the suite up. It will run after a timeout (i.e. after
+  // main() has returned).
+  _defer(_runTests);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="equals">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>equals</strong>(expected, [limit]) <a class="anchor-link" href="#equals"
+              title="Permalink to equals">#</a></h4>
+<div class="doc">
+<p>Returns a matcher that does a deep recursive match. This only works
+with scalars, Maps and Iterables. To handle cyclic structures a
+recursion depth 
+<span class="param">limit</span> can be provided. The default limit is 100.</p>
+<pre class="source">
+Matcher equals(expected, [limit=100]) =&gt;
+    new _DeepMatcher(expected, limit);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="equalsIgnoringCase">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>equalsIgnoringCase</strong>(<a href="core/String.html">String</a> value) <a class="anchor-link" href="#equalsIgnoringCase"
+              title="Permalink to equalsIgnoringCase">#</a></h4>
+<div class="doc">
+<p>Returns a matcher which matches if the match argument is a string and
+is equal to 
+<span class="param">value</span> when compared case-insensitively.</p>
+<pre class="source">
+Matcher equalsIgnoringCase(String value) =&gt; new _IsEqualIgnoringCase(value);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="equalsIgnoringWhitespace">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>equalsIgnoringWhitespace</strong>(_string) <a class="anchor-link" href="#equalsIgnoringWhitespace"
+              title="Permalink to equalsIgnoringWhitespace">#</a></h4>
+<div class="doc">
+<p>Returns a matcher which matches if the match argument is a string and
+is equal to <code>value</code> when compared with all runs of whitespace
+collapsed to single spaces and leading and trailing whitespace removed.</p>
+<p>For example, <code>equalsIgnoringCase("hello world")</code> will match
+"hello   world", "  hello world" and "hello world  ".</p>
+<pre class="source">
+Matcher equalsIgnoringWhitespace(_string) =&gt;
+    new _IsEqualIgnoringWhitespace(_string);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="everyElement">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>everyElement</strong>(matcher) <a class="anchor-link" href="#everyElement"
+              title="Permalink to everyElement">#</a></h4>
+<div class="doc">
+<p>Returns a matcher which matches <code>Collection</code>s in which all elements
+match the given 
+<span class="param">matcher</span>.</p>
+<pre class="source">
+Matcher everyElement(matcher) =&gt; new _EveryElement(wrapMatcher(matcher));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="expect">
+<span class="show-code">Code</span>
+void <strong>expect</strong>(actual, [matcher, <a href="core/String.html">String</a> reason, failureHandler]) <a class="anchor-link" href="#expect"
+              title="Permalink to expect">#</a></h4>
+<div class="doc">
+<p>This is the main assertion function. It asserts that 
+<span class="param">actual</span>
+matches the 
+<span class="param">matcher</span>. 
+<span class="param">matcher</span> is optional and defaults to isTrue,
+so expect can be used with a single predicate argument. 
+<span class="param">reason</span>
+is optional and is typically not supplied if a reasonable matcher is
+explicitly provided, as a reason can be generated from the matcher.
+If 
+<span class="param">reason</span> is included it is appended to the reason generated
+by the matcher.</p>
+<p>
+<span class="param">matcher</span> can be a value in which case it will be wrapped in an
+<a class="crossref" href="unittest.html#equals">equals</a> matcher.</p>
+<p>If the assertion fails, then the default behavior is to throw an
+<code>ExpectException</code>, but this behavior can be changed by calling
+<a class="crossref" href="unittest.html#configureExpectFailureHandler">configureExpectFailureHandler</a> and providing an alternative handler that
+implements the <code>IFailureHandler</code> interface. It is also possible to
+pass a 
+<span class="param">failureHandler</span> to <a class="crossref" href="unittest.html#expect">expect</a> as a final parameter for fine-
+grained control.</p>
+<p>expect() is a 3rd generation assertion mechanism, drawing
+inspiration from <code>Hamcrest</code> and Ladislav Thon's <code>dart-matchers</code>
+library.</p>
+<p>See <code>Hamcrest</code> http://en.wikipedia.org/wiki/Hamcrest</p>
+<pre><code>[Hamcrest] http://code.google.com/p/hamcrest/
+[dart-matchers] https://github.com/Ladicek/dart-matchers
+</code></pre>
+<pre class="source">
+void expect(actual, [matcher = isTrue, String reason = null,
+            failureHandler = null]) {
+  matcher = wrapMatcher(matcher);
+  var doesMatch;
+  try {
+    doesMatch = matcher.matches(actual);
+  } catch (var e, var trace) {
+    doesMatch = false;
+    if (reason == null) {
+      reason = '${(e is String) ? e : e.toString()} at $trace';
+    }
+  }
+  if (!doesMatch) {
+    if (failureHandler == null) {
+      failureHandler = getOrCreateExpectFailureHandler();
+    }
+    failureHandler.failMatch(actual, matcher, reason);
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="expectAsync0">
+<span class="show-code">Code</span>
+<a href="core/Function.html">Function</a> <strong>expectAsync0</strong>(<a href="core/Function.html">Function</a> callback, [<a href="core/int.html">int</a> count]) <a class="anchor-link" href="#expectAsync0"
+              title="Permalink to expectAsync0">#</a></h4>
+<div class="doc">
+<p>Indicate that 
+<span class="param">callback</span> is expected to be called a 
+<span class="param">count</span> number of times
+(by default 1). The unittest framework will wait for the callback to run the
+specified 
+<span class="param">count</span> times before it continues with the following test.  Using
+<a class="crossref" href="unittest.html#expectAsync0">expectAsync0</a> will also ensure that errors that occur within 
+<span class="param">callback</span> are
+tracked and reported. 
+<span class="param">callback</span> should take 0 positional arguments (named
+arguments are not supported).</p>
+<pre class="source">
+Function expectAsync0(Function callback, [int count = 1]) {
+  return new _SpreadArgsHelper.fixedCallCount(callback, count).invoke0;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="expectAsync1">
+<span class="show-code">Code</span>
+<a href="core/Function.html">Function</a> <strong>expectAsync1</strong>(<a href="core/Function.html">Function</a> callback, [<a href="core/int.html">int</a> count]) <a class="anchor-link" href="#expectAsync1"
+              title="Permalink to expectAsync1">#</a></h4>
+<div class="doc">
+<p>Like <a class="crossref" href="unittest.html#expectAsync0">expectAsync0</a> but 
+<span class="param">callback</span> should take 1 positional argument.</p>
+<pre class="source">
+Function expectAsync1(Function callback, [int count = 1]) {
+  return new _SpreadArgsHelper.fixedCallCount(callback, count).invoke1;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="expectAsync2">
+<span class="show-code">Code</span>
+<a href="core/Function.html">Function</a> <strong>expectAsync2</strong>(<a href="core/Function.html">Function</a> callback, [<a href="core/int.html">int</a> count]) <a class="anchor-link" href="#expectAsync2"
+              title="Permalink to expectAsync2">#</a></h4>
+<div class="doc">
+<p>Like <a class="crossref" href="unittest.html#expectAsync0">expectAsync0</a> but 
+<span class="param">callback</span> should take 2 positional arguments.</p>
+<pre class="source">
+Function expectAsync2(Function callback, [int count = 1]) {
+  return new _SpreadArgsHelper.fixedCallCount(callback, count).invoke2;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="expectAsyncUntil0">
+<span class="show-code">Code</span>
+<a href="core/Function.html">Function</a> <strong>expectAsyncUntil0</strong>(<a href="core/Function.html">Function</a> callback, <a href="core/Function.html">Function</a> isDone) <a class="anchor-link" href="#expectAsyncUntil0"
+              title="Permalink to expectAsyncUntil0">#</a></h4>
+<div class="doc">
+<p>Indicate that 
+<span class="param">callback</span> is expected to be called until 
+<span class="param">isDone</span> returns
+true. The unittest framework check 
+<span class="param">isDone</span> after each callback and only
+when it returns true will it continue with the following test. Using
+<a class="crossref" href="unittest.html#expectAsyncUntil0">expectAsyncUntil0</a> will also ensure that errors that occur within
+
+<span class="param">callback</span> are tracked and reported. 
+<span class="param">callback</span> should take 0 positional
+arguments (named arguments are not supported).</p>
+<pre class="source">
+Function expectAsyncUntil0(Function callback, Function isDone) {
+  return new _SpreadArgsHelper.variableCallCount(callback, isDone).invoke0;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="expectAsyncUntil1">
+<span class="show-code">Code</span>
+<a href="core/Function.html">Function</a> <strong>expectAsyncUntil1</strong>(<a href="core/Function.html">Function</a> callback, <a href="core/Function.html">Function</a> isDone) <a class="anchor-link" href="#expectAsyncUntil1"
+              title="Permalink to expectAsyncUntil1">#</a></h4>
+<div class="doc">
+<p>Like <a class="crossref" href="unittest.html#expectAsyncUntil0">expectAsyncUntil0</a> but 
+<span class="param">callback</span> should take 1 positional argument.</p>
+<pre class="source">
+Function expectAsyncUntil1(Function callback, Function isDone) {
+  return new _SpreadArgsHelper.variableCallCount(callback, isDone).invoke1;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="expectAsyncUntil2">
+<span class="show-code">Code</span>
+<a href="core/Function.html">Function</a> <strong>expectAsyncUntil2</strong>(<a href="core/Function.html">Function</a> callback, <a href="core/Function.html">Function</a> isDone) <a class="anchor-link" href="#expectAsyncUntil2"
+              title="Permalink to expectAsyncUntil2">#</a></h4>
+<div class="doc">
+<p>Like <a class="crossref" href="unittest.html#expectAsyncUntil0">expectAsyncUntil0</a> but 
+<span class="param">callback</span> should take 2 positional arguments.</p>
+<pre class="source">
+Function expectAsyncUntil2(Function callback, Function isDone) {
+  return new _SpreadArgsHelper.variableCallCount(callback, isDone).invoke2;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="expectThrow">
+<span class="show-code">Code</span>
+void <strong>expectThrow</strong>(function, [callback]) <a class="anchor-link" href="#expectThrow"
+              title="Permalink to expectThrow">#</a></h4>
+<div class="doc">
+<p>(Deprecated) Evaluates the 
+<span class="param">function</span> and validates that it throws an
+exception. If 
+<span class="param">callback</span> is provided, then it will be invoked with the
+thrown exception. The callback may do any validation it wants. In addition,
+if it returns <code>false</code>, that also indicates an expectation failure.</p>
+<pre class="source">
+void expectThrow(function, [bool callback(exception)]) {
+  bool threw = false;
+  try {
+    function();
+  } catch (var e) {
+    threw = true;
+
+    // Also let the callback look at it.
+    if (callback != null) {
+      var result = callback(e);
+
+      // If the callback explicitly returned false, treat that like an
+      // expectation too. (If it returns null, though, don't.)
+      if (result == false) {
+        _fail('Exception:\n$e\ndid not match expectation.');
+      }
+    }
+  }
+
+  if (threw != true) _fail('An expected exception was not thrown.');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getOrCreateExpectFailureHandler">
+<span class="show-code">Code</span>
+<a href="unittest/FailureHandler.html">FailureHandler</a> <strong>getOrCreateExpectFailureHandler</strong>() <a class="anchor-link" href="#getOrCreateExpectFailureHandler"
+              title="Permalink to getOrCreateExpectFailureHandler">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+FailureHandler getOrCreateExpectFailureHandler() {
+  if (_assertFailureHandler == null) {
+    configureExpectFailureHandler();
+  }
+  return _assertFailureHandler;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="greaterThan">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>greaterThan</strong>(value) <a class="anchor-link" href="#greaterThan"
+              title="Permalink to greaterThan">#</a></h4>
+<div class="doc">
+<p>Returns a matcher which matches if the match argument is greater
+than the given 
+<span class="param">value</span>.</p>
+<pre class="source">
+Matcher greaterThan(value) =&gt;
+  new _OrderingComparison(value, false, false, true, 'a value greater than');
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="greaterThanOrEqualTo">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>greaterThanOrEqualTo</strong>(value) <a class="anchor-link" href="#greaterThanOrEqualTo"
+              title="Permalink to greaterThanOrEqualTo">#</a></h4>
+<div class="doc">
+<p>Returns a matcher which matches if the match argument is greater
+than or equal to the given 
+<span class="param">value</span>.</p>
+<pre class="source">
+Matcher greaterThanOrEqualTo(value) =&gt;
+  new _OrderingComparison(value, true, false, true,
+      'a value greater than or equal to');
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="group">
+<span class="show-code">Code</span>
+void <strong>group</strong>(<a href="core/String.html">String</a> description, body) <a class="anchor-link" href="#group"
+              title="Permalink to group">#</a></h4>
+<div class="doc">
+<p>Creates a new named group of tests. Calls to group() or test() within the
+body of the function passed to this will inherit this group's description.</p>
+<pre class="source">
+void group(String description, void body()) {
+  ensureInitialized();
+
+  // Concatenate the new group.
+  final parentGroup = _currentGroup;
+  if (_currentGroup != '') {
+    // Add a space.
+    _currentGroup = '$_currentGroup$_GROUP_SEPARATOR$description';
+  } else {
+    // The first group.
+    _currentGroup = description;
+  }
+
+  // Groups can be nested, so we need to preserve the current
+  // settings for test setup/teardown.
+  Function parentSetup = _testSetup;
+  Function parentTeardown = _testTeardown;
+
+  try {
+    _testSetup = null;
+    _testTeardown = null;
+    body();
+  } finally {
+    // Now that the group is over, restore the previous one.
+    _currentGroup = parentGroup;
+    _testSetup = parentSetup;
+    _testTeardown = parentTeardown;
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="guardAsync">
+<span class="show-code">Code</span>
+<strong>guardAsync</strong>(tryBody, [finallyBody]) <a class="anchor-link" href="#guardAsync"
+              title="Permalink to guardAsync">#</a></h4>
+<div class="doc">
+<p>Run 
+<span class="param">tryBody</span> guarded in a try-catch block. If an exception is thrown, update
+the <code>_currentTest</code> status accordingly.</p>
+<pre class="source">
+guardAsync(tryBody, [finallyBody]) {
+  try {
+    return tryBody();
+  } catch (var e, var trace) {
+    registerException(e, trace);
+  } finally {
+    _state = _READY;
+    if (finallyBody != null) finallyBody();
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="happenedAtLeast">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>happenedAtLeast</strong>(count) <a class="anchor-link" href="#happenedAtLeast"
+              title="Permalink to happenedAtLeast">#</a></h4>
+<div class="doc">
+<p><a class="crossref" href="unittest.html#happenedAtLeast">happenedAtLeast</a> matches a minimum number of calls.</p>
+<pre class="source">
+Matcher happenedAtLeast(count) {
+  return new _TimesMatcher(count);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="happenedAtMost">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>happenedAtMost</strong>(count) <a class="anchor-link" href="#happenedAtMost"
+              title="Permalink to happenedAtMost">#</a></h4>
+<div class="doc">
+<p><a class="crossref" href="unittest.html#happenedAtMost">happenedAtMost</a> matches a maximum number of calls.</p>
+<pre class="source">
+Matcher happenedAtMost(count) {
+  return new _TimesMatcher(0, count);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="happenedExactly">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>happenedExactly</strong>(count) <a class="anchor-link" href="#happenedExactly"
+              title="Permalink to happenedExactly">#</a></h4>
+<div class="doc">
+<p><a class="crossref" href="unittest.html#happenedExactly">happenedExactly</a> matches an exact number of calls.</p>
+<pre class="source">
+Matcher happenedExactly(count) {
+  return new _TimesMatcher(count, count);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="hasLength">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>hasLength</strong>(matcher) <a class="anchor-link" href="#hasLength"
+              title="Permalink to hasLength">#</a></h4>
+<div class="doc">
+<p>Returns a matcher that matches if an object has a length property
+that matches 
+<span class="param">matcher</span>.</p>
+<pre class="source">
+Matcher hasLength(matcher) =&gt;
+    new _HasLength(wrapMatcher(matcher));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="inClosedOpenRange">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>inClosedOpenRange</strong>(low, high) <a class="anchor-link" href="#inClosedOpenRange"
+              title="Permalink to inClosedOpenRange">#</a></h4>
+<div class="doc">
+<p>Returns a matcher which matches if the match argument is greater
+than or equal to a 
+<span class="param">low</span> and less than 
+<span class="param">high</span>.</p>
+<pre class="source">
+Matcher inClosedOpenRange(low, high) =&gt; new _InRange(low, high, true, false);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="inExclusiveRange">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>inExclusiveRange</strong>(low, high) <a class="anchor-link" href="#inExclusiveRange"
+              title="Permalink to inExclusiveRange">#</a></h4>
+<div class="doc">
+<p>Returns a matcher which matches if the match argument is greater
+than 
+<span class="param">low</span> and less than 
+<span class="param">high</span>.</p>
+<pre class="source">
+Matcher inExclusiveRange(low, high) =&gt; new _InRange(low, high, false, false);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="inInclusiveRange">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>inInclusiveRange</strong>(low, high) <a class="anchor-link" href="#inInclusiveRange"
+              title="Permalink to inInclusiveRange">#</a></h4>
+<div class="doc">
+<p>Returns a matcher which matches if the match argument is greater
+than or equal to 
+<span class="param">low</span> and less than or equal to 
+<span class="param">high</span>.</p>
+<pre class="source">
+Matcher inInclusiveRange(low, high) =&gt; new _InRange(low, high, true, true);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="inOpenClosedRange">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>inOpenClosedRange</strong>(low, high) <a class="anchor-link" href="#inOpenClosedRange"
+              title="Permalink to inOpenClosedRange">#</a></h4>
+<div class="doc">
+<p>Returns a matcher which matches if the match argument is greater
+than 
+<span class="param">low</span> and less than or equal to 
+<span class="param">high</span>.</p>
+<pre class="source">
+Matcher inOpenClosedRange(low, high) =&gt; new _InRange(low, high, false, true);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="isIn">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>isIn</strong>(expected) <a class="anchor-link" href="#isIn"
+              title="Permalink to isIn">#</a></h4>
+<div class="doc">
+<p>Returns a matcher that matches if the match argument is in
+the expected value. This is the converse of <a class="crossref" href="unittest.html#contains">contains</a>.</p>
+<pre class="source">
+Matcher isIn(expected) =&gt; new _In(expected);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="isNot">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>isNot</strong>(matcher) <a class="anchor-link" href="#isNot"
+              title="Permalink to isNot">#</a></h4>
+<div class="doc">
+<p>This returns a matcher that inverts 
+<span class="param">matcher</span> to its logical negation.</p>
+<pre class="source">
+Matcher isNot(matcher) =&gt; new _IsNot(wrapMatcher(matcher));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="lessThan">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>lessThan</strong>(value) <a class="anchor-link" href="#lessThan"
+              title="Permalink to lessThan">#</a></h4>
+<div class="doc">
+<p>Returns a matcher which matches if the match argument is less
+than the given 
+<span class="param">value</span>.</p>
+<pre class="source">
+Matcher lessThan(value) =&gt;
+  new _OrderingComparison(value, false, true, false, 'a value less than');
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="lessThanOrEqualTo">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>lessThanOrEqualTo</strong>(value) <a class="anchor-link" href="#lessThanOrEqualTo"
+              title="Permalink to lessThanOrEqualTo">#</a></h4>
+<div class="doc">
+<p>Returns a matcher which matches if the match argument is less
+than or equal to the given 
+<span class="param">value</span>.</p>
+<pre class="source">
+Matcher lessThanOrEqualTo(value) =&gt;
+  new _OrderingComparison(value, true, true, false,
+      'a value less than or equal to');
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="matches">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>matches</strong>(re) <a class="anchor-link" href="#matches"
+              title="Permalink to matches">#</a></h4>
+<div class="doc">
+<p>Returns a matcher that matches if the match argument is a string and
+matches the regular expression given by 
+<span class="param">re</span>. 
+<span class="param">re</span> can be a RegExp
+instance or a string; in the latter case it will be used to create
+a RegExp instance.</p>
+<pre class="source">
+Matcher matches(re) =&gt; new _MatchesRegExp(re);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="neverReturned">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>neverReturned</strong>(value) <a class="anchor-link" href="#neverReturned"
+              title="Permalink to neverReturned">#</a></h4>
+<div class="doc">
+<p><a class="crossref" href="unittest.html#neverReturned">neverReturned</a> asserts that no matching calls to a method returned
+a value that matched 
+<span class="param">value</span>.</p>
+<pre class="source">
+Matcher neverReturned(value) =&gt;
+    new _ResultSetMatcher(_Action.RETURN, wrapMatcher(value), _Frequency.NONE);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="neverThrew">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>neverThrew</strong>(value) <a class="anchor-link" href="#neverThrew"
+              title="Permalink to neverThrew">#</a></h4>
+<div class="doc">
+<p><a class="crossref" href="unittest.html#neverThrew">neverThrew</a> asserts that no matching call to a method threw
+a value that matched 
+<span class="param">value</span>.</p>
+<pre class="source">
+Matcher neverThrew(value) =&gt;
+  new _ResultSetMatcher(_Action.THROW, wrapMatcher(value), _Frequency.NONE);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="orderedEquals">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>orderedEquals</strong>(<a href="core/Iterable.html">Iterable</a> expected) <a class="anchor-link" href="#orderedEquals"
+              title="Permalink to orderedEquals">#</a></h4>
+<div class="doc">
+<p>Returns a matcher which matches <code>Iterable</code>s that have the same
+length and the same elements as 
+<span class="param">expected</span>, and in the same order.
+This is equivalent to equals but does not recurse.</p>
+<pre class="source">
+Matcher orderedEquals(Iterable expected) =&gt; new _OrderedEquals(expected);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="predicate">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>predicate</strong>(f, [description]) <a class="anchor-link" href="#predicate"
+              title="Permalink to predicate">#</a></h4>
+<div class="doc">
+<p>Returns a matcher that uses an arbitrary function that returns
+true or false for the actual value.</p>
+<pre class="source">
+Matcher predicate(f, [description = 'satisfies function']) =&gt;
+    new _Predicate(f, description);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="registerException">
+<span class="show-code">Code</span>
+<strong>registerException</strong>(e, [trace]) <a class="anchor-link" href="#registerException"
+              title="Permalink to registerException">#</a></h4>
+<div class="doc">
+<p>Registers that an exception was caught for the current test.</p>
+<pre class="source">
+registerException(e, [trace]) {
+  if (e is ExpectException) {
+    Expect.isTrue(_currentTest &lt; _tests.length);
+    if (_state != _UNCAUGHT_ERROR) {
+      _tests[_currentTest].fail(e.message,
+          trace == null ? '' : trace.toString());
+    }
+  } else {
+    if (_state == _RUNNING_TEST) {
+      // If a random exception is thrown from within a test, we consider that
+      // a test failure too. A test case implicitly has an expectation that it
+      // will run to completion without an uncaught exception being thrown.
+      _tests[_currentTest].fail('Caught $e',
+          trace == null ? '' : trace.toString());
+    } else if (_state != _UNCAUGHT_ERROR) {
+      _tests[_currentTest].error('Caught $e',
+          trace == null ? '' : trace.toString());
+    }
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="reportTestError">
+<span class="show-code">Code</span>
+void <strong>reportTestError</strong>(<a href="core/String.html">String</a> msg, <a href="core/String.html">String</a> trace) <a class="anchor-link" href="#reportTestError"
+              title="Permalink to reportTestError">#</a></h4>
+<div class="doc">
+<p>Utility function that can be used to notify the test framework that an
+ error was caught outside of this library.</p>
+<pre class="source">
+void reportTestError(String msg, String trace) {
+ if (_currentTest &lt; _tests.length) {
+    final testCase = _tests[_currentTest];
+    testCase.error(msg, trace);
+    _state = _UNCAUGHT_ERROR;
+    if (testCase.callbacks &gt; 0) {
+      _currentTest++;
+      _testRunner();
+    }
+  } else {
+    _uncaughtErrorMessage = "$msg: $trace";
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="returning">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>returning</strong>(value) <a class="anchor-link" href="#returning"
+              title="Permalink to returning">#</a></h4>
+<div class="doc">
+<p><a class="crossref" href="unittest.html#returning">returning</a> matches log entries where the call to a method returned
+a value that matched 
+<span class="param">value</span>.</p>
+<pre class="source">
+Matcher returning(value) =&gt;
+    new _ResultMatcher(_Action.RETURN, wrapMatcher(value));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="same">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>same</strong>(expected) <a class="anchor-link" href="#same"
+              title="Permalink to same">#</a></h4>
+<div class="doc">
+<p>Returns a matches that matches if the value is the same instance
+as <a href="`===`">object</a>.</p>
+<pre class="source">
+Matcher same(expected) =&gt; new _IsSameAs(expected);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setUp">
+<span class="show-code">Code</span>
+void <strong>setUp</strong>(<a href="core/Function.html">Function</a> setupTest) <a class="anchor-link" href="#setUp"
+              title="Permalink to setUp">#</a></h4>
+<div class="doc">
+<p>Register a <a class="crossref" href="unittest.html#setUp">setUp</a> function for a test <a class="crossref" href="unittest.html#group">group</a>. This function will
+be called before each test in the group is run. Note that if groups
+are nested only the most locally scoped <a class="crossref" href="unittest.html#setUp">setUp</a> function will be run.
+<a class="crossref" href="unittest.html#setUp">setUp</a> and <a class="crossref" href="unittest.html#tearDown">tearDown</a> should be called within the <a class="crossref" href="unittest.html#group">group</a> before any
+calls to <a class="crossref" href="unittest.html#test">test</a>.</p>
+<pre class="source">
+void setUp(Function setupTest) {
+  _testSetup = setupTest;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="solo_test">
+<span class="show-code">Code</span>
+void <strong>solo_test</strong>(<a href="core/String.html">String</a> spec, <a href="unittest/TestFunction.html">TestFunction</a> body) <a class="anchor-link" href="#solo_test"
+              title="Permalink to solo_test">#</a></h4>
+<div class="doc">
+<p>Creates a new test case with the given description and body. The
+description will include the descriptions of any surrounding group()
+calls.</p>
+<p>"solo<em>" means that this will be the only test that is run. All other tests
+will be skipped. This is a convenience function to let you quickly isolate
+a single test by adding "solo</em>" before it to temporarily disable all other
+tests.</p>
+<pre class="source">
+void solo_test(String spec, TestFunction body) {
+  // TODO(rnystrom): Support multiple solos. If more than one test is solo-ed,
+  // all of the solo-ed tests and none of the non-solo-ed ones should run.
+  if (_soloTest != null) {
+    throw new Exception('Only one test can be soloed right now.');
+  }
+
+  ensureInitialized();
+
+  _soloTest = new TestCase(_tests.length + 1, _fullSpec(spec), body, 0);
+  _tests.add(_soloTest);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="someElement">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>someElement</strong>(matcher) <a class="anchor-link" href="#someElement"
+              title="Permalink to someElement">#</a></h4>
+<div class="doc">
+<p>Returns a matcher which matches <code>Collection</code>s in which at least one
+element matches the given 
+<span class="param">matcher</span>.</p>
+<pre class="source">
+Matcher someElement(matcher) =&gt; new _SomeElement(wrapMatcher(matcher));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="sometimeReturned">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>sometimeReturned</strong>(value) <a class="anchor-link" href="#sometimeReturned"
+              title="Permalink to sometimeReturned">#</a></h4>
+<div class="doc">
+<p><a class="crossref" href="unittest.html#sometimeReturned">sometimeReturned</a> asserts that at least one matching call to a method
+returned a value that matched 
+<span class="param">value</span>.</p>
+<pre class="source">
+Matcher sometimeReturned(value) =&gt;
+    new _ResultSetMatcher(_Action.RETURN, wrapMatcher(value), _Frequency.SOME);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="sometimeThrew">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>sometimeThrew</strong>(value) <a class="anchor-link" href="#sometimeThrew"
+              title="Permalink to sometimeThrew">#</a></h4>
+<div class="doc">
+<p><a class="crossref" href="unittest.html#sometimeThrew">sometimeThrew</a> asserts that at least one matching call to a method threw
+a value that matched 
+<span class="param">value</span>.</p>
+<pre class="source">
+Matcher sometimeThrew(value) =&gt;
+  new _ResultSetMatcher(_Action.THROW, wrapMatcher(value), _Frequency.SOME);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="startsWith">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>startsWith</strong>(<a href="core/String.html">String</a> prefixString) <a class="anchor-link" href="#startsWith"
+              title="Permalink to startsWith">#</a></h4>
+<div class="doc">
+<p>Returns a matcher that matches if the match argument is a string and
+starts with 
+<span class="param">prefixString</span>.</p>
+<pre class="source">
+Matcher startsWith(String prefixString) =&gt; new _StringStartsWith(prefixString);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="stringContainsInOrder">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>stringContainsInOrder</strong>(substrings) <a class="anchor-link" href="#stringContainsInOrder"
+              title="Permalink to stringContainsInOrder">#</a></h4>
+<div class="doc">
+<p>Returns a matcher that matches if the match argument is a string and
+contains a given list of 
+<span class="param">substrings</span> in relative order.</p>
+<p>For example, <code>stringContainsInOrder(["a", "e", "i", "o", "u"])</code> will match
+"abcdefghijklmnopqrstuvwxyz".</p>
+<pre class="source">
+Matcher stringContainsInOrder(substrings) =&gt;
+    new _StringContainsInOrder(substrings);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="tearDown">
+<span class="show-code">Code</span>
+void <strong>tearDown</strong>(<a href="core/Function.html">Function</a> teardownTest) <a class="anchor-link" href="#tearDown"
+              title="Permalink to tearDown">#</a></h4>
+<div class="doc">
+<p>Register a <a class="crossref" href="unittest.html#tearDown">tearDown</a> function for a test <a class="crossref" href="unittest.html#group">group</a>. This function will
+be called after each test in the group is run. Note that if groups
+are nested only the most locally scoped <a class="crossref" href="unittest.html#tearDown">tearDown</a> function will be run.
+<a class="crossref" href="unittest.html#setUp">setUp</a> and <a class="crossref" href="unittest.html#tearDown">tearDown</a> should be called within the <a class="crossref" href="unittest.html#group">group</a> before any
+calls to <a class="crossref" href="unittest.html#test">test</a>.</p>
+<pre class="source">
+void tearDown(Function teardownTest) {
+  _testTeardown = teardownTest;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="test">
+<span class="show-code">Code</span>
+void <strong>test</strong>(<a href="core/String.html">String</a> spec, <a href="unittest/TestFunction.html">TestFunction</a> body) <a class="anchor-link" href="#test"
+              title="Permalink to test">#</a></h4>
+<div class="doc">
+<p>Creates a new test case with the given description and body. The
+description will include the descriptions of any surrounding group()
+calls.</p>
+<pre class="source">
+void test(String spec, TestFunction body) {
+  ensureInitialized();
+
+  _tests.add(new TestCase(_tests.length + 1, _fullSpec(spec), body, 0));
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="throwing">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>throwing</strong>(value) <a class="anchor-link" href="#throwing"
+              title="Permalink to throwing">#</a></h4>
+<div class="doc">
+<p><a class="crossref" href="unittest.html#throwing">throwing</a> matches log entrues where the call to a method threw
+a value that matched 
+<span class="param">value</span>.</p>
+<pre class="source">
+Matcher throwing(value) =&gt;
+    new _ResultMatcher(_Action.THROW, wrapMatcher(value));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="throwsA">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>throwsA</strong>(matcher) <a class="anchor-link" href="#throwsA"
+              title="Permalink to throwsA">#</a></h4>
+<div class="doc">
+<p>This can be used to match two kinds of objects:</p><ul><li>
+<p>A <code>Function</code> that throws an exception when called. The function cannot
+take any arguments. If you want to test that a function expecting
+arguments throws, wrap it in another zero-argument function that calls
+the one you want to test.</p></li><li>
+<p>A <code>Future</code> that completes with an exception. Note that this creates an
+asynchronous expectation. The call to <code>expect()</code> that includes this will
+return immediately and execution will continue. Later, when the future
+completes, the actual expectation will run.</p></li></ul>
+<p>In both cases, when an exception is thrown, this will test that the exception
+object matches 
+<span class="param">matcher</span>. If 
+<span class="param">matcher</span> is not an instance of <a class="crossref" href="unittest/Matcher.html">Matcher</a>, it
+will implicitly be treated as <code>equals(matcher)</code>.</p>
+<pre class="source">
+Matcher throwsA(matcher) =&gt; new _Throws(wrapMatcher(matcher));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="unorderedEquals">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>unorderedEquals</strong>(<a href="core/Iterable.html">Iterable</a> expected) <a class="anchor-link" href="#unorderedEquals"
+              title="Permalink to unorderedEquals">#</a></h4>
+<div class="doc">
+<p>Returns a matcher which matches <code>Iterable</code>s that have the same
+length and the same elements as 
+<span class="param">expected</span>, but not necessarily in
+the same order. Note that this is O(n^2) so should only be used on
+small objects.</p>
+<pre class="source">
+Matcher unorderedEquals(Iterable expected) =&gt;
+    new _UnorderedEquals(expected);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="wrapMatcher">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a> <strong>wrapMatcher</strong>(x) <a class="anchor-link" href="#wrapMatcher"
+              title="Permalink to wrapMatcher">#</a></h4>
+<div class="doc">
+<p>Takes an argument and returns an equivalent matcher.
+If the argument is already a matcher this does nothing,
+else if the argument is a function, it generates a predicate
+function matcher, else it generates an equals matcher.</p>
+<pre class="source">
+Matcher wrapMatcher(x) {
+  if (x is Matcher) {
+    return x;
+  } else if (x is Function) {
+    return predicate(x);
+  } else {
+    return equals(x);
+  }
+}
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="anything">
+<span class="show-code">Code</span>
+final <a href="unittest/Matcher.html">Matcher</a>         <strong>anything</strong> <a class="anchor-link"
+            href="#anything"
+            title="Permalink to anything">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher that matches any value.</p>
+<pre class="source">
+final Matcher anything = const _IsAnything();
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="completes">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a>         <strong>completes</strong> <a class="anchor-link"
+            href="#completes"
+            title="Permalink to completes">#</a>
+        </h4>
+        <div class="doc">
+<p>Matches a <code>Future</code> that completes successfully with a value. Note that this
+creates an asynchronous expectation. The call to <code>expect()</code> that includes
+this will return immediately and execution will continue. Later, when the
+future completes, the actual expectation will run.</p>
+<p>To test that a Future completes with an exception, you can use <a class="crossref" href="unittest.html#throws">throws</a> and
+<a class="crossref" href="unittest.html#throwsA">throwsA</a>.</p>
+<pre class="source">
+Matcher completes = const _Completes(null);
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="filter">
+<span class="show-code">Code</span>
+<a href="core/String.html">String</a>         <strong>filter</strong> <a class="anchor-link"
+            href="#filter"
+            title="Permalink to filter">#</a>
+        </h4>
+        <div class="doc">
+<p>The regexp pattern filter which constrains which tests to run
+based on their descriptions.</p>
+<pre class="source">
+String filter = null;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="happenedAtLeastOnce">
+<span class="show-code">Code</span>
+final <a href="unittest/Matcher.html">Matcher</a>         <strong>happenedAtLeastOnce</strong> <a class="anchor-link"
+            href="#happenedAtLeastOnce"
+            title="Permalink to happenedAtLeastOnce">#</a>
+        </h4>
+        <div class="doc">
+<p><a class="crossref" href="unittest.html#happenedAtLeastOnce">happenedAtLeastOnce</a> matches one or more calls.</p>
+<pre class="source">
+final Matcher happenedAtLeastOnce = const _TimesMatcher(1);
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="happenedAtMostOnce">
+<span class="show-code">Code</span>
+final <a href="unittest/Matcher.html">Matcher</a>         <strong>happenedAtMostOnce</strong> <a class="anchor-link"
+            href="#happenedAtMostOnce"
+            title="Permalink to happenedAtMostOnce">#</a>
+        </h4>
+        <div class="doc">
+<p><a class="crossref" href="unittest.html#happenedAtMostOnce">happenedAtMostOnce</a> matches zero or one call.</p>
+<pre class="source">
+final Matcher happenedAtMostOnce = const _TimesMatcher(0, 1);
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="happenedOnce">
+<span class="show-code">Code</span>
+final <a href="unittest/Matcher.html">Matcher</a>         <strong>happenedOnce</strong> <a class="anchor-link"
+            href="#happenedOnce"
+            title="Permalink to happenedOnce">#</a>
+        </h4>
+        <div class="doc">
+<p><a class="crossref" href="unittest.html#happenedOnce">happenedOnce</a> matches exactly one call.</p>
+<pre class="source">
+final Matcher happenedOnce = const _TimesMatcher(1, 1);
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="isBadNumberFormatException">
+<span class="show-code">Code</span>
+final         <strong>isBadNumberFormatException</strong> <a class="anchor-link"
+            href="#isBadNumberFormatException"
+            title="Permalink to isBadNumberFormatException">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher for BadNumberFormatExceptions.</p>
+<pre class="source">
+final isBadNumberFormatException = const _BadNumberFormatException();
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="isEmpty">
+<span class="show-code">Code</span>
+final <a href="unittest/Matcher.html">Matcher</a>         <strong>isEmpty</strong> <a class="anchor-link"
+            href="#isEmpty"
+            title="Permalink to isEmpty">#</a>
+        </h4>
+        <div class="doc">
+<p>Returns a matcher that matches empty strings, maps or collections.</p>
+<pre class="source">
+final Matcher isEmpty = const _Empty();
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="isException">
+<span class="show-code">Code</span>
+final         <strong>isException</strong> <a class="anchor-link"
+            href="#isException"
+            title="Permalink to isException">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher for Exceptions.</p>
+<pre class="source">
+final isException = const _Exception();
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="isFalse">
+<span class="show-code">Code</span>
+final <a href="unittest/Matcher.html">Matcher</a>         <strong>isFalse</strong> <a class="anchor-link"
+            href="#isFalse"
+            title="Permalink to isFalse">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher that matches anything except the Boolean value true.</p>
+<pre class="source">
+final Matcher isFalse = const _IsFalse();
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="isIllegalArgumentException">
+<span class="show-code">Code</span>
+final         <strong>isIllegalArgumentException</strong> <a class="anchor-link"
+            href="#isIllegalArgumentException"
+            title="Permalink to isIllegalArgumentException">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher for IllegalArgumentExceptions.</p>
+<pre class="source">
+final isIllegalArgumentException = const _IllegalArgumentException();
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="isIllegalJSRegExpException">
+<span class="show-code">Code</span>
+final         <strong>isIllegalJSRegExpException</strong> <a class="anchor-link"
+            href="#isIllegalJSRegExpException"
+            title="Permalink to isIllegalJSRegExpException">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher for IllegalJSRegExpExceptions.</p>
+<pre class="source">
+final isIllegalJSRegExpException = const _IllegalJSRegExpException();
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="isIndexOutOfRangeException">
+<span class="show-code">Code</span>
+final         <strong>isIndexOutOfRangeException</strong> <a class="anchor-link"
+            href="#isIndexOutOfRangeException"
+            title="Permalink to isIndexOutOfRangeException">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher for IndexOutOfRangeExceptions.</p>
+<pre class="source">
+final isIndexOutOfRangeException = const _IndexOutOfRangeException();
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="isNegative">
+<span class="show-code">Code</span>
+final <a href="unittest/Matcher.html">Matcher</a>         <strong>isNegative</strong> <a class="anchor-link"
+            href="#isNegative"
+            title="Permalink to isNegative">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher which matches if the match argument is negative.</p>
+<pre class="source">
+final Matcher isNegative =
+  const _OrderingComparison(0, false, true, false, 'a negative value', false);
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="isNoSuchMethodException">
+<span class="show-code">Code</span>
+final         <strong>isNoSuchMethodException</strong> <a class="anchor-link"
+            href="#isNoSuchMethodException"
+            title="Permalink to isNoSuchMethodException">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher for NoSuchMethodExceptions.</p>
+<pre class="source">
+final isNoSuchMethodException = const _NoSuchMethodException();
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="isNonNegative">
+<span class="show-code">Code</span>
+final <a href="unittest/Matcher.html">Matcher</a>         <strong>isNonNegative</strong> <a class="anchor-link"
+            href="#isNonNegative"
+            title="Permalink to isNonNegative">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher which matches if the match argument is zero or positive.</p>
+<pre class="source">
+final Matcher isNonNegative =
+  const _OrderingComparison(0, true, false, true,
+      'a non-negative value', false);
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="isNonPositive">
+<span class="show-code">Code</span>
+final <a href="unittest/Matcher.html">Matcher</a>         <strong>isNonPositive</strong> <a class="anchor-link"
+            href="#isNonPositive"
+            title="Permalink to isNonPositive">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher which matches if the match argument is zero or negative.</p>
+<pre class="source">
+final Matcher isNonPositive =
+  const _OrderingComparison(0, true, true, false,
+      'a non-positive value', false);
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="isNonZero">
+<span class="show-code">Code</span>
+final <a href="unittest/Matcher.html">Matcher</a>         <strong>isNonZero</strong> <a class="anchor-link"
+            href="#isNonZero"
+            title="Permalink to isNonZero">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher which matches if the match argument is non-zero.</p>
+<pre class="source">
+final Matcher isNonZero =
+  const _OrderingComparison(0, false, true, true, 'a value not equal to');
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="isNotImplementedException">
+<span class="show-code">Code</span>
+final         <strong>isNotImplementedException</strong> <a class="anchor-link"
+            href="#isNotImplementedException"
+            title="Permalink to isNotImplementedException">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher for NotImplementedExceptions.</p>
+<pre class="source">
+final isNotImplementedException = const _NotImplementedException();
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="isNotNull">
+<span class="show-code">Code</span>
+final <a href="unittest/Matcher.html">Matcher</a>         <strong>isNotNull</strong> <a class="anchor-link"
+            href="#isNotNull"
+            title="Permalink to isNotNull">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher that matches any non-null value.</p>
+<pre class="source">
+final Matcher isNotNull = const _IsNotNull();
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="isNull">
+<span class="show-code">Code</span>
+final <a href="unittest/Matcher.html">Matcher</a>         <strong>isNull</strong> <a class="anchor-link"
+            href="#isNull"
+            title="Permalink to isNull">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher that matches any null value.</p>
+<pre class="source">
+final Matcher isNull = const _IsNull();
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="isNullPointerException">
+<span class="show-code">Code</span>
+final         <strong>isNullPointerException</strong> <a class="anchor-link"
+            href="#isNullPointerException"
+            title="Permalink to isNullPointerException">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher for NullPointerExceptions.</p>
+<pre class="source">
+final isNullPointerException = const _NullPointerException();
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="isPositive">
+<span class="show-code">Code</span>
+final <a href="unittest/Matcher.html">Matcher</a>         <strong>isPositive</strong> <a class="anchor-link"
+            href="#isPositive"
+            title="Permalink to isPositive">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher which matches if the match argument is positive.</p>
+<pre class="source">
+final Matcher isPositive =
+  const _OrderingComparison(0, false, false, true, 'a positive value', false);
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="isTrue">
+<span class="show-code">Code</span>
+final <a href="unittest/Matcher.html">Matcher</a>         <strong>isTrue</strong> <a class="anchor-link"
+            href="#isTrue"
+            title="Permalink to isTrue">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher that matches the Boolean value true.</p>
+<pre class="source">
+final Matcher isTrue = const _IsTrue();
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="isUnsupportedOperationException">
+<span class="show-code">Code</span>
+final         <strong>isUnsupportedOperationException</strong> <a class="anchor-link"
+            href="#isUnsupportedOperationException"
+            title="Permalink to isUnsupportedOperationException">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher for UnsupportedOperationExceptions.</p>
+<pre class="source">
+final isUnsupportedOperationException = const _UnsupportedOperationException();
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="isZero">
+<span class="show-code">Code</span>
+final <a href="unittest/Matcher.html">Matcher</a>         <strong>isZero</strong> <a class="anchor-link"
+            href="#isZero"
+            title="Permalink to isZero">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher which matches if the match argument is zero.</p>
+<pre class="source">
+final Matcher isZero =
+  const _OrderingComparison(0, true, false, false, 'a value equal to');
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="neverHappened">
+<span class="show-code">Code</span>
+final <a href="unittest/Matcher.html">Matcher</a>         <strong>neverHappened</strong> <a class="anchor-link"
+            href="#neverHappened"
+            title="Permalink to neverHappened">#</a>
+        </h4>
+        <div class="doc">
+<p><a class="crossref" href="unittest.html#neverHappened">neverHappened</a> matches zero calls.</p>
+<pre class="source">
+final Matcher neverHappened = const _TimesMatcher(0, 0);
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="returnsNormally">
+<span class="show-code">Code</span>
+final <a href="unittest/Matcher.html">Matcher</a>         <strong>returnsNormally</strong> <a class="anchor-link"
+            href="#returnsNormally"
+            title="Permalink to returnsNormally">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher that matches a function call against no exception.
+The function will be called once. Any exceptions will be silently swallowed.
+The value passed to expect() should be a reference to the function.
+Note that the function cannot take arguments; to handle this
+a wrapper will have to be created.</p>
+<pre class="source">
+final Matcher returnsNormally = const _ReturnsNormally();
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="sharedLog">
+<span class="show-code">Code</span>
+<a href="unittest/LogEntryList.html">LogEntryList</a>         <strong>sharedLog</strong> <a class="anchor-link"
+            href="#sharedLog"
+            title="Permalink to sharedLog">#</a>
+        </h4>
+        <div class="doc">
+<p>The shared log used for named mocks.</p>
+<pre class="source">
+LogEntryList sharedLog = null;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="throws">
+<span class="show-code">Code</span>
+final <a href="unittest/Matcher.html">Matcher</a>         <strong>throws</strong> <a class="anchor-link"
+            href="#throws"
+            title="Permalink to throws">#</a>
+        </h4>
+        <div class="doc">
+<p>This can be used to match two kinds of objects:</p><ul><li>
+<p>A <code>Function</code> that throws an exception when called. The function cannot
+take any arguments. If you want to test that a function expecting
+arguments throws, wrap it in another zero-argument function that calls
+the one you want to test. The function will be called once upon success,
+or twice upon failure (the second time to get the failure description).</p></li><li>
+<p>A <code>Future</code> that completes with an exception. Note that this creates an
+asynchronous expectation. The call to <code>expect()</code> that includes this will
+return immediately and execution will continue. Later, when the future
+completes, the actual expectation will run.</p></li></ul>
+<pre class="source">
+final Matcher throws = const _Throws();
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="throwsBadNumberFormatException">
+<span class="show-code">Code</span>
+final <a href="unittest/Matcher.html">Matcher</a>         <strong>throwsBadNumberFormatException</strong> <a class="anchor-link"
+            href="#throwsBadNumberFormatException"
+            title="Permalink to throwsBadNumberFormatException">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher for functions that throw BadNumberFormatException</p>
+<pre class="source">
+final Matcher throwsBadNumberFormatException =
+    const _Throws(isBadNumberFormatException);
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="throwsException">
+<span class="show-code">Code</span>
+final <a href="unittest/Matcher.html">Matcher</a>         <strong>throwsException</strong> <a class="anchor-link"
+            href="#throwsException"
+            title="Permalink to throwsException">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher for functions that throw Exception</p>
+<pre class="source">
+final Matcher throwsException = const _Throws(isException);
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="throwsIllegalArgumentException">
+<span class="show-code">Code</span>
+final <a href="unittest/Matcher.html">Matcher</a>         <strong>throwsIllegalArgumentException</strong> <a class="anchor-link"
+            href="#throwsIllegalArgumentException"
+            title="Permalink to throwsIllegalArgumentException">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher for functions that throw IllegalArgumentException</p>
+<pre class="source">
+final Matcher throwsIllegalArgumentException =
+    const _Throws(isIllegalArgumentException);
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="throwsIllegalJSRegExpException">
+<span class="show-code">Code</span>
+final <a href="unittest/Matcher.html">Matcher</a>         <strong>throwsIllegalJSRegExpException</strong> <a class="anchor-link"
+            href="#throwsIllegalJSRegExpException"
+            title="Permalink to throwsIllegalJSRegExpException">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher for functions that throw IllegalJSRegExpException</p>
+<pre class="source">
+final Matcher throwsIllegalJSRegExpException =
+    const _Throws(isIllegalJSRegExpException);
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="throwsIndexOutOfRangeException">
+<span class="show-code">Code</span>
+final <a href="unittest/Matcher.html">Matcher</a>         <strong>throwsIndexOutOfRangeException</strong> <a class="anchor-link"
+            href="#throwsIndexOutOfRangeException"
+            title="Permalink to throwsIndexOutOfRangeException">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher for functions that throw IndexOutOfRangeException</p>
+<pre class="source">
+final Matcher throwsIndexOutOfRangeException =
+    const _Throws(isIndexOutOfRangeException);
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="throwsNoSuchMethodException">
+<span class="show-code">Code</span>
+final <a href="unittest/Matcher.html">Matcher</a>         <strong>throwsNoSuchMethodException</strong> <a class="anchor-link"
+            href="#throwsNoSuchMethodException"
+            title="Permalink to throwsNoSuchMethodException">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher for functions that throw NoSuchMethodException</p>
+<pre class="source">
+final Matcher throwsNoSuchMethodException =
+    const _Throws(isNoSuchMethodException);
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="throwsNotImplementedException">
+<span class="show-code">Code</span>
+final <a href="unittest/Matcher.html">Matcher</a>         <strong>throwsNotImplementedException</strong> <a class="anchor-link"
+            href="#throwsNotImplementedException"
+            title="Permalink to throwsNotImplementedException">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher for functions that throw Exception</p>
+<pre class="source">
+final Matcher throwsNotImplementedException =
+    const _Throws(isNotImplementedException);
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="throwsNullPointerException">
+<span class="show-code">Code</span>
+final <a href="unittest/Matcher.html">Matcher</a>         <strong>throwsNullPointerException</strong> <a class="anchor-link"
+            href="#throwsNullPointerException"
+            title="Permalink to throwsNullPointerException">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher for functions that throw NotNullPointerException</p>
+<pre class="source">
+final Matcher throwsNullPointerException =
+    const _Throws(isNullPointerException);
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="throwsUnsupportedOperationException">
+<span class="show-code">Code</span>
+final <a href="unittest/Matcher.html">Matcher</a>         <strong>throwsUnsupportedOperationException</strong> <a class="anchor-link"
+            href="#throwsUnsupportedOperationException"
+            title="Permalink to throwsUnsupportedOperationException">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher for functions that throw UnsupportedOperationException</p>
+<pre class="source">
+final Matcher throwsUnsupportedOperationException =
+    const _Throws(isUnsupportedOperationException);
+</pre>
+</div>
+</div>
+<h3>Classes</h3>
+          <div class="type">
+          <h4>
+            <a href="unittest/BaseMatcher.html"><strong>BaseMatcher</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="unittest/Behavior.html"><strong>Behavior</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="unittest/CallMatcher.html"><strong>CallMatcher</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="unittest/Configuration.html"><strong>Configuration</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="unittest/DefaultFailureHandler.html"><strong>DefaultFailureHandler</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="unittest/LogEntry.html"><strong>LogEntry</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="unittest/LogEntryList.html"><strong>LogEntryList</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="unittest/Mock.html"><strong>Mock</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="unittest/Responder.html"><strong>Responder</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="unittest/StringDescription.html"><strong>StringDescription</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="unittest/TestCase.html"><strong>TestCase</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="unittest/isInstanceOf.html"><strong>isInstanceOf&lt;T&gt;</strong></a>
+          </h4>
+          </div>
+          
+<h3>Interfaces</h3>
+          <div class="type">
+          <h4>
+            <a href="unittest/Description.html"><strong>Description</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="unittest/ErrorFormatter.html"><strong>ErrorFormatter</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="unittest/FailureHandler.html"><strong>FailureHandler</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="unittest/Matcher.html"><strong>Matcher</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="unittest/TestFunction.html"><strong>TestFunction</strong></a>
+          </h4>
+          </div>
+          
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="client-live-nav.js"></script>
+        </body></html>
+        

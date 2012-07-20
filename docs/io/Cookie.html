@@ -1,0 +1,186 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>Cookie Interface / io Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="io" data-type="Cookie">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../io.html">io</a> &rsaquo; <a href="../io/Cookie.html">Cookie</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>Cookie</strong>
+          Interface
+        </h2>
+        
+<div class="doc">
+<p>Representation of a cookie. For cookies received by the server as
+Cookie header values only <code>name</code> and <code>value</code> fields will be
+set. When building a cookie for the Set-Cookie header in the server
+and when receiving cookies in the client as Set-Cookie headers all
+fields can be used.</p>
+</div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="Cookie">
+<span class="show-code">Code</span>
+new <strong>Cookie</strong>([<a href="../core/String.html">String</a> name, <a href="../core/String.html">String</a> value]) <a class="anchor-link" href="#Cookie"
+              title="Permalink to Cookie.Cookie">#</a></h4>
+<div class="doc">
+<p>Creates a new cookie optionally setting the name and value.</p>
+<pre class="source">
+Cookie([String name, String value]);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="Cookie">
+<span class="show-code">Code</span>
+new <strong>Cookie</strong>.fromSetCookieValue(<a href="../core/String.html">String</a> value) <a class="anchor-link" href="#Cookie"
+              title="Permalink to Cookie.Cookie">#</a></h4>
+<div class="doc">
+<p>Creates a new cookie by parsing a header value from a Set-Cookie
+header.</p>
+<pre class="source">
+Cookie.fromSetCookieValue(String value);
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="toString">
+<span class="show-code">Code</span>
+<a href="../core/String.html">String</a> <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to Cookie.toString">#</a></h4>
+<div class="doc">
+<p>Returns the formatted string representation of the cookie. The
+string representation can be used for for setting the Cookie or
+Set-Cookie headers</p>
+<pre class="source">
+String toString();
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="domain">
+<span class="show-code">Code</span>
+<a href="../core/String.html">String</a>         <strong>domain</strong> <a class="anchor-link"
+            href="#domain"
+            title="Permalink to Cookie.domain">#</a>
+        </h4>
+        <div class="doc">
+<p>Gets and sets the domain.</p>
+<pre class="source">
+String domain;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="expires">
+<span class="show-code">Code</span>
+<a href="../core/Date.html">Date</a>         <strong>expires</strong> <a class="anchor-link"
+            href="#expires"
+            title="Permalink to Cookie.expires">#</a>
+        </h4>
+        <div class="doc">
+<p>Gets and sets the expiry date.</p>
+<pre class="source">
+Date expires;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="httpOnly">
+<span class="show-code">Code</span>
+<a href="../core/bool.html">bool</a>         <strong>httpOnly</strong> <a class="anchor-link"
+            href="#httpOnly"
+            title="Permalink to Cookie.httpOnly">#</a>
+        </h4>
+        <div class="doc">
+<p>Gets and sets whether this cookie is HTTP only.</p>
+<pre class="source">
+bool httpOnly;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="maxAge">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a>         <strong>maxAge</strong> <a class="anchor-link"
+            href="#maxAge"
+            title="Permalink to Cookie.maxAge">#</a>
+        </h4>
+        <div class="doc">
+<p>Gets and sets the max age. A value of <code>0</code> means delete cookie
+now.</p>
+<pre class="source">
+int maxAge;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="name">
+<span class="show-code">Code</span>
+<a href="../core/String.html">String</a>         <strong>name</strong> <a class="anchor-link"
+            href="#name"
+            title="Permalink to Cookie.name">#</a>
+        </h4>
+        <div class="doc">
+<p>Gets and sets the name.</p>
+<pre class="source">
+String name;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="path">
+<span class="show-code">Code</span>
+<a href="../core/String.html">String</a>         <strong>path</strong> <a class="anchor-link"
+            href="#path"
+            title="Permalink to Cookie.path">#</a>
+        </h4>
+        <div class="doc">
+<p>Gets and sets the path.</p>
+<pre class="source">
+String path;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="secure">
+<span class="show-code">Code</span>
+<a href="../core/bool.html">bool</a>         <strong>secure</strong> <a class="anchor-link"
+            href="#secure"
+            title="Permalink to Cookie.secure">#</a>
+        </h4>
+        <div class="doc">
+<p>Gets and sets whether this cookie is secure.</p>
+<pre class="source">
+bool secure;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="value">
+<span class="show-code">Code</span>
+<a href="../core/String.html">String</a>         <strong>value</strong> <a class="anchor-link"
+            href="#value"
+            title="Permalink to Cookie.value">#</a>
+        </h4>
+        <div class="doc">
+<p>Gets and sets the value.</p>
+<pre class="source">
+String value;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

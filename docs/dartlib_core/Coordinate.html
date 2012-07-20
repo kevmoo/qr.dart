@@ -32,7 +32,7 @@
 <h3>Constructors</h3>
 <div class="method"><h4 id="Coordinate">
 <span class="show-code">Code</span>
-const <strong>Coordinate</strong>([x = 0, y = 0]) <a class="anchor-link" href="#Coordinate"
+const <strong>Coordinate</strong>([x, y]) <a class="anchor-link" href="#Coordinate"
               title="Permalink to Coordinate.Coordinate">#</a></h4>
 <div class="doc">
 
@@ -56,9 +56,42 @@ static Vector difference(Coordinate a, Coordinate b) {
 </div>
 </div>
 <h3>Methods</h3>
-<div class="method"><h4 id=":eq">
+<div class="method"><h4 id="getDistance">
 <span class="show-code">Code</span>
-<a href="../dart_core/bool.html">bool</a> <strong>operator ==</strong>(<a href="../dartlib_core/Coordinate.html">Coordinate</a> other) <a class="anchor-link" href="#:eq"
+<a href="../core/num.html">num</a> <strong>getDistance</strong>(<a href="../dartlib_core/Coordinate.html">Coordinate</a> other) <a class="anchor-link" href="#getDistance"
+              title="Permalink to Coordinate.getDistance">#</a></h4>
+<div class="doc">
+<p>Computes the distance to another <a class="crossref" href="../dartlib_core/Coordinate.html#new:Coordinate">Coordinate</a>.</p>
+<pre class="source">
+num getDistance (Coordinate other) =&gt; (this - other).length;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="isValid">
+<span class="show-code">Code</span>
+<a href="../core/bool.html">bool</a> <strong>get isValid</strong>() <a class="anchor-link" href="#isValid"
+              title="Permalink to Coordinate.get isValid">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool get isValid() =&gt; isValidNumber(x) &amp;&amp; isValidNumber(y);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="operator">
+<span class="show-code">Code</span>
+<a href="../dartlib_core/Vector.html">Vector</a> <strong>operator -</strong>(<a href="../dartlib_core/Coordinate.html">Coordinate</a> other) <a class="anchor-link" href="#operator"
+              title="Permalink to Coordinate.operator -">#</a></h4>
+<div class="doc">
+<p>Subtract a <a class="crossref" href="../dartlib_core/Coordinate.html#new:Coordinate">Coordinate</a> and returns the result as new <a class="crossref" href="../dartlib_core/Vector.html">Vector</a>.</p>
+<pre class="source">
+Vector operator -(Coordinate other) =&gt; difference(this, other);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="operator">
+<span class="show-code">Code</span>
+<a href="../core/bool.html">bool</a> <strong>operator ==</strong>(<a href="../dartlib_core/Coordinate.html">Coordinate</a> other) <a class="anchor-link" href="#operator"
               title="Permalink to Coordinate.operator ==">#</a></h4>
 <div class="doc">
 
@@ -69,42 +102,21 @@ bool operator ==(Coordinate other) {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id=":sub">
+<div class="method"><h4 id="operator">
 <span class="show-code">Code</span>
-<a href="../dartlib_core/Vector.html">Vector</a> <strong>operator -</strong>(<a href="../dartlib_core/Coordinate.html">Coordinate</a> other) <a class="anchor-link" href="#:sub"
-              title="Permalink to Coordinate.operator -">#</a></h4>
-<div class="doc">
-<p>Subtract a <a class="crossref" href="../dartlib_core/Coordinate.html">Coordinate</a> and returns the result as new <a class="crossref" href="../dartlib_core/Vector.html">Vector</a>.</p>
-<pre class="source">
-Vector operator -(Coordinate other) =&gt; difference(this, other);
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="getDistance">
-<span class="show-code">Code</span>
-<a href="../dart_core/num.html">num</a> <strong>getDistance</strong>(<a href="../dartlib_core/Coordinate.html">Coordinate</a> other) <a class="anchor-link" href="#getDistance"
-              title="Permalink to Coordinate.getDistance">#</a></h4>
-<div class="doc">
-<p>Computes the distance to another <a class="crossref" href="../dartlib_core/Coordinate.html">Coordinate</a>.</p>
-<pre class="source">
-num getDistance (Coordinate other) =&gt; (this - other).length;
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="get:isValid">
-<span class="show-code">Code</span>
-<a href="../dart_core/bool.html">bool</a> <strong>get isValid</strong>() <a class="anchor-link" href="#get:isValid"
-              title="Permalink to Coordinate.get isValid">#</a></h4>
+<a href="../dartlib_core/Coordinate.html">Coordinate</a> <strong>operator +</strong>(<a href="../dartlib_core/Vector.html">Vector</a> other) <a class="anchor-link" href="#operator"
+              title="Permalink to Coordinate.operator +">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-bool get isValid() =&gt; isValidNumber(x) &amp;&amp; isValidNumber(y);
+Coordinate operator +(Vector other) =&gt;
+    new Coordinate(x + other.x, y + other.y);
 </pre>
 </div>
 </div>
 <div class="method"><h4 id="toString">
 <span class="show-code">Code</span>
-<a href="../dart_core/String.html">String</a> <strong>toString</strong>() <a class="anchor-link" href="#toString"
+<a href="../core/String.html">String</a> <strong>toString</strong>() <a class="anchor-link" href="#toString"
               title="Permalink to Coordinate.toString">#</a></h4>
 <div class="doc">
 
@@ -113,10 +125,21 @@ String toString() =&gt; '{x:${x}, y:${y}}';
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="toVector">
+<span class="show-code">Code</span>
+<a href="../dartlib_core/Vector.html">Vector</a> <strong>toVector</strong>() <a class="anchor-link" href="#toVector"
+              title="Permalink to Coordinate.toVector">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Vector toVector() =&gt; new Vector(x, y);
+</pre>
+</div>
+</div>
 <h3>Fields</h3>
 <div class="field"><h4 id="x">
 <span class="show-code">Code</span>
-final <a href="../dart_core/num.html">num</a>         <strong>x</strong> <a class="anchor-link"
+final <a href="../core/num.html">num</a>         <strong>x</strong> <a class="anchor-link"
             href="#x"
             title="Permalink to Coordinate.x">#</a>
         </h4>
@@ -129,7 +152,7 @@ final num x, y;
 </div>
 <div class="field"><h4 id="y">
 <span class="show-code">Code</span>
-final <a href="../dart_core/num.html">num</a>         <strong>y</strong> <a class="anchor-link"
+final <a href="../core/num.html">num</a>         <strong>y</strong> <a class="anchor-link"
             href="#y"
             title="Permalink to Coordinate.y">#</a>
         </h4>

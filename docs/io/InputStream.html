@@ -1,0 +1,193 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>InputStream Interface / io Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="io" data-type="InputStream">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../io.html">io</a> &rsaquo; <a href="../io/InputStream.html">InputStream</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>InputStream</strong>
+          Interface
+        </h2>
+        
+<div class="doc">
+<p>Basic input stream which supplies binary data.</p>
+<p>Input streams are used to read data sequentially from some data
+source. All input streams are non-blocking. They each have a number
+of read calls which will always return without any IO related
+blocking. If the requested data is not available a read call will
+return <code>null</code>. All input streams have one or more handlers which
+will trigger when data is available.</p>
+<p>The following example shows a data handler in an ordinary input
+stream which will be called when some data is available and a call
+to read will not return <code>null</code>.</p>
+<p>[:
+   InputStream input = ...
+   input.onData = () {</p>
+<pre><code> var data = input.read();
+ ...
+</code></pre>
+<p>   };
+:]</p>
+<p>If for some reason the data from an input stream cannot be handled
+by the application immediately setting the data handler to <code>null</code>
+will avoid further callbacks until it is set to a function
+again. While the data handler is not active system flow control
+will be used to avoid buffering more data than needed.</p>
+<p>Always set up appropriate handlers when using input streams.</p>
+</div>
+<h3>Subinterfaces</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../io/ListInputStream.html">ListInputStream</a></span>, <span class="type-box"><span class="icon-interface"></span><a href="../io/SocketInputStream.html">SocketInputStream</a></span></p>
+<h3>Methods</h3>
+<div class="method"><h4 id="available">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a> <strong>available</strong>() <a class="anchor-link" href="#available"
+              title="Permalink to InputStream.available">#</a></h4>
+<div class="doc">
+<p>Returns the number of bytes available for immediate reading.</p>
+<pre class="source">
+int available();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="close">
+<span class="show-code">Code</span>
+void <strong>close</strong>() <a class="anchor-link" href="#close"
+              title="Permalink to InputStream.close">#</a></h4>
+<div class="doc">
+<p>Close the underlying communication channel to avoid getting any
+more data. In normal situations, where all data is read from the
+stream until the close handler is called, calling <a class="crossref" href="../io/InputStream.html#close">close</a> is not
+required. When <a class="crossref" href="../io/InputStream.html#close">close</a> is used the close handler will still be
+called.</p>
+<pre class="source">
+void close();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="closed">
+<span class="show-code">Code</span>
+<a href="../core/bool.html">bool</a> <strong>get closed</strong>() <a class="anchor-link" href="#closed"
+              title="Permalink to InputStream.get closed">#</a></h4>
+<div class="doc">
+<p>Returns whether the stream is closed. There will be no more data
+to read.</p>
+<pre class="source">
+bool get closed();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onClosed">
+<span class="show-code">Code</span>
+void <strong>set onClosed</strong>(callback) <a class="anchor-link" href="#onClosed"
+              title="Permalink to InputStream.set onClosed">#</a></h4>
+<div class="doc">
+<p>Sets the handler that gets called when there will be no more data
+available in the stream.</p>
+<pre class="source">
+void set onClosed(void callback());
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onData">
+<span class="show-code">Code</span>
+void <strong>set onData</strong>(callback) <a class="anchor-link" href="#onData"
+              title="Permalink to InputStream.set onData">#</a></h4>
+<div class="doc">
+<p>Sets the handler that gets called when data is available.</p>
+<pre class="source">
+void set onData(void callback());
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onError">
+<span class="show-code">Code</span>
+void <strong>set onError</strong>(callback) <a class="anchor-link" href="#onError"
+              title="Permalink to InputStream.set onError">#</a></h4>
+<div class="doc">
+<p>Sets the handler that gets called when the underlying
+communication channel gets into some kind of error situation.</p>
+<pre class="source">
+void set onError(void callback(e));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="pipe">
+<span class="show-code">Code</span>
+void <strong>pipe</strong>(<a href="../io/OutputStream.html">OutputStream</a> output, [<a href="../core/bool.html">bool</a> close]) <a class="anchor-link" href="#pipe"
+              title="Permalink to InputStream.pipe">#</a></h4>
+<div class="doc">
+<p>Pipe the content of this input stream directly to the output
+stream 
+<span class="param">output</span>. The default behavior is to close the output when
+all the data from the input stream have been written. Specifying
+<code>false</code> for the optional argument 
+<span class="param">close</span> keeps the output
+stream open after writing all data from the input stream. The
+default value for 
+<span class="param">close</span> is <code>true</code>.</p>
+<pre class="source">
+void pipe(OutputStream output, [bool close]);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="read">
+<span class="show-code">Code</span>
+<a href="../core/List.html">List</a>&lt;<a href="../core/int.html">int</a>&gt; <strong>read</strong>([<a href="../core/int.html">int</a> len]) <a class="anchor-link" href="#read"
+              title="Permalink to InputStream.read">#</a></h4>
+<div class="doc">
+<p>Reads data from the stream. Returns a system allocated buffer
+with up to 
+<span class="param">len</span> bytes. If no value is passed for 
+<span class="param">len</span> all
+available data will be returned. If no data is available null will
+be returned.</p>
+<pre class="source">
+List&lt;int&gt; read([int len]);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="readInto">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a> <strong>readInto</strong>(<a href="../core/List.html">List</a>&lt;<a href="../core/int.html">int</a>&gt; buffer, [<a href="../core/int.html">int</a> offset, <a href="../core/int.html">int</a> len]) <a class="anchor-link" href="#readInto"
+              title="Permalink to InputStream.readInto">#</a></h4>
+<div class="doc">
+<p>Reads up to 
+<span class="param">len</span> bytes into buffer 
+<span class="param">buffer</span> starting at offset
+
+<span class="param">offset</span>. Returns the number of bytes actually read which might
+be zero. If 
+<span class="param">offset</span> is not specified 0 is used. If 
+<span class="param">len</span> is not
+specified the length of 
+<span class="param">buffer</span> is used.</p>
+<pre class="source">
+int readInto(List&lt;int&gt; buffer, [int offset, int len]);
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

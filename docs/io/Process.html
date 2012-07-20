@@ -1,0 +1,203 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>Process Class / io Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="io" data-type="Process">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../io.html">io</a> &rsaquo; <a href="../io/Process.html">Process</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>Process</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+<p><a class="crossref" href="../io/Process.html">Process</a> is used to start new processes using the static
+<a class="crossref" href="../io/Process.html#start">start</a> and <a class="crossref" href="../io/Process.html#run">run</a> methods.</p>
+</div>
+<h3>Static Methods</h3>
+<div class="method"><h4 id="run">
+<span class="show-code">Code</span>
+<a href="../core/Future.html">Future</a>&lt;<a href="../io/ProcessResult.html">ProcessResult</a>&gt; <strong>run</strong>(<a href="../core/String.html">String</a> executable, <a href="../core/List.html">List</a>&lt;<a href="../core/String.html">String</a>&gt; arguments, [<a href="../io/ProcessOptions.html">ProcessOptions</a> options]) <a class="anchor-link" href="#run"
+              title="Permalink to Process.run">#</a></h4>
+<div class="doc">
+<p>Starts a process and runs it non-interactively to completion. The
+process run is 
+<span class="param">executable</span> with the specified 
+<span class="param">arguments</span>.</p>
+<p>An optional <a class="crossref" href="../io/ProcessOptions.html">ProcessOptions</a> object can be passed to specify
+options other than the executable and the arguments.</p>
+<p>Returns a <code>Future&lt;ProcessResult&gt;</code> that completes with the
+result of running the process, i.e., exit code, standard out and
+standard in.</p>
+<pre class="source">
+static Future&lt;ProcessResult&gt; run(String executable,
+                                 List&lt;String&gt; arguments,
+                                 [ProcessOptions options]) {
+  return _Process.run(executable, arguments, options);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="start">
+<span class="show-code">Code</span>
+<a href="../io/Process.html">Process</a> <strong>start</strong>(<a href="../core/String.html">String</a> executable, <a href="../core/List.html">List</a>&lt;<a href="../core/String.html">String</a>&gt; arguments, [<a href="../io/ProcessOptions.html">ProcessOptions</a> options]) <a class="anchor-link" href="#start"
+              title="Permalink to Process.start">#</a></h4>
+<div class="doc">
+<p>Starts a process running the 
+<span class="param">executable</span> with the specified
+
+<span class="param">arguments</span>. Returns a <a class="crossref" href="../io/Process.html">Process</a> instance that can be used to
+interact with the process.</p>
+<p>An optional <a class="crossref" href="../io/ProcessOptions.html">ProcessOptions</a> object can be passed to specify
+options other than the executable and the arguments.</p>
+<p>When the process has been successfully started <a class="crossref" href="../io/Process.html#onStart">onStart</a> is
+called on the returned Process object. If the process fails to
+start <a class="crossref" href="../io/Process.html#onError">onError</a> is called on the returned Process object.</p>
+<p>No data can be written to the process stdin and the process
+cannot be closed nor killed before <a class="crossref" href="../io/Process.html#onStart">onStart</a> has been invoked.</p>
+<pre class="source">
+static Process start(String executable,
+                     List&lt;String&gt; arguments,
+                     [ProcessOptions options]) {
+  return _Process.start(executable, arguments, options);
+}
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="close">
+<span class="show-code">Code</span>
+void <strong>close</strong>() <a class="anchor-link" href="#close"
+              title="Permalink to Process.close">#</a></h4>
+<div class="doc">
+<p>Terminates the streams of a process. <a class="crossref" href="../io/Process.html#close">close</a> must be called on a
+process to free the system resources associated with it if not all
+data on the stdout and stderr streams have been read. Usually,
+close should be called in <a class="crossref" href="../io/Process.html#onExit">onExit</a>, but care must be taken to actually
+wait on the stderr and stdout streams to close if all data is required.
+Once a process has been closed it can no longer be killed and <a class="crossref" href="../io/Process.html#onExit">onExit</a>
+is detached so the application is not notified of process termination.</p>
+<pre class="source">
+abstract void close();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="kill">
+<span class="show-code">Code</span>
+void <strong>kill</strong>([<a href="../io/ProcessSignal.html">ProcessSignal</a> signal]) <a class="anchor-link" href="#kill"
+              title="Permalink to Process.kill">#</a></h4>
+<div class="doc">
+<p>On Windows, <a class="crossref" href="../io/Process.html#kill">kill</a> kills the process, ignoring the 
+<span class="param">signal</span> flag. On
+Posix systems, <a class="crossref" href="../io/Process.html#kill">kill</a> sends 
+<span class="param">signal</span> to the process. Depending on the
+signal giving, it'll have different meanings. The default 
+<span class="param">signal</span> to
+send is <code>ProcessSignal.SIGTERM</code>. When the process terminates as a result
+of calling [kill] [onExit] is called. If the kill operation fails,
+<a class="crossref" href="../io/Process.html#onError">onError</a> is called.</p>
+<pre class="source">
+abstract void kill([ProcessSignal signal]);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onError">
+<span class="show-code">Code</span>
+void <strong>set onError</strong>(callback) <a class="anchor-link" href="#onError"
+              title="Permalink to Process.set onError">#</a></h4>
+<div class="doc">
+<p>Set an error handler which gets invoked if an operation on the process
+fails.</p>
+<pre class="source">
+abstract void set onError(void callback(e));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onExit">
+<span class="show-code">Code</span>
+void <strong>set onExit</strong>(callback) <a class="anchor-link" href="#onExit"
+              title="Permalink to Process.set onExit">#</a></h4>
+<div class="doc">
+<p>Sets an exit handler which gets invoked when the process
+terminates.</p>
+<p>Throws an <code>UnsupportedOperationException</code> if the process is
+non-interactive.</p>
+<pre class="source">
+abstract void set onExit(void callback(int exitCode));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onStart">
+<span class="show-code">Code</span>
+void <strong>set onStart</strong>(callback) <a class="anchor-link" href="#onStart"
+              title="Permalink to Process.set onStart">#</a></h4>
+<div class="doc">
+<p>Set the start handler which gets invoked when the process is
+successfully started.</p>
+<pre class="source">
+abstract void set onStart(void callback());
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="stderr">
+<span class="show-code">Code</span>
+<a href="../io/InputStream.html">InputStream</a> <strong>get stderr</strong>() <a class="anchor-link" href="#stderr"
+              title="Permalink to Process.get stderr">#</a></h4>
+<div class="doc">
+<p>Returns an input stream of the process stderr.</p>
+<p>Throws an <code>UnsupportedOperationException</code> if the process is
+non-interactive.</p>
+<pre class="source">
+abstract InputStream get stderr();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="stdin">
+<span class="show-code">Code</span>
+<a href="../io/OutputStream.html">OutputStream</a> <strong>get stdin</strong>() <a class="anchor-link" href="#stdin"
+              title="Permalink to Process.get stdin">#</a></h4>
+<div class="doc">
+<p>Returns an output stream to the process stdin.</p>
+<p>Throws an <code>UnsupportedOperationException</code> if the process is
+non-interactive.</p>
+<pre class="source">
+abstract OutputStream get stdin();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="stdout">
+<span class="show-code">Code</span>
+<a href="../io/InputStream.html">InputStream</a> <strong>get stdout</strong>() <a class="anchor-link" href="#stdout"
+              title="Permalink to Process.get stdout">#</a></h4>
+<div class="doc">
+<p>Returns an input stream of the process stdout.</p>
+<p>Throws an <code>UnsupportedOperationException</code> if the process is
+non-interactive.</p>
+<pre class="source">
+abstract InputStream get stdout();
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

@@ -1,0 +1,108 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>ListIterator&lt;T&gt; Class / js_helper Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="js_helper" data-type="ListIterator&amp;lt;T&amp;gt;">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../js_helper.html">js_helper</a> &rsaquo; <a href="../js_helper/ListIterator.html">ListIterator&lt;T&gt;</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>ListIterator&lt;T&gt;</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Implements</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../core/Iterator.html">Iterator</a></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="ListIterator">
+<span class="show-code">Code</span>
+new <strong>ListIterator</strong>(<a href="../core/List.html">List</a>&lt;<a href="../js_helper/ListIterator.html">T</a>&gt; list) <a class="anchor-link" href="#ListIterator"
+              title="Permalink to ListIterator&lt;T&gt;.ListIterator">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+ListIterator(List&lt;T&gt; this.list) : i = 0;
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="hasNext">
+<span class="show-code">Code</span>
+<a href="../core/bool.html">bool</a> <strong>hasNext</strong>() <a class="anchor-link" href="#hasNext"
+              title="Permalink to ListIterator&lt;T&gt;.hasNext">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool hasNext() =&gt; i &lt; JS('int', @'#.length', list);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="next">
+<span class="show-code">Code</span>
+<a href="../js_helper/ListIterator.html">T</a> <strong>next</strong>() <a class="anchor-link" href="#next"
+              title="Permalink to ListIterator&lt;T&gt;.next">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+T next() {
+  if (!hasNext()) throw new NoMoreElementsException();
+  var value = JS('Object', @'#[#]', list, i);
+  i += 1;
+  return value;
+}
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="i">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a>         <strong>i</strong> <a class="anchor-link"
+            href="#i"
+            title="Permalink to ListIterator&lt;T&gt;.i">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+int i;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="list">
+<span class="show-code">Code</span>
+<a href="../core/List.html">List</a>&lt;<a href="../js_helper/ListIterator.html">T</a>&gt;         <strong>list</strong> <a class="anchor-link"
+            href="#list"
+            title="Permalink to ListIterator&lt;T&gt;.list">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+List&lt;T&gt; list;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

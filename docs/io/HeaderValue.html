@@ -1,0 +1,126 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>HeaderValue Interface / io Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="io" data-type="HeaderValue">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../io.html">io</a> &rsaquo; <a href="../io/HeaderValue.html">HeaderValue</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>HeaderValue</strong>
+          Interface
+        </h2>
+        
+<div class="doc">
+<p>Representation of a header value in the form:</p>
+<p>  <code>value; parameter1=value1; parameter2=value2</code></p>
+<p><a class="crossref" href="../io/HeaderValue.html#new:HeaderValue">HeaderValue</a> can be used to conveniently build and parse header
+values on this form.</p>
+<p>To build an <code>Accepts</code> header with the value</p>
+<pre><code>text/plain; q=0.3, text/html
+</code></pre>
+<p>use code like this:</p>
+<pre><code>HttpClientRequest request = ...;
+var v = new HeaderValue();
+v.value = "text/plain";
+v.parameters["q"] = "0.3"
+request.headers.add(HttpHeaders.ACCEPT, v);
+request.headers.add(HttpHeaders.ACCEPT, "text/html");
+</code></pre>
+<p>To parse the header values use the <code>fromString</code> constructor.</p>
+<pre><code>HttpRequest request = ...;
+List&lt;String&gt; values = request.headers[HttpHeaders.ACCEPT];
+values.forEach((value) {
+  HeaderValue v = new HeaderValue.fromString(value);
+  // Use v.value and v.parameters
+});
+</code></pre>
+</div>
+<h3>Subinterfaces</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../io/ContentType.html">ContentType</a></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="HeaderValue">
+<span class="show-code">Code</span>
+new <strong>HeaderValue</strong>.fromString(<a href="../core/String.html">String</a> value) <a class="anchor-link" href="#HeaderValue"
+              title="Permalink to HeaderValue.HeaderValue">#</a></h4>
+<div class="doc">
+<p>Creates a new header value object from parsing a header value
+string with both value and optional parameters.</p>
+<pre class="source">
+HeaderValue.fromString(String value);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="HeaderValue">
+<span class="show-code">Code</span>
+new <strong>HeaderValue</strong>([<a href="../core/String.html">String</a> value]) <a class="anchor-link" href="#HeaderValue"
+              title="Permalink to HeaderValue.HeaderValue">#</a></h4>
+<div class="doc">
+<p>Creates a new header value object setting the value part.</p>
+<pre class="source">
+HeaderValue([String value]);
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="parameters">
+<span class="show-code">Code</span>
+<a href="../core/Map.html">Map</a>&lt;<a href="../core/String.html">String</a>, <a href="../core/String.html">String</a>&gt; <strong>get parameters</strong>() <a class="anchor-link" href="#parameters"
+              title="Permalink to HeaderValue.get parameters">#</a></h4>
+<div class="doc">
+<p>Gets the map of parameters.</p>
+<pre class="source">
+Map&lt;String, String&gt; get parameters();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="toString">
+<span class="show-code">Code</span>
+<a href="../core/String.html">String</a> <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to HeaderValue.toString">#</a></h4>
+<div class="doc">
+<p>Returns the formatted string representation in the form:</p>
+<pre><code>value; parameter1=value1; parameter2=value2
+</code></pre>
+<pre class="source">
+String toString();
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="value">
+<span class="show-code">Code</span>
+<a href="../core/String.html">String</a>         <strong>value</strong> <a class="anchor-link"
+            href="#value"
+            title="Permalink to HeaderValue.value">#</a>
+        </h4>
+        <div class="doc">
+<p>Gets and sets the header value.</p>
+<pre class="source">
+String value;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

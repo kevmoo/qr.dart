@@ -1,0 +1,178 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>TestPlurality Class / vote_test Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="vote_test" data-type="TestPlurality">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../vote_test.html">vote_test</a> &rsaquo; <a href="../vote_test/TestPlurality.html">TestPlurality</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>TestPlurality</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Static Methods</h3>
+<div class="method"><h4 id="randomVoteTest">
+<span class="show-code">Code</span>
+void <strong>randomVoteTest</strong>() <a class="anchor-link" href="#randomVoteTest"
+              title="Permalink to TestPlurality.randomVoteTest">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static void randomVoteTest(){
+  var c1 = "candidate 1";
+
+  var voters = new List&lt;String&gt;();
+  for(num i = 0;i &lt; 10; i++){
+    voters.add("Voter ${i}");
+  }
+
+  var ballots = voters.map((v) =&gt; new PluralityBallot(v, c1));
+
+  var election = new PluralityElection(ballots);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="run">
+<span class="show-code">Code</span>
+void <strong>run</strong>() <a class="anchor-link" href="#run"
+              title="Permalink to TestPlurality.run">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static void run() {
+  group('plurality', (){
+    test('random vote test', randomVoteTest);
+    test('Plurality Election Hates Double Votes', testPluralityElectionHatesDoubleVotes);
+    test('tied for 1st', testTiedforFirst);
+    test('single vote, single winner', testSingleVoteSingleWinner);
+  });
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="testPluralityElectionHatesDoubleVotes">
+<span class="show-code">Code</span>
+void <strong>testPluralityElectionHatesDoubleVotes</strong>() <a class="anchor-link" href="#testPluralityElectionHatesDoubleVotes"
+              title="Permalink to TestPlurality.testPluralityElectionHatesDoubleVotes">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static void testPluralityElectionHatesDoubleVotes(){
+  var c1 = "candidate 1";
+
+  var voter = "Bad Voter";
+  var voters = [voter, voter];
+
+
+  var ballots = new List.from(voters.map((v) =&gt; new PluralityBallot(v, c1)));
+
+  bool exception = false;
+  expect(() { new PluralityElection(ballots); }, throws);
+
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="testSingleVoteSingleWinner">
+<span class="show-code">Code</span>
+void <strong>testSingleVoteSingleWinner</strong>() <a class="anchor-link" href="#testSingleVoteSingleWinner"
+              title="Permalink to TestPlurality.testSingleVoteSingleWinner">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static void testSingleVoteSingleWinner(){
+  var c1 = "candidate 1";
+
+  var voter = "Bad Voter";
+  var voters = [voter];
+
+  var ballots = new List.from(voters.map((v) =&gt; new PluralityBallot(v, c1)));
+
+  var election = new PluralityElection(ballots);
+  expect(election.singleWinner, equals(c1));
+  expect(election.places.length, equals(1));
+  var firstPlace = election.places[0];
+  expect(firstPlace.length, equals(1));
+  expect(firstPlace[0], equals(c1));
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="testTiedforFirst">
+<span class="show-code">Code</span>
+void <strong>testTiedforFirst</strong>() <a class="anchor-link" href="#testTiedforFirst"
+              title="Permalink to TestPlurality.testTiedforFirst">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static void testTiedforFirst() {
+  var c1 = "candidate 1";
+  var c2 = "candidate 2";
+  var c3 = "candidate 3";
+
+  var voters = new List&lt;String&gt;();
+  for(num i = 0; i &lt; 10; i++){
+    voters.add("c1 Voter ${i}");
+  }
+
+  var ballots = new List();
+
+  ballots.addAll(voters.map((v) =&gt; new PluralityBallot(v, c1)));
+
+  voters = new List&lt;String&gt;();
+  for(num i = 0; i &lt; 10; i++){
+    voters.add("c2 Voter ${voters.length}");
+  }
+
+  ballots.addAll(voters.map((v) =&gt; new PluralityBallot(v, c2)));
+
+  voters = new List&lt;String&gt;();
+  for(num i = 0; i &lt; 9; i++){
+    voters.add("c3 Voter ${voters.length}");
+  }
+
+  ballots.addAll(voters.map((v) =&gt; new PluralityBallot(v, c3)));
+
+  var election = new PluralityElection(ballots);
+  expect(election.singleWinner, isNull);
+  expect(election.places.length, equals(2));
+
+  var firstPlace = election.places[0];
+  expect(firstPlace.place, equals(1));
+  expect(firstPlace.length, equals(2));
+
+  var thirdPlace = election.places[1];
+  expect(thirdPlace.place, equals(3));
+  expect(thirdPlace.length, equals(1));
+  expect(thirdPlace[0], equals(c3));
+}
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

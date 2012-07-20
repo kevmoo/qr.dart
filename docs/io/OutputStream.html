@@ -1,0 +1,188 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>OutputStream Interface / io Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="io" data-type="OutputStream">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../io.html">io</a> &rsaquo; <a href="../io/OutputStream.html">OutputStream</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>OutputStream</strong>
+          Interface
+        </h2>
+        
+<div class="doc">
+<p>Output streams are used to write data sequentially to a data
+destination e.g. a connected socket or an open file.</p>
+<p>An output stream provides internal buffering of the data written
+through all calls to <a class="crossref" href="../io/OutputStream.html#write">write</a> and <a class="crossref" href="../io/OutputStream.html#writeFrom">writeFrom</a> if data cannot be
+written immediately to the communication channel. The callback set
+through <a class="crossref" href="../io/OutputStream.html#onNoPendingWrites">onNoPendingWrites</a> can be used to to keep the rate of
+writing in sync with the rate the system can actually write data to
+the underlying communication channel.</p>
+</div>
+<h3>Subinterfaces</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../io/ListOutputStream.html">ListOutputStream</a></span>, <span class="type-box"><span class="icon-interface"></span><a href="../io/SocketOutputStream.html">SocketOutputStream</a></span></p>
+<h3>Methods</h3>
+<div class="method"><h4 id="close">
+<span class="show-code">Code</span>
+void <strong>close</strong>() <a class="anchor-link" href="#close"
+              title="Permalink to OutputStream.close">#</a></h4>
+<div class="doc">
+<p>Indicate that all data has been written to the output
+stream. When all data has been written to the communication
+channel it will be closed.</p>
+<pre class="source">
+void close();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="destroy">
+<span class="show-code">Code</span>
+void <strong>destroy</strong>() <a class="anchor-link" href="#destroy"
+              title="Permalink to OutputStream.destroy">#</a></h4>
+<div class="doc">
+<p>Close the communication channel immediately ignoring any buffered
+data.</p>
+<pre class="source">
+void destroy();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="flush">
+<span class="show-code">Code</span>
+void <strong>flush</strong>() <a class="anchor-link" href="#flush"
+              title="Permalink to OutputStream.flush">#</a></h4>
+<div class="doc">
+<p>Flushes data from any internal buffers as soon as possible. Note
+that the actual meaning of calling <a class="crossref" href="../io/OutputStream.html#flush">flush</a> will depend on the
+actual type of the underlying communication channel.</p>
+<pre class="source">
+void flush();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onClosed">
+<span class="show-code">Code</span>
+void <strong>set onClosed</strong>(callback) <a class="anchor-link" href="#onClosed"
+              title="Permalink to OutputStream.set onClosed">#</a></h4>
+<div class="doc">
+<p>Sets the handler that gets called when the underlying
+communication channel has been closed and no more data can be
+send.</p>
+<pre class="source">
+void set onClosed(void callback());
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onError">
+<span class="show-code">Code</span>
+void <strong>set onError</strong>(callback) <a class="anchor-link" href="#onError"
+              title="Permalink to OutputStream.set onError">#</a></h4>
+<div class="doc">
+<p>Sets the handler that gets called when the underlying
+communication channel gets into some kind of error situation.</p>
+<pre class="source">
+void set onError(void callback(e));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onNoPendingWrites">
+<span class="show-code">Code</span>
+void <strong>set onNoPendingWrites</strong>(callback) <a class="anchor-link" href="#onNoPendingWrites"
+              title="Permalink to OutputStream.set onNoPendingWrites">#</a></h4>
+<div class="doc">
+<p>Sets the handler that gets called when the internal OS buffers
+have been flushed. This callback can be used to keep the rate of
+writing in sync with the rate the system can write data to the
+underlying communication channel.</p>
+<pre class="source">
+void set onNoPendingWrites(void callback());
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="write">
+<span class="show-code">Code</span>
+<a href="../core/bool.html">bool</a> <strong>write</strong>(<a href="../core/List.html">List</a>&lt;<a href="../core/int.html">int</a>&gt; buffer, [<a href="../core/bool.html">bool</a> copyBuffer]) <a class="anchor-link" href="#write"
+              title="Permalink to OutputStream.write">#</a></h4>
+<div class="doc">
+<p>Writes the content of 
+<span class="param">buffer</span> to the stream. If 
+<span class="param">copyBuffer</span> is
+false ownership of the specified buffer is passed to the system
+and the caller should not change it afterwards. The default value
+for 
+<span class="param">copyBuffer</span> is true.</p>
+<p>Returns true if the data could be written to the underlying
+communication channel immediately. Otherwise the data is buffered
+by the output stream and will be sent as soon as possible.</p>
+<pre class="source">
+bool write(List&lt;int&gt; buffer, [bool copyBuffer]);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="writeFrom">
+<span class="show-code">Code</span>
+<a href="../core/bool.html">bool</a> <strong>writeFrom</strong>(<a href="../core/List.html">List</a>&lt;<a href="../core/int.html">int</a>&gt; buffer, [<a href="../core/int.html">int</a> offset, <a href="../core/int.html">int</a> len]) <a class="anchor-link" href="#writeFrom"
+              title="Permalink to OutputStream.writeFrom">#</a></h4>
+<div class="doc">
+<p>Writes 
+<span class="param">len</span> bytes from buffer 
+<span class="param">buffer</span> starting at offset
+
+<span class="param">offset</span> to the output stream. If 
+<span class="param">offset</span> is not specified the
+default is 0. If 
+<span class="param">len</span> is not specified the default is the length
+of the buffer minus 
+<span class="param">offset</span> (i.e. writing from offset to the end
+of the buffer). The system will copy the data to be written so
+the caller can safely change 
+<span class="param">buffer</span> afterwards.</p>
+<p>Returns true if the data could be written to the underlying
+communication channel immediately. Otherwise the data is buffered
+by the output stream and will be sent as soon as possible.</p>
+<pre class="source">
+bool writeFrom(List&lt;int&gt; buffer, [int offset, int len]);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="writeString">
+<span class="show-code">Code</span>
+<a href="../core/bool.html">bool</a> <strong>writeString</strong>(<a href="../core/String.html">String</a> string, [<a href="../io/Encoding.html">Encoding</a> encoding]) <a class="anchor-link" href="#writeString"
+              title="Permalink to OutputStream.writeString">#</a></h4>
+<div class="doc">
+<p>Write a string to the stream using the given 
+<span class="param">encoding</span>.The
+default encoding is UTF-8 - <code>Encoding.UTF_8</code>.</p>
+<p>Returns true if the data could be written to the underlying
+communication channel immediately. Otherwise the data is buffered
+by the output stream and will be sent as soon as possible.</p>
+<pre class="source">
+bool writeString(String string, [Encoding encoding]);
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

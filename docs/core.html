@@ -1,0 +1,453 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>core Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="favicon.ico">
+        
+        </head>
+        <body data-library="core">
+        <div class="page">
+        <div class="header">
+          <a href="index.html"><div class="logo"></div></a>
+          <a href="index.html">Dart Documentation</a>
+         &rsaquo; <a href="core.html">core</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+<h2><strong>core</strong> library</h2>
+<div class="doc"></div>
+<h3>Methods</h3>
+<div class="method"><h4 id="assert">
+<span class="show-code">Code</span>
+void <strong>assert</strong>(condition) <a class="anchor-link" href="#assert"
+              title="Permalink to assert">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void assert(condition) {
+  if (condition is Function) condition = condition();
+  if (!condition) throw new AssertionError();
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="exit">
+<span class="show-code">Code</span>
+void <strong>exit</strong>(<a href="core/int.html">int</a> exitCode) <a class="anchor-link" href="#exit"
+              title="Permalink to exit">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void exit(int exitCode) {
+  throw new UnsupportedOperationException("exit($exitCode)");
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="print">
+<span class="show-code">Code</span>
+void <strong>print</strong>(obj) <a class="anchor-link" href="#print"
+              title="Permalink to print">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void print(var obj) =&gt; Primitives.printString(obj.toString());
+</pre>
+</div>
+</div>
+<h3>Classes</h3>
+          <div class="type">
+          <h4>
+            <a href="core/AssertionError.html"><strong>AssertionError</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/Clock.html"><strong>Clock</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/Expect.html"><strong>Expect</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/FallThroughError.html"><strong>FallThroughError</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/Futures.html"><strong>Futures</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/InternalError.html"><strong>InternalError</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/Math.html"><strong>Math</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/Object.html"><strong>Object</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/Strings.html"><strong>Strings</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/TypeError.html"><strong>TypeError</strong></a>
+          </h4>
+          </div>
+          
+<h3>Interfaces</h3>
+          <div class="type">
+          <h4>
+            <a href="core/Collection.html"><strong>Collection&lt;E&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/Comparable.html"><strong>Comparable</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/Completer.html"><strong>Completer&lt;T&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/Date.html"><strong>Date</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/Duration.html"><strong>Duration</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/Expando.html"><strong>Expando&lt;T&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/Function.html"><strong>Function</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/Future.html"><strong>Future&lt;T&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/HashMap.html"><strong>HashMap&lt;K, V&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/HashSet.html"><strong>HashSet&lt;E&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/Hashable.html"><strong>Hashable</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/Iterable.html"><strong>Iterable&lt;E&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/Iterator.html"><strong>Iterator&lt;E&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/LinkedHashMap.html"><strong>LinkedHashMap&lt;K, V&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/List.html"><strong>List&lt;E&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/Map.html"><strong>Map&lt;K, V&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/Match.html"><strong>Match</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/Options.html"><strong>Options</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/Pattern.html"><strong>Pattern</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/Queue.html"><strong>Queue&lt;E&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/RegExp.html"><strong>RegExp</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/Set.html"><strong>Set&lt;E&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/Stopwatch.html"><strong>Stopwatch</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/String.html"><strong>String</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/StringBuffer.html"><strong>StringBuffer</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/Uint8List.html"><strong>Uint8List</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/bool.html"><strong>bool</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/double.html"><strong>double</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/int.html"><strong>int</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/num.html"><strong>num</strong></a>
+          </h4>
+          </div>
+          
+<h3>Exceptions</h3>
+          <div class="type">
+          <h4>
+            <a href="core/BadNumberFormatException.html"><strong>BadNumberFormatException</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/CastException.html"><strong>CastException</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/ClosureArgumentMismatchException.html"><strong>ClosureArgumentMismatchException</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/EmptyQueueException.html"><strong>EmptyQueueException</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/Exception.html"><strong>Exception</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/ExpectException.html"><strong>ExpectException</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/FutureAlreadyCompleteException.html"><strong>FutureAlreadyCompleteException</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/FutureNotCompleteException.html"><strong>FutureNotCompleteException</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/IllegalAccessException.html"><strong>IllegalAccessException</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/IllegalArgumentException.html"><strong>IllegalArgumentException</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/IllegalJSRegExpException.html"><strong>IllegalJSRegExpException</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/IndexOutOfRangeException.html"><strong>IndexOutOfRangeException</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/IntegerDivisionByZeroException.html"><strong>IntegerDivisionByZeroException</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/NoMoreElementsException.html"><strong>NoMoreElementsException</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/NoSuchMethodException.html"><strong>NoSuchMethodException</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/NotImplementedException.html"><strong>NotImplementedException</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/NullPointerException.html"><strong>NullPointerException</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/ObjectNotClosureException.html"><strong>ObjectNotClosureException</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/OutOfMemoryException.html"><strong>OutOfMemoryException</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/StackOverflowException.html"><strong>StackOverflowException</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/StaticResolutionException.html"><strong>StaticResolutionException</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/UnsupportedOperationException.html"><strong>UnsupportedOperationException</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="core/WrongArgumentCountException.html"><strong>WrongArgumentCountException</strong></a>
+          </h4>
+          </div>
+          
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="client-live-nav.js"></script>
+        </body></html>
+        

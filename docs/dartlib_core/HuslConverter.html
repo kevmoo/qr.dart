@@ -29,7 +29,7 @@
 <h3>Static Methods</h3>
 <div class="method"><h4 id="HUSLtoRGB">
 <span class="show-code">Code</span>
-<a href="../dart_core/List.html">List</a> <strong>HUSLtoRGB</strong>(<a href="../dart_core/num.html">num</a> h, <a href="../dart_core/num.html">num</a> s, <a href="../dart_core/num.html">num</a> l) <a class="anchor-link" href="#HUSLtoRGB"
+<a href="../core/List.html">List</a>&lt;<a href="../core/num.html">num</a>&gt; <strong>HUSLtoRGB</strong>(<a href="../core/num.html">num</a> h, <a href="../core/num.html">num</a> s, <a href="../core/num.html">num</a> l) <a class="anchor-link" href="#HUSLtoRGB"
               title="Permalink to HuslConverter.HUSLtoRGB">#</a></h4>
 <div class="doc">
 
@@ -40,9 +40,22 @@ static List&lt;num&gt; HUSLtoRGB(num h, num s, num l) {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="get:m">
+<div class="method"><h4 id="RGBtoHUSL">
 <span class="show-code">Code</span>
-<a href="../dart_core/List.html">List</a> <strong>get m</strong>() <a class="anchor-link" href="#get:m"
+<a href="../core/List.html">List</a>&lt;<a href="../core/num.html">num</a>&gt; <strong>RGBtoHUSL</strong>(<a href="../core/num.html">num</a> r, <a href="../core/num.html">num</a> g, <a href="../core/num.html">num</a> b) <a class="anchor-link" href="#RGBtoHUSL"
+              title="Permalink to HuslConverter.RGBtoHUSL">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static List&lt;num&gt; RGBtoHUSL( num r, num g, num b ) {
+  return _LCH_HUSL(_LUV_LCH(_XYZ_LUV(_RGB_XYZ([r, g, b]))));
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="m">
+<span class="show-code">Code</span>
+<a href="../core/List.html">List</a>&lt;<a href="../core/List.html">List</a>&lt;<a href="../core/num.html">num</a>&gt;&gt; <strong>get m</strong>() <a class="anchor-link" href="#m"
               title="Permalink to HuslConverter.get m">#</a></h4>
 <div class="doc">
 
@@ -55,9 +68,9 @@ static List&lt;List&lt;num&gt;&gt; get m() {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="get:m_inv">
+<div class="method"><h4 id="m_inv">
 <span class="show-code">Code</span>
-<a href="../dart_core/List.html">List</a> <strong>get m_inv</strong>() <a class="anchor-link" href="#get:m_inv"
+<a href="../core/List.html">List</a>&lt;<a href="../core/List.html">List</a>&lt;<a href="../core/num.html">num</a>&gt;&gt; <strong>get m_inv</strong>() <a class="anchor-link" href="#m_inv"
               title="Permalink to HuslConverter.get m_inv">#</a></h4>
 <div class="doc">
 
@@ -70,23 +83,10 @@ static List&lt;List&lt;num&gt;&gt; get m_inv() {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="RGBtoHUSL">
-<span class="show-code">Code</span>
-<a href="../dart_core/List.html">List</a> <strong>RGBtoHUSL</strong>(<a href="../dart_core/num.html">num</a> r, <a href="../dart_core/num.html">num</a> g, <a href="../dart_core/num.html">num</a> b) <a class="anchor-link" href="#RGBtoHUSL"
-              title="Permalink to HuslConverter.RGBtoHUSL">#</a></h4>
-<div class="doc">
-
-<pre class="source">
-static List&lt;num&gt; RGBtoHUSL( num r, num g, num b ) {
-  return _LCH_HUSL(_LUV_LCH(_XYZ_LUV(_RGB_XYZ([r, g, b]))));
-}
-</pre>
-</div>
-</div>
 <h3>Static Fields</h3>
 <div class="field"><h4 id="lab_e">
 <span class="show-code">Code</span>
-final <a href="../dart_core/num.html">num</a>         <strong>lab_e</strong> <a class="anchor-link"
+final <a href="../core/num.html">num</a>         <strong>lab_e</strong> <a class="anchor-link"
             href="#lab_e"
             title="Permalink to HuslConverter.lab_e">#</a>
         </h4>
@@ -99,7 +99,7 @@ static final num lab_e = 0.008856;
 </div>
 <div class="field"><h4 id="lab_k">
 <span class="show-code">Code</span>
-final <a href="../dart_core/num.html">num</a>         <strong>lab_k</strong> <a class="anchor-link"
+final <a href="../core/num.html">num</a>         <strong>lab_k</strong> <a class="anchor-link"
             href="#lab_k"
             title="Permalink to HuslConverter.lab_k">#</a>
         </h4>
@@ -112,7 +112,7 @@ static final num lab_k = 903.3;
 </div>
 <div class="field"><h4 id="refU">
 <span class="show-code">Code</span>
-final <a href="../dart_core/num.html">num</a>         <strong>refU</strong> <a class="anchor-link"
+final <a href="../core/num.html">num</a>         <strong>refU</strong> <a class="anchor-link"
             href="#refU"
             title="Permalink to HuslConverter.refU">#</a>
         </h4>
@@ -125,7 +125,7 @@ static final num refU = 0.19784;
 </div>
 <div class="field"><h4 id="refV">
 <span class="show-code">Code</span>
-final <a href="../dart_core/num.html">num</a>         <strong>refV</strong> <a class="anchor-link"
+final <a href="../core/num.html">num</a>         <strong>refV</strong> <a class="anchor-link"
             href="#refV"
             title="Permalink to HuslConverter.refV">#</a>
         </h4>
@@ -138,7 +138,7 @@ static final num refV = 0.46834;
 </div>
 <div class="field"><h4 id="refX">
 <span class="show-code">Code</span>
-final <a href="../dart_core/num.html">num</a>         <strong>refX</strong> <a class="anchor-link"
+final <a href="../core/num.html">num</a>         <strong>refX</strong> <a class="anchor-link"
             href="#refX"
             title="Permalink to HuslConverter.refX">#</a>
         </h4>
@@ -151,7 +151,7 @@ static final num refX = 0.95047;
 </div>
 <div class="field"><h4 id="refY">
 <span class="show-code">Code</span>
-final <a href="../dart_core/num.html">num</a>         <strong>refY</strong> <a class="anchor-link"
+final <a href="../core/num.html">num</a>         <strong>refY</strong> <a class="anchor-link"
             href="#refY"
             title="Permalink to HuslConverter.refY">#</a>
         </h4>
@@ -164,7 +164,7 @@ static final num refY = 1.00000;
 </div>
 <div class="field"><h4 id="refZ">
 <span class="show-code">Code</span>
-final <a href="../dart_core/num.html">num</a>         <strong>refZ</strong> <a class="anchor-link"
+final <a href="../core/num.html">num</a>         <strong>refZ</strong> <a class="anchor-link"
             href="#refZ"
             title="Permalink to HuslConverter.refZ">#</a>
         </h4>

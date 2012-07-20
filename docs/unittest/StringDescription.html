@@ -1,0 +1,159 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>StringDescription Class / unittest Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="unittest" data-type="StringDescription">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../unittest.html">unittest</a> &rsaquo; <a href="../unittest/StringDescription.html">StringDescription</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>StringDescription</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+<p>The default implementation of IDescription. This should rarely need
+substitution, although conceivably it is a place where other languages
+could be supported.</p>
+</div>
+<h3>Implements</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../unittest/Description.html">Description</a></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="StringDescription">
+<span class="show-code">Code</span>
+new <strong>StringDescription</strong>([<a href="../core/String.html">String</a> init]) <a class="anchor-link" href="#StringDescription"
+              title="Permalink to StringDescription.StringDescription">#</a></h4>
+<div class="doc">
+<p>Initialize the description with initial contents 
+<span class="param">init</span>.</p>
+<pre class="source">
+StringDescription([String init = '']) {
+  _out = init;
+}
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="add">
+<span class="show-code">Code</span>
+<a href="../unittest/Description.html">Description</a> <strong>add</strong>(<a href="../core/String.html">String</a> text) <a class="anchor-link" href="#add"
+              title="Permalink to StringDescription.add">#</a></h4>
+<div class="doc">
+<p>Append some plain 
+<span class="param">text</span> to the description.</p>
+<pre class="source">
+Description add(String text) {
+  _out = '${_out}${text}';
+  return this;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="addAll">
+<span class="show-code">Code</span>
+<a href="../unittest/Description.html">Description</a> <strong>addAll</strong>(<a href="../core/String.html">String</a> start, <a href="../core/String.html">String</a> separator, <a href="../core/String.html">String</a> end, <a href="../core/Iterable.html">Iterable</a> list) <a class="anchor-link" href="#addAll"
+              title="Permalink to StringDescription.addAll">#</a></h4>
+<div class="doc">
+<p>Append an [Iterable] [list] of objects to the description, using the
+specified 
+<span class="param">separator</span> and framing the list with 
+<span class="param">start</span>
+and 
+<span class="param">end</span>.</p>
+<pre class="source">
+Description addAll(String start, String separator, String end,
+                     Iterable list) {
+  var separate = false;
+  add(start);
+  for (var item in list) {
+    if (separate) {
+      add(separator);
+    }
+    addDescriptionOf(item);
+    separate = true;
+  }
+  add(end);
+  return this;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="addDescriptionOf">
+<span class="show-code">Code</span>
+<a href="../unittest/Description.html">Description</a> <strong>addDescriptionOf</strong>(value) <a class="anchor-link" href="#addDescriptionOf"
+              title="Permalink to StringDescription.addDescriptionOf">#</a></h4>
+<div class="doc">
+<p>Appends a description of 
+<span class="param">value</span>. If it is an IMatcher use its
+describe method; if it is a string use its literal value after
+escaping any embedded control characters; otherwise use its
+toString() value and wrap it in angular "quotes".</p>
+<pre class="source">
+Description addDescriptionOf(value) {
+  if (value is Matcher) {
+    value.describe(this);
+  } else if (value is String) {
+    _addEscapedString(value);
+  } else {
+    String description = (value == null) ? "null" : value.toString();
+    if (description.startsWith('&lt;') &amp;&amp; description.endsWith('&gt;')) {
+        add(description);
+    } else {
+      add('&lt;');
+      add(description);
+      add('&gt;');
+    }
+  }
+  return this;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="replace">
+<span class="show-code">Code</span>
+<a href="../unittest/Description.html">Description</a> <strong>replace</strong>(<a href="../core/String.html">String</a> text) <a class="anchor-link" href="#replace"
+              title="Permalink to StringDescription.replace">#</a></h4>
+<div class="doc">
+<p>Change the value of the description.</p>
+<pre class="source">
+Description replace(String text) {
+  _out = text;
+  return this;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="toString">
+<span class="show-code">Code</span>
+<a href="../core/String.html">String</a> <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to StringDescription.toString">#</a></h4>
+<div class="doc">
+<p>Get the description as a string.</p>
+<pre class="source">
+String toString() =&gt; _out;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

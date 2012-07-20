@@ -1,0 +1,80 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>Utf32leBytesDecoder Class / utf Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="utf" data-type="Utf32leBytesDecoder">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../utf.html">utf</a> &rsaquo; <a href="../utf/Utf32leBytesDecoder.html">Utf32leBytesDecoder</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>Utf32leBytesDecoder</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+<p>Convert UTF-32BE encoded bytes to codepoints by grouping 4 bytes
+to produce the unicode codepoint.</p>
+</div>
+<h3>Extends</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../utf/Utf32BytesDecoder.html">Utf32BytesDecoder</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>Utf32leBytesDecoder</strong></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="Utf32leBytesDecoder">
+<span class="show-code">Code</span>
+new <strong>Utf32leBytesDecoder</strong>(<a href="../core/List.html">List</a>&lt;<a href="../core/int.html">int</a>&gt; utf32EncodedBytes, [<a href="../core/int.html">int</a> offset, <a href="../core/int.html">int</a> length, <a href="../core/bool.html">bool</a> stripBom, <a href="../core/int.html">int</a> replacementCodepoint]) <a class="anchor-link" href="#Utf32leBytesDecoder"
+              title="Permalink to Utf32leBytesDecoder.Utf32leBytesDecoder">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Utf32leBytesDecoder(List&lt;int&gt; utf32EncodedBytes, [int offset = 0,
+    int length, bool stripBom = true,
+    int replacementCodepoint = UNICODE_REPLACEMENT_CHARACTER_CODEPOINT]) :
+    super._fromListRangeIterator((new _ListRange(utf32EncodedBytes, offset,
+    length)).iterator(), replacementCodepoint) {
+  if (stripBom &amp;&amp; hasUtf32leBom(utf32EncodedBytes, offset, length)) {
+    skip();
+  }
+}
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="decode">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a> <strong>decode</strong>() <a class="anchor-link" href="#decode"
+              title="Permalink to Utf32leBytesDecoder.decode">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+int decode() {
+  int value = (utf32EncodedBytesIterator.next());
+  value += (utf32EncodedBytesIterator.next() &lt;&lt; 8);
+  value += (utf32EncodedBytesIterator.next() &lt;&lt; 16);
+  value += (utf32EncodedBytesIterator.next() &lt;&lt; 24);
+  return value;
+}
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

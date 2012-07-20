@@ -1,0 +1,175 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>Utf16CodeUnitDecoder Class / utf Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="utf" data-type="Utf16CodeUnitDecoder">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../utf.html">utf</a> &rsaquo; <a href="../utf/Utf16CodeUnitDecoder.html">Utf16CodeUnitDecoder</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>Utf16CodeUnitDecoder</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+<p>An Iterator&lt;int> of codepoints built on an Iterator of UTF-16 code units.
+The parameters can override the default Unicode replacement character. Set
+the replacementCharacter to null to throw an IllegalArgumentException
+rather than replace the bad value.</p>
+</div>
+<h3>Implements</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../core/Iterator.html">Iterator</a></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="Utf16CodeUnitDecoder">
+<span class="show-code">Code</span>
+new <strong>Utf16CodeUnitDecoder</strong>(<a href="../core/List.html">List</a>&lt;<a href="../core/int.html">int</a>&gt; utf16CodeUnits, [<a href="../core/int.html">int</a> offset, <a href="../core/int.html">int</a> length, <a href="../core/int.html">int</a> replacementCodepoint]) <a class="anchor-link" href="#Utf16CodeUnitDecoder"
+              title="Permalink to Utf16CodeUnitDecoder.Utf16CodeUnitDecoder">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Utf16CodeUnitDecoder(List&lt;int&gt; utf16CodeUnits, [int offset = 0, int length,
+    int this.replacementCodepoint =
+    UNICODE_REPLACEMENT_CHARACTER_CODEPOINT]) :
+    utf16CodeUnitIterator = (new _ListRange(utf16CodeUnits, offset, length))
+        .iterator();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="Utf16CodeUnitDecoder">
+<span class="show-code">Code</span>
+new <strong>Utf16CodeUnitDecoder</strong>.fromListRangeIterator(<a href="../utf/_ListRangeIterator.html">_ListRangeIterator</a> utf16CodeUnitIterator, <a href="../core/int.html">int</a> replacementCodepoint) <a class="anchor-link" href="#Utf16CodeUnitDecoder"
+              title="Permalink to Utf16CodeUnitDecoder.Utf16CodeUnitDecoder">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Utf16CodeUnitDecoder.fromListRangeIterator(
+    _ListRangeIterator this.utf16CodeUnitIterator,
+    int this.replacementCodepoint);
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="hasNext">
+<span class="show-code">Code</span>
+<a href="../core/bool.html">bool</a> <strong>hasNext</strong>() <a class="anchor-link" href="#hasNext"
+              title="Permalink to Utf16CodeUnitDecoder.hasNext">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool hasNext() =&gt; utf16CodeUnitIterator.hasNext();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="iterator">
+<span class="show-code">Code</span>
+<a href="../core/Iterator.html">Iterator</a>&lt;<a href="../core/int.html">int</a>&gt; <strong>iterator</strong>() <a class="anchor-link" href="#iterator"
+              title="Permalink to Utf16CodeUnitDecoder.iterator">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Iterator&lt;int&gt; iterator() =&gt; this;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="next">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a> <strong>next</strong>() <a class="anchor-link" href="#next"
+              title="Permalink to Utf16CodeUnitDecoder.next">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+int next() {
+  int value = utf16CodeUnitIterator.next();
+  if (value &lt; 0) {
+    if (replacementCodepoint != null) {
+      return replacementCodepoint;
+    } else {
+      throw new IllegalArgumentException(
+          "Invalid UTF16 at ${utf16CodeUnitIterator.position}");
+    }
+  } else if (value &lt; UNICODE_UTF16_RESERVED_LO ||
+      (value &gt; UNICODE_UTF16_RESERVED_HI &amp;&amp; value &lt;= UNICODE_PLANE_ONE_MAX)) {
+    // transfer directly
+    return value;
+  } else if (value &lt; UNICODE_UTF16_SURROGATE_UNIT_1_BASE &amp;&amp;
+      utf16CodeUnitIterator.hasNext()) {
+    // merge surrogate pair
+    int nextValue = utf16CodeUnitIterator.next();
+    if (nextValue &gt;= UNICODE_UTF16_SURROGATE_UNIT_1_BASE &amp;&amp;
+        nextValue &lt;= UNICODE_UTF16_RESERVED_HI) {
+      value = (value - UNICODE_UTF16_SURROGATE_UNIT_0_BASE) &lt;&lt; 10;
+      value += UNICODE_UTF16_OFFSET +
+          (nextValue - UNICODE_UTF16_SURROGATE_UNIT_1_BASE);
+      return value;
+    } else {
+      if (nextValue &gt;= UNICODE_UTF16_SURROGATE_UNIT_0_BASE &amp;&amp;
+         nextValue &lt; UNICODE_UTF16_SURROGATE_UNIT_1_BASE) {
+        utf16CodeUnitIterator.backup();
+      }
+      if (replacementCodepoint != null) {
+        return replacementCodepoint;
+      } else {
+        throw new IllegalArgumentException(
+            "Invalid UTF16 at ${utf16CodeUnitIterator.position}");
+      }
+    }
+  } else if (replacementCodepoint != null) {
+    return replacementCodepoint;
+  } else {
+    throw new IllegalArgumentException(
+        "Invalid UTF16 at ${utf16CodeUnitIterator.position}");
+  }
+}
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="replacementCodepoint">
+<span class="show-code">Code</span>
+final <a href="../core/int.html">int</a>         <strong>replacementCodepoint</strong> <a class="anchor-link"
+            href="#replacementCodepoint"
+            title="Permalink to Utf16CodeUnitDecoder.replacementCodepoint">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final int replacementCodepoint;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="utf16CodeUnitIterator">
+<span class="show-code">Code</span>
+final <a href="../utf/_ListRangeIterator.html">_ListRangeIterator</a>         <strong>utf16CodeUnitIterator</strong> <a class="anchor-link"
+            href="#utf16CodeUnitIterator"
+            title="Permalink to Utf16CodeUnitDecoder.utf16CodeUnitIterator">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final _ListRangeIterator utf16CodeUnitIterator;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

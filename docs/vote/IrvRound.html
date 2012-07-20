@@ -1,0 +1,80 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>IrvRound&lt;TVoter, TCandidate&gt; Class / vote Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="vote" data-type="IrvRound&amp;lt;TVoter, TCandidate&amp;gt;">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../vote.html">vote</a> &rsaquo; <a href="../vote/IrvRound.html">IrvRound&lt;TVoter, TCandidate&gt;</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>IrvRound&lt;TVoter extends Player, TCandidate extends Player&gt;</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="IrvRound">
+<span class="show-code">Code</span>
+factory <strong>IrvRound</strong>(<a href="../dartlib_core/ReadOnlyCollection.html">ReadOnlyCollection</a>&lt;<a href="../vote/RankedBallot.html">RankedBallot</a>&lt;<a href="../vote/IrvRound.html">TVoter</a>, <a href="../vote/IrvRound.html">TCandidate</a>&gt;&gt; ballots, <a href="../dartlib_core/Enumerable.html">Enumerable</a>&lt;<a href="../vote/IrvRound.html">TCandidate</a>&gt; eliminatedCandidates) <a class="anchor-link" href="#IrvRound"
+              title="Permalink to IrvRound&lt;TVoter, TCandidate&gt;.IrvRound">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+factory IrvRound(ReadOnlyCollection&lt;RankedBallot&lt;TVoter, TCandidate&gt;&gt; ballots,
+  Enumerable&lt;TCandidate&gt; eliminatedCandidates) {
+
+  final cleanedBallots = ballots.select((b) {
+    final pruned = $(b.rank).exclude(eliminatedCandidates)
+        .toReadOnlyCollection();
+    final winner = pruned.length == 0 ?
+        null : pruned[0];
+    return new Tuple3(b, pruned, winner);
+  });
+
+  final candidateAllocations = cleanedBallots.group((tuple) =&gt; tuple.Item3);
+
+  final voteGroups = $(candidateAllocations.getKeys()).group((c) {
+    return candidateAllocations[c].length;
+  });
+
+  final placeVotes = $(voteGroups.getKeys()).toList();
+  // reverse sorting -&gt; most votes first
+  placeVotes.sort((a,b) =&gt; b.compareTo(a));
+
+  int placeNumber = 1;
+  int totalVotes = 0;
+  final places = $(placeVotes).select((pv) {
+    final vg = voteGroups[pv];
+    final currentPlaceNumber = placeNumber;
+    totalVotes += vg.length * pv;
+    placeNumber += vg.length;
+    return new PluralityElectionPlace&lt;TCandidate&gt;(currentPlaceNumber, vg, pv);
+  }).toList();
+}
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

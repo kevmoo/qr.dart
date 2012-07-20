@@ -1,0 +1,85 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>WebSocketHandler Interface / io Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="io" data-type="WebSocketHandler">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../io.html">io</a> &rsaquo; <a href="../io/WebSocketHandler.html">WebSocketHandler</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>WebSocketHandler</strong>
+          Interface
+        </h2>
+        
+<div class="doc">
+<p>The web socket protocol is implemented by a HTTP server handler
+which can be instantiated like this:</p>
+<pre><code>WebSocketHandler wsHandler = new WebSocketHandler();
+</code></pre>
+<p>and then its onRequest method can be assigned to the HTTP server, e.g.</p>
+<pre><code>server.defaultHandler = wsHandler.onRequest;
+</code></pre>
+<p>or</p>
+<pre><code>server.addRequestHandler((req) =&gt; req.path == "/ws",
+                         wsHandler.onRequest);
+</code></pre>
+<p>This handler strives to implement web sockets as specified by RFC6455.</p>
+</div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="WebSocketHandler">
+<span class="show-code">Code</span>
+new <strong>WebSocketHandler</strong>() <a class="anchor-link" href="#WebSocketHandler"
+              title="Permalink to WebSocketHandler.WebSocketHandler">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+WebSocketHandler();
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="onOpen">
+<span class="show-code">Code</span>
+void <strong>set onOpen</strong>(callback) <a class="anchor-link" href="#onOpen"
+              title="Permalink to WebSocketHandler.set onOpen">#</a></h4>
+<div class="doc">
+<p>Sets the callback to be called when a new web socket connection
+has been established.</p>
+<pre class="source">
+void set onOpen(callback(WebSocketConnection connection));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onRequest">
+<span class="show-code">Code</span>
+void <strong>onRequest</strong>(<a href="../io/HttpRequest.html">HttpRequest</a> request, <a href="../io/HttpResponse.html">HttpResponse</a> response) <a class="anchor-link" href="#onRequest"
+              title="Permalink to WebSocketHandler.onRequest">#</a></h4>
+<div class="doc">
+<p>Request handler to be registered with the HTTP server.</p>
+<pre class="source">
+void onRequest(HttpRequest request, HttpResponse response);
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

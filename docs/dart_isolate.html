@@ -1,0 +1,188 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>dart:isolate Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="favicon.ico">
+        
+        </head>
+        <body data-library="dart:isolate">
+        <div class="page">
+        <div class="header">
+          <a href="index.html"><div class="logo"></div></a>
+          <a href="index.html">Dart Documentation</a>
+         &rsaquo; <a href="dart_isolate.html">dart:isolate</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+<h2><strong>dart:isolate</strong> library</h2>
+<div class="doc"><p>The <code>dart:isolate</code> library defines APIs to spawn and communicate with
+isolates.</p>
+<p>All code in dart runs in the context of an isolate. Each isolate has its own
+heap, which means that all values in memory, including globals, are available
+only to that isolate. The only mechanism available to communicate between
+isolates is to pass messages. Messages are sent through ports. This library
+defines <a class="crossref" href="dart_isolate/ReceivePort.html">ReceivePort</a> to represent the receiver's end of a communication
+channel, and <a class="crossref" href="dart_isolate/SendPort.html">SendPort</a> to represent the sender's end.</p>
+<p>All isolates start with an initial receive port, which is set in the
+top-level property <a class="crossref" href="dart_isolate.html#port">port</a>. This port is used to establish the first
+communication between isolates.</p>
+<p>Two APIs are available to spawn a new isolate: <a class="crossref" href="dart_isolate.html#spawnFunction">spawnFunction</a> and
+<a class="crossref" href="dart_isolate.html#spawnUri">spawnUri</a>. <a class="crossref" href="dart_isolate.html#spawnFunction">spawnFunction</a> creates a new isolate that is using the same
+source code as the current isolate, <a class="crossref" href="dart_isolate.html#spawnUri">spawnUri</a> allows spawning an isolate
+that was written independently.</p>
+<p>There is currently no way to indicate in the API whether the isolates should
+run on the same or different threads. The underlying system will schedule the
+isolate were appropriate. In the near future we will add an API to create DOM
+isolates. These are isolates that share access to the DOM. All DOM isolates
+will run on the UI thread.</p>
+<p>This library is still evolving. New APIs are being added, and some will be
+deprecated and removed. In particular, the class <a class="crossref" href="dart_isolate/Isolate.html">Isolate</a> will be
+deprecated as soon the dartvm has an implementation working for
+<a class="crossref" href="dart_isolate.html#spawnFunction">spawnFunction</a> and <a class="crossref" href="dart_isolate.html#spawnUri">spawnUri</a>, and we have an API to spawn DOM isolates.</p></div>
+<h3>Methods</h3>
+<div class="method"><h4 id="port">
+<span class="show-code">Code</span>
+<a href="dart_isolate/ReceivePort.html">ReceivePort</a> <strong>get port</strong>() <a class="anchor-link" href="#port"
+              title="Permalink to get port">#</a></h4>
+<div class="doc">
+<p>The initial <a class="crossref" href="dart_isolate/ReceivePort.html">ReceivePort</a> available by default for this isolate. This
+<a class="crossref" href="dart_isolate/ReceivePort.html">ReceivePort</a> is created automatically and it is commonly used to establish
+the first communication between isolates (see <a class="crossref" href="dart_isolate.html#spawnFunction">spawnFunction</a> and
+<a class="crossref" href="dart_isolate.html#spawnUri">spawnUri</a>).</p>
+<pre class="source">
+ReceivePort get port() =&gt; _port;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="spawnFunction">
+<span class="show-code">Code</span>
+<a href="dart_isolate/SendPort.html">SendPort</a> <strong>spawnFunction</strong>(topLevelFunction) <a class="anchor-link" href="#spawnFunction"
+              title="Permalink to spawnFunction">#</a></h4>
+<div class="doc">
+<p>Creates and spawns an isolate that shares the same code as the current
+isolate, but that starts from 
+<span class="param">topLevelFunction</span>. The 
+<span class="param">topLevelFunction</span>
+argument must be a static top-level function or a static method that takes no
+arguments. It is illegal to pass a function closure.</p>
+<p>When any isolate starts (even the main script of the application), a default
+<a class="crossref" href="dart_isolate/ReceivePort.html">ReceivePort</a> is created for it. This port is available from the top-level
+getter <a class="crossref" href="dart_isolate.html#port">port</a> defined in this library.</p>
+<p><a class="crossref" href="dart_isolate.html#spawnFunction">spawnFunction</a> returns a <a class="crossref" href="dart_isolate/SendPort.html">SendPort</a> derived from the child isolate's default
+port.</p>
+<p>See comments at the top of this library for more details.</p>
+<pre class="source">
+SendPort spawnFunction(void topLevelFunction()) {
+  return _spawnFunction(topLevelFunction);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="spawnUri">
+<span class="show-code">Code</span>
+<a href="dart_isolate/SendPort.html">SendPort</a> <strong>spawnUri</strong>(<a href="core/String.html">String</a> uri) <a class="anchor-link" href="#spawnUri"
+              title="Permalink to spawnUri">#</a></h4>
+<div class="doc">
+<p>Creates and spawns an isolate whose code is available at 
+<span class="param">uri</span>.  Like with
+<a class="crossref" href="dart_isolate.html#spawnFunction">spawnFunction</a>, the child isolate will have a default <a class="crossref" href="dart_isolate/ReceivePort.html">ReceivePort</a>, and a
+this function returns a <a class="crossref" href="dart_isolate/SendPort.html">SendPort</a> derived from it.</p>
+<p>See comments at the top of this library for more details.</p>
+<pre class="source">
+SendPort spawnUri(String uri) {
+  return _spawnUri(uri);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="startRootIsolate">
+<span class="show-code">Code</span>
+void <strong>startRootIsolate</strong>(entry) <a class="anchor-link" href="#startRootIsolate"
+              title="Permalink to startRootIsolate">#</a></h4>
+<div class="doc">
+<p>Wrapper that takes the dart entry point and runs it within an isolate. The
+frog compiler will inject a call of the form <code> startRootIsolate(main); </code>
+when it determines that this wrapping is needed. For single-isolate
+applications (e.g. hello world), this call is not emitted.</p>
+<pre class="source">
+void startRootIsolate(entry) {
+  _globalState = new _Manager();
+
+  // Don't start the main loop again, if we are in a worker.
+  if (_globalState.isWorker) return;
+  final rootContext = new _IsolateContext();
+  _globalState.rootContext = rootContext;
+  _fillStatics(rootContext);
+
+  // BUG(5151491): Setting currentContext should not be necessary, but
+  // because closures passed to the DOM as event handlers do not bind their
+  // isolate automatically we try to give them a reasonable context to live in
+  // by having a "default" isolate (the first one created).
+  _globalState.currentContext = rootContext;
+
+  rootContext.eval(entry);
+  _globalState.topEventLoop.run();
+}
+</pre>
+</div>
+</div>
+<h3>Classes</h3>
+          <div class="type">
+          <h4>
+            <a href="dart_isolate/Isolate.html"><strong>Isolate</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dart_isolate/TestingOnly.html"><strong>TestingOnly</strong></a>
+          </h4>
+          </div>
+          
+<h3>Interfaces</h3>
+          <div class="type">
+          <h4>
+            <a href="dart_isolate/ReceivePort.html"><strong>ReceivePort</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dart_isolate/SendPort.html"><strong>SendPort</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dart_isolate/SendPortSync.html"><strong>SendPortSync</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dart_isolate/Timer.html"><strong>Timer</strong></a>
+          </h4>
+          </div>
+          
+<h3>Exceptions</h3>
+          <div class="type">
+          <h4>
+            <a href="dart_isolate/IsolateSpawnException.html"><strong>IsolateSpawnException</strong></a>
+          </h4>
+          </div>
+          
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="client-live-nav.js"></script>
+        </body></html>
+        

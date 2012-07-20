@@ -1,0 +1,97 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>ServerSocket Interface / io Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="io" data-type="ServerSocket">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../io.html">io</a> &rsaquo; <a href="../io/ServerSocket.html">ServerSocket</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>ServerSocket</strong>
+          Interface
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="ServerSocket">
+<span class="show-code">Code</span>
+new <strong>ServerSocket</strong>(<a href="../core/String.html">String</a> bindAddress, <a href="../core/int.html">int</a> port, <a href="../core/int.html">int</a> backlog) <a class="anchor-link" href="#ServerSocket"
+              title="Permalink to ServerSocket.ServerSocket">#</a></h4>
+<div class="doc">
+<p>Constructs a new server socket, binds it to a given address and port,
+and listens on it.</p>
+<pre class="source">
+ServerSocket(String bindAddress, int port, int backlog);
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="close">
+<span class="show-code">Code</span>
+void <strong>close</strong>() <a class="anchor-link" href="#close"
+              title="Permalink to ServerSocket.close">#</a></h4>
+<div class="doc">
+<p>Closes the socket.</p>
+<pre class="source">
+void close();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onConnection">
+<span class="show-code">Code</span>
+void <strong>set onConnection</strong>(callback) <a class="anchor-link" href="#onConnection"
+              title="Permalink to ServerSocket.set onConnection">#</a></h4>
+<div class="doc">
+<p>The connection handler gets called when there is a new incoming
+connection on the socket.</p>
+<pre class="source">
+void set onConnection(void callback(Socket connection));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onError">
+<span class="show-code">Code</span>
+void <strong>set onError</strong>(callback) <a class="anchor-link" href="#onError"
+              title="Permalink to ServerSocket.set onError">#</a></h4>
+<div class="doc">
+<p>The error handler gets called when a socket error occurs.</p>
+<pre class="source">
+void set onError(void callback(e));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="port">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a> <strong>get port</strong>() <a class="anchor-link" href="#port"
+              title="Permalink to ServerSocket.get port">#</a></h4>
+<div class="doc">
+<p>Returns the port used by this socket.</p>
+<pre class="source">
+int get port();
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

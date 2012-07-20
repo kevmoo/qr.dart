@@ -1,0 +1,226 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>LocationData Class / vote_map Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="vote_map" data-type="LocationData">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../vote_map.html">vote_map</a> &rsaquo; <a href="../vote_map/LocationData.html">LocationData</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>LocationData</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="LocationData">
+<span class="show-code">Code</span>
+new <strong>LocationData</strong>(voters, candidates) <a class="anchor-link" href="#LocationData"
+              title="Permalink to LocationData.LocationData">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+LocationData(this.voters, this.candidates)
+: _candidateHues = new HashMap&lt;MapPlayer, num&gt;() {
+  assert(this.candidates.length &gt; 0);
+  var index = 0;
+  candidates.forEach((c) {
+    final spot = 360 * index / candidates.length;
+    _candidateHues[c] = spot;
+    index++;
+  });
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="LocationData">
+<span class="show-code">Code</span>
+factory <strong>LocationData</strong>.random() <a class="anchor-link" href="#LocationData"
+              title="Permalink to LocationData.LocationData">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+factory LocationData.random() {
+  final spanTweak = _span / (_span - 1);
+
+  // 100 voters from 1,1 to 10,10
+  final voters = new List&lt;MapPlayer&gt;();
+  for(var i = 0; i &lt; _span; i++) {
+    for(var j = 0; j &lt; _span; j++) {
+      voters.add(new MapPlayer(new Coordinate(i * spanTweak, j * spanTweak)));
+    }
+  }
+
+  // silly spinning wheels to get a semi-random value out of Math.random
+  final blah = Clock.now() % 1000;
+  for(int i = 0; i &lt; blah; i++) {
+    Math.random();
+  }
+
+  final coords = new List&lt;Vector&gt;();
+  final middle = new Vector(0.5, 0.5);
+  coords.add(middle);
+
+  final bool mirror = false;
+
+  for(var i = 0; i &lt; 4; i++) {
+    var coord = new Vector(Math.random(), Math.random());
+    coords.add(coord);
+    if(mirror) {
+      final delta = middle - coord;
+      coords.add(middle + delta);
+      i++;
+    }
+  }
+
+  final candidates = new List&lt;MapPlayer&gt;();
+  $(coords)
+    .select((c) =&gt; c.scale(_span))
+    .forEachWithIndex((c,i) {
+      final candidate = new MapPlayer(c);
+      candidate.name = getCandidateName(i);
+      candidates.add(candidate);
+    });
+
+  return new LocationData(
+    new ReadOnlyCollection&lt;MapPlayer&gt;.wrap(voters),
+    new ReadOnlyCollection&lt;MapPlayer&gt;.wrap(candidates));
+
+}
+</pre>
+</div>
+</div>
+<h3>Static Methods</h3>
+<div class="method"><h4 id="getCandidateName">
+<span class="show-code">Code</span>
+<a href="../core/String.html">String</a> <strong>getCandidateName</strong>(<a href="../core/int.html">int</a> i) <a class="anchor-link" href="#getCandidateName"
+              title="Permalink to LocationData.getCandidateName">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static String getCandidateName(int i) {
+  requireArgument(i &gt;= 0);
+  requireArgument(i &lt; 26);
+  return new String.fromCharCodes([i + _ACharCode]);
+}
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="cloneAndAddCandidate">
+<span class="show-code">Code</span>
+<a href="../vote_map/LocationData.html">LocationData</a> <strong>cloneAndAddCandidate</strong>() <a class="anchor-link" href="#cloneAndAddCandidate"
+              title="Permalink to LocationData.cloneAndAddCandidate">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+LocationData cloneAndAddCandidate() {
+  assert(candidates.length &lt; 26);
+  var newCans = candidates.toList();
+
+  int i;
+  for(i = 0; i &lt; newCans.length; i++) {
+    final mp = newCans[i];
+    assert(mp.name.length == 1);
+    final mpCC = mp.name.charCodeAt(0);
+    final letterIndex = mpCC - _ACharCode;
+    assert(letterIndex &gt;= i);
+
+    if(letterIndex &gt; i) {
+      break;
+    }
+  }
+
+  final newName = getCandidateName(i);
+
+  var coord = new Vector(Math.random(), Math.random());
+  final loc = coord.scale(_span);
+  final mp = new MapPlayer(loc);
+  mp.name = newName;
+
+  newCans.insertRange(i, 1, mp);
+
+  return new LocationData(voters, new ReadOnlyCollection(newCans));
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="cloneAndRemove">
+<span class="show-code">Code</span>
+<a href="../vote_map/LocationData.html">LocationData</a> <strong>cloneAndRemove</strong>(<a href="../vote_map/MapPlayer.html">MapPlayer</a> mp) <a class="anchor-link" href="#cloneAndRemove"
+              title="Permalink to LocationData.cloneAndRemove">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+LocationData cloneAndRemove(MapPlayer mp) {
+  requireArgumentNotNull(mp, 'mp');
+
+  var newCans = candidates.where((e) =&gt; e != mp).toReadOnlyCollection();
+
+  return new LocationData(voters, newCans);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getHue">
+<span class="show-code">Code</span>
+<a href="../core/num.html">num</a> <strong>getHue</strong>(<a href="../vote_map/MapPlayer.html">MapPlayer</a> candidate) <a class="anchor-link" href="#getHue"
+              title="Permalink to LocationData.getHue">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+num getHue(MapPlayer candidate) =&gt; _candidateHues[candidate];
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="candidates">
+<span class="show-code">Code</span>
+final <a href="../dartlib_core/ReadOnlyCollection.html">ReadOnlyCollection</a>&lt;<a href="../vote_map/MapPlayer.html">MapPlayer</a>&gt;         <strong>candidates</strong> <a class="anchor-link"
+            href="#candidates"
+            title="Permalink to LocationData.candidates">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final ReadOnlyCollection&lt;MapPlayer&gt; candidates;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="voters">
+<span class="show-code">Code</span>
+final <a href="../dartlib_core/ReadOnlyCollection.html">ReadOnlyCollection</a>&lt;<a href="../vote_map/MapPlayer.html">MapPlayer</a>&gt;         <strong>voters</strong> <a class="anchor-link"
+            href="#voters"
+            title="Permalink to LocationData.voters">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final ReadOnlyCollection&lt;MapPlayer&gt; voters;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        
