@@ -18,6 +18,7 @@ Starting by porting bits of the [PL javascript library](https://github.com/think
      * This functionality is inspired by the Dependency Property model in WPF/Silverlight.
 
 ## Blocking Bugs
+Bugs blocking me from compiling to Javascript.
 
 ### Allow `final static` fields to be non-constants.
   * __Scenario:__ Allowing classes to define a `Property` using `static final Property<bool> isMouseOver Property = new Property<bool>('isMouseOver');`
@@ -38,6 +39,9 @@ Starting by porting bits of the [PL javascript library](https://github.com/think
   * __Word-around:__ Ignore the warnings in the editor.
   * __Issues:__ Unknown. I bet this won't compile to javascript, but I'm hitting other issues first.
   * __Related bug:__ [3342](http://code.google.com/p/dart/issues/detail?id=3342)
+
+## Annoying Bugs
+Bugs that cause code smells.
 
 ### Put the unittest library on [pub](http://www.dartlang.org/docs/pub-package-manager/) or let me use the copy in the SDK without hard-wired paths.
   * __Scenario:__ I'd like to use the unittest library in the SDK, but hardwiring the absolute path to the SDK makes it tough to cleanly share code with others.
