@@ -55,3 +55,6 @@
 #source('core/qr/qr_bit_buffer.dart');
 #source('core/qr/qr_enums.dart');
 #source('core/qr/qr_byte.dart');
+#source('core/qr/qr_math.dart');
+#source('core/qr/qr_polynomial.dart');
+
