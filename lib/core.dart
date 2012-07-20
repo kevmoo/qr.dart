@@ -57,4 +57,5 @@
 #source('core/qr/qr_byte.dart');
 #source('core/qr/qr_math.dart');
 #source('core/qr/qr_polynomial.dart');
+#source('core/qr/qr_rs_block.dart');
 
