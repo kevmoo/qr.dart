@@ -29,7 +29,9 @@ class RetainedDebug {
     }
   }
 
-  static void _borderElement(CanvasRenderingContext2D ctx, PElement element, [bool excludeChildren = false, core.Predicate<PElement> filter = null]) {
+  static void _borderElement(CanvasRenderingContext2D ctx, PElement element,
+                             [bool excludeChildren = false,
+                             core.Func1<PElement, bool> filter = null]) {
     if (filter == null || filter(element)) {
       _borderElementCore(ctx, element);
     }
