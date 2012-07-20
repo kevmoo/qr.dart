@@ -24,6 +24,8 @@
 #source('color/test_rgb_color.dart');
 #source('color/test_hsl_color.dart');
 
+#source('qr/test_qr_bit_buffer.dart');
+
 void runCoreTests() {
   group('core', (){
     TestEnumerable.run();
@@ -58,5 +60,7 @@ void runCoreTests() {
       t2 = new Tuple<int, int>(6,4);
       expect(t2, isNot(equals(t1)));
     });
+
+    TestQrBitBuffer.run();
   });
 }
