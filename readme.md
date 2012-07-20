@@ -17,6 +17,37 @@ Starting by porting bits of the [PL javascript library](https://github.com/think
      * A general model for supporting runtime-defined properties supported objects.
      * This functionality is inspired by the Dependency Property model in WPF/Silverlight.
 
+## Blocking Bugs
+
+### Allow `final static` fields to be non-constants.
+  * __Scenario:__ Allowing classes to define a `Property` using `static final Property<bool> isMouseOver Property = new Property<bool>('isMouseOver');`
+  * __Work-around__
+      * Define `Property` constructor as `const` even though it is not -- it creates a non-const GlobalId.
+      * Create instances of `Property` with const constructor.
+  * __Issues__
+      * Warnings in editor about expecting `const` expressions in `Property` constructor.
+      * I cannot compile my project to Javascript.
+  * __Related bugs:__
+    [3476](http://code.google.com/p/dart/issues/detail?id=3476),
+    [3551](http://code.google.com/p/dart/issues/detail?id=3551),
+    [3558](http://code.google.com/p/dart/issues/detail?id=3558),
+    [3559](http://code.google.com/p/dart/issues/detail?id=3559)
+
+### Allow compile-time constants in switch statements
+  * __Scenario:__ I've defined a psedo-enum class `ShapeType` that exposes const fields which I'd like to use in a case statement.
+  * __Word-around:__ Ignore the warnings in the editor.
+  * __Issues:__ Unknown. I bet this won't compile to javascript, but I'm hitting other issues first.
+  * __Related bug:__ [3342](http://code.google.com/p/dart/issues/detail?id=3342)
+
+### Put the unittest library on [pub](http://www.dartlang.org/docs/pub-package-manager/) or let me use the copy in the SDK without hard-wired paths.
+  * __Scenario:__ I'd like to use the unittest library in the SDK, but hardwiring the absolute path to the SDK makes it tough to cleanly share code with others.
+  * __Work-around:__ I put an entire copy of the `unittest` code in the `vendor` directory.
+  * __Issues__
+      * I have to manually sync changes to the SDK code.
+      * I have a copy of a lot of files that are already in the SDK.
+  * __Related bugs:__
+    [2518](http://code.google.com/p/dart/issues/detail?id=2518),
+    [3702](http://code.google.com/p/dart/issues/detail?id=3702)
 
 
 ## Authors
