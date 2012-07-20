@@ -13,11 +13,27 @@ class Rect implements Hashable{
 
   bool get isValid() => topLeft.isValid && size.isValid;
 
+  num get right() => left + width;
+
+  num get bottom() => top + height;
+
   bool contains(Coordinate point){
     return point.x >= left &&
         point.x <= left + width &&
         point.y >= top &&
         point.y <= top + height;
+  }
+
+  // TODO: test!!
+  Coordinate constrain(Coordinate value) {
+    requireArgumentNotNull(value, 'value');
+    requireArgument(value.isValid, 'value');
+    assert(isValid);
+
+    final x = Math.min(right, Math.max(left, value.x));
+    final y = Math.min(bottom, Math.max(top, value.y));
+
+    return new Coordinate(x, y);
   }
 
   List<Coordinate> getCorners() {
