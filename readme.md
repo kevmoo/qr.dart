@@ -1,19 +1,30 @@
 # dartlib
-## All of the important libraries the dart team hasn't shipped yet
+## A collection of (mostly) general libraries to make coding [Dart](http://www.dartlang.org/) more fun.
 
 Starting by porting bits of the [PL javascript library](https://github.com/thinkpixellab/pl) and Google's [Closure javascript library](https://developers.google.com/closure/library/) to enable some interesting scenarios.
 
-### Current Status
+## Highlights
 
- * Core classes from Closure: `Coordinate, Rect, Size, Vector, AffineTransfrom`
- * From PL: parts of the property model, a lot of the retained library, including panels and hit testing
+### core
+ * __async__
+     * `SlowMapper`: a convenient way to model slow, async conversions
+ * __color__
+     * `RgbColor`, `HslColor` with associated conversions back and forth
+     * `RgbColor` supports to/from hex
+ * __math__
+     * `Coordinate`, `Rect`, `Size`, `Vector`, `AffineTransfrom`
+ * __properties__
+     * A general model for supporting runtime-defined properties supported objects.
+     * This functionality is inspired by the Dependency Property model in WPF/Silverlight.
 
-### Authors
+
+
+## Authors
  * [Kevin Moore](https://github.com/kevmoo) ([@kevmoo](http://twitter.com/kevmoo))
  * [Andreas Köberle](https://github.com/eskimoblood) ([@eskimobloood](https://twitter.com/eskimobloood))
  * _You? File bugs. Fork and Fix bugs. Let's build this community._
 
-### [The BSD 2-Clause License](http://www.opensource.org/licenses/bsd-license.php)
+## [The BSD 2-Clause License](http://www.opensource.org/licenses/bsd-license.php)
 
     Copyright (c) 2012, dartlib project authors
     All rights reserved.
