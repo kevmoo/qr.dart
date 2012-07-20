@@ -53,3 +53,5 @@
 #source('core/async/slow_mapper.dart');
 
 #source('core/qr/qr_bit_buffer.dart');
+#source('core/qr/qr_enums.dart');
+#source('core/qr/qr_byte.dart');
