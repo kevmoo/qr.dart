@@ -59,4 +59,5 @@
 #source('core/qr/qr_polynomial.dart');
 #source('core/qr/qr_rs_block.dart');
 #source('core/qr/qr_util.dart');
+#source('core/qr/qr_code.dart');
 
