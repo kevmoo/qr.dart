@@ -95,7 +95,7 @@ class DraggerDemo{
   }
 }
 
-class _DemoMapper extends core.SlowMapper<core.Coordinate, int> {
+class _DemoMapper extends core.FutureValue<core.Coordinate, int> {
   Future<int> getFuture(value) {
     final sendPort = spawnFunction(_demoIsolate);
     return sendPort.call(value);

@@ -21,7 +21,7 @@ class QrDemo{
   static final int scale = 10;
 
   final CanvasElement _canvas;
-  final _QrMapper _qrMapper;
+  final core.SendPortValue<String, List<bool>> _qrMapper;
 
   List<bool> _squares;
   CanvasRenderingContext2D _ctx;
@@ -29,7 +29,8 @@ class QrDemo{
   core.Coordinate _mouseLocation;
   bool _frameRequested = false;
 
-  QrDemo(this._canvas) : _qrMapper = new _QrMapper() {
+  QrDemo(this._canvas) :
+    _qrMapper = new core.SendPortValue(spawnFunction(_qrIsolate)) {
     _qrMapper.outputChanged.add((args) {
       _squares = _qrMapper.output;
       requestFrame();
@@ -86,14 +87,6 @@ class QrDemo{
   }
 }
 
-
-class _QrMapper extends core.SlowMapper<String, List<bool>> {
-  final SendPort _sendPort;
-
-  _QrMapper() : _sendPort = spawnFunction(_qrIsolate);
-
-  Future<List<bool>> getFuture(value) => _sendPort.call(value);
-}
 
 void _qrIsolate() {
   final typeNumber = QrDemo.typeNumber;

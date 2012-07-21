@@ -1,6 +1,7 @@
 #library('dartlib_core');
 
 #import("dart:coreimpl");
+#import("dart:isolate");
 
 #source('core/typedefs.dart');
 
@@ -46,7 +47,8 @@
 
 #source('core/graph/tarjan_cycle_detect.dart');
 
-#source('core/async/slow_mapper.dart');
+#source('core/async/future_value.dart');
+#source('core/async/send_port_value.dart');
 
 #source('core/qr/qr_bit_buffer.dart');
 #source('core/qr/qr_enums.dart');

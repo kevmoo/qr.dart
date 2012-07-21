@@ -1,6 +1,6 @@
 // TODO: real tests
-class SlowMapper<TInput, TOutput> {
-  SlowMapper() :
+class FutureValue<TInput, TOutput> {
+  FutureValue() :
     _outputChangedHandle = new EventHandle<EventArgs>(),
     _inputChangedHandle = new EventHandle<EventArgs>();
 
