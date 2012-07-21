@@ -1,48 +1,46 @@
 #import('dart:html');
 #import('dart:isolate');
 #import('../../lib/core.dart', prefix:'core');
-#import('../../lib/html.dart');
-#import('../../lib/retained.dart');
 
 main(){
-  CanvasElement canvas = document.query("#content");
+  final CanvasElement canvas = query("#content");
   final demo = new QrDemo(canvas);
-  demo._setValue("hello world");
-  demo.requestFrame();
+
+  final InputElement input = query('#input');
+  input.value = "Type your message in here...";
+  demo.updateValue(input.value);
+
+  input.on.keyUp.add((KeyboardEvent args) {
+    demo.updateValue(input.value);
+  });
 }
 
 class QrDemo{
   static final int typeNumber = 10;
   static final int size = typeNumber * 4 + 17;
-  static final int scale = 5;
-
-  final List<bool> _squares;
+  static final int scale = 10;
 
   final CanvasElement _canvas;
+  final _QrMapper _qrMapper;
+
+  List<bool> _squares;
   CanvasRenderingContext2D _ctx;
 
   core.Coordinate _mouseLocation;
   bool _frameRequested = false;
 
-  factory QrDemo(CanvasElement canvas){
+  QrDemo(this._canvas) : _qrMapper = new _QrMapper() {
+    _qrMapper.outputChanged.add((args) {
+      _squares = _qrMapper.output;
+      requestFrame();
+    });
 
-    var blue = new Shape(100, 100, 'blue');
-
-    var tx = blue.addTransform();
-
-    var rootPanel = new PCanvas(500, 500);
-    rootPanel.addElement(blue);
-
-    var stage = new Stage(canvas, rootPanel);
-    var dragger = new Dragger(canvas);
-
-    return new QrDemo._internal(canvas);
-  }
-
-  QrDemo._internal(this._canvas)
-  : _squares = new List<bool>() {
     _canvas.on.mouseMove.add(_canvas_mouseMove);
     _canvas.on.mouseOut.add(_canvas_mouseOut);
+  }
+
+  void updateValue(String value) {
+    _qrMapper.input = value;
   }
 
   void requestFrame(){
@@ -51,24 +49,6 @@ class QrDemo{
       window.webkitRequestAnimationFrame(_onFrame);
     }
   }
-
-  void _setValue(String value) {
-    final code = new core.QrCode(typeNumber, core.QrErrorCorrectLevel.Q);
-    code.addData(value);
-    code.make();
-    _updateSquares(code);
-  }
-
-  void _updateSquares(core.QrCode qr) {
-    _squares.clear();
-    for(int x = 0; x < size; x++) {
-      for(int y = 0; y < size; y++) {
-        _squares.add(qr.isDark(y, x));
-      }
-    }
-
-  }
-
 
   bool _onFrame(num highResTime){
     _frameRequested = false;
@@ -104,4 +84,36 @@ class QrDemo{
     _mouseLocation = value;
     //requestFrame();
   }
+}
+
+
+class _QrMapper extends core.SlowMapper<String, List<bool>> {
+  final SendPort _sendPort;
+
+  _QrMapper() : _sendPort = spawnFunction(_qrIsolate);
+
+  Future<List<bool>> getFuture(value) => _sendPort.call(value);
+}
+
+void _qrIsolate() {
+  final typeNumber = QrDemo.typeNumber;
+  final size = QrDemo.size;
+
+  port.receive((String input,
+      SendPort reply) {
+
+    final code = new core.QrCode(typeNumber, core.QrErrorCorrectLevel.Q);
+    code.addData(input);
+    code.make();
+
+    final List<bool> squares = new List<bool>();
+
+    for(int x = 0; x < size; x++) {
+      for(int y = 0; y < size; y++) {
+        squares.add(code.isDark(y, x));
+      }
+    }
+
+    reply.send(squares);
+  });
 }
