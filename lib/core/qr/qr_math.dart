@@ -2,6 +2,12 @@ class QrMath {
   static ReadOnlyCollection _logTable;
   static ReadOnlyCollection _expTable;
 
+  static List<int> getZeroedList(int count) {
+    final l = new List<int>();
+    l.insertRange(0, count, 0);
+    return l;
+  }
+
   static glog(n) {
 
     if (n < 1) {
@@ -26,7 +32,7 @@ class QrMath {
 
   static get EXP_TABLE() {
     if(_expTable == null) {
-      var t = new List(256);
+      var t = QrMath.getZeroedList(256);
       for (int i = 0; i < 8; i++) {
         t[i] = 1 << i;
       }
@@ -40,7 +46,7 @@ class QrMath {
 
   static get LOG_TABLE() {
     if(_logTable == null) {
-      var t = new List(256);
+      var t = QrMath.getZeroedList(256);
       // this was the code I had in pl
       // only to 255? seems really weird
       for (int i = 0; i < 255; i++) {

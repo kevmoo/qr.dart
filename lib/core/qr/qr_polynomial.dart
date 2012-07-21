@@ -9,7 +9,7 @@ class QrPolynomial {
       offset++;
     }
 
-    _myThings = new List(thing.length - offset + shift);
+    _myThings = QrMath.getZeroedList(thing.length - offset + shift);
 
     for (var i = 0; i < thing.length - offset; i++) {
       _myThings[i] = thing[i + offset];
@@ -22,7 +22,7 @@ class QrPolynomial {
 
   QrPolynomial multiply(QrPolynomial e) {
 
-    List foo = new List(length + e.length - 1);
+    List foo = QrMath.getZeroedList(length + e.length - 1);
 
     for (var i = 0; i < length; i++) {
       for (var j = 0; j < e.length; j++) {
@@ -41,7 +41,7 @@ class QrPolynomial {
 
     var ratio = QrMath.glog(this[0]) - QrMath.glog(e[0]);
 
-    var thing = new List(length);
+    var thing = QrMath.getZeroedList(length);
 
     for (int i = 0; i < length; i++) {
       thing[i] = this[i];

@@ -11,7 +11,7 @@ class QrCode {
 
     _modules = new List(_moduleCount);
     for (var row = 0; row < _moduleCount; row++) {
-      _modules[row] = new List(_moduleCount);
+      _modules[row] = new List<bool>(_moduleCount);
     }
 
     _dataCache = null;
@@ -173,8 +173,7 @@ class QrCode {
 
   }
 
-  void mapData(data, maskPattern) {
-
+  void mapData(List<int> data, maskPattern) {
     var inc = -1;
     var row = _moduleCount - 1;
     var bitIndex = 7;
@@ -281,16 +280,16 @@ class QrCode {
     return createBytes(buffer, rsBlocks);
   }
 
-  static List<int> createBytes(buffer, rsBlocks) {
+  static List<int> createBytes(QrBitBuffer buffer, rsBlocks) {
 
     var offset = 0;
 
     var maxDcCount = 0;
     var maxEcCount = 0;
 
-    var dcdata = new List(rsBlocks.length);
+    var dcdata = new List<List>(rsBlocks.length);
 
-    var ecdata = new List(rsBlocks.length);
+    var ecdata = new List<List>(rsBlocks.length);
 
     for (int r = 0; r < rsBlocks.length; r++) {
 
@@ -300,10 +299,10 @@ class QrCode {
       maxDcCount = Math.max(maxDcCount, dcCount);
       maxEcCount = Math.max(maxEcCount, ecCount);
 
-      dcdata[r] = new List(dcCount);
+      dcdata[r] = QrMath.getZeroedList(dcCount);
 
       for (int i = 0; i < dcdata[r].length; i++) {
-        dcdata[r][i] = 0xff & buffer.buffer[i + offset];
+        dcdata[r][i] = 0xff & buffer.getByte(i + offset);
       }
       offset += dcCount;
 
@@ -311,7 +310,7 @@ class QrCode {
       var rawPoly = new QrPolynomial(dcdata[r], rsPoly.length - 1);
 
       var modPoly = rawPoly.mod(rsPoly);
-      ecdata[r] = new List(rsPoly.length - 1);
+      ecdata[r] = QrMath.getZeroedList(rsPoly.length - 1);
 
       for (int i = 0; i < ecdata[r].length; i++) {
         var modIndex = i + modPoly.length - ecdata[r].length;

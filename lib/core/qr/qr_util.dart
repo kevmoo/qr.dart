@@ -179,9 +179,9 @@ class QrUtil {
     }
   }
 
-  static getLostPoint(qrCode) {
+  static getLostPoint(QrCode qrCode) {
 
-    var moduleCount = qrCode.getModuleCount();
+    var moduleCount = qrCode.moduleCount;
 
     var lostPoint = 0;
     var row, col;
