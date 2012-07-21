@@ -1,7 +1,7 @@
 class QrPolynomial {
   List _myThings;
 
-	QrPolynomial(thing, shift) {
+	QrPolynomial(List<int> thing, shift) {
 
     var offset = 0;
 

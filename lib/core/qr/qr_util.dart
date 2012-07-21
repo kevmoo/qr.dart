@@ -1,11 +1,15 @@
-goog.provide('qr.Util');
+class QrUtil {
+  static List<List<int>> _patternPositionTable;
 
-goog.require('qr.Math');
-goog.require('qr.Polynomial');
+  static get _PATTERN_POSITION_TABLE() {
+    if(_patternPositionTable == null) {
+      _patternPositionTable = _getPatternPositionTable();
+    }
+    return _patternPositionTable;
+  }
 
-qr.Util = {
-
-  PATTERN_POSITION_TABLE: [
+  static List<List<int>> _getPatternPositionTable() {
+    return [
     [],
     [6, 18],
     [6, 22],
@@ -45,137 +49,137 @@ qr.Util = {
     [6, 28, 54, 80, 106, 132, 158],
     [6, 32, 58, 84, 110, 136, 162],
     [6, 26, 54, 82, 110, 138, 166],
-    [6, 30, 58, 86, 114, 142, 170]],
+    [6, 30, 58, 86, 114, 142, 170]];
+  }
 
-  G15: (1 << 10) | (1 << 8) | (1 << 5) | (1 << 4) | (1 << 2) | (1 << 1) | (1 << 0),
-  G18: (1 << 12) | (1 << 11) | (1 << 10) | (1 << 9) | (1 << 8) | (1 << 5) | (1 << 2) | (1 << 0),
-  G15_MASK: (1 << 14) | (1 << 12) | (1 << 10) | (1 << 4) | (1 << 1),
+  static int G15 = (1 << 10) | (1 << 8) | (1 << 5) | (1 << 4) | (1 << 2) | (1 << 1) | (1 << 0);
+  static int G18 = (1 << 12) | (1 << 11) | (1 << 10) | (1 << 9) | (1 << 8) | (1 << 5) | (1 << 2) | (1 << 0);
+  static int G15_MASK = (1 << 14) | (1 << 12) | (1 << 10) | (1 << 4) | (1 << 1);
 
-  getBCHTypeInfo: function(data) {
+  static getBCHTypeInfo(data) {
     var d = data << 10;
-    while (qr.Util.getBCHDigit(d) - qr.Util.getBCHDigit(qr.Util.G15) >= 0) {
-      d ^= (qr.Util.G15 << (qr.Util.getBCHDigit(d) - qr.Util.getBCHDigit(qr.Util.G15)));
+    while (getBCHDigit(d) - getBCHDigit(G15) >= 0) {
+      d ^= (G15 << (getBCHDigit(d) - getBCHDigit(G15)));
     }
-    return ((data << 10) | d) ^ qr.Util.G15_MASK;
-  },
+    return ((data << 10) | d) ^ G15_MASK;
+  }
 
-  getBCHTypeNumber: function(data) {
+  static getBCHTypeNumber(data) {
     var d = data << 12;
-    while (qr.Util.getBCHDigit(d) - qr.Util.getBCHDigit(qr.Util.G18) >= 0) {
-      d ^= (qr.Util.G18 << (qr.Util.getBCHDigit(d) - qr.Util.getBCHDigit(qr.Util.G18)));
+    while (getBCHDigit(d) - getBCHDigit(G18) >= 0) {
+      d ^= (G18 << (getBCHDigit(d) - getBCHDigit(G18)));
     }
     return (data << 12) | d;
-  },
+  }
 
-  getBCHDigit: function(data) {
+  static getBCHDigit(data) {
 
     var digit = 0;
 
     while (data != 0) {
       digit++;
-      data >>>= 1;
+      data >>= 1;
     }
 
     return digit;
-  },
+  }
 
-  getPatternPosition: function(typeNumber) {
-    return qr.Util.PATTERN_POSITION_TABLE[typeNumber - 1];
-  },
+  static getPatternPosition(int typeNumber) {
+    return _PATTERN_POSITION_TABLE[typeNumber - 1];
+  }
 
-  getMask: function(maskPattern, i, j) {
+  static getMask(int maskPattern, int i, int j) {
 
     switch (maskPattern) {
+      case QrMaskPattern.PATTERN000:
+        return (i + j) % 2 == 0;
+      case QrMaskPattern.PATTERN001:
+        return i % 2 == 0;
+      case QrMaskPattern.PATTERN010:
+        return j % 3 == 0;
+      case QrMaskPattern.PATTERN011:
+        return (i + j) % 3 == 0;
+      case QrMaskPattern.PATTERN100:
+        return ((i ~/ 2) + (j ~/ 3)) % 2 == 0;
+      case QrMaskPattern.PATTERN101:
+        return (i * j) % 2 + (i * j) % 3 == 0;
+      case QrMaskPattern.PATTERN110:
+        return ((i * j) % 2 + (i * j) % 3) % 2 == 0;
+      case QrMaskPattern.PATTERN111:
+        return ((i * j) % 3 + (i + j) % 2) % 2 == 0;
 
-    case qr.MaskPattern.PATTERN000:
-      return (i + j) % 2 == 0;
-    case qr.MaskPattern.PATTERN001:
-      return i % 2 == 0;
-    case qr.MaskPattern.PATTERN010:
-      return j % 3 == 0;
-    case qr.MaskPattern.PATTERN011:
-      return (i + j) % 3 == 0;
-    case qr.MaskPattern.PATTERN100:
-      return (Math.floor(i / 2) + Math.floor(j / 3)) % 2 == 0;
-    case qr.MaskPattern.PATTERN101:
-      return (i * j) % 2 + (i * j) % 3 == 0;
-    case qr.MaskPattern.PATTERN110:
-      return ((i * j) % 2 + (i * j) % 3) % 2 == 0;
-    case qr.MaskPattern.PATTERN111:
-      return ((i * j) % 3 + (i + j) % 2) % 2 == 0;
-
-    default:
-      throw new Error('bad maskPattern:' + maskPattern);
+      default:
+        throw 'bad maskPattern:$maskPattern';
     }
-  },
+  }
 
-  getErrorCorrectPolynomial: function(errorCorrectLength) {
+  static QrPolynomial getErrorCorrectPolynomial(int errorCorrectLength) {
 
-    var a = new qr.Polynomial([1], 0);
+    var a = new QrPolynomial([1], 0);
 
     for (var i = 0; i < errorCorrectLength; i++) {
-      a = a.multiply(new qr.Polynomial([1, qr.Math.gexp(i)], 0));
+      a = a.multiply(new QrPolynomial([1, QrMath.gexp(i)], 0));
     }
 
     return a;
-  },
+  }
 
-  getLengthInBits: function(mode, type) {
+  static int getLengthInBits(mode, type) {
 
     if (1 <= type && type < 10) {
 
       // 1 - 9
       switch (mode) {
-      case qr.Mode.MODE_NUMBER:
+      case QrMode.MODE_NUMBER:
         return 10;
-      case qr.Mode.MODE_ALPHA_NUM:
+      case QrMode.MODE_ALPHA_NUM:
         return 9;
-      case qr.Mode.MODE_8BIT_BYTE:
+      case QrMode.MODE_8BIT_BYTE:
         return 8;
-      case qr.Mode.MODE_KANJI:
+      case QrMode.MODE_KANJI:
         return 8;
       default:
-        throw new Error('mode:' + mode);
+        throw 'mode:$mode';
       }
 
     } else if (type < 27) {
 
       // 10 - 26
       switch (mode) {
-      case qr.Mode.MODE_NUMBER:
+      case QrMode.MODE_NUMBER:
         return 12;
-      case qr.Mode.MODE_ALPHA_NUM:
+      case QrMode.MODE_ALPHA_NUM:
         return 11;
-      case qr.Mode.MODE_8BIT_BYTE:
+      case QrMode.MODE_8BIT_BYTE:
         return 16;
-      case qr.Mode.MODE_KANJI:
+      case QrMode.MODE_KANJI:
         return 10;
       default:
-        throw new Error('mode:' + mode);
+        throw 'mode:$mode';
       }
 
     } else if (type < 41) {
 
       // 27 - 40
       switch (mode) {
-      case qr.Mode.MODE_NUMBER:
+      case QrMode.MODE_NUMBER:
         return 14;
-      case qr.Mode.MODE_ALPHA_NUM:
+      case QrMode.MODE_ALPHA_NUM:
         return 13;
-      case qr.Mode.MODE_8BIT_BYTE:
+      case QrMode.MODE_8BIT_BYTE:
         return 16;
-      case qr.Mode.MODE_KANJI:
+      case QrMode.MODE_KANJI:
         return 12;
       default:
-        throw new Error('mode:' + mode);
+        throw 'mode:$mode';
       }
 
     } else {
-      throw new Error('type:' + type);
+      throw 'type:$type';
     }
-  },
+  }
 
-  getLostPoint: function(qrCode) {
+  static getLostPoint(qrCode) {
 
     var moduleCount = qrCode.getModuleCount();
 
@@ -260,10 +264,9 @@ qr.Util = {
       }
     }
 
-    var ratio = Math.abs(100 * darkCount / moduleCount / moduleCount - 50) / 5;
+    var ratio = (100 * darkCount / moduleCount / moduleCount - 50).abs() / 5;
     lostPoint += ratio * 10;
 
     return lostPoint;
   }
-
-};
+}
