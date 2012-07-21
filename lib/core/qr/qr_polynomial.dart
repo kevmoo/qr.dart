@@ -33,7 +33,7 @@ class QrPolynomial {
     return new QrPolynomial(foo, 0);
   }
 
-  QrPolynomial mod(e) {
+  QrPolynomial mod(QrPolynomial e) {
 
     if (length - e.length < 0) {
       return this;
@@ -47,7 +47,7 @@ class QrPolynomial {
       thing[i] = this[i];
     }
 
-    for (int i = 0; i < e.getLength(); i++) {
+    for (int i = 0; i < e.length; i++) {
       thing[i] ^= QrMath.gexp(QrMath.glog(e[i]) + ratio);
     }
 
