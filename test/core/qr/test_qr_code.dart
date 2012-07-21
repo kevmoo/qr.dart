@@ -1,7 +1,7 @@
 class TestQrCode {
   static void run() {
     group('QrCode', () {
-      solo_test('simple', _testSimple);
+      test('simple', _testSimple);
     });
   }
 
