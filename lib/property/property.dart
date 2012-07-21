@@ -1,12 +1,10 @@
-class Property<T> implements Hashable{
+class Property<T> {
   static final Object Undefined = const _UndefinedValue();
 
-  final GlobalId _id;
   final String name;
   final T defaultValue;
 
-  const Property(String this.name, [T this.defaultValue = null]) :
-    _id = new GlobalId();
+  const Property(String this.name, [T this.defaultValue = null]);
 
   T get(IPropertyObject obj, [Func1<IPropertyObject, T> ifAbsent = null]){
     var coreValue = getCore(obj, ifAbsent);
@@ -42,8 +40,6 @@ class Property<T> implements Hashable{
   bool removeHandler(IPropertyObject obj, GlobalId handlerId){
     _PropertyChangeHelper.removeHandler(obj, this, handlerId);
   }
-
-  int hashCode() => _id.hashCode();
 }
 
 class _UndefinedValue{
@@ -55,11 +51,11 @@ class _PropertyChangeHelper{
   // TODO: once we can define static final with 'new' instead of 'const', we can nuke the property redirection
   static final Property<_PropertyChangeHelper> _changeHelperProperty = const Property<_PropertyChangeHelper>("_changeHelperProperty");
 
-  final HashMap<Property, EventHandle<Property>> _handlers;
+  final NoneHashMap<Property, EventHandle<Property>> _handlers;
   final GlobalId _propertyChangeHandleId;
 
   _PropertyChangeHelper(GlobalId id) :
-    _handlers = new HashMap<Property, EventHandle<Property>>(),
+    _handlers = new NoneHashMap<Property, EventHandle<Property>>(),
     _propertyChangeHandleId = id;
 
   static _PropertyChangeHelper createInstance(IPropertyObject obj){

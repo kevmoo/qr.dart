@@ -1,9 +1,9 @@
 class PropertyValues extends DisposableImpl {
-  final HashMap<Property, Object> _propertyValues;
+  final NoneHashMap<Property, Object> _propertyValues;
   final EventHandle<Property> _changeHandle;
 
   PropertyValues() :
-    _propertyValues = new HashMap<Property, Object>(),
+    _propertyValues = new NoneHashMap<Property, Object>(),
     _changeHandle = new EventHandle<Property>();
 
   void _set(Property key, Object value){
