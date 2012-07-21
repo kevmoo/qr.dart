@@ -1,13 +1,17 @@
 class QrBitBuffer extends ListBase<bool> {
-  final List<bool> _buffer;
+  final List<int> _buffer;
+  int _length = 0;
 
-  QrBitBuffer() : _buffer = new List<bool>();
+  QrBitBuffer() : _buffer = new List<int>();
 
   bool operator[](int index) {
-    return _buffer[index];
+    final bufIndex = index ~/ 8;
+    return ((_buffer[bufIndex] >> (7 - index % 8)) & 1) == 1;
   }
 
-  int get length() => _buffer.length;
+  int get length() => _length;
+
+  int getByte(int index) => _buffer[index];
 
   void put(int number, int length) {
     for(var i = 0; i < length; i++) {
@@ -17,6 +21,16 @@ class QrBitBuffer extends ListBase<bool> {
   }
 
   void putBit(bool bit) {
-    _buffer.add(bit);
+
+    final bufIndex = _length ~/ 8;
+    if (_buffer.length <= bufIndex) {
+      _buffer.add(0);
+    }
+
+    if (bit) {
+      _buffer[bufIndex] |= (0x80 >> (_length % 8));
+    }
+
+    _length++;
   }
 }

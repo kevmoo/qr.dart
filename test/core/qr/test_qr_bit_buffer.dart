@@ -3,7 +3,21 @@ class TestQrBitBuffer {
     group('QrBitBuffer', () {
       test('simple', _testSimple);
       test('complex', _testComplex);
+      test('getByte', _testGetByte);
     });
+  }
+
+  static void _testGetByte() {
+    var bb = new QrBitBuffer();
+    bb.put(12, 8);
+    expect(bb.getByte(0) , equals(12));
+
+    bb = new QrBitBuffer();
+    bb.put(42, 8);
+    expect(bb.getByte(0) , equals(42));
+
+    bb.put(19, 8);
+    expect(bb.getByte(1) , equals(19));
   }
 
   static void _testComplex() {
