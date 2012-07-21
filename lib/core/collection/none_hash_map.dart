@@ -31,7 +31,12 @@ class NoneHashMap<K, V> implements Map<K, V> {
   }
 
   bool containsKey(K key) {
-    throw 'not impled';
+    for(final t in _values) {
+      if(t.Item1 == key) {
+        return true;
+      }
+    }
+    return false;
   }
 
   V operator [](K key) {
@@ -44,11 +49,25 @@ class NoneHashMap<K, V> implements Map<K, V> {
   }
 
   void operator []=(K key, V value) {
-    throw 'not impled';
+    final newT = new Tuple<K, V>(key, value);
+    for(int i = 0; i < _values.length; i++) {
+      if(_values[i].Item1 == key) {
+        _values[i] = newT;
+        return;
+      }
+    }
+    _values.add(newT);
   }
 
   V remove(K key) {
-    throw 'not impled';
+    for(int i = 0; i < _values.length; i++) {
+      if(_values[i].Item1 == key) {
+        final t = _values[i];
+        _values.removeRange(i, 1);
+        return t.Item2;
+      }
+    }
+    return null;
   }
 
   void clear() {
