@@ -17,8 +17,6 @@
 #source('math/test_vector.dart');
 #source('math/test_affine_transform.dart');
 #source('math/test_rect.dart');
-#source('test_property_event_integration.dart');
-#source('test_properties.dart');
 #source('graph/test_tarjan.dart');
 
 #source('color/test_rgb_color.dart');
@@ -42,8 +40,6 @@ void runCoreTests() {
     TestUtil.run();
     TestCloneable.run();
     TestEvents.run();
-    TestProperties.run();
-    TestPropertyEventIntegration.run();
 
     TestTarjanCycleDetect.run();
 

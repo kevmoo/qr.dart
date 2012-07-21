@@ -1,4 +1,4 @@
-class PElement extends core.PropertyObject {
+class PElement extends PropertyObject {
   final List<core.AffineTransform> _transforms;
   final bool cacheEnabled;
   final core.EventHandle<core.EventArgs> _updatedEventHandle;

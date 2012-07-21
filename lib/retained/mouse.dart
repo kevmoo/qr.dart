@@ -1,10 +1,10 @@
 class Mouse {
-  static final core.Property<bool> isMouseOverProperty =
-      const core.Property<bool>("IsMouseOver", false);
-  static final core.Property<bool> isMouseDirectlyOverProperty =
-      const core.Property<bool>("IsMouseDirectlyOver", false);
-  static final core.Property<List<PElement>> _stageMouseCacheProperty =
-      const core.Property<List<PElement>>("_stageMouseCacheProperty");
+  static final Property<bool> isMouseOverProperty =
+      const Property<bool>("IsMouseOver", false);
+  static final Property<bool> isMouseDirectlyOverProperty =
+      const Property<bool>("IsMouseDirectlyOver", false);
+  static final Property<List<PElement>> _stageMouseCacheProperty =
+      const Property<List<PElement>>("_stageMouseCacheProperty");
 
   static bool isMouseOver(PElement element){
     return isMouseOverProperty.get(element);
