@@ -51,3 +51,13 @@
 #source('core/graph/tarjan_cycle_detect.dart');
 
 #source('core/async/slow_mapper.dart');
+
+#source('core/qr/qr_bit_buffer.dart');
+#source('core/qr/qr_enums.dart');
+#source('core/qr/qr_byte.dart');
+#source('core/qr/qr_math.dart');
+#source('core/qr/qr_polynomial.dart');
+#source('core/qr/qr_rs_block.dart');
+#source('core/qr/qr_util.dart');
+#source('core/qr/qr_code.dart');
+
