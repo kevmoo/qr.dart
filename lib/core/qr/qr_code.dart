@@ -228,7 +228,7 @@ class QrCode {
   static final int PAD1 = 0x11;
 
 
-  static createData(typeNumber, errorCorrectLevel, dataList) {
+  static createData(typeNumber, errorCorrectLevel, List<QrByte> dataList) {
 
     var rsBlocks = QrRsBlock.getRSBlocks(typeNumber, errorCorrectLevel);
 
@@ -238,7 +238,7 @@ class QrCode {
     for (i = 0; i < dataList.length; i++) {
       var data = dataList[i];
       buffer.put(data.mode, 4);
-      buffer.put(data.getLength(), QrUtil.getLengthInBits(data.mode, typeNumber));
+      buffer.put(data.length, QrUtil.getLengthInBits(data.mode, typeNumber));
       data.write(buffer);
     }
 
@@ -352,10 +352,6 @@ class QrCode {
     _dataCache = null;
   }
 
-  /**
-   * @param {boolean} test
-   * @param {number} maskPattern
-   */
   void makeImpl(bool test, int maskPattern) {
 
     this.setupPositionProbePattern(0, 0);

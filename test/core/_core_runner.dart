@@ -25,6 +25,7 @@
 #source('color/test_hsl_color.dart');
 
 #source('qr/test_qr_bit_buffer.dart');
+#source('qr/test_qr_code.dart');
 
 void runCoreTests() {
   group('core', (){
@@ -62,5 +63,6 @@ void runCoreTests() {
     });
 
     TestQrBitBuffer.run();
+    TestQrCode.run();
   });
 }
