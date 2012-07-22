@@ -1,15 +1,23 @@
 class QrByte {
   final int mode = QrMode.MODE_8BIT_BYTE;
-  final String _data;
+  final List<int> _data;
 
-  // TODO: uh...does this work with non-ascii? Hmm...
-  QrByte(this._data);
+  factory QrByte(String input) {
+    requireArgumentNotNull(input, 'input');
+    final charCodes = input.charCodes();
+    for(final v in charCodes) {
+      requireArgument(v < 255, 'ascii-only');
+    }
+    return new QrByte._internal(charCodes);
+  }
+
+  QrByte._internal(this._data);
 
   int get length() => _data.length;
 
   void write(QrBitBuffer buffer) {
-    for(int i = 0; i < length; i++) {
-      buffer.put(_data.charCodeAt(i), 8);
+    for(final int v in _data) {
+      buffer.put(v, 8);
     }
   }
 }
