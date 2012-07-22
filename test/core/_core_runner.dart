@@ -58,7 +58,9 @@ void runCoreTests() {
       expect(t2, isNot(equals(t1)));
     });
 
-    TestQrBitBuffer.run();
-    TestQrCode.run();
+    group('qr', (){
+      TestQrBitBuffer.run();
+      TestQrCode.run();
+    });
   });
 }
