@@ -47,7 +47,7 @@ class QrUtil {
   static int G18 = (1 << 12) | (1 << 11) | (1 << 10) | (1 << 9) | (1 << 8) | (1 << 5) | (1 << 2) | (1 << 0);
   static int G15_MASK = (1 << 14) | (1 << 12) | (1 << 10) | (1 << 4) | (1 << 1);
 
-  static getBCHTypeInfo(data) {
+  static int getBCHTypeInfo(int data) {
     var d = data << 10;
     while (getBCHDigit(d) - getBCHDigit(G15) >= 0) {
       d ^= (G15 << (getBCHDigit(d) - getBCHDigit(G15)));
@@ -55,7 +55,7 @@ class QrUtil {
     return ((data << 10) | d) ^ G15_MASK;
   }
 
-  static getBCHTypeNumber(data) {
+  static int getBCHTypeNumber(int data) {
     var d = data << 12;
     while (getBCHDigit(d) - getBCHDigit(G18) >= 0) {
       d ^= (G18 << (getBCHDigit(d) - getBCHDigit(G18)));
@@ -63,7 +63,7 @@ class QrUtil {
     return (data << 12) | d;
   }
 
-  static getBCHDigit(data) {
+  static int getBCHDigit(int data) {
 
     var digit = 0;
 
@@ -75,12 +75,11 @@ class QrUtil {
     return digit;
   }
 
-  static getPatternPosition(int typeNumber) {
+  static List<int> getPatternPosition(int typeNumber) {
     return _PATTERN_POSITION_TABLE[typeNumber - 1];
   }
 
-  static getMask(int maskPattern, int i, int j) {
-
+  static bool getMask(int maskPattern, int i, int j) {
     switch (maskPattern) {
       case QrMaskPattern.PATTERN000:
         return (i + j) % 2 == 0;
@@ -98,7 +97,6 @@ class QrUtil {
         return ((i * j) % 2 + (i * j) % 3) % 2 == 0;
       case QrMaskPattern.PATTERN111:
         return ((i * j) % 3 + (i + j) % 2) % 2 == 0;
-
       default:
         throw 'bad maskPattern:$maskPattern';
     }
@@ -115,7 +113,7 @@ class QrUtil {
     return a;
   }
 
-  static int getLengthInBits(mode, type) {
+  static int getLengthInBits(int mode, int type) {
 
     if (1 <= type && type < 10) {
 
@@ -170,7 +168,7 @@ class QrUtil {
     }
   }
 
-  static getLostPoint(QrCode qrCode) {
+  static num getLostPoint(QrCode qrCode) {
 
     var moduleCount = qrCode.moduleCount;
 

@@ -1,6 +1,6 @@
 class QrMath {
-  static ReadOnlyCollection _logTable;
-  static ReadOnlyCollection _expTable;
+  static ReadOnlyCollection<int> _logTable;
+  static ReadOnlyCollection<int> _expTable;
 
   static List<int> getZeroedList(int count) {
     final l = new List<int>();

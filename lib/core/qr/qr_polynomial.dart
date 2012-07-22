@@ -1,7 +1,9 @@
 class QrPolynomial {
-  List _myThings;
+  final List<int> _myThings;
 
-	QrPolynomial(List<int> thing, shift) {
+  QrPolynomial._internal(this._myThings);
+
+  factory	QrPolynomial(List<int> thing, int shift) {
 
     var offset = 0;
 
@@ -9,11 +11,13 @@ class QrPolynomial {
       offset++;
     }
 
-    _myThings = QrMath.getZeroedList(thing.length - offset + shift);
+    final List<int> values = QrMath.getZeroedList(thing.length - offset + shift);
 
     for (var i = 0; i < thing.length - offset; i++) {
-      _myThings[i] = thing[i + offset];
+      values[i] = thing[i + offset];
     }
+
+    return new QrPolynomial._internal(values);
   }
 
   operator [](int index) => _myThings[index];
@@ -22,7 +26,7 @@ class QrPolynomial {
 
   QrPolynomial multiply(QrPolynomial e) {
 
-    List foo = QrMath.getZeroedList(length + e.length - 1);
+    final List<int> foo = QrMath.getZeroedList(length + e.length - 1);
 
     for (var i = 0; i < length; i++) {
       for (var j = 0; j < e.length; j++) {
