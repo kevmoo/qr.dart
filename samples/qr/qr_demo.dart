@@ -16,12 +16,14 @@ main(){
 }
 
 class QrDemo{
+  static final int errorCorrectLevel = core.QrErrorCorrectLevel.M;
   static final int typeNumber = 10;
   static final int size = typeNumber * 4 + 17;
-  static final int scale = 10;
 
   final CanvasElement _canvas;
   final core.SendPortValue<String, List<bool>> _qrMapper;
+  final int scale;
+  final int offset;
 
   List<bool> _squares;
   CanvasRenderingContext2D _ctx;
@@ -29,7 +31,17 @@ class QrDemo{
   core.Coordinate _mouseLocation;
   bool _frameRequested = false;
 
-  QrDemo(this._canvas) :
+  factory QrDemo(CanvasElement canvas) {
+    final minDimension = Math.min(canvas.width, canvas.height);
+
+    final scale = minDimension ~/ size;
+
+    final offset = (minDimension - (scale * size)) ~/ 2;
+
+    return new QrDemo._internal(canvas, scale, offset);
+  }
+
+  QrDemo._internal(this._canvas, this.scale, this.offset) :
     _qrMapper = new core.SendPortValue(spawnFunction(_qrIsolate)) {
     _qrMapper.outputChanged.add((args) {
       _squares = _qrMapper.output;
@@ -55,18 +67,19 @@ class QrDemo{
     _frameRequested = false;
     if(_ctx == null) {
       _ctx = _canvas.context2d;
+      _ctx.fillStyle = 'black';
     }
 
-    _ctx.fillStyle = 'white';
-    _ctx.fillRect(0, 0, size * scale, size * scale);
-    _ctx.fillStyle = 'black';
+    _ctx.clearRect(0, 0, _canvas.width, _canvas.height);
+
+    _ctx.setTransform(scale, 0, 0, scale, offset, offset);
 
     if(_squares.length > 0) {
       assert(_squares.length == size * size);
       for(int x = 0; x < size; x++) {
         for(int y = 0; y < size; y++) {
           if(_squares[x * size + y]) {
-            _ctx.fillRect(x * scale, y * scale, scale, scale);
+            _ctx.fillRect(x, y, 1, 1);
           }
         }
       }
@@ -89,13 +102,14 @@ class QrDemo{
 
 
 void _qrIsolate() {
+  final errorCorrectLevel = QrDemo.errorCorrectLevel;
   final typeNumber = QrDemo.typeNumber;
   final size = QrDemo.size;
 
   port.receive((String input,
       SendPort reply) {
 
-    final code = new core.QrCode(typeNumber, core.QrErrorCorrectLevel.Q);
+    final code = new core.QrCode(typeNumber, errorCorrectLevel);
     code.addData(input);
     code.make();
 
