@@ -6,11 +6,11 @@ class QrRsBlock {
 
   static List<QrRsBlock> getRSBlocks(int typeNumber, int errorCorrectLevel) {
 
-    var rsBlock = getRsBlockTable(typeNumber, errorCorrectLevel);
+    final rsBlock = getRsBlockTable(typeNumber, errorCorrectLevel);
 
-    var length = rsBlock.length / 3;
+    final int length = rsBlock.length ~/ 3;
 
-    var list = new List<QrRsBlock>();
+    final list = new List<QrRsBlock>();
 
     for (var i = 0; i < length; i++) {
 
@@ -26,7 +26,7 @@ class QrRsBlock {
     return list;
   }
 
-  static getRsBlockTable(int typeNumber, int errorCorrectLevel) {
+  static List<int> getRsBlockTable(int typeNumber, int errorCorrectLevel) {
 
     switch (errorCorrectLevel) {
       case QrErrorCorrectLevel.L:
