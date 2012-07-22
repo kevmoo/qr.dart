@@ -6,11 +6,12 @@ class TestQrCode {
   }
 
   static void _testSimple() {
-    final typeNumber = 10;
-    final code = new QrCode(typeNumber, QrErrorCorrectLevel.Q);
-    code.addData("kevin!");
-    code.make();
-
+    for(int typeNumber = 1; typeNumber <= 10; typeNumber++){
+      for(final quality in QrErrorCorrectLevel.levels) {
+        final code = new QrCode(typeNumber, quality);
+        code.addData("kevin!");
+        code.make();
+      }
+    }
   }
-
 }

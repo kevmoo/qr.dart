@@ -1,4 +1,7 @@
 class QrCode {
+  static final int PAD0 = 0xEC;
+  static final int PAD1 = 0x11;
+
   final typeNumber;
   final errorCorrectLevel;
   final int _moduleCount;
@@ -6,10 +9,11 @@ class QrCode {
   List<int> _dataCache;
   List<QrByte> _dataList;
 
-  QrCode(int tn, this.errorCorrectLevel) :
-    typeNumber = tn,
-    _moduleCount = tn * 4 + 17,
-    _modules = new List<List<bool>>() {
+  QrCode(int tn, this.errorCorrectLevel)
+  : typeNumber = tn,
+  _moduleCount = tn * 4 + 17,
+  _modules = new List<List<bool>>() {
+    requireArgument(typeNumber > 0 && typeNumber < 11, 'tn');
 
     for (var row = 0; row < _moduleCount; row++) {
       _modules.add(new List<bool>(_moduleCount));
@@ -48,7 +52,9 @@ class QrCode {
 
         if (col + c <= -1 || _moduleCount <= col + c) continue;
 
-        if ((0 <= r && r <= 6 && (c == 0 || c == 6)) || (0 <= c && c <= 6 && (r == 0 || r == 6)) || (2 <= r && r <= 4 && 2 <= c && c <= 4)) {
+        if ((0 <= r && r <= 6 && (c == 0 || c == 6)) ||
+            (0 <= c && c <= 6 && (r == 0 || r == 6)) ||
+            (2 <= r && r <= 4 && 2 <= c && c <= 4)) {
           _modules[row + r][col + c] = true;
         } else {
           _modules[row + r][col + c] = false;
@@ -228,10 +234,6 @@ class QrCode {
     }
 
   }
-
-  static final int PAD0 = 0xEC;
-  static final int PAD1 = 0x11;
-
 
   static List<int> _createData(int typeNumber, int errorCorrectLevel, List<QrByte> dataList) {
 

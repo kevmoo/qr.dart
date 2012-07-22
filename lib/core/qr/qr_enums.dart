@@ -10,6 +10,7 @@ class QrErrorCorrectLevel {
   static final int M = 0;
   static final int Q = 3;
   static final int H = 2;
+  static final List<int> levels = const[L,M,Q,H];
 }
 
 class QrMaskPattern {
