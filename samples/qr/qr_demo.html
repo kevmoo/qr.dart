@@ -2,16 +2,19 @@
 
 <html>
   <head>
+    <title>dartlib - Qr Demo</title>
+    <style type='text/css'>
+    input, canvas {
+      margin: 20px auto;
+      display: block;
+    }
+    </style>
   </head>
   <body>
     <script type="application/dart" src="qr_demo.dart"></script>
     <script src="../../vendor/dart.js"></script>
-    <div style='margin: 20px auto; width: 570px;'>
-      <canvas height='570' id='content' width='570' style='background: lightgray;'>
+      <canvas height='600' id='content' width='600'>
       </canvas>
-    </div>
-    <div  style='margin: 20px auto; width: 570px;'>
-      <input type='text' id='input' style='font-size:30px; width:570px;'></input>
-    </div>
+      <input type='text' id='input' style='font-size:30px;'></input>
   </body>
 </html>
