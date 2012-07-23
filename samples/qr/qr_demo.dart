@@ -7,21 +7,29 @@ main(){
   final demo = new QrDemo(canvas);
 
   final InputElement input = query('#input');
-  input.value = "Type your message in here...";
+  input.value = "kevin";
   demo.updateValue(input.value);
 
   input.on.keyUp.add((KeyboardEvent args) {
     demo.updateValue(input.value);
   });
+
+  demo.updated.add((args) {
+    input.style.background = '';
+  });
+
+  demo.error.add((args) {
+    input.style.background = 'red';
+  });
 }
 
 class QrDemo{
   static final int errorCorrectLevel = core.QrErrorCorrectLevel.M;
-  static final int typeNumber = 10;
+  static final int typeNumber = 1;
   static final int size = typeNumber * 4 + 17;
 
   final CanvasElement _canvas;
-  final core.SendPortValue<String, List<bool>> _qrMapper;
+  final _QrCalc _qrMapper;
   final int scale;
   final int offset;
 
@@ -42,7 +50,7 @@ class QrDemo{
   }
 
   QrDemo._internal(this._canvas, this.scale, this.offset) :
-    _qrMapper = new core.SendPortValue(spawnFunction(_qrIsolate)) {
+    _qrMapper = new _QrCalc() {
     _qrMapper.outputChanged.add((args) {
       _squares = _qrMapper.output;
       requestFrame();
@@ -51,6 +59,10 @@ class QrDemo{
     _canvas.on.mouseMove.add(_canvas_mouseMove);
     _canvas.on.mouseOut.add(_canvas_mouseOut);
   }
+
+  core.EventRoot get updated() => _qrMapper.outputChanged;
+
+  core.EventRoot get error() => _qrMapper.error;
 
   void updateValue(String value) {
     _qrMapper.input = value;
@@ -100,15 +112,16 @@ class QrDemo{
   }
 }
 
+class _QrCalc extends core.SendPortValue<String, List<bool>> {
+  _QrCalc() : super(spawnFunction(_qrIsolate));
+}
 
 void _qrIsolate() {
   final errorCorrectLevel = QrDemo.errorCorrectLevel;
   final typeNumber = QrDemo.typeNumber;
   final size = QrDemo.size;
 
-  port.receive((String input,
-      SendPort reply) {
-
+  new core.SendValuePort<String, List<bool>>((String input){
     final code = new core.QrCode(typeNumber, errorCorrectLevel);
     code.addData(input);
     code.make();
@@ -121,6 +134,6 @@ void _qrIsolate() {
       }
     }
 
-    reply.send(squares);
+    return squares;
   });
 }
