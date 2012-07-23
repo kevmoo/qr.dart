@@ -1,6 +1,6 @@
 #library('dartlib_test');
 
-#import('core.dart');
+#import('dartlib.dart');
 #import('../vendor/unittest/unittest.dart');
 
 #source('test/event_watcher.dart');

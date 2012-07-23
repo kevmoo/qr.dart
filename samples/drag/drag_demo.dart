@@ -1,6 +1,6 @@
 #import('dart:html');
 #import('dart:isolate');
-#import('../../lib/core.dart', prefix:'core');
+#import('../../lib/dartlib.dart', prefix:'core');
 #import('../../lib/async.dart');
 #import('../../lib/html.dart');
 #import('../../lib/retained.dart');

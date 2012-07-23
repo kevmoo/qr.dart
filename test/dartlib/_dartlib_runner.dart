@@ -1,7 +1,7 @@
 #library('dartlib_test_core');
 
 #import('../../vendor/unittest/unittest.dart');
-#import('../../lib/core.dart');
+#import('../../lib/dartlib.dart');
 #import('../../lib/test.dart');
 
 #source('test_cloneable.dart');
@@ -25,8 +25,8 @@
 #source('property/test_property_event_integration.dart');
 #source('property/test_properties.dart');
 
-void runCoreTests() {
-  group('core', (){
+void runDartlibTests() {
+  group('dartlib', (){
     TestEnumerable.run();
     TestNumberEnumerable.run();
     TestListBase.run();

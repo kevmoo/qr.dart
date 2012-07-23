@@ -1,11 +1,11 @@
 #import('../vendor/unittest/html_enhanced_config.dart');
 
-#import('core/_core_runner.dart');
+#import('dartlib/_dartlib_runner.dart');
 #import('qr/_qr_runner.dart');
 
 main() {
   useHtmlEnhancedConfiguration();
 
-  runCoreTests();
+  runDartlibTests();
   runQrTests();
 }

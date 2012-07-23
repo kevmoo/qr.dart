@@ -2,12 +2,12 @@
 
 #import('../vendor/unittest/vm_config.dart');
 
-#import('core/_core_runner.dart');
+#import('dartlib/_dartlib_runner.dart');
 #import('qr/_qr_runner.dart');
 
 main() {
   useVmConfiguration();
 
-  runCoreTests();
+  runDartlibTests();
   runQrTests();
 }

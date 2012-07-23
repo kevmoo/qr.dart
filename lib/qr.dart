@@ -1,6 +1,6 @@
 #library('dartlib_qr');
 
-#import('core.dart');
+#import('dartlib.dart');
 
 #source('qr/qr_bit_buffer.dart');
 #source('qr/qr_enums.dart');

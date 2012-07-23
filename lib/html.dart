@@ -2,6 +2,6 @@
 
 #import('dart:html');
 
-#import('core.dart', prefix:'core');
+#import('dartlib.dart', prefix:'core');
 
 #source('html/dragger.dart');

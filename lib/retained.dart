@@ -2,7 +2,7 @@
 
 #import('dart:html');
 
-#import('core.dart', prefix:'core');
+#import('dartlib.dart', prefix:'core');
 
 #source('retained/retained_debug.dart');
 #source('retained/mouse.dart');

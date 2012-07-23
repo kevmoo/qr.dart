@@ -8,6 +8,6 @@
  */
 #library('dartlib_everything');
 
-#import('core.dart');
+#import('dartlib.dart');
 #import('test.dart');
 #import('retained.dart');

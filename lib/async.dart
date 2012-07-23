@@ -1,6 +1,6 @@
 #library('dartlib_async');
 
-#import('core.dart');
+#import('dartlib.dart');
 #import("dart:isolate");
 
 #source('async/future_value.dart');
