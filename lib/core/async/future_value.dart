@@ -1,8 +1,10 @@
 // TODO: real tests
 class FutureValue<TInput, TOutput> {
-  FutureValue() :
-    _outputChangedHandle = new EventHandle<EventArgs>(),
-    _inputChangedHandle = new EventHandle<EventArgs>();
+  FutureValue()
+  : _outputChangedHandle = new EventHandle<EventArgs>(),
+  _inputChangedHandle = new EventHandle<EventArgs>(),
+  _errorHandle = new EventHandle();
+
 
   TInput get input() => _input;
 
@@ -20,14 +22,37 @@ class FutureValue<TInput, TOutput> {
 
   EventRoot<EventArgs> get outputChanged() => _outputChangedHandle;
   EventRoot<EventArgs> get inputChanged() => _inputChangedHandle;
+  EventRoot get error() => _errorHandle;
 
   abstract Future<TOutput> getFuture(TInput value);
 
-  void _futureCompleted(TOutput value) {
+  void _futureCompleted(value) {
     assert(_future != null);
     _future = null;
+
+    if(value is FutureValueResult) {
+      _sendValueResultCompleted(value);
+    } else {
+      _simpleFutureCompleted(value);
+    }
+  }
+
+  void _sendValueResultCompleted(FutureValueResult<TOutput> value) {
+    if(value.isException) {
+      _errorHandle.fireEvent(value.exception);
+      _cleanup();
+    } else {
+      _simpleFutureCompleted(value.value);
+    }
+  }
+
+  void _simpleFutureCompleted(TOutput value) {
     _output = value;
     _outputChangedHandle.fireEvent(EventArgs.empty);
+    _cleanup();
+  }
+
+  void _cleanup() {
     if(_pending) {
       _pending = false;
       _startFuture();
@@ -48,4 +73,5 @@ class FutureValue<TInput, TOutput> {
 
   final EventHandle<EventArgs> _outputChangedHandle;
   final EventHandle<EventArgs> _inputChangedHandle;
+  final EventHandle _errorHandle;
 }

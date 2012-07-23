@@ -48,7 +48,9 @@
 #source('core/graph/tarjan_cycle_detect.dart');
 
 #source('core/async/future_value.dart');
+#source('core/async/future_value_result.dart');
 #source('core/async/send_port_value.dart');
+#source('core/async/send_value_port.dart');
 
 #source('core/qr/qr_bit_buffer.dart');
 #source('core/qr/qr_enums.dart');
