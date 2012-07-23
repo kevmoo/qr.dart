@@ -6,11 +6,31 @@ class QrMode {
 }
 
 class QrErrorCorrectLevel {
+
   static final int L = 1;
   static final int M = 0;
   static final int Q = 3;
   static final int H = 2;
+
+  // thesee *are* in order of lowest to highest quality...I think
+  // all I know for sure: you can create longer messages w/ item N than N+1
+  // I assume this correcsponds to more error correction for N+1
   static final List<int> levels = const[L,M,Q,H];
+
+  static String getName(int level) {
+    switch(level) {
+      case L:
+        return 'Low';
+      case M:
+        return 'Medium';
+      case Q:
+        return 'Quality';
+      case H:
+        return 'High';
+      default:
+        throw 'not supported';
+    }
+  }
 }
 
 class QrMaskPattern {
