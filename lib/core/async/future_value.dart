@@ -3,7 +3,7 @@ class FutureValue<TInput, TOutput> {
   FutureValue()
   : _outputChangedHandle = new EventHandle<EventArgs>(),
   _inputChangedHandle = new EventHandle<EventArgs>(),
-  _errorHandle = new EventHandle();
+  _errorHandle = new EventHandle<Object>();
 
 
   TInput get input() => _input;
@@ -63,7 +63,15 @@ class FutureValue<TInput, TOutput> {
     assert(_future == null);
     assert(!_pending);
     _future = getFuture(_input);
+    _future.handleException(_futureException);
     _future.then(_futureCompleted);
+  }
+
+  bool _futureException(Object exception) {
+    assert(_future != null);
+    _future = null;
+    _errorHandle.fireEvent(exception);
+    _cleanup();
   }
 
   TInput _input;
@@ -73,5 +81,5 @@ class FutureValue<TInput, TOutput> {
 
   final EventHandle<EventArgs> _outputChangedHandle;
   final EventHandle<EventArgs> _inputChangedHandle;
-  final EventHandle _errorHandle;
+  final EventHandle<Object> _errorHandle;
 }
