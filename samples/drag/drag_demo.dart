@@ -56,7 +56,7 @@ class DraggerDemo{
 
   void _onDrag(core.Vector delta) {
     _tx.translate(delta.x, delta.y);
-    _demoMapper.input = delta;
+    _demoMapper.input = _tx.translateVector;
     requestFrame();
   }
 
@@ -68,9 +68,25 @@ class DraggerDemo{
 
   bool _onFrame(num highResTime){
     _stage.draw();
-    _stage.ctx.fillStyle = 'black';
-    _stage.ctx.font = '10px';
-    _stage.ctx.fillText(_demoMapper.output.toString(), 10,10);
+
+    final ctx = _stage.ctx;
+    ctx.save();
+    ctx.fillStyle = 'black';
+    ctx.shadowColor = 'white';
+    ctx.shadowBlur = 2;
+    ctx.shadowOffsetX = 1;
+    ctx.shadowOffsetY = 1;
+    ctx.font = '20px Fixed, monospace';
+
+    final inputText = " Input: ${_demoMapper.input}";
+    final outputText = "Output: ${_demoMapper.output}";
+
+    final int bottom = _canvas.height;
+    final w = _canvas.width;
+
+    ctx.fillText(inputText, 10, bottom - 40);
+    ctx.fillText(outputText, 10, bottom - 20);
+    ctx.restore();
     _frameRequested = false;
   }
 
