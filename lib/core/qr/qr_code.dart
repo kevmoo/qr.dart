@@ -4,19 +4,19 @@ class QrCode {
 
   final typeNumber;
   final errorCorrectLevel;
-  final int _moduleCount;
+  final int moduleCount;
   final List<List> _modules;
   List<int> _dataCache;
   List<QrByte> _dataList;
 
   QrCode(int tn, this.errorCorrectLevel)
   : typeNumber = tn,
-  _moduleCount = tn * 4 + 17,
+  moduleCount = tn * 4 + 17,
   _modules = new List<List<bool>>() {
     requireArgument(typeNumber > 0 && typeNumber < 11, 'tn');
 
-    for (var row = 0; row < _moduleCount; row++) {
-      _modules.add(new List<bool>(_moduleCount));
+    for (var row = 0; row < moduleCount; row++) {
+      _modules.add(new List<bool>(moduleCount));
     }
 
     _dataCache = null;
@@ -24,13 +24,11 @@ class QrCode {
   }
 
   bool isDark(int row, int col) {
-    if (row < 0 || _moduleCount <= row || col < 0 || _moduleCount <= col) {
+    if (row < 0 || moduleCount <= row || col < 0 || moduleCount <= col) {
       throw '$row , $col';
     }
     return _modules[row][col];
   }
-
-  int get moduleCount() => _moduleCount;
 
   void addData(String data) {
     var newData = new QrByte(data);
@@ -46,11 +44,11 @@ class QrCode {
 
     for (var r = -1; r <= 7; r++) {
 
-      if (row + r <= -1 || _moduleCount <= row + r) continue;
+      if (row + r <= -1 || moduleCount <= row + r) continue;
 
       for (var c = -1; c <= 7; c++) {
 
-        if (col + c <= -1 || _moduleCount <= col + c) continue;
+        if (col + c <= -1 || moduleCount <= col + c) continue;
 
         if ((0 <= r && r <= 6 && (c == 0 || c == 6)) ||
             (0 <= c && c <= 6 && (r == 0 || r == 6)) ||
@@ -85,14 +83,14 @@ class QrCode {
 
   void _setupTimingPattern() {
 
-    for (var r = 8; r < _moduleCount - 8; r++) {
+    for (var r = 8; r < moduleCount - 8; r++) {
       if (_modules[r][6] != null) {
         continue;
       }
       _modules[r][6] = (r % 2 == 0);
     }
 
-    for (var c = 8; c < _moduleCount - 8; c++) {
+    for (var c = 8; c < moduleCount - 8; c++) {
       if (_modules[6][c] != null) {
         continue;
       }
@@ -136,12 +134,12 @@ class QrCode {
 
     for (int i = 0; i < 18; i++) {
       final bool mod = (!test && ((bits >> i) & 1) == 1);
-      _modules[i ~/ 3][i % 3 + _moduleCount - 8 - 3] = mod;
+      _modules[i ~/ 3][i % 3 + moduleCount - 8 - 3] = mod;
     }
 
     for (int i = 0; i < 18; i++) {
       final bool mod = (!test && ((bits >> i) & 1) == 1);
-      _modules[i % 3 + _moduleCount - 8 - 3][i ~/ 3] = mod;
+      _modules[i % 3 + moduleCount - 8 - 3][i ~/ 3] = mod;
     }
   }
 
@@ -162,7 +160,7 @@ class QrCode {
       } else if (i < 8) {
         _modules[i + 1][8] = mod;
       } else {
-        _modules[_moduleCount - 15 + i][8] = mod;
+        _modules[moduleCount - 15 + i][8] = mod;
       }
     }
 
@@ -172,7 +170,7 @@ class QrCode {
       mod = (!test && ((bits >> i) & 1) == 1);
 
       if (i < 8) {
-        _modules[8][_moduleCount - i - 1] = mod;
+        _modules[8][moduleCount - i - 1] = mod;
       } else if (i < 9) {
         _modules[8][15 - i - 1 + 1] = mod;
       } else {
@@ -181,17 +179,17 @@ class QrCode {
     }
 
     // fixed module
-    _modules[_moduleCount - 8][8] = (!test);
+    _modules[moduleCount - 8][8] = (!test);
 
   }
 
   void _mapData(List<int> data, maskPattern) {
     var inc = -1;
-    var row = _moduleCount - 1;
+    var row = moduleCount - 1;
     var bitIndex = 7;
     var byteIndex = 0;
 
-    for (var col = _moduleCount - 1; col > 0; col -= 2) {
+    for (var col = moduleCount - 1; col > 0; col -= 2) {
 
       if (col == 6) col--;
 
@@ -225,7 +223,7 @@ class QrCode {
 
         row += inc;
 
-        if (row < 0 || _moduleCount <= row) {
+        if (row < 0 || moduleCount <= row) {
           row -= inc;
           inc = -inc;
           break;
@@ -238,8 +236,8 @@ class QrCode {
   void _makeImpl(bool test, int maskPattern) {
 
     _setupPositionProbePattern(0, 0);
-    _setupPositionProbePattern(_moduleCount - 7, 0);
-    _setupPositionProbePattern(0, _moduleCount - 7);
+    _setupPositionProbePattern(moduleCount - 7, 0);
+    _setupPositionProbePattern(0, moduleCount - 7);
     _setupPositionAdjustPattern();
     _setupTimingPattern();
     _setupTypeInfo(test, maskPattern);
