@@ -58,4 +58,5 @@
 #source('core/qr/qr_rs_block.dart');
 #source('core/qr/qr_util.dart');
 #source('core/qr/qr_code.dart');
+#source('core/qr/qr_input_too_long_exception.dart');
 

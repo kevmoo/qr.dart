@@ -235,6 +235,26 @@ class QrCode {
 
   }
 
+  void _makeImpl(bool test, int maskPattern) {
+
+    _setupPositionProbePattern(0, 0);
+    _setupPositionProbePattern(_moduleCount - 7, 0);
+    _setupPositionProbePattern(0, _moduleCount - 7);
+    _setupPositionAdjustPattern();
+    _setupTimingPattern();
+    _setupTypeInfo(test, maskPattern);
+
+    if (typeNumber >= 7) {
+      _setupTypeNumber(test);
+    }
+
+    if (_dataCache == null) {
+      _dataCache = _createData(typeNumber, errorCorrectLevel, _dataList);
+    }
+
+    _mapData(_dataCache, maskPattern);
+  }
+
   static List<int> _createData(int typeNumber, int errorCorrectLevel, List<QrByte> dataList) {
 
     var rsBlocks = QrRsBlock.getRSBlocks(typeNumber, errorCorrectLevel);
@@ -255,13 +275,14 @@ class QrCode {
       totalDataCount += rsBlocks[i].dataCount;
     }
 
-    if (buffer.length > totalDataCount * 8) {
-      throw 'code length overflow. (${buffer.length}>${totalDataCount * 8})';
+    final totalByteCount = totalDataCount * 8;
+    if (buffer.length > totalByteCount) {
+      throw new QrInputTooLongException(buffer.length, totalByteCount);
     }
 
     // HUH?
     // èIí[ÉRÅ[Éh
-    if (buffer.length + 4 <= totalDataCount * 8) {
+    if (buffer.length + 4 <= totalByteCount) {
       buffer.put(0, 4);
     }
 
@@ -350,26 +371,6 @@ class QrCode {
     }
 
     return data;
-  }
-
-  void _makeImpl(bool test, int maskPattern) {
-
-    _setupPositionProbePattern(0, 0);
-    _setupPositionProbePattern(_moduleCount - 7, 0);
-    _setupPositionProbePattern(0, _moduleCount - 7);
-    _setupPositionAdjustPattern();
-    _setupTimingPattern();
-    _setupTypeInfo(test, maskPattern);
-
-    if (typeNumber >= 7) {
-      _setupTypeNumber(test);
-    }
-
-    if (_dataCache == null) {
-      _dataCache = _createData(typeNumber, errorCorrectLevel, _dataList);
-    }
-
-    _mapData(_dataCache, maskPattern);
   }
 }
 
