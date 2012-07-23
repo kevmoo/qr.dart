@@ -4,29 +4,17 @@
 
 main(){
   final CanvasElement canvas = query("#content");
-  final demo = new QrDemo(canvas);
+  final DivElement typeDiv = query('#type-div');
+  final DivElement errorDiv = query('#error-div');
+  final demo = new QrDemo(canvas, typeDiv, errorDiv);
 
   final InputElement input = query('#input');
   input.value = "Type your message in here...";
-  demo.updateValue(input.value);
+  demo.value = input.value;
 
   input.on.keyUp.add((KeyboardEvent args) {
-    demo.updateValue(input.value);
+    demo.value = input.value;
   });
-
-  final DivElement typeDiv = query('#type-div');
-  for(int i = 1; i <= 10; i++) {
-    final InputElement radio = new InputElement('radio');
-    radio.innerHTML = '$i';
-    radio.id = 'type_$i';
-    radio.name = 'type';
-
-    final label = new LabelElement();
-    label.innerHTML = "$i";
-    label.htmlFor = radio.id;
-    typeDiv.elements.add(label);
-    typeDiv.elements.add(radio);
-  }
 
   demo.updated.add((args) {
     input.style.background = '';
@@ -38,45 +26,84 @@ main(){
 }
 
 class QrDemo{
-  static final int defaultErrorCorrectLevel = core.QrErrorCorrectLevel.M;
-  static final int delautTypeNumber = 10;
-
+  static final String _typeRadioIdKey = 'type-value';
+  static final String _errorLevelIdKey = 'error-value';
   final CanvasElement _canvas;
   final _QrCalc _qrMapper;
+  final CanvasRenderingContext2D _ctx;
 
   String _value = '';
-  int _typeNumber = delautTypeNumber;
-  int _errorCorrectLevel = defaultErrorCorrectLevel;
+  int _typeNumber = 10;
+  int _errorCorrectLevel = core.QrErrorCorrectLevel.M;
 
   List<bool> _squares;
-  CanvasRenderingContext2D _ctx;
 
-  core.Coordinate _mouseLocation;
   bool _frameRequested = false;
 
-  QrDemo(this._canvas) :
+  QrDemo(CanvasElement canvas, DivElement typeDiv, DivElement errorDiv) :
+
+    _canvas = canvas,
+    _ctx = canvas.context2d,
     _qrMapper = new _QrCalc() {
+    _ctx.fillStyle = 'black';
+
     _qrMapper.outputChanged.add((args) {
       _squares = _qrMapper.output;
       requestFrame();
     });
 
-    _canvas.on.mouseMove.add(_canvas_mouseMove);
-    _canvas.on.mouseOut.add(_canvas_mouseOut);
+    //
+    // Type Div
+    //
+    for(int i = 1; i <= 10; i++) {
+      final InputElement radio = new InputElement('radio');
+      radio.innerHTML = '$i';
+      radio.id = 'type_$i';
+      radio.name = 'type';
+      radio.on.change.add(_levelClick);
+      radio.dataAttributes[_typeRadioIdKey] = i.toString();
+      if(i == _typeNumber) {
+        radio.attributes['checked'] = 'checked';
+      }
+      typeDiv.elements.add(radio);
+
+      final label = new LabelElement();
+      label.innerHTML = "Level $i";
+      label.htmlFor = radio.id;
+      typeDiv.elements.add(label);
+    }
+
+    //
+    // Error Correct Levels
+    //
+    for(final v in core.QrErrorCorrectLevel.levels) {
+      final InputElement radio = new InputElement('radio');
+      radio.innerHTML = '$v';
+      radio.id = 'error_$v';
+      radio.name = 'error-level';
+      radio.on.change.add(_errorClick);
+      radio.dataAttributes[_errorLevelIdKey] = v.toString();
+      if(v == _errorCorrectLevel) {
+        radio.attributes['checked'] = 'checked';
+      }
+      errorDiv.elements.add(radio);
+
+      final label = new LabelElement();
+      label.innerHTML = "Error Level $v";
+      label.htmlFor = radio.id;
+      errorDiv.elements.add(label);
+    }
   }
 
   core.EventRoot get updated() => _qrMapper.outputChanged;
 
   core.EventRoot get error() => _qrMapper.error;
 
-  void updateValue(String value) {
-    _value = value;
-    _update();
-  }
+  String get value() => _value;
 
-  void _update() {
-    _qrMapper.input =
-        new core.Tuple3<int,int,String>(_typeNumber, _errorCorrectLevel, _value);
+  void set value(String input) {
+    _value = input;
+    _update();
   }
 
   void requestFrame(){
@@ -86,23 +113,36 @@ class QrDemo{
     }
   }
 
+  void _levelClick(Event args) {
+    final InputElement source = args.srcElement;
+    _typeNumber = Math.parseInt(source.dataAttributes[_typeRadioIdKey]);
+    _update();
+  }
+
+  void _errorClick(Event args) {
+    final InputElement source = args.srcElement;
+    _errorCorrectLevel = Math.parseInt(source.dataAttributes[_errorLevelIdKey]);
+    _update();
+  }
+
+  void _update() {
+    final t = new core.Tuple3<int,int,String>(
+        _typeNumber,
+        _errorCorrectLevel,
+        _value);
+
+    _qrMapper.input = t;
+  }
+
   bool _onFrame(num highResTime){
     _frameRequested = false;
-    if(_ctx == null) {
-      _ctx = _canvas.context2d;
-      _ctx.fillStyle = 'black';
-    }
-
-    final size = Math.sqrt(_squares.length).toInt();
-
-    final minDimension = Math.min(_canvas.width, _canvas.height);
-
-    final scale = minDimension ~/ size;
-
-    final offset = (minDimension - (scale * size)) ~/ 2;
-
 
     _ctx.clearRect(0, 0, _canvas.width, _canvas.height);
+
+    final size = Math.sqrt(_squares.length).toInt();
+    final minDimension = Math.min(_canvas.width, _canvas.height);
+    final scale = minDimension ~/ size;
+    final offset = (minDimension - (scale * size)) ~/ 2;
 
     _ctx.setTransform(scale, 0, 0, scale, offset, offset);
 
@@ -116,19 +156,6 @@ class QrDemo{
         }
       }
     }
-  }
-
-  void _canvas_mouseMove(MouseEvent e){
-    _setMouse(new core.Coordinate(e.offsetX, e.offsetY));
-  }
-
-  void _canvas_mouseOut(MouseEvent e){
-    _setMouse(null);
-  }
-
-  void _setMouse(core.Coordinate value) {
-    _mouseLocation = value;
-    //requestFrame();
   }
 }
 
