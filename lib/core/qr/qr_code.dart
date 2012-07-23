@@ -9,11 +9,13 @@ class QrCode {
   List<int> _dataCache;
   List<QrByte> _dataList;
 
-  QrCode(int tn, this.errorCorrectLevel)
-  : typeNumber = tn,
-  moduleCount = tn * 4 + 17,
+  QrCode(int typeNumber, this.errorCorrectLevel)
+  : this.typeNumber = typeNumber,
+    moduleCount = typeNumber * 4 + 17,
   _modules = new List<List<bool>>() {
-    requireArgument(typeNumber > 0 && typeNumber < 11, 'tn');
+    requireArgument(typeNumber > 0 && typeNumber < 11, 'typeNumber');
+    requireArgument(QrErrorCorrectLevel.levels.indexOf(errorCorrectLevel) >= 0,
+        'errorCorrectLevel');
 
     for (var row = 0; row < moduleCount; row++) {
       _modules.add(new List<bool>(moduleCount));
