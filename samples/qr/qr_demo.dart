@@ -7,7 +7,7 @@ main(){
   final demo = new QrDemo(canvas);
 
   final InputElement input = query('#input');
-  input.value = "kevin";
+  input.value = "Type your message in here...";
   demo.updateValue(input.value);
 
   input.on.keyUp.add((KeyboardEvent args) {
@@ -25,7 +25,7 @@ main(){
 
 class QrDemo{
   static final int errorCorrectLevel = core.QrErrorCorrectLevel.M;
-  static final int typeNumber = 1;
+  static final int typeNumber = 10;
   static final int size = typeNumber * 4 + 17;
 
   final CanvasElement _canvas;
