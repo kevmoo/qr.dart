@@ -14,6 +14,20 @@ main(){
     demo.updateValue(input.value);
   });
 
+  final DivElement typeDiv = query('#type-div');
+  for(int i = 1; i <= 10; i++) {
+    final InputElement radio = new InputElement('radio');
+    radio.innerHTML = '$i';
+    radio.id = 'type_$i';
+    radio.name = 'type';
+
+    final label = new LabelElement();
+    label.innerHTML = "$i";
+    label.htmlFor = radio.id;
+    typeDiv.elements.add(label);
+    typeDiv.elements.add(radio);
+  }
+
   demo.updated.add((args) {
     input.style.background = '';
   });
