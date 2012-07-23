@@ -10,6 +10,13 @@ class EventHandle<T> extends DisposableImpl implements EventRoot<T> {
     }
   }
 
+  /**
+   * _I'm not a huge fan of returning a [GlobalId] but at the moment
+   * functions don't have a simple model for identity. [GlobalId] allows
+   * reliable removal of an added handler._
+   *
+   * Related dart bug [167](http://code.google.com/p/dart/issues/detail?id=167)
+   */
   GlobalId add(Action1<T> handler){
     assert(!isDisposed);
     var id = new GlobalId();

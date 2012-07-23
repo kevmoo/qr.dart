@@ -38,7 +38,10 @@
 <a href="../dartlib/GlobalId.html">GlobalId</a> <strong>add</strong>(<a href="../dartlib/Action1.html">Action1</a> handler) <a class="anchor-link" href="#add"
               title="Permalink to EventHandle&lt;T&gt;.add">#</a></h4>
 <div class="doc">
-
+<p><em>I'm not a huge fan of returning a <a class="crossref" href="../dartlib/GlobalId.html">GlobalId</a> but at the moment
+functions don't have a simple model for identity. <a class="crossref" href="../dartlib/GlobalId.html">GlobalId</a> allows
+reliable removal of an added handler.</em></p>
+<p>Related dart bug <a href="http://code.google.com/p/dart/issues/detail?id=167">167</a></p>
 <pre class="source">
 GlobalId add(Action1&lt;T&gt; handler){
   assert(!isDisposed);

@@ -1,3 +1,9 @@
+/**
+ * _This should really be in the SDK. I've created it because I need it.
+ * Not well tested._
+ *
+ * Related dart bug [4167](http://code.google.com/p/dart/issues/detail?id=4167)
+ */
 class NoneHashMap<K, V> implements Map<K, V> {
   final List<Tuple<K,V>> _values;
 
