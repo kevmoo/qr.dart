@@ -78,7 +78,6 @@ class QrDemo{
     //
     for(final v in core.QrErrorCorrectLevel.levels) {
       final InputElement radio = new InputElement('radio');
-      radio.innerHTML = '$v';
       radio.id = 'error_$v';
       radio.name = 'error-level';
       radio.on.change.add(_errorClick);
@@ -89,7 +88,7 @@ class QrDemo{
       errorDiv.elements.add(radio);
 
       final label = new LabelElement();
-      label.innerHTML = "Error Level $v";
+      label.innerHTML = core.QrErrorCorrectLevel.getName(v);
       label.htmlFor = radio.id;
       errorDiv.elements.add(label);
     }
