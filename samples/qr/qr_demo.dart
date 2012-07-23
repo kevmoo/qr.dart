@@ -38,14 +38,15 @@ main(){
 }
 
 class QrDemo{
-  static final int errorCorrectLevel = core.QrErrorCorrectLevel.M;
-  static final int typeNumber = 10;
-  static final int size = typeNumber * 4 + 17;
+  static final int defaultErrorCorrectLevel = core.QrErrorCorrectLevel.M;
+  static final int delautTypeNumber = 10;
 
   final CanvasElement _canvas;
   final _QrCalc _qrMapper;
-  final int scale;
-  final int offset;
+
+  String _value = '';
+  int _typeNumber = delautTypeNumber;
+  int _errorCorrectLevel = defaultErrorCorrectLevel;
 
   List<bool> _squares;
   CanvasRenderingContext2D _ctx;
@@ -53,17 +54,7 @@ class QrDemo{
   core.Coordinate _mouseLocation;
   bool _frameRequested = false;
 
-  factory QrDemo(CanvasElement canvas) {
-    final minDimension = Math.min(canvas.width, canvas.height);
-
-    final scale = minDimension ~/ size;
-
-    final offset = (minDimension - (scale * size)) ~/ 2;
-
-    return new QrDemo._internal(canvas, scale, offset);
-  }
-
-  QrDemo._internal(this._canvas, this.scale, this.offset) :
+  QrDemo(this._canvas) :
     _qrMapper = new _QrCalc() {
     _qrMapper.outputChanged.add((args) {
       _squares = _qrMapper.output;
@@ -79,7 +70,13 @@ class QrDemo{
   core.EventRoot get error() => _qrMapper.error;
 
   void updateValue(String value) {
-    _qrMapper.input = value;
+    _value = value;
+    _update();
+  }
+
+  void _update() {
+    _qrMapper.input =
+        new core.Tuple3<int,int,String>(_typeNumber, _errorCorrectLevel, _value);
   }
 
   void requestFrame(){
@@ -95,6 +92,15 @@ class QrDemo{
       _ctx = _canvas.context2d;
       _ctx.fillStyle = 'black';
     }
+
+    final size = Math.sqrt(_squares.length).toInt();
+
+    final minDimension = Math.min(_canvas.width, _canvas.height);
+
+    final scale = minDimension ~/ size;
+
+    final offset = (minDimension - (scale * size)) ~/ 2;
+
 
     _ctx.clearRect(0, 0, _canvas.width, _canvas.height);
 
@@ -126,24 +132,22 @@ class QrDemo{
   }
 }
 
-class _QrCalc extends core.SendPortValue<String, List<bool>> {
+class _QrCalc
+  extends core.SendPortValue<core.Tuple3<int, int, String>, List<bool>> {
   _QrCalc() : super(spawnFunction(_qrIsolate));
 }
 
 void _qrIsolate() {
-  final errorCorrectLevel = QrDemo.errorCorrectLevel;
-  final typeNumber = QrDemo.typeNumber;
-  final size = QrDemo.size;
 
-  new core.SendValuePort<String, List<bool>>((String input){
-    final code = new core.QrCode(typeNumber, errorCorrectLevel);
-    code.addData(input);
+  new core.SendValuePort<core.Tuple3<int, int, String>, List<bool>>((input) {
+    final code = new core.QrCode(input.Item1, input.Item2);
+    code.addData(input.Item3);
     code.make();
 
     final List<bool> squares = new List<bool>();
 
-    for(int x = 0; x < size; x++) {
-      for(int y = 0; y < size; y++) {
+    for(int x = 0; x < code.moduleCount; x++) {
+      for(int y = 0; y < code.moduleCount; y++) {
         squares.add(code.isDark(y, x));
       }
     }
