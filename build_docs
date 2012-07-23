@@ -1,0 +1,2 @@
+#!/bin/bash
+dartdoc --omit-generation-time lib/_everything.dart
