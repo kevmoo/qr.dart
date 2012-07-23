@@ -1,0 +1,183 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>HslColor Class / dartlib Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="dartlib" data-type="HslColor">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../dartlib.html">dartlib</a> &rsaquo; <a href="../dartlib/HslColor.html">HslColor</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>HslColor</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Implements</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../core/Hashable.html">Hashable</a></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="HslColor">
+<span class="show-code">Code</span>
+const <strong>HslColor</strong>._internal(<a href="../core/num.html">num</a> h, <a href="../core/num.html">num</a> s, <a href="../core/num.html">num</a> l) <a class="anchor-link" href="#HslColor"
+              title="Permalink to HslColor.HslColor">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+const HslColor._internal(this.h, this.s, this.l);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="HslColor">
+<span class="show-code">Code</span>
+factory <strong>HslColor</strong>(<a href="../core/num.html">num</a> h, <a href="../core/num.html">num</a> s, <a href="../core/num.html">num</a> l) <a class="anchor-link" href="#HslColor"
+              title="Permalink to HslColor.HslColor">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+factory HslColor(num h, num s, num l) {
+  requireArgument(isValidNumber(h), 'h');
+  h = (h % 360);
+
+  requireArgument(isValidNumber(s), 's');
+  requireArgument(s &gt;= 0 &amp;&amp; s &lt;= 1, 's');
+  requireArgument(isValidNumber(l), 'l');
+  requireArgument(l &gt;= 0 &amp;&amp; l &lt;= 1, 'l');
+
+  return new HslColor._internal(h, s, l);
+}
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="hashCode">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a> <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
+              title="Permalink to HslColor.hashCode">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+int hashCode() =&gt; Util.getHashCode([h,s,l]);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="operator">
+<span class="show-code">Code</span>
+<a href="../core/bool.html">bool</a> <strong>operator ==</strong>(<a href="../dartlib/HslColor.html">HslColor</a> other) <a class="anchor-link" href="#operator"
+              title="Permalink to HslColor.operator ==">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool operator ==(HslColor other) {
+  return other !== null &amp;&amp; other.h == h &amp;&amp; other.s == s &amp;&amp; other.l == l;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="toRgb">
+<span class="show-code">Code</span>
+<a href="../dartlib/RgbColor.html">RgbColor</a> <strong>toRgb</strong>() <a class="anchor-link" href="#toRgb"
+              title="Permalink to HslColor.toRgb">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+RgbColor toRgb() {
+  final normH = h / 360; // normalize h to fall in [0, 1]
+
+  num r, g, b;
+
+  if (s == 0) {
+    r = g = b = l * 255;
+  } else {
+    var temp1 = 0;
+    var temp2 = 0;
+    if (l &lt; 0.5) {
+      temp2 = l * (1 + s);
+    } else {
+      temp2 = l + s - (s * l);
+    }
+    temp1 = 2 * l - temp2;
+    r = 255 * _hueToRgb(temp1, temp2, normH + (1 / 3));
+    g = 255 * _hueToRgb(temp1, temp2, normH);
+    b = 255 * _hueToRgb(temp1, temp2, normH - (1 / 3));
+  }
+
+  return new RgbColor(r.round().toInt(), g.round().toInt(), b.round().toInt());
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="toString">
+<span class="show-code">Code</span>
+<a href="../core/String.html">String</a> <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to HslColor.toString">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+String toString() =&gt; '{HslColor: $h, $s, $l}';
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="h">
+<span class="show-code">Code</span>
+final <a href="../core/num.html">num</a>         <strong>h</strong> <a class="anchor-link"
+            href="#h"
+            title="Permalink to HslColor.h">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final num h, s, l;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="l">
+<span class="show-code">Code</span>
+final <a href="../core/num.html">num</a>         <strong>l</strong> <a class="anchor-link"
+            href="#l"
+            title="Permalink to HslColor.l">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final num h, s, l;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="s">
+<span class="show-code">Code</span>
+final <a href="../core/num.html">num</a>         <strong>s</strong> <a class="anchor-link"
+            href="#s"
+            title="Permalink to HslColor.s">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final num h, s, l;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

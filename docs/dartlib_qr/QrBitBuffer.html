@@ -1,0 +1,129 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>QrBitBuffer Class / dartlib_qr Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="dartlib_qr" data-type="QrBitBuffer">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../dartlib_qr.html">dartlib_qr</a> &rsaquo; <a href="../dartlib_qr/QrBitBuffer.html">QrBitBuffer</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>QrBitBuffer</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Extends</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../dartlib/Enumerable.html">Enumerable</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../dartlib/ListBase.html">ListBase</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>QrBitBuffer</strong></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="QrBitBuffer">
+<span class="show-code">Code</span>
+new <strong>QrBitBuffer</strong>() <a class="anchor-link" href="#QrBitBuffer"
+              title="Permalink to QrBitBuffer.QrBitBuffer">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+QrBitBuffer() : _buffer = new List&lt;int&gt;();
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="getByte">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a> <strong>getByte</strong>(<a href="../core/int.html">int</a> index) <a class="anchor-link" href="#getByte"
+              title="Permalink to QrBitBuffer.getByte">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+int getByte(int index) =&gt; _buffer[index];
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="length">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a> <strong>get length</strong>() <a class="anchor-link" href="#length"
+              title="Permalink to QrBitBuffer.get length">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+int get length() =&gt; _length;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="operator">
+<span class="show-code">Code</span>
+<a href="../core/bool.html">bool</a> <strong>operator []</strong>(<a href="../core/int.html">int</a> index) <a class="anchor-link" href="#operator"
+              title="Permalink to QrBitBuffer.operator []">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool operator[](int index) {
+  final bufIndex = index ~/ 8;
+  return ((_buffer[bufIndex] &gt;&gt; (7 - index % 8)) &amp; 1) == 1;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="put">
+<span class="show-code">Code</span>
+void <strong>put</strong>(<a href="../core/int.html">int</a> number, <a href="../core/int.html">int</a> length) <a class="anchor-link" href="#put"
+              title="Permalink to QrBitBuffer.put">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void put(int number, int length) {
+  for(var i = 0; i &lt; length; i++) {
+    final bit = ((number &gt;&gt; (length - i - 1)) &amp; 1) == 1;
+    putBit(bit);
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="putBit">
+<span class="show-code">Code</span>
+void <strong>putBit</strong>(<a href="../core/bool.html">bool</a> bit) <a class="anchor-link" href="#putBit"
+              title="Permalink to QrBitBuffer.putBit">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void putBit(bool bit) {
+
+  final bufIndex = _length ~/ 8;
+  if (_buffer.length &lt;= bufIndex) {
+    _buffer.add(0);
+  }
+
+  if (bit) {
+    _buffer[bufIndex] |= (0x80 &gt;&gt; (_length % 8));
+  }
+
+  _length++;
+}
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

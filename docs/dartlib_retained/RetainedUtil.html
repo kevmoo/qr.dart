@@ -27,9 +27,26 @@
 
 </div>
 <h3>Static Methods</h3>
+<div class="method"><h4 id="getCorners">
+<span class="show-code">Code</span>
+<a href="../core/List.html">List</a>&lt;<a href="../dartlib/Coordinate.html">Coordinate</a>&gt; <strong>getCorners</strong>(<a href="../dartlib_retained/PElement.html">PElement</a> element) <a class="anchor-link" href="#getCorners"
+              title="Permalink to RetainedUtil.getCorners">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static List&lt;core.Coordinate&gt; getCorners(PElement element) {
+  final rect = new core.Rect(0,0,element.width, element.height);
+  final points = rect.getCorners();
+  return core.$(points).select((p) {
+    return transformPointLocalToGlobal(element, p);
+  }).toList();
+}
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="hitTest">
 <span class="show-code">Code</span>
-<a href="../dart_core/List.html">List</a> <strong>hitTest</strong>(<a href="../dartlib_retained/Stage.html">Stage</a> stage, <a href="../dartlib_core/Coordinate.html">Coordinate</a> point) <a class="anchor-link" href="#hitTest"
+<a href="../core/List.html">List</a>&lt;<a href="../dartlib_retained/PElement.html">PElement</a>&gt; <strong>hitTest</strong>(<a href="../dartlib_retained/Stage.html">Stage</a> stage, <a href="../dartlib/Coordinate.html">Coordinate</a> point) <a class="anchor-link" href="#hitTest"
               title="Permalink to RetainedUtil.hitTest">#</a></h4>
 <div class="doc">
 
@@ -42,12 +59,13 @@ static List&lt;PElement&gt; hitTest(Stage stage, core.Coordinate point){
 </div>
 <div class="method"><h4 id="transformPointGlobalToLocal">
 <span class="show-code">Code</span>
-<a href="../dartlib_core/Coordinate.html">Coordinate</a> <strong>transformPointGlobalToLocal</strong>(element, point) <a class="anchor-link" href="#transformPointGlobalToLocal"
+<a href="../dartlib/Coordinate.html">Coordinate</a> <strong>transformPointGlobalToLocal</strong>(<a href="../dartlib_retained/PElement.html">PElement</a> element, <a href="../dartlib/Coordinate.html">Coordinate</a> point) <a class="anchor-link" href="#transformPointGlobalToLocal"
               title="Permalink to RetainedUtil.transformPointGlobalToLocal">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-static core.Coordinate transformPointGlobalToLocal(element, point) {
+static core.Coordinate transformPointGlobalToLocal(PElement element,
+                                                   core.Coordinate point) {
   var tx = element.getTransform();
   return tx.createInverse().transformCoordinate(point);
 }
@@ -56,12 +74,13 @@ static core.Coordinate transformPointGlobalToLocal(element, point) {
 </div>
 <div class="method"><h4 id="transformPointLocalToGlobal">
 <span class="show-code">Code</span>
-<a href="../dartlib_core/Coordinate.html">Coordinate</a> <strong>transformPointLocalToGlobal</strong>(element, point) <a class="anchor-link" href="#transformPointLocalToGlobal"
+<a href="../dartlib/Coordinate.html">Coordinate</a> <strong>transformPointLocalToGlobal</strong>(<a href="../dartlib_retained/PElement.html">PElement</a> element, <a href="../dartlib/Coordinate.html">Coordinate</a> point) <a class="anchor-link" href="#transformPointLocalToGlobal"
               title="Permalink to RetainedUtil.transformPointLocalToGlobal">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-static core.Coordinate transformPointLocalToGlobal(element, point) {
+static core.Coordinate transformPointLocalToGlobal(PElement element,
+                                                   core.Coordinate point) {
   var tx = element.getTransformToRoot();
   return tx.transformCoordinate(point);
 }

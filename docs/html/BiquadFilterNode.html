@@ -32,7 +32,7 @@
 <h3>Static Fields</h3>
 <div class="field"><h4 id="ALLPASS">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>ALLPASS</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>ALLPASS</strong> <a class="anchor-link"
             href="#ALLPASS"
             title="Permalink to BiquadFilterNode.ALLPASS">#</a>
         </h4>
@@ -45,7 +45,7 @@ static final int ALLPASS = 7;
 </div>
 <div class="field"><h4 id="BANDPASS">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>BANDPASS</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>BANDPASS</strong> <a class="anchor-link"
             href="#BANDPASS"
             title="Permalink to BiquadFilterNode.BANDPASS">#</a>
         </h4>
@@ -58,7 +58,7 @@ static final int BANDPASS = 2;
 </div>
 <div class="field"><h4 id="HIGHPASS">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>HIGHPASS</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>HIGHPASS</strong> <a class="anchor-link"
             href="#HIGHPASS"
             title="Permalink to BiquadFilterNode.HIGHPASS">#</a>
         </h4>
@@ -71,7 +71,7 @@ static final int HIGHPASS = 1;
 </div>
 <div class="field"><h4 id="HIGHSHELF">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>HIGHSHELF</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>HIGHSHELF</strong> <a class="anchor-link"
             href="#HIGHSHELF"
             title="Permalink to BiquadFilterNode.HIGHSHELF">#</a>
         </h4>
@@ -84,7 +84,7 @@ static final int HIGHSHELF = 4;
 </div>
 <div class="field"><h4 id="LOWPASS">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>LOWPASS</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>LOWPASS</strong> <a class="anchor-link"
             href="#LOWPASS"
             title="Permalink to BiquadFilterNode.LOWPASS">#</a>
         </h4>
@@ -97,7 +97,7 @@ static final int LOWPASS = 0;
 </div>
 <div class="field"><h4 id="LOWSHELF">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>LOWSHELF</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>LOWSHELF</strong> <a class="anchor-link"
             href="#LOWSHELF"
             title="Permalink to BiquadFilterNode.LOWSHELF">#</a>
         </h4>
@@ -110,7 +110,7 @@ static final int LOWSHELF = 3;
 </div>
 <div class="field"><h4 id="NOTCH">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>NOTCH</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>NOTCH</strong> <a class="anchor-link"
             href="#NOTCH"
             title="Permalink to BiquadFilterNode.NOTCH">#</a>
         </h4>
@@ -123,7 +123,7 @@ static final int NOTCH = 6;
 </div>
 <div class="field"><h4 id="PEAKING">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>PEAKING</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>PEAKING</strong> <a class="anchor-link"
             href="#PEAKING"
             title="Permalink to BiquadFilterNode.PEAKING">#</a>
         </h4>
@@ -137,7 +137,7 @@ static final int PEAKING = 5;
 <h3>Methods</h3>
 <div class="method"><h4 id="getFrequencyResponse">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>getFrequencyResponse</strong>(<a href="../html/Float32Array.html">Float32Array</a> frequencyHz, <a href="../html/Float32Array.html">Float32Array</a> magResponse, <a href="../html/Float32Array.html">Float32Array</a> phaseResponse) <a class="anchor-link" href="#getFrequencyResponse"
+void <strong>getFrequencyResponse</strong>(<a href="../html/Float32Array.html">Float32Array</a> frequencyHz, <a href="../html/Float32Array.html">Float32Array</a> magResponse, <a href="../html/Float32Array.html">Float32Array</a> phaseResponse) <a class="anchor-link" href="#getFrequencyResponse"
               title="Permalink to BiquadFilterNode.getFrequencyResponse">#</a></h4>
 <div class="doc">
 <p>@domName BiquadFilterNode.getFrequencyResponse</p>
@@ -147,6 +147,19 @@ void getFrequencyResponse(Float32Array frequencyHz, Float32Array magResponse, Fl
 </div>
 </div>
 <h3>Fields</h3>
+<div class="field"><h4 id="Q">
+<span class="show-code">Code</span>
+final <a href="../html/AudioParam.html">AudioParam</a>         <strong>Q</strong> <a class="anchor-link"
+            href="#Q"
+            title="Permalink to BiquadFilterNode.Q">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName BiquadFilterNode.Q</p>
+<pre class="source">
+final AudioParam Q;
+</pre>
+</div>
+</div>
 <div class="field"><h4 id="frequency">
 <span class="show-code">Code</span>
 final <a href="../html/AudioParam.html">AudioParam</a>         <strong>frequency</strong> <a class="anchor-link"
@@ -173,22 +186,9 @@ final AudioParam gain;
 </pre>
 </div>
 </div>
-<div class="field"><h4 id="Q">
-<span class="show-code">Code</span>
-final <a href="../html/AudioParam.html">AudioParam</a>         <strong>Q</strong> <a class="anchor-link"
-            href="#Q"
-            title="Permalink to BiquadFilterNode.Q">#</a>
-        </h4>
-        <div class="doc">
-<p>@domName BiquadFilterNode.Q</p>
-<pre class="source">
-final AudioParam Q;
-</pre>
-</div>
-</div>
 <div class="field"><h4 id="type">
 <span class="show-code">Code</span>
-<a href="../dart_core/int.html">int</a>         <strong>type</strong> <a class="anchor-link"
+<a href="../core/int.html">int</a>         <strong>type</strong> <a class="anchor-link"
             href="#type"
             title="Permalink to BiquadFilterNode.type">#</a>
         </h4>

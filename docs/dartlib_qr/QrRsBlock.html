@@ -1,0 +1,134 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>QrRsBlock Class / dartlib_qr Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="dartlib_qr" data-type="QrRsBlock">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../dartlib_qr.html">dartlib_qr</a> &rsaquo; <a href="../dartlib_qr/QrRsBlock.html">QrRsBlock</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>QrRsBlock</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="QrRsBlock">
+<span class="show-code">Code</span>
+new <strong>QrRsBlock</strong>(<a href="../core/int.html">int</a> totalCount, <a href="../core/int.html">int</a> dataCount) <a class="anchor-link" href="#QrRsBlock"
+              title="Permalink to QrRsBlock.QrRsBlock">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+QrRsBlock(this.totalCount, this.dataCount);
+</pre>
+</div>
+</div>
+<h3>Static Methods</h3>
+<div class="method"><h4 id="getRSBlocks">
+<span class="show-code">Code</span>
+<a href="../core/List.html">List</a>&lt;<a href="../dartlib_qr/QrRsBlock.html">QrRsBlock</a>&gt; <strong>getRSBlocks</strong>(<a href="../core/int.html">int</a> typeNumber, <a href="../core/int.html">int</a> errorCorrectLevel) <a class="anchor-link" href="#getRSBlocks"
+              title="Permalink to QrRsBlock.getRSBlocks">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static List&lt;QrRsBlock&gt; getRSBlocks(int typeNumber, int errorCorrectLevel) {
+
+  final rsBlock = getRsBlockTable(typeNumber, errorCorrectLevel);
+
+  final int length = rsBlock.length ~/ 3;
+
+  final list = new List&lt;QrRsBlock&gt;();
+
+  for (var i = 0; i &lt; length; i++) {
+
+    var count = rsBlock[i * 3 + 0];
+    var totalCount = rsBlock[i * 3 + 1];
+    var dataCount = rsBlock[i * 3 + 2];
+
+    for (var j = 0; j &lt; count; j++) {
+      list.add(new QrRsBlock(totalCount, dataCount));
+    }
+  }
+
+  return list;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getRsBlockTable">
+<span class="show-code">Code</span>
+<a href="../core/List.html">List</a>&lt;<a href="../core/int.html">int</a>&gt; <strong>getRsBlockTable</strong>(<a href="../core/int.html">int</a> typeNumber, <a href="../core/int.html">int</a> errorCorrectLevel) <a class="anchor-link" href="#getRsBlockTable"
+              title="Permalink to QrRsBlock.getRsBlockTable">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static List&lt;int&gt; getRsBlockTable(int typeNumber, int errorCorrectLevel) {
+
+  switch (errorCorrectLevel) {
+    case QrErrorCorrectLevel.L:
+    return _rsBlockTable[(typeNumber - 1) * 4 + 0];
+    case QrErrorCorrectLevel.M:
+    return _rsBlockTable[(typeNumber - 1) * 4 + 1];
+    case QrErrorCorrectLevel.Q:
+    return _rsBlockTable[(typeNumber - 1) * 4 + 2];
+    case QrErrorCorrectLevel.H:
+    return _rsBlockTable[(typeNumber - 1) * 4 + 3];
+    default:
+    throw 'bad rs block @ typeNumber: $typeNumber/errorCorrectLevel:$errorCorrectLevel';
+  }
+}
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="dataCount">
+<span class="show-code">Code</span>
+final <a href="../core/int.html">int</a>         <strong>dataCount</strong> <a class="anchor-link"
+            href="#dataCount"
+            title="Permalink to QrRsBlock.dataCount">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final int dataCount;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="totalCount">
+<span class="show-code">Code</span>
+final <a href="../core/int.html">int</a>         <strong>totalCount</strong> <a class="anchor-link"
+            href="#totalCount"
+            title="Permalink to QrRsBlock.totalCount">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final int totalCount;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

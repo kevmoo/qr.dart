@@ -61,7 +61,7 @@ static String collectionToString(Collection c) {
 </div>
 <div class="method"><h4 id="every">
 <span class="show-code">Code</span>
-<a href="../core/bool.html">bool</a> <strong>every</strong>(<a href="../core/Iterable.html">Iterable</a> iterable, f) <a class="anchor-link" href="#every"
+<a href="../core/bool.html">bool</a> <strong>every</strong>(<a href="../core/Iterable.html">Iterable</a> iterable, <a href="../core/bool.html">bool</a> f(o)) <a class="anchor-link" href="#every"
               title="Permalink to Collections.every">#</a></h4>
 <div class="doc">
 
@@ -77,7 +77,7 @@ static bool every(Iterable iterable, bool f(o)) {
 </div>
 <div class="method"><h4 id="filter">
 <span class="show-code">Code</span>
-<a href="../core/List.html">List</a> <strong>filter</strong>(<a href="../core/Iterable.html">Iterable</a> source, <a href="../core/List.html">List</a> destination, f) <a class="anchor-link" href="#filter"
+<a href="../core/List.html">List</a> <strong>filter</strong>(<a href="../core/Iterable.html">Iterable</a> source, <a href="../core/List.html">List</a> destination, <a href="../core/bool.html">bool</a> f(o)) <a class="anchor-link" href="#filter"
               title="Permalink to Collections.filter">#</a></h4>
 <div class="doc">
 
@@ -93,7 +93,7 @@ static List filter(Iterable source, List destination, bool f(o)) {
 </div>
 <div class="method"><h4 id="forEach">
 <span class="show-code">Code</span>
-void <strong>forEach</strong>(<a href="../core/Iterable.html">Iterable</a> iterable, f) <a class="anchor-link" href="#forEach"
+void <strong>forEach</strong>(<a href="../core/Iterable.html">Iterable</a> iterable, void f(o)) <a class="anchor-link" href="#forEach"
               title="Permalink to Collections.forEach">#</a></h4>
 <div class="doc">
 
@@ -121,7 +121,7 @@ static bool isEmpty(Iterable iterable) {
 </div>
 <div class="method"><h4 id="map">
 <span class="show-code">Code</span>
-<a href="../core/List.html">List</a> <strong>map</strong>(<a href="../core/Iterable.html">Iterable</a> source, <a href="../core/List.html">List</a> destination, f) <a class="anchor-link" href="#map"
+<a href="../core/List.html">List</a> <strong>map</strong>(<a href="../core/Iterable.html">Iterable</a> source, <a href="../core/List.html">List</a> destination, f(o)) <a class="anchor-link" href="#map"
               title="Permalink to Collections.map">#</a></h4>
 <div class="doc">
 
@@ -137,7 +137,7 @@ static List map(Iterable source, List destination, f(o)) {
 </div>
 <div class="method"><h4 id="some">
 <span class="show-code">Code</span>
-<a href="../core/bool.html">bool</a> <strong>some</strong>(<a href="../core/Iterable.html">Iterable</a> iterable, f) <a class="anchor-link" href="#some"
+<a href="../core/bool.html">bool</a> <strong>some</strong>(<a href="../core/Iterable.html">Iterable</a> iterable, <a href="../core/bool.html">bool</a> f(o)) <a class="anchor-link" href="#some"
               title="Permalink to Collections.some">#</a></h4>
 <div class="doc">
 

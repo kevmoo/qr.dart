@@ -34,7 +34,7 @@ endian-ness, and defaults to BE.</p>
 <h3>Constructors</h3>
 <div class="method"><h4 id="Utf16BytesToCodeUnitsDecoder">
 <span class="show-code">Code</span>
-factory <strong>Utf16BytesToCodeUnitsDecoder</strong>(<a href="../core/List.html">List</a>&lt;<a href="../core/int.html">int</a>&gt; utf16EncodedBytes, [<a href="../core/int.html">int</a> offset, <a href="../core/int.html">int</a> length, <a href="../core/int.html">int</a> replacementCodepoint]) <a class="anchor-link" href="#Utf16BytesToCodeUnitsDecoder"
+factory <strong>Utf16BytesToCodeUnitsDecoder</strong>(<a href="../core/List.html">List</a>&lt;<a href="../core/int.html">int</a>&gt; utf16EncodedBytes, [<a href="../core/int.html">int</a> offset = 0, <a href="../core/int.html">int</a> length, <a href="../core/int.html">int</a> replacementCodepoint = UNICODE_REPLACEMENT_CHARACTER_CODEPOINT]) <a class="anchor-link" href="#Utf16BytesToCodeUnitsDecoder"
               title="Permalink to Utf16BytesToCodeUnitsDecoder.Utf16BytesToCodeUnitsDecoder">#</a></h4>
 <div class="doc">
 
@@ -75,7 +75,7 @@ Utf16BytesToCodeUnitsDecoder._fromListRangeIterator(
 <h3>Methods</h3>
 <div class="method"><h4 id="backup">
 <span class="show-code">Code</span>
-void <strong>backup</strong>([<a href="../core/int.html">int</a> by]) <a class="anchor-link" href="#backup"
+void <strong>backup</strong>([<a href="../core/int.html">int</a> by = 1]) <a class="anchor-link" href="#backup"
               title="Permalink to Utf16BytesToCodeUnitsDecoder.backup">#</a></h4>
 <div class="doc">
 
@@ -181,7 +181,7 @@ int get remaining() =&gt; (utf16EncodedBytesIterator.remaining + 1) ~/ 2;
 </div>
 <div class="method"><h4 id="skip">
 <span class="show-code">Code</span>
-void <strong>skip</strong>([<a href="../core/int.html">int</a> count]) <a class="anchor-link" href="#skip"
+void <strong>skip</strong>([<a href="../core/int.html">int</a> count = 1]) <a class="anchor-link" href="#skip"
               title="Permalink to Utf16BytesToCodeUnitsDecoder.skip">#</a></h4>
 <div class="doc">
 

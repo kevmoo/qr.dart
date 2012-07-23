@@ -32,11 +32,11 @@ collections.</p>
 <span class="type-box"><span class="icon-interface"></span><a href="../core/Iterable.html">Iterable</a></span></p>
 <h3>Subinterfaces</h3>
 <p>
-<span class="type-box"><span class="icon-interface"></span><a href="../core/List.html">List&lt;E&gt;</a></span>, <span class="type-box"><span class="icon-interface"></span><a href="../dartlib_core/Listish.html">Listish&lt;E&gt;</a></span>, <span class="type-box"><span class="icon-interface"></span><a href="../core/Queue.html">Queue&lt;E&gt;</a></span>, <span class="type-box"><span class="icon-interface"></span><a href="../core/Set.html">Set&lt;E&gt;</a></span></p>
+<span class="type-box"><span class="icon-interface"></span><a href="../core/List.html">List&lt;E&gt;</a></span>, <span class="type-box"><span class="icon-interface"></span><a href="../dartlib/Listish.html">Listish&lt;E&gt;</a></span>, <span class="type-box"><span class="icon-interface"></span><a href="../core/Queue.html">Queue&lt;E&gt;</a></span>, <span class="type-box"><span class="icon-interface"></span><a href="../core/Set.html">Set&lt;E&gt;</a></span></p>
 <h3>Methods</h3>
 <div class="method"><h4 id="every">
 <span class="show-code">Code</span>
-<a href="../core/bool.html">bool</a> <strong>every</strong>(f) <a class="anchor-link" href="#every"
+<a href="../core/bool.html">bool</a> <strong>every</strong>(<a href="../core/bool.html">bool</a> f(<a href="../core/Collection.html">E</a> element)) <a class="anchor-link" href="#every"
               title="Permalink to Collection&lt;E&gt;.every">#</a></h4>
 <div class="doc">
 <p>Returns true if every elements of this collection satisify the
@@ -49,7 +49,7 @@ bool every(bool f(E element));
 </div>
 <div class="method"><h4 id="filter">
 <span class="show-code">Code</span>
-<a href="../core/Collection.html">Collection</a>&lt;<a href="../core/Collection.html">E</a>&gt; <strong>filter</strong>(f) <a class="anchor-link" href="#filter"
+<a href="../core/Collection.html">Collection</a>&lt;<a href="../core/Collection.html">E</a>&gt; <strong>filter</strong>(<a href="../core/bool.html">bool</a> f(<a href="../core/Collection.html">E</a> element)) <a class="anchor-link" href="#filter"
               title="Permalink to Collection&lt;E&gt;.filter">#</a></h4>
 <div class="doc">
 <p>Returns a new collection with the elements of this collection
@@ -65,7 +65,7 @@ Collection&lt;E&gt; filter(bool f(E element));
 </div>
 <div class="method"><h4 id="forEach">
 <span class="show-code">Code</span>
-void <strong>forEach</strong>(f) <a class="anchor-link" href="#forEach"
+void <strong>forEach</strong>(void f(<a href="../core/Collection.html">E</a> element)) <a class="anchor-link" href="#forEach"
               title="Permalink to Collection&lt;E&gt;.forEach">#</a></h4>
 <div class="doc">
 <p>Applies the function 
@@ -99,7 +99,7 @@ int get length();
 </div>
 <div class="method"><h4 id="map">
 <span class="show-code">Code</span>
-<a href="../core/Collection.html">Collection</a> <strong>map</strong>(f) <a class="anchor-link" href="#map"
+<a href="../core/Collection.html">Collection</a> <strong>map</strong>(f(<a href="../core/Collection.html">E</a> element)) <a class="anchor-link" href="#map"
               title="Permalink to Collection&lt;E&gt;.map">#</a></h4>
 <div class="doc">
 <p>Returns a new collection with the elements <code> f(e) </code>
@@ -114,7 +114,7 @@ Collection map(f(E element));
 </div>
 <div class="method"><h4 id="some">
 <span class="show-code">Code</span>
-<a href="../core/bool.html">bool</a> <strong>some</strong>(f) <a class="anchor-link" href="#some"
+<a href="../core/bool.html">bool</a> <strong>some</strong>(<a href="../core/bool.html">bool</a> f(<a href="../core/Collection.html">E</a> element)) <a class="anchor-link" href="#some"
               title="Permalink to Collection&lt;E&gt;.some">#</a></h4>
 <div class="doc">
 <p>Returns true if one element of this collection satisfies the

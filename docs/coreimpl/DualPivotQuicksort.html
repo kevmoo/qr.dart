@@ -32,7 +32,7 @@ Vladimir Yaroslavskiy's paper.</p>
 <h3>Static Methods</h3>
 <div class="method"><h4 id="insertionSort_">
 <span class="show-code">Code</span>
-void <strong>insertionSort_</strong>(<a href="../core/List.html">List</a> a, <a href="../core/int.html">int</a> left, <a href="../core/int.html">int</a> right, compare) <a class="anchor-link" href="#insertionSort_"
+void <strong>insertionSort_</strong>(<a href="../core/List.html">List</a> a, <a href="../core/int.html">int</a> left, <a href="../core/int.html">int</a> right, <a href="../core/int.html">int</a> compare(a, b)) <a class="anchor-link" href="#insertionSort_"
               title="Permalink to DualPivotQuicksort.insertionSort_">#</a></h4>
 <div class="doc">
 
@@ -53,7 +53,7 @@ static void insertionSort_(List a, int left, int right, int compare(a, b)) {
 </div>
 <div class="method"><h4 id="sort">
 <span class="show-code">Code</span>
-void <strong>sort</strong>(<a href="../core/List.html">List</a> a, compare) <a class="anchor-link" href="#sort"
+void <strong>sort</strong>(<a href="../core/List.html">List</a> a, <a href="../core/int.html">int</a> compare(a, b)) <a class="anchor-link" href="#sort"
               title="Permalink to DualPivotQuicksort.sort">#</a></h4>
 <div class="doc">
 <p>Sorts all elements of the given list <code>a</code> according to the given
@@ -73,7 +73,7 @@ static void sort(List a, int compare(a, b)) {
 </div>
 <div class="method"><h4 id="sortRange">
 <span class="show-code">Code</span>
-void <strong>sortRange</strong>(<a href="../core/List.html">List</a> a, <a href="../core/int.html">int</a> from, <a href="../core/int.html">int</a> to, compare) <a class="anchor-link" href="#sortRange"
+void <strong>sortRange</strong>(<a href="../core/List.html">List</a> a, <a href="../core/int.html">int</a> from, <a href="../core/int.html">int</a> to, <a href="../core/int.html">int</a> compare(a, b)) <a class="anchor-link" href="#sortRange"
               title="Permalink to DualPivotQuicksort.sortRange">#</a></h4>
 <div class="doc">
 <p>Sorts all elements in the range <code>from</code> (inclusive) to <code>to</code> (exclusive)

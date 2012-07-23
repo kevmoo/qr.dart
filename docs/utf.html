@@ -45,7 +45,7 @@ String codepointsToString(List&lt;int&gt; codepoints) {
 </div>
 <div class="method"><h4 id="codepointsToUtf8">
 <span class="show-code">Code</span>
-<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; <strong>codepointsToUtf8</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; codepoints, [<a href="core/int.html">int</a> offset, <a href="core/int.html">int</a> length]) <a class="anchor-link" href="#codepointsToUtf8"
+<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; <strong>codepointsToUtf8</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; codepoints, [<a href="core/int.html">int</a> offset = 0, <a href="core/int.html">int</a> length]) <a class="anchor-link" href="#codepointsToUtf8"
               title="Permalink to codepointsToUtf8">#</a></h4>
 <div class="doc">
 <p>Encode code points as UTF-8 code units.</p>
@@ -102,7 +102,7 @@ List&lt;int&gt; codepointsToUtf8(
 </div>
 <div class="method"><h4 id="decodeUtf16">
 <span class="show-code">Code</span>
-<a href="core/String.html">String</a> <strong>decodeUtf16</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; bytes, [<a href="core/int.html">int</a> offset, <a href="core/int.html">int</a> length, <a href="core/int.html">int</a> replacementCodepoint]) <a class="anchor-link" href="#decodeUtf16"
+<a href="core/String.html">String</a> <strong>decodeUtf16</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; bytes, [<a href="core/int.html">int</a> offset = 0, <a href="core/int.html">int</a> length, <a href="core/int.html">int</a> replacementCodepoint = UNICODE_REPLACEMENT_CHARACTER_CODEPOINT]) <a class="anchor-link" href="#decodeUtf16"
               title="Permalink to decodeUtf16">#</a></h4>
 <div class="doc">
 <p>Produce a String from a sequence of UTF-16 encoded bytes. This method always
@@ -132,7 +132,7 @@ String decodeUtf16(List&lt;int&gt; bytes, [int offset = 0, int length,
 </div>
 <div class="method"><h4 id="decodeUtf16AsIterable">
 <span class="show-code">Code</span>
-<a href="utf/IterableUtf16Decoder.html">IterableUtf16Decoder</a> <strong>decodeUtf16AsIterable</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; bytes, [<a href="core/int.html">int</a> offset, <a href="core/int.html">int</a> length, <a href="core/int.html">int</a> replacementCodepoint]) <a class="anchor-link" href="#decodeUtf16AsIterable"
+<a href="utf/IterableUtf16Decoder.html">IterableUtf16Decoder</a> <strong>decodeUtf16AsIterable</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; bytes, [<a href="core/int.html">int</a> offset = 0, <a href="core/int.html">int</a> length, <a href="core/int.html">int</a> replacementCodepoint = UNICODE_REPLACEMENT_CHARACTER_CODEPOINT]) <a class="anchor-link" href="#decodeUtf16AsIterable"
               title="Permalink to decodeUtf16AsIterable">#</a></h4>
 <div class="doc">
 <p>Decodes the UTF-16 bytes as an iterable. Thus, the consumer can only convert
@@ -156,7 +156,7 @@ IterableUtf16Decoder decodeUtf16AsIterable(List&lt;int&gt; bytes, [int offset = 
 </div>
 <div class="method"><h4 id="decodeUtf16be">
 <span class="show-code">Code</span>
-<a href="core/String.html">String</a> <strong>decodeUtf16be</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; bytes, [<a href="core/int.html">int</a> offset, <a href="core/int.html">int</a> length, <a href="core/bool.html">bool</a> stripBom, <a href="core/int.html">int</a> replacementCodepoint]) <a class="anchor-link" href="#decodeUtf16be"
+<a href="core/String.html">String</a> <strong>decodeUtf16be</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; bytes, [<a href="core/int.html">int</a> offset = 0, <a href="core/int.html">int</a> length, <a href="core/bool.html">bool</a> stripBom = true, <a href="core/int.html">int</a> replacementCodepoint = UNICODE_REPLACEMENT_CHARACTER_CODEPOINT]) <a class="anchor-link" href="#decodeUtf16be"
               title="Permalink to decodeUtf16be">#</a></h4>
 <div class="doc">
 <p>Produce a String from a sequence of UTF-16BE encoded bytes. This method
@@ -188,7 +188,7 @@ String decodeUtf16be(List&lt;int&gt; bytes, [int offset = 0, int length,
 </div>
 <div class="method"><h4 id="decodeUtf16beAsIterable">
 <span class="show-code">Code</span>
-<a href="utf/IterableUtf16Decoder.html">IterableUtf16Decoder</a> <strong>decodeUtf16beAsIterable</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; bytes, [<a href="core/int.html">int</a> offset, <a href="core/int.html">int</a> length, <a href="core/bool.html">bool</a> stripBom, <a href="core/int.html">int</a> replacementCodepoint]) <a class="anchor-link" href="#decodeUtf16beAsIterable"
+<a href="utf/IterableUtf16Decoder.html">IterableUtf16Decoder</a> <strong>decodeUtf16beAsIterable</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; bytes, [<a href="core/int.html">int</a> offset = 0, <a href="core/int.html">int</a> length, <a href="core/bool.html">bool</a> stripBom = true, <a href="core/int.html">int</a> replacementCodepoint = UNICODE_REPLACEMENT_CHARACTER_CODEPOINT]) <a class="anchor-link" href="#decodeUtf16beAsIterable"
               title="Permalink to decodeUtf16beAsIterable">#</a></h4>
 <div class="doc">
 <p>Decodes the UTF-16BE bytes as an iterable. Thus, the consumer can only
@@ -213,7 +213,7 @@ IterableUtf16Decoder decodeUtf16beAsIterable(List&lt;int&gt; bytes, [int offset 
 </div>
 <div class="method"><h4 id="decodeUtf16le">
 <span class="show-code">Code</span>
-<a href="core/String.html">String</a> <strong>decodeUtf16le</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; bytes, [<a href="core/int.html">int</a> offset, <a href="core/int.html">int</a> length, <a href="core/bool.html">bool</a> stripBom, <a href="core/int.html">int</a> replacementCodepoint]) <a class="anchor-link" href="#decodeUtf16le"
+<a href="core/String.html">String</a> <strong>decodeUtf16le</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; bytes, [<a href="core/int.html">int</a> offset = 0, <a href="core/int.html">int</a> length, <a href="core/bool.html">bool</a> stripBom = true, <a href="core/int.html">int</a> replacementCodepoint = UNICODE_REPLACEMENT_CHARACTER_CODEPOINT]) <a class="anchor-link" href="#decodeUtf16le"
               title="Permalink to decodeUtf16le">#</a></h4>
 <div class="doc">
 <p>Produce a String from a sequence of UTF-16LE encoded bytes. This method
@@ -245,7 +245,7 @@ String decodeUtf16le(List&lt;int&gt; bytes, [int offset = 0, int length,
 </div>
 <div class="method"><h4 id="decodeUtf16leAsIterable">
 <span class="show-code">Code</span>
-<a href="utf/IterableUtf16Decoder.html">IterableUtf16Decoder</a> <strong>decodeUtf16leAsIterable</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; bytes, [<a href="core/int.html">int</a> offset, <a href="core/int.html">int</a> length, <a href="core/bool.html">bool</a> stripBom, <a href="core/int.html">int</a> replacementCodepoint]) <a class="anchor-link" href="#decodeUtf16leAsIterable"
+<a href="utf/IterableUtf16Decoder.html">IterableUtf16Decoder</a> <strong>decodeUtf16leAsIterable</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; bytes, [<a href="core/int.html">int</a> offset = 0, <a href="core/int.html">int</a> length, <a href="core/bool.html">bool</a> stripBom = true, <a href="core/int.html">int</a> replacementCodepoint = UNICODE_REPLACEMENT_CHARACTER_CODEPOINT]) <a class="anchor-link" href="#decodeUtf16leAsIterable"
               title="Permalink to decodeUtf16leAsIterable">#</a></h4>
 <div class="doc">
 <p>Decodes the UTF-16LE bytes as an iterable. Thus, the consumer can only
@@ -270,7 +270,7 @@ IterableUtf16Decoder decodeUtf16leAsIterable(List&lt;int&gt; bytes, [int offset 
 </div>
 <div class="method"><h4 id="decodeUtf32">
 <span class="show-code">Code</span>
-<a href="core/String.html">String</a> <strong>decodeUtf32</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; bytes, [<a href="core/int.html">int</a> offset, <a href="core/int.html">int</a> length, <a href="core/int.html">int</a> replacementCodepoint]) <a class="anchor-link" href="#decodeUtf32"
+<a href="core/String.html">String</a> <strong>decodeUtf32</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; bytes, [<a href="core/int.html">int</a> offset = 0, <a href="core/int.html">int</a> length, <a href="core/int.html">int</a> replacementCodepoint = UNICODE_REPLACEMENT_CHARACTER_CODEPOINT]) <a class="anchor-link" href="#decodeUtf32"
               title="Permalink to decodeUtf32">#</a></h4>
 <div class="doc">
 <p>Produce a String from a sequence of UTF-32 encoded bytes. The parameters
@@ -289,7 +289,7 @@ String decodeUtf32(List&lt;int&gt; bytes, [int offset = 0, int length,
 </div>
 <div class="method"><h4 id="decodeUtf32AsIterable">
 <span class="show-code">Code</span>
-<a href="utf/IterableUtf32Decoder.html">IterableUtf32Decoder</a> <strong>decodeUtf32AsIterable</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; bytes, [<a href="core/int.html">int</a> offset, <a href="core/int.html">int</a> length, <a href="core/int.html">int</a> replacementCodepoint]) <a class="anchor-link" href="#decodeUtf32AsIterable"
+<a href="utf/IterableUtf32Decoder.html">IterableUtf32Decoder</a> <strong>decodeUtf32AsIterable</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; bytes, [<a href="core/int.html">int</a> offset = 0, <a href="core/int.html">int</a> length, <a href="core/int.html">int</a> replacementCodepoint = UNICODE_REPLACEMENT_CHARACTER_CODEPOINT]) <a class="anchor-link" href="#decodeUtf32AsIterable"
               title="Permalink to decodeUtf32AsIterable">#</a></h4>
 <div class="doc">
 <p>Decodes the UTF-32 bytes as an iterable. Thus, the consumer can only convert
@@ -309,7 +309,7 @@ IterableUtf32Decoder decodeUtf32AsIterable(List&lt;int&gt; bytes, [
 </div>
 <div class="method"><h4 id="decodeUtf32be">
 <span class="show-code">Code</span>
-<a href="core/String.html">String</a> <strong>decodeUtf32be</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; bytes, [<a href="core/int.html">int</a> offset, <a href="core/int.html">int</a> length, <a href="core/bool.html">bool</a> stripBom, <a href="core/int.html">int</a> replacementCodepoint]) <a class="anchor-link" href="#decodeUtf32be"
+<a href="core/String.html">String</a> <strong>decodeUtf32be</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; bytes, [<a href="core/int.html">int</a> offset = 0, <a href="core/int.html">int</a> length, <a href="core/bool.html">bool</a> stripBom = true, <a href="core/int.html">int</a> replacementCodepoint = UNICODE_REPLACEMENT_CHARACTER_CODEPOINT]) <a class="anchor-link" href="#decodeUtf32be"
               title="Permalink to decodeUtf32be">#</a></h4>
 <div class="doc">
 <p>Produce a String from a sequence of UTF-32BE encoded bytes. The parameters
@@ -328,7 +328,7 @@ String decodeUtf32be(
 </div>
 <div class="method"><h4 id="decodeUtf32beAsIterable">
 <span class="show-code">Code</span>
-<a href="utf/IterableUtf32Decoder.html">IterableUtf32Decoder</a> <strong>decodeUtf32beAsIterable</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; bytes, [<a href="core/int.html">int</a> offset, <a href="core/int.html">int</a> length, <a href="core/bool.html">bool</a> stripBom, <a href="core/int.html">int</a> replacementCodepoint]) <a class="anchor-link" href="#decodeUtf32beAsIterable"
+<a href="utf/IterableUtf32Decoder.html">IterableUtf32Decoder</a> <strong>decodeUtf32beAsIterable</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; bytes, [<a href="core/int.html">int</a> offset = 0, <a href="core/int.html">int</a> length, <a href="core/bool.html">bool</a> stripBom = true, <a href="core/int.html">int</a> replacementCodepoint = UNICODE_REPLACEMENT_CHARACTER_CODEPOINT]) <a class="anchor-link" href="#decodeUtf32beAsIterable"
               title="Permalink to decodeUtf32beAsIterable">#</a></h4>
 <div class="doc">
 <p>Decodes the UTF-32BE bytes as an iterable. Thus, the consumer can only convert
@@ -350,7 +350,7 @@ IterableUtf32Decoder decodeUtf32beAsIterable(List&lt;int&gt; bytes, [
 </div>
 <div class="method"><h4 id="decodeUtf32le">
 <span class="show-code">Code</span>
-<a href="core/String.html">String</a> <strong>decodeUtf32le</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; bytes, [<a href="core/int.html">int</a> offset, <a href="core/int.html">int</a> length, <a href="core/bool.html">bool</a> stripBom, <a href="core/int.html">int</a> replacementCodepoint]) <a class="anchor-link" href="#decodeUtf32le"
+<a href="core/String.html">String</a> <strong>decodeUtf32le</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; bytes, [<a href="core/int.html">int</a> offset = 0, <a href="core/int.html">int</a> length, <a href="core/bool.html">bool</a> stripBom = true, <a href="core/int.html">int</a> replacementCodepoint = UNICODE_REPLACEMENT_CHARACTER_CODEPOINT]) <a class="anchor-link" href="#decodeUtf32le"
               title="Permalink to decodeUtf32le">#</a></h4>
 <div class="doc">
 <p>Produce a String from a sequence of UTF-32LE encoded bytes. The parameters
@@ -369,7 +369,7 @@ String decodeUtf32le(
 </div>
 <div class="method"><h4 id="decodeUtf32leAsIterable">
 <span class="show-code">Code</span>
-<a href="utf/IterableUtf32Decoder.html">IterableUtf32Decoder</a> <strong>decodeUtf32leAsIterable</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; bytes, [<a href="core/int.html">int</a> offset, <a href="core/int.html">int</a> length, <a href="core/bool.html">bool</a> stripBom, <a href="core/int.html">int</a> replacementCodepoint]) <a class="anchor-link" href="#decodeUtf32leAsIterable"
+<a href="utf/IterableUtf32Decoder.html">IterableUtf32Decoder</a> <strong>decodeUtf32leAsIterable</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; bytes, [<a href="core/int.html">int</a> offset = 0, <a href="core/int.html">int</a> length, <a href="core/bool.html">bool</a> stripBom = true, <a href="core/int.html">int</a> replacementCodepoint = UNICODE_REPLACEMENT_CHARACTER_CODEPOINT]) <a class="anchor-link" href="#decodeUtf32leAsIterable"
               title="Permalink to decodeUtf32leAsIterable">#</a></h4>
 <div class="doc">
 <p>Decodes the UTF-32LE bytes as an iterable. Thus, the consumer can only convert
@@ -391,7 +391,7 @@ IterableUtf32Decoder decodeUtf32leAsIterable(List&lt;int&gt; bytes, [
 </div>
 <div class="method"><h4 id="decodeUtf8">
 <span class="show-code">Code</span>
-<a href="core/String.html">String</a> <strong>decodeUtf8</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; bytes, [<a href="core/int.html">int</a> offset, <a href="core/int.html">int</a> length, <a href="core/int.html">int</a> replacementCodepoint]) <a class="anchor-link" href="#decodeUtf8"
+<a href="core/String.html">String</a> <strong>decodeUtf8</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; bytes, [<a href="core/int.html">int</a> offset = 0, <a href="core/int.html">int</a> length, <a href="core/int.html">int</a> replacementCodepoint = UNICODE_REPLACEMENT_CHARACTER_CODEPOINT]) <a class="anchor-link" href="#decodeUtf8"
               title="Permalink to decodeUtf8">#</a></h4>
 <div class="doc">
 <p>Produce a String from a List of UTF-8 encoded bytes. The parameters
@@ -411,7 +411,7 @@ String decodeUtf8(List&lt;int&gt; bytes, [int offset = 0, int length,
 </div>
 <div class="method"><h4 id="decodeUtf8AsIterable">
 <span class="show-code">Code</span>
-<a href="utf/IterableUtf8Decoder.html">IterableUtf8Decoder</a> <strong>decodeUtf8AsIterable</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; bytes, [<a href="core/int.html">int</a> offset, <a href="core/int.html">int</a> length, <a href="core/int.html">int</a> replacementCodepoint]) <a class="anchor-link" href="#decodeUtf8AsIterable"
+<a href="utf/IterableUtf8Decoder.html">IterableUtf8Decoder</a> <strong>decodeUtf8AsIterable</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; bytes, [<a href="core/int.html">int</a> offset = 0, <a href="core/int.html">int</a> length, <a href="core/int.html">int</a> replacementCodepoint = UNICODE_REPLACEMENT_CHARACTER_CODEPOINT]) <a class="anchor-link" href="#decodeUtf8AsIterable"
               title="Permalink to decodeUtf8AsIterable">#</a></h4>
 <div class="doc">
 <p>Decodes the UTF-8 bytes as an iterable. Thus, the consumer can only convert
@@ -441,7 +441,7 @@ List&lt;int&gt; encodeUtf16(String str) =&gt;
 </div>
 <div class="method"><h4 id="encodeUtf16be">
 <span class="show-code">Code</span>
-<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; <strong>encodeUtf16be</strong>(<a href="core/String.html">String</a> str, [<a href="core/bool.html">bool</a> writeBOM]) <a class="anchor-link" href="#encodeUtf16be"
+<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; <strong>encodeUtf16be</strong>(<a href="core/String.html">String</a> str, [<a href="core/bool.html">bool</a> writeBOM = false]) <a class="anchor-link" href="#encodeUtf16be"
               title="Permalink to encodeUtf16be">#</a></h4>
 <div class="doc">
 <p>Produce a list of UTF-16BE encoded bytes. By default, this method produces
@@ -467,7 +467,7 @@ List&lt;int&gt; encodeUtf16be(String str, [bool writeBOM = false]) {
 </div>
 <div class="method"><h4 id="encodeUtf16le">
 <span class="show-code">Code</span>
-<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; <strong>encodeUtf16le</strong>(<a href="core/String.html">String</a> str, [<a href="core/bool.html">bool</a> writeBOM]) <a class="anchor-link" href="#encodeUtf16le"
+<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; <strong>encodeUtf16le</strong>(<a href="core/String.html">String</a> str, [<a href="core/bool.html">bool</a> writeBOM = false]) <a class="anchor-link" href="#encodeUtf16le"
               title="Permalink to encodeUtf16le">#</a></h4>
 <div class="doc">
 <p>Produce a list of UTF-16LE encoded bytes. By default, this method produces
@@ -506,7 +506,7 @@ List&lt;int&gt; encodeUtf32(String str) =&gt;
 </div>
 <div class="method"><h4 id="encodeUtf32be">
 <span class="show-code">Code</span>
-<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; <strong>encodeUtf32be</strong>(<a href="core/String.html">String</a> str, [<a href="core/bool.html">bool</a> writeBOM]) <a class="anchor-link" href="#encodeUtf32be"
+<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; <strong>encodeUtf32be</strong>(<a href="core/String.html">String</a> str, [<a href="core/bool.html">bool</a> writeBOM = false]) <a class="anchor-link" href="#encodeUtf32be"
               title="Permalink to encodeUtf32be">#</a></h4>
 <div class="doc">
 <p>Produce a list of UTF-32BE encoded bytes. By default, this method produces
@@ -536,7 +536,7 @@ List&lt;int&gt; encodeUtf32be(String str, [bool writeBOM = false]) {
 </div>
 <div class="method"><h4 id="encodeUtf32le">
 <span class="show-code">Code</span>
-<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; <strong>encodeUtf32le</strong>(<a href="core/String.html">String</a> str, [<a href="core/bool.html">bool</a> writeBOM]) <a class="anchor-link" href="#encodeUtf32le"
+<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; <strong>encodeUtf32le</strong>(<a href="core/String.html">String</a> str, [<a href="core/bool.html">bool</a> writeBOM = false]) <a class="anchor-link" href="#encodeUtf32le"
               title="Permalink to encodeUtf32le">#</a></h4>
 <div class="doc">
 <p>Produce a list of UTF-32LE encoded bytes. By default, this method produces
@@ -578,7 +578,7 @@ List&lt;int&gt; encodeUtf8(String str) =&gt;
 </div>
 <div class="method"><h4 id="hasUtf16Bom">
 <span class="show-code">Code</span>
-<a href="core/bool.html">bool</a> <strong>hasUtf16Bom</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; utf32EncodedBytes, [<a href="core/int.html">int</a> offset, <a href="core/int.html">int</a> length]) <a class="anchor-link" href="#hasUtf16Bom"
+<a href="core/bool.html">bool</a> <strong>hasUtf16Bom</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; utf32EncodedBytes, [<a href="core/int.html">int</a> offset = 0, <a href="core/int.html">int</a> length]) <a class="anchor-link" href="#hasUtf16Bom"
               title="Permalink to hasUtf16Bom">#</a></h4>
 <div class="doc">
 <p>Identifies whether a List of bytes starts (based on offset) with a
@@ -593,7 +593,7 @@ bool hasUtf16Bom(List&lt;int&gt; utf32EncodedBytes, [int offset = 0, int length]
 </div>
 <div class="method"><h4 id="hasUtf16beBom">
 <span class="show-code">Code</span>
-<a href="core/bool.html">bool</a> <strong>hasUtf16beBom</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; utf16EncodedBytes, [<a href="core/int.html">int</a> offset, <a href="core/int.html">int</a> length]) <a class="anchor-link" href="#hasUtf16beBom"
+<a href="core/bool.html">bool</a> <strong>hasUtf16beBom</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; utf16EncodedBytes, [<a href="core/int.html">int</a> offset = 0, <a href="core/int.html">int</a> length]) <a class="anchor-link" href="#hasUtf16beBom"
               title="Permalink to hasUtf16beBom">#</a></h4>
 <div class="doc">
 <p>Identifies whether a List of bytes starts (based on offset) with a
@@ -610,7 +610,7 @@ bool hasUtf16beBom(List&lt;int&gt; utf16EncodedBytes, [int offset = 0, int lengt
 </div>
 <div class="method"><h4 id="hasUtf16leBom">
 <span class="show-code">Code</span>
-<a href="core/bool.html">bool</a> <strong>hasUtf16leBom</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; utf16EncodedBytes, [<a href="core/int.html">int</a> offset, <a href="core/int.html">int</a> length]) <a class="anchor-link" href="#hasUtf16leBom"
+<a href="core/bool.html">bool</a> <strong>hasUtf16leBom</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; utf16EncodedBytes, [<a href="core/int.html">int</a> offset = 0, <a href="core/int.html">int</a> length]) <a class="anchor-link" href="#hasUtf16leBom"
               title="Permalink to hasUtf16leBom">#</a></h4>
 <div class="doc">
 <p>Identifies whether a List of bytes starts (based on offset) with a
@@ -627,7 +627,7 @@ bool hasUtf16leBom(List&lt;int&gt; utf16EncodedBytes, [int offset = 0, int lengt
 </div>
 <div class="method"><h4 id="hasUtf32Bom">
 <span class="show-code">Code</span>
-<a href="core/bool.html">bool</a> <strong>hasUtf32Bom</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; utf32EncodedBytes, [<a href="core/int.html">int</a> offset, <a href="core/int.html">int</a> length]) <a class="anchor-link" href="#hasUtf32Bom"
+<a href="core/bool.html">bool</a> <strong>hasUtf32Bom</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; utf32EncodedBytes, [<a href="core/int.html">int</a> offset = 0, <a href="core/int.html">int</a> length]) <a class="anchor-link" href="#hasUtf32Bom"
               title="Permalink to hasUtf32Bom">#</a></h4>
 <div class="doc">
 <p>Identifies whether a List of bytes starts (based on offset) with a
@@ -643,7 +643,7 @@ bool hasUtf32Bom(
 </div>
 <div class="method"><h4 id="hasUtf32beBom">
 <span class="show-code">Code</span>
-<a href="core/bool.html">bool</a> <strong>hasUtf32beBom</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; utf32EncodedBytes, [<a href="core/int.html">int</a> offset, <a href="core/int.html">int</a> length]) <a class="anchor-link" href="#hasUtf32beBom"
+<a href="core/bool.html">bool</a> <strong>hasUtf32beBom</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; utf32EncodedBytes, [<a href="core/int.html">int</a> offset = 0, <a href="core/int.html">int</a> length]) <a class="anchor-link" href="#hasUtf32beBom"
               title="Permalink to hasUtf32beBom">#</a></h4>
 <div class="doc">
 <p>Identifies whether a List of bytes starts (based on offset) with a
@@ -661,7 +661,7 @@ bool hasUtf32beBom(List&lt;int&gt; utf32EncodedBytes, [int offset = 0, int lengt
 </div>
 <div class="method"><h4 id="hasUtf32leBom">
 <span class="show-code">Code</span>
-<a href="core/bool.html">bool</a> <strong>hasUtf32leBom</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; utf32EncodedBytes, [<a href="core/int.html">int</a> offset, <a href="core/int.html">int</a> length]) <a class="anchor-link" href="#hasUtf32leBom"
+<a href="core/bool.html">bool</a> <strong>hasUtf32leBom</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; utf32EncodedBytes, [<a href="core/int.html">int</a> offset = 0, <a href="core/int.html">int</a> length]) <a class="anchor-link" href="#hasUtf32leBom"
               title="Permalink to hasUtf32leBom">#</a></h4>
 <div class="doc">
 <p>Identifies whether a List of bytes starts (based on offset) with a
@@ -701,7 +701,7 @@ List&lt;int&gt; stringToCodepoints(String str) {
 </div>
 <div class="method"><h4 id="utf8ToCodepoints">
 <span class="show-code">Code</span>
-<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; <strong>utf8ToCodepoints</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; utf8EncodedBytes, [<a href="core/int.html">int</a> offset, <a href="core/int.html">int</a> length, <a href="core/int.html">int</a> replacementCodepoint]) <a class="anchor-link" href="#utf8ToCodepoints"
+<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; <strong>utf8ToCodepoints</strong>(<a href="core/List.html">List</a>&lt;<a href="core/int.html">int</a>&gt; utf8EncodedBytes, [<a href="core/int.html">int</a> offset = 0, <a href="core/int.html">int</a> length, <a href="core/int.html">int</a> replacementCodepoint = UNICODE_REPLACEMENT_CHARACTER_CODEPOINT]) <a class="anchor-link" href="#utf8ToCodepoints"
               title="Permalink to utf8ToCodepoints">#</a></h4>
 <div class="doc">
 

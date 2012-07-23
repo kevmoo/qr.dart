@@ -28,11 +28,11 @@
 </div>
 <h3>Subinterfaces</h3>
 <p>
-<span class="type-box"><span class="icon-interface"></span><a href="../html/FileEntry.html">FileEntry</a></span>, <span class="type-box"><span class="icon-interface"></span><a href="../html/DirectoryEntry.html">DirectoryEntry</a></span></p>
+<span class="type-box"><span class="icon-interface"></span><a href="../html/DirectoryEntry.html">DirectoryEntry</a></span>, <span class="type-box"><span class="icon-interface"></span><a href="../html/FileEntry.html">FileEntry</a></span></p>
 <h3>Methods</h3>
 <div class="method"><h4 id="copyTo">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>copyTo</strong>(<a href="../html/DirectoryEntry.html">DirectoryEntry</a> parent, [<a href="../dart_core/String.html">String</a> name, <a href="../dart_core/bool.html">bool</a> successCallback(<a href="../html/Entry.html">Entry</a> entry), <a href="../dart_core/bool.html">bool</a> errorCallback(<a href="../html/FileError.html">FileError</a> error)]) <a class="anchor-link" href="#copyTo"
+void <strong>copyTo</strong>(<a href="../html/DirectoryEntry.html">DirectoryEntry</a> parent, [<a href="../core/String.html">String</a> name, <a href="../html/EntryCallback.html">EntryCallback</a> successCallback, <a href="../html/ErrorCallback.html">ErrorCallback</a> errorCallback]) <a class="anchor-link" href="#copyTo"
               title="Permalink to Entry.copyTo">#</a></h4>
 <div class="doc">
 <p>@domName Entry.copyTo</p>
@@ -43,7 +43,7 @@ void copyTo(DirectoryEntry parent, [String name, EntryCallback successCallback, 
 </div>
 <div class="method"><h4 id="getMetadata">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>getMetadata</strong>(<a href="../dart_core/bool.html">bool</a> successCallback(<a href="../html/Metadata.html">Metadata</a> metadata), [<a href="../dart_core/bool.html">bool</a> errorCallback(<a href="../html/FileError.html">FileError</a> error)]) <a class="anchor-link" href="#getMetadata"
+void <strong>getMetadata</strong>(<a href="../html/MetadataCallback.html">MetadataCallback</a> successCallback, [<a href="../html/ErrorCallback.html">ErrorCallback</a> errorCallback]) <a class="anchor-link" href="#getMetadata"
               title="Permalink to Entry.getMetadata">#</a></h4>
 <div class="doc">
 <p>@domName Entry.getMetadata</p>
@@ -54,7 +54,7 @@ void getMetadata(MetadataCallback successCallback, [ErrorCallback errorCallback]
 </div>
 <div class="method"><h4 id="getParent">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>getParent</strong>([<a href="../dart_core/bool.html">bool</a> successCallback(<a href="../html/Entry.html">Entry</a> entry), <a href="../dart_core/bool.html">bool</a> errorCallback(<a href="../html/FileError.html">FileError</a> error)]) <a class="anchor-link" href="#getParent"
+void <strong>getParent</strong>([<a href="../html/EntryCallback.html">EntryCallback</a> successCallback, <a href="../html/ErrorCallback.html">ErrorCallback</a> errorCallback]) <a class="anchor-link" href="#getParent"
               title="Permalink to Entry.getParent">#</a></h4>
 <div class="doc">
 <p>@domName Entry.getParent</p>
@@ -65,7 +65,7 @@ void getParent([EntryCallback successCallback, ErrorCallback errorCallback]);
 </div>
 <div class="method"><h4 id="moveTo">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>moveTo</strong>(<a href="../html/DirectoryEntry.html">DirectoryEntry</a> parent, [<a href="../dart_core/String.html">String</a> name, <a href="../dart_core/bool.html">bool</a> successCallback(<a href="../html/Entry.html">Entry</a> entry), <a href="../dart_core/bool.html">bool</a> errorCallback(<a href="../html/FileError.html">FileError</a> error)]) <a class="anchor-link" href="#moveTo"
+void <strong>moveTo</strong>(<a href="../html/DirectoryEntry.html">DirectoryEntry</a> parent, [<a href="../core/String.html">String</a> name, <a href="../html/EntryCallback.html">EntryCallback</a> successCallback, <a href="../html/ErrorCallback.html">ErrorCallback</a> errorCallback]) <a class="anchor-link" href="#moveTo"
               title="Permalink to Entry.moveTo">#</a></h4>
 <div class="doc">
 <p>@domName Entry.moveTo</p>
@@ -76,7 +76,7 @@ void moveTo(DirectoryEntry parent, [String name, EntryCallback successCallback, 
 </div>
 <div class="method"><h4 id="remove">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>remove</strong>(<a href="../dart_core/void.html">void</a> successCallback(), [<a href="../dart_core/bool.html">bool</a> errorCallback(<a href="../html/FileError.html">FileError</a> error)]) <a class="anchor-link" href="#remove"
+void <strong>remove</strong>(<a href="../html/VoidCallback.html">VoidCallback</a> successCallback, [<a href="../html/ErrorCallback.html">ErrorCallback</a> errorCallback]) <a class="anchor-link" href="#remove"
               title="Permalink to Entry.remove">#</a></h4>
 <div class="doc">
 <p>@domName Entry.remove</p>
@@ -87,7 +87,7 @@ void remove(VoidCallback successCallback, [ErrorCallback errorCallback]);
 </div>
 <div class="method"><h4 id="toURL">
 <span class="show-code">Code</span>
-<a href="../dart_core/String.html">String</a> <strong>toURL</strong>() <a class="anchor-link" href="#toURL"
+<a href="../core/String.html">String</a> <strong>toURL</strong>() <a class="anchor-link" href="#toURL"
               title="Permalink to Entry.toURL">#</a></h4>
 <div class="doc">
 <p>@domName Entry.toURL</p>
@@ -112,7 +112,7 @@ final DOMFileSystem filesystem;
 </div>
 <div class="field"><h4 id="fullPath">
 <span class="show-code">Code</span>
-final <a href="../dart_core/String.html">String</a>         <strong>fullPath</strong> <a class="anchor-link"
+final <a href="../core/String.html">String</a>         <strong>fullPath</strong> <a class="anchor-link"
             href="#fullPath"
             title="Permalink to Entry.fullPath">#</a>
         </h4>
@@ -125,7 +125,7 @@ final String fullPath;
 </div>
 <div class="field"><h4 id="isDirectory">
 <span class="show-code">Code</span>
-final <a href="../dart_core/bool.html">bool</a>         <strong>isDirectory</strong> <a class="anchor-link"
+final <a href="../core/bool.html">bool</a>         <strong>isDirectory</strong> <a class="anchor-link"
             href="#isDirectory"
             title="Permalink to Entry.isDirectory">#</a>
         </h4>
@@ -138,7 +138,7 @@ final bool isDirectory;
 </div>
 <div class="field"><h4 id="isFile">
 <span class="show-code">Code</span>
-final <a href="../dart_core/bool.html">bool</a>         <strong>isFile</strong> <a class="anchor-link"
+final <a href="../core/bool.html">bool</a>         <strong>isFile</strong> <a class="anchor-link"
             href="#isFile"
             title="Permalink to Entry.isFile">#</a>
         </h4>
@@ -151,7 +151,7 @@ final bool isFile;
 </div>
 <div class="field"><h4 id="name">
 <span class="show-code">Code</span>
-final <a href="../dart_core/String.html">String</a>         <strong>name</strong> <a class="anchor-link"
+final <a href="../core/String.html">String</a>         <strong>name</strong> <a class="anchor-link"
             href="#name"
             title="Permalink to Entry.name">#</a>
         </h4>

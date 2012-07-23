@@ -139,7 +139,7 @@ main() {
 <h3>Methods</h3>
 <div class="method"><h4 id="allOf">
 <span class="show-code">Code</span>
-<a href="unittest/Matcher.html">Matcher</a> <strong>allOf</strong>(arg0, [arg1, arg2, arg3, arg4, arg5, arg6]) <a class="anchor-link" href="#allOf"
+<a href="unittest/Matcher.html">Matcher</a> <strong>allOf</strong>(arg0, [arg1 = null, arg2 = null, arg3 = null, arg4 = null, arg5 = null, arg6 = null]) <a class="anchor-link" href="#allOf"
               title="Permalink to allOf">#</a></h4>
 <div class="doc">
 <p>This returns a matcher that matches if all of the matchers passed as
@@ -225,7 +225,7 @@ Matcher alwaysThrew(value) =&gt;
 </div>
 <div class="method"><h4 id="anyOf">
 <span class="show-code">Code</span>
-<a href="unittest/Matcher.html">Matcher</a> <strong>anyOf</strong>(arg0, [arg1, arg2, arg3, arg4, arg5, arg6]) <a class="anchor-link" href="#anyOf"
+<a href="unittest/Matcher.html">Matcher</a> <strong>anyOf</strong>(arg0, [arg1 = null, arg2 = null, arg3 = null, arg4 = null, arg5 = null, arg6 = null]) <a class="anchor-link" href="#anyOf"
               title="Permalink to anyOf">#</a></h4>
 <div class="doc">
 <p>Matches if any of the given matchers evaluate to true. The
@@ -321,7 +321,7 @@ void callbackDone() { _handleAllCallbacksDone(); }
 </div>
 <div class="method"><h4 id="callsTo">
 <span class="show-code">Code</span>
-<a href="unittest/CallMatcher.html">CallMatcher</a> <strong>callsTo</strong>([method, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9]) <a class="anchor-link" href="#callsTo"
+<a href="unittest/CallMatcher.html">CallMatcher</a> <strong>callsTo</strong>([method, arg0 = _noArg, arg1 = _noArg, arg2 = _noArg, arg3 = _noArg, arg4 = _noArg, arg5 = _noArg, arg6 = _noArg, arg7 = _noArg, arg8 = _noArg, arg9 = _noArg]) <a class="anchor-link" href="#callsTo"
               title="Permalink to callsTo">#</a></h4>
 <div class="doc">
 <p>Returns a <a class="crossref" href="unittest/CallMatcher.html">CallMatcher</a> for the specified signature. 
@@ -429,7 +429,7 @@ Configuration configure(Configuration config) {
 </div>
 <div class="method"><h4 id="configureExpectFailureHandler">
 <span class="show-code">Code</span>
-void <strong>configureExpectFailureHandler</strong>([<a href="unittest/FailureHandler.html">FailureHandler</a> handler]) <a class="anchor-link" href="#configureExpectFailureHandler"
+void <strong>configureExpectFailureHandler</strong>([<a href="unittest/FailureHandler.html">FailureHandler</a> handler = null]) <a class="anchor-link" href="#configureExpectFailureHandler"
               title="Permalink to configureExpectFailureHandler">#</a></h4>
 <div class="doc">
 <p>Changes or resets to the default the failure handler for expect()
@@ -449,7 +449,7 @@ void configureExpectFailureHandler([FailureHandler handler = null]) {
 </div>
 <div class="method"><h4 id="configureExpectFormatter">
 <span class="show-code">Code</span>
-<a href="unittest/ErrorFormatter.html">ErrorFormatter</a> <strong>configureExpectFormatter</strong>([<a href="unittest/ErrorFormatter.html">ErrorFormatter</a> formatter]) <a class="anchor-link" href="#configureExpectFormatter"
+<a href="unittest/ErrorFormatter.html">ErrorFormatter</a> <strong>configureExpectFormatter</strong>([<a href="unittest/ErrorFormatter.html">ErrorFormatter</a> formatter = null]) <a class="anchor-link" href="#configureExpectFormatter"
               title="Permalink to configureExpectFormatter">#</a></h4>
 <div class="doc">
 <p>Changes or resets to default the failure message formatter for expect().
@@ -555,7 +555,7 @@ ensureInitialized() {
 </div>
 <div class="method"><h4 id="equals">
 <span class="show-code">Code</span>
-<a href="unittest/Matcher.html">Matcher</a> <strong>equals</strong>(expected, [limit]) <a class="anchor-link" href="#equals"
+<a href="unittest/Matcher.html">Matcher</a> <strong>equals</strong>(expected, [limit = 100]) <a class="anchor-link" href="#equals"
               title="Permalink to equals">#</a></h4>
 <div class="doc">
 <p>Returns a matcher that does a deep recursive match. This only works
@@ -612,7 +612,7 @@ Matcher everyElement(matcher) =&gt; new _EveryElement(wrapMatcher(matcher));
 </div>
 <div class="method"><h4 id="expect">
 <span class="show-code">Code</span>
-void <strong>expect</strong>(actual, [matcher, <a href="core/String.html">String</a> reason, failureHandler]) <a class="anchor-link" href="#expect"
+void <strong>expect</strong>(actual, [matcher = isTrue, <a href="core/String.html">String</a> reason = null, failureHandler = null]) <a class="anchor-link" href="#expect"
               title="Permalink to expect">#</a></h4>
 <div class="doc">
 <p>This is the main assertion function. It asserts that 
@@ -669,7 +669,7 @@ void expect(actual, [matcher = isTrue, String reason = null,
 </div>
 <div class="method"><h4 id="expectAsync0">
 <span class="show-code">Code</span>
-<a href="core/Function.html">Function</a> <strong>expectAsync0</strong>(<a href="core/Function.html">Function</a> callback, [<a href="core/int.html">int</a> count]) <a class="anchor-link" href="#expectAsync0"
+<a href="core/Function.html">Function</a> <strong>expectAsync0</strong>(<a href="core/Function.html">Function</a> callback, [<a href="core/int.html">int</a> count = 1]) <a class="anchor-link" href="#expectAsync0"
               title="Permalink to expectAsync0">#</a></h4>
 <div class="doc">
 <p>Indicate that 
@@ -692,7 +692,7 @@ Function expectAsync0(Function callback, [int count = 1]) {
 </div>
 <div class="method"><h4 id="expectAsync1">
 <span class="show-code">Code</span>
-<a href="core/Function.html">Function</a> <strong>expectAsync1</strong>(<a href="core/Function.html">Function</a> callback, [<a href="core/int.html">int</a> count]) <a class="anchor-link" href="#expectAsync1"
+<a href="core/Function.html">Function</a> <strong>expectAsync1</strong>(<a href="core/Function.html">Function</a> callback, [<a href="core/int.html">int</a> count = 1]) <a class="anchor-link" href="#expectAsync1"
               title="Permalink to expectAsync1">#</a></h4>
 <div class="doc">
 <p>Like <a class="crossref" href="unittest.html#expectAsync0">expectAsync0</a> but 
@@ -706,7 +706,7 @@ Function expectAsync1(Function callback, [int count = 1]) {
 </div>
 <div class="method"><h4 id="expectAsync2">
 <span class="show-code">Code</span>
-<a href="core/Function.html">Function</a> <strong>expectAsync2</strong>(<a href="core/Function.html">Function</a> callback, [<a href="core/int.html">int</a> count]) <a class="anchor-link" href="#expectAsync2"
+<a href="core/Function.html">Function</a> <strong>expectAsync2</strong>(<a href="core/Function.html">Function</a> callback, [<a href="core/int.html">int</a> count = 1]) <a class="anchor-link" href="#expectAsync2"
               title="Permalink to expectAsync2">#</a></h4>
 <div class="doc">
 <p>Like <a class="crossref" href="unittest.html#expectAsync0">expectAsync0</a> but 
@@ -771,7 +771,7 @@ Function expectAsyncUntil2(Function callback, Function isDone) {
 </div>
 <div class="method"><h4 id="expectThrow">
 <span class="show-code">Code</span>
-void <strong>expectThrow</strong>(function, [callback]) <a class="anchor-link" href="#expectThrow"
+void <strong>expectThrow</strong>(function, [<a href="core/bool.html">bool</a> callback(exception)]) <a class="anchor-link" href="#expectThrow"
               title="Permalink to expectThrow">#</a></h4>
 <div class="doc">
 <p>(Deprecated) Evaluates the 
@@ -852,7 +852,7 @@ Matcher greaterThanOrEqualTo(value) =&gt;
 </div>
 <div class="method"><h4 id="group">
 <span class="show-code">Code</span>
-void <strong>group</strong>(<a href="core/String.html">String</a> description, body) <a class="anchor-link" href="#group"
+void <strong>group</strong>(<a href="core/String.html">String</a> description, void body()) <a class="anchor-link" href="#group"
               title="Permalink to group">#</a></h4>
 <div class="doc">
 <p>Creates a new named group of tests. Calls to group() or test() within the
@@ -1134,7 +1134,7 @@ Matcher orderedEquals(Iterable expected) =&gt; new _OrderedEquals(expected);
 </div>
 <div class="method"><h4 id="predicate">
 <span class="show-code">Code</span>
-<a href="unittest/Matcher.html">Matcher</a> <strong>predicate</strong>(f, [description]) <a class="anchor-link" href="#predicate"
+<a href="unittest/Matcher.html">Matcher</a> <strong>predicate</strong>(f, [description = 'satisfies function']) <a class="anchor-link" href="#predicate"
               title="Permalink to predicate">#</a></h4>
 <div class="doc">
 <p>Returns a matcher that uses an arbitrary function that returns

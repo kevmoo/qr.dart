@@ -1,0 +1,88 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>PropertyObject Class / dartlib Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="dartlib" data-type="PropertyObject">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../dartlib.html">dartlib</a> &rsaquo; <a href="../dartlib/PropertyObject.html">PropertyObject</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>PropertyObject</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Extends</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../dartlib/DisposableImpl.html">DisposableImpl</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>PropertyObject</strong></span></p>
+<h3>Subclasses</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../dartlib_retained/PElement.html">PElement</a></span>, <span class="type-box"><span class="icon-class"></span><a href="../dartlib_retained/Stage.html">Stage</a></span></p>
+<h3>Implements</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../dartlib/IPropertyObject.html">IPropertyObject</a></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="PropertyObject">
+<span class="show-code">Code</span>
+new <strong>PropertyObject</strong>() <a class="anchor-link" href="#PropertyObject"
+              title="Permalink to PropertyObject.PropertyObject">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+PropertyObject() : propertyValues = new PropertyValues();
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="disposeInternal">
+<span class="show-code">Code</span>
+void <strong>disposeInternal</strong>() <a class="anchor-link" href="#disposeInternal"
+              title="Permalink to PropertyObject.disposeInternal">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void disposeInternal(){
+  super.disposeInternal();
+  propertyValues.dispose();
+}
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="propertyValues">
+<span class="show-code">Code</span>
+final <a href="../dartlib/PropertyValues.html">PropertyValues</a>         <strong>propertyValues</strong> <a class="anchor-link"
+            href="#propertyValues"
+            title="Permalink to PropertyObject.propertyValues">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final PropertyValues propertyValues;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

@@ -28,22 +28,21 @@
 </div>
 <h3>Extends</h3>
 <p>
-<span class="type-box"><span class="icon-class"></span><a href="../dartlib_core/DisposableImpl.html">DisposableImpl</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>Stage</strong></span></p>
+<span class="type-box"><span class="icon-class"></span><a href="../dartlib/DisposableImpl.html">DisposableImpl</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../dartlib/PropertyObject.html">PropertyObject</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>Stage</strong></span></p>
 <h3>Implements</h3>
 <p>
-<span class="type-box"><span class="icon-interface"></span><a href="../dartlib_retained/IElementParent.html">IElementParent</a></span></p>
+<span class="type-box"><span class="icon-interface"></span><a href="../dartlib_retained/ElementParent.html">ElementParent</a></span></p>
 <h3>Constructors</h3>
 <div class="method"><h4 id="Stage">
 <span class="show-code">Code</span>
-new <strong>Stage</strong>(_canvas, _element) <a class="anchor-link" href="#Stage"
+new <strong>Stage</strong>(<a href="../html/CanvasElement.html">CanvasElement</a> _canvas, <a href="../dartlib_retained/PElement.html">PElement</a> _element) <a class="anchor-link" href="#Stage"
               title="Permalink to Stage.Stage">#</a></h4>
 <div class="doc">
 
 <pre class="source">
 Stage(this._canvas, this._element) :
-  _updatedEventHandle = new core.EventHandle&lt;core.EventArgs&gt;()
-{
-  _element.claim(this);
+  _updatedEventHandle = new core.EventHandle&lt;core.EventArgs&gt;() {
+  _element.registerParent(this);
 }
 </pre>
 </div>
@@ -51,27 +50,28 @@ Stage(this._canvas, this._element) :
 <h3>Methods</h3>
 <div class="method"><h4 id="childInvalidated">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>childInvalidated</strong>(<a href="../dartlib_retained/PElement.html">PElement</a> child) <a class="anchor-link" href="#childInvalidated"
+void <strong>childInvalidated</strong>(<a href="../dartlib_retained/PElement.html">PElement</a> child) <a class="anchor-link" href="#childInvalidated"
               title="Permalink to Stage.childInvalidated">#</a></h4>
 <div class="doc">
 
 <pre class="source">
 void childInvalidated(PElement child){
-  _updatedEventHandle.fireEvent(this, const core.EventArgs());
+  assert(child == _element);
+  _updatedEventHandle.fireEvent(core.EventArgs.empty);
 }
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="get:ctx">
+<div class="method"><h4 id="ctx">
 <span class="show-code">Code</span>
-<a href="../html/CanvasRenderingContext2D.html">CanvasRenderingContext2D</a> <strong>get ctx</strong>() <a class="anchor-link" href="#get:ctx"
+<a href="../html/CanvasRenderingContext2D.html">CanvasRenderingContext2D</a> <strong>get ctx</strong>() <a class="anchor-link" href="#ctx"
               title="Permalink to Stage.get ctx">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-CanvasRenderingContext2D get ctx(){
-  if (_ctx == null) {
-    _ctx = _canvas.getContext('2d');
+CanvasRenderingContext2D get ctx() {
+  if(_ctx == null) {
+    _ctx = _canvas.context2d;
   }
   return _ctx;
 }
@@ -80,7 +80,7 @@ CanvasRenderingContext2D get ctx(){
 </div>
 <div class="method"><h4 id="disposeInternal">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>disposeInternal</strong>() <a class="anchor-link" href="#disposeInternal"
+void <strong>disposeInternal</strong>() <a class="anchor-link" href="#disposeInternal"
               title="Permalink to Stage.disposeInternal">#</a></h4>
 <div class="doc">
 
@@ -94,14 +94,14 @@ void disposeInternal(){
 </div>
 <div class="method"><h4 id="draw">
 <span class="show-code">Code</span>
-<a href="../dart_core/bool.html">bool</a> <strong>draw</strong>() <a class="anchor-link" href="#draw"
+<a href="../core/bool.html">bool</a> <strong>draw</strong>() <a class="anchor-link" href="#draw"
               title="Permalink to Stage.draw">#</a></h4>
 <div class="doc">
 
 <pre class="source">
 bool draw(){
   if (_ctx == null) {
-    _ctx = _canvas.getContext('2d');
+    _ctx = _canvas.context2d;
   } else {
     this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
   }
@@ -113,7 +113,7 @@ bool draw(){
 </div>
 <div class="method"><h4 id="getTransformToRoot">
 <span class="show-code">Code</span>
-<a href="../dartlib_core/AffineTransform.html">AffineTransform</a> <strong>getTransformToRoot</strong>() <a class="anchor-link" href="#getTransformToRoot"
+<a href="../dartlib/AffineTransform.html">AffineTransform</a> <strong>getTransformToRoot</strong>() <a class="anchor-link" href="#getTransformToRoot"
               title="Permalink to Stage.getTransformToRoot">#</a></h4>
 <div class="doc">
 
@@ -122,9 +122,9 @@ core.AffineTransform getTransformToRoot() =&gt; new core.AffineTransform();
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="get:rootElement">
+<div class="method"><h4 id="rootElement">
 <span class="show-code">Code</span>
-<a href="../dartlib_retained/PElement.html">PElement</a> <strong>get rootElement</strong>() <a class="anchor-link" href="#get:rootElement"
+<a href="../dartlib_retained/PElement.html">PElement</a> <strong>get rootElement</strong>() <a class="anchor-link" href="#rootElement"
               title="Permalink to Stage.get rootElement">#</a></h4>
 <div class="doc">
 
@@ -133,9 +133,9 @@ PElement get rootElement() =&gt; _element;
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="get:size">
+<div class="method"><h4 id="size">
 <span class="show-code">Code</span>
-<a href="../dartlib_core/Size.html">Size</a> <strong>get size</strong>() <a class="anchor-link" href="#get:size"
+<a href="../dartlib/Size.html">Size</a> <strong>get size</strong>() <a class="anchor-link" href="#size"
               title="Permalink to Stage.get size">#</a></h4>
 <div class="doc">
 
@@ -144,9 +144,9 @@ core.Size get size() =&gt; new core.Size(_canvas.width, _canvas.height);
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="get:updated">
+<div class="method"><h4 id="updated">
 <span class="show-code">Code</span>
-<a href="../dartlib_core/EventRoot.html">EventRoot</a> <strong>get updated</strong>() <a class="anchor-link" href="#get:updated"
+<a href="../dartlib/EventRoot.html">EventRoot</a>&lt;<a href="../dartlib/EventArgs.html">EventArgs</a>&gt; <strong>get updated</strong>() <a class="anchor-link" href="#updated"
               title="Permalink to Stage.get updated">#</a></h4>
 <div class="doc">
 

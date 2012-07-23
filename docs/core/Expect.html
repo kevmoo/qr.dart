@@ -33,7 +33,7 @@ test assertions.</p>
 <h3>Static Methods</h3>
 <div class="method"><h4 id="approxEquals">
 <span class="show-code">Code</span>
-void <strong>approxEquals</strong>(<a href="../core/num.html">num</a> expected, <a href="../core/num.html">num</a> actual, [<a href="../core/num.html">num</a> tolerance, <a href="../core/String.html">String</a> reason]) <a class="anchor-link" href="#approxEquals"
+void <strong>approxEquals</strong>(<a href="../core/num.html">num</a> expected, <a href="../core/num.html">num</a> actual, [<a href="../core/num.html">num</a> tolerance = null, <a href="../core/String.html">String</a> reason = null]) <a class="anchor-link" href="#approxEquals"
               title="Permalink to Expect.approxEquals">#</a></h4>
 <div class="doc">
 <p>Failure if the difference between expected and actual is greater than the
@@ -59,7 +59,7 @@ static void approxEquals(num expected,
 </div>
 <div class="method"><h4 id="equals">
 <span class="show-code">Code</span>
-void <strong>equals</strong>(expected, actual, [<a href="../core/String.html">String</a> reason]) <a class="anchor-link" href="#equals"
+void <strong>equals</strong>(expected, actual, [<a href="../core/String.html">String</a> reason = null]) <a class="anchor-link" href="#equals"
               title="Permalink to Expect.equals">#</a></h4>
 <div class="doc">
 <p>Checks whether the expected and actual values are equal (using <code>==</code>).</p>
@@ -87,7 +87,7 @@ static void fail(String msg) {
 </div>
 <div class="method"><h4 id="identical">
 <span class="show-code">Code</span>
-void <strong>identical</strong>(expected, actual, [<a href="../core/String.html">String</a> reason]) <a class="anchor-link" href="#identical"
+void <strong>identical</strong>(expected, actual, [<a href="../core/String.html">String</a> reason = null]) <a class="anchor-link" href="#identical"
               title="Permalink to Expect.identical">#</a></h4>
 <div class="doc">
 <p>Checks whether the expected and actual values are identical
@@ -104,7 +104,7 @@ static void identical(var expected, var actual, [String reason = null]) {
 </div>
 <div class="method"><h4 id="isFalse">
 <span class="show-code">Code</span>
-void <strong>isFalse</strong>(actual, [<a href="../core/String.html">String</a> reason]) <a class="anchor-link" href="#isFalse"
+void <strong>isFalse</strong>(actual, [<a href="../core/String.html">String</a> reason = null]) <a class="anchor-link" href="#isFalse"
               title="Permalink to Expect.isFalse">#</a></h4>
 <div class="doc">
 <p>Checks whether the actual value is a bool and its value is false.</p>
@@ -119,7 +119,7 @@ static void isFalse(var actual, [String reason = null]) {
 </div>
 <div class="method"><h4 id="isNotNull">
 <span class="show-code">Code</span>
-void <strong>isNotNull</strong>(actual, [<a href="../core/String.html">String</a> reason]) <a class="anchor-link" href="#isNotNull"
+void <strong>isNotNull</strong>(actual, [<a href="../core/String.html">String</a> reason = null]) <a class="anchor-link" href="#isNotNull"
               title="Permalink to Expect.isNotNull">#</a></h4>
 <div class="doc">
 <p>Checks whether 
@@ -135,7 +135,7 @@ static void isNotNull(actual, [String reason = null]) {
 </div>
 <div class="method"><h4 id="isNull">
 <span class="show-code">Code</span>
-void <strong>isNull</strong>(actual, [<a href="../core/String.html">String</a> reason]) <a class="anchor-link" href="#isNull"
+void <strong>isNull</strong>(actual, [<a href="../core/String.html">String</a> reason = null]) <a class="anchor-link" href="#isNull"
               title="Permalink to Expect.isNull">#</a></h4>
 <div class="doc">
 <p>Checks whether 
@@ -151,7 +151,7 @@ static void isNull(actual, [String reason = null]) {
 </div>
 <div class="method"><h4 id="isTrue">
 <span class="show-code">Code</span>
-void <strong>isTrue</strong>(actual, [<a href="../core/String.html">String</a> reason]) <a class="anchor-link" href="#isTrue"
+void <strong>isTrue</strong>(actual, [<a href="../core/String.html">String</a> reason = null]) <a class="anchor-link" href="#isTrue"
               title="Permalink to Expect.isTrue">#</a></h4>
 <div class="doc">
 <p>Checks whether the actual value is a bool and its value is true.</p>
@@ -166,7 +166,7 @@ static void isTrue(var actual, [String reason = null]) {
 </div>
 <div class="method"><h4 id="listEquals">
 <span class="show-code">Code</span>
-void <strong>listEquals</strong>(<a href="../core/List.html">List</a> expected, <a href="../core/List.html">List</a> actual, [<a href="../core/String.html">String</a> reason]) <a class="anchor-link" href="#listEquals"
+void <strong>listEquals</strong>(<a href="../core/List.html">List</a> expected, <a href="../core/List.html">List</a> actual, [<a href="../core/String.html">String</a> reason = null]) <a class="anchor-link" href="#listEquals"
               title="Permalink to Expect.listEquals">#</a></h4>
 <div class="doc">
 <p>Checks that all elements in 
@@ -198,7 +198,7 @@ static void listEquals(List expected, List actual, [String reason = null]) {
 </div>
 <div class="method"><h4 id="mapEquals">
 <span class="show-code">Code</span>
-void <strong>mapEquals</strong>(<a href="../core/Map.html">Map</a> expected, <a href="../core/Map.html">Map</a> actual, [<a href="../core/String.html">String</a> reason]) <a class="anchor-link" href="#mapEquals"
+void <strong>mapEquals</strong>(<a href="../core/Map.html">Map</a> expected, <a href="../core/Map.html">Map</a> actual, [<a href="../core/String.html">String</a> reason = null]) <a class="anchor-link" href="#mapEquals"
               title="Permalink to Expect.mapEquals">#</a></h4>
 <div class="doc">
 <p>Checks that all 
@@ -231,7 +231,7 @@ static void mapEquals(Map expected, Map actual, [String reason = null]) {
 </div>
 <div class="method"><h4 id="notEquals">
 <span class="show-code">Code</span>
-void <strong>notEquals</strong>(unexpected, actual, [<a href="../core/String.html">String</a> reason]) <a class="anchor-link" href="#notEquals"
+void <strong>notEquals</strong>(unexpected, actual, [<a href="../core/String.html">String</a> reason = null]) <a class="anchor-link" href="#notEquals"
               title="Permalink to Expect.notEquals">#</a></h4>
 <div class="doc">
 
@@ -247,7 +247,7 @@ static void notEquals(unexpected, actual, [String reason = null]) {
 </div>
 <div class="method"><h4 id="setEquals">
 <span class="show-code">Code</span>
-void <strong>setEquals</strong>(<a href="../core/Iterable.html">Iterable</a> expected, <a href="../core/Iterable.html">Iterable</a> actual, [<a href="../core/String.html">String</a> reason]) <a class="anchor-link" href="#setEquals"
+void <strong>setEquals</strong>(<a href="../core/Iterable.html">Iterable</a> expected, <a href="../core/Iterable.html">Iterable</a> actual, [<a href="../core/String.html">String</a> reason = null]) <a class="anchor-link" href="#setEquals"
               title="Permalink to Expect.setEquals">#</a></h4>
 <div class="doc">
 <p>Checks that every element of 
@@ -293,7 +293,7 @@ static void setEquals(Iterable expected,
 </div>
 <div class="method"><h4 id="stringEquals">
 <span class="show-code">Code</span>
-void <strong>stringEquals</strong>(<a href="../core/String.html">String</a> expected, <a href="../core/String.html">String</a> actual, [<a href="../core/String.html">String</a> reason]) <a class="anchor-link" href="#stringEquals"
+void <strong>stringEquals</strong>(<a href="../core/String.html">String</a> expected, <a href="../core/String.html">String</a> actual, [<a href="../core/String.html">String</a> reason = null]) <a class="anchor-link" href="#stringEquals"
               title="Permalink to Expect.stringEquals">#</a></h4>
 <div class="doc">
 <p>Specialized equality test for strings. When the strings don't match,
@@ -367,7 +367,7 @@ static void stringEquals(String expected,
 </div>
 <div class="method"><h4 id="throws">
 <span class="show-code">Code</span>
-void <strong>throws</strong>(f, [<a href="../core/_CheckExceptionFn.html">_CheckExceptionFn</a> check, <a href="../core/String.html">String</a> reason]) <a class="anchor-link" href="#throws"
+void <strong>throws</strong>(void f(), [<a href="../core/_CheckExceptionFn.html">_CheckExceptionFn</a> check = null, <a href="../core/String.html">String</a> reason = null]) <a class="anchor-link" href="#throws"
               title="Permalink to Expect.throws">#</a></h4>
 <div class="doc">
 <p>Calls the function 

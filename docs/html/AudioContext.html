@@ -66,7 +66,7 @@ BiquadFilterNode createBiquadFilter();
 </div>
 <div class="method"><h4 id="createBuffer">
 <span class="show-code">Code</span>
-<a href="../html/AudioBuffer.html">AudioBuffer</a> <strong>createBuffer</strong>(buffer_OR_numberOfChannels, mixToMono_OR_numberOfFrames, [<a href="../dart_core/num.html">num</a> sampleRate]) <a class="anchor-link" href="#createBuffer"
+<a href="../html/AudioBuffer.html">AudioBuffer</a> <strong>createBuffer</strong>(buffer_OR_numberOfChannels, mixToMono_OR_numberOfFrames, [<a href="../core/num.html">num</a> sampleRate]) <a class="anchor-link" href="#createBuffer"
               title="Permalink to AudioContext.createBuffer">#</a></h4>
 <div class="doc">
 <p>@domName AudioContext.createBuffer</p>
@@ -88,7 +88,7 @@ AudioBufferSourceNode createBufferSource();
 </div>
 <div class="method"><h4 id="createChannelMerger">
 <span class="show-code">Code</span>
-<a href="../html/AudioChannelMerger.html">AudioChannelMerger</a> <strong>createChannelMerger</strong>([<a href="../dart_core/int.html">int</a> numberOfInputs]) <a class="anchor-link" href="#createChannelMerger"
+<a href="../html/AudioChannelMerger.html">AudioChannelMerger</a> <strong>createChannelMerger</strong>([<a href="../core/int.html">int</a> numberOfInputs]) <a class="anchor-link" href="#createChannelMerger"
               title="Permalink to AudioContext.createChannelMerger">#</a></h4>
 <div class="doc">
 <p>@domName AudioContext.createChannelMerger</p>
@@ -99,7 +99,7 @@ AudioChannelMerger createChannelMerger([int numberOfInputs]);
 </div>
 <div class="method"><h4 id="createChannelSplitter">
 <span class="show-code">Code</span>
-<a href="../html/AudioChannelSplitter.html">AudioChannelSplitter</a> <strong>createChannelSplitter</strong>([<a href="../dart_core/int.html">int</a> numberOfOutputs]) <a class="anchor-link" href="#createChannelSplitter"
+<a href="../html/AudioChannelSplitter.html">AudioChannelSplitter</a> <strong>createChannelSplitter</strong>([<a href="../core/int.html">int</a> numberOfOutputs]) <a class="anchor-link" href="#createChannelSplitter"
               title="Permalink to AudioContext.createChannelSplitter">#</a></h4>
 <div class="doc">
 <p>@domName AudioContext.createChannelSplitter</p>
@@ -121,7 +121,7 @@ ConvolverNode createConvolver();
 </div>
 <div class="method"><h4 id="createDelayNode">
 <span class="show-code">Code</span>
-<a href="../html/DelayNode.html">DelayNode</a> <strong>createDelayNode</strong>([<a href="../dart_core/num.html">num</a> maxDelayTime]) <a class="anchor-link" href="#createDelayNode"
+<a href="../html/DelayNode.html">DelayNode</a> <strong>createDelayNode</strong>([<a href="../core/num.html">num</a> maxDelayTime]) <a class="anchor-link" href="#createDelayNode"
               title="Permalink to AudioContext.createDelayNode">#</a></h4>
 <div class="doc">
 <p>@domName AudioContext.createDelayNode</p>
@@ -154,7 +154,7 @@ AudioGainNode createGainNode();
 </div>
 <div class="method"><h4 id="createJavaScriptNode">
 <span class="show-code">Code</span>
-<a href="../html/JavaScriptAudioNode.html">JavaScriptAudioNode</a> <strong>createJavaScriptNode</strong>(<a href="../dart_core/int.html">int</a> bufferSize, [<a href="../dart_core/int.html">int</a> numberOfInputChannels, <a href="../dart_core/int.html">int</a> numberOfOutputChannels]) <a class="anchor-link" href="#createJavaScriptNode"
+<a href="../html/JavaScriptAudioNode.html">JavaScriptAudioNode</a> <strong>createJavaScriptNode</strong>(<a href="../core/int.html">int</a> bufferSize, [<a href="../core/int.html">int</a> numberOfInputChannels, <a href="../core/int.html">int</a> numberOfOutputChannels]) <a class="anchor-link" href="#createJavaScriptNode"
               title="Permalink to AudioContext.createJavaScriptNode">#</a></h4>
 <div class="doc">
 <p>@domName AudioContext.createJavaScriptNode</p>
@@ -220,7 +220,7 @@ WaveTable createWaveTable(Float32Array real, Float32Array imag);
 </div>
 <div class="method"><h4 id="decodeAudioData">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>decodeAudioData</strong>(<a href="../html/ArrayBuffer.html">ArrayBuffer</a> audioData, <a href="../dart_core/bool.html">bool</a> successCallback(<a href="../html/AudioBuffer.html">AudioBuffer</a> audioBuffer), [<a href="../dart_core/bool.html">bool</a> errorCallback(<a href="../html/AudioBuffer.html">AudioBuffer</a> audioBuffer)]) <a class="anchor-link" href="#decodeAudioData"
+void <strong>decodeAudioData</strong>(<a href="../html/ArrayBuffer.html">ArrayBuffer</a> audioData, <a href="../html/AudioBufferCallback.html">AudioBufferCallback</a> successCallback, [<a href="../html/AudioBufferCallback.html">AudioBufferCallback</a> errorCallback]) <a class="anchor-link" href="#decodeAudioData"
               title="Permalink to AudioContext.decodeAudioData">#</a></h4>
 <div class="doc">
 <p>@domName AudioContext.decodeAudioData</p>
@@ -229,9 +229,9 @@ void decodeAudioData(ArrayBuffer audioData, AudioBufferCallback successCallback,
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="get:on">
+<div class="method"><h4 id="on">
 <span class="show-code">Code</span>
-<a href="../html/AudioContextEvents.html">AudioContextEvents</a> <strong>get on</strong>() <a class="anchor-link" href="#get:on"
+<a href="../html/AudioContextEvents.html">AudioContextEvents</a> <strong>get on</strong>() <a class="anchor-link" href="#on"
               title="Permalink to AudioContext.get on">#</a></h4>
 <div class="doc">
 <p>@domName EventTarget.addEventListener, EventTarget.removeEventListener, EventTarget.dispatchEvent</p>
@@ -242,7 +242,7 @@ AudioContextEvents get on();
 </div>
 <div class="method"><h4 id="startRendering">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>startRendering</strong>() <a class="anchor-link" href="#startRendering"
+void <strong>startRendering</strong>() <a class="anchor-link" href="#startRendering"
               title="Permalink to AudioContext.startRendering">#</a></h4>
 <div class="doc">
 <p>@domName AudioContext.startRendering</p>
@@ -254,7 +254,7 @@ void startRendering();
 <h3>Fields</h3>
 <div class="field"><h4 id="activeSourceCount">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>activeSourceCount</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>activeSourceCount</strong> <a class="anchor-link"
             href="#activeSourceCount"
             title="Permalink to AudioContext.activeSourceCount">#</a>
         </h4>
@@ -267,7 +267,7 @@ final int activeSourceCount;
 </div>
 <div class="field"><h4 id="currentTime">
 <span class="show-code">Code</span>
-final <a href="../dart_core/num.html">num</a>         <strong>currentTime</strong> <a class="anchor-link"
+final <a href="../core/num.html">num</a>         <strong>currentTime</strong> <a class="anchor-link"
             href="#currentTime"
             title="Permalink to AudioContext.currentTime">#</a>
         </h4>
@@ -306,7 +306,7 @@ final AudioListener listener;
 </div>
 <div class="field"><h4 id="sampleRate">
 <span class="show-code">Code</span>
-final <a href="../dart_core/num.html">num</a>         <strong>sampleRate</strong> <a class="anchor-link"
+final <a href="../core/num.html">num</a>         <strong>sampleRate</strong> <a class="anchor-link"
             href="#sampleRate"
             title="Permalink to AudioContext.sampleRate">#</a>
         </h4>

@@ -1,0 +1,237 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>NoneHashMap&lt;K, V&gt; Class / dartlib Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="dartlib" data-type="NoneHashMap&amp;lt;K, V&amp;gt;">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../dartlib.html">dartlib</a> &rsaquo; <a href="../dartlib/NoneHashMap.html">NoneHashMap&lt;K, V&gt;</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>NoneHashMap&lt;K, V&gt;</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Implements</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../core/Map.html">Map</a></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="NoneHashMap">
+<span class="show-code">Code</span>
+new <strong>NoneHashMap</strong>() <a class="anchor-link" href="#NoneHashMap"
+              title="Permalink to NoneHashMap&lt;K, V&gt;.NoneHashMap">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+NoneHashMap() : _values = new List&lt;Tuple&lt;K,V&gt;&gt;();
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="clear">
+<span class="show-code">Code</span>
+void <strong>clear</strong>() <a class="anchor-link" href="#clear"
+              title="Permalink to NoneHashMap&lt;K, V&gt;.clear">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void clear() {
+  throw 'not impled';
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="containsKey">
+<span class="show-code">Code</span>
+<a href="../core/bool.html">bool</a> <strong>containsKey</strong>(<a href="../dartlib/NoneHashMap.html">K</a> key) <a class="anchor-link" href="#containsKey"
+              title="Permalink to NoneHashMap&lt;K, V&gt;.containsKey">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool containsKey(K key) {
+  for(final t in _values) {
+    if(t.Item1 == key) {
+      return true;
+    }
+  }
+  return false;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="containsValue">
+<span class="show-code">Code</span>
+<a href="../core/bool.html">bool</a> <strong>containsValue</strong>(<a href="../dartlib/NoneHashMap.html">V</a> value) <a class="anchor-link" href="#containsValue"
+              title="Permalink to NoneHashMap&lt;K, V&gt;.containsValue">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool containsValue(V value) {
+  throw 'not impled';
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="forEach">
+<span class="show-code">Code</span>
+void <strong>forEach</strong>(<a href="../dartlib/Action2.html">Action2</a> f) <a class="anchor-link" href="#forEach"
+              title="Permalink to NoneHashMap&lt;K, V&gt;.forEach">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void forEach(Action2&lt;K,V&gt; f) {
+  for(final t in _values) {
+    f(t.Item1, t.Item2);
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getKeys">
+<span class="show-code">Code</span>
+<a href="../core/Collection.html">Collection</a>&lt;<a href="../dartlib/NoneHashMap.html">K</a>&gt; <strong>getKeys</strong>() <a class="anchor-link" href="#getKeys"
+              title="Permalink to NoneHashMap&lt;K, V&gt;.getKeys">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Collection&lt;K&gt; getKeys() =&gt; $(_values).select((t) =&gt; t.Item1).toList();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getValues">
+<span class="show-code">Code</span>
+<a href="../core/Collection.html">Collection</a>&lt;<a href="../dartlib/NoneHashMap.html">V</a>&gt; <strong>getValues</strong>() <a class="anchor-link" href="#getValues"
+              title="Permalink to NoneHashMap&lt;K, V&gt;.getValues">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Collection&lt;V&gt; getValues() =&gt; $(_values).select((t) =&gt; t.Item2).toList();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="isEmpty">
+<span class="show-code">Code</span>
+<a href="../core/bool.html">bool</a> <strong>isEmpty</strong>() <a class="anchor-link" href="#isEmpty"
+              title="Permalink to NoneHashMap&lt;K, V&gt;.isEmpty">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool isEmpty() {
+  throw 'not impled';
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="length">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a> <strong>get length</strong>() <a class="anchor-link" href="#length"
+              title="Permalink to NoneHashMap&lt;K, V&gt;.get length">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+int get length() =&gt; _values.length;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="operator">
+<span class="show-code">Code</span>
+void <strong>operator []=</strong>(<a href="../dartlib/NoneHashMap.html">K</a> key, <a href="../dartlib/NoneHashMap.html">V</a> value) <a class="anchor-link" href="#operator"
+              title="Permalink to NoneHashMap&lt;K, V&gt;.operator []=">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void operator []=(K key, V value) {
+  final newT = new Tuple&lt;K, V&gt;(key, value);
+  for(int i = 0; i &lt; _values.length; i++) {
+    if(_values[i].Item1 == key) {
+      _values[i] = newT;
+      return;
+    }
+  }
+  _values.add(newT);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="operator">
+<span class="show-code">Code</span>
+<a href="../dartlib/NoneHashMap.html">V</a> <strong>operator []</strong>(<a href="../dartlib/NoneHashMap.html">K</a> key) <a class="anchor-link" href="#operator"
+              title="Permalink to NoneHashMap&lt;K, V&gt;.operator []">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+V operator [](K key) {
+  for(final t in _values) {
+    if(t.Item1 == key) {
+      return t.Item2;
+    }
+  }
+  return null;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="putIfAbsent">
+<span class="show-code">Code</span>
+<a href="../dartlib/NoneHashMap.html">V</a> <strong>putIfAbsent</strong>(<a href="../dartlib/NoneHashMap.html">K</a> key, <a href="../dartlib/Func.html">Func</a> ifAbsent) <a class="anchor-link" href="#putIfAbsent"
+              title="Permalink to NoneHashMap&lt;K, V&gt;.putIfAbsent">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+V putIfAbsent(K key, Func&lt;V&gt; ifAbsent) {
+  for(final t in _values) {
+    if(t.Item1 == key) {
+      return t.Item2;
+    }
+  }
+  final t = new Tuple(key, ifAbsent());
+  _values.add(t);
+  return t.Item2;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="remove">
+<span class="show-code">Code</span>
+<a href="../dartlib/NoneHashMap.html">V</a> <strong>remove</strong>(<a href="../dartlib/NoneHashMap.html">K</a> key) <a class="anchor-link" href="#remove"
+              title="Permalink to NoneHashMap&lt;K, V&gt;.remove">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+V remove(K key) {
+  for(int i = 0; i &lt; _values.length; i++) {
+    if(_values[i].Item1 == key) {
+      final t = _values[i];
+      _values.removeRange(i, 1);
+      return t.Item2;
+    }
+  }
+  return null;
+}
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

@@ -32,7 +32,7 @@
 <h3>Constructors</h3>
 <div class="method"><h4 id="WebSocket">
 <span class="show-code">Code</span>
-new <strong>WebSocket</strong>(<a href="../dart_core/String.html">String</a> url) <a class="anchor-link" href="#WebSocket"
+new <strong>WebSocket</strong>(<a href="../core/String.html">String</a> url) <a class="anchor-link" href="#WebSocket"
               title="Permalink to WebSocket.WebSocket">#</a></h4>
 <div class="doc">
 
@@ -44,7 +44,7 @@ WebSocket(String url);
 <h3>Static Fields</h3>
 <div class="field"><h4 id="CLOSED">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>CLOSED</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>CLOSED</strong> <a class="anchor-link"
             href="#CLOSED"
             title="Permalink to WebSocket.CLOSED">#</a>
         </h4>
@@ -57,7 +57,7 @@ static final int CLOSED = 3;
 </div>
 <div class="field"><h4 id="CLOSING">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>CLOSING</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>CLOSING</strong> <a class="anchor-link"
             href="#CLOSING"
             title="Permalink to WebSocket.CLOSING">#</a>
         </h4>
@@ -70,7 +70,7 @@ static final int CLOSING = 2;
 </div>
 <div class="field"><h4 id="CONNECTING">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>CONNECTING</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>CONNECTING</strong> <a class="anchor-link"
             href="#CONNECTING"
             title="Permalink to WebSocket.CONNECTING">#</a>
         </h4>
@@ -83,7 +83,7 @@ static final int CONNECTING = 0;
 </div>
 <div class="field"><h4 id="OPEN">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>OPEN</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>OPEN</strong> <a class="anchor-link"
             href="#OPEN"
             title="Permalink to WebSocket.OPEN">#</a>
         </h4>
@@ -97,7 +97,7 @@ static final int OPEN = 1;
 <h3>Methods</h3>
 <div class="method"><h4 id="close">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>close</strong>([<a href="../dart_core/int.html">int</a> code, <a href="../dart_core/String.html">String</a> reason]) <a class="anchor-link" href="#close"
+void <strong>close</strong>([<a href="../core/int.html">int</a> code, <a href="../core/String.html">String</a> reason]) <a class="anchor-link" href="#close"
               title="Permalink to WebSocket.close">#</a></h4>
 <div class="doc">
 <p>@domName WebSocket.close</p>
@@ -106,9 +106,9 @@ void close([int code, String reason]);
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="get:on">
+<div class="method"><h4 id="on">
 <span class="show-code">Code</span>
-<a href="../html/WebSocketEvents.html">WebSocketEvents</a> <strong>get on</strong>() <a class="anchor-link" href="#get:on"
+<a href="../html/WebSocketEvents.html">WebSocketEvents</a> <strong>get on</strong>() <a class="anchor-link" href="#on"
               title="Permalink to WebSocket.get on">#</a></h4>
 <div class="doc">
 <p>@domName EventTarget.addEventListener, EventTarget.removeEventListener, EventTarget.dispatchEvent</p>
@@ -119,7 +119,7 @@ WebSocketEvents get on();
 </div>
 <div class="method"><h4 id="send">
 <span class="show-code">Code</span>
-<a href="../dart_core/bool.html">bool</a> <strong>send</strong>(<a href="../dart_core/String.html">String</a> data) <a class="anchor-link" href="#send"
+<a href="../core/bool.html">bool</a> <strong>send</strong>(<a href="../core/String.html">String</a> data) <a class="anchor-link" href="#send"
               title="Permalink to WebSocket.send">#</a></h4>
 <div class="doc">
 <p>@domName WebSocket.send</p>
@@ -130,7 +130,7 @@ bool send(String data);
 </div>
 <div class="method"><h4 id="$dom_addEventListener">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>$dom_addEventListener</strong>(<a href="../dart_core/String.html">String</a> type, <a href="../dart_core/void.html">void</a> listener(<a href="../html/Event.html">Event</a> event), [<a href="../dart_core/bool.html">bool</a> useCapture]) <a class="anchor-link" href="#$dom_addEventListener"
+void <strong>$dom_addEventListener</strong>(<a href="../core/String.html">String</a> type, <a href="../html/EventListener.html">EventListener</a> listener, [<a href="../core/bool.html">bool</a> useCapture]) <a class="anchor-link" href="#$dom_addEventListener"
               title="Permalink to WebSocket.$dom_addEventListener">#</a></h4>
 <div class="doc">
 <p>@domName WebSocket.addEventListener</p>
@@ -141,7 +141,7 @@ void $dom_addEventListener(String type, EventListener listener, [bool useCapture
 </div>
 <div class="method"><h4 id="$dom_dispatchEvent">
 <span class="show-code">Code</span>
-<a href="../dart_core/bool.html">bool</a> <strong>$dom_dispatchEvent</strong>(<a href="../html/Event.html">Event</a> evt) <a class="anchor-link" href="#$dom_dispatchEvent"
+<a href="../core/bool.html">bool</a> <strong>$dom_dispatchEvent</strong>(<a href="../html/Event.html">Event</a> evt) <a class="anchor-link" href="#$dom_dispatchEvent"
               title="Permalink to WebSocket.$dom_dispatchEvent">#</a></h4>
 <div class="doc">
 <p>@domName WebSocket.dispatchEvent</p>
@@ -152,7 +152,7 @@ bool $dom_dispatchEvent(Event evt);
 </div>
 <div class="method"><h4 id="$dom_removeEventListener">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>$dom_removeEventListener</strong>(<a href="../dart_core/String.html">String</a> type, <a href="../dart_core/void.html">void</a> listener(<a href="../html/Event.html">Event</a> event), [<a href="../dart_core/bool.html">bool</a> useCapture]) <a class="anchor-link" href="#$dom_removeEventListener"
+void <strong>$dom_removeEventListener</strong>(<a href="../core/String.html">String</a> type, <a href="../html/EventListener.html">EventListener</a> listener, [<a href="../core/bool.html">bool</a> useCapture]) <a class="anchor-link" href="#$dom_removeEventListener"
               title="Permalink to WebSocket.$dom_removeEventListener">#</a></h4>
 <div class="doc">
 <p>@domName WebSocket.removeEventListener</p>
@@ -162,9 +162,22 @@ void $dom_removeEventListener(String type, EventListener listener, [bool useCapt
 </div>
 </div>
 <h3>Fields</h3>
+<div class="field"><h4 id="URL">
+<span class="show-code">Code</span>
+final <a href="../core/String.html">String</a>         <strong>URL</strong> <a class="anchor-link"
+            href="#URL"
+            title="Permalink to WebSocket.URL">#</a>
+        </h4>
+        <div class="doc">
+<p>@domName WebSocket.URL</p>
+<pre class="source">
+final String URL;
+</pre>
+</div>
+</div>
 <div class="field"><h4 id="binaryType">
 <span class="show-code">Code</span>
-<a href="../dart_core/String.html">String</a>         <strong>binaryType</strong> <a class="anchor-link"
+<a href="../core/String.html">String</a>         <strong>binaryType</strong> <a class="anchor-link"
             href="#binaryType"
             title="Permalink to WebSocket.binaryType">#</a>
         </h4>
@@ -177,7 +190,7 @@ String binaryType;
 </div>
 <div class="field"><h4 id="bufferedAmount">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>bufferedAmount</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>bufferedAmount</strong> <a class="anchor-link"
             href="#bufferedAmount"
             title="Permalink to WebSocket.bufferedAmount">#</a>
         </h4>
@@ -190,7 +203,7 @@ final int bufferedAmount;
 </div>
 <div class="field"><h4 id="extensions">
 <span class="show-code">Code</span>
-final <a href="../dart_core/String.html">String</a>         <strong>extensions</strong> <a class="anchor-link"
+final <a href="../core/String.html">String</a>         <strong>extensions</strong> <a class="anchor-link"
             href="#extensions"
             title="Permalink to WebSocket.extensions">#</a>
         </h4>
@@ -203,7 +216,7 @@ final String extensions;
 </div>
 <div class="field"><h4 id="protocol">
 <span class="show-code">Code</span>
-final <a href="../dart_core/String.html">String</a>         <strong>protocol</strong> <a class="anchor-link"
+final <a href="../core/String.html">String</a>         <strong>protocol</strong> <a class="anchor-link"
             href="#protocol"
             title="Permalink to WebSocket.protocol">#</a>
         </h4>
@@ -216,7 +229,7 @@ final String protocol;
 </div>
 <div class="field"><h4 id="readyState">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>readyState</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>readyState</strong> <a class="anchor-link"
             href="#readyState"
             title="Permalink to WebSocket.readyState">#</a>
         </h4>
@@ -227,22 +240,9 @@ final int readyState;
 </pre>
 </div>
 </div>
-<div class="field"><h4 id="URL">
-<span class="show-code">Code</span>
-final <a href="../dart_core/String.html">String</a>         <strong>URL</strong> <a class="anchor-link"
-            href="#URL"
-            title="Permalink to WebSocket.URL">#</a>
-        </h4>
-        <div class="doc">
-<p>@domName WebSocket.URL</p>
-<pre class="source">
-final String URL;
-</pre>
-</div>
-</div>
 <div class="field"><h4 id="url">
 <span class="show-code">Code</span>
-final <a href="../dart_core/String.html">String</a>         <strong>url</strong> <a class="anchor-link"
+final <a href="../core/String.html">String</a>         <strong>url</strong> <a class="anchor-link"
             href="#url"
             title="Permalink to WebSocket.url">#</a>
         </h4>

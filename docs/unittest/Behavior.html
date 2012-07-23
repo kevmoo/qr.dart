@@ -30,7 +30,7 @@ type of method call.</p>
 <h3>Constructors</h3>
 <div class="method"><h4 id="Behavior">
 <span class="show-code">Code</span>
-new <strong>Behavior</strong>(matcher) <a class="anchor-link" href="#Behavior"
+new <strong>Behavior</strong>(<a href="../unittest/CallMatcher.html">CallMatcher</a> matcher) <a class="anchor-link" href="#Behavior"
               title="Permalink to Behavior.Behavior">#</a></h4>
 <div class="doc">
 
@@ -96,7 +96,7 @@ bool matches(String method, List args) =&gt; matcher.matches(method, args);
 </div>
 <div class="method"><h4 id="thenCall">
 <span class="show-code">Code</span>
-<a href="../unittest/Behavior.html">Behavior</a> <strong>thenCall</strong>(value, [count]) <a class="anchor-link" href="#thenCall"
+<a href="../unittest/Behavior.html">Behavior</a> <strong>thenCall</strong>(value, [count = 1]) <a class="anchor-link" href="#thenCall"
               title="Permalink to Behavior.thenCall">#</a></h4>
 <div class="doc">
 <p><a class="crossref" href="../unittest/Behavior.html#thenCall">thenCall</a> creates a proxy Responder, that is called 
@@ -124,7 +124,7 @@ Behavior thenCall(value, [count = 1]) {
 </div>
 <div class="method"><h4 id="thenReturn">
 <span class="show-code">Code</span>
-<a href="../unittest/Behavior.html">Behavior</a> <strong>thenReturn</strong>(value, [count]) <a class="anchor-link" href="#thenReturn"
+<a href="../unittest/Behavior.html">Behavior</a> <strong>thenReturn</strong>(value, [count = 1]) <a class="anchor-link" href="#thenReturn"
               title="Permalink to Behavior.thenReturn">#</a></h4>
 <div class="doc">
 <p>Adds a <a class="crossref" href="../unittest/Responder.html">Responder</a> that returns a 
@@ -141,7 +141,7 @@ Behavior thenReturn(value, [count = 1]) {
 </div>
 <div class="method"><h4 id="thenThrow">
 <span class="show-code">Code</span>
-<a href="../unittest/Behavior.html">Behavior</a> <strong>thenThrow</strong>(value, [count]) <a class="anchor-link" href="#thenThrow"
+<a href="../unittest/Behavior.html">Behavior</a> <strong>thenThrow</strong>(value, [count = 1]) <a class="anchor-link" href="#thenThrow"
               title="Permalink to Behavior.thenThrow">#</a></h4>
 <div class="doc">
 <p>Adds a <a class="crossref" href="../unittest/Responder.html">Responder</a> that throws [value] [count]

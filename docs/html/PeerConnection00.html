@@ -32,7 +32,7 @@
 <h3>Constructors</h3>
 <div class="method"><h4 id="PeerConnection00">
 <span class="show-code">Code</span>
-new <strong>PeerConnection00</strong>(<a href="../dart_core/String.html">String</a> serverConfiguration, <a href="../dart_core/bool.html">bool</a> iceCallback(<a href="../html/IceCandidate.html">IceCandidate</a> candidate, <a href="../dart_core/bool.html">bool</a> moreToFollow, <a href="../html/PeerConnection00.html">PeerConnection00</a> source)) <a class="anchor-link" href="#PeerConnection00"
+new <strong>PeerConnection00</strong>(<a href="../core/String.html">String</a> serverConfiguration, <a href="../html/IceCallback.html">IceCallback</a> iceCallback) <a class="anchor-link" href="#PeerConnection00"
               title="Permalink to PeerConnection00.PeerConnection00">#</a></h4>
 <div class="doc">
 
@@ -44,7 +44,7 @@ PeerConnection00(String serverConfiguration, IceCallback iceCallback);
 <h3>Static Fields</h3>
 <div class="field"><h4 id="ACTIVE">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>ACTIVE</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>ACTIVE</strong> <a class="anchor-link"
             href="#ACTIVE"
             title="Permalink to PeerConnection00.ACTIVE">#</a>
         </h4>
@@ -57,7 +57,7 @@ static final int ACTIVE = 2;
 </div>
 <div class="field"><h4 id="CLOSED">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>CLOSED</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>CLOSED</strong> <a class="anchor-link"
             href="#CLOSED"
             title="Permalink to PeerConnection00.CLOSED">#</a>
         </h4>
@@ -70,7 +70,7 @@ static final int CLOSED = 3;
 </div>
 <div class="field"><h4 id="ICE_CHECKING">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>ICE_CHECKING</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>ICE_CHECKING</strong> <a class="anchor-link"
             href="#ICE_CHECKING"
             title="Permalink to PeerConnection00.ICE_CHECKING">#</a>
         </h4>
@@ -83,7 +83,7 @@ static final int ICE_CHECKING = 0x300;
 </div>
 <div class="field"><h4 id="ICE_CLOSED">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>ICE_CLOSED</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>ICE_CLOSED</strong> <a class="anchor-link"
             href="#ICE_CLOSED"
             title="Permalink to PeerConnection00.ICE_CLOSED">#</a>
         </h4>
@@ -96,7 +96,7 @@ static final int ICE_CLOSED = 0x700;
 </div>
 <div class="field"><h4 id="ICE_COMPLETED">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>ICE_COMPLETED</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>ICE_COMPLETED</strong> <a class="anchor-link"
             href="#ICE_COMPLETED"
             title="Permalink to PeerConnection00.ICE_COMPLETED">#</a>
         </h4>
@@ -109,7 +109,7 @@ static final int ICE_COMPLETED = 0x500;
 </div>
 <div class="field"><h4 id="ICE_CONNECTED">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>ICE_CONNECTED</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>ICE_CONNECTED</strong> <a class="anchor-link"
             href="#ICE_CONNECTED"
             title="Permalink to PeerConnection00.ICE_CONNECTED">#</a>
         </h4>
@@ -122,7 +122,7 @@ static final int ICE_CONNECTED = 0x400;
 </div>
 <div class="field"><h4 id="ICE_FAILED">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>ICE_FAILED</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>ICE_FAILED</strong> <a class="anchor-link"
             href="#ICE_FAILED"
             title="Permalink to PeerConnection00.ICE_FAILED">#</a>
         </h4>
@@ -135,7 +135,7 @@ static final int ICE_FAILED = 0x600;
 </div>
 <div class="field"><h4 id="ICE_GATHERING">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>ICE_GATHERING</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>ICE_GATHERING</strong> <a class="anchor-link"
             href="#ICE_GATHERING"
             title="Permalink to PeerConnection00.ICE_GATHERING">#</a>
         </h4>
@@ -148,7 +148,7 @@ static final int ICE_GATHERING = 0x100;
 </div>
 <div class="field"><h4 id="ICE_WAITING">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>ICE_WAITING</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>ICE_WAITING</strong> <a class="anchor-link"
             href="#ICE_WAITING"
             title="Permalink to PeerConnection00.ICE_WAITING">#</a>
         </h4>
@@ -161,7 +161,7 @@ static final int ICE_WAITING = 0x200;
 </div>
 <div class="field"><h4 id="NEW">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>NEW</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>NEW</strong> <a class="anchor-link"
             href="#NEW"
             title="Permalink to PeerConnection00.NEW">#</a>
         </h4>
@@ -174,7 +174,7 @@ static final int NEW = 0;
 </div>
 <div class="field"><h4 id="OPENING">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>OPENING</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>OPENING</strong> <a class="anchor-link"
             href="#OPENING"
             title="Permalink to PeerConnection00.OPENING">#</a>
         </h4>
@@ -187,7 +187,7 @@ static final int OPENING = 1;
 </div>
 <div class="field"><h4 id="SDP_ANSWER">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>SDP_ANSWER</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>SDP_ANSWER</strong> <a class="anchor-link"
             href="#SDP_ANSWER"
             title="Permalink to PeerConnection00.SDP_ANSWER">#</a>
         </h4>
@@ -200,7 +200,7 @@ static final int SDP_ANSWER = 0x300;
 </div>
 <div class="field"><h4 id="SDP_OFFER">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>SDP_OFFER</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>SDP_OFFER</strong> <a class="anchor-link"
             href="#SDP_OFFER"
             title="Permalink to PeerConnection00.SDP_OFFER">#</a>
         </h4>
@@ -213,7 +213,7 @@ static final int SDP_OFFER = 0x100;
 </div>
 <div class="field"><h4 id="SDP_PRANSWER">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>SDP_PRANSWER</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>SDP_PRANSWER</strong> <a class="anchor-link"
             href="#SDP_PRANSWER"
             title="Permalink to PeerConnection00.SDP_PRANSWER">#</a>
         </h4>
@@ -227,7 +227,7 @@ static final int SDP_PRANSWER = 0x200;
 <h3>Methods</h3>
 <div class="method"><h4 id="addStream">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>addStream</strong>(<a href="../html/MediaStream.html">MediaStream</a> stream, [<a href="../dart_core/Map.html">Map</a> mediaStreamHints]) <a class="anchor-link" href="#addStream"
+void <strong>addStream</strong>(<a href="../html/MediaStream.html">MediaStream</a> stream, [<a href="../core/Map.html">Map</a> mediaStreamHints]) <a class="anchor-link" href="#addStream"
               title="Permalink to PeerConnection00.addStream">#</a></h4>
 <div class="doc">
 <p>@domName PeerConnection00.addStream</p>
@@ -238,7 +238,7 @@ void addStream(MediaStream stream, [Map mediaStreamHints]);
 </div>
 <div class="method"><h4 id="close">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>close</strong>() <a class="anchor-link" href="#close"
+void <strong>close</strong>() <a class="anchor-link" href="#close"
               title="Permalink to PeerConnection00.close">#</a></h4>
 <div class="doc">
 <p>@domName PeerConnection00.close</p>
@@ -249,7 +249,7 @@ void close();
 </div>
 <div class="method"><h4 id="createAnswer">
 <span class="show-code">Code</span>
-<a href="../html/SessionDescription.html">SessionDescription</a> <strong>createAnswer</strong>(<a href="../dart_core/String.html">String</a> offer, [<a href="../dart_core/Map.html">Map</a> mediaHints]) <a class="anchor-link" href="#createAnswer"
+<a href="../html/SessionDescription.html">SessionDescription</a> <strong>createAnswer</strong>(<a href="../core/String.html">String</a> offer, [<a href="../core/Map.html">Map</a> mediaHints]) <a class="anchor-link" href="#createAnswer"
               title="Permalink to PeerConnection00.createAnswer">#</a></h4>
 <div class="doc">
 <p>@domName PeerConnection00.createAnswer</p>
@@ -260,7 +260,7 @@ SessionDescription createAnswer(String offer, [Map mediaHints]);
 </div>
 <div class="method"><h4 id="createOffer">
 <span class="show-code">Code</span>
-<a href="../html/SessionDescription.html">SessionDescription</a> <strong>createOffer</strong>([<a href="../dart_core/Map.html">Map</a> mediaHints]) <a class="anchor-link" href="#createOffer"
+<a href="../html/SessionDescription.html">SessionDescription</a> <strong>createOffer</strong>([<a href="../core/Map.html">Map</a> mediaHints]) <a class="anchor-link" href="#createOffer"
               title="Permalink to PeerConnection00.createOffer">#</a></h4>
 <div class="doc">
 <p>@domName PeerConnection00.createOffer</p>
@@ -269,9 +269,9 @@ SessionDescription createOffer([Map mediaHints]);
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="get:on">
+<div class="method"><h4 id="on">
 <span class="show-code">Code</span>
-<a href="../html/PeerConnection00Events.html">PeerConnection00Events</a> <strong>get on</strong>() <a class="anchor-link" href="#get:on"
+<a href="../html/PeerConnection00Events.html">PeerConnection00Events</a> <strong>get on</strong>() <a class="anchor-link" href="#on"
               title="Permalink to PeerConnection00.get on">#</a></h4>
 <div class="doc">
 <p>@domName EventTarget.addEventListener, EventTarget.removeEventListener, EventTarget.dispatchEvent</p>
@@ -282,7 +282,7 @@ PeerConnection00Events get on();
 </div>
 <div class="method"><h4 id="processIceMessage">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>processIceMessage</strong>(<a href="../html/IceCandidate.html">IceCandidate</a> candidate) <a class="anchor-link" href="#processIceMessage"
+void <strong>processIceMessage</strong>(<a href="../html/IceCandidate.html">IceCandidate</a> candidate) <a class="anchor-link" href="#processIceMessage"
               title="Permalink to PeerConnection00.processIceMessage">#</a></h4>
 <div class="doc">
 <p>@domName PeerConnection00.processIceMessage</p>
@@ -293,7 +293,7 @@ void processIceMessage(IceCandidate candidate);
 </div>
 <div class="method"><h4 id="removeStream">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>removeStream</strong>(<a href="../html/MediaStream.html">MediaStream</a> stream) <a class="anchor-link" href="#removeStream"
+void <strong>removeStream</strong>(<a href="../html/MediaStream.html">MediaStream</a> stream) <a class="anchor-link" href="#removeStream"
               title="Permalink to PeerConnection00.removeStream">#</a></h4>
 <div class="doc">
 <p>@domName PeerConnection00.removeStream</p>
@@ -304,7 +304,7 @@ void removeStream(MediaStream stream);
 </div>
 <div class="method"><h4 id="setLocalDescription">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>setLocalDescription</strong>(<a href="../dart_core/int.html">int</a> action, <a href="../html/SessionDescription.html">SessionDescription</a> desc) <a class="anchor-link" href="#setLocalDescription"
+void <strong>setLocalDescription</strong>(<a href="../core/int.html">int</a> action, <a href="../html/SessionDescription.html">SessionDescription</a> desc) <a class="anchor-link" href="#setLocalDescription"
               title="Permalink to PeerConnection00.setLocalDescription">#</a></h4>
 <div class="doc">
 <p>@domName PeerConnection00.setLocalDescription</p>
@@ -315,7 +315,7 @@ void setLocalDescription(int action, SessionDescription desc);
 </div>
 <div class="method"><h4 id="setRemoteDescription">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>setRemoteDescription</strong>(<a href="../dart_core/int.html">int</a> action, <a href="../html/SessionDescription.html">SessionDescription</a> desc) <a class="anchor-link" href="#setRemoteDescription"
+void <strong>setRemoteDescription</strong>(<a href="../core/int.html">int</a> action, <a href="../html/SessionDescription.html">SessionDescription</a> desc) <a class="anchor-link" href="#setRemoteDescription"
               title="Permalink to PeerConnection00.setRemoteDescription">#</a></h4>
 <div class="doc">
 <p>@domName PeerConnection00.setRemoteDescription</p>
@@ -326,7 +326,7 @@ void setRemoteDescription(int action, SessionDescription desc);
 </div>
 <div class="method"><h4 id="startIce">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>startIce</strong>([<a href="../dart_core/Map.html">Map</a> iceOptions]) <a class="anchor-link" href="#startIce"
+void <strong>startIce</strong>([<a href="../core/Map.html">Map</a> iceOptions]) <a class="anchor-link" href="#startIce"
               title="Permalink to PeerConnection00.startIce">#</a></h4>
 <div class="doc">
 <p>@domName PeerConnection00.startIce</p>
@@ -337,7 +337,7 @@ void startIce([Map iceOptions]);
 </div>
 <div class="method"><h4 id="$dom_addEventListener">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>$dom_addEventListener</strong>(<a href="../dart_core/String.html">String</a> type, <a href="../dart_core/void.html">void</a> listener(<a href="../html/Event.html">Event</a> event), [<a href="../dart_core/bool.html">bool</a> useCapture]) <a class="anchor-link" href="#$dom_addEventListener"
+void <strong>$dom_addEventListener</strong>(<a href="../core/String.html">String</a> type, <a href="../html/EventListener.html">EventListener</a> listener, [<a href="../core/bool.html">bool</a> useCapture]) <a class="anchor-link" href="#$dom_addEventListener"
               title="Permalink to PeerConnection00.$dom_addEventListener">#</a></h4>
 <div class="doc">
 <p>@domName PeerConnection00.addEventListener</p>
@@ -348,7 +348,7 @@ void $dom_addEventListener(String type, EventListener listener, [bool useCapture
 </div>
 <div class="method"><h4 id="$dom_dispatchEvent">
 <span class="show-code">Code</span>
-<a href="../dart_core/bool.html">bool</a> <strong>$dom_dispatchEvent</strong>(<a href="../html/Event.html">Event</a> event) <a class="anchor-link" href="#$dom_dispatchEvent"
+<a href="../core/bool.html">bool</a> <strong>$dom_dispatchEvent</strong>(<a href="../html/Event.html">Event</a> event) <a class="anchor-link" href="#$dom_dispatchEvent"
               title="Permalink to PeerConnection00.$dom_dispatchEvent">#</a></h4>
 <div class="doc">
 <p>@domName PeerConnection00.dispatchEvent</p>
@@ -359,7 +359,7 @@ bool $dom_dispatchEvent(Event event);
 </div>
 <div class="method"><h4 id="$dom_removeEventListener">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>$dom_removeEventListener</strong>(<a href="../dart_core/String.html">String</a> type, <a href="../dart_core/void.html">void</a> listener(<a href="../html/Event.html">Event</a> event), [<a href="../dart_core/bool.html">bool</a> useCapture]) <a class="anchor-link" href="#$dom_removeEventListener"
+void <strong>$dom_removeEventListener</strong>(<a href="../core/String.html">String</a> type, <a href="../html/EventListener.html">EventListener</a> listener, [<a href="../core/bool.html">bool</a> useCapture]) <a class="anchor-link" href="#$dom_removeEventListener"
               title="Permalink to PeerConnection00.$dom_removeEventListener">#</a></h4>
 <div class="doc">
 <p>@domName PeerConnection00.removeEventListener</p>
@@ -371,7 +371,7 @@ void $dom_removeEventListener(String type, EventListener listener, [bool useCapt
 <h3>Fields</h3>
 <div class="field"><h4 id="iceState">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>iceState</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>iceState</strong> <a class="anchor-link"
             href="#iceState"
             title="Permalink to PeerConnection00.iceState">#</a>
         </h4>
@@ -410,7 +410,7 @@ final MediaStreamList localStreams;
 </div>
 <div class="field"><h4 id="readyState">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>readyState</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>readyState</strong> <a class="anchor-link"
             href="#readyState"
             title="Permalink to PeerConnection00.readyState">#</a>
         </h4>

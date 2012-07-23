@@ -1,0 +1,117 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>EventHandle&lt;T&gt; Class / dartlib Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="dartlib" data-type="EventHandle&amp;lt;T&amp;gt;">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../dartlib.html">dartlib</a> &rsaquo; <a href="../dartlib/EventHandle.html">EventHandle&lt;T&gt;</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>EventHandle&lt;T&gt;</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Extends</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../dartlib/DisposableImpl.html">DisposableImpl</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>EventHandle&lt;T&gt;</strong></span></p>
+<h3>Implements</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../dartlib/EventRoot.html">EventRoot</a></span></p>
+<h3>Methods</h3>
+<div class="method"><h4 id="add">
+<span class="show-code">Code</span>
+<a href="../dartlib/GlobalId.html">GlobalId</a> <strong>add</strong>(<a href="../dartlib/Action1.html">Action1</a> handler) <a class="anchor-link" href="#add"
+              title="Permalink to EventHandle&lt;T&gt;.add">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+GlobalId add(Action1&lt;T&gt; handler){
+  assert(!isDisposed);
+  var id = new GlobalId();
+  if(_handlers == null){
+    _handlers = new HashMap&lt;GlobalId, Action1&lt;T&gt;&gt;();
+  }
+  _handlers[id] = handler;
+  return id;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="disposeInternal">
+<span class="show-code">Code</span>
+void <strong>disposeInternal</strong>() <a class="anchor-link" href="#disposeInternal"
+              title="Permalink to EventHandle&lt;T&gt;.disposeInternal">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void disposeInternal(){
+  super.disposeInternal();
+  if(_handlers != null){
+    _handlers.clear();
+    _handlers = null;
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="fireEvent">
+<span class="show-code">Code</span>
+void <strong>fireEvent</strong>(<a href="../dartlib/EventHandle.html">T</a> args) <a class="anchor-link" href="#fireEvent"
+              title="Permalink to EventHandle&lt;T&gt;.fireEvent">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void fireEvent(T args){
+  assert(!isDisposed);
+  if(_handlers != null){
+    _handlers.forEach((GlobalId id, Action1&lt;T&gt; handler){
+      handler(args);
+    });
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="remove">
+<span class="show-code">Code</span>
+<a href="../core/bool.html">bool</a> <strong>remove</strong>(<a href="../dartlib/GlobalId.html">GlobalId</a> id) <a class="anchor-link" href="#remove"
+              title="Permalink to EventHandle&lt;T&gt;.remove">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool remove(GlobalId id){
+  if(_handlers != null){
+    return _handlers.remove(id) != null;
+  }
+  else{
+    return false;
+  }
+}
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

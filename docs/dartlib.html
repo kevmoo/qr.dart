@@ -1,0 +1,362 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>dartlib Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="favicon.ico">
+        
+        </head>
+        <body data-library="dartlib">
+        <div class="page">
+        <div class="header">
+          <a href="index.html"><div class="logo"></div></a>
+          <a href="index.html">Dart Documentation</a>
+         &rsaquo; <a href="dartlib.html">dartlib</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+<h2><strong>dartlib</strong> library</h2>
+<div class="doc"></div>
+<h3>Methods</h3>
+<div class="method"><h4 id="$">
+<span class="show-code">Code</span>
+<a href="dartlib/Enumerable.html">Enumerable</a> <strong>$</strong>(<a href="core/Iterable.html">Iterable</a> source) <a class="anchor-link" href="#$"
+              title="Permalink to $">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Enumerable $(Iterable source) {
+  if(source is Enumerable) {
+    return source;
+  } else {
+    return new Enumerable(source);
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="isValidNumber">
+<span class="show-code">Code</span>
+<a href="core/bool.html">bool</a> <strong>isValidNumber</strong>(<a href="core/num.html">num</a> value) <a class="anchor-link" href="#isValidNumber"
+              title="Permalink to isValidNumber">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool isValidNumber(num value) {
+  return value != null &amp;&amp; !value.isInfinite() &amp;&amp; !value.isNaN();
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="n$">
+<span class="show-code">Code</span>
+<a href="dartlib/NumberEnumerable.html">NumberEnumerable</a> <strong>n$</strong>(<a href="core/Iterable.html">Iterable</a>&lt;<a href="core/num.html">num</a>&gt; source) <a class="anchor-link" href="#n$"
+              title="Permalink to n$">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+NumberEnumerable n$(Iterable&lt;num&gt; source) {
+  return new NumberEnumerable(source);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="requireArgument">
+<span class="show-code">Code</span>
+void <strong>requireArgument</strong>(<a href="core/bool.html">bool</a> truth, [<a href="core/String.html">String</a> arg = ""]) <a class="anchor-link" href="#requireArgument"
+              title="Permalink to requireArgument">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void requireArgument(bool truth, [String arg = ""]) {
+  if(!truth) {
+    throw new IllegalArgumentException(arg);
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="requireArgumentNotNull">
+<span class="show-code">Code</span>
+void <strong>requireArgumentNotNull</strong>(argument, [<a href="core/String.html">String</a> argName = ""]) <a class="anchor-link" href="#requireArgumentNotNull"
+              title="Permalink to requireArgumentNotNull">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void requireArgumentNotNull(argument, [String argName = ""]) {
+  if(argument == null) {
+    throw new NullArgumentException(argName);
+  }
+}
+</pre>
+</div>
+</div>
+<h3>Classes</h3>
+          <div class="type">
+          <h4>
+            <a href="dartlib/AffineTransform.html"><strong>AffineTransform</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/CancelableEventArgs.html"><strong>CancelableEventArgs</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/CollectionUtil.html"><strong>CollectionUtil</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/Coordinate.html"><strong>Coordinate</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/DisposableImpl.html"><strong>DisposableImpl</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/Enumerable.html"><strong>Enumerable&lt;T&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/EventArgs.html"><strong>EventArgs</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/EventHandle.html"><strong>EventHandle&lt;T&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/GlobalId.html"><strong>GlobalId</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/Grouping.html"><strong>Grouping&lt;K, V&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/HslColor.html"><strong>HslColor</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/HuslConverter.html"><strong>HuslConverter</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/IndexIterator.html"><strong>IndexIterator&lt;T&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/ListBase.html"><strong>ListBase&lt;E&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/NoneHashMap.html"><strong>NoneHashMap&lt;K, V&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/NumberEnumerable.html"><strong>NumberEnumerable&lt;T&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/Property.html"><strong>Property&lt;T&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/PropertyObject.html"><strong>PropertyObject</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/PropertyValues.html"><strong>PropertyValues</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/ReadOnlyCollection.html"><strong>ReadOnlyCollection&lt;E&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/Rect.html"><strong>Rect</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/RgbColor.html"><strong>RgbColor</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/Size.html"><strong>Size</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/TarjanCycleDetect.html"><strong>TarjanCycleDetect&lt;TNode&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/Tuple.html"><strong>Tuple&lt;T1, T2&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/Tuple3.html"><strong>Tuple3&lt;T1, T2, T3&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/Util.html"><strong>Util</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/Vector.html"><strong>Vector</strong></a>
+          </h4>
+          </div>
+          
+<h3>Interfaces</h3>
+          <div class="type">
+          <h4>
+            <a href="dartlib/Action.html"><strong>Action</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/Action1.html"><strong>Action1</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/Action2.html"><strong>Action2</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/Action3.html"><strong>Action3</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/Cloneable.html"><strong>Cloneable&lt;T&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/Disposable.html"><strong>Disposable</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/EventRoot.html"><strong>EventRoot&lt;T&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/Func.html"><strong>Func</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/Func1.html"><strong>Func1</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/Func2.html"><strong>Func2</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/IPropertyObject.html"><strong>IPropertyObject</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/Listish.html"><strong>Listish&lt;E&gt;</strong></a>
+          </h4>
+          </div>
+          
+<h3>Exceptions</h3>
+          <div class="type">
+          <h4>
+            <a href="dartlib/InvalidOperationException.html"><strong>InvalidOperationException</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/NullArgumentException.html"><strong>NullArgumentException</strong></a>
+          </h4>
+          </div>
+          
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="client-live-nav.js"></script>
+        </body></html>
+        

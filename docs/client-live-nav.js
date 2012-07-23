@@ -106,20 +106,20 @@ $$.HashMapImplementation = {"":
   var oldValues = this._values;
   if (typeof oldValues !== 'string' && (typeof oldValues !== 'object' || oldValues === null || (oldValues.constructor !== Array && !oldValues.is$JavaScriptIndexingBehavior()))) return this._grow$1$bailout(3, newCapacity, oldKeys, oldValues, capacity);
   this._keys = $.ListFactory_List(newCapacity);
-  var t1 = $.ListFactory_List(newCapacity);
-  $.setRuntimeTypeInfo(t1, ({E: 'V'}));
-  this._values = t1;
+  var t4 = $.ListFactory_List(newCapacity);
+  $.setRuntimeTypeInfo(t4, ({E: 'V'}));
+  this._values = t4;
   for (var i = 0; i < capacity; ++i) {
-    t1 = oldKeys.length;
+    var t1 = oldKeys.length;
     if (i < 0 || i >= t1) throw $.ioore(i);
-    var t2 = oldKeys[i];
-    if (t2 == null || t2 === $.CTC195) continue;
+    var key = oldKeys[i];
+    if (key == null || key === $.CTC195) continue;
     t1 = oldValues.length;
     if (i < 0 || i >= t1) throw $.ioore(i);
-    var t3 = oldValues[i];
-    var newIndex = this._probeForAdding$1(t2);
-    $.indexSet(this._keys, newIndex, t2);
-    $.indexSet(this._values, newIndex, t3);
+    var value = oldValues[i];
+    var newIndex = this._probeForAdding$1(key);
+    $.indexSet(this._keys, newIndex, key);
+    $.indexSet(this._values, newIndex, value);
   }
   this._numberOfDeleted = 0;
  },
@@ -154,9 +154,9 @@ $$.HashMapImplementation = {"":
     case 3:
       state = 0;
       this._keys = $.ListFactory_List(newCapacity);
-      var t1 = $.ListFactory_List(newCapacity);
-      $.setRuntimeTypeInfo(t1, ({E: 'V'}));
-      this._values = t1;
+      var t4 = $.ListFactory_List(newCapacity);
+      $.setRuntimeTypeInfo(t4, ({E: 'V'}));
+      this._values = t4;
       for (var i = 0; $.ltB(i, capacity); ++i) {
         var key = $.index(oldKeys, i);
         if (key == null || key === $.CTC195) continue;
@@ -194,15 +194,15 @@ $$.HashMapImplementation = {"":
   for (var numberOfProbes = 1, insertionIndex = -1; true; ) {
     var t1 = this._keys;
     if (typeof t1 !== 'string' && (typeof t1 !== 'object' || t1 === null || (t1.constructor !== Array && !t1.is$JavaScriptIndexingBehavior()))) return this._probeForAdding$1$bailout(2, numberOfProbes, hash, key, insertionIndex, t1);
-    var t2 = t1.length;
-    if (hash < 0 || hash >= t2) throw $.ioore(hash);
-    t1 = t1[hash];
-    if (t1 == null) {
+    var t3 = t1.length;
+    if (hash < 0 || hash >= t3) throw $.ioore(hash);
+    var existingKey = t1[hash];
+    if (existingKey == null) {
       if (insertionIndex < 0) return hash;
       return insertionIndex;
     }
-    if ($.eqB(t1, key)) return hash;
-    if (insertionIndex < 0 && $.CTC195 === t1) insertionIndex = hash;
+    if ($.eqB(existingKey, key)) return hash;
+    if (insertionIndex < 0 && $.CTC195 === existingKey) insertionIndex = hash;
     var numberOfProbes0 = numberOfProbes + 1;
     hash = $.HashMapImplementation__nextProbe(hash, numberOfProbes, $.get$length(this._keys));
     if (hash !== (hash | 0)) return this._probeForAdding$1$bailout(3, key, numberOfProbes0, insertionIndex, hash, 0);
@@ -236,8 +236,7 @@ $$.HashMapImplementation = {"":
       state = 0;
       var numberOfProbes = 1;
       var insertionIndex = -1;
-    case 2:
-    case 3:
+    default:
       L0: while (true) {
         switch (state) {
           case 0:
@@ -315,8 +314,8 @@ $$.HashSetImplementation = {"":
   var t1 = this._backingMap;
   if (typeof t1 !== 'object' || t1 === null || ((t1.constructor !== Array || !!t1.immutable$list) && !t1.is$JavaScriptIndexingBehavior())) return this.add$1$bailout(1, t1, value);
   if (value !== (value | 0)) throw $.iae(value);
-  var t2 = t1.length;
-  if (value < 0 || value >= t2) throw $.ioore(value);
+  var t3 = t1.length;
+  if (value < 0 || value >= t3) throw $.ioore(value);
   t1[value] = value;
  },
  add$1$bailout: function(state, t1, value) {
@@ -364,13 +363,13 @@ $$.HashSetIterator = {"":
   if (this.hasNext$0() !== true) throw $.captureStackTrace($.CTC1);
   var t1 = this._entries;
   if (typeof t1 !== 'string' && (typeof t1 !== 'object' || t1 === null || (t1.constructor !== Array && !t1.is$JavaScriptIndexingBehavior()))) return this.next$0$bailout(1, t1);
-  var t2 = this._nextValidIndex;
-  if (t2 !== (t2 | 0)) throw $.iae(t2);
-  var t3 = t1.length;
-  if (t2 < 0 || t2 >= t3) throw $.ioore(t2);
-  t2 = t1[t2];
+  var t3 = this._nextValidIndex;
+  if (t3 !== (t3 | 0)) throw $.iae(t3);
+  var t4 = t1.length;
+  if (t3 < 0 || t3 >= t4) throw $.ioore(t3);
+  var res = t1[t3];
   this._advance$0();
-  return t2;
+  return res;
  },
  next$0$bailout: function(state, t1) {
   var res = $.index(t1, this._nextValidIndex);
@@ -382,10 +381,10 @@ $$.HashSetIterator = {"":
   var t1 = this._nextValidIndex;
   var t2 = this._entries;
   if (typeof t2 !== 'string' && (typeof t2 !== 'object' || t2 === null || (t2.constructor !== Array && !t2.is$JavaScriptIndexingBehavior()))) return this.hasNext$0$bailout(1, t1, t2);
-  var t3 = t2.length;
-  if (t1 >= t3) return false;
+  var t4 = t2.length;
+  if (t1 >= t4) return false;
   if (t1 !== (t1 | 0)) throw $.iae(t1);
-  if (t1 < 0 || t1 >= t3) throw $.ioore(t1);
+  if (t1 < 0 || t1 >= t4) throw $.ioore(t1);
   t2[t1] === $.CTC195 && this._advance$0();
   return this._nextValidIndex < t2.length;
  },
@@ -679,9 +678,9 @@ $$.StringBufferImpl = {"":
   $.add$1(this._buffer, str);
   var t1 = this._length;
   if (typeof t1 !== 'number') return this.add$1$bailout(1, str, t1);
-  var t2 = $.get$length(str);
-  if (typeof t2 !== 'number') return this.add$1$bailout(2, t1, t2);
-  this._length = t1 + t2;
+  var t3 = $.get$length(str);
+  if (typeof t3 !== 'number') return this.add$1$bailout(2, t1, t3);
+  this._length = t1 + t3;
   return this;
  },
  add$1$bailout: function(state, env0, env1) {
@@ -692,7 +691,7 @@ $$.StringBufferImpl = {"":
       break;
     case 2:
       t1 = env0;
-      t2 = env1;
+      t3 = env1;
       break;
   }
   switch (state) {
@@ -703,10 +702,10 @@ $$.StringBufferImpl = {"":
       var t1 = this._length;
     case 1:
       state = 0;
-      var t2 = $.get$length(str);
+      var t3 = $.get$length(str);
     case 2:
       state = 0;
-      this._length = $.add(t1, t2);
+      this._length = $.add(t1, t3);
       return this;
   }
  },
@@ -898,10 +897,10 @@ $$.Object = {"":
 };
 
 $$.IndexOutOfRangeException = {"":
- ["_index"],
+ ["_value"],
  super: "Object",
  toString$0: function() {
-  return 'IndexOutOfRangeException: ' + $.S(this._index);
+  return 'IndexOutOfRangeException: ' + $.S(this._value);
  }
 };
 
@@ -1354,14 +1353,14 @@ $$._FrozenElementList = {"":
 };
 
 $$._FrozenElementListIterator = {"":
- ["_lib_index", "_list"],
+ ["_index", "_list"],
  super: "Object",
  hasNext$0: function() {
-  var t1 = this._lib_index;
+  var t1 = this._index;
   if (typeof t1 !== 'number') return this.hasNext$0$bailout(1, t1, 0);
-  var t2 = $.get$length(this._list);
-  if (typeof t2 !== 'number') return this.hasNext$0$bailout(2, t1, t2);
-  return t1 < t2;
+  var t3 = $.get$length(this._list);
+  if (typeof t3 !== 'number') return this.hasNext$0$bailout(2, t1, t3);
+  return t1 < t3;
  },
  hasNext$0$bailout: function(state, env0, env1) {
   switch (state) {
@@ -1370,31 +1369,31 @@ $$._FrozenElementListIterator = {"":
       break;
     case 2:
       t1 = env0;
-      t2 = env1;
+      t3 = env1;
       break;
   }
   switch (state) {
     case 0:
-      var t1 = this._lib_index;
+      var t1 = this._index;
     case 1:
       state = 0;
-      var t2 = $.get$length(this._list);
+      var t3 = $.get$length(this._list);
     case 2:
       state = 0;
-      return $.lt(t1, t2);
+      return $.lt(t1, t3);
   }
  },
  next$0: function() {
   if (this.hasNext$0() !== true) throw $.captureStackTrace($.CTC1);
   var t1 = this._list;
   if (typeof t1 !== 'string' && (typeof t1 !== 'object' || t1 === null || (t1.constructor !== Array && !t1.is$JavaScriptIndexingBehavior()))) return this.next$0$bailout(1, t1, 0);
-  var t2 = this._lib_index;
-  if (typeof t2 !== 'number') return this.next$0$bailout(2, t1, t2);
-  this._lib_index = t2 + 1;
-  if (t2 !== (t2 | 0)) throw $.iae(t2);
-  var t3 = t1.length;
-  if (t2 < 0 || t2 >= t3) throw $.ioore(t2);
-  return t1[t2];
+  var t3 = this._index;
+  if (typeof t3 !== 'number') return this.next$0$bailout(2, t1, t3);
+  this._index = t3 + 1;
+  if (t3 !== (t3 | 0)) throw $.iae(t3);
+  var t5 = t1.length;
+  if (t3 < 0 || t3 >= t5) throw $.ioore(t3);
+  return t1[t3];
  },
  next$0$bailout: function(state, env0, env1) {
   switch (state) {
@@ -1403,7 +1402,7 @@ $$._FrozenElementListIterator = {"":
       break;
     case 2:
       t1 = env0;
-      t2 = env1;
+      t3 = env1;
       break;
   }
   switch (state) {
@@ -1412,11 +1411,11 @@ $$._FrozenElementListIterator = {"":
       var t1 = this._list;
     case 1:
       state = 0;
-      var t2 = this._lib_index;
+      var t3 = this._index;
     case 2:
       state = 0;
-      this._lib_index = $.add(t2, 1);
-      return $.index(t1, t2);
+      this._index = $.add(t3, 1);
+      return $.index(t1, t3);
   }
  },
  get$next: function() { return new $.BoundClosure(this, 'next$0'); }
@@ -1502,8 +1501,8 @@ $$._ElementAttributeMap = {"":
   for (var len = attributes.length, i = 0; i < len; ++i) {
     var t1 = attributes.length;
     if (i < 0 || i >= t1) throw $.ioore(i);
-    var t2 = attributes[i];
-    f.$call$2(t2.get$name(), t2.get$value());
+    var item = attributes[i];
+    f.$call$2(item.get$name(), item.get$value());
   }
  },
  forEach$1$bailout: function(state, f, attributes) {
@@ -2046,9 +2045,9 @@ $$._FixedSizeListIterator = {"":
  hasNext$0: function() {
   var t1 = this._lib_length;
   if (typeof t1 !== 'number') return this.hasNext$0$bailout(1, t1, 0);
-  var t2 = this._pos;
-  if (typeof t2 !== 'number') return this.hasNext$0$bailout(2, t1, t2);
-  return t1 > t2;
+  var t3 = this._pos;
+  if (typeof t3 !== 'number') return this.hasNext$0$bailout(2, t1, t3);
+  return t1 > t3;
  },
  hasNext$0$bailout: function(state, env0, env1) {
   switch (state) {
@@ -2057,7 +2056,7 @@ $$._FixedSizeListIterator = {"":
       break;
     case 2:
       t1 = env0;
-      t2 = env1;
+      t3 = env1;
       break;
   }
   switch (state) {
@@ -2065,10 +2064,10 @@ $$._FixedSizeListIterator = {"":
       var t1 = this._lib_length;
     case 1:
       state = 0;
-      var t2 = this._pos;
+      var t3 = this._pos;
     case 2:
       state = 0;
-      return $.gt(t1, t2);
+      return $.gt(t1, t3);
   }
  }
 };
@@ -2080,13 +2079,13 @@ $$._VariableSizeListIterator = {"":
   if (this.hasNext$0() !== true) throw $.captureStackTrace($.CTC1);
   var t1 = this._array;
   if (typeof t1 !== 'string' && (typeof t1 !== 'object' || t1 === null || (t1.constructor !== Array && !t1.is$JavaScriptIndexingBehavior()))) return this.next$0$bailout(1, t1, 0);
-  var t2 = this._pos;
-  if (typeof t2 !== 'number') return this.next$0$bailout(2, t1, t2);
-  this._pos = t2 + 1;
-  if (t2 !== (t2 | 0)) throw $.iae(t2);
-  var t3 = t1.length;
-  if (t2 < 0 || t2 >= t3) throw $.ioore(t2);
-  return t1[t2];
+  var t3 = this._pos;
+  if (typeof t3 !== 'number') return this.next$0$bailout(2, t1, t3);
+  this._pos = t3 + 1;
+  if (t3 !== (t3 | 0)) throw $.iae(t3);
+  var t5 = t1.length;
+  if (t3 < 0 || t3 >= t5) throw $.ioore(t3);
+  return t1[t3];
  },
  next$0$bailout: function(state, env0, env1) {
   switch (state) {
@@ -2095,7 +2094,7 @@ $$._VariableSizeListIterator = {"":
       break;
     case 2:
       t1 = env0;
-      t2 = env1;
+      t3 = env1;
       break;
   }
   switch (state) {
@@ -2104,20 +2103,20 @@ $$._VariableSizeListIterator = {"":
       var t1 = this._array;
     case 1:
       state = 0;
-      var t2 = this._pos;
+      var t3 = this._pos;
     case 2:
       state = 0;
-      this._pos = $.add(t2, 1);
-      return $.index(t1, t2);
+      this._pos = $.add(t3, 1);
+      return $.index(t1, t3);
   }
  },
  get$next: function() { return new $.BoundClosure(this, 'next$0'); },
  hasNext$0: function() {
   var t1 = $.get$length(this._array);
   if (typeof t1 !== 'number') return this.hasNext$0$bailout(1, t1, 0);
-  var t2 = this._pos;
-  if (typeof t2 !== 'number') return this.hasNext$0$bailout(2, t2, t1);
-  return t1 > t2;
+  var t3 = this._pos;
+  if (typeof t3 !== 'number') return this.hasNext$0$bailout(2, t3, t1);
+  return t1 > t3;
  },
  hasNext$0$bailout: function(state, env0, env1) {
   switch (state) {
@@ -2125,7 +2124,7 @@ $$._VariableSizeListIterator = {"":
       t1 = env0;
       break;
     case 2:
-      t2 = env0;
+      t3 = env0;
       t1 = env1;
       break;
   }
@@ -2134,10 +2133,10 @@ $$._VariableSizeListIterator = {"":
       var t1 = $.get$length(this._array);
     case 1:
       state = 0;
-      var t2 = this._pos;
+      var t3 = this._pos;
     case 2:
       state = 0;
-      return $.gt(t1, t2);
+      return $.gt(t1, t3);
   }
  }
 };
@@ -2555,9 +2554,9 @@ $$._JsonParser = {"":
   this.position = t1 + 1;
   t1 = this.position;
   if (typeof t1 !== 'number') return this._nextChar$0$bailout(2, t1, 0);
-  var t2 = $.get$length(this);
-  if (typeof t2 !== 'number') return this._nextChar$0$bailout(3, t2, t1);
-  if (t1 >= t2) return 0;
+  var t3 = $.get$length(this);
+  if (typeof t3 !== 'number') return this._nextChar$0$bailout(3, t3, t1);
+  if (t1 >= t3) return 0;
   return $.charCodeAt(this.json, this.position);
  },
  _nextChar$0$bailout: function(state, env0, env1) {
@@ -2569,7 +2568,7 @@ $$._JsonParser = {"":
       t1 = env0;
       break;
     case 3:
-      t2 = env0;
+      t3 = env0;
       t1 = env1;
       break;
   }
@@ -2582,19 +2581,19 @@ $$._JsonParser = {"":
       t1 = this.position;
     case 2:
       state = 0;
-      var t2 = $.get$length(this);
+      var t3 = $.get$length(this);
     case 3:
       state = 0;
-      if ($.geB(t1, t2)) return 0;
+      if ($.geB(t1, t3)) return 0;
       return $.charCodeAt(this.json, this.position);
   }
  },
  _char$0: function() {
   var t1 = this.position;
   if (typeof t1 !== 'number') return this._char$0$bailout(1, t1, 0);
-  var t2 = $.get$length(this);
-  if (typeof t2 !== 'number') return this._char$0$bailout(2, t1, t2);
-  t1 >= t2 && this._error$1('Unexpected end of JSON stream');
+  var t3 = $.get$length(this);
+  if (typeof t3 !== 'number') return this._char$0$bailout(2, t1, t3);
+  t1 >= t3 && this._error$1('Unexpected end of JSON stream');
   return $.charCodeAt(this.json, this.position);
  },
  _char$0$bailout: function(state, env0, env1) {
@@ -2604,7 +2603,7 @@ $$._JsonParser = {"":
       break;
     case 2:
       t1 = env0;
-      t2 = env1;
+      t3 = env1;
       break;
   }
   switch (state) {
@@ -2612,10 +2611,10 @@ $$._JsonParser = {"":
       var t1 = this.position;
     case 1:
       state = 0;
-      var t2 = $.get$length(this);
+      var t3 = $.get$length(this);
     case 2:
       state = 0;
-      $.geB(t1, t2) && this._error$1('Unexpected end of JSON stream');
+      $.geB(t1, t3) && this._error$1('Unexpected end of JSON stream');
       return $.charCodeAt(this.json, this.position);
   }
  },
@@ -3936,9 +3935,9 @@ $$.StringCodeIterator = {"":
  hasNext$0: function() {
   var t1 = this.index;
   if (typeof t1 !== 'number') return this.hasNext$0$bailout(1, t1, 0);
-  var t2 = this.end;
-  if (typeof t2 !== 'number') return this.hasNext$0$bailout(2, t1, t2);
-  return t1 < t2;
+  var t3 = this.end;
+  if (typeof t3 !== 'number') return this.hasNext$0$bailout(2, t1, t3);
+  return t1 < t3;
  },
  hasNext$0$bailout: function(state, env0, env1) {
   switch (state) {
@@ -3947,7 +3946,7 @@ $$.StringCodeIterator = {"":
       break;
     case 2:
       t1 = env0;
-      t2 = env1;
+      t3 = env1;
       break;
   }
   switch (state) {
@@ -3955,10 +3954,10 @@ $$.StringCodeIterator = {"":
       var t1 = this.index;
     case 1:
       state = 0;
-      var t2 = this.end;
+      var t3 = this.end;
     case 2:
       state = 0;
-      return $.lt(t1, t2);
+      return $.lt(t1, t3);
   }
  },
  StringCodeIterator$substring$3: function(string, index, end) {
@@ -4553,12 +4552,16 @@ $$._EventLoop__runHelper_next = {"":
  }
 };
 
-Isolate.$defineClass('BoundClosure', 'Closure', ['self', 'target'], {
+$$.BoundClosure = {'':
+ ['self', 'target'],
+ 'super': 'Closure',
 $call$0: function() { return this.self[this.target](); }
-});
-Isolate.$defineClass('BoundClosure0', 'Closure', ['self', 'target'], {
+};
+$$.BoundClosure0 = {'':
+ ['self', 'target'],
+ 'super': 'Closure',
 $call$1: function(p0) { return this.self[this.target](p0); }
-});
+};
 $.mul$slow = function(a, b) {
   if ($.checkNumbers(a, b) === true) return a * b;
   return a.operator$mul$1(b);
@@ -4702,7 +4705,7 @@ $.constructorNameFallback = function(obj) {
   var constructor$ = (obj.constructor);
   if ((typeof(constructor$)) === 'function') {
     var name$ = (constructor$.name);
-    if ((typeof(name$)) === 'string' && ($.isEmpty(name$) !== true && !(name$ === 'Object'))) return name$;
+    if ((typeof(name$)) === 'string' && ($.isEmpty(name$) !== true && (!(name$ === 'Object') && !(name$ === 'Function.prototype')))) return name$;
   }
   var string = (Object.prototype.toString.call(obj));
   return $.substring$2(string, 8, string.length - 1);
@@ -4747,6 +4750,7 @@ $.typeNameInChrome = function(obj) {
   var name$ = (obj.constructor.name);
   if (name$ === 'Window') return 'DOMWindow';
   if (name$ === 'CanvasPixelArray') return 'Uint8ClampedArray';
+  if (name$ === 'WebKitMutationObserver') return 'MutationObserver';
   return name$;
 };
 
@@ -4799,35 +4803,36 @@ $.DualPivotQuicksort__dualPivotQuicksort = function(a, left, right, compare) {
   if (index1 !== (index1 | 0)) throw $.iae(index1);
   var t1 = a.length;
   if (index1 < 0 || index1 >= t1) throw $.ioore(index1);
-  var el2 = a[index1];
+  var el1 = a[index1];
   if (index2 !== (index2 | 0)) throw $.iae(index2);
   if (index2 < 0 || index2 >= t1) throw $.ioore(index2);
-  var el20 = a[index2];
+  var el2 = a[index2];
   if (index3 !== (index3 | 0)) throw $.iae(index3);
   if (index3 < 0 || index3 >= t1) throw $.ioore(index3);
-  var el1 = a[index3];
+  var el3 = a[index3];
   if (index4 !== (index4 | 0)) throw $.iae(index4);
   if (index4 < 0 || index4 >= t1) throw $.ioore(index4);
   var el4 = a[index4];
   if (index5 !== (index5 | 0)) throw $.iae(index5);
   if (index5 < 0 || index5 >= t1) throw $.ioore(index5);
-  var el40 = a[index5];
-  if ($.gtB(compare.$call$2(el2, el20), 0)) var el10 = el20;
-  else {
-    el10 = el2;
-    el2 = el20;
+  var el5 = a[index5];
+  if ($.gtB(compare.$call$2(el1, el2), 0)) {
+    var t0 = el1;
+    el1 = el2;
+    el2 = t0;
   }
-  if ($.gtB(compare.$call$2(el4, el40), 0)) {
-    var el5 = el4;
-    el4 = el40;
-  } else el5 = el40;
-  if ($.gtB(compare.$call$2(el10, el1), 0)) var el3 = el10;
-  else {
+  if ($.gtB(compare.$call$2(el4, el5), 0)) {
+    t0 = el5;
+    el5 = el4;
+    el4 = t0;
+  }
+  if ($.gtB(compare.$call$2(el1, el3), 0)) {
+    t0 = el3;
     el3 = el1;
-    el1 = el10;
+    el1 = t0;
   }
   if ($.gtB(compare.$call$2(el2, el3), 0)) {
-    var t0 = el3;
+    t0 = el3;
     el3 = el2;
     el2 = t0;
   }
@@ -4878,7 +4883,7 @@ $.DualPivotQuicksort__dualPivotQuicksort = function(a, left, right, compare) {
   if (index4 < 0 || index4 >= t5) throw $.ioore(index4);
   a[index4] = t6;
   var less = left + 1;
-  if (typeof less !== 'number') return $.DualPivotQuicksort__dualPivotQuicksort$bailout(2, a, left, right, compare, index5, el2, less, el4, index1, 0, 0, 0, 0, 0);
+  if (typeof less !== 'number') return $.DualPivotQuicksort__dualPivotQuicksort$bailout(2, a, left, right, compare, index5, el2, index1, el4, less, 0, 0, 0, 0, 0);
   var great = right - 1;
   if (typeof great !== 'number') return $.DualPivotQuicksort__dualPivotQuicksort$bailout(3, a, left, right, compare, index5, el2, great, less, el4, index1, 0, 0, 0, 0);
   var pivots_are_equal = $.eqB(compare.$call$2(el2, el4), 0);
@@ -4887,21 +4892,21 @@ $.DualPivotQuicksort__dualPivotQuicksort = function(a, left, right, compare) {
       if (k !== (k | 0)) throw $.iae(k);
       t1 = a.length;
       if (k < 0 || k >= t1) throw $.ioore(k);
-      t2 = a[k];
-      var comp = compare.$call$2(t2, el2);
-      if (typeof comp !== 'number') return $.DualPivotQuicksort__dualPivotQuicksort$bailout(4, a, less, k, compare, left, right, great, index1, index5, el2, pivots_are_equal, t2, comp, el4);
+      var ak = a[k];
+      var comp = compare.$call$2(ak, el2);
+      if (typeof comp !== 'number') return $.DualPivotQuicksort__dualPivotQuicksort$bailout(4, a, less, k, compare, left, right, great, index1, index5, el2, pivots_are_equal, ak, comp, el4);
       if (comp === 0) continue;
       if (comp < 0) {
         if (!(k === less)) {
           if (less !== (less | 0)) throw $.iae(less);
           t1 = a.length;
           if (less < 0 || less >= t1) throw $.ioore(less);
-          t3 = a[less];
+          t2 = a[less];
           if (k < 0 || k >= t1) throw $.ioore(k);
-          a[k] = t3;
-          t3 = a.length;
-          if (less < 0 || less >= t3) throw $.ioore(less);
-          a[less] = t2;
+          a[k] = t2;
+          t2 = a.length;
+          if (less < 0 || less >= t2) throw $.ioore(less);
+          a[less] = ak;
         }
         ++less;
       } else {
@@ -4916,33 +4921,33 @@ $.DualPivotQuicksort__dualPivotQuicksort = function(a, left, right, compare) {
           } else {
             t1 = $.ltB(comp, 0);
             var great0 = great - 1;
-            t3 = a.length;
+            t2 = a.length;
             if (t1) {
               if (less !== (less | 0)) throw $.iae(less);
-              if (less < 0 || less >= t3) throw $.ioore(less);
+              if (less < 0 || less >= t2) throw $.ioore(less);
               t1 = a[less];
-              if (k < 0 || k >= t3) throw $.ioore(k);
+              if (k < 0 || k >= t2) throw $.ioore(k);
               a[k] = t1;
               var less0 = less + 1;
               t1 = a.length;
               if (great < 0 || great >= t1) throw $.ioore(great);
-              t4 = a[great];
+              t3 = a[great];
               if (less < 0 || less >= t1) throw $.ioore(less);
-              a[less] = t4;
-              t4 = a.length;
-              if (great < 0 || great >= t4) throw $.ioore(great);
-              a[great] = t2;
+              a[less] = t3;
+              t3 = a.length;
+              if (great < 0 || great >= t3) throw $.ioore(great);
+              a[great] = ak;
               great = great0;
               less = less0;
               break;
             } else {
-              if (great < 0 || great >= t3) throw $.ioore(great);
+              if (great < 0 || great >= t2) throw $.ioore(great);
               t1 = a[great];
-              if (k < 0 || k >= t3) throw $.ioore(k);
+              if (k < 0 || k >= t2) throw $.ioore(k);
               a[k] = t1;
               t1 = a.length;
               if (great < 0 || great >= t1) throw $.ioore(great);
-              a[great] = t2;
+              a[great] = ak;
               great = great0;
               break;
             }
@@ -4955,22 +4960,22 @@ $.DualPivotQuicksort__dualPivotQuicksort = function(a, left, right, compare) {
       if (k !== (k | 0)) throw $.iae(k);
       t1 = a.length;
       if (k < 0 || k >= t1) throw $.ioore(k);
-      t2 = a[k];
-      if ($.ltB(compare.$call$2(t2, el2), 0)) {
+      ak = a[k];
+      if ($.ltB(compare.$call$2(ak, el2), 0)) {
         if (!(k === less)) {
           if (less !== (less | 0)) throw $.iae(less);
           t1 = a.length;
           if (less < 0 || less >= t1) throw $.ioore(less);
-          t3 = a[less];
+          t2 = a[less];
           if (k < 0 || k >= t1) throw $.ioore(k);
-          a[k] = t3;
-          t3 = a.length;
-          if (less < 0 || less >= t3) throw $.ioore(less);
-          a[less] = t2;
+          a[k] = t2;
+          t2 = a.length;
+          if (less < 0 || less >= t2) throw $.ioore(less);
+          a[less] = ak;
         }
         ++less;
       } else {
-        if ($.gtB(compare.$call$2(t2, el4), 0)) {
+        if ($.gtB(compare.$call$2(ak, el4), 0)) {
           for (; true; ) {
             if (great !== (great | 0)) throw $.iae(great);
             t1 = a.length;
@@ -4984,32 +4989,32 @@ $.DualPivotQuicksort__dualPivotQuicksort = function(a, left, right, compare) {
               if (great < 0 || great >= t1) throw $.ioore(great);
               t1 = $.ltB(compare.$call$2(a[great], el2), 0);
               great0 = great - 1;
-              t3 = a.length;
+              t2 = a.length;
               if (t1) {
                 if (less !== (less | 0)) throw $.iae(less);
-                if (less < 0 || less >= t3) throw $.ioore(less);
+                if (less < 0 || less >= t2) throw $.ioore(less);
                 t1 = a[less];
-                if (k < 0 || k >= t3) throw $.ioore(k);
+                if (k < 0 || k >= t2) throw $.ioore(k);
                 a[k] = t1;
                 less0 = less + 1;
                 t1 = a.length;
                 if (great < 0 || great >= t1) throw $.ioore(great);
-                t4 = a[great];
+                t3 = a[great];
                 if (less < 0 || less >= t1) throw $.ioore(less);
-                a[less] = t4;
-                t4 = a.length;
-                if (great < 0 || great >= t4) throw $.ioore(great);
-                a[great] = t2;
+                a[less] = t3;
+                t3 = a.length;
+                if (great < 0 || great >= t3) throw $.ioore(great);
+                a[great] = ak;
                 great = great0;
                 less = less0;
               } else {
-                if (great < 0 || great >= t3) throw $.ioore(great);
+                if (great < 0 || great >= t2) throw $.ioore(great);
                 t1 = a[great];
-                if (k < 0 || k >= t3) throw $.ioore(k);
+                if (k < 0 || k >= t2) throw $.ioore(k);
                 a[k] = t1;
                 t1 = a.length;
                 if (great < 0 || great >= t1) throw $.ioore(great);
-                a[great] = t2;
+                a[great] = ak;
                 great = great0;
               }
               break;
@@ -5061,22 +5066,22 @@ $.DualPivotQuicksort__dualPivotQuicksort = function(a, left, right, compare) {
       if (k !== (k | 0)) throw $.iae(k);
       t1 = a.length;
       if (k < 0 || k >= t1) throw $.ioore(k);
-      t2 = a[k];
-      if ($.eqB(compare.$call$2(t2, el2), 0)) {
+      ak = a[k];
+      if ($.eqB(compare.$call$2(ak, el2), 0)) {
         if (!(k === less)) {
           if (less !== (less | 0)) throw $.iae(less);
           t1 = a.length;
           if (less < 0 || less >= t1) throw $.ioore(less);
-          t3 = a[less];
+          t2 = a[less];
           if (k < 0 || k >= t1) throw $.ioore(k);
-          a[k] = t3;
-          t3 = a.length;
-          if (less < 0 || less >= t3) throw $.ioore(less);
-          a[less] = t2;
+          a[k] = t2;
+          t2 = a.length;
+          if (less < 0 || less >= t2) throw $.ioore(less);
+          a[less] = ak;
         }
         ++less;
       } else {
-        if ($.eqB(compare.$call$2(t2, el4), 0)) {
+        if ($.eqB(compare.$call$2(ak, el4), 0)) {
           for (; true; ) {
             if (great !== (great | 0)) throw $.iae(great);
             t1 = a.length;
@@ -5089,33 +5094,33 @@ $.DualPivotQuicksort__dualPivotQuicksort = function(a, left, right, compare) {
               t1 = a.length;
               if (great < 0 || great >= t1) throw $.ioore(great);
               t1 = $.ltB(compare.$call$2(a[great], el2), 0);
+              t2 = a.length;
               great0 = great - 1;
-              t3 = a.length;
               if (t1) {
                 if (less !== (less | 0)) throw $.iae(less);
-                if (less < 0 || less >= t3) throw $.ioore(less);
+                if (less < 0 || less >= t2) throw $.ioore(less);
                 t1 = a[less];
-                if (k < 0 || k >= t3) throw $.ioore(k);
+                if (k < 0 || k >= t2) throw $.ioore(k);
                 a[k] = t1;
                 less0 = less + 1;
                 t1 = a.length;
                 if (great < 0 || great >= t1) throw $.ioore(great);
-                t4 = a[great];
+                t3 = a[great];
                 if (less < 0 || less >= t1) throw $.ioore(less);
-                a[less] = t4;
-                t4 = a.length;
-                if (great < 0 || great >= t4) throw $.ioore(great);
-                a[great] = t2;
+                a[less] = t3;
+                t3 = a.length;
+                if (great < 0 || great >= t3) throw $.ioore(great);
+                a[great] = ak;
                 great = great0;
                 less = less0;
               } else {
-                if (great < 0 || great >= t3) throw $.ioore(great);
+                if (great < 0 || great >= t2) throw $.ioore(great);
                 t1 = a[great];
-                if (k < 0 || k >= t3) throw $.ioore(k);
+                if (k < 0 || k >= t2) throw $.ioore(k);
                 a[k] = t1;
                 t1 = a.length;
                 if (great < 0 || great >= t1) throw $.ioore(great);
-                a[great] = t2;
+                a[great] = ak;
                 great = great0;
               }
               break;
@@ -5340,6 +5345,12 @@ $._DocumentEventsImpl$ = function(_ptr) {
 
 $.regExpTest = function(regExp, str) {
   return $.regExpGetNative(regExp).test(str);
+};
+
+$.typeNameInOpera = function(obj) {
+  var name$ = $.constructorNameFallback(obj);
+  if ($.eqB(name$, 'Window')) return 'DOMWindow';
+  return name$;
 };
 
 $._EventsImpl$ = function(_ptr) {
@@ -6266,32 +6277,32 @@ $.DualPivotQuicksort_insertionSort_ = function(a, left, right, compare) {
     if (i !== (i | 0)) throw $.iae(i);
     var t1 = a.length;
     if (i < 0 || i >= t1) throw $.ioore(i);
-    var t2 = a[i];
+    var el = a[i];
     var j = i;
     while (true) {
       if (j > left) {
         t1 = j - 1;
         if (t1 !== (t1 | 0)) throw $.iae(t1);
-        var t3 = a.length;
-        if (t1 < 0 || t1 >= t3) throw $.ioore(t1);
-        var t4 = $.gtB(compare.$call$2(a[t1], t2), 0);
-        t1 = t4;
+        var t2 = a.length;
+        if (t1 < 0 || t1 >= t2) throw $.ioore(t1);
+        var t3 = $.gtB(compare.$call$2(a[t1], el), 0);
+        t1 = t3;
       } else t1 = false;
       if (!t1) break;
       t1 = j - 1;
       if (t1 !== (t1 | 0)) throw $.iae(t1);
-      t3 = a.length;
-      if (t1 < 0 || t1 >= t3) throw $.ioore(t1);
+      t2 = a.length;
+      if (t1 < 0 || t1 >= t2) throw $.ioore(t1);
       t1 = a[t1];
       if (j !== (j | 0)) throw $.iae(j);
-      if (j < 0 || j >= t3) throw $.ioore(j);
+      if (j < 0 || j >= t2) throw $.ioore(j);
       a[j] = t1;
       --j;
     }
     if (j !== (j | 0)) throw $.iae(j);
     t1 = a.length;
     if (j < 0 || j >= t1) throw $.ioore(j);
-    a[j] = t2;
+    a[j] = el;
   }
 };
 
@@ -6369,9 +6380,9 @@ $.StringBase__toJsStringArray = function(strings) {
     for (var i = 0; i < length$; ++i) {
       var t1 = strings.length;
       if (i < 0 || i >= t1) throw $.ioore(i);
-      var t2 = strings[i];
-      $.checkNull(t2);
-      if (!(typeof t2 === 'string')) throw $.captureStackTrace($.IllegalArgumentException$(t2));
+      var string = strings[i];
+      $.checkNull(string);
+      if (!(typeof string === 'string')) throw $.captureStackTrace($.IllegalArgumentException$(string));
     }
     var array = strings;
   } else {
@@ -6379,19 +6390,19 @@ $.StringBase__toJsStringArray = function(strings) {
     for (i = 0; i < length$; ++i) {
       t1 = strings.length;
       if (i < 0 || i >= t1) throw $.ioore(i);
-      t2 = strings[i];
-      $.checkNull(t2);
-      if (!(typeof t2 === 'string')) throw $.captureStackTrace($.IllegalArgumentException$(t2));
+      string = strings[i];
+      $.checkNull(string);
+      if (!(typeof string === 'string')) throw $.captureStackTrace($.IllegalArgumentException$(string));
       t1 = array.length;
       if (i < 0 || i >= t1) throw $.ioore(i);
-      array[i] = t2;
+      array[i] = string;
     }
   }
   return array;
 };
 
-$.IndexOutOfRangeException$ = function(_index) {
-  return new $.IndexOutOfRangeException(_index);
+$.IndexOutOfRangeException$ = function(_value) {
+  return new $.IndexOutOfRangeException(_value);
 };
 
 $._AttributeClassSet$ = function(element) {
@@ -6712,6 +6723,7 @@ $.getFunctionForTypeNameOf = function() {
   if ($.contains$1(userAgent, $.CTC201) === true) return $.typeNameInChrome;
   if ($.contains$1(userAgent, 'Firefox') === true) return $.typeNameInFirefox;
   if ($.contains$1(userAgent, 'MSIE') === true) return $.typeNameInIE;
+  if ($.contains$1(userAgent, 'Opera') === true) return $.typeNameInOpera;
   return $.constructorNameFallback;
 };
 
@@ -6967,12 +6979,6 @@ $._Lists_indexOf$bailout = function(state, env0, env1, env2, env3) {
       var startIndex = env2;
       var endIndex = env3;
       break;
-    case 1:
-      a = env0;
-      element = env1;
-      startIndex = env2;
-      endIndex = env3;
-      break;
     case 2:
       a = env0;
       element = env1;
@@ -6982,8 +6988,6 @@ $._Lists_indexOf$bailout = function(state, env0, env1, env2, env3) {
   }
   switch (state) {
     case 0:
-    case 1:
-      state = 0;
     case 1:
       state = 0;
       if ($.geB(startIndex, $.get$length(a))) return -1;
@@ -7005,12 +7009,6 @@ $.Arrays_indexOf$bailout = function(state, env0, env1, env2, env3) {
       var startIndex = env2;
       var endIndex = env3;
       break;
-    case 1:
-      a = env0;
-      element = env1;
-      startIndex = env2;
-      endIndex = env3;
-      break;
     case 2:
       a = env0;
       element = env1;
@@ -7020,8 +7018,6 @@ $.Arrays_indexOf$bailout = function(state, env0, env1, env2, env3) {
   }
   switch (state) {
     case 0:
-    case 1:
-      state = 0;
     case 1:
       state = 0;
       if ($.geB(startIndex, $.get$length(a))) return -1;
@@ -7050,9 +7046,9 @@ $.DualPivotQuicksort__dualPivotQuicksort$bailout = function(state, env0, env1, e
       compare = env3;
       index5 = env4;
       el2 = env5;
-      less = env6;
+      index1 = env6;
       el4 = env7;
-      index1 = env8;
+      less = env8;
       break;
     case 3:
       a = env0;
@@ -7327,24 +7323,6 @@ $.KeywordState_computeKeywordStateTable$bailout = function(state, env0, env1, en
       var offset = env2;
       var length$ = env3;
       break;
-    case 1:
-      start = env0;
-      strings = env1;
-      offset = env2;
-      length$ = env3;
-      break;
-    case 1:
-      start = env0;
-      strings = env1;
-      offset = env2;
-      length$ = env3;
-      break;
-    case 1:
-      start = env0;
-      strings = env1;
-      offset = env2;
-      length$ = env3;
-      break;
     case 2:
       start = env0;
       strings = env1;
@@ -7386,21 +7364,13 @@ $.KeywordState_computeKeywordStateTable$bailout = function(state, env0, env1, en
     case 0:
     case 1:
       state = 0;
-    case 1:
-      state = 0;
-    case 1:
-      state = 0;
-    case 1:
-      state = 0;
       var result = $.ListFactory_List(26);
       $.setRuntimeTypeInfo(result, ({E: 'KeywordState'}));
       var i = offset;
       var chunkStart = -1;
       var chunk = 0;
       var isLeaf = false;
-    case 2:
-    case 3:
-    case 4:
+    default:
       L0: while (true) {
         switch (state) {
           case 0:
@@ -7558,6 +7528,8 @@ $.StringBase__toJsStringArray$bailout = function(state, strings) {
 
 $.dynamicBind.$call$4 = $.dynamicBind;
 $.dynamicBind.$name = "dynamicBind";
+$.typeNameInOpera.$call$1 = $.typeNameInOpera;
+$.typeNameInOpera.$name = "typeNameInOpera";
 $.throwNoSuchMethod.$call$3 = $.throwNoSuchMethod;
 $.throwNoSuchMethod.$name = "throwNoSuchMethod";
 $.typeNameInIE.$call$1 = $.typeNameInIE;
@@ -7580,45 +7552,45 @@ Isolate.makeConstantList = function(list) {
   return list;
 };
 $.CTC = Isolate.makeConstantList([]);
-$.CTC130 = new Isolate.$isolateProperties.StringWrapper('>>');
-$.CTC76 = new Isolate.$isolateProperties.StringWrapper('||');
-$.CTC77 = new Isolate.$isolateProperties.PrecedenceInfo(147, 4, Isolate.$isolateProperties.CTC76);
-$.CTC118 = new Isolate.$isolateProperties.StringWrapper('=>');
+$.CTC41 = new Isolate.$isolateProperties.StringWrapper('hexadecimal');
+$.CTC198 = new Isolate.$isolateProperties.ConstantMap(Isolate.$isolateProperties.CTC, {}, 0);
 $.CTC144 = new Isolate.$isolateProperties.StringWrapper('as');
 $.CTC145 = new Isolate.$isolateProperties.PrecedenceInfo(160, 10, Isolate.$isolateProperties.CTC144);
 $.CTC146 = new Isolate.$isolateProperties.Keyword(Isolate.$isolateProperties.CTC145, true, 'as');
+$.CTC63 = new Isolate.$isolateProperties.StringWrapper('keyword');
+$.CTC76 = new Isolate.$isolateProperties.StringWrapper('||');
+$.CTC77 = new Isolate.$isolateProperties.PrecedenceInfo(147, 4, Isolate.$isolateProperties.CTC76);
 $.CTC195 = new Isolate.$isolateProperties._DeletedKeySentinel();
-$.CTC198 = new Isolate.$isolateProperties.ConstantMap(Isolate.$isolateProperties.CTC, {}, 0);
-$.CTC41 = new Isolate.$isolateProperties.StringWrapper('hexadecimal');
+$.CTC100 = new Isolate.$isolateProperties.StringWrapper('-');
+$.CTC101 = new Isolate.$isolateProperties.PrecedenceInfo(45, 12, Isolate.$isolateProperties.CTC100);
+$.CTC130 = new Isolate.$isolateProperties.StringWrapper('>>');
+$.CTC118 = new Isolate.$isolateProperties.StringWrapper('=>');
 $.CTC161 = new Isolate.$isolateProperties.StringWrapper('is');
 $.CTC162 = new Isolate.$isolateProperties.PrecedenceInfo(159, 10, Isolate.$isolateProperties.CTC161);
 $.CTC163 = new Isolate.$isolateProperties.Keyword(Isolate.$isolateProperties.CTC162, false, 'is');
-$.CTC100 = new Isolate.$isolateProperties.StringWrapper('-');
-$.CTC101 = new Isolate.$isolateProperties.PrecedenceInfo(45, 12, Isolate.$isolateProperties.CTC100);
-$.CTC63 = new Isolate.$isolateProperties.StringWrapper('keyword');
-$.CTC55 = new Isolate.$isolateProperties.StringWrapper('#');
-$.CTC56 = new Isolate.$isolateProperties.PrecedenceInfo(35, 0, Isolate.$isolateProperties.CTC55);
-$.CTC17 = new Isolate.$isolateProperties.StringWrapper(':');
 $.CTC13 = new Isolate.$isolateProperties.StringWrapper(')');
 $.CTC14 = new Isolate.$isolateProperties.PrecedenceInfo(41, 0, Isolate.$isolateProperties.CTC13);
-$.CTC33 = new Isolate.$isolateProperties.StringWrapper('...');
+$.CTC55 = new Isolate.$isolateProperties.StringWrapper('#');
+$.CTC56 = new Isolate.$isolateProperties.PrecedenceInfo(35, 0, Isolate.$isolateProperties.CTC55);
 $.CTC64 = new Isolate.$isolateProperties.PrecedenceInfo(107, 0, Isolate.$isolateProperties.CTC63);
 $.CTC189 = new Isolate.$isolateProperties.Keyword(Isolate.$isolateProperties.CTC64, true, 'set');
 $.CTC78 = new Isolate.$isolateProperties.StringWrapper('|=');
 $.CTC79 = new Isolate.$isolateProperties.PrecedenceInfo(148, 1, Isolate.$isolateProperties.CTC78);
-$.CTC187 = new Isolate.$isolateProperties.Keyword(Isolate.$isolateProperties.CTC64, true, 'native');
-$.CTC136 = new Isolate.$isolateProperties.StringWrapper('<<=');
-$.CTC23 = new Isolate.$isolateProperties.StringWrapper(']');
-$.CTC24 = new Isolate.$isolateProperties.PrecedenceInfo(93, 0, Isolate.$isolateProperties.CTC23);
+$.CTC17 = new Isolate.$isolateProperties.StringWrapper(':');
+$.CTC33 = new Isolate.$isolateProperties.StringWrapper('...');
 $.CTC21 = new Isolate.$isolateProperties.StringWrapper('?');
-$.CTC153 = new Isolate.$isolateProperties.Keyword(Isolate.$isolateProperties.CTC64, false, 'do');
+$.CTC187 = new Isolate.$isolateProperties.Keyword(Isolate.$isolateProperties.CTC64, true, 'native');
 $.CTC11 = new Isolate.$isolateProperties.StringWrapper('(');
-$.CTC157 = new Isolate.$isolateProperties.Keyword(Isolate.$isolateProperties.CTC64, false, 'finally');
-$.CTC202 = new Isolate.$isolateProperties.Object();
+$.CTC153 = new Isolate.$isolateProperties.Keyword(Isolate.$isolateProperties.CTC64, false, 'do');
 $.CTC98 = new Isolate.$isolateProperties.StringWrapper('-=');
 $.CTC99 = new Isolate.$isolateProperties.PrecedenceInfo(153, 1, Isolate.$isolateProperties.CTC98);
-$.CTC196 = new Isolate.$isolateProperties.UnsupportedOperationException('TODO(jacobr): should we impl?');
+$.CTC202 = new Isolate.$isolateProperties.Object();
+$.CTC23 = new Isolate.$isolateProperties.StringWrapper(']');
+$.CTC24 = new Isolate.$isolateProperties.PrecedenceInfo(93, 0, Isolate.$isolateProperties.CTC23);
+$.CTC136 = new Isolate.$isolateProperties.StringWrapper('<<=');
 $.CTC150 = new Isolate.$isolateProperties.Keyword(Isolate.$isolateProperties.CTC64, false, 'const');
+$.CTC157 = new Isolate.$isolateProperties.Keyword(Isolate.$isolateProperties.CTC64, false, 'finally');
+$.CTC196 = new Isolate.$isolateProperties.UnsupportedOperationException('TODO(jacobr): should we impl?');
 $.CTC199 = new Isolate.$isolateProperties.IllegalAccessException();
 $.CTC172 = new Isolate.$isolateProperties.Keyword(Isolate.$isolateProperties.CTC64, false, 'try');
 $.CTC147 = new Isolate.$isolateProperties.Keyword(Isolate.$isolateProperties.CTC64, false, 'break');
@@ -7662,92 +7634,92 @@ $.CTC192 = new Isolate.$isolateProperties.Keyword(Isolate.$isolateProperties.CTC
 $.CTC193 = Isolate.makeConstantList([Isolate.$isolateProperties.CTC146, Isolate.$isolateProperties.CTC147, Isolate.$isolateProperties.CTC148, Isolate.$isolateProperties.CTC149, Isolate.$isolateProperties.CTC150, Isolate.$isolateProperties.CTC151, Isolate.$isolateProperties.CTC152, Isolate.$isolateProperties.CTC153, Isolate.$isolateProperties.CTC154, Isolate.$isolateProperties.CTC155, Isolate.$isolateProperties.CTC156, Isolate.$isolateProperties.CTC157, Isolate.$isolateProperties.CTC158, Isolate.$isolateProperties.CTC159, Isolate.$isolateProperties.CTC160, Isolate.$isolateProperties.CTC163, Isolate.$isolateProperties.CTC164, Isolate.$isolateProperties.CTC165, Isolate.$isolateProperties.CTC166, Isolate.$isolateProperties.CTC167, Isolate.$isolateProperties.CTC168, Isolate.$isolateProperties.CTC169, Isolate.$isolateProperties.CTC170, Isolate.$isolateProperties.CTC171, Isolate.$isolateProperties.CTC172, Isolate.$isolateProperties.CTC173, Isolate.$isolateProperties.CTC174, Isolate.$isolateProperties.CTC175, Isolate.$isolateProperties.CTC176, Isolate.$isolateProperties.CTC177, Isolate.$isolateProperties.CTC178, Isolate.$isolateProperties.CTC179, Isolate.$isolateProperties.CTC180, Isolate.$isolateProperties.CTC181, Isolate.$isolateProperties.CTC182, Isolate.$isolateProperties.CTC183, Isolate.$isolateProperties.CTC184, Isolate.$isolateProperties.CTC185, Isolate.$isolateProperties.CTC186, Isolate.$isolateProperties.CTC187, Isolate.$isolateProperties.CTC188, Isolate.$isolateProperties.CTC65, Isolate.$isolateProperties.CTC189, Isolate.$isolateProperties.CTC190, Isolate.$isolateProperties.CTC191, Isolate.$isolateProperties.CTC192]);
 $.CTC1 = new Isolate.$isolateProperties.NoMoreElementsException();
 $.CTC194 = new Isolate.$isolateProperties.EmptyQueueException();
-$.CTC82 = new Isolate.$isolateProperties.StringWrapper('&&');
-$.CTC2 = new Isolate.$isolateProperties.UnsupportedOperationException('');
-$.CTC39 = new Isolate.$isolateProperties.StringWrapper('double');
 $.CTC74 = new Isolate.$isolateProperties.StringWrapper('^');
 $.CTC75 = new Isolate.$isolateProperties.PrecedenceInfo(94, 7, Isolate.$isolateProperties.CTC74);
-$.CTC126 = new Isolate.$isolateProperties.StringWrapper('>>>=');
-$.CTC127 = new Isolate.$isolateProperties.PrecedenceInfo(140, 1, Isolate.$isolateProperties.CTC126);
+$.CTC2 = new Isolate.$isolateProperties.UnsupportedOperationException('');
 $.CTC94 = new Isolate.$isolateProperties.StringWrapper('*');
 $.CTC95 = new Isolate.$isolateProperties.PrecedenceInfo(42, 13, Isolate.$isolateProperties.CTC94);
-$.CTC138 = new Isolate.$isolateProperties.StringWrapper('<<');
-$.CTC139 = new Isolate.$isolateProperties.PrecedenceInfo(137, 11, Isolate.$isolateProperties.CTC138);
+$.CTC126 = new Isolate.$isolateProperties.StringWrapper('>>>=');
+$.CTC127 = new Isolate.$isolateProperties.PrecedenceInfo(140, 1, Isolate.$isolateProperties.CTC126);
 $.CTC29 = new Isolate.$isolateProperties.StringWrapper('}');
+$.CTC39 = new Isolate.$isolateProperties.StringWrapper('double');
 $.CTC66 = new Isolate.$isolateProperties.StringWrapper('[]=');
 $.CTC67 = new Isolate.$isolateProperties.PrecedenceInfo(141, 0, Isolate.$isolateProperties.CTC66);
+$.CTC82 = new Isolate.$isolateProperties.StringWrapper('&&');
 $.CTC27 = new Isolate.$isolateProperties.StringWrapper('{');
 $.CTC28 = new Isolate.$isolateProperties.PrecedenceInfo(123, 0, Isolate.$isolateProperties.CTC27);
-$.CTC59 = new Isolate.$isolateProperties.StringWrapper('~/');
-$.CTC60 = new Isolate.$isolateProperties.PrecedenceInfo(155, 13, Isolate.$isolateProperties.CTC59);
-$.CTC45 = new Isolate.$isolateProperties.StringWrapper('$');
-$.CTC5 = new Isolate.$isolateProperties.IllegalArgumentException('Invalid list length');
-$.CTC9 = new Isolate.$isolateProperties.StringWrapper('\\');
-$.CTC43 = new Isolate.$isolateProperties.StringWrapper('string');
-$.CTC44 = new Isolate.$isolateProperties.PrecedenceInfo(39, 0, Isolate.$isolateProperties.CTC43);
+$.CTC138 = new Isolate.$isolateProperties.StringWrapper('<<');
+$.CTC139 = new Isolate.$isolateProperties.PrecedenceInfo(137, 11, Isolate.$isolateProperties.CTC138);
 $.CTC108 = new Isolate.$isolateProperties.StringWrapper('!==');
 $.CTC109 = new Isolate.$isolateProperties.PrecedenceInfo(143, 9, Isolate.$isolateProperties.CTC108);
+$.CTC43 = new Isolate.$isolateProperties.StringWrapper('string');
+$.CTC44 = new Isolate.$isolateProperties.PrecedenceInfo(39, 0, Isolate.$isolateProperties.CTC43);
+$.CTC5 = new Isolate.$isolateProperties.IllegalArgumentException('Invalid list length');
 $.CTC92 = new Isolate.$isolateProperties.StringWrapper('*=');
+$.CTC59 = new Isolate.$isolateProperties.StringWrapper('~/');
+$.CTC60 = new Isolate.$isolateProperties.PrecedenceInfo(155, 13, Isolate.$isolateProperties.CTC59);
 $.CTC112 = new Isolate.$isolateProperties.StringWrapper('!');
+$.CTC45 = new Isolate.$isolateProperties.StringWrapper('$');
+$.CTC9 = new Isolate.$isolateProperties.StringWrapper('\\');
+$.CTC53 = new Isolate.$isolateProperties.StringWrapper('comment');
 $.CTC72 = new Isolate.$isolateProperties.StringWrapper('^=');
 $.CTC73 = new Isolate.$isolateProperties.PrecedenceInfo(158, 1, Isolate.$isolateProperties.CTC72);
 $.CTC122 = new Isolate.$isolateProperties.StringWrapper('>=');
 $.CTC49 = new Isolate.$isolateProperties.StringWrapper('/=');
-$.CTC53 = new Isolate.$isolateProperties.StringWrapper('comment');
-$.CTC51 = new Isolate.$isolateProperties.StringWrapper('/');
 $.CTC35 = new Isolate.$isolateProperties.StringWrapper('..');
 $.CTC36 = new Isolate.$isolateProperties.PrecedenceInfo(133, 2, Isolate.$isolateProperties.CTC35);
 $.CTC68 = new Isolate.$isolateProperties.StringWrapper('[]');
 $.CTC69 = new Isolate.$isolateProperties.PrecedenceInfo(142, 0, Isolate.$isolateProperties.CTC68);
+$.CTC51 = new Isolate.$isolateProperties.StringWrapper('/');
 $.CTC120 = new Isolate.$isolateProperties.StringWrapper('=');
 $.CTC121 = new Isolate.$isolateProperties.PrecedenceInfo(61, 1, Isolate.$isolateProperties.CTC120);
 $.CTC7 = new Isolate.$isolateProperties.StringWrapper('EOF');
 $.CTC8 = new Isolate.$isolateProperties.PrecedenceInfo(0, 0, Isolate.$isolateProperties.CTC7);
 $.CTC142 = new Isolate.$isolateProperties.StringWrapper('identifier');
+$.CTC96 = new Isolate.$isolateProperties.StringWrapper('--');
+$.CTC37 = new Isolate.$isolateProperties.StringWrapper('.');
+$.CTC110 = new Isolate.$isolateProperties.StringWrapper('!=');
 $.CTC47 = new Isolate.$isolateProperties.StringWrapper('${');
 $.CTC116 = new Isolate.$isolateProperties.StringWrapper('==');
 $.CTC117 = new Isolate.$isolateProperties.PrecedenceInfo(135, 9, Isolate.$isolateProperties.CTC116);
+$.CTC6 = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, '[-[\\]{}()*+?.,\\\\^$|#\\s]');
 $.CTC90 = new Isolate.$isolateProperties.StringWrapper('%');
 $.CTC91 = new Isolate.$isolateProperties.PrecedenceInfo(37, 13, Isolate.$isolateProperties.CTC90);
-$.CTC110 = new Isolate.$isolateProperties.StringWrapper('!=');
-$.CTC6 = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, '[-[\\]{}()*+?.,\\\\^$|#\\s]');
-$.CTC37 = new Isolate.$isolateProperties.StringWrapper('.');
-$.CTC96 = new Isolate.$isolateProperties.StringWrapper('--');
 $.CTC114 = new Isolate.$isolateProperties.StringWrapper('===');
 $.CTC115 = new Isolate.$isolateProperties.PrecedenceInfo(134, 9, Isolate.$isolateProperties.CTC114);
-$.CTC132 = new Isolate.$isolateProperties.StringWrapper('>');
 $.CTC15 = new Isolate.$isolateProperties.StringWrapper(',');
 $.CTC16 = new Isolate.$isolateProperties.PrecedenceInfo(44, 0, Isolate.$isolateProperties.CTC15);
+$.CTC132 = new Isolate.$isolateProperties.StringWrapper('>');
 $.CTC104 = new Isolate.$isolateProperties.StringWrapper('+=');
 $.CTC105 = new Isolate.$isolateProperties.PrecedenceInfo(151, 1, Isolate.$isolateProperties.CTC104);
 $.CTC25 = new Isolate.$isolateProperties.StringWrapper('`');
 $.CTC26 = new Isolate.$isolateProperties.PrecedenceInfo(96, 0, Isolate.$isolateProperties.CTC25);
-$.CTC106 = new Isolate.$isolateProperties.StringWrapper('+');
-$.CTC201 = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, 'Chrome|DumpRenderTree');
 $.CTC31 = new Isolate.$isolateProperties.StringWrapper('int');
 $.CTC32 = new Isolate.$isolateProperties.PrecedenceInfo(105, 0, Isolate.$isolateProperties.CTC31);
+$.CTC201 = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, 'Chrome|DumpRenderTree');
+$.CTC106 = new Isolate.$isolateProperties.StringWrapper('+');
 $.CTC61 = new Isolate.$isolateProperties.StringWrapper('~');
 $.CTC62 = new Isolate.$isolateProperties.PrecedenceInfo(126, 0, Isolate.$isolateProperties.CTC61);
 $.CTC19 = new Isolate.$isolateProperties.StringWrapper(';');
 $.CTC20 = new Isolate.$isolateProperties.PrecedenceInfo(59, 0, Isolate.$isolateProperties.CTC19);
 $.CTC124 = new Isolate.$isolateProperties.StringWrapper('>>=');
-$.CTC128 = new Isolate.$isolateProperties.StringWrapper('>>>');
-$.CTC129 = new Isolate.$isolateProperties.PrecedenceInfo(162, 11, Isolate.$isolateProperties.CTC128);
 $.CTC134 = new Isolate.$isolateProperties.StringWrapper('<=');
 $.CTC135 = new Isolate.$isolateProperties.PrecedenceInfo(129, 10, Isolate.$isolateProperties.CTC134);
+$.CTC128 = new Isolate.$isolateProperties.StringWrapper('>>>');
+$.CTC129 = new Isolate.$isolateProperties.PrecedenceInfo(162, 11, Isolate.$isolateProperties.CTC128);
 $.CTC80 = new Isolate.$isolateProperties.StringWrapper('|');
 $.CTC88 = new Isolate.$isolateProperties.StringWrapper('%=');
 $.CTC89 = new Isolate.$isolateProperties.PrecedenceInfo(156, 1, Isolate.$isolateProperties.CTC88);
 $.CTC57 = new Isolate.$isolateProperties.StringWrapper('~/=');
 $.CTC58 = new Isolate.$isolateProperties.PrecedenceInfo(154, 1, Isolate.$isolateProperties.CTC57);
-$.CTC86 = new Isolate.$isolateProperties.StringWrapper('&');
-$.CTC87 = new Isolate.$isolateProperties.PrecedenceInfo(38, 8, Isolate.$isolateProperties.CTC86);
 $.CTC102 = new Isolate.$isolateProperties.StringWrapper('++');
 $.CTC84 = new Isolate.$isolateProperties.StringWrapper('&=');
-$.CTC140 = new Isolate.$isolateProperties.StringWrapper('<');
-$.CTC141 = new Isolate.$isolateProperties.PrecedenceInfo(60, 10, Isolate.$isolateProperties.CTC140);
+$.CTC86 = new Isolate.$isolateProperties.StringWrapper('&');
+$.CTC87 = new Isolate.$isolateProperties.PrecedenceInfo(38, 8, Isolate.$isolateProperties.CTC86);
 $.CTC70 = new Isolate.$isolateProperties.StringWrapper('[');
 $.CTC71 = new Isolate.$isolateProperties.PrecedenceInfo(91, 14, Isolate.$isolateProperties.CTC70);
+$.CTC140 = new Isolate.$isolateProperties.StringWrapper('<');
+$.CTC141 = new Isolate.$isolateProperties.PrecedenceInfo(60, 10, Isolate.$isolateProperties.CTC140);
 $.CTC42 = new Isolate.$isolateProperties.PrecedenceInfo(120, 0, Isolate.$isolateProperties.CTC41);
 $.CTC113 = new Isolate.$isolateProperties.PrecedenceInfo(33, 0, Isolate.$isolateProperties.CTC112);
 $.CTC103 = new Isolate.$isolateProperties.PrecedenceInfo(150, 14, Isolate.$isolateProperties.CTC102);
@@ -7756,31 +7728,31 @@ $.CTC52 = new Isolate.$isolateProperties.PrecedenceInfo(47, 13, Isolate.$isolate
 $.CTC125 = new Isolate.$isolateProperties.PrecedenceInfo(139, 1, Isolate.$isolateProperties.CTC124);
 $.CTC0 = new Isolate.$isolateProperties.NullPointerException(Isolate.$isolateProperties.CTC, null);
 $.CTC30 = new Isolate.$isolateProperties.PrecedenceInfo(125, 0, Isolate.$isolateProperties.CTC29);
-$.CTC40 = new Isolate.$isolateProperties.PrecedenceInfo(100, 0, Isolate.$isolateProperties.CTC39);
 $.CTC200 = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, '^#[_a-zA-Z]\\w*$');
+$.CTC40 = new Isolate.$isolateProperties.PrecedenceInfo(100, 0, Isolate.$isolateProperties.CTC39);
 $.CTC18 = new Isolate.$isolateProperties.PrecedenceInfo(58, 0, Isolate.$isolateProperties.CTC17);
-$.CTC22 = new Isolate.$isolateProperties.PrecedenceInfo(63, 3, Isolate.$isolateProperties.CTC21);
 $.CTC48 = new Isolate.$isolateProperties.PrecedenceInfo(128, 0, Isolate.$isolateProperties.CTC47);
+$.CTC22 = new Isolate.$isolateProperties.PrecedenceInfo(63, 3, Isolate.$isolateProperties.CTC21);
 $.CTC111 = new Isolate.$isolateProperties.PrecedenceInfo(144, 9, Isolate.$isolateProperties.CTC110);
+$.CTC12 = new Isolate.$isolateProperties.PrecedenceInfo(40, 14, Isolate.$isolateProperties.CTC11);
 $.CTC97 = new Isolate.$isolateProperties.PrecedenceInfo(152, 14, Isolate.$isolateProperties.CTC96);
 $.CTC10 = new Isolate.$isolateProperties.PrecedenceInfo(92, 0, Isolate.$isolateProperties.CTC9);
-$.CTC197 = new Isolate.$isolateProperties.LinkTail();
-$.CTC12 = new Isolate.$isolateProperties.PrecedenceInfo(40, 14, Isolate.$isolateProperties.CTC11);
 $.CTC46 = new Isolate.$isolateProperties.PrecedenceInfo(162, 0, Isolate.$isolateProperties.CTC45);
-$.CTC50 = new Isolate.$isolateProperties.PrecedenceInfo(131, 1, Isolate.$isolateProperties.CTC49);
+$.CTC197 = new Isolate.$isolateProperties.LinkTail();
 $.CTC143 = new Isolate.$isolateProperties.PrecedenceInfo(97, 0, Isolate.$isolateProperties.CTC142);
 $.CTC107 = new Isolate.$isolateProperties.PrecedenceInfo(43, 12, Isolate.$isolateProperties.CTC106);
 $.CTC123 = new Isolate.$isolateProperties.PrecedenceInfo(138, 10, Isolate.$isolateProperties.CTC122);
+$.CTC50 = new Isolate.$isolateProperties.PrecedenceInfo(131, 1, Isolate.$isolateProperties.CTC49);
 $.CTC83 = new Isolate.$isolateProperties.PrecedenceInfo(145, 5, Isolate.$isolateProperties.CTC82);
 $.CTC54 = new Isolate.$isolateProperties.PrecedenceInfo(161, 0, Isolate.$isolateProperties.CTC53);
 $.CTC93 = new Isolate.$isolateProperties.PrecedenceInfo(149, 1, Isolate.$isolateProperties.CTC92);
 $.CTC3 = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, '^\\[name=["\'][^\'"]+[\'"]\\]$');
 $.CTC38 = new Isolate.$isolateProperties.PrecedenceInfo(46, 14, Isolate.$isolateProperties.CTC37);
 $.CTC137 = new Isolate.$isolateProperties.PrecedenceInfo(136, 1, Isolate.$isolateProperties.CTC136);
-$.CTC4 = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, '^[*a-zA-Z0-9]+$');
-$.CTC131 = new Isolate.$isolateProperties.PrecedenceInfo(157, 11, Isolate.$isolateProperties.CTC130);
 $.CTC34 = new Isolate.$isolateProperties.PrecedenceInfo(132, 0, Isolate.$isolateProperties.CTC33);
+$.CTC4 = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, '^[*a-zA-Z0-9]+$');
 $.CTC133 = new Isolate.$isolateProperties.PrecedenceInfo(62, 10, Isolate.$isolateProperties.CTC132);
+$.CTC131 = new Isolate.$isolateProperties.PrecedenceInfo(157, 11, Isolate.$isolateProperties.CTC130);
 $.CTC81 = new Isolate.$isolateProperties.PrecedenceInfo(124, 6, Isolate.$isolateProperties.CTC80);
 $.CTC119 = new Isolate.$isolateProperties.PrecedenceInfo(130, 0, Isolate.$isolateProperties.CTC118);
 $._getTypeNameOf = null;
@@ -7820,11 +7792,11 @@ $.$defineNativeClass = function(cls, fields, methods) {
     $.dynamicFunction(method)[cls] = methods[method];
   }
 };
+$.defineProperty(Object.prototype, 'is$Element', function() { return false; });
 $.defineProperty(Object.prototype, 'is$JavaScriptIndexingBehavior', function() { return false; });
 $.defineProperty(Object.prototype, 'is$Collection', function() { return false; });
 $.defineProperty(Object.prototype, 'is$List', function() { return false; });
 $.defineProperty(Object.prototype, 'is$Map', function() { return false; });
-$.defineProperty(Object.prototype, 'is$Element', function() { return false; });
 $.defineProperty(Object.prototype, 'toString$0', function() { return $.toStringForNativeObject(this); });
 $.$defineNativeClass('AbstractWorker', [], {
  $dom_removeEventListener$3: function(type, listener, useCapture) {
@@ -8181,8 +8153,7 @@ $.$defineNativeClass('HTMLDocument', ["readyState?", "head?"], {
   }
   switch (state) {
     case 0:
-    case 1:
-    case 2:
+    default:
       if (state == 1 || (state == 0 && $.CTC3.hasMatch$1(selectors) === true)) {
         switch (state) {
           case 0:
@@ -8682,6 +8653,12 @@ $.$defineNativeClass('HTMLFrameSetElement', [], {
   return $._FrameSetElementEventsImpl$(this);
  },
  is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('Gamepad', ["id?"], {
+});
+
+$.$defineNativeClass('GamepadList', ["length?"], {
 });
 
 $.$defineNativeClass('HTMLHRElement', [], {
@@ -10546,8 +10523,8 @@ $.$defineNativeClass('Worker', [], {
  }
 });
 
-// 294 dynamic classes.
-// 311 classes
+// 296 dynamic classes.
+// 313 classes
 // 27 !leaf
 (function(){
   var v0/*class(_SVGTextPositioningElementImpl)*/ = 'SVGTextPositioningElement|SVGTextElement|SVGTSpanElement|SVGTRefElement|SVGAltGlyphElement|SVGTextElement|SVGTSpanElement|SVGTRefElement|SVGAltGlyphElement';
@@ -10613,17 +10590,18 @@ function $setGlobals(context) {
   $globalThis = $;
 }
 $.main.$call$0 = $.main
-if (typeof window != 'undefined' && typeof document != 'undefined' &&
-    window.addEventListener && document.readyState == 'loading') {
-  window.addEventListener('DOMContentLoaded', function(e) {
-    $.startRootIsolate($.main);
-  });
+if (typeof document != 'undefined' && document.readyState != 'complete') {
+  document.addEventListener('readystatechange', function () {
+    if (document.readyState == 'complete') {
+      $.startRootIsolate($.main);
+    }
+  }, false);
 } else {
   $.startRootIsolate($.main);
 }
 function init() {
-  Isolate.$isolateProperties = {};
-Isolate.$defineClass = function(cls, superclass, fields, prototype) {
+Isolate.$isolateProperties = {};
+Isolate.$defineClass = function(cls, fields, prototype) {
   var generateGetterSetter = function(field, prototype) {
   var len = field.length;
   var lastChar = field[len - 1];
@@ -10657,18 +10635,22 @@ Isolate.$defineClass = function(cls, superclass, fields, prototype) {
     str += "return " + cls + ";";
     constructor = new Function(str)();
   }
-  Isolate.$isolateProperties[cls] = constructor;
   constructor.prototype = prototype;
-  if (superclass !== "") {
-    Isolate.$pendingClasses[cls] = superclass;
-  }
+  return constructor;
 };
+var supportsProto = false;
+var tmp = Isolate.$defineClass('c', ['f?'], {}).prototype;
+if (tmp.__proto__) {
+  tmp.__proto__ = {};
+  if (typeof tmp.get$f !== "undefined") supportsProto = true;
+}
 Isolate.$pendingClasses = {};
 Isolate.$finishClasses = function(collectedClasses) {
-  for (var collected in collectedClasses) {
-    if (Object.prototype.hasOwnProperty.call(collectedClasses, collected)) {
-      var desc = collectedClasses[collected];
-      Isolate.$defineClass(collected, desc.super, desc[''], desc);
+  for (var cls in collectedClasses) {
+    if (Object.prototype.hasOwnProperty.call(collectedClasses, cls)) {
+      var desc = collectedClasses[cls];
+      Isolate.$isolateProperties[cls] = Isolate.$defineClass(cls, desc[''], desc);
+      if (desc['super'] !== "") Isolate.$pendingClasses[cls] = desc['super'];
     }
   }
   var pendingClasses = Isolate.$pendingClasses;
@@ -10683,7 +10665,7 @@ Isolate.$finishClasses = function(collectedClasses) {
     var constructor = Isolate.$isolateProperties[cls];
     var superConstructor = Isolate.$isolateProperties[superclass];
     var prototype = constructor.prototype;
-    if (prototype.__proto__) {
+    if (supportsProto) {
       prototype.__proto__ = superConstructor.prototype;
       prototype.constructor = constructor;
     } else {

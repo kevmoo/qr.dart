@@ -32,7 +32,7 @@
 <h3>Constructors</h3>
 <div class="method"><h4 id="DeprecatedPeerConnection">
 <span class="show-code">Code</span>
-new <strong>DeprecatedPeerConnection</strong>(<a href="../dart_core/String.html">String</a> serverConfiguration, <a href="../dart_core/bool.html">bool</a> signalingCallback(<a href="../dart_core/String.html">String</a> message, <a href="../html/DeprecatedPeerConnection.html">DeprecatedPeerConnection</a> source)) <a class="anchor-link" href="#DeprecatedPeerConnection"
+new <strong>DeprecatedPeerConnection</strong>(<a href="../core/String.html">String</a> serverConfiguration, <a href="../html/SignalingCallback.html">SignalingCallback</a> signalingCallback) <a class="anchor-link" href="#DeprecatedPeerConnection"
               title="Permalink to DeprecatedPeerConnection.DeprecatedPeerConnection">#</a></h4>
 <div class="doc">
 
@@ -44,7 +44,7 @@ DeprecatedPeerConnection(String serverConfiguration, SignalingCallback signaling
 <h3>Static Fields</h3>
 <div class="field"><h4 id="ACTIVE">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>ACTIVE</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>ACTIVE</strong> <a class="anchor-link"
             href="#ACTIVE"
             title="Permalink to DeprecatedPeerConnection.ACTIVE">#</a>
         </h4>
@@ -57,7 +57,7 @@ static final int ACTIVE = 2;
 </div>
 <div class="field"><h4 id="CLOSED">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>CLOSED</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>CLOSED</strong> <a class="anchor-link"
             href="#CLOSED"
             title="Permalink to DeprecatedPeerConnection.CLOSED">#</a>
         </h4>
@@ -70,7 +70,7 @@ static final int CLOSED = 3;
 </div>
 <div class="field"><h4 id="NEGOTIATING">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>NEGOTIATING</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>NEGOTIATING</strong> <a class="anchor-link"
             href="#NEGOTIATING"
             title="Permalink to DeprecatedPeerConnection.NEGOTIATING">#</a>
         </h4>
@@ -83,7 +83,7 @@ static final int NEGOTIATING = 1;
 </div>
 <div class="field"><h4 id="NEW">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>NEW</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>NEW</strong> <a class="anchor-link"
             href="#NEW"
             title="Permalink to DeprecatedPeerConnection.NEW">#</a>
         </h4>
@@ -97,7 +97,7 @@ static final int NEW = 0;
 <h3>Methods</h3>
 <div class="method"><h4 id="addStream">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>addStream</strong>(<a href="../html/MediaStream.html">MediaStream</a> stream) <a class="anchor-link" href="#addStream"
+void <strong>addStream</strong>(<a href="../html/MediaStream.html">MediaStream</a> stream) <a class="anchor-link" href="#addStream"
               title="Permalink to DeprecatedPeerConnection.addStream">#</a></h4>
 <div class="doc">
 <p>@domName DeprecatedPeerConnection.addStream</p>
@@ -108,7 +108,7 @@ void addStream(MediaStream stream);
 </div>
 <div class="method"><h4 id="close">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>close</strong>() <a class="anchor-link" href="#close"
+void <strong>close</strong>() <a class="anchor-link" href="#close"
               title="Permalink to DeprecatedPeerConnection.close">#</a></h4>
 <div class="doc">
 <p>@domName DeprecatedPeerConnection.close</p>
@@ -117,9 +117,9 @@ void close();
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="get:on">
+<div class="method"><h4 id="on">
 <span class="show-code">Code</span>
-<a href="../html/DeprecatedPeerConnectionEvents.html">DeprecatedPeerConnectionEvents</a> <strong>get on</strong>() <a class="anchor-link" href="#get:on"
+<a href="../html/DeprecatedPeerConnectionEvents.html">DeprecatedPeerConnectionEvents</a> <strong>get on</strong>() <a class="anchor-link" href="#on"
               title="Permalink to DeprecatedPeerConnection.get on">#</a></h4>
 <div class="doc">
 <p>@domName EventTarget.addEventListener, EventTarget.removeEventListener, EventTarget.dispatchEvent</p>
@@ -130,7 +130,7 @@ DeprecatedPeerConnectionEvents get on();
 </div>
 <div class="method"><h4 id="processSignalingMessage">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>processSignalingMessage</strong>(<a href="../dart_core/String.html">String</a> message) <a class="anchor-link" href="#processSignalingMessage"
+void <strong>processSignalingMessage</strong>(<a href="../core/String.html">String</a> message) <a class="anchor-link" href="#processSignalingMessage"
               title="Permalink to DeprecatedPeerConnection.processSignalingMessage">#</a></h4>
 <div class="doc">
 <p>@domName DeprecatedPeerConnection.processSignalingMessage</p>
@@ -141,7 +141,7 @@ void processSignalingMessage(String message);
 </div>
 <div class="method"><h4 id="removeStream">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>removeStream</strong>(<a href="../html/MediaStream.html">MediaStream</a> stream) <a class="anchor-link" href="#removeStream"
+void <strong>removeStream</strong>(<a href="../html/MediaStream.html">MediaStream</a> stream) <a class="anchor-link" href="#removeStream"
               title="Permalink to DeprecatedPeerConnection.removeStream">#</a></h4>
 <div class="doc">
 <p>@domName DeprecatedPeerConnection.removeStream</p>
@@ -152,7 +152,7 @@ void removeStream(MediaStream stream);
 </div>
 <div class="method"><h4 id="send">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>send</strong>(<a href="../dart_core/String.html">String</a> text) <a class="anchor-link" href="#send"
+void <strong>send</strong>(<a href="../core/String.html">String</a> text) <a class="anchor-link" href="#send"
               title="Permalink to DeprecatedPeerConnection.send">#</a></h4>
 <div class="doc">
 <p>@domName DeprecatedPeerConnection.send</p>
@@ -163,7 +163,7 @@ void send(String text);
 </div>
 <div class="method"><h4 id="$dom_addEventListener">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>$dom_addEventListener</strong>(<a href="../dart_core/String.html">String</a> type, <a href="../dart_core/void.html">void</a> listener(<a href="../html/Event.html">Event</a> event), [<a href="../dart_core/bool.html">bool</a> useCapture]) <a class="anchor-link" href="#$dom_addEventListener"
+void <strong>$dom_addEventListener</strong>(<a href="../core/String.html">String</a> type, <a href="../html/EventListener.html">EventListener</a> listener, [<a href="../core/bool.html">bool</a> useCapture]) <a class="anchor-link" href="#$dom_addEventListener"
               title="Permalink to DeprecatedPeerConnection.$dom_addEventListener">#</a></h4>
 <div class="doc">
 <p>@domName DeprecatedPeerConnection.addEventListener</p>
@@ -174,7 +174,7 @@ void $dom_addEventListener(String type, EventListener listener, [bool useCapture
 </div>
 <div class="method"><h4 id="$dom_dispatchEvent">
 <span class="show-code">Code</span>
-<a href="../dart_core/bool.html">bool</a> <strong>$dom_dispatchEvent</strong>(<a href="../html/Event.html">Event</a> event) <a class="anchor-link" href="#$dom_dispatchEvent"
+<a href="../core/bool.html">bool</a> <strong>$dom_dispatchEvent</strong>(<a href="../html/Event.html">Event</a> event) <a class="anchor-link" href="#$dom_dispatchEvent"
               title="Permalink to DeprecatedPeerConnection.$dom_dispatchEvent">#</a></h4>
 <div class="doc">
 <p>@domName DeprecatedPeerConnection.dispatchEvent</p>
@@ -185,7 +185,7 @@ bool $dom_dispatchEvent(Event event);
 </div>
 <div class="method"><h4 id="$dom_removeEventListener">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>$dom_removeEventListener</strong>(<a href="../dart_core/String.html">String</a> type, <a href="../dart_core/void.html">void</a> listener(<a href="../html/Event.html">Event</a> event), [<a href="../dart_core/bool.html">bool</a> useCapture]) <a class="anchor-link" href="#$dom_removeEventListener"
+void <strong>$dom_removeEventListener</strong>(<a href="../core/String.html">String</a> type, <a href="../html/EventListener.html">EventListener</a> listener, [<a href="../core/bool.html">bool</a> useCapture]) <a class="anchor-link" href="#$dom_removeEventListener"
               title="Permalink to DeprecatedPeerConnection.$dom_removeEventListener">#</a></h4>
 <div class="doc">
 <p>@domName DeprecatedPeerConnection.removeEventListener</p>
@@ -210,7 +210,7 @@ final MediaStreamList localStreams;
 </div>
 <div class="field"><h4 id="readyState">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>readyState</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>readyState</strong> <a class="anchor-link"
             href="#readyState"
             title="Permalink to DeprecatedPeerConnection.readyState">#</a>
         </h4>

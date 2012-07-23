@@ -1,0 +1,99 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>JSON Class / json Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="json" data-type="JSON">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../json.html">json</a> &rsaquo; <a href="../json/JSON.html">JSON</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>JSON</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+<p>Utility class to parse JSON and serialize objects to JSON.</p>
+</div>
+<h3>Static Methods</h3>
+<div class="method"><h4 id="length">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a> <strong>length</strong>(<a href="../core/String.html">String</a> str) <a class="anchor-link" href="#length"
+              title="Permalink to JSON.length">#</a></h4>
+<div class="doc">
+<p>Checks validity of JSON source in 
+<span class="param">str</span> and returns its text
+length. Returns 0 if 
+<span class="param">str</span> does not begin with a valid JSON
+object.</p>
+<pre class="source">
+static int length(String str) {
+  return _JsonParser.objectLength(str);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="parse">
+<span class="show-code">Code</span>
+<strong>parse</strong>(<a href="../core/String.html">String</a> json) <a class="anchor-link" href="#parse"
+              title="Permalink to JSON.parse">#</a></h4>
+<div class="doc">
+<p>Parses 
+<span class="param">json</span> and build the corresponding object.</p>
+<pre class="source">
+static parse(String json) {
+  return _JsonParser.parse(json);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="printOn">
+<span class="show-code">Code</span>
+void <strong>printOn</strong>(<a href="../core/Object.html">Object</a> object, <a href="../core/StringBuffer.html">StringBuffer</a> output) <a class="anchor-link" href="#printOn"
+              title="Permalink to JSON.printOn">#</a></h4>
+<div class="doc">
+<p>Serializes 
+<span class="param">object</span> into 
+<span class="param">output</span> stream.</p>
+<pre class="source">
+static void printOn(Object object, StringBuffer output) {
+  return JsonStringifier.printOn(object, output);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="stringify">
+<span class="show-code">Code</span>
+<a href="../core/String.html">String</a> <strong>stringify</strong>(<a href="../core/Object.html">Object</a> object) <a class="anchor-link" href="#stringify"
+              title="Permalink to JSON.stringify">#</a></h4>
+<div class="doc">
+<p>Serializes 
+<span class="param">object</span> into JSON string.</p>
+<pre class="source">
+static String stringify(Object object) {
+  return JsonStringifier.stringify(object);
+}
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

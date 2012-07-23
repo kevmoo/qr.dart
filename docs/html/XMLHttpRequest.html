@@ -32,6 +32,17 @@
 <h3>Constructors</h3>
 <div class="method"><h4 id="XMLHttpRequest">
 <span class="show-code">Code</span>
+new <strong>XMLHttpRequest</strong>.get(<a href="../core/String.html">String</a> url, onSuccess(<a href="../html/XMLHttpRequest.html">XMLHttpRequest</a> request)) <a class="anchor-link" href="#XMLHttpRequest"
+              title="Permalink to XMLHttpRequest.XMLHttpRequest">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+XMLHttpRequest.get(String url, onSuccess(XMLHttpRequest request));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="XMLHttpRequest">
+<span class="show-code">Code</span>
 new <strong>XMLHttpRequest</strong>() <a class="anchor-link" href="#XMLHttpRequest"
               title="Permalink to XMLHttpRequest.XMLHttpRequest">#</a></h4>
 <div class="doc">
@@ -41,21 +52,10 @@ XMLHttpRequest();
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="XMLHttpRequest">
-<span class="show-code">Code</span>
-new <strong>XMLHttpRequest</strong>.get(<a href="../dart_core/String.html">String</a> url, onSuccess(<a href="../html/XMLHttpRequest.html">XMLHttpRequest</a> request)) <a class="anchor-link" href="#XMLHttpRequest"
-              title="Permalink to XMLHttpRequest.XMLHttpRequest">#</a></h4>
-<div class="doc">
-
-<pre class="source">
-XMLHttpRequest.get(String url, onSuccess(XMLHttpRequest request));
-</pre>
-</div>
-</div>
 <h3>Static Fields</h3>
 <div class="field"><h4 id="DONE">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>DONE</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>DONE</strong> <a class="anchor-link"
             href="#DONE"
             title="Permalink to XMLHttpRequest.DONE">#</a>
         </h4>
@@ -68,7 +68,7 @@ static final int DONE = 4;
 </div>
 <div class="field"><h4 id="HEADERS_RECEIVED">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>HEADERS_RECEIVED</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>HEADERS_RECEIVED</strong> <a class="anchor-link"
             href="#HEADERS_RECEIVED"
             title="Permalink to XMLHttpRequest.HEADERS_RECEIVED">#</a>
         </h4>
@@ -81,7 +81,7 @@ static final int HEADERS_RECEIVED = 2;
 </div>
 <div class="field"><h4 id="LOADING">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>LOADING</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>LOADING</strong> <a class="anchor-link"
             href="#LOADING"
             title="Permalink to XMLHttpRequest.LOADING">#</a>
         </h4>
@@ -94,7 +94,7 @@ static final int LOADING = 3;
 </div>
 <div class="field"><h4 id="OPENED">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>OPENED</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>OPENED</strong> <a class="anchor-link"
             href="#OPENED"
             title="Permalink to XMLHttpRequest.OPENED">#</a>
         </h4>
@@ -107,7 +107,7 @@ static final int OPENED = 1;
 </div>
 <div class="field"><h4 id="UNSENT">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>UNSENT</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>UNSENT</strong> <a class="anchor-link"
             href="#UNSENT"
             title="Permalink to XMLHttpRequest.UNSENT">#</a>
         </h4>
@@ -121,7 +121,7 @@ static final int UNSENT = 0;
 <h3>Methods</h3>
 <div class="method"><h4 id="abort">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>abort</strong>() <a class="anchor-link" href="#abort"
+void <strong>abort</strong>() <a class="anchor-link" href="#abort"
               title="Permalink to XMLHttpRequest.abort">#</a></h4>
 <div class="doc">
 <p>@domName XMLHttpRequest.abort</p>
@@ -132,7 +132,7 @@ void abort();
 </div>
 <div class="method"><h4 id="getAllResponseHeaders">
 <span class="show-code">Code</span>
-<a href="../dart_core/String.html">String</a> <strong>getAllResponseHeaders</strong>() <a class="anchor-link" href="#getAllResponseHeaders"
+<a href="../core/String.html">String</a> <strong>getAllResponseHeaders</strong>() <a class="anchor-link" href="#getAllResponseHeaders"
               title="Permalink to XMLHttpRequest.getAllResponseHeaders">#</a></h4>
 <div class="doc">
 <p>@domName XMLHttpRequest.getAllResponseHeaders</p>
@@ -143,7 +143,7 @@ String getAllResponseHeaders();
 </div>
 <div class="method"><h4 id="getResponseHeader">
 <span class="show-code">Code</span>
-<a href="../dart_core/String.html">String</a> <strong>getResponseHeader</strong>(<a href="../dart_core/String.html">String</a> header) <a class="anchor-link" href="#getResponseHeader"
+<a href="../core/String.html">String</a> <strong>getResponseHeader</strong>(<a href="../core/String.html">String</a> header) <a class="anchor-link" href="#getResponseHeader"
               title="Permalink to XMLHttpRequest.getResponseHeader">#</a></h4>
 <div class="doc">
 <p>@domName XMLHttpRequest.getResponseHeader</p>
@@ -152,9 +152,9 @@ String getResponseHeader(String header);
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="get:on">
+<div class="method"><h4 id="on">
 <span class="show-code">Code</span>
-<a href="../html/XMLHttpRequestEvents.html">XMLHttpRequestEvents</a> <strong>get on</strong>() <a class="anchor-link" href="#get:on"
+<a href="../html/XMLHttpRequestEvents.html">XMLHttpRequestEvents</a> <strong>get on</strong>() <a class="anchor-link" href="#on"
               title="Permalink to XMLHttpRequest.get on">#</a></h4>
 <div class="doc">
 <p>@domName EventTarget.addEventListener, EventTarget.removeEventListener, EventTarget.dispatchEvent</p>
@@ -165,7 +165,7 @@ XMLHttpRequestEvents get on();
 </div>
 <div class="method"><h4 id="open">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>open</strong>(<a href="../dart_core/String.html">String</a> method, <a href="../dart_core/String.html">String</a> url, [<a href="../dart_core/bool.html">bool</a> async, <a href="../dart_core/String.html">String</a> user, <a href="../dart_core/String.html">String</a> password]) <a class="anchor-link" href="#open"
+void <strong>open</strong>(<a href="../core/String.html">String</a> method, <a href="../core/String.html">String</a> url, [<a href="../core/bool.html">bool</a> async, <a href="../core/String.html">String</a> user, <a href="../core/String.html">String</a> password]) <a class="anchor-link" href="#open"
               title="Permalink to XMLHttpRequest.open">#</a></h4>
 <div class="doc">
 <p>@domName XMLHttpRequest.open</p>
@@ -176,7 +176,7 @@ void open(String method, String url, [bool async, String user, String password])
 </div>
 <div class="method"><h4 id="overrideMimeType">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>overrideMimeType</strong>(<a href="../dart_core/String.html">String</a> override) <a class="anchor-link" href="#overrideMimeType"
+void <strong>overrideMimeType</strong>(<a href="../core/String.html">String</a> override) <a class="anchor-link" href="#overrideMimeType"
               title="Permalink to XMLHttpRequest.overrideMimeType">#</a></h4>
 <div class="doc">
 <p>@domName XMLHttpRequest.overrideMimeType</p>
@@ -187,7 +187,7 @@ void overrideMimeType(String override);
 </div>
 <div class="method"><h4 id="send">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>send</strong>([data]) <a class="anchor-link" href="#send"
+void <strong>send</strong>([data]) <a class="anchor-link" href="#send"
               title="Permalink to XMLHttpRequest.send">#</a></h4>
 <div class="doc">
 <p>@domName XMLHttpRequest.send</p>
@@ -198,7 +198,7 @@ void send([data]);
 </div>
 <div class="method"><h4 id="setRequestHeader">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>setRequestHeader</strong>(<a href="../dart_core/String.html">String</a> header, <a href="../dart_core/String.html">String</a> value) <a class="anchor-link" href="#setRequestHeader"
+void <strong>setRequestHeader</strong>(<a href="../core/String.html">String</a> header, <a href="../core/String.html">String</a> value) <a class="anchor-link" href="#setRequestHeader"
               title="Permalink to XMLHttpRequest.setRequestHeader">#</a></h4>
 <div class="doc">
 <p>@domName XMLHttpRequest.setRequestHeader</p>
@@ -209,7 +209,7 @@ void setRequestHeader(String header, String value);
 </div>
 <div class="method"><h4 id="$dom_addEventListener">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>$dom_addEventListener</strong>(<a href="../dart_core/String.html">String</a> type, <a href="../dart_core/void.html">void</a> listener(<a href="../html/Event.html">Event</a> event), [<a href="../dart_core/bool.html">bool</a> useCapture]) <a class="anchor-link" href="#$dom_addEventListener"
+void <strong>$dom_addEventListener</strong>(<a href="../core/String.html">String</a> type, <a href="../html/EventListener.html">EventListener</a> listener, [<a href="../core/bool.html">bool</a> useCapture]) <a class="anchor-link" href="#$dom_addEventListener"
               title="Permalink to XMLHttpRequest.$dom_addEventListener">#</a></h4>
 <div class="doc">
 <p>@domName XMLHttpRequest.addEventListener</p>
@@ -220,7 +220,7 @@ void $dom_addEventListener(String type, EventListener listener, [bool useCapture
 </div>
 <div class="method"><h4 id="$dom_dispatchEvent">
 <span class="show-code">Code</span>
-<a href="../dart_core/bool.html">bool</a> <strong>$dom_dispatchEvent</strong>(<a href="../html/Event.html">Event</a> evt) <a class="anchor-link" href="#$dom_dispatchEvent"
+<a href="../core/bool.html">bool</a> <strong>$dom_dispatchEvent</strong>(<a href="../html/Event.html">Event</a> evt) <a class="anchor-link" href="#$dom_dispatchEvent"
               title="Permalink to XMLHttpRequest.$dom_dispatchEvent">#</a></h4>
 <div class="doc">
 <p>@domName XMLHttpRequest.dispatchEvent</p>
@@ -231,7 +231,7 @@ bool $dom_dispatchEvent(Event evt);
 </div>
 <div class="method"><h4 id="$dom_removeEventListener">
 <span class="show-code">Code</span>
-<a href="../dart_core/void.html">void</a> <strong>$dom_removeEventListener</strong>(<a href="../dart_core/String.html">String</a> type, <a href="../dart_core/void.html">void</a> listener(<a href="../html/Event.html">Event</a> event), [<a href="../dart_core/bool.html">bool</a> useCapture]) <a class="anchor-link" href="#$dom_removeEventListener"
+void <strong>$dom_removeEventListener</strong>(<a href="../core/String.html">String</a> type, <a href="../html/EventListener.html">EventListener</a> listener, [<a href="../core/bool.html">bool</a> useCapture]) <a class="anchor-link" href="#$dom_removeEventListener"
               title="Permalink to XMLHttpRequest.$dom_removeEventListener">#</a></h4>
 <div class="doc">
 <p>@domName XMLHttpRequest.removeEventListener</p>
@@ -243,7 +243,7 @@ void $dom_removeEventListener(String type, EventListener listener, [bool useCapt
 <h3>Fields</h3>
 <div class="field"><h4 id="readyState">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>readyState</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>readyState</strong> <a class="anchor-link"
             href="#readyState"
             title="Permalink to XMLHttpRequest.readyState">#</a>
         </h4>
@@ -256,7 +256,7 @@ final int readyState;
 </div>
 <div class="field"><h4 id="response">
 <span class="show-code">Code</span>
-final <a href="../dart_core/Object.html">Object</a>         <strong>response</strong> <a class="anchor-link"
+final <a href="../core/Object.html">Object</a>         <strong>response</strong> <a class="anchor-link"
             href="#response"
             title="Permalink to XMLHttpRequest.response">#</a>
         </h4>
@@ -267,22 +267,9 @@ final Object response;
 </pre>
 </div>
 </div>
-<div class="field"><h4 id="responseBlob">
-<span class="show-code">Code</span>
-final <a href="../html/Blob.html">Blob</a>         <strong>responseBlob</strong> <a class="anchor-link"
-            href="#responseBlob"
-            title="Permalink to XMLHttpRequest.responseBlob">#</a>
-        </h4>
-        <div class="doc">
-<p>@domName XMLHttpRequest.responseBlob</p>
-<pre class="source">
-final Blob responseBlob;
-</pre>
-</div>
-</div>
 <div class="field"><h4 id="responseText">
 <span class="show-code">Code</span>
-final <a href="../dart_core/String.html">String</a>         <strong>responseText</strong> <a class="anchor-link"
+final <a href="../core/String.html">String</a>         <strong>responseText</strong> <a class="anchor-link"
             href="#responseText"
             title="Permalink to XMLHttpRequest.responseText">#</a>
         </h4>
@@ -295,7 +282,7 @@ final String responseText;
 </div>
 <div class="field"><h4 id="responseType">
 <span class="show-code">Code</span>
-<a href="../dart_core/String.html">String</a>         <strong>responseType</strong> <a class="anchor-link"
+<a href="../core/String.html">String</a>         <strong>responseType</strong> <a class="anchor-link"
             href="#responseType"
             title="Permalink to XMLHttpRequest.responseType">#</a>
         </h4>
@@ -321,7 +308,7 @@ final Document responseXML;
 </div>
 <div class="field"><h4 id="status">
 <span class="show-code">Code</span>
-final <a href="../dart_core/int.html">int</a>         <strong>status</strong> <a class="anchor-link"
+final <a href="../core/int.html">int</a>         <strong>status</strong> <a class="anchor-link"
             href="#status"
             title="Permalink to XMLHttpRequest.status">#</a>
         </h4>
@@ -334,7 +321,7 @@ final int status;
 </div>
 <div class="field"><h4 id="statusText">
 <span class="show-code">Code</span>
-final <a href="../dart_core/String.html">String</a>         <strong>statusText</strong> <a class="anchor-link"
+final <a href="../core/String.html">String</a>         <strong>statusText</strong> <a class="anchor-link"
             href="#statusText"
             title="Permalink to XMLHttpRequest.statusText">#</a>
         </h4>
@@ -360,7 +347,7 @@ final XMLHttpRequestUpload upload;
 </div>
 <div class="field"><h4 id="withCredentials">
 <span class="show-code">Code</span>
-<a href="../dart_core/bool.html">bool</a>         <strong>withCredentials</strong> <a class="anchor-link"
+<a href="../core/bool.html">bool</a>         <strong>withCredentials</strong> <a class="anchor-link"
             href="#withCredentials"
             title="Permalink to XMLHttpRequest.withCredentials">#</a>
         </h4>

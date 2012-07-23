@@ -1,0 +1,152 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>QrPolynomial Class / dartlib_qr Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="dartlib_qr" data-type="QrPolynomial">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../dartlib_qr.html">dartlib_qr</a> &rsaquo; <a href="../dartlib_qr/QrPolynomial.html">QrPolynomial</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>QrPolynomial</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="QrPolynomial">
+<span class="show-code">Code</span>
+new <strong>QrPolynomial</strong>._internal(<a href="../core/List.html">List</a>&lt;<a href="../core/int.html">int</a>&gt; _myThings) <a class="anchor-link" href="#QrPolynomial"
+              title="Permalink to QrPolynomial.QrPolynomial">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+QrPolynomial._internal(this._myThings);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="QrPolynomial">
+<span class="show-code">Code</span>
+factory <strong>QrPolynomial</strong>(<a href="../core/List.html">List</a>&lt;<a href="../core/int.html">int</a>&gt; thing, <a href="../core/int.html">int</a> shift) <a class="anchor-link" href="#QrPolynomial"
+              title="Permalink to QrPolynomial.QrPolynomial">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+factory	QrPolynomial(List&lt;int&gt; thing, int shift) {
+
+  var offset = 0;
+
+  while (offset &lt; thing.length &amp;&amp; thing[offset] == 0) {
+    offset++;
+  }
+
+  final List&lt;int&gt; values = QrMath.getZeroedList(thing.length - offset + shift);
+
+  for (var i = 0; i &lt; thing.length - offset; i++) {
+    values[i] = thing[i + offset];
+  }
+
+  return new QrPolynomial._internal(values);
+}
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="length">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a> <strong>get length</strong>() <a class="anchor-link" href="#length"
+              title="Permalink to QrPolynomial.get length">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+int get length() =&gt; _myThings.length;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="mod">
+<span class="show-code">Code</span>
+<a href="../dartlib_qr/QrPolynomial.html">QrPolynomial</a> <strong>mod</strong>(<a href="../dartlib_qr/QrPolynomial.html">QrPolynomial</a> e) <a class="anchor-link" href="#mod"
+              title="Permalink to QrPolynomial.mod">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+QrPolynomial mod(QrPolynomial e) {
+
+  if (length - e.length &lt; 0) {
+    return this;
+  }
+
+  var ratio = QrMath.glog(this[0]) - QrMath.glog(e[0]);
+
+  var thing = QrMath.getZeroedList(length);
+
+  for (int i = 0; i &lt; length; i++) {
+    thing[i] = this[i];
+  }
+
+  for (int i = 0; i &lt; e.length; i++) {
+    thing[i] ^= QrMath.gexp(QrMath.glog(e[i]) + ratio);
+  }
+
+  // recursive call
+  return (new QrPolynomial(thing, 0)).mod(e);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="multiply">
+<span class="show-code">Code</span>
+<a href="../dartlib_qr/QrPolynomial.html">QrPolynomial</a> <strong>multiply</strong>(<a href="../dartlib_qr/QrPolynomial.html">QrPolynomial</a> e) <a class="anchor-link" href="#multiply"
+              title="Permalink to QrPolynomial.multiply">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+QrPolynomial multiply(QrPolynomial e) {
+
+  final List&lt;int&gt; foo = QrMath.getZeroedList(length + e.length - 1);
+
+  for (var i = 0; i &lt; length; i++) {
+    for (var j = 0; j &lt; e.length; j++) {
+      foo[i + j] ^= QrMath.gexp(QrMath.glog(this[i]) + QrMath.glog(e[j]));
+    }
+  }
+
+  return new QrPolynomial(foo, 0);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="operator">
+<span class="show-code">Code</span>
+<strong>operator []</strong>(<a href="../core/int.html">int</a> index) <a class="anchor-link" href="#operator"
+              title="Permalink to QrPolynomial.operator []">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+operator [](int index) =&gt; _myThings[index];
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

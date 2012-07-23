@@ -63,7 +63,7 @@ Future.immediate(T value);
 <h3>Methods</h3>
 <div class="method"><h4 id="chain">
 <span class="show-code">Code</span>
-<a href="../core/Future.html">Future</a> <strong>chain</strong>(transformation) <a class="anchor-link" href="#chain"
+<a href="../core/Future.html">Future</a> <strong>chain</strong>(<a href="../core/Future.html">Future</a> transformation(<a href="../core/Future.html">T</a> value)) <a class="anchor-link" href="#chain"
               title="Permalink to Future&lt;T&gt;.chain">#</a></h4>
 <div class="doc">
 <p>A future representing an asynchronous transformation applied to this
@@ -100,7 +100,7 @@ Object get exception();
 </div>
 <div class="method"><h4 id="handleException">
 <span class="show-code">Code</span>
-void <strong>handleException</strong>(onException) <a class="anchor-link" href="#handleException"
+void <strong>handleException</strong>(<a href="../core/bool.html">bool</a> onException(<a href="../core/Object.html">Object</a> exception)) <a class="anchor-link" href="#handleException"
               title="Permalink to Future&lt;T&gt;.handleException">#</a></h4>
 <div class="doc">
 <p>If this future is complete and has an exception, then call 
@@ -148,7 +148,7 @@ bool get isComplete();
 </div>
 <div class="method"><h4 id="onComplete">
 <span class="show-code">Code</span>
-void <strong>onComplete</strong>(complete) <a class="anchor-link" href="#onComplete"
+void <strong>onComplete</strong>(void complete(<a href="../core/Future.html">Future</a>&lt;<a href="../core/Future.html">T</a>&gt; future)) <a class="anchor-link" href="#onComplete"
               title="Permalink to Future&lt;T&gt;.onComplete">#</a></h4>
 <div class="doc">
 <p>When this future is complete (either with a value or with an exception),
@@ -177,7 +177,7 @@ Object get stackTrace();
 </div>
 <div class="method"><h4 id="then">
 <span class="show-code">Code</span>
-void <strong>then</strong>(onSuccess) <a class="anchor-link" href="#then"
+void <strong>then</strong>(void onSuccess(<a href="../core/Future.html">T</a> value)) <a class="anchor-link" href="#then"
               title="Permalink to Future&lt;T&gt;.then">#</a></h4>
 <div class="doc">
 <p>If this future is complete and has a value, then <code>onValue</code> is called
@@ -189,7 +189,7 @@ void then(void onSuccess(T value));
 </div>
 <div class="method"><h4 id="transform">
 <span class="show-code">Code</span>
-<a href="../core/Future.html">Future</a> <strong>transform</strong>(transformation) <a class="anchor-link" href="#transform"
+<a href="../core/Future.html">Future</a> <strong>transform</strong>(transformation(<a href="../core/Future.html">T</a> value)) <a class="anchor-link" href="#transform"
               title="Permalink to Future&lt;T&gt;.transform">#</a></h4>
 <div class="doc">
 <p>A future representing 

@@ -1,0 +1,171 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>Grouping&lt;K, V&gt; Class / dartlib Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="dartlib" data-type="Grouping&amp;lt;K, V&amp;gt;">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../dartlib.html">dartlib</a> &rsaquo; <a href="../dartlib/Grouping.html">Grouping&lt;K, V&gt;</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>Grouping&lt;K extends Hashable, V&gt;</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="Grouping">
+<span class="show-code">Code</span>
+const <strong>Grouping</strong>._internal(<a href="../dartlib/NoneHashMap.html">NoneHashMap</a>&lt;<a href="../dartlib/Grouping.html">K</a>, <a href="../core/List.html">List</a>&lt;<a href="../dartlib/Grouping.html">V</a>&gt;&gt; _values) <a class="anchor-link" href="#Grouping"
+              title="Permalink to Grouping&lt;K, V&gt;.Grouping">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+const Grouping._internal(this._values);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="Grouping">
+<span class="show-code">Code</span>
+factory <strong>Grouping</strong>(<a href="../core/Iterable.html">Iterable</a>&lt;<a href="../dartlib/Grouping.html">V</a>&gt; source, [<a href="../dartlib/Func1.html">Func1</a> keyFunc = null]) <a class="anchor-link" href="#Grouping"
+              title="Permalink to Grouping&lt;K, V&gt;.Grouping">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+factory Grouping(Iterable&lt;V&gt; source, [Func1&lt;V, K&gt; keyFunc = null]) {
+  if(keyFunc == null) {
+    keyFunc = (v) =&gt; v;
+  }
+
+  var map = new NoneHashMap&lt;K, List&lt;V&gt;&gt;();
+
+  for (final V value in source) {
+    K key = keyFunc(value);
+    List&lt;V&gt; values = map.putIfAbsent(key, () =&gt; new List&lt;V&gt;());
+    values.add(value);
+  }
+
+  return new Grouping._internal(map);
+}
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="containsKey">
+<span class="show-code">Code</span>
+<a href="../core/bool.html">bool</a> <strong>containsKey</strong>(<a href="../dartlib/Grouping.html">K</a> key) <a class="anchor-link" href="#containsKey"
+              title="Permalink to Grouping&lt;K, V&gt;.containsKey">#</a></h4>
+<div class="doc">
+<p>Returns whether this map contains the given 
+<span class="param">key</span>.</p>
+<pre class="source">
+bool containsKey(K key) =&gt; _values.containsKey(key);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="forEach">
+<span class="show-code">Code</span>
+void <strong>forEach</strong>(void f(<a href="../dartlib/Grouping.html">K</a> key, <a href="../core/List.html">List</a>&lt;<a href="../dartlib/Grouping.html">V</a>&gt; value)) <a class="anchor-link" href="#forEach"
+              title="Permalink to Grouping&lt;K, V&gt;.forEach">#</a></h4>
+<div class="doc">
+<p>Applies 
+<span class="param">f</span> to each {key, value} pair of the map.</p>
+<pre class="source">
+void forEach(void f(K key, List&lt;V&gt; value)) =&gt; _values.forEach(f);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getKeys">
+<span class="show-code">Code</span>
+<a href="../core/Collection.html">Collection</a>&lt;<a href="../dartlib/Grouping.html">K</a>&gt; <strong>getKeys</strong>() <a class="anchor-link" href="#getKeys"
+              title="Permalink to Grouping&lt;K, V&gt;.getKeys">#</a></h4>
+<div class="doc">
+<p>Returns a collection containing all the keys in the map.</p>
+<pre class="source">
+Collection&lt;K&gt; getKeys() =&gt; _values.getKeys();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getValues">
+<span class="show-code">Code</span>
+<a href="../dartlib/Enumerable.html">Enumerable</a>&lt;<a href="../dartlib/Grouping.html">V</a>&gt; <strong>getValues</strong>() <a class="anchor-link" href="#getValues"
+              title="Permalink to Grouping&lt;K, V&gt;.getValues">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Enumerable&lt;V&gt; getValues() =&gt; $(_values.getValues()).selectMany((a) =&gt; a);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="isEmpty">
+<span class="show-code">Code</span>
+<a href="../core/bool.html">bool</a> <strong>get isEmpty</strong>() <a class="anchor-link" href="#isEmpty"
+              title="Permalink to Grouping&lt;K, V&gt;.get isEmpty">#</a></h4>
+<div class="doc">
+<p>Returns true if there is no {key, value} pair in the map.</p>
+<pre class="source">
+bool get isEmpty() =&gt; _values.isEmpty();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="length">
+<span class="show-code">Code</span>
+<a href="../core/int.html">int</a> <strong>get length</strong>() <a class="anchor-link" href="#length"
+              title="Permalink to Grouping&lt;K, V&gt;.get length">#</a></h4>
+<div class="doc">
+<p>The number of {key, value} pairs in the map.</p>
+<pre class="source">
+int get length() =&gt; _values.length;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="operator">
+<span class="show-code">Code</span>
+<a href="../core/List.html">List</a>&lt;<a href="../dartlib/Grouping.html">V</a>&gt; <strong>operator []</strong>(<a href="../dartlib/Grouping.html">K</a> key) <a class="anchor-link" href="#operator"
+              title="Permalink to Grouping&lt;K, V&gt;.operator []">#</a></h4>
+<div class="doc">
+<p>Returns the value for the given 
+<span class="param">key</span> or null if 
+<span class="param">key</span> is not
+in the map. Because null values are supported, one should either
+use containsKey to distinguish between an absent key and a null
+value, or use the <code>putIfAbsent</code> method.</p>
+<pre class="source">
+List&lt;V&gt; operator [](K key) =&gt; _values[key];
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="toString">
+<span class="show-code">Code</span>
+<a href="../core/String.html">String</a> <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to Grouping&lt;K, V&gt;.toString">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+String toString() =&gt; _values.toString();
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

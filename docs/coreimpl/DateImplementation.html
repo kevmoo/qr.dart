@@ -110,7 +110,7 @@ factory DateImplementation.fromString(String formattedString) {
 </div>
 <div class="method"><h4 id="DateImplementation">
 <span class="show-code">Code</span>
-new <strong>DateImplementation</strong>.fromMillisecondsSinceEpoch(millisecondsSinceEpoch, [<a href="../core/bool.html">bool</a> isUtc]) <a class="anchor-link" href="#DateImplementation"
+new <strong>DateImplementation</strong>.fromMillisecondsSinceEpoch(<a href="../core/int.html">int</a> millisecondsSinceEpoch, [<a href="../core/bool.html">bool</a> isUtc = false]) <a class="anchor-link" href="#DateImplementation"
               title="Permalink to DateImplementation.DateImplementation">#</a></h4>
 <div class="doc">
 
@@ -127,7 +127,7 @@ DateImplementation.fromMillisecondsSinceEpoch(this.millisecondsSinceEpoch,
 </div>
 <div class="method"><h4 id="DateImplementation">
 <span class="show-code">Code</span>
-new <strong>DateImplementation</strong>(<a href="../core/int.html">int</a> years, [<a href="../core/int.html">int</a> month, <a href="../core/int.html">int</a> day, <a href="../core/int.html">int</a> hour, <a href="../core/int.html">int</a> minute, <a href="../core/int.html">int</a> second, <a href="../core/int.html">int</a> millisecond, <a href="../core/bool.html">bool</a> isUtc]) <a class="anchor-link" href="#DateImplementation"
+new <strong>DateImplementation</strong>(<a href="../core/int.html">int</a> years, [<a href="../core/int.html">int</a> month = 1, <a href="../core/int.html">int</a> day = 1, <a href="../core/int.html">int</a> hour = 0, <a href="../core/int.html">int</a> minute = 0, <a href="../core/int.html">int</a> second = 0, <a href="../core/int.html">int</a> millisecond = 0, <a href="../core/bool.html">bool</a> isUtc = false]) <a class="anchor-link" href="#DateImplementation"
               title="Permalink to DateImplementation.DateImplementation">#</a></h4>
 <div class="doc">
 
@@ -406,8 +406,7 @@ String toString() {
     if (absN &gt;= 1000) return "$n";
     if (absN &gt;= 100) return "${sign}0$absN";
     if (absN &gt;= 10) return "${sign}00$absN";
-    if (absN &gt;= 1) return "${sign}000$absN";
-    throw new IllegalArgumentException(n);
+    return "${sign}000$absN";
   }
 
   String threeDigits(int n) {
