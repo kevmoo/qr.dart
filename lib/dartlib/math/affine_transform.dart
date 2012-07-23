@@ -23,6 +23,8 @@ class AffineTransform implements Cloneable<AffineTransform> {
   num get translateX() => _m02;
 
   num get translateY() => _m12;
+  
+  Vector get translateVector() => new Vector(translateX, translateY);
 
   num get shearX() => _m01;
 
