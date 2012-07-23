@@ -1,6 +1,8 @@
 #import('dart:html');
 #import('dart:isolate');
 #import('../../lib/core.dart', prefix:'core');
+#import('../../lib/qr.dart');
+#import('../../lib/async.dart');
 
 main(){
   final CanvasElement canvas = query("#content");
@@ -34,7 +36,7 @@ class QrDemo{
 
   String _value = '';
   int _typeNumber = 10;
-  int _errorCorrectLevel = core.QrErrorCorrectLevel.M;
+  int _errorCorrectLevel = QrErrorCorrectLevel.M;
 
   List<bool> _squares;
 
@@ -76,7 +78,7 @@ class QrDemo{
     //
     // Error Correct Levels
     //
-    for(final v in core.QrErrorCorrectLevel.levels) {
+    for(final v in QrErrorCorrectLevel.levels) {
       final InputElement radio = new InputElement('radio');
       radio.id = 'error_$v';
       radio.name = 'error-level';
@@ -88,7 +90,7 @@ class QrDemo{
       errorDiv.elements.add(radio);
 
       final label = new LabelElement();
-      label.innerHTML = core.QrErrorCorrectLevel.getName(v);
+      label.innerHTML = QrErrorCorrectLevel.getName(v);
       label.htmlFor = radio.id;
       errorDiv.elements.add(label);
     }
@@ -159,14 +161,14 @@ class QrDemo{
 }
 
 class _QrCalc
-  extends core.SendPortValue<core.Tuple3<int, int, String>, List<bool>> {
+  extends SendPortValue<core.Tuple3<int, int, String>, List<bool>> {
   _QrCalc() : super(spawnFunction(_qrIsolate));
 }
 
 void _qrIsolate() {
 
-  new core.SendValuePort<core.Tuple3<int, int, String>, List<bool>>((input) {
-    final code = new core.QrCode(input.Item1, input.Item2);
+  new SendValuePort<core.Tuple3<int, int, String>, List<bool>>((input) {
+    final code = new QrCode(input.Item1, input.Item2);
     code.addData(input.Item3);
     code.make();
 

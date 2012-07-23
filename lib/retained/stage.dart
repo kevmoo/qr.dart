@@ -1,4 +1,4 @@
-class Stage extends PropertyObject
+class Stage extends core.PropertyObject
   implements ElementParent {
   final CanvasElement _canvas;
   final PElement _element;

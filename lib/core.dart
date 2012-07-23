@@ -47,18 +47,6 @@
 
 #source('core/graph/tarjan_cycle_detect.dart');
 
-#source('core/async/future_value.dart');
-#source('core/async/future_value_result.dart');
-#source('core/async/send_port_value.dart');
-#source('core/async/send_value_port.dart');
-
-#source('core/qr/qr_bit_buffer.dart');
-#source('core/qr/qr_enums.dart');
-#source('core/qr/qr_byte.dart');
-#source('core/qr/qr_math.dart');
-#source('core/qr/qr_polynomial.dart');
-#source('core/qr/qr_rs_block.dart');
-#source('core/qr/qr_util.dart');
-#source('core/qr/qr_code.dart');
-#source('core/qr/qr_input_too_long_exception.dart');
-
+#source('core/property/property_object.dart');
+#source('core/property/property_values.dart');
+#source('core/property/property.dart');

@@ -1,6 +1,7 @@
 #import('dart:html');
 #import('dart:isolate');
 #import('../../lib/core.dart', prefix:'core');
+#import('../../lib/async.dart');
 #import('../../lib/html.dart');
 #import('../../lib/retained.dart');
 
@@ -95,7 +96,7 @@ class DraggerDemo{
   }
 }
 
-class _DemoMapper extends core.FutureValue<core.Coordinate, int> {
+class _DemoMapper extends FutureValue<core.Coordinate, int> {
   Future<int> getFuture(value) {
     final sendPort = spawnFunction(_demoIsolate);
     return sendPort.call(value);
