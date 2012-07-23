@@ -1,6 +1,6 @@
 class QrCode {
-  static final int PAD0 = 0xEC;
-  static final int PAD1 = 0x11;
+  static final int _PAD0 = 0xEC;
+  static final int _PAD1 = 0x11;
 
   final typeNumber;
   final errorCorrectLevel;
@@ -297,18 +297,18 @@ class QrCode {
       if (buffer.length >= totalDataCount * 8) {
         break;
       }
-      buffer.put(PAD0, 8);
+      buffer.put(_PAD0, 8);
 
       if (buffer.length >= totalDataCount * 8) {
         break;
       }
-      buffer.put(PAD1, 8);
+      buffer.put(_PAD1, 8);
     }
 
-    return createBytes(buffer, rsBlocks);
+    return _createBytes(buffer, rsBlocks);
   }
 
-  static List<int> createBytes(QrBitBuffer buffer, rsBlocks) {
+  static List<int> _createBytes(QrBitBuffer buffer, rsBlocks) {
 
     var offset = 0;
 
