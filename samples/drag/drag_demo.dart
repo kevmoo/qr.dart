@@ -16,7 +16,7 @@ class DraggerDemo{
   final Stage _stage;
   final core.AffineTransform _tx;
   final Dragger _dragger;
-  final _DemoMapper _demoMapper;
+  final _DemoValue _demoMapper;
 
   core.Coordinate _mouseLocation;
   bool _frameRequested = false;
@@ -38,7 +38,7 @@ class DraggerDemo{
   }
 
   DraggerDemo._internal(this._canvas, this._stage, this._tx, this._dragger) :
-    _demoMapper = new _DemoMapper() {
+    _demoMapper = new _DemoValue() {
     _canvas.on.mouseMove.add(_canvas_mouseMove);
     _canvas.on.mouseOut.add(_canvas_mouseOut);
     _dragger.dragDelta.add(_onDrag);
@@ -112,17 +112,12 @@ class DraggerDemo{
   }
 }
 
-class _DemoMapper extends FutureValue<core.Coordinate, int> {
-  Future<int> getFuture(value) {
-    final sendPort = spawnFunction(_demoIsolate);
-    return sendPort.call(value);
-  }
+class _DemoValue extends SendPortValue<core.Coordinate, int> {
+  _DemoValue() : super(spawnFunction(_demoIsolate));
 }
 
 void _demoIsolate() {
-  port.receive((core.Coordinate input,
-      SendPort reply) {
-
+  new SendValuePort<core.Coordinate, int>((input) {
     final start = new Date.now();
     Duration delta;
     do {
@@ -130,8 +125,6 @@ void _demoIsolate() {
     } while(delta.inSeconds < 1);
 
     final int output = input.x * input.y;
-    reply.send(output);
+    return output;
   });
 }
-
-
