@@ -1,7 +1,6 @@
-#library('dartlib_core');
+#library('dartlib');
 
 #import("dart:coreimpl");
-#import("dart:isolate");
 
 #source('dartlib/typedefs.dart');
 
