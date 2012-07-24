@@ -4,7 +4,6 @@ class FutureValue<TInput, TOutput> {
   _inputChangedHandle = new EventHandle<EventArgs>(),
   _errorHandle = new EventHandle<Object>();
 
-
   TInput get input() => _input;
 
   void set input(TInput value) {
@@ -25,39 +24,6 @@ class FutureValue<TInput, TOutput> {
 
   abstract Future<TOutput> getFuture(TInput value);
 
-  void _futureCompleted(value) {
-    assert(_future != null);
-    _future = null;
-
-    if(value is FutureValueResult) {
-      _sendValueResultCompleted(value);
-    } else {
-      _simpleFutureCompleted(value);
-    }
-  }
-
-  void _sendValueResultCompleted(FutureValueResult<TOutput> value) {
-    if(value.isException) {
-      _errorHandle.fireEvent(value.exception);
-      _cleanup();
-    } else {
-      _simpleFutureCompleted(value.value);
-    }
-  }
-
-  void _simpleFutureCompleted(TOutput value) {
-    _output = value;
-    _outputChangedHandle.fireEvent(EventArgs.empty);
-    _cleanup();
-  }
-
-  void _cleanup() {
-    if(_pending) {
-      _pending = false;
-      _startFuture();
-    }
-  }
-
   void _startFuture() {
     assert(_future == null);
     assert(!_pending);
@@ -71,6 +37,22 @@ class FutureValue<TInput, TOutput> {
     _future = null;
     _errorHandle.fireEvent(exception);
     _cleanup();
+    return true;
+  }
+
+  void _futureCompleted(TOutput value) {
+    assert(_future != null);
+    _future = null;
+    _output = value;
+    _outputChangedHandle.fireEvent(EventArgs.empty);
+    _cleanup();
+  }
+
+  void _cleanup() {
+    if(_pending) {
+      _pending = false;
+      _startFuture();
+    }
   }
 
   TInput _input;
