@@ -1,5 +1,6 @@
 #library('dartlib_test_async');
 
+#import('dart:isolate');
 #import('../../vendor/unittest/unittest.dart');
 #import('../../lib/dartlib.dart');
 #import('../../lib/async.dart');

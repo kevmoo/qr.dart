@@ -1,4 +1,3 @@
-// TODO: real tests
 class FutureValue<TInput, TOutput> {
   FutureValue()
   : _outputChangedHandle = new EventHandle<EventArgs>(),
