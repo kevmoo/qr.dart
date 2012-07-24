@@ -5,29 +5,46 @@ Starting by porting bits of the [PL javascript library](https://github.com/think
 
 ## Highlights
 
-### core
- * __async__
-     * `SlowMapper`: a convenient way to model slow, async conversions
+### dartlib -- default library
+ * __collection__
  * __color__
      * `RgbColor`, `HslColor` with associated conversions back and forth
      * `RgbColor` supports to/from hex
+ * __events__
+ * __exceptions__
+ * __graph__
  * __math__
      * `Coordinate`, `Rect`, `Size`, `Vector`, `AffineTransfrom`
- * __properties__
+ * __property__
      * A general model for supporting runtime-defined properties supported objects.
      * This functionality is inspired by the Dependency Property model in WPF/Silverlight.
+
+### async
+  * `FutureValue`: an abstract model for async conversions via `Future<T>`
+  * `SendPortValue`: an implementation of `FutureValue` using isolates.
+
+### html
+
+### qr
+
+### retained
+
+### test
 
 ## Blocking Bugs
 Bugs blocking me from compiling to Javascript.
 
+_None so far._
+
+## Annoying Bugs
+Bugs that cause code smells.
+
 ### Allow `final static` fields to be non-constants.
   * __Scenario:__ Allowing classes to define a `Property` using `static final Property<bool> isMouseOver = new Property<bool>('isMouseOver');`
   * __Work-around__
-      * Define `Property` constructor as `const` even though it is not -- it creates a non-const GlobalId.
-      * Create instances of `Property` with const constructor.
+      * Remove `GlobalId` from `Property`. Created `NoneHashMap` to store non-hashable `Property` instances and use instance identity to distinguish them.
   * __Issues__
-      * Warnings in editor about expecting `const` expressions in `Property` constructor.
-      * I cannot compile my project to Javascript.
+      * I'd love to be able to make `Property` hashable.
   * __Related bugs:__
     [3476](http://code.google.com/p/dart/issues/detail?id=3476),
     [3551](http://code.google.com/p/dart/issues/detail?id=3551),
@@ -37,11 +54,8 @@ Bugs blocking me from compiling to Javascript.
 ### Allow compile-time constants in switch statements
   * __Scenario:__ I've defined a psedo-enum class `ShapeType` that exposes const fields which I'd like to use in a case statement.
   * __Word-around:__ Ignore the warnings in the editor.
-  * __Issues:__ Unknown. I bet this won't compile to javascript, but I'm hitting other issues first.
+  * __Issues:__ Other than warnings in Dart Editor, none. Can still compile to JS.
   * __Related bug:__ [3342](http://code.google.com/p/dart/issues/detail?id=3342)
-
-## Annoying Bugs
-Bugs that cause code smells.
 
 ### Put the unittest library on [pub](http://www.dartlang.org/docs/pub-package-manager/) or let me use the copy in the SDK without hard-wired paths.
   * __Scenario:__ I'd like to use the unittest library in the SDK, but hardwiring the absolute path to the SDK makes it tough to cleanly share code with others.
