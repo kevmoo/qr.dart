@@ -31,11 +31,11 @@
 <span class="type-box"><span class="icon-class"></span><a href="../dartlib/ListBase.html">ListBase&lt;E&gt;</a></span>, <span class="type-box"><span class="icon-class"></span><a href="../dartlib/NumberEnumerable.html">NumberEnumerable&lt;T&gt;</a></span></p>
 <h3>Implements</h3>
 <p>
-<span class="type-box"><span class="icon-interface"></span><a href="../core/Iterable.html">Iterable</a></span></p>
+<span class="type-box"><span class="icon-interface"></span><a href="../dart_core/Iterable.html">Iterable</a></span></p>
 <h3>Constructors</h3>
 <div class="method"><h4 id="Enumerable">
 <span class="show-code">Code</span>
-factory <strong>Enumerable</strong>(<a href="../core/Iterable.html">Iterable</a>&lt;<a href="../dartlib/Enumerable.html">T</a>&gt; source) <a class="anchor-link" href="#Enumerable"
+factory <strong>Enumerable</strong>(Iterable&lt;<a href="../dartlib/Enumerable.html">T</a>&gt; source) <a class="anchor-link" href="#Enumerable"
               title="Permalink to Enumerable&lt;T&gt;.Enumerable">#</a></h4>
 <div class="doc">
 
@@ -61,7 +61,7 @@ const Enumerable._internal();
 <h3>Methods</h3>
 <div class="method"><h4 id="aggregate">
 <span class="show-code">Code</span>
-<a href="../core/Object.html">Object</a> <strong>aggregate</strong>(<a href="../core/Object.html">Object</a> seed, <a href="../dartlib/Func2.html">Func2</a> f) <a class="anchor-link" href="#aggregate"
+Object <strong>aggregate</strong>(Object seed, <a href="../dartlib/Func2.html">Func2</a> f) <a class="anchor-link" href="#aggregate"
               title="Permalink to Enumerable&lt;T&gt;.aggregate">#</a></h4>
 <div class="doc">
 
@@ -75,7 +75,7 @@ Object aggregate(Object seed, Func2&lt;Object, T, Object&gt; f) {
 </div>
 <div class="method"><h4 id="contains">
 <span class="show-code">Code</span>
-<a href="../core/bool.html">bool</a> <strong>contains</strong>(<a href="../dartlib/Enumerable.html">T</a> item) <a class="anchor-link" href="#contains"
+bool <strong>contains</strong>(<a href="../dartlib/Enumerable.html">T</a> item) <a class="anchor-link" href="#contains"
               title="Permalink to Enumerable&lt;T&gt;.contains">#</a></h4>
 <div class="doc">
 
@@ -93,7 +93,7 @@ bool contains(T item) {
 </div>
 <div class="method"><h4 id="count">
 <span class="show-code">Code</span>
-<a href="../core/int.html">int</a> <strong>count</strong>([<a href="../dartlib/Func1.html">Func1</a> f = null]) <a class="anchor-link" href="#count"
+int <strong>count</strong>([<a href="../dartlib/Func1.html">Func1</a> f = null]) <a class="anchor-link" href="#count"
               title="Permalink to Enumerable&lt;T&gt;.count">#</a></h4>
 <div class="doc">
 
@@ -131,7 +131,7 @@ Enumerable&lt;T&gt; distinct([Func2&lt;T, T, bool&gt; comparer = null]) {
 </div>
 <div class="method"><h4 id="every">
 <span class="show-code">Code</span>
-<a href="../core/bool.html">bool</a> <strong>every</strong>(<a href="../dartlib/Func1.html">Func1</a> f) <a class="anchor-link" href="#every"
+bool <strong>every</strong>(<a href="../dartlib/Func1.html">Func1</a> f) <a class="anchor-link" href="#every"
               title="Permalink to Enumerable&lt;T&gt;.every">#</a></h4>
 <div class="doc">
 <p>Returns true if every elements of this collection satisify the
@@ -152,7 +152,7 @@ bool every(Func1&lt;T, bool&gt; f) {
 </div>
 <div class="method"><h4 id="exclude">
 <span class="show-code">Code</span>
-<a href="../dartlib/Enumerable.html">Enumerable</a>&lt;<a href="../dartlib/Enumerable.html">T</a>&gt; <strong>exclude</strong>(<a href="../core/Iterable.html">Iterable</a>&lt;<a href="../dartlib/Enumerable.html">T</a>&gt; items) <a class="anchor-link" href="#exclude"
+<a href="../dartlib/Enumerable.html">Enumerable</a>&lt;<a href="../dartlib/Enumerable.html">T</a>&gt; <strong>exclude</strong>(Iterable&lt;<a href="../dartlib/Enumerable.html">T</a>&gt; items) <a class="anchor-link" href="#exclude"
               title="Permalink to Enumerable&lt;T&gt;.exclude">#</a></h4>
 <div class="doc">
 
@@ -232,7 +232,7 @@ Grouping&lt;Dynamic, T&gt; group([Func1&lt;T, Object&gt; keyFunc = null]) {
 </div>
 <div class="method"><h4 id="iterator">
 <span class="show-code">Code</span>
-<a href="../core/Iterator.html">Iterator</a> <strong>iterator</strong>() <a class="anchor-link" href="#iterator"
+Iterator <strong>iterator</strong>() <a class="anchor-link" href="#iterator"
               title="Permalink to Enumerable&lt;T&gt;.iterator">#</a></h4>
 <div class="doc">
 
@@ -245,7 +245,7 @@ Iterator iterator() {
 </div>
 <div class="method"><h4 id="join">
 <span class="show-code">Code</span>
-<a href="../core/String.html">String</a> <strong>join</strong>([<a href="../core/String.html">String</a> separator = ', ']) <a class="anchor-link" href="#join"
+String <strong>join</strong>([String separator = ', ']) <a class="anchor-link" href="#join"
               title="Permalink to Enumerable&lt;T&gt;.join">#</a></h4>
 <div class="doc">
 
@@ -332,7 +332,7 @@ T single([Func1&lt;T, bool&gt; f = null]) {
 </div>
 <div class="method"><h4 id="some">
 <span class="show-code">Code</span>
-<a href="../core/bool.html">bool</a> <strong>some</strong>(<a href="../dartlib/Func1.html">Func1</a> f) <a class="anchor-link" href="#some"
+bool <strong>some</strong>(<a href="../dartlib/Func1.html">Func1</a> f) <a class="anchor-link" href="#some"
               title="Permalink to Enumerable&lt;T&gt;.some">#</a></h4>
 <div class="doc">
 <p>Returns true if one element of this collection satisfies the
@@ -353,7 +353,7 @@ bool some(Func1&lt;T, bool&gt; f) {
 </div>
 <div class="method"><h4 id="toHashMap">
 <span class="show-code">Code</span>
-<a href="../core/HashMap.html">HashMap</a> <strong>toHashMap</strong>(<a href="../dartlib/Func1.html">Func1</a> valueFunc, [<a href="../dartlib/Func1.html">Func1</a> keyFunc]) <a class="anchor-link" href="#toHashMap"
+HashMap <strong>toHashMap</strong>(<a href="../dartlib/Func1.html">Func1</a> valueFunc, [<a href="../dartlib/Func1.html">Func1</a> keyFunc]) <a class="anchor-link" href="#toHashMap"
               title="Permalink to Enumerable&lt;T&gt;.toHashMap">#</a></h4>
 <div class="doc">
 
@@ -387,7 +387,7 @@ HashMap toHashMap(Func1&lt;T, Object&gt; valueFunc, [Func1&lt;T, Hashable&gt; ke
 </div>
 <div class="method"><h4 id="toHashSet">
 <span class="show-code">Code</span>
-<a href="../core/HashSet.html">HashSet</a> <strong>toHashSet</strong>([<a href="../dartlib/Func1.html">Func1</a> f]) <a class="anchor-link" href="#toHashSet"
+HashSet <strong>toHashSet</strong>([<a href="../dartlib/Func1.html">Func1</a> f]) <a class="anchor-link" href="#toHashSet"
               title="Permalink to Enumerable&lt;T&gt;.toHashSet">#</a></h4>
 <div class="doc">
 
@@ -404,7 +404,7 @@ HashSet toHashSet([Func1&lt;T, Hashable&gt; f]) {
 </div>
 <div class="method"><h4 id="toList">
 <span class="show-code">Code</span>
-<a href="../core/List.html">List</a>&lt;<a href="../dartlib/Enumerable.html">T</a>&gt; <strong>toList</strong>() <a class="anchor-link" href="#toList"
+List&lt;<a href="../dartlib/Enumerable.html">T</a>&gt; <strong>toList</strong>() <a class="anchor-link" href="#toList"
               title="Permalink to Enumerable&lt;T&gt;.toList">#</a></h4>
 <div class="doc">
 
@@ -426,7 +426,7 @@ ReadOnlyCollection&lt;T&gt; toReadOnlyCollection() =&gt; new ReadOnlyCollection&
 </div>
 <div class="method"><h4 id="toString">
 <span class="show-code">Code</span>
-<a href="../core/String.html">String</a> <strong>toString</strong>() <a class="anchor-link" href="#toString"
+String <strong>toString</strong>() <a class="anchor-link" href="#toString"
               title="Permalink to Enumerable&lt;T&gt;.toString">#</a></h4>
 <div class="doc">
 

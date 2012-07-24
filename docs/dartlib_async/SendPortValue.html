@@ -32,7 +32,7 @@
 <h3>Constructors</h3>
 <div class="method"><h4 id="SendPortValue">
 <span class="show-code">Code</span>
-new <strong>SendPortValue</strong>(<a href="../dart_isolate/SendPort.html">SendPort</a> _sendPort) <a class="anchor-link" href="#SendPortValue"
+new <strong>SendPortValue</strong>(SendPort _sendPort) <a class="anchor-link" href="#SendPortValue"
               title="Permalink to SendPortValue&lt;TInput, TOutput&gt;.SendPortValue">#</a></h4>
 <div class="doc">
 
@@ -44,12 +44,25 @@ SendPortValue(this._sendPort);
 <h3>Methods</h3>
 <div class="method"><h4 id="getFuture">
 <span class="show-code">Code</span>
-<a href="../core/Future.html">Future</a>&lt;<a href="../dartlib_async/SendPortValue.html">TOutput</a>&gt; <strong>getFuture</strong>(<a href="../dartlib_async/SendPortValue.html">TInput</a> value) <a class="anchor-link" href="#getFuture"
+Future&lt;<a href="../dartlib_async/SendPortValue.html">TOutput</a>&gt; <strong>getFuture</strong>(<a href="../dartlib_async/SendPortValue.html">TInput</a> value) <a class="anchor-link" href="#getFuture"
               title="Permalink to SendPortValue&lt;TInput, TOutput&gt;.getFuture">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-Future&lt;TOutput&gt; getFuture(TInput value) =&gt; _sendPort.call(value);
+Future&lt;TOutput&gt; getFuture(TInput value) {
+  assert(_completer == null);
+  assert(_innerFuture == null);
+
+  _completer = new Completer&lt;TOutput&gt;();
+
+  _innerFuture = _sendPort.call(value);
+  // I don't think this is working yet in isolates
+  // _future.handleException(_futureException);
+  // http://dartbug.com/3734
+  _innerFuture.then(__futureCompleted);
+
+  return _completer.future;
+}
 </pre>
 </div>
 </div>

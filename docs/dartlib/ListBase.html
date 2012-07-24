@@ -50,7 +50,7 @@ const ListBase() : super._internal();
 <h3>Methods</h3>
 <div class="method"><h4 id="every">
 <span class="show-code">Code</span>
-<a href="../core/bool.html">bool</a> <strong>every</strong>(<a href="../core/bool.html">bool</a> f(<a href="../dartlib/ListBase.html">E</a> element)) <a class="anchor-link" href="#every"
+bool <strong>every</strong>(bool f(<a href="../dartlib/ListBase.html">E</a> element)) <a class="anchor-link" href="#every"
               title="Permalink to ListBase&lt;E&gt;.every">#</a></h4>
 <div class="doc">
 <p>Returns true if every elements of this collection satisify the
@@ -70,7 +70,7 @@ bool every(bool f(E element)) {
 </div>
 <div class="method"><h4 id="filter">
 <span class="show-code">Code</span>
-<a href="../core/Collection.html">Collection</a>&lt;<a href="../dartlib/ListBase.html">E</a>&gt; <strong>filter</strong>(<a href="../core/bool.html">bool</a> f(<a href="../dartlib/ListBase.html">E</a> element)) <a class="anchor-link" href="#filter"
+Collection&lt;<a href="../dartlib/ListBase.html">E</a>&gt; <strong>filter</strong>(bool f(<a href="../dartlib/ListBase.html">E</a> element)) <a class="anchor-link" href="#filter"
               title="Permalink to ListBase&lt;E&gt;.filter">#</a></h4>
 <div class="doc">
 <p>Returns a new collection with the elements of this collection
@@ -112,7 +112,7 @@ void forEach(void f(E element)) {
 </div>
 <div class="method"><h4 id="getRange">
 <span class="show-code">Code</span>
-<a href="../core/List.html">List</a>&lt;<a href="../dartlib/ListBase.html">E</a>&gt; <strong>getRange</strong>(<a href="../core/int.html">int</a> start, <a href="../core/int.html">int</a> itemCount) <a class="anchor-link" href="#getRange"
+List&lt;<a href="../dartlib/ListBase.html">E</a>&gt; <strong>getRange</strong>(int start, int itemCount) <a class="anchor-link" href="#getRange"
               title="Permalink to ListBase&lt;E&gt;.getRange">#</a></h4>
 <div class="doc">
 <p>Returns a new list containing 
@@ -152,7 +152,7 @@ List&lt;E&gt; getRange(int start, int itemCount)  {
 </div>
 <div class="method"><h4 id="indexOf">
 <span class="show-code">Code</span>
-<a href="../core/int.html">int</a> <strong>indexOf</strong>(<a href="../dartlib/ListBase.html">E</a> element, [<a href="../core/int.html">int</a> start = 0]) <a class="anchor-link" href="#indexOf"
+int <strong>indexOf</strong>(<a href="../dartlib/ListBase.html">E</a> element, [int start = 0]) <a class="anchor-link" href="#indexOf"
               title="Permalink to ListBase&lt;E&gt;.indexOf">#</a></h4>
 <div class="doc">
 <p>Returns the first index of 
@@ -175,7 +175,7 @@ int indexOf(E element, [int start=0]) {
 </div>
 <div class="method"><h4 id="isEmpty">
 <span class="show-code">Code</span>
-<a href="../core/bool.html">bool</a> <strong>isEmpty</strong>() <a class="anchor-link" href="#isEmpty"
+bool <strong>isEmpty</strong>() <a class="anchor-link" href="#isEmpty"
               title="Permalink to ListBase&lt;E&gt;.isEmpty">#</a></h4>
 <div class="doc">
 <p>Returns true if there is no element in this collection.</p>
@@ -186,7 +186,7 @@ bool isEmpty() =&gt; length == 0;
 </div>
 <div class="method"><h4 id="iterator">
 <span class="show-code">Code</span>
-<a href="../core/Iterator.html">Iterator</a>&lt;<a href="../dartlib/ListBase.html">E</a>&gt; <strong>iterator</strong>() <a class="anchor-link" href="#iterator"
+Iterator&lt;<a href="../dartlib/ListBase.html">E</a>&gt; <strong>iterator</strong>() <a class="anchor-link" href="#iterator"
               title="Permalink to ListBase&lt;E&gt;.iterator">#</a></h4>
 <div class="doc">
 <p>Returns an <code>Iterator</code> that iterates over this <code>Iterable</code> object.</p>
@@ -211,7 +211,7 @@ E last() =&gt; this[this.length-1];
 </div>
 <div class="method"><h4 id="lastIndexOf">
 <span class="show-code">Code</span>
-<a href="../core/int.html">int</a> <strong>lastIndexOf</strong>(<a href="../dartlib/ListBase.html">E</a> element, [<a href="../core/int.html">int</a> start = 0]) <a class="anchor-link" href="#lastIndexOf"
+int <strong>lastIndexOf</strong>(<a href="../dartlib/ListBase.html">E</a> element, [int start = 0]) <a class="anchor-link" href="#lastIndexOf"
               title="Permalink to ListBase&lt;E&gt;.lastIndexOf">#</a></h4>
 <div class="doc">
 <p>Returns the last index of 
@@ -234,7 +234,7 @@ int lastIndexOf(E element, [int start=0]) {
 </div>
 <div class="method"><h4 id="length">
 <span class="show-code">Code</span>
-<a href="../core/int.html">int</a> <strong>get length</strong>() <a class="anchor-link" href="#length"
+int <strong>get length</strong>() <a class="anchor-link" href="#length"
               title="Permalink to ListBase&lt;E&gt;.get length">#</a></h4>
 <div class="doc">
 <p>Throws a <code>NotImplementedException</code>.</p>
@@ -248,7 +248,7 @@ int get length() {
 </div>
 <div class="method"><h4 id="map">
 <span class="show-code">Code</span>
-<a href="../core/Collection.html">Collection</a> <strong>map</strong>(f(<a href="../dartlib/ListBase.html">E</a> element)) <a class="anchor-link" href="#map"
+Collection <strong>map</strong>(f(<a href="../dartlib/ListBase.html">E</a> element)) <a class="anchor-link" href="#map"
               title="Permalink to ListBase&lt;E&gt;.map">#</a></h4>
 <div class="doc">
 <p>Returns a new collection with the elements <code>f(e)</code>
@@ -269,7 +269,7 @@ Collection map(f(E element)) {
 </div>
 <div class="method"><h4 id="operator">
 <span class="show-code">Code</span>
-<a href="../dartlib/ListBase.html">E</a> <strong>operator []</strong>(<a href="../core/int.html">int</a> index) <a class="anchor-link" href="#operator"
+<a href="../dartlib/ListBase.html">E</a> <strong>operator []</strong>(int index) <a class="anchor-link" href="#operator"
               title="Permalink to ListBase&lt;E&gt;.operator []">#</a></h4>
 <div class="doc">
 <p>Throws a <code>NotImplementedException</code>.</p>
@@ -286,7 +286,7 @@ E operator [](int index) {
 </div>
 <div class="method"><h4 id="some">
 <span class="show-code">Code</span>
-<a href="../core/bool.html">bool</a> <strong>some</strong>(<a href="../core/bool.html">bool</a> f(<a href="../dartlib/ListBase.html">E</a> element)) <a class="anchor-link" href="#some"
+bool <strong>some</strong>(bool f(<a href="../dartlib/ListBase.html">E</a> element)) <a class="anchor-link" href="#some"
               title="Permalink to ListBase&lt;E&gt;.some">#</a></h4>
 <div class="doc">
 <p>Returns true if one element of this collection satisfies the

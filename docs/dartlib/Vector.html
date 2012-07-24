@@ -32,7 +32,7 @@
 <h3>Constructors</h3>
 <div class="method"><h4 id="Vector">
 <span class="show-code">Code</span>
-const <strong>Vector</strong>([<a href="../core/num.html">num</a> x = 0, <a href="../core/num.html">num</a> y = 0]) <a class="anchor-link" href="#Vector"
+const <strong>Vector</strong>([num x = 0, num y = 0]) <a class="anchor-link" href="#Vector"
               title="Permalink to Vector.Vector">#</a></h4>
 <div class="doc">
 
@@ -44,7 +44,7 @@ const Vector([num x = 0, num y = 0]) : super(x,y);
 <h3>Methods</h3>
 <div class="method"><h4 id="cross">
 <span class="show-code">Code</span>
-<a href="../core/num.html">num</a> <strong>cross</strong>(<a href="../dartlib/Vector.html">Vector</a> other) <a class="anchor-link" href="#cross"
+num <strong>cross</strong>(<a href="../dartlib/Vector.html">Vector</a> other) <a class="anchor-link" href="#cross"
               title="Permalink to Vector.cross">#</a></h4>
 <div class="doc">
 <p>Computes the cross product with the given <a class="crossref" href="../dartlib/Vector.html#new:Vector">Vector</a>.</p>
@@ -55,7 +55,7 @@ num cross(Vector other) =&gt; x * other.y - y * other.x;
 </div>
 <div class="method"><h4 id="dot">
 <span class="show-code">Code</span>
-<a href="../core/num.html">num</a> <strong>dot</strong>(<a href="../dartlib/Vector.html">Vector</a> other) <a class="anchor-link" href="#dot"
+num <strong>dot</strong>(<a href="../dartlib/Vector.html">Vector</a> other) <a class="anchor-link" href="#dot"
               title="Permalink to Vector.dot">#</a></h4>
 <div class="doc">
 <p>Computes the dot product with the given <a class="crossref" href="../dartlib/Vector.html#new:Vector">Vector</a>.</p>
@@ -66,7 +66,7 @@ num dot(Vector other) =&gt; x * other.x + y * other.y;
 </div>
 <div class="method"><h4 id="getAngle">
 <span class="show-code">Code</span>
-<a href="../core/num.html">num</a> <strong>getAngle</strong>(<a href="../dartlib/Vector.html">Vector</a> other) <a class="anchor-link" href="#getAngle"
+num <strong>getAngle</strong>(<a href="../dartlib/Vector.html">Vector</a> other) <a class="anchor-link" href="#getAngle"
               title="Permalink to Vector.getAngle">#</a></h4>
 <div class="doc">
 <p>Computes the angle between this and another <a class="crossref" href="../dartlib/Vector.html#new:Vector">Vector</a>.</p>
@@ -77,7 +77,7 @@ num getAngle (Vector other) =&gt; Math.acos(dot(other));
 </div>
 <div class="method"><h4 id="length">
 <span class="show-code">Code</span>
-<a href="../core/num.html">num</a> <strong>get length</strong>() <a class="anchor-link" href="#length"
+num <strong>get length</strong>() <a class="anchor-link" href="#length"
               title="Permalink to Vector.get length">#</a></h4>
 <div class="doc">
 <p>Computes the length of this <a class="crossref" href="../dartlib/Vector.html#new:Vector">Vector</a>.</p>
@@ -99,7 +99,7 @@ Vector get normal() =&gt; this.scale(1 / this.length);
 </div>
 <div class="method"><h4 id="operator">
 <span class="show-code">Code</span>
-<a href="../dartlib/Vector.html">Vector</a> <strong>operator *</strong>(<a href="../core/num.html">num</a> magnitude) <a class="anchor-link" href="#operator"
+<a href="../dartlib/Vector.html">Vector</a> <strong>operator *</strong>(num magnitude) <a class="anchor-link" href="#operator"
               title="Permalink to Vector.operator *">#</a></h4>
 <div class="doc">
 <p>Multiplies each dimensions by the provided magnitude and returns a new <a class="crossref" href="../dartlib/Vector.html#new:Vector">Vector</a>.</p>
@@ -121,7 +121,7 @@ Vector operator +(Coordinate other) =&gt; new Vector(x + other.x, y + other.y);
 </div>
 <div class="method"><h4 id="rotate">
 <span class="show-code">Code</span>
-<a href="../dartlib/Vector.html">Vector</a> <strong>rotate</strong>(<a href="../core/num.html">num</a> angle) <a class="anchor-link" href="#rotate"
+<a href="../dartlib/Vector.html">Vector</a> <strong>rotate</strong>(num angle) <a class="anchor-link" href="#rotate"
               title="Permalink to Vector.rotate">#</a></h4>
 <div class="doc">
 
@@ -138,7 +138,7 @@ Vector rotate(num angle) {
 </div>
 <div class="method"><h4 id="rotateAroundPoint">
 <span class="show-code">Code</span>
-<a href="../dartlib/Vector.html">Vector</a> <strong>rotateAroundPoint</strong>(<a href="../dartlib/Coordinate.html">Coordinate</a> axisPoint, <a href="../core/num.html">num</a> angle) <a class="anchor-link" href="#rotateAroundPoint"
+<a href="../dartlib/Vector.html">Vector</a> <strong>rotateAroundPoint</strong>(<a href="../dartlib/Coordinate.html">Coordinate</a> axisPoint, num angle) <a class="anchor-link" href="#rotateAroundPoint"
               title="Permalink to Vector.rotateAroundPoint">#</a></h4>
 <div class="doc">
 
@@ -151,7 +151,7 @@ Vector rotateAroundPoint(Coordinate axisPoint, num angle) {
 </div>
 <div class="method"><h4 id="scale">
 <span class="show-code">Code</span>
-<a href="../dartlib/Vector.html">Vector</a> <strong>scale</strong>(<a href="../core/num.html">num</a> magnitude) <a class="anchor-link" href="#scale"
+<a href="../dartlib/Vector.html">Vector</a> <strong>scale</strong>(num magnitude) <a class="anchor-link" href="#scale"
               title="Permalink to Vector.scale">#</a></h4>
 <div class="doc">
 <p>Multiplies each dimensions by the provided magnitude and returns a new <a class="crossref" href="../dartlib/Vector.html#new:Vector">Vector</a>.</p>
