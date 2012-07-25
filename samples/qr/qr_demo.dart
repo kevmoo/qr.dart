@@ -70,7 +70,7 @@ class QrDemo{
       typeDiv.elements.add(radio);
 
       final label = new LabelElement();
-      label.innerHTML = "Level $i";
+      label.innerHTML = "$i";
       label.htmlFor = radio.id;
       typeDiv.elements.add(label);
     }

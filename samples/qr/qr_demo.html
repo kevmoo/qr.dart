@@ -4,10 +4,15 @@
   <head>
     <title>dartlib - Qr Demo</title>
     <style type='text/css'>
-    input#input, canvas {
+    input#input, canvas, #type-div, #error-div {
       margin: 20px auto;
       display: block;
       width: 600px;
+    }
+    label {
+      display: inline-block;
+      min-width: 20px;
+      margin: 0 5px 0 1px;
     }
     </style>
   </head>
@@ -17,7 +22,7 @@
       <canvas height='600' id='content' width='600'>
       </canvas>
       <input type='text' id='input' style='font-size:30px;'></input>
-      <div id='type-div'></div>
-      <div id='error-div'></div>
+      <div id='type-div'>Size: </div>
+      <div id='error-div'>Error Correction: </div>
   </body>
 </html>
