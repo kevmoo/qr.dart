@@ -43,11 +43,12 @@ class TestQrBitBuffer {
   }
 
   static void _testSimple() {
+    final rnd = new Random();
     final bb = new QrBitBuffer();
     final sampleBits = new List<bool>();
 
-    for(int i = 0; i < 10; i++) {
-      final b = Math.random() > 0.5;
+    for(int i = 0; i < 100; i++) {
+      final b = rnd.nextBool();
       sampleBits.add(b);
       bb.putBit(b);
     }
