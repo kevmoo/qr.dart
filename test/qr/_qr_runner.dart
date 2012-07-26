@@ -1,6 +1,5 @@
 #library('dartlib_test_core');
 
-#import('dart:math');
 #import('../../vendor/unittest/unittest.dart');
 #import('../../lib/dartlib.dart');
 #import('../../lib/qr.dart');

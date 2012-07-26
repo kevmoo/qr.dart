@@ -1,6 +1,7 @@
 #library('dartlib');
 
 #import("dart:coreimpl");
+#import('dart:math');
 
 #source('dartlib/typedefs.dart');
 

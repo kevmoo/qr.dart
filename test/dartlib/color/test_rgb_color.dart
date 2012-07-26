@@ -1,6 +1,4 @@
 class TestRgbColor {
-  static Random _rnd;
-
   static void run() {
     group('RgbColor', (){
       test('Equals', _testEquals);
@@ -100,13 +98,7 @@ class TestRgbColor {
       _randomIntComponent());
   }
 
-  static int _randomIntComponent() {
-    if(_rnd == null) {
-      _rnd = new Random();
-    }
-    final v = _rnd.nextInt(256);
-    return v;
-  }
+  static int _randomIntComponent() => rnd.nextInt(256);
 
   static void _expectHslRoundTrip(RgbColor rgb) {
     final hsl = rgb.toHsl();

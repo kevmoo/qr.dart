@@ -43,7 +43,6 @@ class TestQrBitBuffer {
   }
 
   static void _testSimple() {
-    final rnd = new Random();
     final bb = new QrBitBuffer();
     final sampleBits = new List<bool>();
 
