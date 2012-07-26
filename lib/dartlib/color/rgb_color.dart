@@ -60,6 +60,8 @@ class RgbColor implements Hashable {
         s = (max - min) / (2 * l);
       } else {
         s = (max - min) / (2 - 2 * l);
+        // handle a nice case where s can be just over 1
+        s = Math.min(1, s);
       }
     }
 
