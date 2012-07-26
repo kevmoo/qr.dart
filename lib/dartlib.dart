@@ -39,6 +39,7 @@
 #source('dartlib/math/vector.dart');
 #source('dartlib/math/rect.dart');
 #source('dartlib/math/affine_transform.dart');
+#source('dartlib/math/bungee_num.dart');
 
 #source('dartlib/color/rgb_color.dart');
 #source('dartlib/color/hsl_color.dart');
