@@ -1,6 +1,10 @@
-void requireArgument(bool truth, [String arg = ""]) {
+void requireArgument(bool truth, [String arg = "", String message]) {
   if(!truth) {
-    throw new IllegalArgumentException(arg);
+    if(message != null) {
+      throw new DetailedIllegalArgumentException(arg, message);      
+    } else {
+      throw new IllegalArgumentException(arg);
+    }
   }
 }
 

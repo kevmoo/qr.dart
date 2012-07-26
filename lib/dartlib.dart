@@ -14,6 +14,7 @@
 
 #source('dartlib/exceptions/null_argument_exception.dart');
 #source('dartlib/exceptions/invalid_operation_exception.dart');
+#source('dartlib/exceptions/detailed_illegal_argument_exception.dart');
 
 #source('dartlib/requires.dart');
 #source('dartlib/util.dart');
