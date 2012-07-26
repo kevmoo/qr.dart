@@ -10,10 +10,10 @@ class HslColor implements Hashable {
     requireArgument(isValidNumber(h), 'h');
     h = (h % 360);
 
-    requireArgument(isValidNumber(s), 's');
-    requireArgument(s >= 0 && s <= 1, 's');
-    requireArgument(isValidNumber(l), 'l');
-    requireArgument(l >= 0 && l <= 1, 'l');
+    requireArgument(isValidNumber(s), 's', 'must be a valid number');
+    requireArgument(s >= 0 && s <= 1, 's', 'must be >= 0 && <= 1 but was $s');
+    requireArgument(isValidNumber(l), 'l', 'must be a valid number');
+    requireArgument(l >= 0 && l <= 1, 'l', 'must be >= 0 && <=1 but was $l');
 
     return new HslColor._internal(h, s, l);
   }
