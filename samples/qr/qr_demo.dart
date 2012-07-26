@@ -131,10 +131,7 @@ class QrDemo{
   }
 
   void _update() {
-    final t = new core.Tuple3<int,int,String>(
-        _typeNumber,
-        _errorCorrectLevel,
-        _value);
+    final t = [_typeNumber, _errorCorrectLevel, _value];
 
     _qrMapper.input = t;
   }
@@ -171,15 +168,15 @@ class QrDemo{
 }
 
 class _QrCalc
-  extends SendPortValue<core.Tuple3<int, int, String>, List<bool>> {
+  extends SendPortValue<List, List<bool>> {
   _QrCalc() : super(spawnFunction(_qrIsolate));
 }
 
 void _qrIsolate() {
 
-  new SendValuePort<core.Tuple3<int, int, String>, List<bool>>((input) {
-    final code = new QrCode(input.Item1, input.Item2);
-    code.addData(input.Item3);
+  new SendValuePort<List, List<bool>>((input) {
+    final code = new QrCode(input[0], input[1]);
+    code.addData(input[2]);
     code.make();
 
     final List<bool> squares = new List<bool>();
