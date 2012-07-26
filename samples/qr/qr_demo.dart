@@ -11,6 +11,7 @@ main(){
   final demo = new QrDemo(canvas, typeDiv, errorDiv);
 
   final InputElement input = query('#input');
+
   input.value = "Type your message in here...";
   demo.value = input.value;
 
@@ -30,6 +31,7 @@ main(){
 class QrDemo{
   static final String _typeRadioIdKey = 'type-value';
   static final String _errorLevelIdKey = 'error-value';
+  final core.BungeeNum _scale;
   final CanvasElement _canvas;
   final _QrCalc _qrMapper;
   final CanvasRenderingContext2D _ctx;
@@ -46,7 +48,8 @@ class QrDemo{
 
     _canvas = canvas,
     _ctx = canvas.context2d,
-    _qrMapper = new _QrCalc() {
+    _qrMapper = new _QrCalc(),
+    _scale = new core.BungeeNum(1) {
     _ctx.fillStyle = 'black';
 
     _qrMapper.outputChanged.add((args) {
@@ -145,7 +148,13 @@ class QrDemo{
     final scale = minDimension ~/ size;
     final offset = (minDimension - (scale * size)) ~/ 2;
 
-    _ctx.setTransform(scale, 0, 0, scale, offset, offset);
+    _scale.target = scale;
+
+    if(_scale.update()) {
+      requestFrame();
+    }
+
+    _ctx.setTransform(_scale.current, 0, 0, _scale.current, offset, offset);
 
     if(_squares.length > 0) {
       assert(_squares.length == size * size);
