@@ -67,14 +67,18 @@ NumberEnumerable n$(Iterable&lt;num&gt; source) {
 </div>
 <div class="method"><h4 id="requireArgument">
 <span class="show-code">Code</span>
-void <strong>requireArgument</strong>(bool truth, [String arg = ""]) <a class="anchor-link" href="#requireArgument"
+void <strong>requireArgument</strong>(bool truth, [String arg = "", String message]) <a class="anchor-link" href="#requireArgument"
               title="Permalink to requireArgument">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-void requireArgument(bool truth, [String arg = ""]) {
+void requireArgument(bool truth, [String arg = "", String message]) {
   if(!truth) {
-    throw new IllegalArgumentException(arg);
+    if(message != null) {
+      throw new DetailedIllegalArgumentException(arg, message);      
+    } else {
+      throw new IllegalArgumentException(arg);
+    }
   }
 }
 </pre>
@@ -95,10 +99,32 @@ void requireArgumentNotNull(argument, [String argName = ""]) {
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="rnd">
+<span class="show-code">Code</span>
+Random <strong>get rnd</strong>() <a class="anchor-link" href="#rnd"
+              title="Permalink to get rnd">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Random get rnd() {
+  if(_dartlibHelperRandom == null) {
+    _dartlibHelperRandom = new Random();
+  }
+  return _dartlibHelperRandom;
+}
+</pre>
+</div>
+</div>
 <h3>Classes</h3>
           <div class="type">
           <h4>
             <a href="dartlib/AffineTransform.html"><strong>AffineTransform</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/BungeeNum.html"><strong>BungeeNum</strong></a>
           </h4>
           </div>
           
@@ -338,6 +364,12 @@ void requireArgumentNotNull(argument, [String argName = ""]) {
           </div>
           
 <h3>Exceptions</h3>
+          <div class="type">
+          <h4>
+            <a href="dartlib/DetailedIllegalArgumentException.html"><strong>DetailedIllegalArgumentException</strong></a>
+          </h4>
+          </div>
+          
           <div class="type">
           <h4>
             <a href="dartlib/InvalidOperationException.html"><strong>InvalidOperationException</strong></a>
