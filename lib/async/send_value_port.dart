@@ -6,12 +6,20 @@ class SendValuePort<TInput, TOutput> {
 
   SendValuePort(this._func) {
     port.receive((TInput value, SendPort reply) {
+      FutureValueResult<TOutput> _message;
       try {
         final TOutput output = _func(value);
-        reply.send(new FutureValueResult<TOutput>(output));
+        _message = new FutureValueResult<TOutput>(output);
       } catch(final ex) {
-        reply.send(new FutureValueResult<TOutput>.fromException(ex));
+        // TODO: I'd love to use real exceptions here
+        // but they blow up over the wire
+        // so: to string!
+        final String exString = ex.toString();
+        _message = new FutureValueResult<TOutput>.exception(exString);
       }
+
+      final map = _message.toMap();
+      reply.send(map);
     });
   }
 }

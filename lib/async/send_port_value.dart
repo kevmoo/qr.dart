@@ -25,8 +25,9 @@ class SendPortValue<TInput, TOutput> extends FutureValue<TInput, TOutput> {
     assert(_innerFuture != null);
     _innerFuture = null;
 
-    if(value is FutureValueResult) {
-      _sendValueResultCompleted(value);
+    if(value is Map && FutureValueResult.isMyMap(value)) {
+      final fvr = new FutureValueResult.fromMap(value);
+      _sendValueResultCompleted(fvr);
     } else {
       _complete(value);
     }
