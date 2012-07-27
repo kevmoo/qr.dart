@@ -1,8 +1,8 @@
 class FutureValue<TInput, TOutput> {
-  FutureValue()
-  : _outputChangedHandle = new EventHandle<EventArgs>(),
-  _inputChangedHandle = new EventHandle<EventArgs>(),
-  _errorHandle = new EventHandle<Object>();
+  FutureValue() :
+    _outputChangedHandle = new EventHandle<EventArgs>(),
+    _inputChangedHandle = new EventHandle<EventArgs>(),
+    _errorHandle = new EventHandle<Object>();
 
   TInput get input() => _input;
 

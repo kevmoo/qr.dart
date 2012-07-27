@@ -45,7 +45,6 @@ class QrDemo{
   bool _frameRequested = false;
 
   QrDemo(CanvasElement canvas, DivElement typeDiv, DivElement errorDiv) :
-
     _canvas = canvas,
     _ctx = canvas.context2d,
     _qrMapper = new _QrCalc(),
