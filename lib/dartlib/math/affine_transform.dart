@@ -38,6 +38,14 @@ class AffineTransform implements Cloneable<AffineTransform> {
         _m02 == 0 && _m12 == 0;
   }
 
+  AffineTransform scale(num sx, num sy) {
+    _m00 *= sx;
+    _m10 *= sx;
+    _m01 *= sy;
+    _m11 *= sy;
+    return this;
+  }
+
   AffineTransform concatenate(tx) {
     var m0 = this._m00;
     var m1 = this._m01;
