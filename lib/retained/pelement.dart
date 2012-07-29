@@ -2,6 +2,7 @@ class PElement extends core.PropertyObject {
   final List<core.AffineTransform> _transforms;
   final bool cacheEnabled;
   final core.EventHandle<core.EventArgs> _updatedEventHandle;
+  final core.EventHandle<core.EventArgs> _invalidatedEventHandle;
   CanvasElement _cacheCanvas;
 
   num _width, _height, _alpha;
@@ -11,7 +12,8 @@ class PElement extends core.PropertyObject {
 
   PElement(this._width, this._height, [this.cacheEnabled = false]) :
     _transforms = new List<core.AffineTransform>(),
-    _updatedEventHandle = new core.EventHandle<core.EventArgs>();
+    _updatedEventHandle = new core.EventHandle<core.EventArgs>(),
+    _invalidatedEventHandle = new core.EventHandle<core.EventArgs>();
 
   num get width() => _width;
 
@@ -19,9 +21,9 @@ class PElement extends core.PropertyObject {
 
   core.Size get size() => new core.Size(_width, _height);
 
-  core.EventRoot<core.EventArgs> get updated(){
-    return _updatedEventHandle;
-  }
+  core.EventRoot<core.EventArgs> get updated() => _updatedEventHandle;
+
+  core.EventRoot<core.EventArgs> get invalidated() => _invalidatedEventHandle;
 
   core.AffineTransform getTransform() {
     var tx = new core.AffineTransform();
@@ -167,6 +169,7 @@ class PElement extends core.PropertyObject {
 
   void _invalidateParent(){
     assert(this._parent != null);
+    _invalidatedEventHandle.fireEvent(core.EventArgs.empty);
     _parent.childInvalidated(this);
   }
 }

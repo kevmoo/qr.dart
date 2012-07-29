@@ -2,17 +2,17 @@ class Stage extends core.PropertyObject
   implements ElementParent {
   final CanvasElement _canvas;
   final PElement _element;
-  final core.EventHandle<core.EventArgs> _updatedEventHandle;
+  final core.EventHandle<core.EventArgs> _invalidatedEventHandle;
   CanvasRenderingContext2D _ctx;
 
   Stage(this._canvas, this._element) :
-    _updatedEventHandle = new core.EventHandle<core.EventArgs>() {
+    _invalidatedEventHandle = new core.EventHandle<core.EventArgs>() {
     _element.registerParent(this);
   }
 
   core.Size get size() => new core.Size(_canvas.width, _canvas.height);
 
-  core.EventRoot<core.EventArgs> get updated() => _updatedEventHandle;
+  core.EventRoot<core.EventArgs> get invalidated() => _invalidatedEventHandle;
 
   PElement get rootElement() => _element;
 
@@ -35,12 +35,12 @@ class Stage extends core.PropertyObject
 
   void childInvalidated(PElement child){
     assert(child == _element);
-    _updatedEventHandle.fireEvent(core.EventArgs.empty);
+    _invalidatedEventHandle.fireEvent(core.EventArgs.empty);
   }
 
   void disposeInternal(){
     super.disposeInternal();
-    _updatedEventHandle.dispose();
+    _invalidatedEventHandle.dispose();
   }
 
   core.AffineTransform getTransformToRoot() => new core.AffineTransform();
