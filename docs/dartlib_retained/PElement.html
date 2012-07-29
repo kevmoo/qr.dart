@@ -42,7 +42,8 @@ new <strong>PElement</strong>(num _width, num _height, [bool cacheEnabled = fals
 <pre class="source">
 PElement(this._width, this._height, [this.cacheEnabled = false]) :
   _transforms = new List&lt;core.AffineTransform&gt;(),
-  _updatedEventHandle = new core.EventHandle&lt;core.EventArgs&gt;();
+  _updatedEventHandle = new core.EventHandle&lt;core.EventArgs&gt;(),
+  _invalidatedEventHandle = new core.EventHandle&lt;core.EventArgs&gt;();
 </pre>
 </div>
 </div>
@@ -231,6 +232,17 @@ void invalidateDraw(){
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="invalidated">
+<span class="show-code">Code</span>
+<a href="../dartlib/EventRoot.html">EventRoot</a>&lt;<a href="../dartlib/EventArgs.html">EventArgs</a>&gt; <strong>get invalidated</strong>() <a class="anchor-link" href="#invalidated"
+              title="Permalink to PElement.get invalidated">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+core.EventRoot&lt;core.EventArgs&gt; get invalidated() =&gt; _invalidatedEventHandle;
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="registerParent">
 <span class="show-code">Code</span>
 void <strong>registerParent</strong>(<a href="../dartlib_retained/ElementParent.html">ElementParent</a> parent) <a class="anchor-link" href="#registerParent"
@@ -276,9 +288,7 @@ void update(){
 <div class="doc">
 
 <pre class="source">
-core.EventRoot&lt;core.EventArgs&gt; get updated(){
-  return _updatedEventHandle;
-}
+core.EventRoot&lt;core.EventArgs&gt; get updated() =&gt; _updatedEventHandle;
 </pre>
 </div>
 </div>

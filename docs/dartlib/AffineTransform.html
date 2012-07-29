@@ -184,6 +184,23 @@ AffineTransform rotate(num theta, num x, num y) {
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="scale">
+<span class="show-code">Code</span>
+<a href="../dartlib/AffineTransform.html">AffineTransform</a> <strong>scale</strong>(num sx, num sy) <a class="anchor-link" href="#scale"
+              title="Permalink to AffineTransform.scale">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+AffineTransform scale(num sx, num sy) {
+  _m00 *= sx;
+  _m10 *= sx;
+  _m01 *= sy;
+  _m11 *= sy;
+  return this;
+}
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="scaleX">
 <span class="show-code">Code</span>
 num <strong>get scaleX</strong>() <a class="anchor-link" href="#scaleX"
