@@ -16,22 +16,31 @@ class TestCase {
   final String description;
 
   /** The setup function to call before the test, if any. */
-  final _setup;
+  Function _setUp;
+
+  Function get setUp() => _setUp;
+  set setUp(Function value) => _setUp = value;
 
   /** The teardown function to call after the test, if any. */
-  final _teardown;
+  Function _tearDown;
+
+  Function get tearDown() => _tearDown;
+  set tearDown(Function value) => _tearDown = value;
 
   /** The body of the test case. */
-  final TestFunction test;
+  TestFunction test;
 
-  /** Total number of callbacks to wait for before the test completes. */
-  int callbacks;
+  /**
+   * Remaining number of callbacks functions that must reach a 'done' state
+   * to wait for before the test completes.
+   */
+  int callbackFunctionsOutstanding;
 
   /** Error or failure message. */
   String message = '';
 
   /**
-   * One of [_PASS], [_FAIL], or [_ERROR] or [null] if the test hasn't run yet.
+   * One of [_PASS], [_FAIL], [_ERROR], or [null] if the test hasn't run yet.
    */
   String result;
 
@@ -45,43 +54,57 @@ class TestCase {
 
   Duration runningTime;
 
-  TestCase(this.id, this.description, this.test, this.callbacks)
-  : currentGroup = _currentGroup,
-    _setup = _testSetup,
-    _teardown = _testTeardown;
+  bool enabled = true;
 
-  bool get isComplete() => result != null;
+  bool _doneTeardown;
+
+  TestCase(this.id, this.description, this.test,
+           this.callbackFunctionsOutstanding)
+  : currentGroup = _currentGroup,
+    _setUp = _testSetup,
+    _tearDown = _testTeardown;
+
+  bool get isComplete() => !enabled || result != null;
 
   void run() {
-    if (_setup != null) {
-      _setup();
-    }
-    try {
+    if (enabled) {
+      result = stackTrace = null;
+      message = '';
+      _doneTeardown = false;
+      if (_setUp != null) {
+        _setUp();
+      }
       _config.onTestStart(this);
       test();
-    } finally {
-      if (_teardown != null) {
-        _teardown();
-      }
     }
+  }
+
+  void _complete() {
+    if (!_doneTeardown) {
+      if (_tearDown != null) {
+        _tearDown();
+      }
+      _doneTeardown = true;
+    }
+    _config.onTestResult(this);
   }
 
   void pass() {
     result = _PASS;
-    _config.onTestResult(this);
+    _complete();
   }
 
   void fail(String messageText, String stack) {
     result = _FAIL;
     message = messageText;
     stackTrace = stack;
-    _config.onTestResult(this);
+    _complete();
   }
 
   void error(String messageText, String stack) {
     result = _ERROR;
     message = messageText;
     stackTrace = stack;
-    _config.onTestResult(this);
+    _complete();
   }
 }

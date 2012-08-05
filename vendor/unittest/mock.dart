@@ -8,11 +8,12 @@
  * it is instead a [signature] describing the method signature filter
  * that was used to select the logs that were verified.
  */
-String _mockingErrorFormatter(actual, Matcher matcher, String signature) {
+String _mockingErrorFormatter(actual, Matcher matcher, String signature,
+                              MatchState matchState, bool verbose) {
   var description = new StringDescription();
   description.add('Expected ${signature} ').addDescriptionOf(matcher).
       add('\n     but: ');
-  matcher.describeMismatch(actual, description).add('.');
+  matcher.describeMismatch(actual, description, matchState, verbose).add('.');
   return description.toString();
 }
 
@@ -28,8 +29,10 @@ class _MockFailureHandler implements FailureHandler {
   void fail(String reason) {
     proxy.fail(reason);
   }
-  void failMatch(actual, Matcher matcher, String reason) {
-    proxy.fail(_mockingErrorFormatter(actual, matcher, reason));
+  void failMatch(actual, Matcher matcher, String reason,
+                 MatchState matchState, bool verbose) {
+    proxy.fail(_mockingErrorFormatter(actual, matcher, reason,
+        matchState, verbose));
   }
 }
 
@@ -41,20 +44,20 @@ _MockFailureHandler _mockFailureHandler = null;
 final _noArg = const _Sentinel();
 
 /** The ways in which a call to a mock method can be handled. */
-class _Action {
+class Action {
   /** Do nothing (void method) */
-  static final IGNORE = const _Action._('IGNORE');
+  static final IGNORE = const Action._('IGNORE');
 
   /** Return a supplied value. */
-  static final RETURN = const _Action._('RETURN');
+  static final RETURN = const Action._('RETURN');
 
   /** Throw a supplied value. */
-  static final THROW = const _Action._('THROW');
+  static final THROW = const Action._('THROW');
 
   /** Call a supplied function. */
-  static final PROXY = const _Action._('PROXY');
+  static final PROXY = const Action._('PROXY');
 
-  const _Action._(this.name);
+  const Action._(this.name);
 
   final String name;
 }
@@ -62,15 +65,15 @@ class _Action {
 /**
  * The behavior of a method call in the mock library is specified
  * with [Responder]s. A [Responder] has a [value] to throw
- * or return (depending on whether [isThrow] is true or not, respectively),
+ * or return (depending on the type of [action]),
  * and can either be one-shot, multi-shot, or infinitely repeating,
  * depending on the value of [count (1, greater than 1, or 0 respectively).
  */
 class Responder {
   var value;
-  _Action action;
+  Action action;
   int count;
-  Responder(this.value, [this.count = 1, this.action = _Action.RETURN]);
+  Responder(this.value, [this.count = 1, this.action = Action.RETURN]);
 }
 
 /**
@@ -157,14 +160,15 @@ class CallMatcher {
    * if it matches this [CallMatcher.
    */
   bool matches(String method, List arguments) {
-    if (!nameFilter.matches(method)) {
+    var matchState = new MatchState();
+    if (!nameFilter.matches(method, matchState)) {
       return false;
     }
     if (arguments.length < argMatchers.length) {
       throw new Exception("Less arguments than matchers for $method.");
     }
     for (var i = 0; i < argMatchers.length; i++) {
-      if (!argMatchers[i].matches(arguments[i])) {
+      if (!argMatchers[i].matches(arguments[i], matchState)) {
         return false;
       }
     }
@@ -209,7 +213,7 @@ class Behavior {
    * (1 by default).
    */
   Behavior thenReturn(value, [count = 1]) {
-    actions.add(new Responder(value, count, _Action.RETURN));
+    actions.add(new Responder(value, count, Action.RETURN));
     return this; // For chaining calls.
   }
 
@@ -223,7 +227,7 @@ class Behavior {
    * times (1 by default).
    */
   Behavior thenThrow(value, [count = 1]) {
-    actions.add(new Responder(value, count, _Action.THROW));
+    actions.add(new Responder(value, count, Action.THROW));
     return this; // For chaining calls.
   }
 
@@ -249,7 +253,7 @@ class Behavior {
    *     m.when(callsTo('foo')).thenCall(() => 0)
    */
   Behavior thenCall(value, [count = 1]) {
-    actions.add(new Responder(value, count, _Action.PROXY));
+    actions.add(new Responder(value, count, Action.PROXY));
     return this; // For chaining calls.
   }
 
@@ -283,7 +287,7 @@ class LogEntry {
   final List args;
 
   /** The behavior that resulted. */
-  final _Action action;
+  final Action action;
 
   /** The value that was returned (if no throw). */
   final value;
@@ -309,11 +313,13 @@ class LogEntry {
       d.add('$secs.$msecs>  ');
     }
     d.add('${_qualifiedName(mockName, methodName)}(');
-    for (var i = 0; i < args.length; i++) {
-      if (i != 0) d.add(', ');
-      d.addDescriptionOf(args[i]);
+    if (args != null) {
+      for (var i = 0; i < args.length; i++) {
+        if (i != 0) d.add(', ');
+        d.addDescriptionOf(args[i]);
+      }
     }
-    d.add(') ${action == _Action.THROW ? "threw" : "returned"} ');
+    d.add(') ${action == Action.THROW ? "threw" : "returned"} ');
     d.addDescriptionOf(value);
     return d.toString();
   }
@@ -340,7 +346,7 @@ String _qualifiedName(owner, String method) {
  * class.
  */
 class LogEntryList {
-  final String filter;
+  String filter;
   List<LogEntry> logs;
   LogEntryList([this.filter]) {
     logs = new List<LogEntry>();
@@ -349,6 +355,25 @@ class LogEntryList {
   /** Add a [LogEntry] to the log. */
   add(LogEntry entry) => logs.add(entry);
 
+  /** Get the first entry, or null if no entries. */
+  get first() => (logs == null || logs.length == 0) ? null : logs[0];
+
+  /** Get the last entry, or null if no entries. */
+  get last() => (logs == null || logs.length == 0) ? null : logs.last();
+
+  /** Creates a LogEntry predicate function from the argument. */
+  Function _makePredicate(arg) {
+    if (arg == null) {
+      return (e) => true;
+    } else if (arg is CallMatcher) {
+      return (e) => arg.matches(e.methodName, e.args);
+    } else if (arg is Function) {
+      return arg;
+    } else {
+      throw new Exception("Invalid argument to _makePredicate.");
+    }
+  }
+
   /**
    * Create a new [LogEntryList] consisting of [LogEntry]s from
    * this list that match the specified [mockNameFilter] and [logFilter].
@@ -356,11 +381,13 @@ class LogEntryList {
    * or a [Matcher]. If [mockNameFilter] is null, this is the same as
    * [anything].
    * If [logFilter] is null, all entries in the log will be returned.
+   * Otherwise [logFilter] should be a [CallMatcher] or  predicate function
+   * that takes a [LogEntry] and returns a bool.
    * If [destructive] is true, the log entries are removed from the
    * original list.
    */
   LogEntryList getMatches([mockNameFilter,
-                          CallMatcher logFilter,
+                          logFilter,
                           Matcher actionMatcher,
                           bool destructive = false]) {
     if (mockNameFilter == null) {
@@ -368,18 +395,16 @@ class LogEntryList {
     } else {
       mockNameFilter = wrapMatcher(mockNameFilter);
     }
-    if (logFilter == null) {
-      logFilter = new CallMatcher();
-    }
+    Function entryFilter = _makePredicate(logFilter);
     String filterName = _qualifiedName(mockNameFilter, logFilter.toString());
     LogEntryList rtn = new LogEntryList(filterName);
+    MatchState matchState = new MatchState();
     for (var i = 0; i < logs.length; i++) {
       LogEntry entry = logs[i];
-      if (!mockNameFilter.matches(entry.mockName)) {
-        continue;
-      }
-      if (logFilter.matches(entry.methodName, entry.args)) {
-        if (actionMatcher == null || actionMatcher.matches(entry)) {
+      if (mockNameFilter.matches(entry.mockName, matchState) &&
+          entryFilter(entry)) {
+        if (actionMatcher == null ||
+            actionMatcher.matches(entry, matchState)) {
           rtn.add(entry);
           if (destructive) {
             logs.removeRange(i--, 1);
@@ -400,6 +425,11 @@ class LogEntryList {
     return this;
   }
 
+  /**
+   * Turn the logs into human-readable text. If [baseTime] is specified
+   * then each entry is prefixed with the offset from that time in
+   * milliseconds; otherwise the time of day is used.
+   */
   String toString([Date baseTime]) {
     String s = '';
     for (var e in logs) {
@@ -407,6 +437,366 @@ class LogEntryList {
     }
     return s;
   }
+
+  /**
+   *  Find the first log entry that satisfies [logFilter] and
+   *  return its position. A search [start] position can be provided
+   *  to allow for repeated searches. [logFilter] can be a [CallMatcher],
+   *  or a predicate function that takes a [LogEntry] argument and returns
+   *  a bool. If [logFilter] is null, it will match any [LogEntry].
+   *  If no entry is found, then [failureReturnValue] is returned.
+   */
+  int findLogEntry(logFilter, [int start = 0, int failureReturnValue = -1]) {
+    logFilter = _makePredicate(logFilter);
+    int pos = start;
+    while (pos < logs.length) {
+      if (logFilter(logs[pos])) {
+        return pos;
+      }
+      ++pos;
+    }
+    return failureReturnValue;
+  }
+
+  /**
+   * Returns log events that happened up to the first one that
+   * satisfies [logFilter]. If [inPlace] is true, then returns
+   * this LogEntryList after removing the from the first satisfier;
+   * onwards otherwise a new list is created. [description]
+   * is used to create a new name for the resulting list.
+   * [defaultPosition] is used as the index of the matching item in
+   * the case that no match is found.
+   */
+  LogEntryList _head(logFilter, bool inPlace,
+                     String description, int defaultPosition) {
+    if (filter != null) {
+      description = '$filter $description';
+    }
+    int pos = findLogEntry(logFilter, 0, defaultPosition);
+    if (inPlace) {
+      if (pos < logs.length) {
+        logs.removeRange(pos, logs.length - pos);
+      }
+      filter = description;
+      return this;
+    } else {
+      LogEntryList newList = new LogEntryList(description);
+      for (var i = 0; i < pos; i++) {
+        newList.logs.add(logs[i]);
+      }
+      return newList;
+    }
+  }
+
+  /**
+   * Returns log events that happened from the first one that
+   * satisfies [logFilter]. If [inPlace] is true, then returns
+   * this LogEntryList after removing the entries up to the first
+   * satisfier; otherwise a new list is created. [description]
+   * is used to create a new name for the resulting list.
+   * [defaultPosition] is used as the index of the matching item in
+   * the case that no match is found.
+   */
+  LogEntryList _tail(logFilter, bool inPlace,
+                     String description, int defaultPosition) {
+    if (filter != null) {
+      description = '$filter $description';
+    }
+    int pos = findLogEntry(logFilter, 0, defaultPosition);
+    if (inPlace) {
+      if (pos > 0) {
+        logs.removeRange(0, pos);
+      }
+      filter = description;
+      return this;
+    } else {
+      LogEntryList newList = new LogEntryList(description);
+      while (pos < logs.length) {
+        newList.logs.add(logs[pos++]);
+      }
+      return newList;
+    }
+  }
+
+  /**
+   * Returns log events that happened after [when]. If [inPlace]
+   * is true, then it returns this LogEntryList after removing
+   * the entries that happened up to [when]; otherwise a new
+   * list is created.
+   */
+  LogEntryList after(Date when, [bool inPlace = false]) =>
+      _tail((e) => e.time > when, inPlace, 'after $when', logs.length);
+
+  /**
+   * Returns log events that happened from [when] onwards. If
+   * [inPlace] is true, then it returns this LogEntryList after
+   * removing the entries that happened before [when]; otherwise
+   * a new list is created.
+   */
+  LogEntryList from(Date when, [bool inPlace = false]) =>
+      _tail((e) => e.time >= when, inPlace, 'from $when', logs.length);
+
+  /**
+   * Returns log events that happened until [when]. If [inPlace]
+   * is true, then it returns this LogEntryList after removing
+   * the entries that happened after [when]; otherwise a new
+   * list is created.
+   */
+  LogEntryList until(Date when, [bool inPlace = false]) =>
+      _head((e) => e.time > when, inPlace, 'until $when', logs.length);
+
+  /**
+   * Returns log events that happened before [when]. If [inPlace]
+   * is true, then it returns this LogEntryList after removing
+   * the entries that happened from [when] onwards; otherwise a new
+   * list is created.
+   */
+  LogEntryList before(Date when, [bool inPlace = false]) =>
+      _head((e) => e.time >= when, inPlace, 'before $when', logs.length);
+
+  /**
+   * Returns log events that happened after [logEntry]'s time.
+   * If [inPlace] is true, then it returns this LogEntryList after
+   * removing the entries that happened up to [when]; otherwise a new
+   * list is created. If [logEntry] is null the current time is used.
+   */
+  LogEntryList afterEntry(LogEntry logEntry, [bool inPlace = false]) =>
+      after(logEntry == null ? new Date.now() : logEntry.time);
+
+  /**
+   * Returns log events that happened from [logEntry]'s time onwards.
+   * If [inPlace] is true, then it returns this LogEntryList after
+   * removing the entries that happened before [when]; otherwise
+   * a new list is created. If [logEntry] is null the current time is used.
+   */
+  LogEntryList fromEntry(LogEntry logEntry, [bool inPlace = false]) =>
+      from(logEntry == null ? new Date.now() : logEntry.time);
+
+  /**
+   * Returns log events that happened until [logEntry]'s time. If
+   * [inPlace] is true, then it returns this LogEntryList after removing
+   * the entries that happened after [when]; otherwise a new
+   * list is created. If [logEntry] is null the epoch time is used.
+   */
+  LogEntryList untilEntry(LogEntry logEntry, [bool inPlace = false]) =>
+      until(logEntry == null ?
+          new Date.fromMillisecondsSinceEpoch(0) : logEntry.time);
+
+  /**
+   * Returns log events that happened before [logEntry]'s time. If
+   * [inPlace] is true, then it returns this LogEntryList after removing
+   * the entries that happened from [when] onwards; otherwise a new
+   * list is created. If [logEntry] is null the epoch time is used.
+   */
+  LogEntryList beforeEntry(LogEntry logEntry, [bool inPlace = false]) =>
+      before(logEntry == null ?
+          new Date.fromMillisecondsSinceEpoch(0) : logEntry.time);
+
+  /**
+   * Returns log events that happened after the first event in [segment].
+   * If [inPlace] is true, then it returns this LogEntryList after removing
+   * the entries that happened earlier; otherwise a new list is created.
+   */
+  LogEntryList afterFirst(LogEntryList segment, [bool inPlace = false]) =>
+      afterEntry(segment.first, inPlace);
+
+  /**
+   * Returns log events that happened after the last event in [segment].
+   * If [inPlace] is true, then it returns this LogEntryList after removing
+   * the entries that happened earlier; otherwise a new list is created.
+   */
+  LogEntryList afterLast(LogEntryList segment, [bool inPlace = false]) =>
+      afterEntry(segment.last, inPlace);
+
+  /**
+   * Returns log events that happened from the time of the first event in
+   * [segment] onwards. If [inPlace] is true, then it returns this
+   * LogEntryList after removing the earlier entries; otherwise a new list
+   * is created.
+   */
+  LogEntryList fromFirst(LogEntryList segment, [bool inPlace = false]) =>
+      fromEntry(segment.first, inPlace);
+
+  /**
+   * Returns log events that happened from the time of the last event in
+   * [segment] onwards. If [inPlace] is true, then it returns this
+   * LogEntryList after removing the earlier entries; otherwise a new list
+   * is created.
+   */
+  LogEntryList fromLast(LogEntryList segment, [bool inPlace = false]) =>
+      fromEntry(segment.last, inPlace);
+
+  /**
+   * Returns log events that happened until the first event in [segment].
+   * If [inPlace] is true, then it returns this LogEntryList after removing
+   * the entries that happened later; otherwise a new list is created.
+   */
+  LogEntryList untilFirst(LogEntryList segment, [bool inPlace = false]) =>
+      untilEntry(segment.first, inPlace);
+
+  /**
+   * Returns log events that happened until the last event in [segment].
+   * If [inPlace] is true, then it returns this LogEntryList after removing
+   * the entries that happened later; otherwise a new list is created.
+   */
+  LogEntryList untilLast(LogEntryList segment, [bool inPlace = false]) =>
+      untilEntry(segment.last, inPlace);
+
+  /**
+   * Returns log events that happened before the first event in [segment].
+   * If [inPlace] is true, then it returns this LogEntryList after removing
+   * the entries that happened later; otherwise a new list is created.
+   */
+  LogEntryList beforeFirst(LogEntryList segment, [bool inPlace = false]) =>
+      beforeEntry(segment.first, inPlace);
+
+  /**
+   * Returns log events that happened before the last event in [segment].
+   * If [inPlace] is true, then it returns this LogEntryList after removing
+   * the entries that happened later; otherwise a new list is created.
+   */
+  LogEntryList beforeLast(LogEntryList segment, [bool inPlace = false]) =>
+      beforeEntry(segment.last, inPlace);
+
+  /**
+   * Iterate through the LogEntryList looking for matches to the entries
+   * in [keys]; for each match found the closest [distance] neighboring log
+   * entries that match [mockNameFilter] and [logFilter] will be included in
+   * the result. If [isPreceding] is true we use the neighbors that precede
+   * the matched entry; else we use the neighbors that followed.
+   * If [includeKeys] is true then the entries in [keys] that resulted in
+   * entries in the output list are themselves included in the output list. If
+   * [distance] is zero then all matches are included.
+   */
+  LogEntryList _neighboring(bool isPreceding,
+                            LogEntryList keys,
+                            mockNameFilter,
+                            logFilter,
+                            int distance,
+                            bool includeKeys) {
+    LogEntryList rtn = new LogEntryList();
+
+    // Deal with the trivial case.
+    if (logs.length == 0 || keys.logs.length == 0) {
+      return rtn;
+    }
+
+    // Normalize the mockNameFilter and logFilter values.
+    if (mockNameFilter == null) {
+      mockNameFilter = anything;
+    } else {
+      mockNameFilter = wrapMatcher(mockNameFilter);
+    }
+    logFilter = _makePredicate(logFilter);
+
+    // The scratch list is used to hold matching entries when we
+    // are doing preceding neighbors. The remainingCount is used to
+    // keep track of how many matching entries we can still add in the
+    // current segment (0 if we are doing doing following neighbors, until
+    // we get our first key match).
+    List scratch = null;
+    int remainingCount = 0;
+    if (isPreceding) {
+      scratch = new List();
+      remainingCount = logs.length;
+    }
+
+    var keyIterator = keys.logs.iterator();
+    LogEntry keyEntry = keyIterator.next();
+    MatchState matchState = new MatchState();
+
+    for (LogEntry logEntry in logs) {
+      // If we have a log entry match, copy the saved matches from the
+      // scratch buffer into the return list, as well as the matching entry,
+      // if appropriate, and reset the scratch buffer. Continue processing
+      // from the next key entry.
+      if (keyEntry == logEntry) {
+        if (scratch != null) {
+          int numToCopy = scratch.length;
+          if (distance > 0 && distance < numToCopy) {
+            numToCopy = distance;
+          }
+          for (var i = scratch.length - numToCopy; i < scratch.length; i++) {
+            rtn.logs.add(scratch[i]);
+          }
+          scratch.clear();
+        } else {
+          remainingCount = distance > 0 ? distance : logs.length;
+        }
+        if (includeKeys) {
+          rtn.logs.add(keyEntry);
+        }
+        if (keyIterator.hasNext()) {
+          keyEntry = keyIterator.next();
+        } else if (isPreceding) { // We're done.
+          break;
+        }
+      } else if (remainingCount > 0 &&
+                 mockNameFilter.matches(logEntry.mockName, matchState) &&
+                 logFilter(logEntry)) {
+        if (scratch != null) {
+          scratch.add(logEntry);
+        } else {
+          rtn.logs.add(logEntry);
+          --remainingCount;
+        }
+      }
+    }
+    return rtn;
+  }
+
+  /**
+   * Iterate through the LogEntryList looking for matches to the entries
+   * in [keys]; for each match found the closest [distance] prior log entries
+   * that match [mocknameFilter] and [logFilter] will be included in the result.
+   * If [includeKeys] is true then the entries in [keys] that resulted in
+   * entries in the output list are themselves included in the output list. If
+   * [distance] is zero then all matches are included.
+   *
+   * The idea here is that you could find log entries that are related to
+   * other logs entries in some temporal sense. For example, say we have a
+   * method commit() that returns -1 on failure. Before commit() gets called
+   * the value being committed is created by process(). We may want to find
+   * the calls to process() that preceded calls to commit() that failed.
+   * We could do this with:
+   *
+   *      print(log.preceding(log.getLogs(callsTo('commit'), returning(-1)),
+   *          logFilter: callsTo('process')).toString());
+   *
+   * We might want to include the details of the failing calls to commit()
+   * to see what parameters were passed in, in which case we would set
+   * [includeKeys].
+   *
+   * As another simple example, say we wanted to know the three method
+   * calls that immediately preceded each failing call to commit():
+   *
+   *     print(log.preceding(log.getLogs(callsTo('commit'), returning(-1)),
+   *         distance: 3).toString());
+   */
+  LogEntryList preceding(LogEntryList keys,
+                         [mockNameFilter = null,
+                         logFilter = null,
+                         int distance = 1,
+                         bool includeKeys = false]) =>
+      _neighboring(true, keys, mockNameFilter, logFilter,
+          distance, includeKeys);
+
+  /**
+   * Iterate through the LogEntryList looking for matches to the entries
+   * in [keys]; for each match found the closest [distance] subsequent log
+   * entries that match [mocknameFilter] and [logFilter] will be included in
+   * the result. If [includeKeys] is true then the entries in [keys] that
+   * resulted in entries in the output list are themselves included in the
+   * output list. If [distance] is zero then all matches are included.
+   * See [preceding] for a usage example.
+   */
+  LogEntryList following(LogEntryList keys,
+                         [mockNameFilter = null,
+                         logFilter = null,
+                         int distance = 1,
+                         bool includeKeys = false]) =>
+      _neighboring(false, keys, mockNameFilter, logFilter,
+          distance, includeKeys);
 }
 
 /**
@@ -418,10 +808,11 @@ class _TimesMatcher extends BaseMatcher {
 
   const _TimesMatcher(this.min, [this.max = -1]);
 
-  bool matches(log) => log.length >= min && (max < 0 || log.length <= max);
+  bool matches(logList, MatchState matchState) => logList.length >= min &&
+      (max < 0 || logList.length <= max);
 
   Description describe(Description description) {
-    description.add(' to be called ');
+    description.add('to be called ');
     if (max < 0) {
       description.add('at least $min');
     } else if (max == min) {
@@ -434,8 +825,9 @@ class _TimesMatcher extends BaseMatcher {
     return description.add(' times');
   }
 
-  Description describeMismatch(log, Description mismatchDescription) =>
-      mismatchDescription.add('was called ${log.length} times');
+  Description describeMismatch(logList, Description mismatchDescription,
+                               MatchState matchState, bool verbose) =>
+      mismatchDescription.add('was called ${logList.length} times');
 }
 
 /** [happenedExactly] matches an exact number of calls. */
@@ -470,34 +862,35 @@ final Matcher happenedAtMostOnce = const _TimesMatcher(0, 1);
  * of method calls. These can be used as optional parameters to [getLogs].
  */
 class _ResultMatcher extends BaseMatcher {
-  final _Action action;
+  final Action action;
   final Matcher value;
 
   const _ResultMatcher(this.action, this.value);
 
-  bool matches(item) {
+  bool matches(item, MatchState matchState) {
     if (item is! LogEntry) {
      return false;
     }
     // normalize the action; _PROXY is like _RETURN.
-    _Action eaction = item.action;
-    if (eaction == _Action.PROXY) {
-      eaction = _Action.RETURN;
+    Action eaction = item.action;
+    if (eaction == Action.PROXY) {
+      eaction = Action.RETURN;
     }
-    return (eaction == action && value.matches(item.value));
+    return (eaction == action && value.matches(item.value, matchState));
   }
 
   Description describe(Description description) {
     description.add(' to ');
-    if (action == _Action.RETURN || action == _Action.PROXY)
+    if (action == Action.RETURN || action == Action.PROXY)
       description.add('return ');
     else
       description.add('throw ');
     return description.addDescriptionOf(value);
   }
 
-  Description describeMismatch(item, Description mismatchDescription) {
-    if (item.action == _Action.RETURN || item.action == _Action.PROXY) {
+  Description describeMismatch(item, Description mismatchDescription,
+                               MatchState matchState, bool verbose) {
+    if (item.action == Action.RETURN || item.action == Action.PROXY) {
       mismatchDescription.add('returned ');
     } else {
       mismatchDescription.add('threw ');
@@ -512,14 +905,14 @@ class _ResultMatcher extends BaseMatcher {
  * a value that matched [value].
  */
 Matcher returning(value) =>
-    new _ResultMatcher(_Action.RETURN, wrapMatcher(value));
+    new _ResultMatcher(Action.RETURN, wrapMatcher(value));
 
 /**
  *[throwing] matches log entrues where the call to a method threw
  * a value that matched [value].
  */
 Matcher throwing(value) =>
-    new _ResultMatcher(_Action.THROW, wrapMatcher(value));
+    new _ResultMatcher(Action.THROW, wrapMatcher(value));
 
 /** Special values for use with [_ResultSetMatcher] [frequency]. */
 class _Frequency {
@@ -548,21 +941,25 @@ class _Frequency {
  * match and adds some perf hit, so there is some duplication here.
  */
 class _ResultSetMatcher extends BaseMatcher {
-  final _Action action;
+  final Action action;
   final Matcher value;
   final _Frequency frequency; // ALL, SOME, or NONE.
 
   const _ResultSetMatcher(this.action, this.value, this.frequency);
 
-  bool matches(log) {
-    for (LogEntry entry in log) {
-      // normalize the action; _PROXY is like _RETURN.
-      _Action eaction = entry.action;
-      if (eaction == _Action.PROXY) {
-        eaction = _Action.RETURN;
+  bool matches(logList, MatchState matchState) {
+    for (LogEntry entry in logList) {
+      // normalize the action; PROXY is like RETURN.
+      Action eaction = entry.action;
+      if (eaction == Action.PROXY) {
+        eaction = Action.RETURN;
       }
-      if (eaction == action && value.matches(entry.value)) {
+      if (eaction == action && value.matches(entry.value, matchState)) {
         if (frequency == _Frequency.NONE) {
+          matchState.state = {
+              'state' : matchState.state,
+              'entry' : entry
+          };
           return false;
         } else if (frequency == _Frequency.SOME) {
           return true;
@@ -570,6 +967,10 @@ class _ResultSetMatcher extends BaseMatcher {
       } else {
         // Mismatch.
         if (frequency == _Frequency.ALL) { // We need just one mismatch to fail.
+          matchState.state = {
+              'state' : matchState.state,
+              'entry' : entry
+          };
           return false;
         }
       }
@@ -584,26 +985,27 @@ class _ResultSetMatcher extends BaseMatcher {
     description.add(' to ');
     description.add(frequency == _Frequency.ALL ? 'alway ' :
         (frequency == _Frequency.NONE ? 'never ' : 'sometimes '));
-    if (action == _Action.RETURN || action == __Action.PROXY)
+    if (action == Action.RETURN || action == Action.PROXY)
       description.add('return ');
     else
       description.add('throw ');
     return description.addDescriptionOf(value);
   }
 
-  Description describeMismatch(log, Description mismatchDescription) {
+  Description describeMismatch(logList, Description mismatchDescription,
+                               MatchState matchState, bool verbose) {
     if (frequency != _Frequency.SOME) {
-      for (LogEntry entry in log) {
-        if (entry.action != action || !value.matches(entry.value)) {
-          if (entry.action == _Action.RETURN || entry.action == _Action.PROXY)
-            mismatchDescription.add('returned ');
-          else
-            mismatchDescription.add('threw ');
-          mismatchDescription.add(entry.value);
-          mismatchDescription.add(' at least once');
-          break;
-        }
+      LogEntry entry = matchState.state['entry'];
+      if (entry.action == Action.RETURN || entry.action == Action.PROXY) {
+        mismatchDescription.add('returned ');
+      } else {
+        mismatchDescription.add('threw ');
       }
+      mismatchDescription.add(entry.value);
+      mismatchDescription.add(' that ');
+      value.describeMismatch(entry.value, mismatchDescription,
+        matchState.state['state'], verbose);
+      mismatchDescription.add(' at least once');
     } else {
       mismatchDescription.add('never did');
     }
@@ -616,42 +1018,42 @@ class _ResultSetMatcher extends BaseMatcher {
  * a value that matched [value].
  */
 Matcher alwaysReturned(value) =>
-    new _ResultSetMatcher(_Action.RETURN, wrapMatcher(value), _Frequency.ALL);
+    new _ResultSetMatcher(Action.RETURN, wrapMatcher(value), _Frequency.ALL);
 
 /**
  *[sometimeReturned] asserts that at least one matching call to a method
  * returned a value that matched [value].
  */
 Matcher sometimeReturned(value) =>
-    new _ResultSetMatcher(_Action.RETURN, wrapMatcher(value), _Frequency.SOME);
+    new _ResultSetMatcher(Action.RETURN, wrapMatcher(value), _Frequency.SOME);
 
 /**
  *[neverReturned] asserts that no matching calls to a method returned
  * a value that matched [value].
  */
 Matcher neverReturned(value) =>
-    new _ResultSetMatcher(_Action.RETURN, wrapMatcher(value), _Frequency.NONE);
+    new _ResultSetMatcher(Action.RETURN, wrapMatcher(value), _Frequency.NONE);
 
 /**
  *[alwaysThrew] asserts that all matching calls to a method threw
  * a value that matched [value].
  */
 Matcher alwaysThrew(value) =>
-    new _ResultSetMatcher(_Action.THROW, wrapMatcher(value), _Frequency.ALL);
+    new _ResultSetMatcher(Action.THROW, wrapMatcher(value), _Frequency.ALL);
 
 /**
  *[sometimeThrew] asserts that at least one matching call to a method threw
  * a value that matched [value].
  */
 Matcher sometimeThrew(value) =>
-  new _ResultSetMatcher(_Action.THROW, wrapMatcher(value), _Frequency.SOME);
+  new _ResultSetMatcher(Action.THROW, wrapMatcher(value), _Frequency.SOME);
 
 /**
  *[neverThrew] asserts that no matching call to a method threw
  * a value that matched [value].
  */
 Matcher neverThrew(value) =>
-  new _ResultSetMatcher(_Action.THROW, wrapMatcher(value), _Frequency.NONE);
+  new _ResultSetMatcher(Action.THROW, wrapMatcher(value), _Frequency.NONE);
 
 /** The shared log used for named mocks. */
 LogEntryList sharedLog = null;
@@ -750,7 +1152,7 @@ class Mock {
   bool _logging;
 
   bool get logging() => _logging;
-  bool set logging(bool value) {
+  set logging(bool value) {
     if (value && log == null) {
       log = new LogEntryList();
     }
@@ -817,9 +1219,10 @@ class Mock {
       method = 'get ${method.substring(4)}';
     }
     bool matchedMethodName = false;
+    MatchState matchState = new MatchState();
     for (String k in _behaviors.getKeys()) {
       Behavior b = _behaviors[k];
-      if (b.matcher.nameFilter.matches(method)) {
+      if (b.matcher.nameFilter.matches(method, matchState)) {
         matchedMethodName = true;
       }
       if (b.matches(method, args)) {
@@ -837,19 +1240,19 @@ class Mock {
           actions.removeRange(0, 1);
         }
         // Do the response.
-        _Action action = response.action;
+        Action action = response.action;
         var value = response.value;
-        if (action == _Action.RETURN) {
+        if (action == Action.RETURN) {
           if (_logging) {
             log.add(new LogEntry(name, method, args, action, value));
           }
           return value;
-        } else if (action == _Action.THROW) {
+        } else if (action == Action.THROW) {
           if (_logging) {
             log.add(new LogEntry(name, method, args, action, value));
           }
           throw value;
-        } else if (action == _Action.PROXY) {
+        } else if (action == Action.PROXY) {
           var rtn;
           switch (args.length) {
             case 0:
@@ -913,7 +1316,7 @@ class Mock {
     // Otherwise user hasn't specified behavior for this method; we don't throw
     // so we can underspecify.
     if (_logging) {
-      log.add(new LogEntry(name, method, args, _Action.IGNORE));
+      log.add(new LogEntry(name, method, args, Action.IGNORE));
     }
   }
 
@@ -930,12 +1333,14 @@ class Mock {
 
   /**
    * [getLogs] extracts all calls from the call log that match the
-   * [logFilter] [CallMatcher], and returns the matching list of
-   * [LogEntry]s. If [destructive] is false (the default) the matching
-   * calls are left in the log, else they are removed. Removal allows
-   * us to verify a set of interactions and then verify that there are
-   * no other interactions left. [actionMatcher] can be used to further
+   * [logFilter], and returns the matching list of [LogEntry]s. If
+   * [destructive] is false (the default) the matching calls are left
+   * in the log, else they are removed. Removal allows us to verify a
+   * set of interactions and then verify that there are no other
+   * interactions left. [actionMatcher] can be used to further
    * restrict the returned logs based on the action the mock performed.
+   * [logFilter] can be a [CallMatcher] or a predicate function that
+   * takes a [LogEntry] and returns a bool.
    *
    * Typical usage:
    *
@@ -953,4 +1358,22 @@ class Mock {
       return log.getMatches(name, logFilter, actionMatcher, destructive);
     }
   }
+
+  /**
+   * Useful shorthand method that creates a [CallMatcher] from its arguments
+   * and then calls [getLogs].
+   */
+  LogEntryList calls(method,
+                      [arg0 = _noArg,
+                       arg1 = _noArg,
+                       arg2 = _noArg,
+                       arg3 = _noArg,
+                       arg4 = _noArg,
+                       arg5 = _noArg,
+                       arg6 = _noArg,
+                       arg7 = _noArg,
+                       arg8 = _noArg,
+                       arg9 = _noArg]) =>
+      getLogs(callsTo(method, arg0, arg1, arg2, arg3, arg4,
+          arg5, arg6, arg7, arg8, arg9));
 }

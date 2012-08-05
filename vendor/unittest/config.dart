@@ -14,6 +14,12 @@ class Configuration {
   TestCase currentTestCase = null;
 
   /**
+   * If true, then tests are started automatically (otherwise [runTests]
+   * must be called explicitly after the tests are set up.
+   */
+  get autoStart() => true;
+
+  /**
    * Called as soon as the unittest framework becomes initialized. This is done
    * even before tests are added to the test framework. It might be used to
    * determine/debug errors that occur before the test harness starts executing.
@@ -49,7 +55,14 @@ class Configuration {
    * should instead override logMessage which is passed the test case.
    */
   void log(String message) {
-    if (currentTestCase.id == _currentTest) {
+    if (currentTestCase == null || _currentTest >= _tests.length ||
+        currentTestCase.id != _tests[_currentTest].id) {
+      // Before or after tests run, or with a mismatch between what the
+      // config and the test harness think is the current test. In this
+      // case we pass null for the test case reference and let the config
+      // decide what to do with this.
+      logMessage(null, message);
+    } else {
       logMessage(currentTestCase, message);
     }
   }
@@ -61,6 +74,7 @@ class Configuration {
   void logMessage(TestCase testCase, String message) {
     print(message);
   }
+
   /**
    * Called with the result of all test cases. The default implementation prints
    * the result summary using the built-in [print] command. Browser tests
