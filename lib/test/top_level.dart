@@ -10,12 +10,12 @@ final Matcher throwsNullArgumentException =
 
 class _InvalidOperationException extends _ExceptionMatcher {
   const _InvalidOperationException() : super("InvalidOperationException");
-  bool matches(item) => item is InvalidOperationException;
+  bool matches(item, MatchState matchState) => item is InvalidOperationException;
 }
 
 class _NullArgumentException extends _ExceptionMatcher {
   const _NullArgumentException() : super("NullArgumentException");
-  bool matches(item) => item is NullArgumentException;
+  bool matches(item, MatchState matchState) => item is NullArgumentException;
 }
 
 //
@@ -34,9 +34,10 @@ class _NullArgumentException extends _ExceptionMatcher {
 class _Throws extends BaseMatcher {
   final Matcher _matcher;
 
-  const _Throws([Matcher matcher = null]) : this._matcher = matcher;
+  const _Throws([Matcher matcher]) :
+    this._matcher = matcher;
 
-  bool matches(item) {
+  bool matches(item, MatchState matchState) {
     if (item is Future) {
       // Queue up an asynchronous expectation that validates when the future
       // completes.
@@ -62,8 +63,16 @@ class _Throws extends BaseMatcher {
     try {
       item();
       return false;
-    } catch (final e) {
-      return _matcher == null || _matcher.matches(e);
+    } catch (final e, final s) {
+      if (_matcher == null ||_matcher.matches(e, matchState)) {
+        return true;
+      } else {
+        matchState.state = {
+            'exception' :e,
+            'stack': s
+        };
+        return false;
+      }
     }
   }
 
@@ -76,13 +85,20 @@ class _Throws extends BaseMatcher {
     }
   }
 
-  Description describeMismatch(item, Description mismatchDescription) {
-    if (_matcher == null) {
+  Description describeMismatch(item, Description mismatchDescription,
+                               MatchState matchState,
+                               bool verbose) {
+    if (_matcher == null ||  matchState.state == null) {
       return mismatchDescription.add(' no exception');
     } else {
-      return mismatchDescription.
-          add(' no exception or exception does not match ').
-          addDescriptionOf(_matcher);
+      mismatchDescription.
+          add(' exception ').addDescriptionOf(matchState.state['exception']);
+      if (verbose) {
+          mismatchDescription.add(' at ').
+          add(matchState.state['stack'].toString());
+      }
+       mismatchDescription.add(' does not match ').addDescriptionOf(_matcher);
+       return mismatchDescription;
     }
   }
 }
