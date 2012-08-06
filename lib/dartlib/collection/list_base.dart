@@ -1,4 +1,4 @@
-class ListBase<E> extends Enumerable<E> implements Listish<E> {
+class ListBase<T> extends Enumerable<T> implements Listish<T> {
 
   const ListBase() : super._internal();
 
@@ -8,8 +8,8 @@ class ListBase<E> extends Enumerable<E> implements Listish<E> {
   /**
    * Returns an [Iterator] that iterates over this [Iterable] object.
    */
-  Iterator<E> iterator() {
-    return new IndexIterator<E>(length, (i) => this[i]);
+  Iterator<T> iterator() {
+    return new IndexIterator<T>(length, (i) => this[i]);
   }
 
   //
@@ -18,7 +18,7 @@ class ListBase<E> extends Enumerable<E> implements Listish<E> {
   /**
    * Applies the function [f] to each element of this collection.
    */
-  void forEach(void f(E element)) {
+  void forEach(void f(T element)) {
     for(var i = 0; i < length; i++) {
       f(this[i]);
     }
@@ -32,8 +32,8 @@ class ListBase<E> extends Enumerable<E> implements Listish<E> {
    * type and consequently the returned collection's
    * typeis Collection.
    */
-  Collection map(f(E element)) {
-    var list = new List<E>(length);
+  Collection map(f(T element)) {
+    var list = new List<T>(length);
     for(var i = 0; i < length; i++) {
       list[i] = f(this[i]);
     }
@@ -47,8 +47,8 @@ class ListBase<E> extends Enumerable<E> implements Listish<E> {
    * An element satisfies the predicate [f] if [:f(element):]
    * returns true.
    */
-  Collection<E> filter(bool f(E element)) {
-    var list = new List<E>();
+  Collection<T> filter(bool f(T element)) {
+    var list = new List<T>();
     for(var i = 0; i < length; i++) {
       final e = this[i];
 
@@ -63,7 +63,7 @@ class ListBase<E> extends Enumerable<E> implements Listish<E> {
    * Returns true if every elements of this collection satisify the
    * predicate [f]. Returns false otherwise.
    */
-  bool every(bool f(E element)) {
+  bool every(bool f(T element)) {
     for (var i = 0; i < length; i++) {
       if(!f(this[i])) {
         return false;
@@ -76,7 +76,7 @@ class ListBase<E> extends Enumerable<E> implements Listish<E> {
    * Returns true if one element of this collection satisfies the
    * predicate [f]. Returns false otherwise.
    */
-  bool some(bool f(E element)) {
+  bool some(bool f(T element)) {
     for (var i = 0; i < length; i++) {
       if(f(this[i])) {
         return true;
@@ -105,7 +105,7 @@ class ListBase<E> extends Enumerable<E> implements Listish<E> {
    * Subclasses should return the element at the given [index] in the list
    * or throw an [IndexOutOfRangeException] if [index] is out of bounds.
    */
-  E operator [](int index) {
+  T operator [](int index) {
     throw const NotImplementedException('must be implemented by subclass');
   }
 
@@ -114,7 +114,7 @@ class ListBase<E> extends Enumerable<E> implements Listish<E> {
    * list from index [start] to the length of the list. Returns
    * -1 if [element] is not found.
    */
-  int indexOf(E element, [int start=0]) {
+  int indexOf(T element, [int start=0]) {
     for (var i = start; i < length; i++) {
       if(this[i] == element) {
         return i;
@@ -127,7 +127,7 @@ class ListBase<E> extends Enumerable<E> implements Listish<E> {
    * Returns the last index of [element] in the list. Searches the
    * list from index [start] to 0. Returns -1 if [element] is not found.
    */
-  int lastIndexOf(E element, [int start=0]) {
+  int lastIndexOf(T element, [int start=0]) {
     var lastIndex = -1;
     for (var i = start; i < length; i++) {
       if(this[i] == element) {
@@ -141,7 +141,7 @@ class ListBase<E> extends Enumerable<E> implements Listish<E> {
    * Returns the last element of the list, or throws an out of bounds
    * exception if the list is empty.
    */
-  E last() => this[this.length-1];
+  T last() => this[this.length-1];
 
   /**
    * Returns a new list containing [itemCount] elements from the list,
@@ -151,7 +151,7 @@ class ListBase<E> extends Enumerable<E> implements Listish<E> {
    * Throws an [IndexOutOfRangeException] if [start] or
    * [:start + itemCount - 1:] are out of range.
    */
-  List<E> getRange(int start, int itemCount)  {
+  List<T> getRange(int start, int itemCount)  {
     requireArgument(itemCount >= 0, 'count');
 
     final lastIndex = start + itemCount - 1;
@@ -165,7 +165,7 @@ class ListBase<E> extends Enumerable<E> implements Listish<E> {
       }
     }
 
-    var list = new List<E>();
+    var list = new List<T>();
     for(var i = start; i <= lastIndex; i++) {
       list.add(this[i]);
     }
