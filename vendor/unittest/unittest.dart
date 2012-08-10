@@ -584,6 +584,8 @@ void group(String description, void body()) {
     _testSetup = null;
     _testTeardown = null;
     body();
+  } catch(var e, var trace) {
+    _reportTestError(e.toString(), trace == null ? '' : trace.toString());
   } finally {
     // Now that the group is over, restore the previous one.
     _currentGroup = parentGroup;
@@ -662,7 +664,7 @@ void callbackDone() {
  * Utility function that can be used to notify the test framework that an
  *  error was caught outside of this library.
  */
-void reportTestError(String msg, String trace) {
+void _reportTestError(String msg, String trace) {
  if (_currentTest < _tests.length) {
     final testCase = _tests[_currentTest];
     testCase.error(msg, trace);
@@ -689,6 +691,7 @@ _defer(void callback()) {
 
 rerunTests() {
   _uncaughtErrorMessage = null;
+  _initialized = true; // We don't want to reset the test array.
   runTests();
 }
 
@@ -723,7 +726,7 @@ guardAsync(tryBody, [finallyBody, testNum = -1]) {
   try {
     return tryBody();
   } catch (var e, var trace) {
-    registerException(testNum, e, trace);
+    _registerException(testNum, e, trace);
   } finally {
     if (finallyBody != null) finallyBody();
   }
@@ -732,7 +735,14 @@ guardAsync(tryBody, [finallyBody, testNum = -1]) {
 /**
  * Registers that an exception was caught for the current test.
  */
-registerException(testNum, e, [trace]) {
+registerException(e, [trace]) {
+  _registerException(_currentTest, e, trace);
+}
+
+/**
+ * Registers that an exception was caught for the current test.
+ */
+_registerException(testNum, e, [trace]) {
   trace = trace == null ? '' : trace.toString();
   if (_tests[testNum].result == null) {
     String message = (e is ExpectException) ? e.message : 'Caught $e';
