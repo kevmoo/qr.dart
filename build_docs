@@ -1,5 +1,5 @@
 #!/bin/bash
 libs=`ls lib/*.dart`
-cmd="dartdoc --omit-generation-time --verbose --exclude-lib=unittest,math.dartp $libs"
+cmd="dartdoc --omit-generation-time --verbose --exclude-lib=unittest,math.dartp,coreimpl.dartp $libs"
 echo $cmd
 exec $cmd
