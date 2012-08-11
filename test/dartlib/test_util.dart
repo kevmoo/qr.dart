@@ -3,10 +3,13 @@ class TestUtil {
     group('Util', () {
       test('getHashcode', _testGetHashCode);
     });
-
   }
 
   static void _testGetHashCode() {
+    // Verifies hashCodes for Dart VM
+    // Broken in Dartium - http://code.google.com/p/dart/issues/detail?id=4455
+    expect('foo'.hashCode(), equals(848623837));
+    
     _hashCodeFun([], 0);
     _hashCodeFun([null], 0);
     _hashCodeFun([null, null], 0);
