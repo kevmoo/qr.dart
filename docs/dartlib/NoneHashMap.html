@@ -30,7 +30,7 @@ Not well tested.</em></p>
 </div>
 <h3>Implements</h3>
 <p>
-<span class="type-box"><span class="icon-interface"></span><a href="../dart_core/Map.html">Map</a></span></p>
+<span class="type-box"><span class="icon-interface"></span><a href="../dart_core/Map.html">Map&lt;K, V&gt;</a></span></p>
 <h3>Constructors</h3>
 <div class="method"><h4 id="NoneHashMap">
 <span class="show-code">Code</span>
@@ -151,6 +151,24 @@ int get length() =&gt; _values.length;
 </div>
 <div class="method"><h4 id="operator">
 <span class="show-code">Code</span>
+<a href="../dartlib/NoneHashMap.html">V</a> <strong>operator []</strong>(<a href="../dartlib/NoneHashMap.html">K</a> key) <a class="anchor-link" href="#operator"
+              title="Permalink to NoneHashMap&lt;K, V&gt;.operator []">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+V operator [](K key) {
+  for(final t in _values) {
+    if(t.Item1 == key) {
+      return t.Item2;
+    }
+  }
+  return null;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="operator">
+<span class="show-code">Code</span>
 void <strong>operator []=</strong>(<a href="../dartlib/NoneHashMap.html">K</a> key, <a href="../dartlib/NoneHashMap.html">V</a> value) <a class="anchor-link" href="#operator"
               title="Permalink to NoneHashMap&lt;K, V&gt;.operator []=">#</a></h4>
 <div class="doc">
@@ -165,24 +183,6 @@ void operator []=(K key, V value) {
     }
   }
   _values.add(newT);
-}
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="operator">
-<span class="show-code">Code</span>
-<a href="../dartlib/NoneHashMap.html">V</a> <strong>operator []</strong>(<a href="../dartlib/NoneHashMap.html">K</a> key) <a class="anchor-link" href="#operator"
-              title="Permalink to NoneHashMap&lt;K, V&gt;.operator []">#</a></h4>
-<div class="doc">
-
-<pre class="source">
-V operator [](K key) {
-  for(final t in _values) {
-    if(t.Item1 == key) {
-      return t.Item2;
-    }
-  }
-  return null;
 }
 </pre>
 </div>

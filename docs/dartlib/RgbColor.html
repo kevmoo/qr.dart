@@ -32,18 +32,12 @@
 <h3>Constructors</h3>
 <div class="method"><h4 id="RgbColor">
 <span class="show-code">Code</span>
-factory <strong>RgbColor</strong>(int r, int g, int b) <a class="anchor-link" href="#RgbColor"
+const <strong>RgbColor</strong>._internal(int r, int g, int b) <a class="anchor-link" href="#RgbColor"
               title="Permalink to RgbColor.RgbColor">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-factory RgbColor(int r, int g, int b) {
-  _validateComponent(r, 'r');
-  _validateComponent(g, 'g');
-  _validateComponent(b, 'b');
-
-  return new RgbColor._internal(r, g, b);
-}
+const RgbColor._internal(this.r, this.g, this.b);
 </pre>
 </div>
 </div>
@@ -68,12 +62,18 @@ factory RgbColor.fromHex(String hexColor) {
 </div>
 <div class="method"><h4 id="RgbColor">
 <span class="show-code">Code</span>
-const <strong>RgbColor</strong>._internal(int r, int g, int b) <a class="anchor-link" href="#RgbColor"
+factory <strong>RgbColor</strong>(int r, int g, int b) <a class="anchor-link" href="#RgbColor"
               title="Permalink to RgbColor.RgbColor">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-const RgbColor._internal(this.r, this.g, this.b);
+factory RgbColor(int r, int g, int b) {
+  _validateComponent(r, 'r');
+  _validateComponent(g, 'g');
+  _validateComponent(b, 'b');
+
+  return new RgbColor._internal(r, g, b);
+}
 </pre>
 </div>
 </div>

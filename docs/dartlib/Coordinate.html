@@ -80,17 +80,6 @@ bool get isValid() =&gt; isValidNumber(x) &amp;&amp; isValidNumber(y);
 </div>
 <div class="method"><h4 id="operator">
 <span class="show-code">Code</span>
-<a href="../dartlib/Vector.html">Vector</a> <strong>operator -</strong>(<a href="../dartlib/Coordinate.html">Coordinate</a> other) <a class="anchor-link" href="#operator"
-              title="Permalink to Coordinate.operator -">#</a></h4>
-<div class="doc">
-<p>Subtract a <a class="crossref" href="../dartlib/Coordinate.html#new:Coordinate">Coordinate</a> and returns the result as new <a class="crossref" href="../dartlib/Vector.html">Vector</a>.</p>
-<pre class="source">
-Vector operator -(Coordinate other) =&gt; difference(this, other);
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="operator">
-<span class="show-code">Code</span>
 bool <strong>operator ==</strong>(<a href="../dartlib/Coordinate.html">Coordinate</a> other) <a class="anchor-link" href="#operator"
               title="Permalink to Coordinate.operator ==">#</a></h4>
 <div class="doc">
@@ -111,6 +100,17 @@ bool operator ==(Coordinate other) {
 <pre class="source">
 Coordinate operator +(Vector other) =&gt;
     new Coordinate(x + other.x, y + other.y);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="operator">
+<span class="show-code">Code</span>
+<a href="../dartlib/Vector.html">Vector</a> <strong>operator -</strong>(<a href="../dartlib/Coordinate.html">Coordinate</a> other) <a class="anchor-link" href="#operator"
+              title="Permalink to Coordinate.operator -">#</a></h4>
+<div class="doc">
+<p>Subtract a <a class="crossref" href="../dartlib/Coordinate.html#new:Coordinate">Coordinate</a> and returns the result as new <a class="crossref" href="../dartlib/Vector.html">Vector</a>.</p>
+<pre class="source">
+Vector operator -(Coordinate other) =&gt; difference(this, other);
 </pre>
 </div>
 </div>
