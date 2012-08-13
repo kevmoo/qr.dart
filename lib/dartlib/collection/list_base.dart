@@ -171,4 +171,9 @@ class ListBase<T> extends Enumerable<T> implements Listish<T> {
     }
     return list;
   }
+
+  Dynamic reduce(Dynamic initialValue,
+                 Dynamic combine(Dynamic previousValue, T element)) {
+    return Collections.reduce(this, initialValue, combine);
+  }
 }

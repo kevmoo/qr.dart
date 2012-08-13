@@ -36,7 +36,13 @@ class TestListBase extends ListBase<int> {
       test('getRange', _testRange);
       test('filter', _testFilter);
       test('forEach', _testForEach);
+      test('reduce', _testReduce);
     });
+  }
+
+  static void _testReduce() {
+    Expect.equals(instance.reduce(0, (prev, element) => prev + element), 15);
+    Expect.equals(instance.reduce(1, (prev, element) => prev * element), 120);
   }
 
   static void _testSimple() {
