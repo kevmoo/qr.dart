@@ -4,9 +4,41 @@ class TestArray2d {
       test('test collection', _testCollectionEquals);
       test('readonlyFrom ctor params', _testReadonlyFromCtorParams);
       test('set/get', _testSetGet);
+      test('getAdjacent', _testGetAdjacent);
       // TODO
       // test default ctor
     });
+  }
+
+  static void _testGetAdjacent() {
+    final list = ['a','b','c','d','e','f','g','h','i'];
+
+    final a = new Array2d.readonlyFrom(3, list);
+    expect(a, orderedEquals(list));
+
+    //
+    // Adjacent indices
+    //
+    var adjacent = a.getAdjacentIndices(0,0);
+    expect(adjacent, orderedEquals([1,3,4]));
+
+    adjacent = a.getAdjacentIndices(1,1);
+    expect(adjacent, orderedEquals([0, 1, 2, 3, 5, 6, 7, 8]));
+
+    adjacent = a.getAdjacentIndices(4, 4);
+    expect(adjacent, orderedEquals([]));
+
+    //
+    // Adjacent values
+    //
+    adjacent = a.getAdjacent(0,0);
+    expect(adjacent, orderedEquals(['b','d','e']));
+
+    adjacent = a.getAdjacent(1,1);
+    expect(adjacent, orderedEquals(['a','b','c','d','f','g','h','i']));
+
+    adjacent = a.getAdjacent(4, 4);
+    expect(adjacent, orderedEquals([]));
   }
 
   static void _testSetGet() {

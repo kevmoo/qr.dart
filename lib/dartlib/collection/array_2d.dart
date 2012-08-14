@@ -61,6 +61,24 @@ class Array2d<T> extends ListBase<T> {
     this[i] = value;
   }
 
+  List<T> getAdjacent(int x, int y) {
+    final m = getAdjacentIndices(x, y).map((i) => this[i]);
+    return new List<T>.from(m);
+  }
+
+  List<int> getAdjacentIndices(int x, int y) {
+    final List<int> adj = new List<int>();
+
+    for(int k = math.max(0, y - 1); k < math.min(height, (y + 2)); k++) {
+      for(int j = math.max(0, x - 1); j < math.min(width, (x + 2)); j++) {
+        if(j != x || k != y) {
+          adj.add(_getIndex(j, k));
+        }
+      }
+    }
+    return adj;
+  }
+
   int _getIndex(int x, int y) {
     assert(x >= 0 && x < width);
     assert(y >= 0 && y < height);
