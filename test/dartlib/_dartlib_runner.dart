@@ -11,6 +11,7 @@
 #source('collection/test_number_enumerable.dart');
 #source('collection/test_list_base.dart');
 #source('collection/test_collection_util.dart');
+#source('collection/test_array_2d.dart');
 
 #source('test_util.dart');
 #source('math/test_coordinate.dart');
@@ -31,6 +32,7 @@ void runDartlibTests() {
     TestNumberEnumerable.run();
     TestListBase.run();
     TestCollectionUtil.run();
+    TestArray2d.run();
 
     TestCoordinate.run();
     TestRect.run();
