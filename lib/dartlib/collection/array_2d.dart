@@ -10,7 +10,7 @@ class Array2d<T> extends ListBase<T> {
 
   factory Array2d.readonlyFrom(int width, Iterable<T> source) {
     final s = source == null ? null : new ReadOnlyCollection(source);
-    return new Array2d._internal(width, s);
+    return new Array2d.wrap(width, s);
   }
 
   factory Array2d(int width, int height, [T initialValue]) {
@@ -20,10 +20,10 @@ class Array2d<T> extends ListBase<T> {
     requireArgument(height > 0, 'height');
     final s = new List<T>();
     s.insertRange(0, width * height, initialValue);
-    return new Array2d._internal(width, s);
+    return new Array2d.wrap(width, s);
   }
 
-  Array2d._internal(int width, List<T> source):
+  Array2d.wrap(int width, List<T> source):
     this.width = width,
     this._source = source,
     this.height = (width != null && width > 0 && source != null) ?
