@@ -1,4 +1,4 @@
-class ListBase<T> extends Enumerable<T> implements Listish<T> {
+class ListBase<T> extends Enumerable<T> implements List<T> {
 
   const ListBase() : super._internal();
 
@@ -175,5 +175,48 @@ class ListBase<T> extends Enumerable<T> implements Listish<T> {
   Dynamic reduce(Dynamic initialValue,
                  Dynamic combine(Dynamic previousValue, T element)) {
     return Collections.reduce(this, initialValue, combine);
+  }
+
+  //
+  // Mutation operations are explicitly not supported in the baseclass
+  //
+  void operator []=(int index, T value) {
+    throw const UnsupportedOperationException('Mutation operations are not supported');
+  }
+
+  void add(T value) {
+    throw const UnsupportedOperationException('Mutation operations are not supported');
+  }
+
+  void addLast(T value) {
+    throw const UnsupportedOperationException('Mutation operations are not supported');
+  }
+
+  void addAll(Collection<T> value) {
+    throw const UnsupportedOperationException('Mutation operations are not supported');
+  }
+
+  void sort(Func2<T,T,int> comparer) {
+    throw const UnsupportedOperationException('Mutation operations are not supported');
+  }
+
+  void clear() {
+    throw const UnsupportedOperationException('Mutation operations are not supported');
+  }
+
+  T removeLast() {
+    throw const UnsupportedOperationException('Mutation operations are not supported');
+  }
+
+  void setRange(int start, int length, List<T> from, [int startFrom]) {
+    throw const UnsupportedOperationException('Mutation operations are not supported');
+  }
+
+  void removeRange(int start, int length) {
+    throw const UnsupportedOperationException('Mutation operations are not supported');
+  }
+
+  void insertRange(int start, int length, [T initialValue]) {
+    throw const UnsupportedOperationException('Mutation operations are not supported');
   }
 }

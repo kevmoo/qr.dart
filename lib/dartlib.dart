@@ -24,7 +24,6 @@
 #source('dartlib/collection/number_enumerable.dart');
 #source('dartlib/collection/collection_util.dart');
 #source('dartlib/collection/index_iterator.dart');
-#source('dartlib/collection/listish.dart');
 #source('dartlib/collection/list_base.dart');
 #source('dartlib/collection/read_only_collection.dart');
 #source('dartlib/collection/grouping.dart');
