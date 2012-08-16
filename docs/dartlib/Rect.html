@@ -32,17 +32,6 @@
 <h3>Constructors</h3>
 <div class="method"><h4 id="Rect">
 <span class="show-code">Code</span>
-const <strong>Rect</strong>(num left, num top, num width, num height) <a class="anchor-link" href="#Rect"
-              title="Permalink to Rect.Rect">#</a></h4>
-<div class="doc">
-
-<pre class="source">
-const Rect(this.left, this.top, this.width, this.height);
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="Rect">
-<span class="show-code">Code</span>
 factory <strong>Rect</strong>.fromCoordSize(<a href="../dartlib/Coordinate.html">Coordinate</a> topLeft, <a href="../dartlib/Size.html">Size</a> size) <a class="anchor-link" href="#Rect"
               title="Permalink to Rect.Rect">#</a></h4>
 <div class="doc">
@@ -54,11 +43,22 @@ factory Rect.fromCoordSize(Coordinate topLeft, Size size) {
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="Rect">
+<span class="show-code">Code</span>
+const <strong>Rect</strong>(num left, num top, num width, num height) <a class="anchor-link" href="#Rect"
+              title="Permalink to Rect.Rect">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+const Rect(this.left, this.top, this.width, this.height);
+</pre>
+</div>
+</div>
 <h3>Methods</h3>
 <div class="method"><h4 id="bottom">
 <span class="show-code">Code</span>
-num <strong>get bottom</strong>() <a class="anchor-link" href="#bottom"
-              title="Permalink to Rect.get bottom">#</a></h4>
+num <strong>bottom</strong>() <a class="anchor-link" href="#bottom"
+              title="Permalink to Rect.bottom">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -133,8 +133,8 @@ int hashCode() =&gt; Util.getHashCode([left, top, width, height]);
 </div>
 <div class="method"><h4 id="isValid">
 <span class="show-code">Code</span>
-bool <strong>get isValid</strong>() <a class="anchor-link" href="#isValid"
-              title="Permalink to Rect.get isValid">#</a></h4>
+bool <strong>isValid</strong>() <a class="anchor-link" href="#isValid"
+              title="Permalink to Rect.isValid">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -158,8 +158,8 @@ bool operator ==(Rect other) {
 </div>
 <div class="method"><h4 id="right">
 <span class="show-code">Code</span>
-num <strong>get right</strong>() <a class="anchor-link" href="#right"
-              title="Permalink to Rect.get right">#</a></h4>
+num <strong>right</strong>() <a class="anchor-link" href="#right"
+              title="Permalink to Rect.right">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -169,8 +169,8 @@ num get right() =&gt; left + width;
 </div>
 <div class="method"><h4 id="size">
 <span class="show-code">Code</span>
-<a href="../dartlib/Size.html">Size</a> <strong>get size</strong>() <a class="anchor-link" href="#size"
-              title="Permalink to Rect.get size">#</a></h4>
+<a href="../dartlib/Size.html">Size</a> <strong>size</strong>() <a class="anchor-link" href="#size"
+              title="Permalink to Rect.size">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -191,8 +191,8 @@ String toString() =&gt; "Location: $topLeft, Size: $size";
 </div>
 <div class="method"><h4 id="topLeft">
 <span class="show-code">Code</span>
-<a href="../dartlib/Coordinate.html">Coordinate</a> <strong>get topLeft</strong>() <a class="anchor-link" href="#topLeft"
-              title="Permalink to Rect.get topLeft">#</a></h4>
+<a href="../dartlib/Coordinate.html">Coordinate</a> <strong>topLeft</strong>() <a class="anchor-link" href="#topLeft"
+              title="Permalink to Rect.topLeft">#</a></h4>
 <div class="doc">
 
 <pre class="source">

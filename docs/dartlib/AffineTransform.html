@@ -45,6 +45,19 @@ factory AffineTransform.scale(sx, sy) {
 </div>
 <div class="method"><h4 id="AffineTransform">
 <span class="show-code">Code</span>
+factory <strong>AffineTransform</strong>.rotate(num theta, num x, num y) <a class="anchor-link" href="#AffineTransform"
+              title="Permalink to AffineTransform.AffineTransform">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+factory AffineTransform.rotate(num theta, num x, num y) {
+  return new AffineTransform().setToRotation(theta, x, y);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="AffineTransform">
+<span class="show-code">Code</span>
 new <strong>AffineTransform</strong>([num scaleX = 1, num shearY = 0, num shearX = 0, num scaleY = 1, num translateX = 0, num translateY = 0]) <a class="anchor-link" href="#AffineTransform"
               title="Permalink to AffineTransform.AffineTransform">#</a></h4>
 <div class="doc">
@@ -56,19 +69,6 @@ AffineTransform([num scaleX = 1, num shearY = 0,
       _m00 = scaleX, _m11 = scaleY,
       _m02 = translateX, _m12 = translateY,
       _m01 = shearX, _m10 = shearY;
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="AffineTransform">
-<span class="show-code">Code</span>
-factory <strong>AffineTransform</strong>.rotate(num theta, num x, num y) <a class="anchor-link" href="#AffineTransform"
-              title="Permalink to AffineTransform.AffineTransform">#</a></h4>
-<div class="doc">
-
-<pre class="source">
-factory AffineTransform.rotate(num theta, num x, num y) {
-  return new AffineTransform().setToRotation(theta, x, y);
-}
 </pre>
 </div>
 </div>
@@ -132,8 +132,8 @@ AffineTransform createInverse() {
 </div>
 <div class="method"><h4 id="determinant">
 <span class="show-code">Code</span>
-num <strong>get determinant</strong>() <a class="anchor-link" href="#determinant"
-              title="Permalink to AffineTransform.get determinant">#</a></h4>
+num <strong>determinant</strong>() <a class="anchor-link" href="#determinant"
+              title="Permalink to AffineTransform.determinant">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -143,8 +143,8 @@ num get determinant() =&gt; _m00 * _m11 - _m01 * _m10;
 </div>
 <div class="method"><h4 id="isIdentity">
 <span class="show-code">Code</span>
-bool <strong>get isIdentity</strong>() <a class="anchor-link" href="#isIdentity"
-              title="Permalink to AffineTransform.get isIdentity">#</a></h4>
+bool <strong>isIdentity</strong>() <a class="anchor-link" href="#isIdentity"
+              title="Permalink to AffineTransform.isIdentity">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -203,8 +203,8 @@ AffineTransform scale(num sx, num sy) {
 </div>
 <div class="method"><h4 id="scaleX">
 <span class="show-code">Code</span>
-num <strong>get scaleX</strong>() <a class="anchor-link" href="#scaleX"
-              title="Permalink to AffineTransform.get scaleX">#</a></h4>
+num <strong>scaleX</strong>() <a class="anchor-link" href="#scaleX"
+              title="Permalink to AffineTransform.scaleX">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -214,8 +214,8 @@ num get scaleX() =&gt; _m00;
 </div>
 <div class="method"><h4 id="scaleY">
 <span class="show-code">Code</span>
-num <strong>get scaleY</strong>() <a class="anchor-link" href="#scaleY"
-              title="Permalink to AffineTransform.get scaleY">#</a></h4>
+num <strong>scaleY</strong>() <a class="anchor-link" href="#scaleY"
+              title="Permalink to AffineTransform.scaleY">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -303,8 +303,8 @@ AffineTransform setTransform (num m00, num m10, num m01,
 </div>
 <div class="method"><h4 id="shearX">
 <span class="show-code">Code</span>
-num <strong>get shearX</strong>() <a class="anchor-link" href="#shearX"
-              title="Permalink to AffineTransform.get shearX">#</a></h4>
+num <strong>shearX</strong>() <a class="anchor-link" href="#shearX"
+              title="Permalink to AffineTransform.shearX">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -314,8 +314,8 @@ num get shearX() =&gt; _m01;
 </div>
 <div class="method"><h4 id="shearY">
 <span class="show-code">Code</span>
-num <strong>get shearY</strong>() <a class="anchor-link" href="#shearY"
-              title="Permalink to AffineTransform.get shearY">#</a></h4>
+num <strong>shearY</strong>() <a class="anchor-link" href="#shearY"
+              title="Permalink to AffineTransform.shearY">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -356,8 +356,8 @@ AffineTransform translate(num dx, num dy) {
 </div>
 <div class="method"><h4 id="translateVector">
 <span class="show-code">Code</span>
-<a href="../dartlib/Vector.html">Vector</a> <strong>get translateVector</strong>() <a class="anchor-link" href="#translateVector"
-              title="Permalink to AffineTransform.get translateVector">#</a></h4>
+<a href="../dartlib/Vector.html">Vector</a> <strong>translateVector</strong>() <a class="anchor-link" href="#translateVector"
+              title="Permalink to AffineTransform.translateVector">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -367,8 +367,8 @@ Vector get translateVector() =&gt; new Vector(translateX, translateY);
 </div>
 <div class="method"><h4 id="translateX">
 <span class="show-code">Code</span>
-num <strong>get translateX</strong>() <a class="anchor-link" href="#translateX"
-              title="Permalink to AffineTransform.get translateX">#</a></h4>
+num <strong>translateX</strong>() <a class="anchor-link" href="#translateX"
+              title="Permalink to AffineTransform.translateX">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -378,8 +378,8 @@ num get translateX() =&gt; _m02;
 </div>
 <div class="method"><h4 id="translateY">
 <span class="show-code">Code</span>
-num <strong>get translateY</strong>() <a class="anchor-link" href="#translateY"
-              title="Permalink to AffineTransform.get translateY">#</a></h4>
+num <strong>translateY</strong>() <a class="anchor-link" href="#translateY"
+              title="Permalink to AffineTransform.translateY">#</a></h4>
 <div class="doc">
 
 <pre class="source">

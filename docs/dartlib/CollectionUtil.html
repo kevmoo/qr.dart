@@ -49,18 +49,17 @@ static Object aggregate(Iterable source, Object seed, Func2 func) {
 </div>
 <div class="method"><h4 id="allUnique">
 <span class="show-code">Code</span>
-bool <strong>allUnique</strong>(Collection items) <a class="anchor-link" href="#allUnique"
+bool <strong>allUnique</strong>(List items) <a class="anchor-link" href="#allUnique"
               title="Permalink to CollectionUtil.allUnique">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-static bool allUnique(Collection items) {
+static bool allUnique(List items) {
   requireArgumentNotNull(items, 'items');
-  final getter = _getterGetter(items);
 
   for(int i = 0; i &lt; items.length; i++) {
     for(int j = i + 1; j &lt; items.length; j++) {
-      if(getter(i) == getter(j)) {
+      if(items[i] == items[j]) {
         return false;
       }
     }

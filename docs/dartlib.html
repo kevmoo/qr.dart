@@ -65,6 +65,21 @@ NumberEnumerable n$(Iterable&lt;num&gt; source) {
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="require">
+<span class="show-code">Code</span>
+void <strong>require</strong>(bool truth, [String message = '']) <a class="anchor-link" href="#require"
+              title="Permalink to require">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void require(bool truth, [String message = '']) {
+  if(!truth) {
+    throw new Exception(message);
+  }
+}
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="requireArgument">
 <span class="show-code">Code</span>
 void <strong>requireArgument</strong>(bool truth, [String arg = "", String message]) <a class="anchor-link" href="#requireArgument"
@@ -75,7 +90,7 @@ void <strong>requireArgument</strong>(bool truth, [String arg = "", String messa
 void requireArgument(bool truth, [String arg = "", String message]) {
   if(!truth) {
     if(message != null) {
-      throw new DetailedIllegalArgumentException(arg, message);      
+      throw new DetailedIllegalArgumentException(arg, message);
     } else {
       throw new IllegalArgumentException(arg);
     }
@@ -119,6 +134,12 @@ math.Random get rnd() {
           <div class="type">
           <h4>
             <a href="dartlib/AffineTransform.html"><strong>AffineTransform</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/Array2d.html"><strong>Array2d&lt;T&gt;</strong></a>
           </h4>
           </div>
           
@@ -354,12 +375,6 @@ math.Random get rnd() {
           <div class="type">
           <h4>
             <a href="dartlib/IPropertyObject.html"><strong>IPropertyObject</strong></a>
-          </h4>
-          </div>
-          
-          <div class="type">
-          <h4>
-            <a href="dartlib/Listish.html"><strong>Listish&lt;T&gt;</strong></a>
           </h4>
           </div>
           

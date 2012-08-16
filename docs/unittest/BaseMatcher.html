@@ -1,0 +1,111 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>BaseMatcher Class / unittest Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="unittest" data-type="BaseMatcher">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../unittest.html">unittest</a> &rsaquo; <a href="../unittest/BaseMatcher.html">BaseMatcher</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>BaseMatcher</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+<p>BaseMatcher is the base class for all matchers. To implement a new
+matcher, either add a class that implements from IMatcher or
+a class that inherits from Matcher. Inheriting from Matcher has
+the benefit that a default implementation of describeMismatch will
+be provided.</p>
+</div>
+<h3>Subclasses</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../unittest/isInstanceOf.html">isInstanceOf&lt;T&gt;</a></span></p>
+<h3>Implements</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../unittest/Matcher.html">Matcher</a></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="BaseMatcher">
+<span class="show-code">Code</span>
+const <strong>BaseMatcher</strong>() <a class="anchor-link" href="#BaseMatcher"
+              title="Permalink to BaseMatcher.BaseMatcher">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+const BaseMatcher();
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="describe">
+<span class="show-code">Code</span>
+<a href="../unittest/Description.html">Description</a> <strong>describe</strong>(<a href="../unittest/Description.html">Description</a> mismatchDescription) <a class="anchor-link" href="#describe"
+              title="Permalink to BaseMatcher.describe">#</a></h4>
+<div class="doc">
+<p>Creates a textual description of a matcher,
+by appending to 
+<span class="param">mismatchDescription</span>.</p>
+<pre class="source">
+abstract Description describe(Description mismatchDescription);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="describeMismatch">
+<span class="show-code">Code</span>
+<a href="../unittest/Description.html">Description</a> <strong>describeMismatch</strong>(item, <a href="../unittest/Description.html">Description</a> mismatchDescription, <a href="../unittest/MatchState.html">MatchState</a> matchState, bool verbose) <a class="anchor-link" href="#describeMismatch"
+              title="Permalink to BaseMatcher.describeMismatch">#</a></h4>
+<div class="doc">
+<p>Generates a description of the matcher failed for a particular
+
+<span class="param">item</span>, by appending the description to 
+<span class="param">mismatchDescription</span>.
+It does not check whether the 
+<span class="param">item</span> fails the match, as it is
+only called after a failed match. There may be additional info
+about the mismatch in 
+<span class="param">matchState</span>.</p>
+<pre class="source">
+Description describeMismatch(item, Description mismatchDescription,
+                             MatchState matchState, bool verbose) =&gt;
+  mismatchDescription.add('was ').addDescriptionOf(item);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="matches">
+<span class="show-code">Code</span>
+bool <strong>matches</strong>(item, <a href="../unittest/MatchState.html">MatchState</a> matchState) <a class="anchor-link" href="#matches"
+              title="Permalink to BaseMatcher.matches">#</a></h4>
+<div class="doc">
+<p>Tests the matcher against a given 
+<span class="param">item</span>
+and return true if the match succeeds; false otherwise.
+
+<span class="param">matchState</span> may be used to return additional info for
+the use of <a class="crossref" href="../unittest/BaseMatcher.html#describeMismatch">describeMismatch</a>.</p>
+<pre class="source">
+abstract bool matches(item, MatchState matchState);
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        
