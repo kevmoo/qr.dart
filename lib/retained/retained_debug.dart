@@ -19,12 +19,9 @@ class RetainedDebug {
       ctx.save();
       ctx.lineWidth = 2;
 
-      ctx.beginPath();
-
       hits.forEach((e) {
         _borderElement(ctx, e, true);
       });
-      ctx.stroke();
       ctx.restore();
     }
   }
@@ -57,9 +54,11 @@ class RetainedDebug {
 
     final corners = RetainedUtil.getCorners(element);
 
+    ctx.beginPath();
     ctx.moveTo(corners[3].x, corners[3].y);
     for(final p in corners) {
       ctx.lineTo(p.x, p.y);
     }
+    ctx.stroke();
   }
 }
