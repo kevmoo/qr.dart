@@ -51,12 +51,6 @@ Bugs that cause code smells.
     [3558](http://code.google.com/p/dart/issues/detail?id=3558),
     [3559](http://code.google.com/p/dart/issues/detail?id=3559)
 
-### Allow compile-time constants in switch statements
-  * __Scenario:__ I've defined a psedo-enum class `ShapeType` that exposes const fields which I'd like to use in a case statement.
-  * __Word-around:__ Ignore the warnings in the editor.
-  * __Issues:__ Other than warnings in Dart Editor, none. Can still compile to JS.
-  * __Related bug:__ [3342](http://code.google.com/p/dart/issues/detail?id=3342)
-
 ### Put the unittest library on [pub](http://www.dartlang.org/docs/pub-package-manager/) or let me use the copy in the SDK without hard-wired paths.
   * __Scenario:__ I'd like to use the unittest library in the SDK, but hardwiring the absolute path to the SDK makes it tough to cleanly share code with others.
   * __Work-around:__ I put an entire copy of the `unittest` code in the `vendor` directory.
