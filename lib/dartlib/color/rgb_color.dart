@@ -42,8 +42,8 @@ class RgbColor implements Hashable {
     // Luminosity is the average of the max and min rgb color intensities.
     final l = 0.5 * (max + min);
 
-    var h = 0;
-    var s = 0;
+    double h = 0.0;
+    double s = 0.0;
 
     // The hue and saturation are dependent on which color intensity is the max.
     // If max and min are equal, the color is gray and h and s should be 0.

@@ -172,8 +172,8 @@ class QrUtil {
 
     var moduleCount = qrCode.moduleCount;
 
-    var lostPoint = 0;
-    var row, col;
+    var lostPoint = 0.0;
+    int row, col;
 
     // LEVEL1
     for (row = 0; row < moduleCount; row++) {
