@@ -87,7 +87,8 @@ class TestRgbColor {
             new RgbColor(42,29,123),
             new RgbColor(42,29,120),
             new RgbColor(254,254,254),
-            new RgbColor(255,255,255)
+            new RgbColor(255,255,255),
+            new RgbColor(245, 255, 193)
             ];
   }
 
