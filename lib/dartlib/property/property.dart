@@ -40,6 +40,8 @@ class Property<T> {
   bool removeHandler(IPropertyObject obj, GlobalId handlerId){
     _PropertyChangeHelper.removeHandler(obj, this, handlerId);
   }
+
+  String toString() => "Property '$name'";
 }
 
 class _UndefinedValue{
