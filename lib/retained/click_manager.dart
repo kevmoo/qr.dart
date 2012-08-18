@@ -2,8 +2,8 @@ class ClickManager {
   static final core.Property<bool> _isClickableProperty =
       const core.Property<bool>("isClickable", false);
 
-  static final core.AttachedEvent _clickEvent =
-      const core.AttachedEvent('clickEvent');
+  static final core.AttachedEvent<PElement> _clickEvent =
+      const core.AttachedEvent<PElement>('clickEvent');
 
   final Stage _stage;
 
@@ -85,6 +85,6 @@ class ClickManager {
 
   void _doClick(PElement element) {
     assert(element != null);
-    _clickEvent.fireEvent(element, _clickEvent.name);
+    _clickEvent.fireEvent(element, element);
   }
 }
