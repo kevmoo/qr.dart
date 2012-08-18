@@ -37,8 +37,9 @@ class Property<T> {
     return _PropertyChangeHelper.addHandler(obj, this, handler);
   }
 
+  // TODO: test the return value...possible weirdness
   bool removeHandler(AttachableObject obj, GlobalId handlerId){
-    _PropertyChangeHelper.removeHandler(obj, this, handlerId);
+    return _PropertyChangeHelper.removeHandler(obj, this, handlerId);
   }
 
   String toString() => "Property '$name'";
@@ -74,12 +75,14 @@ class _PropertyChangeHelper{
     return handle.add(watcher);
   }
 
-  static void removeHandler(AttachableObject obj, Property property, GlobalId handlerId){
-    var helper = _changeHelperProperty.get(obj);
+  static bool removeHandler(AttachableObject obj, Property property, GlobalId handlerId){
+    final helper = _changeHelperProperty.get(obj);
+    assert(helper != null);
     var handle = helper._handlers[property];
     if(handle != null){
-      handle.remove(handlerId);
+      return handle.remove(handlerId);
     }
+    return false;
   }
 
   static void _fireHandlers(AttachableObject obj, Property property){
