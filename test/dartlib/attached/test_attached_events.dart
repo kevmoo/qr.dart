@@ -6,10 +6,35 @@ class TestAttachedEvents extends AttachableObjectImpl {
       const AttachedEvent<EventArgs>('testEvent2');
 
   static void run() {
-    test('AttachableEvent', _doIt);
+    group('AttachableEvent', () {
+      test('whole deal', _testWholeDeal);
+      test('removeHandler', _testRemove);
+    });
   }
 
-  static void _doIt() {
+  static void _testRemove() {
+    final obj = new TestAttachedEvents();
+    final watcher1 = new EventWatcher<EventArgs>();
+    final h1 = _testEvent1.addHandler(obj, watcher1.handler);
+
+    bool removed = _testEvent1.removeHandler(obj, h1);
+    expect(removed, isTrue);
+
+    removed = _testEvent1.removeHandler(obj, h1);
+    expect(removed, isFalse);
+
+    removed = _testEvent1.removeHandler(obj, new GlobalId());
+    expect(removed, isFalse);
+
+    expect(() => _testEvent1.removeHandler(obj, null), throwsNullArgumentException);
+
+    expect(() => _testEvent1.removeHandler(null, new GlobalId()), throwsNullArgumentException);
+
+    removed = _testEvent1.removeHandler(new TestAttachedEvents(), new GlobalId());
+    expect(removed, isFalse);
+  }
+
+  static void _testWholeDeal() {
     final watcher1 = new EventWatcher<EventArgs>();
     final watcher2 = new EventWatcher<EventArgs>();
 

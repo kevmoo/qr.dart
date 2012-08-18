@@ -11,6 +11,7 @@ class _AttachableEventHelper {
     _handlers = new NoneHashMap<Attachable, EventHandle>();
 
   static _AttachableEventHelper createInstance(AttachableObject obj){
+    // We're special-casing property change events here. Convenient.
     var handlerId = obj.propertyValues.propertyChanged.add((property){
       fireEvent(obj, property, property);
     });
@@ -24,11 +25,14 @@ class _AttachableEventHelper {
   }
 
   static bool removeHandler(AttachableObject obj, Attachable property, GlobalId handlerId){
+    requireArgumentNotNull(obj, 'obj');
+    requireArgumentNotNull(handlerId, 'handlerId');
     final helper = _attachableEventHelperProperty.get(obj);
-    assert(helper != null);
-    var handle = helper._handlers[property];
-    if(handle != null){
-      return handle.remove(handlerId);
+    if(helper != null) {
+      var handle = helper._handlers[property];
+      if(handle != null){
+        return handle.remove(handlerId);
+      }
     }
     return false;
   }
