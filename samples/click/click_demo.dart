@@ -22,6 +22,11 @@ class ClickDemo{
 
     var blue = new Shape(100, 100, _blueColor);
     ClickManager.setClickable(blue, true);
+    final clickHandler = (args) {
+      blue.fillStyle = (blue.fillStyle == _blueColor) ? 'lightblue' : _blueColor;
+    };
+
+    ClickManager.addHandler(blue, clickHandler);
 
     pCanvas.addElement(blue);
 
@@ -43,12 +48,6 @@ class ClickDemo{
     var stage = new Stage(canvas, rootPanel);
 
     final cm = new ClickManager(stage);
-
-    final clickHandler = (args) {
-      blue.fillStyle = (blue.fillStyle == _blueColor) ? 'lightblue' : _blueColor;
-    };
-
-    cm.addHandler(blue, clickHandler);
 
     return new ClickDemo._internal(canvas, stage, cm);
   }

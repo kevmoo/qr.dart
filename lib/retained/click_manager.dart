@@ -34,11 +34,11 @@ class ClickManager {
     return _isClickableProperty.get(element);
   }
 
-  core.GlobalId addHandler(PElement element, core.Action1 handler) {
+  static core.GlobalId addHandler(PElement element, core.Action1 handler) {
     return _clickEvent.addHandler(element, handler);
   }
 
-  bool removeHandler(PElement obj, core.GlobalId handlerId) {
+  static bool removeHandler(PElement obj, core.GlobalId handlerId) {
     return _clickEvent.removeHandler(obj, handlerId);
   }
 
