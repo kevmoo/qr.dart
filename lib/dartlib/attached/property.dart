@@ -51,6 +51,7 @@ class _UndefinedValue{
 
 class _PropertyChangeHelper{
   // TODO: once we can define static final with 'new' instead of 'const', we can nuke the property redirection
+  // TODO: 2012-08-18: Not sure what I meant by this when I wrote it :-/
   static final Property<_PropertyChangeHelper> _changeHelperProperty = const Property<_PropertyChangeHelper>("_changeHelperProperty");
 
   final NoneHashMap<Property, EventHandle<Property>> _handlers;
