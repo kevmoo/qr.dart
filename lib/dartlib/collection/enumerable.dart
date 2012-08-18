@@ -8,14 +8,11 @@ Enumerable $(Iterable source) {
 
 class Enumerable<T> implements Iterable<T> {
   // TODO:
-  // firstOrDefault
   // last
   // take
   // takeWhile
   // skip
   // skipWhile
-  // single
-  // singleOrDefault
   // isEmpty
 
   const Enumerable._internal();
@@ -124,6 +121,17 @@ class Enumerable<T> implements Iterable<T> {
     return iter.next();
   }
 
+  T firstOrDefault([Func1<T, bool> f = null, T defaultValue = null]) {
+    if(f == null) {
+      f = (e) => true;
+    }
+    final iter = new _WhereIterator<T>(this.iterator(), f);
+    if(!iter.hasNext()) {
+      return defaultValue;
+    }
+    return iter.next();
+  }
+
   T single([Func1<T, bool> f = null]) {
     if(f == null) {
       f = (e) => true;
@@ -131,6 +139,21 @@ class Enumerable<T> implements Iterable<T> {
     final iter = new _WhereIterator<T>(this.iterator(), f);
     if(!iter.hasNext()) {
       throw const InvalidOperationException('The input sequence is empty.');
+    }
+    final value = iter.next();
+    if(iter.hasNext()) {
+      throw const InvalidOperationException('The input sequence contains more than one element.');
+    }
+    return value;
+  }
+
+  T singleOrDefault([Func1<T, bool> f = null, T defaultValue = null]) {
+    if(f == null) {
+      f = (e) => true;
+    }
+    final iter = new _WhereIterator<T>(this.iterator(), f);
+    if(!iter.hasNext()) {
+      return defaultValue;
     }
     final value = iter.next();
     if(iter.hasNext()) {
