@@ -51,6 +51,6 @@
 
 #source('dartlib/graph/tarjan_cycle_detect.dart');
 
-#source('dartlib/property/property_object.dart');
-#source('dartlib/property/property_values.dart');
-#source('dartlib/property/property.dart');
+#source('dartlib/attached/property_object.dart');
+#source('dartlib/attached/property_values.dart');
+#source('dartlib/attached/property.dart');

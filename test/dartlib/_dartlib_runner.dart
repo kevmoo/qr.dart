@@ -25,8 +25,10 @@
 #source('color/test_rgb_color.dart');
 #source('color/test_hsl_color.dart');
 
-#source('property/test_property_event_integration.dart');
-#source('property/test_properties.dart');
+#source('attached/test_property_event_integration.dart');
+#source('attached/test_properties.dart');
+
+#source('attached/test_attached_events.dart');
 
 void runDartlibTests() {
   group('dartlib', (){
