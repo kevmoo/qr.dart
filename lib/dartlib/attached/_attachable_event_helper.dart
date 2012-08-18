@@ -40,9 +40,11 @@ class _AttachableEventHelper {
   static void fireEvent(AttachableObject obj,
                         Attachable attachable, Dynamic args) {
     var helper = _attachableEventHelperProperty.get(obj);
-    var handle = helper._handlers[attachable];
-    if(handle != null){
-      handle.fireEvent(args);
+    if(helper != null) {
+      var handle = helper._handlers[attachable];
+      if(handle != null){
+        handle.fireEvent(args);
+      }
     }
   }
 }
