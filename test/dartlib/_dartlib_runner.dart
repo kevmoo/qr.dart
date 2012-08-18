@@ -53,9 +53,9 @@ void runDartlibTests() {
     TestRgbColor.run();
     TestHslColor.run();
 
-    group('property', (){
+    group('attached', (){
       TestProperties.run();
       TestPropertyEventIntegration.run();
     });
-});
+  });
 }
