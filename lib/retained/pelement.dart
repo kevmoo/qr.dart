@@ -1,4 +1,4 @@
-class PElement extends core.PropertyObject {
+class PElement extends core.AttachableObjectImpl {
   final List<core.AffineTransform> _transforms;
   final bool cacheEnabled;
   final core.EventHandle<core.EventArgs> _updatedEventHandle;

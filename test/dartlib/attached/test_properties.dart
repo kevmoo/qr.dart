@@ -1,4 +1,4 @@
-class TestProperties extends PropertyObject {
+class TestProperties extends AttachableObjectImpl {
 
   static void run(){
     group('PropertyObject', (){
@@ -143,7 +143,7 @@ class TestProperties extends PropertyObject {
     expect(wodWatcher.eventCount, equals(1));
 
     // get w/ factory should not change the value
-    var propFactory = (IPropertyObject obj){
+    var propFactory = (AttachableObject obj){
       return propFactoryValue;
     };
 

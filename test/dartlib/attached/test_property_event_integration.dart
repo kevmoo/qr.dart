@@ -1,4 +1,4 @@
-class TestPropertyEventIntegration extends PropertyObject {
+class TestPropertyEventIntegration extends AttachableObjectImpl {
   static final Property<String> _nameProperty = const Property<String>("name");
   static final Property<int> _ageProperty = const Property<int>("age", 0);
 

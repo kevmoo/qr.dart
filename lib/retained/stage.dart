@@ -1,4 +1,4 @@
-class Stage extends core.PropertyObject
+class Stage extends core.AttachableObjectImpl
   implements ElementParent {
   final CanvasElement _canvas;
   final PElement _element;

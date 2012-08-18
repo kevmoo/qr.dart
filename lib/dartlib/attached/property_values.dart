@@ -35,8 +35,8 @@ class PropertyValues extends DisposableImpl {
 
   Object _getValueOrUndefined(
                               Property key,
-                              IPropertyObject obj,
-                              Func1<IPropertyObject, Object> ifAbsent){
+                              AttachableObject obj,
+                              Func1<AttachableObject, Object> ifAbsent){
     if(_isSet(key)){
       return _propertyValues[key];
     }
