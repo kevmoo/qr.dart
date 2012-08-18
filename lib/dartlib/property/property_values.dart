@@ -18,10 +18,10 @@ class PropertyValues extends DisposableImpl {
 
   void _remove(Property key){
     var exists = _isSet(key);
-    // NOTE: remove returns the removed item, which could be null. Bleh.
-    // TODO: ponder null-ish value to avoid these double access scenarios? Maybe?
-    _propertyValues.remove(key);
     if(exists){
+      // NOTE: remove returns the removed item, which could be null. Bleh.
+      // TODO: ponder null-ish value to avoid these double access scenarios? Maybe?
+      _propertyValues.remove(key);
       _changeHandle.fireEvent(key);
     }
   }
