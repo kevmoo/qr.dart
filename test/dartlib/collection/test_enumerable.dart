@@ -18,7 +18,7 @@ class TestEnumerable {
       test('select', _testSelect);
       test('selectMany', _testSelectMany);
       test('selectNumbers', _testSelectNumbers);
-      solo_test('single', _testSingle);
+      test('single', _testSingle);
       test('toHashMap', _testToHashMap);
       test('toHashSet', _testToHashSet);
       test('where', _testWhere);
