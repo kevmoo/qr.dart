@@ -1,10 +1,9 @@
-class Property<T> {
+class Property<T> extends Attachable {
   static final Object Undefined = const _UndefinedValue();
 
-  final String name;
   final T defaultValue;
 
-  const Property(String this.name, [T this.defaultValue = null]);
+  const Property(String name, [T this.defaultValue = null]) : super(name);
 
   T get(AttachableObject obj, [Func1<AttachableObject, T> ifAbsent = null]){
     var coreValue = getCore(obj, ifAbsent);
@@ -34,12 +33,12 @@ class Property<T> {
   }
 
   GlobalId addHandler(AttachableObject obj, Action1<Property> handler){
-    return _PropertyChangeHelper.addHandler(obj, this, handler);
+    return _AttachableEventHelper.addHandler(obj, this, handler);
   }
 
   // TODO: test the return value...possible weirdness
   bool removeHandler(AttachableObject obj, GlobalId handlerId){
-    return _PropertyChangeHelper.removeHandler(obj, this, handlerId);
+    return _AttachableEventHelper.removeHandler(obj, this, handlerId);
   }
 
   String toString() => "Property '$name'";
@@ -48,48 +47,4 @@ class Property<T> {
 class _UndefinedValue{
   const _UndefinedValue();
   // TODO: toString?
-}
-
-class _PropertyChangeHelper{
-  // TODO: once we can define static final with 'new' instead of 'const', we can nuke the property redirection
-  // TODO: 2012-08-18: Not sure what I meant by this when I wrote it :-/
-  static final Property<_PropertyChangeHelper> _changeHelperProperty = const Property<_PropertyChangeHelper>("_changeHelperProperty");
-
-  final NoneHashMap<Property, EventHandle<Property>> _handlers;
-  final GlobalId _propertyChangeHandleId;
-
-  _PropertyChangeHelper(GlobalId id) :
-    _handlers = new NoneHashMap<Property, EventHandle<Property>>(),
-    _propertyChangeHandleId = id;
-
-  static _PropertyChangeHelper createInstance(AttachableObject obj){
-    var handlerId = obj.propertyValues.propertyChanged.add((args){
-      _fireHandlers(obj, args);
-    });
-    return new _PropertyChangeHelper(handlerId);
-  }
-
-  static GlobalId addHandler(AttachableObject obj, Property property, Action1<Property> watcher){
-    var helper = _changeHelperProperty.get(obj, createInstance);
-    var handle = helper._handlers.putIfAbsent(property, () => new EventHandle<Property>());
-    return handle.add(watcher);
-  }
-
-  static bool removeHandler(AttachableObject obj, Property property, GlobalId handlerId){
-    final helper = _changeHelperProperty.get(obj);
-    assert(helper != null);
-    var handle = helper._handlers[property];
-    if(handle != null){
-      return handle.remove(handlerId);
-    }
-    return false;
-  }
-
-  static void _fireHandlers(AttachableObject obj, Property property){
-    var helper = _changeHelperProperty.get(obj);
-    var handle = helper._handlers[property];
-    if(handle != null){
-      handle.fireEvent(property);
-    }
-  }
 }
