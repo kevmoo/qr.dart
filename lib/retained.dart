@@ -16,3 +16,4 @@
 #source('retained/stage.dart');
 #source('retained/shape.dart');
 #source('retained/shape_type.dart');
+#source('retained/click_manager.dart');
