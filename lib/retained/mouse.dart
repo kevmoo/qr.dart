@@ -14,7 +14,8 @@ class Mouse {
     return isMouseDirectlyOverProperty.get(element);
   }
 
-  static List<PElement> markMouseOver(Stage stage, [core.Coordinate coordinate = null]) {
+  static List<PElement> markMouseOver(Stage stage,
+      [core.Coordinate coordinate = null]) {
     core.requireArgumentNotNull(stage, 'stage');
 
     final items = _stageMouseCacheProperty.get(stage);
@@ -23,6 +24,7 @@ class Mouse {
         isMouseOverProperty.clear(e);
         isMouseDirectlyOverProperty.clear(e);
       });
+      _stageMouseCacheProperty.clear(stage);
     }
     if (coordinate != null) {
       var hits = RetainedUtil.hitTest(stage, coordinate);
