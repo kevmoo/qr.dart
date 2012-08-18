@@ -1,7 +1,9 @@
 class Panel extends ElementParentImpl {
   static final core.Property<core.AffineTransform> _containerTransformProperty =
       const core.Property<core.AffineTransform>("panelTransform");
+
   final List<PElement> _children;
+  String background;
 
   Panel(num w, num h, [bool enableCache = false]) :
     _children = new List<PElement>(),
@@ -30,5 +32,13 @@ class Panel extends ElementParentImpl {
     var tx = _containerTransformProperty.get(child);
     assert(tx != null);
     return tx;
+  }
+
+  void drawOverride(CanvasRenderingContext2D ctx) {
+    if(background != null) {
+      ctx.fillStyle = background;
+      ctx.fillRect(0, 0, width, height);
+    }
+    super.drawOverride(ctx);
   }
 }
