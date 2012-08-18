@@ -21,6 +21,10 @@ class PElement extends core.AttachableObjectImpl {
 
   core.Size get size() => new core.Size(_width, _height);
 
+  int get visualChildCount() => 0;
+
+  ElementParent get parent() => _parent;
+
   core.EventRoot<core.EventArgs> get updated() => _updatedEventHandle;
 
   core.EventRoot<core.EventArgs> get invalidated() => _invalidatedEventHandle;
@@ -91,8 +95,6 @@ class PElement extends core.AttachableObjectImpl {
   PElement getVisualChild(int index){
     throw "no children for this type";
   }
-
-  int get visualChildCount() => 0;
 
   void registerParent(ElementParent parent) {
     assert(_parent == null);
