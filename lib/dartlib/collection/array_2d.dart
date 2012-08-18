@@ -79,6 +79,13 @@ class Array2d<T> extends ListBase<T> {
     return adj;
   }
 
+  Tuple<int, int> getCoordinate(int index) {
+    final x = index % width;
+    final y = index ~/ width;
+    assert(_getIndex(x, y) == index);
+    return new Tuple<int, int>(x, y);
+  }
+
   int _getIndex(int x, int y) {
     assert(x >= 0 && x < width);
     assert(y >= 0 && y < height);
