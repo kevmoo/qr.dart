@@ -2,8 +2,8 @@ class ClickManager {
   static final core.Property<bool> _isClickableProperty =
       const core.Property<bool>("isClickable", false);
 
-  static final core.AttachedEvent<PElement> _clickEvent =
-      const core.AttachedEvent<PElement>('clickEvent');
+  static final core.AttachedEvent<ElementMouseEventArgs> _clickEvent =
+      const core.AttachedEvent<ElementMouseEventArgs>('clickEvent');
 
   final Stage _stage;
 
@@ -66,7 +66,7 @@ class ClickManager {
         return _isClickableProperty.get(e);
       });
       if(upElement == _mouseDownElement) {
-        _doClick(upElement);
+        _doClick(upElement, e);
       }
       _mouseDownElement = null;
     }
@@ -83,8 +83,9 @@ class ClickManager {
     return Mouse.markMouseOver(_stage, value);
   }
 
-  void _doClick(PElement element) {
+  void _doClick(PElement element, MouseEvent e) {
     assert(element != null);
-    _clickEvent.fireEvent(element, element);
+    final args = new ElementMouseEventArgs(element, e);
+    _clickEvent.fireEvent(element, args);
   }
 }
