@@ -36,7 +36,6 @@ class Property<T> extends Attachable {
     return _AttachableEventHelper.addHandler(obj, this, handler);
   }
 
-  // TODO: test the return value...possible weirdness
   bool removeHandler(AttachableObject obj, GlobalId handlerId){
     return _AttachableEventHelper.removeHandler(obj, this, handlerId);
   }

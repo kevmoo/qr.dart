@@ -77,7 +77,10 @@ class TestProperties extends AttachableObjectImpl {
         expect(h2.eventCount, equals(1));
 
         // remove handler 1
-        testProperty.removeHandler(object, g1);
+        bool removed = testProperty.removeHandler(object, g1);
+        expect(removed, isTrue);
+        removed = testProperty.removeHandler(object, g1);
+        expect(removed, isFalse);
         // clear prop
         testProperty.clear(object);
         // should fire h2, but not h1
@@ -85,7 +88,10 @@ class TestProperties extends AttachableObjectImpl {
         expect(h2.eventCount, equals(2));
 
         // remove handler 2
-        testProperty.removeHandler(object, g2);
+        removed = testProperty.removeHandler(object, g2);
+        expect(removed, isTrue);
+        removed = testProperty.removeHandler(object, g2);
+        expect(removed, isFalse);
         // set prop
         testProperty.set(object, "the bar!");
         // should not fire either handler
