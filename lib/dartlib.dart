@@ -11,7 +11,9 @@
 #source('dartlib/disposable.dart');
 #source('dartlib/disposable_impl.dart');
 #source('dartlib/global_id.dart');
+
 #source('dartlib/tuple.dart');
+#source('dartlib/tuple3.dart');
 
 #source('dartlib/exceptions/null_argument_exception.dart');
 #source('dartlib/exceptions/invalid_operation_exception.dart');
