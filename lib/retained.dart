@@ -3,6 +3,7 @@
 #import('dart:html');
 
 #import('dartlib.dart', prefix:'core');
+#import('html.dart');
 
 #source('retained/retained_debug.dart');
 #source('retained/mouse.dart');

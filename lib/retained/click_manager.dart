@@ -43,7 +43,7 @@ class ClickManager {
   }
 
   void _mouseMove(MouseEvent e) {
-    _updateMouseLocation(new core.Coordinate(e.offsetX, e.offsetY));
+    _updateMouseLocation(getMouseEventCoordinate(e));
   }
 
   void _mouseOut(MouseEvent e) {
@@ -60,8 +60,7 @@ class ClickManager {
     //       Mouse capture anyone?
 
     if(_mouseDownElement != null) {
-      final hits = _updateMouseLocation(
-          new core.Coordinate(e.offsetX, e.offsetY));
+      final hits = _updateMouseLocation(getMouseEventCoordinate(e));
       final upElement = core.$(hits).firstOrDefault((e) {
         return _isClickableProperty.get(e);
       });
@@ -73,7 +72,8 @@ class ClickManager {
   }
 
   void _mouseDown(MouseEvent e) {
-    final hits = _updateMouseLocation(new core.Coordinate(e.offsetX, e.offsetY));
+    final coord = getMouseEventCoordinate(e);
+    final hits = _updateMouseLocation(coord);
     _mouseDownElement = core.$(hits).firstOrDefault((e) {
       return _isClickableProperty.get(e);
     });
