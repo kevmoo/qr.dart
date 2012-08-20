@@ -6,3 +6,4 @@
 
 #source('html/dragger.dart');
 #source('html/html_view.dart');
+#source('html/html_util.dart');
