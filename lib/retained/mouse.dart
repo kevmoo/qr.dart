@@ -17,6 +17,7 @@ class Mouse {
   static List<PElement> markMouseOver(Stage stage,
       [core.Coordinate coordinate = null]) {
     core.requireArgumentNotNull(stage, 'stage');
+    core.requireArgument(coordinate == null || coordinate.isValid, 'coordinate');
 
     final items = _stageMouseCacheProperty.get(stage);
     if (items != null) {
