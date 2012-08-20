@@ -31,5 +31,12 @@ if (navigator.webkitStartDart) {
         }
       }
     }
+    __FirefoxHotFix();
   }, false);
 }
+
+var __FirefoxHotFix = function() {
+  if(window.mozRequestAnimationFrame) {
+    window.webkitRequestAnimationFrame = window.mozRequestAnimationFrame;
+  }
+};
