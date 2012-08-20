@@ -1,5 +1,6 @@
 #import('dart:html');
 #import('../../lib/dartlib.dart', prefix:'core');
+#import('../../lib/html.dart');
 #import('../../lib/retained.dart');
 
 main(){
@@ -63,7 +64,7 @@ class SpinDemo{
   }
 
   void _canvas_mouseMove(MouseEvent e){
-    _mouseLocation = new core.Coordinate(e.offsetX, e.offsetY);
+    _mouseLocation = getMouseEventCoordinate(e);
   }
 
   void _canvas_mouseOut(MouseEvent e){

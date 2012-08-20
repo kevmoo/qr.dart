@@ -91,7 +91,7 @@ class DraggerDemo{
   }
 
   void _canvas_mouseMove(MouseEvent e){
-    _setMouse(new core.Coordinate(e.offsetX, e.offsetY));
+    _setMouse(getMouseEventCoordinate(e));
   }
 
   void _canvas_mouseOut(MouseEvent e){
