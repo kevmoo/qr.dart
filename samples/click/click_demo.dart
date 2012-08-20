@@ -56,7 +56,7 @@ class ClickDemo{
   }
 
   void requestFrame(){
-    window.webkitRequestAnimationFrame(_onFrame);
+    window.requestAnimationFrame(_onFrame);
   }
 
   bool _onFrame(num highResTime){

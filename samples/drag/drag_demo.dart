@@ -50,7 +50,7 @@ class DraggerDemo{
   void requestFrame(){
     if(!_frameRequested) {
       _frameRequested = true;
-      window.webkitRequestAnimationFrame(_onFrame);
+      window.requestAnimationFrame(_onFrame);
     }
   }
 
