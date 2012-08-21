@@ -1,5 +1,5 @@
 #!/bin/bash
-libs=`ls lib/*.dart`
-cmd="dartdoc --omit-generation-time --verbose --exclude-lib=coreimpl_patch.dart,math_patch.dart $libs"
+libs=`ls lib/*.dart | grep -v test.dart` # excluding test because of package issues
+cmd="dartdoc --omit-generation-time --verbose $libs"
 echo $cmd
 exec $cmd
