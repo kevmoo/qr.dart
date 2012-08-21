@@ -186,6 +186,26 @@ T first([Func1&lt;T, bool&gt; f = null]) {
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="firstOrDefault">
+<span class="show-code">Code</span>
+<a href="../dartlib/Enumerable.html">T</a> <strong>firstOrDefault</strong>([<a href="../dartlib/Func1.html">Func1</a> f = null, <a href="../dartlib/Enumerable.html">T</a> defaultValue = null]) <a class="anchor-link" href="#firstOrDefault"
+              title="Permalink to Enumerable&lt;T&gt;.firstOrDefault">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+T firstOrDefault([Func1&lt;T, bool&gt; f = null, T defaultValue = null]) {
+  if(f == null) {
+    f = (e) =&gt; true;
+  }
+  final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
+  if(!iter.hasNext()) {
+    return defaultValue;
+  }
+  return iter.next();
+}
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="forEach">
 <span class="show-code">Code</span>
 void <strong>forEach</strong>(<a href="../dartlib/Action1.html">Action1</a> f) <a class="anchor-link" href="#forEach"
@@ -320,6 +340,30 @@ T single([Func1&lt;T, bool&gt; f = null]) {
   final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
   if(!iter.hasNext()) {
     throw const InvalidOperationException('The input sequence is empty.');
+  }
+  final value = iter.next();
+  if(iter.hasNext()) {
+    throw const InvalidOperationException('The input sequence contains more than one element.');
+  }
+  return value;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="singleOrDefault">
+<span class="show-code">Code</span>
+<a href="../dartlib/Enumerable.html">T</a> <strong>singleOrDefault</strong>([<a href="../dartlib/Func1.html">Func1</a> f = null, <a href="../dartlib/Enumerable.html">T</a> defaultValue = null]) <a class="anchor-link" href="#singleOrDefault"
+              title="Permalink to Enumerable&lt;T&gt;.singleOrDefault">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+T singleOrDefault([Func1&lt;T, bool&gt; f = null, T defaultValue = null]) {
+  if(f == null) {
+    f = (e) =&gt; true;
+  }
+  final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
+  if(!iter.hasNext()) {
+    return defaultValue;
   }
   final value = iter.next();
   if(iter.hasNext()) {

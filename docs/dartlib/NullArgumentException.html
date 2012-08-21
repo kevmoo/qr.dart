@@ -37,7 +37,33 @@ const <strong>NullArgumentException</strong>([String arg = ""]) <a class="anchor
 <div class="doc">
 
 <pre class="source">
-const NullArgumentException([String arg = ""]) : super(arg);
+const NullArgumentException([String arg = ""]) : this.theArg = arg, super(arg);
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="toString">
+<span class="show-code">Code</span>
+String <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to NullArgumentException.toString">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+String toString() =&gt; "Null argument(s): $theArg";
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="theArg">
+<span class="show-code">Code</span>
+final String         <strong>theArg</strong> <a class="anchor-link"
+            href="#theArg"
+            title="Permalink to NullArgumentException.theArg">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final String theArg;
 </pre>
 </div>
 </div>

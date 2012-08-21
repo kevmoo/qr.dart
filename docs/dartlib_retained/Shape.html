@@ -28,17 +28,17 @@
 </div>
 <h3>Extends</h3>
 <p>
-<span class="type-box"><span class="icon-class"></span><a href="../dartlib/DisposableImpl.html">DisposableImpl</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../dartlib/PropertyObject.html">PropertyObject</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../dartlib_retained/PElement.html">PElement</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>Shape</strong></span></p>
+<span class="type-box"><span class="icon-class"></span><a href="../dartlib/DisposableImpl.html">DisposableImpl</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../dartlib/AttachableObjectImpl.html">AttachableObjectImpl</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../dartlib_retained/PElement.html">PElement</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>Shape</strong></span></p>
 <h3>Constructors</h3>
 <div class="method"><h4 id="Shape">
 <span class="show-code">Code</span>
-new <strong>Shape</strong>(num w, num h, [String fillStyle = 'blue', <a href="../dartlib_retained/ShapeType.html">ShapeType</a> shapeType = ShapeType.rect]) <a class="anchor-link" href="#Shape"
+new <strong>Shape</strong>(num w, num h, [fillStyle = 'blue', <a href="../dartlib_retained/ShapeType.html">ShapeType</a> shapeType = ShapeType.rect]) <a class="anchor-link" href="#Shape"
               title="Permalink to Shape.Shape">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-Shape(num w, num h, [this.fillStyle = 'blue', this.shapeType = ShapeType.rect])
-  : super(w, h);
+Shape(num w, num h, [Dynamic fillStyle = 'blue', this.shapeType = ShapeType.rect])
+  : _fillStyle = fillStyle, super(w, h);
 </pre>
 </div>
 </div>
@@ -51,37 +51,60 @@ void <strong>drawOverride</strong>(CanvasRenderingContext2D ctx) <a class="ancho
 
 <pre class="source">
 void drawOverride(CanvasRenderingContext2D ctx){
-    ctx.fillStyle = fillStyle;
-    // NOTE: warnings here will go away once dartbug.com/3342 is resolved
-    switch(shapeType){
-      case ShapeType.rect:
-        ctx.fillRect(0, 0, size.width, size.height);
-        break;
-      case ShapeType.ellipse:
-        CanvasUtil.ellipse(ctx, 0, 0, this.width, this.height);
-        ctx.fill();
-        break;
-      default:
-        throw "shape not known...";
-    }
+  ctx.fillStyle = _fillStyle;
+  // NOTE: warnings here will go away once dartbug.com/3342 is resolved
+  switch(shapeType){
+    case ShapeType.rect:
+      ctx.fillRect(0, 0, size.width, size.height);
+      break;
+    case ShapeType.ellipse:
+      CanvasUtil.ellipse(ctx, 0, 0, this.width, this.height);
+      ctx.fill();
+      break;
+    default:
+      throw "shape not known...";
+  }
 }
 </pre>
 </div>
 </div>
-<h3>Fields</h3>
-<div class="field"><h4 id="fillStyle">
+<div class="method"><h4 id="fillStyle">
 <span class="show-code">Code</span>
-final String         <strong>fillStyle</strong> <a class="anchor-link"
-            href="#fillStyle"
-            title="Permalink to Shape.fillStyle">#</a>
-        </h4>
-        <div class="doc">
+<strong>fillStyle</strong>() <a class="anchor-link" href="#fillStyle"
+              title="Permalink to Shape.fillStyle">#</a></h4>
+<div class="doc">
 
 <pre class="source">
-final String fillStyle;
+Dynamic get fillStyle() =&gt; _fillStyle;
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="fillStyle">
+<span class="show-code">Code</span>
+void <strong>set fillStyle</strong>(value) <a class="anchor-link" href="#fillStyle"
+              title="Permalink to Shape.set fillStyle">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void set fillStyle(Dynamic value) {
+  _fillStyle = value;
+  invalidateDraw();
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="toString">
+<span class="show-code">Code</span>
+String <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to Shape.toString">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+String toString() =&gt; 'Shape [$_fillStyle, ${shapeType.name}]';
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
 <div class="field"><h4 id="shapeType">
 <span class="show-code">Code</span>
 final <a href="../dartlib_retained/ShapeType.html">ShapeType</a>         <strong>shapeType</strong> <a class="anchor-link"

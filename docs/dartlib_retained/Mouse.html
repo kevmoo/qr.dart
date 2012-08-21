@@ -60,8 +60,10 @@ List&lt;<a href="../dartlib_retained/PElement.html">PElement</a>&gt; <strong>mar
 <div class="doc">
 
 <pre class="source">
-static List&lt;PElement&gt; markMouseOver(Stage stage, [core.Coordinate coordinate = null]) {
+static List&lt;PElement&gt; markMouseOver(Stage stage,
+    [core.Coordinate coordinate = null]) {
   core.requireArgumentNotNull(stage, 'stage');
+  core.requireArgument(coordinate == null || coordinate.isValid, 'coordinate');
 
   final items = _stageMouseCacheProperty.get(stage);
   if (items != null) {
@@ -69,6 +71,7 @@ static List&lt;PElement&gt; markMouseOver(Stage stage, [core.Coordinate coordina
       isMouseOverProperty.clear(e);
       isMouseDirectlyOverProperty.clear(e);
     });
+    _stageMouseCacheProperty.clear(stage);
   }
   if (coordinate != null) {
     var hits = RetainedUtil.hitTest(stage, coordinate);

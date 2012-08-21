@@ -143,6 +143,22 @@ List&lt;int&gt; getAdjacentIndices(int x, int y) {
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="getCoordinate">
+<span class="show-code">Code</span>
+<a href="../dartlib/Tuple.html">Tuple</a>&lt;int, int&gt; <strong>getCoordinate</strong>(int index) <a class="anchor-link" href="#getCoordinate"
+              title="Permalink to Array2d&lt;T&gt;.getCoordinate">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Tuple&lt;int, int&gt; getCoordinate(int index) {
+  final x = index % width;
+  final y = index ~/ width;
+  assert(_getIndex(x, y) == index);
+  return new Tuple&lt;int, int&gt;(x, y);
+}
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="length">
 <span class="show-code">Code</span>
 int <strong>length</strong>() <a class="anchor-link" href="#length"

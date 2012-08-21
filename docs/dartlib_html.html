@@ -21,6 +21,45 @@
 <div class="content">
 <h2><strong>dartlib_html</strong> library</h2>
 <div class="doc"></div>
+<h3>Methods</h3>
+<div class="method"><h4 id="getElementCoordinate">
+<span class="show-code">Code</span>
+<a href="dartlib/Coordinate.html">Coordinate</a> <strong>getElementCoordinate</strong>(Element element) <a class="anchor-link" href="#getElementCoordinate"
+              title="Permalink to getElementCoordinate">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+core.Coordinate getElementCoordinate(Element element) {
+  final cr = element.$dom_getBoundingClientRect();
+  final crd = new core.Coordinate(cr.left.toInt(), cr.top.toInt());
+  assert(crd.isValid);
+  return crd;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getMouseEventCoordinate">
+<span class="show-code">Code</span>
+<a href="dartlib/Coordinate.html">Coordinate</a> <strong>getMouseEventCoordinate</strong>(MouseEvent event) <a class="anchor-link" href="#getMouseEventCoordinate"
+              title="Permalink to getMouseEventCoordinate">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+core.Coordinate getMouseEventCoordinate(MouseEvent event) {
+  final Element element = event.currentTarget;
+  assert(element != null);
+
+  final clientCoord = new core.Coordinate(event.clientX, event.clientY);
+  assert(clientCoord.isValid);
+
+  final elementOff = getElementCoordinate(element);
+  final shared = clientCoord - elementOff;
+
+  return shared;
+}
+</pre>
+</div>
+</div>
 <h3>Classes</h3>
           <div class="type">
           <h4>

@@ -28,7 +28,7 @@
 </div>
 <h3>Extends</h3>
 <p>
-<span class="type-box"><span class="icon-class"></span><a href="../dartlib/DisposableImpl.html">DisposableImpl</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../dartlib/PropertyObject.html">PropertyObject</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../dartlib_retained/PElement.html">PElement</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../dartlib_retained/ElementParentImpl.html">ElementParentImpl</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>Panel</strong></span></p>
+<span class="type-box"><span class="icon-class"></span><a href="../dartlib/DisposableImpl.html">DisposableImpl</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../dartlib/AttachableObjectImpl.html">AttachableObjectImpl</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../dartlib_retained/PElement.html">PElement</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../dartlib_retained/ElementParentImpl.html">ElementParentImpl</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>Panel</strong></span></p>
 <h3>Subclasses</h3>
 <p>
 <span class="type-box"><span class="icon-class"></span><a href="../dartlib_retained/PCanvas.html">PCanvas</a></span></p>
@@ -56,6 +56,23 @@ void <strong>addElement</strong>(<a href="../dartlib_retained/PElement.html">PEl
 <pre class="source">
 void addElement(PElement element){
   insertAt(element, _children.length);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="drawOverride">
+<span class="show-code">Code</span>
+void <strong>drawOverride</strong>(CanvasRenderingContext2D ctx) <a class="anchor-link" href="#drawOverride"
+              title="Permalink to Panel.drawOverride">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void drawOverride(CanvasRenderingContext2D ctx) {
+  if(background != null) {
+    ctx.fillStyle = background;
+    ctx.fillRect(0, 0, width, height);
+  }
+  super.drawOverride(ctx);
 }
 </pre>
 </div>
@@ -114,6 +131,20 @@ int <strong>visualChildCount</strong>() <a class="anchor-link" href="#visualChil
 
 <pre class="source">
 int get visualChildCount() =&gt; _children.length;
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="background">
+<span class="show-code">Code</span>
+String         <strong>background</strong> <a class="anchor-link"
+            href="#background"
+            title="Permalink to Panel.background">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+String background;
 </pre>
 </div>
 </div>

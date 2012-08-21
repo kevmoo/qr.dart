@@ -63,12 +63,9 @@ static void borderHitTest(Stage stage, core.Coordinate point){
     ctx.save();
     ctx.lineWidth = 2;
 
-    ctx.beginPath();
-
     hits.forEach((e) {
       _borderElement(ctx, e, true);
     });
-    ctx.stroke();
     ctx.restore();
   }
 }
