@@ -1,6 +1,6 @@
 #library('dartlib_test_core');
 
-#import('../../vendor/unittest/unittest.dart');
+#import('package:unittest/unittest.dart');
 #import('../../lib/dartlib.dart');
 #import('../../lib/qr.dart');
 #import('../../lib/test.dart');
