@@ -95,7 +95,7 @@ class ListBase<T> extends Enumerable<T> implements List<T> {
    *
    * Subclasses should return the number of elements in this collection.
    */
-  int get length() {
+  int get length {
     throw const NotImplementedException('must be implemented by subclass');
   }
 

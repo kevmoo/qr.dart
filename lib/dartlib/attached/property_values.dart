@@ -26,7 +26,7 @@ class PropertyValues extends DisposableImpl {
     }
   }
 
-  EventRoot<Property> get propertyChanged() => _changeHandle;
+  EventRoot<Property> get propertyChanged => _changeHandle;
 
   void disposeInternal(){
     super.disposeInternal();

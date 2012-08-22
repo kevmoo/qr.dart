@@ -30,7 +30,7 @@ class QrMath {
     return EXP_TABLE[n];
   }
 
-  static get EXP_TABLE() {
+  static get EXP_TABLE {
     if(_expTable == null) {
       var t = QrMath.getZeroedList(256);
       for (int i = 0; i < 8; i++) {
@@ -44,7 +44,7 @@ class QrMath {
     return _expTable;
   }
 
-  static get LOG_TABLE() {
+  static get LOG_TABLE {
     if(_logTable == null) {
       var t = QrMath.getZeroedList(256);
       // this was the code I had in pl

@@ -24,7 +24,7 @@ class NoneHashMap<K, V> implements Map<K, V> {
 
   Collection<V> getValues() => $(_values).select((t) => t.Item2).toList();
 
-  int get length() => _values.length;
+  int get length => _values.length;
 
   void forEach(Action2<K,V> f) {
     for(final t in _values) {

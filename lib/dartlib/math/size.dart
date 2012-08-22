@@ -13,12 +13,12 @@ class Size {
   /**
    * Returns the area of the size (width * height).
    */
-  num get area() => width * height;
+  num get area => width * height;
 
   /**
    * Returns the ratio of the size's width to its height.
    */
-  num get aspectRatio() => width / height;
+  num get aspectRatio => width / height;
 
   /**
    * Returns true if this Size is the same size or smaller than the
@@ -37,9 +37,9 @@ class Size {
   /**
    * Returns the perimeter of the size (width + height) * 2.
    */
-  num get perimeter() => (width + height) * 2;
+  num get perimeter => (width + height) * 2;
 
-  bool get isValid() => isValidNumber(width) && isValidNumber(height) &&
+  bool get isValid => isValidNumber(width) && isValidNumber(height) &&
       width >= 0 && height >= 0;
 
   /**

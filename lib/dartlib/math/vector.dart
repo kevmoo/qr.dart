@@ -7,9 +7,9 @@ class Vector extends Coordinate {
   /**
    * Computes the length of this [Vector].
    **/
-  num get length() => math.sqrt(x * x + y * y);
+  num get length => math.sqrt(x * x + y * y);
 
-  Vector get normal() => this.scale(1 / this.length);
+  Vector get normal => this.scale(1 / this.length);
 
   /**
    * Adds a [Coordinate] and returns the result as new [Vector].

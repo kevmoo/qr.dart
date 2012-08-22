@@ -10,13 +10,13 @@ class Stage extends core.AttachableObjectImpl
     _element.registerParent(this);
   }
 
-  core.Size get size() => new core.Size(_canvas.width, _canvas.height);
+  core.Size get size => new core.Size(_canvas.width, _canvas.height);
 
-  core.EventRoot<core.EventArgs> get invalidated() => _invalidatedEventHandle;
+  core.EventRoot<core.EventArgs> get invalidated => _invalidatedEventHandle;
 
-  PElement get rootElement() => _element;
+  PElement get rootElement => _element;
 
-  CanvasRenderingContext2D get ctx() {
+  CanvasRenderingContext2D get ctx {
     if(_ctx == null) {
       _ctx = _canvas.context2d;
     }

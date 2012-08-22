@@ -22,7 +22,7 @@ class ReadOnlyCollection<T> extends ListBase<T> {
   /**
    * Returns the number of elements in this collection.
    */
-  int get length() => _items.length;
+  int get length => _items.length;
 
   /**
    * Returns the element at the given [index] in the list or throws

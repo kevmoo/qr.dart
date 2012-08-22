@@ -15,19 +15,19 @@ class PElement extends core.AttachableObjectImpl {
     _updatedEventHandle = new core.EventHandle<core.EventArgs>(),
     _invalidatedEventHandle = new core.EventHandle<core.EventArgs>();
 
-  num get width() => _width;
+  num get width => _width;
 
-  num get height() => _height;
+  num get height => _height;
 
-  core.Size get size() => new core.Size(_width, _height);
+  core.Size get size => new core.Size(_width, _height);
 
-  int get visualChildCount() => 0;
+  int get visualChildCount => 0;
 
-  ElementParent get parent() => _parent;
+  ElementParent get parent => _parent;
 
-  core.EventRoot<core.EventArgs> get updated() => _updatedEventHandle;
+  core.EventRoot<core.EventArgs> get updated => _updatedEventHandle;
 
-  core.EventRoot<core.EventArgs> get invalidated() => _invalidatedEventHandle;
+  core.EventRoot<core.EventArgs> get invalidated => _invalidatedEventHandle;
 
   core.AffineTransform getTransform() {
     var tx = new core.AffineTransform();

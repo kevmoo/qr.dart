@@ -5,7 +5,7 @@ class Shape extends PElement {
   Shape(num w, num h, [Dynamic fillStyle = 'blue', this.shapeType = ShapeType.rect])
     : _fillStyle = fillStyle, super(w, h);
 
-  Dynamic get fillStyle() => _fillStyle;
+  Dynamic get fillStyle => _fillStyle;
 
   void set fillStyle(Dynamic value) {
     _fillStyle = value;

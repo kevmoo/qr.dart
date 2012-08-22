@@ -100,11 +100,11 @@ class QrDemo{
     }
   }
 
-  core.EventRoot get updated() => _qrMapper.outputChanged;
+  core.EventRoot get updated => _qrMapper.outputChanged;
 
-  core.EventRoot get error() => _qrMapper.error;
+  core.EventRoot get error => _qrMapper.error;
 
-  String get value() => _value;
+  String get value => _value;
 
   void set value(String input) {
     _value = input;

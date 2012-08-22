@@ -47,12 +47,12 @@ class Grouping<K extends Hashable, V> {
   /**
    * The number of {key, value} pairs in the map.
    */
-  int get length() => _values.length;
+  int get length => _values.length;
 
   /**
    * Returns true if there is no {key, value} pair in the map.
    */
-  bool get isEmpty() => _values.isEmpty();
+  bool get isEmpty => _values.isEmpty();
 
   String toString() => _values.toString();
 }

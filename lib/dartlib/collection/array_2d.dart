@@ -43,7 +43,7 @@ class Array2d<T> extends ListBase<T> {
     }
   }
 
-  int get length() => _source.length;
+  int get length => _source.length;
 
   T operator [](int index) => _source[index];
 

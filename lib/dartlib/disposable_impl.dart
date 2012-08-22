@@ -10,7 +10,7 @@ class DisposableImpl implements Disposable {
     }
   }
 
-  bool get isDisposed() => _disposed;
+  bool get isDisposed => _disposed;
 
   /**
    * Do not call this method directly. Call [dispose] instead.

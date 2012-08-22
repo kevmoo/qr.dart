@@ -9,7 +9,7 @@ class QrBitBuffer extends ListBase<bool> {
     return ((_buffer[bufIndex] >> (7 - index % 8)) & 1) == 1;
   }
 
-  int get length() => _length;
+  int get length => _length;
 
   int getByte(int index) => _buffer[index];
 

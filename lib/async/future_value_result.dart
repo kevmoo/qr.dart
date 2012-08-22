@@ -8,5 +8,5 @@ class FutureValueResult<TOutput> {
   FutureValueResult.exception(this.exception):
     value = null;
 
-  bool get isException() => exception != null;
+  bool get isException => exception != null;
 }

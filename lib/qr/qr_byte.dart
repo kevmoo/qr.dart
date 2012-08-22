@@ -13,7 +13,7 @@ class QrByte {
 
   QrByte._internal(this._data);
 
-  int get length() => _data.length;
+  int get length => _data.length;
 
   void write(QrBitBuffer buffer) {
     for(final int v in _data) {

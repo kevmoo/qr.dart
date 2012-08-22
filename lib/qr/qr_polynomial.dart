@@ -22,7 +22,7 @@ class QrPolynomial {
 
   operator [](int index) => _myThings[index];
 
-  int get length() => _myThings.length;
+  int get length => _myThings.length;
 
   QrPolynomial multiply(QrPolynomial e) {
 

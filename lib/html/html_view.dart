@@ -7,7 +7,7 @@ class HtmlView {
     _dirty = true;
   }
 
-  DivElement get node() => _node;
+  DivElement get node => _node;
 
   void markDirty() {
     _dirty = true;

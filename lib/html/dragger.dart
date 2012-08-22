@@ -18,11 +18,11 @@ class Dragger {
     window.on.blur.add(_endDrag);
   }
 
-  core.EventRoot<core.Vector> get dragDelta() => _dragDeltaHandle;
+  core.EventRoot<core.Vector> get dragDelta => _dragDeltaHandle;
 
-  core.EventRoot<core.CancelableEventArgs> get dragStart() => _dragStartHandle;
+  core.EventRoot<core.CancelableEventArgs> get dragStart => _dragStartHandle;
 
-  bool get isDragging() => _clientLoc != null;
+  bool get isDragging => _clientLoc != null;
 
   void _onMouseDown(MouseEvent event) {
     assert(!isDragging);

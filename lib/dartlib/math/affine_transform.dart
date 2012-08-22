@@ -16,23 +16,23 @@ class AffineTransform implements Cloneable<AffineTransform> {
     return new AffineTransform().setToScale(sx, sy);
   }
 
-  num get scaleX() => _m00;
+  num get scaleX => _m00;
 
-  num get scaleY() => _m11;
+  num get scaleY => _m11;
 
-  num get translateX() => _m02;
+  num get translateX => _m02;
 
-  num get translateY() => _m12;
+  num get translateY => _m12;
   
-  Vector get translateVector() => new Vector(translateX, translateY);
+  Vector get translateVector => new Vector(translateX, translateY);
 
-  num get shearX() => _m01;
+  num get shearX => _m01;
 
-  num get shearY() => _m10;
+  num get shearY => _m10;
 
-  num get determinant() => _m00 * _m11 - _m01 * _m10;
+  num get determinant => _m00 * _m11 - _m01 * _m10;
 
-  bool get isIdentity() {
+  bool get isIdentity {
     return _m00 == 1 && _m10 == 0 &&
         _m01 == 0 && _m11 == 1 &&
         _m02 == 0 && _m12 == 0;

@@ -12,14 +12,14 @@ class BungeeNum {
     this.current = current;
   }
 
-  num get target() => _target;
+  num get target => _target;
 
   void set target(num value) {
     requireArgument(isValidNumber(value), 'value');
     _target = value;
   }
 
-  num get current() => _current;
+  num get current => _current;
 
   void set current(num value) {
     requireArgument(isValidNumber(value), 'value');

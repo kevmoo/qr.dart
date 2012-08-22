@@ -28,29 +28,29 @@ class TestPropertyEventIntegration extends AttachableObjectImpl {
   //
   // Name property
   //
-  String get name() => _nameProperty.get(this);
+  String get name => _nameProperty.get(this);
 
   void set name(String value){
     _nameProperty.set(this, value);
   }
 
-  EventRoot<EventArgs> get nameChanged() => _nameChangedEventHandle;
+  EventRoot<EventArgs> get nameChanged => _nameChangedEventHandle;
 
   //
   // Age property
   //
-  int get age() => _ageProperty.get(this);
+  int get age => _ageProperty.get(this);
 
   void set age(int value){
     _ageProperty.set(this, value);
   }
 
-  EventRoot<EventArgs> get ageChanged() =>_ageChangedEventHandle;
+  EventRoot<EventArgs> get ageChanged =>_ageChangedEventHandle;
 
   //
   // Property changed event
   //
-  EventRoot<String> get propertyChanged() => _propertyChangedEventHandle;
+  EventRoot<String> get propertyChanged => _propertyChangedEventHandle;
 
   void reset(){
     _nameProperty.clear(this);

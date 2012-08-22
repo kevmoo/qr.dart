@@ -7,15 +7,15 @@ class Rect implements Hashable{
     return new Rect(topLeft.x, topLeft.y, size.width, size.height);
   }
 
-  Coordinate get topLeft() => new Coordinate(left, top);
+  Coordinate get topLeft => new Coordinate(left, top);
 
-  Size get size() => new Size(width, height);
+  Size get size => new Size(width, height);
 
-  bool get isValid() => topLeft.isValid && size.isValid;
+  bool get isValid => topLeft.isValid && size.isValid;
 
-  num get right() => left + width;
+  num get right => left + width;
 
-  num get bottom() => top + height;
+  num get bottom => top + height;
 
   bool contains(Coordinate point){
     return point.x >= left &&

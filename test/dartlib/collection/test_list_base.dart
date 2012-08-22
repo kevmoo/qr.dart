@@ -11,7 +11,7 @@ class TestListBase extends ListBase<int> {
   /**
    * Returns the number of elements in this collection.
    */
-  int get length() => flip ? _length * 2 : _length;
+  int get length => flip ? _length * 2 : _length;
 
   /**
    * Returns the element at the given [index] in the list or throws

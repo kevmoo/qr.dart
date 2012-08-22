@@ -4,7 +4,7 @@ class FutureValue<TInput, TOutput> {
     _inputChangedHandle = new EventHandle<EventArgs>(),
     _errorHandle = new EventHandle<Object>();
 
-  TInput get input() => _input;
+  TInput get input => _input;
 
   void set input(TInput value) {
     _input = value;
@@ -16,11 +16,11 @@ class FutureValue<TInput, TOutput> {
     _inputChangedHandle.fireEvent(EventArgs.empty);
   }
 
-  TOutput get output() => _output;
+  TOutput get output => _output;
 
-  EventRoot<EventArgs> get outputChanged() => _outputChangedHandle;
-  EventRoot<EventArgs> get inputChanged() => _inputChangedHandle;
-  EventRoot get error() => _errorHandle;
+  EventRoot<EventArgs> get outputChanged => _outputChangedHandle;
+  EventRoot<EventArgs> get inputChanged => _inputChangedHandle;
+  EventRoot get error => _errorHandle;
 
   abstract Future<TOutput> getFuture(TInput value);
 

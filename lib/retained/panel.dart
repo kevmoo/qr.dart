@@ -25,7 +25,7 @@ class Panel extends ElementParentImpl {
 
   PElement getVisualChild(index) => _children[index];
 
-  int get visualChildCount() => _children.length;
+  int get visualChildCount => _children.length;
 
   core.AffineTransform getChildTransform(child) {
     assert(hasVisualChild(child));
