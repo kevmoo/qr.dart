@@ -31,13 +31,13 @@ class CanvasUtil {
     core.requireArgument(core.isValidNumber(pointCount), 'pointCount');
     core.requireArgument(pointCount >= 5, 'pointCount');
 
-    final sliceSize = Math.PI / pointCount;
+    final sliceSize = math.PI / pointCount;
 
     // some day I'll document how I found this
     // It was a lot of paper + WolframAlpha
     // value is the ratio of the inner radius to the outter radius
     // to give the star 'clean lines'
-    final innerRatio = Math.cos(2 * sliceSize) / Math.cos(sliceSize);
+    final innerRatio = math.cos(2 * sliceSize) / math.cos(sliceSize);
 
     final center = new core.Coordinate(x, y);
     final tx = new core.AffineTransform();

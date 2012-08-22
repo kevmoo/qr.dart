@@ -38,9 +38,9 @@ class TarjanCycleDetect<TNode extends Hashable> {
     for(final n in _list.getAdjacent(v)){
       if(n.index == -1){
         _tarjan(n);
-        v.lowlink = Math.min(v.lowlink, n.lowlink);
+        v.lowlink = math.min(v.lowlink, n.lowlink);
       } else if(_stack.indexOf(n) >= 0){
-        v.lowlink = Math.min(v.lowlink, n.index);
+        v.lowlink = math.min(v.lowlink, n.index);
       }
     }
     if(v.lowlink == v.index){

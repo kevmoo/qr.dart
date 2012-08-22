@@ -32,7 +32,7 @@ class NumberEnumerable<T extends num> extends Enumerable<T> {
   num max() {
     num theMax = null;
     for(final n in this) {
-      theMax = theMax == null ? n : Math.max(theMax, n);
+      theMax = theMax == null ? n : math.max(theMax, n);
     }
     return theMax;
   }
@@ -40,7 +40,7 @@ class NumberEnumerable<T extends num> extends Enumerable<T> {
   num min() {
     num theMin = null;
     for(final n in this) {
-      theMin = theMin == null ? n : Math.min(theMin, n);
+      theMin = theMin == null ? n : math.min(theMin, n);
     }
     return theMin;
   }

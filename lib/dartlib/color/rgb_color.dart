@@ -17,9 +17,9 @@ class RgbColor implements Hashable {
   factory RgbColor.fromHex(String hexColor) {
     requireArgumentNotNull(hexColor, 'hexColor');
     hexColor = _normalizeHex(hexColor);
-    var r = Math.parseInt('0x'.concat(hexColor.substring(1, 3)));
-    var g = Math.parseInt('0x'.concat(hexColor.substring(3, 5)));
-    var b = Math.parseInt('0x'.concat(hexColor.substring(5, 7)));
+    var r = math.parseInt('0x'.concat(hexColor.substring(1, 3)));
+    var g = math.parseInt('0x'.concat(hexColor.substring(3, 5)));
+    var b = math.parseInt('0x'.concat(hexColor.substring(5, 7)));
 
     return new RgbColor(r,g,b);
   }
@@ -37,8 +37,8 @@ class RgbColor implements Hashable {
     final normR = r / 255;
     final normG = g / 255;
     final normB = b / 255;
-    final max = Math.max(normR, Math.max(normG, normB));
-    final min = Math.min(normR, Math.min(normG, normB));
+    final max = math.max(normR, math.max(normG, normB));
+    final min = math.min(normR, math.min(normG, normB));
     // Luminosity is the average of the max and min rgb color intensities.
     final l = 0.5 * (max + min);
 
@@ -61,7 +61,7 @@ class RgbColor implements Hashable {
       } else {
         s = (max - min) / (2 - 2 * l);
         // handle a nice case where s can be just over 1
-        s = Math.min(1.0, s);
+        s = math.min(1.0, s);
       }
     }
 

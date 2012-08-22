@@ -30,8 +30,8 @@ class Rect implements Hashable{
     requireArgument(value.isValid, 'value');
     assert(isValid);
 
-    final x = Math.min(right, Math.max(left, value.x));
-    final y = Math.min(bottom, Math.max(top, value.y));
+    final x = math.min(right, math.max(left, value.x));
+    final y = math.min(bottom, math.max(top, value.y));
 
     return new Coordinate(x, y);
   }

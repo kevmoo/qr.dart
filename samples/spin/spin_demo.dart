@@ -1,4 +1,5 @@
 #import('dart:html');
+#import('dart:math', prefix:'math');
 #import('../../lib/dartlib.dart', prefix:'core');
 #import('../../lib/html.dart');
 #import('../../lib/retained.dart');
@@ -55,7 +56,7 @@ class SpinDemo{
   }
 
   bool _onFrame(num highResTime){
-    _tx.rotate(Math.PI * 0.01, 100, 100);
+    _tx.rotate(math.PI * 0.01, 100, 100);
     _stage.draw();
     if(_mouseLocation != null){
       RetainedDebug.borderHitTest(_stage, _mouseLocation);

@@ -1,5 +1,6 @@
 #library('dartlib_test_core');
 
+#import('dart:math', prefix:'math');
 #import('package:unittest/unittest.dart');
 #import('../../lib/dartlib.dart');
 #import('../../lib/test.dart');

@@ -1,6 +1,7 @@
 #library('dartlib_retained');
 
 #import('dart:html');
+#import('dart:math', prefix:'math');
 
 #import('dartlib.dart', prefix:'core');
 #import('html.dart');

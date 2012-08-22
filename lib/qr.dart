@@ -1,5 +1,7 @@
 #library('dartlib_qr');
 
+#import('dart:math', prefix:'math');
+
 #import('dartlib.dart');
 
 #source('qr/qr_bit_buffer.dart');

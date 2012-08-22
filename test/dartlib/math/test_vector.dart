@@ -44,23 +44,23 @@ class TestVector {
 
       test('should have valid normal', (){
         var n = new Vector(4, 4);
-        expect(n.length, closeTo(4 * Math.SQRT2, 0.001));
+        expect(n.length, closeTo(4 * math.SQRT2, 0.001));
         expect(n.normal.length, closeTo(1, 0.001));
       });
 
       test('rotate', (){
         var a = const Vector(1, -1);
-        a = a.rotate(Math.PI / 2);
+        a = a.rotate(math.PI / 2);
         expect(a.x, closeTo(1, 0.000001));
         expect(a.y, closeTo(1, 0.000001));
-        a = a.rotate(-Math.PI);
+        a = a.rotate(-math.PI);
         expect(a.x, closeTo(-1, 0.000001));
         expect(a.y, closeTo(-1, 0.000001));
       });
 
       test('rotateAroundPoint', (){
         var a = const Vector(1, -1);
-        a = a.rotateAroundPoint(const Coordinate(1,0), Math.PI / 2);
+        a = a.rotateAroundPoint(const Coordinate(1,0), math.PI / 2);
         expect(a.x, closeTo(2, 0.000001));
         expect(a.y, closeTo(0, 0.000001));
       });

@@ -39,10 +39,10 @@ class HuslConverter {
   static num _maxChroma(num L, num H){
     final List<num> _ref = [0.0, 1.0];
 
-    final hrad = ((H / 360.0) * 2 * Math.PI);
-    final sinH = Math.sin(hrad);
-    final cosH = Math.cos(hrad);
-    final sub1 = Math.pow(L + 16, 3) / 1560896.0;
+    final hrad = ((H / 360.0) * 2 * math.PI);
+    final sinH = math.sin(hrad);
+    final cosH = math.cos(hrad);
+    final sub1 = math.pow(L + 16, 3) / 1560896.0;
     final sub2 = sub1 > 0.008856 ? sub1 : (L / 903.3);
     var result = double.INFINITY;
     for (var _i = 0; _i < 3; _i++) {
@@ -77,13 +77,13 @@ class HuslConverter {
   }
 
   static num _round( num number, int places ) {
-    final n = Math.pow(10.0, places);
+    final n = math.pow(10.0, places);
     return (number * n).floor() / n;
   }
 
   static num _f(num t) {
     if (t > lab_e) {
-      return Math.pow(t, 1.0 / 3.0);
+      return math.pow(t, 1.0 / 3.0);
     } else {
       return 7.787 * t + 16 / 116.0;
     }
@@ -91,8 +91,8 @@ class HuslConverter {
 
   static num _f_inv( num t )
   {
-    if (Math.pow(t, 3) > lab_e) {
-      return Math.pow(t, 3);
+    if (math.pow(t, 3) > lab_e) {
+      return math.pow(t, 3);
     } else {
       return (116 * t - 16) / lab_k;
     }
@@ -102,7 +102,7 @@ class HuslConverter {
     if (c <= 0.0031308) {
       return 12.92 * c;
     } else {
-      return (1.055 * Math.pow(c, 1 / 2.4) - 0.055);
+      return (1.055 * math.pow(c, 1 / 2.4) - 0.055);
     }
   }
 
@@ -110,7 +110,7 @@ class HuslConverter {
     final a = 0.055;
 
     if (c > 0.04045) {
-      return Math.pow((c + a) / (1 + a), 2.4);
+      return math.pow((c + a) / (1 + a), 2.4);
     } else {
       return (c / 12.92);
     }
@@ -211,9 +211,9 @@ class HuslConverter {
     final U = tuple[1];
     final V = tuple[2];
 
-    final C = (Math.pow(Math.pow(U, 2) + Math.pow(V, 2), (1 / 2.0)));
-    final Hrad = (Math.atan2(V, U));
-    var H = (Hrad * 360.0 / 2.0 / Math.PI);
+    final C = (math.pow(math.pow(U, 2) + math.pow(V, 2), (1 / 2.0)));
+    final Hrad = (math.atan2(V, U));
+    var H = (Hrad * 360.0 / 2.0 / math.PI);
     if (H < 0) {
       H = 360 + H;
     }
@@ -230,9 +230,9 @@ class HuslConverter {
     final C = tuple[1];
     final H = tuple[2];
 
-    final Hrad = H / 360.0 * 2.0 * Math.PI;
-    final U = Math.cos(Hrad) * C;
-    final V = Math.sin(Hrad) * C;
+    final Hrad = H / 360.0 * 2.0 * math.PI;
+    final U = math.cos(Hrad) * C;
+    final V = math.sin(Hrad) * C;
 
     tuple[0] = L;
     tuple[1] = U;

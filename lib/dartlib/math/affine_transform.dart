@@ -76,8 +76,8 @@ class AffineTransform implements Cloneable<AffineTransform> {
   }
 
   AffineTransform setToRotation(num theta, num x, num y) {
-    var cos = Math.cos(theta);
-    var sin = Math.sin(theta);
+    var cos = math.cos(theta);
+    var sin = math.sin(theta);
     return this.setTransform(cos, sin, -sin, cos,
       x - x * cos + y * sin, y - x * sin - y * cos);
   }

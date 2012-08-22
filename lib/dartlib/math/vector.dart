@@ -7,7 +7,7 @@ class Vector extends Coordinate {
   /**
    * Computes the length of this [Vector].
    **/
-  num get length() => Math.sqrt(x * x + y * y);
+  num get length() => math.sqrt(x * x + y * y);
 
   Vector get normal() => this.scale(1 / this.length);
 
@@ -39,11 +39,11 @@ class Vector extends Coordinate {
   /**
    * Computes the angle between this and another [Vector].
    **/
-  num getAngle (Vector other) => Math.acos(dot(other));
+  num getAngle (Vector other) => math.acos(dot(other));
 
   Vector rotate(num angle) {
-    var cos = Math.cos(angle);
-    var sin = Math.sin(angle);
+    var cos = math.cos(angle);
+    var sin = math.sin(angle);
     var newX = this.x * cos - this.y * sin;
     var newY = this.y * cos + this.x * sin;
     return new Vector(newX, newY);

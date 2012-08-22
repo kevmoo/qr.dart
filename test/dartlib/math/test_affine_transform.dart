@@ -27,7 +27,7 @@ class TestAffineTransform {
 
       test('rotate', (){
         var tx = new AffineTransform(1, 2, 3, 4, 5, 6);
-        tx.rotate(Math.PI / 2, 1, 1);
+        tx.rotate(math.PI / 2, 1, 1);
 
         expect(tx.scaleX, closeTo(3, 0.001));
         expect(tx.shearY, closeTo(4, 0.001));
@@ -52,7 +52,7 @@ class TestAffineTransform {
       test('createInverse', (){
         var tx = new AffineTransform.scale(2, 3);
         tx.translate(5, 10);
-        tx.rotate(Math.PI / 4, 5, 10);
+        tx.rotate(math.PI / 4, 5, 10);
         var inverse = tx.createInverse();
 
         expect(inverse.scaleX, closeTo(0.353553, 0.001));

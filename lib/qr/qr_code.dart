@@ -324,8 +324,8 @@ class QrCode {
       var dcCount = rsBlocks[r].dataCount;
       var ecCount = rsBlocks[r].totalCount - dcCount;
 
-      maxDcCount = Math.max(maxDcCount, dcCount);
-      maxEcCount = Math.max(maxEcCount, ecCount);
+      maxDcCount = math.max(maxDcCount, dcCount);
+      maxEcCount = math.max(maxEcCount, ecCount);
 
       dcdata[r] = QrMath.getZeroedList(dcCount);
 

@@ -1,5 +1,7 @@
 #import('dart:html');
 #import('dart:isolate');
+#import('dart:math', prefix:'math');
+
 #import('../../lib/dartlib.dart', prefix:'core');
 #import('../../lib/qr.dart');
 #import('../../lib/async.dart');
@@ -118,13 +120,13 @@ class QrDemo{
 
   void _levelClick(Event args) {
     final InputElement source = args.srcElement;
-    _typeNumber = Math.parseInt(source.dataAttributes[_typeRadioIdKey]);
+    _typeNumber = math.parseInt(source.dataAttributes[_typeRadioIdKey]);
     _update();
   }
 
   void _errorClick(Event args) {
     final InputElement source = args.srcElement;
-    _errorCorrectLevel = Math.parseInt(source.dataAttributes[_errorLevelIdKey]);
+    _errorCorrectLevel = math.parseInt(source.dataAttributes[_errorLevelIdKey]);
     _update();
   }
 
@@ -142,8 +144,8 @@ class QrDemo{
 
     _ctx.clearRect(0, 0, _canvas.width, _canvas.height);
 
-    final size = Math.sqrt(_squares.length).toInt();
-    final minDimension = Math.min(_canvas.width, _canvas.height);
+    final size = math.sqrt(_squares.length).toInt();
+    final minDimension = math.min(_canvas.width, _canvas.height);
     final scale = minDimension ~/ size;
     final offset = (minDimension - (scale * size)) ~/ 2;
 
