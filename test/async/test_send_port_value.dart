@@ -1,6 +1,8 @@
 class TestSendPortValue {
   static void run() {
-    test('simple', _testSimple);
+    // from v10991 to at least v11320, fails
+    // see issue http://code.google.com/p/dart/issues/detail?id=4630
+    test('simple - fails (Dart issue 4630)', _testSimple);
   }
 
   static void _testSimple() {
