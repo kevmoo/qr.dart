@@ -25,8 +25,8 @@ class DraggerDemo{
   factory DraggerDemo(CanvasElement canvas){
 
     final image =
-        new ImgElement.fromUrl('http://sweeper.j832.com/dart_logo.jpg',
-            100, 100);
+        new SpriteElement.horizontalFromUrl('disasteroids2_master.png',
+            28, 28, 16, 29, new core.Coordinate(35,354));
 
     var tx = image.addTransform();
 
@@ -96,6 +96,7 @@ class DraggerDemo{
     ctx.fillText(outputText, 10, bottom - 20);
     ctx.restore();
     _frameRequested = false;
+    requestFrame();
   }
 
   void _canvas_mouseMove(MouseEvent e){
