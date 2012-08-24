@@ -69,6 +69,18 @@ class CanvasUtil {
     ctx.closePath();
   }
 
+  static void drawImage(CanvasRenderingContext2D ctx, ImageElement img,
+                        core.Rect sourceRect, [core.Rect targetRect = null]) {
+
+    if(targetRect == null) {
+      targetRect = new core.Rect(0, 0, sourceRect.width, sourceRect.height);
+    }
+
+    ctx.drawImage(img,
+        sourceRect.left, sourceRect.top, sourceRect.width, sourceRect.height,
+        targetRect.left, targetRect.top, targetRect.width, targetRect.height);
+  }
+
   static void ellipse(CanvasRenderingContext2D ctx,
                       num x, num y, num width, num height) {
     var hB = (width / 2) * kappa,
