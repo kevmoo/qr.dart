@@ -9,7 +9,8 @@ class ImgElement extends PElement {
     return new ImgElement(w, h, img);
   }
 
-  ImgElement(num width, num height, this._image) : super(width, height, true);
+  ImgElement(num width, num height, this._image, [bool cacheEnabled = false]) :
+    super(width, height, cacheEnabled);
 
   void drawOverride(CanvasRenderingContext2D ctx) {
     if(_image.complete) {
