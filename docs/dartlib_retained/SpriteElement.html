@@ -1,0 +1,111 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>SpriteElement Class / dartlib_retained Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="dartlib_retained" data-type="SpriteElement">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../dartlib_retained.html">dartlib_retained</a> &rsaquo; <a href="../dartlib_retained/SpriteElement.html">SpriteElement</a></div>
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>SpriteElement</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Extends</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../dartlib/DisposableImpl.html">DisposableImpl</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../dartlib/AttachableObjectImpl.html">AttachableObjectImpl</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../dartlib_retained/PElement.html">PElement</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../dartlib_retained/ImgElement.html">ImgElement</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>SpriteElement</strong></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="SpriteElement">
+<span class="show-code">Code</span>
+new <strong>SpriteElement</strong>(ImageElement image, num width, num height, <a href="../dartlib/Coordinate.html">Coordinate</a> startCoordinate, <a href="../dartlib/Vector.html">Vector</a> nextDelta, int count) <a class="anchor-link" href="#SpriteElement"
+              title="Permalink to SpriteElement.SpriteElement">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+SpriteElement(ImageElement image, num width, num height,
+              this.startCoordinate, this.nextDelta, this.count) :
+  super(width, height, image);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="SpriteElement">
+<span class="show-code">Code</span>
+factory <strong>SpriteElement</strong>.horizontalFromUrl(String src, num w, num h, int count, num xDelta, [<a href="../dartlib/Coordinate.html">Coordinate</a> start = const core.Coordinate()]) <a class="anchor-link" href="#SpriteElement"
+              title="Permalink to SpriteElement.SpriteElement">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+factory SpriteElement.horizontalFromUrl(String src, num w, num h,
+    int count, num xDelta, [core.Coordinate start = const core.Coordinate()]) {
+  final img = new ImageElement(src, null, null);
+
+  return new SpriteElement(img, w, h, start, new core.Vector(xDelta, 0), count);
+}
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="count">
+<span class="show-code">Code</span>
+final int         <strong>count</strong> <a class="anchor-link"
+            href="#count"
+            title="Permalink to SpriteElement.count">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final int count;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="nextDelta">
+<span class="show-code">Code</span>
+final <a href="../dartlib/Vector.html">Vector</a>         <strong>nextDelta</strong> <a class="anchor-link"
+            href="#nextDelta"
+            title="Permalink to SpriteElement.nextDelta">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final core.Vector nextDelta;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="startCoordinate">
+<span class="show-code">Code</span>
+final <a href="../dartlib/Coordinate.html">Coordinate</a>         <strong>startCoordinate</strong> <a class="anchor-link"
+            href="#startCoordinate"
+            title="Permalink to SpriteElement.startCoordinate">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final core.Coordinate startCoordinate;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

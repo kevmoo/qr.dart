@@ -41,6 +41,27 @@ static void centeredCircle(CanvasRenderingContext2D ctx,
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="drawImage">
+<span class="show-code">Code</span>
+void <strong>drawImage</strong>(CanvasRenderingContext2D ctx, ImageElement img, <a href="../dartlib/Rect.html">Rect</a> sourceRect, [<a href="../dartlib/Rect.html">Rect</a> targetRect = null]) <a class="anchor-link" href="#drawImage"
+              title="Permalink to CanvasUtil.drawImage">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static void drawImage(CanvasRenderingContext2D ctx, ImageElement img,
+                      core.Rect sourceRect, [core.Rect targetRect = null]) {
+
+  if(targetRect == null) {
+    targetRect = new core.Rect(0, 0, sourceRect.width, sourceRect.height);
+  }
+
+  ctx.drawImage(img,
+      sourceRect.left, sourceRect.top, sourceRect.width, sourceRect.height,
+      targetRect.left, targetRect.top, targetRect.width, targetRect.height);
+}
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="ellipse">
 <span class="show-code">Code</span>
 void <strong>ellipse</strong>(CanvasRenderingContext2D ctx, num x, num y, num width, num height) <a class="anchor-link" href="#ellipse"
