@@ -47,7 +47,6 @@ Bugs that cause code smells.
       * I'd love to be able to make `Property` hashable.
   * __Related bugs:__
     [3476](http://code.google.com/p/dart/issues/detail?id=3476),
-    [3551](http://code.google.com/p/dart/issues/detail?id=3551),
     [3558](http://code.google.com/p/dart/issues/detail?id=3558),
     [3559](http://code.google.com/p/dart/issues/detail?id=3559)
 
