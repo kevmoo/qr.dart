@@ -51,17 +51,6 @@ Bugs that cause code smells.
     [3558](http://code.google.com/p/dart/issues/detail?id=3558),
     [3559](http://code.google.com/p/dart/issues/detail?id=3559)
 
-### Put the unittest library on [pub](http://www.dartlang.org/docs/pub-package-manager/) or let me use the copy in the SDK without hard-wired paths.
-  * __Scenario:__ I'd like to use the unittest library in the SDK, but hardwiring the absolute path to the SDK makes it tough to cleanly share code with others.
-  * __Work-around:__ I put an entire copy of the `unittest` code in the `vendor` directory.
-  * __Issues__
-      * I have to manually sync changes to the SDK code.
-      * I have a copy of a lot of files that are already in the SDK.
-  * __Related bugs:__
-    [2518](http://code.google.com/p/dart/issues/detail?id=2518),
-    [3702](http://code.google.com/p/dart/issues/detail?id=3702)
-
-
 ## Authors
  * [Kevin Moore](https://github.com/kevmoo) ([@kevmoo](http://twitter.com/kevmoo))
  * [Andreas Köberle](https://github.com/eskimoblood) ([@eskimobloood](https://twitter.com/eskimobloood))
