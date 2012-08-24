@@ -71,7 +71,7 @@ num <strong>getAngle</strong>(<a href="../dartlib/Vector.html">Vector</a> other)
 <div class="doc">
 <p>Computes the angle between this and another <a class="crossref" href="../dartlib/Vector.html#new:Vector">Vector</a>.</p>
 <pre class="source">
-num getAngle (Vector other) =&gt; Math.acos(dot(other));
+num getAngle (Vector other) =&gt; math.acos(dot(other));
 </pre>
 </div>
 </div>
@@ -82,7 +82,7 @@ num <strong>length</strong>() <a class="anchor-link" href="#length"
 <div class="doc">
 <p>Computes the length of this <a class="crossref" href="../dartlib/Vector.html#new:Vector">Vector</a>.</p>
 <pre class="source">
-num get length() =&gt; Math.sqrt(x * x + y * y);
+num get length =&gt; math.sqrt(x * x + y * y);
 </pre>
 </div>
 </div>
@@ -93,7 +93,7 @@ num get length() =&gt; Math.sqrt(x * x + y * y);
 <div class="doc">
 
 <pre class="source">
-Vector get normal() =&gt; this.scale(1 / this.length);
+Vector get normal =&gt; this.scale(1 / this.length);
 </pre>
 </div>
 </div>
@@ -127,8 +127,8 @@ Vector operator +(Coordinate other) =&gt; new Vector(x + other.x, y + other.y);
 
 <pre class="source">
 Vector rotate(num angle) {
-  var cos = Math.cos(angle);
-  var sin = Math.sin(angle);
+  var cos = math.cos(angle);
+  var sin = math.sin(angle);
   var newX = this.x * cos - this.y * sin;
   var newY = this.y * cos + this.x * sin;
   return new Vector(newX, newY);

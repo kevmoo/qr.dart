@@ -69,7 +69,7 @@ CanvasRenderingContext2D <strong>ctx</strong>() <a class="anchor-link" href="#ct
 <div class="doc">
 
 <pre class="source">
-CanvasRenderingContext2D get ctx() {
+CanvasRenderingContext2D get ctx {
   if(_ctx == null) {
     _ctx = _canvas.context2d;
   }
@@ -129,7 +129,7 @@ core.AffineTransform getTransformToRoot() =&gt; new core.AffineTransform();
 <div class="doc">
 
 <pre class="source">
-core.EventRoot&lt;core.EventArgs&gt; get invalidated() =&gt; _invalidatedEventHandle;
+core.EventRoot&lt;core.EventArgs&gt; get invalidated =&gt; _invalidatedEventHandle;
 </pre>
 </div>
 </div>
@@ -140,7 +140,7 @@ core.EventRoot&lt;core.EventArgs&gt; get invalidated() =&gt; _invalidatedEventHa
 <div class="doc">
 
 <pre class="source">
-PElement get rootElement() =&gt; _element;
+PElement get rootElement =&gt; _element;
 </pre>
 </div>
 </div>
@@ -151,7 +151,7 @@ PElement get rootElement() =&gt; _element;
 <div class="doc">
 
 <pre class="source">
-core.Size get size() =&gt; new core.Size(_canvas.width, _canvas.height);
+core.Size get size =&gt; new core.Size(_canvas.width, _canvas.height);
 </pre>
 </div>
 </div>

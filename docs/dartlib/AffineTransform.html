@@ -137,7 +137,7 @@ num <strong>determinant</strong>() <a class="anchor-link" href="#determinant"
 <div class="doc">
 
 <pre class="source">
-num get determinant() =&gt; _m00 * _m11 - _m01 * _m10;
+num get determinant =&gt; _m00 * _m11 - _m01 * _m10;
 </pre>
 </div>
 </div>
@@ -148,7 +148,7 @@ bool <strong>isIdentity</strong>() <a class="anchor-link" href="#isIdentity"
 <div class="doc">
 
 <pre class="source">
-bool get isIdentity() {
+bool get isIdentity {
   return _m00 == 1 &amp;&amp; _m10 == 0 &amp;&amp;
       _m01 == 0 &amp;&amp; _m11 == 1 &amp;&amp;
       _m02 == 0 &amp;&amp; _m12 == 0;
@@ -208,7 +208,7 @@ num <strong>scaleX</strong>() <a class="anchor-link" href="#scaleX"
 <div class="doc">
 
 <pre class="source">
-num get scaleX() =&gt; _m00;
+num get scaleX =&gt; _m00;
 </pre>
 </div>
 </div>
@@ -219,7 +219,7 @@ num <strong>scaleY</strong>() <a class="anchor-link" href="#scaleY"
 <div class="doc">
 
 <pre class="source">
-num get scaleY() =&gt; _m11;
+num get scaleY =&gt; _m11;
 </pre>
 </div>
 </div>
@@ -247,8 +247,8 @@ AffineTransform setFromTransfrom(AffineTransform tx) {
 
 <pre class="source">
 AffineTransform setToRotation(num theta, num x, num y) {
-  var cos = Math.cos(theta);
-  var sin = Math.sin(theta);
+  var cos = math.cos(theta);
+  var sin = math.sin(theta);
   return this.setTransform(cos, sin, -sin, cos,
     x - x * cos + y * sin, y - x * sin - y * cos);
 }
@@ -308,7 +308,7 @@ num <strong>shearX</strong>() <a class="anchor-link" href="#shearX"
 <div class="doc">
 
 <pre class="source">
-num get shearX() =&gt; _m01;
+num get shearX =&gt; _m01;
 </pre>
 </div>
 </div>
@@ -319,7 +319,7 @@ num <strong>shearY</strong>() <a class="anchor-link" href="#shearY"
 <div class="doc">
 
 <pre class="source">
-num get shearY() =&gt; _m10;
+num get shearY =&gt; _m10;
 </pre>
 </div>
 </div>
@@ -361,7 +361,7 @@ AffineTransform translate(num dx, num dy) {
 <div class="doc">
 
 <pre class="source">
-Vector get translateVector() =&gt; new Vector(translateX, translateY);
+Vector get translateVector =&gt; new Vector(translateX, translateY);
 </pre>
 </div>
 </div>
@@ -372,7 +372,7 @@ num <strong>translateX</strong>() <a class="anchor-link" href="#translateX"
 <div class="doc">
 
 <pre class="source">
-num get translateX() =&gt; _m02;
+num get translateX =&gt; _m02;
 </pre>
 </div>
 </div>
@@ -383,7 +383,7 @@ num <strong>translateY</strong>() <a class="anchor-link" href="#translateY"
 <div class="doc">
 
 <pre class="source">
-num get translateY() =&gt; _m12;
+num get translateY =&gt; _m12;
 </pre>
 </div>
 </div>

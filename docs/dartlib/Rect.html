@@ -28,7 +28,7 @@
 </div>
 <h3>Implements</h3>
 <p>
-<span class="type-box"><span class="icon-interface"></span><a href="../dart_core/Hashable.html">Hashable</a></span></p>
+<span class="type-box"><span class="icon-class"></span><a href="../dart_core/Hashable.html">Hashable</a></span></p>
 <h3>Constructors</h3>
 <div class="method"><h4 id="Rect">
 <span class="show-code">Code</span>
@@ -62,7 +62,7 @@ num <strong>bottom</strong>() <a class="anchor-link" href="#bottom"
 <div class="doc">
 
 <pre class="source">
-num get bottom() =&gt; top + height;
+num get bottom =&gt; top + height;
 </pre>
 </div>
 </div>
@@ -78,8 +78,8 @@ Coordinate constrain(Coordinate value) {
   requireArgument(value.isValid, 'value');
   assert(isValid);
 
-  final x = Math.min(right, Math.max(left, value.x));
-  final y = Math.min(bottom, Math.max(top, value.y));
+  final x = math.min(right, math.max(left, value.x));
+  final y = math.min(bottom, math.max(top, value.y));
 
   return new Coordinate(x, y);
 }
@@ -138,7 +138,7 @@ bool <strong>isValid</strong>() <a class="anchor-link" href="#isValid"
 <div class="doc">
 
 <pre class="source">
-bool get isValid() =&gt; topLeft.isValid &amp;&amp; size.isValid;
+bool get isValid =&gt; topLeft.isValid &amp;&amp; size.isValid;
 </pre>
 </div>
 </div>
@@ -163,7 +163,7 @@ num <strong>right</strong>() <a class="anchor-link" href="#right"
 <div class="doc">
 
 <pre class="source">
-num get right() =&gt; left + width;
+num get right =&gt; left + width;
 </pre>
 </div>
 </div>
@@ -174,7 +174,7 @@ num get right() =&gt; left + width;
 <div class="doc">
 
 <pre class="source">
-Size get size() =&gt; new Size(width, height);
+Size get size =&gt; new Size(width, height);
 </pre>
 </div>
 </div>
@@ -196,7 +196,7 @@ String toString() =&gt; "Location: $topLeft, Size: $size";
 <div class="doc">
 
 <pre class="source">
-Coordinate get topLeft() =&gt; new Coordinate(left, top);
+Coordinate get topLeft =&gt; new Coordinate(left, top);
 </pre>
 </div>
 </div>

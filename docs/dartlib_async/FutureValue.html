@@ -52,7 +52,7 @@ FutureValue() :
 <div class="doc">
 
 <pre class="source">
-EventRoot get error() =&gt; _errorHandle;
+EventRoot get error =&gt; _errorHandle;
 </pre>
 </div>
 </div>
@@ -74,26 +74,7 @@ abstract Future&lt;TOutput&gt; getFuture(TInput value);
 <div class="doc">
 
 <pre class="source">
-TInput get input() =&gt; _input;
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="input">
-<span class="show-code">Code</span>
-void <strong>set input</strong>(<a href="../dartlib_async/FutureValue.html">TInput</a> value) <a class="anchor-link" href="#input"
-              title="Permalink to FutureValue&lt;TInput, TOutput&gt;.set input">#</a></h4>
-<div class="doc">
-
-<pre class="source">
-void set input(TInput value) {
-  _input = value;
-  if(_future == null) {
-    _startFuture();
-  } else {
-    _pending = true;
-  }
-  _inputChangedHandle.fireEvent(EventArgs.empty);
-}
+TInput get input =&gt; _input;
 </pre>
 </div>
 </div>
@@ -104,7 +85,7 @@ void set input(TInput value) {
 <div class="doc">
 
 <pre class="source">
-EventRoot&lt;EventArgs&gt; get inputChanged() =&gt; _inputChangedHandle;
+EventRoot&lt;EventArgs&gt; get inputChanged =&gt; _inputChangedHandle;
 </pre>
 </div>
 </div>
@@ -115,7 +96,7 @@ EventRoot&lt;EventArgs&gt; get inputChanged() =&gt; _inputChangedHandle;
 <div class="doc">
 
 <pre class="source">
-TOutput get output() =&gt; _output;
+TOutput get output =&gt; _output;
 </pre>
 </div>
 </div>
@@ -126,7 +107,7 @@ TOutput get output() =&gt; _output;
 <div class="doc">
 
 <pre class="source">
-EventRoot&lt;EventArgs&gt; get outputChanged() =&gt; _outputChangedHandle;
+EventRoot&lt;EventArgs&gt; get outputChanged =&gt; _outputChangedHandle;
 </pre>
 </div>
 </div>

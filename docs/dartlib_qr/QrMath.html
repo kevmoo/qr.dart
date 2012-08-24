@@ -34,7 +34,7 @@
 <div class="doc">
 
 <pre class="source">
-static get EXP_TABLE() {
+static get EXP_TABLE {
   if(_expTable == null) {
     var t = QrMath.getZeroedList(256);
     for (int i = 0; i &lt; 8; i++) {
@@ -57,7 +57,7 @@ static get EXP_TABLE() {
 <div class="doc">
 
 <pre class="source">
-static get LOG_TABLE() {
+static get LOG_TABLE {
   if(_logTable == null) {
     var t = QrMath.getZeroedList(256);
     // this was the code I had in pl
