@@ -24,12 +24,14 @@ class DraggerDemo{
 
   factory DraggerDemo(CanvasElement canvas){
 
-    var blue = new Shape(100, 100, 'blue');
+    final image =
+        new ImgElement.fromUrl('http://sweeper.j832.com/dart_logo.jpg',
+            100, 100);
 
-    var tx = blue.addTransform();
+    var tx = image.addTransform();
 
     var rootPanel = new PCanvas(500, 500);
-    rootPanel.addElement(blue);
+    rootPanel.addElement(image);
 
     var stage = new Stage(canvas, rootPanel);
     var dragger = new Dragger(canvas);
@@ -45,6 +47,8 @@ class DraggerDemo{
     _dragger.dragStart.add(_onDragStart);
 
     _demoMapper.outputChanged.add((e) => requestFrame());
+
+    _stage.invalidated.add(_onStageInvalidated);
   }
 
   void requestFrame(){
@@ -52,6 +56,10 @@ class DraggerDemo{
       _frameRequested = true;
       window.requestAnimationFrame(_onFrame);
     }
+  }
+
+  void _onStageInvalidated(args) {
+    requestFrame();
   }
 
   void _onDrag(core.Vector delta) {
@@ -101,7 +109,7 @@ class DraggerDemo{
   void _setMouse(core.Coordinate value) {
     _mouseLocation = value;
     final hits = Mouse.markMouseOver(_stage, _mouseLocation);
-    if(hits != null && hits.length > 0 && hits[0] is Shape) {
+    if(hits != null && hits.length > 0 && hits[0] is ImgElement) {
       _canvas.style.cursor = 'pointer';
       _overShape = true;
     } else {
