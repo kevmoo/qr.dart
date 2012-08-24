@@ -13,12 +13,16 @@ class ImgElement extends PElement {
 
   void drawOverride(CanvasRenderingContext2D ctx) {
     if(_image.complete) {
-      ctx.drawImage(_image, 0, 0, width, height);
+      _doDraw(ctx);
     } else if(!_waitingOnLoad) {
       _waitingOnLoad = true;
       // TODO: some day we'll have a way to remove these cleanly
       _image.on.load.add(_onImageLoad);
     }
+  }
+
+  void _doDraw(CanvasRenderingContext2D ctx) {
+    ctx.drawImage(_image, 0, 0, width, height);
   }
 
   void _onImageLoad(Event event) {
