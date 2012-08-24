@@ -3,7 +3,7 @@ class Shape extends PElement {
   final ShapeType shapeType;
 
   Shape(num w, num h, [Dynamic fillStyle = 'blue', this.shapeType = ShapeType.rect])
-    : _fillStyle = fillStyle, super(w, h);
+    : _fillStyle = fillStyle, super(w, h, true);
 
   Dynamic get fillStyle => _fillStyle;
 
@@ -12,9 +12,8 @@ class Shape extends PElement {
     invalidateDraw();
   }
 
-  void drawOverride(CanvasRenderingContext2D ctx){
+  void drawOverride(CanvasRenderingContext2D ctx) {
     ctx.fillStyle = _fillStyle;
-    // NOTE: warnings here will go away once dartbug.com/3342 is resolved
     switch(shapeType){
       case ShapeType.rect:
         ctx.fillRect(0, 0, size.width, size.height);
