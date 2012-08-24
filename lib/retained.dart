@@ -19,6 +19,7 @@
 #source('retained/shape.dart');
 #source('retained/shape_type.dart');
 #source('retained/img_element.dart');
+#source('retained/sprite_element.dart');
 
 #source('retained/click_manager.dart');
 #source('retained/element_mouse_event_args.dart');
