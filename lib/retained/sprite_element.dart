@@ -16,14 +16,25 @@ class SpriteElement extends ImgElement {
                 this.startCoordinate, this.nextDelta, this.count) :
     super(width, height, image);
 
+  void nextFrame() {
+    setFrame(_frame + 1);
+  }
+
+  void previousFrame() {
+    setFrame(_frame - 1);
+  }
+
+  void setFrame(int frame) {
+    _frame = (frame % count);
+    invalidateDraw();
+  }
+
   void _doDraw(CanvasRenderingContext2D ctx) {
     final sourceCoord = startCoordinate + nextDelta * _frame;
 
     final rect = new core.Rect.fromCoordSize(sourceCoord, size);
 
     CanvasUtil.drawImage(ctx, _image, rect);
-
-    _frame += 1;
-    _frame %= count;
+    nextFrame();
   }
 }
