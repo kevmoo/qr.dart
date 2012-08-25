@@ -1,0 +1,5 @@
+#!/bin/bash
+PACK_DIR=`pwd`/packages/
+cmd="dart --enable_type_checks --enable_asserts --package-root=$PACK_DIR ./test/console_test_harness.dart"
+echo $cmd
+exec $cmd

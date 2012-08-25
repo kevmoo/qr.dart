@@ -2,9 +2,9 @@
 
 #import('package:unittest/vm_config.dart');
 
-#import('test/dartlib/_dartlib_runner.dart');
-#import('test/qr/_qr_runner.dart');
-#import('test/async/_async_runner.dart');
+#import('dartlib/_dartlib_runner.dart');
+#import('qr/_qr_runner.dart');
+#import('async/_async_runner.dart');
 
 main() {
   useVmConfiguration();
