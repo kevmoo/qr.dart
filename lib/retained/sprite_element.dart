@@ -3,7 +3,7 @@ class SpriteElement extends ImgElement {
   final core.Vector nextDelta;
   final int count;
 
-  int _frame = 3;
+  int _frame = 0;
 
   factory SpriteElement.horizontalFromUrl(String src, num w, num h,
       int count, num xDelta, [core.Coordinate start = const core.Coordinate()]) {
@@ -30,11 +30,16 @@ class SpriteElement extends ImgElement {
   }
 
   void _doDraw(CanvasRenderingContext2D ctx) {
-    final sourceCoord = startCoordinate + nextDelta * _frame;
+    final int msPerFrame = 1000 ~/ count;
+
+    final int currentMS = window.performance.webkitNow().toInt();
+
+    final int theFrame = (currentMS ~/ msPerFrame) % count;
+
+    final sourceCoord = startCoordinate + nextDelta * theFrame;
 
     final rect = new core.Rect.fromCoordSize(sourceCoord, size);
 
     CanvasUtil.drawImage(ctx, _image, rect);
-    nextFrame();
   }
 }
