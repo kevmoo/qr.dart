@@ -1,3 +1,4 @@
+name: dartlib
 dependencies:
   unittest:
     sdk: unittest
