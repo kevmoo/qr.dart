@@ -9,8 +9,8 @@ class TestUtil {
     // Verifies hashCodes for Dart VM
     // Broken in Dartium - http://code.google.com/p/dart/issues/detail?id=4455
     expect('foo'.hashCode(), equals(848623837));
-    
-    _hashCodeFun([], 0);
+
+    _hashCodeFun(<Hashable>[], 0);
     _hashCodeFun([null], 0);
     _hashCodeFun([null, null], 0);
     _hashCodeFun([1], 307143837);
@@ -22,9 +22,9 @@ class TestUtil {
     _hashCodeFun(['foo', 'bar'], 27305964);
     _hashCodeFun(['bar', 'foo'], 309729073);
 
-    _hashCodeFun([null, 1], 307143837);
-    _hashCodeFun([null, null, 1], 307143837);
-    _hashCodeFun([1, null], 15319219);
+    _hashCodeFun(<Hashable>[null, 1], 307143837);
+    _hashCodeFun(<Hashable>[null, null, 1], 307143837);
+    _hashCodeFun(<Hashable>[1, null], 15319219);
   }
 
   static void _hashCodeFun(Iterable<Hashable> items, int expectedValue) {
