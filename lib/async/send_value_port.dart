@@ -10,7 +10,7 @@ class SendValuePort<TInput, TOutput> {
         final TOutput output = _func(value);
         reply.send(new FutureValueResult<TOutput>(output));
       } catch(final ex) {
-        reply.send(new FutureValueResult<TOutput>.exception(ex));
+        reply.send(new FutureValueResult<TOutput>.fromException(ex));
       }
     });
   }

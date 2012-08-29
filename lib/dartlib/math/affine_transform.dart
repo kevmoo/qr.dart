@@ -8,11 +8,11 @@ class AffineTransform implements Cloneable<AffineTransform> {
         _m02 = translateX, _m12 = translateY,
         _m01 = shearX, _m10 = shearY;
 
-  factory AffineTransform.rotate(num theta, num x, num y) {
+  factory AffineTransform.fromRotate(num theta, num x, num y) {
     return new AffineTransform().setToRotation(theta, x, y);
   }
 
-  factory AffineTransform.scale(sx, sy) {
+  factory AffineTransform.fromScale(sx, sy) {
     return new AffineTransform().setToScale(sx, sy);
   }
 
@@ -23,7 +23,7 @@ class AffineTransform implements Cloneable<AffineTransform> {
   num get translateX => _m02;
 
   num get translateY => _m12;
-  
+
   Vector get translateVector => new Vector(translateX, translateY);
 
   num get shearX => _m01;
@@ -62,7 +62,7 @@ class AffineTransform implements Cloneable<AffineTransform> {
   }
 
   AffineTransform rotate(num theta, num x, num y) {
-    return this.concatenate(new AffineTransform.rotate(theta, x, y));
+    return this.concatenate(new AffineTransform.fromRotate(theta, x, y));
   }
 
   AffineTransform translate(num dx, num dy) {

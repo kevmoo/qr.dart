@@ -5,7 +5,7 @@ class FutureValueResult<TOutput> {
   FutureValueResult(this.value) :
     exception = null;
 
-  FutureValueResult.exception(this.exception):
+  FutureValueResult.fromException(this.exception):
     value = null;
 
   bool get isException => exception != null;

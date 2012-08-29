@@ -50,7 +50,7 @@ class TestAffineTransform {
       });
 
       test('createInverse', (){
-        var tx = new AffineTransform.scale(2, 3);
+        var tx = new AffineTransform.fromScale(2, 3);
         tx.translate(5, 10);
         tx.rotate(math.PI / 4, 5, 10);
         var inverse = tx.createInverse();
