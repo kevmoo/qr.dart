@@ -13,27 +13,27 @@ class TestNumberEnumerable {
     var value = n$([1,2,3]).sum();
     expect(value, equals(6));
 
-    expect(() => n$(<num>[1,2,3,null]).sum(), throwsNullPointerException);
+    expect(() => n$([1,2,3,null]).sum(), throwsNullPointerException);
   }
 
   static void _testMin() {
     var value = n$([1,2,3]).min();
     expect(value, equals(1));
 
-    expect(() => n$(<num>[1,2,3,null]).min(), throwsIllegalArgumentException);
+    expect(() => n$([1,2,3,null]).min(), throwsIllegalArgumentException);
   }
 
   static void _testMax() {
     var value = n$([1,2,3]).max();
     expect(value, equals(3));
 
-    expect(() => n$(<num>[1,2,3,null]).max(), throwsIllegalArgumentException);
+    expect(() => n$([1,2,3,null]).max(), throwsIllegalArgumentException);
   }
 
   static void _testAverage() {
     var value = n$([1,2,3]).average();
     expect(value, equals(2));
 
-    expect(() => n$(<num>[1,2,3,null]).average(), throwsNullPointerException);
+    expect(() => n$([1,2,3,null]).average(), throwsNullPointerException);
   }
 }

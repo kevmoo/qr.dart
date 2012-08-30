@@ -103,7 +103,7 @@ class _TarjanList<TNode extends Hashable> {
   Iterable<_TarjanNode> getAdjacent(_TarjanNode v) {
     var nodes = _nodes[v];
     if(nodes == null) {
-      return <_TarjanNode>[];
+      return [];
     }
     else {
       return nodes;
