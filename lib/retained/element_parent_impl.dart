@@ -11,7 +11,7 @@ class ElementParentImpl
 
   abstract PElement getVisualChild(index);
 
-  abstract int get visualChildCount();
+  abstract int get visualChildCount;
 
   void childInvalidated(PElement child){
     assert(hasVisualChild(child));
