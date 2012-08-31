@@ -25,7 +25,7 @@ class FutureValueResult<TOutput> {
     }
   }
 
-  bool get isException() => exception != null;
+  bool get isException => exception != null;
 
   Map toMap() {
     // would love to use consts here, but the analyzer doesn't like it
