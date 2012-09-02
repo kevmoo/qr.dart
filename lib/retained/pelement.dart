@@ -17,9 +17,28 @@ class PElement extends core.AttachableObjectImpl {
 
   num get width => _width;
 
+  void set width(num value) {
+    assert(core.isValidNumber(value));
+    _width = value;
+    invalidateDraw();
+  }
+
   num get height => _height;
 
+  void set height(num value) {
+    assert(core.isValidNumber(value));
+    _height = value;
+    invalidateDraw();
+  }
+
   core.Size get size => new core.Size(_width, _height);
+
+  void set size(core.Size value) {
+    assert(value.isValid);
+    _width = size.width;
+    _height = size.height;
+    invalidateDraw();
+  }
 
   int get visualChildCount => 0;
 
