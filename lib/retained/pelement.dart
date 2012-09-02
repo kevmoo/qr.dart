@@ -35,8 +35,8 @@ class PElement extends core.AttachableObjectImpl {
 
   void set size(core.Size value) {
     assert(value.isValid);
-    _width = size.width;
-    _height = size.height;
+    _width = value.width;
+    _height = value.height;
     invalidateDraw();
   }
 
