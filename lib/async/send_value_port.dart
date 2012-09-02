@@ -15,7 +15,7 @@ class SendValuePort<TInput, TOutput> {
         // but they blow up over the wire
         // so: to string!
         final String exString = ex.toString();
-        _message = new FutureValueResult<TOutput>.exception(exString);
+        _message = new FutureValueResult<TOutput>.fromException(exString);
       }
 
       final map = _message.toMap();

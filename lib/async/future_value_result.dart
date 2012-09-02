@@ -8,7 +8,7 @@ class FutureValueResult<TOutput> {
   FutureValueResult(this.value) :
     exception = null;
 
-  FutureValueResult.exception(this.exception)
+  FutureValueResult.fromException(this.exception)
   : value = null {
     requireArgumentNotNull(exception, 'exception');
   }
@@ -19,7 +19,7 @@ class FutureValueResult<TOutput> {
 
     final ex = value[_exceptionKey];
     if(ex != null) {
-      return new FutureValueResult.exception(ex);
+      return new FutureValueResult.fromException(ex);
     } else {
       return new FutureValueResult(value[_valueKey]);
     }

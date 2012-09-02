@@ -23,7 +23,7 @@ class TestFutureValueResult {
   }
 
   static void _testExceptionRoundTrip() {
-    final initialVal = new FutureValueResult.exception('oops');
+    final initialVal = new FutureValueResult.fromException('oops');
 
     final map = initialVal.toMap();
 
