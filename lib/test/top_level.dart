@@ -63,7 +63,7 @@ class _Throws extends BaseMatcher {
     try {
       item();
       return false;
-    } catch (final e, final s) {
+    } catch (e, s) {
       if (_matcher == null ||_matcher.matches(e, matchState)) {
         return true;
       } else {
