@@ -18,6 +18,7 @@ class ImgElement extends PElement {
     } else if(!_waitingOnLoad) {
       _waitingOnLoad = true;
       // TODO: some day we'll have a way to remove these cleanly
+      //       ...because this handled should be disposed :-/
       _image.on.load.add(_onImageLoad);
     }
   }
