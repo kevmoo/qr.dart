@@ -20,6 +20,8 @@ class Coordinate {
 
   Vector toVector() => new Vector(x, y);
 
+  Size toSize() => new Size(x, y);
+
   bool operator ==(Coordinate other) {
     return other !== null && x == other.x && y == other.y;
   }
