@@ -43,6 +43,16 @@ class Size {
       width >= 0 && height >= 0;
 
   /**
+   * Multiplies each dimensions by the provided magnitude and returns a new [Size].
+   **/
+  Size scale(num magnitude) => new Size(width * magnitude, height * magnitude);
+
+  /**
+   * Multiplies each dimensions by the provided magnitude and returns a new [Size].
+   **/
+  Size operator *(num magnitude) => this.scale(magnitude);
+
+  /**
    * Returns a nice string representing size.
    * Returns in the form (50 x 73).
    */
