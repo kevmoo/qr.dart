@@ -29,5 +29,6 @@ class ImgElement extends PElement {
 
   void _onImageLoad(Event event) {
     invalidateDraw();
+    // TODO: should unwire event, here, too
   }
 }
