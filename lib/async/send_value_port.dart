@@ -10,7 +10,7 @@ class SendValuePort<TInput, TOutput> {
       try {
         final TOutput output = _func(value);
         _message = new FutureValueResult<TOutput>(output);
-      } catch(final ex) {
+      } catch (ex) {
         // TODO: I'd love to use real exceptions here
         // but they blow up over the wire
         // so: to string!
