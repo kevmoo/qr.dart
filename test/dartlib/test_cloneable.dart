@@ -12,9 +12,7 @@ class TestCloneable implements Cloneable<TestCloneable> {
     return new TestCloneable.internal(_id);
   }
 
-  int get id(){
-    return _id;
-  }
+  int get id => _id;
 
   bool operator ==(TestCloneable other) {
     return other !== null && _id == other._id;

@@ -3,9 +3,7 @@ class TestEvents {
 
   TestEvents(): _testEventHandle = new EventHandle<String>();
 
-  EventRoot<String> get testEvent(){
-    return _testEventHandle;
-  }
+  EventRoot<String> get testEvent => _testEventHandle;
 
   void fireTestEvent(String value){
     _testEventHandle.fireEvent(value);
