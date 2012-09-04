@@ -19,18 +19,23 @@ function build {
 good=()
 bad=()
 
-echo $good
+function build_and_log {
+  build $1
+  if [ $? -ne 0 ]
+  then 
+    bad[${#bad[*]}]=$1
+  else
+    good[${#good[*]}]=$1
+  fi  
+}
 
 for file in `find . -type f -name *_demo.dart`
 do
-  build $file
-  if [ $? -ne 0 ]
-  then 
-    bad[${#bad[*]}]=$file
-  else
-    good[${#good[*]}]=$file
-  fi
+  echo $file
+  build_and_log $file
 done
+
+build_and_log 'test/browser_test_harness.dart'
 
 echo "Success:"
 echo ${good[@]}
