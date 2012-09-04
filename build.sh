@@ -1,6 +1,5 @@
 #!/bin/bash
 PACK_DIR=`pwd`/packages/
-echo $DART_SDK
 dart2js='lib/dart2js/lib/compiler/implementation/dart2js.dart'
 core_cmd="dart
 --heap_growth_rate=32
