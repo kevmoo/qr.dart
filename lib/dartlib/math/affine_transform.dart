@@ -132,4 +132,9 @@ class AffineTransform implements Cloneable<AffineTransform> {
         _m00 == other._m00 && _m01 == other._m01 && _m02 == other._m02 &&
         _m10 == other._m10 && _m11 == other._m11 && _m12 == other._m12;
   }
+
+  String toString() {
+    final values = [translateX, translateY, scaleX, scaleY, shearX, shearY];
+    return Strings.join($(values).select((n) => n.toString()).toList(), ', ');
+  }
 }
