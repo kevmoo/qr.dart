@@ -52,6 +52,8 @@ class Size {
    **/
   Size operator *(num magnitude) => this.scale(magnitude);
 
+  Vector toVector() => new Vector(width, height);
+
   /**
    * Returns a nice string representing size.
    * Returns in the form (50 x 73).
