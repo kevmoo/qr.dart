@@ -80,8 +80,8 @@ $$.KeyValuePair = {"":
 $$.LinkedHashMapImplementation = {"":
  ["_list", "_map"],
  "super": "Object",
- operator$indexSet$2: function(key,value){if(this._map.containsKey$1(key)===true){var t1=this._map;if(typeof t1!=='string'&&(typeof t1!=='object'||t1===null||t1.constructor!==Array&&!t1.is$JavaScriptIndexingBehavior()))return this.operator$indexSet$2$bailout(1,key,value,t1);if(key!==(key|0))throw $.iae(key);if(key<0||key>=t1.length)throw $.ioore(key);t1[key].get$element().set$value(value);}else{$.addLast(this._list,$.KeyValuePair$(key,value,$.getRuntimeTypeInfo(this).K,$.getRuntimeTypeInfo(this).V));t1=this._map;if(typeof t1!=='object'||t1===null||(t1.constructor!==Array||!!t1.immutable$list)&&!t1.is$JavaScriptIndexingBehavior())return this.operator$indexSet$2$bailout(2,key,t1,0);var t3=this._list.lastEntry$0();if(key!==(key|0))throw $.iae(key);if(key<0||key>=t1.length)throw $.ioore(key);t1[key]=t3;}},
- operator$indexSet$2$bailout: function(state,env0,env1,env2){switch(state){case 1:var key=env0;var value=env1;t1=env2;break;case 2:key=env0;t1=env1;break;}switch(state){case 0:default:if(state===1||state===0&&this._map.containsKey$1(key)===true)switch(state){case 0:var t1=this._map;case 1:state=0;$.index(t1,key).get$element().set$value(value);}else switch(state){case 0:$.addLast(this._list,$.KeyValuePair$(key,value,$.getRuntimeTypeInfo(this).K,$.getRuntimeTypeInfo(this).V));t1=this._map;case 2:state=0;$.indexSet(t1,key,this._list.lastEntry$0());}}},
+ operator$indexSet$2: function(key,value){var t1=this._map;if(typeof t1!=='object'||t1===null||(t1.constructor!==Array||!!t1.immutable$list)&&!t1.is$JavaScriptIndexingBehavior())return this.operator$indexSet$2$bailout(1,key,value,t1);if(t1.containsKey$1(key)===true){if(key!==(key|0))throw $.iae(key);if(key<0||key>=t1.length)throw $.ioore(key);t1[key].get$element().set$value(value);}else{var t2=this._list;$.addLast(t2,$.KeyValuePair$(key,value,$.getRuntimeTypeInfo(this).K,$.getRuntimeTypeInfo(this).V));t2=t2.lastEntry$0();if(key!==(key|0))throw $.iae(key);if(key<0||key>=t1.length)throw $.ioore(key);t1[key]=t2;}},
+ operator$indexSet$2$bailout: function(state,key,value,t1){if(t1.containsKey$1(key)===true)$.index(t1,key).get$element().set$value(value);else{var t2=this._list;$.addLast(t2,$.KeyValuePair$(key,value,$.getRuntimeTypeInfo(this).K,$.getRuntimeTypeInfo(this).V));$.indexSet(t1,key,t2.lastEntry$0());}},
  operator$index$1: function(key){var entry=$.index(this._map,key);if(entry==null)return;return entry.get$element().get$value();},
  remove$1: function(key){var entry=this._map.remove$1(key);if(entry==null)return;entry.remove$0();return entry.get$element().get$value();},
  getKeys$0: function(){var t1={};var list=$.ListImplementation_List($.get$length(this),$.getRuntimeTypeInfo(this).K);t1.index_10=0;$.forEach(this._list,new $.LinkedHashMapImplementation_getKeys__(list,t1));return list;},
@@ -130,10 +130,10 @@ $$.DoubleLinkedQueue = {"":
  last$0: function(){return this._sentinel.get$_previous().get$element();},
  lastEntry$0: function(){return this._sentinel.previousEntry$0();},
  get$length: function(){var t1={};t1.counter_1=0;this.forEach$1(new $.DoubleLinkedQueue_length__(t1));return t1.counter_1;},
- isEmpty$0: function(){var t1=this._sentinel.get$_next();var t2=this._sentinel;return t1==null?t2==null:t1===t2;},
- clear$0: function(){var t1=this._sentinel;t1.set$_next(t1);t1=this._sentinel;t1.set$_previous(t1);},
- forEach$1: function(f){var entry=this._sentinel.get$_next();for(;t1=this._sentinel,!(entry==null?t1==null:entry===t1);){var nextEntry=entry.get$_next();f.call$1(entry.get$_element());entry=nextEntry;}var t1;},
- filter$1: function(f){var other=$.DoubleLinkedQueue$($.getRuntimeTypeInfo(this).E);var entry=this._sentinel.get$_next();for(;t1=this._sentinel,!(entry==null?t1==null:entry===t1);){var nextEntry=entry.get$_next();if(f.call$1(entry.get$_element())===true)other.addLast$1(entry.get$_element());entry=nextEntry;}return other;var t1;},
+ isEmpty$0: function(){var t1=this._sentinel;var t2=t1.get$_next();return t2==null?t1==null:t2===t1;},
+ clear$0: function(){var t1=this._sentinel;t1.set$_next(t1);t1.set$_previous(t1);},
+ forEach$1: function(f){var t1=this._sentinel;var entry=t1.get$_next();for(;!(entry==null?t1==null:entry===t1);){var nextEntry=entry.get$_next();f.call$1(entry.get$_element());entry=nextEntry;}},
+ filter$1: function(f){var other=$.DoubleLinkedQueue$($.getRuntimeTypeInfo(this).E);var t1=this._sentinel;var entry=t1.get$_next();for(;!(entry==null?t1==null:entry===t1);){var nextEntry=entry.get$_next();if(f.call$1(entry.get$_element())===true)other.addLast$1(entry.get$_element());entry=nextEntry;}return other;},
  iterator$0: function(){return $._DoubleLinkedQueueIterator$(this._sentinel,$.getRuntimeTypeInfo(this).E);},
  toString$0: function(){return $.Collections_collectionToString(this);},
  DoubleLinkedQueue$0: function(){this._sentinel=$._DoubleLinkedQueueEntrySentinel$($.getRuntimeTypeInfo(this).E);},
@@ -156,6 +156,7 @@ $$.JSSyntaxRegExp = {"":
  get$pattern: function(){return this._lib1_pattern;},
  get$multiLine: function(){return this._multiLine;},
  get$ignoreCase: function(){return this._ignoreCase;},
+ is$JSSyntaxRegExp: true,
  is$RegExp: true
 };
 
@@ -311,7 +312,8 @@ $$.StackTrace = {"":
 $$.Closure = {"":
  [],
  "super": "Object",
- toString$0: function(){return 'Closure';}
+ toString$0: function(){return 'Closure';},
+ is$Function: true
 };
 
 $$.ConstantMap = {"":
@@ -896,8 +898,8 @@ $$._IsolateContext = {"":
  eval$1: function(code){var old=$._globalState().get$currentContext();$._globalState().set$currentContext(this);this._setGlobals$0();var result=null;try{result=code.call$0();}finally{var t1=old;$._globalState().set$currentContext(t1);t1=old;if(!(t1==null))t1._setGlobals$0();}return result;},
  _setGlobals$0: function(){$setGlobals(this);},
  lookup$1: function(portId){return $.index(this.ports,portId);},
- register$2: function(portId,port){if(this.ports.containsKey$1(portId)===true)throw $.$$throw($.ExceptionImplementation$('Registry: ports must be registered only once.'));$.indexSet(this.ports,portId,port);$.indexSet($._globalState().get$isolates(),this.id,this);},
- unregister$1: function(portId){this.ports.remove$1(portId);if($.isEmpty(this.ports)===true)$._globalState().get$isolates().remove$1(this.id);},
+ register$2: function(portId,port){var t1=this.ports;if(t1.containsKey$1(portId)===true)throw $.$$throw($.ExceptionImplementation$('Registry: ports must be registered only once.'));$.indexSet(t1,portId,port);$.indexSet($._globalState().get$isolates(),this.id,this);},
+ unregister$1: function(portId){var t1=this.ports;t1.remove$1(portId);if($.isEmpty(t1)===true)$._globalState().get$isolates().remove$1(this.id);},
  _IsolateContext$0: function(){var t1=$._globalState();var t2=t1.get$nextIsolateId();t1.set$nextIsolateId($.add(t2,1));this.id=t2;this.ports=$.HashMapImplementation$('int','ReceivePort');this.initGlobals$0();}
 };
 
@@ -905,7 +907,7 @@ $$._EventLoop = {"":
  ["events"],
  "super": "Object",
  enqueue$3: function(isolate,fn,msg){$.addLast(this.events,$._IsolateEvent$(isolate,fn,msg));},
- dequeue$0: function(){if($.isEmpty(this.events)===true)return;return this.events.removeFirst$0();},
+ dequeue$0: function(){var t1=this.events;if($.isEmpty(t1)===true)return;return t1.removeFirst$0();},
  runIteration$0: function(){var event$=this.dequeue$0();if(event$==null){if($._globalState().get$isWorker()===true)$._globalState().maybeCloseWorker$0();else if(!($._globalState().get$rootContext()==null)&&$._globalState().get$isolates().containsKey$1($._globalState().get$rootContext().get$id())===true&&$._globalState().get$fromCommandLine()===true&&$.isEmpty($._globalState().get$rootContext().get$ports())===true)throw $.$$throw($.ExceptionImplementation$('Program exited with open ReceivePorts.'));return false;}event$.process$0();return true;},
  _runHelper$0: function(){if(!($._window()==null))new $._EventLoop__runHelper_next(this).call$0();else for(;this.runIteration$0()===true;);},
  run$0: function(){if($._globalState().get$isWorker()!==true)this._runHelper$0();else try{this._runHelper$0();}catch(exception){var t1=$.unwrapException(exception);var e=t1;var trace=$.getTraceFromException(exception);$._globalState().get$mainManager().postMessage$1($._serializeMessage($.makeLiteralMap(['command','error','msg',$.S(e)+'\n'+$.S(trace)])));}}
@@ -989,8 +991,8 @@ $$._PendingSendPortFinder = {"":
  ["ports?", "_visited"],
  "super": "_MessageTraverser",
  visitPrimitive$1: function(x){},
- visitList$1: function(list){if(!($.index(this._visited,list)==null))return;$.indexSet(this._visited,list,true);$.forEach(list,new $._PendingSendPortFinder_visitList_anon(this));},
- visitMap$1: function(map){if(!($.index(this._visited,map)==null))return;$.indexSet(this._visited,map,true);$.forEach(map.getValues$0(),new $._PendingSendPortFinder_visitMap_anon(this));},
+ visitList$1: function(list){var t1=this._visited;if(!($.index(t1,list)==null))return;$.indexSet(t1,list,true);$.forEach(list,new $._PendingSendPortFinder_visitList_anon(this));},
+ visitMap$1: function(map){var t1=this._visited;if(!($.index(t1,map)==null))return;$.indexSet(t1,map,true);$.forEach(map.getValues$0(),new $._PendingSendPortFinder_visitMap_anon(this));},
  visitSendPort$1: function(port){if(!!port.is$_BufferingSendPort&&port._port==null)this.ports.push(port.get$_futurePort());},
  _PendingSendPortFinder$0: function(){this._visited=$._JsVisitedMap$();}
 };
@@ -1046,7 +1048,7 @@ $$._MessageTraverserVisitedMap = {"":
 $$._MessageTraverser = {"":
  [],
  "super": "Object",
- traverse$1: function(x){if($._MessageTraverser_isPrimitive(x))return this.visitPrimitive$1(x);this._visited.reset$0();var result=null;try{result=this._dispatch$1(x);}finally{this._visited.cleanup$0();}return result;},
+ traverse$1: function(x){if($._MessageTraverser_isPrimitive(x))return this.visitPrimitive$1(x);var t1=this._visited;t1.reset$0();var result=null;try{result=this._dispatch$1(x);}finally{t1.cleanup$0();}return result;},
  _dispatch$1: function(x){if($._MessageTraverser_isPrimitive(x))return this.visitPrimitive$1(x);if(typeof x==='object'&&x!==null&&(x.constructor===Array||x.is$List()))return this.visitList$1(x);if(typeof x==='object'&&x!==null&&x.is$Map())return this.visitMap$1(x);if(typeof x==='object'&&x!==null&&!!x.is$SendPort)return this.visitSendPort$1(x);if(typeof x==='object'&&x!==null&&!!x.is$SendPortSync)return this.visitSendPortSync$1(x);return this.visitObject$1(x);},
  visitObject$1: function(x){throw $.$$throw('Message serialization: Illegal value '+$.S(x)+' passed');}
 };
@@ -1055,17 +1057,17 @@ $$._Copier = {"":
  [],
  "super": "_MessageTraverser",
  visitPrimitive$1: function(x){return x;},
- visitList$1: function(list){if(typeof list!=='object'||list===null||list.constructor!==Array&&!list.is$JavaScriptIndexingBehavior())return this.visitList$1$bailout(1,list);var copy=this._visited.operator$index$1(list);if(!(copy==null))return copy;var len=list.length;copy=$.ListImplementation_List(len);this._visited.operator$indexSet$2(list,copy);for(var i=0;i<len;++i){if(i<0||i>=list.length)throw $.ioore(i);var t1=this._dispatch$1(list[i]);if(i<0||i>=copy.length)throw $.ioore(i);copy[i]=t1;}return copy;},
- visitList$1$bailout: function(state,list){var copy=$.index(this._visited,list);if(!(copy==null))return copy;var len=$.get$length(list);copy=$.ListImplementation_List(len);$.indexSet(this._visited,list,copy);for(var i=0;$.ltB(i,len);++i){var t1=this._dispatch$1($.index(list,i));if(i<0||i>=copy.length)throw $.ioore(i);copy[i]=t1;}return copy;},
- visitMap$1: function(map){var t1={};t1.copy_10=$.index(this._visited,map);var t2=t1.copy_10;if(!(t2==null))return t2;t1.copy_10=$.HashMapImplementation$();$.indexSet(this._visited,map,t1.copy_10);map.forEach$1(new $._Copier_visitMap_anon(this,t1));return t1.copy_10;}
+ visitList$1: function(list){if(typeof list!=='object'||list===null||list.constructor!==Array&&!list.is$JavaScriptIndexingBehavior())return this.visitList$1$bailout(1,list);var t1=this._visited;var copy=t1.operator$index$1(list);if(!(copy==null))return copy;var len=list.length;copy=$.ListImplementation_List(len);t1.operator$indexSet$2(list,copy);for(var i=0;i<len;++i){if(i<0||i>=list.length)throw $.ioore(i);t1=this._dispatch$1(list[i]);if(i<0||i>=copy.length)throw $.ioore(i);copy[i]=t1;}return copy;},
+ visitList$1$bailout: function(state,list){var t1=this._visited;var copy=$.index(t1,list);if(!(copy==null))return copy;var len=$.get$length(list);copy=$.ListImplementation_List(len);$.indexSet(t1,list,copy);for(var i=0;$.ltB(i,len);++i){t1=this._dispatch$1($.index(list,i));if(i<0||i>=copy.length)throw $.ioore(i);copy[i]=t1;}return copy;},
+ visitMap$1: function(map){var t1={};var t2=this._visited;t1.copy_10=$.index(t2,map);var t3=t1.copy_10;if(!(t3==null))return t3;t1.copy_10=$.HashMapImplementation$();$.indexSet(t2,map,t1.copy_10);map.forEach$1(new $._Copier_visitMap_anon(this,t1));return t1.copy_10;}
 };
 
 $$._Serializer = {"":
  [],
  "super": "_MessageTraverser",
  visitPrimitive$1: function(x){return x;},
- visitList$1: function(list){var copyId=$.index(this._visited,list);if(!(copyId==null))return ['ref',copyId];var id=this._nextFreeRefId;this._nextFreeRefId=id+1;$.indexSet(this._visited,list,id);return ['list',id,this._serializeList$1(list)];},
- visitMap$1: function(map){var copyId=$.index(this._visited,map);if(!(copyId==null))return ['ref',copyId];var id=this._nextFreeRefId;this._nextFreeRefId=id+1;$.indexSet(this._visited,map,id);return ['map',id,this._serializeList$1(map.getKeys$0()),this._serializeList$1(map.getValues$0())];},
+ visitList$1: function(list){var t1=this._visited;var copyId=$.index(t1,list);if(!(copyId==null))return ['ref',copyId];var id=this._nextFreeRefId;this._nextFreeRefId=id+1;$.indexSet(t1,list,id);return ['list',id,this._serializeList$1(list)];},
+ visitMap$1: function(map){var t1=this._visited;var copyId=$.index(t1,map);if(!(copyId==null))return ['ref',copyId];var id=this._nextFreeRefId;this._nextFreeRefId=id+1;$.indexSet(t1,map,id);return ['map',id,this._serializeList$1(map.getKeys$0()),this._serializeList$1(map.getValues$0())];},
  _serializeList$1: function(list){if(typeof list!=='string'&&(typeof list!=='object'||list===null||list.constructor!==Array&&!list.is$JavaScriptIndexingBehavior()))return this._serializeList$1$bailout(1,list);var len=list.length;var result=$.ListImplementation_List(len);for(var i=0;i<len;++i){if(i<0||i>=list.length)throw $.ioore(i);var t1=this._dispatch$1(list[i]);if(i<0||i>=result.length)throw $.ioore(i);result[i]=t1;}return result;},
  _serializeList$1$bailout: function(state,list){var len=$.get$length(list);var result=$.ListImplementation_List(len);for(var i=0;$.ltB(i,len);++i){var t1=this._dispatch$1($.index(list,i));if(i<0||i>=result.length)throw $.ioore(i);result[i]=t1;}return result;}
 };
@@ -1143,7 +1145,8 @@ $$.Enumerable = {"":
 },
  get$first: function() { return new $.BoundClosure1(this, 'first$1'); },
  forEach$1: function(f){for(var t1=$.iterator(this);t1.hasNext$0()===true;)f.call$1(t1.next$0());},
- toString$0: function(){return '['+$.S(this.join$0())+']';}
+ toString$0: function(){return '['+$.S(this.join$0())+']';},
+ is$Enumerable: true
 };
 
 $$._WhereIterator = {"":
@@ -1175,8 +1178,7 @@ $$.ListBase = {"":
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  get$length: function(){throw $.$$throw($.CTC61);},
  operator$index$1: function(index){throw $.$$throw($.CTC61);},
- indexOf$2: function(element,start){if(typeof start!=='number')return this.indexOf$2$bailout(1,element,start);for(var i=start;$.ltB(i,$.get$length(this));++i)if($.eqB(this.operator$index$1(i),element))return i;return -1;},
- indexOf$2$bailout: function(state,element,start){for(var i=start;$.ltB(i,$.get$length(this));i=$.add(i,1))if($.eqB(this.operator$index$1(i),element))return i;return -1;},
+ indexOf$2: function(element,start){for(var i=start;$.ltB(i,$.get$length(this));++i)if($.eqB(this.operator$index$1(i),element))return i;return -1;},
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
 },
@@ -1704,7 +1706,8 @@ $$.anon3 = {"":
 $$.Closure = {"":
  [],
  "super": "Object",
- toString$0: function(){return 'Closure';}
+ toString$0: function(){return 'Closure';},
+ is$Function: true
 };
 
 $$.BoundClosure = {'':
@@ -1733,15 +1736,17 @@ $.startsWith = function(receiver,other){if(!(typeof receiver==='string'))return 
 
 $._NativeJsSendPort$ = function(_receivePort,isolateId){return new $._NativeJsSendPort(_receivePort,isolateId);};
 
+$.getRange = function(receiver,start,length$){if(!$.isJsArray(receiver))return receiver.getRange$2(start,length$);if(0===length$)return [];$.checkNull(start);$.checkNull(length$);if(!(typeof start==='number'&&start===(start|0)))throw $.$$throw($.IllegalArgumentException$(start));if(!(typeof length$==='number'&&length$===(length$|0)))throw $.$$throw($.IllegalArgumentException$(length$));var t1=length$<0;if(t1)throw $.$$throw($.IllegalArgumentException$(length$));if(start<0)throw $.$$throw($.IndexOutOfRangeException$(start));var end=start+length$;if($.gtB(end,$.get$length(receiver)))throw $.$$throw($.IndexOutOfRangeException$(length$));if(t1)throw $.$$throw($.IllegalArgumentException$(length$));return receiver.slice(start, end);};
+
 $.eqB = function(a,b){if(a == null)return b == null;if(b == null)return false;if(typeof a === "object")if(!!a.operator$eq$1)return a.operator$eq$1(b)===true;return a === b;};
 
 $.FutureAlreadyCompleteException$ = function(){return new $.FutureAlreadyCompleteException();};
 
-$.getRange = function(receiver,start,length$){if(!$.isJsArray(receiver))return receiver.getRange$2(start,length$);if(0===length$)return [];$.checkNull(start);$.checkNull(length$);if(!(typeof start==='number'&&start===(start|0)))throw $.$$throw($.IllegalArgumentException$(start));if(!(typeof length$==='number'&&length$===(length$|0)))throw $.$$throw($.IllegalArgumentException$(length$));var t1=length$<0;if(t1)throw $.$$throw($.IllegalArgumentException$(length$));if(start<0)throw $.$$throw($.IndexOutOfRangeException$(start));var end=start+length$;if($.gtB(end,$.get$length(receiver)))throw $.$$throw($.IndexOutOfRangeException$(length$));if(t1)throw $.$$throw($.IllegalArgumentException$(length$));return receiver.slice(start, end);};
-
 $.set$length = function(receiver,newLength){if($.isJsArray(receiver)){$.checkNull(newLength);if(!(typeof newLength==='number'&&newLength===(newLength|0)))throw $.$$throw($.IllegalArgumentException$(newLength));if(newLength<0)throw $.$$throw($.IndexOutOfRangeException$(newLength));$.checkGrowable(receiver,'set length');receiver.length = newLength;}else receiver.set$length(newLength);return newLength;};
 
 $._Device_userAgent = function(){return $.window().get$navigator().get$userAgent();};
+
+$._Lists_getRange = function(a,start,length$,accumulator){if(typeof a!=='string'&&(typeof a!=='object'||a===null||a.constructor!==Array&&!a.is$JavaScriptIndexingBehavior()))return $._Lists_getRange$bailout(1,a,start,length$,accumulator);if(typeof start!=='number')return $._Lists_getRange$bailout(1,a,start,length$,accumulator);if($.ltB(length$,0))throw $.$$throw($.IllegalArgumentException$('length'));if(start<0)throw $.$$throw($.IndexOutOfRangeException$(start));if(typeof length$!=='number')throw $.iae(length$);var end=start+length$;if(end>a.length)throw $.$$throw($.IndexOutOfRangeException$(end));for(var i=start;i<end;++i){if(i!==(i|0))throw $.iae(i);if(i<0||i>=a.length)throw $.ioore(i);accumulator.push(a[i]);}return accumulator;};
 
 $.checkNum = function(value){if(!(typeof value==='number')){$.checkNull(value);throw $.$$throw($.IllegalArgumentException$(value));}return value;};
 
@@ -1749,11 +1754,11 @@ $.convertDartClosureToJS = function(closure,arity){if(closure==null)return;var f
     return $.invokeClosure.call$5(closure, $._currentIsolate(), arity, arguments[0], arguments[1]);
   };closure.$identity = function$;return function$;};
 
-$._Lists_getRange = function(a,start,length$,accumulator){if(typeof a!=='string'&&(typeof a!=='object'||a===null||a.constructor!==Array&&!a.is$JavaScriptIndexingBehavior()))return $._Lists_getRange$bailout(1,a,start,length$,accumulator);if(typeof start!=='number')return $._Lists_getRange$bailout(1,a,start,length$,accumulator);if($.ltB(length$,0))throw $.$$throw($.IllegalArgumentException$('length'));if(start<0)throw $.$$throw($.IndexOutOfRangeException$(start));if(typeof length$!=='number')throw $.iae(length$);var end=start+length$;if(end>a.length)throw $.$$throw($.IndexOutOfRangeException$(end));for(var i=start;i<end;++i){if(i!==(i|0))throw $.iae(i);if(i<0||i>=a.length)throw $.ioore(i);accumulator.push(a[i]);}return accumulator;};
-
 $._TextTrackListEventsImpl$ = function(_ptr){return new $._TextTrackListEventsImpl(_ptr);};
 
 $.StackTrace$ = function(stack){return new $.StackTrace(stack);};
+
+$.toString = function(value){if(typeof value == "object" && value !== null)if($.isJsArray(value))return $.Collections_collectionToString(value);else return value.toString$0();if(value === 0 && (1 / value) < 0)return '-0.0';if(value==null)return 'null';if(typeof value == "function")return 'Closure';return String(value);};
 
 $._MediaStreamTrackEventsImpl$ = function(_ptr){return new $._MediaStreamTrackEventsImpl(_ptr);};
 
@@ -1769,8 +1774,6 @@ $._Elements_InputElement = function(type){var _e=$._document().$dom_createElemen
 
 $.Primitives_objectTypeName = function(object){var name$=$.constructorNameFallback(object);if($.eqB(name$,'Object')){var decompiled=String(object.constructor).match(/^\s*function\s*(\S*)\s*\(/)[1];if(typeof decompiled==='string')name$=decompiled;}return $.charCodeAt(name$,0)===36?$.substring$1(name$,1):name$;};
 
-$.clear = function(receiver){if(!$.isJsArray(receiver))return receiver.clear$0();$.set$length(receiver,0);};
-
 $.IndexIterator$ = function(length$,indexer,T){var t1=new $.IndexIterator(indexer,length$,0);$.setRuntimeTypeInfo(t1,{ 'T': T });t1.IndexIterator$2(length$,indexer);return t1;};
 
 $._fillStatics = function(context){  $globals = context.isolateStatics;
@@ -1778,6 +1781,8 @@ $._fillStatics = function(context){  $globals = context.isolateStatics;
 };
 
 $.QrUtil_getLostPoint = function(qrCode){var moduleCount=qrCode.moduleCount;if(typeof moduleCount!=='number')return $.QrUtil_getLostPoint$bailout(1,qrCode,moduleCount);for(var lostPoint=0,col=null,row=0;row<moduleCount;++row)for(col=0;col<moduleCount;++col){var dark=qrCode.isDark$2(row,col);for(var r=-1,sameCount=0;r<=1;++r){var t1=row+r;if(t1<0||moduleCount<=t1)continue;for(var t2=r===0,c=-1;c<=1;++c){var t3=col+c;if(t3<0||moduleCount<=t3)continue;if(t2&&c===0)continue;if($.eqB(dark,qrCode.isDark$2(t1,t3)))++sameCount;}}if(sameCount>5)lostPoint+=3+sameCount-5;}for(t1=moduleCount-1,row=0;row<t1;++row)for(t2=row+1,col=0;col<t1;++col){var count=qrCode.isDark$2(row,col)===true?1:0;if(qrCode.isDark$2(t2,col)===true)++count;t3=col+1;if(qrCode.isDark$2(row,t3)===true)++count;if(qrCode.isDark$2(t2,t3)===true)++count;if(count===0||count===4)lostPoint+=3;}for(t1=moduleCount-6,row=0;row<moduleCount;++row)for(col=0;col<t1;++col)if(qrCode.isDark$2(row,col)===true&&qrCode.isDark$2(row,col+1)!==true&&qrCode.isDark$2(row,col+2)===true&&qrCode.isDark$2(row,col+3)===true&&qrCode.isDark$2(row,col+4)===true&&qrCode.isDark$2(row,col+5)!==true&&qrCode.isDark$2(row,col+6)===true)lostPoint+=40;for(col=0;col<moduleCount;++col)for(row=0;row<t1;++row)if(qrCode.isDark$2(row,col)===true&&qrCode.isDark$2(row+1,col)!==true&&qrCode.isDark$2(row+2,col)===true&&qrCode.isDark$2(row+3,col)===true&&qrCode.isDark$2(row+4,col)===true&&qrCode.isDark$2(row+5,col)!==true&&qrCode.isDark$2(row+6,col)===true)lostPoint+=40;for(var darkCount=0,col=0;col<moduleCount;++col)for(row=0;row<moduleCount;++row)darkCount=qrCode.isDark$2(row,col)===true?darkCount+1:darkCount;t1=$.mul($.div($.abs(100*darkCount/moduleCount/moduleCount-50),5),10);if(typeof t1!=='number')throw $.iae(t1);return lostPoint+t1;};
+
+$.clear = function(receiver){if(!$.isJsArray(receiver))return receiver.clear$0();$.set$length(receiver,0);};
 
 $.print = function(object){$.PrintImplementation_print(object);};
 
@@ -1787,13 +1792,13 @@ $._JavaScriptAudioNodeEventsImpl$ = function(_ptr){return new $._JavaScriptAudio
 
 $.StackOverflowException$ = function(){return new $.StackOverflowException();};
 
-$.isEmpty = function(receiver){if(typeof receiver==='string'||$.isJsArray(receiver))return receiver.length === 0;return receiver.isEmpty$0();};
-
 $.BungeeNum$ = function(target,current){var t1=new $.BungeeNum(null,null,null);t1.BungeeNum$2(target,current);return t1;};
 
 $.forEach = function(receiver,f){if(!$.isJsArray(receiver))return receiver.forEach$1(f);else return $.Collections_forEach(receiver,f);};
 
 $.QrPolynomial_QrPolynomial = function(thing,shift){if(typeof thing!=='string'&&(typeof thing!=='object'||thing===null||thing.constructor!==Array&&!thing.is$JavaScriptIndexingBehavior()))return $.QrPolynomial_QrPolynomial$bailout(1,thing,shift);var offset=0;while(true){var t1=thing.length;if(offset<t1){if(offset<0||offset>=t1)throw $.ioore(offset);var t2=$.eqB(thing[offset],0);t1=t2;}else t1=false;if(!t1)break;++offset;}t1=thing.length-offset;if(typeof shift!=='number')throw $.iae(shift);var values=$.QrMath_getZeroedList(t1+shift);for(var i=0;t1=thing.length,i<t1-offset;++i){t2=i+offset;if(t2<0||t2>=t1)throw $.ioore(t2);t2=thing[t2];if(i<0||i>=values.length)throw $.ioore(i);values[i]=t2;}return $.QrPolynomial$_internal(values);};
+
+$.isEmpty = function(receiver){if(typeof receiver==='string'||$.isJsArray(receiver))return receiver.length === 0;return receiver.isEmpty$0();};
 
 $.Collections_forEach = function(iterable,f){for(var t1=$.iterator(iterable);t1.hasNext$0()===true;)f.call$1(t1.next$0());};
 
@@ -1837,13 +1842,11 @@ $.shr = function(a,b){if($.checkNumbers(a,b)){if(b<0)throw $.$$throw($.IllegalAr
 
 $._JsCopier$ = function(){var t1=new $._JsCopier($._MessageTraverserVisitedMap$());t1._JsCopier$0();return t1;};
 
-$._convertDartToNative_SerializedScriptValue = function(value){return $._convertDartToNative_PrepareForStructuredClone(value);};
-
 $._deserializeMessage = function(message){if($._globalState().get$needSerialization()===true)return $._JsDeserializer$().deserialize$1(message);else return message;};
 
-$.indexSet$slow = function(a,index,value){if($.isJsArray(a)){if(!(typeof index==='number'&&index===(index|0)))throw $.$$throw($.IllegalArgumentException$(index));if(index<0||$.geB(index,$.get$length(a)))throw $.$$throw($.IndexOutOfRangeException$(index));$.checkMutable(a,'indexed set');a[index] = value;return;}a.operator$indexSet$2(index,value);};
+$._convertDartToNative_SerializedScriptValue = function(value){return $._convertDartToNative_PrepareForStructuredClone(value);};
 
-$.Arrays_lastIndexOf = function(a,element,startIndex){if(typeof a!=='string'&&(typeof a!=='object'||a===null||a.constructor!==Array&&!a.is$JavaScriptIndexingBehavior()))return $.Arrays_lastIndexOf$bailout(1,a,element,startIndex);if(typeof startIndex!=='number')return $.Arrays_lastIndexOf$bailout(1,a,element,startIndex);if(startIndex<0)return -1;var t1=a.length;if(startIndex>=t1)startIndex=t1-1;for(var i=startIndex;i>=0;--i){if(i!==(i|0))throw $.iae(i);if(i<0||i>=a.length)throw $.ioore(i);if($.eqB(a[i],element))return i;}return -1;};
+$.indexSet$slow = function(a,index,value){if($.isJsArray(a)){if(!(typeof index==='number'&&index===(index|0)))throw $.$$throw($.IllegalArgumentException$(index));if(index<0||$.geB(index,$.get$length(a)))throw $.$$throw($.IndexOutOfRangeException$(index));$.checkMutable(a,'indexed set');a[index] = value;return;}a.operator$indexSet$2(index,value);};
 
 $.and = function(a,b){if($.checkNumbers(a,b))return (a & b) >>> 0;return a.operator$and$1(b);};
 
@@ -1865,9 +1868,9 @@ $.gt = function(a,b){return typeof a==='number'&&typeof b==='number'?a > b:$.gt$
 
 $._IsolateContext$ = function(){var t1=new $._IsolateContext(null,null,null);t1._IsolateContext$0();return t1;};
 
-$.buildDynamicMetadata = function(inputTable){var result=[];for(var i=0;i<inputTable.length;++i){var tag=inputTable[i][0];var array=inputTable[i];var tags=array[1];var set={};var tagNames=tags.split('|');for(var j=0,index=1;j<tagNames.length;++j){$.propertySet(set,tagNames[j],true);index=j;array=tagNames;}result.push($.MetaInfo$(tag,tags,set));}return result;};
-
 $.charCodeAt = function(receiver,index){if(typeof receiver==='string'){if(index<0)throw $.$$throw($.IndexOutOfRangeException$(index));if(index>=receiver.length)throw $.$$throw($.IndexOutOfRangeException$(index));return receiver.charCodeAt(index);}else return receiver.charCodeAt$1(index);};
+
+$.buildDynamicMetadata = function(inputTable){var result=[];for(var i=0;i<inputTable.length;++i){var tag=inputTable[i][0];var array=inputTable[i];var tags=array[1];var set={};var tagNames=tags.split('|');for(var j=0,index=1;j<tagNames.length;++j){$.propertySet(set,tagNames[j],true);index=j;array=tagNames;}result.push($.MetaInfo$(tag,tags,set));}return result;};
 
 $.getTypeNameOf = function(obj){if($._getTypeNameOf==null)$._getTypeNameOf=$.getFunctionForTypeNameOf();return $._getTypeNameOf.call$1(obj);};
 
@@ -1893,6 +1896,8 @@ $._IsolateNatives__log = function(msg){if($._globalState().get$isWorker()===true
 
 $.parseInt = function(str){$.checkString(str);if(!/^\s*[+-]?(?:0[xX][abcdefABCDEF0-9]+|\d+)\s*$/.test(str))throw $.$$throw($.FormatException$(str));var trimmed=$.trim(str);if($.gtB($.get$length(trimmed),2))var t1=$.eqB($.index(trimmed,1),'x')||$.eqB($.index(trimmed,1),'X');else t1=false;if(!t1)if($.gtB($.get$length(trimmed),3))t1=$.eqB($.index(trimmed,2),'x')||$.eqB($.index(trimmed,2),'X');else t1=false;else t1=true;var base=t1?16:10;var ret=parseInt(trimmed, base);if($.isNaN(ret)===true)throw $.$$throw($.FormatException$(str));return ret;};
 
+$.iterator = function(receiver){if($.isJsArray(receiver))return $.ListIterator$(receiver);return receiver.iterator$0();};
+
 $.add$1 = function(receiver,value){if($.isJsArray(receiver)){$.checkGrowable(receiver,'add');receiver.push(value);return;}return receiver.add$1(value);};
 
 $._Timer$ = function(milliSeconds,callback){var t1=new $._Timer(true,null);t1._Timer$2(milliSeconds,callback);return t1;};
@@ -1900,6 +1905,8 @@ $._Timer$ = function(milliSeconds,callback){var t1=new $._Timer(true,null);t1._T
 $.get$length = function(receiver){if(typeof receiver==='string'||$.isJsArray(receiver))return receiver.length;else return receiver.get$length();};
 
 $.Uri__parseIntOrZero = function(val){if(!(val==null)&&!$.eqB(val,''))return $.parseInt(val);else return 0;};
+
+$.dynamicBind = function(obj,name$,methods,arguments$){var tag=$.getTypeNameOf(obj);var method=methods[tag];if(method==null&&!($._dynamicMetadata0()==null))for(var i=0;i<$._dynamicMetadata0().length;++i){var entry=$._dynamicMetadata0()[i];if(entry.get$_set()[tag]){method=methods[entry.get$_tag()];if(!(method==null))break;}}if(method==null)method=methods['Object'];var proto=Object.getPrototypeOf(obj);if(method==null)method=function () {if (Object.getPrototypeOf(this) === proto) {throw new TypeError(name$ + " is not a function");} else {return Object.prototype[name$].apply(this, arguments);}};if(!proto.hasOwnProperty(name$))$.defineProperty(proto,name$,method);return method.apply(obj, arguments$);};
 
 $.isNaN = function(receiver){if(typeof receiver==='number')return isNaN(receiver);else return receiver.isNaN$0();};
 
@@ -1923,10 +1930,6 @@ $.lastIndexOf$1 = function(receiver,element){if($.isJsArray(receiver))return $.A
 
 $._FrozenElementListIterator$ = function(_list){return new $._FrozenElementListIterator(_list,0);};
 
-$.iterator = function(receiver){if($.isJsArray(receiver))return $.ListIterator$(receiver);return receiver.iterator$0();};
-
-$.dynamicBind = function(obj,name$,methods,arguments$){var tag=$.getTypeNameOf(obj);var method=methods[tag];if(method==null&&!($._dynamicMetadata0()==null))for(var i=0;i<$._dynamicMetadata0().length;++i){var entry=$._dynamicMetadata0()[i];if(entry.get$_set()[tag]){method=methods[entry.get$_tag()];if(!(method==null))break;}}if(method==null)method=methods['Object'];var proto=Object.getPrototypeOf(obj);if(method==null)method=function () {if (Object.getPrototypeOf(this) === proto) {throw new TypeError(name$ + " is not a function");} else {return Object.prototype[name$].apply(this, arguments);}};if(!proto.hasOwnProperty(name$))$.defineProperty(proto,name$,method);return method.apply(obj, arguments$);};
-
 $.Maps_mapToString = function(m){var result=$.StringBufferImpl$('');$.Maps__emitMap(m,result,$.ListImplementation_List(null));return result.toString$0();};
 
 $.QrUtil_getBCHTypeInfo = function(data){var d=$.shl(data,10);if(d!==(d|0))return $.QrUtil_getBCHTypeInfo$bailout(1,data,d);for(;$.QrUtil_getBCHDigit(d)-$.QrUtil_getBCHDigit($.QrUtil_G15)>=0;){var t1=$.shl($.QrUtil_G15,$.QrUtil_getBCHDigit(d)-$.QrUtil_getBCHDigit($.QrUtil_G15));if(typeof t1!=='number')throw $.iae(t1);d=(d^t1)>>>0;}return $.xor($.or($.shl(data,10),d),$.QrUtil_G15_MASK);};
@@ -1949,11 +1952,11 @@ $.addLast = function(receiver,value){if(!$.isJsArray(receiver))return receiver.a
 
 $._HttpRequestEventsImpl$ = function(_ptr){return new $._HttpRequestEventsImpl(_ptr);};
 
+$.add = function(a,b){return typeof a==='number'&&typeof b==='number'?a + b:$.add$slow(a,b);};
+
 $.geB = function(a,b){return typeof a==='number'&&typeof b==='number'?a >= b:$.ge$slow(a,b)===true;};
 
 $._isJavaScriptSimpleObject = function(value){return Object.getPrototypeOf(value) === Object.prototype;};
-
-$.add = function(a,b){return typeof a==='number'&&typeof b==='number'?a + b:$.add$slow(a,b);};
 
 $.ioore = function(index){throw $.$$throw($.IndexOutOfRangeException$(index));};
 
@@ -2000,7 +2003,7 @@ $._SharedWorkerContextEventsImpl$ = function(_ptr){return new $._SharedWorkerCon
 
 $.QrUtil_getBCHTypeNumber = function(data){var d=$.shl(data,12);if(d!==(d|0))return $.QrUtil_getBCHTypeNumber$bailout(1,data,d);for(;$.QrUtil_getBCHDigit(d)-$.QrUtil_getBCHDigit($.QrUtil_G18)>=0;){var t1=$.shl($.QrUtil_G18,$.QrUtil_getBCHDigit(d)-$.QrUtil_getBCHDigit($.QrUtil_G18));if(typeof t1!=='number')throw $.iae(t1);d=(d^t1)>>>0;}return $.or($.shl(data,12),d);};
 
-$.indexOf$2 = function(receiver,element,start){if($.isJsArray(receiver)){if(!(typeof start==='number'&&start===(start|0)))throw $.$$throw($.IllegalArgumentException$(start));return $.Arrays_indexOf(receiver,element,start,receiver.length);}else if(typeof receiver==='string'){$.checkNull(element);if(!(typeof start==='number'&&start===(start|0)))throw $.$$throw($.IllegalArgumentException$(start));if(!(typeof element==='string'))throw $.$$throw($.IllegalArgumentException$(element));if(start<0)return -1;return receiver.indexOf(element, start);}return receiver.indexOf$2(element,start);};
+$.indexOf$2 = function(receiver,element,start){if($.isJsArray(receiver))return $.Arrays_indexOf(receiver,element,start,receiver.length);else if(typeof receiver==='string'){$.checkNull(element);if(!(typeof element==='string'))throw $.$$throw($.IllegalArgumentException$(element));if(start<0)return -1;return receiver.indexOf(element, start);}return receiver.indexOf$2(element,start);};
 
 $.typeNameInIE = function(obj){var name$=$.constructorNameFallback(obj);if(name$==='Window')return 'DOMWindow';if(name$==='Document'){if(!!obj.xmlVersion)return 'Document';return 'HTMLDocument';}if(name$==='CanvasPixelArray')return 'Uint8ClampedArray';if(name$==='DataTransfer')return 'Clipboard';if(name$==='DragEvent')return 'MouseEvent';if(name$==='HTMLDDElement')return 'HTMLElement';if(name$==='HTMLDTElement')return 'HTMLElement';if(name$==='HTMLTableDataCellElement')return 'HTMLTableCellElement';if(name$==='HTMLTableHeaderCellElement')return 'HTMLTableCellElement';if(name$==='HTMLPhraseElement')return 'HTMLElement';if(name$==='MSStyleCSSProperties')return 'CSSStyleDeclaration';if(name$==='MouseWheelEvent')return 'WheelEvent';if(name$==='FormData')return 'DOMFormData';return name$;};
 
@@ -2060,8 +2063,6 @@ $.HashMapImplementation__computeLoadLimit = function(capacity){return $.tdiv(cap
 
 $.NoMoreElementsException$ = function(){return new $.NoMoreElementsException();};
 
-$.addAll = function(receiver,collection){if(!$.isJsArray(receiver))return receiver.addAll$1(collection);var iterator=$.iterator(collection);for(;iterator.hasNext$0()===true;)$.add$1(receiver,iterator.next$0());};
-
 $.QrRsBlock_getRSBlocks = function(typeNumber,errorCorrectLevel){var rsBlock=$.QrRsBlock_getRsBlockTable(typeNumber,errorCorrectLevel);if(typeof rsBlock!=='string'&&(typeof rsBlock!=='object'||rsBlock===null||rsBlock.constructor!==Array&&!rsBlock.is$JavaScriptIndexingBehavior()))return $.QrRsBlock_getRSBlocks$bailout(1,rsBlock,0,0,0,0,0);var length$=$.tdiv(rsBlock.length,3);var list=$.ListImplementation_List(null,'QrRsBlock');for(var i=0;i<length$;++i){var t1=i*3;var t2=t1+0;var t3=rsBlock.length;if(t2<0||t2>=t3)throw $.ioore(t2);var count=rsBlock[t2];if(typeof count!=='number')return $.QrRsBlock_getRSBlocks$bailout(2,t1,count,rsBlock,i,length$,list);var t4=t1+1;if(t4<0||t4>=t3)throw $.ioore(t4);var totalCount=rsBlock[t4];t1+=2;if(t1<0||t1>=t3)throw $.ioore(t1);var dataCount=rsBlock[t1];for(var j=0;j<count;++j)list.push($.QrRsBlock$(totalCount,dataCount));}return list;};
 
 $._WindowEventsImpl$ = function(_ptr){return new $._WindowEventsImpl(_ptr);};
@@ -2069,6 +2070,8 @@ $._WindowEventsImpl$ = function(_ptr){return new $._WindowEventsImpl(_ptr);};
 $._EventListenerListImpl$ = function(_ptr,_type){return new $._EventListenerListImpl(_ptr,_type);};
 
 $.gt$slow = function(a,b){if($.checkNumbers(a,b))return a > b;return a.operator$gt$1(b);};
+
+$.addAll = function(receiver,collection){if(!$.isJsArray(receiver))return receiver.addAll$1(collection);var iterator=$.iterator(collection);for(;iterator.hasNext$0()===true;)$.add$1(receiver,iterator.next$0());};
 
 $.iae = function(argument){throw $.$$throw($.IllegalArgumentException$(argument));};
 
@@ -2114,8 +2117,6 @@ $.indexOf$1 = function(receiver,element){if($.isJsArray(receiver))return $.Array
 
 $.FutureValueResult$ = function(value,TOutput){var t1=new $.FutureValueResult(value,null);$.setRuntimeTypeInfo(t1,{ 'TOutput': TOutput });return t1;};
 
-$.filter = function(receiver,predicate){if(!$.isJsArray(receiver))return receiver.filter$1(predicate);else return $.Collections_filter(receiver,[],predicate);};
-
 $.tdiv = function(a,b){if($.checkNumbers(a,b))return $.truncate(a / b);return a.operator$tdiv$1(b);};
 
 $._ChildrenElementList$_wrap = function(element){return new $._ChildrenElementList(element,element.get$$$dom_children());};
@@ -2124,23 +2125,23 @@ $.unwrapException = function(ex){if("dartException" in ex)return ex.dartExceptio
 
 $.GlobalId_GlobalId = function(){var t1=$.GlobalId__globalId;$.GlobalId__globalId=$.add(t1,1);return $.GlobalId$_internal(t1);};
 
-$.Collections_filter = function(source,destination,f){for(var t1=$.iterator(source);t1.hasNext$0()===true;){var t2=t1.next$0();if(f.call$1(t2)===true)destination.push(t2);}return destination;};
-
 $.checkNumbers = function(a,b){if(typeof a==='number')if(typeof b==='number')return true;else{$.checkNull(b);throw $.$$throw($.IllegalArgumentException$(b));}return false;};
 
 $._MediaStreamTrackListEventsImpl$ = function(_ptr){return new $._MediaStreamTrackListEventsImpl(_ptr);};
 
-$._ReceivePortImpl$ = function(){var t1=$._ReceivePortImpl__nextFreeId;$._ReceivePortImpl__nextFreeId=$.add(t1,1);t1=new $._ReceivePortImpl(t1,null);t1._ReceivePortImpl$0();return t1;};
-
 $._NodeListWrapper$ = function(list){return new $._NodeListWrapper(list);};
+
+$._ReceivePortImpl$ = function(){var t1=$._ReceivePortImpl__nextFreeId;$._ReceivePortImpl__nextFreeId=$.add(t1,1);t1=new $._ReceivePortImpl(t1,null);t1._ReceivePortImpl$0();return t1;};
 
 $.NoSuchMethodException$ = function(_receiver,_functionName,_arguments,existingArgumentNames){return new $.NoSuchMethodException(_receiver,_functionName,_arguments,existingArgumentNames);};
 
-$._Collections_filter = function(source,destination,f){for(var t1=$.iterator(source);t1.hasNext$0()===true;){var t2=t1.next$0();if(f.call$1(t2)===true)destination.push(t2);}return destination;};
+$.filter = function(receiver,predicate){if(!$.isJsArray(receiver))return receiver.filter$1(predicate);else return $.Collections_filter(receiver,[],predicate);};
 
 $.stringJoinUnchecked = function(array,separator){return array.join(separator);};
 
 $._WorkerSendPort$ = function(_workerId,isolateId,_receivePortId){return new $._WorkerSendPort(_workerId,_receivePortId,isolateId);};
+
+$.Collections_filter = function(source,destination,f){for(var t1=$.iterator(source);t1.hasNext$0()===true;){var t2=t1.next$0();if(f.call$1(t2)===true)destination.push(t2);}return destination;};
 
 $.S = function(value){var res=$.toString(value);if(!(typeof res==='string'))throw $.$$throw($.IllegalArgumentException$(value));return res;};
 
@@ -2148,11 +2149,13 @@ $._DoubleLinkedQueueIterator$ = function(_sentinel,E){var t1=new $._DoubleLinked
 
 $._DataAttributeMap$ = function($$dom_attributes){return new $._DataAttributeMap($$dom_attributes);};
 
-$.checkString = function(value){if(!(typeof value==='string')){$.checkNull(value);throw $.$$throw($.IllegalArgumentException$(value));}return value;};
-
 $.Arrays_indexOf = function(a,element,startIndex,endIndex){if(typeof a!=='string'&&(typeof a!=='object'||a===null||a.constructor!==Array&&!a.is$JavaScriptIndexingBehavior()))return $.Arrays_indexOf$bailout(1,a,element,startIndex,endIndex);if(startIndex>=a.length)return -1;if(startIndex<0)startIndex=0;for(var i=startIndex;i<endIndex;++i){if(i<0||i>=a.length)throw $.ioore(i);if($.eqB(a[i],element))return i;}return -1;};
 
-$._Lists_indexOf = function(a,element,startIndex,endIndex){if(typeof a!=='string'&&(typeof a!=='object'||a===null||a.constructor!==Array&&!a.is$JavaScriptIndexingBehavior()))return $._Lists_indexOf$bailout(1,a,element,startIndex,endIndex);if(typeof startIndex!=='number')return $._Lists_indexOf$bailout(1,a,element,startIndex,endIndex);if(typeof endIndex!=='number')return $._Lists_indexOf$bailout(1,a,element,startIndex,endIndex);if(startIndex>=a.length)return -1;if(startIndex<0)startIndex=0;for(var i=startIndex;i<endIndex;++i){if(i!==(i|0))throw $.iae(i);if(i<0||i>=a.length)throw $.ioore(i);if($.eqB(a[i],element))return i;}return -1;};
+$.checkString = function(value){if(!(typeof value==='string')){$.checkNull(value);throw $.$$throw($.IllegalArgumentException$(value));}return value;};
+
+$._Lists_indexOf = function(a,element,startIndex,endIndex){if(typeof a!=='string'&&(typeof a!=='object'||a===null||a.constructor!==Array&&!a.is$JavaScriptIndexingBehavior()))return $._Lists_indexOf$bailout(1,a,element,startIndex,endIndex);if(typeof endIndex!=='number')return $._Lists_indexOf$bailout(1,a,element,startIndex,endIndex);if(startIndex>=a.length)return -1;if(startIndex<0)startIndex=0;for(var i=startIndex;i<endIndex;++i){if(i<0||i>=a.length)throw $.ioore(i);if($.eqB(a[i],element))return i;}return -1;};
+
+$._Collections_filter = function(source,destination,f){for(var t1=$.iterator(source);t1.hasNext$0()===true;){var t2=t1.next$0();if(f.call$1(t2)===true)destination.push(t2);}return destination;};
 
 $._ReceivePortFactory_ReceivePort = function(){return $._ReceivePortImpl$();};
 
@@ -2164,13 +2167,11 @@ $.QrByte$_internal = function(_data){return new $.QrByte(4,_data);};
 
 $.EventHandle$ = function(T){var t1=new $.EventHandle(null,false);$.setRuntimeTypeInfo(t1,{ 'T': T });return t1;};
 
-$.toString = function(value){if(typeof value == "object" && value !== null)if($.isJsArray(value))return $.Collections_collectionToString(value);else return value.toString$0();if(value === 0 && (1 / value) < 0)return '-0.0';if(value==null)return 'null';if(typeof value == "function")return 'Closure';return String(value);};
-
 $.Uri__emptyIfNull = function(val){return !(val==null)?val:'';};
 
-$.startRootIsolate = function(entry){var t1=$._Manager$();$._globalState0(t1);if($._globalState().get$isWorker()===true)return;var rootContext=$._IsolateContext$();$._globalState().set$rootContext(rootContext);$._fillStatics(rootContext);$._globalState().set$currentContext(rootContext);if(!($._window()==null))rootContext.eval$1(new $.startRootIsolate_anon());rootContext.eval$1(entry);$._globalState().get$topEventLoop().run$0();};
-
 $._ElementFactoryProvider_Element$tag = function(tag){return document.createElement(tag)};
+
+$.startRootIsolate = function(entry){var t1=$._Manager$();$._globalState0(t1);if($._globalState().get$isWorker()===true)return;var rootContext=$._IsolateContext$();$._globalState().set$rootContext(rootContext);$._fillStatics(rootContext);$._globalState().set$currentContext(rootContext);if(!($._window()==null))rootContext.eval$1(new $.startRootIsolate_anon());rootContext.eval$1(entry);$._globalState().get$topEventLoop().run$0();};
 
 $.lt$slow = function(a,b){if($.checkNumbers(a,b))return a < b;return a.operator$lt$1(b);};
 
@@ -2250,7 +2251,7 @@ $.QrCode__createData = function(typeNumber,errorCorrectLevel,dataList){if(typeof
 
 $._HttpRequestUploadEventsImpl$ = function(_ptr){return new $._HttpRequestUploadEventsImpl(_ptr);};
 
-$.lastIndexOf$2 = function(receiver,element,start){if($.isJsArray(receiver))return $.Arrays_lastIndexOf(receiver,element,start);else if(typeof receiver==='string'){$.checkNull(element);if(!(typeof element==='string'))throw $.$$throw($.IllegalArgumentException$(element));if(!(start==null)){if(!(typeof start==='number'))throw $.$$throw($.IllegalArgumentException$(start));if(start<0)return -1;var t1=receiver.length;if(start>=t1){if(element==='')return t1;start=t1-1;}else start=start;}return $.stringLastIndexOfUnchecked(receiver,element,start);}return receiver.lastIndexOf$2(element,start);};
+$.lastIndexOf$2 = function(receiver,element,start){if($.isJsArray(receiver))return $.Arrays_lastIndexOf(receiver,element,start);else if(typeof receiver==='string'){$.checkNull(element);if(!(start==null)){if(!(typeof start==='number'))throw $.$$throw($.IllegalArgumentException$(start));if(start<0)return -1;var t1=receiver.length;if(start>=t1){if(element==='')return t1;start=t1-1;}else start=start;}return $.stringLastIndexOfUnchecked(receiver,element,start);}return receiver.lastIndexOf$2(element,start);};
 
 $._PendingSendPortFinder$ = function(){var t1=$._MessageTraverserVisitedMap$();t1=new $._PendingSendPortFinder([],t1);t1._PendingSendPortFinder$0();return t1;};
 
@@ -2280,19 +2281,21 @@ $.Collections__containsRef = function(c,ref){for(var t1=$.iterator(c);t1.hasNext
 
 $.Uri$fromString = function(uri){var t1=$.CTC103.firstMatch$1(uri);return new $.Uri($.Uri__emptyIfNull($.index(t1,1)),$.Uri__emptyIfNull($.index(t1,2)),$.Uri__emptyIfNull($.index(t1,3)),$.Uri__parseIntOrZero($.index(t1,4)),$.Uri__emptyIfNull($.index(t1,5)),$.Uri__emptyIfNull($.index(t1,6)),$.Uri__emptyIfNull($.index(t1,7)));};
 
-$._Lists_lastIndexOf = function(a,element,startIndex){if(typeof a!=='string'&&(typeof a!=='object'||a===null||a.constructor!==Array&&!a.is$JavaScriptIndexingBehavior()))return $._Lists_lastIndexOf$bailout(1,a,element,startIndex);if(typeof startIndex!=='number')return $._Lists_lastIndexOf$bailout(1,a,element,startIndex);if(startIndex<0)return -1;var t1=a.length;if(startIndex>=t1)startIndex=t1-1;for(var i=startIndex;i>=0;--i){if(i!==(i|0))throw $.iae(i);if(i<0||i>=a.length)throw $.ioore(i);if($.eqB(a[i],element))return i;}return -1;};
-
 $._MediaElementEventsImpl$ = function(_ptr){return new $._MediaElementEventsImpl(_ptr);};
 
 $.$$throw = function(ex){if(ex==null)ex=$.CTC1;var jsError=new Error();jsError.name = ex;jsError.description = ex;jsError.dartException = ex;jsError.toString = $.toStringWrapper.call$0;throw jsError;};
 
 $._MessagePortEventsImpl$ = function(_ptr){return new $._MessagePortEventsImpl(_ptr);};
 
+$.Arrays_lastIndexOf = function(a,element,startIndex){if(typeof a!=='string'&&(typeof a!=='object'||a===null||a.constructor!==Array&&!a.is$JavaScriptIndexingBehavior()))return $.Arrays_lastIndexOf$bailout(1,a,element,startIndex);if(typeof startIndex!=='number')return $.Arrays_lastIndexOf$bailout(1,a,element,startIndex);if(startIndex<0)return -1;var t1=a.length;if(startIndex>=t1)startIndex=t1-1;for(var i=startIndex;i>=0;--i){if(i!==(i|0))throw $.iae(i);if(i<0||i>=a.length)throw $.ioore(i);if($.eqB(a[i],element))return i;}return -1;};
+
 $.QrUtil_getErrorCorrectPolynomial = function(errorCorrectLength){if(typeof errorCorrectLength!=='number')return $.QrUtil_getErrorCorrectPolynomial$bailout(1,errorCorrectLength);var a=$.QrPolynomial_QrPolynomial([1],0);for(var i=0;i<errorCorrectLength;++i)a=a.multiply$1($.QrPolynomial_QrPolynomial([1,$.QrMath_gexp(i)],0));return a;};
 
 $.getTraceFromException = function(exception){return $.StackTrace$(exception.stack);};
 
 $._IsolateEvent$ = function(isolate,fn,message){return new $._IsolateEvent(isolate,fn,message);};
+
+$._Lists_lastIndexOf = function(a,element,startIndex){if(typeof a!=='string'&&(typeof a!=='object'||a===null||a.constructor!==Array&&!a.is$JavaScriptIndexingBehavior()))return $._Lists_lastIndexOf$bailout(1,a,element,startIndex);if(typeof startIndex!=='number')return $._Lists_lastIndexOf$bailout(1,a,element,startIndex);if(startIndex<0)return -1;var t1=a.length;if(startIndex>=t1)startIndex=t1-1;for(var i=startIndex;i>=0;--i){if(i!==(i|0))throw $.iae(i);if(i<0||i>=a.length)throw $.ioore(i);if($.eqB(a[i],element))return i;}return -1;};
 
 $.Maps__emitMap = function(m,result,visiting){var t1={};$.add$1(visiting,m);$.add$1(result,'{');t1.first_1=true;$.forEach(m,new $.Maps__emitMap_anon(result,t1,visiting));$.add$1(result,'}');$.removeLast(visiting);};
 
@@ -2328,9 +2331,9 @@ $.FutureValueResult_isMyMap = function(value){return !(value==null)&&$.eqB($.get
 
 $._IsolateNatives__consoleLog = function(msg){$globalThis.console.log(msg);};
 
-$.index = function(a,index){if(typeof a == "string" || a.constructor === Array){var key=index >>> 0;if(key===index&&key<a.length)return a[key];}return $.index$slow(a,index);};
-
 $.IndexOutOfRangeException$ = function(_value){return new $.IndexOutOfRangeException(_value);};
+
+$.index = function(a,index){if(typeof a == "string" || a.constructor === Array){var key=index >>> 0;if(key===index&&key<a.length)return a[key];}return $.index$slow(a,index);};
 
 $.le$slow = function(a,b){if($.checkNumbers(a,b))return a <= b;return a.operator$le$1(b);};
 
@@ -2341,8 +2344,6 @@ $._DocumentEventsImpl$ = function(_ptr){return new $._DocumentEventsImpl(_ptr);}
 $.xor = function(a,b){if($.checkNumbers(a,b))return (a ^ b) >>> 0;return a.operator$xor$1(b);};
 
 $.typeNameInOpera = function(obj){var name$=$.constructorNameFallback(obj);if(name$==='Window')return 'DOMWindow';if(name$==='FormData')return 'DOMFormData';return name$;};
-
-$.last = function(receiver){if(!$.isJsArray(receiver))return receiver.last$0();return $.index(receiver,$.sub($.get$length(receiver),1));};
 
 $.substring$1 = function(receiver,startIndex){if(!(typeof receiver==='string'))return receiver.substring$1(startIndex);return $.substring$2(receiver,startIndex,null);};
 
@@ -2374,11 +2375,13 @@ $._DoubleLinkedQueueEntrySentinel$ = function(E){var t1=new $._DoubleLinkedQueue
 
 $.FutureImpl$ = function(T){var t1=new $.FutureImpl(false,null,null,null,false,[],[],[]);$.setRuntimeTypeInfo(t1,{ 'T': T });return t1;};
 
-$.QrByte_QrByte = function(input){$.requireArgumentNotNull(input,'input');var charCodes=$.charCodes(input);for(var t1=$.iterator(charCodes);t1.hasNext$0()===true;)$.requireArgument($.lt(t1.next$0(),255),'ascii-only',null);return $.QrByte$_internal(charCodes);};
-
 $.toStringWrapper = function(){return $.toString(this.dartException);};
 
+$.QrByte_QrByte = function(input){$.requireArgumentNotNull(input,'input');var charCodes=$.charCodes(input);for(var t1=$.iterator(charCodes);t1.hasNext$0()===true;)$.requireArgument($.lt(t1.next$0(),255),'ascii-only',null);return $.QrByte$_internal(charCodes);};
+
 $.QrUtil_getBCHDigit = function(data){if(data!==(data|0))return $.QrUtil_getBCHDigit$bailout(1,data);for(var digit=0;!(data===0);){++digit;data=$.shr(data,1);}return digit;};
+
+$.last = function(receiver){if(!$.isJsArray(receiver))return receiver.last$0();return $.index(receiver,$.sub($.get$length(receiver),1));};
 
 $._ElementList$ = function(list){return new $._ElementList(list);};
 
@@ -2388,9 +2391,9 @@ $.stringContainsUnchecked = function(receiver,other,startIndex){return !($.index
 
 $.requireArgument = function(truth,arg,message){if(truth!==true)if(!(message==null))throw $.$$throw($.DetailedIllegalArgumentException$(arg,message));else throw $.$$throw($.IllegalArgumentException$(arg));};
 
-$.shl = function(a,b){if($.checkNumbers(a,b)){if(b<0)throw $.$$throw($.IllegalArgumentException$(b));if(b > 31)return 0;return (a << b) >>> 0;}return a.operator$shl$1(b);};
-
 $.Primitives_objectToString = function(object){return 'Instance of \''+$.S($.Primitives_objectTypeName(object))+'\'';};
+
+$.shl = function(a,b){if($.checkNumbers(a,b)){if(b<0)throw $.$$throw($.IllegalArgumentException$(b));if(b > 31)return 0;return (a << b) >>> 0;}return a.operator$shl$1(b);};
 
 $.defineProperty = function(obj,property,value){Object.defineProperty(obj, property,
       {value: value, enumerable: false, writable: true, configurable: true});};
@@ -2419,13 +2422,13 @@ $.QrPolynomial_QrPolynomial$bailout = function(state,thing,shift){var offset=0;w
 
 $._Lists_lastIndexOf$bailout = function(state,a,element,startIndex){if($.ltB(startIndex,0))return -1;if($.geB(startIndex,$.get$length(a)))startIndex=$.sub($.get$length(a),1);for(var i=startIndex;$.geB(i,0);i=$.sub(i,1))if($.eqB($.index(a,i),element))return i;return -1;};
 
-$.Arrays_lastIndexOf$bailout = function(state,a,element,startIndex){if($.ltB(startIndex,0))return -1;if($.geB(startIndex,$.get$length(a)))startIndex=$.sub($.get$length(a),1);for(var i=startIndex;$.geB(i,0);i=$.sub(i,1))if($.eqB($.index(a,i),element))return i;return -1;};
-
-$._Lists_indexOf$bailout = function(state,a,element,startIndex,endIndex){if($.geB(startIndex,$.get$length(a)))return -1;if($.ltB(startIndex,0))startIndex=0;for(var i=startIndex;$.ltB(i,endIndex);i=$.add(i,1))if($.eqB($.index(a,i),element))return i;return -1;};
+$._Lists_indexOf$bailout = function(state,a,element,startIndex,endIndex){if($.geB(startIndex,$.get$length(a)))return -1;if(startIndex<0)startIndex=0;for(var i=startIndex;$.ltB(i,endIndex);++i)if($.eqB($.index(a,i),element))return i;return -1;};
 
 $.Arrays_indexOf$bailout = function(state,a,element,startIndex,endIndex){if($.geB(startIndex,$.get$length(a)))return -1;if(startIndex<0)startIndex=0;for(var i=startIndex;i<endIndex;++i)if($.eqB($.index(a,i),element))return i;return -1;};
 
 $.QrCode__createBytes$bailout = function(state,env0,env1,env2,env3,env4,env5,env6,env7,env8,env9,env10,env11){switch(state){case 1:var buffer=env0;var rsBlocks=env1;break;case 2:buffer=env0;rsBlocks=env1;dcCount=env2;dcdata=env3;ecCount=env4;maxDcCount=env5;t1=env6;ecdata=env7;maxEcCount=env8;r=env9;offset=env10;i=env11;break;case 3:r=env0;buffer=env1;rsBlocks=env2;modPoly=env3;dcdata=env4;maxDcCount=env5;offset=env6;ecdata=env7;maxEcCount=env8;rsPoly=env9;break;case 4:buffer=env0;rsBlocks=env1;modPoly=env2;dcdata=env3;maxDcCount=env4;ecdata=env5;maxEcCount=env6;r=env7;modIndex=env8;t2=env9;offset=env10;i=env11;break;case 5:r=env0;t1=env1;maxEcCount=env2;rsBlocks=env3;maxDcCount=env4;i=env5;data=env6;dcdata=env7;ecdata=env8;break;case 6:rsBlocks=env0;r=env1;data=env2;t1=env3;ecdata=env4;i=env5;break;}switch(state){case 0:case 1:state=0;var dcdata=$.ListImplementation_List($.get$length(rsBlocks),'List');var ecdata=$.ListImplementation_List($.get$length(rsBlocks),'List');var r=0;var maxEcCount=0;var maxDcCount=0;var offset=0;default:L0:while(true)switch(state){case 0:if(!$.ltB(r,$.get$length(rsBlocks)))break L0;var dcCount=$.index(rsBlocks,r).get$dataCount();var ecCount=$.sub($.index(rsBlocks,r).get$totalCount(),dcCount);maxDcCount=$.max(maxDcCount,dcCount);maxEcCount=$.max(maxEcCount,ecCount);var t1=$.QrMath_getZeroedList(dcCount);if(r<0||r>=dcdata.length)throw $.ioore(r);dcdata[r]=t1;var i=0;case 2:L1:while(true)switch(state){case 0:if(r<0||r>=dcdata.length)throw $.ioore(r);if(!$.ltB(i,$.get$length(dcdata[r])))break L1;if(r<0||r>=dcdata.length)throw $.ioore(r);t1=dcdata[r];case 2:state=0;var t3=buffer.getByte$1(i+offset);if(typeof t3!=='number')throw $.iae(t3);$.indexSet(t1,i,255&t3);++i;}if(typeof dcCount!=='number')throw $.iae(dcCount);offset+=dcCount;var rsPoly=$.QrUtil_getErrorCorrectPolynomial(ecCount);if(r<0||r>=dcdata.length)throw $.ioore(r);var modPoly=$.QrPolynomial_QrPolynomial(dcdata[r],$.sub($.get$length(rsPoly),1)).mod$1(rsPoly);case 3:state=0;var t2=$.QrMath_getZeroedList($.sub($.get$length(rsPoly),1));if(r<0||r>=ecdata.length)throw $.ioore(r);ecdata[r]=t2;i=0;case 4:L2:while(true)switch(state){case 0:if(r<0||r>=ecdata.length)throw $.ioore(r);if(!$.ltB(i,$.get$length(ecdata[r])))break L2;t1=$.get$length(modPoly);if(typeof t1!=='number')throw $.iae(t1);t1=i+t1;if(r<0||r>=ecdata.length)throw $.ioore(r);t2=$.get$length(ecdata[r]);if(typeof t2!=='number')throw $.iae(t2);var modIndex=t1-t2;if(r<0||r>=ecdata.length)throw $.ioore(r);t2=ecdata[r];case 4:state=0;$.indexSet(t2,i,modIndex>=0?$.index(modPoly,modIndex):0);++i;}++r;}for(var totalCodeCount=0,i=0;$.ltB(i,$.get$length(rsBlocks));++i){t1=$.index(rsBlocks,i).get$totalCount();if(typeof t1!=='number')throw $.iae(t1);totalCodeCount+=t1;}var data=[];i=0;case 5:L3:while(true)switch(state){case 0:if(!(i<maxDcCount))break L3;r=0;case 5:L4:while(true)switch(state){case 0:if(!$.ltB(r,$.get$length(rsBlocks)))break L4;if(r<0||r>=dcdata.length)throw $.ioore(r);case 5:if(state===5||state===0&&$.ltB(i,$.get$length(dcdata[r])))switch(state){case 0:if(r<0||r>=dcdata.length)throw $.ioore(r);t1=dcdata[r];case 5:state=0;data.push($.index(t1,i));}++r;}++i;}i=0;case 6:L5:while(true)switch(state){case 0:if(!(i<maxEcCount))break L5;r=0;case 6:L6:while(true)switch(state){case 0:if(!$.ltB(r,$.get$length(rsBlocks)))break L6;if(r<0||r>=ecdata.length)throw $.ioore(r);case 6:if(state===6||state===0&&$.ltB(i,$.get$length(ecdata[r])))switch(state){case 0:if(r<0||r>=ecdata.length)throw $.ioore(r);t1=ecdata[r];case 6:state=0;data.push($.index(t1,i));}++r;}++i;}return data;}};
+
+$.Arrays_lastIndexOf$bailout = function(state,a,element,startIndex){if($.ltB(startIndex,0))return -1;if($.geB(startIndex,$.get$length(a)))startIndex=$.sub($.get$length(a),1);for(var i=startIndex;$.geB(i,0);i=$.sub(i,1))if($.eqB($.index(a,i),element))return i;return -1;};
 
 $._Lists_getRange$bailout = function(state,a,start,length$,accumulator){if($.ltB(length$,0))throw $.$$throw($.IllegalArgumentException$('length'));if($.ltB(start,0))throw $.$$throw($.IndexOutOfRangeException$(start));var end=$.add(start,length$);if($.gtB(end,$.get$length(a)))throw $.$$throw($.IndexOutOfRangeException$(end));for(var i=start;$.ltB(i,end);i=$.add(i,1))accumulator.push($.index(a,i));return accumulator;};
 
@@ -2512,18 +2515,19 @@ $.CTC82 = Isolate.makeConstantList([6, 26, 50, 74, 98]);
 $.CTC35 = Isolate.makeConstantList([2, 33, 15, 2, 34, 16]);
 $.CTC54 = Isolate.makeConstantList([4, 69, 43, 1, 70, 44]);
 $.CTC6 = new Isolate.$isolateProperties.NotImplementedException('structured clone of RegExp');
+$.CTC56 = Isolate.makeConstantList([6, 43, 15, 2, 44, 16]);
 $.CTC40 = Isolate.makeConstantList([4, 43, 15]);
 $.CTC98 = Isolate.makeConstantList([6, 32, 58, 84, 110, 136, 162]);
-$.CTC56 = Isolate.makeConstantList([6, 43, 15, 2, 44, 16]);
 $.CTC8 = new Isolate.$isolateProperties.NotImplementedException('structured clone of Blob');
+$.CTC100 = Isolate.makeConstantList([6, 30, 58, 86, 114, 142, 170]);
 $.CTC53 = Isolate.makeConstantList([2, 86, 68, 2, 87, 69]);
-$.CTC66 = Isolate.makeConstantList([6, 34]);
 $.CTC58 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot insertRange on immutable List.');
-$.CTC85 = Isolate.makeConstantList([6, 32, 58, 84, 110]);
+$.CTC64 = Isolate.makeConstantList([6, 26]);
+$.CTC66 = Isolate.makeConstantList([6, 34]);
 $.CTC31 = Isolate.makeConstantList([2, 50, 24]);
 $.CTC70 = Isolate.makeConstantList([6, 28, 50]);
 $.CTC42 = Isolate.makeConstantList([4, 49, 31]);
-$.CTC64 = Isolate.makeConstantList([6, 26]);
+$.CTC72 = Isolate.makeConstantList([6, 32, 58]);
 $.CTC28 = Isolate.makeConstantList([2, 35, 13]);
 $.CTC102 = Isolate.makeConstantList([1, 0, 3, 2]);
 $.CTC41 = Isolate.makeConstantList([2, 98, 78]);
@@ -2532,33 +2536,37 @@ $.CTC27 = Isolate.makeConstantList([2, 35, 17]);
 $.CTC22 = Isolate.makeConstantList([1, 44, 28]);
 $.CTC69 = Isolate.makeConstantList([6, 26, 46]);
 $.CTC83 = Isolate.makeConstantList([6, 30, 54, 78, 102]);
-$.CTC38 = Isolate.makeConstantList([4, 43, 27]);
 $.CTC10 = new Isolate.$isolateProperties.NotImplementedException('structured clone of ArrayBuffer');
 $.CTC29 = Isolate.makeConstantList([1, 100, 80]);
-$.CTC61 = new Isolate.$isolateProperties.NotImplementedException('must be implemented by subclass');
-$.CTC72 = Isolate.makeConstantList([6, 32, 58]);
 $.CTC67 = Isolate.makeConstantList([6, 22, 38]);
+$.CTC38 = Isolate.makeConstantList([4, 43, 27]);
+$.CTC61 = new Isolate.$isolateProperties.NotImplementedException('must be implemented by subclass');
+$.CTC87 = Isolate.makeConstantList([6, 34, 62, 90, 118]);
 $.CTC68 = Isolate.makeConstantList([6, 24, 42]);
 $.CTC23 = Isolate.makeConstantList([1, 44, 22]);
 $.CTC39 = Isolate.makeConstantList([4, 43, 19]);
 $.CTC24 = Isolate.makeConstantList([1, 44, 16]);
-$.CTC73 = Isolate.makeConstantList([6, 34, 62]);
 $.CTC1 = new Isolate.$isolateProperties.NullPointerException(null, Isolate.$isolateProperties.CTC0);
-$.CTC13 = new Isolate.$isolateProperties.EmptyQueueException();
-$.CTC80 = Isolate.makeConstantList([6, 34, 62, 90]);
-$.CTC3 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot removeLast on immutable List.');
-$.CTC60 = new Isolate.$isolateProperties.NotImplementedException(null);
 $.CTC81 = Isolate.makeConstantList([6, 28, 50, 72, 94]);
 $.CTC2 = new Isolate.$isolateProperties.NoMoreElementsException();
-$.CTC100 = Isolate.makeConstantList([6, 30, 58, 86, 114, 142, 170]);
+$.CTC3 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot removeLast on immutable List.');
+$.CTC13 = new Isolate.$isolateProperties.EmptyQueueException();
+$.CTC60 = new Isolate.$isolateProperties.NotImplementedException(null);
+$.CTC99 = Isolate.makeConstantList([6, 26, 54, 82, 110, 138, 166]);
+$.CTC109 = new Isolate.$isolateProperties.IllegalAccessException();
+$.CTC80 = Isolate.makeConstantList([6, 34, 62, 90]);
+$.CTC73 = Isolate.makeConstantList([6, 34, 62]);
+$.CTC86 = Isolate.makeConstantList([6, 30, 58, 86, 114]);
+$.CTC96 = Isolate.makeConstantList([6, 24, 50, 76, 102, 128, 154]);
+$.CTC85 = Isolate.makeConstantList([6, 32, 58, 84, 110]);
+$.CTC106 = new Isolate.$isolateProperties.UnsupportedOperationException('');
+$.CTC108 = new Isolate.$isolateProperties.ConstantMap(0, {}, Isolate.$isolateProperties.CTC0);
 $.CTC74 = Isolate.makeConstantList([6, 26, 46, 66]);
 $.CTC75 = Isolate.makeConstantList([6, 26, 48, 70]);
 $.CTC76 = Isolate.makeConstantList([6, 26, 50, 74]);
 $.CTC77 = Isolate.makeConstantList([6, 30, 54, 78]);
 $.CTC78 = Isolate.makeConstantList([6, 30, 56, 82]);
 $.CTC79 = Isolate.makeConstantList([6, 30, 58, 86]);
-$.CTC86 = Isolate.makeConstantList([6, 30, 58, 86, 114]);
-$.CTC87 = Isolate.makeConstantList([6, 34, 62, 90, 118]);
 $.CTC88 = Isolate.makeConstantList([6, 26, 50, 74, 98, 122]);
 $.CTC89 = Isolate.makeConstantList([6, 30, 54, 78, 102, 126]);
 $.CTC90 = Isolate.makeConstantList([6, 26, 52, 78, 104, 130]);
@@ -2567,12 +2575,7 @@ $.CTC92 = Isolate.makeConstantList([6, 34, 60, 86, 112, 138]);
 $.CTC93 = Isolate.makeConstantList([6, 30, 58, 86, 114, 142]);
 $.CTC94 = Isolate.makeConstantList([6, 34, 62, 90, 118, 146]);
 $.CTC95 = Isolate.makeConstantList([6, 30, 54, 78, 102, 126, 150]);
-$.CTC96 = Isolate.makeConstantList([6, 24, 50, 76, 102, 128, 154]);
-$.CTC99 = Isolate.makeConstantList([6, 26, 54, 82, 110, 138, 166]);
 $.CTC101 = Isolate.makeConstantList([Isolate.$isolateProperties.CTC0, Isolate.$isolateProperties.CTC62, Isolate.$isolateProperties.CTC63, Isolate.$isolateProperties.CTC64, Isolate.$isolateProperties.CTC65, Isolate.$isolateProperties.CTC66, Isolate.$isolateProperties.CTC67, Isolate.$isolateProperties.CTC68, Isolate.$isolateProperties.CTC69, Isolate.$isolateProperties.CTC70, Isolate.$isolateProperties.CTC71, Isolate.$isolateProperties.CTC72, Isolate.$isolateProperties.CTC73, Isolate.$isolateProperties.CTC74, Isolate.$isolateProperties.CTC75, Isolate.$isolateProperties.CTC76, Isolate.$isolateProperties.CTC77, Isolate.$isolateProperties.CTC78, Isolate.$isolateProperties.CTC79, Isolate.$isolateProperties.CTC80, Isolate.$isolateProperties.CTC81, Isolate.$isolateProperties.CTC82, Isolate.$isolateProperties.CTC83, Isolate.$isolateProperties.CTC84, Isolate.$isolateProperties.CTC85, Isolate.$isolateProperties.CTC86, Isolate.$isolateProperties.CTC87, Isolate.$isolateProperties.CTC88, Isolate.$isolateProperties.CTC89, Isolate.$isolateProperties.CTC90, Isolate.$isolateProperties.CTC91, Isolate.$isolateProperties.CTC92, Isolate.$isolateProperties.CTC93, Isolate.$isolateProperties.CTC94, Isolate.$isolateProperties.CTC95, Isolate.$isolateProperties.CTC96, Isolate.$isolateProperties.CTC97, Isolate.$isolateProperties.CTC98, Isolate.$isolateProperties.CTC99, Isolate.$isolateProperties.CTC100]);
-$.CTC106 = new Isolate.$isolateProperties.UnsupportedOperationException('');
-$.CTC108 = new Isolate.$isolateProperties.ConstantMap(0, {}, Isolate.$isolateProperties.CTC0);
-$.CTC109 = new Isolate.$isolateProperties.IllegalAccessException();
 $.CTC110 = new Isolate.$isolateProperties.Object();
 $.CTC34 = Isolate.makeConstantList([2, 67, 43]);
 $.CTC26 = Isolate.makeConstantList([1, 70, 44]);
@@ -2588,8 +2591,8 @@ $.CTC104 = new Isolate.$isolateProperties.EventArgs();
 $.CTC105 = new Isolate.$isolateProperties.InvalidOperationException('The input sequence is empty.');
 $.CTC15 = new Isolate.$isolateProperties.NotImplementedException('IDBKey containing Date');
 $.CTC5 = new Isolate.$isolateProperties.NotImplementedException('structured clone of Date');
-$.CTC7 = new Isolate.$isolateProperties.NotImplementedException('structured clone of File');
 $.CTC16 = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, '^#[_a-zA-Z]\\w*$');
+$.CTC7 = new Isolate.$isolateProperties.NotImplementedException('structured clone of File');
 $.CTC = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot add to immutable List.');
 $.CTC107 = new Isolate.$isolateProperties.IllegalArgumentException('Invalid list length');
 $.CTC103 = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, '^(?:([^:/?#.]+):)?(?://(?:([^/?#]*)@)?([\\w\\d\\-\\u0100-\\uffff.%]*)(?::([0-9]+))?)?([^?#]+)?(?:\\?([^#]*))?(?:#(.*))?$');
@@ -3648,7 +3651,7 @@ $.$defineNativeClass('NodeList', ["length?"], {
  iterator$0: function(){return $._FixedSizeListIterator$(this,'Node');},
  add$1: function(value){this._parent.$dom_appendChild$1(value);},
  addLast$1: function(value){this._parent.$dom_appendChild$1(value);},
- addAll$1: function(collection){for(var t1=$.iterator(collection);t1.hasNext$0()===true;){var t2=t1.next$0();this._parent.$dom_appendChild$1(t2);}},
+ addAll$1: function(collection){for(var t1=$.iterator(collection),t2=this._parent;t1.hasNext$0()===true;)t2.$dom_appendChild$1(t1.next$0());},
  removeLast$0: function(){var result=this.last$0();if(!(result==null))this._parent.$dom_removeChild$1(result);return result;},
  clear$0: function(){this._parent.set$text('');},
  operator$indexSet$2: function(index,value){this._parent.$dom_replaceChild$2(value,this.operator$index$1(index));},
@@ -4737,3 +4740,5 @@ Isolate.$finishIsolateConstructor = function(oldIsolate) {
   return newIsolate;
 };
 }
+
+//@ sourceMappingURL=qr_demo.dart.js.map
