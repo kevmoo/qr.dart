@@ -1632,7 +1632,7 @@ $.mul = function(a,b){return typeof a==='number'&&typeof b==='number'?a * b:$.mu
 
 $.isValidNumber = function(value){return !(value==null)&&$.isInfinite(value)!==true&&$.isNaN(value)!==true;};
 
-$._browserPrefix = function(){if($._cachedBrowserPrefix==null)if($._Device_isFirefox()===true)$._cachedBrowserPrefix='-moz-';else $._cachedBrowserPrefix='-webkit-';return $._cachedBrowserPrefix;};
+$._browserPrefix = function(){if($._cachedBrowserPrefix==null)if($._Device_isFirefox()===true)$._cachedBrowserPrefix='-moz-';else if($._Device_isIE()===true)$._cachedBrowserPrefix='-ms-';else if($._Device_isOpera()===true)$._cachedBrowserPrefix='-o-';else $._cachedBrowserPrefix='-webkit-';return $._cachedBrowserPrefix;};
 
 $._EventsImpl$ = function(_ptr){return new $._EventsImpl(_ptr);};
 
@@ -1857,6 +1857,10 @@ $.Arrays_indexOf = function(a,element,startIndex,endIndex){var t1=a.length;if(st
 $._WhereIterator$ = function(_source,_func,T){var t1=new $._WhereIterator(_source,_func,null,null);$.setRuntimeTypeInfo(t1,{ 'T': T });return t1;};
 
 $.$$ = function(source){if(typeof source==='object'&&source!==null&&!!source.is$Enumerable)return source;else return $.Enumerable_Enumerable(source);};
+
+$._Device_isIE = function(){return $._Device_isOpera()!==true&&$.contains$2($._Device_userAgent(),'MSIE',0)===true;};
+
+$._Device_isOpera = function(){return $.contains$2($._Device_userAgent(),'Opera',0);};
 
 $.EventHandle$ = function(T){var t1=new $.EventHandle(null,false);$.setRuntimeTypeInfo(t1,{ 'T': T });return t1;};
 

@@ -3878,6 +3878,8 @@ $._ReceivePortFactory_ReceivePort = function(){return $._ReceivePortImpl$();};
 
 $.$$ = function(source){if(typeof source==='object'&&source!==null&&!!source.is$Enumerable)return source;else return $.Enumerable_Enumerable(source);};
 
+$._Device_isIE = function(){return $._Device_isOpera()!==true&&$.contains$2($._Device_userAgent(),'MSIE',0)===true;};
+
 $.QrByte$_internal = function(_data){return new $.QrByte(4,_data);};
 
 $.EventHandle$ = function(T){var t1=new $.EventHandle(null,false);$.setRuntimeTypeInfo(t1,{ 'T': T });return t1;};
@@ -4252,7 +4254,7 @@ $.document = function(){return document;};
 
 $.mul = function(a,b){return typeof a==='number'&&typeof b==='number'?a * b:$.mul$slow(a,b);};
 
-$._browserPrefix = function(){if($._cachedBrowserPrefix==null)if($._Device_isFirefox()===true)$._cachedBrowserPrefix='-moz-';else $._cachedBrowserPrefix='-webkit-';return $._cachedBrowserPrefix;};
+$._browserPrefix = function(){if($._cachedBrowserPrefix==null)if($._Device_isFirefox()===true)$._cachedBrowserPrefix='-moz-';else if($._Device_isIE()===true)$._cachedBrowserPrefix='-ms-';else if($._Device_isOpera()===true)$._cachedBrowserPrefix='-o-';else $._cachedBrowserPrefix='-webkit-';return $._cachedBrowserPrefix;};
 
 $._BodyElementEventsImpl$ = function(_ptr){return new $._BodyElementEventsImpl(_ptr);};
 
@@ -4481,6 +4483,8 @@ $._Lists_indexOf = function(a,element,startIndex,endIndex){if(typeof a!=='string
 $._WhereIterator$ = function(_source,_func,T){var t1=new $._WhereIterator(_source,_func,null,null);$.setRuntimeTypeInfo(t1,{ 'T': T });return t1;};
 
 $.TestRgbColor__getCoreColors = function(){return [$.RgbColor_RgbColor(0,0,0),$.RgbColor_RgbColor(1,1,1),$.RgbColor_RgbColor(42,29,123),$.RgbColor_RgbColor(42,29,120),$.RgbColor_RgbColor(254,254,254),$.RgbColor_RgbColor(255,255,255),$.RgbColor_RgbColor(245,255,193)];};
+
+$._Device_isOpera = function(){return $.contains$2($._Device_userAgent(),'Opera',0);};
 
 $._ElementFactoryProvider_Element$tag = function(tag){return document.createElement(tag)};
 
