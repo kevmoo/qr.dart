@@ -108,9 +108,9 @@ $$.DoubleLinkedQueueEntry = {"":
 $$._DoubleLinkedQueueEntrySentinel = {"":
  ["_previous", "_next", "_lib0_element"],
  "super": "DoubleLinkedQueueEntry",
- remove$0: function(){throw $.$$throw($.CTC23);},
+ remove$0: function(){throw $.$$throw($.CTC24);},
  _asNonSentinelEntry$0: function(){return;},
- get$element: function(){throw $.$$throw($.CTC23);},
+ get$element: function(){throw $.$$throw($.CTC24);},
  _DoubleLinkedQueueEntrySentinel$0: function(){this._link$2(this,this);}
 };
 
@@ -196,13 +196,6 @@ $$.StackOverflowException = {"":
  [],
  "super": "Object",
  toString$0: function(){return 'Stack Overflow';},
- is$Exception: true
-};
-
-$$.FormatException = {"":
- ["message?"],
- "super": "Object",
- toString$0: function(){return 'FormatException: '+$.S(this.message);},
  is$Exception: true
 };
 
@@ -840,7 +833,7 @@ $$.NullArgumentException = {"":
 $$.Enumerable = {"":
  [],
  "super": "Object",
- iterator$0: function(){throw $.$$throw($.CTC18);},
+ iterator$0: function(){throw $.$$throw($.CTC19);},
  join$1: function(separator){var sb=$.StringBufferImpl$('');for(var t1=$.iterator(this);t1.hasNext$0()===true;){var t2=t1.next$0();if($.gtB($.get$length(sb),0))sb.add$1(separator);sb.add$1(t2);}return sb.toString$0();},
  join$0: function() {
   return this.join$1(', ')
@@ -982,13 +975,13 @@ $$.PropertyValues = {"":
  _set$2: function(key,value){$.indexSet(this._propertyValues,key,value);this._changeHandle.fireEvent$1(key);},
  get$_set: function() { return new $.BoundClosure0(this, '_set$2'); },
  _isSet$1: function(key){return this._propertyValues.containsKey$1(key);},
- _getValueOrUndefined$3: function(key,obj,ifAbsent){if(this._isSet$1(key)===true)return $.index(this._propertyValues,key);else if(!(ifAbsent==null)){var value=ifAbsent.call$1(obj);this._set$2(key,value);return value;}else return $.CTC20;}
+ _getValueOrUndefined$3: function(key,obj,ifAbsent){if(this._isSet$1(key)===true)return $.index(this._propertyValues,key);else if(!(ifAbsent==null)){var value=ifAbsent.call$1(obj);this._set$2(key,value);return value;}else return $.CTC21;}
 };
 
 $$.Property = {"":
  ["defaultValue", "name"],
  "super": "Attachable",
- get$2: function(obj,ifAbsent){var coreValue=this.getCore$2(obj,ifAbsent);if(!(coreValue===$.CTC20))return coreValue;else return this.defaultValue;},
+ get$2: function(obj,ifAbsent){var coreValue=this.getCore$2(obj,ifAbsent);if(!(coreValue===$.CTC21))return coreValue;else return this.defaultValue;},
  get$1: function(obj) {
   return this.get$2(obj,null)
 },
@@ -1015,7 +1008,7 @@ $$.PElement = {"":
  getTransform$0: function(){var tx=$.AffineTransform$(1,0,0,1,0,0);$.forEach(this._transforms,tx.get$concatenate());return tx;},
  getTransformToRoot$0: function(){var tx=$.AffineTransform$(1,0,0,1,0,0);var t1=this._lib1_parent;if(!(t1==null))tx.concatenate$1(t1.getTransformToRoot$0());tx.concatenate$1(this.getTransform$0());return tx;},
  draw$1: function(ctx){this.update$0();var dirty=this._lastDrawSize==null;this.drawInternal$1(ctx);return dirty;},
- update$0: function(){this._updatedEventHandle.fireEvent$1($.CTC22);},
+ update$0: function(){this._updatedEventHandle.fireEvent$1($.CTC23);},
  addTransform$0: function(){var tx=$.AffineTransform$(1,0,0,1,0,0);this._transforms.push(tx);return tx;},
  drawCore$1: function(ctx){var t1=this._alpha;if(!(t1==null))ctx.set$globalAlpha(t1);this.drawOverride$1(ctx);this._lastDrawSize=this.get$size();},
  invalidateDraw$0: function(){if(!(this._lastDrawSize==null)){this._lastDrawSize=null;this._invalidateParent$0();}},
@@ -1025,7 +1018,7 @@ $$.PElement = {"":
  _drawCached$1: function(ctx){var t1=this._cacheCanvas;if(t1==null||!$.eqB($.CanvasUtil_getCanvasSize(t1),this._lastDrawSize)){if(this._cacheCanvas==null)this._cacheCanvas=$._Elements_CanvasElement(null,null);t1=this.get$width();this._cacheCanvas.set$width(t1);t1=this.get$height();this._cacheCanvas.set$height(t1);this.drawCore$1(this._cacheCanvas.get$context2d());}ctx.save$0();$.CanvasUtil_transform(ctx,this.getTransform$0());ctx.drawImage$3(this._cacheCanvas,0,0);ctx.restore$0();},
  _drawNormal$1: function(ctx){var tx=this.getTransform$0();if(this._isClipped$2(tx,ctx)===true)return;ctx.save$0();$.CanvasUtil_transform(ctx,tx);if(this.clip===true){ctx.beginPath$0();ctx.rect$4(0,0,this.get$width(),this.get$height());ctx.clip$0();}this.drawCore$1(ctx);ctx.restore$0();},
  _isClipped$2: function(tx,ctx){if(this.clip===true);return false;},
- _invalidateParent$0: function(){this._invalidatedEventHandle.fireEvent$1($.CTC22);this._lib1_parent.childInvalidated$1(this);}
+ _invalidateParent$0: function(){this._invalidatedEventHandle.fireEvent$1($.CTC23);this._lib1_parent.childInvalidated$1(this);}
 };
 
 $$.ElementParentImpl = {"":
@@ -1043,10 +1036,10 @@ $$.Panel = {"":
  [],
  "super": "ElementParentImpl",
  addElement$1: function(element){this.insertAt$2(element,this._children.length);},
- insertAt$2: function(element,index){if(index==null)index=0;element.registerParent$1(this);$.insertRange$3(this._children,index,1,element);$.CTC27.set$2(element,element.addTransform$0());this.onChildrenChanged$0();},
+ insertAt$2: function(element,index){if(index==null)index=0;element.registerParent$1(this);$.insertRange$3(this._children,index,1,element);$.CTC28.set$2(element,element.addTransform$0());this.onChildrenChanged$0();},
  getVisualChild$1: function(index){var t1=this._children;if(index!==(index|0))throw $.iae(index);if(index<0||index>=t1.length)throw $.ioore(index);return t1[index];},
  get$visualChildCount: function(){return this._children.length;},
- getChildTransform$1: function(child){return $.CTC27.get$1(child);},
+ getChildTransform$1: function(child){return $.CTC28.get$1(child);},
  drawOverride$1: function(ctx){var t1=this.background;if(!(t1==null)){ctx.set$fillStyle(t1);ctx.fillRect$4(0,0,this.get$width(),this.get$height());}$.ElementParentImpl.prototype.drawOverride$1.call(this,ctx);}
 };
 
@@ -1063,7 +1056,7 @@ $$.Stage = {"":
  get$rootElement: function(){return this._element;},
  get$ctx: function(){if(this._ctx==null)this._ctx=this._lib1_canvas.get$context2d();return this._ctx;},
  draw$0: function(){var t1=this._ctx;var t2=t1==null;var t3=this._lib1_canvas;if(t2)this._ctx=t3.get$context2d();else t1.clearRect$4(0,0,t3.get$width(),t3.get$height());return this._element.draw$1(this._ctx);},
- childInvalidated$1: function(child){this._invalidatedEventHandle.fireEvent$1($.CTC22);},
+ childInvalidated$1: function(child){this._invalidatedEventHandle.fireEvent$1($.CTC23);},
  getTransformToRoot$0: function(){return $.AffineTransform$(1,0,0,1,0,0);},
  Stage$2: function(_canvas,_element){this._element.registerParent$1(this);}
 };
@@ -1239,7 +1232,7 @@ $$._convertNativeToDart_IDBKey_containsDate = {"":
 $$._DocumentFragmentImpl_rect_anon = {"":
  [],
  "super": "Closure",
- call$0: function(){return $.CTC26;}
+ call$0: function(){return $.CTC27;}
 };
 
 $$.ElementParentImpl_update_anon = {"":
@@ -1399,7 +1392,7 @@ call$2: function(p0, p1) { return this.self[this.target](p0, p1); }
 };
 $.div$slow = function(a,b){if($.checkNumbers(a,b))return a / b;return a.operator$div$1(b);};
 
-$.getMouseEventCoordinate = function(event$){var element=event$.get$currentTarget();return $.Coordinate$(event$.get$clientX(),event$.get$clientY()).operator$sub$1($.getElementCoordinate(element));};
+$.getMouseEventCoordinate = function(event$){return $.Coordinate$(event$.get$offsetX(),event$.get$offsetY());};
 
 $.startsWith = function(receiver,other){$.checkString(other);var length$=other.length;if(length$>receiver.length)return false;return other == receiver.substring(0, length$);};
 
@@ -1458,19 +1451,19 @@ $.Size$ = function(width,height){return new $.Size(width,height);};
 
 $._DOMWindowCrossFrameImpl__close = function(win){win.close()};
 
-$.Collections_forEach = function(iterable,f){for(var t1=$.iterator(iterable);t1.hasNext$0()===true;)f.call$1(t1.next$0());};
-
 $._IDBTransactionEventsImpl$ = function(_ptr){return new $._IDBTransactionEventsImpl(_ptr);};
-
-$.dynamicFunction = function(name$){var f=Object.prototype[name$];if(!(f==null)&&!!f.methods)return f.methods;var methods={};var dartMethod=Object.getPrototypeOf($.CTC29)[name$];if(!(dartMethod==null))$.propertySet(methods,'Object',dartMethod);var bind=function() {return $.dynamicBind.call$4(this, name$, methods, Array.prototype.slice.call(arguments));};bind.methods = methods;$.defineProperty(Object.prototype,name$,bind);return methods;};
 
 $.buildDynamicMetadata = function(inputTable){var result=[];for(var i=0;i<inputTable.length;++i){var tag=inputTable[i][0];var array=inputTable[i];var tags=array[1];var set={};var tagNames=tags.split('|');for(var j=0,index=1;j<tagNames.length;++j){$.propertySet(set,tagNames[j],true);index=j;array=tagNames;}result.push($.MetaInfo$(tag,tags,set));}return result;};
 
+$.dynamicFunction = function(name$){var f=Object.prototype[name$];if(!(f==null)&&!!f.methods)return f.methods;var methods={};var dartMethod=Object.getPrototypeOf($.CTC30)[name$];if(!(dartMethod==null))$.propertySet(methods,'Object',dartMethod);var bind=function() {return $.dynamicBind.call$4(this, name$, methods, Array.prototype.slice.call(arguments));};bind.methods = methods;$.defineProperty(Object.prototype,name$,bind);return methods;};
+
+$.Collections_forEach = function(iterable,f){for(var t1=$.iterator(iterable);t1.hasNext$0()===true;)f.call$1(t1.next$0());};
+
 $.ListImplementation_List$from = function(other,E){var result=$.ListImplementation_List(null);for(var t1=$.iterator(other);t1.hasNext$0()===true;)result.push(t1.next$0());return result;};
 
-$._Timer$repeating = function(milliSeconds,callback){var t1=new $._Timer(false,null);t1._Timer$repeating$2(milliSeconds,callback);return t1;};
-
 $._EventSourceEventsImpl$ = function(_ptr){return new $._EventSourceEventsImpl(_ptr);};
+
+$._Timer$repeating = function(milliSeconds,callback){var t1=new $._Timer(false,null);t1._Timer$repeating$2(milliSeconds,callback);return t1;};
 
 $._convertNativeToDart_AcceptStructuredClone = function(object){var values=[];var copies=[];var t1=new $._convertNativeToDart_AcceptStructuredClone_findSlot(copies,values);var t2=new $._convertNativeToDart_AcceptStructuredClone_readSlot(copies);return new $._convertNativeToDart_AcceptStructuredClone_walk(new $._convertNativeToDart_AcceptStructuredClone_writeSlot(copies),t1,t2).call$1(object);};
 
@@ -1552,8 +1545,6 @@ $.get$length = function(receiver){if(typeof receiver==='string'||$.isJsArray(rec
 
 $.dynamicBind = function(obj,name$,methods,arguments$){var tag=$.getTypeNameOf(obj);var method=methods[tag];if(method==null&&!($._dynamicMetadata0()==null))for(var i=0;i<$._dynamicMetadata0().length;++i){var entry=$._dynamicMetadata0()[i];if(entry.get$_lib2_set()[tag]){method=methods[entry.get$_tag()];if(!(method==null))break;}}if(method==null)method=methods['Object'];var proto=Object.getPrototypeOf(obj);if(method==null)method=function () {if (Object.getPrototypeOf(this) === proto) {throw new TypeError(name$ + " is not a function");} else {return Object.prototype[name$].apply(this, arguments);}};if(!proto.hasOwnProperty(name$))$.defineProperty(proto,name$,method);return method.apply(obj, arguments$);};
 
-$.isNaN = function(receiver){return isNaN(receiver);};
-
 $.regExpMakeNative = function(regExp,global){var pattern=regExp.get$pattern();var multiLine=regExp.get$multiLine();var ignoreCase=regExp.get$ignoreCase();$.checkString(pattern);var sb=$.StringBufferImpl$('');if(multiLine===true)$.add$1(sb,'m');if(ignoreCase===true)$.add$1(sb,'i');if(global)$.add$1(sb,'g');try{return new RegExp(pattern, $.toString(sb));}catch(exception){var t1=$.unwrapException(exception);var e=t1;throw $.$$throw($.IllegalJSRegExpException$(pattern,String(e)));}};
 
 $._JsCopier$ = function(){var t1=new $._JsCopier($._MessageTraverserVisitedMap$());t1._JsCopier$0();return t1;};
@@ -1563,8 +1554,6 @@ $.iterator = function(receiver){if($.isJsArray(receiver))return $.ListIterator$(
 $.main = function(){$.SpinDemo_SpinDemo($.document().query$1('#content')).requestFrame$0();};
 
 $.ceil = function(receiver){return Math.ceil(receiver);};
-
-$.toInt = function(receiver){if(!(typeof receiver==='number'))return receiver.toInt$0();if($.isNaN(receiver)===true)throw $.$$throw($.FormatException$('NaN'));if($.isInfinite(receiver)===true)throw $.$$throw($.FormatException$('Infinity'));var truncated=$.truncate(receiver);return truncated == -0.0?0:truncated;};
 
 $.PropertyValues$ = function(){return new $.PropertyValues($.NoneHashMap$('Property','Object'),$.EventHandle$('Property'),false);};
 
@@ -1586,6 +1575,8 @@ $._HttpRequestEventsImpl$ = function(_ptr){return new $._HttpRequestEventsImpl(_
 
 $.geB = function(a,b){return typeof a==='number'&&typeof b==='number'?a >= b:$.ge$slow(a,b)===true;};
 
+$._ElementRectImpl$ = function(element){return new $._ElementRectImpl($._SimpleClientRect$(element.get$$$dom_clientLeft(),element.get$$$dom_clientTop(),element.get$$$dom_clientWidth(),element.get$$$dom_clientHeight()),$._SimpleClientRect$(element.get$$$dom_offsetLeft(),element.get$$$dom_offsetTop(),element.get$$$dom_offsetWidth(),element.get$$$dom_offsetHeight()),$._SimpleClientRect$(element.get$$$dom_scrollLeft(),element.get$$$dom_scrollTop(),element.get$$$dom_scrollWidth(),element.get$$$dom_scrollHeight()),element.$dom_getBoundingClientRect$0(),element.$dom_getClientRects$0());};
+
 $.ioore = function(index){throw $.$$throw($.IndexOutOfRangeException$(index));};
 
 $._SelectIterator$ = function(_source,_func,TSource,TOutput){var t1=new $._SelectIterator(_source,_func);$.setRuntimeTypeInfo(t1,{ 'TSource': TSource, 'TOutput': TOutput });return t1;};
@@ -1594,21 +1585,17 @@ $._isJavaScriptSimpleObject = function(value){return Object.getPrototypeOf(value
 
 $._JsDeserializer$ = function(){return new $._JsDeserializer(null);};
 
-$._ElementRectImpl$ = function(element){return new $._ElementRectImpl($._SimpleClientRect$(element.get$$$dom_clientLeft(),element.get$$$dom_clientTop(),element.get$$$dom_clientWidth(),element.get$$$dom_clientHeight()),$._SimpleClientRect$(element.get$$$dom_offsetLeft(),element.get$$$dom_offsetTop(),element.get$$$dom_offsetWidth(),element.get$$$dom_offsetHeight()),$._SimpleClientRect$(element.get$$$dom_scrollLeft(),element.get$$$dom_scrollTop(),element.get$$$dom_scrollWidth(),element.get$$$dom_scrollHeight()),element.$dom_getBoundingClientRect$0(),element.$dom_getClientRects$0());};
-
-$.getElementCoordinate = function(element){var cr=element.$dom_getBoundingClientRect$0();return $.Coordinate$($.toInt(cr.get$left()),$.toInt(cr.get$top()));};
-
 $._callInIsolate = function(isolate,function$){isolate.eval$1(function$);$._globalState().get$topEventLoop().run$0();};
 
-$._convertNativeToDart_IDBKey = function(nativeKey){if(new $._convertNativeToDart_IDBKey_containsDate().call$1(nativeKey)===true)throw $.$$throw($.CTC24);return nativeKey;};
+$._convertNativeToDart_IDBKey = function(nativeKey){if(new $._convertNativeToDart_IDBKey_containsDate().call$1(nativeKey)===true)throw $.$$throw($.CTC25);return nativeKey;};
 
 $.RetainedDebug_borderHitTest = function(stage,point){var ctx=stage.get$ctx();var hits=$.RetainedUtil_hitTest(stage,point);if($.gtB($.get$length(hits),0)){ctx.save$0();ctx.set$lineWidth(2);$.forEach(hits,new $.RetainedDebug_borderHitTest_anon(ctx));ctx.restore$0();}};
 
 $.leB = function(a,b){return typeof a==='number'&&typeof b==='number'?a <= b:$.le$slow(a,b)===true;};
 
-$._IDBRequestEventsImpl$ = function(_ptr){return new $._IDBRequestEventsImpl(_ptr);};
-
 $.addLast = function(receiver,value){if(!$.isJsArray(receiver))return receiver.addLast$1(value);$.checkGrowable(receiver,'addLast');receiver.push(value);};
+
+$._IDBRequestEventsImpl$ = function(_ptr){return new $._IDBRequestEventsImpl(_ptr);};
 
 $.typeNameInFirefox = function(obj){var name$=$.constructorNameFallback(obj);if(name$==='Window')return 'DOMWindow';if(name$==='Document')return 'HTMLDocument';if(name$==='XMLDocument')return 'Document';if(name$==='WorkerMessageEvent')return 'MessageEvent';if(name$==='DragEvent')return 'MouseEvent';if(name$==='DataTransfer')return 'Clipboard';if(name$==='FormData')return 'DOMFormData';return name$;};
 
@@ -1676,8 +1663,6 @@ $._createMeasurementFuture = function(computeValue,completer){if($._pendingReque
 
 $.Tuple$ = function(Item1,Item2,T1,T2){var t1=new $.Tuple(Item1,Item2);$.setRuntimeTypeInfo(t1,{ 'T1': T1, 'T2': T2 });return t1;};
 
-$.isInfinite = function(receiver){return receiver == Infinity||receiver == -Infinity;};
-
 $.CompleterImpl$ = function(T){var t1=new $.CompleterImpl($.FutureImpl$());$.setRuntimeTypeInfo(t1,{ 'T': T });return t1;};
 
 $.NoMoreElementsException$ = function(){return new $.NoMoreElementsException();};
@@ -1719,8 +1704,6 @@ $.toStringForNativeObject = function(obj){return 'Instance of '+$.getTypeNameOf(
 $._DOMWindowCrossFrameImpl__top = function(win){return win.top;};
 
 $.constructorNameFallback = function(obj){var constructor$=obj.constructor;if(typeof(constructor$)==='function'){var name$=constructor$.name;if(typeof name$==='string')var t1=!(name$==='')&&!(name$==='Object')&&!(name$==='Function.prototype');else t1=false;if(t1)return name$;}var string=Object.prototype.toString.call(obj);return string.substring(8, string.length - 1);};
-
-$.FormatException$ = function(message){return new $.FormatException(message);};
 
 $.ltB = function(a,b){return typeof a==='number'&&typeof b==='number'?a < b:$.lt$slow(a,b)===true;};
 
@@ -1828,7 +1811,7 @@ $._PendingSendPortFinder$ = function(){var t1=$._MessageTraverserVisitedMap$();t
 
 $.Futures_wait = function(futures){var t1={};if(typeof futures!=='string'&&(typeof futures!=='object'||futures===null||futures.constructor!==Array&&!futures.is$JavaScriptIndexingBehavior()))return $.Futures_wait$bailout(1,futures,t1);if($.isEmpty(futures)===true)return $.FutureImpl_FutureImpl$immediate($.CTC0,'List');var completer=$.CompleterImpl$('List');var result=completer.get$future();t1.remaining_1=futures.length;var values=$.ListImplementation_List(futures.length);for(var i=0;t2=futures.length,i<t2;++i){if(i<0||i>=t2)throw $.ioore(i);var future=futures[i];future.then$1(new $.Futures_wait_anon(completer,i,t1,result,values));future.handleException$1(new $.Futures_wait_anon0(future,completer,result));}return result;var t2;};
 
-$.RetainedDebug__borderElementCore = function(ctx,element){if($.Mouse_isMouseDirectlyOver(element)===true)ctx.set$strokeStyle('red');else if($.CTC19.get$1(element)===true)ctx.set$strokeStyle('pink');else if(element.get$cacheEnabled()===true)ctx.set$strokeStyle('yellow');else ctx.set$strokeStyle('orange');var corners=$.RetainedUtil_getCorners(element);ctx.beginPath$0();ctx.moveTo$2($.index(corners,3).get$x(),$.index(corners,3).get$y());for(var t1=$.iterator(corners);t1.hasNext$0()===true;){var t2=t1.next$0();ctx.lineTo$2(t2.get$x(),t2.get$y());}ctx.stroke$0();};
+$.RetainedDebug__borderElementCore = function(ctx,element){if($.Mouse_isMouseDirectlyOver(element)===true)ctx.set$strokeStyle('red');else if($.CTC20.get$1(element)===true)ctx.set$strokeStyle('pink');else if(element.get$cacheEnabled()===true)ctx.set$strokeStyle('yellow');else ctx.set$strokeStyle('orange');var corners=$.RetainedUtil_getCorners(element);ctx.beginPath$0();ctx.moveTo$2($.index(corners,3).get$x(),$.index(corners,3).get$y());for(var t1=$.iterator(corners);t1.hasNext$0()===true;){var t2=t1.next$0();ctx.lineTo$2(t2.get$x(),t2.get$y());}ctx.stroke$0();};
 
 $.checkNull = function(object){if(object==null)throw $.$$throw($.NullPointerException$(null,$.CTC0));return object;};
 
@@ -1914,7 +1897,7 @@ $._window = function(){return typeof window != "undefined"?window:null;};
 
 $.substring$1 = function(receiver,startIndex){if(!(typeof receiver==='string'))return receiver.substring$1(startIndex);return $.substring$2(receiver,startIndex,null);};
 
-$.Mouse_isMouseDirectlyOver = function(element){return $.CTC21.get$1(element);};
+$.Mouse_isMouseDirectlyOver = function(element){return $.CTC22.get$1(element);};
 
 $._IDBVersionChangeRequestEventsImpl$ = function(_ptr){return new $._IDBVersionChangeRequestEventsImpl(_ptr);};
 
@@ -2025,32 +2008,33 @@ Isolate.makeConstantList = function(list) {
 };
 $.CTC0 = Isolate.makeConstantList([]);
 $.CTC12 = new Isolate.$isolateProperties.NoMoreElementsException();
-$.CTC18 = new Isolate.$isolateProperties.NotImplementedException(null);
-$.CTC25 = new Isolate.$isolateProperties._SimpleClientRect(0, 0, 0, 0);
+$.CTC19 = new Isolate.$isolateProperties.NotImplementedException(null);
+$.CTC26 = new Isolate.$isolateProperties._SimpleClientRect(0, 0, 0, 0);
 $.CTC = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, '^#[_a-zA-Z]\\w*$');
 $.CTC6 = new Isolate.$isolateProperties.NotImplementedException('structured clone of File');
 $.CTC11 = new Isolate.$isolateProperties.NotImplementedException('structured clone of other type');
-$.CTC19 = new Isolate.$isolateProperties.Property(false, 'IsMouseOver');
+$.CTC20 = new Isolate.$isolateProperties.Property(false, 'IsMouseOver');
 $.CTC13 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot removeLast on immutable List.');
 $.CTC16 = new Isolate.$isolateProperties._DeletedKeySentinel();
-$.CTC23 = new Isolate.$isolateProperties.EmptyQueueException();
-$.CTC29 = new Isolate.$isolateProperties.Object();
+$.CTC24 = new Isolate.$isolateProperties.EmptyQueueException();
+$.CTC30 = new Isolate.$isolateProperties.Object();
 $.CTC8 = new Isolate.$isolateProperties.NotImplementedException('structured clone of FileList');
-$.CTC21 = new Isolate.$isolateProperties.Property(false, 'IsMouseDirectlyOver');
 $.CTC14 = new Isolate.$isolateProperties.ShapeType('Rectangle');
+$.CTC22 = new Isolate.$isolateProperties.Property(false, 'IsMouseDirectlyOver');
+$.CTC17 = new Isolate.$isolateProperties.UnsupportedOperationException('offsetX is only supported on elements');
 $.CTC5 = new Isolate.$isolateProperties.NotImplementedException('structured clone of RegExp');
-$.CTC17 = new Isolate.$isolateProperties.Coordinate(0, 0);
+$.CTC18 = new Isolate.$isolateProperties.Coordinate(0, 0);
 $.CTC7 = new Isolate.$isolateProperties.NotImplementedException('structured clone of Blob');
-$.CTC27 = new Isolate.$isolateProperties.Property(null, 'panelTransform');
-$.CTC22 = new Isolate.$isolateProperties.EventArgs();
-$.CTC28 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot insertRange on immutable List.');
-$.CTC30 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot removeRange on immutable List.');
+$.CTC28 = new Isolate.$isolateProperties.Property(null, 'panelTransform');
+$.CTC23 = new Isolate.$isolateProperties.EventArgs();
+$.CTC29 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot insertRange on immutable List.');
+$.CTC31 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot removeRange on immutable List.');
 $.CTC2 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot add to immutable List.');
-$.CTC24 = new Isolate.$isolateProperties.NotImplementedException('IDBKey containing Date');
+$.CTC25 = new Isolate.$isolateProperties.NotImplementedException('IDBKey containing Date');
 $.CTC4 = new Isolate.$isolateProperties.NotImplementedException('structured clone of Date');
 $.CTC15 = new Isolate.$isolateProperties.ShapeType('Ellipse');
-$.CTC20 = new Isolate.$isolateProperties._UndefinedValue();
-$.CTC26 = new Isolate.$isolateProperties.EmptyElementRect(Isolate.$isolateProperties.CTC25, Isolate.$isolateProperties.CTC25, Isolate.$isolateProperties.CTC25, Isolate.$isolateProperties.CTC25, Isolate.$isolateProperties.CTC0);
+$.CTC21 = new Isolate.$isolateProperties._UndefinedValue();
+$.CTC27 = new Isolate.$isolateProperties.EmptyElementRect(Isolate.$isolateProperties.CTC26, Isolate.$isolateProperties.CTC26, Isolate.$isolateProperties.CTC26, Isolate.$isolateProperties.CTC26, Isolate.$isolateProperties.CTC0);
 $.CTC9 = new Isolate.$isolateProperties.NotImplementedException('structured clone of ArrayBuffer');
 $.CTC3 = new Isolate.$isolateProperties._Default();
 $.CTC1 = new Isolate.$isolateProperties.NullPointerException(null, Isolate.$isolateProperties.CTC0);
@@ -2116,6 +2100,7 @@ $.$defineNativeClass = function(cls, fields, methods) {
  is$Blob: function() { return false; },
  is$File: function() { return false; },
  is$ArrayBuffer: function() { return false; },
+ is$Element: function() { return false; },
  is$List: function() { return false; },
  is$_ArrayBufferImpl: function() { return false; },
  is$FileList: function() { return false; },
@@ -2135,7 +2120,8 @@ $.$defineNativeClass('AbstractWorker', [], {
 });
 
 $.$defineNativeClass('HTMLAnchorElement', ["name?"], {
- toString$0: function(){return this.toString();}
+ toString$0: function(){return this.toString();},
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('WebKitAnimation', ["name?"], {
@@ -2145,6 +2131,11 @@ $.$defineNativeClass('WebKitAnimationList', ["length?"], {
 });
 
 $.$defineNativeClass('HTMLAppletElement', ["height=", "name?", "width="], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('HTMLAreaElement', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('ArrayBuffer', [], {
@@ -2167,11 +2158,24 @@ $.$defineNativeClass('AudioContext', [], {
  get$on: function(){return $._AudioContextEventsImpl$(this);}
 });
 
+$.$defineNativeClass('HTMLAudioElement', [], {
+ is$Element: function() { return true; }
+});
+
 $.$defineNativeClass('AudioParam', ["name?", "value="], {
 });
 
 $.$defineNativeClass('HTMLBRElement', [], {
- clear$0: function() { return this.clear.call$0(); }
+ clear$0: function() { return this.clear.call$0(); },
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('HTMLBaseElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('HTMLBaseFontElement', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('BatteryManager', [], {
@@ -2186,10 +2190,12 @@ $.$defineNativeClass('Blob', [], {
 });
 
 $.$defineNativeClass('HTMLBodyElement', [], {
- get$on: function(){return $._BodyElementEventsImpl$(this);}
+ get$on: function(){return $._BodyElementEventsImpl$(this);},
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('HTMLButtonElement', ["name?", "value="], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('WebKitCSSKeyframesRule', ["name?"], {
@@ -2225,7 +2231,8 @@ $.$defineNativeClass('CSSValueList', ["length?"], {
 
 $.$defineNativeClass('HTMLCanvasElement', ["height=", "width="], {
  getContext$1: function(contextId){return this.getContext(contextId);},
- get$context2d: function(){return this.getContext$1('2d');}
+ get$context2d: function(){return this.getContext$1('2d');},
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('CanvasRenderingContext2D', ["fillStyle!", "globalAlpha!", "lineWidth!", "strokeStyle!"], {
@@ -2261,7 +2268,12 @@ $.$defineNativeClass('ClientRectList', ["length?"], {
 
 _ConsoleImpl = (typeof console == 'undefined' ? {} : console);
 $.$defineNativeClass('HTMLContentElement', [], {
- select$1: function(arg0) { return this.select.call$1(arg0); }
+ select$1: function(arg0) { return this.select.call$1(arg0); },
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('HTMLDListElement', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('DOMApplicationCache', [], {
@@ -2309,8 +2321,8 @@ $.$defineNativeClass('DOMStringList', ["length?"], {
  forEach$1: function(f){return $._Collections_forEach(this,f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC13);},
- removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC30);},
- insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC28);},
+ removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC31);},
+ insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC29);},
  is$JavaScriptIndexingBehavior: function() { return true; },
  is$List: function() { return true; },
  is$Collection: function() { return true; }
@@ -2320,6 +2332,10 @@ $.$defineNativeClass('DOMTokenList', ["length?"], {
  add$1: function(token){return this.add(token);},
  remove$1: function(token){return this.remove(token);},
  toString$0: function(){return this.toString();}
+});
+
+$.$defineNativeClass('HTMLDataListElement', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('DataTransferItemList', ["length?"], {
@@ -2342,12 +2358,25 @@ $.$defineNativeClass('DedicatedWorkerContext', [], {
 }
 });
 
+$.$defineNativeClass('HTMLDetailsElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('HTMLDirectoryElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('HTMLDivElement', [], {
+ is$Element: function() { return true; }
+});
+
 $.$defineNativeClass('HTMLDocument', [], {
  get$on: function(){return $._DocumentEventsImpl$(this);},
  $dom_createElement$1: function(tagName){return this.createElement(tagName);},
  $dom_getElementById$1: function(elementId){return this.getElementById(elementId);},
  $dom_querySelector$1: function(selectors){return this.querySelector(selectors);},
- query$1: function(selectors){if($.CTC.hasMatch$1(selectors)===true)return this.$dom_getElementById$1($.substring$1(selectors,1));return this.$dom_querySelector$1(selectors);}
+ query$1: function(selectors){if($.CTC.hasMatch$1(selectors)===true)return this.$dom_getElementById$1($.substring$1(selectors,1));return this.$dom_querySelector$1(selectors);},
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('DocumentFragment', [], {
@@ -2359,7 +2388,8 @@ $.$defineNativeClass('DocumentFragment', [], {
  get$id: function(){return '';},
  get$parent: function(){return;},
  get$on: function(){return $._ElementEventsImpl$(this);},
- $dom_querySelector$1: function(selectors){return this.querySelector(selectors);}
+ $dom_querySelector$1: function(selectors){return this.querySelector(selectors);},
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('DocumentType', ["name?"], {
@@ -2389,10 +2419,12 @@ $.$defineNativeClass('Element', ["id?"], {
  get$$$dom_scrollWidth: function(){return this.scrollWidth;},
  $dom_getBoundingClientRect$0: function(){return this.getBoundingClientRect();},
  $dom_getClientRects$0: function(){return this.getClientRects();},
- $dom_querySelector$1: function(selectors){return this.querySelector(selectors);}
+ $dom_querySelector$1: function(selectors){return this.querySelector(selectors);},
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('HTMLEmbedElement', ["height=", "name?", "width="], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('Entry', ["name?"], {
@@ -2419,9 +2451,6 @@ $.$defineNativeClass('EntrySync', ["name?"], {
 });
 
 $.$defineNativeClass('ErrorEvent', ["message?"], {
-});
-
-$.$defineNativeClass('Event', ["currentTarget?"], {
 });
 
 $.$defineNativeClass('EventException', ["message?", "name?"], {
@@ -2454,6 +2483,7 @@ $.$defineNativeClass('EventTarget', [], {
 });
 
 $.$defineNativeClass('HTMLFieldSetElement', ["name?"], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('File', ["name?"], {
@@ -2475,8 +2505,8 @@ $.$defineNativeClass('FileList', ["length?"], {
  forEach$1: function(f){return $._Collections_forEach(this,f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC13);},
- removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC30);},
- insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC28);},
+ removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC31);},
+ insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC29);},
  is$_FileListImpl: function() { return true; },
  is$JavaScriptIndexingBehavior: function() { return true; },
  is$FileList: function() { return true; },
@@ -2508,8 +2538,8 @@ $.$defineNativeClass('Float32Array', ["length?"], {
  forEach$1: function(f){return $._Collections_forEach(this,f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC13);},
- removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC30);},
- insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC28);},
+ removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC31);},
+ insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC29);},
  is$JavaScriptIndexingBehavior: function() { return true; },
  is$List: function() { return true; },
  is$Collection: function() { return true; },
@@ -2525,23 +2555,30 @@ $.$defineNativeClass('Float64Array', ["length?"], {
  forEach$1: function(f){return $._Collections_forEach(this,f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC13);},
- removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC30);},
- insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC28);},
+ removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC31);},
+ insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC29);},
  is$JavaScriptIndexingBehavior: function() { return true; },
  is$List: function() { return true; },
  is$Collection: function() { return true; },
  is$ArrayBufferView: function() { return true; }
 });
 
+$.$defineNativeClass('HTMLFontElement', [], {
+ is$Element: function() { return true; }
+});
+
 $.$defineNativeClass('HTMLFormElement', ["length?", "name?"], {
- reset$0: function(){return this.reset();}
+ reset$0: function(){return this.reset();},
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('HTMLFrameElement', ["height?", "name?", "width?"], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('HTMLFrameSetElement', [], {
- get$on: function(){return $._FrameSetElementEventsImpl$(this);}
+ get$on: function(){return $._FrameSetElementEventsImpl$(this);},
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('Gamepad', ["id?"], {
@@ -2551,6 +2588,7 @@ $.$defineNativeClass('GamepadList', ["length?"], {
 });
 
 $.$defineNativeClass('HTMLHRElement', ["width="], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('HTMLAllCollection', ["length?"], {
@@ -2565,8 +2603,8 @@ $.$defineNativeClass('HTMLCollection', ["length?"], {
  forEach$1: function(f){return $._Collections_forEach(this,f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC13);},
- removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC30);},
- insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC28);},
+ removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC31);},
+ insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC29);},
  is$JavaScriptIndexingBehavior: function() { return true; },
  is$List: function() { return true; },
  is$Collection: function() { return true; }
@@ -2580,7 +2618,19 @@ $.$defineNativeClass('HTMLOptionsCollection', [], {
  is$Collection: function() { return true; }
 });
 
+$.$defineNativeClass('HTMLHeadElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('HTMLHeadingElement', [], {
+ is$Element: function() { return true; }
+});
+
 $.$defineNativeClass('History', ["length?"], {
+});
+
+$.$defineNativeClass('HTMLHtmlElement', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('XMLHttpRequest', [], {
@@ -2674,6 +2724,7 @@ $.$defineNativeClass('IDBVersionChangeRequest', [], {
 });
 
 $.$defineNativeClass('HTMLIFrameElement', ["height=", "name?", "width="], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('ImageData', ["height?", "width?"], {
@@ -2682,11 +2733,13 @@ $.$defineNativeClass('ImageData', ["height?", "width?"], {
 });
 
 $.$defineNativeClass('HTMLImageElement', ["height=", "name?", "width=", "x?", "y?"], {
- complete$1: function(arg0) { return this.complete.call$1(arg0); }
+ complete$1: function(arg0) { return this.complete.call$1(arg0); },
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('HTMLInputElement', ["height=", "name?", "value=", "width="], {
- get$on: function(){return $._InputElementEventsImpl$(this);}
+ get$on: function(){return $._InputElementEventsImpl$(this);},
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('Int16Array', ["length?"], {
@@ -2698,8 +2751,8 @@ $.$defineNativeClass('Int16Array', ["length?"], {
  forEach$1: function(f){return $._Collections_forEach(this,f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC13);},
- removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC30);},
- insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC28);},
+ removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC31);},
+ insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC29);},
  is$JavaScriptIndexingBehavior: function() { return true; },
  is$List: function() { return true; },
  is$Collection: function() { return true; },
@@ -2715,8 +2768,8 @@ $.$defineNativeClass('Int32Array', ["length?"], {
  forEach$1: function(f){return $._Collections_forEach(this,f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC13);},
- removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC30);},
- insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC28);},
+ removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC31);},
+ insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC29);},
  is$JavaScriptIndexingBehavior: function() { return true; },
  is$List: function() { return true; },
  is$Collection: function() { return true; },
@@ -2732,8 +2785,8 @@ $.$defineNativeClass('Int8Array', ["length?"], {
  forEach$1: function(f){return $._Collections_forEach(this,f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC13);},
- removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC30);},
- insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC28);},
+ removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC31);},
+ insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC29);},
  is$JavaScriptIndexingBehavior: function() { return true; },
  is$List: function() { return true; },
  is$Collection: function() { return true; },
@@ -2747,9 +2800,23 @@ $.$defineNativeClass('JavaScriptAudioNode', [], {
 });
 
 $.$defineNativeClass('HTMLKeygenElement', ["name?"], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('HTMLLIElement', ["value="], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('HTMLLabelElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('HTMLLegendElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('HTMLLinkElement', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('LocalMediaStream', [], {
@@ -2762,9 +2829,11 @@ $.$defineNativeClass('Location', [], {
 });
 
 $.$defineNativeClass('HTMLMapElement', ["name?"], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('HTMLMarqueeElement', ["height=", "width="], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('MediaController', [], {
@@ -2773,7 +2842,8 @@ $.$defineNativeClass('MediaController', [], {
 });
 
 $.$defineNativeClass('HTMLMediaElement', [], {
- get$on: function(){return $._MediaElementEventsImpl$(this);}
+ get$on: function(){return $._MediaElementEventsImpl$(this);},
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('MediaKeyEvent', ["message?"], {
@@ -2788,8 +2858,8 @@ $.$defineNativeClass('MediaList', ["length?"], {
  forEach$1: function(f){return $._Collections_forEach(this,f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC13);},
- removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC30);},
- insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC28);},
+ removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC31);},
+ insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC29);},
  is$JavaScriptIndexingBehavior: function() { return true; },
  is$List: function() { return true; },
  is$Collection: function() { return true; }
@@ -2831,6 +2901,10 @@ $.$defineNativeClass('MediaStreamTrackList', ["length?"], {
  $dom_removeEventListener$3: function(type,listener,useCapture){return this.removeEventListener(type,$.convertDartClosureToJS(listener,1),useCapture);}
 });
 
+$.$defineNativeClass('HTMLMenuElement', [], {
+ is$Element: function() { return true; }
+});
+
 $.$defineNativeClass('MessageEvent', ["ports?"], {
 });
 
@@ -2846,12 +2920,22 @@ $.$defineNativeClass('MessagePort', [], {
 });
 
 $.$defineNativeClass('HTMLMetaElement', ["name?"], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('HTMLMeterElement', ["value="], {
+ is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('MouseEvent', ["clientX?", "clientY?", "x?", "y?"], {
+$.$defineNativeClass('HTMLModElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('MouseEvent', ["x?", "y?"], {
+ get$offsetX: function(){if(!!this.offsetX)return this.get$_offsetX();else{var target=this.target;if(!(typeof target==='object'&&target!==null&&target.is$Element()))throw $.$$throw($.CTC17);return $.sub(this.clientX,target.$dom_getBoundingClientRect$0().get$left());}},
+ get$offsetY: function(){if(!!this.offsetY)return this.get$_offsetY();else{var target=this.target;if(!(typeof target==='object'&&target!==null&&target.is$Element()))throw $.$$throw($.CTC17);return $.sub(this.clientY,target.$dom_getBoundingClientRect$0().get$top());}},
+ get$_offsetX: function(){return this.offsetX},
+ get$_offsetY: function(){return this.offsetY}
 });
 
 $.$defineNativeClass('NamedNodeMap', ["length?"], {
@@ -2863,8 +2947,8 @@ $.$defineNativeClass('NamedNodeMap', ["length?"], {
  forEach$1: function(f){return $._Collections_forEach(this,f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC13);},
- removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC30);},
- insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC28);},
+ removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC31);},
+ insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC29);},
  is$JavaScriptIndexingBehavior: function() { return true; },
  is$List: function() { return true; },
  is$Collection: function() { return true; }
@@ -2913,16 +2997,32 @@ $.$defineNativeClass('Notification', [], {
  $dom_removeEventListener$3: function(type,listener,useCapture){return this.removeEventListener(type,$.convertDartClosureToJS(listener,1),useCapture);}
 });
 
+$.$defineNativeClass('HTMLOListElement', [], {
+ is$Element: function() { return true; }
+});
+
 $.$defineNativeClass('HTMLObjectElement', ["height=", "name?", "width="], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('HTMLOptGroupElement', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('HTMLOptionElement', ["value="], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('HTMLOutputElement', ["name?", "value="], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('HTMLParagraphElement', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('HTMLParamElement', ["name?", "value="], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('PeerConnection00', [], {
@@ -2939,9 +3039,15 @@ $.$defineNativeClass('PositionError', ["message?"], {
 });
 
 $.$defineNativeClass('HTMLPreElement', ["width="], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('HTMLProgressElement', ["value="], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('HTMLQuoteElement', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('RTCPeerConnection', [], {
@@ -2975,32 +3081,79 @@ $.$defineNativeClass('SQLResultSetRowList', ["length?"], {
 });
 
 $.$defineNativeClass('SVGAElement', [], {
- transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); }
+ transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); },
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGAltGlyphDefElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGAltGlyphElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGAltGlyphItemElement', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGAngle', ["value="], {
 });
 
+$.$defineNativeClass('SVGAnimateColorElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGAnimateElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGAnimateMotionElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGAnimateTransformElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGAnimationElement', [], {
+ is$Element: function() { return true; }
+});
+
 $.$defineNativeClass('SVGCircleElement', [], {
- transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); }
+ transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); },
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGClipPathElement', [], {
- transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); }
+ transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); },
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGComponentTransferFunctionElement', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGCursorElement', ["x?", "y?"], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGDefsElement', [], {
- transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); }
+ transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); },
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGDescElement', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGDocument', ["rootElement?"], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGElement', [], {
- get$id: function(){return this.id;}
+ get$id: function(){return this.id;},
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGElementInstance', [], {
@@ -3011,7 +3164,8 @@ $.$defineNativeClass('SVGElementInstanceList', ["length?"], {
 });
 
 $.$defineNativeClass('SVGEllipseElement', [], {
- transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); }
+ transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); },
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGException', ["message?", "name?"], {
@@ -3019,78 +3173,162 @@ $.$defineNativeClass('SVGException', ["message?", "name?"], {
 });
 
 $.$defineNativeClass('SVGFEBlendElement', ["height?", "width?", "x?", "y?"], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGFEColorMatrixElement', ["height?", "width?", "x?", "y?"], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGFEComponentTransferElement', ["height?", "width?", "x?", "y?"], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGFECompositeElement', ["height?", "width?", "x?", "y?"], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGFEConvolveMatrixElement', ["height?", "width?", "x?", "y?"], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGFEDiffuseLightingElement', ["height?", "width?", "x?", "y?"], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGFEDisplacementMapElement', ["height?", "width?", "x?", "y?"], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGFEDistantLightElement', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGFEDropShadowElement', ["height?", "width?", "x?", "y?"], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGFEFloodElement', ["height?", "width?", "x?", "y?"], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGFEFuncAElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGFEFuncBElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGFEFuncGElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGFEFuncRElement', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGFEGaussianBlurElement', ["height?", "width?", "x?", "y?"], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGFEImageElement', ["height?", "width?", "x?", "y?"], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGFEMergeElement', ["height?", "width?", "x?", "y?"], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGFEMergeNodeElement', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGFEMorphologyElement', ["height?", "width?", "x?", "y?"], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGFEOffsetElement', ["height?", "width?", "x?", "y?"], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGFEPointLightElement', ["x?", "y?"], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGFESpecularLightingElement', ["height?", "width?", "x?", "y?"], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGFESpotLightElement', ["x?", "y?"], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGFETileElement', ["height?", "width?", "x?", "y?"], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGFETurbulenceElement', ["height?", "width?", "x?", "y?"], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGFilterElement', ["height?", "width?", "x?", "y?"], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGFontElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGFontFaceElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGFontFaceFormatElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGFontFaceNameElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGFontFaceSrcElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGFontFaceUriElement', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGForeignObjectElement', ["height?", "width?", "x?", "y?"], {
- transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); }
+ transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); },
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGGElement', [], {
- transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); }
+ transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); },
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGGlyphElement', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGGlyphRefElement', ["x?", "y?"], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGGradientElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGHKernElement', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGImageElement', ["height?", "width?", "x?", "y?"], {
- transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); }
+ transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); },
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGLength', ["value="], {
@@ -3101,14 +3339,36 @@ $.$defineNativeClass('SVGLengthList', [], {
 });
 
 $.$defineNativeClass('SVGLineElement', [], {
- transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); }
+ transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); },
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGLinearGradientElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGMPathElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGMarkerElement', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGMaskElement', ["height?", "width?", "x?", "y?"], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGMatrix', [], {
  translate$2: function(x,y){return this.translate(x,y);}
+});
+
+$.$defineNativeClass('SVGMetadataElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGMissingGlyphElement', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGNumber', ["value="], {
@@ -3119,7 +3379,8 @@ $.$defineNativeClass('SVGNumberList', [], {
 });
 
 $.$defineNativeClass('SVGPathElement', [], {
- transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); }
+ transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); },
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGPathSegArcAbs', ["x?", "y?"], {
@@ -3181,6 +3442,7 @@ $.$defineNativeClass('SVGPathSegMovetoRel', ["x?", "y?"], {
 });
 
 $.$defineNativeClass('SVGPatternElement', ["height?", "width?", "x?", "y?"], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGPoint', ["x?", "y?"], {
@@ -3191,37 +3453,88 @@ $.$defineNativeClass('SVGPointList', [], {
 });
 
 $.$defineNativeClass('SVGPolygonElement', [], {
- transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); }
+ transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); },
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGPolylineElement', [], {
- transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); }
+ transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); },
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGRadialGradientElement', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGRect', ["height=", "width=", "x?", "y?"], {
 });
 
 $.$defineNativeClass('SVGRectElement', ["height?", "width?", "x?", "y?"], {
- transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); }
+ transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); },
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGSVGElement', ["height?", "width?", "x?", "y?"], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGScriptElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGSetElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGStopElement', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGStringList', [], {
  clear$0: function(){return this.clear();}
 });
 
+$.$defineNativeClass('SVGStyleElement', [], {
+ is$Element: function() { return true; }
+});
+
 $.$defineNativeClass('SVGSwitchElement', [], {
- transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); }
+ transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); },
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGSymbolElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGTRefElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGTSpanElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGTextContentElement', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGTextElement', [], {
- transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); }
+ transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); },
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGTextPathElement', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGTextPositioningElement', ["x?", "y?"], {
- rotate$3: function(arg0, arg1, arg2) { return this.rotate.call$3(arg0, arg1, arg2); }
+ rotate$3: function(arg0, arg1, arg2) { return this.rotate.call$3(arg0, arg1, arg2); },
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGTitleElement', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGTransformList', [], {
@@ -3229,7 +3542,16 @@ $.$defineNativeClass('SVGTransformList', [], {
 });
 
 $.$defineNativeClass('SVGUseElement', ["height?", "width?", "x?", "y?"], {
- transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); }
+ transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); },
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGVKernElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('SVGViewElement', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SVGViewSpec', [], {
@@ -3239,7 +3561,20 @@ $.$defineNativeClass('SVGViewSpec', [], {
 $.$defineNativeClass('Screen', ["height?", "width?"], {
 });
 
+$.$defineNativeClass('HTMLScriptElement', [], {
+ is$Element: function() { return true; }
+});
+
 $.$defineNativeClass('HTMLSelectElement', ["length=", "name?", "value="], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('HTMLShadowElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('ShadowRoot', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SharedWorkerContext', ["name?"], {
@@ -3249,6 +3584,14 @@ $.$defineNativeClass('SharedWorkerContext', ["name?"], {
 $.$defineNativeClass('SourceBufferList', ["length?"], {
  $dom_addEventListener$3: function(type,listener,useCapture){return this.addEventListener(type,$.convertDartClosureToJS(listener,1),useCapture);},
  $dom_removeEventListener$3: function(type,listener,useCapture){return this.removeEventListener(type,$.convertDartClosureToJS(listener,1),useCapture);}
+});
+
+$.$defineNativeClass('HTMLSourceElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('HTMLSpanElement', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('SpeechGrammarList', ["length?"], {
@@ -3295,6 +3638,10 @@ $.$defineNativeClass('Storage', [], {
 $.$defineNativeClass('StorageEvent', ["key?"], {
 });
 
+$.$defineNativeClass('HTMLStyleElement', [], {
+ is$Element: function() { return true; }
+});
+
 $.$defineNativeClass('StyleSheetList', ["length?"], {
  operator$index$1: function(index){return this[index];},
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
@@ -3304,23 +3651,39 @@ $.$defineNativeClass('StyleSheetList', ["length?"], {
  forEach$1: function(f){return $._Collections_forEach(this,f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC13);},
- removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC30);},
- insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC28);},
+ removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC31);},
+ insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC29);},
  is$JavaScriptIndexingBehavior: function() { return true; },
  is$List: function() { return true; },
  is$Collection: function() { return true; }
 });
 
+$.$defineNativeClass('HTMLTableCaptionElement', [], {
+ is$Element: function() { return true; }
+});
+
 $.$defineNativeClass('HTMLTableCellElement', ["height=", "width="], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('HTMLTableColElement', ["width="], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('HTMLTableElement', ["width="], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('HTMLTableRowElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('HTMLTableSectionElement', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('HTMLTextAreaElement', ["name?", "value="], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('TextMetrics', ["width?"], {
@@ -3350,7 +3713,8 @@ $.$defineNativeClass('TextTrackList', ["length?"], {
 $.$defineNativeClass('TimeRanges', ["length?"], {
 });
 
-$.$defineNativeClass('Touch', ["clientX?", "clientY?"], {
+$.$defineNativeClass('HTMLTitleElement', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('TouchList', ["length?"], {
@@ -3362,11 +3726,19 @@ $.$defineNativeClass('TouchList', ["length?"], {
  forEach$1: function(f){return $._Collections_forEach(this,f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC13);},
- removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC30);},
- insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC28);},
+ removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC31);},
+ insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC29);},
  is$JavaScriptIndexingBehavior: function() { return true; },
  is$List: function() { return true; },
  is$Collection: function() { return true; }
+});
+
+$.$defineNativeClass('HTMLTrackElement', [], {
+ is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('HTMLUListElement', [], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('Uint16Array', ["length?"], {
@@ -3378,8 +3750,8 @@ $.$defineNativeClass('Uint16Array', ["length?"], {
  forEach$1: function(f){return $._Collections_forEach(this,f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC13);},
- removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC30);},
- insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC28);},
+ removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC31);},
+ insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC29);},
  is$JavaScriptIndexingBehavior: function() { return true; },
  is$List: function() { return true; },
  is$Collection: function() { return true; },
@@ -3395,8 +3767,8 @@ $.$defineNativeClass('Uint32Array', ["length?"], {
  forEach$1: function(f){return $._Collections_forEach(this,f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC13);},
- removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC30);},
- insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC28);},
+ removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC31);},
+ insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC29);},
  is$JavaScriptIndexingBehavior: function() { return true; },
  is$List: function() { return true; },
  is$Collection: function() { return true; },
@@ -3412,8 +3784,8 @@ $.$defineNativeClass('Uint8Array', ["length?"], {
  forEach$1: function(f){return $._Collections_forEach(this,f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC13);},
- removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC30);},
- insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC28);},
+ removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC31);},
+ insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC29);},
  is$JavaScriptIndexingBehavior: function() { return true; },
  is$List: function() { return true; },
  is$Collection: function() { return true; },
@@ -3426,7 +3798,12 @@ $.$defineNativeClass('Uint8ClampedArray', [], {
  is$ArrayBufferView: function() { return true; }
 });
 
+$.$defineNativeClass('HTMLUnknownElement', [], {
+ is$Element: function() { return true; }
+});
+
 $.$defineNativeClass('HTMLVideoElement', ["height=", "width="], {
+ is$Element: function() { return true; }
 });
 
 $.$defineNativeClass('WebGLActiveInfo', ["name?"], {
@@ -3529,51 +3906,57 @@ $.$defineNativeClass('DOMWindow', [], {
  setInterval$2: function(handler,timeout){return this.setInterval($.convertDartClosureToJS(handler,0),timeout);}
 });
 
-// 260 dynamic classes.
-// 386 classes
-// 33 !leaf
+// 336 dynamic classes.
+// 354 classes
+// 30 !leaf
 (function(){
-  var v0/*class(_Uint8ArrayImpl)*/ = 'Uint8Array|Uint8ClampedArray|Uint8ClampedArray';
-  var v1/*class(_SVGTextPositioningElementImpl)*/ = 'SVGTextPositioningElement|SVGTextElement|SVGTSpanElement|SVGTRefElement|SVGAltGlyphElement|SVGTextElement|SVGTSpanElement|SVGTRefElement|SVGAltGlyphElement';
-  var v2/*class(_SVGElementImpl)*/ = [v1/*class(_SVGTextPositioningElementImpl)*/,v1/*class(_SVGTextPositioningElementImpl)*/,v1/*class(_SVGTextPositioningElementImpl)*/,v1/*class(_SVGTextPositioningElementImpl)*/,'SVGElement|SVGViewElement|SVGVKernElement|SVGUseElement|SVGTitleElement|SVGTextContentElement|SVGTextPathElement|SVGTextPathElement|SVGSymbolElement|SVGSwitchElement|SVGStyleElement|SVGStopElement|SVGScriptElement|SVGSVGElement|SVGRectElement|SVGPolylineElement|SVGPolygonElement|SVGPatternElement|SVGPathElement|SVGMissingGlyphElement|SVGMetadataElement|SVGMaskElement|SVGMarkerElement|SVGMPathElement|SVGLineElement|SVGImageElement|SVGHKernElement|SVGGradientElement|SVGRadialGradientElement|SVGLinearGradientElement|SVGRadialGradientElement|SVGLinearGradientElement|SVGGlyphRefElement|SVGGlyphElement|SVGGElement|SVGForeignObjectElement|SVGFontFaceUriElement|SVGFontFaceSrcElement|SVGFontFaceNameElement|SVGFontFaceFormatElement|SVGFontFaceElement|SVGFontElement|SVGFilterElement|SVGFETurbulenceElement|SVGFETileElement|SVGFESpotLightElement|SVGFESpecularLightingElement|SVGFEPointLightElement|SVGFEOffsetElement|SVGFEMorphologyElement|SVGFEMergeNodeElement|SVGFEMergeElement|SVGFEImageElement|SVGFEGaussianBlurElement|SVGFEFloodElement|SVGFEDropShadowElement|SVGFEDistantLightElement|SVGFEDisplacementMapElement|SVGFEDiffuseLightingElement|SVGFEConvolveMatrixElement|SVGFECompositeElement|SVGFEComponentTransferElement|SVGFEColorMatrixElement|SVGFEBlendElement|SVGEllipseElement|SVGDescElement|SVGDefsElement|SVGCursorElement|SVGComponentTransferFunctionElement|SVGFEFuncRElement|SVGFEFuncGElement|SVGFEFuncBElement|SVGFEFuncAElement|SVGFEFuncRElement|SVGFEFuncGElement|SVGFEFuncBElement|SVGFEFuncAElement|SVGClipPathElement|SVGCircleElement|SVGAnimationElement|SVGSetElement|SVGAnimateTransformElement|SVGAnimateMotionElement|SVGAnimateElement|SVGAnimateColorElement|SVGSetElement|SVGAnimateTransformElement|SVGAnimateMotionElement|SVGAnimateElement|SVGAnimateColorElement|SVGAltGlyphItemElement|SVGAltGlyphDefElement|SVGAElement|SVGViewElement|SVGVKernElement|SVGUseElement|SVGTitleElement|SVGTextContentElement|SVGTextPathElement|SVGTextPathElement|SVGSymbolElement|SVGSwitchElement|SVGStyleElement|SVGStopElement|SVGScriptElement|SVGSVGElement|SVGRectElement|SVGPolylineElement|SVGPolygonElement|SVGPatternElement|SVGPathElement|SVGMissingGlyphElement|SVGMetadataElement|SVGMaskElement|SVGMarkerElement|SVGMPathElement|SVGLineElement|SVGImageElement|SVGHKernElement|SVGGradientElement|SVGRadialGradientElement|SVGLinearGradientElement|SVGRadialGradientElement|SVGLinearGradientElement|SVGGlyphRefElement|SVGGlyphElement|SVGGElement|SVGForeignObjectElement|SVGFontFaceUriElement|SVGFontFaceSrcElement|SVGFontFaceNameElement|SVGFontFaceFormatElement|SVGFontFaceElement|SVGFontElement|SVGFilterElement|SVGFETurbulenceElement|SVGFETileElement|SVGFESpotLightElement|SVGFESpecularLightingElement|SVGFEPointLightElement|SVGFEOffsetElement|SVGFEMorphologyElement|SVGFEMergeNodeElement|SVGFEMergeElement|SVGFEImageElement|SVGFEGaussianBlurElement|SVGFEFloodElement|SVGFEDropShadowElement|SVGFEDistantLightElement|SVGFEDisplacementMapElement|SVGFEDiffuseLightingElement|SVGFEConvolveMatrixElement|SVGFECompositeElement|SVGFEComponentTransferElement|SVGFEColorMatrixElement|SVGFEBlendElement|SVGEllipseElement|SVGDescElement|SVGDefsElement|SVGCursorElement|SVGComponentTransferFunctionElement|SVGFEFuncRElement|SVGFEFuncGElement|SVGFEFuncBElement|SVGFEFuncAElement|SVGFEFuncRElement|SVGFEFuncGElement|SVGFEFuncBElement|SVGFEFuncAElement|SVGClipPathElement|SVGCircleElement|SVGAnimationElement|SVGSetElement|SVGAnimateTransformElement|SVGAnimateMotionElement|SVGAnimateElement|SVGAnimateColorElement|SVGSetElement|SVGAnimateTransformElement|SVGAnimateMotionElement|SVGAnimateElement|SVGAnimateColorElement|SVGAltGlyphItemElement|SVGAltGlyphDefElement|SVGAElement'].join('|');
-  var v3/*class(_MediaElementImpl)*/ = 'HTMLMediaElement|HTMLVideoElement|HTMLAudioElement|HTMLVideoElement|HTMLAudioElement';
-  var v4/*class(_MouseEventImpl)*/ = 'MouseEvent|WheelEvent|WheelEvent';
-  var v5/*class(_ElementImpl)*/ = [v2/*class(_SVGElementImpl)*/,v3/*class(_MediaElementImpl)*/,v2/*class(_SVGElementImpl)*/,v3/*class(_MediaElementImpl)*/,'Element|HTMLUnknownElement|HTMLUListElement|HTMLTrackElement|HTMLTitleElement|HTMLTextAreaElement|HTMLTableSectionElement|HTMLTableRowElement|HTMLTableElement|HTMLTableColElement|HTMLTableCellElement|HTMLTableCaptionElement|HTMLStyleElement|HTMLSpanElement|HTMLSourceElement|HTMLShadowElement|HTMLSelectElement|HTMLScriptElement|HTMLQuoteElement|HTMLProgressElement|HTMLPreElement|HTMLParamElement|HTMLParagraphElement|HTMLOutputElement|HTMLOptionElement|HTMLOptGroupElement|HTMLObjectElement|HTMLOListElement|HTMLModElement|HTMLMeterElement|HTMLMetaElement|HTMLMenuElement|HTMLMarqueeElement|HTMLMapElement|HTMLLinkElement|HTMLLegendElement|HTMLLabelElement|HTMLLIElement|HTMLKeygenElement|HTMLInputElement|HTMLImageElement|HTMLIFrameElement|HTMLHtmlElement|HTMLHeadingElement|HTMLHeadElement|HTMLHRElement|HTMLFrameSetElement|HTMLFrameElement|HTMLFormElement|HTMLFontElement|HTMLFieldSetElement|HTMLEmbedElement|HTMLDivElement|HTMLDirectoryElement|HTMLDetailsElement|HTMLDataListElement|HTMLDListElement|HTMLContentElement|HTMLCanvasElement|HTMLButtonElement|HTMLBodyElement|HTMLBaseFontElement|HTMLBaseElement|HTMLBRElement|HTMLAreaElement|HTMLAppletElement|HTMLAnchorElement|HTMLElement|HTMLUnknownElement|HTMLUListElement|HTMLTrackElement|HTMLTitleElement|HTMLTextAreaElement|HTMLTableSectionElement|HTMLTableRowElement|HTMLTableElement|HTMLTableColElement|HTMLTableCellElement|HTMLTableCaptionElement|HTMLStyleElement|HTMLSpanElement|HTMLSourceElement|HTMLShadowElement|HTMLSelectElement|HTMLScriptElement|HTMLQuoteElement|HTMLProgressElement|HTMLPreElement|HTMLParamElement|HTMLParagraphElement|HTMLOutputElement|HTMLOptionElement|HTMLOptGroupElement|HTMLObjectElement|HTMLOListElement|HTMLModElement|HTMLMeterElement|HTMLMetaElement|HTMLMenuElement|HTMLMarqueeElement|HTMLMapElement|HTMLLinkElement|HTMLLegendElement|HTMLLabelElement|HTMLLIElement|HTMLKeygenElement|HTMLInputElement|HTMLImageElement|HTMLIFrameElement|HTMLHtmlElement|HTMLHeadingElement|HTMLHeadElement|HTMLHRElement|HTMLFrameSetElement|HTMLFrameElement|HTMLFormElement|HTMLFontElement|HTMLFieldSetElement|HTMLEmbedElement|HTMLDivElement|HTMLDirectoryElement|HTMLDetailsElement|HTMLDataListElement|HTMLDListElement|HTMLContentElement|HTMLCanvasElement|HTMLButtonElement|HTMLBodyElement|HTMLBaseFontElement|HTMLBaseElement|HTMLBRElement|HTMLAreaElement|HTMLAppletElement|HTMLAnchorElement|HTMLElement'].join('|');
-  var v6/*class(_DocumentFragmentImpl)*/ = 'DocumentFragment|ShadowRoot|ShadowRoot';
-  var v7/*class(_DocumentImpl)*/ = 'HTMLDocument|SVGDocument|SVGDocument';
-  var v8/*class(_CharacterDataImpl)*/ = 'CharacterData|Text|CDATASection|CDATASection|Comment|Text|CDATASection|CDATASection|Comment';
-  var v9/*class(_WorkerContextImpl)*/ = 'WorkerContext|SharedWorkerContext|DedicatedWorkerContext|SharedWorkerContext|DedicatedWorkerContext';
-  var v10/*class(_NodeImpl)*/ = [v5/*class(_ElementImpl)*/,v6/*class(_DocumentFragmentImpl)*/,v7/*class(_DocumentImpl)*/,v8/*class(_CharacterDataImpl)*/,v5/*class(_ElementImpl)*/,v6/*class(_DocumentFragmentImpl)*/,v7/*class(_DocumentImpl)*/,v8/*class(_CharacterDataImpl)*/,'Node|ProcessingInstruction|Notation|EntityReference|Entity|DocumentType|Attr|ProcessingInstruction|Notation|EntityReference|Entity|DocumentType|Attr'].join('|');
-  var v11/*class(_MediaStreamImpl)*/ = 'MediaStream|LocalMediaStream|LocalMediaStream';
-  var v12/*class(_IDBRequestImpl)*/ = 'IDBRequest|IDBVersionChangeRequest|IDBOpenDBRequest|IDBVersionChangeRequest|IDBOpenDBRequest';
-  var v13/*class(_AbstractWorkerImpl)*/ = 'AbstractWorker|Worker|SharedWorker|Worker|SharedWorker';
+  var v0/*class(_SVGTextPositioningElementImpl)*/ = 'SVGTextPositioningElement|SVGTextElement|SVGTSpanElement|SVGTRefElement|SVGAltGlyphElement|SVGTextElement|SVGTSpanElement|SVGTRefElement|SVGAltGlyphElement';
+  var v1/*class(_Uint8ArrayImpl)*/ = 'Uint8Array|Uint8ClampedArray|Uint8ClampedArray';
+  var v2/*class(_SVGTextContentElementImpl)*/ = [v0/*class(_SVGTextPositioningElementImpl)*/,v0/*class(_SVGTextPositioningElementImpl)*/,'SVGTextContentElement|SVGTextPathElement|SVGTextPathElement'].join('|');
+  var v3/*class(_SVGGradientElementImpl)*/ = 'SVGGradientElement|SVGRadialGradientElement|SVGLinearGradientElement|SVGRadialGradientElement|SVGLinearGradientElement';
+  var v4/*class(_SVGComponentTransferFunctionElementImpl)*/ = 'SVGComponentTransferFunctionElement|SVGFEFuncRElement|SVGFEFuncGElement|SVGFEFuncBElement|SVGFEFuncAElement|SVGFEFuncRElement|SVGFEFuncGElement|SVGFEFuncBElement|SVGFEFuncAElement';
+  var v5/*class(_SVGAnimationElementImpl)*/ = 'SVGAnimationElement|SVGSetElement|SVGAnimateTransformElement|SVGAnimateMotionElement|SVGAnimateElement|SVGAnimateColorElement|SVGSetElement|SVGAnimateTransformElement|SVGAnimateMotionElement|SVGAnimateElement|SVGAnimateColorElement';
+  var v6/*class(_SVGElementImpl)*/ = [v2/*class(_SVGTextContentElementImpl)*/,v3/*class(_SVGGradientElementImpl)*/,v4/*class(_SVGComponentTransferFunctionElementImpl)*/,v5/*class(_SVGAnimationElementImpl)*/,v2/*class(_SVGTextContentElementImpl)*/,v3/*class(_SVGGradientElementImpl)*/,v4/*class(_SVGComponentTransferFunctionElementImpl)*/,v5/*class(_SVGAnimationElementImpl)*/,'SVGElement|SVGViewElement|SVGVKernElement|SVGUseElement|SVGTitleElement|SVGSymbolElement|SVGSwitchElement|SVGStyleElement|SVGStopElement|SVGScriptElement|SVGSVGElement|SVGRectElement|SVGPolylineElement|SVGPolygonElement|SVGPatternElement|SVGPathElement|SVGMissingGlyphElement|SVGMetadataElement|SVGMaskElement|SVGMarkerElement|SVGMPathElement|SVGLineElement|SVGImageElement|SVGHKernElement|SVGGlyphRefElement|SVGGlyphElement|SVGGElement|SVGForeignObjectElement|SVGFontFaceUriElement|SVGFontFaceSrcElement|SVGFontFaceNameElement|SVGFontFaceFormatElement|SVGFontFaceElement|SVGFontElement|SVGFilterElement|SVGFETurbulenceElement|SVGFETileElement|SVGFESpotLightElement|SVGFESpecularLightingElement|SVGFEPointLightElement|SVGFEOffsetElement|SVGFEMorphologyElement|SVGFEMergeNodeElement|SVGFEMergeElement|SVGFEImageElement|SVGFEGaussianBlurElement|SVGFEFloodElement|SVGFEDropShadowElement|SVGFEDistantLightElement|SVGFEDisplacementMapElement|SVGFEDiffuseLightingElement|SVGFEConvolveMatrixElement|SVGFECompositeElement|SVGFEComponentTransferElement|SVGFEColorMatrixElement|SVGFEBlendElement|SVGEllipseElement|SVGDescElement|SVGDefsElement|SVGCursorElement|SVGClipPathElement|SVGCircleElement|SVGAltGlyphItemElement|SVGAltGlyphDefElement|SVGAElement|SVGViewElement|SVGVKernElement|SVGUseElement|SVGTitleElement|SVGSymbolElement|SVGSwitchElement|SVGStyleElement|SVGStopElement|SVGScriptElement|SVGSVGElement|SVGRectElement|SVGPolylineElement|SVGPolygonElement|SVGPatternElement|SVGPathElement|SVGMissingGlyphElement|SVGMetadataElement|SVGMaskElement|SVGMarkerElement|SVGMPathElement|SVGLineElement|SVGImageElement|SVGHKernElement|SVGGlyphRefElement|SVGGlyphElement|SVGGElement|SVGForeignObjectElement|SVGFontFaceUriElement|SVGFontFaceSrcElement|SVGFontFaceNameElement|SVGFontFaceFormatElement|SVGFontFaceElement|SVGFontElement|SVGFilterElement|SVGFETurbulenceElement|SVGFETileElement|SVGFESpotLightElement|SVGFESpecularLightingElement|SVGFEPointLightElement|SVGFEOffsetElement|SVGFEMorphologyElement|SVGFEMergeNodeElement|SVGFEMergeElement|SVGFEImageElement|SVGFEGaussianBlurElement|SVGFEFloodElement|SVGFEDropShadowElement|SVGFEDistantLightElement|SVGFEDisplacementMapElement|SVGFEDiffuseLightingElement|SVGFEConvolveMatrixElement|SVGFECompositeElement|SVGFEComponentTransferElement|SVGFEColorMatrixElement|SVGFEBlendElement|SVGEllipseElement|SVGDescElement|SVGDefsElement|SVGCursorElement|SVGClipPathElement|SVGCircleElement|SVGAltGlyphItemElement|SVGAltGlyphDefElement|SVGAElement'].join('|');
+  var v7/*class(_MediaElementImpl)*/ = 'HTMLMediaElement|HTMLVideoElement|HTMLAudioElement|HTMLVideoElement|HTMLAudioElement';
+  var v8/*class(_ElementImpl)*/ = [v6/*class(_SVGElementImpl)*/,v7/*class(_MediaElementImpl)*/,v6/*class(_SVGElementImpl)*/,v7/*class(_MediaElementImpl)*/,'Element|HTMLUnknownElement|HTMLUListElement|HTMLTrackElement|HTMLTitleElement|HTMLTextAreaElement|HTMLTableSectionElement|HTMLTableRowElement|HTMLTableElement|HTMLTableColElement|HTMLTableCellElement|HTMLTableCaptionElement|HTMLStyleElement|HTMLSpanElement|HTMLSourceElement|HTMLShadowElement|HTMLSelectElement|HTMLScriptElement|HTMLQuoteElement|HTMLProgressElement|HTMLPreElement|HTMLParamElement|HTMLParagraphElement|HTMLOutputElement|HTMLOptionElement|HTMLOptGroupElement|HTMLObjectElement|HTMLOListElement|HTMLModElement|HTMLMeterElement|HTMLMetaElement|HTMLMenuElement|HTMLMarqueeElement|HTMLMapElement|HTMLLinkElement|HTMLLegendElement|HTMLLabelElement|HTMLLIElement|HTMLKeygenElement|HTMLInputElement|HTMLImageElement|HTMLIFrameElement|HTMLHtmlElement|HTMLHeadingElement|HTMLHeadElement|HTMLHRElement|HTMLFrameSetElement|HTMLFrameElement|HTMLFormElement|HTMLFontElement|HTMLFieldSetElement|HTMLEmbedElement|HTMLDivElement|HTMLDirectoryElement|HTMLDetailsElement|HTMLDataListElement|HTMLDListElement|HTMLContentElement|HTMLCanvasElement|HTMLButtonElement|HTMLBodyElement|HTMLBaseFontElement|HTMLBaseElement|HTMLBRElement|HTMLAreaElement|HTMLAppletElement|HTMLAnchorElement|HTMLElement|HTMLUnknownElement|HTMLUListElement|HTMLTrackElement|HTMLTitleElement|HTMLTextAreaElement|HTMLTableSectionElement|HTMLTableRowElement|HTMLTableElement|HTMLTableColElement|HTMLTableCellElement|HTMLTableCaptionElement|HTMLStyleElement|HTMLSpanElement|HTMLSourceElement|HTMLShadowElement|HTMLSelectElement|HTMLScriptElement|HTMLQuoteElement|HTMLProgressElement|HTMLPreElement|HTMLParamElement|HTMLParagraphElement|HTMLOutputElement|HTMLOptionElement|HTMLOptGroupElement|HTMLObjectElement|HTMLOListElement|HTMLModElement|HTMLMeterElement|HTMLMetaElement|HTMLMenuElement|HTMLMarqueeElement|HTMLMapElement|HTMLLinkElement|HTMLLegendElement|HTMLLabelElement|HTMLLIElement|HTMLKeygenElement|HTMLInputElement|HTMLImageElement|HTMLIFrameElement|HTMLHtmlElement|HTMLHeadingElement|HTMLHeadElement|HTMLHRElement|HTMLFrameSetElement|HTMLFrameElement|HTMLFormElement|HTMLFontElement|HTMLFieldSetElement|HTMLEmbedElement|HTMLDivElement|HTMLDirectoryElement|HTMLDetailsElement|HTMLDataListElement|HTMLDListElement|HTMLContentElement|HTMLCanvasElement|HTMLButtonElement|HTMLBodyElement|HTMLBaseFontElement|HTMLBaseElement|HTMLBRElement|HTMLAreaElement|HTMLAppletElement|HTMLAnchorElement|HTMLElement'].join('|');
+  var v9/*class(_DocumentFragmentImpl)*/ = 'DocumentFragment|ShadowRoot|ShadowRoot';
+  var v10/*class(_DocumentImpl)*/ = 'HTMLDocument|SVGDocument|SVGDocument';
+  var v11/*class(_CharacterDataImpl)*/ = 'CharacterData|Text|CDATASection|CDATASection|Comment|Text|CDATASection|CDATASection|Comment';
+  var v12/*class(_WorkerContextImpl)*/ = 'WorkerContext|SharedWorkerContext|DedicatedWorkerContext|SharedWorkerContext|DedicatedWorkerContext';
+  var v13/*class(_NodeImpl)*/ = [v8/*class(_ElementImpl)*/,v9/*class(_DocumentFragmentImpl)*/,v10/*class(_DocumentImpl)*/,v11/*class(_CharacterDataImpl)*/,v8/*class(_ElementImpl)*/,v9/*class(_DocumentFragmentImpl)*/,v10/*class(_DocumentImpl)*/,v11/*class(_CharacterDataImpl)*/,'Node|ProcessingInstruction|Notation|EntityReference|Entity|DocumentType|Attr|ProcessingInstruction|Notation|EntityReference|Entity|DocumentType|Attr'].join('|');
+  var v14/*class(_MediaStreamImpl)*/ = 'MediaStream|LocalMediaStream|LocalMediaStream';
+  var v15/*class(_IDBRequestImpl)*/ = 'IDBRequest|IDBVersionChangeRequest|IDBOpenDBRequest|IDBVersionChangeRequest|IDBOpenDBRequest';
+  var v16/*class(_AbstractWorkerImpl)*/ = 'AbstractWorker|Worker|SharedWorker|Worker|SharedWorker';
   var table = [
     // [dynamic-dispatch-tag, tags of classes implementing dynamic-dispatch-tag]
-    ['SVGTextPositioningElement', v1/*class(_SVGTextPositioningElementImpl)*/],
-    ['AbstractWorker', v13/*class(_AbstractWorkerImpl)*/],
-    ['Uint8Array', v0/*class(_Uint8ArrayImpl)*/],
-    ['ArrayBufferView', [v0/*class(_Uint8ArrayImpl)*/,v0/*class(_Uint8ArrayImpl)*/,'ArrayBufferView|Uint32Array|Uint16Array|Int8Array|Int32Array|Int16Array|Float64Array|Float32Array|DataView|Uint32Array|Uint16Array|Int8Array|Int32Array|Int16Array|Float64Array|Float32Array|DataView'].join('|')],
+    ['SVGGradientElement', v3/*class(_SVGGradientElementImpl)*/],
+    ['SVGTextPositioningElement', v0/*class(_SVGTextPositioningElementImpl)*/],
+    ['SVGTextContentElement', v2/*class(_SVGTextContentElementImpl)*/],
+    ['AbstractWorker', v16/*class(_AbstractWorkerImpl)*/],
+    ['Uint8Array', v1/*class(_Uint8ArrayImpl)*/],
+    ['ArrayBufferView', [v1/*class(_Uint8ArrayImpl)*/,v1/*class(_Uint8ArrayImpl)*/,'ArrayBufferView|Uint32Array|Uint16Array|Int8Array|Int32Array|Int16Array|Float64Array|Float32Array|DataView|Uint32Array|Uint16Array|Int8Array|Int32Array|Int16Array|Float64Array|Float32Array|DataView'].join('|')],
     ['AudioParam', 'AudioParam|AudioGain|AudioGain'],
     ['Blob', 'Blob|File|File'],
-    ['WorkerContext', v9/*class(_WorkerContextImpl)*/],
+    ['WorkerContext', v12/*class(_WorkerContextImpl)*/],
     ['CSSValueList', 'CSSValueList|WebKitCSSFilterValue|WebKitCSSTransformValue|WebKitCSSFilterValue|WebKitCSSTransformValue'],
-    ['CharacterData', v8/*class(_CharacterDataImpl)*/],
+    ['CharacterData', v11/*class(_CharacterDataImpl)*/],
     ['DOMTokenList', 'DOMTokenList|DOMSettableTokenList|DOMSettableTokenList'],
-    ['HTMLDocument', v7/*class(_DocumentImpl)*/],
-    ['DocumentFragment', v6/*class(_DocumentFragmentImpl)*/],
-    ['SVGElement', v2/*class(_SVGElementImpl)*/],
-    ['HTMLMediaElement', v3/*class(_MediaElementImpl)*/],
-    ['Element', v5/*class(_ElementImpl)*/],
+    ['HTMLDocument', v10/*class(_DocumentImpl)*/],
+    ['DocumentFragment', v9/*class(_DocumentFragmentImpl)*/],
+    ['SVGComponentTransferFunctionElement', v4/*class(_SVGComponentTransferFunctionElementImpl)*/],
+    ['SVGAnimationElement', v5/*class(_SVGAnimationElementImpl)*/],
+    ['SVGElement', v6/*class(_SVGElementImpl)*/],
+    ['HTMLMediaElement', v7/*class(_MediaElementImpl)*/],
+    ['Element', v8/*class(_ElementImpl)*/],
     ['Entry', 'Entry|FileEntry|DirectoryEntry|FileEntry|DirectoryEntry'],
     ['EntrySync', 'EntrySync|FileEntrySync|DirectoryEntrySync|FileEntrySync|DirectoryEntrySync'],
-    ['MouseEvent', v4/*class(_MouseEventImpl)*/],
-    ['Event', [v4/*class(_MouseEventImpl)*/,v4/*class(_MouseEventImpl)*/,v4/*class(_MouseEventImpl)*/,v4/*class(_MouseEventImpl)*/,'Event|WebGLContextEvent|UIEvent|TouchEvent|TextEvent|SVGZoomEvent|KeyboardEvent|CompositionEvent|TouchEvent|TextEvent|SVGZoomEvent|KeyboardEvent|CompositionEvent|WebKitTransitionEvent|TrackEvent|StorageEvent|SpeechRecognitionEvent|SpeechRecognitionError|SpeechInputEvent|ProgressEvent|XMLHttpRequestProgressEvent|XMLHttpRequestProgressEvent|PopStateEvent|PageTransitionEvent|OverflowEvent|OfflineAudioCompletionEvent|MutationEvent|MessageEvent|MediaStreamTrackEvent|MediaStreamEvent|MediaKeyEvent|IDBVersionChangeEvent|IDBUpgradeNeededEvent|HashChangeEvent|ErrorEvent|DeviceOrientationEvent|DeviceMotionEvent|CustomEvent|CloseEvent|BeforeLoadEvent|AudioProcessingEvent|WebKitAnimationEvent|WebGLContextEvent|UIEvent|TouchEvent|TextEvent|SVGZoomEvent|KeyboardEvent|CompositionEvent|TouchEvent|TextEvent|SVGZoomEvent|KeyboardEvent|CompositionEvent|WebKitTransitionEvent|TrackEvent|StorageEvent|SpeechRecognitionEvent|SpeechRecognitionError|SpeechInputEvent|ProgressEvent|XMLHttpRequestProgressEvent|XMLHttpRequestProgressEvent|PopStateEvent|PageTransitionEvent|OverflowEvent|OfflineAudioCompletionEvent|MutationEvent|MessageEvent|MediaStreamTrackEvent|MediaStreamEvent|MediaKeyEvent|IDBVersionChangeEvent|IDBUpgradeNeededEvent|HashChangeEvent|ErrorEvent|DeviceOrientationEvent|DeviceMotionEvent|CustomEvent|CloseEvent|BeforeLoadEvent|AudioProcessingEvent|WebKitAnimationEvent'].join('|')],
-    ['Node', v10/*class(_NodeImpl)*/],
-    ['MediaStream', v11/*class(_MediaStreamImpl)*/],
-    ['IDBRequest', v12/*class(_IDBRequestImpl)*/],
-    ['EventTarget', [v9/*class(_WorkerContextImpl)*/,v10/*class(_NodeImpl)*/,v11/*class(_MediaStreamImpl)*/,v12/*class(_IDBRequestImpl)*/,v13/*class(_AbstractWorkerImpl)*/,v9/*class(_WorkerContextImpl)*/,v10/*class(_NodeImpl)*/,v11/*class(_MediaStreamImpl)*/,v12/*class(_IDBRequestImpl)*/,v13/*class(_AbstractWorkerImpl)*/,'EventTarget|DOMWindow|WebSocket|WebKitNamedFlow|TextTrackList|TextTrackCue|TextTrack|SpeechRecognition|SourceBufferList|SVGElementInstance|RTCPeerConnection|Performance|PeerConnection00|Notification|MessagePort|MediaStreamTrackList|MediaStreamTrack|MediaSource|MediaController|IDBTransaction|IDBDatabase|XMLHttpRequestUpload|XMLHttpRequest|FileWriter|FileReader|EventSource|DOMApplicationCache|BatteryManager|AudioContext|DOMWindow|WebSocket|WebKitNamedFlow|TextTrackList|TextTrackCue|TextTrack|SpeechRecognition|SourceBufferList|SVGElementInstance|RTCPeerConnection|Performance|PeerConnection00|Notification|MessagePort|MediaStreamTrackList|MediaStreamTrack|MediaSource|MediaController|IDBTransaction|IDBDatabase|XMLHttpRequestUpload|XMLHttpRequest|FileWriter|FileReader|EventSource|DOMApplicationCache|BatteryManager|AudioContext'].join('|')],
+    ['Node', v13/*class(_NodeImpl)*/],
+    ['MediaStream', v14/*class(_MediaStreamImpl)*/],
+    ['IDBRequest', v15/*class(_IDBRequestImpl)*/],
+    ['EventTarget', [v12/*class(_WorkerContextImpl)*/,v13/*class(_NodeImpl)*/,v14/*class(_MediaStreamImpl)*/,v15/*class(_IDBRequestImpl)*/,v16/*class(_AbstractWorkerImpl)*/,v12/*class(_WorkerContextImpl)*/,v13/*class(_NodeImpl)*/,v14/*class(_MediaStreamImpl)*/,v15/*class(_IDBRequestImpl)*/,v16/*class(_AbstractWorkerImpl)*/,'EventTarget|DOMWindow|WebSocket|WebKitNamedFlow|TextTrackList|TextTrackCue|TextTrack|SpeechRecognition|SourceBufferList|SVGElementInstance|RTCPeerConnection|Performance|PeerConnection00|Notification|MessagePort|MediaStreamTrackList|MediaStreamTrack|MediaSource|MediaController|IDBTransaction|IDBDatabase|XMLHttpRequestUpload|XMLHttpRequest|FileWriter|FileReader|EventSource|DOMApplicationCache|BatteryManager|AudioContext|DOMWindow|WebSocket|WebKitNamedFlow|TextTrackList|TextTrackCue|TextTrack|SpeechRecognition|SourceBufferList|SVGElementInstance|RTCPeerConnection|Performance|PeerConnection00|Notification|MessagePort|MediaStreamTrackList|MediaStreamTrack|MediaSource|MediaController|IDBTransaction|IDBDatabase|XMLHttpRequestUpload|XMLHttpRequest|FileWriter|FileReader|EventSource|DOMApplicationCache|BatteryManager|AudioContext'].join('|')],
     ['HTMLCollection', 'HTMLCollection|HTMLOptionsCollection|HTMLOptionsCollection'],
     ['IDBCursor', 'IDBCursor|IDBCursorWithValue|IDBCursorWithValue'],
+    ['MouseEvent', 'MouseEvent|WheelEvent|WheelEvent'],
     ['NodeList', 'NodeList|RadioNodeList|RadioNodeList']];
 $.dynamicSetMetadata(table);
 })();
