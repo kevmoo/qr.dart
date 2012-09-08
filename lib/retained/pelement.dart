@@ -66,7 +66,7 @@ class PElement extends core.AttachableObjectImpl {
   bool draw(CanvasRenderingContext2D ctx){
     update();
     var dirty = (_lastDrawSize == null);
-    drawInternal(ctx);
+    drawCore(ctx);
     return dirty;
   }
 
@@ -74,21 +74,18 @@ class PElement extends core.AttachableObjectImpl {
     _updatedEventHandle.fireEvent(core.EventArgs.empty);
   }
 
+  void drawCore(CanvasRenderingContext2D ctx){
+    if(cacheEnabled) {
+      _drawCached(ctx);
+    } else {
+      _drawNormal(ctx);
+    }
+  }
+
   core.AffineTransform addTransform(){
     var tx = new core.AffineTransform();
     _transforms.add(tx);
     return tx;
-  }
-
-  // protected
-  void drawCore(CanvasRenderingContext2D ctx){
-    if (_alpha != null) {
-      ctx.globalAlpha = _alpha;
-    }
-
-    // call the abstract draw method
-    drawOverride(ctx);
-    _lastDrawSize = this.size;
   }
 
   // abstract
@@ -129,14 +126,6 @@ class PElement extends core.AttachableObjectImpl {
   // Privates
   //
 
-  void drawInternal(CanvasRenderingContext2D ctx){
-    if(cacheEnabled) {
-      _drawCached(ctx);
-    } else {
-      _drawNormal(ctx);
-    }
-  }
-
   void _drawCached(CanvasRenderingContext2D ctx) {
     if (_cacheCanvas == null || CanvasUtil.getCanvasSize(this._cacheCanvas) != this._lastDrawSize) {
       if (this._cacheCanvas == null) {
@@ -148,7 +137,7 @@ class PElement extends core.AttachableObjectImpl {
 
       var cacheCtx = _cacheCanvas.context2d;
 
-      this.drawCore(cacheCtx);
+      _drawInternal(cacheCtx);
     }
 
     ctx.save();
@@ -177,8 +166,18 @@ class PElement extends core.AttachableObjectImpl {
       ctx.clip();
     }
 
-    this.drawCore(ctx);
+    _drawInternal(ctx);
     ctx.restore();
+  }
+
+    void _drawInternal(CanvasRenderingContext2D ctx){
+    if (_alpha != null) {
+      ctx.globalAlpha = _alpha;
+    }
+
+    // call the abstract draw method
+    drawOverride(ctx);
+    _lastDrawSize = this.size;
   }
 
   bool _isClipped(core.AffineTransform tx, CanvasRenderingContext2D ctx){

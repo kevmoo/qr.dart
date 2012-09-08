@@ -24,7 +24,7 @@ class ElementParentImpl
   }
 
   void drawOverride(CanvasRenderingContext2D ctx) {
-    _forEach((e) => e.drawInternal(ctx));
+    _forEach((e) => e.drawCore(ctx));
   }
 
   void _forEach(core.Action1<PElement> f) {
