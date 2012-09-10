@@ -83,4 +83,6 @@ class NoneHashMap<K, V> implements Map<K, V> {
   bool isEmpty() {
     throw 'not impled';
   }
+
+  String toString() => Maps.mapToString(this);
 }
