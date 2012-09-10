@@ -2,7 +2,7 @@ Enumerable $(Iterable source) {
   if(source is Enumerable) {
     return source;
   } else {
-    return new Enumerable(source);
+    return new Enumerable.fromIterable(source);
   }
 }
 
@@ -15,16 +15,14 @@ class Enumerable<T> implements Iterable<T> {
   // skipWhile
   // isEmpty
 
-  const Enumerable._internal();
+  const Enumerable();
 
-  factory Enumerable(Iterable<T> source) {
+  factory Enumerable.fromIterable(Iterable<T> source) {
     requireArgumentNotNull(source, 'source');
     return new _SimpleEnumerable<T>(source);
   }
 
-  Iterator iterator() {
-    throw const NotImplementedException();
-  }
+  abstract Iterator iterator();
 
   /**
    * Returns true if every elements of this collection satisify the
@@ -239,7 +237,7 @@ class Enumerable<T> implements Iterable<T> {
 class _SimpleEnumerable<T> extends Enumerable<T> {
   final Iterable<T> _source;
 
-  const _SimpleEnumerable(this._source) : super._internal();
+  const _SimpleEnumerable(this._source) : super();
 
   Iterator<T> iterator() => _source.iterator();
 }
@@ -248,7 +246,7 @@ class _FuncEnumerable<TSource, TOutput> extends Enumerable<TOutput> {
   final Iterable<TSource> _source;
   final Func1<Iterator<TSource>, Iterator<TOutput>> _func;
 
-  const _FuncEnumerable(this._source, this._func) : super._internal();
+  const _FuncEnumerable(this._source, this._func) : super();
 
   Iterator<TOutput> iterator() => _func(_source.iterator());
 }

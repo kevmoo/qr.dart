@@ -4,7 +4,7 @@ NumberEnumerable n$(Iterable<num> source) {
 
 class NumberEnumerable<T extends num> extends Enumerable<T> {
 
-  const NumberEnumerable._internal() : super._internal();
+  const NumberEnumerable._internal() : super();
 
   factory NumberEnumerable(Iterable<T> source) {
     requireArgumentNotNull(source, 'source');
