@@ -6,7 +6,13 @@ class TestNumberEnumerable {
       test('min', _testMin);
       test('max', _testMax);
       test('average', _testAverage);
+      test('range', _testRange);
     });
+  }
+
+  static void _testRange() {
+    final ne = new NumberEnumerable.fromRange(10, 5);
+    expect(ne, orderedEquals([10,11,12,13,14]));
   }
 
   static void _testSum() {

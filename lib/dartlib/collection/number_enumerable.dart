@@ -1,14 +1,18 @@
 NumberEnumerable n$(Iterable<num> source) {
-  return new NumberEnumerable(source);
+  return new NumberEnumerable.from(source);
 }
 
 class NumberEnumerable<T extends num> extends Enumerable<T> {
 
-  const NumberEnumerable._internal() : super();
+  const NumberEnumerable() : super();
 
-  factory NumberEnumerable(Iterable<T> source) {
+  factory NumberEnumerable.from(Iterable<T> source) {
     requireArgumentNotNull(source, 'source');
     return new _SimpleNumEnumerable<T>(source);
+  }
+
+  factory NumberEnumerable.fromRange(int start, int count) {
+    return new _RangeIterable(start, count);
   }
 
   num sum() {
@@ -49,7 +53,7 @@ class NumberEnumerable<T extends num> extends Enumerable<T> {
 class _SimpleNumEnumerable<T extends num> extends NumberEnumerable<T> {
   final Iterable<T> _source;
 
-  const _SimpleNumEnumerable(this._source) : super._internal();
+  const _SimpleNumEnumerable(this._source) : super();
 
   Iterator<T> iterator() => _source.iterator();
 }
@@ -58,7 +62,35 @@ class _FuncNumEnumerable<TSource> extends NumberEnumerable {
   final Iterable<TSource> _source;
   final Func1<Iterator<TSource>, Iterator<num>> _func;
 
-  const _FuncNumEnumerable(this._source, this._func) : super._internal();
+  const _FuncNumEnumerable(this._source, this._func) : super();
 
   Iterator<num> iterator() => _func(_source.iterator());
+}
+
+
+class _RangeIterable extends NumberEnumerable<int> {
+  final int _start;
+  final int _count;
+
+  const _RangeIterable(this._start, this._count);
+
+  Iterator<int> iterator() => new _RangeIterator(_start, _count);
+}
+
+class _RangeIterator implements Iterator<int> {
+  final int _start;
+  final int _count;
+
+  int _current = 0;
+
+  _RangeIterator(this._start, this._count);
+
+  bool hasNext() => _current < _count;
+
+  int next() {
+    assert(hasNext());
+    final val = _start + _current;
+    _current++;
+    return val;
+  }
 }
