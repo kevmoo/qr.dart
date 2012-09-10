@@ -2215,7 +2215,7 @@ $$.HashMapImplementation_getKeys__ = {"":
 $$.TestUtil_run_anon = {"":
  [],
  "super": "Closure",
- call$0: function(){$.test('getHashcode',$.TestUtil__testGetHashCode);}
+ call$0: function(){}
 };
 
 $$.TestAffineTransform_run_anon = {"":
@@ -3612,8 +3612,6 @@ $._WebSocketEventsImpl$ = function(_ptr){return new $._WebSocketEventsImpl(_ptr)
 
 $.shr = function(a,b){if($.checkNumbers(a,b)){if(b<0)throw $.$$throw($.IllegalArgumentException$(b));if(a>0){if(b > 31)return 0;return a >>> b;}if(b>31)b=31;return (a >> b) >>> 0;}return a.operator$shr$1(b);};
 
-$.TestUtil__testGetHashCode = function(){$.expect($.hashCode('foo'),$.equals(848623837,100),null,null,false);$.TestUtil__hashCodeFun([],0);$.TestUtil__hashCodeFun([null],0);$.TestUtil__hashCodeFun([null,null],0);$.TestUtil__hashCodeFun([1],307143837);$.TestUtil__hashCodeFun([1,2],93096440);$.TestUtil__hashCodeFun([2,1],405401106);$.TestUtil__hashCodeFun(['foo'],69162337);$.TestUtil__hashCodeFun([''],307143837);$.TestUtil__hashCodeFun(['',''],313418812);$.TestUtil__hashCodeFun(['foo','bar'],27305964);$.TestUtil__hashCodeFun(['bar','foo'],309729073);$.TestUtil__hashCodeFun([null,1],307143837);$.TestUtil__hashCodeFun([null,null,1],307143837);$.TestUtil__hashCodeFun([1,null],15319219);};
-
 $._convertDartToNative_SerializedScriptValue = function(value){return $._convertDartToNative_PrepareForStructuredClone(value);};
 
 $._deserializeMessage = function(message){if($._globalState().get$needSerialization()===true)return $._JsDeserializer$().deserialize$1(message);else return message;};
@@ -3751,8 +3749,6 @@ $.add = function(a,b){return typeof a==='number'&&typeof b==='number'?a + b:$.ad
 $.mod = function(a,b){if($.checkNumbers(a,b)){var result=a % b;if(result===0)return 0;if(result>0)return result;if(b<0)return result-b;else return result+b;}return a.operator$mod$1(b);};
 
 $._IDBRequestEventsImpl$ = function(_ptr){return new $._IDBRequestEventsImpl(_ptr);};
-
-$.TestUtil__hashCodeFun = function(items,expectedValue){$.expect($.Util_getHashCode(items),$.equals(expectedValue,100),null,null,false);};
 
 $._DOMWindowCrossFrameImpl$ = function(_window){return new $._DOMWindowCrossFrameImpl(_window);};
 
@@ -4741,8 +4737,6 @@ $.TestNumberEnumerable__testAverage.call$0 = $.TestNumberEnumerable__testAverage
 $.TestNumberEnumerable__testAverage.$name = "TestNumberEnumerable__testAverage";
 $.TestEnumerable__testFirst.call$0 = $.TestEnumerable__testFirst;
 $.TestEnumerable__testFirst.$name = "TestEnumerable__testFirst";
-$.TestUtil__testGetHashCode.call$0 = $.TestUtil__testGetHashCode;
-$.TestUtil__testGetHashCode.$name = "TestUtil__testGetHashCode";
 $.TestListBase__testSimple.call$0 = $.TestListBase__testSimple;
 $.TestListBase__testSimple.$name = "TestListBase__testSimple";
 $.TestListBase__testIndexOf.call$0 = $.TestListBase__testIndexOf;
