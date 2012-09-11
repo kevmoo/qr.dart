@@ -1,5 +1,5 @@
 interface AttachableObject extends Disposable {
-  PropertyValues get propertyValues();
+  PropertyValues get propertyValues;
 }
 
 class AttachableObjectImpl extends DisposableImpl implements AttachableObject {
