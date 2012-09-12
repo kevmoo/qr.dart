@@ -357,20 +357,20 @@ $$._DocumentEventsImpl = {"":
  select$1: function(arg0) { return this.get$select().call$1(arg0); }
 };
 
-$$.EmptyElementRect = {"":
- ["client", "offset", "scroll", "bounding", "clientRects"],
+$$.EmptyElementBox = {"":
+ ["client", "offset", "scroll", "bounding", "clientBoxs"],
  "super": "Object"
 };
 
-$$._SimpleClientRect = {"":
+$$._SimpleClientBox = {"":
  ["left?", "top?", "width?", "height?"],
  "super": "Object",
  operator$eq$1: function(other){return !(other==null)&&$.eqB(this.left,other.get$left())&&$.eqB(this.top,other.get$top())&&$.eqB(this.width,other.get$width())&&$.eqB(this.height,other.get$height());},
  toString$0: function(){return '('+$.S(this.left)+', '+$.S(this.top)+', '+$.S(this.width)+', '+$.S(this.height)+')';}
 };
 
-$$._ElementRectImpl = {"":
- ["client", "offset", "scroll", "_boundingClientRect", "_clientRects"],
+$$._ElementBoxImpl = {"":
+ ["client", "offset", "scroll", "_boundingClientBox", "_clientBoxs"],
  "super": "Object"
 };
 
@@ -959,7 +959,7 @@ $$.Vector = {"":
  scale$1: function(magnitude){return $.Vector$($.mul(this.x,magnitude),$.mul(this.y,magnitude));}
 };
 
-$$.Rect = {"":
+$$.Box = {"":
  ["left?", "top?", "width?", "height?"],
  "super": "Object",
  get$topLeft: function(){return $.Coordinate$(this.left,this.top);},
@@ -1087,7 +1087,7 @@ $$.Panel = {"":
  getVisualChild$1: function(index){var t1=this._children;if(index!==(index|0))throw $.iae(index);if(index<0||index>=t1.length)throw $.ioore(index);return t1[index];},
  get$visualChildCount: function(){return this._children.length;},
  getChildTransform$1: function(child){return $.CTC29.get$1(child);},
- drawOverride$1: function(ctx){var t1=this.background;if(!(t1==null)){ctx.set$fillStyle(t1);ctx.fillRect$4(0,0,this.get$width(),this.get$height());}$.ElementParentImpl.prototype.drawOverride$1.call(this,ctx);}
+ drawOverride$1: function(ctx){var t1=this.background;if(!(t1==null)){ctx.set$fillStyle(t1);ctx.fillBox$4(0,0,this.get$width(),this.get$height());}$.ElementParentImpl.prototype.drawOverride$1.call(this,ctx);}
 };
 
 $$.PCanvas = {"":
@@ -1101,7 +1101,7 @@ $$.Stage = {"":
  ["_canvas?", "_element?", "_invalidatedEventHandle", "_ctx", "propertyValues", "_disposed"],
  "super": "AttachableObjectImpl",
  get$rootElement: function(){return this._element;},
- draw$0: function(){var t1=this._ctx;var t2=t1==null;var t3=this._canvas;if(t2)this._ctx=t3.get$context2d();else t1.clearRect$4(0,0,t3.get$width(),t3.get$height());return this._element.draw$1(this._ctx);},
+ draw$0: function(){var t1=this._ctx;var t2=t1==null;var t3=this._canvas;if(t2)this._ctx=t3.get$context2d();else t1.clearBox$4(0,0,t3.get$width(),t3.get$height());return this._element.draw$1(this._ctx);},
  childInvalidated$1: function(child){this._invalidatedEventHandle.fireEvent$1($.CTC23);},
  Stage$2: function(_canvas,_element){this._element.registerParent$1(this);}
 };
@@ -1111,7 +1111,7 @@ $$.Shape = {"":
  "super": "PElement",
  get$fillStyle: function(){return this._fillStyle;},
  set$fillStyle: function(value){this._fillStyle=value;this.invalidateDraw$0();},
- drawOverride$1: function(ctx){ctx.set$fillStyle(this._fillStyle);switch(this.shapeType){case $.CTC13:ctx.fillRect$4(0,0,this.get$size().get$width(),this.get$size().get$height());break;case $.CTC14:$.CanvasUtil_ellipse(ctx,0,0,this.get$width(),this.get$height());ctx.fill$0();break;default:throw $.$$throw('shape not known...');}},
+ drawOverride$1: function(ctx){ctx.set$fillStyle(this._fillStyle);switch(this.shapeType){case $.CTC13:ctx.fillBox$4(0,0,this.get$size().get$width(),this.get$size().get$height());break;case $.CTC14:$.CanvasUtil_ellipse(ctx,0,0,this.get$width(),this.get$height());ctx.fill$0();break;default:throw $.$$throw('shape not known...');}},
  toString$0: function(){return 'Shape ['+$.S(this._fillStyle)+', '+$.S(this.shapeType.get$name())+']';}
 };
 
@@ -1259,7 +1259,7 @@ $$.ElementParentImpl_drawOverride_anon = {"":
 $$._ElementImpl_rect_anon = {"":
  ["this_0"],
  "super": "Closure",
- call$0: function(){return $._ElementRectImpl$(this.this_0);}
+ call$0: function(){return $._ElementBoxImpl$(this.this_0);}
 };
 
 $$._maybeScheduleMeasurementFrame_anon = {"":
@@ -1696,7 +1696,7 @@ $._SelectIterator$ = function(_source,_func,TSource,TOutput){var t1=new $._Selec
 
 $._JsDeserializer$ = function(){return new $._JsDeserializer(null);};
 
-$._ElementRectImpl$ = function(element){return new $._ElementRectImpl($._SimpleClientRect$(element.get$$$dom_clientLeft(),element.get$$$dom_clientTop(),element.get$$$dom_clientWidth(),element.get$$$dom_clientHeight()),$._SimpleClientRect$(element.get$$$dom_offsetLeft(),element.get$$$dom_offsetTop(),element.get$$$dom_offsetWidth(),element.get$$$dom_offsetHeight()),$._SimpleClientRect$(element.get$$$dom_scrollLeft(),element.get$$$dom_scrollTop(),element.get$$$dom_scrollWidth(),element.get$$$dom_scrollHeight()),element.$dom_getBoundingClientRect$0(),element.$dom_getClientRects$0());};
+$._ElementBoxImpl$ = function(element){return new $._ElementBoxImpl($._SimpleClientBox$(element.get$$$dom_clientLeft(),element.get$$$dom_clientTop(),element.get$$$dom_clientWidth(),element.get$$$dom_clientHeight()),$._SimpleClientBox$(element.get$$$dom_offsetLeft(),element.get$$$dom_offsetTop(),element.get$$$dom_offsetWidth(),element.get$$$dom_offsetHeight()),$._SimpleClientBox$(element.get$$$dom_scrollLeft(),element.get$$$dom_scrollTop(),element.get$$$dom_scrollWidth(),element.get$$$dom_scrollHeight()),element.$dom_getBoundingClientBox$0(),element.$dom_getClientBoxs$0());};
 
 $._callInIsolate = function(isolate,function$){isolate.eval$1(function$);$._globalState().get$topEventLoop().run$0();};
 
@@ -1860,7 +1860,7 @@ $._Device_isOpera = function(){return $.contains$2($._Device_userAgent(),'Opera'
 
 $.EventHandle$ = function(T){var t1=new $.EventHandle(null,false);$.setRuntimeTypeInfo(t1,{ 'T': T });return t1;};
 
-$._SimpleClientRect$ = function(left,top$,width,height){return new $._SimpleClientRect(left,top$,width,height);};
+$._SimpleClientBox$ = function(left,top$,width,height){return new $._SimpleClientBox(left,top$,width,height);};
 
 $.startRootIsolate = function(entry){var t1=$._Manager$();$._globalState0(t1);if($._globalState().get$isWorker()===true)return;var rootContext=$._IsolateContext$();$._globalState().set$rootContext(rootContext);$._fillStatics(rootContext);$._globalState().set$currentContext(rootContext);if(!($._window()==null))rootContext.eval$1(new $.startRootIsolate_anon());rootContext.eval$1(entry);$._globalState().get$topEventLoop().run$0();};
 
@@ -1988,7 +1988,7 @@ $.checkGrowable = function(list,reason){if(!!(list.fixed$length))throw $.$$throw
 
 $._serializeMessage = function(message){if($._globalState().get$needSerialization()===true)return $._JsSerializer$().traverse$1(message);else return $._JsCopier$().traverse$1(message);};
 
-$.Rect$ = function(left,top$,width,height){return new $.Rect(left,top$,width,height);};
+$.Box$ = function(left,top$,width,height){return new $.Box(left,top$,width,height);};
 
 $.index = function(a,index){if(typeof a == "string" || a.constructor === Array){var key=index >>> 0;if(key===index&&key<a.length)return a[key];}return $.index$slow(a,index);};
 
@@ -1998,7 +1998,7 @@ $.le$slow = function(a,b){if($.checkNumbers(a,b))return a <= b;return a.operator
 
 $.KeyValuePair$ = function(key,value,K,V){var t1=new $.KeyValuePair(key,value);$.setRuntimeTypeInfo(t1,{ 'K': K, 'V': V });return t1;};
 
-$.RetainedUtil__hitTest = function(element,point){point=$.RetainedUtil_transformPointGlobalToLocal(element,point);var bounds=$.Rect$(0,0,element.get$width(),element.get$height());var hits=$.ListImplementation_List(null,'PElement');if(bounds.contains$1(point)===true){var length$=element.get$visualChildCount();if(typeof length$!=='number')return $.RetainedUtil__hitTest$bailout(1,element,length$,point,hits);for(var t1=length$-1,i=0;i<length$;++i){hits=$.RetainedUtil__hitTest(element.getVisualChild$1(t1-i),point);if(hits.length>0)break;}hits.push(element);return hits;}else return [];};
+$.RetainedUtil__hitTest = function(element,point){point=$.RetainedUtil_transformPointGlobalToLocal(element,point);var bounds=$.Box$(0,0,element.get$width(),element.get$height());var hits=$.ListImplementation_List(null,'PElement');if(bounds.contains$1(point)===true){var length$=element.get$visualChildCount();if(typeof length$!=='number')return $.RetainedUtil__hitTest$bailout(1,element,length$,point,hits);for(var t1=length$-1,i=0;i<length$;++i){hits=$.RetainedUtil__hitTest(element.getVisualChild$1(t1-i),point);if(hits.length>0)break;}hits.push(element);return hits;}else return [];};
 
 $._DocumentEventsImpl$ = function(_ptr){return new $._DocumentEventsImpl(_ptr);};
 
@@ -2090,7 +2090,7 @@ $.StringImplementation__toJsStringArray$bailout = function(state,strings){$.chec
 
 $.listInsertRange$bailout = function(state,receiver,start,length$,initialValue){if(length$===0)return;$.checkNull(start);$.checkNull(length$);if(length$<0)throw $.$$throw($.IllegalArgumentException$(length$));if(!(typeof start==='number'&&Math.floor(start) === start))throw $.$$throw($.IllegalArgumentException$(start));var receiverLength=receiver.length;if(start<0||start>receiverLength)throw $.$$throw($.IndexOutOfRangeException$(start));var t1=receiverLength+length$;$.set$length(receiver,t1);var t2=start+length$;$.Arrays_copy(receiver,start,receiver,t2,receiverLength-start);if(!(initialValue==null))for(var i=start;i<t2;++i)$.indexSet(receiver,i,initialValue);$.set$length(receiver,t1);};
 
-$.RetainedUtil__hitTest$bailout = function(state,env0,env1,env2,env3){switch(state){case 1:var element=env0;length$=env1;point=env2;hits=env3;break;}switch(state){case 0:var point=$.RetainedUtil_transformPointGlobalToLocal(element,point);var bounds=$.Rect$(0,0,element.get$width(),element.get$height());var hits=$.ListImplementation_List(null,'PElement');case 1:if(state===1||state===0&&bounds.contains$1(point)===true)switch(state){case 0:var length$=element.get$visualChildCount();case 1:state=0;for(var i=0;$.ltB(i,length$);++i){hits=$.RetainedUtil__hitTest(element.getVisualChild$1($.sub($.sub(length$,1),i)),point);if(hits.length>0)break;}hits.push(element);return hits;}else return [];}};
+$.RetainedUtil__hitTest$bailout = function(state,env0,env1,env2,env3){switch(state){case 1:var element=env0;length$=env1;point=env2;hits=env3;break;}switch(state){case 0:var point=$.RetainedUtil_transformPointGlobalToLocal(element,point);var bounds=$.Box$(0,0,element.get$width(),element.get$height());var hits=$.ListImplementation_List(null,'PElement');case 1:if(state===1||state===0&&bounds.contains$1(point)===true)switch(state){case 0:var length$=element.get$visualChildCount();case 1:state=0;for(var i=0;$.ltB(i,length$);++i){hits=$.RetainedUtil__hitTest(element.getVisualChild$1($.sub($.sub(length$,1),i)),point);if(hits.length>0)break;}hits.push(element);return hits;}else return [];}};
 
 $.Futures_wait$bailout = function(state,futures,t1){if($.isEmpty(futures)===true)return $.FutureImpl_FutureImpl$immediate($.CTC10,'List');var completer=$.CompleterImpl$('List');var result=completer.get$future();t1.remaining_1=$.get$length(futures);var values=$.ListImplementation_List($.get$length(futures));for(var i=0;$.ltB(i,$.get$length(futures));++i){var future=$.index(futures,i);future.then$1(new $.Futures_wait_anon(completer,i,t1,result,values));future.handleException$1(new $.Futures_wait_anon0(future,completer,result));}return result;};
 
@@ -2142,12 +2142,12 @@ $.CTC40 = 'IsMouseOver';
 $.CTC19 = new Isolate.$isolateProperties.Property(false, 'IsMouseOver');
 $.CTC25 = new Isolate.$isolateProperties._DeletedKeySentinel();
 $.CTC41 = 0;
-$.CTC42 = new Isolate.$isolateProperties._SimpleClientRect(0, 0, 0, 0);
+$.CTC42 = new Isolate.$isolateProperties._SimpleClientBox(0, 0, 0, 0);
 $.CTC43 = 'clickEvent';
 $.CTC21 = new Isolate.$isolateProperties.AttachedEvent('clickEvent');
 $.CTC31 = new Isolate.$isolateProperties.Object();
-$.CTC44 = 'Rectangle';
-$.CTC13 = new Isolate.$isolateProperties.ShapeType('Rectangle');
+$.CTC44 = 'Boxangle';
+$.CTC13 = new Isolate.$isolateProperties.ShapeType('Boxangle');
 $.CTC45 = 'structured clone of FileList';
 $.CTC6 = new Isolate.$isolateProperties.NotImplementedException('structured clone of FileList');
 $.CTC46 = 'offsetX is only supported on elements';
@@ -2174,7 +2174,7 @@ $.CTC56 = 'structured clone of Date';
 $.CTC2 = new Isolate.$isolateProperties.NotImplementedException('structured clone of Date');
 $.CTC57 = 'Ellipse';
 $.CTC14 = new Isolate.$isolateProperties.ShapeType('Ellipse');
-$.CTC27 = new Isolate.$isolateProperties.EmptyElementRect(Isolate.$isolateProperties.CTC42, Isolate.$isolateProperties.CTC42, Isolate.$isolateProperties.CTC42, Isolate.$isolateProperties.CTC42, Isolate.$isolateProperties.CTC10);
+$.CTC27 = new Isolate.$isolateProperties.EmptyElementBox(Isolate.$isolateProperties.CTC42, Isolate.$isolateProperties.CTC42, Isolate.$isolateProperties.CTC42, Isolate.$isolateProperties.CTC42, Isolate.$isolateProperties.CTC10);
 $.CTC58 = '_stageMouseCacheProperty';
 $.CTC15 = new Isolate.$isolateProperties.Property(null, '_stageMouseCacheProperty');
 $.CTC20 = new Isolate.$isolateProperties._UndefinedValue();
@@ -2382,7 +2382,7 @@ $.$defineNativeClass('HTMLCanvasElement', ["height=", "width="], {
 $.$defineNativeClass('CanvasRenderingContext2D', ["fillStyle=", "globalAlpha!"], {
  beginPath$0: function(){return this.beginPath();},
  bezierCurveTo$6: function(cp1x,cp1y,cp2x,cp2y,x,y){return this.bezierCurveTo(cp1x,cp1y,cp2x,cp2y,x,y);},
- clearRect$4: function(x,y,width,height){return this.clearRect(x,y,width,height);},
+ clearBox$4: function(x,y,width,height){return this.clearBox(x,y,width,height);},
  clip$0: function(){return this.clip();},
  closePath$0: function(){return this.closePath();},
  drawImage$9: function(canvas_OR_image_OR_video,sx_OR_x,sy_OR_y,sw_OR_width,height_OR_sh,dx,dy,dw,dh){return this.drawImage(canvas_OR_image_OR_video,sx_OR_x,sy_OR_y,sw_OR_width,height_OR_sh,dx,dy,dw,dh);},
@@ -2390,7 +2390,7 @@ $.$defineNativeClass('CanvasRenderingContext2D', ["fillStyle=", "globalAlpha!"],
   return this.drawImage(canvas_OR_image_OR_video,sx_OR_x,sy_OR_y);
 },
  fill$0: function(){return this.fill();},
- fillRect$4: function(x,y,width,height){return this.fillRect(x,y,width,height);},
+ fillBox$4: function(x,y,width,height){return this.fillBox(x,y,width,height);},
  moveTo$2: function(x,y){return this.moveTo(x,y);},
  rect$4: function(x,y,width,height){return this.rect(x,y,width,height);},
  restore$0: function(){return this.restore();},
@@ -2402,10 +2402,10 @@ $.$defineNativeClass('CanvasRenderingContext2D', ["fillStyle=", "globalAlpha!"],
 $.$defineNativeClass('CharacterData', ["length?"], {
 });
 
-$.$defineNativeClass('ClientRect', ["height?", "left?", "top?", "width?"], {
+$.$defineNativeClass('ClientBox', ["height?", "left?", "top?", "width?"], {
 });
 
-$.$defineNativeClass('ClientRectList', ["length?"], {
+$.$defineNativeClass('ClientBoxList', ["length?"], {
 });
 
 _ConsoleImpl = (typeof console == 'undefined' ? {} : console);
@@ -2523,7 +2523,7 @@ $.$defineNativeClass('HTMLDocument', [], {
 
 $.$defineNativeClass('DocumentFragment', [], {
  query$1: function(selectors){return this.$dom_querySelector$1(selectors);},
- get$rect: function(){return $._createMeasurementFuture(new $._DocumentFragmentImpl_rect_anon(),$.CompleterImpl$('ElementRect'));},
+ get$rect: function(){return $._createMeasurementFuture(new $._DocumentFragmentImpl_rect_anon(),$.CompleterImpl$('ElementBox'));},
  rect$4: function(arg0, arg1, arg2, arg3) { return this.get$rect().call$4(arg0, arg1, arg2, arg3); },
  get$translate: function(){return false;},
  translate$2: function(arg0, arg1) { return this.get$translate().call$2(arg0, arg1); },
@@ -2539,7 +2539,7 @@ $.$defineNativeClass('DocumentType', ["name?"], {
 
 $.$defineNativeClass('Element', ["id?"], {
  query$1: function(selectors){return this.$dom_querySelector$1(selectors);},
- get$rect: function(){return $._createMeasurementFuture(new $._ElementImpl_rect_anon(this),$.CompleterImpl$('ElementRect'));},
+ get$rect: function(){return $._createMeasurementFuture(new $._ElementImpl_rect_anon(this),$.CompleterImpl$('ElementBox'));},
  rect$4: function(arg0, arg1, arg2, arg3) { return this.get$rect().call$4(arg0, arg1, arg2, arg3); },
  get$on: function(){  if (Object.getPrototypeOf(this).hasOwnProperty('get$on')) {
   {return $._ElementEventsImpl$(this);}  } else {
@@ -2559,8 +2559,8 @@ $.$defineNativeClass('Element', ["id?"], {
  get$$$dom_scrollLeft: function(){return this.scrollLeft;},
  get$$$dom_scrollTop: function(){return this.scrollTop;},
  get$$$dom_scrollWidth: function(){return this.scrollWidth;},
- $dom_getBoundingClientRect$0: function(){return this.getBoundingClientRect();},
- $dom_getClientRects$0: function(){return this.getClientRects();},
+ $dom_getBoundingClientBox$0: function(){return this.getBoundingClientBox();},
+ $dom_getClientBoxs$0: function(){return this.getClientBoxs();},
  $dom_querySelector$1: function(selectors){return this.querySelector(selectors);},
  is$Element: function() { return true; }
 });
@@ -3077,8 +3077,8 @@ $.$defineNativeClass('HTMLModElement', [], {
 });
 
 $.$defineNativeClass('MouseEvent', ["shiftKey?", "x?", "y?"], {
- get$offsetX: function(){if(!!this.offsetX)return this.get$_offsetX();else{var target=this.target;if(!(typeof target==='object'&&target!==null&&target.is$Element()))throw $.$$throw($.CTC18);return $.sub(this.clientX,target.$dom_getBoundingClientRect$0().get$left());}},
- get$offsetY: function(){if(!!this.offsetY)return this.get$_offsetY();else{var target=this.target;if(!(typeof target==='object'&&target!==null&&target.is$Element()))throw $.$$throw($.CTC18);return $.sub(this.clientY,target.$dom_getBoundingClientRect$0().get$top());}},
+ get$offsetX: function(){if(!!this.offsetX)return this.get$_offsetX();else{var target=this.target;if(!(typeof target==='object'&&target!==null&&target.is$Element()))throw $.$$throw($.CTC18);return $.sub(this.clientX,target.$dom_getBoundingClientBox$0().get$left());}},
+ get$offsetY: function(){if(!!this.offsetY)return this.get$_offsetY();else{var target=this.target;if(!(typeof target==='object'&&target!==null&&target.is$Element()))throw $.$$throw($.CTC18);return $.sub(this.clientY,target.$dom_getBoundingClientBox$0().get$top());}},
  get$_offsetX: function(){return this.offsetX},
  get$_offsetY: function(){return this.offsetY}
 });
@@ -3215,7 +3215,7 @@ $.$defineNativeClass('RangeException', ["message?", "name?"], {
  toString$0: function(){return this.toString();}
 });
 
-$.$defineNativeClass('Rect', ["left?", "top?"], {
+$.$defineNativeClass('Box', ["left?", "top?"], {
 });
 
 $.$defineNativeClass('SQLError', ["message?"], {
@@ -3613,10 +3613,10 @@ $.$defineNativeClass('SVGRadialGradientElement', [], {
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('SVGRect', ["height=", "width=", "x?", "y?"], {
+$.$defineNativeClass('SVGBox', ["height=", "width=", "x?", "y?"], {
 });
 
-$.$defineNativeClass('SVGRectElement', ["height?", "width?", "x?", "y?"], {
+$.$defineNativeClass('SVGBoxElement', ["height?", "width?", "x?", "y?"], {
  transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); },
  is$Element: function() { return true; }
 });
@@ -4062,7 +4062,7 @@ $.$defineNativeClass('DOMWindow', [], {
   var v3/*class(_SVGGradientElementImpl)*/ = 'SVGGradientElement|SVGRadialGradientElement|SVGLinearGradientElement|SVGRadialGradientElement|SVGLinearGradientElement';
   var v4/*class(_SVGComponentTransferFunctionElementImpl)*/ = 'SVGComponentTransferFunctionElement|SVGFEFuncRElement|SVGFEFuncGElement|SVGFEFuncBElement|SVGFEFuncAElement|SVGFEFuncRElement|SVGFEFuncGElement|SVGFEFuncBElement|SVGFEFuncAElement';
   var v5/*class(_SVGAnimationElementImpl)*/ = 'SVGAnimationElement|SVGSetElement|SVGAnimateTransformElement|SVGAnimateMotionElement|SVGAnimateElement|SVGAnimateColorElement|SVGSetElement|SVGAnimateTransformElement|SVGAnimateMotionElement|SVGAnimateElement|SVGAnimateColorElement';
-  var v6/*class(_SVGElementImpl)*/ = [v2/*class(_SVGTextContentElementImpl)*/,v3/*class(_SVGGradientElementImpl)*/,v4/*class(_SVGComponentTransferFunctionElementImpl)*/,v5/*class(_SVGAnimationElementImpl)*/,v2/*class(_SVGTextContentElementImpl)*/,v3/*class(_SVGGradientElementImpl)*/,v4/*class(_SVGComponentTransferFunctionElementImpl)*/,v5/*class(_SVGAnimationElementImpl)*/,'SVGElement|SVGViewElement|SVGVKernElement|SVGUseElement|SVGTitleElement|SVGSymbolElement|SVGSwitchElement|SVGStyleElement|SVGStopElement|SVGScriptElement|SVGSVGElement|SVGRectElement|SVGPolylineElement|SVGPolygonElement|SVGPatternElement|SVGPathElement|SVGMissingGlyphElement|SVGMetadataElement|SVGMaskElement|SVGMarkerElement|SVGMPathElement|SVGLineElement|SVGImageElement|SVGHKernElement|SVGGlyphRefElement|SVGGlyphElement|SVGGElement|SVGForeignObjectElement|SVGFontFaceUriElement|SVGFontFaceSrcElement|SVGFontFaceNameElement|SVGFontFaceFormatElement|SVGFontFaceElement|SVGFontElement|SVGFilterElement|SVGFETurbulenceElement|SVGFETileElement|SVGFESpotLightElement|SVGFESpecularLightingElement|SVGFEPointLightElement|SVGFEOffsetElement|SVGFEMorphologyElement|SVGFEMergeNodeElement|SVGFEMergeElement|SVGFEImageElement|SVGFEGaussianBlurElement|SVGFEFloodElement|SVGFEDropShadowElement|SVGFEDistantLightElement|SVGFEDisplacementMapElement|SVGFEDiffuseLightingElement|SVGFEConvolveMatrixElement|SVGFECompositeElement|SVGFEComponentTransferElement|SVGFEColorMatrixElement|SVGFEBlendElement|SVGEllipseElement|SVGDescElement|SVGDefsElement|SVGCursorElement|SVGClipPathElement|SVGCircleElement|SVGAltGlyphItemElement|SVGAltGlyphDefElement|SVGAElement|SVGViewElement|SVGVKernElement|SVGUseElement|SVGTitleElement|SVGSymbolElement|SVGSwitchElement|SVGStyleElement|SVGStopElement|SVGScriptElement|SVGSVGElement|SVGRectElement|SVGPolylineElement|SVGPolygonElement|SVGPatternElement|SVGPathElement|SVGMissingGlyphElement|SVGMetadataElement|SVGMaskElement|SVGMarkerElement|SVGMPathElement|SVGLineElement|SVGImageElement|SVGHKernElement|SVGGlyphRefElement|SVGGlyphElement|SVGGElement|SVGForeignObjectElement|SVGFontFaceUriElement|SVGFontFaceSrcElement|SVGFontFaceNameElement|SVGFontFaceFormatElement|SVGFontFaceElement|SVGFontElement|SVGFilterElement|SVGFETurbulenceElement|SVGFETileElement|SVGFESpotLightElement|SVGFESpecularLightingElement|SVGFEPointLightElement|SVGFEOffsetElement|SVGFEMorphologyElement|SVGFEMergeNodeElement|SVGFEMergeElement|SVGFEImageElement|SVGFEGaussianBlurElement|SVGFEFloodElement|SVGFEDropShadowElement|SVGFEDistantLightElement|SVGFEDisplacementMapElement|SVGFEDiffuseLightingElement|SVGFEConvolveMatrixElement|SVGFECompositeElement|SVGFEComponentTransferElement|SVGFEColorMatrixElement|SVGFEBlendElement|SVGEllipseElement|SVGDescElement|SVGDefsElement|SVGCursorElement|SVGClipPathElement|SVGCircleElement|SVGAltGlyphItemElement|SVGAltGlyphDefElement|SVGAElement'].join('|');
+  var v6/*class(_SVGElementImpl)*/ = [v2/*class(_SVGTextContentElementImpl)*/,v3/*class(_SVGGradientElementImpl)*/,v4/*class(_SVGComponentTransferFunctionElementImpl)*/,v5/*class(_SVGAnimationElementImpl)*/,v2/*class(_SVGTextContentElementImpl)*/,v3/*class(_SVGGradientElementImpl)*/,v4/*class(_SVGComponentTransferFunctionElementImpl)*/,v5/*class(_SVGAnimationElementImpl)*/,'SVGElement|SVGViewElement|SVGVKernElement|SVGUseElement|SVGTitleElement|SVGSymbolElement|SVGSwitchElement|SVGStyleElement|SVGStopElement|SVGScriptElement|SVGSVGElement|SVGBoxElement|SVGPolylineElement|SVGPolygonElement|SVGPatternElement|SVGPathElement|SVGMissingGlyphElement|SVGMetadataElement|SVGMaskElement|SVGMarkerElement|SVGMPathElement|SVGLineElement|SVGImageElement|SVGHKernElement|SVGGlyphRefElement|SVGGlyphElement|SVGGElement|SVGForeignObjectElement|SVGFontFaceUriElement|SVGFontFaceSrcElement|SVGFontFaceNameElement|SVGFontFaceFormatElement|SVGFontFaceElement|SVGFontElement|SVGFilterElement|SVGFETurbulenceElement|SVGFETileElement|SVGFESpotLightElement|SVGFESpecularLightingElement|SVGFEPointLightElement|SVGFEOffsetElement|SVGFEMorphologyElement|SVGFEMergeNodeElement|SVGFEMergeElement|SVGFEImageElement|SVGFEGaussianBlurElement|SVGFEFloodElement|SVGFEDropShadowElement|SVGFEDistantLightElement|SVGFEDisplacementMapElement|SVGFEDiffuseLightingElement|SVGFEConvolveMatrixElement|SVGFECompositeElement|SVGFEComponentTransferElement|SVGFEColorMatrixElement|SVGFEBlendElement|SVGEllipseElement|SVGDescElement|SVGDefsElement|SVGCursorElement|SVGClipPathElement|SVGCircleElement|SVGAltGlyphItemElement|SVGAltGlyphDefElement|SVGAElement|SVGViewElement|SVGVKernElement|SVGUseElement|SVGTitleElement|SVGSymbolElement|SVGSwitchElement|SVGStyleElement|SVGStopElement|SVGScriptElement|SVGSVGElement|SVGBoxElement|SVGPolylineElement|SVGPolygonElement|SVGPatternElement|SVGPathElement|SVGMissingGlyphElement|SVGMetadataElement|SVGMaskElement|SVGMarkerElement|SVGMPathElement|SVGLineElement|SVGImageElement|SVGHKernElement|SVGGlyphRefElement|SVGGlyphElement|SVGGElement|SVGForeignObjectElement|SVGFontFaceUriElement|SVGFontFaceSrcElement|SVGFontFaceNameElement|SVGFontFaceFormatElement|SVGFontFaceElement|SVGFontElement|SVGFilterElement|SVGFETurbulenceElement|SVGFETileElement|SVGFESpotLightElement|SVGFESpecularLightingElement|SVGFEPointLightElement|SVGFEOffsetElement|SVGFEMorphologyElement|SVGFEMergeNodeElement|SVGFEMergeElement|SVGFEImageElement|SVGFEGaussianBlurElement|SVGFEFloodElement|SVGFEDropShadowElement|SVGFEDistantLightElement|SVGFEDisplacementMapElement|SVGFEDiffuseLightingElement|SVGFEConvolveMatrixElement|SVGFECompositeElement|SVGFEComponentTransferElement|SVGFEColorMatrixElement|SVGFEBlendElement|SVGEllipseElement|SVGDescElement|SVGDefsElement|SVGCursorElement|SVGClipPathElement|SVGCircleElement|SVGAltGlyphItemElement|SVGAltGlyphDefElement|SVGAElement'].join('|');
   var v7/*class(_MediaElementImpl)*/ = 'HTMLMediaElement|HTMLVideoElement|HTMLAudioElement|HTMLVideoElement|HTMLAudioElement';
   var v8/*class(_ElementImpl)*/ = [v6/*class(_SVGElementImpl)*/,v7/*class(_MediaElementImpl)*/,v6/*class(_SVGElementImpl)*/,v7/*class(_MediaElementImpl)*/,'Element|HTMLUnknownElement|HTMLUListElement|HTMLTrackElement|HTMLTitleElement|HTMLTextAreaElement|HTMLTableSectionElement|HTMLTableRowElement|HTMLTableElement|HTMLTableColElement|HTMLTableCellElement|HTMLTableCaptionElement|HTMLStyleElement|HTMLSpanElement|HTMLSourceElement|HTMLShadowElement|HTMLSelectElement|HTMLScriptElement|HTMLQuoteElement|HTMLProgressElement|HTMLPreElement|HTMLParamElement|HTMLParagraphElement|HTMLOutputElement|HTMLOptionElement|HTMLOptGroupElement|HTMLObjectElement|HTMLOListElement|HTMLModElement|HTMLMeterElement|HTMLMetaElement|HTMLMenuElement|HTMLMarqueeElement|HTMLMapElement|HTMLLinkElement|HTMLLegendElement|HTMLLabelElement|HTMLLIElement|HTMLKeygenElement|HTMLInputElement|HTMLImageElement|HTMLIFrameElement|HTMLHtmlElement|HTMLHeadingElement|HTMLHeadElement|HTMLHRElement|HTMLFrameSetElement|HTMLFrameElement|HTMLFormElement|HTMLFontElement|HTMLFieldSetElement|HTMLEmbedElement|HTMLDivElement|HTMLDirectoryElement|HTMLDetailsElement|HTMLDataListElement|HTMLDListElement|HTMLContentElement|HTMLCanvasElement|HTMLButtonElement|HTMLBodyElement|HTMLBaseFontElement|HTMLBaseElement|HTMLBRElement|HTMLAreaElement|HTMLAppletElement|HTMLAnchorElement|HTMLElement|HTMLUnknownElement|HTMLUListElement|HTMLTrackElement|HTMLTitleElement|HTMLTextAreaElement|HTMLTableSectionElement|HTMLTableRowElement|HTMLTableElement|HTMLTableColElement|HTMLTableCellElement|HTMLTableCaptionElement|HTMLStyleElement|HTMLSpanElement|HTMLSourceElement|HTMLShadowElement|HTMLSelectElement|HTMLScriptElement|HTMLQuoteElement|HTMLProgressElement|HTMLPreElement|HTMLParamElement|HTMLParagraphElement|HTMLOutputElement|HTMLOptionElement|HTMLOptGroupElement|HTMLObjectElement|HTMLOListElement|HTMLModElement|HTMLMeterElement|HTMLMetaElement|HTMLMenuElement|HTMLMarqueeElement|HTMLMapElement|HTMLLinkElement|HTMLLegendElement|HTMLLabelElement|HTMLLIElement|HTMLKeygenElement|HTMLInputElement|HTMLImageElement|HTMLIFrameElement|HTMLHtmlElement|HTMLHeadingElement|HTMLHeadElement|HTMLHRElement|HTMLFrameSetElement|HTMLFrameElement|HTMLFormElement|HTMLFontElement|HTMLFieldSetElement|HTMLEmbedElement|HTMLDivElement|HTMLDirectoryElement|HTMLDetailsElement|HTMLDataListElement|HTMLDListElement|HTMLContentElement|HTMLCanvasElement|HTMLButtonElement|HTMLBodyElement|HTMLBaseFontElement|HTMLBaseElement|HTMLBRElement|HTMLAreaElement|HTMLAppletElement|HTMLAnchorElement|HTMLElement'].join('|');
   var v9/*class(_DocumentFragmentImpl)*/ = 'DocumentFragment|ShadowRoot|ShadowRoot';

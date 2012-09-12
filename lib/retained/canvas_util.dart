@@ -70,15 +70,15 @@ class CanvasUtil {
   }
 
   static void drawImage(CanvasRenderingContext2D ctx, ImageElement img,
-                        core.Rect sourceRect, [core.Rect targetRect = null]) {
+                        core.Box sourceBox, [core.Box targetBox = null]) {
 
-    if(targetRect == null) {
-      targetRect = new core.Rect(0, 0, sourceRect.width, sourceRect.height);
+    if(targetBox == null) {
+      targetBox = new core.Box(0, 0, sourceBox.width, sourceBox.height);
     }
 
     ctx.drawImage(img,
-        sourceRect.left, sourceRect.top, sourceRect.width, sourceRect.height,
-        targetRect.left, targetRect.top, targetRect.width, targetRect.height);
+        sourceBox.left, sourceBox.top, sourceBox.width, sourceBox.height,
+        targetBox.left, targetBox.top, targetBox.width, targetBox.height);
   }
 
   static void ellipse(CanvasRenderingContext2D ctx,

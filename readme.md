@@ -14,7 +14,7 @@ Starting by porting bits of the [PL javascript library](https://github.com/think
  * __exceptions__
  * __graph__
  * __math__
-     * `Coordinate`, `Rect`, `Size`, `Vector`, `AffineTransfrom`
+     * `Coordinate`, `Box`, `Size`, `Vector`, `AffineTransfrom`
  * __property__
      * A general model for supporting runtime-defined properties supported objects.
      * This functionality is inspired by the Dependency Property model in WPF/Silverlight.

@@ -37,7 +37,7 @@ class Panel extends ElementParentImpl {
   void drawOverride(CanvasRenderingContext2D ctx) {
     if(background != null) {
       ctx.fillStyle = background;
-      ctx.fillRect(0, 0, width, height);
+      ctx.fillBox(0, 0, width, height);
     }
     super.drawOverride(ctx);
   }

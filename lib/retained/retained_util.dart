@@ -6,7 +6,7 @@ class RetainedUtil {
   static List<PElement> _hitTest(PElement element, core.Coordinate point){
     point = transformPointGlobalToLocal(element, point);
 
-    var bounds = new core.Rect(0, 0, element.width, element.height);
+    var bounds = new core.Box(0, 0, element.width, element.height);
 
     var hits = new List<PElement>();
     if (bounds.contains(point)) {
@@ -39,7 +39,7 @@ class RetainedUtil {
   }
 
   static List<core.Coordinate> getCorners(PElement element) {
-    final rect = new core.Rect(0,0,element.width, element.height);
+    final rect = new core.Box(0,0,element.width, element.height);
     final points = rect.getCorners();
     return core.$(points).select((p) {
       return transformPointLocalToGlobal(element, p);

@@ -1,10 +1,10 @@
-class Rect implements Hashable{
+class Box implements Hashable{
   final num left, top, width, height;
 
-  const Rect(this.left, this.top, this.width, this.height);
+  const Box(this.left, this.top, this.width, this.height);
 
-  factory Rect.fromCoordSize(Coordinate topLeft, Size size) {
-    return new Rect(topLeft.x, topLeft.y, size.width, size.height);
+  factory Box.fromCoordSize(Coordinate topLeft, Size size) {
+    return new Box(topLeft.x, topLeft.y, size.width, size.height);
   }
 
   Coordinate get topLeft => new Coordinate(left, top);
@@ -45,7 +45,7 @@ class Rect implements Hashable{
     ];
   }
 
-  bool operator ==(Rect other) {
+  bool operator ==(Box other) {
     return other !== null && other.left == left && other.top == top &&
         other.width == width && other.height == height;
   }

@@ -27,7 +27,7 @@ class Stage extends core.AttachableObjectImpl
     if (_ctx == null) {
       _ctx = _canvas.context2d;
     } else {
-      this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
+      this._ctx.clearBox(0, 0, this._canvas.width, this._canvas.height);
     }
 
     return this._element.draw(this._ctx);

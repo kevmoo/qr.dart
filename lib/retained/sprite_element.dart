@@ -38,7 +38,7 @@ class SpriteElement extends ImgElement {
 
     final sourceCoord = startCoordinate + nextDelta * theFrame;
 
-    final rect = new core.Rect.fromCoordSize(sourceCoord, size);
+    final rect = new core.Box.fromCoordSize(sourceCoord, size);
 
     CanvasUtil.drawImage(ctx, _image, rect);
   }

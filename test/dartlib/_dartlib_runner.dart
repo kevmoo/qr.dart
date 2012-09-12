@@ -41,7 +41,7 @@ void runDartlibTests() {
     TestArray2d.run();
 
     TestCoordinate.run();
-    TestRect.run();
+    TestBox.run();
     TestVector.run();
     TestAffineTransform.run();
 
