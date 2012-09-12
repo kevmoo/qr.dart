@@ -16,7 +16,7 @@ class Shape extends PElement {
     ctx.fillStyle = _fillStyle;
     switch(shapeType){
       case ShapeType.rect:
-        ctx.fillBox(0, 0, size.width, size.height);
+        ctx.fillRect(0, 0, size.width, size.height);
         break;
       case ShapeType.ellipse:
         CanvasUtil.ellipse(ctx, 0, 0, this.width, this.height);
