@@ -1,6 +1,6 @@
 #import('dart:html');
 #import('dart:math', prefix:'math');
-#import('../../lib/dartlib.dart', prefix:'core');
+#import('../../lib/dartlib.dart');
 #import('../../lib/html.dart');
 #import('../../lib/retained.dart');
 
@@ -13,8 +13,8 @@ main(){
 class SpinDemo{
   final CanvasElement _canvas;
   final Stage _stage;
-  final core.AffineTransform _tx;
-  core.Coordinate _mouseLocation;
+  final AffineTransform _tx;
+  Coordinate _mouseLocation;
 
   factory SpinDemo(CanvasElement canvas){
 
@@ -26,10 +26,10 @@ class SpinDemo{
     pCanvas.addElement(blue);
 
     pCanvas.addElement(green);
-    pCanvas.setTopLeft(green, new core.Coordinate(15, 15));
+    pCanvas.setTopLeft(green, new Coordinate(15, 15));
 
     pCanvas.addElement(red);
-    pCanvas.setCenter(red, new core.Coordinate(50, 50));
+    pCanvas.setCenter(red, new Coordinate(50, 50));
 
 
     pCanvas.addTransform().translate(

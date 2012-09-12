@@ -3,7 +3,7 @@
 #import('dart:html');
 #import('dart:math', prefix:'math');
 
-#import('dartlib.dart', prefix:'core');
+#import('dartlib.dart');
 #import('html.dart');
 
 #source('retained/retained_debug.dart');

@@ -1,12 +1,12 @@
 #import('dart:html');
 #import('dart:math', prefix:'math');
-#import('../../lib/dartlib.dart', prefix:'core');
+#import('../../lib/dartlib.dart');
 #import('../../lib/retained.dart');
 
 main(){
   final CanvasElement canvas = document.query("#content");
   final ctx = canvas.context2d;
-  final tx = new core.AffineTransform();
+  final tx = new AffineTransform();
   tx.scale(200, 200);
   tx.translate(0, 1.5);
   tx.rotate(-math.PI / 2, 2, 0);
@@ -33,7 +33,7 @@ void drawBranch(CanvasRenderingContext2D ctx, [int levels = 12]) {
 
   // Right branch
   ctx.save();
-  var rightTx = new core.AffineTransform();
+  var rightTx = new AffineTransform();
   rightTx.translate(1, 0);
   rightTx.scale(ratio, ratio);
   rightTx.rotate(angle, 0,0);
@@ -43,7 +43,7 @@ void drawBranch(CanvasRenderingContext2D ctx, [int levels = 12]) {
 
   // left branch
   ctx.save();
-  rightTx = new core.AffineTransform();
+  rightTx = new AffineTransform();
   rightTx.translate(1, 0);
   rightTx.scale(ratio, ratio);
   rightTx.rotate(-angle, 0,0);

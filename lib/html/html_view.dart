@@ -3,7 +3,7 @@ class HtmlView {
   bool _dirty;
 
   HtmlView(this._node) {
-    core.requireArgumentNotNull(this._node, 'node');
+    requireArgumentNotNull(this._node, 'node');
     _dirty = true;
   }
 

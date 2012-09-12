@@ -1,9 +1,9 @@
 class ClickManager {
-  static final core.Property<bool> _isClickableProperty =
-      const core.Property<bool>("isClickable", false);
+  static final Property<bool> _isClickableProperty =
+      const Property<bool>("isClickable", false);
 
-  static final core.AttachedEvent<ElementMouseEventArgs> _clickEvent =
-      const core.AttachedEvent<ElementMouseEventArgs>('clickEvent');
+  static final AttachedEvent<ElementMouseEventArgs> _clickEvent =
+      const AttachedEvent<ElementMouseEventArgs>('clickEvent');
 
   final Stage _stage;
 
@@ -34,11 +34,11 @@ class ClickManager {
     return _isClickableProperty.get(element);
   }
 
-  static core.GlobalId addHandler(PElement element, core.Action1 handler) {
+  static GlobalId addHandler(PElement element, Action1 handler) {
     return _clickEvent.addHandler(element, handler);
   }
 
-  static bool removeHandler(PElement obj, core.GlobalId handlerId) {
+  static bool removeHandler(PElement obj, GlobalId handlerId) {
     return _clickEvent.removeHandler(obj, handlerId);
   }
 
@@ -61,7 +61,7 @@ class ClickManager {
 
     if(_mouseDownElement != null) {
       final hits = _updateMouseLocation(getMouseEventCoordinate(e));
-      final upElement = core.$(hits).firstOrDefault((e) {
+      final upElement = $(hits).firstOrDefault((e) {
         return _isClickableProperty.get(e);
       });
       if(upElement == _mouseDownElement) {
@@ -74,12 +74,12 @@ class ClickManager {
   void _mouseDown(MouseEvent e) {
     final coord = getMouseEventCoordinate(e);
     final hits = _updateMouseLocation(coord);
-    _mouseDownElement = core.$(hits).firstOrDefault((e) {
+    _mouseDownElement = $(hits).firstOrDefault((e) {
       return _isClickableProperty.get(e);
     });
   }
 
-  List<PElement> _updateMouseLocation(core.Coordinate value) {
+  List<PElement> _updateMouseLocation(Coordinate value) {
     return Mouse.markMouseOver(_stage, value);
   }
 

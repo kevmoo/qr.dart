@@ -1,15 +1,15 @@
 class SpriteElement extends ImgElement {
-  final core.Coordinate startCoordinate;
-  final core.Vector nextDelta;
+  final Coordinate startCoordinate;
+  final Vector nextDelta;
   final int count;
 
   int _frame = 0;
 
   factory SpriteElement.horizontalFromUrl(String src, num w, num h,
-      int count, num xDelta, [core.Coordinate start = const core.Coordinate()]) {
+      int count, num xDelta, [Coordinate start = const Coordinate()]) {
     final img = new ImageElement(src, null, null);
 
-    return new SpriteElement(img, w, h, start, new core.Vector(xDelta, 0), count);
+    return new SpriteElement(img, w, h, start, new Vector(xDelta, 0), count);
   }
 
   SpriteElement(ImageElement image, num width, num height,
@@ -38,7 +38,7 @@ class SpriteElement extends ImgElement {
 
     final sourceCoord = startCoordinate + nextDelta * theFrame;
 
-    final rect = new core.Box.fromCoordSize(sourceCoord, size);
+    final rect = new Box.fromCoordSize(sourceCoord, size);
 
     CanvasUtil.drawImage(ctx, _image, rect);
   }

@@ -1,6 +1,6 @@
 class Panel extends ElementParentImpl {
-  static final core.Property<core.AffineTransform> _containerTransformProperty =
-      const core.Property<core.AffineTransform>("panelTransform");
+  static final Property<AffineTransform> _containerTransformProperty =
+      const Property<AffineTransform>("panelTransform");
 
   final List<PElement> _children;
   String background;
@@ -27,7 +27,7 @@ class Panel extends ElementParentImpl {
 
   int get visualChildCount => _children.length;
 
-  core.AffineTransform getChildTransform(child) {
+  AffineTransform getChildTransform(child) {
     assert(hasVisualChild(child));
     var tx = _containerTransformProperty.get(child);
     assert(tx != null);

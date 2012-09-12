@@ -27,7 +27,7 @@ class ElementParentImpl
     _forEach((e) => e.drawCore(ctx));
   }
 
-  void _forEach(core.Action1<PElement> f) {
+  void _forEach(Action1<PElement> f) {
     final length = visualChildCount;
     for(int i = 0; i < length; i++) {
       f(getVisualChild(i));

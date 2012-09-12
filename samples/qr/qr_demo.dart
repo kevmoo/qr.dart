@@ -2,7 +2,7 @@
 #import('dart:isolate');
 #import('dart:math', prefix:'math');
 
-#import('../../lib/dartlib.dart', prefix:'core');
+#import('../../lib/dartlib.dart');
 #import('../../lib/qr.dart');
 #import('../../lib/async.dart');
 
@@ -33,7 +33,7 @@ main(){
 class QrDemo{
   static final String _typeRadioIdKey = 'type-value';
   static final String _errorLevelIdKey = 'error-value';
-  final core.BungeeNum _scale;
+  final BungeeNum _scale;
   final CanvasElement _canvas;
   final _QrCalc _qrMapper;
   final CanvasRenderingContext2D _ctx;
@@ -50,7 +50,7 @@ class QrDemo{
     _canvas = canvas,
     _ctx = canvas.context2d,
     _qrMapper = new _QrCalc(),
-    _scale = new core.BungeeNum(1) {
+    _scale = new BungeeNum(1) {
     _ctx.fillStyle = 'black';
 
     _qrMapper.outputChanged.add((args) {
@@ -100,9 +100,9 @@ class QrDemo{
     }
   }
 
-  core.EventRoot get updated => _qrMapper.outputChanged;
+  EventRoot get updated => _qrMapper.outputChanged;
 
-  core.EventRoot get error => _qrMapper.error;
+  EventRoot get error => _qrMapper.error;
 
   String get value => _value;
 

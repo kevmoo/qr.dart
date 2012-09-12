@@ -1,6 +1,6 @@
 #import('dart:html');
 #import('dart:isolate');
-#import('../../lib/dartlib.dart', prefix:'core');
+#import('../../lib/dartlib.dart');
 #import('../../lib/async.dart');
 #import('../../lib/html.dart');
 #import('../../lib/retained.dart');
@@ -14,11 +14,11 @@ main(){
 class DraggerDemo{
   final CanvasElement _canvas;
   final Stage _stage;
-  final core.AffineTransform _tx;
+  final AffineTransform _tx;
   final Dragger _dragger;
   final _DemoValue _demoMapper;
 
-  core.Coordinate _mouseLocation;
+  Coordinate _mouseLocation;
   bool _frameRequested = false;
   bool _overShape = false;
 
@@ -26,7 +26,7 @@ class DraggerDemo{
 
     final image =
         new SpriteElement.horizontalFromUrl('disasteroids2_master.png',
-            28, 28, 16, 29, new core.Coordinate(35,354));
+            28, 28, 16, 29, new Coordinate(35,354));
 
     var tx = image.addTransform();
 
@@ -62,13 +62,13 @@ class DraggerDemo{
     requestFrame();
   }
 
-  void _onDrag(core.Vector delta) {
+  void _onDrag(Vector delta) {
     _tx.translate(delta.x, delta.y);
     _demoMapper.input = _tx.translateVector;
     requestFrame();
   }
 
-  void _onDragStart(core.CancelableEventArgs e) {
+  void _onDragStart(CancelableEventArgs e) {
     if(!_overShape) {
       e.cancel();
     }
@@ -107,7 +107,7 @@ class DraggerDemo{
     _setMouse(null);
   }
 
-  void _setMouse(core.Coordinate value) {
+  void _setMouse(Coordinate value) {
     _mouseLocation = value;
     final hits = Mouse.markMouseOver(_stage, _mouseLocation);
     if(hits != null && hits.length > 0 && hits[0] is ImgElement) {
@@ -121,12 +121,12 @@ class DraggerDemo{
   }
 }
 
-class _DemoValue extends SendPortValue<core.Coordinate, int> {
+class _DemoValue extends SendPortValue<Coordinate, int> {
   _DemoValue() : super(spawnFunction(_demoIsolate));
 }
 
 void _demoIsolate() {
-  new SendValuePort<core.Coordinate, int>((input) {
+  new SendValuePort<Coordinate, int>((input) {
     final start = new Date.now();
     Duration delta;
     do {

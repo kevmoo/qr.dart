@@ -1,18 +1,18 @@
-class Stage extends core.AttachableObjectImpl
+class Stage extends AttachableObjectImpl
   implements ElementParent {
   final CanvasElement _canvas;
   final PElement _element;
-  final core.EventHandle<core.EventArgs> _invalidatedEventHandle;
+  final EventHandle<EventArgs> _invalidatedEventHandle;
   CanvasRenderingContext2D _ctx;
 
   Stage(this._canvas, this._element) :
-    _invalidatedEventHandle = new core.EventHandle<core.EventArgs>() {
+    _invalidatedEventHandle = new EventHandle<EventArgs>() {
     _element.registerParent(this);
   }
 
-  core.Size get size => new core.Size(_canvas.width, _canvas.height);
+  Size get size => new Size(_canvas.width, _canvas.height);
 
-  core.EventRoot<core.EventArgs> get invalidated => _invalidatedEventHandle;
+  EventRoot<EventArgs> get invalidated => _invalidatedEventHandle;
 
   PElement get rootElement => _element;
 
@@ -35,7 +35,7 @@ class Stage extends core.AttachableObjectImpl
 
   void childInvalidated(PElement child){
     assert(child == _element);
-    _invalidatedEventHandle.fireEvent(core.EventArgs.empty);
+    _invalidatedEventHandle.fireEvent(EventArgs.empty);
   }
 
   void disposeInternal(){
@@ -43,5 +43,5 @@ class Stage extends core.AttachableObjectImpl
     _invalidatedEventHandle.dispose();
   }
 
-  core.AffineTransform getTransformToRoot() => new core.AffineTransform();
+  AffineTransform getTransformToRoot() => new AffineTransform();
 }

@@ -4,13 +4,13 @@ class CanvasUtil {
    */
   static final num kappa = 0.55228474983079339840225163227959743809289583383593;
 
-  static core.Size getCanvasSize(CanvasElement canvasElement) {
-    return new core.Size(canvasElement.width, canvasElement.height);
+  static Size getCanvasSize(CanvasElement canvasElement) {
+    return new Size(canvasElement.width, canvasElement.height);
   }
 
-  static void transform(CanvasRenderingContext2D ctx, core.AffineTransform tx){
-    core.requireArgumentNotNull(ctx, 'ctx');
-    core.requireArgumentNotNull(tx, 'tx');
+  static void transform(CanvasRenderingContext2D ctx, AffineTransform tx){
+    requireArgumentNotNull(ctx, 'ctx');
+    requireArgumentNotNull(tx, 'tx');
 
     ctx.transform(tx.scaleX, tx.shearY, tx.shearX,
       tx.scaleY, tx.translateX, tx.translateY);
@@ -23,13 +23,13 @@ class CanvasUtil {
 
   static void star(CanvasRenderingContext2D ctx, num x, num y,
                    num outterRadius, [int pointCount = 5]) {
-    core.requireArgumentNotNull(ctx, 'ctx');
-    core.requireArgument(core.isValidNumber(x), 'x');
-    core.requireArgument(core.isValidNumber(y), 'y');
-    core.requireArgument(core.isValidNumber(outterRadius), 'outterRadius');
-    core.requireArgument(outterRadius >= 0, 'outterRadius');
-    core.requireArgument(core.isValidNumber(pointCount), 'pointCount');
-    core.requireArgument(pointCount >= 5, 'pointCount');
+    requireArgumentNotNull(ctx, 'ctx');
+    requireArgument(isValidNumber(x), 'x');
+    requireArgument(isValidNumber(y), 'y');
+    requireArgument(isValidNumber(outterRadius), 'outterRadius');
+    requireArgument(outterRadius >= 0, 'outterRadius');
+    requireArgument(isValidNumber(pointCount), 'pointCount');
+    requireArgument(pointCount >= 5, 'pointCount');
 
     final sliceSize = math.PI / pointCount;
 
@@ -39,9 +39,9 @@ class CanvasUtil {
     // to give the star 'clean lines'
     final innerRatio = math.cos(2 * sliceSize) / math.cos(sliceSize);
 
-    final center = new core.Coordinate(x, y);
-    final tx = new core.AffineTransform();
-    final outterVect = new core.Vector(0, -outterRadius);
+    final center = new Coordinate(x, y);
+    final tx = new AffineTransform();
+    final outterVect = new Vector(0, -outterRadius);
     final innerVect = outterVect.scale(innerRatio);
 
     ctx.beginPath();
@@ -70,10 +70,10 @@ class CanvasUtil {
   }
 
   static void drawImage(CanvasRenderingContext2D ctx, ImageElement img,
-                        core.Box sourceBox, [core.Box targetBox = null]) {
+                        Box sourceBox, [Box targetBox = null]) {
 
     if(targetBox == null) {
-      targetBox = new core.Box(0, 0, sourceBox.width, sourceBox.height);
+      targetBox = new Box(0, 0, sourceBox.width, sourceBox.height);
     }
 
     ctx.drawImage(img,

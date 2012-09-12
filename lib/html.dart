@@ -2,7 +2,7 @@
 
 #import('dart:html');
 
-#import('dartlib.dart', prefix:'core');
+#import('dartlib.dart');
 
 #source('html/dragger.dart');
 #source('html/html_view.dart');

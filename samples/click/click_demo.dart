@@ -1,5 +1,5 @@
 #import('dart:html');
-#import('../../lib/dartlib.dart', prefix:'core');
+#import('../../lib/dartlib.dart');
 #import('../../lib/retained.dart');
 
 main(){
@@ -32,11 +32,11 @@ class ClickDemo{
 
     var green = new Shape(70, 70, 'green');
     pCanvas.addElement(green);
-    pCanvas.setTopLeft(green, new core.Coordinate(110, 15));
+    pCanvas.setTopLeft(green, new Coordinate(110, 15));
 
     var red = new Shape(40, 40, 'red', ShapeType.ellipse);
     pCanvas.addElement(red);
-    pCanvas.setCenter(red, new core.Coordinate(50, 150));
+    pCanvas.setCenter(red, new Coordinate(50, 150));
 
     pCanvas.addTransform().translate(
       (canvas.width - pCanvas.width) / 2,

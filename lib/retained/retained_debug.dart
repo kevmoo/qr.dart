@@ -10,7 +10,7 @@ class RetainedDebug {
     ctx.restore();
   }
 
-  static void borderHitTest(Stage stage, core.Coordinate point){
+  static void borderHitTest(Stage stage, Coordinate point){
     var ctx = stage.ctx;
 
     var hits = RetainedUtil.hitTest(stage, point);
@@ -28,7 +28,7 @@ class RetainedDebug {
 
   static void _borderElement(CanvasRenderingContext2D ctx, PElement element,
                              [bool excludeChildren = false,
-                             core.Func1<PElement, bool> filter = null]) {
+                             Func1<PElement, bool> filter = null]) {
     if (filter == null || filter(element)) {
       _borderElementCore(ctx, element);
     }

@@ -1,5 +1,5 @@
 interface ElementParent {
   void childInvalidated(PElement child);
-  core.AffineTransform getTransformToRoot();
-  core.EventRoot<core.EventArgs> get invalidated;
+  AffineTransform getTransformToRoot();
+  EventRoot<EventArgs> get invalidated;
 }

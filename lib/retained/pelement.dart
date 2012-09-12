@@ -1,24 +1,24 @@
-class PElement extends core.AttachableObjectImpl {
-  final List<core.AffineTransform> _transforms;
+class PElement extends AttachableObjectImpl {
+  final List<AffineTransform> _transforms;
   final bool cacheEnabled;
-  final core.EventHandle<core.EventArgs> _updatedEventHandle;
-  final core.EventHandle<core.EventArgs> _invalidatedEventHandle;
+  final EventHandle<EventArgs> _updatedEventHandle;
+  final EventHandle<EventArgs> _invalidatedEventHandle;
   CanvasElement _cacheCanvas;
 
   num _width, _height, _alpha;
-  core.Size _lastDrawSize;
+  Size _lastDrawSize;
   bool clip = false;
   ElementParent _parent;
 
   PElement(this._width, this._height, [this.cacheEnabled = false]) :
-    _transforms = new List<core.AffineTransform>(),
-    _updatedEventHandle = new core.EventHandle<core.EventArgs>(),
-    _invalidatedEventHandle = new core.EventHandle<core.EventArgs>();
+    _transforms = new List<AffineTransform>(),
+    _updatedEventHandle = new EventHandle<EventArgs>(),
+    _invalidatedEventHandle = new EventHandle<EventArgs>();
 
   num get width => _width;
 
   void set width(num value) {
-    assert(core.isValidNumber(value));
+    assert(isValidNumber(value));
     _width = value;
     invalidateDraw();
   }
@@ -26,14 +26,14 @@ class PElement extends core.AttachableObjectImpl {
   num get height => _height;
 
   void set height(num value) {
-    assert(core.isValidNumber(value));
+    assert(isValidNumber(value));
     _height = value;
     invalidateDraw();
   }
 
-  core.Size get size => new core.Size(_width, _height);
+  Size get size => new Size(_width, _height);
 
-  void set size(core.Size value) {
+  void set size(Size value) {
     assert(value.isValid);
     _width = value.width;
     _height = value.height;
@@ -44,18 +44,18 @@ class PElement extends core.AttachableObjectImpl {
 
   ElementParent get parent => _parent;
 
-  core.EventRoot<core.EventArgs> get updated => _updatedEventHandle;
+  EventRoot<EventArgs> get updated => _updatedEventHandle;
 
-  core.EventRoot<core.EventArgs> get invalidated => _invalidatedEventHandle;
+  EventRoot<EventArgs> get invalidated => _invalidatedEventHandle;
 
-  core.AffineTransform getTransform() {
-    var tx = new core.AffineTransform();
+  AffineTransform getTransform() {
+    var tx = new AffineTransform();
     _transforms.forEach(tx.concatenate);
     return tx;
   }
 
-  core.AffineTransform getTransformToRoot(){
-    var tx = new core.AffineTransform();
+  AffineTransform getTransformToRoot(){
+    var tx = new AffineTransform();
     if(_parent != null){
       tx.concatenate(_parent.getTransformToRoot());
     }
@@ -71,7 +71,7 @@ class PElement extends core.AttachableObjectImpl {
   }
 
   void update(){
-    _updatedEventHandle.fireEvent(core.EventArgs.empty);
+    _updatedEventHandle.fireEvent(EventArgs.empty);
   }
 
   void drawCore(CanvasRenderingContext2D ctx){
@@ -82,8 +82,8 @@ class PElement extends core.AttachableObjectImpl {
     }
   }
 
-  core.AffineTransform addTransform(){
-    var tx = new core.AffineTransform();
+  AffineTransform addTransform(){
+    var tx = new AffineTransform();
     _transforms.add(tx);
     return tx;
   }
@@ -180,7 +180,7 @@ class PElement extends core.AttachableObjectImpl {
     _lastDrawSize = this.size;
   }
 
-  bool _isClipped(core.AffineTransform tx, CanvasRenderingContext2D ctx){
+  bool _isClipped(AffineTransform tx, CanvasRenderingContext2D ctx){
     if(clip){
       // a lot more impl to do here...
     }
@@ -189,7 +189,7 @@ class PElement extends core.AttachableObjectImpl {
 
   void _invalidateParent(){
     assert(this._parent != null);
-    _invalidatedEventHandle.fireEvent(core.EventArgs.empty);
+    _invalidatedEventHandle.fireEvent(EventArgs.empty);
     _parent.childInvalidated(this);
   }
 }
