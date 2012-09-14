@@ -14,7 +14,14 @@
         <div class="header">
           <a href="../index.html"><div class="logo"></div></a>
           <a href="../index.html">Dart Documentation</a>
-         &rsaquo; <a href="../dartlib_retained.html">dartlib_retained</a> &rsaquo; <a href="../dartlib_retained/Stage.html">Stage</a></div>
+         &rsaquo; <a href="../dartlib_retained.html">dartlib_retained</a> &rsaquo; <a href="../dartlib_retained/Stage.html">Stage</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
         <div class="nav">
         
 </div>
@@ -41,7 +48,7 @@ new <strong>Stage</strong>(CanvasElement _canvas, <a href="../dartlib_retained/P
 
 <pre class="source">
 Stage(this._canvas, this._element) :
-  _invalidatedEventHandle = new core.EventHandle&lt;core.EventArgs&gt;() {
+  _invalidatedEventHandle = new EventHandle&lt;EventArgs&gt;() {
   _element.registerParent(this);
 }
 </pre>
@@ -57,15 +64,15 @@ void <strong>childInvalidated</strong>(<a href="../dartlib_retained/PElement.htm
 <pre class="source">
 void childInvalidated(PElement child){
   assert(child == _element);
-  _invalidatedEventHandle.fireEvent(core.EventArgs.empty);
+  _invalidatedEventHandle.fireEvent(EventArgs.empty);
 }
 </pre>
 </div>
 </div>
 <div class="method"><h4 id="ctx">
 <span class="show-code">Code</span>
-CanvasRenderingContext2D <strong>ctx</strong>() <a class="anchor-link" href="#ctx"
-              title="Permalink to Stage.ctx">#</a></h4>
+CanvasRenderingContext2D <strong>get ctx</strong>() <a class="anchor-link" href="#ctx"
+              title="Permalink to Stage.get ctx">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -118,25 +125,25 @@ bool draw(){
 <div class="doc">
 
 <pre class="source">
-core.AffineTransform getTransformToRoot() =&gt; new core.AffineTransform();
+AffineTransform getTransformToRoot() =&gt; new AffineTransform();
 </pre>
 </div>
 </div>
 <div class="method"><h4 id="invalidated">
 <span class="show-code">Code</span>
-<a href="../dartlib/EventRoot.html">EventRoot</a>&lt;<a href="../dartlib/EventArgs.html">EventArgs</a>&gt; <strong>invalidated</strong>() <a class="anchor-link" href="#invalidated"
-              title="Permalink to Stage.invalidated">#</a></h4>
+<a href="../dartlib/EventRoot.html">EventRoot</a>&lt;<a href="../dartlib/EventArgs.html">EventArgs</a>&gt; <strong>get invalidated</strong>() <a class="anchor-link" href="#invalidated"
+              title="Permalink to Stage.get invalidated">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-core.EventRoot&lt;core.EventArgs&gt; get invalidated =&gt; _invalidatedEventHandle;
+EventRoot&lt;EventArgs&gt; get invalidated =&gt; _invalidatedEventHandle;
 </pre>
 </div>
 </div>
 <div class="method"><h4 id="rootElement">
 <span class="show-code">Code</span>
-<a href="../dartlib_retained/PElement.html">PElement</a> <strong>rootElement</strong>() <a class="anchor-link" href="#rootElement"
-              title="Permalink to Stage.rootElement">#</a></h4>
+<a href="../dartlib_retained/PElement.html">PElement</a> <strong>get rootElement</strong>() <a class="anchor-link" href="#rootElement"
+              title="Permalink to Stage.get rootElement">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -146,12 +153,12 @@ PElement get rootElement =&gt; _element;
 </div>
 <div class="method"><h4 id="size">
 <span class="show-code">Code</span>
-<a href="../dartlib/Size.html">Size</a> <strong>size</strong>() <a class="anchor-link" href="#size"
-              title="Permalink to Stage.size">#</a></h4>
+<a href="../dartlib/Size.html">Size</a> <strong>get size</strong>() <a class="anchor-link" href="#size"
+              title="Permalink to Stage.get size">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-core.Size get size =&gt; new core.Size(_canvas.width, _canvas.height);
+Size get size =&gt; new Size(_canvas.width, _canvas.height);
 </pre>
 </div>
 </div>

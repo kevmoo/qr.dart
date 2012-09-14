@@ -14,7 +14,14 @@
         <div class="header">
           <a href="../index.html"><div class="logo"></div></a>
           <a href="../index.html">Dart Documentation</a>
-         &rsaquo; <a href="../dartlib.html">dartlib</a> &rsaquo; <a href="../dartlib/AffineTransform.html">AffineTransform</a></div>
+         &rsaquo; <a href="../dartlib.html">dartlib</a> &rsaquo; <a href="../dartlib/AffineTransform.html">AffineTransform</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
         <div class="nav">
         
 </div>
@@ -30,27 +37,27 @@
 <p>
 <span class="type-box"><span class="icon-interface"></span><a href="../dartlib/Cloneable.html">Cloneable&lt;T&gt;</a></span></p>
 <h3>Constructors</h3>
-<div class="method"><h4 id="AffineTransform">
+<div class="method"><h4 id="AffineTransform.fromScale">
 <span class="show-code">Code</span>
-factory <strong>AffineTransform</strong>.scale(sx, sy) <a class="anchor-link" href="#AffineTransform"
+factory <strong>AffineTransform</strong>.fromScale(sx, sy) <a class="anchor-link" href="#AffineTransform.fromScale"
               title="Permalink to AffineTransform.AffineTransform">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-factory AffineTransform.scale(sx, sy) {
+factory AffineTransform.fromScale(sx, sy) {
   return new AffineTransform().setToScale(sx, sy);
 }
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="AffineTransform">
+<div class="method"><h4 id="AffineTransform.fromRotate">
 <span class="show-code">Code</span>
-factory <strong>AffineTransform</strong>.rotate(num theta, num x, num y) <a class="anchor-link" href="#AffineTransform"
+factory <strong>AffineTransform</strong>.fromRotate(num theta, num x, num y) <a class="anchor-link" href="#AffineTransform.fromRotate"
               title="Permalink to AffineTransform.AffineTransform">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-factory AffineTransform.rotate(num theta, num x, num y) {
+factory AffineTransform.fromRotate(num theta, num x, num y) {
   return new AffineTransform().setToRotation(theta, x, y);
 }
 </pre>
@@ -132,8 +139,8 @@ AffineTransform createInverse() {
 </div>
 <div class="method"><h4 id="determinant">
 <span class="show-code">Code</span>
-num <strong>determinant</strong>() <a class="anchor-link" href="#determinant"
-              title="Permalink to AffineTransform.determinant">#</a></h4>
+num <strong>get determinant</strong>() <a class="anchor-link" href="#determinant"
+              title="Permalink to AffineTransform.get determinant">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -143,8 +150,8 @@ num get determinant =&gt; _m00 * _m11 - _m01 * _m10;
 </div>
 <div class="method"><h4 id="isIdentity">
 <span class="show-code">Code</span>
-bool <strong>isIdentity</strong>() <a class="anchor-link" href="#isIdentity"
-              title="Permalink to AffineTransform.isIdentity">#</a></h4>
+bool <strong>get isIdentity</strong>() <a class="anchor-link" href="#isIdentity"
+              title="Permalink to AffineTransform.get isIdentity">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -156,9 +163,9 @@ bool get isIdentity {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="operator">
+<div class="method"><h4 id="operator ==">
 <span class="show-code">Code</span>
-bool <strong>operator ==</strong>(<a href="../dartlib/AffineTransform.html">AffineTransform</a> other) <a class="anchor-link" href="#operator"
+bool <strong>operator ==</strong>(<a href="../dartlib/AffineTransform.html">AffineTransform</a> other) <a class="anchor-link" href="#operator =="
               title="Permalink to AffineTransform.operator ==">#</a></h4>
 <div class="doc">
 
@@ -179,7 +186,7 @@ bool operator ==(AffineTransform other) {
 
 <pre class="source">
 AffineTransform rotate(num theta, num x, num y) {
-  return this.concatenate(new AffineTransform.rotate(theta, x, y));
+  return this.concatenate(new AffineTransform.fromRotate(theta, x, y));
 }
 </pre>
 </div>
@@ -203,8 +210,8 @@ AffineTransform scale(num sx, num sy) {
 </div>
 <div class="method"><h4 id="scaleX">
 <span class="show-code">Code</span>
-num <strong>scaleX</strong>() <a class="anchor-link" href="#scaleX"
-              title="Permalink to AffineTransform.scaleX">#</a></h4>
+num <strong>get scaleX</strong>() <a class="anchor-link" href="#scaleX"
+              title="Permalink to AffineTransform.get scaleX">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -214,8 +221,8 @@ num get scaleX =&gt; _m00;
 </div>
 <div class="method"><h4 id="scaleY">
 <span class="show-code">Code</span>
-num <strong>scaleY</strong>() <a class="anchor-link" href="#scaleY"
-              title="Permalink to AffineTransform.scaleY">#</a></h4>
+num <strong>get scaleY</strong>() <a class="anchor-link" href="#scaleY"
+              title="Permalink to AffineTransform.get scaleY">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -303,8 +310,8 @@ AffineTransform setTransform (num m00, num m10, num m01,
 </div>
 <div class="method"><h4 id="shearX">
 <span class="show-code">Code</span>
-num <strong>shearX</strong>() <a class="anchor-link" href="#shearX"
-              title="Permalink to AffineTransform.shearX">#</a></h4>
+num <strong>get shearX</strong>() <a class="anchor-link" href="#shearX"
+              title="Permalink to AffineTransform.get shearX">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -314,12 +321,26 @@ num get shearX =&gt; _m01;
 </div>
 <div class="method"><h4 id="shearY">
 <span class="show-code">Code</span>
-num <strong>shearY</strong>() <a class="anchor-link" href="#shearY"
-              title="Permalink to AffineTransform.shearY">#</a></h4>
+num <strong>get shearY</strong>() <a class="anchor-link" href="#shearY"
+              title="Permalink to AffineTransform.get shearY">#</a></h4>
 <div class="doc">
 
 <pre class="source">
 num get shearY =&gt; _m10;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="toString">
+<span class="show-code">Code</span>
+String <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to AffineTransform.toString">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+String toString() {
+  final values = [translateX, translateY, scaleX, scaleY, shearX, shearY];
+  return Strings.join($(values).select((n) =&gt; n.toString()).toList(), ', ');
+}
 </pre>
 </div>
 </div>
@@ -356,8 +377,8 @@ AffineTransform translate(num dx, num dy) {
 </div>
 <div class="method"><h4 id="translateVector">
 <span class="show-code">Code</span>
-<a href="../dartlib/Vector.html">Vector</a> <strong>translateVector</strong>() <a class="anchor-link" href="#translateVector"
-              title="Permalink to AffineTransform.translateVector">#</a></h4>
+<a href="../dartlib/Vector.html">Vector</a> <strong>get translateVector</strong>() <a class="anchor-link" href="#translateVector"
+              title="Permalink to AffineTransform.get translateVector">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -367,8 +388,8 @@ Vector get translateVector =&gt; new Vector(translateX, translateY);
 </div>
 <div class="method"><h4 id="translateX">
 <span class="show-code">Code</span>
-num <strong>translateX</strong>() <a class="anchor-link" href="#translateX"
-              title="Permalink to AffineTransform.translateX">#</a></h4>
+num <strong>get translateX</strong>() <a class="anchor-link" href="#translateX"
+              title="Permalink to AffineTransform.get translateX">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -378,8 +399,8 @@ num get translateX =&gt; _m02;
 </div>
 <div class="method"><h4 id="translateY">
 <span class="show-code">Code</span>
-num <strong>translateY</strong>() <a class="anchor-link" href="#translateY"
-              title="Permalink to AffineTransform.translateY">#</a></h4>
+num <strong>get translateY</strong>() <a class="anchor-link" href="#translateY"
+              title="Permalink to AffineTransform.get translateY">#</a></h4>
 <div class="doc">
 
 <pre class="source">

@@ -14,7 +14,14 @@
         <div class="header">
           <a href="../index.html"><div class="logo"></div></a>
           <a href="../index.html">Dart Documentation</a>
-         &rsaquo; <a href="../dartlib_retained.html">dartlib_retained</a> &rsaquo; <a href="../dartlib_retained/RetainedDebug.html">RetainedDebug</a></div>
+         &rsaquo; <a href="../dartlib_retained.html">dartlib_retained</a> &rsaquo; <a href="../dartlib_retained/RetainedDebug.html">RetainedDebug</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
         <div class="nav">
         
 </div>
@@ -54,7 +61,7 @@ void <strong>borderHitTest</strong>(<a href="../dartlib_retained/Stage.html">Sta
 <div class="doc">
 
 <pre class="source">
-static void borderHitTest(Stage stage, core.Coordinate point){
+static void borderHitTest(Stage stage, Coordinate point){
   var ctx = stage.ctx;
 
   var hits = RetainedUtil.hitTest(stage, point);

@@ -14,7 +14,14 @@
         <div class="header">
           <a href="../index.html"><div class="logo"></div></a>
           <a href="../index.html">Dart Documentation</a>
-         &rsaquo; <a href="../dartlib.html">dartlib</a> &rsaquo; <a href="../dartlib/NumberEnumerable.html">NumberEnumerable&lt;T&gt;</a></div>
+         &rsaquo; <a href="../dartlib.html">dartlib</a> &rsaquo; <a href="../dartlib/NumberEnumerable.html">NumberEnumerable&lt;T&gt;</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
         <div class="nav">
         
 </div>
@@ -30,14 +37,27 @@
 <p>
 <span class="type-box"><span class="icon-class"></span><a href="../dartlib/Enumerable.html">Enumerable&lt;T&gt;</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>NumberEnumerable&lt;T&gt;</strong></span></p>
 <h3>Constructors</h3>
-<div class="method"><h4 id="NumberEnumerable">
+<div class="method"><h4 id="NumberEnumerable.fromRange">
 <span class="show-code">Code</span>
-factory <strong>NumberEnumerable</strong>(Iterable&lt;<a href="../dartlib/NumberEnumerable.html">T</a>&gt; source) <a class="anchor-link" href="#NumberEnumerable"
+factory <strong>NumberEnumerable</strong>.fromRange(int start, int count) <a class="anchor-link" href="#NumberEnumerable.fromRange"
               title="Permalink to NumberEnumerable&lt;T&gt;.NumberEnumerable">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-factory NumberEnumerable(Iterable&lt;T&gt; source) {
+factory NumberEnumerable.fromRange(int start, int count) {
+  return new _RangeIterable(start, count);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="NumberEnumerable.from">
+<span class="show-code">Code</span>
+factory <strong>NumberEnumerable</strong>.from(Iterable&lt;<a href="../dartlib/NumberEnumerable.html">T</a>&gt; source) <a class="anchor-link" href="#NumberEnumerable.from"
+              title="Permalink to NumberEnumerable&lt;T&gt;.NumberEnumerable">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+factory NumberEnumerable.from(Iterable&lt;T&gt; source) {
   requireArgumentNotNull(source, 'source');
   return new _SimpleNumEnumerable&lt;T&gt;(source);
 }
@@ -46,12 +66,12 @@ factory NumberEnumerable(Iterable&lt;T&gt; source) {
 </div>
 <div class="method"><h4 id="NumberEnumerable">
 <span class="show-code">Code</span>
-const <strong>NumberEnumerable</strong>._internal() <a class="anchor-link" href="#NumberEnumerable"
+const <strong>NumberEnumerable</strong>() <a class="anchor-link" href="#NumberEnumerable"
               title="Permalink to NumberEnumerable&lt;T&gt;.NumberEnumerable">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-const NumberEnumerable._internal() : super._internal();
+const NumberEnumerable() : super();
 </pre>
 </div>
 </div>

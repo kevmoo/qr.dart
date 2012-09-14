@@ -14,7 +14,14 @@
         <div class="header">
           <a href="../index.html"><div class="logo"></div></a>
           <a href="../index.html">Dart Documentation</a>
-         &rsaquo; <a href="../dartlib.html">dartlib</a> &rsaquo; <a href="../dartlib/Enumerable.html">Enumerable&lt;T&gt;</a></div>
+         &rsaquo; <a href="../dartlib.html">dartlib</a> &rsaquo; <a href="../dartlib/Enumerable.html">Enumerable&lt;T&gt;</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
         <div class="nav">
         
 </div>
@@ -31,16 +38,16 @@
 <span class="type-box"><span class="icon-class"></span><a href="../dartlib/ListBase.html">ListBase&lt;T&gt;</a></span>, <span class="type-box"><span class="icon-class"></span><a href="../dartlib/NumberEnumerable.html">NumberEnumerable&lt;T&gt;</a></span></p>
 <h3>Implements</h3>
 <p>
-<span class="type-box"><span class="icon-interface"></span><a href="../dart_core/Iterable.html">Iterable&lt;E&gt;</a></span></p>
+<span class="type-box"><span class="icon-class"></span><a href="../dart_core/Iterable.html">Iterable&lt;E&gt;</a></span></p>
 <h3>Constructors</h3>
-<div class="method"><h4 id="Enumerable">
+<div class="method"><h4 id="Enumerable.fromIterable">
 <span class="show-code">Code</span>
-factory <strong>Enumerable</strong>(Iterable&lt;<a href="../dartlib/Enumerable.html">T</a>&gt; source) <a class="anchor-link" href="#Enumerable"
+factory <strong>Enumerable</strong>.fromIterable(Iterable&lt;<a href="../dartlib/Enumerable.html">T</a>&gt; source) <a class="anchor-link" href="#Enumerable.fromIterable"
               title="Permalink to Enumerable&lt;T&gt;.Enumerable">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-factory Enumerable(Iterable&lt;T&gt; source) {
+factory Enumerable.fromIterable(Iterable&lt;T&gt; source) {
   requireArgumentNotNull(source, 'source');
   return new _SimpleEnumerable&lt;T&gt;(source);
 }
@@ -49,12 +56,12 @@ factory Enumerable(Iterable&lt;T&gt; source) {
 </div>
 <div class="method"><h4 id="Enumerable">
 <span class="show-code">Code</span>
-const <strong>Enumerable</strong>._internal() <a class="anchor-link" href="#Enumerable"
+const <strong>Enumerable</strong>() <a class="anchor-link" href="#Enumerable"
               title="Permalink to Enumerable&lt;T&gt;.Enumerable">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-const Enumerable._internal();
+const Enumerable();
 </pre>
 </div>
 </div>
@@ -257,9 +264,7 @@ Iterator <strong>iterator</strong>() <a class="anchor-link" href="#iterator"
 <div class="doc">
 
 <pre class="source">
-Iterator iterator() {
-  throw const NotImplementedException();
-}
+abstract Iterator iterator();
 </pre>
 </div>
 </div>

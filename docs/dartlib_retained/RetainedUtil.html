@@ -14,7 +14,14 @@
         <div class="header">
           <a href="../index.html"><div class="logo"></div></a>
           <a href="../index.html">Dart Documentation</a>
-         &rsaquo; <a href="../dartlib_retained.html">dartlib_retained</a> &rsaquo; <a href="../dartlib_retained/RetainedUtil.html">RetainedUtil</a></div>
+         &rsaquo; <a href="../dartlib_retained.html">dartlib_retained</a> &rsaquo; <a href="../dartlib_retained/RetainedUtil.html">RetainedUtil</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
         <div class="nav">
         
 </div>
@@ -34,10 +41,10 @@ List&lt;<a href="../dartlib/Coordinate.html">Coordinate</a>&gt; <strong>getCorne
 <div class="doc">
 
 <pre class="source">
-static List&lt;core.Coordinate&gt; getCorners(PElement element) {
-  final rect = new core.Rect(0,0,element.width, element.height);
+static List&lt;Coordinate&gt; getCorners(PElement element) {
+  final rect = new Box(0,0,element.width, element.height);
   final points = rect.getCorners();
-  return core.$(points).select((p) {
+  return $(points).select((p) {
     return transformPointLocalToGlobal(element, p);
   }).toList();
 }
@@ -51,7 +58,7 @@ List&lt;<a href="../dartlib_retained/PElement.html">PElement</a>&gt; <strong>hit
 <div class="doc">
 
 <pre class="source">
-static List&lt;PElement&gt; hitTest(Stage stage, core.Coordinate point){
+static List&lt;PElement&gt; hitTest(Stage stage, Coordinate point){
   return _hitTest(stage.rootElement, point);
 }
 </pre>
@@ -64,8 +71,8 @@ static List&lt;PElement&gt; hitTest(Stage stage, core.Coordinate point){
 <div class="doc">
 
 <pre class="source">
-static core.Coordinate transformPointGlobalToLocal(PElement element,
-                                                   core.Coordinate point) {
+static Coordinate transformPointGlobalToLocal(PElement element,
+                                                   Coordinate point) {
   var tx = element.getTransform();
   return tx.createInverse().transformCoordinate(point);
 }
@@ -79,8 +86,8 @@ static core.Coordinate transformPointGlobalToLocal(PElement element,
 <div class="doc">
 
 <pre class="source">
-static core.Coordinate transformPointLocalToGlobal(PElement element,
-                                                   core.Coordinate point) {
+static Coordinate transformPointLocalToGlobal(PElement element,
+                                                   Coordinate point) {
   var tx = element.getTransformToRoot();
   return tx.transformCoordinate(point);
 }

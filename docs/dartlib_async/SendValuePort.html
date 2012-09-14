@@ -14,7 +14,14 @@
         <div class="header">
           <a href="../index.html"><div class="logo"></div></a>
           <a href="../index.html">Dart Documentation</a>
-         &rsaquo; <a href="../dartlib_async.html">dartlib_async</a> &rsaquo; <a href="../dartlib_async/SendValuePort.html">SendValuePort&lt;TInput, TOutput&gt;</a></div>
+         &rsaquo; <a href="../dartlib_async.html">dartlib_async</a> &rsaquo; <a href="../dartlib_async/SendValuePort.html">SendValuePort&lt;TInput, TOutput&gt;</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
         <div class="nav">
         
 </div>
@@ -36,12 +43,20 @@ new <strong>SendValuePort</strong>(<a href="../dartlib/Func1.html">Func1</a> _fu
 <pre class="source">
 SendValuePort(this._func) {
   port.receive((TInput value, SendPort reply) {
+    FutureValueResult&lt;TOutput&gt; _message;
     try {
       final TOutput output = _func(value);
-      reply.send(new FutureValueResult&lt;TOutput&gt;(output));
-    } catch(final ex) {
-      reply.send(new FutureValueResult&lt;TOutput&gt;.exception(ex));
+      _message = new FutureValueResult&lt;TOutput&gt;(output);
+    } catch (ex) {
+      // TODO: I'd love to use real exceptions here
+      // but they blow up over the wire
+      // so: to string!
+      final String exString = ex.toString();
+      _message = new FutureValueResult&lt;TOutput&gt;.fromException(exString);
     }
+
+    final map = _message.toMap();
+    reply.send(map);
   });
 }
 </pre>

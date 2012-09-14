@@ -14,7 +14,14 @@
         <div class="header">
           <a href="../index.html"><div class="logo"></div></a>
           <a href="../index.html">Dart Documentation</a>
-         &rsaquo; <a href="../dartlib.html">dartlib</a> &rsaquo; <a href="../dartlib/BungeeNum.html">BungeeNum</a></div>
+         &rsaquo; <a href="../dartlib.html">dartlib</a> &rsaquo; <a href="../dartlib/BungeeNum.html">BungeeNum</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
         <div class="nav">
         
 </div>
@@ -45,10 +52,24 @@ BungeeNum(num target, [num current]) {
 </div>
 </div>
 <h3>Methods</h3>
+<div class="method"><h4 id="current=">
+<span class="show-code">Code</span>
+void <strong>set current</strong>(num value) <a class="anchor-link" href="#current="
+              title="Permalink to BungeeNum.set current">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void set current(num value) {
+  requireArgument(isValidNumber(value), 'value');
+  _current = value;
+}
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="current">
 <span class="show-code">Code</span>
-num <strong>current</strong>() <a class="anchor-link" href="#current"
-              title="Permalink to BungeeNum.current">#</a></h4>
+num <strong>get current</strong>() <a class="anchor-link" href="#current"
+              title="Permalink to BungeeNum.get current">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -56,10 +77,24 @@ num get current =&gt; _current;
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="target=">
+<span class="show-code">Code</span>
+void <strong>set target</strong>(num value) <a class="anchor-link" href="#target="
+              title="Permalink to BungeeNum.set target">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void set target(num value) {
+  requireArgument(isValidNumber(value), 'value');
+  _target = value;
+}
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="target">
 <span class="show-code">Code</span>
-num <strong>target</strong>() <a class="anchor-link" href="#target"
-              title="Permalink to BungeeNum.target">#</a></h4>
+num <strong>get target</strong>() <a class="anchor-link" href="#target"
+              title="Permalink to BungeeNum.get target">#</a></h4>
 <div class="doc">
 
 <pre class="source">

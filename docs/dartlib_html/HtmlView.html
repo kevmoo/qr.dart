@@ -14,7 +14,14 @@
         <div class="header">
           <a href="../index.html"><div class="logo"></div></a>
           <a href="../index.html">Dart Documentation</a>
-         &rsaquo; <a href="../dartlib_html.html">dartlib_html</a> &rsaquo; <a href="../dartlib_html/HtmlView.html">HtmlView</a></div>
+         &rsaquo; <a href="../dartlib_html.html">dartlib_html</a> &rsaquo; <a href="../dartlib_html/HtmlView.html">HtmlView</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
         <div class="nav">
         
 </div>
@@ -35,7 +42,7 @@ new <strong>HtmlView</strong>(DivElement _node) <a class="anchor-link" href="#Ht
 
 <pre class="source">
 HtmlView(this._node) {
-  core.requireArgumentNotNull(this._node, 'node');
+  requireArgumentNotNull(this._node, 'node');
   _dirty = true;
 }
 </pre>
@@ -73,8 +80,8 @@ void markDirty() {
 </div>
 <div class="method"><h4 id="node">
 <span class="show-code">Code</span>
-DivElement <strong>node</strong>() <a class="anchor-link" href="#node"
-              title="Permalink to HtmlView.node">#</a></h4>
+DivElement <strong>get node</strong>() <a class="anchor-link" href="#node"
+              title="Permalink to HtmlView.get node">#</a></h4>
 <div class="doc">
 
 <pre class="source">

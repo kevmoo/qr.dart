@@ -14,7 +14,14 @@
         <div class="header">
           <a href="../index.html"><div class="logo"></div></a>
           <a href="../index.html">Dart Documentation</a>
-         &rsaquo; <a href="../dartlib_retained.html">dartlib_retained</a> &rsaquo; <a href="../dartlib_retained/SpriteElement.html">SpriteElement</a></div>
+         &rsaquo; <a href="../dartlib_retained.html">dartlib_retained</a> &rsaquo; <a href="../dartlib_retained/SpriteElement.html">SpriteElement</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
         <div class="nav">
         
 </div>
@@ -43,18 +50,59 @@ SpriteElement(ImageElement image, num width, num height,
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="SpriteElement">
+<div class="method"><h4 id="SpriteElement.horizontalFromUrl">
 <span class="show-code">Code</span>
-factory <strong>SpriteElement</strong>.horizontalFromUrl(String src, num w, num h, int count, num xDelta, [<a href="../dartlib/Coordinate.html">Coordinate</a> start = const core.Coordinate()]) <a class="anchor-link" href="#SpriteElement"
+factory <strong>SpriteElement</strong>.horizontalFromUrl(String src, num w, num h, int count, num xDelta, [<a href="../dartlib/Coordinate.html">Coordinate</a> start = const Coordinate()]) <a class="anchor-link" href="#SpriteElement.horizontalFromUrl"
               title="Permalink to SpriteElement.SpriteElement">#</a></h4>
 <div class="doc">
 
 <pre class="source">
 factory SpriteElement.horizontalFromUrl(String src, num w, num h,
-    int count, num xDelta, [core.Coordinate start = const core.Coordinate()]) {
+    int count, num xDelta, [Coordinate start = const Coordinate()]) {
   final img = new ImageElement(src, null, null);
 
-  return new SpriteElement(img, w, h, start, new core.Vector(xDelta, 0), count);
+  return new SpriteElement(img, w, h, start, new Vector(xDelta, 0), count);
+}
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="nextFrame">
+<span class="show-code">Code</span>
+void <strong>nextFrame</strong>() <a class="anchor-link" href="#nextFrame"
+              title="Permalink to SpriteElement.nextFrame">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void nextFrame() {
+  setFrame(_frame + 1);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="previousFrame">
+<span class="show-code">Code</span>
+void <strong>previousFrame</strong>() <a class="anchor-link" href="#previousFrame"
+              title="Permalink to SpriteElement.previousFrame">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void previousFrame() {
+  setFrame(_frame - 1);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setFrame">
+<span class="show-code">Code</span>
+void <strong>setFrame</strong>(int frame) <a class="anchor-link" href="#setFrame"
+              title="Permalink to SpriteElement.setFrame">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void setFrame(int frame) {
+  _frame = (frame % count);
+  invalidateDraw();
 }
 </pre>
 </div>
@@ -82,7 +130,7 @@ final <a href="../dartlib/Vector.html">Vector</a>         <strong>nextDelta</str
         <div class="doc">
 
 <pre class="source">
-final core.Vector nextDelta;
+final Vector nextDelta;
 </pre>
 </div>
 </div>
@@ -95,7 +143,7 @@ final <a href="../dartlib/Coordinate.html">Coordinate</a>         <strong>startC
         <div class="doc">
 
 <pre class="source">
-final core.Coordinate startCoordinate;
+final Coordinate startCoordinate;
 </pre>
 </div>
 </div>

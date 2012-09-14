@@ -14,7 +14,14 @@
         <div class="header">
           <a href="../index.html"><div class="logo"></div></a>
           <a href="../index.html">Dart Documentation</a>
-         &rsaquo; <a href="../dartlib_async.html">dartlib_async</a> &rsaquo; <a href="../dartlib_async/FutureValue.html">FutureValue&lt;TInput, TOutput&gt;</a></div>
+         &rsaquo; <a href="../dartlib_async.html">dartlib_async</a> &rsaquo; <a href="../dartlib_async/FutureValue.html">FutureValue&lt;TInput, TOutput&gt;</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
         <div class="nav">
         
 </div>
@@ -47,8 +54,8 @@ FutureValue() :
 <h3>Methods</h3>
 <div class="method"><h4 id="error">
 <span class="show-code">Code</span>
-<a href="../dartlib/EventRoot.html">EventRoot</a> <strong>error</strong>() <a class="anchor-link" href="#error"
-              title="Permalink to FutureValue&lt;TInput, TOutput&gt;.error">#</a></h4>
+<a href="../dartlib/EventRoot.html">EventRoot</a> <strong>get error</strong>() <a class="anchor-link" href="#error"
+              title="Permalink to FutureValue&lt;TInput, TOutput&gt;.get error">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -67,10 +74,29 @@ abstract Future&lt;TOutput&gt; getFuture(TInput value);
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="input=">
+<span class="show-code">Code</span>
+void <strong>set input</strong>(<a href="../dartlib_async/FutureValue.html">TInput</a> value) <a class="anchor-link" href="#input="
+              title="Permalink to FutureValue&lt;TInput, TOutput&gt;.set input">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void set input(TInput value) {
+  _input = value;
+  if(_future == null) {
+    _startFuture();
+  } else {
+    _pending = true;
+  }
+  _inputChangedHandle.fireEvent(EventArgs.empty);
+}
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="input">
 <span class="show-code">Code</span>
-<a href="../dartlib_async/FutureValue.html">TInput</a> <strong>input</strong>() <a class="anchor-link" href="#input"
-              title="Permalink to FutureValue&lt;TInput, TOutput&gt;.input">#</a></h4>
+<a href="../dartlib_async/FutureValue.html">TInput</a> <strong>get input</strong>() <a class="anchor-link" href="#input"
+              title="Permalink to FutureValue&lt;TInput, TOutput&gt;.get input">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -80,8 +106,8 @@ TInput get input =&gt; _input;
 </div>
 <div class="method"><h4 id="inputChanged">
 <span class="show-code">Code</span>
-<a href="../dartlib/EventRoot.html">EventRoot</a>&lt;<a href="../dartlib/EventArgs.html">EventArgs</a>&gt; <strong>inputChanged</strong>() <a class="anchor-link" href="#inputChanged"
-              title="Permalink to FutureValue&lt;TInput, TOutput&gt;.inputChanged">#</a></h4>
+<a href="../dartlib/EventRoot.html">EventRoot</a>&lt;<a href="../dartlib/EventArgs.html">EventArgs</a>&gt; <strong>get inputChanged</strong>() <a class="anchor-link" href="#inputChanged"
+              title="Permalink to FutureValue&lt;TInput, TOutput&gt;.get inputChanged">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -91,8 +117,8 @@ EventRoot&lt;EventArgs&gt; get inputChanged =&gt; _inputChangedHandle;
 </div>
 <div class="method"><h4 id="output">
 <span class="show-code">Code</span>
-<a href="../dartlib_async/FutureValue.html">TOutput</a> <strong>output</strong>() <a class="anchor-link" href="#output"
-              title="Permalink to FutureValue&lt;TInput, TOutput&gt;.output">#</a></h4>
+<a href="../dartlib_async/FutureValue.html">TOutput</a> <strong>get output</strong>() <a class="anchor-link" href="#output"
+              title="Permalink to FutureValue&lt;TInput, TOutput&gt;.get output">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -102,8 +128,8 @@ TOutput get output =&gt; _output;
 </div>
 <div class="method"><h4 id="outputChanged">
 <span class="show-code">Code</span>
-<a href="../dartlib/EventRoot.html">EventRoot</a>&lt;<a href="../dartlib/EventArgs.html">EventArgs</a>&gt; <strong>outputChanged</strong>() <a class="anchor-link" href="#outputChanged"
-              title="Permalink to FutureValue&lt;TInput, TOutput&gt;.outputChanged">#</a></h4>
+<a href="../dartlib/EventRoot.html">EventRoot</a>&lt;<a href="../dartlib/EventArgs.html">EventArgs</a>&gt; <strong>get outputChanged</strong>() <a class="anchor-link" href="#outputChanged"
+              title="Permalink to FutureValue&lt;TInput, TOutput&gt;.get outputChanged">#</a></h4>
 <div class="doc">
 
 <pre class="source">

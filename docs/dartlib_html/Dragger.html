@@ -14,7 +14,14 @@
         <div class="header">
           <a href="../index.html"><div class="logo"></div></a>
           <a href="../index.html">Dart Documentation</a>
-         &rsaquo; <a href="../dartlib_html.html">dartlib_html</a> &rsaquo; <a href="../dartlib_html/Dragger.html">Dragger</a></div>
+         &rsaquo; <a href="../dartlib_html.html">dartlib_html</a> &rsaquo; <a href="../dartlib_html/Dragger.html">Dragger</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
         <div class="nav">
         
 </div>
@@ -35,8 +42,8 @@ new <strong>Dragger</strong>(Element _element) <a class="anchor-link" href="#Dra
 
 <pre class="source">
 Dragger(this._element) :
-  _dragDeltaHandle = new core.EventHandle&lt;core.Vector&gt;(),
-  _dragStartHandle = new core.EventHandle&lt;core.CancelableEventArgs&gt;() {
+  _dragDeltaHandle = new EventHandle&lt;Vector&gt;(),
+  _dragStartHandle = new EventHandle&lt;CancelableEventArgs&gt;() {
   _element.on.mouseDown.add(_onMouseDown);
   window.on.mouseMove.add(_handleMove);
   window.on.mouseUp.add(_endDrag);
@@ -48,30 +55,30 @@ Dragger(this._element) :
 <h3>Methods</h3>
 <div class="method"><h4 id="dragDelta">
 <span class="show-code">Code</span>
-<a href="../dartlib/EventRoot.html">EventRoot</a>&lt;<a href="../dartlib/Vector.html">Vector</a>&gt; <strong>dragDelta</strong>() <a class="anchor-link" href="#dragDelta"
-              title="Permalink to Dragger.dragDelta">#</a></h4>
+<a href="../dartlib/EventRoot.html">EventRoot</a>&lt;<a href="../dartlib/Vector.html">Vector</a>&gt; <strong>get dragDelta</strong>() <a class="anchor-link" href="#dragDelta"
+              title="Permalink to Dragger.get dragDelta">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-core.EventRoot&lt;core.Vector&gt; get dragDelta =&gt; _dragDeltaHandle;
+EventRoot&lt;Vector&gt; get dragDelta =&gt; _dragDeltaHandle;
 </pre>
 </div>
 </div>
 <div class="method"><h4 id="dragStart">
 <span class="show-code">Code</span>
-<a href="../dartlib/EventRoot.html">EventRoot</a>&lt;<a href="../dartlib/CancelableEventArgs.html">CancelableEventArgs</a>&gt; <strong>dragStart</strong>() <a class="anchor-link" href="#dragStart"
-              title="Permalink to Dragger.dragStart">#</a></h4>
+<a href="../dartlib/EventRoot.html">EventRoot</a>&lt;<a href="../dartlib/CancelableEventArgs.html">CancelableEventArgs</a>&gt; <strong>get dragStart</strong>() <a class="anchor-link" href="#dragStart"
+              title="Permalink to Dragger.get dragStart">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-core.EventRoot&lt;core.CancelableEventArgs&gt; get dragStart =&gt; _dragStartHandle;
+EventRoot&lt;CancelableEventArgs&gt; get dragStart =&gt; _dragStartHandle;
 </pre>
 </div>
 </div>
 <div class="method"><h4 id="isDragging">
 <span class="show-code">Code</span>
-bool <strong>isDragging</strong>() <a class="anchor-link" href="#isDragging"
-              title="Permalink to Dragger.isDragging">#</a></h4>
+bool <strong>get isDragging</strong>() <a class="anchor-link" href="#isDragging"
+              title="Permalink to Dragger.get isDragging">#</a></h4>
 <div class="doc">
 
 <pre class="source">

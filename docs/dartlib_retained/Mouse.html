@@ -14,7 +14,14 @@
         <div class="header">
           <a href="../index.html"><div class="logo"></div></a>
           <a href="../index.html">Dart Documentation</a>
-         &rsaquo; <a href="../dartlib_retained.html">dartlib_retained</a> &rsaquo; <a href="../dartlib_retained/Mouse.html">Mouse</a></div>
+         &rsaquo; <a href="../dartlib_retained.html">dartlib_retained</a> &rsaquo; <a href="../dartlib_retained/Mouse.html">Mouse</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
         <div class="nav">
         
 </div>
@@ -61,9 +68,9 @@ List&lt;<a href="../dartlib_retained/PElement.html">PElement</a>&gt; <strong>mar
 
 <pre class="source">
 static List&lt;PElement&gt; markMouseOver(Stage stage,
-    [core.Coordinate coordinate = null]) {
-  core.requireArgumentNotNull(stage, 'stage');
-  core.requireArgument(coordinate == null || coordinate.isValid, 'coordinate');
+    [Coordinate coordinate = null]) {
+  requireArgumentNotNull(stage, 'stage');
+  requireArgument(coordinate == null || coordinate.isValid, 'coordinate');
 
   final items = _stageMouseCacheProperty.get(stage);
   if (items != null) {
@@ -99,8 +106,8 @@ final <a href="../dartlib/Property.html">Property</a>&lt;bool&gt;         <stron
         <div class="doc">
 
 <pre class="source">
-static final core.Property&lt;bool&gt; isMouseDirectlyOverProperty =
-    const core.Property&lt;bool&gt;("IsMouseDirectlyOver", false);
+static final Property&lt;bool&gt; isMouseDirectlyOverProperty =
+    const Property&lt;bool&gt;("IsMouseDirectlyOver", false);
 </pre>
 </div>
 </div>
@@ -113,8 +120,8 @@ final <a href="../dartlib/Property.html">Property</a>&lt;bool&gt;         <stron
         <div class="doc">
 
 <pre class="source">
-static final core.Property&lt;bool&gt; isMouseOverProperty =
-    const core.Property&lt;bool&gt;("IsMouseOver", false);
+static final Property&lt;bool&gt; isMouseOverProperty =
+    const Property&lt;bool&gt;("IsMouseOver", false);
 </pre>
 </div>
 </div>

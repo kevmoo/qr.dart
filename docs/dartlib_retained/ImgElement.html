@@ -14,7 +14,14 @@
         <div class="header">
           <a href="../index.html"><div class="logo"></div></a>
           <a href="../index.html">Dart Documentation</a>
-         &rsaquo; <a href="../dartlib_retained.html">dartlib_retained</a> &rsaquo; <a href="../dartlib_retained/ImgElement.html">ImgElement</a></div>
+         &rsaquo; <a href="../dartlib_retained.html">dartlib_retained</a> &rsaquo; <a href="../dartlib_retained/ImgElement.html">ImgElement</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
         <div class="nav">
         
 </div>
@@ -45,9 +52,9 @@ ImgElement(num width, num height, this._image, [bool cacheEnabled = false]) :
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="ImgElement">
+<div class="method"><h4 id="ImgElement.fromUrl">
 <span class="show-code">Code</span>
-factory <strong>ImgElement</strong>.fromUrl(String src, num w, num h) <a class="anchor-link" href="#ImgElement"
+factory <strong>ImgElement</strong>.fromUrl(String src, num w, num h) <a class="anchor-link" href="#ImgElement.fromUrl"
               title="Permalink to ImgElement.ImgElement">#</a></h4>
 <div class="doc">
 
@@ -74,6 +81,7 @@ void drawOverride(CanvasRenderingContext2D ctx) {
   } else if(!_waitingOnLoad) {
     _waitingOnLoad = true;
     // TODO: some day we'll have a way to remove these cleanly
+    //       ...because this handled should be disposed :-/
     _image.on.load.add(_onImageLoad);
   }
 }

@@ -14,7 +14,14 @@
         <div class="header">
           <a href="../index.html"><div class="logo"></div></a>
           <a href="../index.html">Dart Documentation</a>
-         &rsaquo; <a href="../dartlib.html">dartlib</a> &rsaquo; <a href="../dartlib/NoneHashMap.html">NoneHashMap&lt;K, V&gt;</a></div>
+         &rsaquo; <a href="../dartlib.html">dartlib</a> &rsaquo; <a href="../dartlib/NoneHashMap.html">NoneHashMap&lt;K, V&gt;</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
         <div class="nav">
         
 </div>
@@ -140,8 +147,8 @@ bool isEmpty() {
 </div>
 <div class="method"><h4 id="length">
 <span class="show-code">Code</span>
-int <strong>length</strong>() <a class="anchor-link" href="#length"
-              title="Permalink to NoneHashMap&lt;K, V&gt;.length">#</a></h4>
+int <strong>get length</strong>() <a class="anchor-link" href="#length"
+              title="Permalink to NoneHashMap&lt;K, V&gt;.get length">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -149,9 +156,9 @@ int get length =&gt; _values.length;
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="operator">
+<div class="method"><h4 id="operator []=">
 <span class="show-code">Code</span>
-void <strong>operator []=</strong>(<a href="../dartlib/NoneHashMap.html">K</a> key, <a href="../dartlib/NoneHashMap.html">V</a> value) <a class="anchor-link" href="#operator"
+void <strong>operator []=</strong>(<a href="../dartlib/NoneHashMap.html">K</a> key, <a href="../dartlib/NoneHashMap.html">V</a> value) <a class="anchor-link" href="#operator []="
               title="Permalink to NoneHashMap&lt;K, V&gt;.operator []=">#</a></h4>
 <div class="doc">
 
@@ -169,9 +176,9 @@ void operator []=(K key, V value) {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="operator">
+<div class="method"><h4 id="operator []">
 <span class="show-code">Code</span>
-<a href="../dartlib/NoneHashMap.html">V</a> <strong>operator []</strong>(<a href="../dartlib/NoneHashMap.html">K</a> key) <a class="anchor-link" href="#operator"
+<a href="../dartlib/NoneHashMap.html">V</a> <strong>operator []</strong>(<a href="../dartlib/NoneHashMap.html">K</a> key) <a class="anchor-link" href="#operator []"
               title="Permalink to NoneHashMap&lt;K, V&gt;.operator []">#</a></h4>
 <div class="doc">
 
@@ -224,6 +231,17 @@ V remove(K key) {
   }
   return null;
 }
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="toString">
+<span class="show-code">Code</span>
+String <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to NoneHashMap&lt;K, V&gt;.toString">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+String toString() =&gt; Maps.mapToString(this);
 </pre>
 </div>
 </div>

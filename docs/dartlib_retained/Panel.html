@@ -14,7 +14,14 @@
         <div class="header">
           <a href="../index.html"><div class="logo"></div></a>
           <a href="../index.html">Dart Documentation</a>
-         &rsaquo; <a href="../dartlib_retained.html">dartlib_retained</a> &rsaquo; <a href="../dartlib_retained/Panel.html">Panel</a></div>
+         &rsaquo; <a href="../dartlib_retained.html">dartlib_retained</a> &rsaquo; <a href="../dartlib_retained/Panel.html">Panel</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
         <div class="nav">
         
 </div>
@@ -84,7 +91,7 @@ void drawOverride(CanvasRenderingContext2D ctx) {
 <div class="doc">
 
 <pre class="source">
-core.AffineTransform getChildTransform(child) {
+AffineTransform getChildTransform(child) {
   assert(hasVisualChild(child));
   var tx = _containerTransformProperty.get(child);
   assert(tx != null);
@@ -125,8 +132,8 @@ void insertAt(PElement element, [int index=null]){
 </div>
 <div class="method"><h4 id="visualChildCount">
 <span class="show-code">Code</span>
-int <strong>visualChildCount</strong>() <a class="anchor-link" href="#visualChildCount"
-              title="Permalink to Panel.visualChildCount">#</a></h4>
+int <strong>get visualChildCount</strong>() <a class="anchor-link" href="#visualChildCount"
+              title="Permalink to Panel.get visualChildCount">#</a></h4>
 <div class="doc">
 
 <pre class="source">

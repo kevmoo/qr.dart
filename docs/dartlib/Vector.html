@@ -14,7 +14,14 @@
         <div class="header">
           <a href="../index.html"><div class="logo"></div></a>
           <a href="../index.html">Dart Documentation</a>
-         &rsaquo; <a href="../dartlib.html">dartlib</a> &rsaquo; <a href="../dartlib/Vector.html">Vector</a></div>
+         &rsaquo; <a href="../dartlib.html">dartlib</a> &rsaquo; <a href="../dartlib/Vector.html">Vector</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
         <div class="nav">
         
 </div>
@@ -47,7 +54,7 @@ const Vector([num x = 0, num y = 0]) : super(x,y);
 num <strong>cross</strong>(<a href="../dartlib/Vector.html">Vector</a> other) <a class="anchor-link" href="#cross"
               title="Permalink to Vector.cross">#</a></h4>
 <div class="doc">
-<p>Computes the cross product with the given <a class="crossref" href="../dartlib/Vector.html#new:Vector">Vector</a>.</p>
+<p>Computes the cross product with the given <a class="crossref" href="../dartlib/Vector.html#Vector">Vector</a>.</p>
 <pre class="source">
 num cross(Vector other) =&gt; x * other.y - y * other.x;
 </pre>
@@ -58,7 +65,7 @@ num cross(Vector other) =&gt; x * other.y - y * other.x;
 num <strong>dot</strong>(<a href="../dartlib/Vector.html">Vector</a> other) <a class="anchor-link" href="#dot"
               title="Permalink to Vector.dot">#</a></h4>
 <div class="doc">
-<p>Computes the dot product with the given <a class="crossref" href="../dartlib/Vector.html#new:Vector">Vector</a>.</p>
+<p>Computes the dot product with the given <a class="crossref" href="../dartlib/Vector.html#Vector">Vector</a>.</p>
 <pre class="source">
 num dot(Vector other) =&gt; x * other.x + y * other.y;
 </pre>
@@ -69,7 +76,7 @@ num dot(Vector other) =&gt; x * other.x + y * other.y;
 num <strong>getAngle</strong>(<a href="../dartlib/Vector.html">Vector</a> other) <a class="anchor-link" href="#getAngle"
               title="Permalink to Vector.getAngle">#</a></h4>
 <div class="doc">
-<p>Computes the angle between this and another <a class="crossref" href="../dartlib/Vector.html#new:Vector">Vector</a>.</p>
+<p>Computes the angle between this and another <a class="crossref" href="../dartlib/Vector.html#Vector">Vector</a>.</p>
 <pre class="source">
 num getAngle (Vector other) =&gt; math.acos(dot(other));
 </pre>
@@ -77,10 +84,10 @@ num getAngle (Vector other) =&gt; math.acos(dot(other));
 </div>
 <div class="method"><h4 id="length">
 <span class="show-code">Code</span>
-num <strong>length</strong>() <a class="anchor-link" href="#length"
-              title="Permalink to Vector.length">#</a></h4>
+num <strong>get length</strong>() <a class="anchor-link" href="#length"
+              title="Permalink to Vector.get length">#</a></h4>
 <div class="doc">
-<p>Computes the length of this <a class="crossref" href="../dartlib/Vector.html#new:Vector">Vector</a>.</p>
+<p>Computes the length of this <a class="crossref" href="../dartlib/Vector.html#Vector">Vector</a>.</p>
 <pre class="source">
 num get length =&gt; math.sqrt(x * x + y * y);
 </pre>
@@ -88,8 +95,8 @@ num get length =&gt; math.sqrt(x * x + y * y);
 </div>
 <div class="method"><h4 id="normal">
 <span class="show-code">Code</span>
-<a href="../dartlib/Vector.html">Vector</a> <strong>normal</strong>() <a class="anchor-link" href="#normal"
-              title="Permalink to Vector.normal">#</a></h4>
+<a href="../dartlib/Vector.html">Vector</a> <strong>get normal</strong>() <a class="anchor-link" href="#normal"
+              title="Permalink to Vector.get normal">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -97,23 +104,23 @@ Vector get normal =&gt; this.scale(1 / this.length);
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="operator">
+<div class="method"><h4 id="operator *">
 <span class="show-code">Code</span>
-<a href="../dartlib/Vector.html">Vector</a> <strong>operator *</strong>(num magnitude) <a class="anchor-link" href="#operator"
+<a href="../dartlib/Vector.html">Vector</a> <strong>operator *</strong>(num magnitude) <a class="anchor-link" href="#operator *"
               title="Permalink to Vector.operator *">#</a></h4>
 <div class="doc">
-<p>Multiplies each dimensions by the provided magnitude and returns a new <a class="crossref" href="../dartlib/Vector.html#new:Vector">Vector</a>.</p>
+<p>Multiplies each dimensions by the provided magnitude and returns a new <a class="crossref" href="../dartlib/Vector.html#Vector">Vector</a>.</p>
 <pre class="source">
 Vector operator *(num magnitude) =&gt; this.scale(magnitude);
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="operator">
+<div class="method"><h4 id="operator +">
 <span class="show-code">Code</span>
-<a href="../dartlib/Vector.html">Vector</a> <strong>operator +</strong>(<a href="../dartlib/Coordinate.html">Coordinate</a> other) <a class="anchor-link" href="#operator"
+<a href="../dartlib/Vector.html">Vector</a> <strong>operator +</strong>(<a href="../dartlib/Coordinate.html">Coordinate</a> other) <a class="anchor-link" href="#operator +"
               title="Permalink to Vector.operator +">#</a></h4>
 <div class="doc">
-<p>Adds a <a class="crossref" href="../dartlib/Coordinate.html">Coordinate</a> and returns the result as new <a class="crossref" href="../dartlib/Vector.html#new:Vector">Vector</a>.</p>
+<p>Adds a <a class="crossref" href="../dartlib/Coordinate.html">Coordinate</a> and returns the result as new <a class="crossref" href="../dartlib/Vector.html#Vector">Vector</a>.</p>
 <pre class="source">
 Vector operator +(Coordinate other) =&gt; new Vector(x + other.x, y + other.y);
 </pre>
@@ -154,7 +161,7 @@ Vector rotateAroundPoint(Coordinate axisPoint, num angle) {
 <a href="../dartlib/Vector.html">Vector</a> <strong>scale</strong>(num magnitude) <a class="anchor-link" href="#scale"
               title="Permalink to Vector.scale">#</a></h4>
 <div class="doc">
-<p>Multiplies each dimensions by the provided magnitude and returns a new <a class="crossref" href="../dartlib/Vector.html#new:Vector">Vector</a>.</p>
+<p>Multiplies each dimensions by the provided magnitude and returns a new <a class="crossref" href="../dartlib/Vector.html#Vector">Vector</a>.</p>
 <pre class="source">
 Vector scale(num magnitude) =&gt; new Vector(x * magnitude, y * magnitude);
 </pre>

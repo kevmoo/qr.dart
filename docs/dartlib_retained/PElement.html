@@ -14,7 +14,14 @@
         <div class="header">
           <a href="../index.html"><div class="logo"></div></a>
           <a href="../index.html">Dart Documentation</a>
-         &rsaquo; <a href="../dartlib_retained.html">dartlib_retained</a> &rsaquo; <a href="../dartlib_retained/PElement.html">PElement</a></div>
+         &rsaquo; <a href="../dartlib_retained.html">dartlib_retained</a> &rsaquo; <a href="../dartlib_retained/PElement.html">PElement</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
         <div class="nav">
         
 </div>
@@ -41,9 +48,9 @@ new <strong>PElement</strong>(num _width, num _height, [bool cacheEnabled = fals
 
 <pre class="source">
 PElement(this._width, this._height, [this.cacheEnabled = false]) :
-  _transforms = new List&lt;core.AffineTransform&gt;(),
-  _updatedEventHandle = new core.EventHandle&lt;core.EventArgs&gt;(),
-  _invalidatedEventHandle = new core.EventHandle&lt;core.EventArgs&gt;();
+  _transforms = new List&lt;AffineTransform&gt;(),
+  _updatedEventHandle = new EventHandle&lt;EventArgs&gt;(),
+  _invalidatedEventHandle = new EventHandle&lt;EventArgs&gt;();
 </pre>
 </div>
 </div>
@@ -55,8 +62,8 @@ PElement(this._width, this._height, [this.cacheEnabled = false]) :
 <div class="doc">
 
 <pre class="source">
-core.AffineTransform addTransform(){
-  var tx = new core.AffineTransform();
+AffineTransform addTransform(){
+  var tx = new AffineTransform();
   _transforms.add(tx);
   return tx;
 }
@@ -87,7 +94,7 @@ bool <strong>draw</strong>(CanvasRenderingContext2D ctx) <a class="anchor-link" 
 bool draw(CanvasRenderingContext2D ctx){
   update();
   var dirty = (_lastDrawSize == null);
-  drawInternal(ctx);
+  drawCore(ctx);
   return dirty;
 }
 </pre>
@@ -101,25 +108,6 @@ void <strong>drawCore</strong>(CanvasRenderingContext2D ctx) <a class="anchor-li
 
 <pre class="source">
 void drawCore(CanvasRenderingContext2D ctx){
-  if (_alpha != null) {
-    ctx.globalAlpha = _alpha;
-  }
-
-  // call the abstract draw method
-  drawOverride(ctx);
-  _lastDrawSize = this.size;
-}
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="drawInternal">
-<span class="show-code">Code</span>
-void <strong>drawInternal</strong>(CanvasRenderingContext2D ctx) <a class="anchor-link" href="#drawInternal"
-              title="Permalink to PElement.drawInternal">#</a></h4>
-<div class="doc">
-
-<pre class="source">
-void drawInternal(CanvasRenderingContext2D ctx){
   if(cacheEnabled) {
     _drawCached(ctx);
   } else {
@@ -147,8 +135,8 @@ abstract void drawOverride(CanvasRenderingContext2D ctx);
 <div class="doc">
 
 <pre class="source">
-core.AffineTransform getTransform() {
-  var tx = new core.AffineTransform();
+AffineTransform getTransform() {
+  var tx = new AffineTransform();
   _transforms.forEach(tx.concatenate);
   return tx;
 }
@@ -162,8 +150,8 @@ core.AffineTransform getTransform() {
 <div class="doc">
 
 <pre class="source">
-core.AffineTransform getTransformToRoot(){
-  var tx = new core.AffineTransform();
+AffineTransform getTransformToRoot(){
+  var tx = new AffineTransform();
   if(_parent != null){
     tx.concatenate(_parent.getTransformToRoot());
   }
@@ -205,10 +193,25 @@ bool hasVisualChild(PElement element){
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="height=">
+<span class="show-code">Code</span>
+void <strong>set height</strong>(num value) <a class="anchor-link" href="#height="
+              title="Permalink to PElement.set height">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void set height(num value) {
+  assert(isValidNumber(value));
+  _height = value;
+  invalidateDraw();
+}
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="height">
 <span class="show-code">Code</span>
-num <strong>height</strong>() <a class="anchor-link" href="#height"
-              title="Permalink to PElement.height">#</a></h4>
+num <strong>get height</strong>() <a class="anchor-link" href="#height"
+              title="Permalink to PElement.get height">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -234,19 +237,19 @@ void invalidateDraw(){
 </div>
 <div class="method"><h4 id="invalidated">
 <span class="show-code">Code</span>
-<a href="../dartlib/EventRoot.html">EventRoot</a>&lt;<a href="../dartlib/EventArgs.html">EventArgs</a>&gt; <strong>invalidated</strong>() <a class="anchor-link" href="#invalidated"
-              title="Permalink to PElement.invalidated">#</a></h4>
+<a href="../dartlib/EventRoot.html">EventRoot</a>&lt;<a href="../dartlib/EventArgs.html">EventArgs</a>&gt; <strong>get invalidated</strong>() <a class="anchor-link" href="#invalidated"
+              title="Permalink to PElement.get invalidated">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-core.EventRoot&lt;core.EventArgs&gt; get invalidated =&gt; _invalidatedEventHandle;
+EventRoot&lt;EventArgs&gt; get invalidated =&gt; _invalidatedEventHandle;
 </pre>
 </div>
 </div>
 <div class="method"><h4 id="parent">
 <span class="show-code">Code</span>
-<a href="../dartlib_retained/ElementParent.html">ElementParent</a> <strong>parent</strong>() <a class="anchor-link" href="#parent"
-              title="Permalink to PElement.parent">#</a></h4>
+<a href="../dartlib_retained/ElementParent.html">ElementParent</a> <strong>get parent</strong>() <a class="anchor-link" href="#parent"
+              title="Permalink to PElement.get parent">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -270,12 +273,28 @@ void registerParent(ElementParent parent) {
 </div>
 <div class="method"><h4 id="size">
 <span class="show-code">Code</span>
-<a href="../dartlib/Size.html">Size</a> <strong>size</strong>() <a class="anchor-link" href="#size"
-              title="Permalink to PElement.size">#</a></h4>
+<a href="../dartlib/Size.html">Size</a> <strong>get size</strong>() <a class="anchor-link" href="#size"
+              title="Permalink to PElement.get size">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-core.Size get size =&gt; new core.Size(_width, _height);
+Size get size =&gt; new Size(_width, _height);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="size=">
+<span class="show-code">Code</span>
+void <strong>set size</strong>(<a href="../dartlib/Size.html">Size</a> value) <a class="anchor-link" href="#size="
+              title="Permalink to PElement.set size">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void set size(Size value) {
+  assert(value.isValid);
+  _width = value.width;
+  _height = value.height;
+  invalidateDraw();
+}
 </pre>
 </div>
 </div>
@@ -287,26 +306,26 @@ void <strong>update</strong>() <a class="anchor-link" href="#update"
 
 <pre class="source">
 void update(){
-  _updatedEventHandle.fireEvent(core.EventArgs.empty);
+  _updatedEventHandle.fireEvent(EventArgs.empty);
 }
 </pre>
 </div>
 </div>
 <div class="method"><h4 id="updated">
 <span class="show-code">Code</span>
-<a href="../dartlib/EventRoot.html">EventRoot</a>&lt;<a href="../dartlib/EventArgs.html">EventArgs</a>&gt; <strong>updated</strong>() <a class="anchor-link" href="#updated"
-              title="Permalink to PElement.updated">#</a></h4>
+<a href="../dartlib/EventRoot.html">EventRoot</a>&lt;<a href="../dartlib/EventArgs.html">EventArgs</a>&gt; <strong>get updated</strong>() <a class="anchor-link" href="#updated"
+              title="Permalink to PElement.get updated">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-core.EventRoot&lt;core.EventArgs&gt; get updated =&gt; _updatedEventHandle;
+EventRoot&lt;EventArgs&gt; get updated =&gt; _updatedEventHandle;
 </pre>
 </div>
 </div>
 <div class="method"><h4 id="visualChildCount">
 <span class="show-code">Code</span>
-int <strong>visualChildCount</strong>() <a class="anchor-link" href="#visualChildCount"
-              title="Permalink to PElement.visualChildCount">#</a></h4>
+int <strong>get visualChildCount</strong>() <a class="anchor-link" href="#visualChildCount"
+              title="Permalink to PElement.get visualChildCount">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -316,12 +335,27 @@ int get visualChildCount =&gt; 0;
 </div>
 <div class="method"><h4 id="width">
 <span class="show-code">Code</span>
-num <strong>width</strong>() <a class="anchor-link" href="#width"
-              title="Permalink to PElement.width">#</a></h4>
+num <strong>get width</strong>() <a class="anchor-link" href="#width"
+              title="Permalink to PElement.get width">#</a></h4>
 <div class="doc">
 
 <pre class="source">
 num get width =&gt; _width;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="width=">
+<span class="show-code">Code</span>
+void <strong>set width</strong>(num value) <a class="anchor-link" href="#width="
+              title="Permalink to PElement.set width">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void set width(num value) {
+  assert(isValidNumber(value));
+  _width = value;
+  invalidateDraw();
+}
 </pre>
 </div>
 </div>

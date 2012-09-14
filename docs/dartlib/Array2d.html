@@ -14,7 +14,14 @@
         <div class="header">
           <a href="../index.html"><div class="logo"></div></a>
           <a href="../index.html">Dart Documentation</a>
-         &rsaquo; <a href="../dartlib.html">dartlib</a> &rsaquo; <a href="../dartlib/Array2d.html">Array2d&lt;T&gt;</a></div>
+         &rsaquo; <a href="../dartlib.html">dartlib</a> &rsaquo; <a href="../dartlib/Array2d.html">Array2d&lt;T&gt;</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
         <div class="nav">
         
 </div>
@@ -30,9 +37,9 @@
 <p>
 <span class="type-box"><span class="icon-class"></span><a href="../dartlib/Enumerable.html">Enumerable&lt;T&gt;</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../dartlib/ListBase.html">ListBase&lt;T&gt;</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>Array2d&lt;T&gt;</strong></span></p>
 <h3>Constructors</h3>
-<div class="method"><h4 id="Array2d">
+<div class="method"><h4 id="Array2d.wrap">
 <span class="show-code">Code</span>
-new <strong>Array2d</strong>.wrap(int width, List&lt;<a href="../dartlib/Array2d.html">T</a>&gt; source) <a class="anchor-link" href="#Array2d"
+new <strong>Array2d</strong>.wrap(int width, List&lt;<a href="../dartlib/Array2d.html">T</a>&gt; source) <a class="anchor-link" href="#Array2d.wrap"
               title="Permalink to Array2d&lt;T&gt;.Array2d">#</a></h4>
 <div class="doc">
 
@@ -78,9 +85,9 @@ factory Array2d(int width, int height, [T initialValue]) {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="Array2d">
+<div class="method"><h4 id="Array2d.readonlyFrom">
 <span class="show-code">Code</span>
-factory <strong>Array2d</strong>.readonlyFrom(int width, Iterable&lt;<a href="../dartlib/Array2d.html">T</a>&gt; source) <a class="anchor-link" href="#Array2d"
+factory <strong>Array2d</strong>.readonlyFrom(int width, Iterable&lt;<a href="../dartlib/Array2d.html">T</a>&gt; source) <a class="anchor-link" href="#Array2d.readonlyFrom"
               title="Permalink to Array2d&lt;T&gt;.Array2d">#</a></h4>
 <div class="doc">
 
@@ -161,8 +168,8 @@ Tuple&lt;int, int&gt; getCoordinate(int index) {
 </div>
 <div class="method"><h4 id="length">
 <span class="show-code">Code</span>
-int <strong>length</strong>() <a class="anchor-link" href="#length"
-              title="Permalink to Array2d&lt;T&gt;.length">#</a></h4>
+int <strong>get length</strong>() <a class="anchor-link" href="#length"
+              title="Permalink to Array2d&lt;T&gt;.get length">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -170,9 +177,9 @@ int get length =&gt; _source.length;
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="operator">
+<div class="method"><h4 id="operator []=">
 <span class="show-code">Code</span>
-void <strong>operator []=</strong>(int index, <a href="../dartlib/Array2d.html">T</a> value) <a class="anchor-link" href="#operator"
+void <strong>operator []=</strong>(int index, <a href="../dartlib/Array2d.html">T</a> value) <a class="anchor-link" href="#operator []="
               title="Permalink to Array2d&lt;T&gt;.operator []=">#</a></h4>
 <div class="doc">
 
@@ -183,9 +190,9 @@ void operator []=(int index, T value) {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="operator">
+<div class="method"><h4 id="operator []">
 <span class="show-code">Code</span>
-<a href="../dartlib/Array2d.html">T</a> <strong>operator []</strong>(int index) <a class="anchor-link" href="#operator"
+<a href="../dartlib/Array2d.html">T</a> <strong>operator []</strong>(int index) <a class="anchor-link" href="#operator []"
               title="Permalink to Array2d&lt;T&gt;.operator []">#</a></h4>
 <div class="doc">
 

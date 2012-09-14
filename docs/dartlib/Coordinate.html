@@ -14,7 +14,14 @@
         <div class="header">
           <a href="../index.html"><div class="logo"></div></a>
           <a href="../index.html">Dart Documentation</a>
-         &rsaquo; <a href="../dartlib.html">dartlib</a> &rsaquo; <a href="../dartlib/Coordinate.html">Coordinate</a></div>
+         &rsaquo; <a href="../dartlib.html">dartlib</a> &rsaquo; <a href="../dartlib/Coordinate.html">Coordinate</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
         <div class="nav">
         
 </div>
@@ -61,7 +68,7 @@ static Vector difference(Coordinate a, Coordinate b) {
 num <strong>getDistance</strong>(<a href="../dartlib/Coordinate.html">Coordinate</a> other) <a class="anchor-link" href="#getDistance"
               title="Permalink to Coordinate.getDistance">#</a></h4>
 <div class="doc">
-<p>Computes the distance to another <a class="crossref" href="../dartlib/Coordinate.html#new:Coordinate">Coordinate</a>.</p>
+<p>Computes the distance to another <a class="crossref" href="../dartlib/Coordinate.html#Coordinate">Coordinate</a>.</p>
 <pre class="source">
 num getDistance (Coordinate other) =&gt; (this - other).length;
 </pre>
@@ -69,8 +76,8 @@ num getDistance (Coordinate other) =&gt; (this - other).length;
 </div>
 <div class="method"><h4 id="isValid">
 <span class="show-code">Code</span>
-bool <strong>isValid</strong>() <a class="anchor-link" href="#isValid"
-              title="Permalink to Coordinate.isValid">#</a></h4>
+bool <strong>get isValid</strong>() <a class="anchor-link" href="#isValid"
+              title="Permalink to Coordinate.get isValid">#</a></h4>
 <div class="doc">
 
 <pre class="source">
@@ -78,9 +85,9 @@ bool get isValid =&gt; isValidNumber(x) &amp;&amp; isValidNumber(y);
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="operator">
+<div class="method"><h4 id="operator ==">
 <span class="show-code">Code</span>
-bool <strong>operator ==</strong>(<a href="../dartlib/Coordinate.html">Coordinate</a> other) <a class="anchor-link" href="#operator"
+bool <strong>operator ==</strong>(<a href="../dartlib/Coordinate.html">Coordinate</a> other) <a class="anchor-link" href="#operator =="
               title="Permalink to Coordinate.operator ==">#</a></h4>
 <div class="doc">
 
@@ -91,9 +98,9 @@ bool operator ==(Coordinate other) {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="operator">
+<div class="method"><h4 id="operator +">
 <span class="show-code">Code</span>
-<a href="../dartlib/Coordinate.html">Coordinate</a> <strong>operator +</strong>(<a href="../dartlib/Vector.html">Vector</a> other) <a class="anchor-link" href="#operator"
+<a href="../dartlib/Coordinate.html">Coordinate</a> <strong>operator +</strong>(<a href="../dartlib/Vector.html">Vector</a> other) <a class="anchor-link" href="#operator +"
               title="Permalink to Coordinate.operator +">#</a></h4>
 <div class="doc">
 
@@ -103,14 +110,25 @@ Coordinate operator +(Vector other) =&gt;
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="operator">
+<div class="method"><h4 id="operator -">
 <span class="show-code">Code</span>
-<a href="../dartlib/Vector.html">Vector</a> <strong>operator -</strong>(<a href="../dartlib/Coordinate.html">Coordinate</a> other) <a class="anchor-link" href="#operator"
+<a href="../dartlib/Vector.html">Vector</a> <strong>operator -</strong>(<a href="../dartlib/Coordinate.html">Coordinate</a> other) <a class="anchor-link" href="#operator -"
               title="Permalink to Coordinate.operator -">#</a></h4>
 <div class="doc">
-<p>Subtract a <a class="crossref" href="../dartlib/Coordinate.html#new:Coordinate">Coordinate</a> and returns the result as new <a class="crossref" href="../dartlib/Vector.html">Vector</a>.</p>
+<p>Subtract a <a class="crossref" href="../dartlib/Coordinate.html#Coordinate">Coordinate</a> and returns the result as new <a class="crossref" href="../dartlib/Vector.html">Vector</a>.</p>
 <pre class="source">
 Vector operator -(Coordinate other) =&gt; difference(this, other);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="toSize">
+<span class="show-code">Code</span>
+<a href="../dartlib/Size.html">Size</a> <strong>toSize</strong>() <a class="anchor-link" href="#toSize"
+              title="Permalink to Coordinate.toSize">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Size toSize() =&gt; new Size(x, y);
 </pre>
 </div>
 </div>

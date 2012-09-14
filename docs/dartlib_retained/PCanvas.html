@@ -14,7 +14,14 @@
         <div class="header">
           <a href="../index.html"><div class="logo"></div></a>
           <a href="../index.html">Dart Documentation</a>
-         &rsaquo; <a href="../dartlib_retained.html">dartlib_retained</a> &rsaquo; <a href="../dartlib_retained/PCanvas.html">PCanvas</a></div>
+         &rsaquo; <a href="../dartlib_retained.html">dartlib_retained</a> &rsaquo; <a href="../dartlib_retained/PCanvas.html">PCanvas</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
         <div class="nav">
         
 </div>
@@ -49,8 +56,8 @@ PCanvas(int w, int h, [bool enableCache = false]):super(w, h, enableCache);
 <div class="doc">
 
 <pre class="source">
-core.Coordinate getCenter(PElement element){
-  var sizeOffset = new core.Vector(element.width/2, element.height/2);
+Coordinate getCenter(PElement element){
+  var sizeOffset = new Vector(element.width/2, element.height/2);
   return sizeOffset + getTopLeft(element);
 }
 </pre>
@@ -63,7 +70,7 @@ core.Coordinate getCenter(PElement element){
 <div class="doc">
 
 <pre class="source">
-core.Coordinate getTopLeft(PElement element){
+Coordinate getTopLeft(PElement element){
   var tx = getChildTransform(element);
   return tx.transformCoordinate();
 }
@@ -77,9 +84,9 @@ void <strong>setCenter</strong>(<a href="../dartlib_retained/PElement.html">PEle
 <div class="doc">
 
 <pre class="source">
-void setCenter(PElement element, core.Coordinate value){
-  var sizeOffset = new core.Vector(element.width/2, element.height/2);
-  var delta = core.Coordinate.difference(value, sizeOffset);
+void setCenter(PElement element, Coordinate value){
+  var sizeOffset = new Vector(element.width/2, element.height/2);
+  var delta = Coordinate.difference(value, sizeOffset);
   setTopLeft(element, delta);
 }
 </pre>
@@ -92,7 +99,7 @@ void <strong>setTopLeft</strong>(<a href="../dartlib_retained/PElement.html">PEl
 <div class="doc">
 
 <pre class="source">
-void setTopLeft(PElement element, core.Coordinate value){
+void setTopLeft(PElement element, Coordinate value){
   var tx = getChildTransform(element);
   tx.setToTranslation(value.x, value.y);
 }

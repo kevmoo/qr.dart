@@ -14,7 +14,14 @@
         <div class="header">
           <a href="../index.html"><div class="logo"></div></a>
           <a href="../index.html">Dart Documentation</a>
-         &rsaquo; <a href="../dartlib.html">dartlib</a> &rsaquo; <a href="../dartlib/ListBase.html">ListBase&lt;T&gt;</a></div>
+         &rsaquo; <a href="../dartlib.html">dartlib</a> &rsaquo; <a href="../dartlib/ListBase.html">ListBase&lt;T&gt;</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
         <div class="nav">
         
 </div>
@@ -43,7 +50,7 @@ const <strong>ListBase</strong>() <a class="anchor-link" href="#ListBase"
 <div class="doc">
 
 <pre class="source">
-const ListBase() : super._internal();
+const ListBase() : super();
 </pre>
 </div>
 </div>
@@ -299,8 +306,8 @@ int lastIndexOf(T element, [int start=0]) {
 </div>
 <div class="method"><h4 id="length">
 <span class="show-code">Code</span>
-int <strong>length</strong>() <a class="anchor-link" href="#length"
-              title="Permalink to ListBase&lt;T&gt;.length">#</a></h4>
+int <strong>get length</strong>() <a class="anchor-link" href="#length"
+              title="Permalink to ListBase&lt;T&gt;.get length">#</a></h4>
 <div class="doc">
 <p>Throws a <code>NotImplementedException</code>.</p>
 <p>Subclasses should return the number of elements in this collection.</p>
@@ -332,9 +339,9 @@ Collection map(f(T element)) {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="operator">
+<div class="method"><h4 id="operator []=">
 <span class="show-code">Code</span>
-void <strong>operator []=</strong>(int index, <a href="../dartlib/ListBase.html">T</a> value) <a class="anchor-link" href="#operator"
+void <strong>operator []=</strong>(int index, <a href="../dartlib/ListBase.html">T</a> value) <a class="anchor-link" href="#operator []="
               title="Permalink to ListBase&lt;T&gt;.operator []=">#</a></h4>
 <div class="doc">
 
@@ -345,9 +352,9 @@ void operator []=(int index, T value) {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="operator">
+<div class="method"><h4 id="operator []">
 <span class="show-code">Code</span>
-<a href="../dartlib/ListBase.html">T</a> <strong>operator []</strong>(int index) <a class="anchor-link" href="#operator"
+<a href="../dartlib/ListBase.html">T</a> <strong>operator []</strong>(int index) <a class="anchor-link" href="#operator []"
               title="Permalink to ListBase&lt;T&gt;.operator []">#</a></h4>
 <div class="doc">
 <p>Throws a <code>NotImplementedException</code>.</p>

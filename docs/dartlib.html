@@ -14,7 +14,14 @@
         <div class="header">
           <a href="index.html"><div class="logo"></div></a>
           <a href="index.html">Dart Documentation</a>
-         &rsaquo; <a href="dartlib.html">dartlib</a></div>
+         &rsaquo; <a href="dartlib.html">dartlib</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
         <div class="nav">
         
 </div>
@@ -33,7 +40,7 @@ Enumerable $(Iterable source) {
   if(source is Enumerable) {
     return source;
   } else {
-    return new Enumerable(source);
+    return new Enumerable.fromIterable(source);
   }
 }
 </pre>
@@ -60,7 +67,7 @@ bool isValidNumber(num value) {
 
 <pre class="source">
 NumberEnumerable n$(Iterable&lt;num&gt; source) {
-  return new NumberEnumerable(source);
+  return new NumberEnumerable.from(source);
 }
 </pre>
 </div>
@@ -158,6 +165,12 @@ math.Random get rnd {
           <div class="type">
           <h4>
             <a href="dartlib/AttachedEvent.html"><strong>AttachedEvent&lt;T&gt;</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="dartlib/Box.html"><strong>Box</strong></a>
           </h4>
           </div>
           
@@ -272,12 +285,6 @@ math.Random get rnd {
           <div class="type">
           <h4>
             <a href="dartlib/ReadOnlyCollection.html"><strong>ReadOnlyCollection&lt;T&gt;</strong></a>
-          </h4>
-          </div>
-          
-          <div class="type">
-          <h4>
-            <a href="dartlib/Rect.html"><strong>Rect</strong></a>
           </h4>
           </div>
           

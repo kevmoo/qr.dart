@@ -14,7 +14,14 @@
         <div class="header">
           <a href="../index.html"><div class="logo"></div></a>
           <a href="../index.html">Dart Documentation</a>
-         &rsaquo; <a href="../dartlib_retained.html">dartlib_retained</a> &rsaquo; <a href="../dartlib_retained/ElementParentImpl.html">ElementParentImpl</a></div>
+         &rsaquo; <a href="../dartlib_retained.html">dartlib_retained</a> &rsaquo; <a href="../dartlib_retained/ElementParentImpl.html">ElementParentImpl</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
         <div class="nav">
         
 </div>
@@ -71,7 +78,7 @@ void <strong>drawOverride</strong>(CanvasRenderingContext2D ctx) <a class="ancho
 
 <pre class="source">
 void drawOverride(CanvasRenderingContext2D ctx) {
-  _forEach((e) =&gt; e.drawInternal(ctx));
+  _forEach((e) =&gt; e.drawCore(ctx));
 }
 </pre>
 </div>
@@ -116,12 +123,12 @@ void update(){
 </div>
 <div class="method"><h4 id="visualChildCount">
 <span class="show-code">Code</span>
-int <strong>visualChildCount</strong>() <a class="anchor-link" href="#visualChildCount"
-              title="Permalink to ElementParentImpl.visualChildCount">#</a></h4>
+int <strong>get visualChildCount</strong>() <a class="anchor-link" href="#visualChildCount"
+              title="Permalink to ElementParentImpl.get visualChildCount">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-abstract int get visualChildCount();
+abstract int get visualChildCount;
 </pre>
 </div>
 </div>

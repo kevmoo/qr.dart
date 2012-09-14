@@ -14,7 +14,14 @@
         <div class="header">
           <a href="../index.html"><div class="logo"></div></a>
           <a href="../index.html">Dart Documentation</a>
-         &rsaquo; <a href="../dartlib_retained.html">dartlib_retained</a> &rsaquo; <a href="../dartlib_retained/CanvasUtil.html">CanvasUtil</a></div>
+         &rsaquo; <a href="../dartlib_retained.html">dartlib_retained</a> &rsaquo; <a href="../dartlib_retained/CanvasUtil.html">CanvasUtil</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
         <div class="nav">
         
 </div>
@@ -43,21 +50,21 @@ static void centeredCircle(CanvasRenderingContext2D ctx,
 </div>
 <div class="method"><h4 id="drawImage">
 <span class="show-code">Code</span>
-void <strong>drawImage</strong>(CanvasRenderingContext2D ctx, ImageElement img, <a href="../dartlib/Rect.html">Rect</a> sourceRect, [<a href="../dartlib/Rect.html">Rect</a> targetRect = null]) <a class="anchor-link" href="#drawImage"
+void <strong>drawImage</strong>(CanvasRenderingContext2D ctx, ImageElement img, <a href="../dartlib/Box.html">Box</a> sourceBox, [<a href="../dartlib/Box.html">Box</a> targetBox = null]) <a class="anchor-link" href="#drawImage"
               title="Permalink to CanvasUtil.drawImage">#</a></h4>
 <div class="doc">
 
 <pre class="source">
 static void drawImage(CanvasRenderingContext2D ctx, ImageElement img,
-                      core.Rect sourceRect, [core.Rect targetRect = null]) {
+                      Box sourceBox, [Box targetBox = null]) {
 
-  if(targetRect == null) {
-    targetRect = new core.Rect(0, 0, sourceRect.width, sourceRect.height);
+  if(targetBox == null) {
+    targetBox = new Box(0, 0, sourceBox.width, sourceBox.height);
   }
 
   ctx.drawImage(img,
-      sourceRect.left, sourceRect.top, sourceRect.width, sourceRect.height,
-      targetRect.left, targetRect.top, targetRect.width, targetRect.height);
+      sourceBox.left, sourceBox.top, sourceBox.width, sourceBox.height,
+      targetBox.left, targetBox.top, targetBox.width, targetBox.height);
 }
 </pre>
 </div>
@@ -95,8 +102,8 @@ static void ellipse(CanvasRenderingContext2D ctx,
 <div class="doc">
 
 <pre class="source">
-static core.Size getCanvasSize(CanvasElement canvasElement) {
-  return new core.Size(canvasElement.width, canvasElement.height);
+static Size getCanvasSize(CanvasElement canvasElement) {
+  return new Size(canvasElement.width, canvasElement.height);
 }
 </pre>
 </div>
@@ -110,13 +117,13 @@ void <strong>star</strong>(CanvasRenderingContext2D ctx, num x, num y, num outte
 <pre class="source">
 static void star(CanvasRenderingContext2D ctx, num x, num y,
                  num outterRadius, [int pointCount = 5]) {
-  core.requireArgumentNotNull(ctx, 'ctx');
-  core.requireArgument(core.isValidNumber(x), 'x');
-  core.requireArgument(core.isValidNumber(y), 'y');
-  core.requireArgument(core.isValidNumber(outterRadius), 'outterRadius');
-  core.requireArgument(outterRadius &gt;= 0, 'outterRadius');
-  core.requireArgument(core.isValidNumber(pointCount), 'pointCount');
-  core.requireArgument(pointCount &gt;= 5, 'pointCount');
+  requireArgumentNotNull(ctx, 'ctx');
+  requireArgument(isValidNumber(x), 'x');
+  requireArgument(isValidNumber(y), 'y');
+  requireArgument(isValidNumber(outterRadius), 'outterRadius');
+  requireArgument(outterRadius &gt;= 0, 'outterRadius');
+  requireArgument(isValidNumber(pointCount), 'pointCount');
+  requireArgument(pointCount &gt;= 5, 'pointCount');
 
   final sliceSize = math.PI / pointCount;
 
@@ -126,9 +133,9 @@ static void star(CanvasRenderingContext2D ctx, num x, num y,
   // to give the star 'clean lines'
   final innerRatio = math.cos(2 * sliceSize) / math.cos(sliceSize);
 
-  final center = new core.Coordinate(x, y);
-  final tx = new core.AffineTransform();
-  final outterVect = new core.Vector(0, -outterRadius);
+  final center = new Coordinate(x, y);
+  final tx = new AffineTransform();
+  final outterVect = new Vector(0, -outterRadius);
   final innerVect = outterVect.scale(innerRatio);
 
   ctx.beginPath();
@@ -165,9 +172,9 @@ void <strong>transform</strong>(CanvasRenderingContext2D ctx, <a href="../dartli
 <div class="doc">
 
 <pre class="source">
-static void transform(CanvasRenderingContext2D ctx, core.AffineTransform tx){
-  core.requireArgumentNotNull(ctx, 'ctx');
-  core.requireArgumentNotNull(tx, 'tx');
+static void transform(CanvasRenderingContext2D ctx, AffineTransform tx){
+  requireArgumentNotNull(ctx, 'ctx');
+  requireArgumentNotNull(tx, 'tx');
 
   ctx.transform(tx.scaleX, tx.shearY, tx.shearX,
     tx.scaleY, tx.translateX, tx.translateY);
