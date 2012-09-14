@@ -93,8 +93,8 @@ $$.HashMapImplementation = {"":
  _probeForLookup$1: function(key){var hash=$.and($.hashCode(key),$.sub($.get$length(this._keys),1));if(hash!==(hash|0))return this._probeForLookup$1$bailout(1,key,hash);for(var numberOfProbes=1;true;){var existingKey=$.index(this._keys,hash);if(existingKey==null)return -1;if($.eqB(existingKey,key))return hash;var numberOfProbes0=numberOfProbes+1;hash=$.HashMapImplementation__nextProbe(hash,numberOfProbes,$.get$length(this._keys));numberOfProbes=numberOfProbes0;}},
  _probeForLookup$1$bailout: function(state,key,hash){for(var numberOfProbes=1;true;){var existingKey=$.index(this._keys,hash);if(existingKey==null)return -1;if($.eqB(existingKey,key))return hash;var numberOfProbes0=numberOfProbes+1;hash=$.HashMapImplementation__nextProbe(hash,numberOfProbes,$.get$length(this._keys));numberOfProbes=numberOfProbes0;}},
  _ensureCapacity$0: function(){var newNumberOfEntries=$.add(this._numberOfEntries,1);if($.geB(newNumberOfEntries,this._loadLimit)){this._grow$1($.mul($.get$length(this._keys),2));return;}var numberOfFree=$.sub($.sub($.get$length(this._keys),newNumberOfEntries),this._numberOfDeleted);if($.gtB(this._numberOfDeleted,numberOfFree))this._grow$1($.get$length(this._keys));},
- _grow$1: function(newCapacity){var capacity=$.get$length(this._keys);if(typeof capacity!=='number')return this._grow$1$bailout(1,newCapacity,capacity,0,0);this._loadLimit=$.tdiv($.mul(newCapacity,3),4);var oldKeys=this._keys;if(typeof oldKeys!=='string'&&(typeof oldKeys!=='object'||oldKeys===null||oldKeys.constructor!==Array&&!oldKeys.is$JavaScriptIndexingBehavior()))return this._grow$1$bailout(2,newCapacity,oldKeys,capacity,0);var oldValues=this._values;if(typeof oldValues!=='string'&&(typeof oldValues!=='object'||oldValues===null||oldValues.constructor!==Array&&!oldValues.is$JavaScriptIndexingBehavior()))return this._grow$1$bailout(3,newCapacity,oldKeys,oldValues,capacity);this._keys=$.ListImplementation_List(newCapacity);this._values=$.ListImplementation_List(newCapacity,$.getRuntimeTypeInfo(this).V);for(var i=0;i<capacity;++i){if(i<0||i>=oldKeys.length)throw $.ioore(i);var key=oldKeys[i];if(key==null||key===$.CTC13)continue;if(i<0||i>=oldValues.length)throw $.ioore(i);var value=oldValues[i];var newIndex=this._probeForAdding$1(key);$.indexSet(this._keys,newIndex,key);$.indexSet(this._values,newIndex,value);}this._numberOfDeleted=0;},
- _grow$1$bailout: function(state,env0,env1,env2,env3){switch(state){case 1:var newCapacity=env0;capacity=env1;break;case 2:newCapacity=env0;oldKeys=env1;capacity=env2;break;case 3:newCapacity=env0;oldKeys=env1;oldValues=env2;capacity=env3;break;}switch(state){case 0:var capacity=$.get$length(this._keys);case 1:state=0;this._loadLimit=$.tdiv($.mul(newCapacity,3),4);var oldKeys=this._keys;case 2:state=0;var oldValues=this._values;case 3:state=0;this._keys=$.ListImplementation_List(newCapacity);this._values=$.ListImplementation_List(newCapacity,$.getRuntimeTypeInfo(this).V);for(var i=0;$.ltB(i,capacity);++i){var key=$.index(oldKeys,i);if(key==null||key===$.CTC13)continue;var value=$.index(oldValues,i);var newIndex=this._probeForAdding$1(key);$.indexSet(this._keys,newIndex,key);$.indexSet(this._values,newIndex,value);}this._numberOfDeleted=0;}},
+ _grow$1: function(newCapacity){var capacity=$.get$length(this._keys);if(typeof capacity!=='number')return this._grow$1$bailout(1,newCapacity,capacity,0,0);this._loadLimit=$.tdiv($.mul(newCapacity,3),4);var oldKeys=this._keys;if(typeof oldKeys!=='string'&&(typeof oldKeys!=='object'||oldKeys===null||oldKeys.constructor!==Array&&!oldKeys.is$JavaScriptIndexingBehavior()))return this._grow$1$bailout(2,newCapacity,oldKeys,capacity,0);var oldValues=this._values;if(typeof oldValues!=='string'&&(typeof oldValues!=='object'||oldValues===null||oldValues.constructor!==Array&&!oldValues.is$JavaScriptIndexingBehavior()))return this._grow$1$bailout(3,newCapacity,oldKeys,oldValues,capacity);this._keys=$.ListImplementation_List(newCapacity);var t4=$.ListImplementation_List(newCapacity,$.getRuntimeTypeInfo(this).V);$.setRuntimeTypeInfo(t4,{ 'E': $.getRuntimeTypeInfo(this).V });this._values=t4;for(var i=0;i<capacity;++i){if(i<0||i>=oldKeys.length)throw $.ioore(i);var key=oldKeys[i];if(key==null||key===$.CTC13)continue;if(i<0||i>=oldValues.length)throw $.ioore(i);var value=oldValues[i];var newIndex=this._probeForAdding$1(key);$.indexSet(this._keys,newIndex,key);$.indexSet(this._values,newIndex,value);}this._numberOfDeleted=0;},
+ _grow$1$bailout: function(state,env0,env1,env2,env3){switch(state){case 1:var newCapacity=env0;capacity=env1;break;case 2:newCapacity=env0;oldKeys=env1;capacity=env2;break;case 3:newCapacity=env0;oldKeys=env1;oldValues=env2;capacity=env3;break;}switch(state){case 0:var capacity=$.get$length(this._keys);case 1:state=0;this._loadLimit=$.tdiv($.mul(newCapacity,3),4);var oldKeys=this._keys;case 2:state=0;var oldValues=this._values;case 3:state=0;this._keys=$.ListImplementation_List(newCapacity);var t4=$.ListImplementation_List(newCapacity,$.getRuntimeTypeInfo(this).V);$.setRuntimeTypeInfo(t4,{ 'E': $.getRuntimeTypeInfo(this).V });this._values=t4;for(var i=0;$.ltB(i,capacity);++i){var key=$.index(oldKeys,i);if(key==null||key===$.CTC13)continue;var value=$.index(oldValues,i);var newIndex=this._probeForAdding$1(key);$.indexSet(this._keys,newIndex,key);$.indexSet(this._values,newIndex,value);}this._numberOfDeleted=0;}},
  clear$0: function(){this._numberOfEntries=0;this._numberOfDeleted=0;var length$=$.get$length(this._keys);if(typeof length$!=='number')return this.clear$0$bailout(1,length$);for(var i=0;i<length$;++i){$.indexSet(this._keys,i,null);$.indexSet(this._values,i,null);}},
  clear$0$bailout: function(state,length$){for(var i=0;$.ltB(i,length$);++i){$.indexSet(this._keys,i,null);$.indexSet(this._values,i,null);}},
  operator$indexSet$2: function(key,value){this._ensureCapacity$0();var index=this._probeForAdding$1(key);var t1=this._keys;if(typeof t1!=='string'&&(typeof t1!=='object'||t1===null||t1.constructor!==Array&&!t1.is$JavaScriptIndexingBehavior()))return this.operator$indexSet$2$bailout(1,key,value,index,t1);if(index!==(index|0))throw $.iae(index);if(index<0||index>=t1.length)throw $.ioore(index);if(!(t1[index]==null)){if(index<0||index>=t1.length)throw $.ioore(index);var t2=t1[index]===$.CTC13;t1=t2;}else t1=true;if(t1){t1=this._numberOfEntries;if(typeof t1!=='number')return this.operator$indexSet$2$bailout(3,key,value,t1,index);this._numberOfEntries=t1+1;}t1=this._keys;if(typeof t1!=='object'||t1===null||(t1.constructor!==Array||!!t1.immutable$list)&&!t1.is$JavaScriptIndexingBehavior())return this.operator$indexSet$2$bailout(4,key,value,t1,index);if(index<0||index>=t1.length)throw $.ioore(index);t1[index]=key;t1=this._values;if(typeof t1!=='object'||t1===null||(t1.constructor!==Array||!!t1.immutable$list)&&!t1.is$JavaScriptIndexingBehavior())return this.operator$indexSet$2$bailout(5,value,t1,index,0);if(index<0||index>=t1.length)throw $.ioore(index);t1[index]=value;},
@@ -105,11 +105,11 @@ $$.HashMapImplementation = {"":
  get$length: function(){return this._numberOfEntries;},
  forEach$1: function(f){var length$=$.get$length(this._keys);if(typeof length$!=='number')return this.forEach$1$bailout(1,f,length$);for(var i=0;i<length$;++i){var key=$.index(this._keys,i);if(!(key==null)&&!(key===$.CTC13))f.call$2(key,$.index(this._values,i));}},
  forEach$1$bailout: function(state,f,length$){for(var i=0;$.ltB(i,length$);++i){var key=$.index(this._keys,i);if(!(key==null)&&!(key===$.CTC13))f.call$2(key,$.index(this._values,i));}},
- getKeys$0: function(){var t1={};var list=$.ListImplementation_List($.get$length(this),$.getRuntimeTypeInfo(this).K);t1.i_10=0;this.forEach$1(new $.HashMapImplementation_getKeys__(list,t1));return list;},
- getValues$0: function(){var t1={};var list=$.ListImplementation_List($.get$length(this),$.getRuntimeTypeInfo(this).V);t1.i_1=0;this.forEach$1(new $.HashMapImplementation_getValues__(list,t1));return list;},
+ getKeys$0: function(){var t1={};var list=$.ListImplementation_List($.get$length(this),$.getRuntimeTypeInfo(this).K);$.setRuntimeTypeInfo(list,{ 'E': $.getRuntimeTypeInfo(this).K });t1.i_10=0;this.forEach$1(new $.HashMapImplementation_getKeys__(list,t1));return list;},
+ getValues$0: function(){var t1={};var list=$.ListImplementation_List($.get$length(this),$.getRuntimeTypeInfo(this).V);$.setRuntimeTypeInfo(list,{ 'E': $.getRuntimeTypeInfo(this).V });t1.i_1=0;this.forEach$1(new $.HashMapImplementation_getValues__(list,t1));return list;},
  containsKey$1: function(key){return !$.eqB(this._probeForLookup$1(key),-1);},
  toString$0: function(){return $.Maps_mapToString(this);},
- HashMapImplementation$0: function(){this._numberOfEntries=0;this._numberOfDeleted=0;this._loadLimit=$.HashMapImplementation__computeLoadLimit(8);this._keys=$.ListImplementation_List(8);this._values=$.ListImplementation_List(8,$.getRuntimeTypeInfo(this).V);},
+ HashMapImplementation$0: function(){this._numberOfEntries=0;this._numberOfDeleted=0;this._loadLimit=$.HashMapImplementation__computeLoadLimit(8);this._keys=$.ListImplementation_List(8);var t1=$.ListImplementation_List(8,$.getRuntimeTypeInfo(this).V);$.setRuntimeTypeInfo(t1,{ 'E': $.getRuntimeTypeInfo(this).V });this._values=t1;},
  is$Map: function() { return true; }
 };
 
@@ -130,8 +130,8 @@ $$.LinkedHashMapImplementation = {"":
  operator$indexSet$2$bailout: function(state,key,value,t1){if(t1.containsKey$1(key)===true)$.index(t1,key).get$element().set$value(value);else{var t2=this._list;$.addLast(t2,$.KeyValuePair$(key,value,$.getRuntimeTypeInfo(this).K,$.getRuntimeTypeInfo(this).V));$.indexSet(t1,key,t2.lastEntry$0());}},
  operator$index$1: function(key){var entry=$.index(this._map,key);if(entry==null)return;return entry.get$element().get$value();},
  remove$1: function(key){var entry=this._map.remove$1(key);if(entry==null)return;entry.remove$0();return entry.get$element().get$value();},
- getKeys$0: function(){var t1={};var list=$.ListImplementation_List($.get$length(this),$.getRuntimeTypeInfo(this).K);t1.index_10=0;$.forEach(this._list,new $.LinkedHashMapImplementation_getKeys__(list,t1));return list;},
- getValues$0: function(){var t1={};var list=$.ListImplementation_List($.get$length(this),$.getRuntimeTypeInfo(this).V);t1.index_1=0;$.forEach(this._list,new $.LinkedHashMapImplementation_getValues__(list,t1));return list;},
+ getKeys$0: function(){var t1={};var list=$.ListImplementation_List($.get$length(this),$.getRuntimeTypeInfo(this).K);$.setRuntimeTypeInfo(list,{ 'E': $.getRuntimeTypeInfo(this).K });t1.index_10=0;$.forEach(this._list,new $.LinkedHashMapImplementation_getKeys__(list,t1));return list;},
+ getValues$0: function(){var t1={};var list=$.ListImplementation_List($.get$length(this),$.getRuntimeTypeInfo(this).V);$.setRuntimeTypeInfo(list,{ 'E': $.getRuntimeTypeInfo(this).V });t1.index_1=0;$.forEach(this._list,new $.LinkedHashMapImplementation_getValues__(list,t1));return list;},
  forEach$1: function(f){$.forEach(this._list,new $.LinkedHashMapImplementation_forEach__(f));},
  containsKey$1: function(key){return this._map.containsKey$1(key);},
  get$length: function(){return $.get$length(this._map);},
@@ -208,7 +208,7 @@ $$.StringBufferImpl = {"":
  isEmpty$0: function(){return this._length===0;},
  add$1: function(obj){var str=$.toString(obj);if(str==null||$.isEmpty(str)===true)return this;$.add$1(this._buffer,str);var t1=this._length;if(typeof t1!=='number')return this.add$1$bailout(1,str,t1);var t3=$.get$length(str);if(typeof t3!=='number')return this.add$1$bailout(2,t1,t3);this._length=t1+t3;return this;},
  add$1$bailout: function(state,env0,env1){switch(state){case 1:str=env0;t1=env1;break;case 2:t1=env0;t3=env1;break;}switch(state){case 0:var str=$.toString(obj);if(str==null||$.isEmpty(str)===true)return this;$.add$1(this._buffer,str);var t1=this._length;case 1:state=0;var t3=$.get$length(str);case 2:state=0;this._length=$.add(t1,t3);return this;}},
- clear$0: function(){this._buffer=$.ListImplementation_List(null,'String');this._length=0;return this;},
+ clear$0: function(){var t1=$.ListImplementation_List(null,'String');$.setRuntimeTypeInfo(t1,{ 'E': 'String' });this._buffer=t1;this._length=0;return this;},
  toString$0: function(){if($.get$length(this._buffer)===0)return '';if($.get$length(this._buffer)===1)return $.index(this._buffer,0);var result=$.stringJoinUnchecked($.StringImplementation__toJsStringArray(this._buffer),'');$.clear(this._buffer);$.add$1(this._buffer,result);return result;},
  StringBufferImpl$1: function(content$){this.clear$0();this.add$1(content$);}
 };
@@ -230,6 +230,13 @@ $$.IndexOutOfRangeException = {"":
  ["_value?"],
  "super": "Object",
  toString$0: function(){return 'IndexOutOfRangeException: '+$.S(this._value);},
+ is$Exception: true
+};
+
+$$.IllegalAccessException = {"":
+ [],
+ "super": "Object",
+ toString$0: function(){return 'Attempt to modify an immutable object';},
  is$Exception: true
 };
 
@@ -347,10 +354,27 @@ $$.Closure = {"":
  is$Function: true
 };
 
-$$.MetaInfo = {"":
- ["_tag?", "_tags", "_lib4_set?"],
+$$.ConstantMap = {"":
+ ["length?", "_jsObject", "_lib3_keys"],
  "super": "Object",
- _lib4_set$2: function(arg0, arg1) { return this._lib4_set.call$2(arg0, arg1); }
+ containsKey$1: function(key){if($.eqB(key,'__proto__'))return false;return $.jsHasOwnProperty(this._jsObject,key);},
+ operator$index$1: function(key){if(this.containsKey$1(key)!==true)return;return this._jsObject[key];},
+ forEach$1: function(f){$.forEach(this._lib3_keys,new $.ConstantMap_forEach_anon(this,f));},
+ getKeys$0: function(){return this._lib3_keys;},
+ getValues$0: function(){var result=[];$.forEach(this._lib3_keys,new $.ConstantMap_getValues_anon(this,result));return result;},
+ isEmpty$0: function(){return $.eq($.get$length(this),0);},
+ toString$0: function(){return $.Maps_mapToString(this);},
+ _throwImmutable$0: function(){throw $.$$throw($.CTC20);},
+ operator$indexSet$2: function(key,val){return this._throwImmutable$0();},
+ remove$1: function(key){return this._throwImmutable$0();},
+ clear$0: function(){return this._throwImmutable$0();},
+ is$Map: function() { return true; }
+};
+
+$$.MetaInfo = {"":
+ ["_tag?", "_tags", "_lib3_set?"],
+ "super": "Object",
+ _lib3_set$2: function(arg0, arg1) { return this._lib3_set.call$2(arg0, arg1); }
 };
 
 $$.DraggerDemo = {"":
@@ -431,20 +455,40 @@ $$._DocumentEventsImpl = {"":
  select$1: function(arg0) { return this.get$select().call$1(arg0); }
 };
 
-$$.EmptyElementBox = {"":
- ["client", "offset", "scroll", "bounding", "clientBoxs"],
+$$.EmptyElementRect = {"":
+ ["client", "offset", "scroll", "bounding", "clientRects"],
  "super": "Object"
 };
 
-$$._SimpleClientBox = {"":
+$$._ElementAttributeMap = {"":
+ ["_lib_element?"],
+ "super": "Object",
+ containsKey$1: function(key){return this._lib_element.$dom_hasAttribute$1(key);},
+ operator$index$1: function(key){return this._lib_element.$dom_getAttribute$1(key);},
+ operator$indexSet$2: function(key,value){this._lib_element.$dom_setAttribute$2(key,$.S(value));},
+ remove$1: function(key){var t1=this._lib_element;var value=t1.$dom_getAttribute$1(key);t1.$dom_removeAttribute$1(key);return value;},
+ clear$0: function(){var attributes=this._lib_element.get$$$dom_attributes();if(typeof attributes!=='string'&&(typeof attributes!=='object'||attributes===null||attributes.constructor!==Array&&!attributes.is$JavaScriptIndexingBehavior()))return this.clear$0$bailout(1,attributes);for(var i=attributes.length-1;i>=0;--i){if(i<0||i>=attributes.length)throw $.ioore(i);this.remove$1(attributes[i].get$name());}},
+ clear$0$bailout: function(state,attributes){for(var i=$.sub($.get$length(attributes),1);$.geB(i,0);i=$.sub(i,1))this.remove$1($.index(attributes,i).get$name());},
+ forEach$1: function(f){var attributes=this._lib_element.get$$$dom_attributes();if(typeof attributes!=='string'&&(typeof attributes!=='object'||attributes===null||attributes.constructor!==Array&&!attributes.is$JavaScriptIndexingBehavior()))return this.forEach$1$bailout(1,f,attributes);for(var len=attributes.length,i=0;i<len;++i){if(i<0||i>=attributes.length)throw $.ioore(i);var item=attributes[i];f.call$2(item.get$name(),item.get$value());}},
+ forEach$1$bailout: function(state,f,attributes){for(var len=$.get$length(attributes),i=0;$.ltB(i,len);++i){var item=$.index(attributes,i);f.call$2(item.get$name(),item.get$value());}},
+ getKeys$0: function(){var attributes=this._lib_element.get$$$dom_attributes();if(typeof attributes!=='string'&&(typeof attributes!=='object'||attributes===null||attributes.constructor!==Array&&!attributes.is$JavaScriptIndexingBehavior()))return this.getKeys$0$bailout(1,attributes);var keys=$.ListImplementation_List(attributes.length,'String');$.setRuntimeTypeInfo(keys,{ 'E': 'String' });for(var len=attributes.length,i=0;i<len;++i){if(i<0||i>=attributes.length)throw $.ioore(i);var t1=attributes[i].get$name();if(i<0||i>=keys.length)throw $.ioore(i);keys[i]=t1;}return keys;},
+ getKeys$0$bailout: function(state,attributes){var keys=$.ListImplementation_List($.get$length(attributes),'String');$.setRuntimeTypeInfo(keys,{ 'E': 'String' });for(var len=$.get$length(attributes),i=0;$.ltB(i,len);++i){var t1=$.index(attributes,i).get$name();if(i<0||i>=keys.length)throw $.ioore(i);keys[i]=t1;}return keys;},
+ getValues$0: function(){var attributes=this._lib_element.get$$$dom_attributes();if(typeof attributes!=='string'&&(typeof attributes!=='object'||attributes===null||attributes.constructor!==Array&&!attributes.is$JavaScriptIndexingBehavior()))return this.getValues$0$bailout(1,attributes);var values=$.ListImplementation_List(attributes.length,'String');$.setRuntimeTypeInfo(values,{ 'E': 'String' });for(var len=attributes.length,i=0;i<len;++i){if(i<0||i>=attributes.length)throw $.ioore(i);var t1=attributes[i].get$value();if(i<0||i>=values.length)throw $.ioore(i);values[i]=t1;}return values;},
+ getValues$0$bailout: function(state,attributes){var values=$.ListImplementation_List($.get$length(attributes),'String');$.setRuntimeTypeInfo(values,{ 'E': 'String' });for(var len=$.get$length(attributes),i=0;$.ltB(i,len);++i){var t1=$.index(attributes,i).get$value();if(i<0||i>=values.length)throw $.ioore(i);values[i]=t1;}return values;},
+ get$length: function(){return $.get$length(this._lib_element.get$$$dom_attributes());},
+ isEmpty$0: function(){return $.eq($.get$length(this),0);},
+ is$Map: function() { return true; }
+};
+
+$$._SimpleClientRect = {"":
  ["left?", "top?", "width?", "height?"],
  "super": "Object",
  operator$eq$1: function(other){return !(other==null)&&$.eqB(this.left,other.get$left())&&$.eqB(this.top,other.get$top())&&$.eqB(this.width,other.get$width())&&$.eqB(this.height,other.get$height());},
  toString$0: function(){return '('+$.S(this.left)+', '+$.S(this.top)+', '+$.S(this.width)+', '+$.S(this.height)+')';}
 };
 
-$$._ElementBoxImpl = {"":
- ["client", "offset", "scroll", "_boundingClientBox", "_clientBoxs"],
+$$._ElementRectImpl = {"":
+ ["client", "offset", "scroll", "_boundingClientRect", "_clientRects"],
  "super": "Object"
 };
 
@@ -985,7 +1029,7 @@ $$.Enumerable = {"":
 },
  select$1: function(f){$.requireArgumentNotNull(f,'f');return $._FuncEnumerable$(this,new $.Enumerable_select_anon(this,f));},
  forEach$1: function(f){for(var t1=$.iterator(this);t1.hasNext$0()===true;)f.call$1(t1.next$0());},
- toList$0: function(){return $.ListImplementation_List$from(this,$.getRuntimeTypeInfo(this).T);},
+ toList$0: function(){var t1=$.ListImplementation_List$from(this,$.getRuntimeTypeInfo(this).T);$.setRuntimeTypeInfo(t1,{ 'E': $.getRuntimeTypeInfo(this).T });return t1;},
  toString$0: function(){return '['+$.S(this.join$0())+']';},
  is$Enumerable: true
 };
@@ -1114,7 +1158,7 @@ $$.AffineTransform = {"":
 };
 
 $$.Attachable = {"":
- [],
+ ["name?"],
  "super": "Object"
 };
 
@@ -1130,13 +1174,13 @@ $$.PropertyValues = {"":
  get$_set: function() { return new $.BoundClosure1(this, '_set$2'); },
  _isSet$1: function(key){return this._propertyValues.containsKey$1(key);},
  _lib1_remove$1: function(key){if(this._isSet$1(key)===true){this._propertyValues.remove$1(key);this._changeHandle.fireEvent$1(key);}},
- _getValueOrUndefined$3: function(key,obj,ifAbsent){if(this._isSet$1(key)===true)return $.index(this._propertyValues,key);else if(!(ifAbsent==null)){var value=ifAbsent.call$1(obj);this._set$2(key,value);return value;}else return $.CTC22;}
+ _getValueOrUndefined$3: function(key,obj,ifAbsent){if(this._isSet$1(key)===true)return $.index(this._propertyValues,key);else if(!(ifAbsent==null)){var value=ifAbsent.call$1(obj);this._set$2(key,value);return value;}else return $.CTC24;}
 };
 
 $$.Property = {"":
  ["defaultValue", "name"],
  "super": "Attachable",
- get$2: function(obj,ifAbsent){var coreValue=this.getCore$2(obj,ifAbsent);if(!(coreValue===$.CTC22))return coreValue;else return this.defaultValue;},
+ get$2: function(obj,ifAbsent){var coreValue=this.getCore$2(obj,ifAbsent);if(!(coreValue===$.CTC24))return coreValue;else return this.defaultValue;},
  get$1: function(obj) {
   return this.get$2(obj,null)
 },
@@ -1155,13 +1199,13 @@ $$.FutureValue = {"":
  [],
  "super": "Object",
  get$input: function(){return this._input;},
- set$input: function(value){this._input=value;if(this._future==null)this._startFuture$0();else this._pending=true;this._inputChangedHandle.fireEvent$1($.CTC19);},
+ set$input: function(value){this._input=value;if(this._future==null)this._startFuture$0();else this._pending=true;this._inputChangedHandle.fireEvent$1($.CTC21);},
  get$output: function(){return this._output;},
  get$outputChanged: function(){return this._outputChangedHandle;},
  _startFuture$0: function(){this._future=this.getFuture$1(this._input);this._future.handleException$1(this.get$_futureException());this._future.then$1(this.get$_futureCompleted());},
  _futureException$1: function(exception){this._future=null;this._errorHandle.fireEvent$1(exception);this._cleanup$0();return true;},
  get$_futureException: function() { return new $.BoundClosure(this, '_futureException$1'); },
- _futureCompleted$1: function(value){this._future=null;this._output=value;this._outputChangedHandle.fireEvent$1($.CTC19);this._cleanup$0();},
+ _futureCompleted$1: function(value){this._future=null;this._output=value;this._outputChangedHandle.fireEvent$1($.CTC21);this._cleanup$0();},
  get$_futureCompleted: function() { return new $.BoundClosure(this, '_futureCompleted$1'); },
  _cleanup$0: function(){if(this._pending===true){this._pending=false;this._startFuture$0();}}
 };
@@ -1179,10 +1223,10 @@ $$.SendPortValue = {"":
  [],
  "super": "FutureValue",
  getFuture$1: function(value){this._completer=$.CompleterImpl$($.getRuntimeTypeInfo(this).TOutput);this._innerFuture=this._sendPort.call$1(value);this._innerFuture.then$1(this.get$__futureCompleted());return this._completer.get$future();},
- __futureCompleted$1: function(value){this._innerFuture=null;if(typeof value==='object'&&value!==null&&value.is$Map()&&$.FutureValueResult_isMyMap(value))this._sendValueResultCompleted$1($.FutureValueResult_FutureValueResult$fromMap(value));else this._lib3_complete$1(value);},
+ __futureCompleted$1: function(value){this._innerFuture=null;if(typeof value==='object'&&value!==null&&value.is$Map()&&$.FutureValueResult_isMyMap(value))this._sendValueResultCompleted$1($.FutureValueResult_FutureValueResult$fromMap(value));else this._lib4_complete$1(value);},
  get$__futureCompleted: function() { return new $.BoundClosure(this, '__futureCompleted$1'); },
- _sendValueResultCompleted$1: function(value){if(value.get$isException()===true)this._completeException$1(value.get$exception());else this._lib3_complete$1(value.get$value());},
- _lib3_complete$1: function(value){var c=this._completer;this._completer=null;c.complete$1(value);},
+ _sendValueResultCompleted$1: function(value){if(value.get$isException()===true)this._completeException$1(value.get$exception());else this._lib4_complete$1(value.get$value());},
+ _lib4_complete$1: function(value){var c=this._completer;this._completer=null;c.complete$1(value);},
  _completeException$1: function(exception){var c=this._completer;this._completer=null;c.completeException$1(exception);}
 };
 
@@ -1222,17 +1266,17 @@ $$.PElement = {"":
  get$invalidated: function(){return this._invalidatedEventHandle;},
  getTransform$0: function(){var tx=$.AffineTransform$(1,0,0,1,0,0);$.forEach(this._transforms,tx.get$concatenate());return tx;},
  draw$1: function(ctx){this.update$0();var dirty=this._lastDrawSize==null;this.drawCore$1(ctx);return dirty;},
- update$0: function(){this._updatedEventHandle.fireEvent$1($.CTC19);},
+ update$0: function(){this._updatedEventHandle.fireEvent$1($.CTC21);},
  drawCore$1: function(ctx){if(this.cacheEnabled===true)this._drawCached$1(ctx);else this._drawNormal$1(ctx);},
  addTransform$0: function(){var tx=$.AffineTransform$(1,0,0,1,0,0);this._transforms.push(tx);return tx;},
  invalidateDraw$0: function(){if(!(this._lastDrawSize==null)){this._lastDrawSize=null;this._invalidateParent$0();}},
  getVisualChild$1: function(index){throw $.$$throw('no children for this type');},
  registerParent$1: function(parent$){this._lib2_parent=parent$;},
- _drawCached$1: function(ctx){var t1=this._cacheCanvas;if(t1==null||!$.eqB($.CanvasUtil_getCanvasSize(t1),this._lastDrawSize)){if(this._cacheCanvas==null)this._cacheCanvas=$._Elements_CanvasElement(null,null);t1=this.get$width();this._cacheCanvas.set$width(t1);t1=this.get$height();this._cacheCanvas.set$height(t1);this._drawInternal$1(this._cacheCanvas.get$context2d());}ctx.save$0();$.CanvasUtil_transform(ctx,this.getTransform$0());ctx.drawImage$3(this._cacheCanvas,0,0);ctx.restore$0();},
+ _drawCached$1: function(ctx){if(this._cacheCanvas==null)this._cacheCanvas=$._Elements_CanvasElement(null,null);var t1=this._lastDrawSize;var intLastDrawSize=t1==null?null:$.Size$($.toInt(t1.get$width()),$.toInt(this._lastDrawSize.get$height()));if(!$.eqB($.CanvasUtil_getCanvasSize(this._cacheCanvas),intLastDrawSize)){$.indexSet(this._cacheCanvas.get$attributes(),'width',this.get$width());$.indexSet(this._cacheCanvas.get$attributes(),'height',this.get$height());this._drawInternal$1(this._cacheCanvas.get$context2d());}ctx.save$0();$.CanvasUtil_transform(ctx,this.getTransform$0());ctx.drawImage$3(this._cacheCanvas,0,0);ctx.restore$0();},
  _drawNormal$1: function(ctx){var tx=this.getTransform$0();if(this._isClipped$2(tx,ctx)===true)return;ctx.save$0();$.CanvasUtil_transform(ctx,tx);if(this.clip===true){ctx.beginPath$0();ctx.rect$4(0,0,this.get$width(),this.get$height());ctx.clip$0();}this._drawInternal$1(ctx);ctx.restore$0();},
  _drawInternal$1: function(ctx){var t1=this._alpha;if(!(t1==null))ctx.set$globalAlpha(t1);this.drawOverride$1(ctx);this._lastDrawSize=this.get$size();},
  _isClipped$2: function(tx,ctx){if(this.clip===true);return false;},
- _invalidateParent$0: function(){this._invalidatedEventHandle.fireEvent$1($.CTC19);this._lib2_parent.childInvalidated$1(this);}
+ _invalidateParent$0: function(){this._invalidatedEventHandle.fireEvent$1($.CTC21);this._lib2_parent.childInvalidated$1(this);}
 };
 
 $$.ElementParentImpl = {"":
@@ -1250,10 +1294,10 @@ $$.Panel = {"":
  [],
  "super": "ElementParentImpl",
  addElement$1: function(element){this.insertAt$2(element,this._children.length);},
- insertAt$2: function(element,index){if(index==null)index=0;element.registerParent$1(this);$.insertRange$3(this._children,index,1,element);$.CTC25.set$2(element,element.addTransform$0());this.onChildrenChanged$0();},
+ insertAt$2: function(element,index){if(index==null)index=0;element.registerParent$1(this);$.insertRange$3(this._children,index,1,element);$.CTC27.set$2(element,element.addTransform$0());this.onChildrenChanged$0();},
  getVisualChild$1: function(index){var t1=this._children;if(index!==(index|0))throw $.iae(index);if(index<0||index>=t1.length)throw $.ioore(index);return t1[index];},
  get$visualChildCount: function(){return this._children.length;},
- drawOverride$1: function(ctx){var t1=this.background;if(!(t1==null)){ctx.set$fillStyle(t1);ctx.fillBox$4(0,0,this.get$width(),this.get$height());}$.ElementParentImpl.prototype.drawOverride$1.call(this,ctx);}
+ drawOverride$1: function(ctx){var t1=this.background;if(!(t1==null)){ctx.set$fillStyle(t1);ctx.fillRect$4(0,0,this.get$width(),this.get$height());}$.ElementParentImpl.prototype.drawOverride$1.call(this,ctx);}
 };
 
 $$.PCanvas = {"":
@@ -1267,8 +1311,8 @@ $$.Stage = {"":
  get$invalidated: function(){return this._invalidatedEventHandle;},
  get$rootElement: function(){return this._lib2_element;},
  get$ctx: function(){if(this._ctx==null)this._ctx=this._lib2_canvas.get$context2d();return this._ctx;},
- draw$0: function(){var t1=this._ctx;var t2=t1==null;var t3=this._lib2_canvas;if(t2)this._ctx=t3.get$context2d();else t1.clearBox$4(0,0,t3.get$width(),t3.get$height());return this._lib2_element.draw$1(this._ctx);},
- childInvalidated$1: function(child){this._invalidatedEventHandle.fireEvent$1($.CTC19);},
+ draw$0: function(){var t1=this._ctx;var t2=t1==null;var t3=this._lib2_canvas;if(t2)this._ctx=t3.get$context2d();else t1.clearRect$4(0,0,t3.get$width(),t3.get$height());return this._lib2_element.draw$1(this._ctx);},
+ childInvalidated$1: function(child){this._invalidatedEventHandle.fireEvent$1($.CTC21);},
  Stage$2: function(_canvas,_element){this._lib2_element.registerParent$1(this);}
 };
 
@@ -1600,7 +1644,7 @@ $$.ElementParentImpl_drawOverride_anon = {"":
 $$._ElementImpl_rect_anon = {"":
  ["this_0"],
  "super": "Closure",
- call$0: function(){return $._ElementBoxImpl$(this.this_0);}
+ call$0: function(){return $._ElementRectImpl$(this.this_0);}
 };
 
 $$._maybeScheduleMeasurementFrame_anon = {"":
@@ -1621,6 +1665,18 @@ $$.AffineTransform_toString_anon = {"":
  call$1: function(n){return $.toString(n);}
 };
 
+$$.ConstantMap_forEach_anon = {"":
+ ["this_1", "f_0"],
+ "super": "Closure",
+ call$1: function(key){return this.f_0.call$2(key,$.index(this.this_1,key));}
+};
+
+$$.ConstantMap_getValues_anon = {"":
+ ["this_1", "result_0"],
+ "super": "Closure",
+ call$1: function(key){return this.result_0.push($.index(this.this_1,key));}
+};
+
 $$.ElementParentImpl_update_anon = {"":
  [],
  "super": "Closure",
@@ -1630,13 +1686,13 @@ $$.ElementParentImpl_update_anon = {"":
 $$.Mouse_markMouseOver_anon = {"":
  [],
  "super": "Closure",
- call$1: function(e){$.CTC23.clear$1(e);$.CTC21.clear$1(e);}
+ call$1: function(e){$.CTC25.clear$1(e);$.CTC23.clear$1(e);}
 };
 
 $$.Mouse_markMouseOver_anon0 = {"":
  [],
  "super": "Closure",
- call$1: function(e){$.CTC23.set$2(e,true);}
+ call$1: function(e){$.CTC25.set$2(e,true);}
 };
 
 $$.startRootIsolate_anon = {"":
@@ -1694,10 +1750,10 @@ $.FutureAlreadyCompleteException$ = function(){return new $.FutureAlreadyComplet
 
 $.set$length = function(receiver,newLength){if($.isJsArray(receiver)){$.checkNull(newLength);if(!(typeof newLength==='number'&&Math.floor(newLength) === newLength))throw $.$$throw($.IllegalArgumentException$(newLength));if(newLength<0)throw $.$$throw($.IndexOutOfRangeException$(newLength));$.checkGrowable(receiver,'set length');receiver.length = newLength;}else receiver.set$length(newLength);return newLength;};
 
+$._Device_userAgent = function(){return $.window().get$navigator().get$userAgent();};
+
 $._DOMWindowCrossFrameImpl__postMessage3 = function(win,message,targetOrigin,messagePorts){    win.postMessage(message, targetOrigin, messagePorts);
 };
-
-$._Device_userAgent = function(){return $.window().get$navigator().get$userAgent();};
 
 $.checkNum = function(value){if(!(typeof value==='number')){$.checkNull(value);throw $.$$throw($.IllegalArgumentException$(value));}return value;};
 
@@ -1709,8 +1765,6 @@ $._TextTrackListEventsImpl$ = function(_ptr){return new $._TextTrackListEventsIm
 
 $.StackTrace$ = function(stack){return new $.StackTrace(stack);};
 
-$.Box_Box$fromCoordSize = function(topLeft,size){return $.Box$(topLeft.get$x(),topLeft.get$y(),size.get$width(),size.get$height());};
-
 $.ObjectNotClosureException$ = function(){return new $.ObjectNotClosureException();};
 
 $._MediaStreamTrackEventsImpl$ = function(_ptr){return new $._MediaStreamTrackEventsImpl(_ptr);};
@@ -1719,9 +1773,9 @@ $._JsVisitedMap$ = function(){return new $._JsVisitedMap(null);};
 
 $.isJsArray = function(value){return !(value==null)&&value.constructor === Array;};
 
-$.Primitives_objectTypeName = function(object){var name$=$.constructorNameFallback(object);if($.eqB(name$,'Object')){var decompiled=String(object.constructor).match(/^\s*function\s*(\S*)\s*\(/)[1];if(typeof decompiled==='string')name$=decompiled;}return $.charCodeAt(name$,0)===36?$.substring$1(name$,1):name$;};
-
 $.clear = function(receiver){if(!$.isJsArray(receiver))return receiver.clear$0();$.set$length(receiver,0);};
+
+$.Primitives_objectTypeName = function(object){var name$=$.constructorNameFallback(object);if($.eqB(name$,'Object')){var decompiled=String(object.constructor).match(/^\s*function\s*(\S*)\s*\(/)[1];if(typeof decompiled==='string')name$=decompiled;}return $.charCodeAt(name$,0)===36?$.substring$1(name$,1):name$;};
 
 $._fillStatics = function(context){  $globals = context.isolateStatics;
   $static_init();
@@ -1729,15 +1783,13 @@ $._fillStatics = function(context){  $globals = context.isolateStatics;
 
 $.remainder = function(a,b){if($.checkNumbers(a,b))return a % b;else return a.remainder$1(b);};
 
-$.print = function(object){$.PrintImplementation_print(object);};
+$.print = function(obj){if(typeof obj==='string')$.Primitives_printString(obj);else $.Primitives_printString($.toString(obj));};
 
 $.ListIterator$ = function(list,T){var t1=new $.ListIterator(0,list);$.setRuntimeTypeInfo(t1,{ 'T': T });return t1;};
 
 $._JavaScriptAudioNodeEventsImpl$ = function(_ptr){return new $._JavaScriptAudioNodeEventsImpl(_ptr);};
 
 $.StackOverflowException$ = function(){return new $.StackOverflowException();};
-
-$.PrintImplementation_print = function(obj){if(typeof obj==='string')$.Primitives_printString(obj);else $.Primitives_printString($.toString(obj));};
 
 $._DOMWindowCrossFrameImpl__close = function(win){win.close()};
 
@@ -1751,7 +1803,7 @@ $.Collections_forEach = function(iterable,f){for(var t1=$.iterator(iterable);t1.
 
 $._IDBTransactionEventsImpl$ = function(_ptr){return new $._IDBTransactionEventsImpl(_ptr);};
 
-$.dynamicFunction = function(name$){var f=Object.prototype[name$];if(!(f==null)&&!!f.methods)return f.methods;var methods={};var dartMethod=Object.getPrototypeOf($.CTC27)[name$];if(!(dartMethod==null))$.propertySet(methods,'Object',dartMethod);var bind=function() {return $.dynamicBind.call$4(this, name$, methods, Array.prototype.slice.call(arguments));};bind.methods = methods;$.defineProperty(Object.prototype,name$,bind);return methods;};
+$.dynamicFunction = function(name$){var f=Object.prototype[name$];if(!(f==null)&&!!f.methods)return f.methods;var methods={};var dartMethod=Object.getPrototypeOf($.CTC29)[name$];if(!(dartMethod==null))$.propertySet(methods,'Object',dartMethod);var bind=function() {return $.dynamicBind.call$4(this, name$, methods, Array.prototype.slice.call(arguments));};bind.methods = methods;$.defineProperty(Object.prototype,name$,bind);return methods;};
 
 $.ListImplementation_List$from = function(other,E){var result=$.ListImplementation_List(null);for(var t1=$.iterator(other);t1.hasNext$0()===true;)result.push(t1.next$0());return result;};
 
@@ -1761,7 +1813,7 @@ $._EventSourceEventsImpl$ = function(_ptr){return new $._EventSourceEventsImpl(_
 
 $._convertNativeToDart_AcceptStructuredClone = function(object){var values=[];var copies=[];var t1=new $._convertNativeToDart_AcceptStructuredClone_findSlot(copies,values);var t2=new $._convertNativeToDart_AcceptStructuredClone_readSlot(copies);return new $._convertNativeToDart_AcceptStructuredClone_walk(new $._convertNativeToDart_AcceptStructuredClone_writeSlot(copies),t1,t2).call$1(object);};
 
-$.PCanvas$ = function(w,h,enableCache){return new $.PCanvas($.ListImplementation_List(null,'PElement'),null,$.ListImplementation_List(null,'AffineTransform'),enableCache,$.EventHandle$('EventArgs'),$.EventHandle$('EventArgs'),null,w,h,null,null,false,null,$.PropertyValues$(),false);};
+$.PCanvas$ = function(w,h,enableCache){var t1=$.ListImplementation_List(null,'PElement');$.setRuntimeTypeInfo(t1,{ 'E': 'PElement' });var t2=$.ListImplementation_List(null,'AffineTransform');$.setRuntimeTypeInfo(t2,{ 'E': 'AffineTransform' });return new $.PCanvas(t1,null,t2,enableCache,$.EventHandle$('EventArgs'),$.EventHandle$('EventArgs'),null,w,h,null,null,false,null,$.PropertyValues$(),false);};
 
 $.SendValuePort$ = function(_func,TInput,TOutput){var t1=new $.SendValuePort(_func);$.setRuntimeTypeInfo(t1,{ 'TInput': TInput, 'TOutput': TOutput });t1.SendValuePort$1(_func);return t1;};
 
@@ -1847,11 +1899,11 @@ $.Strings_join = function(strings,separator){return $.StringImplementation_join(
 
 $.add$1 = function(receiver,value){if($.isJsArray(receiver)){$.checkGrowable(receiver,'add');receiver.push(value);return;}return receiver.add$1(value);};
 
-$._Timer$ = function(milliSeconds,callback){var t1=new $._Timer(true,null);t1._Timer$2(milliSeconds,callback);return t1;};
-
 $.get$length = function(receiver){if(typeof receiver==='string'||$.isJsArray(receiver))return receiver.length;else return receiver.get$length();};
 
 $.Uri__parseIntOrZero = function(val){if(!(val==null)&&!$.eqB(val,''))return $.parseInt(val);else return 0;};
+
+$._Timer$ = function(milliSeconds,callback){var t1=new $._Timer(true,null);t1._Timer$2(milliSeconds,callback);return t1;};
 
 $.StringImplementation_join = function(strings,separator){$.checkNull(strings);$.checkNull(separator);return $.stringJoinUnchecked($.StringImplementation__toJsStringArray(strings),separator);};
 
@@ -1863,13 +1915,13 @@ $.regExpMakeNative = function(regExp,global){var pattern=regExp.get$pattern();va
 
 $.buildDynamicMetadata = function(inputTable){var result=[];for(var i=0;i<inputTable.length;++i){var tag=inputTable[i][0];var array=inputTable[i];var tags=array[1];var set={};var tagNames=tags.split('|');for(var j=0,index=1;j<tagNames.length;++j){$.propertySet(set,tagNames[j],true);index=j;array=tagNames;}result.push($.MetaInfo$(tag,tags,set));}return result;};
 
-$.iterator = function(receiver){if($.isJsArray(receiver))return $.ListIterator$(receiver);return receiver.iterator$0();};
-
 $.port = function(){if($._lazyPort==null)$._lazyPort=$._ReceivePortFactory_ReceivePort();return $._lazyPort;};
 
 $.main = function(){$.DraggerDemo_DraggerDemo($.document().query$1('#content')).requestFrame$0();};
 
 $.FutureValueResult$fromException = function(exception,TOutput){var t1=new $.FutureValueResult(null,exception);$.setRuntimeTypeInfo(t1,{ 'TOutput': TOutput });t1.FutureValueResult$fromException$1(exception);return t1;};
+
+$.iterator = function(receiver){if($.isJsArray(receiver))return $.ListIterator$(receiver);return receiver.iterator$0();};
 
 $.ceil = function(receiver){return Math.ceil(receiver);};
 
@@ -1877,15 +1929,15 @@ $.toInt = function(receiver){if(!(typeof receiver==='number'))return receiver.to
 
 $.lastIndexOf$1 = function(receiver,element){if($.isJsArray(receiver))return $.Arrays_lastIndexOf(receiver,element,receiver.length);else if(typeof receiver==='string'){$.checkNull(element);return receiver.lastIndexOf(element);}return receiver.lastIndexOf$1(element);};
 
-$.SpriteElement$ = function(image,width,height,startCoordinate,nextDelta,count){return new $.SpriteElement(startCoordinate,nextDelta,count,0,image,false,$.ListImplementation_List(null,'AffineTransform'),false,$.EventHandle$('EventArgs'),$.EventHandle$('EventArgs'),null,width,height,null,null,false,null,$.PropertyValues$(),false);};
-
 $.PropertyValues$ = function(){return new $.PropertyValues($.NoneHashMap$('Property','Object'),$.EventHandle$('Property'),false);};
 
 $.Primitives_getYear = function(receiver){return receiver.isUtc===true?$.Primitives_lazyAsJsDate(receiver).getUTCFullYear():$.Primitives_lazyAsJsDate(receiver).getFullYear();};
 
+$.SpriteElement$ = function(image,width,height,startCoordinate,nextDelta,count){var t1=$.ListImplementation_List(null,'AffineTransform');$.setRuntimeTypeInfo(t1,{ 'E': 'AffineTransform' });return new $.SpriteElement(startCoordinate,nextDelta,count,0,image,false,t1,false,$.EventHandle$('EventArgs'),$.EventHandle$('EventArgs'),null,width,height,null,null,false,null,$.PropertyValues$(),false);};
+
 $.Primitives_getHours = function(receiver){return receiver.isUtc===true?$.Primitives_lazyAsJsDate(receiver).getUTCHours():$.Primitives_lazyAsJsDate(receiver).getHours();};
 
-$.dynamicBind = function(obj,name$,methods,arguments$){var tag=$.getTypeNameOf(obj);var method=methods[tag];if(method==null&&!($._dynamicMetadata0()==null))for(var i=0;i<$._dynamicMetadata0().length;++i){var entry=$._dynamicMetadata0()[i];if(entry.get$_lib4_set()[tag]){method=methods[entry.get$_tag()];if(!(method==null))break;}}if(method==null)method=methods['Object'];var proto=Object.getPrototypeOf(obj);if(method==null)method=function () {if (Object.getPrototypeOf(this) === proto) {throw new TypeError(name$ + " is not a function");} else {return Object.prototype[name$].apply(this, arguments);}};if(!proto.hasOwnProperty(name$))$.defineProperty(proto,name$,method);return method.apply(obj, arguments$);};
+$.dynamicBind = function(obj,name$,methods,arguments$){var tag=$.getTypeNameOf(obj);var method=methods[tag];if(method==null&&!($._dynamicMetadata0()==null))for(var i=0;i<$._dynamicMetadata0().length;++i){var entry=$._dynamicMetadata0()[i];if(entry.get$_lib3_set()[tag]){method=methods[entry.get$_tag()];if(!(method==null))break;}}if(method==null)method=methods['Object'];var proto=Object.getPrototypeOf(obj);if(method==null)method=function () {if (Object.getPrototypeOf(this) === proto) {throw new TypeError(name$ + " is not a function");} else {return Object.prototype[name$].apply(this, arguments);}};if(!proto.hasOwnProperty(name$))$.defineProperty(proto,name$,method);return method.apply(obj, arguments$);};
 
 $.Maps_mapToString = function(m){var result=$.StringBufferImpl$('');$.Maps__emitMap(m,result,$.ListImplementation_List(null));return result.toString$0();};
 
@@ -1907,6 +1959,8 @@ $.addLast = function(receiver,value){if(!$.isJsArray(receiver))return receiver.a
 
 $._HttpRequestEventsImpl$ = function(_ptr){return new $._HttpRequestEventsImpl(_ptr);};
 
+$.Box$ = function(left,top$,width,height){return new $.Box(left,top$,width,height);};
+
 $.add = function(a,b){return typeof a==='number'&&typeof b==='number'?a + b:$.add$slow(a,b);};
 
 $.geB = function(a,b){return typeof a==='number'&&typeof b==='number'?a >= b:$.ge$slow(a,b)===true;};
@@ -1922,7 +1976,7 @@ $._JsDeserializer$ = function(){return new $._JsDeserializer(null);};
 $._IsolateNatives__getJSFunctionFromName = function(functionName){    return $globalThis[functionName];
   };
 
-$._ElementBoxImpl$ = function(element){return new $._ElementBoxImpl($._SimpleClientBox$(element.get$$$dom_clientLeft(),element.get$$$dom_clientTop(),element.get$$$dom_clientWidth(),element.get$$$dom_clientHeight()),$._SimpleClientBox$(element.get$$$dom_offsetLeft(),element.get$$$dom_offsetTop(),element.get$$$dom_offsetWidth(),element.get$$$dom_offsetHeight()),$._SimpleClientBox$(element.get$$$dom_scrollLeft(),element.get$$$dom_scrollTop(),element.get$$$dom_scrollWidth(),element.get$$$dom_scrollHeight()),element.$dom_getBoundingClientBox$0(),element.$dom_getClientBoxs$0());};
+$._ElementRectImpl$ = function(element){return new $._ElementRectImpl($._SimpleClientRect$(element.get$$$dom_clientLeft(),element.get$$$dom_clientTop(),element.get$$$dom_clientWidth(),element.get$$$dom_clientHeight()),$._SimpleClientRect$(element.get$$$dom_offsetLeft(),element.get$$$dom_offsetTop(),element.get$$$dom_offsetWidth(),element.get$$$dom_offsetHeight()),$._SimpleClientRect$(element.get$$$dom_scrollLeft(),element.get$$$dom_scrollTop(),element.get$$$dom_scrollWidth(),element.get$$$dom_scrollHeight()),element.$dom_getBoundingClientRect$0(),element.$dom_getClientRects$0());};
 
 $.abs = function(receiver){if(!(typeof receiver==='number'))return receiver.abs$0();return Math.abs(receiver);};
 
@@ -2124,7 +2178,7 @@ $.FutureValueResult_FutureValueResult$fromMap = function(value,TOutput){$.requir
 
 $.EventHandle$ = function(T){var t1=new $.EventHandle(null,false);$.setRuntimeTypeInfo(t1,{ 'T': T });return t1;};
 
-$._SimpleClientBox$ = function(left,top$,width,height){return new $._SimpleClientBox(left,top$,width,height);};
+$._SimpleClientRect$ = function(left,top$,width,height){return new $._SimpleClientRect(left,top$,width,height);};
 
 $.Uri__emptyIfNull = function(val){return !(val==null)?val:'';};
 
@@ -2138,7 +2192,7 @@ $.Collections__emitObject = function(o,result,visiting){if(typeof o==='object'&&
 
 $._DedicatedWorkerContextEventsImpl$ = function(_ptr){return new $._DedicatedWorkerContextEventsImpl(_ptr);};
 
-$.NoneHashMap$ = function(K,V){var t1=new $.NoneHashMap($.ListImplementation_List(null,'Tuple<K, V>'));$.setRuntimeTypeInfo(t1,{ 'K': K, 'V': V });return t1;};
+$.NoneHashMap$ = function(K,V){var t1=$.ListImplementation_List(null,'Tuple<K, V>');$.setRuntimeTypeInfo(t1,{ 'E': 'Tuple<K, V>' });t1=new $.NoneHashMap(t1);$.setRuntimeTypeInfo(t1,{ 'K': K, 'V': V });return t1;};
 
 $._IsolateNatives__startNonWorker = function(functionName,uri,replyPort){if(!(uri==null))throw $.$$throw($.UnsupportedOperationException$('Currently spawnUri is not supported without web workers.'));$._globalState().get$topEventLoop().enqueue$3($._IsolateContext$(),new $._IsolateNatives__startNonWorker_function(functionName,replyPort),'nonworker start');};
 
@@ -2149,8 +2203,6 @@ $.truncate = function(receiver){return receiver<0?$.ceil(receiver):$.floor(recei
 $._EventLoop$ = function(){return new $._EventLoop($.DoubleLinkedQueue$('_IsolateEvent'));};
 
 $.Stage$ = function(_canvas,_element){var t1=new $.Stage(_canvas,_element,$.EventHandle$('EventArgs'),null,$.PropertyValues$(),false);t1.Stage$2(_canvas,_element);return t1;};
-
-$.dynamicSetMetadata = function(inputTable){var t1=$.buildDynamicMetadata(inputTable);$._dynamicMetadata(t1);};
 
 $.substringUnchecked = function(receiver,startIndex,endIndex){return receiver.substring(startIndex, endIndex);};
 
@@ -2174,9 +2226,13 @@ $.endsWith = function(receiver,other){$.checkString(other);var receiverLength=re
 
 $.contains$2 = function(receiver,other,startIndex){if(!(typeof receiver==='string'))return receiver.contains$2(other,startIndex);$.checkNull(other);return $.stringContainsUnchecked(receiver,other,startIndex);};
 
+$._ElementAttributeMap$ = function(_element){return new $._ElementAttributeMap(_element);};
+
 $.regExpMatchStart = function(m){return m.index;};
 
 $._WorkerContextEventsImpl$ = function(_ptr){return new $._WorkerContextEventsImpl(_ptr);};
+
+$.Box_Box$fromCoordSize = function(topLeft,size){return $.Box$(topLeft.get$x(),topLeft.get$y(),size.get$width(),size.get$height());};
 
 $._ElementEventsImpl$ = function(_ptr){return new $._ElementEventsImpl(_ptr);};
 
@@ -2186,11 +2242,15 @@ $._dynamicMetadata = function(table){$dynamicMetadata = table;};
 
 $._dynamicMetadata0 = function(){if(typeof($dynamicMetadata)==='undefined'){var t1=[];$._dynamicMetadata(t1);}return $dynamicMetadata;};
 
+$.dynamicSetMetadata = function(inputTable){var t1=$.buildDynamicMetadata(inputTable);$._dynamicMetadata(t1);};
+
 $._SpeechRecognitionEventsImpl$ = function(_ptr){return new $._SpeechRecognitionEventsImpl(_ptr);};
 
 $.Primitives_getSeconds = function(receiver){return receiver.isUtc===true?$.Primitives_lazyAsJsDate(receiver).getUTCSeconds():$.Primitives_lazyAsJsDate(receiver).getSeconds();};
 
 $.add$slow = function(a,b){if($.checkNumbers(a,b))return a + b;return a.operator$add$1(b);};
+
+$.jsHasOwnProperty = function(jsObject,property){return jsObject.hasOwnProperty(property);};
 
 $.Util_getHashCode = function(source){for(var t1=$.iterator(source),hash=0;t1.hasNext$0()===true;){var t2=t1.next$0();var next=t2==null?0:$.hashCode(t2);if(typeof next!=='number')throw $.iae(next);var hash0=536870911&hash+next;var hash1=536870911&hash0+((524287&hash0)<<10>>>0);hash1=(hash1^$.shr(hash1,6))>>>0;hash=hash1;}hash0=536870911&hash+((67108863&hash)<<3>>>0);hash0=(hash0^$.shr(hash0,11))>>>0;return 536870911&hash0+((16383&hash0)<<15>>>0);};
 
@@ -2204,7 +2264,7 @@ $._IsolateNatives__spawn = function(functionName,uri,isLight){var completer=$.Co
 
 $._HttpRequestUploadEventsImpl$ = function(_ptr){return new $._HttpRequestUploadEventsImpl(_ptr);};
 
-$.Mouse_markMouseOver = function(stage,coordinate){$.requireArgumentNotNull(stage,'stage');var t1=!(coordinate==null);$.requireArgument(coordinate==null||coordinate.get$isValid()===true,'coordinate',null);var items=$.CTC20.get$1(stage);if(!(items==null)){$.forEach(items,new $.Mouse_markMouseOver_anon());$.CTC20.clear$1(stage);}if(t1){var hits=$.RetainedUtil_hitTest(stage,coordinate);$.CTC20.set$2(stage,hits);$.forEach(hits,new $.Mouse_markMouseOver_anon0());if($.gtB($.get$length(hits),0))$.CTC21.set$2($.index(hits,0),true);return hits;}return;};
+$.Mouse_markMouseOver = function(stage,coordinate){$.requireArgumentNotNull(stage,'stage');var t1=!(coordinate==null);$.requireArgument(coordinate==null||coordinate.get$isValid()===true,'coordinate',null);var items=$.CTC22.get$1(stage);if(!(items==null)){$.forEach(items,new $.Mouse_markMouseOver_anon());$.CTC22.clear$1(stage);}if(t1){var hits=$.RetainedUtil_hitTest(stage,coordinate);$.CTC22.set$2(stage,hits);$.forEach(hits,new $.Mouse_markMouseOver_anon0());if($.gtB($.get$length(hits),0))$.CTC23.set$2($.index(hits,0),true);return hits;}return;};
 
 $._PendingSendPortFinder$ = function(){var t1=$._MessageTraverserVisitedMap$();t1=new $._PendingSendPortFinder([],t1);t1._PendingSendPortFinder$0();return t1;};
 
@@ -2226,9 +2286,9 @@ $.index$slow = function(a,index){if(typeof a==='string'||$.isJsArray(a)){if(!(ty
 
 $.div = function(a,b){return typeof a==='number'&&typeof b==='number'?a / b:$.div$slow(a,b);};
 
-$._MeasurementRequest$ = function(computeValue,completer,T){var t1=new $._MeasurementRequest(computeValue,completer,null,false);$.setRuntimeTypeInfo(t1,{ 'T': T });return t1;};
-
 $._AbstractWorkerEventsImpl$ = function(_ptr){return new $._AbstractWorkerEventsImpl(_ptr);};
+
+$._MeasurementRequest$ = function(computeValue,completer,T){var t1=new $._MeasurementRequest(computeValue,completer,null,false);$.setRuntimeTypeInfo(t1,{ 'T': T });return t1;};
 
 $.Collections__containsRef = function(c,ref){for(var t1=$.iterator(c);t1.hasNext$0()===true;){var t2=t1.next$0();if(t2==null?ref==null:t2===ref)return true;}return false;};
 
@@ -2284,8 +2344,6 @@ $._serializeMessage = function(message){if($._globalState().get$needSerializatio
 
 $.FutureValueResult_isMyMap = function(value){return !(value==null)&&$.eqB($.get$length(value),2)&&value.containsKey$1('value')===true&&value.containsKey$1('exception')===true;};
 
-$.Box$ = function(left,top$,width,height){return new $.Box(left,top$,width,height);};
-
 $._IsolateNatives__consoleLog = function(msg){$globalThis.console.log(msg);};
 
 $.index = function(a,index){if(typeof a == "string" || a.constructor === Array){var key=index >>> 0;if(key===index&&key<a.length)return a[key];}return $.index$slow(a,index);};
@@ -2296,7 +2354,7 @@ $.le$slow = function(a,b){if($.checkNumbers(a,b))return a <= b;return a.operator
 
 $.KeyValuePair$ = function(key,value,K,V){var t1=new $.KeyValuePair(key,value);$.setRuntimeTypeInfo(t1,{ 'K': K, 'V': V });return t1;};
 
-$.RetainedUtil__hitTest = function(element,point){point=$.RetainedUtil_transformPointGlobalToLocal(element,point);var bounds=$.Box$(0,0,element.get$width(),element.get$height());var hits=$.ListImplementation_List(null,'PElement');if(bounds.contains$1(point)===true){var length$=element.get$visualChildCount();if(typeof length$!=='number')return $.RetainedUtil__hitTest$bailout(1,element,length$,point,hits);for(var t1=length$-1,i=0;i<length$;++i){hits=$.RetainedUtil__hitTest(element.getVisualChild$1(t1-i),point);if(hits.length>0)break;}hits.push(element);return hits;}else return [];};
+$.RetainedUtil__hitTest = function(element,point){point=$.RetainedUtil_transformPointGlobalToLocal(element,point);var bounds=$.Box$(0,0,element.get$width(),element.get$height());var hits=$.ListImplementation_List(null,'PElement');$.setRuntimeTypeInfo(hits,{ 'E': 'PElement' });if(bounds.contains$1(point)===true){var length$=element.get$visualChildCount();if(typeof length$!=='number')return $.RetainedUtil__hitTest$bailout(1,element,point,hits,length$);for(var t1=length$-1,i=0;i<length$;++i){hits=$.RetainedUtil__hitTest(element.getVisualChild$1(t1-i),point);if(hits.length>0)break;}hits.push(element);return hits;}else return [];};
 
 $._DocumentEventsImpl$ = function(_ptr){return new $._DocumentEventsImpl(_ptr);};
 
@@ -2375,10 +2433,10 @@ $.regExpGetNative = function(regExp){var r=regExp._re;return r==null?regExp._re 
 
 $._NotificationEventsImpl$ = function(_ptr){return new $._NotificationEventsImpl(_ptr);};
 
+$.Coordinate_difference = function(a,b){return $.Vector$($.sub(a.x,b.get$x()),$.sub(a.y,b.get$y()));};
+
 $._DOMWindowCrossFrameImpl__postMessage2 = function(win,message,targetOrigin){    win.postMessage(message, targetOrigin);
 };
-
-$.Coordinate_difference = function(a,b){return $.Vector$($.sub(a.x,b.get$x()),$.sub(a.y,b.get$y()));};
 
 $.sub = function(a,b){return typeof a==='number'&&typeof b==='number'?a - b:$.sub$slow(a,b);};
 
@@ -2394,7 +2452,7 @@ $.StringImplementation__toJsStringArray$bailout = function(state,strings){$.chec
 
 $.listInsertRange$bailout = function(state,receiver,start,length$,initialValue){if(length$===0)return;$.checkNull(start);$.checkNull(length$);if(length$<0)throw $.$$throw($.IllegalArgumentException$(length$));if(!(typeof start==='number'&&Math.floor(start) === start))throw $.$$throw($.IllegalArgumentException$(start));var receiverLength=receiver.length;if(start<0||start>receiverLength)throw $.$$throw($.IndexOutOfRangeException$(start));var t1=receiverLength+length$;$.set$length(receiver,t1);var t2=start+length$;$.Arrays_copy(receiver,start,receiver,t2,receiverLength-start);if(!(initialValue==null))for(var i=start;i<t2;++i)$.indexSet(receiver,i,initialValue);$.set$length(receiver,t1);};
 
-$.RetainedUtil__hitTest$bailout = function(state,env0,env1,env2,env3){switch(state){case 1:var element=env0;length$=env1;point=env2;hits=env3;break;}switch(state){case 0:var point=$.RetainedUtil_transformPointGlobalToLocal(element,point);var bounds=$.Box$(0,0,element.get$width(),element.get$height());var hits=$.ListImplementation_List(null,'PElement');case 1:if(state===1||state===0&&bounds.contains$1(point)===true)switch(state){case 0:var length$=element.get$visualChildCount();case 1:state=0;for(var i=0;$.ltB(i,length$);++i){hits=$.RetainedUtil__hitTest(element.getVisualChild$1($.sub($.sub(length$,1),i)),point);if(hits.length>0)break;}hits.push(element);return hits;}else return [];}};
+$.RetainedUtil__hitTest$bailout = function(state,env0,env1,env2,env3){switch(state){case 1:var element=env0;point=env1;hits=env2;length$=env3;break;}switch(state){case 0:var point=$.RetainedUtil_transformPointGlobalToLocal(element,point);var bounds=$.Box$(0,0,element.get$width(),element.get$height());var hits=$.ListImplementation_List(null,'PElement');$.setRuntimeTypeInfo(hits,{ 'E': 'PElement' });case 1:if(state===1||state===0&&bounds.contains$1(point)===true)switch(state){case 0:var length$=element.get$visualChildCount();case 1:state=0;for(var i=0;$.ltB(i,length$);++i){hits=$.RetainedUtil__hitTest(element.getVisualChild$1($.sub($.sub(length$,1),i)),point);if(hits.length>0)break;}hits.push(element);return hits;}else return [];}};
 
 $.Futures_wait$bailout = function(state,futures,t1){if($.isEmpty(futures)===true)return $.FutureImpl_FutureImpl$immediate($.CTC10,'List');var completer=$.CompleterImpl$('List');var result=completer.get$future();t1.remaining_1=$.get$length(futures);var values=$.ListImplementation_List($.get$length(futures));for(var i=0;$.ltB(i,$.get$length(futures));++i){var future=$.index(futures,i);future.then$1(new $.Futures_wait_anon(completer,i,t1,result,values));future.handleException$1(new $.Futures_wait_anon0(future,completer,result));}return result;};
 
@@ -2428,59 +2486,61 @@ Isolate.makeConstantList = function(list) {
   return list;
 };
 $.CTC10 = Isolate.makeConstantList([]);
-$.CTC11 = new Isolate.$isolateProperties.NoMoreElementsException();
-$.CTC28 = 'Cannot removeLast on immutable List.';
-$.CTC12 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot removeLast on immutable List.');
-$.CTC29 = false;
-$.CTC30 = '^#[_a-zA-Z]\\w*$';
+$.CTC19 = new Isolate.$isolateProperties.ConstantMap(0, {}, Isolate.$isolateProperties.CTC10);
+$.CTC30 = 'structured clone of ArrayBufferView';
+$.CTC8 = new Isolate.$isolateProperties.NotImplementedException('structured clone of ArrayBufferView');
+$.CTC31 = false;
+$.CTC32 = 'IsMouseDirectlyOver';
+$.CTC23 = new Isolate.$isolateProperties.Property(false, 'IsMouseDirectlyOver');
+$.CTC33 = '^#[_a-zA-Z]\\w*$';
 $.CTC = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, '^#[_a-zA-Z]\\w*$');
-$.CTC31 = 'structured clone of other type';
-$.CTC9 = new Isolate.$isolateProperties.NotImplementedException('structured clone of other type');
-$.CTC32 = 'structured clone of File';
-$.CTC4 = new Isolate.$isolateProperties.NotImplementedException('structured clone of File');
-$.CTC13 = new Isolate.$isolateProperties._DeletedKeySentinel();
-$.CTC33 = 'IsMouseOver';
-$.CTC23 = new Isolate.$isolateProperties.Property(false, 'IsMouseOver');
-$.CTC27 = new Isolate.$isolateProperties.Object();
-$.CTC34 = 'IsMouseDirectlyOver';
-$.CTC21 = new Isolate.$isolateProperties.Property(false, 'IsMouseDirectlyOver');
-$.CTC35 = 'structured clone of FileList';
-$.CTC6 = new Isolate.$isolateProperties.NotImplementedException('structured clone of FileList');
-$.CTC36 = 'structured clone of RegExp';
-$.CTC3 = new Isolate.$isolateProperties.NotImplementedException('structured clone of RegExp');
-$.CTC37 = 'offsetX is only supported on elements';
-$.CTC24 = new Isolate.$isolateProperties.UnsupportedOperationException('offsetX is only supported on elements');
-$.CTC38 = 'structured clone of Blob';
-$.CTC5 = new Isolate.$isolateProperties.NotImplementedException('structured clone of Blob');
-$.CTC19 = new Isolate.$isolateProperties.EventArgs();
-$.CTC39 = 'Cannot removeRange on immutable List.';
-$.CTC17 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot removeRange on immutable List.');
-$.CTC40 = 0;
-$.CTC41 = new Isolate.$isolateProperties.Coordinate(0, 0);
-$.CTC42 = null;
-$.CTC43 = 'panelTransform';
-$.CTC25 = new Isolate.$isolateProperties.Property(null, 'panelTransform');
-$.CTC44 = 'IDBKey containing Date';
-$.CTC15 = new Isolate.$isolateProperties.NotImplementedException('IDBKey containing Date');
-$.CTC45 = '_stageMouseCacheProperty';
-$.CTC20 = new Isolate.$isolateProperties.Property(null, '_stageMouseCacheProperty');
-$.CTC46 = 'Cannot insertRange on immutable List.';
-$.CTC26 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot insertRange on immutable List.');
-$.CTC47 = 'Cannot add to immutable List.';
-$.CTC1 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot add to immutable List.');
-$.CTC48 = 'structured clone of Date';
-$.CTC2 = new Isolate.$isolateProperties.NotImplementedException('structured clone of Date');
-$.CTC49 = new Isolate.$isolateProperties._SimpleClientBox(0, 0, 0, 0);
-$.CTC18 = new Isolate.$isolateProperties.EmptyElementBox(Isolate.$isolateProperties.CTC49, Isolate.$isolateProperties.CTC49, Isolate.$isolateProperties.CTC49, Isolate.$isolateProperties.CTC49, Isolate.$isolateProperties.CTC10);
-$.CTC22 = new Isolate.$isolateProperties._UndefinedValue();
-$.CTC50 = 'structured clone of ArrayBuffer';
+$.CTC34 = 'structured clone of ArrayBuffer';
 $.CTC7 = new Isolate.$isolateProperties.NotImplementedException('structured clone of ArrayBuffer');
-$.CTC51 = '^(?:([^:/?#.]+):)?(?://(?:([^/?#]*)@)?([\\w\\d\\-\\u0100-\\uffff.%]*)(?::([0-9]+))?)?([^?#]+)?(?:\\?([^#]*))?(?:#(.*))?$';
+$.CTC13 = new Isolate.$isolateProperties._DeletedKeySentinel();
+$.CTC35 = 'structured clone of Date';
+$.CTC2 = new Isolate.$isolateProperties.NotImplementedException('structured clone of Date');
+$.CTC29 = new Isolate.$isolateProperties.Object();
+$.CTC36 = 'Cannot add to immutable List.';
+$.CTC1 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot add to immutable List.');
+$.CTC37 = 'IDBKey containing Date';
+$.CTC15 = new Isolate.$isolateProperties.NotImplementedException('IDBKey containing Date');
+$.CTC38 = null;
+$.CTC39 = 'panelTransform';
+$.CTC27 = new Isolate.$isolateProperties.Property(null, 'panelTransform');
+$.CTC40 = 'IsMouseOver';
+$.CTC25 = new Isolate.$isolateProperties.Property(false, 'IsMouseOver');
+$.CTC41 = 'Cannot insertRange on immutable List.';
+$.CTC28 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot insertRange on immutable List.');
+$.CTC21 = new Isolate.$isolateProperties.EventArgs();
+$.CTC42 = 'Cannot removeRange on immutable List.';
+$.CTC17 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot removeRange on immutable List.');
+$.CTC43 = 'structured clone of Blob';
+$.CTC5 = new Isolate.$isolateProperties.NotImplementedException('structured clone of Blob');
+$.CTC44 = 0;
+$.CTC45 = new Isolate.$isolateProperties.Coordinate(0, 0);
+$.CTC46 = 'offsetX is only supported on elements';
+$.CTC26 = new Isolate.$isolateProperties.UnsupportedOperationException('offsetX is only supported on elements');
+$.CTC47 = 'structured clone of RegExp';
+$.CTC3 = new Isolate.$isolateProperties.NotImplementedException('structured clone of RegExp');
+$.CTC48 = 'structured clone of FileList';
+$.CTC6 = new Isolate.$isolateProperties.NotImplementedException('structured clone of FileList');
+$.CTC49 = new Isolate.$isolateProperties._SimpleClientRect(0, 0, 0, 0);
+$.CTC18 = new Isolate.$isolateProperties.EmptyElementRect(Isolate.$isolateProperties.CTC49, Isolate.$isolateProperties.CTC49, Isolate.$isolateProperties.CTC49, Isolate.$isolateProperties.CTC49, Isolate.$isolateProperties.CTC10);
+$.CTC24 = new Isolate.$isolateProperties._UndefinedValue();
+$.CTC20 = new Isolate.$isolateProperties.IllegalAccessException();
+$.CTC50 = '_stageMouseCacheProperty';
+$.CTC22 = new Isolate.$isolateProperties.Property(null, '_stageMouseCacheProperty');
+$.CTC51 = 'structured clone of File';
+$.CTC4 = new Isolate.$isolateProperties.NotImplementedException('structured clone of File');
+$.CTC52 = 'structured clone of other type';
+$.CTC9 = new Isolate.$isolateProperties.NotImplementedException('structured clone of other type');
+$.CTC53 = '^(?:([^:/?#.]+):)?(?://(?:([^/?#]*)@)?([\\w\\d\\-\\u0100-\\uffff.%]*)(?::([0-9]+))?)?([^?#]+)?(?:\\?([^#]*))?(?:#(.*))?$';
 $.CTC16 = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, '^(?:([^:/?#.]+):)?(?://(?:([^/?#]*)@)?([\\w\\d\\-\\u0100-\\uffff.%]*)(?::([0-9]+))?)?([^?#]+)?(?:\\?([^#]*))?(?:#(.*))?$');
 $.CTC0 = new Isolate.$isolateProperties.NullPointerException(null, Isolate.$isolateProperties.CTC10);
-$.CTC52 = 'structured clone of ArrayBufferView';
-$.CTC8 = new Isolate.$isolateProperties.NotImplementedException('structured clone of ArrayBufferView');
 $.CTC14 = new Isolate.$isolateProperties.EmptyQueueException();
+$.CTC11 = new Isolate.$isolateProperties.NoMoreElementsException();
+$.CTC54 = 'Cannot removeLast on immutable List.';
+$.CTC12 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot removeLast on immutable List.');
 $._SPAWNED_SIGNAL = 'spawned';
 $.Duration_MILLISECONDS_PER_DAY = 86400000;
 $.Uri__COMPONENT_PATH = 5;
@@ -2550,8 +2610,8 @@ $.$defineNativeClass = function(cls, fields, methods) {
 })({
  is$JavaScriptIndexingBehavior: function() { return false; },
  is$ArrayBufferView: function() { return false; },
- is$_FileListImpl: function() { return false; },
  is$_BlobImpl: function() { return false; },
+ is$_FileListImpl: function() { return false; },
  is$_ImageDataImpl: function() { return false; },
  is$_FileImpl: function() { return false; },
  is$_ArrayBufferViewImpl: function() { return false; },
@@ -2562,10 +2622,10 @@ $.$defineNativeClass = function(cls, fields, methods) {
  is$ArrayBuffer: function() { return false; },
  is$Element: function() { return false; },
  is$List: function() { return false; },
- is$_ArrayBufferImpl: function() { return false; },
- is$FileList: function() { return false; },
  is$Map: function() { return false; },
+ is$FileList: function() { return false; },
  is$Collection: function() { return false; },
+ is$_ArrayBufferImpl: function() { return false; },
  is$ImageData: function() { return false; }
 });
 
@@ -2579,15 +2639,18 @@ $.$defineNativeClass('AbstractWorker', [], {
  $dom_removeEventListener$3: function(type,listener,useCapture){return this.removeEventListener(type,$.convertDartClosureToJS(listener,1),useCapture);}
 });
 
-$.$defineNativeClass('HTMLAnchorElement', [], {
+$.$defineNativeClass('HTMLAnchorElement', ["name?"], {
  toString$0: function(){return this.toString();},
  is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('WebKitAnimation', ["name?"], {
 });
 
 $.$defineNativeClass('WebKitAnimationList', ["length?"], {
 });
 
-$.$defineNativeClass('HTMLAppletElement', ["height=", "width="], {
+$.$defineNativeClass('HTMLAppletElement', ["height=", "name?", "width="], {
  is$Element: function() { return true; }
 });
 
@@ -2605,7 +2668,7 @@ $.$defineNativeClass('ArrayBufferView', [], {
  is$ArrayBufferView: function() { return true; }
 });
 
-$.$defineNativeClass('Attr', ["value="], {
+$.$defineNativeClass('Attr', ["name?", "value="], {
 });
 
 $.$defineNativeClass('AudioBuffer', ["length?"], {
@@ -2619,7 +2682,7 @@ $.$defineNativeClass('HTMLAudioElement', [], {
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('AudioParam', ["value="], {
+$.$defineNativeClass('AudioParam', ["name?", "value="], {
 });
 
 $.$defineNativeClass('HTMLBRElement', [], {
@@ -2651,7 +2714,7 @@ $.$defineNativeClass('HTMLBodyElement', [], {
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('HTMLButtonElement', ["value="], {
+$.$defineNativeClass('HTMLButtonElement', ["name?", "value="], {
  is$Element: function() { return true; }
 });
 
@@ -2659,6 +2722,9 @@ $.$defineNativeClass('CSSFontFaceRule', ["style?"], {
 });
 
 $.$defineNativeClass('WebKitCSSKeyframeRule', ["style?"], {
+});
+
+$.$defineNativeClass('WebKitCSSKeyframesRule', ["name?"], {
 });
 
 $.$defineNativeClass('WebKitCSSMatrix', [], {
@@ -2705,7 +2771,7 @@ $.$defineNativeClass('HTMLCanvasElement', ["height=", "width="], {
 
 $.$defineNativeClass('CanvasRenderingContext2D', ["fillStyle!", "font!", "globalAlpha!", "shadowBlur!", "shadowColor!", "shadowOffsetX!", "shadowOffsetY!"], {
  beginPath$0: function(){return this.beginPath();},
- clearBox$4: function(x,y,width,height){return this.clearBox(x,y,width,height);},
+ clearRect$4: function(x,y,width,height){return this.clearRect(x,y,width,height);},
  clip$0: function(){return this.clip();},
  drawImage$9: function(canvas_OR_image_OR_video,sx_OR_x,sy_OR_y,sw_OR_width,height_OR_sh,dx,dy,dw,dh){return this.drawImage(canvas_OR_image_OR_video,sx_OR_x,sy_OR_y,sw_OR_width,height_OR_sh,dx,dy,dw,dh);},
  drawImage$3: function(canvas_OR_image_OR_video,sx_OR_x,sy_OR_y) {
@@ -2714,7 +2780,7 @@ $.$defineNativeClass('CanvasRenderingContext2D', ["fillStyle!", "font!", "global
  drawImage$5: function(canvas_OR_image_OR_video,sx_OR_x,sy_OR_y,sw_OR_width,height_OR_sh) {
   return this.drawImage(canvas_OR_image_OR_video,sx_OR_x,sy_OR_y,sw_OR_width,height_OR_sh);
 },
- fillBox$4: function(x,y,width,height){return this.fillBox(x,y,width,height);},
+ fillRect$4: function(x,y,width,height){return this.fillRect(x,y,width,height);},
  fillText$4: function(text,x,y,maxWidth){return this.fillText(text,x,y,maxWidth);},
  fillText$3: function(text,x,y) {
   return this.fillText(text,x,y);
@@ -2729,10 +2795,10 @@ $.$defineNativeClass('CanvasRenderingContext2D', ["fillStyle!", "font!", "global
 $.$defineNativeClass('CharacterData', ["length?"], {
 });
 
-$.$defineNativeClass('ClientBox', ["height?", "left?", "top?", "width?"], {
+$.$defineNativeClass('ClientRect', ["height?", "left?", "top?", "width?"], {
 });
 
-$.$defineNativeClass('ClientBoxList', ["length?"], {
+$.$defineNativeClass('ClientRectList', ["length?"], {
 });
 
 _ConsoleImpl = (typeof console == 'undefined' ? {} : console);
@@ -2752,14 +2818,23 @@ $.$defineNativeClass('DOMApplicationCache', [], {
  update$0: function(){return this.update();}
 });
 
-$.$defineNativeClass('DOMException', ["message?"], {
+$.$defineNativeClass('DOMError', ["name?"], {
+});
+
+$.$defineNativeClass('DOMException', ["message?", "name?"], {
  toString$0: function(){return this.toString();}
+});
+
+$.$defineNativeClass('DOMFileSystem', ["name?"], {
+});
+
+$.$defineNativeClass('DOMFileSystemSync', ["name?"], {
 });
 
 $.$defineNativeClass('DOMMimeTypeArray', ["length?"], {
 });
 
-$.$defineNativeClass('DOMPlugin', ["length?"], {
+$.$defineNativeClass('DOMPlugin', ["length?", "name?"], {
 });
 
 $.$defineNativeClass('DOMPluginArray', ["length?"], {
@@ -2786,7 +2861,7 @@ $.$defineNativeClass('DOMStringList', ["length?"], {
 },
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC17);},
- insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC26);},
+ insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC28);},
  is$JavaScriptIndexingBehavior: function() { return true; },
  is$List: function() { return true; },
  is$Collection: function() { return true; }
@@ -2845,12 +2920,13 @@ $.$defineNativeClass('HTMLDocument', [], {
 
 $.$defineNativeClass('DocumentFragment', [], {
  query$1: function(selectors){return this.$dom_querySelector$1(selectors);},
- get$rect: function(){return $._createMeasurementFuture(new $._DocumentFragmentImpl_rect_anon(),$.CompleterImpl$('ElementBox'));},
+ get$rect: function(){return $._createMeasurementFuture(new $._DocumentFragmentImpl_rect_anon(),$.CompleterImpl$('ElementRect'));},
  rect$4: function(arg0, arg1, arg2, arg3) { return this.get$rect().call$4(arg0, arg1, arg2, arg3); },
  get$translate: function(){return false;},
  translate$2: function(arg0, arg1) { return this.get$translate().call$2(arg0, arg1); },
  get$id: function(){return '';},
  get$parent: function(){return;},
+ get$attributes: function(){return $.CTC19;},
  get$style: function(){return $._ElementFactoryProvider_Element$tag('div').get$style();},
  blur$0: function(){},
  get$blur: function() { return new $.BoundClosure0(this, 'blur$0'); },
@@ -2860,9 +2936,13 @@ $.$defineNativeClass('DocumentFragment', [], {
  is$Element: function() { return true; }
 });
 
+$.$defineNativeClass('DocumentType', ["name?"], {
+});
+
 $.$defineNativeClass('Element', ["id=", "style?"], {
+ get$attributes: function(){return $._ElementAttributeMap$(this);},
  query$1: function(selectors){return this.$dom_querySelector$1(selectors);},
- get$rect: function(){return $._createMeasurementFuture(new $._ElementImpl_rect_anon(this),$.CompleterImpl$('ElementBox'));},
+ get$rect: function(){return $._createMeasurementFuture(new $._ElementImpl_rect_anon(this),$.CompleterImpl$('ElementRect'));},
  rect$4: function(arg0, arg1, arg2, arg3) { return this.get$rect().call$4(arg0, arg1, arg2, arg3); },
  get$on: function(){  if (Object.getPrototypeOf(this).hasOwnProperty('get$on')) {
   {return $._ElementEventsImpl$(this);}  } else {
@@ -2884,17 +2964,21 @@ $.$defineNativeClass('Element', ["id=", "style?"], {
  get$$$dom_scrollWidth: function(){return this.scrollWidth;},
  blur$0: function(){return this.blur();},
  get$blur: function() { return new $.BoundClosure0(this, 'blur$0'); },
- $dom_getBoundingClientBox$0: function(){return this.getBoundingClientBox();},
- $dom_getClientBoxs$0: function(){return this.getClientBoxs();},
+ $dom_getAttribute$1: function(name){return this.getAttribute(name);},
+ $dom_getBoundingClientRect$0: function(){return this.getBoundingClientRect();},
+ $dom_getClientRects$0: function(){return this.getClientRects();},
+ $dom_hasAttribute$1: function(name){return this.hasAttribute(name);},
  $dom_querySelector$1: function(selectors){return this.querySelector(selectors);},
+ $dom_removeAttribute$1: function(name){return this.removeAttribute(name);},
+ $dom_setAttribute$2: function(name,value){return this.setAttribute(name,value);},
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('HTMLEmbedElement', ["height=", "src!", "width="], {
+$.$defineNativeClass('HTMLEmbedElement', ["height=", "name?", "src!", "width="], {
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('Entry', [], {
+$.$defineNativeClass('Entry', ["name?"], {
  remove$2: function(successCallback,errorCallback){return this.remove($.convertDartClosureToJS(successCallback,0),$.convertDartClosureToJS(errorCallback,1));},
  remove$1: function(successCallback) {
   successCallback = $.convertDartClosureToJS(successCallback, 0);
@@ -2908,7 +2992,7 @@ $.$defineNativeClass('EntryArray', ["length?"], {
 $.$defineNativeClass('EntryArraySync', ["length?"], {
 });
 
-$.$defineNativeClass('EntrySync', [], {
+$.$defineNativeClass('EntrySync', ["name?"], {
  remove$0: function(){return this.remove();}
 });
 
@@ -2919,7 +3003,7 @@ $.$defineNativeClass('Event', [], {
  preventDefault$0: function(){return this.preventDefault();}
 });
 
-$.$defineNativeClass('EventException', ["message?"], {
+$.$defineNativeClass('EventException', ["message?", "name?"], {
  toString$0: function(){return this.toString();}
 });
 
@@ -2948,17 +3032,17 @@ $.$defineNativeClass('EventTarget', [], {
 }
 });
 
-$.$defineNativeClass('HTMLFieldSetElement', [], {
+$.$defineNativeClass('HTMLFieldSetElement', ["name?"], {
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('File', [], {
+$.$defineNativeClass('File', ["name?"], {
  is$_FileImpl: function() { return true; },
  is$File: function() { return true; },
  is$Blob: function() { return true; }
 });
 
-$.$defineNativeClass('FileException', ["message?"], {
+$.$defineNativeClass('FileException', ["message?", "name?"], {
  toString$0: function(){return this.toString();}
 });
 
@@ -2976,7 +3060,7 @@ $.$defineNativeClass('FileList', ["length?"], {
 },
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC17);},
- insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC26);},
+ insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC28);},
  is$_FileListImpl: function() { return true; },
  is$JavaScriptIndexingBehavior: function() { return true; },
  is$FileList: function() { return true; },
@@ -3013,7 +3097,7 @@ $.$defineNativeClass('Float32Array', ["length?"], {
 },
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC17);},
- insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC26);},
+ insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC28);},
  is$JavaScriptIndexingBehavior: function() { return true; },
  is$List: function() { return true; },
  is$Collection: function() { return true; },
@@ -3034,7 +3118,7 @@ $.$defineNativeClass('Float64Array', ["length?"], {
 },
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC17);},
- insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC26);},
+ insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC28);},
  is$JavaScriptIndexingBehavior: function() { return true; },
  is$List: function() { return true; },
  is$Collection: function() { return true; },
@@ -3045,12 +3129,12 @@ $.$defineNativeClass('HTMLFontElement', [], {
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('HTMLFormElement', ["length?"], {
+$.$defineNativeClass('HTMLFormElement', ["length?", "name?"], {
  reset$0: function(){return this.reset();},
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('HTMLFrameElement', ["height?", "src!", "width?"], {
+$.$defineNativeClass('HTMLFrameElement', ["height?", "name?", "src!", "width?"], {
  is$Element: function() { return true; }
 });
 
@@ -3086,7 +3170,7 @@ $.$defineNativeClass('HTMLCollection', ["length?"], {
 },
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC17);},
- insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC26);},
+ insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC28);},
  is$JavaScriptIndexingBehavior: function() { return true; },
  is$List: function() { return true; },
  is$Collection: function() { return true; }
@@ -3122,7 +3206,7 @@ $.$defineNativeClass('XMLHttpRequest', [], {
  send$1: function(data){return this.send(data);}
 });
 
-$.$defineNativeClass('XMLHttpRequestException', ["message?"], {
+$.$defineNativeClass('XMLHttpRequestException', ["message?", "name?"], {
  toString$0: function(){return this.toString();}
 });
 
@@ -3142,22 +3226,25 @@ $.$defineNativeClass('IDBCursorWithValue', [], {
  get$_lib_value: function(){return this.value;}
 });
 
-$.$defineNativeClass('IDBDatabase', [], {
+$.$defineNativeClass('IDBDatabase', ["name?"], {
  get$on: function(){return $._IDBDatabaseEventsImpl$(this);},
  $dom_addEventListener$3: function(type,listener,useCapture){return this.addEventListener(type,$.convertDartClosureToJS(listener,1),useCapture);},
  close$0: function(){return this.close();},
  $dom_removeEventListener$3: function(type,listener,useCapture){return this.removeEventListener(type,$.convertDartClosureToJS(listener,1),useCapture);}
 });
 
-$.$defineNativeClass('IDBDatabaseException', ["message?"], {
+$.$defineNativeClass('IDBDatabaseException', ["message?", "name?"], {
  toString$0: function(){return this.toString();}
+});
+
+$.$defineNativeClass('IDBIndex', ["name?"], {
 });
 
 $.$defineNativeClass('IDBKeyRange', [], {
  is$IDBKeyRange: function() { return true; }
 });
 
-$.$defineNativeClass('IDBObjectStore', [], {
+$.$defineNativeClass('IDBObjectStore', ["name?"], {
  add$2: function(value,key){var t1=$===key;if(t1)key=null;if(!t1)return this._add_1$2($._convertDartToNative_SerializedScriptValue(value),key);return this._add_2$1($._convertDartToNative_SerializedScriptValue(value));},
  add$1: function(value) {
   return this.add$2(value,$)
@@ -3203,7 +3290,7 @@ $.$defineNativeClass('IDBVersionChangeRequest', [], {
  $dom_removeEventListener$3: function(type,listener,useCapture){return this.removeEventListener(type,$.convertDartClosureToJS(listener,1),useCapture);}
 });
 
-$.$defineNativeClass('HTMLIFrameElement', ["height=", "src!", "width="], {
+$.$defineNativeClass('HTMLIFrameElement', ["height=", "name?", "src!", "width="], {
  is$Element: function() { return true; }
 });
 
@@ -3212,12 +3299,12 @@ $.$defineNativeClass('ImageData', ["height?", "width?"], {
  is$ImageData: function() { return true; }
 });
 
-$.$defineNativeClass('HTMLImageElement', ["complete?", "height=", "src!", "width=", "x?", "y?"], {
+$.$defineNativeClass('HTMLImageElement', ["complete?", "height=", "name?", "src!", "width=", "x?", "y?"], {
  complete$1: function(arg0) { return this.complete.call$1(arg0); },
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('HTMLInputElement', ["height=", "src!", "value=", "width="], {
+$.$defineNativeClass('HTMLInputElement', ["height=", "name?", "src!", "value=", "width="], {
  get$on: function(){return $._InputElementEventsImpl$(this);},
  is$Element: function() { return true; }
 });
@@ -3236,7 +3323,7 @@ $.$defineNativeClass('Int16Array', ["length?"], {
 },
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC17);},
- insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC26);},
+ insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC28);},
  is$JavaScriptIndexingBehavior: function() { return true; },
  is$List: function() { return true; },
  is$Collection: function() { return true; },
@@ -3257,7 +3344,7 @@ $.$defineNativeClass('Int32Array', ["length?"], {
 },
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC17);},
- insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC26);},
+ insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC28);},
  is$JavaScriptIndexingBehavior: function() { return true; },
  is$List: function() { return true; },
  is$Collection: function() { return true; },
@@ -3278,7 +3365,7 @@ $.$defineNativeClass('Int8Array', ["length?"], {
 },
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC17);},
- insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC26);},
+ insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC28);},
  is$JavaScriptIndexingBehavior: function() { return true; },
  is$List: function() { return true; },
  is$Collection: function() { return true; },
@@ -3291,7 +3378,7 @@ $.$defineNativeClass('JavaScriptAudioNode', [], {
  $dom_removeEventListener$3: function(type,listener,useCapture){return this.removeEventListener(type,$.convertDartClosureToJS(listener,1),useCapture);}
 });
 
-$.$defineNativeClass('HTMLKeygenElement', [], {
+$.$defineNativeClass('HTMLKeygenElement', ["name?"], {
  is$Element: function() { return true; }
 });
 
@@ -3320,7 +3407,7 @@ $.$defineNativeClass('Location', [], {
  toString$0: function(){return this.toString();}
 });
 
-$.$defineNativeClass('HTMLMapElement', [], {
+$.$defineNativeClass('HTMLMapElement', ["name?"], {
  is$Element: function() { return true; }
 });
 
@@ -3357,7 +3444,7 @@ $.$defineNativeClass('MediaList', ["length?"], {
 },
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC17);},
- insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC26);},
+ insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC28);},
  is$JavaScriptIndexingBehavior: function() { return true; },
  is$List: function() { return true; },
  is$Collection: function() { return true; }
@@ -3417,7 +3504,7 @@ $.$defineNativeClass('MessagePort', [], {
  $dom_removeEventListener$3: function(type,listener,useCapture){return this.removeEventListener(type,$.convertDartClosureToJS(listener,1),useCapture);}
 });
 
-$.$defineNativeClass('HTMLMetaElement', [], {
+$.$defineNativeClass('HTMLMetaElement', ["name?"], {
  is$Element: function() { return true; }
 });
 
@@ -3430,8 +3517,8 @@ $.$defineNativeClass('HTMLModElement', [], {
 });
 
 $.$defineNativeClass('MouseEvent', ["clientX?", "clientY?", "x?", "y?"], {
- get$offsetX: function(){if(!!this.offsetX)return this.get$_offsetX();else{var target=this.target;if(!(typeof target==='object'&&target!==null&&target.is$Element()))throw $.$$throw($.CTC24);return $.sub(this.clientX,target.$dom_getBoundingClientBox$0().get$left());}},
- get$offsetY: function(){if(!!this.offsetY)return this.get$_offsetY();else{var target=this.target;if(!(typeof target==='object'&&target!==null&&target.is$Element()))throw $.$$throw($.CTC24);return $.sub(this.clientY,target.$dom_getBoundingClientBox$0().get$top());}},
+ get$offsetX: function(){if(!!this.offsetX)return this.get$_offsetX();else{var target=this.target;if(!(typeof target==='object'&&target!==null&&target.is$Element()))throw $.$$throw($.CTC26);return $.sub(this.clientX,target.$dom_getBoundingClientRect$0().get$left());}},
+ get$offsetY: function(){if(!!this.offsetY)return this.get$_offsetY();else{var target=this.target;if(!(typeof target==='object'&&target!==null&&target.is$Element()))throw $.$$throw($.CTC26);return $.sub(this.clientY,target.$dom_getBoundingClientRect$0().get$top());}},
  get$_offsetX: function(){return this.offsetX},
  get$_offsetY: function(){return this.offsetY}
 });
@@ -3450,7 +3537,7 @@ $.$defineNativeClass('NamedNodeMap', ["length?"], {
 },
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC17);},
- insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC26);},
+ insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC28);},
  is$JavaScriptIndexingBehavior: function() { return true; },
  is$List: function() { return true; },
  is$Collection: function() { return true; }
@@ -3461,6 +3548,7 @@ $.$defineNativeClass('Navigator', ["userAgent?"], {
 
 $.$defineNativeClass('Node', [], {
  remove$0: function(){if(!(this.get$parent()==null))this.get$parent().$dom_removeChild$1(this);return this;},
+ get$$$dom_attributes: function(){return this.attributes;},
  get$parent: function(){  if (Object.getPrototypeOf(this).hasOwnProperty('get$parent')) {
   {return this.parentNode;}  } else {
     return Object.prototype.get$parent.call(this);
@@ -3508,7 +3596,7 @@ $.$defineNativeClass('HTMLOListElement', [], {
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('HTMLObjectElement', ["height=", "width="], {
+$.$defineNativeClass('HTMLObjectElement', ["height=", "name?", "width="], {
  is$Element: function() { return true; }
 });
 
@@ -3520,7 +3608,7 @@ $.$defineNativeClass('HTMLOptionElement', ["value="], {
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('HTMLOutputElement', ["value="], {
+$.$defineNativeClass('HTMLOutputElement', ["name?", "value="], {
  is$Element: function() { return true; }
 });
 
@@ -3528,7 +3616,7 @@ $.$defineNativeClass('HTMLParagraphElement', [], {
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('HTMLParamElement', ["value="], {
+$.$defineNativeClass('HTMLParamElement', ["name?", "value="], {
  is$Element: function() { return true; }
 });
 
@@ -3577,11 +3665,11 @@ $.$defineNativeClass('Range', [], {
  toString$0: function(){return this.toString();}
 });
 
-$.$defineNativeClass('RangeException', ["message?"], {
+$.$defineNativeClass('RangeException', ["message?", "name?"], {
  toString$0: function(){return this.toString();}
 });
 
-$.$defineNativeClass('Box', ["left?", "top?"], {
+$.$defineNativeClass('Rect', ["left?", "top?"], {
 });
 
 $.$defineNativeClass('SQLError', ["message?"], {
@@ -3682,7 +3770,7 @@ $.$defineNativeClass('SVGEllipseElement', [], {
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('SVGException', ["message?"], {
+$.$defineNativeClass('SVGException', ["message?", "name?"], {
  toString$0: function(){return this.toString();}
 });
 
@@ -3980,10 +4068,10 @@ $.$defineNativeClass('SVGRadialGradientElement', [], {
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('SVGBox', ["height=", "width=", "x?", "y?"], {
+$.$defineNativeClass('SVGRect', ["height=", "width=", "x?", "y?"], {
 });
 
-$.$defineNativeClass('SVGBoxElement', ["height?", "width?", "x?", "y?"], {
+$.$defineNativeClass('SVGRectElement', ["height?", "width?", "x?", "y?"], {
  transform$6: function(arg0, arg1, arg2, arg3, arg4, arg5) { return this.transform.call$6(arg0, arg1, arg2, arg3, arg4, arg5); },
  is$Element: function() { return true; }
 });
@@ -4078,7 +4166,7 @@ $.$defineNativeClass('HTMLScriptElement', ["src!"], {
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('HTMLSelectElement', ["length=", "value="], {
+$.$defineNativeClass('HTMLSelectElement', ["length=", "name?", "value="], {
  is$Element: function() { return true; }
 });
 
@@ -4090,7 +4178,7 @@ $.$defineNativeClass('ShadowRoot', [], {
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('SharedWorkerContext', [], {
+$.$defineNativeClass('SharedWorkerContext', ["name?"], {
  get$on: function(){return $._SharedWorkerContextEventsImpl$(this);}
 });
 
@@ -4172,7 +4260,7 @@ $.$defineNativeClass('StyleSheetList', ["length?"], {
 },
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC17);},
- insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC26);},
+ insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC28);},
  is$JavaScriptIndexingBehavior: function() { return true; },
  is$List: function() { return true; },
  is$Collection: function() { return true; }
@@ -4202,7 +4290,7 @@ $.$defineNativeClass('HTMLTableSectionElement', [], {
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('HTMLTextAreaElement', ["value="], {
+$.$defineNativeClass('HTMLTextAreaElement', ["name?", "value="], {
  is$Element: function() { return true; }
 });
 
@@ -4254,7 +4342,7 @@ $.$defineNativeClass('TouchList', ["length?"], {
 },
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC17);},
- insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC26);},
+ insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC28);},
  is$JavaScriptIndexingBehavior: function() { return true; },
  is$List: function() { return true; },
  is$Collection: function() { return true; }
@@ -4282,7 +4370,7 @@ $.$defineNativeClass('Uint16Array', ["length?"], {
 },
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC17);},
- insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC26);},
+ insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC28);},
  is$JavaScriptIndexingBehavior: function() { return true; },
  is$List: function() { return true; },
  is$Collection: function() { return true; },
@@ -4303,7 +4391,7 @@ $.$defineNativeClass('Uint32Array', ["length?"], {
 },
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC17);},
- insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC26);},
+ insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC28);},
  is$JavaScriptIndexingBehavior: function() { return true; },
  is$List: function() { return true; },
  is$Collection: function() { return true; },
@@ -4324,7 +4412,7 @@ $.$defineNativeClass('Uint8Array', ["length?"], {
 },
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC17);},
- insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC26);},
+ insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.CTC28);},
  is$JavaScriptIndexingBehavior: function() { return true; },
  is$List: function() { return true; },
  is$Collection: function() { return true; },
@@ -4345,7 +4433,10 @@ $.$defineNativeClass('HTMLVideoElement', ["height=", "width="], {
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('WebKitNamedFlow', [], {
+$.$defineNativeClass('WebGLActiveInfo', ["name?"], {
+});
+
+$.$defineNativeClass('WebKitNamedFlow', ["name?"], {
  $dom_addEventListener$3: function(type,listener,useCapture){return this.addEventListener(type,$.convertDartClosureToJS(listener,1),useCapture);},
  $dom_removeEventListener$3: function(type,listener,useCapture){return this.removeEventListener(type,$.convertDartClosureToJS(listener,1),useCapture);}
 });
@@ -4361,7 +4452,7 @@ $.$defineNativeClass('WebSocket', [], {
  send$1: function(data){return this.send(data);}
 });
 
-$.$defineNativeClass('DOMWindow', ["length?", "navigator?", "performance?"], {
+$.$defineNativeClass('DOMWindow', ["length?", "name?", "navigator?", "performance?"], {
  get$_top: function(){return this.top;},
  get$top: function(){return $._DOMWindowCrossFrameImpl__createSafe(this.get$_top());},
  requestAnimationFrame$1: function(callback){this._ensureRequestAnimationFrame$0();return this._requestAnimationFrame$1(callback);},
@@ -4427,7 +4518,7 @@ $.$defineNativeClass('WorkerLocation', [], {
 $.$defineNativeClass('WorkerNavigator', ["userAgent?"], {
 });
 
-$.$defineNativeClass('XPathException', ["message?"], {
+$.$defineNativeClass('XPathException', ["message?", "name?"], {
  toString$0: function(){return this.toString();}
 });
 
@@ -4449,8 +4540,8 @@ $.$defineNativeClass('DOMWindow', [], {
  clearInterval$1: function(handle){return this.clearInterval(handle);}
 });
 
-// 335 dynamic classes.
-// 384 classes
+// 343 dynamic classes.
+// 391 classes
 // 33 !leaf
 (function(){
   var v0/*class(_SVGTextPositioningElementImpl)*/ = 'SVGTextPositioningElement|SVGTextElement|SVGTSpanElement|SVGTRefElement|SVGAltGlyphElement|SVGTextElement|SVGTSpanElement|SVGTRefElement|SVGAltGlyphElement';
@@ -4459,7 +4550,7 @@ $.$defineNativeClass('DOMWindow', [], {
   var v3/*class(_SVGGradientElementImpl)*/ = 'SVGGradientElement|SVGRadialGradientElement|SVGLinearGradientElement|SVGRadialGradientElement|SVGLinearGradientElement';
   var v4/*class(_SVGComponentTransferFunctionElementImpl)*/ = 'SVGComponentTransferFunctionElement|SVGFEFuncRElement|SVGFEFuncGElement|SVGFEFuncBElement|SVGFEFuncAElement|SVGFEFuncRElement|SVGFEFuncGElement|SVGFEFuncBElement|SVGFEFuncAElement';
   var v5/*class(_SVGAnimationElementImpl)*/ = 'SVGAnimationElement|SVGSetElement|SVGAnimateTransformElement|SVGAnimateMotionElement|SVGAnimateElement|SVGAnimateColorElement|SVGSetElement|SVGAnimateTransformElement|SVGAnimateMotionElement|SVGAnimateElement|SVGAnimateColorElement';
-  var v6/*class(_SVGElementImpl)*/ = [v2/*class(_SVGTextContentElementImpl)*/,v3/*class(_SVGGradientElementImpl)*/,v4/*class(_SVGComponentTransferFunctionElementImpl)*/,v5/*class(_SVGAnimationElementImpl)*/,v2/*class(_SVGTextContentElementImpl)*/,v3/*class(_SVGGradientElementImpl)*/,v4/*class(_SVGComponentTransferFunctionElementImpl)*/,v5/*class(_SVGAnimationElementImpl)*/,'SVGElement|SVGViewElement|SVGVKernElement|SVGUseElement|SVGTitleElement|SVGSymbolElement|SVGSwitchElement|SVGStyleElement|SVGStopElement|SVGScriptElement|SVGSVGElement|SVGBoxElement|SVGPolylineElement|SVGPolygonElement|SVGPatternElement|SVGPathElement|SVGMissingGlyphElement|SVGMetadataElement|SVGMaskElement|SVGMarkerElement|SVGMPathElement|SVGLineElement|SVGImageElement|SVGHKernElement|SVGGlyphRefElement|SVGGlyphElement|SVGGElement|SVGForeignObjectElement|SVGFontFaceUriElement|SVGFontFaceSrcElement|SVGFontFaceNameElement|SVGFontFaceFormatElement|SVGFontFaceElement|SVGFontElement|SVGFilterElement|SVGFETurbulenceElement|SVGFETileElement|SVGFESpotLightElement|SVGFESpecularLightingElement|SVGFEPointLightElement|SVGFEOffsetElement|SVGFEMorphologyElement|SVGFEMergeNodeElement|SVGFEMergeElement|SVGFEImageElement|SVGFEGaussianBlurElement|SVGFEFloodElement|SVGFEDropShadowElement|SVGFEDistantLightElement|SVGFEDisplacementMapElement|SVGFEDiffuseLightingElement|SVGFEConvolveMatrixElement|SVGFECompositeElement|SVGFEComponentTransferElement|SVGFEColorMatrixElement|SVGFEBlendElement|SVGEllipseElement|SVGDescElement|SVGDefsElement|SVGCursorElement|SVGClipPathElement|SVGCircleElement|SVGAltGlyphItemElement|SVGAltGlyphDefElement|SVGAElement|SVGViewElement|SVGVKernElement|SVGUseElement|SVGTitleElement|SVGSymbolElement|SVGSwitchElement|SVGStyleElement|SVGStopElement|SVGScriptElement|SVGSVGElement|SVGBoxElement|SVGPolylineElement|SVGPolygonElement|SVGPatternElement|SVGPathElement|SVGMissingGlyphElement|SVGMetadataElement|SVGMaskElement|SVGMarkerElement|SVGMPathElement|SVGLineElement|SVGImageElement|SVGHKernElement|SVGGlyphRefElement|SVGGlyphElement|SVGGElement|SVGForeignObjectElement|SVGFontFaceUriElement|SVGFontFaceSrcElement|SVGFontFaceNameElement|SVGFontFaceFormatElement|SVGFontFaceElement|SVGFontElement|SVGFilterElement|SVGFETurbulenceElement|SVGFETileElement|SVGFESpotLightElement|SVGFESpecularLightingElement|SVGFEPointLightElement|SVGFEOffsetElement|SVGFEMorphologyElement|SVGFEMergeNodeElement|SVGFEMergeElement|SVGFEImageElement|SVGFEGaussianBlurElement|SVGFEFloodElement|SVGFEDropShadowElement|SVGFEDistantLightElement|SVGFEDisplacementMapElement|SVGFEDiffuseLightingElement|SVGFEConvolveMatrixElement|SVGFECompositeElement|SVGFEComponentTransferElement|SVGFEColorMatrixElement|SVGFEBlendElement|SVGEllipseElement|SVGDescElement|SVGDefsElement|SVGCursorElement|SVGClipPathElement|SVGCircleElement|SVGAltGlyphItemElement|SVGAltGlyphDefElement|SVGAElement'].join('|');
+  var v6/*class(_SVGElementImpl)*/ = [v2/*class(_SVGTextContentElementImpl)*/,v3/*class(_SVGGradientElementImpl)*/,v4/*class(_SVGComponentTransferFunctionElementImpl)*/,v5/*class(_SVGAnimationElementImpl)*/,v2/*class(_SVGTextContentElementImpl)*/,v3/*class(_SVGGradientElementImpl)*/,v4/*class(_SVGComponentTransferFunctionElementImpl)*/,v5/*class(_SVGAnimationElementImpl)*/,'SVGElement|SVGViewElement|SVGVKernElement|SVGUseElement|SVGTitleElement|SVGSymbolElement|SVGSwitchElement|SVGStyleElement|SVGStopElement|SVGScriptElement|SVGSVGElement|SVGRectElement|SVGPolylineElement|SVGPolygonElement|SVGPatternElement|SVGPathElement|SVGMissingGlyphElement|SVGMetadataElement|SVGMaskElement|SVGMarkerElement|SVGMPathElement|SVGLineElement|SVGImageElement|SVGHKernElement|SVGGlyphRefElement|SVGGlyphElement|SVGGElement|SVGForeignObjectElement|SVGFontFaceUriElement|SVGFontFaceSrcElement|SVGFontFaceNameElement|SVGFontFaceFormatElement|SVGFontFaceElement|SVGFontElement|SVGFilterElement|SVGFETurbulenceElement|SVGFETileElement|SVGFESpotLightElement|SVGFESpecularLightingElement|SVGFEPointLightElement|SVGFEOffsetElement|SVGFEMorphologyElement|SVGFEMergeNodeElement|SVGFEMergeElement|SVGFEImageElement|SVGFEGaussianBlurElement|SVGFEFloodElement|SVGFEDropShadowElement|SVGFEDistantLightElement|SVGFEDisplacementMapElement|SVGFEDiffuseLightingElement|SVGFEConvolveMatrixElement|SVGFECompositeElement|SVGFEComponentTransferElement|SVGFEColorMatrixElement|SVGFEBlendElement|SVGEllipseElement|SVGDescElement|SVGDefsElement|SVGCursorElement|SVGClipPathElement|SVGCircleElement|SVGAltGlyphItemElement|SVGAltGlyphDefElement|SVGAElement|SVGViewElement|SVGVKernElement|SVGUseElement|SVGTitleElement|SVGSymbolElement|SVGSwitchElement|SVGStyleElement|SVGStopElement|SVGScriptElement|SVGSVGElement|SVGRectElement|SVGPolylineElement|SVGPolygonElement|SVGPatternElement|SVGPathElement|SVGMissingGlyphElement|SVGMetadataElement|SVGMaskElement|SVGMarkerElement|SVGMPathElement|SVGLineElement|SVGImageElement|SVGHKernElement|SVGGlyphRefElement|SVGGlyphElement|SVGGElement|SVGForeignObjectElement|SVGFontFaceUriElement|SVGFontFaceSrcElement|SVGFontFaceNameElement|SVGFontFaceFormatElement|SVGFontFaceElement|SVGFontElement|SVGFilterElement|SVGFETurbulenceElement|SVGFETileElement|SVGFESpotLightElement|SVGFESpecularLightingElement|SVGFEPointLightElement|SVGFEOffsetElement|SVGFEMorphologyElement|SVGFEMergeNodeElement|SVGFEMergeElement|SVGFEImageElement|SVGFEGaussianBlurElement|SVGFEFloodElement|SVGFEDropShadowElement|SVGFEDistantLightElement|SVGFEDisplacementMapElement|SVGFEDiffuseLightingElement|SVGFEConvolveMatrixElement|SVGFECompositeElement|SVGFEComponentTransferElement|SVGFEColorMatrixElement|SVGFEBlendElement|SVGEllipseElement|SVGDescElement|SVGDefsElement|SVGCursorElement|SVGClipPathElement|SVGCircleElement|SVGAltGlyphItemElement|SVGAltGlyphDefElement|SVGAElement'].join('|');
   var v7/*class(_MediaElementImpl)*/ = 'HTMLMediaElement|HTMLVideoElement|HTMLAudioElement|HTMLVideoElement|HTMLAudioElement';
   var v8/*class(_MouseEventImpl)*/ = 'MouseEvent|WheelEvent|WheelEvent';
   var v9/*class(_ElementImpl)*/ = [v6/*class(_SVGElementImpl)*/,v7/*class(_MediaElementImpl)*/,v6/*class(_SVGElementImpl)*/,v7/*class(_MediaElementImpl)*/,'Element|HTMLUnknownElement|HTMLUListElement|HTMLTrackElement|HTMLTitleElement|HTMLTextAreaElement|HTMLTableSectionElement|HTMLTableRowElement|HTMLTableElement|HTMLTableColElement|HTMLTableCellElement|HTMLTableCaptionElement|HTMLStyleElement|HTMLSpanElement|HTMLSourceElement|HTMLShadowElement|HTMLSelectElement|HTMLScriptElement|HTMLQuoteElement|HTMLProgressElement|HTMLPreElement|HTMLParamElement|HTMLParagraphElement|HTMLOutputElement|HTMLOptionElement|HTMLOptGroupElement|HTMLObjectElement|HTMLOListElement|HTMLModElement|HTMLMeterElement|HTMLMetaElement|HTMLMenuElement|HTMLMarqueeElement|HTMLMapElement|HTMLLinkElement|HTMLLegendElement|HTMLLabelElement|HTMLLIElement|HTMLKeygenElement|HTMLInputElement|HTMLImageElement|HTMLIFrameElement|HTMLHtmlElement|HTMLHeadingElement|HTMLHeadElement|HTMLHRElement|HTMLFrameSetElement|HTMLFrameElement|HTMLFormElement|HTMLFontElement|HTMLFieldSetElement|HTMLEmbedElement|HTMLDivElement|HTMLDirectoryElement|HTMLDetailsElement|HTMLDataListElement|HTMLDListElement|HTMLContentElement|HTMLCanvasElement|HTMLButtonElement|HTMLBodyElement|HTMLBaseFontElement|HTMLBaseElement|HTMLBRElement|HTMLAreaElement|HTMLAppletElement|HTMLAnchorElement|HTMLElement|HTMLUnknownElement|HTMLUListElement|HTMLTrackElement|HTMLTitleElement|HTMLTextAreaElement|HTMLTableSectionElement|HTMLTableRowElement|HTMLTableElement|HTMLTableColElement|HTMLTableCellElement|HTMLTableCaptionElement|HTMLStyleElement|HTMLSpanElement|HTMLSourceElement|HTMLShadowElement|HTMLSelectElement|HTMLScriptElement|HTMLQuoteElement|HTMLProgressElement|HTMLPreElement|HTMLParamElement|HTMLParagraphElement|HTMLOutputElement|HTMLOptionElement|HTMLOptGroupElement|HTMLObjectElement|HTMLOListElement|HTMLModElement|HTMLMeterElement|HTMLMetaElement|HTMLMenuElement|HTMLMarqueeElement|HTMLMapElement|HTMLLinkElement|HTMLLegendElement|HTMLLabelElement|HTMLLIElement|HTMLKeygenElement|HTMLInputElement|HTMLImageElement|HTMLIFrameElement|HTMLHtmlElement|HTMLHeadingElement|HTMLHeadElement|HTMLHRElement|HTMLFrameSetElement|HTMLFrameElement|HTMLFormElement|HTMLFontElement|HTMLFieldSetElement|HTMLEmbedElement|HTMLDivElement|HTMLDirectoryElement|HTMLDetailsElement|HTMLDataListElement|HTMLDListElement|HTMLContentElement|HTMLCanvasElement|HTMLButtonElement|HTMLBodyElement|HTMLBaseFontElement|HTMLBaseElement|HTMLBRElement|HTMLAreaElement|HTMLAppletElement|HTMLAnchorElement|HTMLElement'].join('|');
@@ -4509,8 +4600,8 @@ $.dynamicSetMetadata(table);
 var $globalThis = $;
 var $globalState;
 var $globals;
-var $isWorker;
-var $supportsWorkers;
+var $isWorker = false;
+var $supportsWorkers = false;
 var $thisScriptUrl;
 function $static_init(){};
 
