@@ -94,7 +94,8 @@ class RgbColor implements Hashable {
     return hexColor.toLowerCase();
   }
 
-  static final RegExp _validHexColorRe = const RegExp('^#(?:[0-9a-f]{6})\$', false, true);
+  static const RegExp _validHexColorRe = const RegExp('^#(?:[0-9a-f]{6})\$',
+      multiLine: false, ignoreCase: true);
 
   static bool _isValidHexColor(String str) {
     return _validHexColorRe.hasMatch(str);
