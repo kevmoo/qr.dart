@@ -1,4 +1,4 @@
-class PElement extends AttachableObjectImpl {
+class PElement extends AttachableObject {
   final List<AffineTransform> _transforms = new List<AffineTransform>();
   final bool cacheEnabled;
   final EventHandle<EventArgs> _updatedEventHandle = new EventHandle<EventArgs>();

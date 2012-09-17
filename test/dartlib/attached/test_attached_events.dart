@@ -1,4 +1,4 @@
-class TestAttachedEvents extends AttachableObjectImpl {
+class TestAttachedEvents extends AttachableObject {
   static final AttachedEvent<EventArgs> _testEvent1 =
       new AttachedEvent<EventArgs>('testEvent1');
 

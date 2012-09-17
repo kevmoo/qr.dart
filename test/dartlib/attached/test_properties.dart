@@ -1,4 +1,4 @@
-class TestProperties extends AttachableObjectImpl {
+class TestProperties extends AttachableObject {
 
   static void run(){
     group('PropertyObject', (){
@@ -122,19 +122,16 @@ class TestProperties extends AttachableObjectImpl {
 
   static void testFactories(Property<int> prop, int setValue, int propFactoryValue){
     var wodWatcher = new EventWatcher<Property>();
-    var propWatcher = new EventWatcher<Property>();
 
     var object = new TestProperties();
 
     prop.addHandler(object, wodWatcher.handler);
-    object.propertyValues.propertyChanged.add(propWatcher.handler);
 
     //
     // Checks
     //
     expect(prop.get(object), equals(prop.defaultValue));
     expect(prop.getCore(object), equals(Property.Undefined));
-    expect(propWatcher.eventCount, equals(0));
     expect(wodWatcher.eventCount, equals(0));
 
     // set normally
@@ -145,7 +142,6 @@ class TestProperties extends AttachableObjectImpl {
     //
     expect(prop.get(object), equals(setValue));
     expect(prop.getCore(object), equals(setValue));
-    expect(propWatcher.eventCount, equals(1));
     expect(wodWatcher.eventCount, equals(1));
 
     // get w/ factory should not change the value
@@ -158,7 +154,6 @@ class TestProperties extends AttachableObjectImpl {
     //
     expect(prop.get(object, propFactory), equals(setValue));
     expect(prop.getCore(object), equals(setValue));
-    expect(propWatcher.eventCount, equals(1));
     expect(wodWatcher.eventCount, equals(1));
 
     // clear then factory should do fun things, though
@@ -167,7 +162,6 @@ class TestProperties extends AttachableObjectImpl {
     //
     // Checks
     //
-    expect(propWatcher.eventCount, equals(2));
     expect(wodWatcher.eventCount, equals(2));
     expect(prop.get(object), equals(prop.defaultValue));
     expect(prop.getCore(object), equals(Property.Undefined));
@@ -178,7 +172,6 @@ class TestProperties extends AttachableObjectImpl {
 
     // NOTE: get w/ a factory (if the factory sets the value)
     //       DOES cause property change events
-    expect(propWatcher.eventCount, equals(3));
     expect(wodWatcher.eventCount, equals(3));
   }
 }

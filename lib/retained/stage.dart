@@ -1,9 +1,10 @@
-class Stage extends AttachableObjectImpl
+class Stage extends AttachableObject
   implements ElementParent {
-  final CanvasElement _canvas;
-  final PElement _element;
   final EventHandle<EventArgs> _invalidatedEventHandle =
       new EventHandle<EventArgs>();
+
+  final CanvasElement _canvas;
+  final PElement _element;
   CanvasRenderingContext2D _ctx;
 
   Stage(this._canvas, this._element) {

@@ -1,16 +1,11 @@
-class TestPropertyEventIntegration extends AttachableObjectImpl {
+class TestPropertyEventIntegration extends AttachableObject {
   static final Property<String> _nameProperty = new Property<String>("name");
   static final Property<int> _ageProperty = new Property<int>("age", 0);
 
-  final EventHandle<EventArgs> _nameChangedEventHandle;
-  final EventHandle<EventArgs> _ageChangedEventHandle;
-  final EventHandle<String> _propertyChangedEventHandle;
+  final EventHandle<EventArgs> _nameChangedEventHandle = new EventHandle<EventArgs>();
+  final EventHandle<EventArgs> _ageChangedEventHandle = new EventHandle<EventArgs>();
 
-  TestPropertyEventIntegration() :
-    _nameChangedEventHandle = new EventHandle<EventArgs>(),
-    _ageChangedEventHandle = new EventHandle<EventArgs>(),
-    _propertyChangedEventHandle = new EventHandle<String>()
-    {
+  TestPropertyEventIntegration() {
 
     _nameProperty.addHandler(this, (args){
       _nameChangedEventHandle.fireEvent(EventArgs.empty);
@@ -18,10 +13,6 @@ class TestPropertyEventIntegration extends AttachableObjectImpl {
 
     _ageProperty.addHandler(this, (args){
       _ageChangedEventHandle.fireEvent(EventArgs.empty);
-    });
-
-    propertyValues.propertyChanged.add((args){
-      _propertyChangedEventHandle.fireEvent(args.name);
     });
   }
 
@@ -47,11 +38,6 @@ class TestPropertyEventIntegration extends AttachableObjectImpl {
 
   EventRoot<EventArgs> get ageChanged =>_ageChangedEventHandle;
 
-  //
-  // Property changed event
-  //
-  EventRoot<String> get propertyChanged => _propertyChangedEventHandle;
-
   void reset(){
     _nameProperty.clear(this);
     _ageProperty.clear(this);
@@ -66,12 +52,9 @@ class TestPropertyEventIntegration extends AttachableObjectImpl {
 
     var ah = new EventWatcher<EventArgs>();
 
-    var ph = new EventWatcher<String>();
-
     var obj = new TestPropertyEventIntegration();
     obj.nameChanged.add(nh.handler);
     obj.ageChanged.add(ah.handler);
-    obj.propertyChanged.add(ph.handler);
 
     //
     // Initial checks
@@ -80,8 +63,6 @@ class TestPropertyEventIntegration extends AttachableObjectImpl {
     expect(obj.age, equals(0));
     expect(nh.eventCount, equals(0));
     expect(ah.eventCount, equals(0));
-    expect(ph.eventCount, equals(0));
-    expect(ph.lastArgs, isNull);
 
     obj.name = "Bob";
 
@@ -92,8 +73,6 @@ class TestPropertyEventIntegration extends AttachableObjectImpl {
     expect(obj.age, equals(0));
     expect(nh.eventCount, equals(1));
     expect(ah.eventCount, equals(0));
-    expect(ph.eventCount, equals(1));
-    expect(ph.lastArgs, equals('name'));
 
     // NOTE: no checks for setting the same value twice
     obj.name = "Bob";
@@ -105,8 +84,6 @@ class TestPropertyEventIntegration extends AttachableObjectImpl {
     expect(obj.age, equals(0));
     expect(nh.eventCount, equals(2));
     expect(ah.eventCount, equals(0));
-    expect(ph.eventCount, equals(2));
-    expect(ph.lastArgs, equals('name'));
 
     obj.age = 19;
 
@@ -117,8 +94,6 @@ class TestPropertyEventIntegration extends AttachableObjectImpl {
     expect(obj.age, equals(19));
     expect(nh.eventCount, equals(2));
     expect(ah.eventCount, equals(1));
-    expect(ph.eventCount, equals(3));
-    expect(ph.lastArgs, equals('age'));
 
     // reset properties
     obj.reset();
@@ -130,12 +105,5 @@ class TestPropertyEventIntegration extends AttachableObjectImpl {
     expect(obj.age, equals(0));
     expect(nh.eventCount, equals(3));
     expect(ah.eventCount, equals(2));
-
-    // get 2 prop change events: for name and age
-    expect(ph.eventCount, equals(5));
-
-    // implementation detail
-    // age is cleared 2nd in 'reset'
-    expect(ph.lastArgs, equals('age'));
   }
 }

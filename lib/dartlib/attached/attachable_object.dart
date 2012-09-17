@@ -1,14 +1,10 @@
-interface AttachableObject extends Disposable {
-  PropertyValues get propertyValues;
-}
+class AttachableObject extends DisposableImpl {
+  final _PropertyValues _propertyValues = new _PropertyValues();
 
-class AttachableObjectImpl extends DisposableImpl implements AttachableObject {
-  final PropertyValues propertyValues;
-
-  AttachableObjectImpl() : propertyValues = new PropertyValues();
+  EventRoot<Property> get propertyChanged => _propertyValues.propertyChanged;
 
   void disposeInternal(){
     super.disposeInternal();
-    propertyValues.dispose();
+    _propertyValues.dispose();
   }
 }
