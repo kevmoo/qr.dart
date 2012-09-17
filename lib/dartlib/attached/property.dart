@@ -1,9 +1,9 @@
 class Property<T> extends Attachable {
-  static final Object Undefined = const _UndefinedValue();
+  static const Object Undefined = const _UndefinedValue();
 
   final T defaultValue;
 
-  const Property(String name, [T this.defaultValue = null]) : super(name);
+  Property(String name, [T this.defaultValue = null]) : super(name);
 
   T get(AttachableObject obj, [Func1<AttachableObject, T> ifAbsent = null]){
     var coreValue = getCore(obj, ifAbsent);

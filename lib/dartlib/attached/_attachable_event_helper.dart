@@ -2,13 +2,13 @@ class _AttachableEventHelper {
   // TODO: once we can define static final with 'new' instead of 'const', we can nuke the property redirection
   // TODO: 2012-08-18: Not sure what I meant by this when I wrote it :-/
   static final Property<_AttachableEventHelper> _attachableEventHelperProperty =
-      const Property<_AttachableEventHelper>("_attachableEventHelperProperty");
+      new Property<_AttachableEventHelper>("_attachableEventHelperProperty");
 
-  final NoneHashMap<Attachable, EventHandle> _handlers;
+  final HashMap<Attachable, EventHandle> _handlers =
+      new HashMap<Attachable, EventHandle>();
   final GlobalId _propertyChangeHandleId;
 
-  _AttachableEventHelper(this._propertyChangeHandleId) :
-    _handlers = new NoneHashMap<Attachable, EventHandle>();
+  _AttachableEventHelper(this._propertyChangeHandleId);
 
   static _AttachableEventHelper createInstance(AttachableObject obj){
     // We're special-casing property change events here. Convenient.

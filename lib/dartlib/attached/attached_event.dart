@@ -1,6 +1,6 @@
 class AttachedEvent<T> extends Attachable {
 
-  const AttachedEvent(String name) : super(name);
+  AttachedEvent(String name) : super(name);
 
   GlobalId addHandler(AttachableObject obj, Action1<T> handler) {
     return _AttachableEventHelper.addHandler(obj, this, handler);

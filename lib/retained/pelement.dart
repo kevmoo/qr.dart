@@ -1,8 +1,8 @@
 class PElement extends AttachableObjectImpl {
-  final List<AffineTransform> _transforms;
+  final List<AffineTransform> _transforms = new List<AffineTransform>();
   final bool cacheEnabled;
-  final EventHandle<EventArgs> _updatedEventHandle;
-  final EventHandle<EventArgs> _invalidatedEventHandle;
+  final EventHandle<EventArgs> _updatedEventHandle = new EventHandle<EventArgs>();
+  final EventHandle<EventArgs> _invalidatedEventHandle = new EventHandle<EventArgs>();
   CanvasElement _cacheCanvas;
 
   num _width, _height, _alpha;
@@ -10,10 +10,7 @@ class PElement extends AttachableObjectImpl {
   bool clip = false;
   ElementParent _parent;
 
-  PElement(this._width, this._height, [this.cacheEnabled = false]) :
-    _transforms = new List<AffineTransform>(),
-    _updatedEventHandle = new EventHandle<EventArgs>(),
-    _invalidatedEventHandle = new EventHandle<EventArgs>();
+  PElement(this._width, this._height, [this.cacheEnabled = false]);
 
   num get width => _width;
 

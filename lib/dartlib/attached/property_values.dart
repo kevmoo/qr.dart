@@ -1,10 +1,7 @@
 class PropertyValues extends DisposableImpl {
-  final NoneHashMap<Property, Object> _propertyValues;
-  final EventHandle<Property> _changeHandle;
-
-  PropertyValues() :
-    _propertyValues = new NoneHashMap<Property, Object>(),
-    _changeHandle = new EventHandle<Property>();
+  final HashMap<Property, Object> _propertyValues =
+      new HashMap<Property, Object>();
+  final EventHandle<Property> _changeHandle = new EventHandle<Property>();
 
   void _set(Property key, Object value){
     assert(value !== Property.Undefined);

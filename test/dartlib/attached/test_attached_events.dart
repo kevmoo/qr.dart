@@ -1,9 +1,9 @@
 class TestAttachedEvents extends AttachableObjectImpl {
   static final AttachedEvent<EventArgs> _testEvent1 =
-      const AttachedEvent<EventArgs>('testEvent1');
+      new AttachedEvent<EventArgs>('testEvent1');
 
   static final AttachedEvent<EventArgs> _testEvent2 =
-      const AttachedEvent<EventArgs>('testEvent2');
+      new AttachedEvent<EventArgs>('testEvent2');
 
   static void run() {
     group('AttachableEvent', () {

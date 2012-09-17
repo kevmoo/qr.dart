@@ -1,6 +1,6 @@
 class TestPropertyEventIntegration extends AttachableObjectImpl {
-  static final Property<String> _nameProperty = const Property<String>("name");
-  static final Property<int> _ageProperty = const Property<int>("age", 0);
+  static final Property<String> _nameProperty = new Property<String>("name");
+  static final Property<int> _ageProperty = new Property<int>("age", 0);
 
   final EventHandle<EventArgs> _nameChangedEventHandle;
   final EventHandle<EventArgs> _ageChangedEventHandle;

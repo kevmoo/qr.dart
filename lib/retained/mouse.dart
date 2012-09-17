@@ -1,18 +1,15 @@
 class Mouse {
   static final Property<bool> isMouseOverProperty =
-      const Property<bool>("IsMouseOver", false);
+      new Property<bool>("IsMouseOver", false);
   static final Property<bool> isMouseDirectlyOverProperty =
-      const Property<bool>("IsMouseDirectlyOver", false);
+      new Property<bool>("IsMouseDirectlyOver", false);
   static final Property<List<PElement>> _stageMouseCacheProperty =
-      const Property<List<PElement>>("_stageMouseCacheProperty");
+      new Property<List<PElement>>("_stageMouseCacheProperty");
 
-  static bool isMouseOver(PElement element){
-    return isMouseOverProperty.get(element);
-  }
+  static bool isMouseOver(PElement element) => isMouseOverProperty.get(element);
 
-  static bool isMouseDirectlyOver(PElement element){
-    return isMouseDirectlyOverProperty.get(element);
-  }
+  static bool isMouseDirectlyOver(PElement element) =>
+      isMouseDirectlyOverProperty.get(element);
 
   static List<PElement> markMouseOver(Stage stage,
       [Coordinate coordinate = null]) {

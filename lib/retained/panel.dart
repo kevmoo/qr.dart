@@ -1,6 +1,6 @@
 class Panel extends ElementParentImpl {
   static final Property<AffineTransform> _containerTransformProperty =
-      const Property<AffineTransform>("panelTransform");
+      new Property<AffineTransform>("panelTransform");
 
   final List<PElement> _children;
   String background;

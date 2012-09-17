@@ -1,9 +1,9 @@
 class ClickManager {
   static final Property<bool> _isClickableProperty =
-      const Property<bool>("isClickable", false);
+      new Property<bool>("isClickable", false);
 
   static final AttachedEvent<ElementMouseEventArgs> _clickEvent =
-      const AttachedEvent<ElementMouseEventArgs>('clickEvent');
+      new AttachedEvent<ElementMouseEventArgs>('clickEvent');
 
   final Stage _stage;
 
@@ -43,7 +43,8 @@ class ClickManager {
   }
 
   void _mouseMove(MouseEvent e) {
-    _updateMouseLocation(getMouseEventCoordinate(e));
+    var foo = _updateMouseLocation(getMouseEventCoordinate(e));
+    print(foo);
   }
 
   void _mouseOut(MouseEvent e) {
