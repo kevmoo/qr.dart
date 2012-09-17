@@ -12,7 +12,7 @@ class _AttachableEventHelper {
 
   static _AttachableEventHelper createInstance(AttachableObject obj){
     // We're special-casing property change events here. Convenient.
-    var handlerId = obj._propertyValues.propertyChanged.add((property){
+    var handlerId = obj._changeHandle.add((property){
       fireEvent(obj, property, property);
     });
     return new _AttachableEventHelper(handlerId);

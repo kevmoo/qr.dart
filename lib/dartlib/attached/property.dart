@@ -16,20 +16,20 @@ class Property<T> extends Attachable {
   }
 
   Object getCore(AttachableObject obj, [Func1<AttachableObject, T> ifAbsent = null]){
-    return obj._propertyValues._getValueOrUndefined(this, obj, ifAbsent);
+    return obj._getValueOrUndefined(this, obj, ifAbsent);
   }
 
   void set(AttachableObject obj, T value){
     assert(value !== Undefined);
-    obj._propertyValues._set(this, value);
+    obj._set(this, value);
   }
 
   void clear(AttachableObject obj){
-    obj._propertyValues._remove(this);
+    obj._remove(this);
   }
 
   bool isSet(AttachableObject obj){
-    return obj._propertyValues._isSet(this);
+    return obj._isSet(this);
   }
 
   GlobalId addHandler(AttachableObject obj, Action1<Property> handler){

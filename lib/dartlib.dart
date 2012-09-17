@@ -56,4 +56,3 @@
 #source('dartlib/attached/property.dart');
 #source('dartlib/attached/attached_event.dart');
 #source('dartlib/attached/_attachable_event_helper.dart');
-#source('dartlib/attached/_property_values.dart');
