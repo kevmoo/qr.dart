@@ -5,6 +5,7 @@ core_cmd="dart
 --heap_growth_rate=32
 $DART_SDK/$dart2js
 --package-root=$PACK_DIR
+--throw-on-error
 --minify
 -v"
 
