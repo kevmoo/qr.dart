@@ -33,11 +33,11 @@ class Property<T> extends Attachable {
   }
 
   GlobalId addHandler(AttachableObject obj, Action1<Property> handler){
-    return _AttachableEventHelper.addHandler(obj, this, handler);
+    return obj._addHandler(this, handler);
   }
 
   bool removeHandler(AttachableObject obj, GlobalId handlerId){
-    return _AttachableEventHelper.removeHandler(obj, this, handlerId);
+    return obj._removeHandler(this, handlerId);
   }
 
   String toString() => "Property '$name'";
