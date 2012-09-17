@@ -4,7 +4,6 @@ dart2js='pkg/compiler/implementation/dart2js.dart'
 core_cmd="dart
 --heap_growth_rate=32
 $DART_SDK/$dart2js
---colors
 --package-root=$PACK_DIR
 --minify
 -v"
