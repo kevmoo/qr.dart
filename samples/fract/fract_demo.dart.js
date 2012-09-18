@@ -24,7 +24,6 @@ $$.JSSyntaxRegExp = {"":
  get$pattern: function(){return this._lib0_pattern;},
  get$multiLine: function(){return this._multiLine;},
  get$ignoreCase: function(){return this._ignoreCase;},
- is$JSSyntaxRegExp: true,
  is$RegExp: true
 };
 
@@ -35,7 +34,7 @@ $$.StringBufferImpl = {"":
  isEmpty$0: function(){return this._length===0;},
  add$1: function(obj){var str=$.toString(obj);if(str==null||$.isEmpty(str)===true)return this;$.add$1(this._buffer,str);var t1=this._length;if(typeof t1!=='number')return this.add$1$bailout(1,str,t1);var t3=$.get$length(str);if(typeof t3!=='number')return this.add$1$bailout(2,t1,t3);this._length=t1+t3;return this;},
  add$1$bailout: function(state,env0,env1){switch(state){case 1:str=env0;t1=env1;break;case 2:t1=env0;t3=env1;break;}switch(state){case 0:var str=$.toString(obj);if(str==null||$.isEmpty(str)===true)return this;$.add$1(this._buffer,str);var t1=this._length;case 1:state=0;var t3=$.get$length(str);case 2:state=0;this._length=$.add(t1,t3);return this;}},
- clear$0: function(){var t1=$.ListImplementation_List(null,'String');$.setRuntimeTypeInfo(t1,{ 'E': 'String' });this._buffer=t1;this._length=0;return this;},
+ clear$0: function(){this._buffer=$.ListImplementation_List(null);this._length=0;return this;},
  toString$0: function(){if($.get$length(this._buffer)===0)return '';if($.get$length(this._buffer)===1)return $.index(this._buffer,0);var result=$.stringJoinUnchecked($.StringImplementation__toJsStringArray(this._buffer),'');$.clear(this._buffer);$.add$1(this._buffer,result);return result;},
  StringBufferImpl$1: function(content$){this.clear$0();this.add$1(content$);}
 };
@@ -120,8 +119,7 @@ $$.ListIterator = {"":
 $$.Closure = {"":
  [],
  "super": "Object",
- toString$0: function(){return 'Closure';},
- is$Function: true
+ toString$0: function(){return 'Closure';}
 };
 
 $$.MetaInfo = {"":
@@ -158,10 +156,9 @@ $$.Enumerable = {"":
  join$0: function() {
   return this.join$1(', ')
 },
- select$1: function(f){$.requireArgumentNotNull(f,'f');return $._FuncEnumerable$(this,new $.Enumerable_select_anon(this,f));},
- toList$0: function(){var t1=$.ListImplementation_List$from(this,$.getRuntimeTypeInfo(this).T);$.setRuntimeTypeInfo(t1,{ 'E': $.getRuntimeTypeInfo(this).T });return t1;},
- toString$0: function(){return '['+$.S(this.join$0())+']';},
- is$Enumerable: true
+ select$1: function(f){$.requireArgumentNotNull(f,'f');return $._FuncEnumerable$(this,new $.Enumerable_select_anon(f));},
+ toList$0: function(){return $.ListImplementation_List$from(this);},
+ toString$0: function(){return '['+$.S(this.join$0())+']';}
 };
 
 $$._SimpleEnumerable = {"":
@@ -254,9 +251,9 @@ $$.Maps__emitMap_anon = {"":
 };
 
 $$.Enumerable_select_anon = {"":
- ["this_1", "f_0"],
+ ["f_0"],
  "super": "Closure",
- call$1: function(s){return $._SelectIterator$(s,this.f_0,$.getRuntimeTypeInfo(this.this_1).T,'Object');}
+ call$1: function(s){return $._SelectIterator$(s,this.f_0);}
 };
 
 $$.invokeClosure_anon = {"":
@@ -287,7 +284,7 @@ $.IllegalArgumentException$ = function(arg){return new $.IllegalArgumentExceptio
 
 $.eqB = function(a,b){if(a == null)return b == null;if(b == null)return false;if(typeof a === "object")if(!!a.operator$eq$1)return a.operator$eq$1(b)===true;return a === b;};
 
-$.Enumerable_Enumerable$fromIterable = function(source,T){$.requireArgumentNotNull(source,'source');return $._SimpleEnumerable$(source,T);};
+$.Enumerable_Enumerable$fromIterable = function(source){$.requireArgumentNotNull(source,'source');return $._SimpleEnumerable$(source);};
 
 $.Collections__emitCollection = function(c,result,visiting){$.add$1(visiting,c);var isList=typeof c==='object'&&c!==null&&(c.constructor===Array||c.is$List());$.add$1(result,isList?'[':'{');for(var t1=$.iterator(c),first=true;t1.hasNext$0()===true;){var t2=t1.next$0();if(!first)$.add$1(result,', ');$.Collections__emitObject(t2,result,visiting);first=false;}$.add$1(result,isList?']':'}');$.removeLast(visiting);};
 
@@ -333,7 +330,7 @@ $.IllegalJSRegExpException$ = function(_pattern,_errmsg){return new $.IllegalJSR
 
 $.Collections__containsRef = function(c,ref){for(var t1=$.iterator(c);t1.hasNext$0()===true;){var t2=t1.next$0();if(t2==null?ref==null:t2===ref)return true;}return false;};
 
-$.ListIterator$ = function(list,T){var t1=new $.ListIterator(0,list);$.setRuntimeTypeInfo(t1,{ 'T': T });return t1;};
+$.ListIterator$ = function(list){return new $.ListIterator(0,list);};
 
 $.geB = function(a,b){return typeof a==='number'&&typeof b==='number'?a >= b:$.ge$slow(a,b)===true;};
 
@@ -341,7 +338,7 @@ $.StackOverflowException$ = function(){return new $.StackOverflowException();};
 
 $.ioore = function(index){throw $.$$throw($.IndexOutOfRangeException$(index));};
 
-$._SelectIterator$ = function(_source,_func,TSource,TOutput){var t1=new $._SelectIterator(_source,_func);$.setRuntimeTypeInfo(t1,{ 'TSource': TSource, 'TOutput': TOutput });return t1;};
+$._SelectIterator$ = function(_source,_func){return new $._SelectIterator(_source,_func);};
 
 $.isEmpty = function(receiver){if(typeof receiver==='string'||$.isJsArray(receiver))return receiver.length === 0;return receiver.isEmpty$0();};
 
@@ -355,7 +352,7 @@ $.constructorNameFallback = function(obj){var constructor$=obj.constructor;if(ty
 
 $.dynamicFunction = function(name$){var f=Object.prototype[name$];if(!(f==null)&&!!f.methods)return f.methods;var methods={};var dartMethod=Object.getPrototypeOf($.CTC13)[name$];if(!(dartMethod==null))$.propertySet(methods,'Object',dartMethod);var bind=function() {return $.dynamicBind.call$4(this, name$, methods, Array.prototype.slice.call(arguments));};bind.methods = methods;$.defineProperty(Object.prototype,name$,bind);return methods;};
 
-$.ListImplementation_List$from = function(other,E){var result=$.ListImplementation_List(null);for(var t1=$.iterator(other);t1.hasNext$0()===true;)result.push(t1.next$0());return result;};
+$.ListImplementation_List$from = function(other){var result=$.ListImplementation_List(null);for(var t1=$.iterator(other);t1.hasNext$0()===true;)result.push(t1.next$0());return result;};
 
 $.ltB = function(a,b){return typeof a==='number'&&typeof b==='number'?a < b:$.lt$slow(a,b)===true;};
 
@@ -419,7 +416,7 @@ $._Device_isIE = function(){return $._Device_isOpera()!==true&&$.contains$2($._D
 
 $.getFunctionForTypeNameOf = function(){if(!(typeof(navigator)==='object'))return $.typeNameInChrome;var userAgent=navigator.userAgent;if($.contains(userAgent,'Chrome')||$.contains(userAgent,'DumpRenderTree'))return $.typeNameInChrome;else if($.contains(userAgent,'Firefox'))return $.typeNameInFirefox;else if($.contains(userAgent,'MSIE'))return $.typeNameInIE;else if($.contains(userAgent,'Opera'))return $.typeNameInOpera;else if($.contains(userAgent,'Safari'))return $.typeNameInSafari;else return $.constructorNameFallback;};
 
-$.setRuntimeTypeInfo = function(target,typeInfo){if(!(target==null))target.builtin$typeInfo = typeInfo;};
+$.AffineTransform$ = function(scaleX,shearY,shearX,scaleY,translateX,translateY){return new $.AffineTransform(scaleX,shearY,shearX,scaleY,translateX,translateY);};
 
 $.mul$slow = function(a,b){if($.checkNumbers(a,b))return a * b;return a.operator$mul$1(b);};
 
@@ -431,11 +428,11 @@ $.StringBufferImpl$ = function(content$){var t1=new $.StringBufferImpl(null,null
 
 $.substring$2 = function(receiver,startIndex,endIndex){$.checkNum(startIndex);var length$=receiver.length;if(endIndex==null)endIndex=length$;$.checkNum(endIndex);if(startIndex<0)throw $.$$throw($.IndexOutOfRangeException$(startIndex));if($.gtB(startIndex,endIndex))throw $.$$throw($.IndexOutOfRangeException$(startIndex));if($.gtB(endIndex,length$))throw $.$$throw($.IndexOutOfRangeException$(endIndex));return $.substringUnchecked(receiver,startIndex,endIndex);};
 
-$.getRuntimeTypeInfo = function(target){if(target==null)return;var res=target.builtin$typeInfo;return res==null?{}:res;};
-
 $.gt = function(a,b){return typeof a==='number'&&typeof b==='number'?a > b:$.gt$slow(a,b);};
 
-$._SimpleEnumerable$ = function(_source,T){var t1=new $._SimpleEnumerable(_source);$.setRuntimeTypeInfo(t1,{ 'T': T });return t1;};
+$.typeNameInOpera = function(obj){var name$=$.constructorNameFallback(obj);if(name$==='Window')return 'DOMWindow';if(name$==='FormData')return 'DOMFormData';return name$;};
+
+$._SimpleEnumerable$ = function(_source){return new $._SimpleEnumerable(_source);};
 
 $.substring$1 = function(receiver,startIndex){if(!(typeof receiver==='string'))return receiver.substring$1(startIndex);return $.substring$2(receiver,startIndex,null);};
 
@@ -455,11 +452,7 @@ $.requireArgumentNotNull = function(argument,argName){if(argument==null)throw $.
 
 $.sin = function(value){return Math.sin($.checkNum(value));};
 
-$.typeNameInOpera = function(obj){var name$=$.constructorNameFallback(obj);if(name$==='Window')return 'DOMWindow';if(name$==='FormData')return 'DOMFormData';return name$;};
-
-$.AffineTransform$ = function(scaleX,shearY,shearX,scaleY,translateX,translateY){return new $.AffineTransform(scaleX,shearY,shearX,scaleY,translateX,translateY);};
-
-$.ListImplementation_List = function(length$,E){return $.Primitives_newList(length$);};
+$.ListImplementation_List = function(length$){return $.Primitives_newList(length$);};
 
 $.truncate = function(receiver){return receiver<0?$.ceil(receiver):$.floor(receiver);};
 
@@ -467,7 +460,7 @@ $.document = function(){return document;};
 
 $.contains$1 = function(receiver,other){return $.contains$2(receiver,other,0);};
 
-$._FixedSizeListIterator$ = function(array,T){var t1=new $._FixedSizeListIterator($.get$length(array),array,0);$.setRuntimeTypeInfo(t1,{ 'T': T });return t1;};
+$._FixedSizeListIterator$ = function(array){return new $._FixedSizeListIterator($.get$length(array),array,0);};
 
 $.mul = function(a,b){return typeof a==='number'&&typeof b==='number'?a * b:$.mul$slow(a,b);};
 
@@ -477,7 +470,7 @@ $.NullArgumentException$ = function(arg){return new $.NullArgumentException(arg,
 
 $.substringUnchecked = function(receiver,startIndex,endIndex){return receiver.substring(startIndex, endIndex);};
 
-$._FuncEnumerable$ = function(_source,_func,TSource,TOutput){var t1=new $._FuncEnumerable(_source,_func);$.setRuntimeTypeInfo(t1,{ 'TSource': TSource, 'TOutput': TOutput });return t1;};
+$._FuncEnumerable$ = function(_source,_func){return new $._FuncEnumerable(_source,_func);};
 
 $.toString = function(value){if(typeof value == "object" && value !== null)if($.isJsArray(value))return $.Collections_collectionToString(value);else return value.toString$0();if(value === 0 && (1 / value) < 0)return '-0.0';if(value==null)return 'null';if(typeof value == "function")return 'Closure';return String(value);};
 
@@ -641,20 +634,20 @@ $.$defineNativeClass = function(cls, fields, methods) {
  is$JavaScriptIndexingBehavior: function() { return false; },
  is$ArrayBufferView: function() { return false; },
  is$_FileListImpl: function() { return false; },
+ is$ArrayBuffer: function() { return false; },
  is$_ImageDataImpl: function() { return false; },
  is$_FileImpl: function() { return false; },
- is$_BlobImpl: function() { return false; },
- is$ArrayBuffer: function() { return false; },
- toString$0: function() { return $.toStringForNativeObject(this); },
- is$Blob: function() { return false; },
- is$File: function() { return false; },
  is$_ArrayBufferViewImpl: function() { return false; },
- is$ImageData: function() { return false; },
- is$List: function() { return false; },
- is$FileList: function() { return false; },
+ toString$0: function() { return $.toStringForNativeObject(this); },
+ is$_BlobImpl: function() { return false; },
+ is$File: function() { return false; },
+ is$Blob: function() { return false; },
  is$Map: function() { return false; },
+ is$Collection: function() { return false; },
+ is$FileList: function() { return false; },
+ is$ImageData: function() { return false; },
  is$_ArrayBufferImpl: function() { return false; },
- is$Collection: function() { return false; }
+ is$List: function() { return false; }
 });
 
 $.$defineNativeClass('HTMLAnchorElement', [], {
@@ -750,7 +743,7 @@ $.$defineNativeClass('DOMSelection', [], {
 $.$defineNativeClass('DOMStringList', ["length?"], {
  operator$index$1: function(index){return this[index];},
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
- iterator$0: function(){return $._FixedSizeListIterator$(this,'String');},
+ iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
@@ -826,7 +819,7 @@ $.$defineNativeClass('FileException', [], {
 $.$defineNativeClass('FileList', ["length?"], {
  operator$index$1: function(index){return this[index];},
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
- iterator$0: function(){return $._FixedSizeListIterator$(this,'File');},
+ iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
@@ -846,7 +839,7 @@ $.$defineNativeClass('FileWriterSync', ["length?"], {
 $.$defineNativeClass('Float32Array', ["length?"], {
  operator$index$1: function(index){return this[index];},
  operator$indexSet$2: function(index,value){this[index] = value},
- iterator$0: function(){return $._FixedSizeListIterator$(this,'num');},
+ iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
@@ -859,7 +852,7 @@ $.$defineNativeClass('Float32Array', ["length?"], {
 $.$defineNativeClass('Float64Array', ["length?"], {
  operator$index$1: function(index){return this[index];},
  operator$indexSet$2: function(index,value){this[index] = value},
- iterator$0: function(){return $._FixedSizeListIterator$(this,'num');},
+ iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
@@ -881,7 +874,7 @@ $.$defineNativeClass('HTMLAllCollection', ["length?"], {
 $.$defineNativeClass('HTMLCollection', ["length?"], {
  operator$index$1: function(index){return this[index];},
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
- iterator$0: function(){return $._FixedSizeListIterator$(this,'Node');},
+ iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
@@ -926,7 +919,7 @@ $.$defineNativeClass('ImageData', [], {
 $.$defineNativeClass('Int16Array', ["length?"], {
  operator$index$1: function(index){return this[index];},
  operator$indexSet$2: function(index,value){this[index] = value},
- iterator$0: function(){return $._FixedSizeListIterator$(this,'int');},
+ iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
@@ -939,7 +932,7 @@ $.$defineNativeClass('Int16Array', ["length?"], {
 $.$defineNativeClass('Int32Array', ["length?"], {
  operator$index$1: function(index){return this[index];},
  operator$indexSet$2: function(index,value){this[index] = value},
- iterator$0: function(){return $._FixedSizeListIterator$(this,'int');},
+ iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
@@ -952,7 +945,7 @@ $.$defineNativeClass('Int32Array', ["length?"], {
 $.$defineNativeClass('Int8Array', ["length?"], {
  operator$index$1: function(index){return this[index];},
  operator$indexSet$2: function(index,value){this[index] = value},
- iterator$0: function(){return $._FixedSizeListIterator$(this,'int');},
+ iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
@@ -969,7 +962,7 @@ $.$defineNativeClass('Location', [], {
 $.$defineNativeClass('MediaList', ["length?"], {
  operator$index$1: function(index){return this[index];},
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
- iterator$0: function(){return $._FixedSizeListIterator$(this,'String');},
+ iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
@@ -988,7 +981,7 @@ $.$defineNativeClass('MediaStreamTrackList', ["length?"], {
 $.$defineNativeClass('NamedNodeMap', ["length?"], {
  operator$index$1: function(index){return this[index];},
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
- iterator$0: function(){return $._FixedSizeListIterator$(this,'Node');},
+ iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
@@ -1008,7 +1001,7 @@ $.$defineNativeClass('Node', [], {
 });
 
 $.$defineNativeClass('NodeList', ["length?"], {
- iterator$0: function(){return $._FixedSizeListIterator$(this,'Node');},
+ iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){this._parent.$dom_appendChild$1(value);},
  removeLast$0: function(){var result=this.last$0();if(!(result==null))this._parent.$dom_removeChild$1(result);return result;},
  clear$0: function(){this._parent.set$text('');},
@@ -1172,7 +1165,7 @@ $.$defineNativeClass('Storage', [], {
 $.$defineNativeClass('StyleSheetList', ["length?"], {
  operator$index$1: function(index){return this[index];},
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
- iterator$0: function(){return $._FixedSizeListIterator$(this,'StyleSheet');},
+ iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
@@ -1196,7 +1189,7 @@ $.$defineNativeClass('TimeRanges', ["length?"], {
 $.$defineNativeClass('TouchList', ["length?"], {
  operator$index$1: function(index){return this[index];},
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
- iterator$0: function(){return $._FixedSizeListIterator$(this,'Touch');},
+ iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
@@ -1208,7 +1201,7 @@ $.$defineNativeClass('TouchList', ["length?"], {
 $.$defineNativeClass('Uint16Array', ["length?"], {
  operator$index$1: function(index){return this[index];},
  operator$indexSet$2: function(index,value){this[index] = value},
- iterator$0: function(){return $._FixedSizeListIterator$(this,'int');},
+ iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
@@ -1221,7 +1214,7 @@ $.$defineNativeClass('Uint16Array', ["length?"], {
 $.$defineNativeClass('Uint32Array', ["length?"], {
  operator$index$1: function(index){return this[index];},
  operator$indexSet$2: function(index,value){this[index] = value},
- iterator$0: function(){return $._FixedSizeListIterator$(this,'int');},
+ iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
@@ -1234,7 +1227,7 @@ $.$defineNativeClass('Uint32Array', ["length?"], {
 $.$defineNativeClass('Uint8Array', ["length?"], {
  operator$index$1: function(index){return this[index];},
  operator$indexSet$2: function(index,value){this[index] = value},
- iterator$0: function(){return $._FixedSizeListIterator$(this,'int');},
+ iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
