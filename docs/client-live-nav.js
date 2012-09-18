@@ -165,9 +165,7 @@ $$.HashMapImplementation = {"":
   if (typeof oldValues !== 'string' && (typeof oldValues !== 'object' || oldValues === null || oldValues.constructor !== Array && !oldValues.is$JavaScriptIndexingBehavior()))
     return this._grow$1$bailout(3, newCapacity, oldKeys, oldValues, capacity);
   this._keys = $.ListImplementation_List(newCapacity);
-  var t4 = $.ListImplementation_List(newCapacity, $.getRuntimeTypeInfo(this).V);
-  $.setRuntimeTypeInfo(t4, { 'E': $.getRuntimeTypeInfo(this).V });
-  this._values = t4;
+  this._values = $.ListImplementation_List(newCapacity);
   for (var i = 0; i < capacity; ++i) {
     if (i < 0 || i >= oldKeys.length)
       throw $.ioore(i);
@@ -214,9 +212,7 @@ $$.HashMapImplementation = {"":
     case 3:
       state = 0;
       this._keys = $.ListImplementation_List(newCapacity);
-      var t4 = $.ListImplementation_List(newCapacity, $.getRuntimeTypeInfo(this).V);
-      $.setRuntimeTypeInfo(t4, { 'E': $.getRuntimeTypeInfo(this).V });
-      this._values = t4;
+      this._values = $.ListImplementation_List(newCapacity);
       for (var i = 0; $.ltB(i, capacity); ++i) {
         var key = $.index(oldKeys, i);
         if (key == null || key === $.CTC13)
@@ -312,9 +308,7 @@ $$.HashMapImplementation = {"":
   this._numberOfDeleted = 0;
   this._loadLimit = $.HashMapImplementation__computeLoadLimit(8);
   this._keys = $.ListImplementation_List(8);
-  var t1 = $.ListImplementation_List(8, $.getRuntimeTypeInfo(this).V);
-  $.setRuntimeTypeInfo(t1, { 'E': $.getRuntimeTypeInfo(this).V });
-  this._values = t1;
+  this._values = $.ListImplementation_List(8);
 },
  is$Map: function() { return true; }
 };
@@ -355,7 +349,7 @@ $$.HashSetImplementation = {"":
   $.forEach(this._backingMap, new $.HashSetImplementation_forEach__(f));
 },
  filter$1: function(f) {
-  var result = $.HashSetImplementation$($.getRuntimeTypeInfo(this).E);
+  var result = $.HashSetImplementation$();
   $.forEach(this._backingMap, new $.HashSetImplementation_filter__(f, result));
   return result;
 },
@@ -366,13 +360,13 @@ $$.HashSetImplementation = {"":
   return $.get$length(this._backingMap);
 },
  iterator$0: function() {
-  return $.HashSetIterator$(this, $.getRuntimeTypeInfo(this).E);
+  return $.HashSetIterator$(this);
 },
  toString$0: function() {
   return $.Collections_collectionToString(this);
 },
  HashSetImplementation$0: function() {
-  this._backingMap = $.HashMapImplementation$($.getRuntimeTypeInfo(this).E, $.getRuntimeTypeInfo(this).E);
+  this._backingMap = $.HashMapImplementation$();
 },
  is$Collection: function() { return true; }
 };
@@ -484,7 +478,7 @@ $$.LinkedHashMapImplementation = {"":
     t1[key].get$element().set$value(value);
   } else {
     var t2 = this._list;
-    $.addLast(t2, $.KeyValuePair$(key, value, $.getRuntimeTypeInfo(this).K, $.getRuntimeTypeInfo(this).V));
+    $.addLast(t2, $.KeyValuePair$(key, value));
     t2 = t2.lastEntry$0();
     if (key !== (key | 0))
       throw $.iae(key);
@@ -498,7 +492,7 @@ $$.LinkedHashMapImplementation = {"":
     $.index(t1, key).get$element().set$value(value);
   else {
     var t2 = this._list;
-    $.addLast(t2, $.KeyValuePair$(key, value, $.getRuntimeTypeInfo(this).K, $.getRuntimeTypeInfo(this).V));
+    $.addLast(t2, $.KeyValuePair$(key, value));
     $.indexSet(t1, key, t2.lastEntry$0());
   }
 },
@@ -535,8 +529,8 @@ $$.LinkedHashMapImplementation = {"":
   return $.Maps_mapToString(this);
 },
  LinkedHashMapImplementation$0: function() {
-  this._map = $.HashMapImplementation$($.getRuntimeTypeInfo(this).K, 'DoubleLinkedQueueEntry<KeyValuePair<K, V>>');
-  this._list = $.DoubleLinkedQueue$('KeyValuePair<K, V>');
+  this._map = $.HashMapImplementation$();
+  this._list = $.DoubleLinkedQueue$();
 },
  is$Map: function() { return true; }
 };
@@ -551,7 +545,7 @@ $$.DoubleLinkedQueueEntry = {"":
   n.set$_previous(this);
 },
  prepend$1: function(e) {
-  $.DoubleLinkedQueueEntry$(e, $.getRuntimeTypeInfo(this).E)._link$2(this._previous, this);
+  $.DoubleLinkedQueueEntry$(e)._link$2(this._previous, this);
 },
  remove$0: function() {
   var t1 = this._next;
@@ -645,7 +639,7 @@ $$.DoubleLinkedQueue = {"":
   }
 },
  filter$1: function(f) {
-  var other = $.DoubleLinkedQueue$($.getRuntimeTypeInfo(this).E);
+  var other = $.DoubleLinkedQueue$();
   var t1 = this._sentinel;
   var entry = t1.get$_next();
   for (; !(entry == null ? t1 == null : entry === t1);) {
@@ -657,13 +651,13 @@ $$.DoubleLinkedQueue = {"":
   return other;
 },
  iterator$0: function() {
-  return $._DoubleLinkedQueueIterator$(this._sentinel, $.getRuntimeTypeInfo(this).E);
+  return $._DoubleLinkedQueueIterator$(this._sentinel);
 },
  toString$0: function() {
   return $.Collections_collectionToString(this);
 },
  DoubleLinkedQueue$0: function() {
-  this._sentinel = $._DoubleLinkedQueueEntrySentinel$($.getRuntimeTypeInfo(this).E);
+  this._sentinel = $._DoubleLinkedQueueEntrySentinel$();
 },
  is$Collection: function() { return true; }
 };
@@ -703,7 +697,6 @@ $$.JSSyntaxRegExp = {"":
  get$ignoreCase: function() {
   return this._ignoreCase;
 },
- is$JSSyntaxRegExp: true,
  is$RegExp: true
 };
 
@@ -763,9 +756,7 @@ $$.StringBufferImpl = {"":
   return this;
 },
  clear$0: function() {
-  var t1 = $.ListImplementation_List(null, 'String');
-  $.setRuntimeTypeInfo(t1, { 'E': 'String' });
-  this._buffer = t1;
+  this._buffer = $.ListImplementation_List(null);
   this._length = 0;
   return this;
 },
@@ -964,8 +955,7 @@ $$.Closure = {"":
  "super": "Object",
  toString$0: function() {
   return 'Closure';
-},
- is$Function: true
+}
 };
 
 $$.ConstantMap = {"":
@@ -1301,7 +1291,7 @@ $$._FrozenCSSClassSet = {"":
   throw $.$$throw($.CTC20);
 },
  _read$0: function() {
-  return $.HashSetImplementation$('String');
+  return $.HashSetImplementation$();
 }
 };
 
@@ -1617,8 +1607,7 @@ $$._DataAttributeMap = {"":
   $.forEach(this.$$dom_attributes, new $._DataAttributeMap_forEach_anon(this, f));
 },
  getKeys$0: function() {
-  var keys = $.ListImplementation_List(null, 'String');
-  $.setRuntimeTypeInfo(keys, { 'E': 'String' });
+  var keys = $.ListImplementation_List(null);
   $.forEach(this.$$dom_attributes, new $._DataAttributeMap_getKeys_anon(this, keys));
   return keys;
 },
@@ -1685,7 +1674,7 @@ $$._CssClassSet = {"":
   this._write$1(s);
 },
  _read$0: function() {
-  var s = $.HashSetImplementation$('String');
+  var s = $.HashSetImplementation$();
   for (var t1 = $.iterator($.split(this._classname$0(), ' ')); t1.hasNext$0() === true;) {
     var trimmed = $.trim(t1.next$0());
     if ($.isEmpty(trimmed) !== true)
@@ -2408,8 +2397,7 @@ $$._JsonParser = {"":
   if (this.isToken$1(34) !== true)
     this.error$1('Expected string literal');
   this.position = $.add(this.position, 1);
-  var charCodes = $.ListImplementation_List(null, 'int');
-  $.setRuntimeTypeInfo(charCodes, { 'E': 'int' });
+  var charCodes = $.ListImplementation_List(null);
   for (var t1 = this.json; true;) {
     var c = this.char$0();
     if ($.eqB(c, 34)) {
@@ -2450,7 +2438,7 @@ $$._JsonParser = {"":
             this.error$1('Invalid unicode esacape sequence');
           var codeString = $.substring$2(t1, $.add(this.position, 1), $.add(this.position, 5));
           try {
-            c = $.parseInt('0x' + $.S(codeString));
+            c = $.int_parse('0x' + $.S(codeString));
           } catch (exception) {
             $.unwrapException(exception);
             this.error$1('Invalid unicode esacape sequence');
@@ -2509,9 +2497,9 @@ $$._JsonParser = {"":
   }
   var number = $.substring$2(this.json, startPos, this.position);
   if (isInt)
-    return $.parseInt(number);
+    return $.int_parse(number);
   else
-    return $.parseDouble(number);
+    return $.double_parse(number);
 },
  isDigit$1: function(char$) {
   if (typeof char$ !== 'number')
@@ -2630,9 +2618,7 @@ $$._JsonParser = {"":
  _JsonParser$1: function(json) {
   if (!($._JsonParser_tokens == null))
     return;
-  var t1 = $.ListImplementation_List(126, 'int');
-  $.setRuntimeTypeInfo(t1, { 'E': 'int' });
-  $._JsonParser_tokens = t1;
+  $._JsonParser_tokens = $.ListImplementation_List(126);
   $.indexSet($._JsonParser_tokens, 9, 32);
   $.indexSet($._JsonParser_tokens, 10, 32);
   $.indexSet($._JsonParser_tokens, 13, 32);
@@ -4209,7 +4195,7 @@ $$.LinkTail = {"":
   return $.LinkEntry$(element, this, $.getRuntimeTypeInfo(this).T);
 },
  iterator$0: function() {
-  return $.LinkIterator$(this, $.getRuntimeTypeInfo(this).T);
+  return $.LinkIterator$(this);
 },
  toString$0: function() {
   return '[]';
@@ -4218,7 +4204,14 @@ $$.LinkTail = {"":
   return true;
 },
  forEach$1: function(f) {
-}
+},
+ operator$eq$1: function(other) {
+  var t1 = $.getRuntimeTypeInfo(other);
+  if (!(typeof other === 'object' && other !== null && !!other.is$Link && (!t1.T || t1.T === 'T')))
+    return false;
+  return other.isEmpty$0();
+},
+ is$Link: true
 };
 
 $$.LinkEntry = {"":
@@ -4228,7 +4221,7 @@ $$.LinkEntry = {"":
   return $.LinkEntry$(element, this, $.getRuntimeTypeInfo(this).T);
 },
  iterator$0: function() {
-  return $.LinkIterator$(this, $.getRuntimeTypeInfo(this).T);
+  return $.LinkIterator$(this);
 },
  printOn$2: function(buffer, separatedBy) {
   buffer.add$1(this.head);
@@ -4250,7 +4243,24 @@ $$.LinkEntry = {"":
  forEach$1: function(f) {
   for (var link = this; $.isEmpty(link) !== true; link = link.get$tail())
     f.call$1(link.get$head());
-}
+},
+ operator$eq$1: function(other) {
+  var t1 = $.getRuntimeTypeInfo(other);
+  if (!(typeof other === 'object' && other !== null && !!other.is$Link && (!t1.T || t1.T === 'T')))
+    return false;
+  other = other;
+  var myElements = this;
+  while (true) {
+    if (!($.isEmpty(myElements) !== true && $.isEmpty(other) !== true))
+      break;
+    if (!$.eqB(myElements.get$head(), other.get$head()))
+      return false;
+    myElements = myElements.get$tail();
+    other = other.get$tail();
+  }
+  return $.isEmpty(myElements) === true && $.isEmpty(other) === true;
+},
+ is$Link: true
 };
 
 $$.main_anon = {"":
@@ -5265,17 +5275,14 @@ $.stringReplaceJS = function(receiver, replacer, to) {
   return receiver.replace(replacer, to.replace('$', '$$$$'));
 };
 
-$.HashSetIterator$ = function(set_, E) {
+$.HashSetIterator$ = function(set_) {
   var t1 = new $.HashSetIterator(set_._backingMap.get$_keys(), -1);
-  $.setRuntimeTypeInfo(t1, { 'E': E });
   t1.HashSetIterator$1(set_);
   return t1;
 };
 
-$.ListIterator$ = function(list, T) {
-  var t1 = new $.ListIterator(0, list);
-  $.setRuntimeTypeInfo(t1, { 'T': T });
-  return t1;
+$.ListIterator$ = function(list) {
+  return new $.ListIterator(0, list);
 };
 
 $._JavaScriptAudioNodeEventsImpl$ = function(_ptr) {
@@ -5829,7 +5836,7 @@ $.DualPivotQuicksort__dualPivotQuicksort = function(a, left, right, compare) {
     $.DualPivotQuicksort__doSort(a, less, great, compare);
 };
 
-$.ListImplementation_List$from = function(other, E) {
+$.ListImplementation_List$from = function(other) {
   var result = $.ListImplementation_List(null);
   for (var t1 = $.iterator(other); t1.hasNext$0() === true;)
     result.push(t1.next$0());
@@ -5862,18 +5869,14 @@ $._FrozenElementList$_wrap = function(_nodeList) {
   return new $._FrozenElementList(_nodeList);
 };
 
-$.parseDouble = function(str) {
-  $.checkString(str);
-  var ret = parseFloat(str);
-  if (ret === 0)
-    var t1 = $.startsWith(str, '0x') === true || $.startsWith(str, '0X') === true;
-  else
-    t1 = false;
-  if (t1)
-    ret = parseInt(str);
-  if ($.isNaN(ret) === true && !$.eqB(str, 'NaN') && !$.eqB(str, '-NaN'))
-    throw $.$$throw($.FormatException$(str));
-  return ret;
+$.Primitives_parseDouble = function(string) {
+  $.checkString(string);
+  if (!/^\s*(?:NaN|[+-]?(?:Infinity|(?:\.\d+|\d+(?:\.\d+)?)(?:[eE][+-]?\d+)?))\s*$/.test(string))
+    throw $.$$throw($.FormatException$(string));
+  var result = parseFloat(string);
+  if ($.isNaN(result) === true && !$.eqB(string, 'NaN'))
+    throw $.$$throw($.FormatException$(string));
+  return result;
 };
 
 $._looksLikePublicType = function(name$) {
@@ -6104,7 +6107,7 @@ $.StringImplementation__fromCharCodes = function(charCodes) {
   return $.Primitives_stringFromCharCodes(charCodes);
 };
 
-$.ListImplementation_List = function(length$, E) {
+$.ListImplementation_List = function(length$) {
   return $.Primitives_newList(length$);
 };
 
@@ -6170,27 +6173,16 @@ $.NoSuchMethodError$ = function(_receiver, _functionName, _arguments, existingAr
   return new $.NoSuchMethodError(_receiver, _functionName, _arguments, existingArgumentNames);
 };
 
-$.parseInt = function(str) {
-  $.checkString(str);
-  if (!/^\s*[+-]?(?:0[xX][abcdefABCDEF0-9]+|\d+)\s*$/.test(str))
-    throw $.$$throw($.FormatException$(str));
-  var trimmed = $.trim(str);
-  if ($.gtB($.get$length(trimmed), 2))
-    var t1 = $.eqB($.index(trimmed, 1), 'x') || $.eqB($.index(trimmed, 1), 'X');
-  else
-    t1 = false;
-  if (!t1)
-    if ($.gtB($.get$length(trimmed), 3))
-      t1 = $.eqB($.index(trimmed, 2), 'x') || $.eqB($.index(trimmed, 2), 'X');
-    else
-      t1 = false;
-  else
-    t1 = true;
-  var base = t1 ? 16 : 10;
-  var ret = parseInt(trimmed, base);
-  if ($.isNaN(ret) === true)
-    throw $.$$throw($.FormatException$(str));
-  return ret;
+$.Primitives_parseInt = function(string) {
+  $.checkString(string);
+  var match = /^\s*[+-]?(?:0(x)[a-f0-9]+|\d+)\s*$/i.exec(string);
+  if (match == null)
+    throw $.$$throw($.FormatException$(string));
+  var base = !($.index(match, 1) == null) ? 16 : 10;
+  var result = parseInt(string, base);
+  if ($.isNaN(result) === true)
+    throw $.$$throw($.FormatException$(string));
+  return result;
 };
 
 $.Strings_join = function(strings, separator) {
@@ -6271,6 +6263,10 @@ $.JSON_parse = function(json) {
   return $._JsonParser$(json).parseToplevel$0();
 };
 
+$.double_parse = function(string) {
+  return $.Primitives_parseDouble(string);
+};
+
 $.regExpMakeNative = function(regExp, global) {
   var pattern = regExp.get$pattern();
   var multiLine = regExp.get$multiLine();
@@ -6291,6 +6287,10 @@ $.regExpMakeNative = function(regExp, global) {
     throw $.$$throw($.IllegalJSRegExpException$(pattern, String(e)));
   }
 
+};
+
+$.int_parse = function(string) {
+  return $.Primitives_parseInt(string);
 };
 
 $.main = function() {
@@ -6667,9 +6667,8 @@ $.StringScanner$ = function(string, includeComments) {
   return t1;
 };
 
-$.DoubleLinkedQueue$ = function(E) {
+$.DoubleLinkedQueue$ = function() {
   var t1 = new $.DoubleLinkedQueue(null);
-  $.setRuntimeTypeInfo(t1, { 'E': E });
   t1.DoubleLinkedQueue$0();
   return t1;
 };
@@ -6729,9 +6728,8 @@ $.shortcutHandler = function(event$) {
   }
 };
 
-$.HashMapImplementation$ = function(K, V) {
+$.HashMapImplementation$ = function() {
   var t1 = new $.HashMapImplementation(null, null, null, null, null);
-  $.setRuntimeTypeInfo(t1, { 'K': K, 'V': V });
   t1.HashMapImplementation$0();
   return t1;
 };
@@ -6740,19 +6738,16 @@ $._SVGElementInstanceEventsImpl$ = function(_ptr) {
   return new $._SVGElementInstanceEventsImpl(_ptr);
 };
 
-$._FixedSizeListIterator$ = function(array, T) {
-  var t1 = new $._FixedSizeListIterator($.get$length(array), array, 0);
-  $.setRuntimeTypeInfo(t1, { 'T': T });
-  return t1;
+$._FixedSizeListIterator$ = function(array) {
+  return new $._FixedSizeListIterator($.get$length(array), array, 0);
 };
 
 $._FileReaderEventsImpl$ = function(_ptr) {
   return new $._FileReaderEventsImpl(_ptr);
 };
 
-$.HashSetImplementation$ = function(E) {
+$.HashSetImplementation$ = function() {
   var t1 = new $.HashSetImplementation(null);
-  $.setRuntimeTypeInfo(t1, { 'E': E });
   t1.HashSetImplementation$0();
   return t1;
 };
@@ -7155,9 +7150,8 @@ $.replaceAll = function(receiver, from, to) {
   return $.stringReplaceAllUnchecked(receiver, from, to);
 };
 
-$._DoubleLinkedQueueIterator$ = function(_sentinel, E) {
+$._DoubleLinkedQueueIterator$ = function(_sentinel) {
   var t1 = new $._DoubleLinkedQueueIterator(_sentinel, null);
-  $.setRuntimeTypeInfo(t1, { 'E': E });
   t1._DoubleLinkedQueueIterator$1(_sentinel);
   return t1;
 };
@@ -7326,7 +7320,7 @@ $.Primitives_stringFromCharCodes = function(charCodes) {
 };
 
 $.Keyword_computeKeywordMap = function() {
-  var result = $.LinkedHashMapImplementation$('String', 'Keyword');
+  var result = $.LinkedHashMapImplementation$();
   for (var t1 = $.iterator($.CTC100); t1.hasNext$0() === true;) {
     var t2 = t1.next$0();
     result.operator$indexSet$2(t2.get$syntax(), t2);
@@ -7389,27 +7383,26 @@ $._TextTrackCueEventsImpl$ = function(_ptr) {
 };
 
 $.KeywordState_computeKeywordStateTable = function(start, strings, offset, length$) {
-  var result = $.ListImplementation_List(26, 'KeywordState');
-  $.setRuntimeTypeInfo(result, { 'E': 'KeywordState' });
+  var result = $.ListImplementation_List(26);
   for (var t1 = offset + length$, t2 = start + 1, i = offset, isLeaf = false, chunk = 0, chunkStart = -1; i < t1; ++i) {
     if (i < 0 || i >= strings.length)
       throw $.ioore(i);
     var t3 = $.get$length(strings[i]);
     if (typeof t3 !== 'number')
-      return $.KeywordState_computeKeywordStateTable$bailout(1, start, strings, offset, t1, i, t2, result, isLeaf, chunk, chunkStart, t3);
+      return $.KeywordState_computeKeywordStateTable$bailout(1, start, strings, i, t2, offset, result, chunk, chunkStart, isLeaf, t3, t1);
     if (t3 === start)
       isLeaf = true;
     if (i < 0 || i >= strings.length)
       throw $.ioore(i);
     t3 = $.get$length(strings[i]);
     if (typeof t3 !== 'number')
-      return $.KeywordState_computeKeywordStateTable$bailout(2, start, strings, offset, isLeaf, i, t2, result, t3, chunk, chunkStart, t1);
+      return $.KeywordState_computeKeywordStateTable$bailout(2, start, strings, i, t2, t3, offset, result, chunk, chunkStart, t1, isLeaf);
     if (t3 > start) {
       if (i < 0 || i >= strings.length)
         throw $.ioore(i);
       var c = $.charCodeAt(strings[i], start);
       if (c !== (c | 0))
-        return $.KeywordState_computeKeywordStateTable$bailout(3, c, strings, offset, isLeaf, i, t2, result, start, chunk, chunkStart, t1);
+        return $.KeywordState_computeKeywordStateTable$bailout(3, start, strings, i, t2, offset, result, chunk, chunkStart, t1, c, isLeaf);
       if (!(chunk === c)) {
         if (!(chunkStart === -1)) {
           t3 = chunk - 97;
@@ -7836,16 +7829,12 @@ $.le$slow = function(a, b) {
   return a.operator$le$1(b);
 };
 
-$.KeyValuePair$ = function(key, value, K, V) {
-  var t1 = new $.KeyValuePair(key, value);
-  $.setRuntimeTypeInfo(t1, { 'K': K, 'V': V });
-  return t1;
+$.KeyValuePair$ = function(key, value) {
+  return new $.KeyValuePair(key, value);
 };
 
-$.LinkIterator$ = function(current, T) {
-  var t1 = new $.LinkIterator(current);
-  $.setRuntimeTypeInfo(t1, { 'T': T });
-  return t1;
+$.LinkIterator$ = function(current) {
+  return new $.LinkIterator(current);
 };
 
 $._DocumentEventsImpl$ = function(_ptr) {
@@ -7940,9 +7929,8 @@ $.last = function(receiver) {
   return $.index(receiver, $.sub($.get$length(receiver), 1));
 };
 
-$.LinkedHashMapImplementation$ = function(K, V) {
+$.LinkedHashMapImplementation$ = function() {
   var t1 = new $.LinkedHashMapImplementation(null, null);
-  $.setRuntimeTypeInfo(t1, { 'K': K, 'V': V });
   t1.LinkedHashMapImplementation$0();
   return t1;
 };
@@ -7951,9 +7939,8 @@ $.NullPointerException$ = function(functionName, arguments$) {
   return new $.NullPointerException(functionName, arguments$);
 };
 
-$._DoubleLinkedQueueEntrySentinel$ = function(E) {
+$._DoubleLinkedQueueEntrySentinel$ = function() {
   var t1 = new $._DoubleLinkedQueueEntrySentinel(null, null, null);
-  $.setRuntimeTypeInfo(t1, { 'E': E });
   t1.DoubleLinkedQueueEntry$1(null);
   t1._DoubleLinkedQueueEntrySentinel$0();
   return t1;
@@ -7985,8 +7972,7 @@ $.stringContainsUnchecked = function(receiver, other, startIndex) {
 
 $.KeywordState_KEYWORD_STATE = function() {
   if ($.KeywordState__KEYWORD_STATE == null) {
-    var strings = $.ListImplementation_List(49, 'String');
-    $.setRuntimeTypeInfo(strings, { 'E': 'String' });
+    var strings = $.ListImplementation_List(49);
     for (var i = 0; i < 49; ++i) {
       if (i < 0 || i >= 49)
         throw $.ioore(i);
@@ -8046,9 +8032,8 @@ $.sub = function(a, b) {
   return typeof a === 'number' && typeof b === 'number' ? a - b : $.sub$slow(a, b);
 };
 
-$.DoubleLinkedQueueEntry$ = function(e, E) {
+$.DoubleLinkedQueueEntry$ = function(e) {
   var t1 = new $.DoubleLinkedQueueEntry(null, null, null);
-  $.setRuntimeTypeInfo(t1, { 'E': E });
   t1.DoubleLinkedQueueEntry$1(e);
   return t1;
 };
@@ -8330,47 +8315,46 @@ $.KeywordState_computeKeywordStateTable$bailout = function(state, env0, env1, en
     case 1:
       var start = env0;
       var strings = env1;
-      var offset = env2;
-      t1 = env3;
-      i = env4;
-      t2 = env5;
-      result = env6;
-      isLeaf = env7;
-      chunk = env8;
-      chunkStart = env9;
-      t3 = env10;
+      i = env2;
+      t2 = env3;
+      var offset = env4;
+      result = env5;
+      chunk = env6;
+      chunkStart = env7;
+      isLeaf = env8;
+      t3 = env9;
+      t1 = env10;
       break;
     case 2:
       start = env0;
       strings = env1;
-      offset = env2;
-      isLeaf = env3;
-      i = env4;
-      t2 = env5;
+      i = env2;
+      t2 = env3;
+      t3 = env4;
+      offset = env5;
       result = env6;
-      t3 = env7;
-      chunk = env8;
-      chunkStart = env9;
-      t1 = env10;
+      chunk = env7;
+      chunkStart = env8;
+      t1 = env9;
+      isLeaf = env10;
       break;
     case 3:
-      c = env0;
+      start = env0;
       strings = env1;
-      offset = env2;
-      isLeaf = env3;
-      i = env4;
-      t2 = env5;
-      result = env6;
-      start = env7;
-      chunk = env8;
-      chunkStart = env9;
-      t1 = env10;
+      i = env2;
+      t2 = env3;
+      offset = env4;
+      result = env5;
+      chunk = env6;
+      chunkStart = env7;
+      t1 = env8;
+      c = env9;
+      isLeaf = env10;
       break;
   }
   switch (state) {
     case 0:
-      var result = $.ListImplementation_List(26, 'KeywordState');
-      $.setRuntimeTypeInfo(result, { 'E': 'KeywordState' });
+      var result = $.ListImplementation_List(26);
       var t1 = offset + length$;
       var t2 = start + 1;
       var i = offset;
@@ -8522,13 +8506,13 @@ $.CTC21 = new Isolate.$isolateProperties.ConstantMap(0, {}, Isolate.$isolateProp
 $.CTC13 = new Isolate.$isolateProperties._DeletedKeySentinel();
 $.CTC103 = '|';
 $.CTC104 = new Isolate.$isolateProperties.StringWrapper('|');
-$.CTC105 = '&=';
-$.CTC106 = new Isolate.$isolateProperties.StringWrapper('&=');
-$.CTC107 = ']';
-$.CTC108 = new Isolate.$isolateProperties.StringWrapper(']');
-$.CTC109 = 0;
-$.CTC110 = 93;
-$.CTC34 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC108, 0, 93);
+$.CTC105 = ']';
+$.CTC106 = new Isolate.$isolateProperties.StringWrapper(']');
+$.CTC107 = 0;
+$.CTC108 = 93;
+$.CTC34 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC106, 0, 93);
+$.CTC109 = '&=';
+$.CTC110 = new Isolate.$isolateProperties.StringWrapper('&=');
 $.CTC111 = '-=';
 $.CTC112 = new Isolate.$isolateProperties.StringWrapper('-=');
 $.CTC113 = 1;
@@ -8549,31 +8533,31 @@ $.CTC126 = '|=';
 $.CTC127 = new Isolate.$isolateProperties.StringWrapper('|=');
 $.CTC128 = 148;
 $.CTC65 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC127, 1, 148);
-$.CTC129 = '#';
-$.CTC130 = new Isolate.$isolateProperties.StringWrapper('#');
-$.CTC131 = 35;
-$.CTC55 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC130, 0, 35);
-$.CTC132 = '+';
-$.CTC133 = new Isolate.$isolateProperties.StringWrapper('+');
-$.CTC134 = 'abstract';
+$.CTC129 = '+';
+$.CTC130 = new Isolate.$isolateProperties.StringWrapper('+');
+$.CTC131 = '#';
+$.CTC132 = new Isolate.$isolateProperties.StringWrapper('#');
+$.CTC133 = 35;
+$.CTC55 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC132, 0, 35);
+$.CTC134 = 'interface';
 $.CTC135 = true;
-$.CTC136 = new Isolate.$isolateProperties.Keyword('abstract', false, true, Isolate.$isolateProperties.CTC124);
-$.CTC137 = 'interface';
-$.CTC138 = new Isolate.$isolateProperties.Keyword('interface', false, true, Isolate.$isolateProperties.CTC124);
+$.CTC136 = new Isolate.$isolateProperties.Keyword('interface', false, true, Isolate.$isolateProperties.CTC124);
+$.CTC137 = 'abstract';
+$.CTC138 = new Isolate.$isolateProperties.Keyword('abstract', false, true, Isolate.$isolateProperties.CTC124);
 $.CTC139 = ')';
 $.CTC140 = new Isolate.$isolateProperties.StringWrapper(')');
 $.CTC141 = 41;
 $.CTC29 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC140, 0, 41);
-$.CTC142 = 'get';
-$.CTC143 = new Isolate.$isolateProperties.Keyword('get', false, true, Isolate.$isolateProperties.CTC124);
 $.CTC22 = new Isolate.$isolateProperties.IllegalAccessException();
-$.CTC144 = '-';
-$.CTC145 = new Isolate.$isolateProperties.StringWrapper('-');
-$.CTC146 = 12;
-$.CTC147 = 45;
-$.CTC76 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC145, 12, 45);
-$.CTC148 = 'digit expected';
+$.CTC142 = 'digit expected';
 $.CTC44 = new Isolate.$isolateProperties.StringWrapper('digit expected');
+$.CTC143 = '-';
+$.CTC144 = new Isolate.$isolateProperties.StringWrapper('-');
+$.CTC145 = 12;
+$.CTC146 = 45;
+$.CTC76 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC144, 12, 45);
+$.CTC147 = 'get';
+$.CTC148 = new Isolate.$isolateProperties.Keyword('get', false, true, Isolate.$isolateProperties.CTC124);
 $.CTC149 = '||';
 $.CTC150 = new Isolate.$isolateProperties.StringWrapper('||');
 $.CTC151 = 4;
@@ -8593,80 +8577,80 @@ $.CTC159 = 'string';
 $.CTC160 = new Isolate.$isolateProperties.StringWrapper('string');
 $.CTC161 = 39;
 $.CTC47 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC160, 0, 39);
-$.CTC162 = '>';
-$.CTC163 = new Isolate.$isolateProperties.StringWrapper('>');
-$.CTC164 = 'structured clone of ArrayBuffer';
+$.CTC162 = 'structured clone of ArrayBuffer';
 $.CTC7 = new Isolate.$isolateProperties.NotImplementedException('structured clone of ArrayBuffer');
-$.CTC165 = 'malformed input';
-$.CTC166 = new Isolate.$isolateProperties.StringWrapper('malformed input');
-$.CTC167 = 88;
-$.CTC38 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC166, 0, 88);
-$.CTC168 = '[]';
-$.CTC169 = new Isolate.$isolateProperties.StringWrapper('[]');
-$.CTC170 = 142;
-$.CTC60 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC169, 0, 142);
-$.CTC171 = 'frozen class set cannot be modified';
+$.CTC163 = '>';
+$.CTC164 = new Isolate.$isolateProperties.StringWrapper('>');
+$.CTC165 = 'true';
+$.CTC166 = new Isolate.$isolateProperties.Keyword('true', false, false, Isolate.$isolateProperties.CTC124);
+$.CTC167 = 'malformed input';
+$.CTC168 = new Isolate.$isolateProperties.StringWrapper('malformed input');
+$.CTC169 = 88;
+$.CTC38 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC168, 0, 88);
+$.CTC170 = '[]';
+$.CTC171 = new Isolate.$isolateProperties.StringWrapper('[]');
+$.CTC172 = 142;
+$.CTC60 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC171, 0, 142);
+$.CTC173 = 'frozen class set cannot be modified';
 $.CTC20 = new Isolate.$isolateProperties.UnsupportedOperationException('frozen class set cannot be modified');
-$.CTC172 = '..';
-$.CTC173 = new Isolate.$isolateProperties.StringWrapper('..');
-$.CTC174 = 2;
-$.CTC175 = 133;
-$.CTC41 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC173, 2, 133);
-$.CTC176 = 'finally';
-$.CTC177 = new Isolate.$isolateProperties.Keyword('finally', false, false, Isolate.$isolateProperties.CTC124);
-$.CTC178 = 'true';
-$.CTC179 = new Isolate.$isolateProperties.Keyword('true', false, false, Isolate.$isolateProperties.CTC124);
+$.CTC174 = '..';
+$.CTC175 = new Isolate.$isolateProperties.StringWrapper('..');
+$.CTC176 = 2;
+$.CTC177 = 133;
+$.CTC41 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC175, 2, 133);
 $.CTC102 = new Isolate.$isolateProperties.Object();
+$.CTC178 = 'finally';
+$.CTC179 = new Isolate.$isolateProperties.Keyword('finally', false, false, Isolate.$isolateProperties.CTC124);
 $.CTC180 = '^=';
 $.CTC181 = new Isolate.$isolateProperties.StringWrapper('^=');
 $.CTC182 = 158;
 $.CTC62 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC181, 1, 158);
 $.CTC183 = 'structured clone of RegExp';
 $.CTC3 = new Isolate.$isolateProperties.NotImplementedException('structured clone of RegExp');
-$.CTC184 = 'part';
-$.CTC185 = new Isolate.$isolateProperties.Keyword('part', true, false, Isolate.$isolateProperties.CTC124);
-$.CTC186 = 'while';
-$.CTC187 = new Isolate.$isolateProperties.Keyword('while', false, false, Isolate.$isolateProperties.CTC124);
-$.CTC188 = '~/';
-$.CTC189 = new Isolate.$isolateProperties.StringWrapper('~/');
-$.CTC190 = 13;
-$.CTC191 = 155;
-$.CTC57 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC189, 13, 155);
-$.CTC192 = '!==';
-$.CTC193 = new Isolate.$isolateProperties.StringWrapper('!==');
-$.CTC194 = 9;
-$.CTC195 = 143;
-$.CTC80 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC193, 9, 143);
-$.CTC196 = '.';
-$.CTC197 = new Isolate.$isolateProperties.StringWrapper('.');
-$.CTC198 = '<<';
-$.CTC199 = new Isolate.$isolateProperties.StringWrapper('<<');
-$.CTC200 = 11;
-$.CTC201 = 137;
-$.CTC95 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC199, 11, 137);
-$.CTC202 = '!=';
-$.CTC203 = new Isolate.$isolateProperties.StringWrapper('!=');
-$.CTC204 = '--';
-$.CTC205 = new Isolate.$isolateProperties.StringWrapper('--');
-$.CTC206 = '{';
-$.CTC207 = new Isolate.$isolateProperties.StringWrapper('{');
-$.CTC208 = 123;
-$.CTC36 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC207, 0, 123);
-$.CTC209 = '[]=';
-$.CTC210 = new Isolate.$isolateProperties.StringWrapper('[]=');
-$.CTC211 = 141;
-$.CTC59 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC210, 0, 141);
-$.CTC212 = 'class';
-$.CTC213 = new Isolate.$isolateProperties.Keyword('class', false, false, Isolate.$isolateProperties.CTC124);
+$.CTC184 = '~/';
+$.CTC185 = new Isolate.$isolateProperties.StringWrapper('~/');
+$.CTC186 = 13;
+$.CTC187 = 155;
+$.CTC57 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC185, 13, 155);
+$.CTC188 = '!==';
+$.CTC189 = new Isolate.$isolateProperties.StringWrapper('!==');
+$.CTC190 = 9;
+$.CTC191 = 143;
+$.CTC80 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC189, 9, 143);
+$.CTC192 = 'while';
+$.CTC193 = new Isolate.$isolateProperties.Keyword('while', false, false, Isolate.$isolateProperties.CTC124);
+$.CTC194 = '!=';
+$.CTC195 = new Isolate.$isolateProperties.StringWrapper('!=');
+$.CTC196 = '<<';
+$.CTC197 = new Isolate.$isolateProperties.StringWrapper('<<');
+$.CTC198 = 11;
+$.CTC199 = 137;
+$.CTC95 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC197, 11, 137);
+$.CTC200 = '.';
+$.CTC201 = new Isolate.$isolateProperties.StringWrapper('.');
+$.CTC202 = 'class';
+$.CTC203 = new Isolate.$isolateProperties.Keyword('class', false, false, Isolate.$isolateProperties.CTC124);
+$.CTC204 = '{';
+$.CTC205 = new Isolate.$isolateProperties.StringWrapper('{');
+$.CTC206 = 123;
+$.CTC36 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC205, 0, 123);
+$.CTC207 = '[]=';
+$.CTC208 = new Isolate.$isolateProperties.StringWrapper('[]=');
+$.CTC209 = 141;
+$.CTC59 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC208, 0, 141);
+$.CTC210 = '--';
+$.CTC211 = new Isolate.$isolateProperties.StringWrapper('--');
+$.CTC212 = 'part';
+$.CTC213 = new Isolate.$isolateProperties.Keyword('part', true, false, Isolate.$isolateProperties.CTC124);
 $.CTC214 = 'default';
 $.CTC215 = new Isolate.$isolateProperties.Keyword('default', false, false, Isolate.$isolateProperties.CTC124);
-$.CTC216 = '^';
-$.CTC217 = new Isolate.$isolateProperties.StringWrapper('^');
-$.CTC218 = 7;
-$.CTC219 = 94;
-$.CTC63 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC217, 7, 94);
-$.CTC220 = '${';
-$.CTC221 = new Isolate.$isolateProperties.StringWrapper('${');
+$.CTC216 = '${';
+$.CTC217 = new Isolate.$isolateProperties.StringWrapper('${');
+$.CTC218 = '^';
+$.CTC219 = new Isolate.$isolateProperties.StringWrapper('^');
+$.CTC220 = 7;
+$.CTC221 = 94;
+$.CTC63 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC219, 7, 94);
 $.CTC222 = '*';
 $.CTC223 = new Isolate.$isolateProperties.StringWrapper('*');
 $.CTC224 = 42;
@@ -8683,102 +8667,102 @@ $.CTC231 = 96;
 $.CTC35 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC230, 0, 96);
 $.CTC232 = '/=';
 $.CTC233 = new Isolate.$isolateProperties.StringWrapper('/=');
-$.CTC234 = 'Dynamic';
+$.CTC234 = 'external';
+$.CTC235 = new Isolate.$isolateProperties.Keyword('external', false, true, Isolate.$isolateProperties.CTC124);
+$.CTC236 = 'show';
+$.CTC237 = new Isolate.$isolateProperties.Keyword('show', true, false, Isolate.$isolateProperties.CTC124);
+$.CTC238 = 'Dynamic';
 $.CTC98 = new Isolate.$isolateProperties.Keyword('Dynamic', false, true, Isolate.$isolateProperties.CTC124);
-$.CTC235 = '>=';
-$.CTC236 = new Isolate.$isolateProperties.StringWrapper('>=');
-$.CTC237 = '+=';
-$.CTC238 = new Isolate.$isolateProperties.StringWrapper('+=');
-$.CTC239 = 151;
-$.CTC78 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC238, 1, 151);
-$.CTC240 = 'external';
-$.CTC241 = new Isolate.$isolateProperties.Keyword('external', false, true, Isolate.$isolateProperties.CTC124);
-$.CTC242 = 'show';
-$.CTC243 = new Isolate.$isolateProperties.Keyword('show', true, false, Isolate.$isolateProperties.CTC124);
+$.CTC239 = '+=';
+$.CTC240 = new Isolate.$isolateProperties.StringWrapper('+=');
+$.CTC241 = 151;
+$.CTC78 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC240, 1, 151);
+$.CTC242 = '>=';
+$.CTC243 = new Isolate.$isolateProperties.StringWrapper('>=');
 $.CTC244 = ',';
 $.CTC245 = new Isolate.$isolateProperties.StringWrapper(',');
 $.CTC246 = 44;
 $.CTC30 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC245, 0, 44);
-$.CTC247 = '/';
-$.CTC248 = new Isolate.$isolateProperties.StringWrapper('/');
-$.CTC249 = '===';
-$.CTC250 = new Isolate.$isolateProperties.StringWrapper('===');
-$.CTC251 = 134;
-$.CTC83 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC250, 9, 134);
-$.CTC252 = '%';
-$.CTC253 = new Isolate.$isolateProperties.StringWrapper('%');
-$.CTC254 = 37;
-$.CTC71 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC253, 13, 37);
-$.CTC255 = '==';
-$.CTC256 = new Isolate.$isolateProperties.StringWrapper('==');
-$.CTC257 = 135;
-$.CTC84 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC256, 9, 135);
-$.CTC258 = '}';
-$.CTC259 = new Isolate.$isolateProperties.StringWrapper('}');
+$.CTC247 = '===';
+$.CTC248 = new Isolate.$isolateProperties.StringWrapper('===');
+$.CTC249 = 134;
+$.CTC83 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC248, 9, 134);
+$.CTC250 = '/';
+$.CTC251 = new Isolate.$isolateProperties.StringWrapper('/');
+$.CTC252 = '}';
+$.CTC253 = new Isolate.$isolateProperties.StringWrapper('}');
+$.CTC254 = '%';
+$.CTC255 = new Isolate.$isolateProperties.StringWrapper('%');
+$.CTC256 = 37;
+$.CTC71 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC255, 13, 37);
+$.CTC257 = '==';
+$.CTC258 = new Isolate.$isolateProperties.StringWrapper('==');
+$.CTC259 = 135;
+$.CTC84 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC258, 9, 135);
 $.CTC260 = 'new';
 $.CTC261 = new Isolate.$isolateProperties.Keyword('new', false, false, Isolate.$isolateProperties.CTC124);
 $.CTC262 = '&&';
 $.CTC263 = new Isolate.$isolateProperties.StringWrapper('&&');
-$.CTC264 = 'import';
-$.CTC265 = new Isolate.$isolateProperties.Keyword('import', true, false, Isolate.$isolateProperties.CTC124);
-$.CTC266 = '!';
-$.CTC267 = new Isolate.$isolateProperties.StringWrapper('!');
+$.CTC264 = '!';
+$.CTC265 = new Isolate.$isolateProperties.StringWrapper('!');
+$.CTC266 = '*=';
+$.CTC267 = new Isolate.$isolateProperties.StringWrapper('*=');
 $.CTC268 = 'const';
 $.CTC269 = new Isolate.$isolateProperties.Keyword('const', false, false, Isolate.$isolateProperties.CTC124);
-$.CTC270 = '*=';
-$.CTC271 = new Isolate.$isolateProperties.StringWrapper('*=');
-$.CTC272 = 'EOF';
-$.CTC273 = new Isolate.$isolateProperties.StringWrapper('EOF');
-$.CTC26 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC273, 0, 0);
-$.CTC274 = 'is';
-$.CTC275 = new Isolate.$isolateProperties.StringWrapper('is');
-$.CTC276 = '\\';
-$.CTC277 = new Isolate.$isolateProperties.StringWrapper('\\');
+$.CTC270 = 'import';
+$.CTC271 = new Isolate.$isolateProperties.Keyword('import', true, false, Isolate.$isolateProperties.CTC124);
+$.CTC272 = 'is';
+$.CTC273 = new Isolate.$isolateProperties.StringWrapper('is');
+$.CTC274 = 'EOF';
+$.CTC275 = new Isolate.$isolateProperties.StringWrapper('EOF');
+$.CTC26 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC275, 0, 0);
+$.CTC276 = 'super';
+$.CTC277 = new Isolate.$isolateProperties.Keyword('super', false, false, Isolate.$isolateProperties.CTC124);
 $.CTC278 = 'hexadecimal';
 $.CTC279 = new Isolate.$isolateProperties.StringWrapper('hexadecimal');
 $.CTC280 = 120;
 $.CTC46 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC279, 0, 120);
-$.CTC281 = '$';
-$.CTC282 = new Isolate.$isolateProperties.StringWrapper('$');
-$.CTC283 = 'comment';
-$.CTC284 = new Isolate.$isolateProperties.StringWrapper('comment');
-$.CTC285 = 'super';
-$.CTC286 = new Isolate.$isolateProperties.Keyword('super', false, false, Isolate.$isolateProperties.CTC124);
+$.CTC281 = 'comment';
+$.CTC282 = new Isolate.$isolateProperties.StringWrapper('comment');
+$.CTC283 = '\\';
+$.CTC284 = new Isolate.$isolateProperties.StringWrapper('\\');
+$.CTC285 = '$';
+$.CTC286 = new Isolate.$isolateProperties.StringWrapper('$');
 $.CTC287 = '(';
 $.CTC288 = new Isolate.$isolateProperties.StringWrapper('(');
 $.CTC289 = 'var';
 $.CTC290 = new Isolate.$isolateProperties.Keyword('var', false, false, Isolate.$isolateProperties.CTC124);
-$.CTC291 = '?';
-$.CTC292 = new Isolate.$isolateProperties.StringWrapper('?');
-$.CTC293 = '[';
-$.CTC294 = new Isolate.$isolateProperties.StringWrapper('[');
-$.CTC295 = 14;
-$.CTC296 = 91;
-$.CTC61 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC294, 14, 91);
-$.CTC297 = '&';
-$.CTC298 = new Isolate.$isolateProperties.StringWrapper('&');
-$.CTC299 = 8;
-$.CTC300 = 38;
-$.CTC69 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC298, 8, 38);
-$.CTC301 = '<<=';
-$.CTC302 = new Isolate.$isolateProperties.StringWrapper('<<=');
-$.CTC303 = 'case';
-$.CTC304 = new Isolate.$isolateProperties.Keyword('case', false, false, Isolate.$isolateProperties.CTC124);
-$.CTC305 = '<';
-$.CTC306 = new Isolate.$isolateProperties.StringWrapper('<');
-$.CTC307 = 10;
-$.CTC308 = 60;
-$.CTC96 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC306, 10, 60);
+$.CTC291 = '[';
+$.CTC292 = new Isolate.$isolateProperties.StringWrapper('[');
+$.CTC293 = 14;
+$.CTC294 = 91;
+$.CTC61 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC292, 14, 91);
+$.CTC295 = '<';
+$.CTC296 = new Isolate.$isolateProperties.StringWrapper('<');
+$.CTC297 = 10;
+$.CTC298 = 60;
+$.CTC96 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC296, 10, 60);
+$.CTC299 = '?';
+$.CTC300 = new Isolate.$isolateProperties.StringWrapper('?');
+$.CTC301 = '&';
+$.CTC302 = new Isolate.$isolateProperties.StringWrapper('&');
+$.CTC303 = 8;
+$.CTC304 = 38;
+$.CTC69 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC302, 8, 38);
+$.CTC305 = '<<=';
+$.CTC306 = new Isolate.$isolateProperties.StringWrapper('<<=');
+$.CTC307 = 'case';
+$.CTC308 = new Isolate.$isolateProperties.Keyword('case', false, false, Isolate.$isolateProperties.CTC124);
 $.CTC309 = '~/=';
 $.CTC310 = new Isolate.$isolateProperties.StringWrapper('~/=');
 $.CTC311 = 154;
 $.CTC56 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC310, 1, 154);
-$.CTC312 = '%=';
-$.CTC313 = new Isolate.$isolateProperties.StringWrapper('%=');
-$.CTC314 = 156;
-$.CTC70 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC313, 1, 156);
-$.CTC315 = 'identifier';
-$.CTC316 = new Isolate.$isolateProperties.StringWrapper('identifier');
+$.CTC312 = 'identifier';
+$.CTC313 = new Isolate.$isolateProperties.StringWrapper('identifier');
+$.CTC314 = '%=';
+$.CTC315 = new Isolate.$isolateProperties.StringWrapper('%=');
+$.CTC316 = 156;
+$.CTC70 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC315, 1, 156);
 $.CTC317 = 'on';
 $.CTC318 = new Isolate.$isolateProperties.Keyword('on', true, false, Isolate.$isolateProperties.CTC124);
 $.CTC319 = 'IDBKey containing Date';
@@ -8799,36 +8783,36 @@ $.CTC330 = ';';
 $.CTC331 = new Isolate.$isolateProperties.StringWrapper(';');
 $.CTC332 = 59;
 $.CTC32 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC331, 0, 59);
-$.CTC333 = '=>';
-$.CTC334 = new Isolate.$isolateProperties.StringWrapper('=>');
+$.CTC333 = 'typedef';
+$.CTC334 = new Isolate.$isolateProperties.Keyword('typedef', false, true, Isolate.$isolateProperties.CTC124);
 $.CTC335 = '~';
 $.CTC336 = new Isolate.$isolateProperties.StringWrapper('~');
 $.CTC337 = 126;
 $.CTC58 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC336, 0, 126);
-$.CTC338 = 'as';
-$.CTC339 = new Isolate.$isolateProperties.StringWrapper('as');
-$.CTC340 = 160;
-$.CTC341 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC339, 10, 160);
-$.CTC342 = '>>';
-$.CTC343 = new Isolate.$isolateProperties.StringWrapper('>>');
-$.CTC344 = '@';
-$.CTC345 = new Isolate.$isolateProperties.StringWrapper('@');
-$.CTC346 = 'switch';
-$.CTC347 = new Isolate.$isolateProperties.Keyword('switch', false, false, Isolate.$isolateProperties.CTC124);
-$.CTC348 = 'typedef';
-$.CTC349 = new Isolate.$isolateProperties.Keyword('typedef', false, true, Isolate.$isolateProperties.CTC124);
-$.CTC350 = 'int';
-$.CTC351 = new Isolate.$isolateProperties.StringWrapper('int');
-$.CTC352 = 105;
-$.CTC39 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC351, 0, 105);
+$.CTC338 = '=>';
+$.CTC339 = new Isolate.$isolateProperties.StringWrapper('=>');
+$.CTC340 = '>>';
+$.CTC341 = new Isolate.$isolateProperties.StringWrapper('>>');
+$.CTC342 = 'as';
+$.CTC343 = new Isolate.$isolateProperties.StringWrapper('as');
+$.CTC344 = 160;
+$.CTC345 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC343, 10, 160);
+$.CTC346 = '@';
+$.CTC347 = new Isolate.$isolateProperties.StringWrapper('@');
+$.CTC348 = 'int';
+$.CTC349 = new Isolate.$isolateProperties.StringWrapper('int');
+$.CTC350 = 105;
+$.CTC39 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC349, 0, 105);
+$.CTC351 = 'switch';
+$.CTC352 = new Isolate.$isolateProperties.Keyword('switch', false, false, Isolate.$isolateProperties.CTC124);
 $.CTC353 = 'structured clone of other type';
 $.CTC9 = new Isolate.$isolateProperties.NotImplementedException('structured clone of other type');
 $.CTC354 = '...';
 $.CTC355 = new Isolate.$isolateProperties.StringWrapper('...');
-$.CTC356 = 'Invalid list length';
+$.CTC356 = ':';
+$.CTC357 = new Isolate.$isolateProperties.StringWrapper(':');
+$.CTC358 = 'Invalid list length';
 $.CTC16 = new Isolate.$isolateProperties.IllegalArgumentException('Invalid list length');
-$.CTC357 = ':';
-$.CTC358 = new Isolate.$isolateProperties.StringWrapper(':');
 $.CTC359 = 'source';
 $.CTC360 = new Isolate.$isolateProperties.Keyword('source', true, false, Isolate.$isolateProperties.CTC124);
 $.CTC361 = 'false';
@@ -8836,147 +8820,147 @@ $.CTC362 = new Isolate.$isolateProperties.Keyword('false', false, false, Isolate
 $.CTC363 = 'hex digit expected';
 $.CTC45 = new Isolate.$isolateProperties.StringWrapper('hex digit expected');
 $.CTC364 = 64;
-$.CTC51 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC345, 0, 64);
+$.CTC51 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC347, 0, 64);
 $.CTC365 = 97;
-$.CTC99 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC316, 0, 97);
+$.CTC99 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC313, 0, 97);
 $.CTC366 = 139;
 $.CTC88 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC155, 1, 139);
 $.CTC367 = 47;
-$.CTC53 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC248, 13, 47);
-$.CTC368 = new Isolate.$isolateProperties.Keyword('as', false, true, Isolate.$isolateProperties.CTC341);
-$.CTC369 = 146;
-$.CTC68 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC106, 1, 146);
+$.CTC53 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC251, 13, 47);
+$.CTC368 = 146;
+$.CTC68 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC110, 1, 146);
+$.CTC369 = new Isolate.$isolateProperties.Keyword('as', false, true, Isolate.$isolateProperties.CTC345);
 $.CTC370 = 159;
-$.CTC371 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC275, 10, 159);
+$.CTC371 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC273, 10, 159);
 $.CTC372 = new Isolate.$isolateProperties.Keyword('is', false, false, Isolate.$isolateProperties.CTC371);
 $.CTC373 = 150;
 $.CTC77 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC116, 14, 150);
 $.CTC374 = '^[*a-zA-Z0-9]+$';
 $.CTC25 = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, '^[*a-zA-Z0-9]+$');
 $.CTC375 = 33;
-$.CTC82 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC267, 0, 33);
-$.CTC376 = null;
+$.CTC82 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC265, 0, 33);
+$.CTC376 = 'null';
+$.CTC377 = new Isolate.$isolateProperties.Keyword('null', false, false, Isolate.$isolateProperties.CTC124);
+$.CTC378 = null;
 $.CTC = new Isolate.$isolateProperties.NullPointerException(null, Isolate.$isolateProperties.CTC0);
-$.CTC377 = 'continue';
-$.CTC378 = new Isolate.$isolateProperties.Keyword('continue', false, false, Isolate.$isolateProperties.CTC124);
-$.CTC379 = 'Cannot removeLast on immutable List.';
+$.CTC379 = 'continue';
+$.CTC380 = new Isolate.$isolateProperties.Keyword('continue', false, false, Isolate.$isolateProperties.CTC124);
+$.CTC381 = 'Cannot removeLast on immutable List.';
 $.CTC11 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot removeLast on immutable List.');
-$.CTC380 = 92;
-$.CTC27 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC277, 0, 92);
-$.CTC381 = 152;
-$.CTC74 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC205, 14, 152);
-$.CTC382 = 40;
+$.CTC382 = 92;
+$.CTC27 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC284, 0, 92);
+$.CTC383 = 152;
+$.CTC74 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC211, 14, 152);
+$.CTC384 = 40;
 $.CTC28 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC288, 14, 40);
-$.CTC383 = 'hide';
-$.CTC384 = new Isolate.$isolateProperties.Keyword('hide', true, false, Isolate.$isolateProperties.CTC124);
-$.CTC385 = 'null';
-$.CTC386 = new Isolate.$isolateProperties.Keyword('null', false, false, Isolate.$isolateProperties.CTC124);
+$.CTC385 = 'hide';
+$.CTC386 = new Isolate.$isolateProperties.Keyword('hide', true, false, Isolate.$isolateProperties.CTC124);
 $.CTC387 = 144;
-$.CTC81 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC203, 9, 144);
+$.CTC81 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC195, 9, 144);
 $.CTC388 = 'void';
 $.CTC389 = new Isolate.$isolateProperties.Keyword('void', false, false, Isolate.$isolateProperties.CTC124);
-$.CTC390 = 'throw';
-$.CTC391 = new Isolate.$isolateProperties.Keyword('throw', false, false, Isolate.$isolateProperties.CTC124);
-$.CTC392 = 'catch';
-$.CTC393 = new Isolate.$isolateProperties.Keyword('catch', false, false, Isolate.$isolateProperties.CTC124);
+$.CTC390 = 'catch';
+$.CTC391 = new Isolate.$isolateProperties.Keyword('catch', false, false, Isolate.$isolateProperties.CTC124);
+$.CTC392 = 'throw';
+$.CTC393 = new Isolate.$isolateProperties.Keyword('throw', false, false, Isolate.$isolateProperties.CTC124);
 $.CTC394 = 3;
 $.CTC395 = 63;
-$.CTC33 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC292, 3, 63);
+$.CTC33 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC300, 3, 63);
 $.CTC396 = 'structured clone of Blob';
 $.CTC5 = new Isolate.$isolateProperties.NotImplementedException('structured clone of Blob');
 $.CTC397 = 'unterminated string literal';
 $.CTC48 = new Isolate.$isolateProperties.StringWrapper('unterminated string literal');
 $.CTC398 = 58;
-$.CTC31 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC358, 0, 58);
+$.CTC31 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC357, 0, 58);
 $.CTC399 = 128;
-$.CTC50 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC221, 0, 128);
-$.CTC400 = '^\\[name=["\'][^\'"]+[\'"]\\]$';
+$.CTC50 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC217, 0, 128);
+$.CTC400 = 'if';
+$.CTC401 = new Isolate.$isolateProperties.Keyword('if', false, false, Isolate.$isolateProperties.CTC124);
+$.CTC402 = '^\\[name=["\'][^\'"]+[\'"]\\]$';
 $.CTC24 = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, '^\\[name=["\'][^\'"]+[\'"]\\]$');
-$.CTC401 = 'if';
-$.CTC402 = new Isolate.$isolateProperties.Keyword('if', false, false, Isolate.$isolateProperties.CTC124);
 $.CTC403 = 125;
-$.CTC37 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC259, 0, 125);
-$.CTC404 = 149;
-$.CTC72 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC271, 1, 149);
-$.CTC405 = 'static';
-$.CTC406 = new Isolate.$isolateProperties.Keyword('static', false, true, Isolate.$isolateProperties.CTC124);
+$.CTC37 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC253, 0, 125);
+$.CTC404 = 'static';
+$.CTC405 = new Isolate.$isolateProperties.Keyword('static', false, true, Isolate.$isolateProperties.CTC124);
+$.CTC406 = 149;
+$.CTC72 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC267, 1, 149);
 $.CTC407 = 'native';
 $.CTC408 = new Isolate.$isolateProperties.Keyword('native', true, false, Isolate.$isolateProperties.CTC124);
-$.CTC409 = 'assert';
-$.CTC410 = new Isolate.$isolateProperties.Keyword('assert', false, true, Isolate.$isolateProperties.CTC124);
-$.CTC411 = 'TODO(jacobr): should we impl?';
+$.CTC409 = 'TODO(jacobr): should we impl?';
 $.CTC19 = new Isolate.$isolateProperties.UnsupportedOperationException('TODO(jacobr): should we impl?');
-$.CTC412 = 'Cannot add to immutable List.';
+$.CTC410 = 'Cannot add to immutable List.';
 $.CTC1 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot add to immutable List.');
+$.CTC411 = 'assert';
+$.CTC412 = new Isolate.$isolateProperties.Keyword('assert', false, true, Isolate.$isolateProperties.CTC124);
 $.CTC413 = '[-[\\]{}()*+?.,\\\\^$|#\\s]';
 $.CTC17 = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, '[-[\\]{}()*+?.,\\\\^$|#\\s]');
-$.CTC414 = 'extends';
-$.CTC415 = new Isolate.$isolateProperties.Keyword('extends', false, false, Isolate.$isolateProperties.CTC124);
+$.CTC414 = 5;
+$.CTC415 = 145;
+$.CTC67 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC263, 5, 145);
 $.CTC416 = 'final';
 $.CTC417 = new Isolate.$isolateProperties.Keyword('final', false, false, Isolate.$isolateProperties.CTC124);
-$.CTC418 = 5;
-$.CTC419 = 145;
-$.CTC67 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC263, 5, 145);
-$.CTC420 = 131;
+$.CTC418 = 'extends';
+$.CTC419 = new Isolate.$isolateProperties.Keyword('extends', false, false, Isolate.$isolateProperties.CTC124);
+$.CTC420 = 'break';
+$.CTC421 = new Isolate.$isolateProperties.Keyword('break', false, false, Isolate.$isolateProperties.CTC124);
+$.CTC422 = 'this';
+$.CTC423 = new Isolate.$isolateProperties.Keyword('this', false, false, Isolate.$isolateProperties.CTC124);
+$.CTC424 = 131;
 $.CTC52 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC233, 1, 131);
-$.CTC421 = 'break';
-$.CTC422 = new Isolate.$isolateProperties.Keyword('break', false, false, Isolate.$isolateProperties.CTC124);
-$.CTC423 = 43;
-$.CTC79 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC133, 12, 43);
-$.CTC424 = 138;
-$.CTC87 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC236, 10, 138);
-$.CTC425 = 'this';
-$.CTC426 = new Isolate.$isolateProperties.Keyword('this', false, false, Isolate.$isolateProperties.CTC124);
 $.CTC101 = new Isolate.$isolateProperties.LinkTail();
+$.CTC425 = 43;
+$.CTC79 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC130, 12, 43);
+$.CTC426 = 138;
+$.CTC87 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC243, 10, 138);
 $.CTC427 = 'structured clone of File';
 $.CTC4 = new Isolate.$isolateProperties.NotImplementedException('structured clone of File');
-$.CTC428 = 'for';
-$.CTC429 = new Isolate.$isolateProperties.Keyword('for', false, false, Isolate.$isolateProperties.CTC124);
-$.CTC430 = 'else';
-$.CTC431 = new Isolate.$isolateProperties.Keyword('else', false, false, Isolate.$isolateProperties.CTC124);
+$.CTC428 = 'else';
+$.CTC429 = new Isolate.$isolateProperties.Keyword('else', false, false, Isolate.$isolateProperties.CTC124);
+$.CTC430 = 'for';
+$.CTC431 = new Isolate.$isolateProperties.Keyword('for', false, false, Isolate.$isolateProperties.CTC124);
 $.CTC432 = 161;
-$.CTC54 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC284, 0, 161);
-$.CTC49 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC282, 0, 162);
+$.CTC54 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC282, 0, 161);
+$.CTC49 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC286, 0, 162);
 $.CTC433 = 'return';
 $.CTC434 = new Isolate.$isolateProperties.Keyword('return', false, false, Isolate.$isolateProperties.CTC124);
-$.CTC435 = 'expected identifier';
-$.CTC97 = new Isolate.$isolateProperties.StringWrapper('expected identifier');
-$.CTC436 = '^#[_a-zA-Z]\\w*$';
+$.CTC435 = '^#[_a-zA-Z]\\w*$';
 $.CTC23 = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, '^#[_a-zA-Z]\\w*$');
-$.CTC437 = 130;
-$.CTC85 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC334, 0, 130);
-$.CTC438 = 'Cannot sort immutable List.';
+$.CTC436 = 'expected identifier';
+$.CTC97 = new Isolate.$isolateProperties.StringWrapper('expected identifier');
+$.CTC437 = 'do';
+$.CTC438 = new Isolate.$isolateProperties.Keyword('do', false, false, Isolate.$isolateProperties.CTC124);
+$.CTC439 = 130;
+$.CTC85 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC339, 0, 130);
+$.CTC440 = 'Cannot sort immutable List.';
 $.CTC18 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot sort immutable List.');
-$.CTC439 = 'do';
-$.CTC440 = new Isolate.$isolateProperties.Keyword('do', false, false, Isolate.$isolateProperties.CTC124);
 $.CTC441 = 'structured clone of Date';
 $.CTC2 = new Isolate.$isolateProperties.NotImplementedException('structured clone of Date');
-$.CTC442 = 'try';
-$.CTC443 = new Isolate.$isolateProperties.Keyword('try', false, false, Isolate.$isolateProperties.CTC124);
-$.CTC444 = 6;
-$.CTC445 = 124;
+$.CTC442 = 6;
+$.CTC443 = 124;
 $.CTC66 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC104, 6, 124);
+$.CTC444 = 'try';
+$.CTC445 = new Isolate.$isolateProperties.Keyword('try', false, false, Isolate.$isolateProperties.CTC124);
 $.CTC446 = 157;
-$.CTC91 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC343, 11, 157);
+$.CTC91 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC341, 11, 157);
 $.CTC447 = 62;
-$.CTC92 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC163, 10, 62);
+$.CTC92 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC164, 10, 62);
 $.CTC448 = 132;
 $.CTC40 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC355, 0, 132);
 $.CTC449 = 136;
-$.CTC94 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC302, 1, 136);
-$.CTC450 = 100;
+$.CTC94 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC306, 1, 136);
+$.CTC450 = 'operator';
+$.CTC451 = new Isolate.$isolateProperties.Keyword('operator', false, true, Isolate.$isolateProperties.CTC124);
+$.CTC452 = 100;
 $.CTC43 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC118, 0, 100);
-$.CTC451 = 'operator';
-$.CTC452 = new Isolate.$isolateProperties.Keyword('operator', false, true, Isolate.$isolateProperties.CTC124);
 $.CTC453 = 'structured clone of FileList';
 $.CTC6 = new Isolate.$isolateProperties.NotImplementedException('structured clone of FileList');
 $.CTC454 = 'factory';
 $.CTC455 = new Isolate.$isolateProperties.Keyword('factory', false, true, Isolate.$isolateProperties.CTC124);
 $.CTC456 = 'set';
 $.CTC457 = new Isolate.$isolateProperties.Keyword('set', false, true, Isolate.$isolateProperties.CTC124);
-$.CTC100 = Isolate.makeConstantList([Isolate.$isolateProperties.CTC422, Isolate.$isolateProperties.CTC304, Isolate.$isolateProperties.CTC393, Isolate.$isolateProperties.CTC213, Isolate.$isolateProperties.CTC269, Isolate.$isolateProperties.CTC378, Isolate.$isolateProperties.CTC215, Isolate.$isolateProperties.CTC440, Isolate.$isolateProperties.CTC431, Isolate.$isolateProperties.CTC415, Isolate.$isolateProperties.CTC362, Isolate.$isolateProperties.CTC417, Isolate.$isolateProperties.CTC177, Isolate.$isolateProperties.CTC429, Isolate.$isolateProperties.CTC402, Isolate.$isolateProperties.CTC125, Isolate.$isolateProperties.CTC372, Isolate.$isolateProperties.CTC261, Isolate.$isolateProperties.CTC386, Isolate.$isolateProperties.CTC434, Isolate.$isolateProperties.CTC286, Isolate.$isolateProperties.CTC347, Isolate.$isolateProperties.CTC426, Isolate.$isolateProperties.CTC391, Isolate.$isolateProperties.CTC179, Isolate.$isolateProperties.CTC443, Isolate.$isolateProperties.CTC290, Isolate.$isolateProperties.CTC389, Isolate.$isolateProperties.CTC187, Isolate.$isolateProperties.CTC136, Isolate.$isolateProperties.CTC368, Isolate.$isolateProperties.CTC410, Isolate.$isolateProperties.CTC241, Isolate.$isolateProperties.CTC455, Isolate.$isolateProperties.CTC143, Isolate.$isolateProperties.CTC321, Isolate.$isolateProperties.CTC138, Isolate.$isolateProperties.CTC452, Isolate.$isolateProperties.CTC457, Isolate.$isolateProperties.CTC406, Isolate.$isolateProperties.CTC349, Isolate.$isolateProperties.CTC384, Isolate.$isolateProperties.CTC265, Isolate.$isolateProperties.CTC323, Isolate.$isolateProperties.CTC408, Isolate.$isolateProperties.CTC318, Isolate.$isolateProperties.CTC185, Isolate.$isolateProperties.CTC243, Isolate.$isolateProperties.CTC360]);
+$.CTC100 = Isolate.makeConstantList([Isolate.$isolateProperties.CTC421, Isolate.$isolateProperties.CTC308, Isolate.$isolateProperties.CTC391, Isolate.$isolateProperties.CTC203, Isolate.$isolateProperties.CTC269, Isolate.$isolateProperties.CTC380, Isolate.$isolateProperties.CTC215, Isolate.$isolateProperties.CTC438, Isolate.$isolateProperties.CTC429, Isolate.$isolateProperties.CTC419, Isolate.$isolateProperties.CTC362, Isolate.$isolateProperties.CTC417, Isolate.$isolateProperties.CTC179, Isolate.$isolateProperties.CTC431, Isolate.$isolateProperties.CTC401, Isolate.$isolateProperties.CTC125, Isolate.$isolateProperties.CTC372, Isolate.$isolateProperties.CTC261, Isolate.$isolateProperties.CTC377, Isolate.$isolateProperties.CTC434, Isolate.$isolateProperties.CTC277, Isolate.$isolateProperties.CTC352, Isolate.$isolateProperties.CTC423, Isolate.$isolateProperties.CTC393, Isolate.$isolateProperties.CTC166, Isolate.$isolateProperties.CTC445, Isolate.$isolateProperties.CTC290, Isolate.$isolateProperties.CTC389, Isolate.$isolateProperties.CTC193, Isolate.$isolateProperties.CTC138, Isolate.$isolateProperties.CTC369, Isolate.$isolateProperties.CTC412, Isolate.$isolateProperties.CTC235, Isolate.$isolateProperties.CTC455, Isolate.$isolateProperties.CTC148, Isolate.$isolateProperties.CTC321, Isolate.$isolateProperties.CTC136, Isolate.$isolateProperties.CTC451, Isolate.$isolateProperties.CTC457, Isolate.$isolateProperties.CTC405, Isolate.$isolateProperties.CTC334, Isolate.$isolateProperties.CTC386, Isolate.$isolateProperties.CTC271, Isolate.$isolateProperties.CTC323, Isolate.$isolateProperties.CTC408, Isolate.$isolateProperties.CTC318, Isolate.$isolateProperties.CTC213, Isolate.$isolateProperties.CTC237, Isolate.$isolateProperties.CTC360]);
 $.CTC458 = 46;
-$.CTC42 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC197, 14, 46);
+$.CTC42 = new Isolate.$isolateProperties.PrecedenceInfo(Isolate.$isolateProperties.CTC201, 14, 46);
 $.PERCENT_INFO = Isolate.$isolateProperties.CTC71;
 $._currentResult = null;
 $.DOUBLE_TOKEN = 100;
@@ -9292,7 +9276,7 @@ $._JsonParser_TRUE_STRING = 'true';
 $._JsonParser_FORM_FEED = 12;
 $.$$4 = 52;
 $.$$f = 102;
-$.AS_INFO = Isolate.$isolateProperties.CTC341;
+$.AS_INFO = Isolate.$isolateProperties.CTC345;
 $.LT_LT_INFO = Isolate.$isolateProperties.CTC95;
 var $ = null;
 Isolate.$finishClasses($$);
@@ -9331,8 +9315,8 @@ $.$defineNativeClass = function(cls, fields, methods) {
 })({
  is$JavaScriptIndexingBehavior: function() { return false; },
  is$ArrayBufferView: function() { return false; },
- is$_FileListImpl: function() { return false; },
  is$_BlobImpl: function() { return false; },
+ is$_FileListImpl: function() { return false; },
  is$_ImageDataImpl: function() { return false; },
  is$_FileImpl: function() { return false; },
  is$_ArrayBufferViewImpl: function() { return false; },
@@ -9342,11 +9326,11 @@ $.$defineNativeClass = function(cls, fields, methods) {
  is$File: function() { return false; },
  is$Element: function() { return false; },
  is$List: function() { return false; },
- is$_ArrayBufferImpl: function() { return false; },
- is$FileList: function() { return false; },
  is$Map: function() { return false; },
- is$Location: function() { return false; },
+ is$FileList: function() { return false; },
  is$Collection: function() { return false; },
+ is$_ArrayBufferImpl: function() { return false; },
+ is$Location: function() { return false; },
  is$ImageData: function() { return false; }
 });
 
@@ -9495,7 +9479,12 @@ $.$defineNativeClass('CSSStyleDeclaration', ["length?"], {
   return this.getPropertyValue(propertyName);
 },
  setProperty$3: function(propertyName, value, priority) {
-  return this.setProperty(propertyName,value,priority);
+    this.setProperty(propertyName, value, priority);
+    // Bug #2772, IE9 requires a poke to actually apply the value.
+    if (this.setAttribute) {
+      this.setAttribute(propertyName, value);
+    }
+  
 },
  get$clear: function() {
   return this.getPropertyValue$1('clear');
@@ -9595,7 +9584,7 @@ return this[index];
   throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));
 },
  iterator$0: function() {
-  return $._FixedSizeListIterator$(this, 'String');
+  return $._FixedSizeListIterator$(this);
 },
  add$1: function(value) {
   throw $.$$throw($.CTC1);
@@ -9731,8 +9720,7 @@ $.$defineNativeClass('HTMLDocument', ["head?", "readyState?"], {
     if (typeof mutableMatches !== 'string' && (typeof mutableMatches !== 'object' || mutableMatches === null || mutableMatches.constructor !== Array && !mutableMatches.is$JavaScriptIndexingBehavior()))
       return this.queryAll$1$bailout(1, mutableMatches);
     var len = mutableMatches.length;
-    var copyOfMatches = $.ListImplementation_List(len, 'Element');
-    $.setRuntimeTypeInfo(copyOfMatches, { 'E': 'Element' });
+    var copyOfMatches = $.ListImplementation_List(len);
     for (var i = 0; i < len; ++i) {
       if (i < 0 || i >= mutableMatches.length)
         throw $.ioore(i);
@@ -9747,8 +9735,7 @@ $.$defineNativeClass('HTMLDocument', ["head?", "readyState?"], {
     if (typeof mutableMatches !== 'string' && (typeof mutableMatches !== 'object' || mutableMatches === null || mutableMatches.constructor !== Array && !mutableMatches.is$JavaScriptIndexingBehavior()))
       return this.queryAll$1$bailout(2, mutableMatches);
     len = mutableMatches.length;
-    copyOfMatches = $.ListImplementation_List(len, 'Element');
-    $.setRuntimeTypeInfo(copyOfMatches, { 'E': 'Element' });
+    copyOfMatches = $.ListImplementation_List(len);
     for (i = 0; i < len; ++i) {
       if (i < 0 || i >= mutableMatches.length)
         throw $.ioore(i);
@@ -9780,8 +9767,7 @@ $.$defineNativeClass('HTMLDocument', ["head?", "readyState?"], {
           case 1:
             state = 0;
             var len = $.get$length(mutableMatches);
-            var copyOfMatches = $.ListImplementation_List(len, 'Element');
-            $.setRuntimeTypeInfo(copyOfMatches, { 'E': 'Element' });
+            var copyOfMatches = $.ListImplementation_List(len);
             for (var i = 0; $.ltB(i, len); ++i) {
               var t1 = $.index(mutableMatches, i);
               if (i < 0 || i >= copyOfMatches.length)
@@ -9801,8 +9787,7 @@ $.$defineNativeClass('HTMLDocument', ["head?", "readyState?"], {
                 case 2:
                   state = 0;
                   len = $.get$length(mutableMatches);
-                  copyOfMatches = $.ListImplementation_List(len, 'Element');
-                  $.setRuntimeTypeInfo(copyOfMatches, { 'E': 'Element' });
+                  copyOfMatches = $.ListImplementation_List(len);
                   for (i = 0; $.ltB(i, len); ++i) {
                     t1 = $.index(mutableMatches, i);
                     if (i < 0 || i >= copyOfMatches.length)
@@ -10100,7 +10085,7 @@ return this[index];
   throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));
 },
  iterator$0: function() {
-  return $._FixedSizeListIterator$(this, 'File');
+  return $._FixedSizeListIterator$(this);
 },
  add$1: function(value) {
   throw $.$$throw($.CTC1);
@@ -10180,7 +10165,7 @@ return this[index];
 this[index] = value
 },
  iterator$0: function() {
-  return $._FixedSizeListIterator$(this, 'num');
+  return $._FixedSizeListIterator$(this);
 },
  add$1: function(value) {
   throw $.$$throw($.CTC1);
@@ -10232,7 +10217,7 @@ return this[index];
 this[index] = value
 },
  iterator$0: function() {
-  return $._FixedSizeListIterator$(this, 'num');
+  return $._FixedSizeListIterator$(this);
 },
  add$1: function(value) {
   throw $.$$throw($.CTC1);
@@ -10317,7 +10302,7 @@ return this[index];
   throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));
 },
  iterator$0: function() {
-  return $._FixedSizeListIterator$(this, 'Node');
+  return $._FixedSizeListIterator$(this);
 },
  add$1: function(value) {
   throw $.$$throw($.CTC1);
@@ -10590,7 +10575,7 @@ return this[index];
 this[index] = value
 },
  iterator$0: function() {
-  return $._FixedSizeListIterator$(this, 'int');
+  return $._FixedSizeListIterator$(this);
 },
  add$1: function(value) {
   throw $.$$throw($.CTC1);
@@ -10642,7 +10627,7 @@ return this[index];
 this[index] = value
 },
  iterator$0: function() {
-  return $._FixedSizeListIterator$(this, 'int');
+  return $._FixedSizeListIterator$(this);
 },
  add$1: function(value) {
   throw $.$$throw($.CTC1);
@@ -10694,7 +10679,7 @@ return this[index];
 this[index] = value
 },
  iterator$0: function() {
-  return $._FixedSizeListIterator$(this, 'int');
+  return $._FixedSizeListIterator$(this);
 },
  add$1: function(value) {
   throw $.$$throw($.CTC1);
@@ -10824,7 +10809,7 @@ return this[index];
   throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));
 },
  iterator$0: function() {
-  return $._FixedSizeListIterator$(this, 'String');
+  return $._FixedSizeListIterator$(this);
 },
  add$1: function(value) {
   throw $.$$throw($.CTC1);
@@ -10977,7 +10962,7 @@ return this[index];
   throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));
 },
  iterator$0: function() {
-  return $._FixedSizeListIterator$(this, 'Node');
+  return $._FixedSizeListIterator$(this);
 },
  add$1: function(value) {
   throw $.$$throw($.CTC1);
@@ -11090,7 +11075,7 @@ $.$defineNativeClass('NodeIterator', [], {
 
 $.$defineNativeClass('NodeList', ["length?"], {
  iterator$0: function() {
-  return $._FixedSizeListIterator$(this, 'Node');
+  return $._FixedSizeListIterator$(this);
 },
  add$1: function(value) {
   this._parent.$dom_appendChild$1(value);
@@ -11829,7 +11814,7 @@ return this[index];
   throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));
 },
  iterator$0: function() {
-  return $._FixedSizeListIterator$(this, 'StyleSheet');
+  return $._FixedSizeListIterator$(this);
 },
  add$1: function(value) {
   throw $.$$throw($.CTC1);
@@ -11963,7 +11948,7 @@ return this[index];
   throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));
 },
  iterator$0: function() {
-  return $._FixedSizeListIterator$(this, 'Touch');
+  return $._FixedSizeListIterator$(this);
 },
  add$1: function(value) {
   throw $.$$throw($.CTC1);
@@ -12029,7 +12014,7 @@ return this[index];
 this[index] = value
 },
  iterator$0: function() {
-  return $._FixedSizeListIterator$(this, 'int');
+  return $._FixedSizeListIterator$(this);
 },
  add$1: function(value) {
   throw $.$$throw($.CTC1);
@@ -12081,7 +12066,7 @@ return this[index];
 this[index] = value
 },
  iterator$0: function() {
-  return $._FixedSizeListIterator$(this, 'int');
+  return $._FixedSizeListIterator$(this);
 },
  add$1: function(value) {
   throw $.$$throw($.CTC1);
@@ -12133,7 +12118,7 @@ return this[index];
 this[index] = value
 },
  iterator$0: function() {
-  return $._FixedSizeListIterator$(this, 'int');
+  return $._FixedSizeListIterator$(this);
 },
  add$1: function(value) {
   throw $.$$throw($.CTC1);

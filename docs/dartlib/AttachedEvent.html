@@ -39,12 +39,12 @@
 <h3>Constructors</h3>
 <div class="method"><h4 id="AttachedEvent">
 <span class="show-code">Code</span>
-const <strong>AttachedEvent</strong>(String name) <a class="anchor-link" href="#AttachedEvent"
+new <strong>AttachedEvent</strong>(String name) <a class="anchor-link" href="#AttachedEvent"
               title="Permalink to AttachedEvent&lt;T&gt;.AttachedEvent">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-const AttachedEvent(String name) : super(name);
+AttachedEvent(String name) : super(name);
 </pre>
 </div>
 </div>
@@ -57,7 +57,7 @@ const AttachedEvent(String name) : super(name);
 
 <pre class="source">
 GlobalId addHandler(AttachableObject obj, Action1&lt;T&gt; handler) {
-  return _AttachableEventHelper.addHandler(obj, this, handler);
+  return obj._addHandler(this, handler);
 }
 </pre>
 </div>
@@ -70,7 +70,7 @@ void <strong>fireEvent</strong>(<a href="../dartlib/AttachableObject.html">Attac
 
 <pre class="source">
 void fireEvent(AttachableObject obj, T args) {
-  _AttachableEventHelper.fireEvent(obj, this, args);
+  obj._fireEvent(this, args);
 }
 </pre>
 </div>
@@ -83,7 +83,8 @@ bool <strong>removeHandler</strong>(<a href="../dartlib/AttachableObject.html">A
 
 <pre class="source">
 bool removeHandler(AttachableObject obj, GlobalId handlerId) {
-  return _AttachableEventHelper.removeHandler(obj, this, handlerId);
+  requireArgumentNotNull(obj, 'obj');
+  return obj._removeHandler(this, handlerId);
 }
 </pre>
 </div>

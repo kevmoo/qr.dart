@@ -36,15 +36,30 @@
 <h3>Subclasses</h3>
 <p>
 <span class="type-box"><span class="icon-class"></span><a href="../dartlib/AttachedEvent.html">AttachedEvent&lt;T&gt;</a></span>, <span class="type-box"><span class="icon-class"></span><a href="../dartlib/Property.html">Property&lt;T&gt;</a></span></p>
+<h3>Implements</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../dart_core/Hashable.html">Hashable</a></span></p>
 <h3>Constructors</h3>
 <div class="method"><h4 id="Attachable">
 <span class="show-code">Code</span>
-const <strong>Attachable</strong>(String name) <a class="anchor-link" href="#Attachable"
+new <strong>Attachable</strong>(String name) <a class="anchor-link" href="#Attachable"
               title="Permalink to Attachable.Attachable">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-const Attachable(this.name);
+Attachable(this.name);
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="hashCode">
+<span class="show-code">Code</span>
+int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
+              title="Permalink to Attachable.hashCode">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+int hashCode() =&gt; _id.hashCode();
 </pre>
 </div>
 </div>

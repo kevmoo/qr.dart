@@ -35,7 +35,7 @@
 </div>
 <h3>Extends</h3>
 <p>
-<span class="type-box"><span class="icon-class"></span><a href="../dartlib/DisposableImpl.html">DisposableImpl</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../dartlib/AttachableObjectImpl.html">AttachableObjectImpl</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>Stage</strong></span></p>
+<span class="type-box"><span class="icon-class"></span><a href="../dartlib/DisposableImpl.html">DisposableImpl</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../dartlib/AttachableObject.html">AttachableObject</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>Stage</strong></span></p>
 <h3>Implements</h3>
 <p>
 <span class="type-box"><span class="icon-interface"></span><a href="../dartlib_retained/ElementParent.html">ElementParent</a></span></p>
@@ -47,8 +47,7 @@ new <strong>Stage</strong>(CanvasElement _canvas, <a href="../dartlib_retained/P
 <div class="doc">
 
 <pre class="source">
-Stage(this._canvas, this._element) :
-  _invalidatedEventHandle = new EventHandle&lt;EventArgs&gt;() {
+Stage(this._canvas, this._element) {
   _element.registerParent(this);
 }
 </pre>

@@ -39,26 +39,26 @@
 <h3>Constructors</h3>
 <div class="method"><h4 id="Property">
 <span class="show-code">Code</span>
-const <strong>Property</strong>(String name, [<a href="../dartlib/Property.html">T</a> defaultValue = null]) <a class="anchor-link" href="#Property"
+new <strong>Property</strong>(String name, [<a href="../dartlib/Property.html">T</a> defaultValue = null]) <a class="anchor-link" href="#Property"
               title="Permalink to Property&lt;T&gt;.Property">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-const Property(String name, [T this.defaultValue = null]) : super(name);
+Property(String name, [T this.defaultValue = null]) : super(name);
 </pre>
 </div>
 </div>
 <h3>Static Fields</h3>
 <div class="field"><h4 id="Undefined">
 <span class="show-code">Code</span>
-final Object         <strong>Undefined</strong> <a class="anchor-link"
+Object         <strong>Undefined</strong> <a class="anchor-link"
             href="#Undefined"
             title="Permalink to Property&lt;T&gt;.Undefined">#</a>
         </h4>
         <div class="doc">
 
 <pre class="source">
-static final Object Undefined = const _UndefinedValue();
+static const Object Undefined = const _UndefinedValue();
 </pre>
 </div>
 </div>
@@ -71,7 +71,7 @@ static final Object Undefined = const _UndefinedValue();
 
 <pre class="source">
 GlobalId addHandler(AttachableObject obj, Action1&lt;Property&gt; handler){
-  return _AttachableEventHelper.addHandler(obj, this, handler);
+  return obj._addHandler(this, handler);
 }
 </pre>
 </div>
@@ -84,7 +84,7 @@ void <strong>clear</strong>(<a href="../dartlib/AttachableObject.html">Attachabl
 
 <pre class="source">
 void clear(AttachableObject obj){
-  obj.propertyValues._remove(this);
+  obj._remove(this);
 }
 </pre>
 </div>
@@ -116,7 +116,7 @@ Object <strong>getCore</strong>(<a href="../dartlib/AttachableObject.html">Attac
 
 <pre class="source">
 Object getCore(AttachableObject obj, [Func1&lt;AttachableObject, T&gt; ifAbsent = null]){
-  return obj.propertyValues._getValueOrUndefined(this, obj, ifAbsent);
+  return obj._getValueOrUndefined(this, obj, ifAbsent);
 }
 </pre>
 </div>
@@ -129,7 +129,7 @@ bool <strong>isSet</strong>(<a href="../dartlib/AttachableObject.html">Attachabl
 
 <pre class="source">
 bool isSet(AttachableObject obj){
-  return obj.propertyValues._isSet(this);
+  return obj._isSet(this);
 }
 </pre>
 </div>
@@ -142,7 +142,7 @@ bool <strong>removeHandler</strong>(<a href="../dartlib/AttachableObject.html">A
 
 <pre class="source">
 bool removeHandler(AttachableObject obj, GlobalId handlerId){
-  return _AttachableEventHelper.removeHandler(obj, this, handlerId);
+  return obj._removeHandler(this, handlerId);
 }
 </pre>
 </div>
@@ -156,7 +156,7 @@ void <strong>set</strong>(<a href="../dartlib/AttachableObject.html">AttachableO
 <pre class="source">
 void set(AttachableObject obj, T value){
   assert(value !== Undefined);
-  obj.propertyValues._set(this, value);
+  obj._set(this, value);
 }
 </pre>
 </div>

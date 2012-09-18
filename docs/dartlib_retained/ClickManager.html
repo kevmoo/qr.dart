@@ -67,6 +67,32 @@ static GlobalId addHandler(PElement element, Action1 handler) {
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="addMouseMoveHandler">
+<span class="show-code">Code</span>
+<a href="../dartlib/GlobalId.html">GlobalId</a> <strong>addMouseMoveHandler</strong>(<a href="../dartlib_retained/PElement.html">PElement</a> obj, <a href="../dartlib/Action1.html">Action1</a> handler) <a class="anchor-link" href="#addMouseMoveHandler"
+              title="Permalink to ClickManager.addMouseMoveHandler">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static GlobalId addMouseMoveHandler(PElement obj, Action1 handler) {
+  return _mouseMoveEvent.addHandler(obj, handler);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="addMouseOutHandler">
+<span class="show-code">Code</span>
+<a href="../dartlib/GlobalId.html">GlobalId</a> <strong>addMouseOutHandler</strong>(<a href="../dartlib_retained/Stage.html">Stage</a> obj, <a href="../dartlib/Action1.html">Action1</a> handler) <a class="anchor-link" href="#addMouseOutHandler"
+              title="Permalink to ClickManager.addMouseOutHandler">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static GlobalId addMouseOutHandler(Stage obj, Action1 handler) {
+  return _mouseOutEvent.addHandler(obj, handler);
+}
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="getClickable">
 <span class="show-code">Code</span>
 bool <strong>getClickable</strong>(<a href="../dartlib_retained/PElement.html">PElement</a> element) <a class="anchor-link" href="#getClickable"
@@ -90,6 +116,32 @@ bool <strong>removeHandler</strong>(<a href="../dartlib_retained/PElement.html">
 <pre class="source">
 static bool removeHandler(PElement obj, GlobalId handlerId) {
   return _clickEvent.removeHandler(obj, handlerId);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="removeMouseMoveHandler">
+<span class="show-code">Code</span>
+bool <strong>removeMouseMoveHandler</strong>(<a href="../dartlib_retained/PElement.html">PElement</a> obj, <a href="../dartlib/GlobalId.html">GlobalId</a> handlerId) <a class="anchor-link" href="#removeMouseMoveHandler"
+              title="Permalink to ClickManager.removeMouseMoveHandler">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static bool removeMouseMoveHandler(PElement obj, GlobalId handlerId) {
+  return _mouseMoveEvent.removeHandler(obj, handlerId);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="removeMouseOutHandler">
+<span class="show-code">Code</span>
+bool <strong>removeMouseOutHandler</strong>(<a href="../dartlib_retained/Stage.html">Stage</a> obj, <a href="../dartlib/GlobalId.html">GlobalId</a> handlerId) <a class="anchor-link" href="#removeMouseOutHandler"
+              title="Permalink to ClickManager.removeMouseOutHandler">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static bool removeMouseOutHandler(Stage obj, GlobalId handlerId) {
+  return _mouseOutEvent.removeHandler(obj, handlerId);
 }
 </pre>
 </div>

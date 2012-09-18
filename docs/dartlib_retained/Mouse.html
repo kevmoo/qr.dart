@@ -41,9 +41,8 @@ bool <strong>isMouseDirectlyOver</strong>(<a href="../dartlib_retained/PElement.
 <div class="doc">
 
 <pre class="source">
-static bool isMouseDirectlyOver(PElement element){
-  return isMouseDirectlyOverProperty.get(element);
-}
+static bool isMouseDirectlyOver(PElement element) =&gt;
+    isMouseDirectlyOverProperty.get(element);
 </pre>
 </div>
 </div>
@@ -54,9 +53,7 @@ bool <strong>isMouseOver</strong>(<a href="../dartlib_retained/PElement.html">PE
 <div class="doc">
 
 <pre class="source">
-static bool isMouseOver(PElement element){
-  return isMouseOverProperty.get(element);
-}
+static bool isMouseOver(PElement element) =&gt; isMouseOverProperty.get(element);
 </pre>
 </div>
 </div>
@@ -107,7 +104,7 @@ final <a href="../dartlib/Property.html">Property</a>&lt;bool&gt;         <stron
 
 <pre class="source">
 static final Property&lt;bool&gt; isMouseDirectlyOverProperty =
-    const Property&lt;bool&gt;("IsMouseDirectlyOver", false);
+    new Property&lt;bool&gt;("IsMouseDirectlyOver", false);
 </pre>
 </div>
 </div>
@@ -121,7 +118,7 @@ final <a href="../dartlib/Property.html">Property</a>&lt;bool&gt;         <stron
 
 <pre class="source">
 static final Property&lt;bool&gt; isMouseOverProperty =
-    const Property&lt;bool&gt;("IsMouseOver", false);
+    new Property&lt;bool&gt;("IsMouseOver", false);
 </pre>
 </div>
 </div>
