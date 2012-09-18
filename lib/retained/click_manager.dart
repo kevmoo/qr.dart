@@ -1,9 +1,16 @@
+// TODO: rename MouseManager or similiar -> doing more than click now
 class ClickManager {
   static final Property<bool> _isClickableProperty =
       new Property<bool>("isClickable", false);
 
   static final AttachedEvent<ElementMouseEventArgs> _clickEvent =
       new AttachedEvent<ElementMouseEventArgs>('clickEvent');
+
+  static final AttachedEvent _mouseMoveEvent =
+      new AttachedEvent('mouseMove');
+
+  static final AttachedEvent _mouseOutEvent =
+      new AttachedEvent('mouseOut');
 
   final Stage _stage;
 
@@ -42,13 +49,32 @@ class ClickManager {
     return _clickEvent.removeHandler(obj, handlerId);
   }
 
+  static GlobalId addMouseMoveHandler(PElement obj, Action1 handler) {
+    return _mouseMoveEvent.addHandler(obj, handler);
+  }
+
+  static bool removeMouseMoveHandler(PElement obj, GlobalId handlerId) {
+    return _mouseMoveEvent.removeHandler(obj, handlerId);
+  }
+
+  static GlobalId addMouseOutHandler(Stage obj, Action1 handler) {
+    return _mouseOutEvent.addHandler(obj, handler);
+  }
+
+  static bool removeMouseOutHandler(Stage obj, GlobalId handlerId) {
+    return _mouseOutEvent.removeHandler(obj, handlerId);
+  }
+
   void _mouseMove(MouseEvent e) {
-    var foo = _updateMouseLocation(getMouseEventCoordinate(e));
-    print(foo);
+    final items = _updateMouseLocation(getMouseEventCoordinate(e));
+    for(var i = 0; i < items.length; i++) {
+      _mouseMoveEvent.fireEvent(items[i], items.getRange(0, i));
+    }
   }
 
   void _mouseOut(MouseEvent e) {
     _updateMouseLocation(null);
+    _mouseOutEvent.fireEvent(_stage, EventArgs.empty);
   }
 
   void _mouseUp(MouseEvent e) {
