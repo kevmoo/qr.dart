@@ -6,8 +6,8 @@ class ClickManager {
   static final AttachedEvent<ElementMouseEventArgs> _clickEvent =
       new AttachedEvent<ElementMouseEventArgs>('clickEvent');
 
-  static final AttachedEvent _mouseMoveEvent =
-      new AttachedEvent('mouseMove');
+  static final AttachedEvent<ElementMouseEventArgs> _mouseMoveEvent =
+      new AttachedEvent<ElementMouseEventArgs>('mouseMove');
 
   static final AttachedEvent _mouseOutEvent =
       new AttachedEvent('mouseOut');
@@ -67,8 +67,9 @@ class ClickManager {
 
   void _mouseMove(MouseEvent e) {
     final items = _updateMouseLocation(getMouseEventCoordinate(e));
-    for(var i = 0; i < items.length; i++) {
-      _mouseMoveEvent.fireEvent(items[i], items.getRange(0, i));
+    if(items.length > 0) {
+      final args = new ElementMouseEventArgs(items[0], e);
+      items.forEach((e) => _mouseMoveEvent.fireEvent(e, args));
     }
   }
 
