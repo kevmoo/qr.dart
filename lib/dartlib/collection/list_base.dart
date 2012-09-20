@@ -1,4 +1,4 @@
-class ListBase<T> extends Enumerable<T> implements List<T> {
+abstract class ListBase<T> extends Enumerable<T> implements List<T> {
 
   const ListBase() : super();
 
@@ -95,9 +95,7 @@ class ListBase<T> extends Enumerable<T> implements List<T> {
    *
    * Subclasses should return the number of elements in this collection.
    */
-  int get length {
-    throw const NotImplementedException('must be implemented by subclass');
-  }
+  int get length;
 
   /**
    * Throws a [NotImplementedException].
@@ -105,9 +103,7 @@ class ListBase<T> extends Enumerable<T> implements List<T> {
    * Subclasses should return the element at the given [index] in the list
    * or throw an [IndexOutOfRangeException] if [index] is out of bounds.
    */
-  T operator [](int index) {
-    throw const NotImplementedException('must be implemented by subclass');
-  }
+  T operator [](int index);
 
   /**
    * Returns the first index of [element] in the list. Searches the
@@ -180,6 +176,10 @@ class ListBase<T> extends Enumerable<T> implements List<T> {
   //
   // Mutation operations are explicitly not supported in the baseclass
   //
+  void set length(int newLength) {
+    throw const UnsupportedOperationException('Mutation operations are not supported');
+  }
+
   void operator []=(int index, T value) {
     throw const UnsupportedOperationException('Mutation operations are not supported');
   }
@@ -201,6 +201,10 @@ class ListBase<T> extends Enumerable<T> implements List<T> {
   }
 
   void clear() {
+    throw const UnsupportedOperationException('Mutation operations are not supported');
+  }
+
+  T removeAt(int index) {
     throw const UnsupportedOperationException('Mutation operations are not supported');
   }
 
