@@ -6,7 +6,7 @@ Enumerable $(Iterable source) {
   }
 }
 
-class Enumerable<T> implements Iterable<T> {
+class Enumerable<T> implements Collection<T> {
   // TODO:
   // last
   // take
@@ -47,6 +47,8 @@ class Enumerable<T> implements Iterable<T> {
     return false;
   }
 
+  bool isEmpty() => !some((e) => true);
+
   /**
    * Returns true if one element of this collection satisfies the
    * predicate [f]. Returns false otherwise.
@@ -60,6 +62,8 @@ class Enumerable<T> implements Iterable<T> {
     }
     return false;
   }
+
+  int get length => count();
 
   int count([Func1<T, bool> f = null]) {
     if(f == null) {
@@ -90,9 +94,43 @@ class Enumerable<T> implements Iterable<T> {
     return new _FuncEnumerable(this, (s) => new _SelectIterator<T, Object>(s, f));
   }
 
+  /**
+   * Returns a new collection with the elements [: f(e) :]
+   * for each element [:e:] of this collection.
+   *
+   * Note on typing: the return type of f() could be an arbitrary
+   * type and consequently the returned collection's
+   * typeis Collection.
+   */
+  Enumerable map(f(T element)) => select(f);
+
   Enumerable<T> where(Func1<T, bool> f) {
     requireArgumentNotNull(f, 'f');
     return new _FuncEnumerable(this, (s) => new _WhereIterator<T>(s, f));
+  }
+
+  /**
+   * Returns a new collection with the elements of this collection
+   * that satisfy the predicate [f].
+   *
+   * An element satisfies the predicate [f] if [:f(element):]
+   * returns true.
+   */
+  Enumerable<T> filter(bool f(T element)) => where(f);
+
+  /**
+   * Reduce a collection to a single value by iteratively combining each element
+   * of the collection with an existing value using the provided function.
+   * Use [initialValue] as the initial value, and the function [combine] to
+   * create a new value from the previous one and an element.
+   *
+   * Example of calculating the sum of a collection:
+   *
+   *   collection.reduce(0, (prev, element) => prev + element);
+   */
+  Dynamic reduce(Dynamic initialValue,
+                 Dynamic combine(Dynamic previousValue, T element)) {
+    return Collections.reduce(this, initialValue, combine);
   }
 
   Enumerable<T> exclude(Iterable<T> items) {

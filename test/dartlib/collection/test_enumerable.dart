@@ -7,6 +7,7 @@ class TestEnumerable {
       test('count', _testCount);
       test('distinct', _testDistinct);
       test('exclude', _testExclude);
+      test('filter', _testFilter);
       test('first', _testFirst);
       test('forEach', _testForEach);
       test('forEachWithIndex', _testForEachWithIndex);
@@ -14,7 +15,11 @@ class TestEnumerable {
         test('complex', _testComplexGrouping);
         test('simple', _testSimpleGrouping);
       });
+      test('isEmpty', _testIsEmpty);
       test('join', _testJoin);
+      test('length', _testLength);
+      test('map', _testMap);
+      test('reduce', _testReduce);
       test('select', _testSelect);
       test('selectMany', _testSelectMany);
       test('selectNumbers', _testSelectNumbers);
@@ -23,6 +28,17 @@ class TestEnumerable {
       test('toHashSet', _testToHashSet);
       test('where', _testWhere);
     });
+  }
+
+  static void _testIsEmpty() {
+    expect($([]).isEmpty(), isTrue);
+    expect($([1]).isEmpty(), isFalse);
+  }
+
+  static void _testReduce() {
+    final enum = $([0,1,2]);
+    expect(enum.reduce(0, (prev, element) => prev + element), 3);
+    expect(enum.reduce(1, (prev, element) => prev * element), 0);
   }
 
   static void _testFirst() {
@@ -144,13 +160,29 @@ class TestEnumerable {
     expect(count, equals(3));
   }
 
+  static void _testLength() {
+    final e = $([1,2,3,4,5,6]);
+
+    expect(e.length, equals(6));
+  }
+
   static void _testWhere() {
     final e = $([1,2,3,4,5,6]).where((x) => x % 2 == 0);
     expect(e, orderedEquals([2,4,6]));
   }
 
+  static void _testFilter() {
+    final e = $([1,2,3,4,5,6]).filter((x) => x % 2 == 0);
+    expect(e, orderedEquals([2,4,6]));
+  }
+
   static void _testSelect() {
     final e = $([1,2,3,4,5,6]).select((x) => x * 2);
+    expect(e, orderedEquals([2,4,6,8,10,12]));
+  }
+
+  static void _testMap() {
+    final e = $([1,2,3,4,5,6]).map((x) => x * 2);
     expect(e, orderedEquals([2,4,6,8,10,12]));
   }
 

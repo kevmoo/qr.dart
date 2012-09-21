@@ -29,14 +29,14 @@ class TestListBase extends ListBase<int> {
 
   static void run() {
     group('ListBase', (){
-      test('simple', _testSimple);
-      test('map', _testMap);
-      test('indexOf', _testIndexOf);
-      test('some and all', _testSomeAll);
-      test('getRange', _testRange);
       test('filter', _testFilter);
       test('forEach', _testForEach);
+      test('getRange', _testRange);
+      test('indexOf', _testIndexOf);
+      test('map', _testMap);
       test('reduce', _testReduce);
+      test('simple', _testSimple);
+      test('some and all', _testSomeAll);
     });
   }
 

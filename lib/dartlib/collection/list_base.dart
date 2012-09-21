@@ -25,41 +25,6 @@ class ListBase<T> extends Enumerable<T> implements List<T> {
   }
 
   /**
-   * Returns a new collection with the elements [:f(e):]
-   * for each element [e] of this collection.
-   *
-   * Note on typing: the return type of f() could be an arbitrary
-   * type and consequently the returned collection's
-   * typeis Collection.
-   */
-  Collection map(f(T element)) {
-    var list = new List<T>(length);
-    for(var i = 0; i < length; i++) {
-      list[i] = f(this[i]);
-    }
-    return list;
-  }
-
-  /**
-   * Returns a new collection with the elements of this collection
-   * that satisfy the predicate [f].
-   *
-   * An element satisfies the predicate [f] if [:f(element):]
-   * returns true.
-   */
-  Collection<T> filter(bool f(T element)) {
-    var list = new List<T>();
-    for(var i = 0; i < length; i++) {
-      final e = this[i];
-
-      if(f(e)) {
-        list.add(e);
-      }
-    }
-    return list;
-  }
-
-  /**
    * Returns true if every elements of this collection satisify the
    * predicate [f]. Returns false otherwise.
    */
@@ -162,11 +127,6 @@ class ListBase<T> extends Enumerable<T> implements List<T> {
       list.add(this[i]);
     }
     return list;
-  }
-
-  Dynamic reduce(Dynamic initialValue,
-                 Dynamic combine(Dynamic previousValue, T element)) {
-    return Collections.reduce(this, initialValue, combine);
   }
 
   //
