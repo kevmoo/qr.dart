@@ -1017,6 +1017,13 @@ $$.DetailedIllegalArgumentException = {"":
 $$.Enumerable = {"":
  [],
  "super": "Object",
+ isEmpty$0: function(){return this.some$1(new $.Enumerable_isEmpty_anon())!==true;},
+ some$1: function(f){$.requireArgumentNotNull(f,'f');for(var t1=$.iterator(this);t1.hasNext$0()===true;)if(f.call$1(t1.next$0())===true)return true;return false;},
+ get$length: function(){return this.count$0();},
+ count$1: function(f){if(f==null)f=new $.Enumerable_count_anon();for(var t1=$.iterator(this),c=0;t1.hasNext$0()===true;)if(f.call$1(t1.next$0())===true)++c;return c;},
+ count$0: function() {
+  return this.count$1(null)
+},
  join$1: function(separator){var sb=$.StringBuffer_StringBuffer('');for(var t1=$.iterator(this);t1.hasNext$0()===true;){var t2=t1.next$0();if($.gtB($.get$length(sb),0))$.add$1(sb,separator);$.add$1(sb,t2);}return $.toString(sb);},
  join$0: function() {
   return this.join$1(', ')
@@ -1024,7 +1031,8 @@ $$.Enumerable = {"":
  select$1: function(f){$.requireArgumentNotNull(f,'f');return $._FuncEnumerable$(this,new $.Enumerable_select_anon(f));},
  forEach$1: function(f){for(var t1=$.iterator(this);t1.hasNext$0()===true;)f.call$1(t1.next$0());},
  toList$0: function(){return $.ListImplementation_List$from(this);},
- toString$0: function(){return '['+$.S(this.join$0())+']';}
+ toString$0: function(){return '['+$.S(this.join$0())+']';},
+ is$Collection: function() { return true; }
 };
 
 $$._SimpleEnumerable = {"":
@@ -1618,6 +1626,18 @@ $$.AffineTransform_toString_anon = {"":
  [],
  "super": "Closure",
  call$1: function(n){return $.toString(n);}
+};
+
+$$.Enumerable_isEmpty_anon = {"":
+ [],
+ "super": "Closure",
+ call$1: function(e){return true;}
+};
+
+$$.Enumerable_count_anon = {"":
+ [],
+ "super": "Closure",
+ call$1: function(a){return true;}
 };
 
 $$.Enumerable_select_anon = {"":

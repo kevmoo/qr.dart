@@ -151,13 +151,21 @@ $$.NullArgumentException = {"":
 $$.Enumerable = {"":
  [],
  "super": "Object",
+ isEmpty$0: function(){return this.some$1(new $.Enumerable_isEmpty_anon())!==true;},
+ some$1: function(f){$.requireArgumentNotNull(f,'f');for(var t1=$.iterator(this);t1.hasNext$0()===true;)if(f.call$1(t1.next$0())===true)return true;return false;},
+ get$length: function(){return this.count$0();},
+ count$1: function(f){if(f==null)f=new $.Enumerable_count_anon();for(var t1=$.iterator(this),c=0;t1.hasNext$0()===true;)if(f.call$1(t1.next$0())===true)++c;return c;},
+ count$0: function() {
+  return this.count$1(null)
+},
  join$1: function(separator){var sb=$.StringBuffer_StringBuffer('');for(var t1=$.iterator(this);t1.hasNext$0()===true;){var t2=t1.next$0();if($.gtB($.get$length(sb),0))$.add$1(sb,separator);$.add$1(sb,t2);}return $.toString(sb);},
  join$0: function() {
   return this.join$1(', ')
 },
  select$1: function(f){$.requireArgumentNotNull(f,'f');return $._FuncEnumerable$(this,new $.Enumerable_select_anon(f));},
  toList$0: function(){return $.ListImplementation_List$from(this);},
- toString$0: function(){return '['+$.S(this.join$0())+']';}
+ toString$0: function(){return '['+$.S(this.join$0())+']';},
+ is$Collection: function() { return true; }
 };
 
 $$._SimpleEnumerable = {"":
@@ -247,6 +255,18 @@ $$.Maps__emitMap_anon = {"":
  ["result_3", "box_0", "visiting_2"],
  "super": "Closure",
  call$2: function(k,v){var t1=this.box_0;if(t1.first_1!==true)$.add$1(this.result_3,', ');t1.first_1=false;t1=this.result_3;var t2=this.visiting_2;$.Collections__emitObject(k,t1,t2);$.add$1(t1,': ');$.Collections__emitObject(v,t1,t2);}
+};
+
+$$.Enumerable_isEmpty_anon = {"":
+ [],
+ "super": "Closure",
+ call$1: function(e){return true;}
+};
+
+$$.Enumerable_count_anon = {"":
+ [],
+ "super": "Closure",
+ call$1: function(a){return true;}
 };
 
 $$.Enumerable_select_anon = {"":
@@ -407,9 +427,9 @@ $.StringImplementation_join = function(strings,separator){$.checkNull(strings);$
 
 $.add$1 = function(receiver,value){if($.isJsArray(receiver)){$.checkGrowable(receiver,'add');receiver.push(value);return;}return receiver.add$1(value);};
 
-$.contains = function(userAgent,name$){return !(userAgent.indexOf(name$)===-1);};
-
 $.get$length = function(receiver){if(typeof receiver==='string'||$.isJsArray(receiver))return receiver.length;else return receiver.get$length();};
+
+$.contains = function(userAgent,name$){return !(userAgent.indexOf(name$)===-1);};
 
 $.dynamicBind = function(obj,name$,methods,arguments$){var tag=$.getTypeNameOf(obj);var method=methods[tag];if(method==null&&!($._dynamicMetadata0()==null))for(var i=0;i<$._dynamicMetadata0().length;++i){var entry=$._dynamicMetadata0()[i];if(entry.get$_set()[tag]){method=methods[entry.get$_tag()];if(!(method==null))break;}}if(method==null)method=methods['Object'];var proto=Object.getPrototypeOf(obj);if(method==null)method=function () {if (Object.getPrototypeOf(this) === proto) {throw new TypeError(name$ + " is not a function");} else {return Object.prototype[name$].apply(this, arguments);}};if(!proto.hasOwnProperty(name$))$.defineProperty(proto,name$,method);return method.apply(obj, arguments$);};
 

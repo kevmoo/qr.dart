@@ -900,6 +900,13 @@ $$.DetailedIllegalArgumentException = {"":
 $$.Enumerable = {"":
  [],
  "super": "Object",
+ isEmpty$0: function(){return this.some$1(new $.Enumerable_isEmpty_anon())!==true;},
+ some$1: function(f){$.requireArgumentNotNull(f,'f');for(var t1=$.iterator(this);t1.hasNext$0()===true;)if(f.call$1(t1.next$0())===true)return true;return false;},
+ get$length: function(){return this.count$0();},
+ count$1: function(f){if(f==null)f=new $.Enumerable_count_anon();for(var t1=$.iterator(this),c=0;t1.hasNext$0()===true;)if(f.call$1(t1.next$0())===true)++c;return c;},
+ count$0: function() {
+  return this.count$1(null)
+},
  join$1: function(separator){var sb=$.StringBuffer_StringBuffer('');for(var t1=$.iterator(this);t1.hasNext$0()===true;){var t2=t1.next$0();if($.gtB($.get$length(sb),0))$.add$1(sb,separator);$.add$1(sb,t2);}return $.toString(sb);},
  join$0: function() {
   return this.join$1(', ')
@@ -912,7 +919,8 @@ $$.Enumerable = {"":
  forEach$1: function(f){for(var t1=$.iterator(this);t1.hasNext$0()===true;)f.call$1(t1.next$0());},
  toList$0: function(){return $.ListImplementation_List$from(this);},
  toString$0: function(){return '['+$.S(this.join$0())+']';},
- is$Enumerable: true
+ is$Enumerable: true,
+ is$Collection: function() { return true; }
 };
 
 $$._SimpleEnumerable = {"":
@@ -1253,6 +1261,18 @@ $$.AffineTransform_toString_anon = {"":
  [],
  "super": "Closure",
  call$1: function(n){return $.toString(n);}
+};
+
+$$.Enumerable_isEmpty_anon = {"":
+ [],
+ "super": "Closure",
+ call$1: function(e){return true;}
+};
+
+$$.Enumerable_count_anon = {"":
+ [],
+ "super": "Closure",
+ call$1: function(a){return true;}
 };
 
 $$.Enumerable_select_anon = {"":
@@ -1921,11 +1941,11 @@ $.Box$ = function(left,top$,width,height){return new $.Box(left,top$,width,heigh
 
 $._HttpRequestEventsImpl$ = function(_ptr){return new $._HttpRequestEventsImpl(_ptr);};
 
-$.addLast = function(receiver,value){if(!$.isJsArray(receiver))return receiver.addLast$1(value);$.checkGrowable(receiver,'addLast');receiver.push(value);};
-
 $._SelectIterator$ = function(_source,_func){return new $._SelectIterator(_source,_func);};
 
 $._JsDeserializer$ = function(){return new $._JsDeserializer(null);};
+
+$.addLast = function(receiver,value){if(!$.isJsArray(receiver))return receiver.addLast$1(value);$.checkGrowable(receiver,'addLast');receiver.push(value);};
 
 $.ClickManager_setClickable = function(element,value){if(value)$.get$ClickManager__isClickableProperty().set$2(element,true);else $.get$ClickManager__isClickableProperty().clear$1(element);};
 
@@ -1953,11 +1973,11 @@ $._globalState = function(){return $globalState;};
 
 $.substring$2 = function(receiver,startIndex,endIndex){$.checkNum(startIndex);var length$=receiver.length;if(endIndex==null)endIndex=length$;$.checkNum(endIndex);if(startIndex<0)throw $.$$throw($.IndexOutOfRangeException$(startIndex));if($.gtB(startIndex,endIndex))throw $.$$throw($.IndexOutOfRangeException$(startIndex));if($.gtB(endIndex,length$))throw $.$$throw($.IndexOutOfRangeException$(endIndex));return $.substringUnchecked(receiver,startIndex,endIndex);};
 
-$.removeLast = function(receiver){if($.isJsArray(receiver)){$.checkGrowable(receiver,'removeLast');if($.get$length(receiver)===0)throw $.$$throw($.IndexOutOfRangeException$(-1));return receiver.pop();}return receiver.removeLast$0();};
-
 $._globalState0 = function(val){$globalState = val;};
 
 $.window = function(){return window;};
+
+$.removeLast = function(receiver){if($.isJsArray(receiver)){$.checkGrowable(receiver,'removeLast');if($.get$length(receiver)===0)throw $.$$throw($.IndexOutOfRangeException$(-1));return receiver.pop();}return receiver.removeLast$0();};
 
 $.HashMapImplementation$ = function(){var t1=new $.HashMapImplementation(null,null,null,null,null);t1.HashMapImplementation$0();return t1;};
 
