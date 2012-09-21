@@ -20,9 +20,9 @@ class NoneHashMap<K, V> implements Map<K, V> {
     return t.Item2;
   }
 
-  Collection<K> getKeys() => $(_values).select((t) => t.Item1).toList();
+  Collection<K> getKeys() => $(_values).map((t) => t.Item1);
 
-  Collection<V> getValues() => $(_values).select((t) => t.Item2).toList();
+  Collection<V> getValues() => $(_values).map((t) => t.Item2);
 
   int get length => _values.length;
 

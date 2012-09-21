@@ -89,11 +89,6 @@ class Enumerable<T> implements Collection<T> {
     return sb.toString();
   }
 
-  Enumerable select(Func1<T, Object> f) {
-    requireArgumentNotNull(f, 'f');
-    return new _FuncEnumerable(this, (s) => new _SelectIterator<T, Object>(s, f));
-  }
-
   /**
    * Returns a new collection with the elements [: f(e) :]
    * for each element [:e:] of this collection.
@@ -102,21 +97,15 @@ class Enumerable<T> implements Collection<T> {
    * type and consequently the returned collection's
    * typeis Collection.
    */
-  Enumerable map(f(T element)) => select(f);
+  Enumerable map(Func1<T, Object> f) {
+    requireArgumentNotNull(f, 'f');
+    return new _FuncEnumerable(this, (s) => new _SelectIterator<T, Object>(s, f));
+  }
 
-  Enumerable<T> where(Func1<T, bool> f) {
+  Enumerable<T> filter(Func1<T, bool> f) {
     requireArgumentNotNull(f, 'f');
     return new _FuncEnumerable(this, (s) => new _WhereIterator<T>(s, f));
   }
-
-  /**
-   * Returns a new collection with the elements of this collection
-   * that satisfy the predicate [f].
-   *
-   * An element satisfies the predicate [f] if [:f(element):]
-   * returns true.
-   */
-  Enumerable<T> filter(bool f(T element)) => where(f);
 
   /**
    * Reduce a collection to a single value by iteratively combining each element
@@ -235,7 +224,7 @@ class Enumerable<T> implements Collection<T> {
     if(f == null) {
       return new HashSet.from(this);
     } else {
-      return new HashSet.from(this.select(f));
+      return new HashSet.from(this.map(f));
     }
   }
 

@@ -20,13 +20,11 @@ class TestEnumerable {
       test('length', _testLength);
       test('map', _testMap);
       test('reduce', _testReduce);
-      test('select', _testSelect);
       test('selectMany', _testSelectMany);
       test('selectNumbers', _testSelectNumbers);
       test('single', _testSingle);
       test('toHashMap', _testToHashMap);
       test('toHashSet', _testToHashSet);
-      test('where', _testWhere);
     });
   }
 
@@ -166,19 +164,9 @@ class TestEnumerable {
     expect(e.length, equals(6));
   }
 
-  static void _testWhere() {
-    final e = $([1,2,3,4,5,6]).where((x) => x % 2 == 0);
-    expect(e, orderedEquals([2,4,6]));
-  }
-
   static void _testFilter() {
     final e = $([1,2,3,4,5,6]).filter((x) => x % 2 == 0);
     expect(e, orderedEquals([2,4,6]));
-  }
-
-  static void _testSelect() {
-    final e = $([1,2,3,4,5,6]).select((x) => x * 2);
-    expect(e, orderedEquals([2,4,6,8,10,12]));
   }
 
   static void _testMap() {

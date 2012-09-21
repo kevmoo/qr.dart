@@ -41,7 +41,7 @@ class RetainedUtil {
   static List<Coordinate> getCorners(PElement element) {
     final rect = new Box(0,0,element.width, element.height);
     final points = rect.getCorners();
-    return $(points).select((p) {
+    return $(points).map((p) {
       return transformPointLocalToGlobal(element, p);
     }).toList();
   }
