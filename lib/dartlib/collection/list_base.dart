@@ -1,4 +1,4 @@
-abstract class ListBase<T> extends Enumerable<T> implements List<T> {
+class ListBase<T> extends Enumerable<T> implements List<T> {
 
   const ListBase() : super();
 
@@ -91,19 +91,15 @@ abstract class ListBase<T> extends Enumerable<T> implements List<T> {
   bool isEmpty() => length == 0;
 
   /**
-   * Throws a [NotImplementedException].
-   *
-   * Subclasses should return the number of elements in this collection.
+   * Returns the number of elements in this collection.
    */
-  int get length;
+  abstract int get length;
 
   /**
-   * Throws a [NotImplementedException].
-   *
-   * Subclasses should return the element at the given [index] in the list
-   * or throw an [IndexOutOfRangeException] if [index] is out of bounds.
+   * Returns the element at the given [index] in the list or throws
+   * an [IndexOutOfRangeException] if [index] is out of bounds.
    */
-  T operator [](int index);
+  abstract T operator [](int index);
 
   /**
    * Returns the first index of [element] in the list. Searches the
