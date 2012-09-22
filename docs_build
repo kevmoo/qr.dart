@@ -1,8 +1,5 @@
 #!/bin/bash
-echo 'Excluding test library because of package issues'
-echo 'See http://code.google.com/p/dart/issues/detail?id=4634'
-echo
-libs=`ls lib/*.dart | grep -v test.dart` # excluding test because of package issues
+libs=`ls lib/*.dart`
 cmd="dartdoc --omit-generation-time --verbose $libs"
 echo $cmd
 exec $cmd
