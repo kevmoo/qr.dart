@@ -162,7 +162,7 @@ $$.Enumerable = {"":
  join$0: function() {
   return this.join$1(', ')
 },
- select$1: function(f){$.requireArgumentNotNull(f,'f');return $._FuncEnumerable$(this,new $.Enumerable_select_anon(f));},
+ map$1: function(f){$.requireArgumentNotNull(f,'f');return $._FuncEnumerable$(this,new $.Enumerable_map_anon(f));},
  toList$0: function(){return $.ListImplementation_List$from(this);},
  toString$0: function(){return '['+$.S(this.join$0())+']';},
  is$Collection: function() { return true; }
@@ -205,7 +205,7 @@ $$.AffineTransform = {"":
  setToRotation$3: function(theta,x,y){var cos=$.cos(theta);var sin=$.sin(theta);return this.setTransform$6(cos,sin,-sin,cos,x-x*cos+y*sin,y-x*sin-y*cos);},
  setTransform$6: function(m00,m10,m01,m11,m02,m12){this._m00=m00;this._m10=m10;this._m01=m01;this._m11=m11;this._m02=m02;this._m12=m12;return this;},
  operator$eq$1: function(other){return !(other==null)&&$.eqB(this._m00,other.get$_m00())&&$.eqB(this._m01,other.get$_m01())&&$.eqB(this._m02,other.get$_m02())&&$.eqB(this._m10,other.get$_m10())&&$.eqB(this._m11,other.get$_m11())&&$.eqB(this._m12,other.get$_m12());},
- toString$0: function(){return $.Strings_join($.$$([this.get$translateX(),this.get$translateY(),this.get$scaleX(),this.get$scaleY(),this.get$shearX(),this.get$shearY()]).select$1(new $.AffineTransform_toString_anon()).toList$0(),', ');}
+ toString$0: function(){return $.Strings_join($.map($.$$([this.get$translateX(),this.get$translateY(),this.get$scaleX(),this.get$scaleY(),this.get$shearX(),this.get$shearY()]),new $.AffineTransform_toString_anon()).toList$0(),', ');}
 };
 
 $$.AffineTransform_toString_anon = {"":
@@ -269,7 +269,7 @@ $$.Enumerable_count_anon = {"":
  call$1: function(a){return true;}
 };
 
-$$.Enumerable_select_anon = {"":
+$$.Enumerable_map_anon = {"":
  ["f_0"],
  "super": "Closure",
  call$1: function(s){return $._SelectIterator$(s,this.f_0);}
@@ -333,7 +333,13 @@ $.IllegalJSRegExpException$ = function(_pattern,_errmsg){return new $.IllegalJSR
 
 $.ListIterator$ = function(list){return new $.ListIterator(0,list);};
 
+$.isEmpty = function(receiver){if(typeof receiver==='string'||$.isJsArray(receiver))return receiver.length === 0;return receiver.isEmpty$0();};
+
 $.StackOverflowException$ = function(){return new $.StackOverflowException();};
+
+$.map = function(receiver,f){if(!$.isJsArray(receiver))return receiver.map$1(f);else return $.Collections_map(receiver,[],f);};
+
+$.Collections_map = function(source,destination,f){for(var t1=$.iterator(source);t1.hasNext$0()===true;)destination.push(f.call$1(t1.next$0()));return destination;};
 
 $.toStringForNativeObject = function(obj){return 'Instance of '+$.getTypeNameOf(obj);};
 
@@ -343,6 +349,8 @@ $.constructorNameFallback = function(object){if(object==null)return 'Null';var c
 
 $.ListImplementation_List$from = function(other){var result=$.ListImplementation_List(null);for(var t1=$.iterator(other);t1.hasNext$0()===true;)result.push(t1.next$0());return result;};
 
+$._Collections_map = function(source,destination,f){for(var t1=$.iterator(source);t1.hasNext$0()===true;)destination.push(f.call$1(t1.next$0()));return destination;};
+
 $.buildDynamicMetadata = function(inputTable){var result=[];for(var i=0;i<inputTable.length;++i){var tag=inputTable[i][0];var array=inputTable[i];var tags=array[1];var set={};var tagNames=tags.split('|');for(var j=0,index=1;j<tagNames.length;++j){$.propertySet(set,tagNames[j],true);index=j;array=tagNames;}result.push($.MetaInfo$(tag,tags,set));}return result;};
 
 $.ltB = function(a,b){return typeof a==='number'&&typeof b==='number'?a < b:$.lt$slow(a,b)===true;};
@@ -351,9 +359,9 @@ $.unwrapException = function(ex){if("dartException" in ex)return ex.dartExceptio
 
 $.checkNumbers = function(a,b){if(typeof a==='number')if(typeof b==='number')return true;else{$.checkNull(b);throw $.$$throw($.IllegalArgumentException$(b));}return false;};
 
-$.stringJoinUnchecked = function(array,separator){return array.join(separator);};
-
 $.ge$slow = function(a,b){if($.checkNumbers(a,b))return a >= b;return a.operator$ge$1(b);};
+
+$.stringJoinUnchecked = function(array,separator){return array.join(separator);};
 
 $._convertDartToNative_PrepareForStructuredClone = function(value){var values=[];var copies=[];var t1=new $._convertDartToNative_PrepareForStructuredClone_findSlot(copies,values);var t2=new $._convertDartToNative_PrepareForStructuredClone_readSlot(copies);var t3=new $._convertDartToNative_PrepareForStructuredClone_writeSlot(copies);var t4=new $._convertDartToNative_PrepareForStructuredClone_cleanupSlots();var copy=new $._convertDartToNative_PrepareForStructuredClone_walk(t3,t1,t2).call$1(value);t4.call$0();return copy;};
 
@@ -379,7 +387,7 @@ $._Device_isOpera = function(){return $.contains$2($._Device_userAgent(),'Opera'
 
 $.mul$slow = function(a,b){if($.checkNumbers(a,b))return a * b;return a.operator$mul$1(b);};
 
-$.getFunctionForTypeNameOf = function(){if(!(typeof(navigator)==='object'))return $.typeNameInChrome;var userAgent=navigator.userAgent;if($.contains(userAgent,'Chrome')||$.contains(userAgent,'DumpRenderTree'))return $.typeNameInChrome;else if($.contains(userAgent,'Firefox'))return $.typeNameInFirefox;else if($.contains(userAgent,'MSIE'))return $.typeNameInIE;else if($.contains(userAgent,'Opera'))return $.typeNameInOpera;else if($.contains(userAgent,'Safari'))return $.typeNameInSafari;else return $.constructorNameFallback;};
+$.Primitives_objectHashCode = function(object){var hash=object.$identityHash;if(hash==null){hash=$.add($.Primitives_hashCodeSeed,1);$.Primitives_hashCodeSeed=hash;object.$identityHash = hash;}return hash;};
 
 $.gt = function(a,b){return typeof a==='number'&&typeof b==='number'?a > b:$.gt$slow(a,b);};
 
@@ -392,8 +400,6 @@ $.charCodeAt = function(receiver,index){if(typeof receiver==='string'){if(index<
 $.Collections__emitObject = function(o,result,visiting){if(typeof o==='object'&&o!==null&&(o.constructor===Array||o.is$Collection()))if($.Collections__containsRef(visiting,o))$.add$1(result,typeof o==='object'&&o!==null&&(o.constructor===Array||o.is$List())?'[...]':'{...}');else $.Collections__emitCollection(o,result,visiting);else if(typeof o==='object'&&o!==null&&o.is$Map())if($.Collections__containsRef(visiting,o))$.add$1(result,'{...}');else $.Maps__emitMap(o,result,visiting);else $.add$1(result,o);};
 
 $.getTypeNameOf = function(obj){if($._getTypeNameOf==null)$._getTypeNameOf=$.getFunctionForTypeNameOf();return $._getTypeNameOf.call$1(obj);};
-
-$.isEmpty = function(receiver){if(typeof receiver==='string'||$.isJsArray(receiver))return receiver.length === 0;return receiver.isEmpty$0();};
 
 $.requireArgumentNotNull = function(argument,argName){if(argument==null)throw $.$$throw($.NullArgumentException$(argName));};
 
@@ -408,6 +414,8 @@ $.contains$1 = function(receiver,other){return $.contains$2(receiver,other,0);};
 $.mul = function(a,b){return typeof a==='number'&&typeof b==='number'?a * b:$.mul$slow(a,b);};
 
 $._browserPrefix = function(){if($._cachedBrowserPrefix==null)if($._Device_isFirefox()===true)$._cachedBrowserPrefix='-moz-';else if($._Device_isIE()===true)$._cachedBrowserPrefix='-ms-';else if($._Device_isOpera()===true)$._cachedBrowserPrefix='-o-';else $._cachedBrowserPrefix='-webkit-';return $._cachedBrowserPrefix;};
+
+$.getFunctionForTypeNameOf = function(){if(!(typeof(navigator)==='object'))return $.typeNameInChrome;var userAgent=navigator.userAgent;if($.contains(userAgent,'Chrome')||$.contains(userAgent,'DumpRenderTree'))return $.typeNameInChrome;else if($.contains(userAgent,'Firefox'))return $.typeNameInFirefox;else if($.contains(userAgent,'MSIE'))return $.typeNameInIE;else if($.contains(userAgent,'Opera'))return $.typeNameInOpera;else if($.contains(userAgent,'Safari'))return $.typeNameInSafari;else return $.constructorNameFallback;};
 
 $.substringUnchecked = function(receiver,startIndex,endIndex){return receiver.substring(startIndex, endIndex);};
 
@@ -449,6 +457,8 @@ $._dynamicMetadata = function(table){$dynamicMetadata = table;};
 
 $._dynamicMetadata0 = function(){if(typeof($dynamicMetadata)==='undefined'){var t1=[];$._dynamicMetadata(t1);}return $dynamicMetadata;};
 
+$.toString = function(value){if(typeof value == "object" && value !== null)if($.isJsArray(value))return $.Collections_collectionToString(value);else return value.toString$0();if(value === 0 && (1 / value) < 0)return '-0.0';if(value==null)return 'null';if(typeof value == "function")return 'Closure';return String(value);};
+
 $.add$slow = function(a,b){if($.checkNumbers(a,b))return a + b;return a.operator$add$1(b);};
 
 $.IllegalArgumentException$ = function(arg){return new $.IllegalArgumentException(arg);};
@@ -463,11 +473,9 @@ $.invokeClosure = function(closure,isolate,numberOfArguments,arg1,arg2){if($.eqB
 
 $.checkNull = function(object){if(object==null)throw $.$$throw($.NullPointerException$(null,$.CTC0));return object;};
 
-$.toString = function(value){if(typeof value == "object" && value !== null)if($.isJsArray(value))return $.Collections_collectionToString(value);else return value.toString$0();if(value === 0 && (1 / value) < 0)return '-0.0';if(value==null)return 'null';if(typeof value == "function")return 'Closure';return String(value);};
+$.MetaInfo$ = function(_tag,_tags,_set){return new $.MetaInfo(_tag,_tags,_set);};
 
 $.indexSet = function(a,index,value){if(a.constructor === Array && !a.immutable$list){var key=index >>> 0;if(key===index&&key<a.length){a[key] = value;return;}}$.indexSet$slow(a,index,value);};
-
-$.MetaInfo$ = function(_tag,_tags,_set){return new $.MetaInfo(_tag,_tags,_set);};
 
 $.index$slow = function(a,index){if(typeof a==='string'||$.isJsArray(a)){if(!(typeof index==='number'&&Math.floor(index) === index)){if(!(typeof index==='number'))throw $.$$throw($.IllegalArgumentException$(index));if(!($.truncate(index)===index))throw $.$$throw($.IllegalArgumentException$(index));}if($.ltB(index,0)||$.geB(index,$.get$length(a)))throw $.$$throw($.IndexOutOfRangeException$(index));return a[index];}return a.operator$index$1(index);};
 
@@ -479,13 +487,13 @@ $.ioore = function(index){throw $.$$throw($.IndexOutOfRangeException$(index));};
 
 $._SelectIterator$ = function(_source,_func){return new $._SelectIterator(_source,_func);};
 
+$.add = function(a,b){return typeof a==='number'&&typeof b==='number'?a + b:$.add$slow(a,b);};
+
 $.$$throw = function(ex){if(ex==null)ex=$.CTC;var jsError=new Error();jsError.name = ex;jsError.description = ex;jsError.dartException = ex;jsError.toString = $.toStringWrapper.call$0;throw jsError;};
 
 $.stringReplaceAllUnchecked = function(receiver,from,to){if(from==='')if(receiver==='')return to;else{var result=$.StringBuffer_StringBuffer('');var length$=receiver.length;$.add$1(result,to);for(var i=0;i<length$;++i){if(i<0||i>=length$)throw $.ioore(i);$.add$1(result,receiver[i]);$.add$1(result,to);}return $.toString(result);}else return $.stringReplaceJS(receiver,$.regExpMakeNative($.JSSyntaxRegExp$(from.replace($.regExpMakeNative($.CTC13,true), "\\$&"),false,false),true),to);};
 
 $.dynamicSetMetadata = function(inputTable){var t1=$.buildDynamicMetadata(inputTable);$._dynamicMetadata(t1);};
-
-$.add = function(a,b){return typeof a==='number'&&typeof b==='number'?a + b:$.add$slow(a,b);};
 
 $.Maps__emitMap = function(m,result,visiting){var t1={};$.add$1(visiting,m);$.add$1(result,'{');t1.first_1=true;m.forEach$1(new $.Maps__emitMap_anon(result,t1,visiting));$.add$1(result,'}');$.removeLast(visiting);};
 
@@ -505,9 +513,9 @@ $.Collections_collectionToString = function(c){var result=$.StringBuffer_StringB
 
 $.AffineTransform_AffineTransform$fromRotate = function(theta,x,y){return $.AffineTransform$(1,0,0,1,0,0).setToRotation$3(theta,x,y);};
 
-$.indexOf$2 = function(receiver,element,start){if($.isJsArray(receiver))return $.Arrays_indexOf(receiver,element,start,receiver.length);else{$.checkNull(element);if(start<0)return -1;return receiver.indexOf(element, start);}return receiver.indexOf$2(element,start);};
-
 $.checkMutable = function(list,reason){if(!!(list.immutable$list))throw $.$$throw($.UnsupportedOperationException$(reason));};
+
+$.indexOf$2 = function(receiver,element,start){if($.isJsArray(receiver))return $.Arrays_indexOf(receiver,element,start,receiver.length);else{$.checkNull(element);if(start<0)return -1;return receiver.indexOf(element, start);}return receiver.indexOf$2(element,start);};
 
 $.checkGrowable = function(list,reason){if(!!(list.fixed$length))throw $.$$throw($.UnsupportedOperationException$(reason));};
 
@@ -528,6 +536,8 @@ $.substring$2 = function(receiver,startIndex,endIndex){$.checkNum(startIndex);va
 $.StringBufferImpl$ = function(content$){var t1=new $.StringBufferImpl(null,null);t1.StringBufferImpl$1(content$);return t1;};
 
 $.window = function(){return window;};
+
+$.hashCodeForNativeObject = function(object){return $.Primitives_objectHashCode(object);};
 
 $.substring$1 = function(receiver,startIndex){if(!(typeof receiver==='string'))return receiver.substring$1(startIndex);return $.substring$2(receiver,startIndex,null);};
 
@@ -628,6 +638,7 @@ $.CTC11 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot r
 $._cachedBrowserPrefix = null;
 $.Primitives_DOLLAR_CHAR_VALUE = 36;
 $.PI = 3.141592653589793;
+$.Primitives_hashCodeSeed = 0;
 $._getTypeNameOf = null;
 var $ = null;
 Isolate.$finishClasses($$);
@@ -680,7 +691,8 @@ $.$defineNativeClass = function(cls, fields, methods) {
  is$_ArrayBufferImpl: function() { return false; },
  is$Collection: function() { return false; },
  is$FileList: function() { return false; },
- is$ImageData: function() { return false; }
+ is$ImageData: function() { return false; },
+ hashCode$0: function() { return $.hashCodeForNativeObject(this); }
 });
 
 $.$defineNativeClass('HTMLAnchorElement', [], {
@@ -721,6 +733,7 @@ $.$defineNativeClass('CSSRuleList', ["length?"], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -746,6 +759,7 @@ $.$defineNativeClass('CSSValueList', ["length?"], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -776,6 +790,7 @@ $.$defineNativeClass('ClientRectList', ["length?"], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -784,10 +799,6 @@ $.$defineNativeClass('ClientRectList', ["length?"], {
 });
 
 _ConsoleImpl = (typeof console == 'undefined' ? {} : console);
-$.$defineNativeClass('HTMLContentElement', [], {
- select$1: function(arg0) { return this.select.call$1(arg0); }
-});
-
 $.$defineNativeClass('DOMException', [], {
  toString$0: function(){return this.toString();}
 });
@@ -797,6 +808,7 @@ $.$defineNativeClass('DOMMimeTypeArray', ["length?"], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -809,6 +821,7 @@ $.$defineNativeClass('DOMPluginArray', ["length?"], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -828,6 +841,7 @@ $.$defineNativeClass('DOMStringList', ["length?"], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -873,6 +887,7 @@ $.$defineNativeClass('EntryArray', ["length?"], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -885,6 +900,7 @@ $.$defineNativeClass('EntryArraySync', ["length?"], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -922,6 +938,7 @@ $.$defineNativeClass('FileList', ["length?"], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$_FileListImpl: function() { return true; },
@@ -942,6 +959,7 @@ $.$defineNativeClass('Float32Array', ["length?"], {
  operator$indexSet$2: function(index,value){this[index] = value},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -955,6 +973,7 @@ $.$defineNativeClass('Float64Array', ["length?"], {
  operator$indexSet$2: function(index,value){this[index] = value},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -971,6 +990,7 @@ $.$defineNativeClass('GamepadList', ["length?"], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -983,6 +1003,7 @@ $.$defineNativeClass('HTMLAllCollection', ["length?"], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -995,6 +1016,7 @@ $.$defineNativeClass('HTMLCollection', ["length?"], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -1040,6 +1062,7 @@ $.$defineNativeClass('Int16Array', ["length?"], {
  operator$indexSet$2: function(index,value){this[index] = value},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -1053,6 +1076,7 @@ $.$defineNativeClass('Int32Array', ["length?"], {
  operator$indexSet$2: function(index,value){this[index] = value},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -1066,6 +1090,7 @@ $.$defineNativeClass('Int8Array', ["length?"], {
  operator$indexSet$2: function(index,value){this[index] = value},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -1083,6 +1108,7 @@ $.$defineNativeClass('MediaList', ["length?"], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -1095,6 +1121,7 @@ $.$defineNativeClass('MediaStreamList', ["length?"], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -1111,6 +1138,7 @@ $.$defineNativeClass('NamedNodeMap', ["length?"], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -1150,6 +1178,11 @@ $.$defineNativeClass('NodeList', ["length?"], {
     return Object.prototype.operator$indexSet$2.call(this, index, value);
   }
 },
+ map$1: function(f){  if (Object.getPrototypeOf(this).hasOwnProperty('map$1')) {
+  {return $._Collections_map(this,[],f);}  } else {
+    return Object.prototype.map$1.call(this, f);
+  }
+},
  isEmpty$0: function(){  if (Object.getPrototypeOf(this).hasOwnProperty('isEmpty$0')) {
   {return $.eq($.get$length(this),0);}  } else {
     return Object.prototype.isEmpty$0.call(this);
@@ -1175,6 +1208,7 @@ $.$defineNativeClass('RadioNodeList', [], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
@@ -1203,6 +1237,7 @@ $.$defineNativeClass('SVGAnimatedLengthList', [], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -1215,6 +1250,7 @@ $.$defineNativeClass('SVGAnimatedNumberList', [], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -1227,6 +1263,7 @@ $.$defineNativeClass('SVGAnimatedTransformList', [], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -1251,6 +1288,7 @@ $.$defineNativeClass('SVGElementInstanceList', ["length?"], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -1283,6 +1321,7 @@ $.$defineNativeClass('SVGLengthList', [], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  clear$0: function(){return this.clear();},
@@ -1300,6 +1339,7 @@ $.$defineNativeClass('SVGNumberList', [], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  clear$0: function(){return this.clear();},
@@ -1317,6 +1357,7 @@ $.$defineNativeClass('SVGPathSegList', [], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  clear$0: function(){return this.clear();},
@@ -1346,6 +1387,7 @@ $.$defineNativeClass('SVGStringList', [], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  clear$0: function(){return this.clear();},
@@ -1367,6 +1409,7 @@ $.$defineNativeClass('SVGTransformList', [], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  clear$0: function(){return this.clear();},
@@ -1391,6 +1434,7 @@ $.$defineNativeClass('SourceBufferList', ["length?"], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -1403,6 +1447,7 @@ $.$defineNativeClass('SpeechGrammarList', ["length?"], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -1415,6 +1460,7 @@ $.$defineNativeClass('SpeechInputResultList', ["length?"], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -1430,6 +1476,7 @@ $.$defineNativeClass('SpeechRecognitionResultList', ["length?"], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -1457,6 +1504,7 @@ $.$defineNativeClass('StyleSheetList', ["length?"], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -1472,6 +1520,7 @@ $.$defineNativeClass('TextTrackCueList', ["length?"], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -1484,6 +1533,7 @@ $.$defineNativeClass('TextTrackList', ["length?"], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -1499,6 +1549,7 @@ $.$defineNativeClass('TouchList', ["length?"], {
  operator$indexSet$2: function(index,value){throw $.$$throw($.UnsupportedOperationException$('Cannot assign element of immutable List.'));},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -1511,6 +1562,7 @@ $.$defineNativeClass('Uint16Array', ["length?"], {
  operator$indexSet$2: function(index,value){this[index] = value},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -1524,6 +1576,7 @@ $.$defineNativeClass('Uint32Array', ["length?"], {
  operator$indexSet$2: function(index,value){this[index] = value},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -1537,6 +1590,7 @@ $.$defineNativeClass('Uint8Array', ["length?"], {
  operator$indexSet$2: function(index,value){this[index] = value},
  iterator$0: function(){return $._FixedSizeListIterator$(this);},
  add$1: function(value){throw $.$$throw($.CTC1);},
+ map$1: function(f){return $._Collections_map(this,[],f);},
  isEmpty$0: function(){return $.eq($.get$length(this),0);},
  removeLast$0: function(){throw $.$$throw($.CTC11);},
  is$JavaScriptIndexingBehavior: function() { return true; },
@@ -1578,7 +1632,7 @@ $.$defineNativeClass('XPathException', [], {
  toString$0: function(){return this.toString();}
 });
 
-// 118 dynamic classes.
+// 117 dynamic classes.
 // 270 classes
 // 23 !leaf
 (function(){

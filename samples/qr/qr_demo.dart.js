@@ -293,6 +293,7 @@ $$.Object = {"":
  [],
  "super": "",
  operator$eq$1: function(other){return this===other;},
+ hashCode$0: function(){return $.Primitives_objectHashCode(this);},
  toString$0: function(){return $.Primitives_objectToString(this);}
 };
 
@@ -1141,8 +1142,7 @@ $$.Enumerable = {"":
  join$0: function() {
   return this.join$1(', ')
 },
- where$1: function(f){$.requireArgumentNotNull(f,'f');return $._FuncEnumerable$(this,new $.Enumerable_where_anon(f));},
- filter$1: function(f){return this.where$1(f);},
+ filter$1: function(f){$.requireArgumentNotNull(f,'f');return $._FuncEnumerable$(this,new $.Enumerable_filter_anon(f));},
  first$1: function(f){if(f==null)f=new $.Enumerable_first_anon();var iter=$._WhereIterator$(this.iterator$0(),f);if(iter.hasNext$0()!==true)throw $.$$throw($.CTC28);return iter.next$0();},
  get$first: function() { return new $.BoundClosure1(this, 'first$1'); },
  forEach$1: function(f){for(var t1=$.iterator(this);t1.hasNext$0()===true;)f.call$1(t1.next$0());},
@@ -1649,7 +1649,7 @@ $$.FilteredElementList__filtered_anon = {"":
  call$1: function(n){return typeof n==='object'&&n!==null&&n.is$Element();}
 };
 
-$$.Enumerable_where_anon = {"":
+$$.Enumerable_filter_anon = {"":
  ["f_0"],
  "super": "Closure",
  call$1: function(s){return $._WhereIterator$(s,this.f_0);}
@@ -2085,6 +2085,8 @@ $.typeNameInOpera = function(obj){var name$=$.constructorNameFallback(obj);if(na
 
 $.xor = function(a,b){if($.checkNumbers(a,b))return (a ^ b) >>> 0;return a.operator$xor$1(b);};
 
+$.hashCodeForNativeObject = function(object){return $.Primitives_objectHashCode(object);};
+
 $._window = function(){return typeof window != "undefined"?window:null;};
 
 $.substring$1 = function(receiver,startIndex){if(!(typeof receiver==='string'))return receiver.substring$1(startIndex);return $.substring$2(receiver,startIndex,null);};
@@ -2184,6 +2186,8 @@ $.ge$slow = function(a,b){if($.checkNumbers(a,b))return a >= b;return a.operator
 $.getFunctionForTypeNameOf = function(){if(!(typeof(navigator)==='object'))return $.typeNameInChrome;var userAgent=navigator.userAgent;if($.contains(userAgent,'Chrome')||$.contains(userAgent,'DumpRenderTree'))return $.typeNameInChrome;else if($.contains(userAgent,'Firefox'))return $.typeNameInFirefox;else if($.contains(userAgent,'MSIE'))return $.typeNameInIE;else if($.contains(userAgent,'Opera'))return $.typeNameInOpera;else if($.contains(userAgent,'Safari'))return $.typeNameInSafari;else return $.constructorNameFallback;};
 
 $.indexSet$slow = function(a,index,value){if($.isJsArray(a)){if(!(typeof index==='number'&&Math.floor(index) === index))throw $.$$throw($.IllegalArgumentException$(index));if(index<0||$.geB(index,$.get$length(a)))throw $.$$throw($.IndexOutOfRangeException$(index));$.checkMutable(a,'indexed set');a[index] = value;return;}a.operator$indexSet$2(index,value);};
+
+$.Primitives_objectHashCode = function(object){var hash=object.$identityHash;if(hash==null){hash=$.add($.Primitives_hashCodeSeed,1);$.Primitives_hashCodeSeed=hash;object.$identityHash = hash;}return hash;};
 
 $.gt = function(a,b){return typeof a==='number'&&typeof b==='number'?a > b:$.gt$slow(a,b);};
 
@@ -2791,6 +2795,7 @@ $._SPAWNED_SIGNAL = 'spawned';
 $.QrMaskPattern_PATTERN110 = 6;
 $.QrMaskPattern_PATTERN010 = 2;
 $.QrMath__logTable = null;
+$.Primitives_hashCodeSeed = 0;
 $.QrErrorCorrectLevel_L = 1;
 $.QrErrorCorrectLevel_Q = 3;
 $.QrErrorCorrectLevel_H = 2;
@@ -2858,7 +2863,8 @@ $.$defineNativeClass = function(cls, fields, methods) {
  is$_ArrayBufferImpl: function() { return false; },
  is$Map: function() { return false; },
  is$FileList: function() { return false; },
- is$ImageData: function() { return false; }
+ is$ImageData: function() { return false; },
+ hashCode$0: function() { return $.hashCodeForNativeObject(this); }
 });
 
 $.$defineNativeClass('AbstractWorker', [], {
