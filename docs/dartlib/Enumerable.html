@@ -38,7 +38,7 @@
 <span class="type-box"><span class="icon-class"></span><a href="../dartlib/ListBase.html">ListBase&lt;T&gt;</a></span>, <span class="type-box"><span class="icon-class"></span><a href="../dartlib/NumberEnumerable.html">NumberEnumerable&lt;T&gt;</a></span></p>
 <h3>Implements</h3>
 <p>
-<span class="type-box"><span class="icon-class"></span><a href="../dart_core/Iterable.html">Iterable&lt;E&gt;</a></span></p>
+<span class="type-box"><span class="icon-class"></span><a href="../dart_core/Collection.html">Collection&lt;E&gt;</a></span></p>
 <h3>Constructors</h3>
 <div class="method"><h4 id="Enumerable.fromIterable">
 <span class="show-code">Code</span>
@@ -173,6 +173,20 @@ Enumerable&lt;T&gt; exclude(Iterable&lt;T&gt; items) {
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="filter">
+<span class="show-code">Code</span>
+<a href="../dartlib/Enumerable.html">Enumerable</a>&lt;<a href="../dartlib/Enumerable.html">T</a>&gt; <strong>filter</strong>(<a href="../dartlib/Func1.html">Func1</a> f) <a class="anchor-link" href="#filter"
+              title="Permalink to Enumerable&lt;T&gt;.filter">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Enumerable&lt;T&gt; filter(Func1&lt;T, bool&gt; f) {
+  requireArgumentNotNull(f, 'f');
+  return new _FuncEnumerable(this, (s) =&gt; new _WhereIterator&lt;T&gt;(s, f));
+}
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="first">
 <span class="show-code">Code</span>
 <a href="../dartlib/Enumerable.html">T</a> <strong>first</strong>([<a href="../dartlib/Func1.html">Func1</a> f = null]) <a class="anchor-link" href="#first"
@@ -257,6 +271,17 @@ Grouping&lt;Dynamic, T&gt; group([Func1&lt;T, Object&gt; keyFunc = null]) {
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="isEmpty">
+<span class="show-code">Code</span>
+bool <strong>isEmpty</strong>() <a class="anchor-link" href="#isEmpty"
+              title="Permalink to Enumerable&lt;T&gt;.isEmpty">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool isEmpty() =&gt; !some((e) =&gt; true);
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="iterator">
 <span class="show-code">Code</span>
 Iterator <strong>iterator</strong>() <a class="anchor-link" href="#iterator"
@@ -288,16 +313,52 @@ String join([String separator = ', ']) {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="select">
+<div class="method"><h4 id="length">
 <span class="show-code">Code</span>
-<a href="../dartlib/Enumerable.html">Enumerable</a> <strong>select</strong>(<a href="../dartlib/Func1.html">Func1</a> f) <a class="anchor-link" href="#select"
-              title="Permalink to Enumerable&lt;T&gt;.select">#</a></h4>
+int <strong>get length</strong>() <a class="anchor-link" href="#length"
+              title="Permalink to Enumerable&lt;T&gt;.get length">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-Enumerable select(Func1&lt;T, Object&gt; f) {
+int get length =&gt; count();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="map">
+<span class="show-code">Code</span>
+<a href="../dartlib/Enumerable.html">Enumerable</a> <strong>map</strong>(<a href="../dartlib/Func1.html">Func1</a> f) <a class="anchor-link" href="#map"
+              title="Permalink to Enumerable&lt;T&gt;.map">#</a></h4>
+<div class="doc">
+<p>Returns a new collection with the elements <code> f(e) </code>
+for each element <code>e</code> of this collection.</p>
+<p>Note on typing: the return type of f() could be an arbitrary
+type and consequently the returned collection's
+typeis Collection.</p>
+<pre class="source">
+Enumerable map(Func1&lt;T, Object&gt; f) {
   requireArgumentNotNull(f, 'f');
   return new _FuncEnumerable(this, (s) =&gt; new _SelectIterator&lt;T, Object&gt;(s, f));
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="reduce">
+<span class="show-code">Code</span>
+<strong>reduce</strong>(initialValue, combine(previousValue, <a href="../dartlib/Enumerable.html">T</a> element)) <a class="anchor-link" href="#reduce"
+              title="Permalink to Enumerable&lt;T&gt;.reduce">#</a></h4>
+<div class="doc">
+<p>Reduce a collection to a single value by iteratively combining each element
+of the collection with an existing value using the provided function.
+Use 
+<span class="param">initialValue</span> as the initial value, and the function 
+<span class="param">combine</span> to
+create a new value from the previous one and an element.</p>
+<p>Example of calculating the sum of a collection:</p>
+<p>  collection.reduce(0, (prev, element) => prev + element);</p>
+<pre class="source">
+Dynamic reduce(Dynamic initialValue,
+               Dynamic combine(Dynamic previousValue, T element)) {
+  return Collections.reduce(this, initialValue, combine);
 }
 </pre>
 </div>
@@ -445,7 +506,7 @@ HashSet toHashSet([Func1&lt;T, Hashable&gt; f]) {
   if(f == null) {
     return new HashSet.from(this);
   } else {
-    return new HashSet.from(this.select(f));
+    return new HashSet.from(this.map(f));
   }
 }
 </pre>
@@ -481,20 +542,6 @@ String <strong>toString</strong>() <a class="anchor-link" href="#toString"
 
 <pre class="source">
 String toString() =&gt; "[${this.join()}]";
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="where">
-<span class="show-code">Code</span>
-<a href="../dartlib/Enumerable.html">Enumerable</a>&lt;<a href="../dartlib/Enumerable.html">T</a>&gt; <strong>where</strong>(<a href="../dartlib/Func1.html">Func1</a> f) <a class="anchor-link" href="#where"
-              title="Permalink to Enumerable&lt;T&gt;.where">#</a></h4>
-<div class="doc">
-
-<pre class="source">
-Enumerable&lt;T&gt; where(Func1&lt;T, bool&gt; f) {
-  requireArgumentNotNull(f, 'f');
-  return new _FuncEnumerable(this, (s) =&gt; new _WhereIterator&lt;T&gt;(s, f));
-}
 </pre>
 </div>
 </div>

@@ -44,7 +44,7 @@ List&lt;<a href="../dartlib/Coordinate.html">Coordinate</a>&gt; <strong>getCorne
 static List&lt;Coordinate&gt; getCorners(PElement element) {
   final rect = new Box(0,0,element.width, element.height);
   final points = rect.getCorners();
-  return $(points).select((p) {
+  return $(points).map((p) {
     return transformPointLocalToGlobal(element, p);
   }).toList();
 }

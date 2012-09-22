@@ -127,32 +127,6 @@ bool every(bool f(T element)) {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="filter">
-<span class="show-code">Code</span>
-Collection&lt;<a href="../dartlib/ListBase.html">T</a>&gt; <strong>filter</strong>(bool f(<a href="../dartlib/ListBase.html">T</a> element)) <a class="anchor-link" href="#filter"
-              title="Permalink to ListBase&lt;T&gt;.filter">#</a></h4>
-<div class="doc">
-<p>Returns a new collection with the elements of this collection
-that satisfy the predicate 
-<span class="param">f</span>.</p>
-<p>An element satisfies the predicate 
-<span class="param">f</span> if <code>f(element)</code>
-returns true.</p>
-<pre class="source">
-Collection&lt;T&gt; filter(bool f(T element)) {
-  var list = new List&lt;T&gt;();
-  for(var i = 0; i &lt; length; i++) {
-    final e = this[i];
-
-    if(f(e)) {
-      list.add(e);
-    }
-  }
-  return list;
-}
-</pre>
-</div>
-</div>
 <div class="method"><h4 id="forEach">
 <span class="show-code">Code</span>
 void <strong>forEach</strong>(void f(<a href="../dartlib/ListBase.html">T</a> element)) <a class="anchor-link" href="#forEach"
@@ -304,38 +278,27 @@ int lastIndexOf(T element, [int start=0]) {
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="length=">
+<span class="show-code">Code</span>
+void <strong>set length</strong>(int newLength) <a class="anchor-link" href="#length="
+              title="Permalink to ListBase&lt;T&gt;.set length">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void set length(int newLength) {
+  throw const UnsupportedOperationException('Mutation operations are not supported');
+}
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="length">
 <span class="show-code">Code</span>
 int <strong>get length</strong>() <a class="anchor-link" href="#length"
               title="Permalink to ListBase&lt;T&gt;.get length">#</a></h4>
 <div class="doc">
-<p>Throws a <code>NotImplementedException</code>.</p>
-<p>Subclasses should return the number of elements in this collection.</p>
+<p>Returns the number of elements in this collection.</p>
 <pre class="source">
-int get length {
-  throw const NotImplementedException('must be implemented by subclass');
-}
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="map">
-<span class="show-code">Code</span>
-Collection <strong>map</strong>(f(<a href="../dartlib/ListBase.html">T</a> element)) <a class="anchor-link" href="#map"
-              title="Permalink to ListBase&lt;T&gt;.map">#</a></h4>
-<div class="doc">
-<p>Returns a new collection with the elements <code>f(e)</code>
-for each element <code>e</code> of this collection.</p>
-<p>Note on typing: the return type of f() could be an arbitrary
-type and consequently the returned collection's
-typeis Collection.</p>
-<pre class="source">
-Collection map(f(T element)) {
-  var list = new List&lt;T&gt;(length);
-  for(var i = 0; i &lt; length; i++) {
-    list[i] = f(this[i]);
-  }
-  return list;
-}
+abstract int get length;
 </pre>
 </div>
 </div>
@@ -357,28 +320,24 @@ void operator []=(int index, T value) {
 <a href="../dartlib/ListBase.html">T</a> <strong>operator []</strong>(int index) <a class="anchor-link" href="#operator []"
               title="Permalink to ListBase&lt;T&gt;.operator []">#</a></h4>
 <div class="doc">
-<p>Throws a <code>NotImplementedException</code>.</p>
-<p>Subclasses should return the element at the given 
-<span class="param">index</span> in the list
-or throw an <code>IndexOutOfRangeException</code> if 
+<p>Returns the element at the given 
+<span class="param">index</span> in the list or throws
+an <code>IndexOutOfRangeException</code> if 
 <span class="param">index</span> is out of bounds.</p>
 <pre class="source">
-T operator [](int index) {
-  throw const NotImplementedException('must be implemented by subclass');
-}
+abstract T operator [](int index);
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="reduce">
+<div class="method"><h4 id="removeAt">
 <span class="show-code">Code</span>
-<strong>reduce</strong>(initialValue, combine(previousValue, <a href="../dartlib/ListBase.html">T</a> element)) <a class="anchor-link" href="#reduce"
-              title="Permalink to ListBase&lt;T&gt;.reduce">#</a></h4>
+<a href="../dartlib/ListBase.html">T</a> <strong>removeAt</strong>(int index) <a class="anchor-link" href="#removeAt"
+              title="Permalink to ListBase&lt;T&gt;.removeAt">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-Dynamic reduce(Dynamic initialValue,
-               Dynamic combine(Dynamic previousValue, T element)) {
-  return Collections.reduce(this, initialValue, combine);
+T removeAt(int index) {
+  throw const UnsupportedOperationException('Mutation operations are not supported');
 }
 </pre>
 </div>

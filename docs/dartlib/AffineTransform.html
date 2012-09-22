@@ -339,7 +339,7 @@ String <strong>toString</strong>() <a class="anchor-link" href="#toString"
 <pre class="source">
 String toString() {
   final values = [translateX, translateY, scaleX, scaleY, shearX, shearY];
-  return Strings.join($(values).select((n) =&gt; n.toString()).toList(), ', ');
+  return Strings.join($(values).map((n) =&gt; n.toString()).toList(), ', ');
 }
 </pre>
 </div>
