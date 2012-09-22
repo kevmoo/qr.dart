@@ -1,22 +1,18 @@
 class Grouping<K extends Hashable, V> {
-  final NoneHashMap<K, List<V>> _values;
+  final HashMap<K, List<V>> _values;
 
-  const Grouping._internal(this._values);
-
-  factory Grouping(Iterable<V> source, [Func1<V, K> keyFunc = null]) {
+  Grouping(Iterable<V> source, [Func1<V, K> keyFunc = null]) :
+    // DARTBUG: http://code.google.com/p/dart/issues/detail?id=5350
+    _values = new HashMap<K, List<V>>() {
     if(keyFunc == null) {
       keyFunc = (v) => v;
     }
 
-    var map = new NoneHashMap<K, List<V>>();
-
     for (final V value in source) {
-      K key = keyFunc(value);
-      List<V> values = map.putIfAbsent(key, () => new List<V>());
+      final K key = keyFunc(value);
+      final values = _values.putIfAbsent(key, () => new List<V>());
       values.add(value);
     }
-
-    return new Grouping._internal(map);
   }
 
   /**

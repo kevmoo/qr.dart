@@ -29,7 +29,6 @@
 #source('dartlib/collection/list_base.dart');
 #source('dartlib/collection/read_only_collection.dart');
 #source('dartlib/collection/grouping.dart');
-#source('dartlib/collection/none_hash_map.dart');
 #source('dartlib/collection/array_2d.dart');
 
 #source('dartlib/events/event.dart');
