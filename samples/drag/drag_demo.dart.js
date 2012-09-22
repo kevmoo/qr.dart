@@ -1165,9 +1165,8 @@ $$.AffineTransform = {"":
 };
 
 $$.Attachable = {"":
- ["name?", "_lib3_id?"],
- "super": "Object",
- hashCode$0: function(){return $.hashCode(this._lib3_id);}
+ ["name?"],
+ "super": "Object"
 };
 
 $$.AttachableObject = {"":
@@ -1182,7 +1181,7 @@ $$.AttachableObject = {"":
 };
 
 $$.Property = {"":
- ["defaultValue", "name", "_lib3_id"],
+ ["defaultValue", "name"],
  "super": "Attachable",
  get$2: function(obj,ifAbsent){var coreValue=this.getCore$2(obj,ifAbsent);if(!(coreValue===$.CTC23))return coreValue;else return this.defaultValue;},
  get$1: function(obj) {
@@ -2196,7 +2195,7 @@ $.Date_Date$now = function(){return $.DateImplementation$now();};
 
 $.ge$slow = function(a,b){if($.checkNumbers(a,b))return a >= b;return a.operator$ge$1(b);};
 
-$.Property$ = function(name$,defaultValue){return new $.Property(defaultValue,name$,$.GlobalId_GlobalId());};
+$.Property$ = function(name$,defaultValue){return new $.Property(defaultValue,name$);};
 
 $._Collections_forEach = function(iterable,f){for(var t1=$.iterator(iterable);t1.hasNext$0()===true;)f.call$1(t1.next$0());};
 

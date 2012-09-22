@@ -758,7 +758,7 @@ $$._NativeJsSendPort = {"":
  "super": "_BaseSendPort",
  send$2: function(message,replyTo){$._waitForPendingPorts([message,replyTo],new $._NativeJsSendPort_send_anon(this,message,replyTo));},
  operator$eq$1: function(other){return typeof other==='object'&&other!==null&&!!other.is$_NativeJsSendPort&&$.eqB(this._receivePort,other._receivePort);},
- hashCode$0: function(){return this._receivePort.get$_lib3_id();},
+ hashCode$0: function(){return this._receivePort.get$_id();},
  is$_NativeJsSendPort: true,
  is$SendPort: true
 };
@@ -774,14 +774,14 @@ $$._WorkerSendPort = {"":
 };
 
 $$._ReceivePortImpl = {"":
- ["_lib3_id?", "_lib3_callback?"],
+ ["_id?", "_lib3_callback?"],
  "super": "Object",
  _lib3_callback$0: function() { return this._lib3_callback.call$0(); },
  _lib3_callback$2: function(arg0, arg1) { return this._lib3_callback.call$2(arg0, arg1); },
  receive$1: function(onMessage){this._lib3_callback=onMessage;},
- close$0: function(){this._lib3_callback=null;$._globalState().get$currentContext().unregister$1(this._lib3_id);},
+ close$0: function(){this._lib3_callback=null;$._globalState().get$currentContext().unregister$1(this._id);},
  toSendPort$0: function(){return $._NativeJsSendPort$(this,$._globalState().get$currentContext().get$id());},
- _ReceivePortImpl$0: function(){$._globalState().get$currentContext().register$2(this._lib3_id,this);}
+ _ReceivePortImpl$0: function(){$._globalState().get$currentContext().register$2(this._id,this);}
 };
 
 $$._PendingSendPortFinder = {"":
@@ -798,7 +798,7 @@ $$._JsSerializer = {"":
  ["_nextFreeRefId", "_visited"],
  "super": "_Serializer",
  visitSendPort$1: function(x){if(typeof x==='object'&&x!==null&&!!x.is$_NativeJsSendPort)return this.visitNativeJsSendPort$1(x);if(typeof x==='object'&&x!==null&&!!x.is$_WorkerSendPort)return this.visitWorkerSendPort$1(x);if(typeof x==='object'&&x!==null&&!!x.is$_BufferingSendPort)return this.visitBufferingSendPort$1(x);throw $.$$throw('Illegal underlying port '+$.S(x));},
- visitNativeJsSendPort$1: function(port){return ['sendport',$._globalState().get$currentManagerId(),port._isolateId,port._receivePort.get$_lib3_id()];},
+ visitNativeJsSendPort$1: function(port){return ['sendport',$._globalState().get$currentManagerId(),port._isolateId,port._receivePort.get$_id()];},
  visitWorkerSendPort$1: function(port){return ['sendport',port._workerId,port._isolateId,port._receivePortId];},
  visitBufferingSendPort$1: function(port){var t1=port._port;if(!(t1==null))return this.visitSendPort$1(t1);else throw $.$$throw('internal error: must call _waitForPendingPorts to ensure all ports are resolved at this point.');},
  _JsSerializer$0: function(){this._visited=$._JsVisitedMap$();}
@@ -1028,9 +1028,8 @@ $$.AffineTransform = {"":
 };
 
 $$.Attachable = {"":
- ["name?", "_id?"],
- "super": "Object",
- hashCode$0: function(){return $.hashCode(this._id);}
+ ["name?"],
+ "super": "Object"
 };
 
 $$.AttachableObject = {"":
@@ -1044,7 +1043,7 @@ $$.AttachableObject = {"":
 };
 
 $$.Property = {"":
- ["defaultValue", "name", "_id"],
+ ["defaultValue", "name"],
  "super": "Attachable",
  get$2: function(obj,ifAbsent){var coreValue=this.getCore$2(obj,ifAbsent);if(!(coreValue===$.CTC18))return coreValue;else return this.defaultValue;},
  get$1: function(obj) {
@@ -1850,7 +1849,7 @@ $.PCanvas$ = function(w,h,enableCache){return new $.PCanvas($.ListImplementation
 
 $.ge$slow = function(a,b){if($.checkNumbers(a,b))return a >= b;return a.operator$ge$1(b);};
 
-$.Property$ = function(name$,defaultValue){return new $.Property(defaultValue,name$,$.GlobalId_GlobalId());};
+$.Property$ = function(name$,defaultValue){return new $.Property(defaultValue,name$);};
 
 $.getFunctionForTypeNameOf = function(){if(!(typeof(navigator)==='object'))return $.typeNameInChrome;var userAgent=navigator.userAgent;if($.contains(userAgent,'Chrome')||$.contains(userAgent,'DumpRenderTree'))return $.typeNameInChrome;else if($.contains(userAgent,'Firefox'))return $.typeNameInFirefox;else if($.contains(userAgent,'MSIE'))return $.typeNameInIE;else if($.contains(userAgent,'Opera'))return $.typeNameInOpera;else if($.contains(userAgent,'Safari'))return $.typeNameInSafari;else return $.constructorNameFallback;};
 

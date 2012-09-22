@@ -765,7 +765,7 @@ $$._NativeJsSendPort = {"":
  "super": "_BaseSendPort",
  send$2: function(message,replyTo){$._waitForPendingPorts([message,replyTo],new $._NativeJsSendPort_send_anon(this,message,replyTo));},
  operator$eq$1: function(other){return typeof other==='object'&&other!==null&&!!other.is$_NativeJsSendPort&&$.eqB(this._receivePort,other._receivePort);},
- hashCode$0: function(){return this._receivePort.get$_lib4_id();},
+ hashCode$0: function(){return this._receivePort.get$_id();},
  is$_NativeJsSendPort: true,
  is$SendPort: true
 };
@@ -781,14 +781,14 @@ $$._WorkerSendPort = {"":
 };
 
 $$._ReceivePortImpl = {"":
- ["_lib4_id?", "_lib4_callback?"],
+ ["_id?", "_lib4_callback?"],
  "super": "Object",
  _lib4_callback$0: function() { return this._lib4_callback.call$0(); },
  _lib4_callback$2: function(arg0, arg1) { return this._lib4_callback.call$2(arg0, arg1); },
  receive$1: function(onMessage){this._lib4_callback=onMessage;},
- close$0: function(){this._lib4_callback=null;$._globalState().get$currentContext().unregister$1(this._lib4_id);},
+ close$0: function(){this._lib4_callback=null;$._globalState().get$currentContext().unregister$1(this._id);},
  toSendPort$0: function(){return $._NativeJsSendPort$(this,$._globalState().get$currentContext().get$id());},
- _ReceivePortImpl$0: function(){$._globalState().get$currentContext().register$2(this._lib4_id,this);}
+ _ReceivePortImpl$0: function(){$._globalState().get$currentContext().register$2(this._id,this);}
 };
 
 $$._PendingSendPortFinder = {"":
@@ -805,7 +805,7 @@ $$._JsSerializer = {"":
  ["_nextFreeRefId", "_visited"],
  "super": "_Serializer",
  visitSendPort$1: function(x){if(typeof x==='object'&&x!==null&&!!x.is$_NativeJsSendPort)return this.visitNativeJsSendPort$1(x);if(typeof x==='object'&&x!==null&&!!x.is$_WorkerSendPort)return this.visitWorkerSendPort$1(x);if(typeof x==='object'&&x!==null&&!!x.is$_BufferingSendPort)return this.visitBufferingSendPort$1(x);throw $.$$throw('Illegal underlying port '+$.S(x));},
- visitNativeJsSendPort$1: function(port){return ['sendport',$._globalState().get$currentManagerId(),port._isolateId,port._receivePort.get$_lib4_id()];},
+ visitNativeJsSendPort$1: function(port){return ['sendport',$._globalState().get$currentManagerId(),port._isolateId,port._receivePort.get$_id()];},
  visitWorkerSendPort$1: function(port){return ['sendport',port._workerId,port._isolateId,port._receivePortId];},
  visitBufferingSendPort$1: function(port){var t1=port._port;if(!(t1==null))return this.visitSendPort$1(t1);else throw $.$$throw('internal error: must call _waitForPendingPorts to ensure all ports are resolved at this point.');},
  _JsSerializer$0: function(){this._visited=$._JsVisitedMap$();}
@@ -1053,9 +1053,8 @@ $$.AffineTransform = {"":
 };
 
 $$.Attachable = {"":
- ["name?", "_id?"],
- "super": "Object",
- hashCode$0: function(){return $.hashCode(this._id);}
+ ["name?"],
+ "super": "Object"
 };
 
 $$.AttachableObject = {"":
@@ -1072,7 +1071,7 @@ $$.AttachableObject = {"":
 };
 
 $$.Property = {"":
- ["defaultValue", "name", "_id"],
+ ["defaultValue", "name"],
  "super": "Attachable",
  get$2: function(obj,ifAbsent){var coreValue=this.getCore$2(obj,ifAbsent);if(!(coreValue===$.CTC16))return coreValue;else return this.defaultValue;},
  get$1: function(obj) {
@@ -1091,7 +1090,7 @@ $$._UndefinedValue = {"":
 };
 
 $$.AttachedEvent = {"":
- ["name", "_id"],
+ ["name"],
  "super": "Attachable",
  addHandler$2: function(obj,handler){return obj._addHandler$2(this,handler);},
  fireEvent$2: function(obj,args){obj._fireEvent$2(this,args);}
@@ -1812,7 +1811,7 @@ $.RuntimeError$ = function(message){return new $.RuntimeError(message);};
 
 $.Enumerable_Enumerable$fromIterable = function(source){$.requireArgumentNotNull(source,'source');return $._SimpleEnumerable$(source);};
 
-$.AttachedEvent$ = function(name$){return new $.AttachedEvent(name$,$.GlobalId_GlobalId());};
+$.AttachedEvent$ = function(name$){return new $.AttachedEvent(name$);};
 
 $._PendingSendPortFinder$ = function(){var t1=$._MessageTraverserVisitedMap$();t1=new $._PendingSendPortFinder([],t1);t1._PendingSendPortFinder$0();return t1;};
 
@@ -1944,7 +1943,7 @@ $.PCanvas$ = function(w,h,enableCache){return new $.PCanvas($.ListImplementation
 
 $.ge$slow = function(a,b){if($.checkNumbers(a,b))return a >= b;return a.operator$ge$1(b);};
 
-$.Property$ = function(name$,defaultValue){return new $.Property(defaultValue,name$,$.GlobalId_GlobalId());};
+$.Property$ = function(name$,defaultValue){return new $.Property(defaultValue,name$);};
 
 $.getFunctionForTypeNameOf = function(){if(!(typeof(navigator)==='object'))return $.typeNameInChrome;var userAgent=navigator.userAgent;if($.contains(userAgent,'Chrome')||$.contains(userAgent,'DumpRenderTree'))return $.typeNameInChrome;else if($.contains(userAgent,'Firefox'))return $.typeNameInFirefox;else if($.contains(userAgent,'MSIE'))return $.typeNameInIE;else if($.contains(userAgent,'Opera'))return $.typeNameInOpera;else if($.contains(userAgent,'Safari'))return $.typeNameInSafari;else return $.constructorNameFallback;};
 
@@ -1976,11 +1975,11 @@ $.iterator = function(receiver){if($.isJsArray(receiver))return $.ListIterator$(
 
 $.toInt = function(receiver){if(!(typeof receiver==='number'))return receiver.toInt$0();if($.isNaN(receiver)===true)throw $.$$throw($.FormatException$('NaN'));if($.isInfinite(receiver)===true)throw $.$$throw($.FormatException$('Infinity'));var truncated=$.truncate(receiver);return truncated == -0.0?0:truncated;};
 
-$.GlobalId$_internal = function(value){return new $.GlobalId(value,$.Util_getHashCode([value]));};
-
 $._ElementRectImpl$ = function(element){return new $._ElementRectImpl($._SimpleClientRect$(element.get$$$dom_clientLeft(),element.get$$$dom_clientTop(),element.get$$$dom_clientWidth(),element.get$$$dom_clientHeight()),$._SimpleClientRect$(element.get$$$dom_offsetLeft(),element.get$$$dom_offsetTop(),element.get$$$dom_offsetWidth(),element.get$$$dom_offsetHeight()),$._SimpleClientRect$(element.get$$$dom_scrollLeft(),element.get$$$dom_scrollTop(),element.get$$$dom_scrollWidth(),element.get$$$dom_scrollHeight()),element.$dom_getBoundingClientRect$0(),element.$dom_getClientRects$0());};
 
 $.UnsupportedOperationException$ = function(_message){return new $.UnsupportedOperationException(_message);};
+
+$.GlobalId$_internal = function(value){return new $.GlobalId(value,$.Util_getHashCode([value]));};
 
 $.Box$ = function(left,top$,width,height){return new $.Box(left,top$,width,height);};
 
@@ -1997,13 +1996,11 @@ $._JsDeserializer$ = function(){return new $._JsDeserializer(null);};
 
 $.addLast = function(receiver,value){if(!$.isJsArray(receiver))return receiver.addLast$1(value);$.checkGrowable(receiver,'addLast');receiver.push(value);};
 
-$.map = function(receiver,f){if(!$.isJsArray(receiver))return receiver.map$1(f);else return $.Collections_map(receiver,[],f);};
-
 $.ClickManager_setClickable = function(element,value){if(value)$.get$ClickManager__isClickableProperty().set$2(element,true);else $.get$ClickManager__isClickableProperty().clear$1(element);};
 
 $.dynamicSetMetadata = function(inputTable){var t1=$.buildDynamicMetadata(inputTable);$._dynamicMetadata(t1);};
 
-$.Collections_map = function(source,destination,f){for(var t1=$.iterator(source);t1.hasNext$0()===true;)destination.push(f.call$1(t1.next$0()));return destination;};
+$.map = function(receiver,f){if(!$.isJsArray(receiver))return receiver.map$1(f);else return $.Collections_map(receiver,[],f);};
 
 $.typeNameInFirefox = function(obj){var name$=$.constructorNameFallback(obj);if(name$==='Window')return 'DOMWindow';if(name$==='Document')return 'HTMLDocument';if(name$==='XMLDocument')return 'Document';if(name$==='WorkerMessageEvent')return 'MessageEvent';if(name$==='DragEvent')return 'MouseEvent';if(name$==='DataTransfer')return 'Clipboard';if(name$==='FormData')return 'DOMFormData';return name$;};
 
@@ -2012,6 +2009,8 @@ $.ExceptionImplementation$ = function(message){return new $.ExceptionImplementat
 $._WorkerEventsImpl$ = function(_ptr){return new $._WorkerEventsImpl(_ptr);};
 
 $.sub$slow = function(a,b){if($.checkNumbers(a,b))return a - b;return a.operator$sub$1(b);};
+
+$.Collections_map = function(source,destination,f){for(var t1=$.iterator(source);t1.hasNext$0()===true;)destination.push(f.call$1(t1.next$0()));return destination;};
 
 $._maybeScheduleMeasurementFrame = function(){if($._measurementScheduler==null)$._measurementScheduler=$._MeasurementScheduler__MeasurementScheduler$best($._completeMeasurementFutures);$._measurementScheduler.maybeSchedule$0();};
 
@@ -2047,13 +2046,13 @@ $.HashMapImplementation__nextProbe = function(currentProbe,numberOfProbes,length
 
 $.Completer_Completer = function(){return $.CompleterImpl$();};
 
-$.isEmpty = function(receiver){if(typeof receiver==='string'||$.isJsArray(receiver))return receiver.length === 0;return receiver.isEmpty$0();};
-
 $.isInfinite = function(receiver){if(!(typeof receiver==='number'))return receiver.isInfinite$0();return receiver == Infinity||receiver == -Infinity;};
 
 $.CompleterImpl$ = function(){return new $.CompleterImpl($.FutureImpl$());};
 
 $.DivElement_DivElement = function(){return $._Elements_createDivElement();};
+
+$.isEmpty = function(receiver){if(typeof receiver==='string'||$.isJsArray(receiver))return receiver.length === 0;return receiver.isEmpty$0();};
 
 $._WindowEventsImpl$ = function(_ptr){return new $._WindowEventsImpl(_ptr);};
 
@@ -2105,9 +2104,9 @@ $._SimpleClientRect$ = function(left,top$,width,height){return new $._SimpleClie
 
 $.requireArgumentNotNull = function(argument,argName){if(argument==null)throw $.$$throw($.NullArgumentException$(argName));};
 
-$.toString = function(value){if(typeof value == "object" && value !== null)if($.isJsArray(value))return $.Collections_collectionToString(value);else return value.toString$0();if(value === 0 && (1 / value) < 0)return '-0.0';if(value==null)return 'null';if(typeof value == "function")return 'Closure';return String(value);};
-
 $.Stage$ = function(_canvas,_element){var t1=new $.Stage($.EventHandle$(),_canvas,_element,null,$.HashMapImplementation$(),$.HashMapImplementation$(),false);t1.Stage$2(_canvas,_element);return t1;};
+
+$.toString = function(value){if(typeof value == "object" && value !== null)if($.isJsArray(value))return $.Collections_collectionToString(value);else return value.toString$0();if(value === 0 && (1 / value) < 0)return '-0.0';if(value==null)return 'null';if(typeof value == "function")return 'Closure';return String(value);};
 
 $._FuncEnumerable$ = function(_source,_func){return new $._FuncEnumerable(_source,_func);};
 
