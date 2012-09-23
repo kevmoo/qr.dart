@@ -85,6 +85,7 @@ class ListBase<T> extends Enumerable<T> implements List<T> {
    * list from index [start] to 0. Returns -1 if [element] is not found.
    */
   int lastIndexOf(T element, [int start=0]) {
+    // DARTBUG: having trouble testing this in the compiler. :-/
     var lastIndex = -1;
     for (var i = start; i < length; i++) {
       if(this[i] == element) {
