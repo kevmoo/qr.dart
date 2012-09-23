@@ -1,9 +1,11 @@
 class SendPortValue<TInput, TOutput> extends FutureValue<TInput, TOutput> {
   final SendPort _sendPort;
+  final Func1<TInput, Dynamic> _inputSerializer;
+  final Func1<Dynamic, TOutput> _outputDeserializer;
   Completer<TOutput> _completer;
   Future<TOutput> _innerFuture;
 
-  SendPortValue(this._sendPort);
+  SendPortValue(this._sendPort, [this._inputSerializer, this._outputDeserializer]);
 
   Future<TOutput> getFuture(TInput value) {
     assert(_completer == null);
@@ -11,7 +13,12 @@ class SendPortValue<TInput, TOutput> extends FutureValue<TInput, TOutput> {
 
     _completer = new Completer<TOutput>();
 
-    _innerFuture = _sendPort.call(value);
+    if(_inputSerializer == null) {
+      _innerFuture = _sendPort.call(value);
+    } else {
+      var serializedValue = _inputSerializer(value);
+      _innerFuture = _sendPort.call(serializedValue);
+    }
     // I don't think this is working yet in isolates
     // _future.handleException(_futureException);
     // DARTBUG: http://dartbug.com/3734
@@ -41,9 +48,11 @@ class SendPortValue<TInput, TOutput> extends FutureValue<TInput, TOutput> {
     }
   }
 
-  void _complete(TOutput value) {
+  void _complete(Dynamic rawValue) {
     final c = _completer;
     _completer = null;
+
+    final value = _deserializer(rawValue);
     c.complete(value);
   }
 
@@ -51,5 +60,13 @@ class SendPortValue<TInput, TOutput> extends FutureValue<TInput, TOutput> {
     final c = _completer;
     _completer = null;
     c.completeException(exception);
+  }
+
+  TOutput _deserializer(Dynamic input) {
+    if(_outputDeserializer == null) {
+      return input;
+    } else {
+      return _outputDeserializer(input);
+    }
   }
 }

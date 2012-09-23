@@ -4,12 +4,13 @@ class FutureValueResult<TOutput> {
 
   final TOutput value;
   final exception;
+  final Func1<Dynamic, TOutput> _outputSerializer;
 
-  FutureValueResult(this.value) :
+  FutureValueResult(this.value, [this._outputSerializer]) :
     exception = null;
 
   FutureValueResult.fromException(this.exception)
-  : value = null {
+  : value = null, _outputSerializer = null {
     requireArgumentNotNull(exception, 'exception');
   }
 
@@ -29,8 +30,9 @@ class FutureValueResult<TOutput> {
 
   Map toMap() {
     // would love to use consts here, but the analyzer doesn't like it
-    // http://code.google.com/p/dart/issues/detail?id=4207
-    return { 'value' : value, 'exception' : exception };
+    // DARTBUG: http://code.google.com/p/dart/issues/detail?id=4207
+    final rawValue = _serialize(value);
+    return { 'value' : rawValue, 'exception' : exception };
   }
 
   static bool isMyMap(Map value) {
@@ -41,5 +43,13 @@ class FutureValueResult<TOutput> {
   bool operator ==(FutureValueResult other) {
     return other !== null &&
         other.value == value && other.exception == exception;
+  }
+
+  Dynamic _serialize(TOutput output) {
+    if(_outputSerializer == null) {
+      return output;
+    } else {
+      return _outputSerializer(output);
+    }
   }
 }
