@@ -14,7 +14,7 @@ class SendPortValue<TInput, TOutput> extends FutureValue<TInput, TOutput> {
     _innerFuture = _sendPort.call(value);
     // I don't think this is working yet in isolates
     // _future.handleException(_futureException);
-    // http://dartbug.com/3734
+    // DARTBUG: http://dartbug.com/3734
     _innerFuture.then(__futureCompleted);
 
     return _completer.future;
