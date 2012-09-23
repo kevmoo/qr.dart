@@ -7,11 +7,13 @@
 #import('../../lib/test.dart');
 
 #source('test_send_port_value.dart');
+#source('test_send_port_value_complex.dart');
 #source('test_future_value_result.dart');
 
 void runAsyncTests() {
   group('dartlib_async', (){
     TestSendPortValue.run();
     TestFutureValueResult.run();
+    TestSendPortValueComplex.run();
   });
 }
