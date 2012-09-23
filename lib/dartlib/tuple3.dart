@@ -13,5 +13,7 @@ class Tuple3<T1, T2, T3>
         Item3 == other.Item3;
   }
 
-  String toString() => "Tuple3: Item1: $Item1, Item2: $Item2, Item3: $Item3";
+  String toString() => "{Item1: $Item1, Item2: $Item2, Item3: $Item3}";
+
+  int hashCode() => Util.getHashCode([Item1, Item2, Item3]);
 }
