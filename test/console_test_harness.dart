@@ -8,8 +8,8 @@
 #import('async/_async_runner.dart');
 
 main() {
-  useVmConfiguration();
   groupSep = ' - ';
+  useVmConfiguration();
 
   runDartlibTests();
   runAsyncTests();

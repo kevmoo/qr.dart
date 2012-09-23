@@ -1,6 +1,6 @@
 class TestSendPortValueComplex {
   static void run() {
-    solo_test('complex', _testSimple);
+    test('complex', _testSimple);
   }
 
   static void _testSimple() {
