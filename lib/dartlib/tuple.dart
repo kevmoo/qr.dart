@@ -1,15 +1,14 @@
-// TODO: rename Items to be lower case
 class Tuple<T1, T2> {
-  final T1 Item1;
-  final T2 Item2;
+  final T1 item1;
+  final T2 item2;
 
-  const Tuple(this.Item1, this.Item2);
+  const Tuple(this.item1, this.item2);
 
   bool operator ==(Tuple<T1, T2> other) {
-    return other !== null && Item1 == other.Item1 && Item2 == other.Item2;
+    return other !== null && item1 == other.item1 && item2 == other.item2;
   }
 
-  String toString() => "{Item1: $Item1, Item2: $Item2}";
+  String toString() => "{item1: $item1, item2: $item2}";
 
-  int hashCode() => Util.getHashCode([Item1, Item2]);
+  int hashCode() => Util.getHashCode([item1, item2]);
 }

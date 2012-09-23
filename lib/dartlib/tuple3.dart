@@ -1,19 +1,18 @@
-// TODO: rename Items to be lower case
 class Tuple3<T1, T2, T3>
   extends Tuple<T1, T2> {
-  final T3 Item3;
+  final T3 item3;
 
-  const Tuple3(T1 param1, T2 param2, this.Item3) :
+  const Tuple3(T1 param1, T2 param2, this.item3) :
     super(param1, param2);
 
   bool operator ==(Tuple3<T1, T2, T3> other) {
     return other !== null &&
-        Item1 == other.Item1 &&
-        Item2 == other.Item2 &&
-        Item3 == other.Item3;
+        item1 == other.item1 &&
+        item2 == other.item2 &&
+        item3 == other.item3;
   }
 
-  String toString() => "{Item1: $Item1, Item2: $Item2, Item3: $Item3}";
+  String toString() => "{item1: $item1, item2: $item2, item3: $item3}";
 
-  int hashCode() => Util.getHashCode([Item1, Item2, Item3]);
+  int hashCode() => Util.getHashCode([item1, item2, item3]);
 }
