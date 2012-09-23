@@ -58,7 +58,8 @@ void _testIsolate() {
 
 
 class _ComplexTestValue extends SendPortValue<Tuple<int, int>, Tuple3<int, int, int>> {
-  _ComplexTestValue() : super(spawnFunction(_complexTestIsolate), _t2ToList, _listToT3);
+  _ComplexTestValue() : super(spawnFunction(_complexTestIsolate),
+      inputSerializer: _t2ToList, outputDeserializer: _listToT3);
 }
 
 Dynamic _t2ToList(Tuple<int, int> input) {
@@ -96,5 +97,5 @@ void _complexTestIsolate() {
         input.item1,
         input.item2,
         input.item1 + input.item2);
-  }, _listToT2, _t3ToList);
+  }, inputDeserializer:_listToT2, outputSerializer:_t3ToList);
 }

@@ -3,17 +3,17 @@
 //       http://dartbug.com/3734
 class SendValuePort<TInput, TOutput> {
   final Func1<TInput, TOutput> _func;
-  final Func1<Dynamic, TInput> _inputDeserializer;
-  final Func1<TOutput, Dynamic> _outputSerializer;
+  final Func1<Dynamic, TInput> inputDeserializer;
+  final Func1<TOutput, Dynamic> outputSerializer;
 
-  SendValuePort(this._func, [this._inputDeserializer, this._outputSerializer]) {
+  SendValuePort(this._func, {this.inputDeserializer, this.outputSerializer}) {
     port.receive((Dynamic rawValue, SendPort reply) {
       final value = _deserialize(rawValue);
 
       FutureValueResult<TOutput> _message;
       try {
         final TOutput output = _func(value);
-        _message = new FutureValueResult<TOutput>(output, _outputSerializer);
+        _message = new FutureValueResult<TOutput>(output, outputSerializer);
       } catch (ex) {
         // TODO: I'd love to use real exceptions here
         // but they blow up over the wire
@@ -28,10 +28,10 @@ class SendValuePort<TInput, TOutput> {
   }
 
   TInput _deserialize(Dynamic input) {
-    if(_inputDeserializer == null) {
+    if(inputDeserializer == null) {
       return input;
     } else {
-      return _inputDeserializer(input);
+      return inputDeserializer(input);
     }
   }
 }

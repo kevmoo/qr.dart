@@ -1,11 +1,11 @@
 class SendPortValue<TInput, TOutput> extends FutureValue<TInput, TOutput> {
   final SendPort _sendPort;
-  final Func1<TInput, Dynamic> _inputSerializer;
-  final Func1<Dynamic, TOutput> _outputDeserializer;
+  final Func1<TInput, Dynamic> inputSerializer;
+  final Func1<Dynamic, TOutput> outputDeserializer;
   Completer<TOutput> _completer;
   Future<TOutput> _innerFuture;
 
-  SendPortValue(this._sendPort, [this._inputSerializer, this._outputDeserializer]);
+  SendPortValue(this._sendPort, {this.inputSerializer, this.outputDeserializer});
 
   Future<TOutput> getFuture(TInput value) {
     assert(_completer == null);
@@ -13,10 +13,10 @@ class SendPortValue<TInput, TOutput> extends FutureValue<TInput, TOutput> {
 
     _completer = new Completer<TOutput>();
 
-    if(_inputSerializer == null) {
+    if(inputSerializer == null) {
       _innerFuture = _sendPort.call(value);
     } else {
-      var serializedValue = _inputSerializer(value);
+      var serializedValue = inputSerializer(value);
       _innerFuture = _sendPort.call(serializedValue);
     }
     // I don't think this is working yet in isolates
@@ -63,10 +63,10 @@ class SendPortValue<TInput, TOutput> extends FutureValue<TInput, TOutput> {
   }
 
   TOutput _deserializer(Dynamic input) {
-    if(_outputDeserializer == null) {
+    if(outputDeserializer == null) {
       return input;
     } else {
-      return _outputDeserializer(input);
+      return outputDeserializer(input);
     }
   }
 }
