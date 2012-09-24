@@ -12,10 +12,8 @@ class NumberEnumerable<T extends num> extends Enumerable<T> {
   }
 
   factory NumberEnumerable.fromRange(int start, int count) {
-    return new _RangeIterable(start, count);
+    return new _RangeEnumerable(start, count);
   }
-
-  int get length => count();
 
   num sum() {
     num theSum = 0;
@@ -58,6 +56,8 @@ class _SimpleNumEnumerable<T extends num> extends NumberEnumerable<T> {
   const _SimpleNumEnumerable(this._source) : super();
 
   Iterator<T> iterator() => _source.iterator();
+
+  int get length => count();
 }
 
 class _FuncNumEnumerable<TSource> extends NumberEnumerable {
@@ -67,16 +67,19 @@ class _FuncNumEnumerable<TSource> extends NumberEnumerable {
   const _FuncNumEnumerable(this._source, this._func) : super();
 
   Iterator<num> iterator() => _func(_source.iterator());
+
+  int get length => count();
 }
 
-
-class _RangeIterable extends NumberEnumerable<int> {
+class _RangeEnumerable extends NumberEnumerable<int> {
   final int _start;
   final int _count;
 
-  const _RangeIterable(this._start, this._count);
+  const _RangeEnumerable(this._start, this._count);
 
   Iterator<int> iterator() => new _RangeIterator(_start, _count);
+
+  int get length => count();
 }
 
 class _RangeIterator implements Iterator<int> {
