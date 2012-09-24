@@ -11,4 +11,6 @@ class Tuple<T1, T2> {
   String toString() => "{item1: $item1, item2: $item2}";
 
   int hashCode() => Util.getHashCode([item1, item2]);
+
+  Dynamic toJson() => { 'item1' : item1, 'item2' : item2 };
 }

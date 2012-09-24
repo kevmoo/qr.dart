@@ -31,4 +31,6 @@ class Coordinate {
   }
 
   String toString() => '{x:${x}, y:${y}}';
+
+  Dynamic toJson() => { 'x' : x, 'y' : y };
 }
