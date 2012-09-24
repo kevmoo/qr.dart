@@ -63,8 +63,6 @@ class Enumerable<T> implements Collection<T> {
     return false;
   }
 
-  int get length => count();
-
   int count([Func1<T, bool> f = null]) {
     if(f == null) {
       f = (a) => true;
@@ -267,6 +265,8 @@ class _SimpleEnumerable<T> extends Enumerable<T> {
   const _SimpleEnumerable(this._source) : super();
 
   Iterator<T> iterator() => _source.iterator();
+
+  int get length => count();
 }
 
 class _FuncEnumerable<TSource, TOutput> extends Enumerable<TOutput> {
@@ -276,6 +276,8 @@ class _FuncEnumerable<TSource, TOutput> extends Enumerable<TOutput> {
   const _FuncEnumerable(this._source, this._func) : super();
 
   Iterator<TOutput> iterator() => _func(_source.iterator());
+
+  int get length => count();
 }
 
 class _SelectIterator<TSource, TOutput> implements Iterator<TOutput> {

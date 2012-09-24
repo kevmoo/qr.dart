@@ -15,6 +15,8 @@ class NumberEnumerable<T extends num> extends Enumerable<T> {
     return new _RangeIterable(start, count);
   }
 
+  int get length => count();
+
   num sum() {
     num theSum = 0;
     for(final n in this) {
