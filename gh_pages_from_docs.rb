@@ -80,4 +80,4 @@ def branch_from_dir(dir_path, branch_name, master = 'master')
   puts "Branch '#{branch_name}' #{verb}"
 end
 
-branch_from_dir('docs','gh-pages')
+branch_from_dir('doc','gh-pages')
