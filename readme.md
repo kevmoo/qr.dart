@@ -1,3 +1,4 @@
+![BOT!](https://raw.github.com/kevmoo/bot.dart/master/resources/logo.png)
 # The Dart Bag-of-Tricks
 ## A collection of (mostly) general libraries to make coding [Dart](http://www.dartlang.org/) more fun.
 
