@@ -2,7 +2,7 @@
 #import('dart:isolate');
 #import('dart:math', prefix:'math');
 
-#import('package:bot/dartlib.dart');
+#import('package:bot/bot.dart');
 #import('package:bot/qr.dart');
 #import('package:bot/async.dart');
 

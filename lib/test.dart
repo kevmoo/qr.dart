@@ -1,6 +1,6 @@
-#library('dartlib_test');
+#library('bot_test');
 
-#import('dartlib.dart');
+#import('bot.dart');
 #import('package:unittest/unittest.dart');
 
 #source('test/event_watcher.dart');

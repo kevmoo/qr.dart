@@ -3,7 +3,7 @@
 #import('package:unittest/unittest.dart');
 #import('package:unittest/vm_config.dart');
 
-#import('dartlib/_dartlib_runner.dart');
+#import('bot/_bot_runner.dart');
 #import('qr/_qr_runner.dart');
 #import('async/_async_runner.dart');
 
@@ -11,7 +11,7 @@ main() {
   groupSep = ' - ';
   useVmConfiguration();
 
-  runDartlibTests();
+  runBotTests();
   runAsyncTests();
   runQrTests();
 }

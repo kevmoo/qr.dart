@@ -1,6 +1,6 @@
 #import('dart:html');
 #import('dart:isolate');
-#import('package:bot/dartlib.dart');
+#import('package:bot/bot.dart');
 #import('package:bot/async.dart');
 #import('package:bot/html.dart');
 #import('package:bot/retained.dart');

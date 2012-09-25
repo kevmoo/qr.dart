@@ -5,7 +5,7 @@ Starting by porting bits of the [PL javascript library](https://github.com/think
 
 ## Highlights
 
-### dartlib -- default library
+### bot -- default library
  * __collection__
  * __color__
      * `RgbColor`, `HslColor` with associated conversions back and forth

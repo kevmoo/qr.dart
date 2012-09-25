@@ -1,6 +1,6 @@
 #import('dart:html');
 #import('dart:math', prefix:'math');
-#import('package:bot/dartlib.dart');
+#import('package:bot/bot.dart');
 #import('package:bot/retained.dart');
 
 main(){

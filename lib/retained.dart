@@ -1,9 +1,9 @@
-#library('dartlib_retained');
+#library('bot_retained');
 
 #import('dart:html');
 #import('dart:math', prefix:'math');
 
-#import('dartlib.dart');
+#import('bot.dart');
 #import('html.dart');
 
 #source('retained/retained_debug.dart');

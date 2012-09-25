@@ -1,8 +1,8 @@
-#library('dartlib_test_core');
+#library('bot_test_core');
 
 #import('dart:math', prefix:'math');
 #import('package:unittest/unittest.dart');
-#import('package:bot/dartlib.dart');
+#import('package:bot/bot.dart');
 #import('package:bot/test.dart');
 
 #source('test_cloneable.dart');
@@ -31,8 +31,8 @@
 
 #source('attached/test_attached_events.dart');
 
-void runDartlibTests() {
-  group('dartlib', (){
+void runBotTests() {
+  group('bot', (){
     TestTuple.run();
     TestEnumerable.run();
     TestNumberEnumerable.run();

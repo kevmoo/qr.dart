@@ -1,8 +1,8 @@
-#library('dartlib_qr');
+#library('bot_qr');
 
 #import('dart:math', prefix:'math');
 
-#import('dartlib.dart');
+#import('bot.dart');
 
 #source('qr/qr_bit_buffer.dart');
 #source('qr/qr_enums.dart');

@@ -1,5 +1,5 @@
 #import('dart:html');
-#import('package:bot/dartlib.dart');
+#import('package:bot/bot.dart');
 #import('package:bot/retained.dart');
 
 main(){

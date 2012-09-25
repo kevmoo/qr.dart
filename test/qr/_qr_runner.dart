@@ -1,7 +1,7 @@
-#library('dartlib_test_core');
+#library('bot_test_core');
 
 #import('package:unittest/unittest.dart');
-#import('package:bot/dartlib.dart');
+#import('package:bot/bot.dart');
 #import('package:bot/qr.dart');
 #import('package:bot/test.dart');
 
@@ -9,7 +9,7 @@
 #source('test_qr_code.dart');
 
 void runQrTests() {
-  group('dartlib_qr', (){
+  group('bot_qr', (){
     TestQrBitBuffer.run();
     TestQrCode.run();
   });

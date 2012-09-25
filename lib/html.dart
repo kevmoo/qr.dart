@@ -1,8 +1,8 @@
-#library('dartlib_html');
+#library('bot_html');
 
 #import('dart:html');
 
-#import('dartlib.dart');
+#import('bot.dart');
 
 #source('html/dragger.dart');
 #source('html/html_view.dart');

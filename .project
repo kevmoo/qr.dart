@@ -3,7 +3,7 @@
 	<comment></comment>
 	<projects>
 	</projects>
-	<name>dartlib</name>
+	<name>bot</name>
 	<buildSpec>
 		<buildCommand>
 			<name>com.google.dart.tools.core.dartBuilder</name>
