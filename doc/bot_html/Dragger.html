@@ -1,0 +1,98 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>Dragger Class / bot_html Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="bot_html" data-type="Dragger">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../bot_html.html">bot_html</a> &rsaquo; <a href="../bot_html/Dragger.html">Dragger</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>Dragger</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="Dragger">
+<span class="show-code">Code</span>
+new <strong>Dragger</strong>(Element _element) <a class="anchor-link" href="#Dragger"
+              title="Permalink to Dragger.Dragger">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Dragger(this._element) :
+  _dragDeltaHandle = new EventHandle&lt;Vector&gt;(),
+  _dragStartHandle = new EventHandle&lt;CancelableEventArgs&gt;() {
+  _element.on.mouseDown.add(_onMouseDown);
+  window.on.mouseMove.add(_handleMove);
+  window.on.mouseUp.add(_endDrag);
+  window.on.blur.add(_endDrag);
+}
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="dragDelta">
+<span class="show-code">Code</span>
+<a href="../bot/EventRoot.html">EventRoot</a>&lt;<a href="../bot/Vector.html">Vector</a>&gt; <strong>get dragDelta</strong>() <a class="anchor-link" href="#dragDelta"
+              title="Permalink to Dragger.get dragDelta">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+EventRoot&lt;Vector&gt; get dragDelta =&gt; _dragDeltaHandle;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="dragStart">
+<span class="show-code">Code</span>
+<a href="../bot/EventRoot.html">EventRoot</a>&lt;<a href="../bot/CancelableEventArgs.html">CancelableEventArgs</a>&gt; <strong>get dragStart</strong>() <a class="anchor-link" href="#dragStart"
+              title="Permalink to Dragger.get dragStart">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+EventRoot&lt;CancelableEventArgs&gt; get dragStart =&gt; _dragStartHandle;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="isDragging">
+<span class="show-code">Code</span>
+bool <strong>get isDragging</strong>() <a class="anchor-link" href="#isDragging"
+              title="Permalink to Dragger.get isDragging">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool get isDragging =&gt; _clientLoc != null;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

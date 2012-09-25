@@ -912,7 +912,6 @@ $$.Enumerable = {"":
  "super": "Object",
  isEmpty$0: function(){return this.some$1(new $.Enumerable_isEmpty_anon())!==true;},
  some$1: function(f){$.requireArgumentNotNull(f,'f');for(var t1=$.iterator(this);t1.hasNext$0()===true;)if(f.call$1(t1.next$0())===true)return true;return false;},
- get$length: function(){return this.count$0();},
  count$1: function(f){if(f==null)f=new $.Enumerable_count_anon();for(var t1=$.iterator(this),c=0;t1.hasNext$0()===true;)if(f.call$1(t1.next$0())===true)++c;return c;},
  count$0: function() {
   return this.count$1(null)
@@ -932,14 +931,16 @@ $$.Enumerable = {"":
 $$._SimpleEnumerable = {"":
  ["_source"],
  "super": "Enumerable",
- iterator$0: function(){return $.iterator(this._source);}
+ iterator$0: function(){return $.iterator(this._source);},
+ get$length: function(){return this.count$0();}
 };
 
 $$._FuncEnumerable = {"":
  ["_source", "_func"],
  "super": "Enumerable",
  _func$1: function(arg0) { return this._func.call$1(arg0); },
- iterator$0: function(){return this._func$1($.iterator(this._source));}
+ iterator$0: function(){return this._func$1($.iterator(this._source));},
+ get$length: function(){return this.count$0();}
 };
 
 $$._SelectIterator = {"":
@@ -1217,16 +1218,16 @@ $$.Enumerable_isEmpty_anon = {"":
  call$1: function(e){return true;}
 };
 
-$$.Enumerable_count_anon = {"":
- [],
- "super": "Closure",
- call$1: function(a){return true;}
-};
-
 $$.Enumerable_map_anon = {"":
  ["f_0"],
  "super": "Closure",
  call$1: function(s){return $._SelectIterator$(s,this.f_0);}
+};
+
+$$.Enumerable_count_anon = {"":
+ [],
+ "super": "Closure",
+ call$1: function(a){return true;}
 };
 
 $$.RetainedUtil_getCorners_anon = {"":

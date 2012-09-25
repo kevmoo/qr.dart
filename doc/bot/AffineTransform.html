@@ -1,0 +1,420 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>AffineTransform Class / bot Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="bot" data-type="AffineTransform">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../bot.html">bot</a> &rsaquo; <a href="../bot/AffineTransform.html">AffineTransform</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>AffineTransform</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Implements</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../bot/Cloneable.html">Cloneable&lt;T&gt;</a></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="AffineTransform.fromScale">
+<span class="show-code">Code</span>
+factory <strong>AffineTransform</strong>.fromScale(sx, sy) <a class="anchor-link" href="#AffineTransform.fromScale"
+              title="Permalink to AffineTransform.AffineTransform">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+factory AffineTransform.fromScale(sx, sy) {
+  return new AffineTransform().setToScale(sx, sy);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="AffineTransform.fromRotate">
+<span class="show-code">Code</span>
+factory <strong>AffineTransform</strong>.fromRotate(num theta, num x, num y) <a class="anchor-link" href="#AffineTransform.fromRotate"
+              title="Permalink to AffineTransform.AffineTransform">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+factory AffineTransform.fromRotate(num theta, num x, num y) {
+  return new AffineTransform().setToRotation(theta, x, y);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="AffineTransform">
+<span class="show-code">Code</span>
+new <strong>AffineTransform</strong>([num scaleX = 1, num shearY = 0, num shearX = 0, num scaleY = 1, num translateX = 0, num translateY = 0]) <a class="anchor-link" href="#AffineTransform"
+              title="Permalink to AffineTransform.AffineTransform">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+AffineTransform([num scaleX = 1, num shearY = 0,
+    num shearX = 0, num scaleY = 1,
+    num translateX = 0, num translateY = 0]) :
+      _m00 = scaleX, _m11 = scaleY,
+      _m02 = translateX, _m12 = translateY,
+      _m01 = shearX, _m10 = shearY;
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="clone">
+<span class="show-code">Code</span>
+<a href="../bot/AffineTransform.html">AffineTransform</a> <strong>clone</strong>() <a class="anchor-link" href="#clone"
+              title="Permalink to AffineTransform.clone">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+AffineTransform clone(){
+  return new AffineTransform(_m00, _m10, _m01, _m11, _m02, _m12);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="concatenate">
+<span class="show-code">Code</span>
+<a href="../bot/AffineTransform.html">AffineTransform</a> <strong>concatenate</strong>(tx) <a class="anchor-link" href="#concatenate"
+              title="Permalink to AffineTransform.concatenate">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+AffineTransform concatenate(tx) {
+  var m0 = this._m00;
+  var m1 = this._m01;
+  this._m00 = tx._m00 * m0 + tx._m10 * m1;
+  this._m01 = tx._m01 * m0 + tx._m11 * m1;
+  this._m02 += tx._m02 * m0 + tx._m12 * m1;
+
+  m0 = this._m10;
+  m1 = this._m11;
+  this._m10 = tx._m00 * m0 + tx._m10 * m1;
+  this._m11 = tx._m01 * m0 + tx._m11 * m1;
+  this._m12 += tx._m02 * m0 + tx._m12 * m1;
+  return this;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="createInverse">
+<span class="show-code">Code</span>
+<a href="../bot/AffineTransform.html">AffineTransform</a> <strong>createInverse</strong>() <a class="anchor-link" href="#createInverse"
+              title="Permalink to AffineTransform.createInverse">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+AffineTransform createInverse() {
+  num det = determinant;
+  return new AffineTransform(
+      _m11 / det,
+      -_m10 / det,
+      -_m01 / det,
+      _m00 / det,
+      (_m01 * _m12 - _m11 * _m02) / det,
+      (_m10 * _m02 - _m00 * _m12) / det);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="determinant">
+<span class="show-code">Code</span>
+num <strong>get determinant</strong>() <a class="anchor-link" href="#determinant"
+              title="Permalink to AffineTransform.get determinant">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+num get determinant =&gt; _m00 * _m11 - _m01 * _m10;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="isIdentity">
+<span class="show-code">Code</span>
+bool <strong>get isIdentity</strong>() <a class="anchor-link" href="#isIdentity"
+              title="Permalink to AffineTransform.get isIdentity">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool get isIdentity {
+  return _m00 == 1 &amp;&amp; _m10 == 0 &amp;&amp;
+      _m01 == 0 &amp;&amp; _m11 == 1 &amp;&amp;
+      _m02 == 0 &amp;&amp; _m12 == 0;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="operator ==">
+<span class="show-code">Code</span>
+bool <strong>operator ==</strong>(<a href="../bot/AffineTransform.html">AffineTransform</a> other) <a class="anchor-link" href="#operator =="
+              title="Permalink to AffineTransform.operator ==">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool operator ==(AffineTransform other) {
+  return other !== null &amp;&amp;
+      _m00 == other._m00 &amp;&amp; _m01 == other._m01 &amp;&amp; _m02 == other._m02 &amp;&amp;
+      _m10 == other._m10 &amp;&amp; _m11 == other._m11 &amp;&amp; _m12 == other._m12;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="rotate">
+<span class="show-code">Code</span>
+<a href="../bot/AffineTransform.html">AffineTransform</a> <strong>rotate</strong>(num theta, num x, num y) <a class="anchor-link" href="#rotate"
+              title="Permalink to AffineTransform.rotate">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+AffineTransform rotate(num theta, num x, num y) {
+  return this.concatenate(new AffineTransform.fromRotate(theta, x, y));
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="scale">
+<span class="show-code">Code</span>
+<a href="../bot/AffineTransform.html">AffineTransform</a> <strong>scale</strong>(num sx, num sy) <a class="anchor-link" href="#scale"
+              title="Permalink to AffineTransform.scale">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+AffineTransform scale(num sx, num sy) {
+  _m00 *= sx;
+  _m10 *= sx;
+  _m01 *= sy;
+  _m11 *= sy;
+  return this;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="scaleX">
+<span class="show-code">Code</span>
+num <strong>get scaleX</strong>() <a class="anchor-link" href="#scaleX"
+              title="Permalink to AffineTransform.get scaleX">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+num get scaleX =&gt; _m00;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="scaleY">
+<span class="show-code">Code</span>
+num <strong>get scaleY</strong>() <a class="anchor-link" href="#scaleY"
+              title="Permalink to AffineTransform.get scaleY">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+num get scaleY =&gt; _m11;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setFromTransfrom">
+<span class="show-code">Code</span>
+<a href="../bot/AffineTransform.html">AffineTransform</a> <strong>setFromTransfrom</strong>(<a href="../bot/AffineTransform.html">AffineTransform</a> tx) <a class="anchor-link" href="#setFromTransfrom"
+              title="Permalink to AffineTransform.setFromTransfrom">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+AffineTransform setFromTransfrom(AffineTransform tx) {
+  requireArgumentNotNull(tx, 'tx');
+  return setTransform(tx._m00, tx._m10,
+    tx._m01, tx._m11,
+    tx._m02, tx._m12);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setToRotation">
+<span class="show-code">Code</span>
+<a href="../bot/AffineTransform.html">AffineTransform</a> <strong>setToRotation</strong>(num theta, num x, num y) <a class="anchor-link" href="#setToRotation"
+              title="Permalink to AffineTransform.setToRotation">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+AffineTransform setToRotation(num theta, num x, num y) {
+  var cos = math.cos(theta);
+  var sin = math.sin(theta);
+  return this.setTransform(cos, sin, -sin, cos,
+    x - x * cos + y * sin, y - x * sin - y * cos);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setToScale">
+<span class="show-code">Code</span>
+<a href="../bot/AffineTransform.html">AffineTransform</a> <strong>setToScale</strong>(sx, sy) <a class="anchor-link" href="#setToScale"
+              title="Permalink to AffineTransform.setToScale">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+AffineTransform setToScale(sx, sy) {
+  return setTransform(sx, 0, 0, sy, 0, 0);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setToTranslation">
+<span class="show-code">Code</span>
+<a href="../bot/AffineTransform.html">AffineTransform</a> <strong>setToTranslation</strong>(num dx, num dy) <a class="anchor-link" href="#setToTranslation"
+              title="Permalink to AffineTransform.setToTranslation">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+AffineTransform setToTranslation(num dx, num dy) {
+  return setTransform(1, 0, 0, 1, dx, dy);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setTransform">
+<span class="show-code">Code</span>
+<a href="../bot/AffineTransform.html">AffineTransform</a> <strong>setTransform</strong>(num m00, num m10, num m01, num m11, num m02, num m12) <a class="anchor-link" href="#setTransform"
+              title="Permalink to AffineTransform.setTransform">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+AffineTransform setTransform (num m00, num m10, num m01,
+  num m11, num m02, num m12) {
+  this._m00 = m00;
+  this._m10 = m10;
+  this._m01 = m01;
+  this._m11 = m11;
+  this._m02 = m02;
+  this._m12 = m12;
+  return this;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="shearX">
+<span class="show-code">Code</span>
+num <strong>get shearX</strong>() <a class="anchor-link" href="#shearX"
+              title="Permalink to AffineTransform.get shearX">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+num get shearX =&gt; _m01;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="shearY">
+<span class="show-code">Code</span>
+num <strong>get shearY</strong>() <a class="anchor-link" href="#shearY"
+              title="Permalink to AffineTransform.get shearY">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+num get shearY =&gt; _m10;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="toString">
+<span class="show-code">Code</span>
+String <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to AffineTransform.toString">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+String toString() {
+  final values = [translateX, translateY, scaleX, scaleY, shearX, shearY];
+  return Strings.join($(values).map((n) =&gt; n.toString()).toList(), ', ');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="transformCoordinate">
+<span class="show-code">Code</span>
+<a href="../bot/Coordinate.html">Coordinate</a> <strong>transformCoordinate</strong>([<a href="../bot/Coordinate.html">Coordinate</a> point = const Coordinate()]) <a class="anchor-link" href="#transformCoordinate"
+              title="Permalink to AffineTransform.transformCoordinate">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Coordinate transformCoordinate([Coordinate point = const Coordinate()]){
+  num x = point.x * _m00 + point.y * _m01 + _m02;
+  num y = point.x * _m10 + point.y * _m11 + _m12;
+
+  return new Coordinate(x, y);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="translate">
+<span class="show-code">Code</span>
+<a href="../bot/AffineTransform.html">AffineTransform</a> <strong>translate</strong>(num dx, num dy) <a class="anchor-link" href="#translate"
+              title="Permalink to AffineTransform.translate">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+AffineTransform translate(num dx, num dy) {
+  _m02 += dx * _m00 + dy * _m01;
+  _m12 += dx * _m10 + dy * _m11;
+  return this;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="translateVector">
+<span class="show-code">Code</span>
+<a href="../bot/Vector.html">Vector</a> <strong>get translateVector</strong>() <a class="anchor-link" href="#translateVector"
+              title="Permalink to AffineTransform.get translateVector">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Vector get translateVector =&gt; new Vector(translateX, translateY);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="translateX">
+<span class="show-code">Code</span>
+num <strong>get translateX</strong>() <a class="anchor-link" href="#translateX"
+              title="Permalink to AffineTransform.get translateX">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+num get translateX =&gt; _m02;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="translateY">
+<span class="show-code">Code</span>
+num <strong>get translateY</strong>() <a class="anchor-link" href="#translateY"
+              title="Permalink to AffineTransform.get translateY">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+num get translateY =&gt; _m12;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

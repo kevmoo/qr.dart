@@ -1,0 +1,204 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>Coordinate Class / bot Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="bot" data-type="Coordinate">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../bot.html">bot</a> &rsaquo; <a href="../bot/Coordinate.html">Coordinate</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>Coordinate</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Subclasses</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../bot/Vector.html">Vector</a></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="Coordinate">
+<span class="show-code">Code</span>
+const <strong>Coordinate</strong>([num x = 0, num y = 0]) <a class="anchor-link" href="#Coordinate"
+              title="Permalink to Coordinate.Coordinate">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+const Coordinate([this.x = 0, this.y = 0]);
+</pre>
+</div>
+</div>
+<h3>Static Methods</h3>
+<div class="method"><h4 id="difference">
+<span class="show-code">Code</span>
+<a href="../bot/Vector.html">Vector</a> <strong>difference</strong>(<a href="../bot/Coordinate.html">Coordinate</a> a, <a href="../bot/Coordinate.html">Coordinate</a> b) <a class="anchor-link" href="#difference"
+              title="Permalink to Coordinate.difference">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static Vector difference(Coordinate a, Coordinate b) {
+  return new Vector(a.x - b.x, a.y - b.y);
+}
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="getDistance">
+<span class="show-code">Code</span>
+num <strong>getDistance</strong>(<a href="../bot/Coordinate.html">Coordinate</a> other) <a class="anchor-link" href="#getDistance"
+              title="Permalink to Coordinate.getDistance">#</a></h4>
+<div class="doc">
+<p>Computes the distance to another <a class="crossref" href="../bot/Coordinate.html#Coordinate">Coordinate</a>.</p>
+<pre class="source">
+num getDistance (Coordinate other) =&gt; (this - other).length;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="isValid">
+<span class="show-code">Code</span>
+bool <strong>get isValid</strong>() <a class="anchor-link" href="#isValid"
+              title="Permalink to Coordinate.get isValid">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool get isValid =&gt; isValidNumber(x) &amp;&amp; isValidNumber(y);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="operator ==">
+<span class="show-code">Code</span>
+bool <strong>operator ==</strong>(<a href="../bot/Coordinate.html">Coordinate</a> other) <a class="anchor-link" href="#operator =="
+              title="Permalink to Coordinate.operator ==">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+bool operator ==(Coordinate other) {
+  return other !== null &amp;&amp; x == other.x &amp;&amp; y == other.y;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="operator +">
+<span class="show-code">Code</span>
+<a href="../bot/Coordinate.html">Coordinate</a> <strong>operator +</strong>(<a href="../bot/Vector.html">Vector</a> other) <a class="anchor-link" href="#operator +"
+              title="Permalink to Coordinate.operator +">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Coordinate operator +(Vector other) =&gt;
+    new Coordinate(x + other.x, y + other.y);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="operator -">
+<span class="show-code">Code</span>
+<a href="../bot/Vector.html">Vector</a> <strong>operator -</strong>(<a href="../bot/Coordinate.html">Coordinate</a> other) <a class="anchor-link" href="#operator -"
+              title="Permalink to Coordinate.operator -">#</a></h4>
+<div class="doc">
+<p>Subtract a <a class="crossref" href="../bot/Coordinate.html#Coordinate">Coordinate</a> and returns the result as new <a class="crossref" href="../bot/Vector.html">Vector</a>.</p>
+<pre class="source">
+Vector operator -(Coordinate other) =&gt; difference(this, other);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="toJson">
+<span class="show-code">Code</span>
+<strong>toJson</strong>() <a class="anchor-link" href="#toJson"
+              title="Permalink to Coordinate.toJson">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Dynamic toJson() =&gt; { 'x' : x, 'y' : y };
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="toSize">
+<span class="show-code">Code</span>
+<a href="../bot/Size.html">Size</a> <strong>toSize</strong>() <a class="anchor-link" href="#toSize"
+              title="Permalink to Coordinate.toSize">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Size toSize() =&gt; new Size(x, y);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="toString">
+<span class="show-code">Code</span>
+String <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to Coordinate.toString">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+String toString() =&gt; '{x:${x}, y:${y}}';
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="toVector">
+<span class="show-code">Code</span>
+<a href="../bot/Vector.html">Vector</a> <strong>toVector</strong>() <a class="anchor-link" href="#toVector"
+              title="Permalink to Coordinate.toVector">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Vector toVector() =&gt; new Vector(x, y);
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="x">
+<span class="show-code">Code</span>
+final num         <strong>x</strong> <a class="anchor-link"
+            href="#x"
+            title="Permalink to Coordinate.x">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final num x, y;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="y">
+<span class="show-code">Code</span>
+final num         <strong>y</strong> <a class="anchor-link"
+            href="#y"
+            title="Permalink to Coordinate.y">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final num x, y;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

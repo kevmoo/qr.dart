@@ -1,0 +1,91 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>RetainedDebug Class / bot_retained Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="bot_retained" data-type="RetainedDebug">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../bot_retained.html">bot_retained</a> &rsaquo; <a href="../bot_retained/RetainedDebug.html">RetainedDebug</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>RetainedDebug</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Static Methods</h3>
+<div class="method"><h4 id="borderElements">
+<span class="show-code">Code</span>
+void <strong>borderElements</strong>(stage) <a class="anchor-link" href="#borderElements"
+              title="Permalink to RetainedDebug.borderElements">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static void borderElements(stage) {
+  var ctx = stage.ctx;
+  ctx.save();
+  ctx.globalAlpha = 0.5;
+  ctx.lineWidth = 5;
+  ctx.beginPath();
+  _borderElement(ctx, stage.rootElement);
+  ctx.stroke();
+  ctx.restore();
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="borderHitTest">
+<span class="show-code">Code</span>
+void <strong>borderHitTest</strong>(<a href="../bot_retained/Stage.html">Stage</a> stage, <a href="../bot/Coordinate.html">Coordinate</a> point) <a class="anchor-link" href="#borderHitTest"
+              title="Permalink to RetainedDebug.borderHitTest">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static void borderHitTest(Stage stage, Coordinate point){
+  var ctx = stage.ctx;
+
+  var hits = RetainedUtil.hitTest(stage, point);
+
+  if(hits.length &gt; 0){
+    ctx.save();
+    ctx.lineWidth = 2;
+
+    hits.forEach((e) {
+      _borderElement(ctx, e, true);
+    });
+    ctx.restore();
+  }
+}
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

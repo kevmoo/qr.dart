@@ -473,6 +473,7 @@ $$.HtmlEnhancedConfiguration = {"":
  "super": "Configuration",
  _installHandlers$0: function(){if(this._onErrorClosure==null){this._onErrorClosure=new $.HtmlEnhancedConfiguration__installHandlers_anon(this);$.add$1($.window().get$on().get$error(),this._onErrorClosure);}if(this._onMessageClosure==null){this._onMessageClosure=new $.HtmlEnhancedConfiguration__installHandlers_anon0(this);$.add$1($.window().get$on().get$message(),this._onMessageClosure);}},
  _uninstallHandlers$0: function(){if(!(this._onErrorClosure==null)){$.window().get$on().get$error().remove$1(this._onErrorClosure);this._onErrorClosure=null;}if(!(this._onMessageClosure==null)){$.window().get$on().get$message().remove$1(this._onMessageClosure);this._onMessageClosure=null;}},
+ processMessage$1: function(e){if('unittest-suite-external-error'===e.get$data())this.handleExternalError$2('<unknown>','(external error detected)');},
  onInit$0: function(){this._installHandlers$0();var cssElement=$.document().get$head().query$1('#_unittestcss_');if(cssElement==null){$.add$1($.document().get$head().get$elements(),$.Element_Element$html('<style id="_unittestcss_"></style>'));cssElement=$.document().get$head().query$1('#_unittestcss_');}cssElement.set$innerHTML(this.get$_htmlTestCSS());},
  onStart$0: function(){$.window().postMessage$2('unittest-suite-wait-for-done','*');$.add$1($.window().get$on().get$error(),this._onErrorClosure);},
  onTestResult$1: function(testCase){},
@@ -555,6 +556,10 @@ $$.FilteredElementList = {"":
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
 },
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $.lastIndexOf$2(this.get$_filtered(),element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
+},
  last$0: function(){return $.last(this.get$_filtered());},
  is$List: function() { return true; },
  is$Collection: function() { return true; },
@@ -601,6 +606,10 @@ $$._ChildrenElementList = {"":
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
 },
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
+},
  clear$0: function(){this._lib_element.set$text('');},
  removeLast$0: function(){var result=this.last$0();if(!(result==null))this._lib_element.$dom_removeChild$1(result);return result;},
  last$0: function(){return this._lib_element.get$$$dom_lastElementChild();},
@@ -636,6 +645,10 @@ $$._FrozenElementList = {"":
  indexOf$2: function(element,start){return $.indexOf$2(this._nodeList,element,start);},
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
+},
+ lastIndexOf$2: function(element,start){return $.lastIndexOf$2(this._nodeList,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
 },
  clear$0: function(){throw $.$$throw($.CTC26);},
  removeLast$0: function(){throw $.$$throw($.CTC26);},
@@ -856,6 +869,10 @@ $$._ChildNodeListLazy = {"":
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
 },
+ lastIndexOf$2: function(element,start){return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,0)
+},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.UnsupportedOperationException$('Cannot removeRange on immutable List.'));},
  insertRange$3: function(start,rangeLength,initialValue){throw $.$$throw($.UnsupportedOperationException$('Cannot insertRange on immutable List.'));},
  getRange$2: function(start,rangeLength){return $._NodeListWrapper$($._Lists_getRange(this,start,rangeLength,[]));},
@@ -887,6 +904,10 @@ $$._ListWrapper = {"":
  indexOf$2: function(element,start){return $.indexOf$2(this._lib_list,element,start);},
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
+},
+ lastIndexOf$2: function(element,start){return $.lastIndexOf$2(this._lib_list,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,0)
 },
  clear$0: function(){return $.clear(this._lib_list);},
  removeLast$0: function(){return $.removeLast(this._lib_list);},
@@ -1032,7 +1053,7 @@ $$._VariableSizeListIterator = {"":
 };
 
 $$._Manager = {"":
- ["nextIsolateId=", "currentManagerId?", "nextManagerId", "currentContext=", "rootContext=", "topEventLoop?", "fromCommandLine?", "isWorker?", "supportsWorkers", "isolates?", "mainManager?", "managers?"],
+ ["nextIsolateId=", "currentManagerId=", "nextManagerId=", "currentContext=", "rootContext=", "topEventLoop?", "fromCommandLine?", "isWorker?", "supportsWorkers", "isolates?", "mainManager?", "managers?"],
  "super": "Object",
  get$useWorkers: function(){return this.supportsWorkers;},
  get$needSerialization: function(){return this.get$useWorkers();},
@@ -1049,7 +1070,7 @@ $$._Manager = {"":
 };
 
 $$._IsolateContext = {"":
- ["id?", "ports?", "isolateStatics"],
+ ["id=", "ports?", "isolateStatics"],
  "super": "Object",
  initGlobals$0: function(){$initGlobals(this);},
  eval$1: function(code){var old=$._globalState().get$currentContext();$._globalState().set$currentContext(this);this._setGlobals$0();var result=null;try{result=code.call$0();}finally{var t1=old;$._globalState().set$currentContext(t1);t1=old;if(!(t1==null))t1._setGlobals$0();}return result;},
@@ -1080,7 +1101,10 @@ $$._MainManagerStub = {"":
  [],
  "super": "Object",
  get$id: function(){return 0;},
- postMessage$1: function(msg){$globalThis.postMessage(msg);}
+ set$id: function(i){throw $.$$throw($.NotImplementedException$(null));},
+ set$onmessage: function(f){throw $.$$throw($.ExceptionImplementation$('onmessage should not be set on MainManagerStub'));},
+ postMessage$1: function(msg){$globalThis.postMessage(msg);},
+ terminate$0: function(){}
 };
 
 $$._BaseSendPort = {"":
@@ -1095,6 +1119,9 @@ $$._NativeJsSendPort = {"":
  ["_receivePort?", "_isolateId"],
  "super": "_BaseSendPort",
  send$2: function(message,replyTo){$._waitForPendingPorts([message,replyTo],new $._NativeJsSendPort_send_anon(this,message,replyTo));},
+ send$1: function(message) {
+  return this.send$2(message,null)
+},
  operator$eq$1: function(other){return typeof other==='object'&&other!==null&&!!other.is$_NativeJsSendPort&&$.eqB(this._receivePort,other._receivePort);},
  hashCode$0: function(){return this._receivePort.get$_lib2_id();},
  is$_NativeJsSendPort: true,
@@ -1105,9 +1132,26 @@ $$._WorkerSendPort = {"":
  ["_workerId?", "_receivePortId", "_isolateId"],
  "super": "_BaseSendPort",
  send$2: function(message,replyTo){$._waitForPendingPorts([message,replyTo],new $._WorkerSendPort_send_anon(this,message,replyTo));},
+ send$1: function(message) {
+  return this.send$2(message,null)
+},
  operator$eq$1: function(other){if(typeof other==='object'&&other!==null&&!!other.is$_WorkerSendPort)var t1=$.eqB(this._workerId,other._workerId)&&$.eqB(this._isolateId,other._isolateId)&&$.eqB(this._receivePortId,other._receivePortId);else t1=false;return t1;},
  hashCode$0: function(){return $.xor($.xor($.shl(this._workerId,16),$.shl(this._isolateId,8)),this._receivePortId);},
  is$_WorkerSendPort: true,
+ is$SendPort: true
+};
+
+$$._BufferingSendPort = {"":
+ ["_lib2_id?", "_port!", "_futurePort?", "pending=", "_isolateId"],
+ "super": "_BaseSendPort",
+ send$2: function(message,replyTo){var t1=this._port;if(!(t1==null))t1.send$2(message,replyTo);else $.add$1(this.pending,$.makeLiteralMap(['message',message,'replyTo',replyTo]));},
+ send$1: function(message) {
+  return this.send$2(message,null)
+},
+ operator$eq$1: function(other){return typeof other==='object'&&other!==null&&!!other.is$_BufferingSendPort&&$.eqB(this._lib2_id,other._lib2_id);},
+ hashCode$0: function(){return this._lib2_id;},
+ _BufferingSendPort$2: function(isolateId,_futurePort){$._BufferingSendPort__idCount=$.add($._BufferingSendPort__idCount,1);this._futurePort.then$1(new $.anon4(this));},
+ is$_BufferingSendPort: true,
  is$SendPort: true
 };
 
@@ -1223,8 +1267,17 @@ $$._Deserializer = {"":
 $$._Timer = {"":
  ["_once", "_handle"],
  "super": "Object",
- _Timer$repeating$2: function(milliSeconds,callback){this._handle=$._window().setInterval$2(new $.anon4(this,callback),milliSeconds);},
- _Timer$2: function(milliSeconds,callback){this._handle=$._window().setTimeout$2(new $.anon3(this,callback),milliSeconds);}
+ _Timer$repeating$2: function(milliSeconds,callback){this._handle=$._window().setInterval$2(new $.anon6(this,callback),milliSeconds);},
+ _Timer$2: function(milliSeconds,callback){this._handle=$._window().setTimeout$2(new $.anon5(this,callback),milliSeconds);}
+};
+
+$$.Uri = {"":
+ ["scheme", "userInfo", "domain", "port", "path", "query", "fragment"],
+ "super": "Object",
+ query$1: function(arg0) { return this.query.call$1(arg0); },
+ isAbsolute$0: function(){if(''===this.scheme)return false;if(!(''===this.fragment))return false;return true;},
+ hasAuthority$0: function(){return !$.eqB(this.userInfo,'')||!$.eqB(this.domain,'')||!$.eqB(this.port,0);},
+ toString$0: function(){var sb=$.StringBuffer_StringBuffer('');var t1=this.scheme;$.Uri__addIfNonEmpty(sb,t1,t1,':');if(this.hasAuthority$0()===true||$.eqB(t1,'file')){$.add$1(sb,'//');t1=this.userInfo;$.Uri__addIfNonEmpty(sb,t1,t1,'@');t1=this.domain;$.add$1(sb,t1==null?'null':t1);t1=this.port;if(!$.eqB(t1,0)){$.add$1(sb,':');$.add$1(sb,$.toString(t1));}}t1=this.path;$.add$1(sb,t1==null?'null':t1);t1=this.query;$.Uri__addIfNonEmpty(sb,t1,'?',t1);t1=this.fragment;$.Uri__addIfNonEmpty(sb,t1,'#',t1);return $.toString(sb);}
 };
 
 $$._Random = {"":
@@ -1334,8 +1387,8 @@ $$._IsSameAs = {"":
 $$._DeepMatcher = {"":
  ["_expected?", "_limit", "count"],
  "super": "BaseMatcher",
- count$0: function() { return this.count.call$0(); },
  count$1: function(arg0) { return this.count.call$1(arg0); },
+ count$0: function() { return this.count.call$0(); },
  _compareIterables$4: function(expected,actual,matcher,depth){if(!(typeof actual==='object'&&actual!==null&&(actual.constructor===Array||actual.is$Iterable())))return 'is not Iterable';var expectedIterator=$.iterator(expected);var actualIterator=$.iterator(actual);for(var position=0,reason=null;reason==null;)if(expectedIterator.hasNext$0()===true)if(actualIterator.hasNext$0()===true){var r=matcher.call$4(expectedIterator.next$0(),actualIterator.next$0(),'mismatch at position '+$.S(position),depth);if(!(r==null))reason=$.toString(r);++position;}else reason='shorter than expected';else{if(actualIterator.hasNext$0()===true);else return;reason='longer than expected';}return reason;},
  _recursiveMatch$4: function(expected,actual,location$,depth){if(typeof expected!=='string'&&(typeof expected!=='object'||expected===null||expected.constructor!==Array&&!expected.is$JavaScriptIndexingBehavior()))return this._recursiveMatch$4$bailout(1,expected,actual,location$,depth);var canRecurse=depth===0||this._limit>1;if(expected===actual)var reason=null;else if(depth>this._limit)reason=$.StringDescription$('recursion depth limit exceeded');else if(typeof expected==='object'&&expected!==null&&(expected.constructor===Array||expected.is$Iterable())&&canRecurse){var r=this._compareIterables$4(expected,actual,this.get$_recursiveMatch(),depth+1);reason=!(r==null)?$.StringDescription$(r):null;}else if(typeof expected==='object'&&expected!==null&&expected.is$Map()&&canRecurse)if(!(typeof actual==='object'&&actual!==null&&actual.is$Map()))reason=$.StringDescription$('expected a map');else if(!(expected.length===$.get$length(actual)))reason=$.StringDescription$('different map lengths');else for(var t1=$.iterator(expected.getKeys$0()),t2=depth+1,reason=null;t1.hasNext$0()===true;){var t3=t1.next$0();if(actual.containsKey$1(t3)!==true){reason=$.StringDescription$('missing map key ');reason.addDescriptionOf$1(t3);break;}if(t3!==(t3|0))throw $.iae(t3);if(t3<0||t3>=expected.length)throw $.ioore(t3);reason=this._recursiveMatch$4(expected[t3],actual.operator$index$1(t3),'with key <'+$.S(t3)+'> '+location$,t2);if(!(reason==null))break;}else{reason=$.StringDescription$('');if(depth>1)$.add$1(reason.add$1('expected ').addDescriptionOf$1(expected),' but was ').addDescriptionOf$1(actual);else reason.add$1('was ').addDescriptionOf$1(actual);}if(!(reason==null)&&location$.length>0)$.add$1($.add$1(reason,' '),location$);return reason;},
  _recursiveMatch$4$bailout: function(state,expected,actual,location$,depth){var canRecurse=depth===0||this._limit>1;if($.eqB(expected,actual))var reason=null;else if(depth>this._limit)reason=$.StringDescription$('recursion depth limit exceeded');else if(typeof expected==='object'&&expected!==null&&(expected.constructor===Array||expected.is$Iterable())&&canRecurse){var r=this._compareIterables$4(expected,actual,this.get$_recursiveMatch(),depth+1);reason=!(r==null)?$.StringDescription$(r):null;}else if(typeof expected==='object'&&expected!==null&&expected.is$Map()&&canRecurse)if(!(typeof actual==='object'&&actual!==null&&actual.is$Map()))reason=$.StringDescription$('expected a map');else if(!$.eqB($.get$length(expected),$.get$length(actual)))reason=$.StringDescription$('different map lengths');else for(var t1=$.iterator(expected.getKeys$0()),t2=depth+1,reason=null;t1.hasNext$0()===true;){var t3=t1.next$0();if(actual.containsKey$1(t3)!==true){reason=$.StringDescription$('missing map key ');reason.addDescriptionOf$1(t3);break;}reason=this._recursiveMatch$4($.index(expected,t3),actual.operator$index$1(t3),'with key <'+$.S(t3)+'> '+location$,t2);if(!(reason==null))break;}else{reason=$.StringDescription$('');if(depth>1)$.add$1(reason.add$1('expected ').addDescriptionOf$1(expected),' but was ').addDescriptionOf$1(actual);else reason.add$1('was ').addDescriptionOf$1(actual);}if(!(reason==null)&&location$.length>0)$.add$1($.add$1(reason,' '),location$);return reason;},
@@ -1525,17 +1578,19 @@ $$.GlobalId = {"":
 };
 
 $$.Tuple = {"":
- ["Item1?", "Item2?"],
+ ["item1?", "item2?"],
  "super": "Object",
- operator$eq$1: function(other){return !(other==null)&&this.Item1===other.get$Item1()&&this.Item2===other.get$Item2();},
- toString$0: function(){return 'Tuple: Item1: '+$.S(this.Item1)+', Item2: '+$.S(this.Item2);}
+ operator$eq$1: function(other){return !(other==null)&&$.eqB(this.item1,other.get$item1())&&$.eqB(this.item2,other.get$item2());},
+ toString$0: function(){return '{item1: '+$.S(this.item1)+', item2: '+$.S(this.item2)+'}';},
+ hashCode$0: function(){return $.Util_getHashCode([this.item1,this.item2]);}
 };
 
 $$.Tuple3 = {"":
- ["Item3?", "Item1", "Item2"],
+ ["item3?", "item1", "item2"],
  "super": "Tuple",
- operator$eq$1: function(other){return !(other==null)&&this.Item1===other.get$Item1()&&this.Item2===other.get$Item2()&&this.Item3===other.get$Item3();},
- toString$0: function(){return 'Tuple3: Item1: '+$.S(this.Item1)+', Item2: '+$.S(this.Item2)+', Item3: '+this.Item3;}
+ operator$eq$1: function(other){return !(other==null)&&$.eqB(this.item1,other.get$item1())&&$.eqB(this.item2,other.get$item2())&&$.eqB(this.item3,other.get$item3());},
+ toString$0: function(){return '{item1: '+$.S(this.item1)+', item2: '+$.S(this.item2)+', item3: '+$.S(this.item3)+'}';},
+ hashCode$0: function(){return $.Util_getHashCode([this.item1,this.item2,this.item3]);}
 };
 
 $$.NullArgumentException = {"":
@@ -1565,7 +1620,6 @@ $$.Enumerable = {"":
  contains$1: function(item){for(var t1=$.iterator(this);t1.hasNext$0()===true;)if($.eqB(t1.next$0(),item))return true;return false;},
  isEmpty$0: function(){return this.some$1(new $.Enumerable_isEmpty_anon())!==true;},
  some$1: function(f){$.requireArgumentNotNull(f,'f');for(var t1=$.iterator(this);t1.hasNext$0()===true;)if(f.call$1(t1.next$0())===true)return true;return false;},
- get$length: function(){return this.count$0();},
  count$1: function(f){if(f==null)f=new $.Enumerable_count_anon();for(var t1=$.iterator(this),c=0;t1.hasNext$0()===true;)if(f.call$1(t1.next$0())===true)++c;return c;},
  count$0: function() {
   return this.count$1(null)
@@ -1626,19 +1680,23 @@ $$.Enumerable = {"":
 $$._SimpleEnumerable = {"":
  ["_source"],
  "super": "Enumerable",
- iterator$0: function(){return $.iterator(this._source);}
+ iterator$0: function(){return $.iterator(this._source);},
+ get$length: function(){return this.count$0();}
 };
 
 $$._FuncEnumerable = {"":
  ["_source", "_func"],
  "super": "Enumerable",
  _func$1: function(arg0) { return this._func.call$1(arg0); },
- iterator$0: function(){return this._func$1($.iterator(this._source));}
+ _func$1: function(arg0) { return this._func.call$1(arg0); },
+ iterator$0: function(){return this._func$1($.iterator(this._source));},
+ get$length: function(){return this.count$0();}
 };
 
 $$._SelectIterator = {"":
  ["_source", "_func"],
  "super": "Object",
+ _func$1: function(arg0) { return this._func.call$1(arg0); },
  _func$1: function(arg0) { return this._func.call$1(arg0); },
  hasNext$0: function(){return this._source.hasNext$0();},
  next$0: function(){return this._func$1(this._source.next$0());}
@@ -1647,6 +1705,7 @@ $$._SelectIterator = {"":
 $$._WhereIterator = {"":
  ["_source", "_func", "_lib5_next=", "_current?"],
  "super": "Object",
+ _func$1: function(arg0) { return this._func.call$1(arg0); },
  _func$1: function(arg0) { return this._func.call$1(arg0); },
  hasNext$0: function(){if(this._lib5_next==null){this._lib5_next=false;for(var t1=this._source;t1.hasNext$0()===true;){this._current=t1.next$0();if(this._func$1(this._current)===true){this._lib5_next=true;break;}}}return this._lib5_next;},
  next$0: function(){if(this.hasNext$0()!==true)throw $.$$throw($.CTC11);this._lib5_next=null;return this._current;}
@@ -1664,6 +1723,7 @@ $$._SelectManyIterator = {"":
  ["_sourceIterator", "_func", "_outputIterator"],
  "super": "Object",
  _func$1: function(arg0) { return this._func.call$1(arg0); },
+ _func$1: function(arg0) { return this._func.call$1(arg0); },
  hasNext$0: function(){var t1=this._outputIterator;if(!(t1==null))if(t1.hasNext$0()===true)return true;else this._outputIterator=null;t1=this._sourceIterator;if(t1.hasNext$0()===true){this._outputIterator=$.iterator(this._func$1(t1.next$0()));return this._outputIterator.hasNext$0();}return false;},
  next$0: function(){if(this.hasNext$0()!==true)throw $.$$throw($.CTC11);return this._outputIterator.next$0();}
 };
@@ -1680,20 +1740,24 @@ $$.NumberEnumerable = {"":
 $$._SimpleNumEnumerable = {"":
  ["_source"],
  "super": "NumberEnumerable",
- iterator$0: function(){return $.iterator(this._source);}
+ iterator$0: function(){return $.iterator(this._source);},
+ get$length: function(){return this.count$0();}
 };
 
 $$._FuncNumEnumerable = {"":
  ["_source", "_func"],
  "super": "NumberEnumerable",
  _func$1: function(arg0) { return this._func.call$1(arg0); },
- iterator$0: function(){return this._func$1($.iterator(this._source));}
+ _func$1: function(arg0) { return this._func.call$1(arg0); },
+ iterator$0: function(){return this._func$1($.iterator(this._source));},
+ get$length: function(){return this.count$0();}
 };
 
-$$._RangeIterable = {"":
+$$._RangeEnumerable = {"":
  ["_start", "_count"],
  "super": "NumberEnumerable",
- iterator$0: function(){return $._RangeIterator$(this._start,this._count);}
+ iterator$0: function(){return $._RangeIterator$(this._start,this._count);},
+ get$length: function(){return this.count$0();}
 };
 
 $$._RangeIterator = {"":
@@ -1729,8 +1793,11 @@ $$.ListBase = {"":
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
 },
- lastIndexOf$2: function(element,start){var i=start;var lastIndex=-1;while(true){var t1=$.get$length(this);if(typeof t1!=='number')return this.lastIndexOf$2$bailout(1,element,i,lastIndex,t1);if(!(i<t1))break;t1=this.operator$index$1(i);if(typeof t1!=='number')return this.lastIndexOf$2$bailout(2,element,i,lastIndex,t1);if(t1===element)lastIndex=i;++i;}return lastIndex;},
- lastIndexOf$2$bailout: function(state,env0,env1,env2,env3){switch(state){case 1:var element=env0;i=env1;lastIndex=env2;t1=env3;break;case 2:element=env0;i=env1;lastIndex=env2;t1=env3;break;}switch(state){case 0:var i=start;var lastIndex=-1;default:L0:while(true)switch(state){case 0:var t1=$.get$length(this);case 1:state=0;if(!$.ltB(i,t1))break L0;t1=this.operator$index$1(i);case 2:state=0;if($.eqB(t1,element))lastIndex=i;++i;}return lastIndex;}},
+ lastIndexOf$2: function(element,start){if(start!==(start|0))return this.lastIndexOf$2$bailout(1,element,start,0,0);var i=start;var lastIndex=-1;while(true){var t1=$.get$length(this);if(typeof t1!=='number')return this.lastIndexOf$2$bailout(2,element,i,lastIndex,t1);if(!(i<t1))break;lastIndex=$.eqB(this.operator$index$1(i),element)?i:lastIndex;++i;}return lastIndex;},
+ lastIndexOf$2$bailout: function(state,env0,env1,env2,env3){switch(state){case 1:var element=env0;var start=env1;break;case 2:element=env0;i=env1;lastIndex=env2;t1=env3;break;}switch(state){case 0:case 1:state=0;var i=start;var lastIndex=-1;case 2:L0:while(true)switch(state){case 0:var t1=$.get$length(this);case 2:state=0;if(!$.ltB(i,t1))break L0;lastIndex=$.eqB(this.operator$index$1(i),element)?i:lastIndex;i=$.add(i,1);}return lastIndex;}},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,0)
+},
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  getRange$2: function(start,itemCount){if(typeof start!=='number')return this.getRange$2$bailout(1,start,itemCount);$.requireArgument($.ge(itemCount,0),'count',null);if(typeof itemCount!=='number')throw $.iae(itemCount);var lastIndex=start+itemCount-1;if(itemCount>0)if(start<0)throw $.$$throw($.IndexOutOfRangeException$(start));else if($.geB(lastIndex,$.get$length(this)))throw $.$$throw($.IndexOutOfRangeException$(lastIndex));var list=$.ListImplementation_List(null);for(var i=start;i<=lastIndex;++i)list.push(this.operator$index$1(i));return list;},
  getRange$2$bailout: function(state,start,itemCount){$.requireArgument($.ge(itemCount,0),'count',null);var lastIndex=$.sub($.add(start,itemCount),1);if($.gtB(itemCount,0))if($.ltB(start,0))throw $.$$throw($.IndexOutOfRangeException$(start));else if($.geB(lastIndex,$.get$length(this)))throw $.$$throw($.IndexOutOfRangeException$(lastIndex));var list=$.ListImplementation_List(null);for(var i=start;$.leB(i,lastIndex);i=$.add(i,1))list.push(this.operator$index$1(i));return list;},
@@ -2000,15 +2067,15 @@ $$._Throws0 = {"":
 };
 
 $$.QrBitBuffer = {"":
- ["_lib6_buffer", "_lib6_length"],
+ ["_lib7_buffer", "_lib7_length"],
  "super": "ListBase",
- operator$index$1: function(index){var bufIndex=$.tdiv(index,8);var t1=this._lib6_buffer;if(bufIndex!==(bufIndex|0))throw $.iae(bufIndex);if(bufIndex<0||bufIndex>=t1.length)throw $.ioore(bufIndex);t1=t1[bufIndex];var t2=$.mod(index,8);if(typeof t2!=='number')throw $.iae(t2);return $.eq($.and($.shr(t1,7-t2),1),1);},
- get$length: function(){return this._lib6_length;},
- getByte$1: function(index){var t1=this._lib6_buffer;if(index!==(index|0))throw $.iae(index);if(index<0||index>=t1.length)throw $.ioore(index);return t1[index];},
+ operator$index$1: function(index){var bufIndex=$.tdiv(index,8);var t1=this._lib7_buffer;if(bufIndex!==(bufIndex|0))throw $.iae(bufIndex);if(bufIndex<0||bufIndex>=t1.length)throw $.ioore(bufIndex);t1=t1[bufIndex];var t2=$.mod(index,8);if(typeof t2!=='number')throw $.iae(t2);return $.eq($.and($.shr(t1,7-t2),1),1);},
+ get$length: function(){return this._lib7_length;},
+ getByte$1: function(index){var t1=this._lib7_buffer;if(index!==(index|0))throw $.iae(index);if(index<0||index>=t1.length)throw $.ioore(index);return t1[index];},
  put$2: function(number,length$){if(number!==(number|0))return this.put$2$bailout(1,number,length$);if(length$!==(length$|0))return this.put$2$bailout(1,number,length$);for(var i=0;i<length$;++i)this.putBit$1(($.shr(number,length$-i-1)&1)===1);},
  put$2$bailout: function(state,number,length$){for(var i=0;$.ltB(i,length$);++i)this.putBit$1($.eq($.and($.shr(number,$.sub($.sub(length$,i),1)),1),1));},
- putBit$1: function(bit){var t1=this._lib6_length;if(typeof t1!=='number')return this.putBit$1$bailout(1,bit,t1,0,0);var bufIndex=$.tdiv(t1,8);t1=this._lib6_buffer;if(t1.length<=bufIndex)t1.push(0);if(bit===true){var t2=this._lib6_length;if(typeof t2!=='number')return this.putBit$1$bailout(2,t2,bufIndex,t1,0);t2=$.mod(t2,8);if(t2!==(t2|0))return this.putBit$1$bailout(3,t2,bufIndex,t1,0);t2=$.shr(128,t2);if(bufIndex!==(bufIndex|0))throw $.iae(bufIndex);if(bufIndex<0||bufIndex>=t1.length)throw $.ioore(bufIndex);var t5=t1[bufIndex];if(t5!==(t5|0))return this.putBit$1$bailout(4,t1,t5,bufIndex,t2);t1[bufIndex]=(t5|t2)>>>0;}t1=this._lib6_length;if(typeof t1!=='number')return this.putBit$1$bailout(5,t1,0,0,0);this._lib6_length=t1+1;},
- putBit$1$bailout: function(state,env0,env1,env2,env3){switch(state){case 1:var bit=env0;t1=env1;break;case 2:t2=env0;bufIndex=env1;t1=env2;break;case 3:t2=env0;bufIndex=env1;t1=env2;break;case 4:t1=env0;t5=env1;bufIndex=env2;t2=env3;break;case 5:t1=env0;break;}switch(state){case 0:var t1=this._lib6_length;case 1:state=0;var bufIndex=$.tdiv(t1,8);t1=this._lib6_buffer;if($.leB(t1.length,bufIndex))t1.push(0);default:if(state===4||state===3||state===2||state===0&&bit===true)switch(state){case 0:var t2=this._lib6_length;case 2:state=0;t2=$.mod(t2,8);if(typeof t2!=='number')throw $.iae(t2);case 3:state=0;t2=$.shr(128,t2);if(bufIndex!==(bufIndex|0))throw $.iae(bufIndex);if(bufIndex<0||bufIndex>=t1.length)throw $.ioore(bufIndex);var t5=t1[bufIndex];case 4:state=0;t2=$.or(t5,t2);if(bufIndex<0||bufIndex>=t1.length)throw $.ioore(bufIndex);t1[bufIndex]=t2;}t1=this._lib6_length;case 5:state=0;this._lib6_length=$.add(t1,1);}}
+ putBit$1: function(bit){var t1=this._lib7_length;if(typeof t1!=='number')return this.putBit$1$bailout(1,bit,t1,0,0);var bufIndex=$.tdiv(t1,8);t1=this._lib7_buffer;if(t1.length<=bufIndex)t1.push(0);if(bit===true){var t2=this._lib7_length;if(typeof t2!=='number')return this.putBit$1$bailout(2,t2,bufIndex,t1,0);t2=$.mod(t2,8);if(t2!==(t2|0))return this.putBit$1$bailout(3,t2,bufIndex,t1,0);t2=$.shr(128,t2);if(bufIndex!==(bufIndex|0))throw $.iae(bufIndex);if(bufIndex<0||bufIndex>=t1.length)throw $.ioore(bufIndex);var t5=t1[bufIndex];if(t5!==(t5|0))return this.putBit$1$bailout(4,t1,t5,bufIndex,t2);t1[bufIndex]=(t5|t2)>>>0;}t1=this._lib7_length;if(typeof t1!=='number')return this.putBit$1$bailout(5,t1,0,0,0);this._lib7_length=t1+1;},
+ putBit$1$bailout: function(state,env0,env1,env2,env3){switch(state){case 1:var bit=env0;t1=env1;break;case 2:t2=env0;bufIndex=env1;t1=env2;break;case 3:t2=env0;bufIndex=env1;t1=env2;break;case 4:t1=env0;t5=env1;bufIndex=env2;t2=env3;break;case 5:t1=env0;break;}switch(state){case 0:var t1=this._lib7_length;case 1:state=0;var bufIndex=$.tdiv(t1,8);t1=this._lib7_buffer;if($.leB(t1.length,bufIndex))t1.push(0);default:if(state===4||state===3||state===2||state===0&&bit===true)switch(state){case 0:var t2=this._lib7_length;case 2:state=0;t2=$.mod(t2,8);if(typeof t2!=='number')throw $.iae(t2);case 3:state=0;t2=$.shr(128,t2);if(bufIndex!==(bufIndex|0))throw $.iae(bufIndex);if(bufIndex<0||bufIndex>=t1.length)throw $.ioore(bufIndex);var t5=t1[bufIndex];case 4:state=0;t2=$.or(t5,t2);if(bufIndex<0||bufIndex>=t1.length)throw $.ioore(bufIndex);t1[bufIndex]=t2;}t1=this._lib7_length;case 5:state=0;this._lib7_length=$.add(t1,1);}}
 };
 
 $$.QrByte = {"":
@@ -2054,7 +2121,7 @@ $$.QrCode = {"":
  _mapData$2: function(data,maskPattern){if(typeof data!=='string'&&(typeof data!=='object'||data===null||data.constructor!==Array&&!data.is$JavaScriptIndexingBehavior()))return this._mapData$2$bailout(1,data,maskPattern,0,0,0,0,0,0,0,0,0,0,0);var t1=this.moduleCount;var row=t1-1;for(var t2=this._modules,col=row,inc=-1,byteIndex=0,bitIndex=7;col>0;col-=2){if(col===6)--col;for(var inc0=-inc;true;){for(var c=0;c<2;++c){if(row<0||row>=t2.length)throw $.ioore(row);var t3=t2[row];if(typeof t3!=='string'&&(typeof t3!=='object'||t3===null||t3.constructor!==Array&&!t3.is$JavaScriptIndexingBehavior()))return this._mapData$2$bailout(2,c,maskPattern,bitIndex,data,col,t3,inc0,row,inc,t1,t2,byteIndex,0);var t5=col-c;if(t5<0||t5>=t3.length)throw $.ioore(t5);if(t3[t5]==null){t3=data.length;if(byteIndex<t3){if(byteIndex<0||byteIndex>=t3)throw $.ioore(byteIndex);var t4=data[byteIndex];if(t4!==(t4|0))return this._mapData$2$bailout(3,c,maskPattern,t4,bitIndex,data,col,inc0,row,inc,t1,t2,byteIndex,0);var dark=($.shr(t4,bitIndex)&1)===1;}else dark=false;if($.QrUtil_getMask(maskPattern,row,t5)===true)dark=!dark;if(row<0||row>=t2.length)throw $.ioore(row);t3=t2[row];if(typeof t3!=='object'||t3===null||(t3.constructor!==Array||!!t3.immutable$list)&&!t3.is$JavaScriptIndexingBehavior())return this._mapData$2$bailout(4,c,maskPattern,bitIndex,data,col,inc0,row,inc,t1,dark,t2,t3,byteIndex);if(t5<0||t5>=t3.length)throw $.ioore(t5);t3[t5]=dark;--bitIndex;if(bitIndex===-1){++byteIndex;bitIndex=7;}}}row+=inc;if(row<0||t1<=row){row-=inc;inc=inc0;break;}}}},
  _mapData$2$bailout: function(state,env0,env1,env2,env3,env4,env5,env6,env7,env8,env9,env10,env11,env12){switch(state){case 1:var data=env0;var maskPattern=env1;break;case 2:c=env0;maskPattern=env1;bitIndex=env2;data=env3;col=env4;t3=env5;inc0=env6;row=env7;inc=env8;t1=env9;t2=env10;byteIndex=env11;break;case 3:c=env0;maskPattern=env1;t3=env2;bitIndex=env3;data=env4;col=env5;inc0=env6;row=env7;inc=env8;t1=env9;t2=env10;byteIndex=env11;break;case 4:c=env0;maskPattern=env1;bitIndex=env2;data=env3;col=env4;inc0=env5;row=env6;inc=env7;t1=env8;dark=env9;t2=env10;t3=env11;byteIndex=env12;break;}switch(state){case 0:case 1:state=0;var t1=this.moduleCount;var row=t1-1;var col=t1-1;var t2=this._modules;var inc=-1;var byteIndex=0;var bitIndex=7;default:L0:while(true)switch(state){case 0:if(!(col>0))break L0;if(col===6)--col;var inc0=-inc;default:L1:while(true)switch(state){case 0:if(!true)break L1;var c=0;default:L2:while(true)switch(state){case 0:if(!(c<2))break L2;if(row<0||row>=t2.length)throw $.ioore(row);var t3=t2[row];case 2:state=0;default:if(state===4||state===3||state===0&&$.index(t3,col-c)==null)switch(state){case 0:case 3:if(state===3||state===0&&$.ltB(byteIndex,$.get$length(data)))switch(state){case 0:t3=$.index(data,byteIndex);case 3:state=0;var dark=$.eq($.and($.shr(t3,bitIndex),1),1);}else dark=false;if($.QrUtil_getMask(maskPattern,row,col-c)===true)dark=dark!==true;if(row<0||row>=t2.length)throw $.ioore(row);t3=t2[row];case 4:state=0;$.indexSet(t3,col-c,dark);--bitIndex;if(bitIndex===-1){++byteIndex;bitIndex=7;}}++c;}row+=inc;if(row<0||t1<=row){row-=inc;inc=inc0;break L1;}}col-=2;}}},
  _makeImpl$2: function(test,maskPattern){this._setupPositionProbePattern$2(0,0);var t1=this.moduleCount;this._setupPositionProbePattern$2(t1-7,0);this._setupPositionProbePattern$2(0,t1-7);this._setupPositionAdjustPattern$0();this._setupTimingPattern$0();this._setupTypeInfo$2(test,maskPattern);t1=this.typeNumber;if(t1>=7)this._setupTypeNumber$1(test);if(this._dataCache==null)this._dataCache=$.QrCode__createData(t1,this.errorCorrectLevel,this._dataList);this._mapData$2(this._dataCache,maskPattern);},
- QrCode$2: function(typeNumber,errorCorrectLevel){$.requireArgument($.gtB(typeNumber,0)&&$.ltB(typeNumber,11),'typeNumber',null);$.requireArgument($.ge($.indexOf$1($.CTC55,this.errorCorrectLevel),0),'errorCorrectLevel',null);for(var t1=this.moduleCount,t2=this._modules,row=0;row<t1;++row)t2.push($.ListImplementation_List(t1));this._dataCache=null;this._dataList=[];}
+ QrCode$2: function(typeNumber,errorCorrectLevel){$.requireArgument($.gtB(typeNumber,0)&&$.ltB(typeNumber,11),'typeNumber',null);$.requireArgument($.ge($.indexOf$1($.CTC56,this.errorCorrectLevel),0),'errorCorrectLevel',null);for(var t1=this.moduleCount,t2=this._modules,row=0;row<t1;++row)t2.push($.ListImplementation_List(t1));this._dataCache=null;this._dataList=[];}
 };
 
 $$.QrInputTooLongException = {"":
@@ -2064,19 +2131,86 @@ $$.QrInputTooLongException = {"":
  is$Exception: true
 };
 
+$$._TestValue = {"":
+ ["_sendPort", "inputSerializer", "outputDeserializer", "_completer", "_innerFuture", "_input", "_future", "_output", "_pending", "_outputChangedHandle", "_inputChangedHandle", "_errorHandle"],
+ "super": "SendPortValue"
+};
+
+$$._ComplexTestValue = {"":
+ ["_sendPort", "inputSerializer", "outputDeserializer", "_completer", "_innerFuture", "_input", "_future", "_output", "_pending", "_outputChangedHandle", "_inputChangedHandle", "_errorHandle"],
+ "super": "SendPortValue"
+};
+
+$$.FutureValue = {"":
+ [],
+ "super": "Object",
+ set$input: function(value){this._input=value;if(this._future==null)this._startFuture$0();else this._pending=true;this._inputChangedHandle.fireEvent$1($.CTC19);},
+ get$output: function(){return this._output;},
+ get$outputChanged: function(){return this._outputChangedHandle;},
+ get$error: function(){return this._errorHandle;},
+ error$2: function(arg0, arg1) { return this.get$error().call$2(arg0, arg1); },
+ _startFuture$0: function(){this._future=this.getFuture$1(this._input);this._future.handleException$1(this.get$_futureException());this._future.then$1(this.get$_futureCompleted());},
+ _futureException$1: function(exception){this._future=null;this._errorHandle.fireEvent$1(exception);this._cleanup$0();return true;},
+ get$_futureException: function() { return new $.BoundClosure0(this, '_futureException$1'); },
+ _futureCompleted$1: function(value){this._future=null;this._output=value;this._outputChangedHandle.fireEvent$1($.CTC19);this._cleanup$0();},
+ get$_futureCompleted: function() { return new $.BoundClosure0(this, '_futureCompleted$1'); },
+ _cleanup$0: function(){if(this._pending===true){this._pending=false;this._startFuture$0();}}
+};
+
+$$.FutureValueResult = {"":
+ ["value?", "exception?", "_outputSerializer"],
+ "super": "Object",
+ _outputSerializer$1: function(arg0) { return this._outputSerializer.call$1(arg0); },
+ get$isException: function(){return !(this.exception==null);},
+ toMap$0: function(){return $.makeLiteralMap(['value',this._serialize$1(this.value),'exception',this.exception]);},
+ operator$eq$1: function(other){return !(other==null)&&$.eqB(other.get$value(),this.value)&&$.eqB(other.get$exception(),this.exception);},
+ _serialize$1: function(output){if(this._outputSerializer==null)return output;else return this._outputSerializer$1(output);},
+ FutureValueResult$fromException$1: function(exception){$.requireArgumentNotNull(this.exception,'exception');}
+};
+
+$$.SendPortValue = {"":
+ [],
+ "super": "FutureValue",
+ inputSerializer$1: function(arg0) { return this.inputSerializer.call$1(arg0); },
+ outputDeserializer$1: function(arg0) { return this.outputDeserializer.call$1(arg0); },
+ getFuture$1: function(value){this._completer=$.Completer_Completer();var t1=this.inputSerializer==null;var t2=this._sendPort;if(t1)this._innerFuture=t2.call$1(value);else this._innerFuture=t2.call$1(this.inputSerializer$1(value));this._innerFuture.then$1(this.get$__futureCompleted());return this._completer.get$future();},
+ __futureCompleted$1: function(value){this._innerFuture=null;if(typeof value==='object'&&value!==null&&value.is$Map()&&$.FutureValueResult_isMyMap(value))this._sendValueResultCompleted$1($.FutureValueResult_FutureValueResult$fromMap(value));else this._lib6_complete$1(value);},
+ get$__futureCompleted: function() { return new $.BoundClosure0(this, '__futureCompleted$1'); },
+ _sendValueResultCompleted$1: function(value){if(value.get$isException()===true)this._completeException$1(value.get$exception());else this._lib6_complete$1(value.get$value());},
+ _lib6_complete$1: function(rawValue){var c=this._completer;this._completer=null;c.complete$1(this._deserializer$1(rawValue));},
+ _completeException$1: function(exception){var c=this._completer;this._completer=null;c.completeException$1(exception);},
+ _deserializer$1: function(input){if(this.outputDeserializer==null)return input;else return this.outputDeserializer$1(input);}
+};
+
+$$.SendValuePort = {"":
+ ["_lib6_func", "inputDeserializer", "outputSerializer?"],
+ "super": "Object",
+ _lib6_func$1: function(arg0) { return this._lib6_func.call$1(arg0); },
+ _lib6_func$1: function(arg0) { return this._lib6_func.call$1(arg0); },
+ inputDeserializer$1: function(arg0) { return this.inputDeserializer.call$1(arg0); },
+ _deserialize$1: function(input){if(this.inputDeserializer==null)return input;else return this.inputDeserializer$1(input);},
+ SendValuePort$3$inputDeserializer$outputSerializer: function(_func,inputDeserializer,outputSerializer){$.port().receive$1(new $.anon3(this));}
+};
+
 $$.runQrTests_anon = {"":
  [],
  "super": "Closure",
  call$0: function(){$.TestQrBitBuffer_run();$.TestQrCode_run();}
 };
 
-$$.runDartlibTests_anon = {"":
+$$.runAsyncTests_anon = {"":
  [],
  "super": "Closure",
- call$0: function(){$.TestTuple_run();$.TestEnumerable_run();$.TestNumberEnumerable_run();$.TestListBase_run();$.TestCollectionUtil_run();$.TestArray2d_run();$.TestCoordinate_run();$.TestBox_run();$.TestVector_run();$.TestAffineTransform_run();$.TestUtil_run();$.test('Cloneable',$.TestCloneable__test);$.TestEvents_run();$.TestTarjanCycleDetect_run();$.TestRgbColor_run();$.TestHslColor_run();$.group('attached',new $.runDartlibTests_anon0());}
+ call$0: function(){$.test('simple',$.TestSendPortValue__testSimple);$.test('complex',$.TestSendPortValue__testComplex);$.TestFutureValueResult_run();}
 };
 
-$$.runDartlibTests_anon0 = {"":
+$$.runBotTests_anon = {"":
+ [],
+ "super": "Closure",
+ call$0: function(){$.TestTuple_run();$.TestEnumerable_run();$.TestNumberEnumerable_run();$.TestListBase_run();$.TestCollectionUtil_run();$.TestArray2d_run();$.TestCoordinate_run();$.TestBox_run();$.TestVector_run();$.TestAffineTransform_run();$.TestUtil_run();$.test('Cloneable',$.TestCloneable__test);$.TestEvents_run();$.TestTarjanCycleDetect_run();$.TestRgbColor_run();$.TestHslColor_run();$.group('attached',new $.runBotTests_anon0());}
+};
+
+$$.runBotTests_anon0 = {"":
  [],
  "super": "Closure",
  call$0: function(){$.TestAttachedEvents_run();$.TestProperties_run();$.test('PropertyObject, EventHandle',$.TestPropertyEventIntegration_doTest);}
@@ -2398,13 +2532,13 @@ $$.TestEnumerable_run_anon0 = {"":
 $$.TestTuple_run_anon = {"":
  [],
  "super": "Closure",
- call$0: function(){var t1=$.Tuple$(5,4);$.expect(t1,$.equals(t1,100),null,null,false);$.expect(t1.Item1,$.equals(5,100),null,null,false);$.expect(t1.Item2,$.equals(4,100),null,null,false);var t2=$.Tuple$(5,4);$.expect(t2,$.equals(t1,100),null,null,false);$.expect(t2,$.isNot($.same(t1)),null,null,false);$.expect($.Tuple$(6,4),$.isNot($.equals(t1,100)),null,null,false);}
+ call$0: function(){var t1=$.Tuple$(5,4);$.expect(t1,$.equals(t1,100),null,null,false);$.expect(t1.item1,$.equals(5,100),null,null,false);$.expect(t1.item2,$.equals(4,100),null,null,false);var t2=$.Tuple$(5,4);$.expect(t2,$.equals(t1,100),null,null,false);$.expect(t2,$.isNot($.same(t1)),null,null,false);$.expect($.Tuple$(6,4),$.isNot($.equals(t1,100)),null,null,false);}
 };
 
 $$.TestTuple_run_anon0 = {"":
  [],
  "super": "Closure",
- call$0: function(){var t1=$.Tuple3$(5,4,'cool');$.expect(t1,$.equals(t1,100),null,null,false);$.expect(t1.Item1,$.equals(5,100),null,null,false);$.expect(t1.Item2,$.equals(4,100),null,null,false);$.expect(t1.Item3,$.equals('cool',100),null,null,false);var t2=$.Tuple3$(5,4,'cool');$.expect(t2,$.equals(t1,100),null,null,false);$.expect(t2,$.isNot($.same(t1)),null,null,false);$.expect($.Tuple3$(6,4,'beans'),$.isNot($.equals(t1,100)),null,null,false);}
+ call$0: function(){var t1=$.Tuple3$(5,4,'cool');$.expect(t1,$.equals(t1,100),null,null,false);$.expect(t1.item1,$.equals(5,100),null,null,false);$.expect(t1.item2,$.equals(4,100),null,null,false);$.expect(t1.item3,$.equals('cool',100),null,null,false);var t2=$.Tuple3$(5,4,'cool');$.expect(t2,$.equals(t1,100),null,null,false);$.expect(t2,$.isNot($.same(t1)),null,null,false);$.expect($.Tuple3$(6,4,'beans'),$.isNot($.equals(t1,100)),null,null,false);}
 };
 
 $$.anon = {"":
@@ -2805,16 +2939,16 @@ $$.Enumerable_isEmpty_anon = {"":
  call$1: function(e){return true;}
 };
 
-$$.Enumerable_count_anon = {"":
- [],
- "super": "Closure",
- call$1: function(a){return true;}
-};
-
 $$.Enumerable_map_anon = {"":
  ["f_0"],
  "super": "Closure",
  call$1: function(s){return $._SelectIterator$(s,this.f_0);}
+};
+
+$$.Enumerable_count_anon = {"":
+ [],
+ "super": "Closure",
+ call$1: function(a){return true;}
 };
 
 $$.Enumerable_filter_anon = {"":
@@ -3447,6 +3581,90 @@ $$.TestHslColor__testInvalid_anon1 = {"":
  call$0: function(){return $.HslColor_HslColor(0,0,256);}
 };
 
+$$.TestFutureValueResult_run_anon = {"":
+ [],
+ "super": "Closure",
+ call$0: function(){$.group('toMap roundtrip',new $.TestFutureValueResult_run_anon0());}
+};
+
+$$.TestFutureValueResult_run_anon0 = {"":
+ [],
+ "super": "Closure",
+ call$0: function(){$.test('value',$.TestFutureValueResult__testValueRoundTrip);$.test('exception',$.TestFutureValueResult__testExceptionRoundTrip);}
+};
+
+$$.TestSendPortValue__testComplex_anon = {"":
+ ["tv_0"],
+ "super": "Closure",
+ call$1: function(arg){$.expect(this.tv_0.get$output(),$.equals($.Tuple3$(5,6,11),100),null,null,false);}
+};
+
+$$.TestSendPortValue__testComplex_anon0 = {"":
+ [],
+ "super": "Closure",
+ call$1: function(args){$.expect(args,$.equals('wah?',100),null,null,false);}
+};
+
+$$._complexTestIsolate_anon = {"":
+ [],
+ "super": "Closure",
+ call$1: function(input){if(input==null)throw $.$$throw('wah?');var t1=input.get$item1();var t2=input.get$item2();return $.Tuple3$(t1,t2,$.add(t1,t2));}
+};
+
+$$.anon3 = {"":
+ ["this_0"],
+ "super": "Closure",
+ call$2: function(rawValue,reply){var t1=this.this_0;var value=t1._deserialize$1(rawValue);var _message=null;try{var output=t1._lib6_func$1(value);_message=$.FutureValueResult$(output,t1.get$outputSerializer());}catch(exception){t1=$.unwrapException(exception);var ex=t1;var exString=$.toString(ex);_message=$.FutureValueResult$fromException(exString);}reply.send$1(_message.toMap$0());}
+};
+
+$$._IsolateNatives__spawn_anon = {"":
+ ["port_1", "completer_0"],
+ "super": "Closure",
+ call$2: function(msg,replyPort){this.port_1.close$0();this.completer_0.complete$1(replyPort);}
+};
+
+$$.anon4 = {"":
+ ["this_0"],
+ "super": "Closure",
+ call$1: function(p){var t1=this.this_0;t1.set$_port(p);for(var t2=$.iterator(t1.get$pending());t2.hasNext$0()===true;){var t3=t2.next$0();p.send$2($.index(t3,'message'),$.index(t3,'replyTo'));}t1.set$pending(null);}
+};
+
+$$._IsolateNatives__startNonWorker_function = {"":
+ ["functionName_1", "replyPort_0"],
+ "super": "Closure",
+ call$0: function(){$._IsolateNatives__startIsolate($._IsolateNatives__getJSFunctionFromName(this.functionName_1),this.replyPort_0);}
+};
+
+$$._IsolateNatives__spawnWorker_anon = {"":
+ ["worker_0"],
+ "super": "Closure",
+ call$1: function(e){$._IsolateNatives__processWorkerMessage(this.worker_0,e);}
+};
+
+$$._IsolateNatives__processWorkerMessage_function = {"":
+ ["entryPoint_1", "replyTo_0"],
+ "super": "Closure",
+ call$0: function(){$._IsolateNatives__startIsolate(this.entryPoint_1,this.replyTo_0);}
+};
+
+$$.TestSendPortValue__testSimple_anon = {"":
+ ["tv_0"],
+ "super": "Closure",
+ call$1: function(arg){$.expect(this.tv_0.get$output(),$.equals(25,100),null,null,false);}
+};
+
+$$.TestSendPortValue__testSimple_anon0 = {"":
+ [],
+ "super": "Closure",
+ call$1: function(args){$.expect(args,$.equals('wah?',100),null,null,false);}
+};
+
+$$._testIsolate_anon = {"":
+ [],
+ "super": "Closure",
+ call$1: function(input){if($.ltB(input,0))throw $.$$throw('wah?');return $.mul(input,input);}
+};
+
 $$.TestQrCode_run_anon = {"":
  [],
  "super": "Closure",
@@ -3471,13 +3689,13 @@ $$._EventLoop__runHelper_next = {"":
  call$0: function(){if(this.this_0.runIteration$0()!==true)return;$._window().setTimeout$2(this,0);}
 };
 
-$$.anon3 = {"":
+$$.anon5 = {"":
  ["this_1", "callback_0"],
  "super": "Closure",
  call$0: function(){return this.callback_0.call$1(this.this_1);}
 };
 
-$$.anon4 = {"":
+$$.anon6 = {"":
  ["this_1", "callback_0"],
  "super": "Closure",
  call$0: function(){return this.callback_0.call$1(this.this_1);}
@@ -3529,7 +3747,7 @@ $.TestEvents$ = function(){return new $.TestEvents($.EventHandle$());};
 
 $.Size$ = function(width,height){return new $.Size(width,height);};
 
-$.NumberEnumerable_NumberEnumerable$fromRange = function(start,count){return $._RangeIterable$(start,count);};
+$.NumberEnumerable_NumberEnumerable$fromRange = function(start,count){return $._RangeEnumerable$(start,count);};
 
 $.Collections_filter = function(source,destination,f){for(var t1=$.iterator(source);t1.hasNext$0()===true;){var t2=t1.next$0();if(f.call$1(t2)===true)destination.push(t2);}return destination;};
 
@@ -3547,6 +3765,8 @@ $.TestEnumerable__testSingle = function(){$.expect($.$$([42]).single$0(),$.equal
 
 $.TestTarjanCycleDetect__testSingle = function(){var graph=$.HashMapImplementation$();graph.operator$indexSet$2(1,null);var result=$.TarjanCycleDetect_getStronglyConnectedComponents(graph);$.expect($.get$length(result),$.equals(1,100),null,null,false);$.expect($.index(result,0),$.unorderedEquals([1]),null,null,false);};
 
+$.SendValuePort$ = function(_func,inputDeserializer,outputSerializer){var t1=new $.SendValuePort(_func,inputDeserializer,outputSerializer);t1.SendValuePort$3$inputDeserializer$outputSerializer(_func,inputDeserializer,outputSerializer);return t1;};
+
 $._convertDartToNative_PrepareForStructuredClone = function(value){var values=[];var copies=[];var t1=new $._convertDartToNative_PrepareForStructuredClone_findSlot(copies,values);var t2=new $._convertDartToNative_PrepareForStructuredClone_readSlot(copies);var t3=new $._convertDartToNative_PrepareForStructuredClone_writeSlot(copies);var t4=new $._convertDartToNative_PrepareForStructuredClone_cleanupSlots();var copy=new $._convertDartToNative_PrepareForStructuredClone_walk(t3,t1,t2).call$1(value);t4.call$0();return copy;};
 
 $.floor = function(receiver){return Math.floor(receiver);};
@@ -3561,7 +3781,7 @@ $.TestEnumerable__testSelectMany = function(){var select=$.$$(['Okoboji','Iowa']
 
 $.and = function(a,b){if($.checkNumbers(a,b))return (a & b) >>> 0;return a.operator$and$1(b);};
 
-$.Tuple3$ = function(param1,param2,Item3){return new $.Tuple3(Item3,param1,param2);};
+$.Tuple3$ = function(param1,param2,item3){return new $.Tuple3(item3,param1,param2);};
 
 $._MediaStreamEventsImpl$ = function(_ptr){return new $._MediaStreamEventsImpl(_ptr);};
 
@@ -3635,9 +3855,11 @@ $.TestTarjanCycleDetect__test5Isolated = function(){var graph=$.HashMapImplement
 
 $.TestListBase__testSomeAll = function(){$.expect($.CTC40.every$1($.TestListBase__lt0),$.CTC,null,null,false);$.expect($.CTC40.some$1($.TestListBase__lt0),$.CTC,null,null,false);$.expect($.CTC40.every$1($.TestListBase__gt0),$.CTC15,null,null,false);$.expect($.CTC40.some$1($.TestListBase__gt0),$.CTC15,null,null,false);$.expect($.CTC40.every$1($.TestListBase__lt3),$.CTC,null,null,false);$.expect($.CTC40.some$1($.TestListBase__lt3),$.CTC15,null,null,false);$.forEach([$.TestListBase__lt0,$.TestListBase__gt0,$.TestListBase__lt3],new $.TestListBase__testSomeAll_anon());};
 
-$.QrPolynomial$_internal = function(_myThings){return new $.QrPolynomial(_myThings);};
+$._t3ToList = function(input){return [input.get$item1(),input.get$item2(),input.get$item3()];};
 
 $._TextTrackEventsImpl$ = function(_ptr){return new $._TextTrackEventsImpl(_ptr);};
+
+$.QrPolynomial$_internal = function(_myThings){return new $.QrPolynomial(_myThings);};
 
 $.DoubleLinkedQueue$ = function(){var t1=new $.DoubleLinkedQueue(null);t1.DoubleLinkedQueue$0();return t1;};
 
@@ -3648,6 +3870,8 @@ $._SVGElementInstanceEventsImpl$ = function(_ptr){return new $._SVGElementInstan
 $._TarjanList$_internal = function(_nodes){return new $._TarjanList(_nodes);};
 
 $.regExpTest = function(regExp,str){return $.regExpGetNative(regExp).test(str);};
+
+$._TestValue$ = function(){return new $._TestValue($.spawnFunction($._testIsolate),null,null,null,null,null,null,null,false,$.EventHandle$(),$.EventHandle$(),$.EventHandle$());};
 
 $.useHtmlEnhancedConfiguration = function(isLayoutTest){$.configure($.HtmlEnhancedConfiguration$(isLayoutTest));};
 
@@ -3685,6 +3909,8 @@ $.QrByte$_internal = function(_data){return new $.QrByte(4,_data);};
 
 $.EventHandle$ = function(){return new $.EventHandle(null,false);};
 
+$.Uri__emptyIfNull = function(val){return !(val==null)?val:'';};
+
 $.stringSplitUnchecked = function(receiver,pattern){return receiver.split(pattern);};
 
 $.lt$slow = function(a,b){if($.checkNumbers(a,b))return a < b;return a.operator$lt$1(b);};
@@ -3710,6 +3936,8 @@ $.closeTo = function(value,delta){return $._IsCloseTo$(value,delta);};
 $._ElementEventsImpl$ = function(_ptr){return new $._ElementEventsImpl(_ptr);};
 
 $.expectAsync1 = function(callback,count){return $._SpreadArgsHelper$fixedCallCount(callback,count).get$invoke1();};
+
+$.TestFutureValueResult__testValueRoundTrip = function(){var initialVal=$.FutureValueResult$(42,null);var map=initialVal.toMap$0();$.expect($.FutureValueResult_isMyMap(map),$.CTC15,null,null,false);var newVal=$.FutureValueResult_FutureValueResult$fromMap(map);$.expect(newVal,$.equals(initialVal,100),null,null,false);$.expect(newVal,$.isNot($.same(initialVal)),null,null,false);$.expect(newVal.get$value(),$.equals(42,100),null,null,false);};
 
 $.isNegative = function(receiver){return receiver===0?1/receiver<0:receiver<0;};
 
@@ -3783,8 +4011,6 @@ $._currentIsolate = function(){return $._globalState().get$currentContext();};
 
 $.Coordinate_difference = function(a,b){return $.Vector$($.sub(a.x,b.get$x()),$.sub(a.y,b.get$y()));};
 
-$.runDartlibTests = function(){$.group('dartlib',new $.runDartlibTests_anon());};
-
 $.startsWith = function(receiver,other){if(!(typeof receiver==='string'))return receiver.startsWith$1(other);$.checkString(other);var length$=other.length;if(length$>receiver.length)return false;return other == receiver.substring(0, length$);};
 
 $.FutureAlreadyCompleteException$ = function(){return new $.FutureAlreadyCompleteException();};
@@ -3816,6 +4042,8 @@ $._Lists_getRange = function(a,start,length$,accumulator){if(typeof a!=='string'
 
 $.max = function(a,b){if(typeof a==='number'){if(typeof b==='number'){if(a>b)return a;if(a<b)return b;if(typeof b==='number'){if(typeof a==='number')if(a===0)return a+b;if($.isNaN(b)===true)return b;return a;}if(b===0&&$.isNegative(a)===true)return b;return a;}throw $.$$throw($.IllegalArgumentException$(b));}throw $.$$throw($.IllegalArgumentException$(a));};
 
+$.TestFutureValueResult__testExceptionRoundTrip = function(){var initialVal=$.FutureValueResult$fromException('oops');var map=initialVal.toMap$0();$.expect($.FutureValueResult_isMyMap(map),$.CTC15,null,null,false);var newVal=$.FutureValueResult_FutureValueResult$fromMap(map);$.expect(newVal,$.equals(initialVal,100),null,null,false);$.expect(newVal,$.isNot($.same(initialVal)),null,null,false);$.expect(newVal.get$exception(),$.equals('oops',100),null,null,false);};
+
 $.DualPivotQuicksort_insertionSort_ = function(a,left,right,compare){if(typeof a!=='object'||a===null||(a.constructor!==Array||!!a.immutable$list)&&!a.is$JavaScriptIndexingBehavior())return $.DualPivotQuicksort_insertionSort_$bailout(1,a,left,right,compare);if(typeof right!=='number')return $.DualPivotQuicksort_insertionSort_$bailout(1,a,left,right,compare);for(var i=left+1;i<=right;++i){if(i!==(i|0))throw $.iae(i);if(i<0||i>=a.length)throw $.ioore(i);var el=a[i];var j=i;while(true){if(j>left){var t1=j-1;if(t1!==(t1|0))throw $.iae(t1);if(t1<0||t1>=a.length)throw $.ioore(t1);var t2=$.gtB(compare.call$2(a[t1],el),0);t1=t2;}else t1=false;if(!t1)break;var j0=j-1;if(j0!==(j0|0))throw $.iae(j0);t1=a.length;if(j0<0||j0>=t1)throw $.ioore(j0);t2=a[j0];if(j!==(j|0))throw $.iae(j);if(j<0||j>=t1)throw $.ioore(j);a[j]=t2;j=j0;}if(j!==(j|0))throw $.iae(j);if(j<0||j>=a.length)throw $.ioore(j);a[j]=el;}};
 
 $.ge$slow = function(a,b){if($.checkNumbers(a,b))return a >= b;return a.operator$ge$1(b);};
@@ -3832,6 +4060,8 @@ $.mul = function(a,b){return typeof a==='number'&&typeof b==='number'?a * b:$.mu
 
 $.parseInt = function(string){return $.int_parse(string);};
 
+$._IsolateNatives__log = function(msg){if($._globalState().get$isWorker()===true)$._globalState().get$mainManager().postMessage$1($._serializeMessage($.makeLiteralMap(['command','log','msg',msg])));else try{$._IsolateNatives__consoleLog(msg);}catch(exception){$.unwrapException(exception);var trace=$.getTraceFromException(exception);throw $.$$throw($.ExceptionImplementation$(trace));}};
+
 $.Primitives_parseInt = function(string){$.checkString(string);var match=/^\s*[+-]?(?:0(x)[a-f0-9]+|\d+)\s*$/i.exec(string);if(match==null)throw $.$$throw($.FormatException$(string));var base=!($.index(match,1)==null)?16:10;var result=parseInt(string, base);if($.isNaN(result)===true)throw $.$$throw($.FormatException$(string));return result;};
 
 $.filterTests = function(testFilter){if(typeof testFilter==='string')var filterFunction=new $.filterTests_anon($.JSSyntaxRegExp$(testFilter,false,false));else if(typeof testFilter==='object'&&testFilter!==null&&!!testFilter.is$RegExp)filterFunction=new $.filterTests_anon0(testFilter);else filterFunction=typeof testFilter==='function'||typeof testFilter==='object'&&testFilter!==null&&!!testFilter.is$Function?testFilter:null;$._tests=$.filter($._tests,filterFunction);};
@@ -3840,7 +4070,13 @@ $.isNaN = function(receiver){if(typeof receiver==='number')return isNaN(receiver
 
 $.QrMath_gexp = function(n){if(typeof n!=='number')return $.QrMath_gexp$bailout(1,n);for(;n<0;)n+=255;for(;n>=256;)n-=255;return $.index($.QrMath_EXP_TABLE(),n);};
 
+$.port = function(){if($._lazyPort==null)$._lazyPort=$._ReceivePortFactory_ReceivePort();return $._lazyPort;};
+
 $.toInt = function(receiver){if(!(typeof receiver==='number'))return receiver.toInt$0();if($.isNaN(receiver)===true)throw $.$$throw($.FormatException$('NaN'));if($.isInfinite(receiver)===true)throw $.$$throw($.FormatException$('Infinity'));var truncated=$.truncate(receiver);return truncated == -0.0?0:truncated;};
+
+$._RangeEnumerable$ = function(_start,_count){return new $._RangeEnumerable(_start,_count);};
+
+$.lastIndexOf$1 = function(receiver,element){if($.isJsArray(receiver))return $.Arrays_lastIndexOf(receiver,element,receiver.length);else if(typeof receiver==='string'){$.checkNull(element);return receiver.lastIndexOf(element);}return receiver.lastIndexOf$1(element);};
 
 $.TestEnumerable__testToHashMap = function(){var noDupes=$.$$(['the','kitty','is','super']);var hashMap=noDupes.toHashMap$1(new $.TestEnumerable__testToHashMap_anon());$.forEach(hashMap,new $.TestEnumerable__testToHashMap_anon0());$.expect(hashMap.getKeys$0(),$.unorderedEquals(noDupes),null,null,false);var hashMap0=noDupes.toHashMap$2(new $.TestEnumerable__testToHashMap_anon1(),new $.TestEnumerable__testToHashMap_anon2());$.forEach(hashMap0,new $.TestEnumerable__testToHashMap_anon3());$.expect(hashMap0.getValues$0(),$.unorderedEquals(noDupes),null,null,false);$.expect(new $.TestEnumerable__testToHashMap_anon4(noDupes),$.CTC35,null,null,false);$.expect(new $.TestEnumerable__testToHashMap_anon5($.$$(['the','cat','is','the','super','cat'])),$.CTC35,null,null,false);};
 
@@ -3856,7 +4092,11 @@ $.GlobalId$_internal = function(value){return new $.GlobalId(value,$.Util_getHas
 
 $.UnsupportedOperationException$ = function(_message){return new $.UnsupportedOperationException(_message);};
 
+$.TestSendPortValue__testComplex = function(){var tv=$._ComplexTestValue$();var callback=$.expectAsync1(new $.TestSendPortValue__testComplex_anon(tv),1);var onError=$.expectAsync1(new $.TestSendPortValue__testComplex_anon0(),1);$.add$1(tv.get$outputChanged(),callback);$.add$1(tv.get$error(),onError);tv.set$input($.Tuple$(5,6));tv.set$input(null);};
+
 $.TestQrBitBuffer__testComplex = function(){var bb=$.QrBitBuffer$();bb.put$2(0,8);$.expect(bb,$.orderedEquals([false,false,false,false,false,false,false,false]),null,null,false);bb=$.QrBitBuffer$();bb.put$2(1,8);$.expect(bb,$.orderedEquals([false,false,false,false,false,false,false,true]),null,null,false);bb=$.QrBitBuffer$();bb.put$2(255,8);$.expect(bb,$.orderedEquals([true,true,true,true,true,true,true,true]),null,null,false);bb=$.QrBitBuffer$();bb.put$2(256,8);$.expect(bb,$.orderedEquals([false,false,false,false,false,false,false,false]),null,null,false);bb=$.QrBitBuffer$();bb.put$2(256,9);$.expect(bb,$.orderedEquals([true,false,false,false,false,false,false,false,false]),null,null,false);};
+
+$._BufferingSendPort$ = function(isolateId,_futurePort){var t1=new $._BufferingSendPort($._BufferingSendPort__idCount,null,_futurePort,[],isolateId);t1._BufferingSendPort$2(isolateId,_futurePort);return t1;};
 
 $.unorderedEquals = function(expected){return $._UnorderedEquals$(expected);};
 
@@ -3874,8 +4114,6 @@ $.Array2d$wrap = function(width,source){var t1=!(width==null)&&$.gtB(width,0)&&!
 
 $.typeNameInFirefox = function(obj){var name$=$.constructorNameFallback(obj);if(name$==='Window')return 'DOMWindow';if(name$==='Document')return 'HTMLDocument';if(name$==='XMLDocument')return 'Document';if(name$==='WorkerMessageEvent')return 'MessageEvent';if(name$==='DragEvent')return 'MouseEvent';if(name$==='DataTransfer')return 'Clipboard';if(name$==='FormData')return 'DOMFormData';return name$;};
 
-$.removeRange = function(receiver,start,length$){if(!$.isJsArray(receiver))return receiver.removeRange$2(start,length$);$.checkGrowable(receiver,'removeRange');if(length$===0)return;$.checkNull(start);$.checkNull(length$);if(length$<0)throw $.$$throw($.IllegalArgumentException$(length$));var receiverLength=receiver.length;if(start<0||start>=receiverLength)throw $.$$throw($.IndexOutOfRangeException$(start));var t1=start+length$;if(t1>receiverLength)throw $.$$throw($.IndexOutOfRangeException$(t1));var t2=receiverLength-length$;$.Arrays_copy(receiver,t1,receiver,start,t2-start);$.set$length(receiver,t2);};
-
 $._WorkerEventsImpl$ = function(_ptr){return new $._WorkerEventsImpl(_ptr);};
 
 $.ExceptionImplementation$ = function(message){return new $.ExceptionImplementation(message);};
@@ -3883,6 +4121,8 @@ $.ExceptionImplementation$ = function(message){return new $.ExceptionImplementat
 $.TestEnumerable__testForEach = function(){var t1={};var e=$.$$([1,2,3,4,5,6]);t1.sum_1=0;$.forEach(e,new $.TestEnumerable__testForEach_anon(t1));$.expect(t1.sum_1,$.equals(21,100),null,null,false);};
 
 $.TestListBase__testForEach = function(){var t1={};t1.sum_10=0;$.CTC40.forEach$1(new $.TestListBase__testForEach_anon(t1));$.expect(t1.sum_10,$.equals(15,100),null,null,false);t1.sum_10=0;$.CTC43.forEach$1(new $.TestListBase__testForEach_anon0(t1));$.expect(t1.sum_10,$.equals(30,100),null,null,false);};
+
+$.removeRange = function(receiver,start,length$){if(!$.isJsArray(receiver))return receiver.removeRange$2(start,length$);$.checkGrowable(receiver,'removeRange');if(length$===0)return;$.checkNull(start);$.checkNull(length$);if(length$<0)throw $.$$throw($.IllegalArgumentException$(length$));var receiverLength=receiver.length;if(start<0||start>=receiverLength)throw $.$$throw($.IndexOutOfRangeException$(start));var t1=start+length$;if(t1>receiverLength)throw $.$$throw($.IndexOutOfRangeException$(t1));var t2=receiverLength-length$;$.Arrays_copy(receiver,t1,receiver,start,t2-start);$.set$length(receiver,t2);};
 
 $.QrUtil_getBCHTypeNumber = function(data){var d=$.shl(data,12);if(d!==(d|0))return $.QrUtil_getBCHTypeNumber$bailout(1,data,d);for(;$.QrUtil_getBCHDigit(d)-$.QrUtil_getBCHDigit($.QrUtil_G18)>=0;){var t1=$.shl($.QrUtil_G18,$.QrUtil_getBCHDigit(d)-$.QrUtil_getBCHDigit($.QrUtil_G18));if(typeof t1!=='number')throw $.iae(t1);d=(d^t1)>>>0;}return $.or($.shl(data,12),d);};
 
@@ -3893,6 +4133,8 @@ $.ge = function(a,b){return typeof a==='number'&&typeof b==='number'?a >= b:$.ge
 $._globalState = function(){return $globalState;};
 
 $._globalState0 = function(val){$globalState = val;};
+
+$.spawnFunction = function(topLevelFunction){var name$=$._IsolateNatives__getJSFunctionName(topLevelFunction);if(name$==null)throw $.$$throw($.UnsupportedOperationException$('only top-level functions can be spawned.'));return $._IsolateNatives__spawn(name$,null,false);};
 
 $.Primitives_getMinutes = function(receiver){return receiver.isUtc===true?$.Primitives_lazyAsJsDate(receiver).getUTCMinutes():$.Primitives_lazyAsJsDate(receiver).getMinutes();};
 
@@ -3907,6 +4149,8 @@ $._DistinctIterator$ = function(_source,_comparer){return new $._DistinctIterato
 $.Completer_Completer = function(){return $.CompleterImpl$();};
 
 $.expect = function(actual,matcher,reason,failureHandler,verbose){matcher=$.wrapMatcher(matcher);var doesMatch=null;var matchState=$.MatchState$(null);try{doesMatch=matcher.matches$2(actual,matchState);}catch(exception){var t1=$.unwrapException(exception);var e=t1;var trace=$.getTraceFromException(exception);doesMatch=false;if(reason==null){t1=e;t1=typeof t1==='string';var t2=e;reason=$.S(t1?t2:$.toString(t2))+' at '+$.S(trace);}}if(doesMatch!==true){if(failureHandler==null)failureHandler=$.getOrCreateExpectFailureHandler();failureHandler.failMatch$5(actual,matcher,reason,matchState,verbose);}};
+
+$._IsolateNatives__thisScript = function(){return $thisScriptUrl};
 
 $.HtmlEnhancedConfiguration$ = function(_isLayoutTest){return new $.HtmlEnhancedConfiguration(_isLayoutTest,null,null,null);};
 
@@ -3926,11 +4170,13 @@ $.TestTarjanCycleDetect__test5Random = function(){var graph=$.HashMapImplementat
 
 $.IllegalJSRegExpException$ = function(_pattern,_errmsg){return new $.IllegalJSRegExpException(_pattern,_errmsg);};
 
+$._IsolateNatives__startIsolate = function(topLevel,replyTo){$._fillStatics($._globalState().get$currentContext());$._lazyPort=$._ReceivePortFactory_ReceivePort();replyTo.send$2('spawned',$.port().toSendPort$0());topLevel.call$0();};
+
 $.split = function(receiver,pattern){if(!(typeof receiver==='string'))return receiver.split$1(pattern);$.checkNull(pattern);return $.stringSplitUnchecked(receiver,pattern);};
 
 $._TarjanList__TarjanList = function(source){var map=$.HashMapImplementation$();var nodes=$.HashMapImplementation$();source.forEach$1(new $._TarjanList__TarjanList_anon(nodes,map));return $._TarjanList$_internal(nodes);};
 
-$.runQrTests = function(){$.group('dartlib_qr',new $.runQrTests_anon());};
+$.runQrTests = function(){$.group('bot_qr',new $.runQrTests_anon());};
 
 $.Set_Set = function(){return $.HashSetImplementation$();};
 
@@ -3943,6 +4189,8 @@ $.TestQrBitBuffer__testGetByte = function(){var bb=$.QrBitBuffer$();bb.put$2(12,
 $.throwCyclicInit = function(staticName){throw $.$$throw($.RuntimeError$('Cyclic initialization for static '+$.S(staticName)));};
 
 $.indexOf$1 = function(receiver,element){if($.isJsArray(receiver))return $.Arrays_indexOf(receiver,element,0,receiver.length);else if(typeof receiver==='string'){$.checkNull(element);if(!(typeof element==='string'))throw $.$$throw($.IllegalArgumentException$(element));return receiver.indexOf(element);}return receiver.indexOf$1(element);};
+
+$.FutureValueResult$ = function(value,_outputSerializer){return new $.FutureValueResult(value,null,_outputSerializer);};
 
 $.Vector$ = function(x,y){return new $.Vector(x,y);};
 
@@ -3958,9 +4206,11 @@ $.TestRgbColor__getCoreColors = function(){return [$.RgbColor_RgbColor(0,0,0),$.
 
 $._Device_isOpera = function(){return $.contains$2($._Device_userAgent(),'Opera',0);};
 
-$.requireArgumentNotNull = function(argument,argName){if(argument==null)throw $.$$throw($.NullArgumentException$(argName));};
+$.FutureValueResult_FutureValueResult$fromMap = function(value){$.requireArgumentNotNull(value,'value');$.requireArgument($.FutureValueResult_isMyMap(value),'value',null);var ex=$.index(value,'exception');if(!(ex==null))return $.FutureValueResult$fromException(ex);else return $.FutureValueResult$($.index(value,'value'),null);};
 
 $.toString = function(value){if(typeof value == "object" && value !== null)if($.isJsArray(value))return $.Collections_collectionToString(value);else return value.toString$0();if(value === 0 && (1 / value) < 0)return '-0.0';if(value==null)return 'null';if(typeof value == "function")return 'Closure';return String(value);};
+
+$.requireArgumentNotNull = function(argument,argName){if(argument==null)throw $.$$throw($.NullArgumentException$(argName));};
 
 $._FuncEnumerable$ = function(_source,_func){return new $._FuncEnumerable(_source,_func);};
 
@@ -3988,8 +4238,6 @@ $._SpeechRecognitionEventsImpl$ = function(_ptr){return new $._SpeechRecognition
 
 $.QrInputTooLongException_QrInputTooLongException = function(providedInput,inputLimit){return $.QrInputTooLongException$_internal(providedInput,inputLimit,'Input too long. '+$.S(providedInput)+' > '+$.S(inputLimit));};
 
-$._RangeIterable$ = function(_start,_count){return new $._RangeIterable(_start,_count);};
-
 $.QrCode__createData = function(typeNumber,errorCorrectLevel,dataList){if(typeof dataList!=='string'&&(typeof dataList!=='object'||dataList===null||dataList.constructor!==Array&&!dataList.is$JavaScriptIndexingBehavior()))return $.QrCode__createData$bailout(1,typeNumber,errorCorrectLevel,dataList);var rsBlocks=$.QrRsBlock_getRSBlocks(typeNumber,errorCorrectLevel);var buffer=$.QrBitBuffer$();for(var i=0;t1=dataList.length,i<t1;++i){if(i<0||i>=t1)throw $.ioore(i);var data=dataList[i];buffer.put$2(data.get$mode(),4);buffer.put$2($.get$length(data),$.QrUtil_getLengthInBits(data.get$mode(),typeNumber));data.write$1(buffer);}for(var t1=rsBlocks.length,i=0,totalDataCount=0;i<t1;++i){if(i<0||i>=t1)throw $.ioore(i);var t2=rsBlocks[i].get$dataCount();if(typeof t2!=='number')throw $.iae(t2);totalDataCount+=t2;}var totalByteCount=totalDataCount*8;if($.gtB($.get$length(buffer),totalByteCount))throw $.$$throw($.QrInputTooLongException_QrInputTooLongException($.get$length(buffer),totalByteCount));if($.leB($.add($.get$length(buffer),4),totalByteCount))buffer.put$2(0,4);for(;!$.eqB($.mod($.get$length(buffer),8),0);)buffer.putBit$1(false);for(;true;){if($.geB($.get$length(buffer),totalByteCount))break;buffer.put$2(236,8);if($.geB($.get$length(buffer),totalByteCount))break;buffer.put$2(17,8);}return $.QrCode__createBytes(buffer,rsBlocks);};
 
 $._defaultErrorFormatter = function(actual,matcher,reason,matchState,verbose){var description=$.StringDescription$('');$.add$1(description.add$1('Expected: ').addDescriptionOf$1(matcher),'\n     but: ');matcher.describeMismatch$4(actual,description,matchState,verbose);description.add$1('.\n');if(verbose===true&&typeof actual==='object'&&actual!==null&&(actual.constructor===Array||actual.is$Iterable()))$.add$1(description.add$1('Actual: ').addDescriptionOf$1(actual),'\n');if(!(reason==null))$.add$1(description.add$1(reason),'\n');return description.toString$0();};
@@ -4002,6 +4250,8 @@ $._MediaElementEventsImpl$ = function(_ptr){return new $._MediaElementEventsImpl
 
 $.TestEnumerable__testJoin = function(){var enum$=$.$$([0,1,2]);$.expect(enum$.join$0(),$.equals('0, 1, 2',100),null,null,false);$.expect(enum$.join$1('-'),$.equals('0-1-2',100),null,null,false);};
 
+$._Lists_lastIndexOf = function(a,element,startIndex){if(typeof a!=='string'&&(typeof a!=='object'||a===null||a.constructor!==Array&&!a.is$JavaScriptIndexingBehavior()))return $._Lists_lastIndexOf$bailout(1,a,element,startIndex);if(typeof startIndex!=='number')return $._Lists_lastIndexOf$bailout(1,a,element,startIndex);if(startIndex<0)return -1;var t1=a.length;if(startIndex>=t1)startIndex=t1-1;for(var i=startIndex;i>=0;--i){if(i!==(i|0))throw $.iae(i);if(i<0||i>=a.length)throw $.ioore(i);if($.eqB(a[i],element))return i;}return -1;};
+
 $.TestCloneable_TestCloneable = function(){var t1=$.TestCloneable__globalId;$.TestCloneable__globalId=$.add(t1,1);return $.TestCloneable$internal(t1);};
 
 $.Arrays_indexOf = function(a,element,startIndex,endIndex){if(typeof a!=='string'&&(typeof a!=='object'||a===null||a.constructor!==Array&&!a.is$JavaScriptIndexingBehavior()))return $.Arrays_indexOf$bailout(1,a,element,startIndex,endIndex);if(startIndex>=a.length)return -1;if(startIndex<0)startIndex=0;for(var i=startIndex;i<endIndex;++i){if(i<0||i>=a.length)throw $.ioore(i);if($.eqB(a[i],element))return i;}return -1;};
@@ -4013,6 +4263,8 @@ $.propertySet = function(object,property,value){object[property] = value;};
 $._BatteryManagerEventsImpl$ = function(_ptr){return new $._BatteryManagerEventsImpl(_ptr);};
 
 $.TestRgbColor__testInvalid = function(){$.expect(new $.TestRgbColor__testInvalid_anon(),$.CTC39,null,null,false);$.expect(new $.TestRgbColor__testInvalid_anon0(),$.CTC39,null,null,false);$.expect(new $.TestRgbColor__testInvalid_anon1(),$.CTC39,null,null,false);};
+
+$.runAsyncTests = function(){$.group('bot_async',new $.runAsyncTests_anon());};
 
 $.TestHslColor__testInvalid = function(){$.expect(new $.TestHslColor__testInvalid_anon(),$.CTC39,null,null,false);$.expect(new $.TestHslColor__testInvalid_anon0(),$.CTC39,null,null,false);$.expect(new $.TestHslColor__testInvalid_anon1(),$.CTC39,null,null,false);};
 
@@ -4078,9 +4330,11 @@ $.TestListBase__testIndexOf = function(){for(var i=1;i<=5;++i){$.expect($.CTC43.
 
 $.QrCode__createBytes = function(buffer,rsBlocks){if(typeof rsBlocks!=='string'&&(typeof rsBlocks!=='object'||rsBlocks===null||rsBlocks.constructor!==Array&&!rsBlocks.is$JavaScriptIndexingBehavior()))return $.QrCode__createBytes$bailout(1,buffer,rsBlocks,0,0,0,0,0,0,0,0,0,0);var dcdata=$.ListImplementation_List(rsBlocks.length);var ecdata=$.ListImplementation_List(rsBlocks.length);for(var r=0,maxEcCount=0,maxDcCount=0,offset=0;t1=rsBlocks.length,r<t1;++r){if(r<0||r>=t1)throw $.ioore(r);var dcCount=rsBlocks[r].get$dataCount();var ecCount=$.sub(rsBlocks[r].get$totalCount(),dcCount);maxDcCount=$.max(maxDcCount,dcCount);maxEcCount=$.max(maxEcCount,ecCount);var t2=$.QrMath_getZeroedList(dcCount);if(r<0||r>=dcdata.length)throw $.ioore(r);dcdata[r]=t2;var i=0;while(true){if(r<0||r>=dcdata.length)throw $.ioore(r);if(!$.ltB(i,$.get$length(dcdata[r])))break;if(r<0||r>=dcdata.length)throw $.ioore(r);var t1=dcdata[r];if(typeof t1!=='object'||t1===null||(t1.constructor!==Array||!!t1.immutable$list)&&!t1.is$JavaScriptIndexingBehavior())return $.QrCode__createBytes$bailout(2,buffer,rsBlocks,dcCount,dcdata,ecCount,maxDcCount,t1,ecdata,maxEcCount,r,offset,i);var t3=buffer.getByte$1(i+offset);if(typeof t3!=='number')throw $.iae(t3);t3=255&t3;if(i<0||i>=t1.length)throw $.ioore(i);t1[i]=t3;++i;}if(typeof dcCount!=='number')throw $.iae(dcCount);offset+=dcCount;var rsPoly=$.QrUtil_getErrorCorrectPolynomial(ecCount);if(r<0||r>=dcdata.length)throw $.ioore(r);var modPoly=$.QrPolynomial_QrPolynomial(dcdata[r],$.sub($.get$length(rsPoly),1)).mod$1(rsPoly);if(typeof modPoly!=='string'&&(typeof modPoly!=='object'||modPoly===null||modPoly.constructor!==Array&&!modPoly.is$JavaScriptIndexingBehavior()))return $.QrCode__createBytes$bailout(3,buffer,rsBlocks,modPoly,dcdata,maxDcCount,offset,ecdata,maxEcCount,rsPoly,r,0,0);t2=$.QrMath_getZeroedList($.sub($.get$length(rsPoly),1));if(r<0||r>=ecdata.length)throw $.ioore(r);ecdata[r]=t2;i=0;while(true){if(r<0||r>=ecdata.length)throw $.ioore(r);if(!$.ltB(i,$.get$length(ecdata[r])))break;t1=i+modPoly.length;if(r<0||r>=ecdata.length)throw $.ioore(r);t2=$.get$length(ecdata[r]);if(typeof t2!=='number')throw $.iae(t2);var modIndex=t1-t2;if(r<0||r>=ecdata.length)throw $.ioore(r);t2=ecdata[r];if(typeof t2!=='object'||t2===null||(t2.constructor!==Array||!!t2.immutable$list)&&!t2.is$JavaScriptIndexingBehavior())return $.QrCode__createBytes$bailout(4,buffer,rsBlocks,modPoly,dcdata,maxDcCount,ecdata,maxEcCount,r,modIndex,t2,offset,i);if(modIndex>=0){if(modIndex!==(modIndex|0))throw $.iae(modIndex);if(modIndex<0||modIndex>=modPoly.length)throw $.ioore(modIndex);t1=modPoly[modIndex];}else t1=0;if(i<0||i>=t2.length)throw $.ioore(i);t2[i]=t1;++i;}}for(var totalCodeCount=0,i=0;i<t1;++i){if(i<0||i>=t1)throw $.ioore(i);t2=rsBlocks[i].get$totalCount();if(typeof t2!=='number')throw $.iae(t2);totalCodeCount+=t2;}var data=[];for(i=0;i<maxDcCount;++i)for(r=0;r<rsBlocks.length;++r){if(r<0||r>=dcdata.length)throw $.ioore(r);if($.ltB(i,$.get$length(dcdata[r]))){if(r<0||r>=dcdata.length)throw $.ioore(r);t1=dcdata[r];if(typeof t1!=='string'&&(typeof t1!=='object'||t1===null||t1.constructor!==Array&&!t1.is$JavaScriptIndexingBehavior()))return $.QrCode__createBytes$bailout(5,r,t1,rsBlocks,maxEcCount,maxDcCount,i,data,dcdata,ecdata,0,0,0);if(i<0||i>=t1.length)throw $.ioore(i);data.push(t1[i]);}}for(i=0;i<maxEcCount;++i)for(r=0;r<rsBlocks.length;++r){if(r<0||r>=ecdata.length)throw $.ioore(r);if($.ltB(i,$.get$length(ecdata[r]))){if(r<0||r>=ecdata.length)throw $.ioore(r);t1=ecdata[r];if(typeof t1!=='string'&&(typeof t1!=='object'||t1===null||t1.constructor!==Array&&!t1.is$JavaScriptIndexingBehavior()))return $.QrCode__createBytes$bailout(6,rsBlocks,r,data,t1,ecdata,i,0,0,0,0,0,0);if(i<0||i>=t1.length)throw $.ioore(i);data.push(t1[i]);}}return data;};
 
+$._complexTestIsolate = function(){$.SendValuePort$(new $._complexTestIsolate_anon(),$._listToT2,$._t3ToList);};
+
 $.DualPivotQuicksort__dualPivotQuicksort = function(a,left,right,compare){if(typeof a!=='object'||a===null||(a.constructor!==Array||!!a.immutable$list)&&!a.is$JavaScriptIndexingBehavior())return $.DualPivotQuicksort__dualPivotQuicksort$bailout(1,a,left,right,compare,0,0,0,0,0,0,0,0,0,0);var sixth=$.tdiv($.add($.sub(right,left),1),6);if(typeof sixth!=='number')throw $.iae(sixth);var index1=left+sixth;var index5=$.sub(right,sixth);if(typeof right!=='number')throw $.iae(right);var index3=$.tdiv(left+right,2);var index2=index3-sixth;var index4=index3+sixth;if(index1!==(index1|0))throw $.iae(index1);var t1=a.length;if(index1<0||index1>=t1)throw $.ioore(index1);var el1=a[index1];if(index2!==(index2|0))throw $.iae(index2);if(index2<0||index2>=t1)throw $.ioore(index2);var el2=a[index2];if(index3!==(index3|0))throw $.iae(index3);if(index3<0||index3>=t1)throw $.ioore(index3);var el3=a[index3];if(index4!==(index4|0))throw $.iae(index4);if(index4<0||index4>=t1)throw $.ioore(index4);var el4=a[index4];if(index5!==(index5|0))throw $.iae(index5);if(index5<0||index5>=t1)throw $.ioore(index5);var el5=a[index5];if($.gtB(compare.call$2(el1,el2),0)){var t0=el1;el1=el2;el2=t0;}if($.gtB(compare.call$2(el4,el5),0)){t0=el5;el5=el4;el4=t0;}if($.gtB(compare.call$2(el1,el3),0)){t0=el3;el3=el1;el1=t0;}if($.gtB(compare.call$2(el2,el3),0)){t0=el3;el3=el2;el2=t0;}if($.gtB(compare.call$2(el1,el4),0)){t0=el1;el1=el4;el4=t0;}if($.gtB(compare.call$2(el3,el4),0)){t0=el3;el3=el4;el4=t0;}if($.gtB(compare.call$2(el2,el5),0)){t0=el5;el5=el2;el2=t0;}if($.gtB(compare.call$2(el2,el3),0)){t0=el3;el3=el2;el2=t0;}if($.gtB(compare.call$2(el4,el5),0)){t0=el5;el5=el4;el4=t0;}if(index1<0||index1>=a.length)throw $.ioore(index1);a[index1]=el1;if(index3<0||index3>=a.length)throw $.ioore(index3);a[index3]=el3;if(index5<0||index5>=a.length)throw $.ioore(index5);a[index5]=el5;if(left!==(left|0))throw $.iae(left);t1=a.length;if(left<0||left>=t1)throw $.ioore(left);var t2=a[left];if(index2<0||index2>=t1)throw $.ioore(index2);a[index2]=t2;if(right!==(right|0))throw $.iae(right);t2=a.length;if(right<0||right>=t2)throw $.ioore(right);var t3=a[right];if(index4<0||index4>=t2)throw $.ioore(index4);a[index4]=t3;var less=left+1;var great=right-1;var pivots_are_equal=$.eqB(compare.call$2(el2,el4),0);if(pivots_are_equal)for(var k=less;k<=great;++k){if(k!==(k|0))throw $.iae(k);if(k<0||k>=a.length)throw $.ioore(k);var ak=a[k];var comp=compare.call$2(ak,el2);if(typeof comp!=='number')return $.DualPivotQuicksort__dualPivotQuicksort$bailout(2,a,left,compare,less,k,index1,index5,el2,pivots_are_equal,right,ak,comp,el4,great);if(comp===0)continue;if(comp<0){if(!(k===less)){if(less!==(less|0))throw $.iae(less);t1=a.length;if(less<0||less>=t1)throw $.ioore(less);t2=a[less];if(k<0||k>=t1)throw $.ioore(k);a[k]=t2;if(less<0||less>=a.length)throw $.ioore(less);a[less]=ak;}++less;}else for(var less0=less+1;true;){if(great!==(great|0))throw $.iae(great);if(great<0||great>=a.length)throw $.ioore(great);comp=compare.call$2(a[great],el2);if($.gtB(comp,0)){--great;continue;}else{t1=$.ltB(comp,0);var great0=great-1;t2=a.length;if(t1){if(less!==(less|0))throw $.iae(less);if(less<0||less>=t2)throw $.ioore(less);t1=a[less];if(k<0||k>=t2)throw $.ioore(k);a[k]=t1;t1=a.length;if(great<0||great>=t1)throw $.ioore(great);t3=a[great];if(less<0||less>=t1)throw $.ioore(less);a[less]=t3;if(great<0||great>=a.length)throw $.ioore(great);a[great]=ak;great=great0;less=less0;break;}else{if(great<0||great>=t2)throw $.ioore(great);t1=a[great];if(k<0||k>=t2)throw $.ioore(k);a[k]=t1;if(great<0||great>=a.length)throw $.ioore(great);a[great]=ak;great=great0;break;}}}}else for(k=less;k<=great;++k){if(k!==(k|0))throw $.iae(k);if(k<0||k>=a.length)throw $.ioore(k);ak=a[k];if($.ltB(compare.call$2(ak,el2),0)){if(!(k===less)){if(less!==(less|0))throw $.iae(less);t1=a.length;if(less<0||less>=t1)throw $.ioore(less);t2=a[less];if(k<0||k>=t1)throw $.ioore(k);a[k]=t2;if(less<0||less>=a.length)throw $.ioore(less);a[less]=ak;}++less;}else if($.gtB(compare.call$2(ak,el4),0))for(less0=less+1;true;){if(great!==(great|0))throw $.iae(great);if(great<0||great>=a.length)throw $.ioore(great);if($.gtB(compare.call$2(a[great],el4),0)){--great;if(great<k)break;continue;}else{if(great<0||great>=a.length)throw $.ioore(great);t1=$.ltB(compare.call$2(a[great],el2),0);great0=great-1;t2=a.length;if(t1){if(less!==(less|0))throw $.iae(less);if(less<0||less>=t2)throw $.ioore(less);t1=a[less];if(k<0||k>=t2)throw $.ioore(k);a[k]=t1;t1=a.length;if(great<0||great>=t1)throw $.ioore(great);t3=a[great];if(less<0||less>=t1)throw $.ioore(less);a[less]=t3;if(great<0||great>=a.length)throw $.ioore(great);a[great]=ak;great=great0;less=less0;}else{if(great<0||great>=t2)throw $.ioore(great);t1=a[great];if(k<0||k>=t2)throw $.ioore(k);a[k]=t1;if(great<0||great>=a.length)throw $.ioore(great);a[great]=ak;great=great0;}break;}}}t1=less-1;if(t1!==(t1|0))throw $.iae(t1);t2=a.length;if(t1<0||t1>=t2)throw $.ioore(t1);t3=a[t1];if(left<0||left>=t2)throw $.ioore(left);a[left]=t3;if(t1<0||t1>=a.length)throw $.ioore(t1);a[t1]=el2;t1=great+1;if(t1!==(t1|0))throw $.iae(t1);t3=a.length;if(t1<0||t1>=t3)throw $.ioore(t1);var t4=a[t1];if(right<0||right>=t3)throw $.ioore(right);a[right]=t4;if(t1<0||t1>=a.length)throw $.ioore(t1);a[t1]=el4;$.DualPivotQuicksort__doSort(a,left,less-2,compare);$.DualPivotQuicksort__doSort(a,great+2,right,compare);if(pivots_are_equal)return;if(less<index1&&great>index5){while(true){if(less!==(less|0))throw $.iae(less);if(less<0||less>=a.length)throw $.ioore(less);if(!$.eqB(compare.call$2(a[less],el2),0))break;++less;}while(true){if(great!==(great|0))throw $.iae(great);if(great<0||great>=a.length)throw $.ioore(great);if(!$.eqB(compare.call$2(a[great],el4),0))break;--great;}for(k=less;k<=great;++k){if(k!==(k|0))throw $.iae(k);if(k<0||k>=a.length)throw $.ioore(k);ak=a[k];if($.eqB(compare.call$2(ak,el2),0)){if(!(k===less)){if(less!==(less|0))throw $.iae(less);t1=a.length;if(less<0||less>=t1)throw $.ioore(less);t2=a[less];if(k<0||k>=t1)throw $.ioore(k);a[k]=t2;if(less<0||less>=a.length)throw $.ioore(less);a[less]=ak;}++less;}else if($.eqB(compare.call$2(ak,el4),0))for(less0=less+1;true;){if(great!==(great|0))throw $.iae(great);if(great<0||great>=a.length)throw $.ioore(great);if($.eqB(compare.call$2(a[great],el4),0)){--great;if(great<k)break;continue;}else{if(great<0||great>=a.length)throw $.ioore(great);t1=$.ltB(compare.call$2(a[great],el2),0);great0=great-1;t2=a.length;if(t1){if(less!==(less|0))throw $.iae(less);if(less<0||less>=t2)throw $.ioore(less);t1=a[less];if(k<0||k>=t2)throw $.ioore(k);a[k]=t1;t1=a.length;if(great<0||great>=t1)throw $.ioore(great);t3=a[great];if(less<0||less>=t1)throw $.ioore(less);a[less]=t3;if(great<0||great>=a.length)throw $.ioore(great);a[great]=ak;great=great0;less=less0;}else{if(great<0||great>=t2)throw $.ioore(great);t1=a[great];if(k<0||k>=t2)throw $.ioore(k);a[k]=t1;if(great<0||great>=a.length)throw $.ioore(great);a[great]=ak;great=great0;}break;}}}$.DualPivotQuicksort__doSort(a,less,great,compare);}else $.DualPivotQuicksort__doSort(a,less,great,compare);};
 
-$.dynamicFunction = function(name$){var f=Object.prototype[name$];if(!(f==null)&&!!f.methods)return f.methods;var methods={};var dartMethod=Object.getPrototypeOf($.CTC57)[name$];if(!(dartMethod==null))$.propertySet(methods,'Object',dartMethod);var bind=function() {return $.dynamicBind.call$4(this, name$, methods, Array.prototype.slice.call(arguments));};bind.methods = methods;$.defineProperty(Object.prototype,name$,bind);return methods;};
+$.dynamicFunction = function(name$){var f=Object.prototype[name$];if(!(f==null)&&!!f.methods)return f.methods;var methods={};var dartMethod=Object.getPrototypeOf($.CTC58)[name$];if(!(dartMethod==null))$.propertySet(methods,'Object',dartMethod);var bind=function() {return $.dynamicBind.call$4(this, name$, methods, Array.prototype.slice.call(arguments));};bind.methods = methods;$.defineProperty(Object.prototype,name$,bind);return methods;};
 
 $.buildDynamicMetadata = function(inputTable){var result=[];for(var i=0;i<inputTable.length;++i){var tag=inputTable[i][0];var array=inputTable[i];var tags=array[1];var set={};var tagNames=tags.split('|');for(var j=0,index=1;j<tagNames.length;++j){$.propertySet(set,tagNames[j],true);index=j;array=tagNames;}result.push($.MetaInfo$(tag,tags,set));}return result;};
 
@@ -4110,6 +4364,8 @@ $.contains$1 = function(receiver,other){if(!(typeof receiver==='string'))return 
 
 $.isValidNumber = function(value){return !(value==null)&&$.isInfinite(value)!==true&&$.isNaN(value)!==true;};
 
+$._IsolateNatives__processWorkerMessage = function(sender,e){var msg=$._deserializeMessage($._IsolateNatives__getEventData(e));switch($.index(msg,'command')){case 'start':var t1=$.index(msg,'id');$._globalState().set$currentManagerId(t1);var entryPoint=$._IsolateNatives__getJSFunctionFromName($.index(msg,'functionName'));var replyTo=$._deserializeMessage($.index(msg,'replyTo'));$._globalState().get$topEventLoop().enqueue$3($._IsolateContext$(),new $._IsolateNatives__processWorkerMessage_function(entryPoint,replyTo),'worker-start');$._globalState().get$topEventLoop().run$0();break;case 'spawn-worker':$._IsolateNatives__spawnWorker($.index(msg,'functionName'),$.index(msg,'uri'),$.index(msg,'replyPort'));break;case 'message':$.index(msg,'port').send$2($.index(msg,'msg'),$.index(msg,'replyTo'));$._globalState().get$topEventLoop().run$0();break;case 'close':$._IsolateNatives__log('Closing Worker');$._globalState().get$managers().remove$1(sender.get$id());sender.terminate$0();$._globalState().get$topEventLoop().run$0();break;case 'log':$._IsolateNatives__log($.index(msg,'msg'));break;case 'print':if($._globalState().get$isWorker()===true)$._globalState().get$mainManager().postMessage$1($._serializeMessage($.makeLiteralMap(['command','print','msg',msg])));else $.print($.index(msg,'msg'));break;case 'error':throw $.$$throw($.index(msg,'msg'));}};
+
 $.toUpperCase = function(receiver){if(!(typeof receiver==='string'))return receiver.toUpperCase$0();return receiver.toUpperCase();};
 
 $._RTCPeerConnectionEventsImpl$ = function(_ptr){return new $._RTCPeerConnectionEventsImpl(_ptr);};
@@ -4126,17 +4382,21 @@ $.Collections_some = function(iterable,f){for(var t1=$.iterator(iterable);t1.has
 
 $.dynamicBind = function(obj,name$,methods,arguments$){var tag=$.getTypeNameOf(obj);var method=methods[tag];if(method==null&&!($._dynamicMetadata0()==null))for(var i=0;i<$._dynamicMetadata0().length;++i){var entry=$._dynamicMetadata0()[i];if(entry.get$_lib4_set()[tag]){method=methods[entry.get$_tag()];if(!(method==null))break;}}if(method==null)method=methods['Object'];var proto=Object.getPrototypeOf(obj);if(method==null)method=function () {if (Object.getPrototypeOf(this) === proto) {throw new TypeError(name$ + " is not a function");} else {return Object.prototype[name$].apply(this, arguments);}};if(!proto.hasOwnProperty(name$))$.defineProperty(proto,name$,method);return method.apply(obj, arguments$);};
 
-$._Collections_some = function(iterable,f){for(var t1=$.iterator(iterable);t1.hasNext$0()===true;)if(f.call$1(t1.next$0())===true)return true;return false;};
+$.Uri__parseIntOrZero = function(val){if(!(val==null)&&!$.eqB(val,''))return $.int_parse(val);else return 0;};
 
 $.TestEnumerable__testReduce = function(){var enum$=$.$$([0,1,2]);$.expect($.reduce(enum$,0,new $.TestEnumerable__testReduce_anon()),3,null,null,false);$.expect($.reduce(enum$,1,new $.TestEnumerable__testReduce_anon0()),0,null,null,false);};
 
 $.TestListBase__testReduce = function(){$.Expect_equals($.CTC40.reduce$2(0,new $.TestListBase__testReduce_anon()),15,null);$.Expect_equals($.CTC40.reduce$2(1,new $.TestListBase__testReduce_anon0()),120,null);};
 
-$.main = function(){$.useHtmlEnhancedConfiguration(false);$.runDartlibTests();$.runQrTests();};
+$.main = function(){$.groupSep=' - ';$.useHtmlEnhancedConfiguration(false);$.runBotTests();$.runAsyncTests();$.runQrTests();};
+
+$.FutureValueResult$fromException = function(exception){var t1=new $.FutureValueResult(null,exception,null);t1.FutureValueResult$fromException$1(exception);return t1;};
 
 $.ceil = function(receiver){return Math.ceil(receiver);};
 
 $.RgbColor$_internal = function(r,g,b){return new $.RgbColor(r,g,b);};
+
+$._Collections_some = function(iterable,f){for(var t1=$.iterator(iterable);t1.hasNext$0()===true;)if(f.call$1(t1.next$0())===true)return true;return false;};
 
 $.Primitives_getHours = function(receiver){return receiver.isUtc===true?$.Primitives_lazyAsJsDate(receiver).getUTCHours():$.Primitives_lazyAsJsDate(receiver).getHours();};
 
@@ -4145,6 +4405,8 @@ $.TestEnumerable__testComplexGrouping = function(){var keyFunc=new $.TestEnumera
 $.Maps_mapToString = function(m){var result=$.StringBuffer_StringBuffer('');$.Maps__emitMap(m,result,$.ListImplementation_List(null));return $.toString(result);};
 
 $.invokeClosure = function(closure,isolate,numberOfArguments,arg1,arg2){if($.eqB(numberOfArguments,0))return $._callInIsolate(isolate,new $.invokeClosure_anon(closure));else if($.eqB(numberOfArguments,1))return $._callInIsolate(isolate,new $.invokeClosure_anon0(closure,arg1));else if($.eqB(numberOfArguments,2))return $._callInIsolate(isolate,new $.invokeClosure_anon1(closure,arg1,arg2));else throw $.$$throw($.ExceptionImplementation$('Unsupported number of arguments for wrapped closure'));};
+
+$._IsolateNatives__getJSFunctionName = function(f){return f.$name || (void 0);};
 
 $.geB = function(a,b){return typeof a==='number'&&typeof b==='number'?a >= b:$.ge$slow(a,b)===true;};
 
@@ -4178,6 +4440,8 @@ $.NoSuchMethodError_safeToString = function(object){if(typeof object==='number'&
 
 $.Primitives_getDay = function(receiver){return receiver.isUtc===true?$.Primitives_lazyAsJsDate(receiver).getUTCDate():$.Primitives_lazyAsJsDate(receiver).getDate();};
 
+$._listToT2 = function(input){if(input==null)return;else return $.Tuple$($.index(input,0),$.index(input,1));};
+
 $.TestRgbColor__expectHslRoundTrip = function(rgb){$.expect(rgb.toHsl$0().toRgb$0(),$.equals(rgb,100),null,null,false);};
 
 $._MainManagerStub$ = function(){return new $._MainManagerStub();};
@@ -4192,13 +4456,17 @@ $.equals = function(expected,limit){return $._DeepMatcher$(expected,limit);};
 
 $.Expect_equals = function(expected,actual,reason){if($.eqB(expected,actual))return;var msg=reason==null?'':', \''+$.S(reason)+'\'';$.Expect__fail('Expect.equals(expected: <'+$.S(expected)+'>, actual: <'+$.S(actual)+'>'+msg+') fails.');};
 
-$.Tuple$ = function(Item1,Item2){return new $.Tuple(Item1,Item2);};
+$.Tuple$ = function(item1,item2){return new $.Tuple(item1,item2);};
+
+$.Uri__addIfNonEmpty = function(sb,test,first,second){if(!(''===test)){$.add$1(sb,first==null?'null':first);$.add$1(sb,second==null?'null':second);}};
 
 $.CollectionUtil_allUnique = function(items){if(typeof items!=='string'&&(typeof items!=='object'||items===null||items.constructor!==Array&&!items.is$JavaScriptIndexingBehavior()))return $.CollectionUtil_allUnique$bailout(1,items);$.requireArgumentNotNull(items,'items');for(var i=0;i<items.length;++i)for(var j=i+1;t1=items.length,j<t1;++j){if(i<0||i>=t1)throw $.ioore(i);var t2=items[i];if(j<0||j>=t1)throw $.ioore(j);if($.eqB(t2,items[j]))return false;}return true;var t1;};
 
 $.QrRsBlock_getRSBlocks = function(typeNumber,errorCorrectLevel){var rsBlock=$.QrRsBlock_getRsBlockTable(typeNumber,errorCorrectLevel);if(typeof rsBlock!=='string'&&(typeof rsBlock!=='object'||rsBlock===null||rsBlock.constructor!==Array&&!rsBlock.is$JavaScriptIndexingBehavior()))return $.QrRsBlock_getRSBlocks$bailout(1,rsBlock,0,0,0,0,0);var length$=$.tdiv(rsBlock.length,3);var list=$.ListImplementation_List(null);for(var i=0;i<length$;++i){var t1=i*3;var t2=t1+0;var t3=rsBlock.length;if(t2<0||t2>=t3)throw $.ioore(t2);var count=rsBlock[t2];if(typeof count!=='number')return $.QrRsBlock_getRSBlocks$bailout(2,t1,count,rsBlock,i,length$,list);var t4=t1+1;if(t4<0||t4>=t3)throw $.ioore(t4);var totalCount=rsBlock[t4];t1+=2;if(t1<0||t1>=t3)throw $.ioore(t1);var dataCount=rsBlock[t1];for(var j=0;j<count;++j)list.push($.QrRsBlock$(totalCount,dataCount));}return list;};
 
 $.addAll = function(receiver,collection){if(!$.isJsArray(receiver))return receiver.addAll$1(collection);var iterator=$.iterator(collection);for(;iterator.hasNext$0()===true;)$.add$1(receiver,iterator.next$0());};
+
+$._IsolateNatives__getEventData = function(e){return e.data};
 
 $.typeNameInChrome = function(obj){var name$=obj.constructor.name;if(name$==='Window')return 'DOMWindow';if(name$==='CanvasPixelArray')return 'Uint8ClampedArray';if(name$==='WebKitMutationObserver')return 'MutationObserver';if(name$==='FormData')return 'DOMFormData';return name$;};
 
@@ -4210,6 +4478,8 @@ $._FrameSetElementEventsImpl$ = function(_ptr){return new $._FrameSetElementEven
 
 $.Array2d_Array2d$readonlyFrom = function(width,source){var s=source==null?null:$.ReadOnlyCollection$(source);return $.Array2d$wrap(width,s);};
 
+$.TestEnumerable__testMap = function(){$.expect($.map($.$$([1,2,3,4,5,6]),new $.TestEnumerable__testMap_anon()),$.orderedEquals([2,4,6,8,10,12]),null,null,false);};
+
 $.Expect__fail = function(message){throw $.$$throw($.ExpectException$(message));};
 
 $.allMatches = function(receiver,str){if(!(typeof receiver==='string'))return receiver.allMatches$1(str);$.checkString(str);return $.allMatchesInStringUnchecked(receiver,str);};
@@ -4218,11 +4488,9 @@ $.Array2d_Array2d = function(width,height,initialValue){$.requireArgumentNotNull
 
 $.toStringForNativeObject = function(obj){return 'Instance of '+$.getTypeNameOf(obj);};
 
-$.TestEnumerable__testMap = function(){$.expect($.map($.$$([1,2,3,4,5,6]),new $.TestEnumerable__testMap_anon()),$.orderedEquals([2,4,6,8,10,12]),null,null,false);};
+$.TestListBase__testMap = function(){var list=$.CTC40.map$1(new $.TestListBase__testMap_anon());$.expect($.get$length(list),$.equals(5,100),null,null,false);$.expect(list,$.orderedEquals([10,8,6,4,2]),null,null,false);};
 
 $.ltB = function(a,b){return typeof a==='number'&&typeof b==='number'?a < b:$.lt$slow(a,b)===true;};
-
-$.TestListBase__testMap = function(){var list=$.CTC40.map$1(new $.TestListBase__testMap_anon());$.expect($.get$length(list),$.equals(5,100),null,null,false);$.expect(list,$.orderedEquals([10,8,6,4,2]),null,null,false);};
 
 $.GlobalId_GlobalId = function(){var t1=$.GlobalId__globalId;$.GlobalId__globalId=$.add(t1,1);return $.GlobalId$_internal(t1);};
 
@@ -4239,6 +4507,8 @@ $._ReceivePortFactory_ReceivePort = function(){return $._ReceivePortImpl$();};
 $._Device_isIE = function(){return $._Device_isOpera()!==true&&$.contains$2($._Device_userAgent(),'MSIE',0)===true;};
 
 $._DedicatedWorkerContextEventsImpl$ = function(_ptr){return new $._DedicatedWorkerContextEventsImpl(_ptr);};
+
+$._IsolateNatives__startNonWorker = function(functionName,uri,replyPort){if(!(uri==null))throw $.$$throw($.UnsupportedOperationException$('Currently spawnUri is not supported without web workers.'));$._globalState().get$topEventLoop().enqueue$3($._IsolateContext$(),new $._IsolateNatives__startNonWorker_function(functionName,replyPort),'nonworker start');};
 
 $.TestEnumerable_run = function(){$.group('Enumerable',new $.TestEnumerable_run_anon());};
 
@@ -4282,7 +4552,7 @@ $.TestAffineTransform_run = function(){$.group('AffineTransform',new $.TestAffin
 
 $.contains$2 = function(receiver,other,startIndex){if(!(typeof receiver==='string'))return receiver.contains$2(other,startIndex);$.checkNull(other);return $.stringContainsUnchecked(receiver,other,startIndex);};
 
-$.rnd = function(){if($._dartlibHelperRandom==null)$._dartlibHelperRandom=$.Random_Random(null);return $._dartlibHelperRandom;};
+$.rnd = function(){if($._botHelperRandom==null)$._botHelperRandom=$.Random_Random(null);return $._botHelperRandom;};
 
 $.regExpMatchStart = function(m){return m.index;};
 
@@ -4310,7 +4580,11 @@ $._Collections_every = function(iterable,f){for(var t1=$.iterator(iterable);t1.h
 
 $.jsHasOwnProperty = function(jsObject,property){return jsObject.hasOwnProperty(property);};
 
+$._IsolateNatives__spawn = function(functionName,uri,isLight){var completer=$.Completer_Completer();var port=$._ReceivePortFactory_ReceivePort();port.receive$1(new $._IsolateNatives__spawn_anon(port,completer));var signalReply=port.toSendPort$0();if($._globalState().get$useWorkers()===true&&!isLight)$._IsolateNatives__startWorker(functionName,uri,signalReply);else $._IsolateNatives__startNonWorker(functionName,uri,signalReply);return $._BufferingSendPort$($._globalState().get$currentContext().get$id(),completer.get$future());};
+
 $.TestCoordinate_run = function(){$.group('Coordinate',new $.TestCoordinate_run_anon());};
+
+$.lastIndexOf$2 = function(receiver,element,start){if($.isJsArray(receiver))return $.Arrays_lastIndexOf(receiver,element,start);else if(typeof receiver==='string'){$.checkNull(element);if(!(start==null)){if(!(typeof start==='number'))throw $.$$throw($.IllegalArgumentException$(start));if(start<0)return -1;var t1=receiver.length;if(start>=t1){if(element==='')return t1;start=t1-1;}else start=start;}return $.stringLastIndexOfUnchecked(receiver,element,start);}return receiver.lastIndexOf$2(element,start);};
 
 $.AttachedEvent$ = function(name$){return new $.AttachedEvent(name$);};
 
@@ -4330,15 +4604,19 @@ $.indexSet = function(a,index,value){if(a.constructor === Array && !a.immutable$
 
 $.TestCollectionUtil_run = function(){$.group('CollectionUtil',new $.TestCollectionUtil_run_anon());};
 
+$.Uri$fromString = function(uri){var t1=$.CTC55.firstMatch$1(uri);return new $.Uri($.Uri__emptyIfNull($.index(t1,1)),$.Uri__emptyIfNull($.index(t1,2)),$.Uri__emptyIfNull($.index(t1,3)),$.Uri__parseIntOrZero($.index(t1,4)),$.Uri__emptyIfNull($.index(t1,5)),$.Uri__emptyIfNull($.index(t1,6)),$.Uri__emptyIfNull($.index(t1,7)));};
+
 $.TestListBase_run = function(){$.group('ListBase',new $.TestListBase_run_anon());};
 
 $.TestListBase__testSimple = function(){$.expect($.get$length($.CTC40),$.equals(5,100),null,null,false);$.expect($.CTC40,$.orderedEquals([5,4,3,2,1]),null,null,false);};
 
-$.TestQrBitBuffer__testSimple = function(){var bb=$.QrBitBuffer$();var sampleBits=$.ListImplementation_List(null);for(var i=0;i<100;++i){var b=$.rnd().nextBool$0();sampleBits.push(b);bb.putBit$1(b);}$.expect(bb,$.orderedEquals(sampleBits),null,null,false);};
+$.TestSendPortValue__testSimple = function(){var tv=$._TestValue$();var callback=$.expectAsync1(new $.TestSendPortValue__testSimple_anon(tv),1);var onError=$.expectAsync1(new $.TestSendPortValue__testSimple_anon0(),1);$.add$1(tv.get$outputChanged(),callback);$.add$1(tv.get$error(),onError);tv.set$input(5);tv.set$input(-1);};
 
 $.TestNumberEnumerable_run = function(){$.group('NumberEnumerable',new $.TestNumberEnumerable_run_anon());};
 
-$.TestQrCode__testSimple = function(){for(var typeNumber=1;typeNumber<=10;++typeNumber)for(var t1=$.iterator($.CTC55);t1.hasNext$0()===true;){var code=$.QrCode$(typeNumber,t1.next$0());code.addData$1('kevin!');code.make$0();}};
+$.TestQrBitBuffer__testSimple = function(){var bb=$.QrBitBuffer$();var sampleBits=$.ListImplementation_List(null);for(var i=0;i<100;++i){var b=$.rnd().nextBool$0();sampleBits.push(b);bb.putBit$1(b);}$.expect(bb,$.orderedEquals(sampleBits),null,null,false);};
+
+$.TestQrCode__testSimple = function(){for(var typeNumber=1;typeNumber<=10;++typeNumber)for(var t1=$.iterator($.CTC56);t1.hasNext$0()===true;){var code=$.QrCode$(typeNumber,t1.next$0());code.addData$1('kevin!');code.make$0();}};
 
 $.TestProperties_run = function(){$.group('PropertyObject',new $.TestProperties_run_anon());};
 
@@ -4350,15 +4628,19 @@ $.TestAttachedEvents_run = function(){$.group('AttachableEvent',new $.TestAttach
 
 $.ReadOnlyCollection$ = function(source){return new $.ReadOnlyCollection($.ListImplementation_List$from(source));};
 
-$.TestQrCode_run = function(){$.group('QrCode',new $.TestQrCode_run_anon());};
+$.TestFutureValueResult_run = function(){$.group('FutureValueResult',new $.TestFutureValueResult_run_anon());};
 
 $._Device_isFirefox = function(){return $.contains$2($._Device_userAgent(),'Firefox',0);};
 
+$._IsolateNatives__newWorker = function(url){return new Worker(url);};
+
 $.checkMutable = function(list,reason){if(!!(list.immutable$list))throw $.$$throw($.UnsupportedOperationException$(reason));};
+
+$.FutureValueResult_isMyMap = function(value){return !(value==null)&&$.eqB($.get$length(value),2)&&value.containsKey$1('value')===true&&value.containsKey$1('exception')===true;};
 
 $.map = function(receiver,f){if(!$.isJsArray(receiver))return receiver.map$1(f);else return $.Collections_map(receiver,[],f);};
 
-$.TestQrBitBuffer_run = function(){$.group('QrBitBuffer',new $.TestQrBitBuffer_run_anon());};
+$.TestQrCode_run = function(){$.group('QrCode',new $.TestQrCode_run_anon());};
 
 $.hashCodeForNativeObject = function(object){return $.Primitives_objectHashCode(object);};
 
@@ -4368,9 +4650,13 @@ $.CollectionUtil_aggregate = function(source,seed,func){$.requireArgumentNotNull
 
 $._ElementFactoryProvider_createElement_tag = function(tag){return document.createElement(tag)};
 
+$.TestQrBitBuffer_run = function(){$.group('QrBitBuffer',new $.TestQrBitBuffer_run_anon());};
+
 $.add = function(a,b){return typeof a==='number'&&typeof b==='number'?a + b:$.add$slow(a,b);};
 
 $.HtmlEnhancedConfiguration__isIE = function(){return $.contains$1($.document().get$window().get$navigator().get$userAgent(),'MSIE');};
+
+$.NotImplementedException$ = function(message){return new $.NotImplementedException(message);};
 
 $.HslColor__hueToRgb = function(v1,v2,vH){vH=$.mod(vH,1);if(typeof vH!=='number')throw $.iae(vH);if(6*vH<1)return v1+(v2-v1)*6*vH;else if(2*vH<1)return v2;else if(3*vH<2)return v1+(v2-v1)*(0.6666666666666666-vH)*6;return v1;};
 
@@ -4388,9 +4674,9 @@ $.requireArgument = function(truth,arg,message){if(truth!==true)if(!(message==nu
 
 $.Primitives_objectToString = function(object){return 'Instance of \''+$.S($.Primitives_objectTypeName(object))+'\'';};
 
-$.QrRsBlock$ = function(totalCount,dataCount){return new $.QrRsBlock(totalCount,dataCount);};
-
 $.insertRange$3 = function(receiver,start,length$,initialValue){if(!$.isJsArray(receiver))return receiver.insertRange$3(start,length$,initialValue);return $.listInsertRange(receiver,start,length$,initialValue);};
+
+$.QrRsBlock$ = function(totalCount,dataCount){return new $.QrRsBlock(totalCount,dataCount);};
 
 $._DOMWindowCrossFrameImpl__postMessage2 = function(win,message,targetOrigin){    win.postMessage(message, targetOrigin);
 };
@@ -4485,9 +4771,16 @@ $._Timer$ = function(milliSeconds,callback){var t1=new $._Timer(true,null);t1._T
 
 $._Predicate$ = function(_matcher,_description){return new $._Predicate(_matcher,_description);};
 
+$.runBotTests = function(){$.group('bot',new $.runBotTests_anon());};
+
+$._t2ToList = function(input){if(input==null)return;else return [input.get$item1(),input.get$item2()];};
+
 $.TestEnumerable__testFilter = function(){$.expect($.filter($.$$([1,2,3,4,5,6]),new $.TestEnumerable__testFilter_anon()),$.orderedEquals([2,4,6]),null,null,false);};
 
 $.TestListBase__testFilter = function(){$.expect($.ListImplementation_List$from($.CTC40.filter$1($.TestListBase__lt3)),$.orderedEquals([2,1]),null,null,false);$.expect($.ListImplementation_List$from($.CTC43.filter$1($.TestListBase__lt3)),$.orderedEquals([2,1,1,2]),null,null,false);$.expect($.ListImplementation_List$from($.CTC43.filter$1($.TestListBase__lt0)),$.orderedEquals([]),null,null,false);};
+
+$._IsolateNatives__getJSFunctionFromName = function(functionName){    return $globalThis[functionName];
+  };
 
 $._fullSpec = function(spec){return !$.eqB($._currentGroup,'')?$.S($._currentGroup)+$.S($.groupSep)+spec:spec;};
 
@@ -4529,6 +4822,8 @@ $.Primitives_lazyAsJsDate = function(receiver){if(receiver.date === (void 0))rec
 
 $._FixedSizeListIterator$ = function(array){return new $._FixedSizeListIterator($.get$length(array),array,0);};
 
+$._listToT3 = function(input){return $.Tuple3$($.index(input,0),$.index(input,1),$.index(input,2));};
+
 $._FileReaderEventsImpl$ = function(_ptr){return new $._FileReaderEventsImpl(_ptr);};
 
 $.isEmpty = function(receiver){if(typeof receiver==='string'||$.isJsArray(receiver))return receiver.length === 0;return receiver.isEmpty$0();};
@@ -4546,6 +4841,8 @@ $._EventListenerListImpl$ = function(_ptr,_type){return new $._EventListenerList
 $.iae = function(argument){throw $.$$throw($.IllegalArgumentException$(argument));};
 
 $._DOMApplicationCacheEventsImpl$ = function(_ptr){return new $._DOMApplicationCacheEventsImpl(_ptr);};
+
+$._IsolateNatives__spawnWorker = function(functionName,uri,replyPort){if(functionName==null)functionName='main';if(uri==null)uri=$._IsolateNatives__thisScript();if($.Uri$fromString(uri).isAbsolute$0()!==true)uri=$.S($.substring$2($._IsolateNatives__thisScript(),0,$.lastIndexOf$1($._IsolateNatives__thisScript(),'/')))+'/'+$.S(uri);var worker=$._IsolateNatives__newWorker(uri);worker.set$onmessage(new $._IsolateNatives__spawnWorker_anon(worker));var t1=$._globalState();var workerId=t1.get$nextManagerId();t1.set$nextManagerId($.add(workerId,1));worker.set$id(workerId);$.indexSet($._globalState().get$managers(),workerId,worker);worker.postMessage$1($._serializeMessage($.makeLiteralMap(['command','start','id',workerId,'replyTo',$._serializeMessage(replyPort),'functionName',functionName])));};
 
 $.ExpectException$ = function(message){return new $.ExpectException(message);};
 
@@ -4585,6 +4882,8 @@ $.replaceAll = function(receiver,from,to){if(!(typeof receiver==='string'))retur
 
 $._WhereIterator$ = function(_source,_func){return new $._WhereIterator(_source,_func,null,null);};
 
+$._testIsolate = function(){$.SendValuePort$(new $._testIsolate_anon(),null,null);};
+
 $.Element_Element$tag = function(tag){return $._ElementFactoryProvider_createElement_tag(tag);};
 
 $.toLowerCase = function(receiver){if(!(typeof receiver==='string'))return receiver.toLowerCase$0();return receiver.toLowerCase();};
@@ -4609,6 +4908,10 @@ $.Util_getHashCode = function(source){for(var t1=$.iterator(source),hash=0;t1.ha
 
 $.IllegalArgumentException$ = function(arg){return new $.IllegalArgumentException(arg);};
 
+$._IsolateNatives__startWorker = function(functionName,uri,replyPort){if($._globalState().get$isWorker()===true)$._globalState().get$mainManager().postMessage$1($._serializeMessage($.makeLiteralMap(['command','spawn-worker','functionName',functionName,'uri',uri,'replyPort',replyPort])));else $._IsolateNatives__spawnWorker(functionName,uri,replyPort);};
+
+$.stringLastIndexOfUnchecked = function(receiver,element,start){return receiver.lastIndexOf(element, start);};
+
 $._HttpRequestUploadEventsImpl$ = function(_ptr){return new $._HttpRequestUploadEventsImpl(_ptr);};
 
 $.DualPivotQuicksort__doSort = function(a,left,right,compare){if($.leB($.sub(right,left),32))$.DualPivotQuicksort_insertionSort_(a,left,right,compare);else $.DualPivotQuicksort__dualPivotQuicksort(a,left,right,compare);};
@@ -4619,7 +4922,7 @@ $.StringDescription$ = function(init){var t1=new $.StringDescription(null);t1.St
 
 $.checkNull = function(object){if(object==null)throw $.$$throw($.NullPointerException$(null,$.CTC1));return object;};
 
-$.QrUtil_getPatternPosition = function(typeNumber){var t1=$.sub(typeNumber,1);if(t1!==(t1|0))throw $.iae(t1);if(t1<0||t1>=40)throw $.ioore(t1);return $.CTC56[t1];};
+$.QrUtil_getPatternPosition = function(typeNumber){var t1=$.sub(typeNumber,1);if(t1!==(t1|0))throw $.iae(t1);if(t1<0||t1>=40)throw $.ioore(t1);return $.CTC57[t1];};
 
 $.ensureInitialized = function(){if($._initialized===true)return;$._initialized=true;$._tests=[];$._testRunner=$._nextBatch;$._uncaughtErrorMessage=null;if($._config==null)$._config=$.Configuration$();$._config.onInit$0();if($._config.get$autoStart()===true)$._defer($.runTests);};
 
@@ -4641,6 +4944,8 @@ $._Deserializer_isPrimitive = function(x){return x==null||typeof x==='string'||t
 
 $.QrCode$ = function(typeNumber,errorCorrectLevel){var t1=new $.QrCode(typeNumber,errorCorrectLevel,typeNumber*4+17,$.ListImplementation_List(null),null,null);t1.QrCode$2(typeNumber,errorCorrectLevel);return t1;};
 
+$.Arrays_lastIndexOf = function(a,element,startIndex){if(typeof a!=='string'&&(typeof a!=='object'||a===null||a.constructor!==Array&&!a.is$JavaScriptIndexingBehavior()))return $.Arrays_lastIndexOf$bailout(1,a,element,startIndex);if(typeof startIndex!=='number')return $.Arrays_lastIndexOf$bailout(1,a,element,startIndex);if(startIndex<0)return -1;var t1=a.length;if(startIndex>=t1)startIndex=t1-1;for(var i=startIndex;i>=0;--i){if(i!==(i|0))throw $.iae(i);if(i<0||i>=a.length)throw $.ioore(i);if($.eqB(a[i],element))return i;}return -1;};
+
 $.AffineTransform_AffineTransform$fromRotate = function(theta,x,y){return $.AffineTransform$(1,0,0,1,0,0).setToRotation$3(theta,x,y);};
 
 $._IDBOpenDBRequestEventsImpl$ = function(_ptr){return new $._IDBOpenDBRequestEventsImpl(_ptr);};
@@ -4652,6 +4957,10 @@ $.sqrt = function(x){return Math.sqrt($.checkNum(x));};
 $.TestListBase__lt3 = function(a){return $.lt(a,3);};
 
 $._serializeMessage = function(message){if($._globalState().get$needSerialization()===true)return $._JsSerializer$().traverse$1(message);else return $._JsCopier$().traverse$1(message);};
+
+$._ComplexTestValue$ = function(){return new $._ComplexTestValue($.spawnFunction($._complexTestIsolate),$._t2ToList,$._listToT3,null,null,null,null,null,false,$.EventHandle$(),$.EventHandle$(),$.EventHandle$());};
+
+$._IsolateNatives__consoleLog = function(msg){$globalThis.console.log(msg);};
 
 $.IndexOutOfRangeException$ = function(_value){return new $.IndexOutOfRangeException(_value);};
 
@@ -4692,6 +5001,10 @@ $.sub = function(a,b){return typeof a==='number'&&typeof b==='number'?a - b:$.su
 
 $.QrPolynomial_QrPolynomial$bailout = function(state,thing,shift){var offset=0;while(true){if(!($.ltB(offset,$.get$length(thing))&&$.eqB($.index(thing,offset),0)))break;++offset;}var values=$.QrMath_getZeroedList($.add($.sub($.get$length(thing),offset),shift));for(var i=0;$.ltB(i,$.sub($.get$length(thing),offset));++i){var t1=$.index(thing,i+offset);if(i<0||i>=values.length)throw $.ioore(i);values[i]=t1;}return $.QrPolynomial$_internal(values);};
 
+$._Lists_lastIndexOf$bailout = function(state,a,element,startIndex){if($.ltB(startIndex,0))return -1;if($.geB(startIndex,$.get$length(a)))startIndex=$.sub($.get$length(a),1);for(var i=startIndex;$.geB(i,0);i=$.sub(i,1))if($.eqB($.index(a,i),element))return i;return -1;};
+
+$.Arrays_lastIndexOf$bailout = function(state,a,element,startIndex){if($.ltB(startIndex,0))return -1;if($.geB(startIndex,$.get$length(a)))startIndex=$.sub($.get$length(a),1);for(var i=startIndex;$.geB(i,0);i=$.sub(i,1))if($.eqB($.index(a,i),element))return i;return -1;};
+
 $.Arrays_indexOf$bailout = function(state,a,element,startIndex,endIndex){if($.geB(startIndex,$.get$length(a)))return -1;if(startIndex<0)startIndex=0;for(var i=startIndex;i<endIndex;++i)if($.eqB($.index(a,i),element))return i;return -1;};
 
 $._Lists_indexOf$bailout = function(state,a,element,startIndex,endIndex){if($.geB(startIndex,$.get$length(a)))return -1;if($.ltB(startIndex,0))startIndex=0;for(var i=startIndex;$.ltB(i,endIndex);i=$.add(i,1))if($.eqB($.index(a,i),element))return i;return -1;};
@@ -4704,11 +5017,11 @@ $._Lists_getRange$bailout = function(state,a,start,length$,accumulator){if($.ltB
 
 $.QrUtil_getErrorCorrectPolynomial$bailout = function(state,errorCorrectLength){var a=$.QrPolynomial_QrPolynomial([1],0);for(var i=0;$.ltB(i,errorCorrectLength);++i)a=a.multiply$1($.QrPolynomial_QrPolynomial([1,$.QrMath_gexp(i)],0));return a;};
 
+$.QrCode__createData$bailout = function(state,typeNumber,errorCorrectLevel,dataList){var rsBlocks=$.QrRsBlock_getRSBlocks(typeNumber,errorCorrectLevel);var buffer=$.QrBitBuffer$();for(var i=0;$.ltB(i,$.get$length(dataList));++i){var data=$.index(dataList,i);buffer.put$2(data.get$mode(),4);buffer.put$2($.get$length(data),$.QrUtil_getLengthInBits(data.get$mode(),typeNumber));data.write$1(buffer);}for(var t1=rsBlocks.length,i=0,totalDataCount=0;i<t1;++i){if(i<0||i>=t1)throw $.ioore(i);var t2=rsBlocks[i].get$dataCount();if(typeof t2!=='number')throw $.iae(t2);totalDataCount+=t2;}var totalByteCount=totalDataCount*8;if($.gtB($.get$length(buffer),totalByteCount))throw $.$$throw($.QrInputTooLongException_QrInputTooLongException($.get$length(buffer),totalByteCount));if($.leB($.add($.get$length(buffer),4),totalByteCount))buffer.put$2(0,4);for(;!$.eqB($.mod($.get$length(buffer),8),0);)buffer.putBit$1(false);for(;true;){if($.geB($.get$length(buffer),totalByteCount))break;buffer.put$2(236,8);if($.geB($.get$length(buffer),totalByteCount))break;buffer.put$2(17,8);}return $.QrCode__createBytes(buffer,rsBlocks);};
+
 $.QrUtil_getBCHDigit$bailout = function(state,data){for(var digit=0;!$.eqB(data,0);){++digit;data=$.shr(data,1);}return digit;};
 
 $.QrUtil_getBCHTypeInfo$bailout = function(state,data,d){for(;$.QrUtil_getBCHDigit(d)-$.QrUtil_getBCHDigit($.QrUtil_G15)>=0;)d=$.xor(d,$.shl($.QrUtil_G15,$.QrUtil_getBCHDigit(d)-$.QrUtil_getBCHDigit($.QrUtil_G15)));return $.xor($.or($.shl(data,10),d),$.QrUtil_G15_MASK);};
-
-$.QrCode__createData$bailout = function(state,typeNumber,errorCorrectLevel,dataList){var rsBlocks=$.QrRsBlock_getRSBlocks(typeNumber,errorCorrectLevel);var buffer=$.QrBitBuffer$();for(var i=0;$.ltB(i,$.get$length(dataList));++i){var data=$.index(dataList,i);buffer.put$2(data.get$mode(),4);buffer.put$2($.get$length(data),$.QrUtil_getLengthInBits(data.get$mode(),typeNumber));data.write$1(buffer);}for(var t1=rsBlocks.length,i=0,totalDataCount=0;i<t1;++i){if(i<0||i>=t1)throw $.ioore(i);var t2=rsBlocks[i].get$dataCount();if(typeof t2!=='number')throw $.iae(t2);totalDataCount+=t2;}var totalByteCount=totalDataCount*8;if($.gtB($.get$length(buffer),totalByteCount))throw $.$$throw($.QrInputTooLongException_QrInputTooLongException($.get$length(buffer),totalByteCount));if($.leB($.add($.get$length(buffer),4),totalByteCount))buffer.put$2(0,4);for(;!$.eqB($.mod($.get$length(buffer),8),0);)buffer.putBit$1(false);for(;true;){if($.geB($.get$length(buffer),totalByteCount))break;buffer.put$2(236,8);if($.geB($.get$length(buffer),totalByteCount))break;buffer.put$2(17,8);}return $.QrCode__createBytes(buffer,rsBlocks);};
 
 $.Futures_wait$bailout = function(state,futures,t1){if($.isEmpty(futures)===true)return $.Future_Future$immediate($.CTC1);var completer=$.Completer_Completer();var result=completer.get$future();t1.remaining_1=$.get$length(futures);var values=$.ListImplementation_List($.get$length(futures));for(var i=0;$.ltB(i,$.get$length(futures));++i){var future=$.index(futures,i);future.then$1(new $.Futures_wait_anon(completer,i,t1,result,values));future.handleException$1(new $.Futures_wait_anon0(future,completer,result));}return result;};
 
@@ -4758,6 +5071,8 @@ $.TestEnumerable__testMap.call$0 = $.TestEnumerable__testMap;
 $.TestEnumerable__testMap.$name = "TestEnumerable__testMap";
 $.TestPropertyEventIntegration_doTest.call$0 = $.TestPropertyEventIntegration_doTest;
 $.TestPropertyEventIntegration_doTest.$name = "TestPropertyEventIntegration_doTest";
+$._t3ToList.call$1 = $._t3ToList;
+$._t3ToList.$name = "_t3ToList";
 $.TestListBase__testMap.call$0 = $.TestListBase__testMap;
 $.TestListBase__testMap.$name = "TestListBase__testMap";
 $.TestListBase__lt3.call$1 = $.TestListBase__lt3;
@@ -4768,8 +5083,8 @@ $.TestEnumerable__testSelectMany.call$0 = $.TestEnumerable__testSelectMany;
 $.TestEnumerable__testSelectMany.$name = "TestEnumerable__testSelectMany";
 $.TestArray2d__testReadonlyFromCtorParams.call$0 = $.TestArray2d__testReadonlyFromCtorParams;
 $.TestArray2d__testReadonlyFromCtorParams.$name = "TestArray2d__testReadonlyFromCtorParams";
-$.TestQrBitBuffer__testSimple.call$0 = $.TestQrBitBuffer__testSimple;
-$.TestQrBitBuffer__testSimple.$name = "TestQrBitBuffer__testSimple";
+$.TestSendPortValue__testSimple.call$0 = $.TestSendPortValue__testSimple;
+$.TestSendPortValue__testSimple.$name = "TestSendPortValue__testSimple";
 $.TestTarjanCycleDetect__test5Loop.call$0 = $.TestTarjanCycleDetect__test5Loop;
 $.TestTarjanCycleDetect__test5Loop.$name = "TestTarjanCycleDetect__test5Loop";
 $.typeNameInChrome.call$1 = $.typeNameInChrome;
@@ -4778,8 +5093,8 @@ $.TestEnumerable__testDistinct.call$0 = $.TestEnumerable__testDistinct;
 $.TestEnumerable__testDistinct.$name = "TestEnumerable__testDistinct";
 $.runTests.call$0 = $.runTests;
 $.runTests.$name = "runTests";
-$.TestQrCode__testSimple.call$0 = $.TestQrCode__testSimple;
-$.TestQrCode__testSimple.$name = "TestQrCode__testSimple";
+$._complexTestIsolate.call$0 = $._complexTestIsolate;
+$._complexTestIsolate.$name = "_complexTestIsolate";
 $.TestEnumerable__testFilter.call$0 = $.TestEnumerable__testFilter;
 $.TestEnumerable__testFilter.$name = "TestEnumerable__testFilter";
 $.toStringWrapper.call$0 = $.toStringWrapper;
@@ -4798,6 +5113,8 @@ $.TestEnumerable__testForEachWithIndex.call$0 = $.TestEnumerable__testForEachWit
 $.TestEnumerable__testForEachWithIndex.$name = "TestEnumerable__testForEachWithIndex";
 $.TestEnumerable__testCount.call$0 = $.TestEnumerable__testCount;
 $.TestEnumerable__testCount.$name = "TestEnumerable__testCount";
+$._testIsolate.call$0 = $._testIsolate;
+$._testIsolate.$name = "_testIsolate";
 $.constructorNameFallback.call$1 = $.constructorNameFallback;
 $.constructorNameFallback.$name = "constructorNameFallback";
 $.TestAttachedEvents__testWholeDeal.call$0 = $.TestAttachedEvents__testWholeDeal;
@@ -4810,20 +5127,22 @@ $.TestEnumerable__testLength.call$0 = $.TestEnumerable__testLength;
 $.TestEnumerable__testLength.$name = "TestEnumerable__testLength";
 $.TestListBase__gt0.call$1 = $.TestListBase__gt0;
 $.TestListBase__gt0.$name = "TestListBase__gt0";
-$.TestQrBitBuffer__testComplex.call$0 = $.TestQrBitBuffer__testComplex;
-$.TestQrBitBuffer__testComplex.$name = "TestQrBitBuffer__testComplex";
+$.TestSendPortValue__testComplex.call$0 = $.TestSendPortValue__testComplex;
+$.TestSendPortValue__testComplex.$name = "TestSendPortValue__testComplex";
 $.TestListBase__testRange.call$0 = $.TestListBase__testRange;
 $.TestListBase__testRange.$name = "TestListBase__testRange";
 $.TestNumberEnumerable__testSum.call$0 = $.TestNumberEnumerable__testSum;
 $.TestNumberEnumerable__testSum.$name = "TestNumberEnumerable__testSum";
 $.dynamicBind.call$4 = $.dynamicBind;
 $.dynamicBind.$name = "dynamicBind";
-$.typeNameInSafari.call$1 = $.typeNameInSafari;
-$.typeNameInSafari.$name = "typeNameInSafari";
+$.TestQrBitBuffer__testSimple.call$0 = $.TestQrBitBuffer__testSimple;
+$.TestQrBitBuffer__testSimple.$name = "TestQrBitBuffer__testSimple";
 $.TestNumberEnumerable__testMin.call$0 = $.TestNumberEnumerable__testMin;
 $.TestNumberEnumerable__testMin.$name = "TestNumberEnumerable__testMin";
 $.typeNameInOpera.call$1 = $.typeNameInOpera;
 $.typeNameInOpera.$name = "typeNameInOpera";
+$.typeNameInSafari.call$1 = $.typeNameInSafari;
+$.typeNameInSafari.$name = "typeNameInSafari";
 $.invokeClosure.call$5 = $.invokeClosure;
 $.invokeClosure.$name = "invokeClosure";
 $.TestTarjanCycleDetect__test5Random.call$0 = $.TestTarjanCycleDetect__test5Random;
@@ -4832,6 +5151,8 @@ $.TestRgbColor__testInvalidHex.call$0 = $.TestRgbColor__testInvalidHex;
 $.TestRgbColor__testInvalidHex.$name = "TestRgbColor__testInvalidHex";
 $.TestCloneable__test.call$0 = $.TestCloneable__test;
 $.TestCloneable__test.$name = "TestCloneable__test";
+$.TestQrBitBuffer__testComplex.call$0 = $.TestQrBitBuffer__testComplex;
+$.TestQrBitBuffer__testComplex.$name = "TestQrBitBuffer__testComplex";
 $.TestEnumerable__testSelectNumbers.call$0 = $.TestEnumerable__testSelectNumbers;
 $.TestEnumerable__testSelectNumbers.$name = "TestEnumerable__testSelectNumbers";
 $._defaultErrorFormatter.call$5 = $._defaultErrorFormatter;
@@ -4850,6 +5171,8 @@ $.TestListBase__testReduce.call$0 = $.TestListBase__testReduce;
 $.TestListBase__testReduce.$name = "TestListBase__testReduce";
 $.typeNameInFirefox.call$1 = $.typeNameInFirefox;
 $.typeNameInFirefox.$name = "typeNameInFirefox";
+$.TestFutureValueResult__testExceptionRoundTrip.call$0 = $.TestFutureValueResult__testExceptionRoundTrip;
+$.TestFutureValueResult__testExceptionRoundTrip.$name = "TestFutureValueResult__testExceptionRoundTrip";
 $._nextBatch.call$0 = $._nextBatch;
 $._nextBatch.$name = "_nextBatch";
 $.TestRgbColor__testInvalid.call$0 = $.TestRgbColor__testInvalid;
@@ -4868,6 +5191,8 @@ $.TestTarjanCycleDetect__testSingle.call$0 = $.TestTarjanCycleDetect__testSingle
 $.TestTarjanCycleDetect__testSingle.$name = "TestTarjanCycleDetect__testSingle";
 $.TestListBase__lt0.call$1 = $.TestListBase__lt0;
 $.TestListBase__lt0.$name = "TestListBase__lt0";
+$._t2ToList.call$1 = $._t2ToList;
+$._t2ToList.$name = "_t2ToList";
 $.TestEnumerable__testForEach.call$0 = $.TestEnumerable__testForEach;
 $.TestEnumerable__testForEach.$name = "TestEnumerable__testForEach";
 $.TestListBase__testForEach.call$0 = $.TestListBase__testForEach;
@@ -4886,10 +5211,18 @@ $.TestArray2d__testGetAdjacent.call$0 = $.TestArray2d__testGetAdjacent;
 $.TestArray2d__testGetAdjacent.$name = "TestArray2d__testGetAdjacent";
 $.TestRgbColor__testHexRoundTrip.call$0 = $.TestRgbColor__testHexRoundTrip;
 $.TestRgbColor__testHexRoundTrip.$name = "TestRgbColor__testHexRoundTrip";
+$._listToT3.call$1 = $._listToT3;
+$._listToT3.$name = "_listToT3";
+$._listToT2.call$1 = $._listToT2;
+$._listToT2.$name = "_listToT2";
 $.TestCollectionUtil__testListish.call$0 = $.TestCollectionUtil__testListish;
 $.TestCollectionUtil__testListish.$name = "TestCollectionUtil__testListish";
 $.TestEnumerable__testExclude.call$0 = $.TestEnumerable__testExclude;
 $.TestEnumerable__testExclude.$name = "TestEnumerable__testExclude";
+$.TestFutureValueResult__testValueRoundTrip.call$0 = $.TestFutureValueResult__testValueRoundTrip;
+$.TestFutureValueResult__testValueRoundTrip.$name = "TestFutureValueResult__testValueRoundTrip";
+$.TestQrCode__testSimple.call$0 = $.TestQrCode__testSimple;
+$.TestQrCode__testSimple.$name = "TestQrCode__testSimple";
 $._timerFactory.call$3 = $._timerFactory;
 $._timerFactory.$name = "_timerFactory";
 $.TestEnumerable__testAggregate.call$0 = $.TestEnumerable__testAggregate;
@@ -4905,64 +5238,64 @@ Isolate.makeConstantList = function(list) {
 };
 $.CTC1 = Isolate.makeConstantList([]);
 $.CTC31 = new Isolate.$isolateProperties.ConstantMap(0, {}, Isolate.$isolateProperties.CTC1);
-$.CTC58 = 3;
-$.CTC59 = 58;
-$.CTC60 = 36;
-$.CTC61 = 2;
-$.CTC62 = 59;
-$.CTC63 = 37;
-$.CTC64 = Isolate.makeConstantList([3, 58, 36, 2, 59, 37]);
-$.CTC65 = 1;
-$.CTC66 = -1;
+$.CTC59 = 3;
+$.CTC60 = 58;
+$.CTC61 = 36;
+$.CTC62 = 2;
+$.CTC63 = 59;
+$.CTC64 = 37;
+$.CTC65 = Isolate.makeConstantList([3, 58, 36, 2, 59, 37]);
+$.CTC66 = 1;
+$.CTC67 = -1;
 $.CTC49 = new Isolate.$isolateProperties.Vector(1, -1);
-$.CTC67 = 33;
-$.CTC68 = 11;
-$.CTC69 = 34;
-$.CTC70 = 12;
-$.CTC71 = Isolate.makeConstantList([2, 33, 11, 2, 34, 12]);
-$.CTC72 = 6;
-$.CTC73 = 43;
-$.CTC74 = 19;
-$.CTC75 = 44;
-$.CTC76 = 20;
-$.CTC77 = Isolate.makeConstantList([6, 43, 19, 2, 44, 20]);
-$.CTC78 = 32;
-$.CTC79 = 14;
-$.CTC80 = 4;
-$.CTC81 = 15;
-$.CTC82 = Isolate.makeConstantList([2, 32, 14, 4, 33, 15]);
-$.CTC83 = 40;
-$.CTC84 = 18;
-$.CTC85 = 41;
-$.CTC86 = Isolate.makeConstantList([4, 40, 18, 2, 41, 19]);
-$.CTC87 = 26;
-$.CTC88 = Isolate.makeConstantList([1, 26, 19]);
-$.CTC89 = 'NullPointerException';
-$.CTC90 = new Isolate.$isolateProperties._NullPointerException('NullPointerException');
+$.CTC68 = 33;
+$.CTC69 = 11;
+$.CTC70 = 34;
+$.CTC71 = 12;
+$.CTC72 = Isolate.makeConstantList([2, 33, 11, 2, 34, 12]);
+$.CTC73 = 6;
+$.CTC74 = 43;
+$.CTC75 = 19;
+$.CTC76 = 44;
+$.CTC77 = 20;
+$.CTC78 = Isolate.makeConstantList([6, 43, 19, 2, 44, 20]);
+$.CTC79 = 32;
+$.CTC80 = 14;
+$.CTC81 = 4;
+$.CTC82 = 15;
+$.CTC83 = Isolate.makeConstantList([2, 32, 14, 4, 33, 15]);
+$.CTC84 = 'Invalid list length';
+$.CTC27 = new Isolate.$isolateProperties.IllegalArgumentException('Invalid list length');
+$.CTC85 = 26;
+$.CTC86 = Isolate.makeConstantList([1, 26, 19]);
+$.CTC87 = 'NullPointerException';
+$.CTC88 = new Isolate.$isolateProperties._NullPointerException('NullPointerException');
 $.CTC16 = new Isolate.$isolateProperties._DeletedKeySentinel();
 $.CTC18 = new Isolate.$isolateProperties._UndefinedValue();
-$.CTC91 = 39;
-$.CTC92 = 13;
-$.CTC93 = Isolate.makeConstantList([4, 39, 13, 1, 40, 14]);
-$.CTC94 = false;
+$.CTC89 = 39;
+$.CTC90 = 13;
+$.CTC91 = 40;
+$.CTC92 = Isolate.makeConstantList([4, 39, 13, 1, 40, 14]);
+$.CTC93 = false;
 $.CTC40 = new Isolate.$isolateProperties.TestListBase(false);
-$.CTC95 = 16;
-$.CTC96 = Isolate.makeConstantList([1, 26, 16]);
-$.CTC97 = Isolate.makeConstantList([1, 44, 34]);
-$.CTC98 = 50;
-$.CTC99 = Isolate.makeConstantList([2, 50, 32]);
-$.CTC100 = 86;
-$.CTC101 = 68;
-$.CTC102 = Isolate.makeConstantList([2, 86, 68]);
-$.CTC103 = 9;
-$.CTC104 = Isolate.makeConstantList([1, 26, 9]);
-$.CTC105 = 22;
-$.CTC106 = Isolate.makeConstantList([6, 22]);
-$.CTC107 = 25;
-$.CTC108 = Isolate.makeConstantList([4, 25, 9]);
-$.CTC109 = 0;
-$.CTC55 = Isolate.makeConstantList([1, 0, 3, 2]);
-$.CTC110 = Isolate.makeConstantList([1, 26, 13]);
+$.CTC94 = 16;
+$.CTC95 = Isolate.makeConstantList([1, 26, 16]);
+$.CTC96 = Isolate.makeConstantList([1, 44, 34]);
+$.CTC97 = 50;
+$.CTC98 = Isolate.makeConstantList([2, 50, 32]);
+$.CTC99 = 86;
+$.CTC100 = 68;
+$.CTC101 = Isolate.makeConstantList([2, 86, 68]);
+$.CTC102 = 9;
+$.CTC103 = Isolate.makeConstantList([1, 26, 9]);
+$.CTC104 = 22;
+$.CTC105 = Isolate.makeConstantList([6, 22]);
+$.CTC106 = 25;
+$.CTC107 = Isolate.makeConstantList([4, 25, 9]);
+$.CTC108 = 0;
+$.CTC56 = Isolate.makeConstantList([1, 0, 3, 2]);
+$.CTC109 = Isolate.makeConstantList([1, 26, 13]);
+$.CTC110 = 18;
 $.CTC111 = Isolate.makeConstantList([6, 18]);
 $.CTC112 = 30;
 $.CTC113 = Isolate.makeConstantList([6, 30]);
@@ -4972,18 +5305,18 @@ $.CTC39 = new Isolate.$isolateProperties._Throws(Isolate.$isolateProperties.CTC1
 $.CTC116 = 121;
 $.CTC117 = 97;
 $.CTC118 = Isolate.makeConstantList([2, 121, 97]);
-$.CTC119 = Isolate.makeConstantList([4, 40, 14, 2, 41, 15]);
-$.CTC120 = Isolate.makeConstantList([2, 33, 15, 2, 34, 16]);
-$.CTC121 = 69;
-$.CTC122 = 70;
-$.CTC123 = Isolate.makeConstantList([4, 69, 43, 1, 70, 44]);
-$.CTC124 = 'structured clone of other type';
-$.CTC10 = new Isolate.$isolateProperties.NotImplementedException('structured clone of other type');
+$.CTC119 = 41;
+$.CTC120 = Isolate.makeConstantList([4, 40, 18, 2, 41, 19]);
+$.CTC121 = Isolate.makeConstantList([2, 33, 15, 2, 34, 16]);
+$.CTC122 = 69;
+$.CTC123 = 70;
+$.CTC124 = Isolate.makeConstantList([4, 69, 43, 1, 70, 44]);
+$.CTC19 = new Isolate.$isolateProperties.EventArgs();
 $.CTC125 = Isolate.makeConstantList([6, 43, 15, 2, 44, 16]);
 $.CTC126 = 'The input sequence contains more than one element.';
 $.CTC37 = new Isolate.$isolateProperties.InvalidOperationException('The input sequence contains more than one element.');
 $.CTC127 = Isolate.makeConstantList([4, 43, 15]);
-$.CTC128 = Isolate.makeConstantList([6, 26]);
+$.CTC128 = Isolate.makeConstantList([4, 40, 14, 2, 41, 15]);
 $.CTC129 = 114;
 $.CTC130 = 142;
 $.CTC131 = 170;
@@ -4998,7 +5331,8 @@ $.CTC44 = new Isolate.$isolateProperties._Throws(Isolate.$isolateProperties.CTC1
 $.CTC139 = 'UnsupportedOperationException';
 $.CTC140 = new Isolate.$isolateProperties._UnsupportedOperationException('UnsupportedOperationException');
 $.CTC35 = new Isolate.$isolateProperties._Throws(Isolate.$isolateProperties.CTC140);
-$.CTC141 = Isolate.makeConstantList([6, 34]);
+$.CTC141 = 'structured clone of other type';
+$.CTC10 = new Isolate.$isolateProperties.NotImplementedException('structured clone of other type');
 $.CTC142 = 24;
 $.CTC143 = Isolate.makeConstantList([2, 50, 24]);
 $.CTC144 = 28;
@@ -5006,7 +5340,7 @@ $.CTC145 = Isolate.makeConstantList([6, 28, 50]);
 $.CTC146 = 49;
 $.CTC147 = 31;
 $.CTC148 = Isolate.makeConstantList([4, 49, 31]);
-$.CTC149 = Isolate.makeConstantList([6, 32, 58]);
+$.CTC149 = Isolate.makeConstantList([6, 26]);
 $.CTC150 = 35;
 $.CTC151 = Isolate.makeConstantList([2, 35, 13]);
 $.CTC152 = 17;
@@ -5030,188 +5364,193 @@ $.CTC167 = Isolate.makeConstantList([6, 22, 38]);
 $.CTC168 = Isolate.makeConstantList([4, 36, 12, 4, 37, 13]);
 $.CTC169 = null;
 $.CTC0 = new Isolate.$isolateProperties.NullPointerException(null, Isolate.$isolateProperties.CTC1);
-$.CTC170 = 62;
-$.CTC171 = 90;
-$.CTC172 = 118;
-$.CTC173 = Isolate.makeConstantList([6, 34, 62, 90, 118]);
+$.CTC170 = Isolate.makeConstantList([6, 34]);
 $.CTC11 = new Isolate.$isolateProperties.NoMoreElementsException();
 $.CTC21 = new Isolate.$isolateProperties.EmptyQueueException();
-$.CTC174 = Isolate.makeConstantList([1, 44, 22]);
-$.CTC175 = '';
+$.CTC171 = Isolate.makeConstantList([1, 44, 22]);
+$.CTC172 = '';
 $.CTC26 = new Isolate.$isolateProperties.UnsupportedOperationException('');
-$.CTC176 = Isolate.makeConstantList([1, 44, 16]);
-$.CTC177 = 'Cannot removeLast on immutable List.';
+$.CTC173 = Isolate.makeConstantList([1, 44, 16]);
+$.CTC174 = 'Cannot removeLast on immutable List.';
 $.CTC12 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot removeLast on immutable List.');
-$.CTC178 = Isolate.makeConstantList([6, 34, 62, 90]);
-$.CTC179 = true;
+$.CTC175 = Isolate.makeConstantList([6, 32, 58]);
+$.CTC176 = true;
 $.CTC43 = new Isolate.$isolateProperties.TestListBase(true);
 $.CTC46 = new Isolate.$isolateProperties.NotImplementedException(null);
-$.CTC180 = 42;
-$.CTC181 = Isolate.makeConstantList([6, 24, 42]);
-$.CTC182 = 72;
-$.CTC183 = 94;
-$.CTC184 = Isolate.makeConstantList([6, 28, 50, 72, 94]);
-$.CTC185 = Isolate.makeConstantList([4, 43, 19]);
-$.CTC186 = 46;
-$.CTC187 = Isolate.makeConstantList([6, 26, 46]);
-$.CTC188 = 74;
-$.CTC189 = Isolate.makeConstantList([6, 26, 50, 74, 98]);
-$.CTC190 = 76;
-$.CTC191 = 102;
-$.CTC192 = 128;
-$.CTC193 = 154;
-$.CTC194 = Isolate.makeConstantList([6, 24, 50, 76, 102, 128, 154]);
-$.CTC195 = 'structured clone of ArrayBuffer';
+$.CTC177 = 42;
+$.CTC178 = Isolate.makeConstantList([6, 24, 42]);
+$.CTC179 = 72;
+$.CTC180 = 94;
+$.CTC181 = Isolate.makeConstantList([6, 28, 50, 72, 94]);
+$.CTC182 = 62;
+$.CTC183 = 90;
+$.CTC184 = 118;
+$.CTC185 = Isolate.makeConstantList([6, 34, 62, 90, 118]);
+$.CTC186 = Isolate.makeConstantList([4, 43, 19]);
+$.CTC187 = 46;
+$.CTC188 = Isolate.makeConstantList([6, 26, 46]);
+$.CTC189 = 74;
+$.CTC190 = Isolate.makeConstantList([6, 26, 50, 74, 98]);
+$.CTC191 = 76;
+$.CTC192 = 102;
+$.CTC193 = 128;
+$.CTC194 = 154;
+$.CTC195 = Isolate.makeConstantList([6, 24, 50, 76, 102, 128, 154]);
+$.CTC196 = 'structured clone of ArrayBuffer';
 $.CTC8 = new Isolate.$isolateProperties.NotImplementedException('structured clone of ArrayBuffer');
-$.CTC196 = 'Invalid list length';
-$.CTC27 = new Isolate.$isolateProperties.IllegalArgumentException('Invalid list length');
 $.CTC197 = 106;
 $.CTC198 = Isolate.makeConstantList([6, 28, 54, 80, 106]);
 $.CTC199 = 87;
 $.CTC200 = Isolate.makeConstantList([2, 86, 68, 2, 87, 69]);
-$.CTC201 = 82;
-$.CTC202 = 110;
-$.CTC203 = 138;
-$.CTC204 = 166;
-$.CTC205 = Isolate.makeConstantList([6, 26, 54, 82, 110, 138, 166]);
-$.CTC206 = Isolate.makeConstantList([6, 34, 62]);
-$.CTC207 = 'body';
-$.CTC208 = 'head';
-$.CTC209 = 'caption';
-$.CTC210 = 'td';
-$.CTC211 = 'colgroup';
-$.CTC212 = 'col';
-$.CTC213 = 'tr';
-$.CTC214 = 'tbody';
-$.CTC215 = 'tfoot';
-$.CTC216 = 'thead';
-$.CTC217 = 'track';
-$.CTC218 = Isolate.makeConstantList(['body', 'head', 'caption', 'td', 'colgroup', 'col', 'tr', 'tbody', 'tfoot', 'thead', 'track']);
-$.CTC219 = 84;
-$.CTC220 = Isolate.makeConstantList([6, 32, 58, 84, 110]);
-$.CTC221 = Isolate.makeConstantList([6, 30, 54, 78, 102]);
-$.CTC57 = new Isolate.$isolateProperties.Object();
-$.CTC222 = 132;
-$.CTC223 = 158;
-$.CTC224 = Isolate.makeConstantList([6, 28, 54, 80, 106, 132, 158]);
-$.CTC225 = 'Incorrect number or type of arguments';
+$.CTC201 = Isolate.makeConstantList([6, 34, 62, 90]);
+$.CTC202 = Isolate.makeConstantList([6, 34, 62]);
+$.CTC203 = 'body';
+$.CTC204 = 'head';
+$.CTC205 = 'caption';
+$.CTC206 = 'td';
+$.CTC207 = 'colgroup';
+$.CTC208 = 'col';
+$.CTC209 = 'tr';
+$.CTC210 = 'tbody';
+$.CTC211 = 'tfoot';
+$.CTC212 = 'thead';
+$.CTC213 = 'track';
+$.CTC214 = Isolate.makeConstantList(['body', 'head', 'caption', 'td', 'colgroup', 'col', 'tr', 'tbody', 'tfoot', 'thead', 'track']);
+$.CTC215 = 84;
+$.CTC216 = 110;
+$.CTC217 = Isolate.makeConstantList([6, 32, 58, 84, 110]);
+$.CTC218 = Isolate.makeConstantList([6, 30, 54, 78, 102]);
+$.CTC219 = 82;
+$.CTC220 = 138;
+$.CTC221 = 166;
+$.CTC222 = Isolate.makeConstantList([6, 26, 54, 82, 110, 138, 166]);
+$.CTC58 = new Isolate.$isolateProperties.Object();
+$.CTC223 = 132;
+$.CTC224 = 158;
+$.CTC225 = Isolate.makeConstantList([6, 28, 54, 80, 106, 132, 158]);
+$.CTC226 = 'Incorrect number or type of arguments';
 $.CTC17 = new Isolate.$isolateProperties.ExceptionImplementation('Incorrect number or type of arguments');
-$.CTC226 = 'structured clone of Blob';
+$.CTC227 = 'structured clone of Blob';
 $.CTC6 = new Isolate.$isolateProperties.NotImplementedException('structured clone of Blob');
-$.CTC227 = 'html';
-$.CTC228 = 'table';
-$.CTC229 = 'audio';
-$.CTC24 = new Isolate.$isolateProperties.ConstantMap(11, {'body': 'html', 'head': 'html', 'caption': 'table', 'td': 'tr', 'colgroup': 'table', 'col': 'colgroup', 'tr': 'tbody', 'tbody': 'table', 'tfoot': 'table', 'thead': 'table', 'track': 'audio'}, Isolate.$isolateProperties.CTC218);
-$.CTC230 = 'Cannot removeRange on immutable List.';
+$.CTC228 = 'html';
+$.CTC229 = 'table';
+$.CTC230 = 'audio';
+$.CTC24 = new Isolate.$isolateProperties.ConstantMap(11, {'body': 'html', 'head': 'html', 'caption': 'table', 'td': 'tr', 'colgroup': 'table', 'col': 'colgroup', 'tr': 'tbody', 'tbody': 'table', 'tfoot': 'table', 'thead': 'table', 'track': 'audio'}, Isolate.$isolateProperties.CTC214);
+$.CTC231 = 'Cannot removeRange on immutable List.';
 $.CTC52 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot removeRange on immutable List.');
-$.CTC231 = 'structured clone of RegExp';
+$.CTC232 = 'structured clone of RegExp';
 $.CTC4 = new Isolate.$isolateProperties.NotImplementedException('structured clone of RegExp');
-$.CTC232 = 'Cannot insertRange on immutable List.';
+$.CTC233 = 'Cannot insertRange on immutable List.';
 $.CTC45 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot insertRange on immutable List.');
-$.CTC233 = Isolate.makeConstantList([6, 30, 54, 78]);
-$.CTC234 = Isolate.makeConstantList([6, 26, 50, 74]);
-$.CTC235 = 136;
-$.CTC236 = 162;
-$.CTC237 = Isolate.makeConstantList([6, 32, 58, 84, 110, 136, 162]);
-$.CTC238 = 67;
-$.CTC239 = Isolate.makeConstantList([2, 67, 43]);
-$.CTC240 = Isolate.makeConstantList([1, 70, 44]);
-$.CTC241 = 'NullArgumentException';
-$.CTC242 = new Isolate.$isolateProperties._NullArgumentException('NullArgumentException');
-$.CTC20 = new Isolate.$isolateProperties._Throws0(Isolate.$isolateProperties.CTC242);
-$.CTC243 = '^\\[name=["\'][^\'"]+[\'"]\\]$';
+$.CTC234 = Isolate.makeConstantList([6, 30, 54, 78]);
+$.CTC235 = Isolate.makeConstantList([6, 26, 50, 74]);
+$.CTC236 = 136;
+$.CTC237 = 162;
+$.CTC238 = Isolate.makeConstantList([6, 32, 58, 84, 110, 136, 162]);
+$.CTC239 = 67;
+$.CTC240 = Isolate.makeConstantList([2, 67, 43]);
+$.CTC241 = Isolate.makeConstantList([1, 70, 44]);
+$.CTC242 = 'NullArgumentException';
+$.CTC243 = new Isolate.$isolateProperties._NullArgumentException('NullArgumentException');
+$.CTC20 = new Isolate.$isolateProperties._Throws0(Isolate.$isolateProperties.CTC243);
+$.CTC244 = '^\\[name=["\'][^\'"]+[\'"]\\]$';
 $.CTC29 = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, '^\\[name=["\'][^\'"]+[\'"]\\]$');
-$.CTC244 = 55;
-$.CTC245 = Isolate.makeConstantList([1, 70, 55]);
-$.CTC246 = 134;
-$.CTC247 = 108;
-$.CTC248 = Isolate.makeConstantList([1, 134, 108]);
-$.CTC249 = 146;
-$.CTC250 = 116;
-$.CTC251 = Isolate.makeConstantList([2, 146, 116]);
-$.CTC252 = Isolate.makeConstantList([Isolate.$isolateProperties.CTC88, Isolate.$isolateProperties.CTC96, Isolate.$isolateProperties.CTC110, Isolate.$isolateProperties.CTC104, Isolate.$isolateProperties.CTC97, Isolate.$isolateProperties.CTC160, Isolate.$isolateProperties.CTC174, Isolate.$isolateProperties.CTC176, Isolate.$isolateProperties.CTC245, Isolate.$isolateProperties.CTC240, Isolate.$isolateProperties.CTC159, Isolate.$isolateProperties.CTC151, Isolate.$isolateProperties.CTC166, Isolate.$isolateProperties.CTC99, Isolate.$isolateProperties.CTC143, Isolate.$isolateProperties.CTC108, Isolate.$isolateProperties.CTC248, Isolate.$isolateProperties.CTC239, Isolate.$isolateProperties.CTC120, Isolate.$isolateProperties.CTC71, Isolate.$isolateProperties.CTC102, Isolate.$isolateProperties.CTC163, Isolate.$isolateProperties.CTC185, Isolate.$isolateProperties.CTC127, Isolate.$isolateProperties.CTC156, Isolate.$isolateProperties.CTC148, Isolate.$isolateProperties.CTC82, Isolate.$isolateProperties.CTC93, Isolate.$isolateProperties.CTC118, Isolate.$isolateProperties.CTC136, Isolate.$isolateProperties.CTC86, Isolate.$isolateProperties.CTC119, Isolate.$isolateProperties.CTC251, Isolate.$isolateProperties.CTC64, Isolate.$isolateProperties.CTC153, Isolate.$isolateProperties.CTC168, Isolate.$isolateProperties.CTC200, Isolate.$isolateProperties.CTC123, Isolate.$isolateProperties.CTC77, Isolate.$isolateProperties.CTC125]);
+$.CTC245 = 55;
+$.CTC246 = Isolate.makeConstantList([1, 70, 55]);
+$.CTC247 = 134;
+$.CTC248 = 108;
+$.CTC249 = Isolate.makeConstantList([1, 134, 108]);
+$.CTC250 = 146;
+$.CTC251 = 116;
+$.CTC252 = Isolate.makeConstantList([2, 146, 116]);
+$.CTC253 = Isolate.makeConstantList([Isolate.$isolateProperties.CTC86, Isolate.$isolateProperties.CTC95, Isolate.$isolateProperties.CTC109, Isolate.$isolateProperties.CTC103, Isolate.$isolateProperties.CTC96, Isolate.$isolateProperties.CTC160, Isolate.$isolateProperties.CTC171, Isolate.$isolateProperties.CTC173, Isolate.$isolateProperties.CTC246, Isolate.$isolateProperties.CTC241, Isolate.$isolateProperties.CTC159, Isolate.$isolateProperties.CTC151, Isolate.$isolateProperties.CTC166, Isolate.$isolateProperties.CTC98, Isolate.$isolateProperties.CTC143, Isolate.$isolateProperties.CTC107, Isolate.$isolateProperties.CTC249, Isolate.$isolateProperties.CTC240, Isolate.$isolateProperties.CTC121, Isolate.$isolateProperties.CTC72, Isolate.$isolateProperties.CTC101, Isolate.$isolateProperties.CTC163, Isolate.$isolateProperties.CTC186, Isolate.$isolateProperties.CTC127, Isolate.$isolateProperties.CTC156, Isolate.$isolateProperties.CTC148, Isolate.$isolateProperties.CTC83, Isolate.$isolateProperties.CTC92, Isolate.$isolateProperties.CTC118, Isolate.$isolateProperties.CTC136, Isolate.$isolateProperties.CTC120, Isolate.$isolateProperties.CTC128, Isolate.$isolateProperties.CTC252, Isolate.$isolateProperties.CTC65, Isolate.$isolateProperties.CTC153, Isolate.$isolateProperties.CTC168, Isolate.$isolateProperties.CTC200, Isolate.$isolateProperties.CTC124, Isolate.$isolateProperties.CTC78, Isolate.$isolateProperties.CTC125]);
 $.CTC54 = new Isolate.$isolateProperties._Random();
-$.CTC253 = 66;
-$.CTC254 = Isolate.makeConstantList([6, 26, 46, 66]);
-$.CTC255 = 56;
-$.CTC256 = Isolate.makeConstantList([6, 30, 56, 82]);
-$.CTC257 = 48;
-$.CTC258 = Isolate.makeConstantList([6, 26, 48, 70]);
-$.CTC259 = Isolate.makeConstantList([6, 30, 58, 86]);
-$.CTC260 = 126;
-$.CTC261 = Isolate.makeConstantList([6, 30, 54, 78, 102, 126]);
-$.CTC262 = Isolate.makeConstantList([6, 30, 58, 86, 114]);
-$.CTC263 = 122;
-$.CTC264 = Isolate.makeConstantList([6, 26, 50, 74, 98, 122]);
-$.CTC265 = 52;
-$.CTC266 = 104;
-$.CTC267 = 130;
-$.CTC268 = Isolate.makeConstantList([6, 26, 52, 78, 104, 130]);
-$.CTC269 = Isolate.makeConstantList([6, 30, 56, 82, 108, 134]);
-$.CTC270 = 112;
-$.CTC271 = Isolate.makeConstantList([6, 34, 60, 86, 112, 138]);
-$.CTC272 = Isolate.makeConstantList([6, 30, 58, 86, 114, 142]);
-$.CTC273 = Isolate.makeConstantList([6, 34, 62, 90, 118, 146]);
-$.CTC274 = 150;
-$.CTC275 = Isolate.makeConstantList([6, 30, 54, 78, 102, 126, 150]);
-$.CTC56 = Isolate.makeConstantList([Isolate.$isolateProperties.CTC1, Isolate.$isolateProperties.CTC111, Isolate.$isolateProperties.CTC106, Isolate.$isolateProperties.CTC128, Isolate.$isolateProperties.CTC113, Isolate.$isolateProperties.CTC141, Isolate.$isolateProperties.CTC167, Isolate.$isolateProperties.CTC181, Isolate.$isolateProperties.CTC187, Isolate.$isolateProperties.CTC145, Isolate.$isolateProperties.CTC158, Isolate.$isolateProperties.CTC149, Isolate.$isolateProperties.CTC206, Isolate.$isolateProperties.CTC254, Isolate.$isolateProperties.CTC258, Isolate.$isolateProperties.CTC234, Isolate.$isolateProperties.CTC233, Isolate.$isolateProperties.CTC256, Isolate.$isolateProperties.CTC259, Isolate.$isolateProperties.CTC178, Isolate.$isolateProperties.CTC184, Isolate.$isolateProperties.CTC189, Isolate.$isolateProperties.CTC221, Isolate.$isolateProperties.CTC198, Isolate.$isolateProperties.CTC220, Isolate.$isolateProperties.CTC262, Isolate.$isolateProperties.CTC173, Isolate.$isolateProperties.CTC264, Isolate.$isolateProperties.CTC261, Isolate.$isolateProperties.CTC268, Isolate.$isolateProperties.CTC269, Isolate.$isolateProperties.CTC271, Isolate.$isolateProperties.CTC272, Isolate.$isolateProperties.CTC273, Isolate.$isolateProperties.CTC275, Isolate.$isolateProperties.CTC194, Isolate.$isolateProperties.CTC224, Isolate.$isolateProperties.CTC237, Isolate.$isolateProperties.CTC205, Isolate.$isolateProperties.CTC132]);
-$.CTC276 = 'InvalidOperationException';
-$.CTC277 = new Isolate.$isolateProperties._InvalidOperationException('InvalidOperationException');
-$.CTC36 = new Isolate.$isolateProperties._Throws0(Isolate.$isolateProperties.CTC277);
-$.CTC278 = 'structured clone of ArrayBufferView';
+$.CTC254 = 66;
+$.CTC255 = Isolate.makeConstantList([6, 26, 46, 66]);
+$.CTC256 = 56;
+$.CTC257 = Isolate.makeConstantList([6, 30, 56, 82]);
+$.CTC258 = 48;
+$.CTC259 = Isolate.makeConstantList([6, 26, 48, 70]);
+$.CTC260 = Isolate.makeConstantList([6, 30, 58, 86]);
+$.CTC261 = 126;
+$.CTC262 = Isolate.makeConstantList([6, 30, 54, 78, 102, 126]);
+$.CTC263 = Isolate.makeConstantList([6, 30, 58, 86, 114]);
+$.CTC264 = 122;
+$.CTC265 = Isolate.makeConstantList([6, 26, 50, 74, 98, 122]);
+$.CTC266 = 52;
+$.CTC267 = 104;
+$.CTC268 = 130;
+$.CTC269 = Isolate.makeConstantList([6, 26, 52, 78, 104, 130]);
+$.CTC270 = Isolate.makeConstantList([6, 30, 56, 82, 108, 134]);
+$.CTC271 = 112;
+$.CTC272 = Isolate.makeConstantList([6, 34, 60, 86, 112, 138]);
+$.CTC273 = Isolate.makeConstantList([6, 30, 58, 86, 114, 142]);
+$.CTC274 = Isolate.makeConstantList([6, 34, 62, 90, 118, 146]);
+$.CTC275 = 150;
+$.CTC276 = Isolate.makeConstantList([6, 30, 54, 78, 102, 126, 150]);
+$.CTC57 = Isolate.makeConstantList([Isolate.$isolateProperties.CTC1, Isolate.$isolateProperties.CTC111, Isolate.$isolateProperties.CTC105, Isolate.$isolateProperties.CTC149, Isolate.$isolateProperties.CTC113, Isolate.$isolateProperties.CTC170, Isolate.$isolateProperties.CTC167, Isolate.$isolateProperties.CTC178, Isolate.$isolateProperties.CTC188, Isolate.$isolateProperties.CTC145, Isolate.$isolateProperties.CTC158, Isolate.$isolateProperties.CTC175, Isolate.$isolateProperties.CTC202, Isolate.$isolateProperties.CTC255, Isolate.$isolateProperties.CTC259, Isolate.$isolateProperties.CTC235, Isolate.$isolateProperties.CTC234, Isolate.$isolateProperties.CTC257, Isolate.$isolateProperties.CTC260, Isolate.$isolateProperties.CTC201, Isolate.$isolateProperties.CTC181, Isolate.$isolateProperties.CTC190, Isolate.$isolateProperties.CTC218, Isolate.$isolateProperties.CTC198, Isolate.$isolateProperties.CTC217, Isolate.$isolateProperties.CTC263, Isolate.$isolateProperties.CTC185, Isolate.$isolateProperties.CTC265, Isolate.$isolateProperties.CTC262, Isolate.$isolateProperties.CTC269, Isolate.$isolateProperties.CTC270, Isolate.$isolateProperties.CTC272, Isolate.$isolateProperties.CTC273, Isolate.$isolateProperties.CTC274, Isolate.$isolateProperties.CTC276, Isolate.$isolateProperties.CTC195, Isolate.$isolateProperties.CTC225, Isolate.$isolateProperties.CTC238, Isolate.$isolateProperties.CTC222, Isolate.$isolateProperties.CTC132]);
+$.CTC277 = 'InvalidOperationException';
+$.CTC278 = new Isolate.$isolateProperties._InvalidOperationException('InvalidOperationException');
+$.CTC36 = new Isolate.$isolateProperties._Throws0(Isolate.$isolateProperties.CTC278);
+$.CTC279 = 'structured clone of ArrayBufferView';
 $.CTC9 = new Isolate.$isolateProperties.NotImplementedException('structured clone of ArrayBufferView');
 $.CTC14 = new Isolate.$isolateProperties._IsNull();
 $.CTC15 = new Isolate.$isolateProperties._IsTrue();
 $.CTC = new Isolate.$isolateProperties._IsFalse();
-$.CTC279 = 'TODO(jacobr): should we impl?';
+$.CTC280 = 'TODO(jacobr): should we impl?';
 $.CTC33 = new Isolate.$isolateProperties.UnsupportedOperationException('TODO(jacobr): should we impl?');
-$.CTC280 = 'Cannot add to immutable List.';
+$.CTC281 = 'Cannot add to immutable List.';
 $.CTC2 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot add to immutable List.');
-$.CTC281 = '[-[\\]{}()*+?.,\\\\^$|#\\s]';
+$.CTC282 = '[-[\\]{}()*+?.,\\\\^$|#\\s]';
 $.CTC13 = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, '[-[\\]{}()*+?.,\\\\^$|#\\s]');
-$.CTC38 = new Isolate.$isolateProperties._Throws(Isolate.$isolateProperties.CTC90);
-$.CTC282 = '^#(?:[0-9a-f]{6})$';
+$.CTC38 = new Isolate.$isolateProperties._Throws(Isolate.$isolateProperties.CTC88);
+$.CTC283 = '^#(?:[0-9a-f]{6})$';
 $.CTC53 = new Isolate.$isolateProperties.JSSyntaxRegExp(true, false, '^#(?:[0-9a-f]{6})$');
-$.CTC283 = 'structured clone of File';
+$.CTC284 = 'structured clone of File';
 $.CTC5 = new Isolate.$isolateProperties.NotImplementedException('structured clone of File');
-$.CTC284 = '<(\\w+)';
+$.CTC285 = '<(\\w+)';
 $.CTC23 = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, '<(\\w+)');
-$.CTC285 = 'The input sequence is empty.';
+$.CTC286 = 'The input sequence is empty.';
 $.CTC34 = new Isolate.$isolateProperties.InvalidOperationException('The input sequence is empty.');
-$.CTC286 = '^#[_a-zA-Z]\\w*$';
+$.CTC287 = '^#[_a-zA-Z]\\w*$';
 $.CTC28 = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, '^#[_a-zA-Z]\\w*$');
-$.CTC287 = 'Cannot sort immutable List.';
+$.CTC288 = 'Cannot sort immutable List.';
 $.CTC32 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot sort immutable List.');
-$.CTC288 = 'structured clone of Date';
+$.CTC289 = 'structured clone of Date';
 $.CTC3 = new Isolate.$isolateProperties.NotImplementedException('structured clone of Date');
-$.CTC289 = 'IDBKey containing Date';
+$.CTC290 = 'IDBKey containing Date';
 $.CTC22 = new Isolate.$isolateProperties.NotImplementedException('IDBKey containing Date');
-$.CTC290 = 'structured clone of FileList';
+$.CTC291 = 'structured clone of FileList';
 $.CTC7 = new Isolate.$isolateProperties.NotImplementedException('structured clone of FileList');
 $.CTC41 = new Isolate.$isolateProperties.ReadOnlyCollection(Isolate.$isolateProperties.CTC1);
-$.CTC291 = 'Mutation operations are not supported';
+$.CTC292 = 'Mutation operations are not supported';
 $.CTC42 = new Isolate.$isolateProperties.UnsupportedOperationException('Mutation operations are not supported');
-$.CTC19 = new Isolate.$isolateProperties.EventArgs();
+$.CTC293 = '^(?:([^:/?#.]+):)?(?://(?:([^/?#]*)@)?([\\w\\d\\-\\u0100-\\uffff.%]*)(?::([0-9]+))?)?([^?#]+)?(?:\\?([^#]*))?(?:#(.*))?$';
+$.CTC55 = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, '^(?:([^:/?#.]+):)?(?://(?:([^/?#]*)@)?([\\w\\d\\-\\u0100-\\uffff.%]*)(?::([0-9]+))?)?([^?#]+)?(?:\\?([^#]*))?(?:#(.*))?$');
 $.CTC50 = new Isolate.$isolateProperties.Coordinate(1, 0);
 $.CTC47 = new Isolate.$isolateProperties.Coordinate(2, 2);
 $.CTC51 = new Isolate.$isolateProperties.Vector(2, 2);
 $.CTC48 = new Isolate.$isolateProperties.Box(0, 0, 1, 1);
+$.Uri__COMPONENT_PATH = 5;
 $.Property_Undefined = Isolate.$isolateProperties.CTC18;
 $.QrMaskPattern_PATTERN001 = 1;
 $._testSetup = null;
 $.DateImplementation__MAX_MILLISECONDS_SINCE_EPOCH = 8640000000000000;
+$._BufferingSendPort__idCount = 0;
 $.QrMaskPattern_PATTERN101 = 5;
-$.QrErrorCorrectLevel_levels = Isolate.$isolateProperties.CTC55;
-$.isNullPointerException = Isolate.$isolateProperties.CTC90;
+$.QrErrorCorrectLevel_levels = Isolate.$isolateProperties.CTC56;
+$._lazyPort = null;
+$.isNullPointerException = Isolate.$isolateProperties.CTC88;
+$.Uri__splitRe = Isolate.$isolateProperties.CTC55;
 $.SQRT2 = 1.4142135623730951;
 $.QrMaskPattern_PATTERN100 = 4;
+$.Uri__COMPONENT_DOMAIN = 3;
 $._testRunner = null;
 $._assertFailureHandler = null;
 $.QrUtil_G18 = 7973;
 $._getTypeNameOf = null;
 $.QrMode_MODE_NUMBER = 1;
 $.QrMaskPattern_PATTERN110 = 6;
-$._dartlibHelperRandom = null;
 $.PI = 3.141592653589793;
 $.DualPivotQuicksort__INSERTION_SORT_THRESHOLD = 32;
 $.Primitives_hashCodeSeed = 0;
@@ -5241,21 +5580,27 @@ $._FAIL = 'fail';
 $.isIndexOutOfRangeException = Isolate.$isolateProperties.CTC138;
 $._currentTest = 0;
 $.QrMode_MODE_8BIT_BYTE = 4;
-$.QrRsBlock__rsBlockTable = Isolate.$isolateProperties.CTC252;
+$.QrRsBlock__rsBlockTable = Isolate.$isolateProperties.CTC253;
+$.Uri__COMPONENT_PORT = 4;
+$.Uri__COMPONENT_SCHEME = 1;
 $.Duration_MINUTES_PER_HOUR = 60;
 $.isNull = Isolate.$isolateProperties.CTC14;
+$._botHelperRandom = null;
 $._currentGroup = '';
 $.TestCloneable__globalId = 0;
 $.GlobalId__globalId = 0;
 $.QrErrorCorrectLevel_M = 0;
+$.Uri__COMPONENT_FRAGMENT = 7;
 $.QrMaskPattern_PATTERN011 = 3;
 $._ReceivePortImpl__nextFreeId = 1;
 $.RgbColor__validHexColorRe = Isolate.$isolateProperties.CTC53;
 $._uncaughtErrorMessage = null;
+$.Uri__COMPONENT_QUERY_DATA = 6;
 $.throwsIndexOutOfRangeException = Isolate.$isolateProperties.CTC44;
 $._config = null;
 $.throwsNullPointerException = Isolate.$isolateProperties.CTC38;
 $.isFalse = Isolate.$isolateProperties.CTC;
+$._SPAWNED_SIGNAL = 'spawned';
 $.Duration_MILLISECONDS_PER_DAY = 86400000;
 $.QrMaskPattern_PATTERN010 = 2;
 $.QrMath__logTable = null;
@@ -5268,6 +5613,7 @@ $.HashMapImplementation__INITIAL_CAPACITY = 8;
 $.Duration_SECONDS_PER_MINUTE = 60;
 $._tests = null;
 $.QrMath__expTable = null;
+$.Uri__COMPONENT_USER_INFO = 2;
 $._cachedBrowserPrefix = null;
 $.QrMode_MODE_KANJI = 8;
 $.isUnsupportedOperationException = Isolate.$isolateProperties.CTC140;
@@ -5452,6 +5798,10 @@ $.$defineNativeClass('CSSRuleList', ["length?"], {
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
 },
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
+},
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC52);},
@@ -5500,6 +5850,10 @@ $.$defineNativeClass('CSSValueList', ["length?"], {
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
 },
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
+},
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC52);},
@@ -5520,7 +5874,7 @@ $.$defineNativeClass('CanvasRenderingContext2D', [], {
  translate$2: function(tx,ty){return this.translate(tx,ty);}
 });
 
-$.$defineNativeClass('CharacterData', ["length?"], {
+$.$defineNativeClass('CharacterData', ["data?", "length?"], {
 });
 
 $.$defineNativeClass('ClientRect', ["height?", "left?", "top?", "width?"], {
@@ -5544,6 +5898,10 @@ $.$defineNativeClass('ClientRectList', ["length?"], {
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
 },
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
+},
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC52);},
@@ -5553,6 +5911,9 @@ $.$defineNativeClass('ClientRectList', ["length?"], {
  is$List: function() { return true; },
  is$Collection: function() { return true; },
  is$Iterable: function() { return true; }
+});
+
+$.$defineNativeClass('CompositionEvent', ["data?"], {
 });
 
 _ConsoleImpl = (typeof console == 'undefined' ? {} : console);
@@ -5605,6 +5966,10 @@ $.$defineNativeClass('DOMMimeTypeArray', ["length?"], {
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
 },
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
+},
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC52);},
@@ -5636,6 +6001,10 @@ $.$defineNativeClass('DOMPluginArray', ["length?"], {
  indexOf$2: function(element,start){return $._Lists_indexOf(this,element,start,$.get$length(this));},
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
+},
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
 },
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
@@ -5675,6 +6044,10 @@ $.$defineNativeClass('DOMStringList', ["length?"], {
  indexOf$2: function(element,start){return $._Lists_indexOf(this,element,start,$.get$length(this));},
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
+},
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
 },
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
@@ -5747,6 +6120,7 @@ $.$defineNativeClass('DocumentFragment', [], {
  get$attributes: function(){return $.CTC31;},
  click$0: function(){},
  get$click: function() { return new $.BoundClosure(this, 'click$0'); },
+ set$id: function(value){throw $.$$throw($.UnsupportedOperationException$('ID can\'t be set for document fragments.'));},
  get$on: function(){return $._ElementEventsImpl$(this);},
  $dom_querySelector$1: function(selectors){return this.querySelector(selectors);},
  $dom_querySelectorAll$1: function(selectors){return this.querySelectorAll(selectors);},
@@ -5770,7 +6144,7 @@ $.$defineNativeClass('HTMLDocument', ["body?", "head?"], {
 $.$defineNativeClass('DocumentType', ["name?"], {
 });
 
-$.$defineNativeClass('Element', ["id?", "innerHTML!"], {
+$.$defineNativeClass('Element', ["id=", "innerHTML!"], {
  get$attributes: function(){return $._ElementAttributeMap$(this);},
  set$elements: function(value){  if (Object.getPrototypeOf(this).hasOwnProperty('set$elements')) {
   {var elements=this.get$elements();$.clear(elements);$.addAll(elements,value);}  } else {
@@ -5826,6 +6200,10 @@ $.$defineNativeClass('EntryArray', ["length?"], {
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
 },
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
+},
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC52);},
@@ -5854,6 +6232,10 @@ $.$defineNativeClass('EntryArraySync', ["length?"], {
  indexOf$2: function(element,start){return $._Lists_indexOf(this,element,start,$.get$length(this));},
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
+},
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
 },
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
@@ -5942,6 +6324,10 @@ $.$defineNativeClass('FileList', ["length?"], {
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
 },
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
+},
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC52);},
@@ -5992,6 +6378,10 @@ $.$defineNativeClass('Float32Array', ["length?"], {
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
 },
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
+},
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC52);},
@@ -6021,6 +6411,10 @@ $.$defineNativeClass('Float64Array', ["length?"], {
  indexOf$2: function(element,start){return $._Lists_indexOf(this,element,start,$.get$length(this));},
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
+},
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
 },
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
@@ -6073,6 +6467,10 @@ $.$defineNativeClass('GamepadList', ["length?"], {
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
 },
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
+},
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC52);},
@@ -6106,6 +6504,10 @@ $.$defineNativeClass('HTMLAllCollection', ["length?"], {
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
 },
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
+},
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC52);},
@@ -6134,6 +6536,10 @@ $.$defineNativeClass('HTMLCollection', ["length?"], {
  indexOf$2: function(element,start){return $._Lists_indexOf(this,element,start,$.get$length(this));},
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
+},
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
 },
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
@@ -6177,7 +6583,8 @@ $.$defineNativeClass('XMLHttpRequestException', ["message?", "name?"], {
 $.$defineNativeClass('XMLHttpRequest', [], {
  get$on: function(){return $._HttpRequestEventsImpl$(this);},
  $dom_addEventListener$3: function(type,listener,useCapture){return this.addEventListener(type,$.convertDartClosureToJS(listener,1),useCapture);},
- $dom_removeEventListener$3: function(type,listener,useCapture){return this.removeEventListener(type,$.convertDartClosureToJS(listener,1),useCapture);}
+ $dom_removeEventListener$3: function(type,listener,useCapture){return this.removeEventListener(type,$.convertDartClosureToJS(listener,1),useCapture);},
+ send$1: function(data){return this.send(data);}
 });
 
 $.$defineNativeClass('XMLHttpRequestUpload', [], {
@@ -6287,7 +6694,7 @@ $.$defineNativeClass('HTMLIFrameElement', ["height?", "name?", "width?"], {
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('ImageData', ["height?", "width?"], {
+$.$defineNativeClass('ImageData', ["data?", "height?", "width?"], {
  is$_ImageDataImpl: function() { return true; },
  is$ImageData: function() { return true; }
 });
@@ -6322,6 +6729,10 @@ $.$defineNativeClass('Int16Array', ["length?"], {
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
 },
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
+},
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC52);},
@@ -6352,6 +6763,10 @@ $.$defineNativeClass('Int32Array', ["length?"], {
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
 },
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
+},
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC52);},
@@ -6381,6 +6796,10 @@ $.$defineNativeClass('Int8Array', ["length?"], {
  indexOf$2: function(element,start){return $._Lists_indexOf(this,element,start,$.get$length(this));},
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
+},
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
 },
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
@@ -6469,6 +6888,10 @@ $.$defineNativeClass('MediaList', ["length?"], {
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
 },
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
+},
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC52);},
@@ -6521,6 +6944,10 @@ $.$defineNativeClass('MediaStreamList', ["length?"], {
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
 },
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
+},
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC52);},
@@ -6550,7 +6977,7 @@ $.$defineNativeClass('HTMLMenuElement', [], {
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('MessageEvent', ["ports?"], {
+$.$defineNativeClass('MessageEvent', ["data?", "ports?"], {
 });
 
 $.$defineNativeClass('MessagePort', [], {
@@ -6598,6 +7025,10 @@ $.$defineNativeClass('NamedNodeMap', ["length?"], {
  indexOf$2: function(element,start){return $._Lists_indexOf(this,element,start,$.get$length(this));},
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
+},
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
 },
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
@@ -6712,6 +7143,14 @@ $.$defineNativeClass('NodeList', ["length?"], {
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
 },
+ lastIndexOf$2: function(element,start){  if (Object.getPrototypeOf(this).hasOwnProperty('lastIndexOf$2')) {
+  {return $._Lists_lastIndexOf(this,element,start);}  } else {
+    return Object.prototype.lastIndexOf$2.call(this, element, start);
+  }
+},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,0)
+},
  last$0: function(){  if (Object.getPrototypeOf(this).hasOwnProperty('last$0')) {
   {return this.operator$index$1($.sub($.get$length(this),1));}  } else {
     return Object.prototype.last$0.call(this);
@@ -6757,7 +7196,7 @@ $.$defineNativeClass('HTMLOListElement', [], {
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('HTMLObjectElement', ["height?", "name?", "width?"], {
+$.$defineNativeClass('HTMLObjectElement', ["data?", "height?", "name?", "width?"], {
  is$Element: function() { return true; }
 });
 
@@ -6801,6 +7240,9 @@ $.$defineNativeClass('HTMLPreElement', ["width?"], {
  is$Element: function() { return true; }
 });
 
+$.$defineNativeClass('ProcessingInstruction', ["data?"], {
+});
+
 $.$defineNativeClass('HTMLProgressElement', ["value="], {
  max$0: function() { return this.max.call$0(); },
  is$Element: function() { return true; }
@@ -6834,6 +7276,10 @@ $.$defineNativeClass('RadioNodeList', ["value="], {
  indexOf$2: function(element,start){return $._Lists_indexOf(this,element,start,$.get$length(this));},
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
+},
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
 },
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
@@ -6919,6 +7365,10 @@ $.$defineNativeClass('SVGAnimatedLengthList', [], {
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
 },
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
+},
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC52);},
@@ -6948,6 +7398,10 @@ $.$defineNativeClass('SVGAnimatedNumberList', [], {
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
 },
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
+},
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC52);},
@@ -6976,6 +7430,10 @@ $.$defineNativeClass('SVGAnimatedTransformList', [], {
  indexOf$2: function(element,start){return $._Lists_indexOf(this,element,start,$.get$length(this));},
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
+},
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
 },
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
@@ -7025,6 +7483,7 @@ $.$defineNativeClass('SVGElement', [], {
  set$elements: function(value){var elements=this.get$elements();$.clear(elements);$.addAll(elements,value);},
  set$innerHTML: function(svg){var container=$.Element_Element$tag('div');container.set$innerHTML('<svg version="1.1">'+$.S(svg)+'</svg>');this.set$elements(container.get$elements().get$first().get$elements());},
  get$id: function(){return this.id;},
+ set$id: function(value){this.id = value;},
  is$Element: function() { return true; }
 });
 
@@ -7049,6 +7508,10 @@ $.$defineNativeClass('SVGElementInstanceList', ["length?"], {
  indexOf$2: function(element,start){return $._Lists_indexOf(this,element,start,$.get$length(this));},
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
+},
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
 },
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
@@ -7246,6 +7709,10 @@ $.$defineNativeClass('SVGLengthList', [], {
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
 },
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
+},
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC52);},
@@ -7312,6 +7779,10 @@ $.$defineNativeClass('SVGNumberList', [], {
  indexOf$2: function(element,start){return $._Lists_indexOf(this,element,start,$.get$length(this));},
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
+},
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
 },
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
@@ -7395,6 +7866,10 @@ $.$defineNativeClass('SVGPathSegList', [], {
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
 },
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
+},
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC52);},
@@ -7477,6 +7952,10 @@ $.$defineNativeClass('SVGStringList', [], {
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
 },
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
+},
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC52);},
@@ -7549,6 +8028,10 @@ $.$defineNativeClass('SVGTransformList', [], {
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
 },
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
+},
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC52);},
@@ -7617,6 +8100,10 @@ $.$defineNativeClass('SourceBufferList', ["length?"], {
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
 },
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
+},
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC52);},
@@ -7656,6 +8143,10 @@ $.$defineNativeClass('SpeechGrammarList', ["length?"], {
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
 },
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
+},
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC52);},
@@ -7684,6 +8175,10 @@ $.$defineNativeClass('SpeechInputResultList', ["length?"], {
  indexOf$2: function(element,start){return $._Lists_indexOf(this,element,start,$.get$length(this));},
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
+},
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
 },
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
@@ -7728,6 +8223,10 @@ $.$defineNativeClass('SpeechRecognitionResultList', ["length?"], {
  indexOf$2: function(element,start){return $._Lists_indexOf(this,element,start,$.get$length(this));},
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
+},
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
 },
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
@@ -7786,6 +8285,10 @@ $.$defineNativeClass('StyleSheetList', ["length?"], {
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
 },
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
+},
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC52);},
@@ -7825,10 +8328,13 @@ $.$defineNativeClass('HTMLTextAreaElement', ["name?", "value="], {
  is$Element: function() { return true; }
 });
 
+$.$defineNativeClass('TextEvent', ["data?"], {
+});
+
 $.$defineNativeClass('TextMetrics', ["width?"], {
 });
 
-$.$defineNativeClass('TextTrackCue', ["id?", "text!"], {
+$.$defineNativeClass('TextTrackCue', ["id=", "text!"], {
  get$on: function(){return $._TextTrackCueEventsImpl$(this);},
  $dom_addEventListener$3: function(type,listener,useCapture){return this.addEventListener(type,$.convertDartClosureToJS(listener,1),useCapture);},
  $dom_removeEventListener$3: function(type,listener,useCapture){return this.removeEventListener(type,$.convertDartClosureToJS(listener,1),useCapture);}
@@ -7851,6 +8357,10 @@ $.$defineNativeClass('TextTrackCueList', ["length?"], {
  indexOf$2: function(element,start){return $._Lists_indexOf(this,element,start,$.get$length(this));},
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
+},
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
 },
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
@@ -7887,6 +8397,10 @@ $.$defineNativeClass('TextTrackList', ["length?"], {
  indexOf$2: function(element,start){return $._Lists_indexOf(this,element,start,$.get$length(this));},
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
+},
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
 },
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
@@ -7925,6 +8439,10 @@ $.$defineNativeClass('TouchList', ["length?"], {
  indexOf$2: function(element,start){return $._Lists_indexOf(this,element,start,$.get$length(this));},
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
+},
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
 },
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
@@ -7967,6 +8485,10 @@ $.$defineNativeClass('Uint16Array', ["length?"], {
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
 },
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
+},
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC52);},
@@ -7997,6 +8519,10 @@ $.$defineNativeClass('Uint32Array', ["length?"], {
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
 },
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
+},
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
  removeRange$2: function(start,rangeLength){throw $.$$throw($.CTC52);},
@@ -8026,6 +8552,10 @@ $.$defineNativeClass('Uint8Array', ["length?"], {
  indexOf$2: function(element,start){return $._Lists_indexOf(this,element,start,$.get$length(this));},
  indexOf$1: function(element) {
   return this.indexOf$2(element,0)
+},
+ lastIndexOf$2: function(element,start){if(start==null)start=$.sub($.get$length(this),1);return $._Lists_lastIndexOf(this,element,start);},
+ lastIndexOf$1: function(element) {
+  return this.lastIndexOf$2(element,null)
 },
  last$0: function(){return this.operator$index$1($.sub($.get$length(this),1));},
  removeLast$0: function(){throw $.$$throw($.CTC12);},
@@ -8079,7 +8609,8 @@ $.$defineNativeClass('WebSocket', [], {
  close$0: function() {
   return this.close();
 },
- $dom_removeEventListener$3: function(type,listener,useCapture){return this.removeEventListener(type,$.convertDartClosureToJS(listener,1),useCapture);}
+ $dom_removeEventListener$3: function(type,listener,useCapture){return this.removeEventListener(type,$.convertDartClosureToJS(listener,1),useCapture);},
+ send$1: function(data){return this.send(data);}
 });
 
 $.$defineNativeClass('DOMWindow', ["length?", "name?", "navigator?", "window?"], {
@@ -8115,7 +8646,8 @@ $.$defineNativeClass('Worker', [], {
  postMessage$2: function(message,messagePorts){return this.postMessage(message,messagePorts);},
  postMessage$1: function(message) {
   return this.postMessage(message);
-}
+},
+ terminate$0: function(){return this.terminate();}
 });
 
 $.$defineNativeClass('WorkerLocation', [], {
@@ -8135,6 +8667,8 @@ $.$defineNativeClass('XSLTProcessor', [], {
 
 $.$defineNativeClass('Worker', [], {
  get$id: function(){return this.id;},
+ set$id: function(i){this.id = i;},
+ set$onmessage: function(f){this.onmessage = f;},
  postMessage$1: function(msg){return this.postMessage(msg);}
 });
 
@@ -8143,8 +8677,8 @@ $.$defineNativeClass('DOMWindow', [], {
  setInterval$2: function(handler,timeout){return this.setInterval($.convertDartClosureToJS(handler,0),timeout);}
 });
 
-// 347 dynamic classes.
-// 363 classes
+// 350 dynamic classes.
+// 365 classes
 // 30 !leaf
 (function(){
   var v0/*class(_SVGTextPositioningElementImpl)*/ = 'SVGTextPositioningElement|SVGTextElement|SVGTSpanElement|SVGTRefElement|SVGAltGlyphElement|SVGTextElement|SVGTSpanElement|SVGTRefElement|SVGAltGlyphElement';

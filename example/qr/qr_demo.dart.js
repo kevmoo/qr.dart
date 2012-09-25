@@ -359,7 +359,7 @@ $$.QrDemo = {"":
 };
 
 $$._QrCalc = {"":
- ["_sendPort", "_completer", "_innerFuture", "_input", "_future", "_output", "_pending", "_outputChangedHandle", "_inputChangedHandle", "_errorHandle"],
+ ["_sendPort", "inputSerializer", "outputDeserializer", "_completer", "_innerFuture", "_input", "_future", "_output", "_pending", "_outputChangedHandle", "_inputChangedHandle", "_errorHandle"],
  "super": "SendPortValue"
 };
 
@@ -1133,7 +1133,6 @@ $$.Enumerable = {"":
  "super": "Object",
  isEmpty$0: function(){return this.some$1(new $.Enumerable_isEmpty_anon())!==true;},
  some$1: function(f){$.requireArgumentNotNull(f,'f');for(var t1=$.iterator(this);t1.hasNext$0()===true;)if(f.call$1(t1.next$0())===true)return true;return false;},
- get$length: function(){return this.count$0();},
  count$1: function(f){if(f==null)f=new $.Enumerable_count_anon();for(var t1=$.iterator(this),c=0;t1.hasNext$0()===true;)if(f.call$1(t1.next$0())===true)++c;return c;},
  count$0: function() {
   return this.count$1(null)
@@ -1155,7 +1154,8 @@ $$._FuncEnumerable = {"":
  "super": "Enumerable",
  _lib3_func$1: function(arg0) { return this._lib3_func.call$1(arg0); },
  _lib3_func$1: function(arg0) { return this._lib3_func.call$1(arg0); },
- iterator$0: function(){return this._lib3_func$1($.iterator(this._source));}
+ iterator$0: function(){return this._lib3_func$1($.iterator(this._source));},
+ get$length: function(){return this.count$0();}
 };
 
 $$._WhereIterator = {"":
@@ -1324,31 +1324,38 @@ $$.FutureValue = {"":
 };
 
 $$.FutureValueResult = {"":
- ["value?", "exception?"],
+ ["value?", "exception?", "_outputSerializer"],
  "super": "Object",
+ _outputSerializer$1: function(arg0) { return this._outputSerializer.call$1(arg0); },
  get$isException: function(){return !(this.exception==null);},
- toMap$0: function(){return $.makeLiteralMap(['value',this.value,'exception',this.exception]);},
+ toMap$0: function(){return $.makeLiteralMap(['value',this._serialize$1(this.value),'exception',this.exception]);},
  operator$eq$1: function(other){return !(other==null)&&$.eqB(other.get$value(),this.value)&&$.eqB(other.get$exception(),this.exception);},
+ _serialize$1: function(output){if(this._outputSerializer==null)return output;else return this._outputSerializer$1(output);},
  FutureValueResult$fromException$1: function(exception){$.requireArgumentNotNull(this.exception,'exception');}
 };
 
 $$.SendPortValue = {"":
  [],
  "super": "FutureValue",
- getFuture$1: function(value){this._completer=$.Completer_Completer();this._innerFuture=this._sendPort.call$1(value);this._innerFuture.then$1(this.get$__futureCompleted());return this._completer.get$future();},
+ inputSerializer$1: function(arg0) { return this.inputSerializer.call$1(arg0); },
+ outputDeserializer$1: function(arg0) { return this.outputDeserializer.call$1(arg0); },
+ getFuture$1: function(value){this._completer=$.Completer_Completer();var t1=this.inputSerializer==null;var t2=this._sendPort;if(t1)this._innerFuture=t2.call$1(value);else this._innerFuture=t2.call$1(this.inputSerializer$1(value));this._innerFuture.then$1(this.get$__futureCompleted());return this._completer.get$future();},
  __futureCompleted$1: function(value){this._innerFuture=null;if(typeof value==='object'&&value!==null&&value.is$Map()&&$.FutureValueResult_isMyMap(value))this._sendValueResultCompleted$1($.FutureValueResult_FutureValueResult$fromMap(value));else this._lib4_complete$1(value);},
  get$__futureCompleted: function() { return new $.BoundClosure0(this, '__futureCompleted$1'); },
  _sendValueResultCompleted$1: function(value){if(value.get$isException()===true)this._completeException$1(value.get$exception());else this._lib4_complete$1(value.get$value());},
- _lib4_complete$1: function(value){var c=this._completer;this._completer=null;c.complete$1(value);},
- _completeException$1: function(exception){var c=this._completer;this._completer=null;c.completeException$1(exception);}
+ _lib4_complete$1: function(rawValue){var c=this._completer;this._completer=null;c.complete$1(this._deserializer$1(rawValue));},
+ _completeException$1: function(exception){var c=this._completer;this._completer=null;c.completeException$1(exception);},
+ _deserializer$1: function(input){if(this.outputDeserializer==null)return input;else return this.outputDeserializer$1(input);}
 };
 
 $$.SendValuePort = {"":
- ["_func"],
+ ["_func", "inputDeserializer", "outputSerializer?"],
  "super": "Object",
  _func$1: function(arg0) { return this._func.call$1(arg0); },
  _func$1: function(arg0) { return this._func.call$1(arg0); },
- SendValuePort$1: function(_func){$.port().receive$1(new $.anon(this));}
+ inputDeserializer$1: function(arg0) { return this.inputDeserializer.call$1(arg0); },
+ _deserialize$1: function(input){if(this.inputDeserializer==null)return input;else return this.inputDeserializer$1(input);},
+ SendValuePort$3$inputDeserializer$outputSerializer: function(_func,inputDeserializer,outputSerializer){$.port().receive$1(new $.anon(this));}
 };
 
 $$.main_anon = {"":
@@ -1490,19 +1497,13 @@ $$._qrIsolate_anon = {"":
 $$.anon = {"":
  ["this_0"],
  "super": "Closure",
- call$2: function(value,reply){var _message=null;try{var output=this.this_0._func$1(value);_message=$.FutureValueResult$(output);}catch(exception){var t1=$.unwrapException(exception);var ex=t1;var exString=$.toString(ex);_message=$.FutureValueResult$fromException(exString);}reply.send$1(_message.toMap$0());}
+ call$2: function(rawValue,reply){var t1=this.this_0;var value=t1._deserialize$1(rawValue);var _message=null;try{var output=t1._func$1(value);_message=$.FutureValueResult$(output,t1.get$outputSerializer());}catch(exception){t1=$.unwrapException(exception);var ex=t1;var exString=$.toString(ex);_message=$.FutureValueResult$fromException(exString);}reply.send$1(_message.toMap$0());}
 };
 
 $$.Enumerable_isEmpty_anon = {"":
  [],
  "super": "Closure",
  call$1: function(e){return true;}
-};
-
-$$.Enumerable_count_anon = {"":
- [],
- "super": "Closure",
- call$1: function(a){return true;}
 };
 
 $$.ListBase_iterator_anon = {"":
@@ -1655,6 +1656,12 @@ $$.Enumerable_filter_anon = {"":
  call$1: function(s){return $._WhereIterator$(s,this.f_0);}
 };
 
+$$.Enumerable_count_anon = {"":
+ [],
+ "super": "Closure",
+ call$1: function(a){return true;}
+};
+
 $$._ChildrenElementList_filter_anon = {"":
  ["f_1", "output_0"],
  "super": "Closure",
@@ -1803,7 +1810,7 @@ $._EventSourceEventsImpl$ = function(_ptr){return new $._EventSourceEventsImpl(_
 
 $.QrUtil_getMask = function(maskPattern,i,j){switch(maskPattern){case 0:return $.eq($.mod($.add(i,j),2),0);case 1:return $.eq($.mod(i,2),0);case 2:return $.eq($.mod(j,3),0);case 3:return $.eq($.mod($.add(i,j),3),0);case 4:return $.eq($.mod($.add($.tdiv(i,2),$.tdiv(j,3)),2),0);case 5:return $.eq($.add($.mod($.mul(i,j),2),$.mod($.mul(i,j),3)),0);case 6:return $.eq($.mod($.add($.mod($.mul(i,j),2),$.mod($.mul(i,j),3)),2),0);case 7:return $.eq($.mod($.add($.mod($.mul(i,j),3),$.mod($.add(i,j),2)),2),0);default:throw $.$$throw('bad maskPattern:'+$.S(maskPattern));}};
 
-$.SendValuePort$ = function(_func){var t1=new $.SendValuePort(_func);t1.SendValuePort$1(_func);return t1;};
+$.SendValuePort$ = function(_func,inputDeserializer,outputSerializer){var t1=new $.SendValuePort(_func,inputDeserializer,outputSerializer);t1.SendValuePort$3$inputDeserializer$outputSerializer(_func,inputDeserializer,outputSerializer);return t1;};
 
 $._convertDartToNative_PrepareForStructuredClone = function(value){var values=[];var copies=[];var t1=new $._convertDartToNative_PrepareForStructuredClone_findSlot(copies,values);var t2=new $._convertDartToNative_PrepareForStructuredClone_readSlot(copies);var t3=new $._convertDartToNative_PrepareForStructuredClone_writeSlot(copies);var t4=new $._convertDartToNative_PrepareForStructuredClone_cleanupSlots();var copy=new $._convertDartToNative_PrepareForStructuredClone_walk(t3,t1,t2).call$1(value);t4.call$0();return copy;};
 
@@ -1867,7 +1874,7 @@ $.or = function(a,b){if($.checkNumbers(a,b))return (a | b) >>> 0;return a.operat
 
 $.main = function(){var demo=$.QrDemo$($.query('#content'),$.query('#type-div'),$.query('#error-div'));var input=$.query('#input');input.set$value('Type your message in here...');demo.set$value(input.get$value());$.add$1(input.get$on().get$keyUp(),new $.main_anon(demo,input));$.add$1(demo.get$updated(),new $.main_anon0(input));$.add$1(demo.get$error(),new $.main_anon1(input));};
 
-$.FutureValueResult$fromException = function(exception){var t1=new $.FutureValueResult(null,exception);t1.FutureValueResult$fromException$1(exception);return t1;};
+$.FutureValueResult$fromException = function(exception){var t1=new $.FutureValueResult(null,exception,null);t1.FutureValueResult$fromException$1(exception);return t1;};
 
 $.ceil = function(receiver){return Math.ceil(receiver);};
 
@@ -1903,7 +1910,7 @@ $._IDBRequestEventsImpl$ = function(_ptr){return new $._IDBRequestEventsImpl(_pt
 
 $.mod = function(a,b){if($.checkNumbers(a,b)){var result=a % b;if(result===0)return 0;if(result>0)return result;if(b<0)return result-b;else return result+b;}return a.operator$mod$1(b);};
 
-$._QrCalc$ = function(){return new $._QrCalc($.spawnFunction($._qrIsolate),null,null,null,null,null,false,$.EventHandle$(),$.EventHandle$(),$.EventHandle$());};
+$._QrCalc$ = function(){return new $._QrCalc($.spawnFunction($._qrIsolate),null,null,null,null,null,null,null,false,$.EventHandle$(),$.EventHandle$(),$.EventHandle$());};
 
 $.Collections_collectionToString = function(c){var result=$.StringBuffer_StringBuffer('');$.Collections__emitCollection(c,result,$.ListImplementation_List(null));return $.toString(result);};
 
@@ -2065,7 +2072,7 @@ $._IsolateEvent$ = function(isolate,fn,message){return new $._IsolateEvent(isola
 
 $.stringReplaceAllUnchecked = function(receiver,from,to){if(from==='')if(receiver==='')return to;else{var result=$.StringBuffer_StringBuffer('');var length$=receiver.length;$.add$1(result,to);for(var i=0;i<length$;++i){if(i<0||i>=length$)throw $.ioore(i);$.add$1(result,receiver[i]);$.add$1(result,to);}return $.toString(result);}else return $.stringReplaceJS(receiver,$.regExpMakeNative($.JSSyntaxRegExp$(from.replace($.regExpMakeNative($.CTC16,true), "\\$&"),false,false),true),to);};
 
-$._qrIsolate = function(){$.SendValuePort$(new $._qrIsolate_anon());};
+$._qrIsolate = function(){$.SendValuePort$(new $._qrIsolate_anon(),null,null);};
 
 $._Device_isFirefox = function(){return $.contains$2($._Device_userAgent(),'Firefox',0);};
 
@@ -2328,7 +2335,7 @@ $.filter = function(receiver,predicate){if(!$.isJsArray(receiver))return receive
 
 $.Collections_filter = function(source,destination,f){for(var t1=$.iterator(source);t1.hasNext$0()===true;){var t2=t1.next$0();if(f.call$1(t2)===true)destination.push(t2);}return destination;};
 
-$.FutureValueResult$ = function(value){return new $.FutureValueResult(value,null);};
+$.FutureValueResult$ = function(value,_outputSerializer){return new $.FutureValueResult(value,null,_outputSerializer);};
 
 $._ChildrenElementList$_wrap = function(element){return new $._ChildrenElementList(element,element.get$$$dom_children());};
 
@@ -2356,7 +2363,7 @@ $._WhereIterator$ = function(_source,_func){return new $._WhereIterator(_source,
 
 $._Device_isOpera = function(){return $.contains$2($._Device_userAgent(),'Opera',0);};
 
-$.FutureValueResult_FutureValueResult$fromMap = function(value){$.requireArgumentNotNull(value,'value');$.requireArgument($.FutureValueResult_isMyMap(value),'value',null);var ex=$.index(value,'exception');if(!(ex==null))return $.FutureValueResult$fromException(ex);else return $.FutureValueResult$($.index(value,'value'));};
+$.FutureValueResult_FutureValueResult$fromMap = function(value){$.requireArgumentNotNull(value,'value');$.requireArgument($.FutureValueResult_isMyMap(value),'value',null);var ex=$.index(value,'exception');if(!(ex==null))return $.FutureValueResult$fromException(ex);else return $.FutureValueResult$($.index(value,'value'),null);};
 
 $.Element_Element$tag = function(tag){return $._ElementFactoryProvider_createElement_tag(tag);};
 
@@ -2390,8 +2397,6 @@ $.IllegalArgumentException$ = function(arg){return new $.IllegalArgumentExceptio
 
 $._IsolateNatives__startWorker = function(functionName,uri,replyPort){if($._globalState().get$isWorker()===true)$._globalState().get$mainManager().postMessage$1($._serializeMessage($.makeLiteralMap(['command','spawn-worker','functionName',functionName,'uri',uri,'replyPort',replyPort])));else $._IsolateNatives__spawnWorker(functionName,uri,replyPort);};
 
-$._Lists_indexOf = function(a,element,startIndex,endIndex){if(typeof a!=='string'&&(typeof a!=='object'||a===null||a.constructor!==Array&&!a.is$JavaScriptIndexingBehavior()))return $._Lists_indexOf$bailout(1,a,element,startIndex,endIndex);if(typeof endIndex!=='number')return $._Lists_indexOf$bailout(1,a,element,startIndex,endIndex);if(startIndex>=a.length)return -1;if(startIndex<0)startIndex=0;for(var i=startIndex;i<endIndex;++i){if(i<0||i>=a.length)throw $.ioore(i);if($.eqB(a[i],element))return i;}return -1;};
-
 $.stringLastIndexOfUnchecked = function(receiver,element,start){return receiver.lastIndexOf(element, start);};
 
 $.iterator = function(receiver){if($.isJsArray(receiver))return $.ListIterator$(receiver);return receiver.iterator$0();};
@@ -2399,6 +2404,8 @@ $.iterator = function(receiver){if($.isJsArray(receiver))return $.ListIterator$(
 $.QrCode__createData = function(typeNumber,errorCorrectLevel,dataList){if(typeof dataList!=='string'&&(typeof dataList!=='object'||dataList===null||dataList.constructor!==Array&&!dataList.is$JavaScriptIndexingBehavior()))return $.QrCode__createData$bailout(1,typeNumber,errorCorrectLevel,dataList);var rsBlocks=$.QrRsBlock_getRSBlocks(typeNumber,errorCorrectLevel);var buffer=$.QrBitBuffer$();for(var i=0;t1=dataList.length,i<t1;++i){if(i<0||i>=t1)throw $.ioore(i);var data=dataList[i];buffer.put$2(data.get$mode(),4);buffer.put$2($.get$length(data),$.QrUtil_getLengthInBits(data.get$mode(),typeNumber));data.write$1(buffer);}for(var t1=rsBlocks.length,i=0,totalDataCount=0;i<t1;++i){if(i<0||i>=t1)throw $.ioore(i);var t2=rsBlocks[i].get$dataCount();if(typeof t2!=='number')throw $.iae(t2);totalDataCount+=t2;}var totalByteCount=totalDataCount*8;if($.gtB($.get$length(buffer),totalByteCount))throw $.$$throw($.QrInputTooLongException_QrInputTooLongException($.get$length(buffer),totalByteCount));if($.leB($.add($.get$length(buffer),4),totalByteCount))buffer.put$2(0,4);for(;!$.eqB($.mod($.get$length(buffer),8),0);)buffer.putBit$1(false);for(;true;){if($.geB($.get$length(buffer),totalByteCount))break;buffer.put$2(236,8);if($.geB($.get$length(buffer),totalByteCount))break;buffer.put$2(17,8);}return $.QrCode__createBytes(buffer,rsBlocks);};
 
 $._HttpRequestUploadEventsImpl$ = function(_ptr){return new $._HttpRequestUploadEventsImpl(_ptr);};
+
+$._Lists_indexOf = function(a,element,startIndex,endIndex){if(typeof a!=='string'&&(typeof a!=='object'||a===null||a.constructor!==Array&&!a.is$JavaScriptIndexingBehavior()))return $._Lists_indexOf$bailout(1,a,element,startIndex,endIndex);if(typeof endIndex!=='number')return $._Lists_indexOf$bailout(1,a,element,startIndex,endIndex);if(startIndex>=a.length)return -1;if(startIndex<0)startIndex=0;for(var i=startIndex;i<endIndex;++i){if(i<0||i>=a.length)throw $.ioore(i);if($.eqB(a[i],element))return i;}return -1;};
 
 $.QrBitBuffer$ = function(){return new $.QrBitBuffer($.ListImplementation_List(null),0);};
 

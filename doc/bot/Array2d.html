@@ -1,0 +1,254 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>Array2d&lt;T&gt; Class / bot Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="bot" data-type="Array2d&amp;lt;T&amp;gt;">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../bot.html">bot</a> &rsaquo; <a href="../bot/Array2d.html">Array2d&lt;T&gt;</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>Array2d&lt;T&gt;</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Extends</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../bot/Enumerable.html">Enumerable&lt;T&gt;</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../bot/ListBase.html">ListBase&lt;T&gt;</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>Array2d&lt;T&gt;</strong></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="Array2d.wrap">
+<span class="show-code">Code</span>
+new <strong>Array2d</strong>.wrap(int width, List&lt;<a href="../bot/Array2d.html">T</a>&gt; source) <a class="anchor-link" href="#Array2d.wrap"
+              title="Permalink to Array2d&lt;T&gt;.Array2d">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Array2d.wrap(int width, List&lt;T&gt; source):
+  this.width = width,
+  this._source = source,
+  this.height = (width != null &amp;&amp; width &gt; 0 &amp;&amp; source != null) ?
+      source.length ~/ width : 0 {
+  requireArgumentNotNull(width, 'width');
+  requireArgumentNotNull(source, 'source');
+  requireArgument(width &gt;= 0, 'width', 'width must be non-zero');
+
+  if(width == 0) {
+    requireArgument(_source.length == 0, 'width',
+      'width must be greater than zero if the source is non-empty');
+  } else {
+    requireArgument(_source.length &gt; 0, 'source',
+        'if width is non-zero, source must be non-empty');
+    requireArgument(_source.length % width == 0, 'width',
+        'width must evenly divide the source');
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="Array2d">
+<span class="show-code">Code</span>
+factory <strong>Array2d</strong>(int width, int height, [<a href="../bot/Array2d.html">T</a> initialValue]) <a class="anchor-link" href="#Array2d"
+              title="Permalink to Array2d&lt;T&gt;.Array2d">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+factory Array2d(int width, int height, [T initialValue]) {
+  requireArgumentNotNull(width, 'width');
+  requireArgumentNotNull(height, 'height');
+  requireArgument(width &gt; 0, 'width');
+  requireArgument(height &gt; 0, 'height');
+  final s = new List&lt;T&gt;();
+  s.insertRange(0, width * height, initialValue);
+  return new Array2d.wrap(width, s);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="Array2d.readonlyFrom">
+<span class="show-code">Code</span>
+factory <strong>Array2d</strong>.readonlyFrom(int width, Iterable&lt;<a href="../bot/Array2d.html">T</a>&gt; source) <a class="anchor-link" href="#Array2d.readonlyFrom"
+              title="Permalink to Array2d&lt;T&gt;.Array2d">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+factory Array2d.readonlyFrom(int width, Iterable&lt;T&gt; source) {
+  final s = source == null ? null : new ReadOnlyCollection(source);
+  return new Array2d.wrap(width, s);
+}
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="get">
+<span class="show-code">Code</span>
+<a href="../bot/Array2d.html">T</a> <strong>get</strong>(int x, int y) <a class="anchor-link" href="#get"
+              title="Permalink to Array2d&lt;T&gt;.get">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+T get(int x, int y) {
+  final i = _getIndex(x, y);
+  return this[i];
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getAdjacent">
+<span class="show-code">Code</span>
+List&lt;<a href="../bot/Array2d.html">T</a>&gt; <strong>getAdjacent</strong>(int x, int y) <a class="anchor-link" href="#getAdjacent"
+              title="Permalink to Array2d&lt;T&gt;.getAdjacent">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+List&lt;T&gt; getAdjacent(int x, int y) {
+  final m = getAdjacentIndices(x, y).map((i) =&gt; this[i]);
+  return new List&lt;T&gt;.from(m);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getAdjacentIndices">
+<span class="show-code">Code</span>
+List&lt;int&gt; <strong>getAdjacentIndices</strong>(int x, int y) <a class="anchor-link" href="#getAdjacentIndices"
+              title="Permalink to Array2d&lt;T&gt;.getAdjacentIndices">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+List&lt;int&gt; getAdjacentIndices(int x, int y) {
+  final List&lt;int&gt; adj = new List&lt;int&gt;();
+
+  for(int k = math.max(0, y - 1); k &lt; math.min(height, (y + 2)); k++) {
+    for(int j = math.max(0, x - 1); j &lt; math.min(width, (x + 2)); j++) {
+      if(j != x || k != y) {
+        adj.add(_getIndex(j, k));
+      }
+    }
+  }
+  return adj;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getCoordinate">
+<span class="show-code">Code</span>
+<a href="../bot/Tuple.html">Tuple</a>&lt;int, int&gt; <strong>getCoordinate</strong>(int index) <a class="anchor-link" href="#getCoordinate"
+              title="Permalink to Array2d&lt;T&gt;.getCoordinate">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Tuple&lt;int, int&gt; getCoordinate(int index) {
+  final x = index % width;
+  final y = index ~/ width;
+  assert(_getIndex(x, y) == index);
+  return new Tuple&lt;int, int&gt;(x, y);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="length">
+<span class="show-code">Code</span>
+int <strong>get length</strong>() <a class="anchor-link" href="#length"
+              title="Permalink to Array2d&lt;T&gt;.get length">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+int get length =&gt; _source.length;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="operator []=">
+<span class="show-code">Code</span>
+void <strong>operator []=</strong>(int index, <a href="../bot/Array2d.html">T</a> value) <a class="anchor-link" href="#operator []="
+              title="Permalink to Array2d&lt;T&gt;.operator []=">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void operator []=(int index, T value) {
+  _source[index] = value;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="operator []">
+<span class="show-code">Code</span>
+<a href="../bot/Array2d.html">T</a> <strong>operator []</strong>(int index) <a class="anchor-link" href="#operator []"
+              title="Permalink to Array2d&lt;T&gt;.operator []">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+T operator [](int index) =&gt; _source[index];
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="set">
+<span class="show-code">Code</span>
+void <strong>set</strong>(int x, int y, <a href="../bot/Array2d.html">T</a> value) <a class="anchor-link" href="#set"
+              title="Permalink to Array2d&lt;T&gt;.set">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void set(int x, int y, T value) {
+  final i = _getIndex(x, y);
+  this[i] = value;
+}
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="height">
+<span class="show-code">Code</span>
+final int         <strong>height</strong> <a class="anchor-link"
+            href="#height"
+            title="Permalink to Array2d&lt;T&gt;.height">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final int height;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="width">
+<span class="show-code">Code</span>
+final int         <strong>width</strong> <a class="anchor-link"
+            href="#width"
+            title="Permalink to Array2d&lt;T&gt;.width">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final int width;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

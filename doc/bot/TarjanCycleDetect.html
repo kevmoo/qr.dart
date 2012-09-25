@@ -1,0 +1,78 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>TarjanCycleDetect&lt;TNode&gt; Class / bot Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="bot" data-type="TarjanCycleDetect&amp;lt;TNode&amp;gt;">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../bot.html">bot</a> &rsaquo; <a href="../bot/TarjanCycleDetect.html">TarjanCycleDetect&lt;TNode&gt;</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>TarjanCycleDetect&lt;TNode extends Hashable&gt;</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="TarjanCycleDetect._internal">
+<span class="show-code">Code</span>
+new <strong>TarjanCycleDetect</strong>._internal(<a href="../bot/_TarjanList.html">_TarjanList</a> _list) <a class="anchor-link" href="#TarjanCycleDetect._internal"
+              title="Permalink to TarjanCycleDetect&lt;TNode&gt;.TarjanCycleDetect">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+TarjanCycleDetect._internal(this._list) :
+  _index = 0,
+  _stack = new List&lt;_TarjanNode&lt;TNode&gt;&gt;(),
+  _scc = new List&lt;List&lt;TNode&gt;&gt;();
+</pre>
+</div>
+</div>
+<h3>Static Methods</h3>
+<div class="method"><h4 id="getStronglyConnectedComponents">
+<span class="show-code">Code</span>
+List&lt;List&gt; <strong>getStronglyConnectedComponents</strong>(HashMap graph) <a class="anchor-link" href="#getStronglyConnectedComponents"
+              title="Permalink to TarjanCycleDetect&lt;TNode&gt;.getStronglyConnectedComponents">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static List&lt;List&gt; getStronglyConnectedComponents(HashMap graph) {
+  assert(graph != null);
+
+  var nodes = new _TarjanList(graph);
+  var tarjan = new TarjanCycleDetect._internal(nodes);
+  return tarjan._executeTarjan();
+}
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

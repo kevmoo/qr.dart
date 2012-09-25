@@ -1,0 +1,167 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>Panel Class / bot_retained Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="bot_retained" data-type="Panel">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../bot_retained.html">bot_retained</a> &rsaquo; <a href="../bot_retained/Panel.html">Panel</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>Panel</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Extends</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../bot/DisposableImpl.html">DisposableImpl</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../bot/AttachableObject.html">AttachableObject</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../bot_retained/PElement.html">PElement</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../bot_retained/ElementParentImpl.html">ElementParentImpl</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>Panel</strong></span></p>
+<h3>Subclasses</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../bot_retained/PCanvas.html">PCanvas</a></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="Panel">
+<span class="show-code">Code</span>
+new <strong>Panel</strong>(num w, num h, [bool enableCache = false]) <a class="anchor-link" href="#Panel"
+              title="Permalink to Panel.Panel">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Panel(num w, num h, [bool enableCache = false]) :
+  _children = new List&lt;PElement&gt;(),
+  super(w, h, enableCache);
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="addElement">
+<span class="show-code">Code</span>
+void <strong>addElement</strong>(<a href="../bot_retained/PElement.html">PElement</a> element) <a class="anchor-link" href="#addElement"
+              title="Permalink to Panel.addElement">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void addElement(PElement element){
+  insertAt(element, _children.length);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="drawOverride">
+<span class="show-code">Code</span>
+void <strong>drawOverride</strong>(CanvasRenderingContext2D ctx) <a class="anchor-link" href="#drawOverride"
+              title="Permalink to Panel.drawOverride">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void drawOverride(CanvasRenderingContext2D ctx) {
+  if(background != null) {
+    ctx.fillStyle = background;
+    ctx.fillRect(0, 0, width, height);
+  }
+  super.drawOverride(ctx);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getChildTransform">
+<span class="show-code">Code</span>
+<a href="../bot/AffineTransform.html">AffineTransform</a> <strong>getChildTransform</strong>(child) <a class="anchor-link" href="#getChildTransform"
+              title="Permalink to Panel.getChildTransform">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+AffineTransform getChildTransform(child) {
+  assert(hasVisualChild(child));
+  var tx = _containerTransformProperty.get(child);
+  assert(tx != null);
+  return tx;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getVisualChild">
+<span class="show-code">Code</span>
+<a href="../bot_retained/PElement.html">PElement</a> <strong>getVisualChild</strong>(index) <a class="anchor-link" href="#getVisualChild"
+              title="Permalink to Panel.getVisualChild">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+PElement getVisualChild(index) =&gt; _children[index];
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="insertAt">
+<span class="show-code">Code</span>
+void <strong>insertAt</strong>(<a href="../bot_retained/PElement.html">PElement</a> element, [int index = null]) <a class="anchor-link" href="#insertAt"
+              title="Permalink to Panel.insertAt">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void insertAt(PElement element, [int index=null]){
+  index = (index == null) ? 0 : index;
+  element.registerParent(this);
+  _children.insertRange(index, 1, element);
+
+  assert(!_containerTransformProperty.isSet(element));
+  _containerTransformProperty.set(element, element.addTransform());
+  onChildrenChanged();
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="visualChildCount">
+<span class="show-code">Code</span>
+int <strong>get visualChildCount</strong>() <a class="anchor-link" href="#visualChildCount"
+              title="Permalink to Panel.get visualChildCount">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+int get visualChildCount =&gt; _children.length;
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="background">
+<span class="show-code">Code</span>
+String         <strong>background</strong> <a class="anchor-link"
+            href="#background"
+            title="Permalink to Panel.background">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+String background;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

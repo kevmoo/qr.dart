@@ -401,7 +401,7 @@ $$.DraggerDemo = {"":
 };
 
 $$._DemoValue = {"":
- ["_sendPort", "_completer", "_innerFuture", "_input", "_future", "_output", "_pending", "_outputChangedHandle", "_inputChangedHandle", "_errorHandle"],
+ ["_sendPort", "inputSerializer", "outputDeserializer", "_completer", "_innerFuture", "_input", "_future", "_output", "_pending", "_outputChangedHandle", "_inputChangedHandle", "_errorHandle"],
  "super": "SendPortValue"
 };
 
@@ -1042,7 +1042,6 @@ $$.Enumerable = {"":
  "super": "Object",
  isEmpty$0: function(){return this.some$1(new $.Enumerable_isEmpty_anon())!==true;},
  some$1: function(f){$.requireArgumentNotNull(f,'f');for(var t1=$.iterator(this);t1.hasNext$0()===true;)if(f.call$1(t1.next$0())===true)return true;return false;},
- get$length: function(){return this.count$0();},
  count$1: function(f){if(f==null)f=new $.Enumerable_count_anon();for(var t1=$.iterator(this),c=0;t1.hasNext$0()===true;)if(f.call$1(t1.next$0())===true)++c;return c;},
  count$0: function() {
   return this.count$1(null)
@@ -1061,7 +1060,8 @@ $$.Enumerable = {"":
 $$._SimpleEnumerable = {"":
  ["_source"],
  "super": "Enumerable",
- iterator$0: function(){return $.iterator(this._source);}
+ iterator$0: function(){return $.iterator(this._source);},
+ get$length: function(){return this.count$0();}
 };
 
 $$._FuncEnumerable = {"":
@@ -1069,7 +1069,8 @@ $$._FuncEnumerable = {"":
  "super": "Enumerable",
  _lib3_func$1: function(arg0) { return this._lib3_func.call$1(arg0); },
  _lib3_func$1: function(arg0) { return this._lib3_func.call$1(arg0); },
- iterator$0: function(){return this._lib3_func$1($.iterator(this._source));}
+ iterator$0: function(){return this._lib3_func$1($.iterator(this._source));},
+ get$length: function(){return this.count$0();}
 };
 
 $$._SelectIterator = {"":
@@ -1214,31 +1215,38 @@ $$.FutureValue = {"":
 };
 
 $$.FutureValueResult = {"":
- ["value?", "exception?"],
+ ["value?", "exception?", "_outputSerializer"],
  "super": "Object",
+ _outputSerializer$1: function(arg0) { return this._outputSerializer.call$1(arg0); },
  get$isException: function(){return !(this.exception==null);},
- toMap$0: function(){return $.makeLiteralMap(['value',this.value,'exception',this.exception]);},
+ toMap$0: function(){return $.makeLiteralMap(['value',this._serialize$1(this.value),'exception',this.exception]);},
  operator$eq$1: function(other){return !(other==null)&&$.eqB(other.get$value(),this.value)&&$.eqB(other.get$exception(),this.exception);},
+ _serialize$1: function(output){if(this._outputSerializer==null)return output;else return this._outputSerializer$1(output);},
  FutureValueResult$fromException$1: function(exception){$.requireArgumentNotNull(this.exception,'exception');}
 };
 
 $$.SendPortValue = {"":
  [],
  "super": "FutureValue",
- getFuture$1: function(value){this._completer=$.Completer_Completer();this._innerFuture=this._sendPort.call$1(value);this._innerFuture.then$1(this.get$__futureCompleted());return this._completer.get$future();},
+ inputSerializer$1: function(arg0) { return this.inputSerializer.call$1(arg0); },
+ outputDeserializer$1: function(arg0) { return this.outputDeserializer.call$1(arg0); },
+ getFuture$1: function(value){this._completer=$.Completer_Completer();var t1=this.inputSerializer==null;var t2=this._sendPort;if(t1)this._innerFuture=t2.call$1(value);else this._innerFuture=t2.call$1(this.inputSerializer$1(value));this._innerFuture.then$1(this.get$__futureCompleted());return this._completer.get$future();},
  __futureCompleted$1: function(value){this._innerFuture=null;if(typeof value==='object'&&value!==null&&value.is$Map()&&$.FutureValueResult_isMyMap(value))this._sendValueResultCompleted$1($.FutureValueResult_FutureValueResult$fromMap(value));else this._lib4_complete$1(value);},
  get$__futureCompleted: function() { return new $.BoundClosure(this, '__futureCompleted$1'); },
  _sendValueResultCompleted$1: function(value){if(value.get$isException()===true)this._completeException$1(value.get$exception());else this._lib4_complete$1(value.get$value());},
- _lib4_complete$1: function(value){var c=this._completer;this._completer=null;c.complete$1(value);},
- _completeException$1: function(exception){var c=this._completer;this._completer=null;c.completeException$1(exception);}
+ _lib4_complete$1: function(rawValue){var c=this._completer;this._completer=null;c.complete$1(this._deserializer$1(rawValue));},
+ _completeException$1: function(exception){var c=this._completer;this._completer=null;c.completeException$1(exception);},
+ _deserializer$1: function(input){if(this.outputDeserializer==null)return input;else return this.outputDeserializer$1(input);}
 };
 
 $$.SendValuePort = {"":
- ["_func"],
+ ["_func", "inputDeserializer", "outputSerializer?"],
  "super": "Object",
  _func$1: function(arg0) { return this._func.call$1(arg0); },
  _func$1: function(arg0) { return this._func.call$1(arg0); },
- SendValuePort$1: function(_func){$.port().receive$1(new $.anon(this));}
+ inputDeserializer$1: function(arg0) { return this.inputDeserializer.call$1(arg0); },
+ _deserialize$1: function(input){if(this.inputDeserializer==null)return input;else return this.inputDeserializer$1(input);},
+ SendValuePort$3$inputDeserializer$outputSerializer: function(_func,inputDeserializer,outputSerializer){$.port().receive$1(new $.anon(this));}
 };
 
 $$.Dragger = {"":
@@ -1417,7 +1425,7 @@ $$._demoIsolate_anon = {"":
 $$.anon = {"":
  ["this_0"],
  "super": "Closure",
- call$2: function(value,reply){var _message=null;try{var output=this.this_0._func$1(value);_message=$.FutureValueResult$(output);}catch(exception){var t1=$.unwrapException(exception);var ex=t1;var exString=$.toString(ex);_message=$.FutureValueResult$fromException(exString);}reply.send$1(_message.toMap$0());}
+ call$2: function(rawValue,reply){var t1=this.this_0;var value=t1._deserialize$1(rawValue);var _message=null;try{var output=t1._func$1(value);_message=$.FutureValueResult$(output,t1.get$outputSerializer());}catch(exception){t1=$.unwrapException(exception);var ex=t1;var exString=$.toString(ex);_message=$.FutureValueResult$fromException(exString);}reply.send$1(_message.toMap$0());}
 };
 
 $$.DoubleLinkedQueue_length__ = {"":
@@ -1674,16 +1682,16 @@ $$.Enumerable_isEmpty_anon = {"":
  call$1: function(e){return true;}
 };
 
-$$.Enumerable_count_anon = {"":
- [],
- "super": "Closure",
- call$1: function(a){return true;}
-};
-
 $$.Enumerable_map_anon = {"":
  ["f_0"],
  "super": "Closure",
  call$1: function(s){return $._SelectIterator$(s,this.f_0);}
+};
+
+$$.Enumerable_count_anon = {"":
+ [],
+ "super": "Closure",
+ call$1: function(a){return true;}
 };
 
 $$.ElementParentImpl_update_anon = {"":
@@ -1791,7 +1799,7 @@ $._EventSourceEventsImpl$ = function(_ptr){return new $._EventSourceEventsImpl(_
 
 $._Lists_lastIndexOf = function(a,element,startIndex){if(typeof a!=='string'&&(typeof a!=='object'||a===null||a.constructor!==Array&&!a.is$JavaScriptIndexingBehavior()))return $._Lists_lastIndexOf$bailout(1,a,element,startIndex);if(typeof startIndex!=='number')return $._Lists_lastIndexOf$bailout(1,a,element,startIndex);if(startIndex<0)return -1;var t1=a.length;if(startIndex>=t1)startIndex=t1-1;for(var i=startIndex;i>=0;--i){if(i!==(i|0))throw $.iae(i);if(i<0||i>=a.length)throw $.ioore(i);if($.eqB(a[i],element))return i;}return -1;};
 
-$.SendValuePort$ = function(_func){var t1=new $.SendValuePort(_func);t1.SendValuePort$1(_func);return t1;};
+$.SendValuePort$ = function(_func,inputDeserializer,outputSerializer){var t1=new $.SendValuePort(_func,inputDeserializer,outputSerializer);t1.SendValuePort$3$inputDeserializer$outputSerializer(_func,inputDeserializer,outputSerializer);return t1;};
 
 $._convertDartToNative_PrepareForStructuredClone = function(value){var values=[];var copies=[];var t1=new $._convertDartToNative_PrepareForStructuredClone_findSlot(copies,values);var t2=new $._convertDartToNative_PrepareForStructuredClone_readSlot(copies);var t3=new $._convertDartToNative_PrepareForStructuredClone_writeSlot(copies);var t4=new $._convertDartToNative_PrepareForStructuredClone_cleanupSlots();var copy=new $._convertDartToNative_PrepareForStructuredClone_walk(t3,t1,t2).call$1(value);t4.call$0();return copy;};
 
@@ -1859,7 +1867,7 @@ $.regExpMakeNative = function(regExp,global){var pattern=regExp.get$pattern();va
 
 $.main = function(){$.DraggerDemo_DraggerDemo($.document().query$1('#content')).requestFrame$0();};
 
-$.FutureValueResult$fromException = function(exception){var t1=new $.FutureValueResult(null,exception);t1.FutureValueResult$fromException$1(exception);return t1;};
+$.FutureValueResult$fromException = function(exception){var t1=new $.FutureValueResult(null,exception,null);t1.FutureValueResult$fromException$1(exception);return t1;};
 
 $.ceil = function(receiver){return Math.ceil(receiver);};
 
@@ -2077,7 +2085,7 @@ $.map = function(receiver,f){if(!$.isJsArray(receiver))return receiver.map$1(f);
 
 $._Device_isFirefox = function(){return $.contains$2($._Device_userAgent(),'Firefox',0);};
 
-$._DemoValue$ = function(){return new $._DemoValue($.spawnFunction($._demoIsolate),null,null,null,null,null,false,$.EventHandle$(),$.EventHandle$(),$.EventHandle$());};
+$._DemoValue$ = function(){return new $._DemoValue($.spawnFunction($._demoIsolate),null,null,null,null,null,null,null,false,$.EventHandle$(),$.EventHandle$(),$.EventHandle$());};
 
 $._IsolateNatives__newWorker = function(url){return new Worker(url);};
 
@@ -2363,7 +2371,7 @@ $.FormatException$ = function(message){return new $.FormatException(message);};
 
 $.throwCyclicInit = function(staticName){throw $.$$throw($.RuntimeError$('Cyclic initialization for static '+$.S(staticName)));};
 
-$.FutureValueResult$ = function(value){return new $.FutureValueResult(value,null);};
+$.FutureValueResult$ = function(value,_outputSerializer){return new $.FutureValueResult(value,null,_outputSerializer);};
 
 $.unwrapException = function(ex){if("dartException" in ex)return ex.dartException;var message=ex.message;if(ex instanceof TypeError){var type=ex.type;var name$=ex.arguments ? ex.arguments[0] : "";if($.eqB(type,'property_not_function')||$.eqB(type,'called_non_callable')||$.eqB(type,'non_object_property_call')||$.eqB(type,'non_object_property_load'))if(typeof name$==='string'&&$.startsWith(name$,'call$')===true)return $.ObjectNotClosureException$();else return $.NullPointerException$(null,$.CTC1);else if($.eqB(type,'undefined_method'))if(typeof name$==='string'&&$.startsWith(name$,'call$')===true)return $.ObjectNotClosureException$();else return $.NoSuchMethodError$('',name$,[],null);var ieErrorCode=ex.number & 0xffff;var ieFacilityNumber=ex.number>>16 & 0x1FFF;if(typeof message==='string')if($.endsWith(message,'is null')===true||$.endsWith(message,'is undefined')===true||$.endsWith(message,'is null or undefined')===true)return $.NullPointerException$(null,$.CTC1);else{if($.contains$1(message,' is not a function')!==true)var t1=ieErrorCode===438&&ieFacilityNumber===10;else t1=true;if(t1)return $.NoSuchMethodError$('','<unknown>',[],null);}return $.ExceptionImplementation$(typeof message==='string'?message:'');}if(ex instanceof RangeError){if(typeof message==='string'&&$.contains$1(message,'call stack')===true)return $.StackOverflowException$();return $.IllegalArgumentException$('');}if(typeof InternalError == 'function' && ex instanceof InternalError)if(typeof message==='string'&&message==='too much recursion')return $.StackOverflowException$();return ex;};
 
@@ -2387,7 +2395,7 @@ $.Arrays_indexOf = function(a,element,startIndex,endIndex){var t1=a.length;if(st
 
 $._Device_isOpera = function(){return $.contains$2($._Device_userAgent(),'Opera',0);};
 
-$.FutureValueResult_FutureValueResult$fromMap = function(value){$.requireArgumentNotNull(value,'value');$.requireArgument($.FutureValueResult_isMyMap(value),'value',null);var ex=$.index(value,'exception');if(!(ex==null))return $.FutureValueResult$fromException(ex);else return $.FutureValueResult$($.index(value,'value'));};
+$.FutureValueResult_FutureValueResult$fromMap = function(value){$.requireArgumentNotNull(value,'value');$.requireArgument($.FutureValueResult_isMyMap(value),'value',null);var ex=$.index(value,'exception');if(!(ex==null))return $.FutureValueResult$fromException(ex);else return $.FutureValueResult$($.index(value,'value'),null);};
 
 $._SimpleClientRect$ = function(left,top$,width,height){return new $._SimpleClientRect(left,top$,width,height);};
 
@@ -2405,7 +2413,7 @@ $.contains = function(userAgent,name$){return !(userAgent.indexOf(name$)===-1);}
 
 $._TextTrackCueEventsImpl$ = function(_ptr){return new $._TextTrackCueEventsImpl(_ptr);};
 
-$._demoIsolate = function(){$.SendValuePort$(new $._demoIsolate_anon());};
+$._demoIsolate = function(){$.SendValuePort$(new $._demoIsolate_anon(),null,null);};
 
 $.regExpExec = function(regExp,str){var result=$.regExpGetNative(regExp).exec(str);if(result === null)return;return result;};
 

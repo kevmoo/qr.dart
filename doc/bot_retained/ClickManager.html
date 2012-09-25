@@ -1,0 +1,177 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>ClickManager Class / bot_retained Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="bot_retained" data-type="ClickManager">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../bot_retained.html">bot_retained</a> &rsaquo; <a href="../bot_retained/ClickManager.html">ClickManager</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>ClickManager</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="ClickManager">
+<span class="show-code">Code</span>
+new <strong>ClickManager</strong>(<a href="../bot_retained/Stage.html">Stage</a> _stage) <a class="anchor-link" href="#ClickManager"
+              title="Permalink to ClickManager.ClickManager">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+ClickManager(this._stage) {
+  // TODO: attached property to make sure this is the only CM for this stage
+  assert(_stage != null);
+
+  _stage._canvas.on.mouseMove.add(_mouseMove);
+  _stage._canvas.on.mouseOut.add(_mouseOut);
+  _stage._canvas.on.mouseUp.add(_mouseUp);
+  _stage._canvas.on.mouseDown.add(_mouseDown);
+}
+</pre>
+</div>
+</div>
+<h3>Static Methods</h3>
+<div class="method"><h4 id="addHandler">
+<span class="show-code">Code</span>
+<a href="../bot/GlobalId.html">GlobalId</a> <strong>addHandler</strong>(<a href="../bot_retained/PElement.html">PElement</a> element, <a href="../bot/Action1.html">Action1</a> handler) <a class="anchor-link" href="#addHandler"
+              title="Permalink to ClickManager.addHandler">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static GlobalId addHandler(PElement element, Action1 handler) {
+  return _clickEvent.addHandler(element, handler);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="addMouseMoveHandler">
+<span class="show-code">Code</span>
+<a href="../bot/GlobalId.html">GlobalId</a> <strong>addMouseMoveHandler</strong>(<a href="../bot_retained/PElement.html">PElement</a> obj, <a href="../bot/Action1.html">Action1</a> handler) <a class="anchor-link" href="#addMouseMoveHandler"
+              title="Permalink to ClickManager.addMouseMoveHandler">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static GlobalId addMouseMoveHandler(PElement obj, Action1 handler) {
+  return _mouseMoveEvent.addHandler(obj, handler);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="addMouseOutHandler">
+<span class="show-code">Code</span>
+<a href="../bot/GlobalId.html">GlobalId</a> <strong>addMouseOutHandler</strong>(<a href="../bot_retained/Stage.html">Stage</a> obj, <a href="../bot/Action1.html">Action1</a> handler) <a class="anchor-link" href="#addMouseOutHandler"
+              title="Permalink to ClickManager.addMouseOutHandler">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static GlobalId addMouseOutHandler(Stage obj, Action1 handler) {
+  return _mouseOutEvent.addHandler(obj, handler);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getClickable">
+<span class="show-code">Code</span>
+bool <strong>getClickable</strong>(<a href="../bot_retained/PElement.html">PElement</a> element) <a class="anchor-link" href="#getClickable"
+              title="Permalink to ClickManager.getClickable">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static bool getClickable(PElement element) {
+  assert(element != null);
+  return _isClickableProperty.get(element);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="removeHandler">
+<span class="show-code">Code</span>
+bool <strong>removeHandler</strong>(<a href="../bot_retained/PElement.html">PElement</a> obj, <a href="../bot/GlobalId.html">GlobalId</a> handlerId) <a class="anchor-link" href="#removeHandler"
+              title="Permalink to ClickManager.removeHandler">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static bool removeHandler(PElement obj, GlobalId handlerId) {
+  return _clickEvent.removeHandler(obj, handlerId);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="removeMouseMoveHandler">
+<span class="show-code">Code</span>
+bool <strong>removeMouseMoveHandler</strong>(<a href="../bot_retained/PElement.html">PElement</a> obj, <a href="../bot/GlobalId.html">GlobalId</a> handlerId) <a class="anchor-link" href="#removeMouseMoveHandler"
+              title="Permalink to ClickManager.removeMouseMoveHandler">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static bool removeMouseMoveHandler(PElement obj, GlobalId handlerId) {
+  return _mouseMoveEvent.removeHandler(obj, handlerId);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="removeMouseOutHandler">
+<span class="show-code">Code</span>
+bool <strong>removeMouseOutHandler</strong>(<a href="../bot_retained/Stage.html">Stage</a> obj, <a href="../bot/GlobalId.html">GlobalId</a> handlerId) <a class="anchor-link" href="#removeMouseOutHandler"
+              title="Permalink to ClickManager.removeMouseOutHandler">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static bool removeMouseOutHandler(Stage obj, GlobalId handlerId) {
+  return _mouseOutEvent.removeHandler(obj, handlerId);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setClickable">
+<span class="show-code">Code</span>
+void <strong>setClickable</strong>(<a href="../bot_retained/PElement.html">PElement</a> element, bool value) <a class="anchor-link" href="#setClickable"
+              title="Permalink to ClickManager.setClickable">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static void setClickable(PElement element, bool value) {
+  assert(element != null);
+  assert(value != null);
+  if(value) {
+    _isClickableProperty.set(element, true);
+  } else {
+    _isClickableProperty.clear(element);
+  }
+}
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

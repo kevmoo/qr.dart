@@ -1,0 +1,106 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>RetainedUtil Class / bot_retained Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="bot_retained" data-type="RetainedUtil">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../bot_retained.html">bot_retained</a> &rsaquo; <a href="../bot_retained/RetainedUtil.html">RetainedUtil</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>RetainedUtil</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Static Methods</h3>
+<div class="method"><h4 id="getCorners">
+<span class="show-code">Code</span>
+List&lt;<a href="../bot/Coordinate.html">Coordinate</a>&gt; <strong>getCorners</strong>(<a href="../bot_retained/PElement.html">PElement</a> element) <a class="anchor-link" href="#getCorners"
+              title="Permalink to RetainedUtil.getCorners">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static List&lt;Coordinate&gt; getCorners(PElement element) {
+  final rect = new Box(0,0,element.width, element.height);
+  final points = rect.getCorners();
+  return $(points).map((p) {
+    return transformPointLocalToGlobal(element, p);
+  }).toList();
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="hitTest">
+<span class="show-code">Code</span>
+List&lt;<a href="../bot_retained/PElement.html">PElement</a>&gt; <strong>hitTest</strong>(<a href="../bot_retained/Stage.html">Stage</a> stage, <a href="../bot/Coordinate.html">Coordinate</a> point) <a class="anchor-link" href="#hitTest"
+              title="Permalink to RetainedUtil.hitTest">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static List&lt;PElement&gt; hitTest(Stage stage, Coordinate point){
+  return _hitTest(stage.rootElement, point);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="transformPointGlobalToLocal">
+<span class="show-code">Code</span>
+<a href="../bot/Coordinate.html">Coordinate</a> <strong>transformPointGlobalToLocal</strong>(<a href="../bot_retained/PElement.html">PElement</a> element, <a href="../bot/Coordinate.html">Coordinate</a> point) <a class="anchor-link" href="#transformPointGlobalToLocal"
+              title="Permalink to RetainedUtil.transformPointGlobalToLocal">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static Coordinate transformPointGlobalToLocal(PElement element,
+                                                   Coordinate point) {
+  var tx = element.getTransform();
+  return tx.createInverse().transformCoordinate(point);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="transformPointLocalToGlobal">
+<span class="show-code">Code</span>
+<a href="../bot/Coordinate.html">Coordinate</a> <strong>transformPointLocalToGlobal</strong>(<a href="../bot_retained/PElement.html">PElement</a> element, <a href="../bot/Coordinate.html">Coordinate</a> point) <a class="anchor-link" href="#transformPointLocalToGlobal"
+              title="Permalink to RetainedUtil.transformPointLocalToGlobal">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+static Coordinate transformPointLocalToGlobal(PElement element,
+                                                   Coordinate point) {
+  var tx = element.getTransformToRoot();
+  return tx.transformCoordinate(point);
+}
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

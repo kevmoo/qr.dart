@@ -1,0 +1,427 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>ListBase&lt;T&gt; Class / bot Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="bot" data-type="ListBase&amp;lt;T&amp;gt;">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../bot.html">bot</a> &rsaquo; <a href="../bot/ListBase.html">ListBase&lt;T&gt;</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>ListBase&lt;T&gt;</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+
+</div>
+<h3>Extends</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../bot/Enumerable.html">Enumerable&lt;T&gt;</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>ListBase&lt;T&gt;</strong></span></p>
+<h3>Subclasses</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../bot/Array2d.html">Array2d&lt;T&gt;</a></span>, <span class="type-box"><span class="icon-class"></span><a href="../bot_qr/QrBitBuffer.html">QrBitBuffer</a></span>, <span class="type-box"><span class="icon-class"></span><a href="../bot/ReadOnlyCollection.html">ReadOnlyCollection&lt;T&gt;</a></span></p>
+<h3>Implements</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../dart_core/List.html">List&lt;E&gt;</a></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="ListBase">
+<span class="show-code">Code</span>
+const <strong>ListBase</strong>() <a class="anchor-link" href="#ListBase"
+              title="Permalink to ListBase&lt;T&gt;.ListBase">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+const ListBase() : super();
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="add">
+<span class="show-code">Code</span>
+void <strong>add</strong>(<a href="../bot/ListBase.html">T</a> value) <a class="anchor-link" href="#add"
+              title="Permalink to ListBase&lt;T&gt;.add">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void add(T value) {
+  throw const UnsupportedOperationException('Mutation operations are not supported');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="addAll">
+<span class="show-code">Code</span>
+void <strong>addAll</strong>(Collection&lt;<a href="../bot/ListBase.html">T</a>&gt; value) <a class="anchor-link" href="#addAll"
+              title="Permalink to ListBase&lt;T&gt;.addAll">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void addAll(Collection&lt;T&gt; value) {
+  throw const UnsupportedOperationException('Mutation operations are not supported');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="addLast">
+<span class="show-code">Code</span>
+void <strong>addLast</strong>(<a href="../bot/ListBase.html">T</a> value) <a class="anchor-link" href="#addLast"
+              title="Permalink to ListBase&lt;T&gt;.addLast">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void addLast(T value) {
+  throw const UnsupportedOperationException('Mutation operations are not supported');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="clear">
+<span class="show-code">Code</span>
+void <strong>clear</strong>() <a class="anchor-link" href="#clear"
+              title="Permalink to ListBase&lt;T&gt;.clear">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void clear() {
+  throw const UnsupportedOperationException('Mutation operations are not supported');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="every">
+<span class="show-code">Code</span>
+bool <strong>every</strong>(bool f(<a href="../bot/ListBase.html">T</a> element)) <a class="anchor-link" href="#every"
+              title="Permalink to ListBase&lt;T&gt;.every">#</a></h4>
+<div class="doc">
+<p>Returns true if every elements of this collection satisify the
+predicate 
+<span class="param">f</span>. Returns false otherwise.</p>
+<pre class="source">
+bool every(bool f(T element)) {
+  for (var i = 0; i &lt; length; i++) {
+    if(!f(this[i])) {
+      return false;
+    }
+  }
+  return true;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="forEach">
+<span class="show-code">Code</span>
+void <strong>forEach</strong>(void f(<a href="../bot/ListBase.html">T</a> element)) <a class="anchor-link" href="#forEach"
+              title="Permalink to ListBase&lt;T&gt;.forEach">#</a></h4>
+<div class="doc">
+<p>Applies the function 
+<span class="param">f</span> to each element of this collection.</p>
+<pre class="source">
+void forEach(void f(T element)) {
+  for(var i = 0; i &lt; length; i++) {
+    f(this[i]);
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getRange">
+<span class="show-code">Code</span>
+List&lt;<a href="../bot/ListBase.html">T</a>&gt; <strong>getRange</strong>(int start, int itemCount) <a class="anchor-link" href="#getRange"
+              title="Permalink to ListBase&lt;T&gt;.getRange">#</a></h4>
+<div class="doc">
+<p>Returns a new list containing 
+<span class="param">itemCount</span> elements from the list,
+starting at 
+<span class="param">start</span>.
+Returns an empty list if 
+<span class="param">itemCount</span> is 0.
+Throws an <code>IllegalArgumentException</code> if 
+<span class="param">itemCount</span> is negative.
+Throws an <code>IndexOutOfRangeException</code> if 
+<span class="param">start</span> or
+<code>start + itemCount - 1</code> are out of range.</p>
+<pre class="source">
+List&lt;T&gt; getRange(int start, int itemCount)  {
+  requireArgument(itemCount &gt;= 0, 'count');
+
+  final lastIndex = start + itemCount - 1;
+
+  if(itemCount &gt; 0) {
+    if(start &lt; 0) {
+      throw new IndexOutOfRangeException(start);
+    }
+    else if(lastIndex &gt;= length) {
+      throw new IndexOutOfRangeException(lastIndex);
+    }
+  }
+
+  var list = new List&lt;T&gt;();
+  for(var i = start; i &lt;= lastIndex; i++) {
+    list.add(this[i]);
+  }
+  return list;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="indexOf">
+<span class="show-code">Code</span>
+int <strong>indexOf</strong>(<a href="../bot/ListBase.html">T</a> element, [int start = 0]) <a class="anchor-link" href="#indexOf"
+              title="Permalink to ListBase&lt;T&gt;.indexOf">#</a></h4>
+<div class="doc">
+<p>Returns the first index of 
+<span class="param">element</span> in the list. Searches the
+list from index 
+<span class="param">start</span> to the length of the list. Returns
+-1 if 
+<span class="param">element</span> is not found.</p>
+<pre class="source">
+int indexOf(T element, [int start=0]) {
+  for (var i = start; i &lt; length; i++) {
+    if(this[i] == element) {
+      return i;
+    }
+  }
+  return -1;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="insertRange">
+<span class="show-code">Code</span>
+void <strong>insertRange</strong>(int start, int length, [<a href="../bot/ListBase.html">T</a> initialValue]) <a class="anchor-link" href="#insertRange"
+              title="Permalink to ListBase&lt;T&gt;.insertRange">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void insertRange(int start, int length, [T initialValue]) {
+  throw const UnsupportedOperationException('Mutation operations are not supported');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="isEmpty">
+<span class="show-code">Code</span>
+bool <strong>isEmpty</strong>() <a class="anchor-link" href="#isEmpty"
+              title="Permalink to ListBase&lt;T&gt;.isEmpty">#</a></h4>
+<div class="doc">
+<p>Returns true if there is no element in this collection.</p>
+<pre class="source">
+bool isEmpty() =&gt; length == 0;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="iterator">
+<span class="show-code">Code</span>
+Iterator&lt;<a href="../bot/ListBase.html">T</a>&gt; <strong>iterator</strong>() <a class="anchor-link" href="#iterator"
+              title="Permalink to ListBase&lt;T&gt;.iterator">#</a></h4>
+<div class="doc">
+<p>Returns an <code>Iterator</code> that iterates over this <code>Iterable</code> object.</p>
+<pre class="source">
+Iterator&lt;T&gt; iterator() {
+  return new IndexIterator&lt;T&gt;(length, (i) =&gt; this[i]);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="last">
+<span class="show-code">Code</span>
+<a href="../bot/ListBase.html">T</a> <strong>last</strong>() <a class="anchor-link" href="#last"
+              title="Permalink to ListBase&lt;T&gt;.last">#</a></h4>
+<div class="doc">
+<p>Returns the last element of the list, or throws an out of bounds
+exception if the list is empty.</p>
+<pre class="source">
+T last() =&gt; this[this.length-1];
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="lastIndexOf">
+<span class="show-code">Code</span>
+int <strong>lastIndexOf</strong>(<a href="../bot/ListBase.html">T</a> element, [int start = 0]) <a class="anchor-link" href="#lastIndexOf"
+              title="Permalink to ListBase&lt;T&gt;.lastIndexOf">#</a></h4>
+<div class="doc">
+<p>Returns the last index of 
+<span class="param">element</span> in the list. Searches the
+list from index 
+<span class="param">start</span> to 0. Returns -1 if 
+<span class="param">element</span> is not found.</p>
+<pre class="source">
+int lastIndexOf(T element, [int start=0]) {
+  // DARTBUG: having trouble testing this in the compiler. :-/
+  var lastIndex = -1;
+  for (var i = start; i &lt; length; i++) {
+    if(this[i] == element) {
+      lastIndex = i;
+    }
+  }
+  return lastIndex;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="length=">
+<span class="show-code">Code</span>
+void <strong>set length</strong>(int newLength) <a class="anchor-link" href="#length="
+              title="Permalink to ListBase&lt;T&gt;.set length">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void set length(int newLength) {
+  throw const UnsupportedOperationException('Mutation operations are not supported');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="length">
+<span class="show-code">Code</span>
+int <strong>get length</strong>() <a class="anchor-link" href="#length"
+              title="Permalink to ListBase&lt;T&gt;.get length">#</a></h4>
+<div class="doc">
+<p>Returns the number of elements in this collection.</p>
+<pre class="source">
+abstract int get length;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="operator []=">
+<span class="show-code">Code</span>
+void <strong>operator []=</strong>(int index, <a href="../bot/ListBase.html">T</a> value) <a class="anchor-link" href="#operator []="
+              title="Permalink to ListBase&lt;T&gt;.operator []=">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void operator []=(int index, T value) {
+  throw const UnsupportedOperationException('Mutation operations are not supported');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="operator []">
+<span class="show-code">Code</span>
+<a href="../bot/ListBase.html">T</a> <strong>operator []</strong>(int index) <a class="anchor-link" href="#operator []"
+              title="Permalink to ListBase&lt;T&gt;.operator []">#</a></h4>
+<div class="doc">
+<p>Returns the element at the given 
+<span class="param">index</span> in the list or throws
+an <code>IndexOutOfRangeException</code> if 
+<span class="param">index</span> is out of bounds.</p>
+<pre class="source">
+abstract T operator [](int index);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="removeAt">
+<span class="show-code">Code</span>
+<a href="../bot/ListBase.html">T</a> <strong>removeAt</strong>(int index) <a class="anchor-link" href="#removeAt"
+              title="Permalink to ListBase&lt;T&gt;.removeAt">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+T removeAt(int index) {
+  throw const UnsupportedOperationException('Mutation operations are not supported');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="removeLast">
+<span class="show-code">Code</span>
+<a href="../bot/ListBase.html">T</a> <strong>removeLast</strong>() <a class="anchor-link" href="#removeLast"
+              title="Permalink to ListBase&lt;T&gt;.removeLast">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+T removeLast() {
+  throw const UnsupportedOperationException('Mutation operations are not supported');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="removeRange">
+<span class="show-code">Code</span>
+void <strong>removeRange</strong>(int start, int length) <a class="anchor-link" href="#removeRange"
+              title="Permalink to ListBase&lt;T&gt;.removeRange">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void removeRange(int start, int length) {
+  throw const UnsupportedOperationException('Mutation operations are not supported');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setRange">
+<span class="show-code">Code</span>
+void <strong>setRange</strong>(int start, int length, List&lt;<a href="../bot/ListBase.html">T</a>&gt; from, [int startFrom]) <a class="anchor-link" href="#setRange"
+              title="Permalink to ListBase&lt;T&gt;.setRange">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void setRange(int start, int length, List&lt;T&gt; from, [int startFrom]) {
+  throw const UnsupportedOperationException('Mutation operations are not supported');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="some">
+<span class="show-code">Code</span>
+bool <strong>some</strong>(bool f(<a href="../bot/ListBase.html">T</a> element)) <a class="anchor-link" href="#some"
+              title="Permalink to ListBase&lt;T&gt;.some">#</a></h4>
+<div class="doc">
+<p>Returns true if one element of this collection satisfies the
+predicate 
+<span class="param">f</span>. Returns false otherwise.</p>
+<pre class="source">
+bool some(bool f(T element)) {
+  for (var i = 0; i &lt; length; i++) {
+    if(f(this[i])) {
+      return true;
+    }
+  }
+  return false;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="sort">
+<span class="show-code">Code</span>
+void <strong>sort</strong>(<a href="../bot/Func2.html">Func2</a> comparer) <a class="anchor-link" href="#sort"
+              title="Permalink to ListBase&lt;T&gt;.sort">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void sort(Func2&lt;T,T,int&gt; comparer) {
+  throw const UnsupportedOperationException('Mutation operations are not supported');
+}
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        
