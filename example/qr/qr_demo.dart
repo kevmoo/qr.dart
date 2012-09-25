@@ -2,9 +2,9 @@
 #import('dart:isolate');
 #import('dart:math', prefix:'math');
 
-#import('../../lib/dartlib.dart');
-#import('../../lib/qr.dart');
-#import('../../lib/async.dart');
+#import('package:bot/dartlib.dart');
+#import('package:bot/qr.dart');
+#import('package:bot/async.dart');
 
 main(){
   final CanvasElement canvas = query("#content");

@@ -1,9 +1,9 @@
 #import('dart:html');
 #import('dart:isolate');
-#import('../../lib/dartlib.dart');
-#import('../../lib/async.dart');
-#import('../../lib/html.dart');
-#import('../../lib/retained.dart');
+#import('package:bot/dartlib.dart');
+#import('package:bot/async.dart');
+#import('package:bot/html.dart');
+#import('package:bot/retained.dart');
 
 main(){
   CanvasElement canvas = document.query("#content");

@@ -2,8 +2,8 @@
 
 #import('dart:math', prefix:'math');
 #import('package:unittest/unittest.dart');
-#import('../../lib/dartlib.dart');
-#import('../../lib/test.dart');
+#import('package:bot/dartlib.dart');
+#import('package:bot/test.dart');
 
 #source('test_cloneable.dart');
 #source('test_tuple.dart');

@@ -1,9 +1,9 @@
 #library('dartlib_test_core');
 
 #import('package:unittest/unittest.dart');
-#import('../../lib/dartlib.dart');
-#import('../../lib/qr.dart');
-#import('../../lib/test.dart');
+#import('package:bot/dartlib.dart');
+#import('package:bot/qr.dart');
+#import('package:bot/test.dart');
 
 #source('test_qr_bit_buffer.dart');
 #source('test_qr_code.dart');

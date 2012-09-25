@@ -2,9 +2,9 @@
 
 #import('dart:isolate');
 #import('package:unittest/unittest.dart');
-#import('../../lib/dartlib.dart');
-#import('../../lib/async.dart');
-#import('../../lib/test.dart');
+#import('package:bot/dartlib.dart');
+#import('package:bot/async.dart');
+#import('package:bot/test.dart');
 
 #source('test_send_port_value.dart');
 #source('test_future_value_result.dart');

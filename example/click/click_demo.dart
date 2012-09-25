@@ -1,6 +1,6 @@
 #import('dart:html');
-#import('../../lib/dartlib.dart');
-#import('../../lib/retained.dart');
+#import('package:bot/dartlib.dart');
+#import('package:bot/retained.dart');
 
 main(){
   CanvasElement canvas = document.query("#content");
