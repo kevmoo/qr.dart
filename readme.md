@@ -1,4 +1,4 @@
-# dartlib
+# The Dart Bag-of-Tricks
 ## A collection of (mostly) general libraries to make coding [Dart](http://www.dartlang.org/) more fun.
 
 Starting by porting bits of the [PL javascript library](https://github.com/thinkpixellab/pl) and Google's [Closure javascript library](https://developers.google.com/closure/library/) to enable some interesting scenarios.
@@ -57,7 +57,7 @@ Bugs that cause code smells.
 
 ## [The BSD 2-Clause License](http://www.opensource.org/licenses/bsd-license.php)
 
-    Copyright (c) 2012, dartlib project authors
+    Copyright (c) 2012, The Dart Bag-of-Tricks project authors
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
