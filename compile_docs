@@ -1,0 +1,5 @@
+#!/bin/bash
+libs=`ls lib/*.dart`
+cmd="dartdoc --omit-generation-time --out doc --verbose $libs"
+echo $cmd
+exec $cmd
