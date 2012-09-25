@@ -7,7 +7,7 @@ class Property<T> extends Attachable {
 
   T get(AttachableObject obj, [Func1<AttachableObject, T> ifAbsent = null]){
     var coreValue = getCore(obj, ifAbsent);
-    if(coreValue !== Undefined){
+    if(!identical(coreValue, Undefined)){
       return coreValue;
     }
     else{
@@ -20,7 +20,7 @@ class Property<T> extends Attachable {
   }
 
   void set(AttachableObject obj, T value){
-    assert(value !== Undefined);
+    assert(!identical(value, Undefined));
     obj._set(this, value);
   }
 

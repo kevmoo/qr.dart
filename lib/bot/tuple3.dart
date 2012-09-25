@@ -6,7 +6,7 @@ class Tuple3<T1, T2, T3>
     super(param1, param2);
 
   bool operator ==(Tuple3<T1, T2, T3> other) {
-    return other !== null &&
+    return other != null &&
         item1 == other.item1 &&
         item2 == other.item2 &&
         item3 == other.item3;

@@ -15,7 +15,7 @@ class TestCloneable implements Cloneable<TestCloneable> {
   int get id => _id;
 
   bool operator ==(TestCloneable other) {
-    return other !== null && _id == other._id;
+    return other != null && _id == other._id;
   }
 
   String toString() => 'TestCloneable: ${_id}';

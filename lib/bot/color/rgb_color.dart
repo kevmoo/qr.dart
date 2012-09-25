@@ -71,7 +71,7 @@ class RgbColor implements Hashable {
   int hashCode() => Util.getHashCode([r,g,b]);
 
   bool operator ==(RgbColor other) {
-    return other !== null && other.r == r && other.g == g && other.b == b;
+    return other != null && other.r == r && other.g == g && other.b == b;
   }
 
   String toString() => '{RgbColor: $r, $g, $b}';

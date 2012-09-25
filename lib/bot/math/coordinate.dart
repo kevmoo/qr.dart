@@ -23,7 +23,7 @@ class Coordinate {
   Size toSize() => new Size(x, y);
 
   bool operator ==(Coordinate other) {
-    return other !== null && x == other.x && y == other.y;
+    return other != null && x == other.x && y == other.y;
   }
 
   static Vector difference(Coordinate a, Coordinate b) {

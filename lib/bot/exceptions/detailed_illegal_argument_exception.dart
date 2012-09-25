@@ -1,7 +1,7 @@
 class DetailedIllegalArgumentException extends IllegalArgumentException {
   final argument;
   final message;
-  
+
   DetailedIllegalArgumentException([String arg = '', String message]) :
     this.argument = arg,
     this.message = message,

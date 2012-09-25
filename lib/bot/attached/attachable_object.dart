@@ -32,7 +32,7 @@ class AttachableObject extends DisposableImpl {
   }
 
   void _set(Property key, Object value){
-    assert(value !== Property.Undefined);
+    assert(!identical(value, Property.Undefined));
     _propertyValues[key] = value;
     _fireChange(key);
   }

@@ -14,9 +14,8 @@ class TestCoordinate {
       });
 
       test('should obey const equality', (){
-        Expect.isFalse(new Coordinate(2,2) === new Coordinate(2,2));
+        expect(new Coordinate(2,2), isNot(same(new Coordinate(2,2))));
         expect(const Coordinate(2,2), same(const Coordinate(2,2)));
-        Expect.isTrue(const Coordinate(2,2) === const Coordinate(2,2));
       });
 
       test('should get the distance to another point', (){

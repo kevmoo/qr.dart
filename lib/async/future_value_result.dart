@@ -41,7 +41,7 @@ class FutureValueResult<TOutput> {
   }
 
   bool operator ==(FutureValueResult other) {
-    return other !== null &&
+    return other != null &&
         other.value == value && other.exception == exception;
   }
 

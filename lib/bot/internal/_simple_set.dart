@@ -9,7 +9,7 @@ class _SimpleSet<T>{
       _items.add(item);
     }
   }
-  
+
   bool remove(T item){
     var index = _items.indexOf(item);
     if(index >= 0){

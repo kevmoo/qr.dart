@@ -25,9 +25,8 @@ class TestVector {
       });
 
       test('should obey const equality', (){
-        Expect.isFalse(new Vector(2,2) === new Vector(2,2));
+        expect(new Vector(2,2), new Vector(2,2));
         expect(const Vector(2,2), same(const Vector(2,2)));
-        Expect.isTrue(const Vector(2,2) === const Vector(2,2));
       });
 
       test('should get length of the vector', (){

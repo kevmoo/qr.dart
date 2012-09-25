@@ -128,7 +128,7 @@ class AffineTransform implements Cloneable<AffineTransform> {
   }
 
   bool operator ==(AffineTransform other) {
-    return other !== null &&
+    return other != null &&
         _m00 == other._m00 && _m01 == other._m01 && _m02 == other._m02 &&
         _m10 == other._m10 && _m11 == other._m11 && _m12 == other._m12;
   }

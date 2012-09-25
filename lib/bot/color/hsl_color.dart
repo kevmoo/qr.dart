@@ -45,7 +45,7 @@ class HslColor implements Hashable {
   int hashCode() => Util.getHashCode([h,s,l]);
 
   bool operator ==(HslColor other) {
-    return other !== null && other.h == h && other.s == s && other.l == l;
+    return other != null && other.h == h && other.s == s && other.l == l;
   }
 
   String toString() => '{HslColor: $h, $s, $l}';

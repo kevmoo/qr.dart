@@ -5,7 +5,7 @@ class Tuple<T1, T2> {
   const Tuple(this.item1, this.item2);
 
   bool operator ==(Tuple<T1, T2> other) {
-    return other !== null && item1 == other.item1 && item2 == other.item2;
+    return other != null && item1 == other.item1 && item2 == other.item2;
   }
 
   String toString() => "{item1: $item1, item2: $item2}";

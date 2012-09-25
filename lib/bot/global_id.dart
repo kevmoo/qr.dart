@@ -15,5 +15,5 @@ class GlobalId implements Hashable, Comparable {
 
   int hashCode() => _hashCode;
 
-  bool operator ==(GlobalId other) => other !== null && other.id == id;
+  bool operator ==(GlobalId other) => other != null && other.id == id;
 }

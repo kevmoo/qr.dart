@@ -98,7 +98,7 @@ class PElement extends AttachableObject {
   bool hasVisualChild(PElement element){
     var length = visualChildCount;
     for(var i=0;i<length;i++){
-      if(element === getVisualChild(i)){
+      if(identical(element, getVisualChild(i))){
         return true;
       }
     }

@@ -46,7 +46,7 @@ class Box implements Hashable{
   }
 
   bool operator ==(Box other) {
-    return other !== null && other.left == left && other.top == top &&
+    return other != null && other.left == left && other.top == top &&
         other.width == width && other.height == height;
   }
 
