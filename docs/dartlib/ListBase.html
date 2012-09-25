@@ -267,6 +267,7 @@ list from index
 <span class="param">element</span> is not found.</p>
 <pre class="source">
 int lastIndexOf(T element, [int start=0]) {
+  // DARTBUG: having trouble testing this in the compiler. :-/
   var lastIndex = -1;
   for (var i = start; i &lt; length; i++) {
     if(this[i] == element) {

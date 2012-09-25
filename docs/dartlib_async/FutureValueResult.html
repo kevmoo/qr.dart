@@ -63,7 +63,7 @@ new <strong>FutureValueResult</strong>.fromException(exception) <a class="anchor
 
 <pre class="source">
 FutureValueResult.fromException(this.exception)
-: value = null {
+: value = null, _outputSerializer = null {
   requireArgumentNotNull(exception, 'exception');
 }
 </pre>
@@ -71,12 +71,12 @@ FutureValueResult.fromException(this.exception)
 </div>
 <div class="method"><h4 id="FutureValueResult">
 <span class="show-code">Code</span>
-new <strong>FutureValueResult</strong>(<a href="../dartlib_async/FutureValueResult.html">TOutput</a> value) <a class="anchor-link" href="#FutureValueResult"
+new <strong>FutureValueResult</strong>(<a href="../dartlib_async/FutureValueResult.html">TOutput</a> value, [<a href="../dartlib/Func1.html">Func1</a> _outputSerializer]) <a class="anchor-link" href="#FutureValueResult"
               title="Permalink to FutureValueResult&lt;TOutput&gt;.FutureValueResult">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-FutureValueResult(this.value) :
+FutureValueResult(this.value, [this._outputSerializer]) :
   exception = null;
 </pre>
 </div>
@@ -131,8 +131,9 @@ Map <strong>toMap</strong>() <a class="anchor-link" href="#toMap"
 <pre class="source">
 Map toMap() {
   // would love to use consts here, but the analyzer doesn't like it
-  // http://code.google.com/p/dart/issues/detail?id=4207
-  return { 'value' : value, 'exception' : exception };
+  // DARTBUG: http://code.google.com/p/dart/issues/detail?id=4207
+  final rawValue = _serialize(value);
+  return { 'value' : rawValue, 'exception' : exception };
 }
 </pre>
 </div>

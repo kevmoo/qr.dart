@@ -39,16 +39,27 @@
 <h3>Constructors</h3>
 <div class="method"><h4 id="Tuple">
 <span class="show-code">Code</span>
-const <strong>Tuple</strong>(<a href="../dartlib/Tuple.html">T1</a> Item1, <a href="../dartlib/Tuple.html">T2</a> Item2) <a class="anchor-link" href="#Tuple"
+const <strong>Tuple</strong>(<a href="../dartlib/Tuple.html">T1</a> item1, <a href="../dartlib/Tuple.html">T2</a> item2) <a class="anchor-link" href="#Tuple"
               title="Permalink to Tuple&lt;T1, T2&gt;.Tuple">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-const Tuple(this.Item1, this.Item2);
+const Tuple(this.item1, this.item2);
 </pre>
 </div>
 </div>
 <h3>Methods</h3>
+<div class="method"><h4 id="hashCode">
+<span class="show-code">Code</span>
+int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
+              title="Permalink to Tuple&lt;T1, T2&gt;.hashCode">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+int hashCode() =&gt; Util.getHashCode([item1, item2]);
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="operator ==">
 <span class="show-code">Code</span>
 bool <strong>operator ==</strong>(<a href="../dartlib/Tuple.html">Tuple</a>&lt;<a href="../dartlib/Tuple.html">T1</a>, <a href="../dartlib/Tuple.html">T2</a>&gt; other) <a class="anchor-link" href="#operator =="
@@ -57,8 +68,19 @@ bool <strong>operator ==</strong>(<a href="../dartlib/Tuple.html">Tuple</a>&lt;<
 
 <pre class="source">
 bool operator ==(Tuple&lt;T1, T2&gt; other) {
-  return other !== null &amp;&amp; Item1 == other.Item1 &amp;&amp; Item2 == other.Item2;
+  return other !== null &amp;&amp; item1 == other.item1 &amp;&amp; item2 == other.item2;
 }
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="toJson">
+<span class="show-code">Code</span>
+<strong>toJson</strong>() <a class="anchor-link" href="#toJson"
+              title="Permalink to Tuple&lt;T1, T2&gt;.toJson">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+Dynamic toJson() =&gt; { 'item1' : item1, 'item2' : item2 };
 </pre>
 </div>
 </div>
@@ -69,34 +91,34 @@ String <strong>toString</strong>() <a class="anchor-link" href="#toString"
 <div class="doc">
 
 <pre class="source">
-String toString() =&gt; "Tuple: Item1: $Item1, Item2: $Item2";
+String toString() =&gt; "{item1: $item1, item2: $item2}";
 </pre>
 </div>
 </div>
 <h3>Fields</h3>
-<div class="field"><h4 id="Item1">
+<div class="field"><h4 id="item1">
 <span class="show-code">Code</span>
-final <a href="../dartlib/Tuple.html">T1</a>         <strong>Item1</strong> <a class="anchor-link"
-            href="#Item1"
-            title="Permalink to Tuple&lt;T1, T2&gt;.Item1">#</a>
+final <a href="../dartlib/Tuple.html">T1</a>         <strong>item1</strong> <a class="anchor-link"
+            href="#item1"
+            title="Permalink to Tuple&lt;T1, T2&gt;.item1">#</a>
         </h4>
         <div class="doc">
 
 <pre class="source">
-final T1 Item1;
+final T1 item1;
 </pre>
 </div>
 </div>
-<div class="field"><h4 id="Item2">
+<div class="field"><h4 id="item2">
 <span class="show-code">Code</span>
-final <a href="../dartlib/Tuple.html">T2</a>         <strong>Item2</strong> <a class="anchor-link"
-            href="#Item2"
-            title="Permalink to Tuple&lt;T1, T2&gt;.Item2">#</a>
+final <a href="../dartlib/Tuple.html">T2</a>         <strong>item2</strong> <a class="anchor-link"
+            href="#item2"
+            title="Permalink to Tuple&lt;T1, T2&gt;.item2">#</a>
         </h4>
         <div class="doc">
 
 <pre class="source">
-final T2 Item2;
+final T2 item2;
 </pre>
 </div>
 </div>

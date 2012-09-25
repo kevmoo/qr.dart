@@ -39,12 +39,12 @@
 <h3>Constructors</h3>
 <div class="method"><h4 id="SendPortValue">
 <span class="show-code">Code</span>
-new <strong>SendPortValue</strong>(SendPort _sendPort) <a class="anchor-link" href="#SendPortValue"
+new <strong>SendPortValue</strong>(SendPort _sendPort, [<a href="../dartlib/Func1.html">Func1</a> inputSerializer, <a href="../dartlib/Func1.html">Func1</a> outputDeserializer]) <a class="anchor-link" href="#SendPortValue"
               title="Permalink to SendPortValue&lt;TInput, TOutput&gt;.SendPortValue">#</a></h4>
 <div class="doc">
 
 <pre class="source">
-SendPortValue(this._sendPort);
+SendPortValue(this._sendPort, {this.inputSerializer, this.outputDeserializer});
 </pre>
 </div>
 </div>
@@ -62,14 +62,46 @@ Future&lt;TOutput&gt; getFuture(TInput value) {
 
   _completer = new Completer&lt;TOutput&gt;();
 
-  _innerFuture = _sendPort.call(value);
+  if(inputSerializer == null) {
+    _innerFuture = _sendPort.call(value);
+  } else {
+    var serializedValue = inputSerializer(value);
+    _innerFuture = _sendPort.call(serializedValue);
+  }
   // I don't think this is working yet in isolates
   // _future.handleException(_futureException);
-  // http://dartbug.com/3734
+  // DARTBUG: http://dartbug.com/3734
   _innerFuture.then(__futureCompleted);
 
   return _completer.future;
 }
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="inputSerializer">
+<span class="show-code">Code</span>
+final <a href="../dartlib/Func1.html">Func1</a>         <strong>inputSerializer</strong> <a class="anchor-link"
+            href="#inputSerializer"
+            title="Permalink to SendPortValue&lt;TInput, TOutput&gt;.inputSerializer">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final Func1&lt;TInput, Dynamic&gt; inputSerializer;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="outputDeserializer">
+<span class="show-code">Code</span>
+final <a href="../dartlib/Func1.html">Func1</a>         <strong>outputDeserializer</strong> <a class="anchor-link"
+            href="#outputDeserializer"
+            title="Permalink to SendPortValue&lt;TInput, TOutput&gt;.outputDeserializer">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+final Func1&lt;Dynamic, TOutput&gt; outputDeserializer;
 </pre>
 </div>
 </div>
