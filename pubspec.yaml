@@ -1,4 +1,6 @@
-name: dartlib
+name: bot
+author: Kevin Moore <kevin@thinkpixellab.com>
+homepage: https://github.com/kevmoo/bot.dart
 dependencies:
   unittest:
     sdk: unittest
