@@ -30,7 +30,7 @@ $$.FutureImpl = {"":
  handleException$1: function(onException){if(this._exceptionHandled===true)return;if(this._isComplete===true){var t1=this._exception;if(!(t1==null))this._exceptionHandled=onException.call$1(t1);}else this._exceptionHandlers.push(onException);},
  _complete$0: function(){this._isComplete=true;try{if(!(this._exception==null))for(var t1=$.iterator(this._exceptionHandlers);t1.hasNext$0()===true;){var handler=t1.next$0();if($.eqB(handler.call$1(this._exception),true)){this._exceptionHandled=true;break;}}if(this.get$hasValue()===true)for(t1=$.iterator(this._successListeners);t1.hasNext$0()===true;){var listener=t1.next$0();listener.call$1(this.get$value());}else if(this._exceptionHandled!==true&&$.gtB($.get$length(this._successListeners),0))throw $.$$throw(this._exception);}finally{for(t1=$.iterator(this._completionListeners);t1.hasNext$0()===true;){var listener0=t1.next$0();try{listener0.call$1(this);}catch(exception){$.unwrapException(exception);}}}},
  _setValue$1: function(value){if(this._isComplete===true)throw $.$$throw($.FutureAlreadyCompleteException$());this._lib0_value=value;this._complete$0();},
- _setException$2: function(exception,stackTrace){if(exception==null)throw $.$$throw($.IllegalArgumentException$(null));if(this._isComplete===true)throw $.$$throw($.FutureAlreadyCompleteException$());this._exception=exception;this._stackTrace=stackTrace;this._complete$0();}
+ _setException$2: function(exception,stackTrace){if(exception==null)throw $.$$throw($.ArgumentError$(null));if(this._isComplete===true)throw $.$$throw($.FutureAlreadyCompleteException$());this._exception=exception;this._stackTrace=stackTrace;this._complete$0();}
 };
 
 $$.CompleterImpl = {"":
@@ -170,6 +170,17 @@ $$.StringBufferImpl = {"":
  StringBufferImpl$1: function(content$){this.clear$0();this.add$1(content$);}
 };
 
+$$.ArgumentError = {"":
+ ["message?"],
+ "super": "Object",
+ toString$0: function(){var t1=this.message;if(!(t1==null))return 'Illegal argument(s): '+$.S(t1);return 'Illegal argument(s)';}
+};
+
+$$.IllegalArgumentException = {"":
+ [],
+ "super": "ArgumentError"
+};
+
 $$.NoSuchMethodError = {"":
  ["_receiver", "_functionName", "_arguments", "_existingArgumentNames"],
  "super": "Object",
@@ -194,13 +205,6 @@ $$.ObjectNotClosureException = {"":
  [],
  "super": "Object",
  toString$0: function(){return 'Object is not closure';},
- is$Exception: true
-};
-
-$$.IllegalArgumentException = {"":
- ["_arg"],
- "super": "Object",
- toString$0: function(){return 'Illegal argument(s): '+$.S(this._arg);},
  is$Exception: true
 };
 
@@ -902,7 +906,7 @@ $$.GlobalId = {"":
 };
 
 $$.NullArgumentException = {"":
- ["theArg", "_arg"],
+ ["theArg", "message"],
  "super": "IllegalArgumentException",
  toString$0: function(){return 'Null argument(s): '+this.theArg;}
 };
@@ -1046,7 +1050,7 @@ $$.AttachableObject = {"":
 $$.Property = {"":
  ["defaultValue", "name"],
  "super": "Attachable",
- get$2: function(obj,ifAbsent){var coreValue=this.getCore$2(obj,ifAbsent);if(!(coreValue===$.CTC18))return coreValue;else return this.defaultValue;},
+ get$2: function(obj,ifAbsent){var coreValue=this.getCore$2(obj,ifAbsent);if(!$.identical(coreValue,$.CTC18))return coreValue;else return this.defaultValue;},
  get$1: function(obj) {
   return this.get$2(obj,null)
 },
@@ -1301,7 +1305,7 @@ $$._convertNativeToDart_IDBKey_containsDate = {"":
 $$._MutationObserverImpl_observe_anon = {"":
  ["parsedOptions_0"],
  "super": "Closure",
- call$2: function(k,v){if($.CTC23.containsKey$1(k)===true)this.parsedOptions_0[k] = true===v;else if($.eqB(k,'attributeFilter'))this.parsedOptions_0[k] = v;else throw $.$$throw($.IllegalArgumentException$('Illegal MutationObserver.observe option \''+$.S(k)+'\''));}
+ call$2: function(k,v){if($.CTC23.containsKey$1(k)===true)this.parsedOptions_0[k] = true===v;else if($.eqB(k,'attributeFilter'))this.parsedOptions_0[k] = v;else throw $.$$throw($.ArgumentError$('Illegal MutationObserver.observe option \''+$.S(k)+'\''));}
 };
 
 $$._MutationObserverImpl_observe_override = {"":
@@ -1478,11 +1482,11 @@ $._NativeJsSendPort$ = function(_receivePort,isolateId){return new $._NativeJsSe
 
 $.eqB = function(a,b){if(a == null)return b == null;if(b == null)return false;if(typeof a === "object")if(!!a.operator$eq$1)return a.operator$eq$1(b)===true;return a === b;};
 
-$.set$length = function(receiver,newLength){if($.isJsArray(receiver)){$.checkNull(newLength);if(!(typeof newLength==='number'&&Math.floor(newLength) === newLength))throw $.$$throw($.IllegalArgumentException$(newLength));if(newLength<0)throw $.$$throw($.IndexOutOfRangeException$(newLength));$.checkGrowable(receiver,'set length');receiver.length = newLength;}else receiver.set$length(newLength);return newLength;};
+$.set$length = function(receiver,newLength){if($.isJsArray(receiver)){$.checkNull(newLength);if(!(typeof newLength==='number'&&Math.floor(newLength) === newLength))throw $.$$throw($.ArgumentError$(newLength));if(newLength<0)throw $.$$throw($.IndexOutOfRangeException$(newLength));$.checkGrowable(receiver,'set length');receiver.length = newLength;}else receiver.set$length(newLength);return newLength;};
 
 $._Device_userAgent = function(){return $.window().get$navigator().get$userAgent();};
 
-$.checkNum = function(value){if(!(typeof value==='number')){$.checkNull(value);throw $.$$throw($.IllegalArgumentException$(value));}return value;};
+$.checkNum = function(value){if(!(typeof value==='number')){$.checkNull(value);throw $.$$throw($.ArgumentError$(value));}return value;};
 
 $._TextTrackListEventsImpl$ = function(_ptr){return new $._TextTrackListEventsImpl(_ptr);};
 
@@ -1522,7 +1526,7 @@ $.floor = function(receiver){return Math.floor(receiver);};
 
 $._WebSocketEventsImpl$ = function(_ptr){return new $._WebSocketEventsImpl(_ptr);};
 
-$.shr = function(a,b){if($.checkNumbers(a,b)){if(b<0)throw $.$$throw($.IllegalArgumentException$(b));if(a>0){if(b > 31)return 0;return a >>> b;}if(b>31)b=31;return (a >> b) >>> 0;}return a.operator$shr$1(b);};
+$.shr = function(a,b){if($.checkNumbers(a,b)){if(b<0)throw $.$$throw($.ArgumentError$(b));if(a>0){if(b > 31)return 0;return a >>> b;}if(b>31)b=31;return (a >> b) >>> 0;}return a.operator$shr$1(b);};
 
 $._convertDartToNative_SerializedScriptValue = function(value){return $._convertDartToNative_PrepareForStructuredClone(value);};
 
@@ -1648,7 +1652,7 @@ $._document = function(){return document;};
 
 $._FrameSetElementEventsImpl$ = function(_ptr){return new $._FrameSetElementEventsImpl(_ptr);};
 
-$.listInsertRange = function(receiver,start,length$,initialValue){if(typeof receiver!=='object'||receiver===null||(receiver.constructor!==Array||!!receiver.immutable$list)&&!receiver.is$JavaScriptIndexingBehavior())return $.listInsertRange$bailout(1,receiver,start,length$,initialValue);if(length$===0)return;$.checkNull(start);$.checkNull(length$);if(length$<0)throw $.$$throw($.IllegalArgumentException$(length$));if(!(typeof start==='number'&&Math.floor(start) === start))throw $.$$throw($.IllegalArgumentException$(start));var receiverLength=receiver.length;if(start<0||start>receiverLength)throw $.$$throw($.IndexOutOfRangeException$(start));var t1=receiverLength+length$;$.set$length(receiver,t1);var t2=start+length$;$.Arrays_copy(receiver,start,receiver,t2,receiverLength-start);if(!(initialValue==null))for(var i=start;i<t2;++i){if(i<0||i>=receiver.length)throw $.ioore(i);receiver[i]=initialValue;}$.set$length(receiver,t1);};
+$.listInsertRange = function(receiver,start,length$,initialValue){if(typeof receiver!=='object'||receiver===null||(receiver.constructor!==Array||!!receiver.immutable$list)&&!receiver.is$JavaScriptIndexingBehavior())return $.listInsertRange$bailout(1,receiver,start,length$,initialValue);if(length$===0)return;$.checkNull(start);$.checkNull(length$);if(length$<0)throw $.$$throw($.ArgumentError$(length$));if(!(typeof start==='number'&&Math.floor(start) === start))throw $.$$throw($.ArgumentError$(start));var receiverLength=receiver.length;if(start<0||start>receiverLength)throw $.$$throw($.IndexOutOfRangeException$(start));var t1=receiverLength+length$;$.set$length(receiver,t1);var t2=start+length$;$.Arrays_copy(receiver,start,receiver,t2,receiverLength-start);if(!(initialValue==null))for(var i=start;i<t2;++i){if(i<0||i>=receiver.length)throw $.ioore(i);receiver[i]=initialValue;}$.set$length(receiver,t1);};
 
 $._IDBDatabaseEventsImpl$ = function(_ptr){return new $._IDBDatabaseEventsImpl(_ptr);};
 
@@ -1662,7 +1666,7 @@ $.GlobalId_GlobalId = function(){var t1=$.GlobalId__globalId;$.GlobalId__globalI
 
 $._MediaStreamTrackListEventsImpl$ = function(_ptr){return new $._MediaStreamTrackListEventsImpl(_ptr);};
 
-$.S = function(value){var res=$.toString(value);if(!(typeof res==='string'))throw $.$$throw($.IllegalArgumentException$(value));return res;};
+$.S = function(value){var res=$.toString(value);if(!(typeof res==='string'))throw $.$$throw($.ArgumentError$(value));return res;};
 
 $._DoubleLinkedQueueIterator$ = function(_sentinel){var t1=new $._DoubleLinkedQueueIterator(_sentinel,null);t1._DoubleLinkedQueueIterator$1(_sentinel);return t1;};
 
@@ -1714,7 +1718,7 @@ $.add$slow = function(a,b){if($.checkNumbers(a,b))return a + b;return a.operator
 
 $.jsHasOwnProperty = function(jsObject,property){return jsObject.hasOwnProperty(property);};
 
-$.add = function(a,b){return typeof a==='number'&&typeof b==='number'?a + b:$.add$slow(a,b);};
+$.ArgumentError$ = function(message){return new $.ArgumentError(message);};
 
 $.Enumerable_Enumerable$fromIterable = function(source){$.requireArgumentNotNull(source,'source');return $._SimpleEnumerable$(source);};
 
@@ -1723,6 +1727,8 @@ $.RuntimeError$ = function(message){return new $.RuntimeError(message);};
 $._PendingSendPortFinder$ = function(){var t1=$._MessageTraverserVisitedMap$();t1=new $._PendingSendPortFinder([],t1);t1._PendingSendPortFinder$0();return t1;};
 
 $.Futures_wait = function(futures){var t1={};if(typeof futures!=='string'&&(typeof futures!=='object'||futures===null||futures.constructor!==Array&&!futures.is$JavaScriptIndexingBehavior()))return $.Futures_wait$bailout(1,futures,t1);if($.isEmpty(futures)===true)return $.Future_Future$immediate($.CTC1);var completer=$.Completer_Completer();var result=completer.get$future();t1.remaining_1=futures.length;var values=$.ListImplementation_List(futures.length);for(var i=0;t2=futures.length,i<t2;++i){if(i<0||i>=t2)throw $.ioore(i);var future=futures[i];future.then$1(new $.Futures_wait_anon(completer,i,t1,result,values));future.handleException$1(new $.Futures_wait_anon0(future,completer,result));}return result;var t2;};
+
+$.add = function(a,b){return typeof a==='number'&&typeof b==='number'?a + b:$.add$slow(a,b);};
 
 $.RetainedDebug__borderElementCore = function(ctx,element){if($.get$Mouse_isMouseDirectlyOverProperty().get$1(element)===true)ctx.set$strokeStyle('red');else if($.get$Mouse_isMouseOverProperty().get$1(element)===true)ctx.set$strokeStyle('pink');else if(element.get$cacheEnabled()===true)ctx.set$strokeStyle('yellow');else ctx.set$strokeStyle('orange');var corners=$.RetainedUtil_getCorners(element);ctx.beginPath$0();ctx.moveTo$2($.index(corners,3).get$x(),$.index(corners,3).get$y());for(var t1=$.iterator(corners);t1.hasNext$0()===true;){var t2=t1.next$0();ctx.lineTo$2(t2.get$x(),t2.get$y());}ctx.stroke$0();};
 
@@ -1736,7 +1742,7 @@ $._AbstractWorkerEventsImpl$ = function(_ptr){return new $._AbstractWorkerEvents
 
 $.indexSet = function(a,index,value){if(a.constructor === Array && !a.immutable$list){var key=index >>> 0;if(key===index&&key<a.length){a[key] = value;return;}}$.indexSet$slow(a,index,value);};
 
-$.index$slow = function(a,index){if(typeof a==='string'||$.isJsArray(a)){if(!(typeof index==='number'&&Math.floor(index) === index)){if(!(typeof index==='number'))throw $.$$throw($.IllegalArgumentException$(index));if(!($.truncate(index)===index))throw $.$$throw($.IllegalArgumentException$(index));}if($.ltB(index,0)||$.geB(index,$.get$length(a)))throw $.$$throw($.IndexOutOfRangeException$(index));return a[index];}return a.operator$index$1(index);};
+$.index$slow = function(a,index){if(typeof a==='string'||$.isJsArray(a)){if(!(typeof index==='number'&&Math.floor(index) === index)){if(!(typeof index==='number'))throw $.$$throw($.ArgumentError$(index));if(!($.truncate(index)===index))throw $.$$throw($.ArgumentError$(index));}if($.ltB(index,0)||$.geB(index,$.get$length(a)))throw $.$$throw($.IndexOutOfRangeException$(index));return a[index];}return a.operator$index$1(index);};
 
 $.div = function(a,b){return typeof a==='number'&&typeof b==='number'?a / b:$.div$slow(a,b);};
 
@@ -1790,7 +1796,7 @@ $.gtB = function(a,b){return typeof a==='number'&&typeof b==='number'?a > b:$.gt
 
 $.stringContainsUnchecked = function(receiver,other,startIndex){return !($.indexOf$2(receiver,other,startIndex)===-1);};
 
-$.shl = function(a,b){if($.checkNumbers(a,b)){if(b<0)throw $.$$throw($.IllegalArgumentException$(b));if(b > 31)return 0;return (a << b) >>> 0;}return a.operator$shl$1(b);};
+$.shl = function(a,b){if($.checkNumbers(a,b)){if(b<0)throw $.$$throw($.ArgumentError$(b));if(b > 31)return 0;return (a << b) >>> 0;}return a.operator$shl$1(b);};
 
 $.Primitives_objectToString = function(object){return 'Instance of \''+$.S($.Primitives_objectTypeName(object))+'\'';};
 
@@ -1842,6 +1848,8 @@ $.Collections_forEach = function(iterable,f){for(var t1=$.iterator(iterable);t1.
 
 $.Collections_map = function(source,destination,f){for(var t1=$.iterator(source);t1.hasNext$0()===true;)destination.push(f.call$1(t1.next$0()));return destination;};
 
+$.identical = function(a,b){return a===b;};
+
 $._convertNativeToDart_AcceptStructuredClone = function(object){var values=[];var copies=[];var t1=new $._convertNativeToDart_AcceptStructuredClone_findSlot(copies,values);var t2=new $._convertNativeToDart_AcceptStructuredClone_readSlot(copies);return new $._convertNativeToDart_AcceptStructuredClone_walk(new $._convertNativeToDart_AcceptStructuredClone_writeSlot(copies),t1,t2).call$1(object);};
 
 $._Collections_forEach = function(iterable,f){for(var t1=$.iterator(iterable);t1.hasNext$0()===true;)f.call$1(t1.next$0());};
@@ -1854,7 +1862,7 @@ $.Property$ = function(name$,defaultValue){return new $.Property(defaultValue,na
 
 $.getFunctionForTypeNameOf = function(){if(!(typeof(navigator)==='object'))return $.typeNameInChrome;var userAgent=navigator.userAgent;if($.contains(userAgent,'Chrome')||$.contains(userAgent,'DumpRenderTree'))return $.typeNameInChrome;else if($.contains(userAgent,'Firefox'))return $.typeNameInFirefox;else if($.contains(userAgent,'MSIE'))return $.typeNameInIE;else if($.contains(userAgent,'Opera'))return $.typeNameInOpera;else if($.contains(userAgent,'Safari'))return $.typeNameInSafari;else return $.constructorNameFallback;};
 
-$.indexSet$slow = function(a,index,value){if($.isJsArray(a)){if(!(typeof index==='number'&&Math.floor(index) === index))throw $.$$throw($.IllegalArgumentException$(index));if(index<0||$.geB(index,$.get$length(a)))throw $.$$throw($.IndexOutOfRangeException$(index));$.checkMutable(a,'indexed set');a[index] = value;return;}a.operator$indexSet$2(index,value);};
+$.indexSet$slow = function(a,index,value){if($.isJsArray(a)){if(!(typeof index==='number'&&Math.floor(index) === index))throw $.$$throw($.ArgumentError$(index));if(index<0||$.geB(index,$.get$length(a)))throw $.$$throw($.IndexOutOfRangeException$(index));$.checkMutable(a,'indexed set');a[index] = value;return;}a.operator$indexSet$2(index,value);};
 
 $.Primitives_objectHashCode = function(object){var hash=object.$identityHash;if(hash==null){hash=$.add($.Primitives_hashCodeSeed,1);$.Primitives_hashCodeSeed=hash;object.$identityHash = hash;}return hash;};
 
@@ -1923,7 +1931,7 @@ $.Queue_Queue = function(){return $.DoubleLinkedQueue$();};
 
 $.typeNameInIE = function(obj){var name$=$.constructorNameFallback(obj);if(name$==='Window')return 'DOMWindow';if(name$==='Document'){if(!!obj.xmlVersion)return 'Document';return 'HTMLDocument';}if(name$==='CanvasPixelArray')return 'Uint8ClampedArray';if(name$==='DataTransfer')return 'Clipboard';if(name$==='DragEvent')return 'MouseEvent';if(name$==='HTMLDDElement')return 'HTMLElement';if(name$==='HTMLDTElement')return 'HTMLElement';if(name$==='HTMLTableDataCellElement')return 'HTMLTableCellElement';if(name$==='HTMLTableHeaderCellElement')return 'HTMLTableCellElement';if(name$==='HTMLPhraseElement')return 'HTMLElement';if(name$==='MSStyleCSSProperties')return 'CSSStyleDeclaration';if(name$==='MouseWheelEvent')return 'WheelEvent';if(name$==='FormData')return 'DOMFormData';return name$;};
 
-$.Primitives_newList = function(length$){if(length$==null)return new Array();if(!(typeof length$==='number'&&Math.floor(length$) === length$)||length$<0)throw $.$$throw($.IllegalArgumentException$(length$));var result=new Array(length$);result.fixed$length = true;return result;};
+$.Primitives_newList = function(length$){if(length$==null)return new Array();if(!(typeof length$==='number'&&Math.floor(length$) === length$)||length$<0)throw $.$$throw($.ArgumentError$(length$));var result=new Array(length$);result.fixed$length = true;return result;};
 
 $._globalState = function(){return $globalState;};
 
@@ -1961,11 +1969,11 @@ $._WindowEventsImpl$ = function(_ptr){return new $._WindowEventsImpl(_ptr);};
 
 $._EventListenerListImpl$ = function(_ptr,_type){return new $._EventListenerListImpl(_ptr,_type);};
 
-$.iae = function(argument){throw $.$$throw($.IllegalArgumentException$(argument));};
+$.iae = function(argument){throw $.$$throw($.ArgumentError$(argument));};
 
 $._DOMApplicationCacheEventsImpl$ = function(_ptr){return new $._DOMApplicationCacheEventsImpl(_ptr);};
 
-$.StringImplementation__toJsStringArray = function(strings){if(typeof strings!=='object'||strings===null||(strings.constructor!==Array||!!strings.immutable$list)&&!strings.is$JavaScriptIndexingBehavior())return $.StringImplementation__toJsStringArray$bailout(1,strings);$.checkNull(strings);var length$=strings.length;if($.isJsArray(strings)){for(var i=0;i<length$;++i){if(i<0||i>=strings.length)throw $.ioore(i);var string=strings[i];$.checkNull(string);if(!(typeof string==='string'))throw $.$$throw($.IllegalArgumentException$(string));}var array=strings;}else{array=$.ListImplementation_List(length$);for(i=0;i<length$;++i){if(i<0||i>=strings.length)throw $.ioore(i);string=strings[i];$.checkNull(string);if(!(typeof string==='string'))throw $.$$throw($.IllegalArgumentException$(string));if(i<0||i>=array.length)throw $.ioore(i);array[i]=string;}}return array;};
+$.StringImplementation__toJsStringArray = function(strings){if(typeof strings!=='object'||strings===null||(strings.constructor!==Array||!!strings.immutable$list)&&!strings.is$JavaScriptIndexingBehavior())return $.StringImplementation__toJsStringArray$bailout(1,strings);$.checkNull(strings);var length$=strings.length;if($.isJsArray(strings)){for(var i=0;i<length$;++i){if(i<0||i>=strings.length)throw $.ioore(i);var string=strings[i];$.checkNull(string);if(!(typeof string==='string'))throw $.$$throw($.ArgumentError$(string));}var array=strings;}else{array=$.ListImplementation_List(length$);for(i=0;i<length$;++i){if(i<0||i>=strings.length)throw $.ioore(i);string=strings[i];$.checkNull(string);if(!(typeof string==='string'))throw $.$$throw($.ArgumentError$(string));if(i<0||i>=array.length)throw $.ioore(i);array[i]=string;}}return array;};
 
 $.IllegalJSRegExpException$ = function(_pattern,_errmsg){return new $.IllegalJSRegExpException(_pattern,_errmsg);};
 
@@ -1979,11 +1987,11 @@ $.FormatException$ = function(message){return new $.FormatException(message);};
 
 $.throwCyclicInit = function(staticName){throw $.$$throw($.RuntimeError$('Cyclic initialization for static '+$.S(staticName)));};
 
-$.unwrapException = function(ex){if("dartException" in ex)return ex.dartException;var message=ex.message;if(ex instanceof TypeError){var type=ex.type;var name$=ex.arguments ? ex.arguments[0] : "";if($.eqB(type,'property_not_function')||$.eqB(type,'called_non_callable')||$.eqB(type,'non_object_property_call')||$.eqB(type,'non_object_property_load'))if(typeof name$==='string'&&$.startsWith(name$,'call$')===true)return $.ObjectNotClosureException$();else return $.NullPointerException$(null,$.CTC1);else if($.eqB(type,'undefined_method'))if(typeof name$==='string'&&$.startsWith(name$,'call$')===true)return $.ObjectNotClosureException$();else return $.NoSuchMethodError$('',name$,[],null);var ieErrorCode=ex.number & 0xffff;var ieFacilityNumber=ex.number>>16 & 0x1FFF;if(typeof message==='string')if($.endsWith(message,'is null')===true||$.endsWith(message,'is undefined')===true||$.endsWith(message,'is null or undefined')===true)return $.NullPointerException$(null,$.CTC1);else{if($.contains$1(message,' is not a function')!==true)var t1=ieErrorCode===438&&ieFacilityNumber===10;else t1=true;if(t1)return $.NoSuchMethodError$('','<unknown>',[],null);}return $.ExceptionImplementation$(typeof message==='string'?message:'');}if(ex instanceof RangeError){if(typeof message==='string'&&$.contains$1(message,'call stack')===true)return $.StackOverflowException$();return $.IllegalArgumentException$('');}if(typeof InternalError == 'function' && ex instanceof InternalError)if(typeof message==='string'&&message==='too much recursion')return $.StackOverflowException$();return ex;};
+$.unwrapException = function(ex){if("dartException" in ex)return ex.dartException;var message=ex.message;if(ex instanceof TypeError){var type=ex.type;var name$=ex.arguments ? ex.arguments[0] : "";if($.eqB(type,'property_not_function')||$.eqB(type,'called_non_callable')||$.eqB(type,'non_object_property_call')||$.eqB(type,'non_object_property_load'))if(typeof name$==='string'&&$.startsWith(name$,'call$')===true)return $.ObjectNotClosureException$();else return $.NullPointerException$(null,$.CTC1);else if($.eqB(type,'undefined_method'))if(typeof name$==='string'&&$.startsWith(name$,'call$')===true)return $.ObjectNotClosureException$();else return $.NoSuchMethodError$('',name$,[],null);var ieErrorCode=ex.number & 0xffff;var ieFacilityNumber=ex.number>>16 & 0x1FFF;if(typeof message==='string')if($.endsWith(message,'is null')===true||$.endsWith(message,'is undefined')===true||$.endsWith(message,'is null or undefined')===true)return $.NullPointerException$(null,$.CTC1);else{if($.contains$1(message,' is not a function')!==true)var t1=ieErrorCode===438&&ieFacilityNumber===10;else t1=true;if(t1)return $.NoSuchMethodError$('','<unknown>',[],null);}return $.ExceptionImplementation$(typeof message==='string'?message:'');}if(ex instanceof RangeError){if(typeof message==='string'&&$.contains$1(message,'call stack')===true)return $.StackOverflowException$();return $.ArgumentError$('');}if(typeof InternalError == 'function' && ex instanceof InternalError)if(typeof message==='string'&&message==='too much recursion')return $.StackOverflowException$();return ex;};
 
 $.Vector$ = function(x,y){return new $.Vector(x,y);};
 
-$.checkNumbers = function(a,b){if(typeof a==='number')if(typeof b==='number')return true;else{$.checkNull(b);throw $.$$throw($.IllegalArgumentException$(b));}return false;};
+$.checkNumbers = function(a,b){if(typeof a==='number')if(typeof b==='number')return true;else{$.checkNull(b);throw $.$$throw($.ArgumentError$(b));}return false;};
 
 $.SpinDemo$_internal = function(_canvas,_stage,_tx){var t1=new $.SpinDemo(_canvas,_stage,_tx,null);t1.SpinDemo$_internal$3(_canvas,_stage,_tx);return t1;};
 
@@ -1993,7 +2001,7 @@ $.stringJoinUnchecked = function(array,separator){return array.join(separator);}
 
 $._WorkerSendPort$ = function(_workerId,isolateId,_receivePortId){return new $._WorkerSendPort(_workerId,_receivePortId,isolateId);};
 
-$.checkString = function(value){if(!(typeof value==='string')){$.checkNull(value);throw $.$$throw($.IllegalArgumentException$(value));}return value;};
+$.checkString = function(value){if(!(typeof value==='string')){$.checkNull(value);throw $.$$throw($.ArgumentError$(value));}return value;};
 
 $.replaceAll = function(receiver,from,to){if(!(typeof receiver==='string'))return receiver.replaceAll$2(from,to);$.checkString(to);return $.stringReplaceAllUnchecked(receiver,from,to);};
 
@@ -2005,9 +2013,9 @@ $._SimpleClientRect$ = function(left,top$,width,height){return new $._SimpleClie
 
 $.SpinDemo_SpinDemo = function(canvas){var pCanvas=$.PCanvas$(200,200,false);var blue=$.Shape$(100,100,'blue',$.CTC14);var green=$.Shape$(70,70,'green',$.CTC14);var red=$.Shape$(40,40,'red',$.CTC15);pCanvas.addElement$1(blue);pCanvas.addElement$1(green);pCanvas.setTopLeft$2(green,$.Coordinate$(15,15));pCanvas.addElement$1(red);pCanvas.setCenter$2(red,$.Coordinate$(50,50));pCanvas.addTransform$0().translate$2($.div($.sub(canvas.get$width(),pCanvas.get$width()),2),$.div($.sub(canvas.get$height(),pCanvas.get$height()),2));var tx=pCanvas.addTransform$0();var rootPanel=$.PCanvas$(500,500,false);rootPanel.addElement$1(pCanvas);return $.SpinDemo$_internal(canvas,$.Stage$(canvas,rootPanel),tx);};
 
-$.requireArgumentNotNull = function(argument,argName){if(argument==null)throw $.$$throw($.NullArgumentException$(argName));};
-
 $.toString = function(value){if(typeof value == "object" && value !== null)if($.isJsArray(value))return $.Collections_collectionToString(value);else return value.toString$0();if(value === 0 && (1 / value) < 0)return '-0.0';if(value==null)return 'null';if(typeof value == "function")return 'Closure';return String(value);};
+
+$.requireArgumentNotNull = function(argument,argName){if(argument==null)throw $.$$throw($.NullArgumentException$(argName));};
 
 $.Stage$ = function(_canvas,_element){var t1=new $.Stage($.EventHandle$(),_canvas,_element,null,$.HashMapImplementation$(),$.HashMapImplementation$(),false);t1.Stage$2(_canvas,_element);return t1;};
 
@@ -2022,8 +2030,6 @@ $.endsWith = function(receiver,other){$.checkString(other);var receiverLength=re
 $._SpeechRecognitionEventsImpl$ = function(_ptr){return new $._SpeechRecognitionEventsImpl(_ptr);};
 
 $.Util_getHashCode = function(source){for(var t1=$.iterator(source),hash=0;t1.hasNext$0()===true;){var t2=t1.next$0();var next=t2==null?0:$.hashCode(t2);if(typeof next!=='number')throw $.iae(next);var hash0=536870911&hash+next;var hash1=536870911&hash0+((524287&hash0)<<10>>>0);hash1=(hash1^$.shr(hash1,6))>>>0;hash=hash1;}hash0=536870911&hash+((67108863&hash)<<3>>>0);hash0=(hash0^$.shr(hash0,11))>>>0;return 536870911&hash0+((16383&hash0)<<15>>>0);};
-
-$.IllegalArgumentException$ = function(arg){return new $.IllegalArgumentException(arg);};
 
 $._HttpRequestUploadEventsImpl$ = function(_ptr){return new $._HttpRequestUploadEventsImpl(_ptr);};
 
@@ -2106,9 +2112,9 @@ $.sub = function(a,b){return typeof a==='number'&&typeof b==='number'?a - b:$.su
 
 $.Arrays_copy$bailout = function(state,src,srcStart,dst,dstStart,count){if(srcStart<dstStart)for(var i=srcStart+count-1,j=dstStart+count-1;i>=srcStart;--i,--j)$.indexSet(dst,j,$.index(src,i));else for(var t1=srcStart+count,i=srcStart,j=dstStart;i<t1;++i,++j)$.indexSet(dst,j,$.index(src,i));};
 
-$.StringImplementation__toJsStringArray$bailout = function(state,strings){$.checkNull(strings);var length$=$.get$length(strings);if($.isJsArray(strings)){for(var i=0;$.ltB(i,length$);++i){var string=$.index(strings,i);$.checkNull(string);if(!(typeof string==='string'))throw $.$$throw($.IllegalArgumentException$(string));}var array=strings;}else{array=$.ListImplementation_List(length$);for(i=0;$.ltB(i,length$);++i){string=$.index(strings,i);$.checkNull(string);if(!(typeof string==='string'))throw $.$$throw($.IllegalArgumentException$(string));if(i<0||i>=array.length)throw $.ioore(i);array[i]=string;}}return array;};
+$.StringImplementation__toJsStringArray$bailout = function(state,strings){$.checkNull(strings);var length$=$.get$length(strings);if($.isJsArray(strings)){for(var i=0;$.ltB(i,length$);++i){var string=$.index(strings,i);$.checkNull(string);if(!(typeof string==='string'))throw $.$$throw($.ArgumentError$(string));}var array=strings;}else{array=$.ListImplementation_List(length$);for(i=0;$.ltB(i,length$);++i){string=$.index(strings,i);$.checkNull(string);if(!(typeof string==='string'))throw $.$$throw($.ArgumentError$(string));if(i<0||i>=array.length)throw $.ioore(i);array[i]=string;}}return array;};
 
-$.listInsertRange$bailout = function(state,receiver,start,length$,initialValue){if(length$===0)return;$.checkNull(start);$.checkNull(length$);if(length$<0)throw $.$$throw($.IllegalArgumentException$(length$));if(!(typeof start==='number'&&Math.floor(start) === start))throw $.$$throw($.IllegalArgumentException$(start));var receiverLength=receiver.length;if(start<0||start>receiverLength)throw $.$$throw($.IndexOutOfRangeException$(start));var t1=receiverLength+length$;$.set$length(receiver,t1);var t2=start+length$;$.Arrays_copy(receiver,start,receiver,t2,receiverLength-start);if(!(initialValue==null))for(var i=start;i<t2;++i)$.indexSet(receiver,i,initialValue);$.set$length(receiver,t1);};
+$.listInsertRange$bailout = function(state,receiver,start,length$,initialValue){if(length$===0)return;$.checkNull(start);$.checkNull(length$);if(length$<0)throw $.$$throw($.ArgumentError$(length$));if(!(typeof start==='number'&&Math.floor(start) === start))throw $.$$throw($.ArgumentError$(start));var receiverLength=receiver.length;if(start<0||start>receiverLength)throw $.$$throw($.IndexOutOfRangeException$(start));var t1=receiverLength+length$;$.set$length(receiver,t1);var t2=start+length$;$.Arrays_copy(receiver,start,receiver,t2,receiverLength-start);if(!(initialValue==null))for(var i=start;i<t2;++i)$.indexSet(receiver,i,initialValue);$.set$length(receiver,t1);};
 
 $.RetainedUtil__hitTest$bailout = function(state,env0,env1,env2,env3){switch(state){case 1:var element=env0;length$=env1;point=env2;hits=env3;break;}switch(state){case 0:var point=$.RetainedUtil_transformPointGlobalToLocal(element,point);var bounds=$.Box$(0,0,element.get$width(),element.get$height());var hits=$.ListImplementation_List(null);case 1:if(state===1||state===0&&bounds.contains$1(point)===true)switch(state){case 0:var length$=element.get$visualChildCount();case 1:state=0;for(var i=0;$.ltB(i,length$);++i){hits=$.RetainedUtil__hitTest(element.getVisualChild$1($.sub($.sub(length$,1),i)),point);if(hits.length>0)break;}hits.push(element);return hits;}else return [];}};
 
@@ -2146,17 +2152,17 @@ Isolate.makeConstantList = function(list) {
   return list;
 };
 $.CTC1 = Isolate.makeConstantList([]);
-$.CTC29 = 'structured clone of ArrayBufferView';
+$.CTC29 = 'childList';
+$.CTC30 = 'attributes';
+$.CTC31 = 'characterData';
+$.CTC32 = 'subtree';
+$.CTC33 = 'attributeOldValue';
+$.CTC34 = 'characterDataOldValue';
+$.CTC35 = Isolate.makeConstantList(['childList', 'attributes', 'characterData', 'subtree', 'attributeOldValue', 'characterDataOldValue']);
+$.CTC36 = true;
+$.CTC23 = new Isolate.$isolateProperties.ConstantMap(6, {'childList': true, 'attributes': true, 'characterData': true, 'subtree': true, 'attributeOldValue': true, 'characterDataOldValue': true}, Isolate.$isolateProperties.CTC35);
+$.CTC37 = 'structured clone of ArrayBufferView';
 $.CTC9 = new Isolate.$isolateProperties.NotImplementedException('structured clone of ArrayBufferView');
-$.CTC30 = 'childList';
-$.CTC31 = 'attributes';
-$.CTC32 = 'characterData';
-$.CTC33 = 'subtree';
-$.CTC34 = 'attributeOldValue';
-$.CTC35 = 'characterDataOldValue';
-$.CTC36 = Isolate.makeConstantList(['childList', 'attributes', 'characterData', 'subtree', 'attributeOldValue', 'characterDataOldValue']);
-$.CTC37 = true;
-$.CTC23 = new Isolate.$isolateProperties.ConstantMap(6, {'childList': true, 'attributes': true, 'characterData': true, 'subtree': true, 'attributeOldValue': true, 'characterDataOldValue': true}, Isolate.$isolateProperties.CTC36);
 $.CTC26 = new Isolate.$isolateProperties.ConstantMap(0, {}, Isolate.$isolateProperties.CTC1);
 $.CTC38 = false;
 $.CTC39 = '^#[_a-zA-Z]\\w*$';
@@ -2164,46 +2170,46 @@ $.CTC = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, '^#[_a-zA-Z]
 $.CTC40 = 'structured clone of ArrayBuffer';
 $.CTC8 = new Isolate.$isolateProperties.NotImplementedException('structured clone of ArrayBuffer');
 $.CTC16 = new Isolate.$isolateProperties._DeletedKeySentinel();
-$.CTC41 = 'structured clone of Date';
+$.CTC41 = 0;
+$.CTC42 = new Isolate.$isolateProperties._SimpleClientRect(0, 0, 0, 0);
+$.CTC43 = 'structured clone of Date';
 $.CTC3 = new Isolate.$isolateProperties.NotImplementedException('structured clone of Date');
 $.CTC28 = new Isolate.$isolateProperties.Object();
-$.CTC42 = 'IDBKey containing Date';
-$.CTC22 = new Isolate.$isolateProperties.NotImplementedException('IDBKey containing Date');
-$.CTC43 = 'Boxangle';
-$.CTC14 = new Isolate.$isolateProperties.ShapeType('Boxangle');
 $.CTC44 = 'Cannot add to immutable List.';
 $.CTC2 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot add to immutable List.');
-$.CTC45 = '[-[\\]{}()*+?.,\\\\^$|#\\s]';
+$.CTC45 = 'Boxangle';
+$.CTC14 = new Isolate.$isolateProperties.ShapeType('Boxangle');
+$.CTC46 = 'IDBKey containing Date';
+$.CTC22 = new Isolate.$isolateProperties.NotImplementedException('IDBKey containing Date');
+$.CTC47 = '[-[\\]{}()*+?.,\\\\^$|#\\s]';
 $.CTC13 = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, '[-[\\]{}()*+?.,\\\\^$|#\\s]');
-$.CTC46 = 'Incorrect number or type of arguments';
+$.CTC48 = 'Cannot insertRange on immutable List.';
+$.CTC27 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot insertRange on immutable List.');
+$.CTC49 = 'Incorrect number or type of arguments';
 $.CTC19 = new Isolate.$isolateProperties.ExceptionImplementation('Incorrect number or type of arguments');
-$.CTC47 = 'structured clone of Blob';
+$.CTC50 = 'structured clone of Blob';
 $.CTC6 = new Isolate.$isolateProperties.NotImplementedException('structured clone of Blob');
-$.CTC48 = 0;
-$.CTC49 = new Isolate.$isolateProperties._SimpleClientRect(0, 0, 0, 0);
-$.CTC25 = new Isolate.$isolateProperties.EmptyElementRect(Isolate.$isolateProperties.CTC49, Isolate.$isolateProperties.CTC49, Isolate.$isolateProperties.CTC49, Isolate.$isolateProperties.CTC49, Isolate.$isolateProperties.CTC1);
-$.CTC50 = 'structured clone of RegExp';
-$.CTC4 = new Isolate.$isolateProperties.NotImplementedException('structured clone of RegExp');
+$.CTC25 = new Isolate.$isolateProperties.EmptyElementRect(Isolate.$isolateProperties.CTC42, Isolate.$isolateProperties.CTC42, Isolate.$isolateProperties.CTC42, Isolate.$isolateProperties.CTC42, Isolate.$isolateProperties.CTC1);
 $.CTC51 = 'offsetX is only supported on elements';
 $.CTC17 = new Isolate.$isolateProperties.UnsupportedOperationException('offsetX is only supported on elements');
+$.CTC52 = 'structured clone of RegExp';
+$.CTC4 = new Isolate.$isolateProperties.NotImplementedException('structured clone of RegExp');
 $.CTC20 = new Isolate.$isolateProperties.EventArgs();
-$.CTC52 = 'structured clone of FileList';
+$.CTC53 = 'structured clone of FileList';
 $.CTC7 = new Isolate.$isolateProperties.NotImplementedException('structured clone of FileList');
-$.CTC53 = new Isolate.$isolateProperties.Coordinate(0, 0);
-$.CTC54 = 'Cannot insertRange on immutable List.';
-$.CTC27 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot insertRange on immutable List.');
+$.CTC54 = new Isolate.$isolateProperties.Coordinate(0, 0);
 $.CTC55 = 'Ellipse';
 $.CTC15 = new Isolate.$isolateProperties.ShapeType('Ellipse');
-$.CTC24 = new Isolate.$isolateProperties.IllegalAccessException();
 $.CTC18 = new Isolate.$isolateProperties._UndefinedValue();
-$.CTC56 = null;
-$.CTC0 = new Isolate.$isolateProperties.NullPointerException(null, Isolate.$isolateProperties.CTC1);
+$.CTC24 = new Isolate.$isolateProperties.IllegalAccessException();
+$.CTC56 = 'structured clone of File';
+$.CTC5 = new Isolate.$isolateProperties.NotImplementedException('structured clone of File');
 $.CTC57 = 'structured clone of other type';
 $.CTC10 = new Isolate.$isolateProperties.NotImplementedException('structured clone of other type');
-$.CTC58 = 'structured clone of File';
-$.CTC5 = new Isolate.$isolateProperties.NotImplementedException('structured clone of File');
-$.CTC21 = new Isolate.$isolateProperties.EmptyQueueException();
+$.CTC58 = null;
+$.CTC0 = new Isolate.$isolateProperties.NullPointerException(null, Isolate.$isolateProperties.CTC1);
 $.CTC11 = new Isolate.$isolateProperties.NoMoreElementsException();
+$.CTC21 = new Isolate.$isolateProperties.EmptyQueueException();
 $.CTC59 = 'Cannot removeLast on immutable List.';
 $.CTC12 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot removeLast on immutable List.');
 $.Property_Undefined = Isolate.$isolateProperties.CTC18;
@@ -2262,23 +2268,23 @@ $.$defineNativeClass = function(cls, fields, methods) {
 })({
  is$JavaScriptIndexingBehavior: function() { return false; },
  is$ArrayBufferView: function() { return false; },
- is$_FileListImpl: function() { return false; },
+ is$_BlobImpl: function() { return false; },
  is$ArrayBuffer: function() { return false; },
  is$_ImageDataImpl: function() { return false; },
  is$_ArrayBufferViewImpl: function() { return false; },
  is$IDBKeyRange: function() { return false; },
  is$_FileImpl: function() { return false; },
- is$Blob: function() { return false; },
+ is$_FileListImpl: function() { return false; },
  is$File: function() { return false; },
  toString$0: function() { return $.toStringForNativeObject(this); },
- is$_BlobImpl: function() { return false; },
+ is$Blob: function() { return false; },
  is$Element: function() { return false; },
- is$Collection: function() { return false; },
+ is$ImageData: function() { return false; },
  is$List: function() { return false; },
  is$_ArrayBufferImpl: function() { return false; },
- is$Map: function() { return false; },
+ is$Collection: function() { return false; },
  is$FileList: function() { return false; },
- is$ImageData: function() { return false; },
+ is$Map: function() { return false; },
  hashCode$0: function() { return $.hashCodeForNativeObject(this); }
 });
 
@@ -4648,8 +4654,9 @@ if (tmp.__proto__) {
 }
 Isolate.$pendingClasses = {};
 Isolate.$finishClasses = function(collectedClasses) {
+  var hasOwnProperty = Object.prototype.hasOwnProperty;
   for (var cls in collectedClasses) {
-    if (Object.prototype.hasOwnProperty.call(collectedClasses, cls)) {
+    if (hasOwnProperty.call(collectedClasses, cls)) {
       var desc = collectedClasses[cls];
       Isolate.$isolateProperties[cls] = Isolate.$defineClass(cls, desc[''], desc);
       if (desc['super'] !== "") Isolate.$pendingClasses[cls] = desc['super'];
@@ -4659,7 +4666,8 @@ Isolate.$finishClasses = function(collectedClasses) {
   Isolate.$pendingClasses = {};
   var finishedClasses = {};
   function finishClass(cls) {
-    if (finishedClasses[cls]) return;
+    var hasOwnProperty = Object.prototype.hasOwnProperty;
+    if (hasOwnProperty.call(finishedClasses, cls)) return;
     finishedClasses[cls] = true;
     var superclass = pendingClasses[cls];
     if (!superclass) return;
@@ -4676,7 +4684,6 @@ Isolate.$finishClasses = function(collectedClasses) {
       var newPrototype = new tmp();
       constructor.prototype = newPrototype;
       newPrototype.constructor = constructor;
-      var hasOwnProperty = Object.prototype.hasOwnProperty;
       for (var member in prototype) {
         if (member == '' || member == 'super') continue;
         if (hasOwnProperty.call(prototype, member)) {
