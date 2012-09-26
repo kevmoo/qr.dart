@@ -18,6 +18,7 @@ class Stage extends AttachableObject
   PElement get rootElement => _element;
 
   CanvasRenderingContext2D get ctx {
+    validateNotDisposed();
     if(_ctx == null) {
       _ctx = _canvas.context2d;
     }
@@ -25,6 +26,7 @@ class Stage extends AttachableObject
   }
 
   bool draw(){
+    validateNotDisposed();
     if (_ctx == null) {
       _ctx = _canvas.context2d;
     } else {
@@ -35,6 +37,7 @@ class Stage extends AttachableObject
   }
 
   void childInvalidated(PElement child){
+    validateNotDisposed();
     assert(child == _element);
     _invalidatedEventHandle.fireEvent(EventArgs.empty);
   }

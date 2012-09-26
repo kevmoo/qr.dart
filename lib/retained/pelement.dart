@@ -80,6 +80,7 @@ class PElement extends AttachableObject {
   }
 
   AffineTransform addTransform(){
+    validateNotDisposed();
     var tx = new AffineTransform();
     _transforms.add(tx);
     return tx;
@@ -89,6 +90,7 @@ class PElement extends AttachableObject {
   abstract void drawOverride(CanvasRenderingContext2D ctx);
 
   void invalidateDraw(){
+    validateNotDisposed();
     if(_lastDrawSize != null){
       _lastDrawSize = null;
       _invalidateParent();
@@ -111,12 +113,14 @@ class PElement extends AttachableObject {
 
   void registerParent(ElementParent parent) {
     assert(_parent == null);
+    assert(parent != null);
     _parent = parent;
   }
 
   void disposeInternal(){
     super.disposeInternal();
     _updatedEventHandle.dispose();
+    _invalidatedEventHandle.dispose();
   }
 
   //
