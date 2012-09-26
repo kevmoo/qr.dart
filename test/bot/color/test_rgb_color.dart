@@ -26,9 +26,9 @@ class TestRgbColor {
   }
 
   static void _testInvalid() {
-    expect(() => new RgbColor(null, 0, 0), throwsIllegalArgumentException);
-    expect(() => new RgbColor(0, -1, 0), throwsIllegalArgumentException);
-    expect(() => new RgbColor(0, 0, 256), throwsIllegalArgumentException);
+    expect(() => new RgbColor(null, 0, 0), throwsArgumentError);
+    expect(() => new RgbColor(0, -1, 0), throwsArgumentError);
+    expect(() => new RgbColor(0, 0, 256), throwsArgumentError);
   }
 
   static void _testHslRoundTrip() {
@@ -76,7 +76,7 @@ class TestRgbColor {
   static void _testInvalidHex() {
     var badHex = ['aoeu', 'ffffff', 'fff', '#ffffffff', 'white', '', null];
     badHex.forEach((hex) {
-      expect( () => new RgbColor.fromHex(hex), throwsIllegalArgumentException);
+      expect( () => new RgbColor.fromHex(hex), throwsArgumentError);
     });
   }
 

@@ -67,11 +67,11 @@ class TestArray2d {
     expect(() => new Array2d<int>.readonlyFrom(2, null),
         throwsNullArgumentException);
     expect(() => new Array2d<int>.readonlyFrom(0, [0,1,2,3]),
-        throwsIllegalArgumentException);
+        throwsArgumentError);
     expect(() => new Array2d<int>.readonlyFrom(3, [0,1,2,3]),
-        throwsIllegalArgumentException);
+        throwsArgumentError);
     expect(() => new Array2d<int>.readonlyFrom(3, []),
-        throwsIllegalArgumentException);
+        throwsArgumentError);
 
     // 0 is fine with an empty source
     new Array2d<int>.readonlyFrom(0, []);

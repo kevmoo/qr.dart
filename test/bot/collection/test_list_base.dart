@@ -107,7 +107,7 @@ class TestListBase extends ListBase<int> {
 
     expect(roc([1, 2, 3, 4]).getRange(1, 2), orderedEquals([2, 3]));
 
-    expect(() => mt.getRange(0, -1), throwsIllegalArgumentException);
+    expect(() => mt.getRange(0, -1), throwsArgumentError);
 
     expect(() => mt.getRange(-1, 1), throwsIndexOutOfRangeException);
     expect(() => mt.getRange(1, 1), throwsIndexOutOfRangeException);

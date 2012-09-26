@@ -23,8 +23,8 @@ class TestHslColor {
   }
 
   static void _testInvalid() {
-    expect(() => new HslColor(null, 0, 0), throwsIllegalArgumentException);
-    expect(() => new HslColor(0, -1, 0), throwsIllegalArgumentException);
-    expect(() => new HslColor(0, 0, 256), throwsIllegalArgumentException);
+    expect(() => new HslColor(null, 0, 0), throwsArgumentError);
+    expect(() => new HslColor(0, -1, 0), throwsArgumentError);
+    expect(() => new HslColor(0, 0, 256), throwsArgumentError);
   }
 }

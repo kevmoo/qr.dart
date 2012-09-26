@@ -26,14 +26,14 @@ class TestNumberEnumerable {
     var value = n$([1,2,3]).min();
     expect(value, equals(1));
 
-    expect(() => n$([1,2,3,null]).min(), throwsIllegalArgumentException);
+    expect(() => n$([1,2,3,null]).min(), throwsArgumentError);
   }
 
   static void _testMax() {
     var value = n$([1,2,3]).max();
     expect(value, equals(3));
 
-    expect(() => n$([1,2,3,null]).max(), throwsIllegalArgumentException);
+    expect(() => n$([1,2,3,null]).max(), throwsArgumentError);
   }
 
   static void _testAverage() {
