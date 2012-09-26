@@ -6,7 +6,7 @@
 libs=`ls lib/*.dart`
 cmd="dartdoc
 --omit-generation-time
---out doc
+--out build/doc
 --verbose
 --exclude-lib unittest
 $libs"
