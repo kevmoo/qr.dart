@@ -1,6 +1,7 @@
 name: bot
 author: Kevin Moore <kevin@thinkpixellab.com>
 homepage: https://github.com/kevmoo/bot.dart
+version: 0.0.1
 dependencies:
   unittest:
     sdk: unittest
