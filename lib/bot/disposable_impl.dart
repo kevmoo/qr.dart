@@ -10,6 +10,11 @@ class DisposableImpl implements Disposable {
     }
   }
 
+  // TODO: throw an object disposed exception?
+  void validateNotDisposed() {
+    assert(!_disposed);
+  }
+
   bool get isDisposed => _disposed;
 
   /**

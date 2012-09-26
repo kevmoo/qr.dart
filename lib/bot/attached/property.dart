@@ -24,13 +24,9 @@ class Property<T> extends Attachable {
     obj._set(this, value);
   }
 
-  void clear(AttachableObject obj){
-    obj._remove(this);
-  }
+  void clear(AttachableObject obj) => obj._remove(this);
 
-  bool isSet(AttachableObject obj){
-    return obj._isSet(this);
-  }
+  bool isSet(AttachableObject obj) => obj._isSet(this);
 
   GlobalId addHandler(AttachableObject obj, Action1<Property> handler){
     return obj._addHandler(this, handler);

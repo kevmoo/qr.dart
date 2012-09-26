@@ -105,5 +105,7 @@ class TestPropertyEventIntegration extends AttachableObject {
     expect(obj.age, equals(0));
     expect(nh.eventCount, equals(3));
     expect(ah.eventCount, equals(2));
+
+    obj.dispose();
   }
 }

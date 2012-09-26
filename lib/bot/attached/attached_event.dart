@@ -11,7 +11,5 @@ class AttachedEvent<T> extends Attachable {
     return obj._removeHandler(this, handlerId);
   }
 
-  void fireEvent(AttachableObject obj, T args) {
-    obj._fireEvent(this, args);
-  }
+  void fireEvent(AttachableObject obj, T args) => obj._fireEvent(this, args);
 }

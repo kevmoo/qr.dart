@@ -7,15 +7,20 @@ class AttachableObject extends DisposableImpl {
 
   void disposeInternal(){
     super.disposeInternal();
-    //TODO: dispose of _eventHandlers
+    _eventHandlers.forEach((a, e) {
+      e.dispose();
+    });
+    _eventHandlers.clear();
   }
 
   GlobalId _addHandler(Attachable property, Action1 watcher) {
+    validateNotDisposed();
     var handle = _eventHandlers.putIfAbsent(property, () => new EventHandle());
     return handle.add(watcher);
   }
 
   bool _removeHandler(Attachable property, GlobalId handlerId){
+    validateNotDisposed();
     requireArgumentNotNull(handlerId, 'handlerId');
     var handle = _eventHandlers[property];
     if(handle != null){
@@ -25,6 +30,7 @@ class AttachableObject extends DisposableImpl {
   }
 
   void _fireEvent(Attachable attachable, Dynamic args) {
+    validateNotDisposed();
     var handle = _eventHandlers[attachable];
     if(handle != null){
       handle.fireEvent(args);
@@ -32,16 +38,19 @@ class AttachableObject extends DisposableImpl {
   }
 
   void _set(Property key, Object value){
+    validateNotDisposed();
     assert(!identical(value, Property.Undefined));
     _propertyValues[key] = value;
     _fireChange(key);
   }
 
   bool _isSet(Property key){
+    validateNotDisposed();
     return _propertyValues.containsKey(key);
   }
 
   void _remove(Property key){
+    validateNotDisposed();
     var exists = _isSet(key);
     if(exists){
       // NOTE: remove returns the removed item, which could be null. Bleh.
@@ -51,10 +60,9 @@ class AttachableObject extends DisposableImpl {
     }
   }
 
-  Object _getValueOrUndefined(
-                              Property key,
-                              AttachableObject obj,
+  Object _getValueOrUndefined(Property key, AttachableObject obj,
                               Func1<AttachableObject, Object> ifAbsent){
+    validateNotDisposed();
     if(_isSet(key)){
       return _propertyValues[key];
     }
@@ -69,6 +77,7 @@ class AttachableObject extends DisposableImpl {
   }
 
   void _fireChange(Property key) {
+    validateNotDisposed();
     var handle = _eventHandlers[key];
     if(handle != null){
       handle.fireEvent(key);
