@@ -58,7 +58,7 @@ void <strong>error</strong>(String messageText, String stack) <a class="anchor-l
 
 <pre class="source">
 void error(String messageText, String stack) {
-  result = _ERROR;
+  result = ERROR;
   message = messageText;
   stackTrace = stack;
   _complete();
@@ -75,13 +75,13 @@ void <strong>fail</strong>(String messageText, String stack) <a class="anchor-li
 <pre class="source">
 void fail(String messageText, String stack) {
   if (result != null) {
-    if (result == _PASS) {
+    if (result == PASS) {
       error('Test failed after initially passing: $messageText', stack);
-    } else if (result == _FAIL) {
+    } else if (result == FAIL) {
       error('Test failed more than once: $messageText', stack);
     }
   } else {
-    result = _FAIL;
+    result = FAIL;
     message = messageText;
     stackTrace = stack;
     _complete();
@@ -109,7 +109,7 @@ void <strong>pass</strong>() <a class="anchor-link" href="#pass"
 
 <pre class="source">
 void pass() {
-  result = _PASS;
+  result = PASS;
   _complete();
 }
 </pre>
@@ -270,7 +270,7 @@ String         <strong>result</strong> <a class="anchor-link"
             title="Permalink to TestCase.result">#</a>
         </h4>
         <div class="doc">
-<p>One of <code>_PASS</code>, <code>_FAIL</code>, <code>_ERROR</code>, or <code>null</code> if the test hasn't run yet.</p>
+<p>One of <a class="crossref" href="../unittest.html#PASS">PASS</a>, <a class="crossref" href="../unittest.html#FAIL">FAIL</a>, <a class="crossref" href="../unittest.html#ERROR">ERROR</a>, or <code>null</code> if the test hasn't run yet.</p>
 <pre class="source">
 String result;
 </pre>

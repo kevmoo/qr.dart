@@ -98,7 +98,7 @@ void clear(AttachableObject obj){
 <pre class="source">
 T get(AttachableObject obj, [Func1&lt;AttachableObject, T&gt; ifAbsent = null]){
   var coreValue = getCore(obj, ifAbsent);
-  if(coreValue !== Undefined){
+  if(!identical(coreValue, Undefined)){
     return coreValue;
   }
   else{
@@ -155,7 +155,7 @@ void <strong>set</strong>(<a href="../bot/AttachableObject.html">AttachableObjec
 
 <pre class="source">
 void set(AttachableObject obj, T value){
-  assert(value !== Undefined);
+  assert(!identical(value, Undefined));
   obj._set(this, value);
 }
 </pre>

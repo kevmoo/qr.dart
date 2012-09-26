@@ -116,7 +116,7 @@ bool <strong>operator ==</strong>(<a href="../bot_async/FutureValueResult.html">
 
 <pre class="source">
 bool operator ==(FutureValueResult other) {
-  return other !== null &amp;&amp;
+  return other != null &amp;&amp;
       other.value == value &amp;&amp; other.exception == exception;
 }
 </pre>

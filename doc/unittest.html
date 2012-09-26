@@ -1615,6 +1615,45 @@ Matcher wrapMatcher(x) {
 </div>
 </div>
 <h3>Fields</h3>
+<div class="field"><h4 id="ERROR">
+<span class="show-code">Code</span>
+var         <strong>ERROR</strong> <a class="anchor-link"
+            href="#ERROR"
+            title="Permalink to ERROR">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+const ERROR = 'error';
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="FAIL">
+<span class="show-code">Code</span>
+var         <strong>FAIL</strong> <a class="anchor-link"
+            href="#FAIL"
+            title="Permalink to FAIL">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+const FAIL  = 'fail';
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="PASS">
+<span class="show-code">Code</span>
+var         <strong>PASS</strong> <a class="anchor-link"
+            href="#PASS"
+            title="Permalink to PASS">#</a>
+        </h4>
+        <div class="doc">
+<p>Test case result strings.</p>
+<pre class="source">
+const PASS  = 'pass';
+</pre>
+</div>
+</div>
 <div class="field"><h4 id="anything">
 <span class="show-code">Code</span>
 <a href="unittest/Matcher.html">Matcher</a>         <strong>anything</strong> <a class="anchor-link"
@@ -1698,6 +1737,19 @@ const Matcher happenedOnce = const _TimesMatcher(1, 1);
 </pre>
 </div>
 </div>
+<div class="field"><h4 id="isArgumentError">
+<span class="show-code">Code</span>
+var         <strong>isArgumentError</strong> <a class="anchor-link"
+            href="#isArgumentError"
+            title="Permalink to isArgumentError">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher for ArgumentErrors.</p>
+<pre class="source">
+const isArgumentError = const _ArgumentError();
+</pre>
+</div>
+</div>
 <div class="field"><h4 id="isEmpty">
 <span class="show-code">Code</span>
 <a href="unittest/Matcher.html">Matcher</a>         <strong>isEmpty</strong> <a class="anchor-link"
@@ -1747,19 +1799,6 @@ var         <strong>isFormatException</strong> <a class="anchor-link"
 <p>A matcher for FormatExceptions.</p>
 <pre class="source">
 const isFormatException = const _FormatException();
-</pre>
-</div>
-</div>
-<div class="field"><h4 id="isIllegalArgumentException">
-<span class="show-code">Code</span>
-var         <strong>isIllegalArgumentException</strong> <a class="anchor-link"
-            href="#isIllegalArgumentException"
-            title="Permalink to isIllegalArgumentException">#</a>
-        </h4>
-        <div class="doc">
-<p>A matcher for IllegalArgumentExceptions.</p>
-<pre class="source">
-const isIllegalArgumentException = const _IllegalArgumentException();
 </pre>
 </div>
 </div>
@@ -2030,6 +2069,20 @@ const Matcher throws = const _Throws();
 </pre>
 </div>
 </div>
+<div class="field"><h4 id="throwsArgumentError">
+<span class="show-code">Code</span>
+<a href="unittest/Matcher.html">Matcher</a>         <strong>throwsArgumentError</strong> <a class="anchor-link"
+            href="#throwsArgumentError"
+            title="Permalink to throwsArgumentError">#</a>
+        </h4>
+        <div class="doc">
+<p>A matcher for functions that throw ArgumentError</p>
+<pre class="source">
+const Matcher throwsArgumentError =
+    const _Throws(isArgumentError);
+</pre>
+</div>
+</div>
 <div class="field"><h4 id="throwsException">
 <span class="show-code">Code</span>
 <a href="unittest/Matcher.html">Matcher</a>         <strong>throwsException</strong> <a class="anchor-link"
@@ -2054,20 +2107,6 @@ const Matcher throwsException = const _Throws(isException);
 <pre class="source">
 const Matcher throwsFormatException =
     const _Throws(isFormatException);
-</pre>
-</div>
-</div>
-<div class="field"><h4 id="throwsIllegalArgumentException">
-<span class="show-code">Code</span>
-<a href="unittest/Matcher.html">Matcher</a>         <strong>throwsIllegalArgumentException</strong> <a class="anchor-link"
-            href="#throwsIllegalArgumentException"
-            title="Permalink to throwsIllegalArgumentException">#</a>
-        </h4>
-        <div class="doc">
-<p>A matcher for functions that throw IllegalArgumentException</p>
-<pre class="source">
-const Matcher throwsIllegalArgumentException =
-    const _Throws(isIllegalArgumentException);
 </pre>
 </div>
 </div>

@@ -171,7 +171,7 @@ bool <strong>operator ==</strong>(<a href="../bot/AffineTransform.html">AffineTr
 
 <pre class="source">
 bool operator ==(AffineTransform other) {
-  return other !== null &amp;&amp;
+  return other != null &amp;&amp;
       _m00 == other._m00 &amp;&amp; _m01 == other._m01 &amp;&amp; _m02 == other._m02 &amp;&amp;
       _m10 == other._m10 &amp;&amp; _m11 == other._m11 &amp;&amp; _m12 == other._m12;
 }

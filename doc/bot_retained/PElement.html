@@ -181,7 +181,7 @@ bool <strong>hasVisualChild</strong>(<a href="../bot_retained/PElement.html">PEl
 bool hasVisualChild(PElement element){
   var length = visualChildCount;
   for(var i=0;i&lt;length;i++){
-    if(element === getVisualChild(i)){
+    if(identical(element, getVisualChild(i))){
       return true;
     }
   }
