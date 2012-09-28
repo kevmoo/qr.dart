@@ -1,9 +1,7 @@
 class Grouping<K extends Hashable, V> {
-  final HashMap<K, List<V>> _values;
+  final HashMap<K, List<V>> _values = new HashMap<K, List<V>>();
 
-  Grouping(Iterable<V> source, [Func1<V, K> keyFunc = null]) :
-    // DARTBUG: http://code.google.com/p/dart/issues/detail?id=5350
-    _values = new HashMap<K, List<V>>() {
+  Grouping(Iterable<V> source, [Func1<V, K> keyFunc = null]) {
     if(keyFunc == null) {
       keyFunc = (v) => v;
     }
