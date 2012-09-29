@@ -2,7 +2,7 @@
         <html>
         <head>
                 <meta charset="utf-8">
-        <title>PElement Class / bot_retained Library / Dart Documentation</title>
+        <title>PElement class / bot_retained Library / Dart Documentation</title>
         <link rel="stylesheet" type="text/css"
             href="../styles.css">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
@@ -27,7 +27,7 @@
 </div>
 <div class="content">
         <h2><strong>PElement</strong>
-          Class
+          class
         </h2>
         
 <div class="doc">
@@ -60,6 +60,7 @@ PElement(this._width, this._height, [this.cacheEnabled = false]);
 
 <pre class="source">
 AffineTransform addTransform(){
+  validateNotDisposed();
   var tx = new AffineTransform();
   _transforms.add(tx);
   return tx;
@@ -77,6 +78,7 @@ void <strong>disposeInternal</strong>() <a class="anchor-link" href="#disposeInt
 void disposeInternal(){
   super.disposeInternal();
   _updatedEventHandle.dispose();
+  _invalidatedEventHandle.dispose();
 }
 </pre>
 </div>
@@ -115,14 +117,10 @@ void drawCore(CanvasRenderingContext2D ctx){
 </div>
 </div>
 <div class="method"><h4 id="drawOverride">
-<span class="show-code">Code</span>
-void <strong>drawOverride</strong>(CanvasRenderingContext2D ctx) <a class="anchor-link" href="#drawOverride"
+abstract void <strong>drawOverride</strong>(CanvasRenderingContext2D ctx) <a class="anchor-link" href="#drawOverride"
               title="Permalink to PElement.drawOverride">#</a></h4>
 <div class="doc">
 
-<pre class="source">
-abstract void drawOverride(CanvasRenderingContext2D ctx);
-</pre>
 </div>
 </div>
 <div class="method"><h4 id="getTransform">
@@ -224,6 +222,7 @@ void <strong>invalidateDraw</strong>() <a class="anchor-link" href="#invalidateD
 
 <pre class="source">
 void invalidateDraw(){
+  validateNotDisposed();
   if(_lastDrawSize != null){
     _lastDrawSize = null;
     _invalidateParent();
@@ -263,6 +262,7 @@ void <strong>registerParent</strong>(<a href="../bot_retained/ElementParent.html
 <pre class="source">
 void registerParent(ElementParent parent) {
   assert(_parent == null);
+  assert(parent != null);
   _parent = parent;
 }
 </pre>

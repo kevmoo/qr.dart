@@ -2,7 +2,7 @@
         <html>
         <head>
                 <meta charset="utf-8">
-        <title>DisposableImpl Class / bot Library / Dart Documentation</title>
+        <title>DisposableImpl class / bot Library / Dart Documentation</title>
         <link rel="stylesheet" type="text/css"
             href="../styles.css">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
@@ -27,7 +27,7 @@
 </div>
 <div class="content">
         <h2><strong>DisposableImpl</strong>
-          Class
+          class
         </h2>
         
 <div class="doc">
@@ -79,6 +79,19 @@ bool <strong>get isDisposed</strong>() <a class="anchor-link" href="#isDisposed"
 
 <pre class="source">
 bool get isDisposed =&gt; _disposed;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="validateNotDisposed">
+<span class="show-code">Code</span>
+void <strong>validateNotDisposed</strong>() <a class="anchor-link" href="#validateNotDisposed"
+              title="Permalink to DisposableImpl.validateNotDisposed">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+void validateNotDisposed() {
+  assert(!_disposed);
+}
 </pre>
 </div>
 </div>

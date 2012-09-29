@@ -2,7 +2,7 @@
         <html>
         <head>
                 <meta charset="utf-8">
-        <title>Grouping&lt;K, V&gt; Class / bot Library / Dart Documentation</title>
+        <title>Grouping&lt;K, V&gt; class / bot Library / Dart Documentation</title>
         <link rel="stylesheet" type="text/css"
             href="../styles.css">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
@@ -27,7 +27,7 @@
 </div>
 <div class="content">
         <h2><strong>Grouping&lt;K extends Hashable, V&gt;</strong>
-          Class
+          class
         </h2>
         
 <div class="doc">
@@ -41,9 +41,7 @@ new <strong>Grouping</strong>(Iterable&lt;<a href="../bot/Grouping.html">V</a>&g
 <div class="doc">
 
 <pre class="source">
-Grouping(Iterable&lt;V&gt; source, [Func1&lt;V, K&gt; keyFunc = null]) :
-  // DARTBUG: http://code.google.com/p/dart/issues/detail?id=5350
-  _values = new HashMap&lt;K, List&lt;V&gt;&gt;() {
+Grouping(Iterable&lt;V&gt; source, [Func1&lt;V, K&gt; keyFunc = null]) {
   if(keyFunc == null) {
     keyFunc = (v) =&gt; v;
   }

@@ -2,7 +2,7 @@
         <html>
         <head>
                 <meta charset="utf-8">
-        <title>Stage Class / bot_retained Library / Dart Documentation</title>
+        <title>Stage class / bot_retained Library / Dart Documentation</title>
         <link rel="stylesheet" type="text/css"
             href="../styles.css">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
@@ -27,7 +27,7 @@
 </div>
 <div class="content">
         <h2><strong>Stage</strong>
-          Class
+          class
         </h2>
         
 <div class="doc">
@@ -62,6 +62,7 @@ void <strong>childInvalidated</strong>(<a href="../bot_retained/PElement.html">P
 
 <pre class="source">
 void childInvalidated(PElement child){
+  validateNotDisposed();
   assert(child == _element);
   _invalidatedEventHandle.fireEvent(EventArgs.empty);
 }
@@ -76,6 +77,7 @@ CanvasRenderingContext2D <strong>get ctx</strong>() <a class="anchor-link" href=
 
 <pre class="source">
 CanvasRenderingContext2D get ctx {
+  validateNotDisposed();
   if(_ctx == null) {
     _ctx = _canvas.context2d;
   }
@@ -106,6 +108,7 @@ bool <strong>draw</strong>() <a class="anchor-link" href="#draw"
 
 <pre class="source">
 bool draw(){
+  validateNotDisposed();
   if (_ctx == null) {
     _ctx = _canvas.context2d;
   } else {

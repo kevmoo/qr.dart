@@ -2,7 +2,7 @@
         <html>
         <head>
                 <meta charset="utf-8">
-        <title>ListBase&lt;T&gt; Class / bot Library / Dart Documentation</title>
+        <title>ListBase&lt;T&gt; class / bot Library / Dart Documentation</title>
         <link rel="stylesheet" type="text/css"
             href="../styles.css">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
@@ -27,7 +27,7 @@
 </div>
 <div class="content">
         <h2><strong>ListBase&lt;T&gt;</strong>
-          Class
+          class
         </h2>
         
 <div class="doc">
@@ -293,14 +293,10 @@ void set length(int newLength) {
 </div>
 </div>
 <div class="method"><h4 id="length">
-<span class="show-code">Code</span>
-int <strong>get length</strong>() <a class="anchor-link" href="#length"
+abstract int <strong>get length</strong>() <a class="anchor-link" href="#length"
               title="Permalink to ListBase&lt;T&gt;.get length">#</a></h4>
 <div class="doc">
 <p>Returns the number of elements in this collection.</p>
-<pre class="source">
-abstract int get length;
-</pre>
 </div>
 </div>
 <div class="method"><h4 id="operator []=">
@@ -317,17 +313,13 @@ void operator []=(int index, T value) {
 </div>
 </div>
 <div class="method"><h4 id="operator []">
-<span class="show-code">Code</span>
-<a href="../bot/ListBase.html">T</a> <strong>operator []</strong>(int index) <a class="anchor-link" href="#operator []"
+abstract <a href="../bot/ListBase.html">T</a> <strong>operator []</strong>(int index) <a class="anchor-link" href="#operator []"
               title="Permalink to ListBase&lt;T&gt;.operator []">#</a></h4>
 <div class="doc">
 <p>Returns the element at the given 
 <span class="param">index</span> in the list or throws
 an <code>IndexOutOfRangeException</code> if 
 <span class="param">index</span> is out of bounds.</p>
-<pre class="source">
-abstract T operator [](int index);
-</pre>
 </div>
 </div>
 <div class="method"><h4 id="removeAt">
