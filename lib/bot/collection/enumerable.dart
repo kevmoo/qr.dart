@@ -227,26 +227,17 @@ class Enumerable<T> implements Collection<T> {
   }
 
   HashMap toHashMap(Func1<T, Object> valueFunc, [Func1<T, Hashable> keyFunc]) {
-    Iterable source;
     if(keyFunc == null) {
       keyFunc = (a) => a;
     }
 
-    var e;
-    bool duplicate;
-    Func populate = () {
-      duplicate = false;
-      return valueFunc(e);
-    };
-
     final map = new HashMap();
-    for(e in this) {
+    for(final e in this) {
       final k = keyFunc(e);
-      duplicate = true;
-      map.putIfAbsent(k, populate);
-      if(duplicate) {
+      if(map.containsKey(k)) {
         throw new UnsupportedOperationException("The key '$k' is duplicated");
       }
+      map[k] = valueFunc(e);
     }
     return map;
   }
