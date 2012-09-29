@@ -1,9 +1,6 @@
 #!/bin/bash
 PACK_DIR=`pwd`/packages/
-dart2js='pkg/compiler/implementation/dart2js.dart'
-core_cmd="dart
---heap_growth_rate=32
-$DART_SDK/$dart2js
+core_cmd="dart2js
 --package-root=$PACK_DIR
 --throw-on-error
 --minify
