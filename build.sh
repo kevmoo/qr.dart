@@ -3,7 +3,6 @@ PACK_DIR=`pwd`/packages/
 core_cmd="dart2js
 --package-root=$PACK_DIR
 --throw-on-error
---minify
 -v"
 
 function build {

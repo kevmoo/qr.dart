@@ -342,7 +342,7 @@ $$.HashMapImplementation = {"":
       throw $.ioore(newIndex);
     t1[newIndex] = key;
     t1 = this._values;
-    if (newIndex < 0 || newIndex >= t1.length)
+    if (newIndex >= t1.length)
       throw $.ioore(newIndex);
     t1[newIndex] = value;
   }
@@ -374,11 +374,11 @@ $$.HashMapImplementation = {"":
   if (t1[index] == null || t1[index] === $.CTC16)
     this._numberOfEntries = this._numberOfEntries + 1;
   t1 = this._keys;
-  if (index < 0 || index >= t1.length)
+  if (index >= t1.length)
     throw $.ioore(index);
   t1[index] = key;
   t1 = this._values;
-  if (index < 0 || index >= t1.length)
+  if (index >= t1.length)
     throw $.ioore(index);
   t1[index] = value;
 },
@@ -431,7 +431,7 @@ $$.HashMapImplementation = {"":
     var value = t1[index];
     t1[index] = null;
     t1 = this._keys;
-    if (index < 0 || index >= t1.length)
+    if (index >= t1.length)
       throw $.ioore(index);
     t1[index] = $.CTC16;
     this._numberOfDeleted = this._numberOfDeleted + 1;
@@ -5874,7 +5874,7 @@ $$.QrBitBuffer = {"":
           case 4:
             state = 0;
             t2 = $.or(t5, t2);
-            if (bufIndex < 0 || bufIndex >= t1.length)
+            if (bufIndex >= t1.length)
               throw $.ioore(bufIndex);
             t1[bufIndex] = t2;
         }
@@ -6867,12 +6867,12 @@ $$.QrCode = {"":
             dark = false;
           if ($.QrUtil_getMask(maskPattern, row, t5) === true)
             dark = !dark;
-          if (row < 0 || row >= t2.length)
+          if (row >= t2.length)
             throw $.ioore(row);
           t3 = t2[row];
           if (typeof t3 !== 'object' || t3 === null || (t3.constructor !== Array || !!t3.immutable$list) && !t3.is$JavaScriptIndexingBehavior())
             return this._mapData$2$bailout(4, c, maskPattern, bitIndex, data, col, inc0, t5, row, t1, inc, dark, t2, t3, byteIndex);
-          if (t5 < 0 || t5 >= t3.length)
+          if (t5 >= t3.length)
             throw $.ioore(t5);
           t3[t5] = dark;
           --bitIndex;
@@ -7002,7 +7002,7 @@ $$.QrCode = {"":
                                       dark = false;
                                     if ($.QrUtil_getMask(maskPattern, row, t5) === true)
                                       dark = dark !== true;
-                                    if (row < 0 || row >= t2.length)
+                                    if (row >= t2.length)
                                       throw $.ioore(row);
                                     t3 = t2[row];
                                   case 4:
@@ -12737,13 +12737,13 @@ $.DualPivotQuicksort__dualPivotQuicksort = function(a, left, right, compare) {
     el5 = el4;
     el4 = t0;
   }
-  if (index1 < 0 || index1 >= a.length)
+  if (index1 >= a.length)
     throw $.ioore(index1);
   a[index1] = el1;
-  if (index3 < 0 || index3 >= a.length)
+  if (index3 >= a.length)
     throw $.ioore(index3);
   a[index3] = el3;
-  if (index5 < 0 || index5 >= a.length)
+  if (index5 >= a.length)
     throw $.ioore(index5);
   a[index5] = el5;
   if (left !== (left | 0))
@@ -12752,7 +12752,7 @@ $.DualPivotQuicksort__dualPivotQuicksort = function(a, left, right, compare) {
   if (left < 0 || left >= t1)
     throw $.ioore(left);
   var t2 = a[left];
-  if (index2 < 0 || index2 >= t1)
+  if (index2 >= t1)
     throw $.ioore(index2);
   a[index2] = t2;
   if (right !== (right | 0))
@@ -12761,7 +12761,7 @@ $.DualPivotQuicksort__dualPivotQuicksort = function(a, left, right, compare) {
   if (right < 0 || right >= t2)
     throw $.ioore(right);
   var t3 = a[right];
-  if (index4 < 0 || index4 >= t2)
+  if (index4 >= t2)
     throw $.ioore(index4);
   a[index4] = t3;
   var less = left + 1;
@@ -12787,10 +12787,10 @@ $.DualPivotQuicksort__dualPivotQuicksort = function(a, left, right, compare) {
           if (less < 0 || less >= t1)
             throw $.ioore(less);
           t2 = a[less];
-          if (k < 0 || k >= t1)
+          if (k >= t1)
             throw $.ioore(k);
           a[k] = t2;
-          if (less < 0 || less >= a.length)
+          if (less >= a.length)
             throw $.ioore(less);
           a[less] = ak;
         }
@@ -12815,30 +12815,30 @@ $.DualPivotQuicksort__dualPivotQuicksort = function(a, left, right, compare) {
               if (less < 0 || less >= t2)
                 throw $.ioore(less);
               t1 = a[less];
-              if (k < 0 || k >= t2)
+              if (k >= t2)
                 throw $.ioore(k);
               a[k] = t1;
               t1 = a.length;
-              if (great < 0 || great >= t1)
+              if (great >= t1)
                 throw $.ioore(great);
               t3 = a[great];
-              if (less < 0 || less >= t1)
+              if (less >= t1)
                 throw $.ioore(less);
               a[less] = t3;
-              if (great < 0 || great >= a.length)
+              if (great >= a.length)
                 throw $.ioore(great);
               a[great] = ak;
               great = great0;
               less = less0;
               break;
             } else {
-              if (great < 0 || great >= t2)
+              if (great >= t2)
                 throw $.ioore(great);
               t1 = a[great];
-              if (k < 0 || k >= t2)
+              if (k >= t2)
                 throw $.ioore(k);
               a[k] = t1;
-              if (great < 0 || great >= a.length)
+              if (great >= a.length)
                 throw $.ioore(great);
               a[great] = ak;
               great = great0;
@@ -12862,10 +12862,10 @@ $.DualPivotQuicksort__dualPivotQuicksort = function(a, left, right, compare) {
           if (less < 0 || less >= t1)
             throw $.ioore(less);
           t2 = a[less];
-          if (k < 0 || k >= t1)
+          if (k >= t1)
             throw $.ioore(k);
           a[k] = t2;
-          if (less < 0 || less >= a.length)
+          if (less >= a.length)
             throw $.ioore(less);
           a[less] = ak;
         }
@@ -12882,7 +12882,7 @@ $.DualPivotQuicksort__dualPivotQuicksort = function(a, left, right, compare) {
               break;
             continue;
           } else {
-            if (great < 0 || great >= a.length)
+            if (great >= a.length)
               throw $.ioore(great);
             t1 = $.ltB(compare.call$2(a[great], el2), 0);
             great0 = great - 1;
@@ -12893,29 +12893,29 @@ $.DualPivotQuicksort__dualPivotQuicksort = function(a, left, right, compare) {
               if (less < 0 || less >= t2)
                 throw $.ioore(less);
               t1 = a[less];
-              if (k < 0 || k >= t2)
+              if (k >= t2)
                 throw $.ioore(k);
               a[k] = t1;
               t1 = a.length;
-              if (great < 0 || great >= t1)
+              if (great >= t1)
                 throw $.ioore(great);
               t3 = a[great];
-              if (less < 0 || less >= t1)
+              if (less >= t1)
                 throw $.ioore(less);
               a[less] = t3;
-              if (great < 0 || great >= a.length)
+              if (great >= a.length)
                 throw $.ioore(great);
               a[great] = ak;
               great = great0;
               less = less0;
             } else {
-              if (great < 0 || great >= t2)
+              if (great >= t2)
                 throw $.ioore(great);
               t1 = a[great];
-              if (k < 0 || k >= t2)
+              if (k >= t2)
                 throw $.ioore(k);
               a[k] = t1;
-              if (great < 0 || great >= a.length)
+              if (great >= a.length)
                 throw $.ioore(great);
               a[great] = ak;
               great = great0;
@@ -12931,10 +12931,10 @@ $.DualPivotQuicksort__dualPivotQuicksort = function(a, left, right, compare) {
   if (t1 < 0 || t1 >= t2)
     throw $.ioore(t1);
   t3 = a[t1];
-  if (left < 0 || left >= t2)
+  if (left >= t2)
     throw $.ioore(left);
   a[left] = t3;
-  if (t1 < 0 || t1 >= a.length)
+  if (t1 >= a.length)
     throw $.ioore(t1);
   a[t1] = el2;
   t1 = great + 1;
@@ -12944,10 +12944,10 @@ $.DualPivotQuicksort__dualPivotQuicksort = function(a, left, right, compare) {
   if (t1 < 0 || t1 >= t3)
     throw $.ioore(t1);
   var t4 = a[t1];
-  if (right < 0 || right >= t3)
+  if (right >= t3)
     throw $.ioore(right);
   a[right] = t4;
-  if (t1 < 0 || t1 >= a.length)
+  if (t1 >= a.length)
     throw $.ioore(t1);
   a[t1] = el4;
   $.DualPivotQuicksort__doSort(a, left, less - 2, compare);
@@ -12987,10 +12987,10 @@ $.DualPivotQuicksort__dualPivotQuicksort = function(a, left, right, compare) {
           if (less < 0 || less >= t1)
             throw $.ioore(less);
           t2 = a[less];
-          if (k < 0 || k >= t1)
+          if (k >= t1)
             throw $.ioore(k);
           a[k] = t2;
-          if (less < 0 || less >= a.length)
+          if (less >= a.length)
             throw $.ioore(less);
           a[less] = ak;
         }
@@ -13007,7 +13007,7 @@ $.DualPivotQuicksort__dualPivotQuicksort = function(a, left, right, compare) {
               break;
             continue;
           } else {
-            if (great < 0 || great >= a.length)
+            if (great >= a.length)
               throw $.ioore(great);
             t1 = $.ltB(compare.call$2(a[great], el2), 0);
             great0 = great - 1;
@@ -13018,29 +13018,29 @@ $.DualPivotQuicksort__dualPivotQuicksort = function(a, left, right, compare) {
               if (less < 0 || less >= t2)
                 throw $.ioore(less);
               t1 = a[less];
-              if (k < 0 || k >= t2)
+              if (k >= t2)
                 throw $.ioore(k);
               a[k] = t1;
               t1 = a.length;
-              if (great < 0 || great >= t1)
+              if (great >= t1)
                 throw $.ioore(great);
               t3 = a[great];
-              if (less < 0 || less >= t1)
+              if (less >= t1)
                 throw $.ioore(less);
               a[less] = t3;
-              if (great < 0 || great >= a.length)
+              if (great >= a.length)
                 throw $.ioore(great);
               a[great] = ak;
               great = great0;
               less = less0;
             } else {
-              if (great < 0 || great >= t2)
+              if (great >= t2)
                 throw $.ioore(great);
               t1 = a[great];
-              if (k < 0 || k >= t2)
+              if (k >= t2)
                 throw $.ioore(k);
               a[k] = t1;
-              if (great < 0 || great >= a.length)
+              if (great >= a.length)
                 throw $.ioore(great);
               a[great] = ak;
               great = great0;
