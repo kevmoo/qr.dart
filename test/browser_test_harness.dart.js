@@ -4471,19 +4471,15 @@ $$.Enumerable = {"":
   return this.toHashSet$1(null)
 },
  toHashMap$2: function(valueFunc, keyFunc) {
-  var t1 = {};
   if (keyFunc == null)
     keyFunc = new $.Enumerable_toHashMap_anon();
-  t1.duplicate_1 = null;
-  var populate = new $.Enumerable_toHashMap_anon0(t1, valueFunc, null);
   var map = $.HashMapImplementation$();
-  for (var t2 = $.iterator(this), e = null; t2.hasNext$0() === true;) {
-    e = t2.next$0();
-    var k = keyFunc.call$1(e);
-    t1.duplicate_1 = true;
-    map.putIfAbsent$2(k, populate);
-    if (t1.duplicate_1 === true)
+  for (var t1 = $.iterator(this); t1.hasNext$0() === true;) {
+    var t2 = t1.next$0();
+    var k = keyFunc.call$1(t2);
+    if (map.containsKey$1(k) === true)
       throw $.$$throw($.UnsupportedOperationException$('The key \'' + $.S(k) + '\' is duplicated'));
+    map.operator$indexSet$2(k, valueFunc.call$1(t2));
   }
   return map;
 },
@@ -9212,15 +9208,6 @@ $$.Enumerable_toHashMap_anon = {"":
  "super": "Closure",
  call$1: function(a) {
   return a;
-}
-};
-
-$$.Enumerable_toHashMap_anon0 = {"":
- ["box_0", "valueFunc_3", "e_2"],
- "super": "Closure",
- call$0: function() {
-  this.box_0.duplicate_1 = false;
-  return this.valueFunc_3.call$1(this.e_2);
 }
 };
 
@@ -14483,7 +14470,7 @@ $.getFunctionForTypeNameOf = function() {
     return $.typeNameInIE;
   else if ($.contains0(userAgent, 'Opera'))
     return $.typeNameInOpera;
-  else if ($.contains0(userAgent, 'Safari'))
+  else if ($.contains0(userAgent, 'AppleWebKit'))
     return $.typeNameInSafari;
   else
     return $.constructorNameFallback;
@@ -14653,10 +14640,11 @@ $.Primitives_printString = function(string) {
     console.log(string);
     return;
   }
-  if (typeof write == "function") {
-    write(string);
-    write("\n");
+  if (typeof print == "function") {
+    print(string);
+    return;
   }
+  throw $.$$throw('Unable to print message: ' + $.S($.NoSuchMethodError_safeToString(string)));
 };
 
 $.Primitives_getMilliseconds = function(receiver) {

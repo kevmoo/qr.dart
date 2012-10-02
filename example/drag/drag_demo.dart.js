@@ -6032,7 +6032,7 @@ $.getFunctionForTypeNameOf = function() {
     return $.typeNameInIE;
   else if ($.contains(userAgent, 'Opera'))
     return $.typeNameInOpera;
-  else if ($.contains(userAgent, 'Safari'))
+  else if ($.contains(userAgent, 'AppleWebKit'))
     return $.typeNameInSafari;
   else
     return $.constructorNameFallback;
@@ -6265,10 +6265,11 @@ $.Primitives_printString = function(string) {
     console.log(string);
     return;
   }
-  if (typeof write == "function") {
-    write(string);
-    write("\n");
+  if (typeof print == "function") {
+    print(string);
+    return;
   }
+  throw $.$$throw('Unable to print message: ' + $.S($.NoSuchMethodError_safeToString(string)));
 };
 
 $.Primitives_getMilliseconds = function(receiver) {
