@@ -32,25 +32,6 @@ Starting by porting bits of the [PL javascript library](https://github.com/think
 
 ### test
 
-## Blocking Bugs
-Bugs blocking me from compiling to Javascript.
-
-_None so far._
-
-## Annoying Bugs
-Bugs that cause code smells.
-
-### Allow `final static` fields to be non-constants.
-  * __Scenario:__ Allowing classes to define a `Property` using `static final Property<bool> isMouseOver = new Property<bool>('isMouseOver');`
-  * __Work-around__
-      * Remove `GlobalId` from `Property`. Created `NoneHashMap` to store non-hashable `Property` instances and use instance identity to distinguish them.
-  * __Issues__
-      * I'd love to be able to make `Property` hashable.
-  * __Related bugs:__
-    [3476](http://code.google.com/p/dart/issues/detail?id=3476),
-    [3558](http://code.google.com/p/dart/issues/detail?id=3558),
-    [3559](http://code.google.com/p/dart/issues/detail?id=3559)
-
 ## Authors
  * [Kevin Moore](https://github.com/kevmoo) ([@kevmoo](http://twitter.com/kevmoo))
  * [Andreas Köberle](https://github.com/eskimoblood) ([@eskimobloood](https://twitter.com/eskimobloood))
