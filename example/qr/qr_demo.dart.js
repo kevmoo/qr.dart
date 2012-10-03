@@ -556,10 +556,6 @@ $$.DoubleLinkedQueue = {"":
  removeFirst$0: function() {
   return this._sentinel._next.remove$0();
 },
- first$0: function() {
-  return this._sentinel._next.get$element();
-},
- get$first: function() { return new $.BoundClosure(this, 'first$0'); },
  last$0: function() {
   return this._sentinel._previous.get$element();
 },
@@ -1006,12 +1002,12 @@ $$.QrDemo = {"":
   this._typeNumber = $.int_parse($.index(args.get$srcElement().get$dataAttributes(), 'type-value'));
   this._update$0();
 },
- get$_levelClick: function() { return new $.BoundClosure0(this, '_levelClick$1'); },
+ get$_levelClick: function() { return new $.BoundClosure(this, '_levelClick$1'); },
  _errorClick$1: function(args) {
   this._errorCorrectLevel = $.int_parse($.index(args.get$srcElement().get$dataAttributes(), 'error-value'));
   this._update$0();
 },
- get$_errorClick: function() { return new $.BoundClosure0(this, '_errorClick$1'); },
+ get$_errorClick: function() { return new $.BoundClosure(this, '_errorClick$1'); },
  _update$0: function() {
   var t = [this._typeNumber, this._errorCorrectLevel, this._lib0_value];
   this._qrMapper.set$input(t);
@@ -1038,7 +1034,7 @@ $$.QrDemo = {"":
         if ($.index(this._squares, t2 + y) === true)
           t1.fillRect$4(x, y, 1, 1);
 },
- get$_onFrame: function() { return new $.BoundClosure0(this, '_onFrame$1'); },
+ get$_onFrame: function() { return new $.BoundClosure(this, '_onFrame$1'); },
  QrDemo$3: function(canvas, typeDiv, errorDiv) {
   this._ctx.set$fillStyle('black');
   $.add$1(this._qrMapper.get$outputChanged(), new $.anon1(this));
@@ -1123,19 +1119,11 @@ $$._DedicatedWorkerContextEventsImpl = {"":
  "super": "_WorkerContextEventsImpl"
 };
 
-$$.FilteredElementList = {"":
+$$._FilteredElementList = {"":
  ["_node", "_childNodes"],
  "super": "Object",
  get$_filtered: function() {
-  return $.ListImplementation_List$from($.filter(this._childNodes, new $.FilteredElementList__filtered_anon()));
-},
- get$first: function() {
-  for (var t1 = $.iterator(this._childNodes); t1.hasNext$0() === true;) {
-    var t2 = t1.next$0();
-    if (typeof t2 === 'object' && t2 !== null && t2.is$Element())
-      return t2;
-  }
-  return;
+  return $.ListImplementation_List$from($.filter(this._childNodes, new $._FilteredElementList__filtered_anon()));
 },
  forEach$1: function(f) {
   $.forEach(this.get$_filtered(), f);
@@ -1154,7 +1142,7 @@ $$.FilteredElementList = {"":
  add$1: function(value) {
   $.add$1(this._childNodes, value);
 },
- get$add: function() { return new $.BoundClosure0(this, 'add$1'); },
+ get$add: function() { return new $.BoundClosure(this, 'add$1'); },
  addAll$1: function(collection) {
   $.forEach(collection, this.get$add());
 },
@@ -1162,7 +1150,7 @@ $$.FilteredElementList = {"":
   this.add$1(value);
 },
  removeRange$2: function(start, rangeLength) {
-  $.forEach($.getRange(this.get$_filtered(), start, rangeLength), new $.FilteredElementList_removeRange_anon());
+  $.forEach($.getRange(this.get$_filtered(), start, rangeLength), new $._FilteredElementList_removeRange_anon());
 },
  insertRange$3: function(start, rangeLength, initialValue) {
   throw $.$$throw($.CTC24);
@@ -1262,9 +1250,6 @@ $$._ChildrenElementList = {"":
   }
   return output;
 },
- get$first: function() {
-  return this._lib_element.get$$$dom_firstElementChild();
-},
  forEach$1: function(f) {
   for (var t1 = $.iterator(this._childElements); t1.hasNext$0() === true;)
     f.call$1(t1.next$0());
@@ -1342,19 +1327,16 @@ $$._ChildrenElementList = {"":
 $$._FrozenElementList = {"":
  ["_nodeList"],
  "super": "Object",
- get$first: function() {
-  return $.index(this._nodeList, 0);
-},
  forEach$1: function(f) {
   for (var t1 = $.iterator(this); t1.hasNext$0() === true;)
     f.call$1(t1.next$0());
 },
  filter$1: function(f) {
-  var out = $._ElementList$([]);
+  var out = [];
   for (var t1 = $.iterator(this); t1.hasNext$0() === true;) {
     var t2 = t1.next$0();
     if (f.call$1(t2) === true)
-      out.add$1(t2);
+      out.push(t2);
   }
   return out;
 },
@@ -1437,19 +1419,6 @@ $$._FrozenElementListIterator = {"":
  hasNext$0$bailout: function(state, t1, t2) {
   return $.lt(t1, t2);
 }
-};
-
-$$._ElementList = {"":
- ["_lib_list"],
- "super": "_ListWrapper",
- filter$1: function(f) {
-  return $._ElementList$($._ListWrapper.prototype.filter$1.call(this, f));
-},
- getRange$2: function(start, rangeLength) {
-  return $._ElementList$($._ListWrapper.prototype.getRange$2.call(this, start, rangeLength));
-},
- is$List: function() { return true; },
- is$Collection: function() { return true; }
 };
 
 $$._ElementAttributeMap = {"":
@@ -1791,9 +1760,6 @@ $$._MessagePortEventsImpl = {"":
 $$._ChildNodeListLazy = {"":
  ["_this"],
  "super": "Object",
- get$first: function() {
-  return this._this.firstChild;
-},
  last$0: function() {
   return this._this.lastChild;
 },
@@ -1921,9 +1887,6 @@ $$._ListWrapper = {"":
 },
  insertRange$3: function(start, rangeLength, initialValue) {
   return $.insertRange$3(this._lib_list, start, rangeLength, initialValue);
-},
- get$first: function() {
-  return $.index(this._lib_list, 0);
 },
  is$List: function() { return true; },
  is$Collection: function() { return true; }
@@ -2835,12 +2798,6 @@ $$.NullArgumentException = {"":
 }
 };
 
-$$.InvalidOperationException = {"":
- ["message"],
- "super": "Object",
- is$Exception: true
-};
-
 $$.DetailedIllegalArgumentException = {"":
  ["argument", "message"],
  "super": "ArgumentError",
@@ -2896,15 +2853,6 @@ $$.Enumerable = {"":
   $.requireArgumentNotNull(f, 'f');
   return $._FuncEnumerable$(this, new $.Enumerable_filter_anon(f));
 },
- first$1: function(f) {
-  if (f == null)
-    f = new $.Enumerable_first_anon();
-  var iter = $._WhereIterator$(this.iterator$0(), f);
-  if (iter.hasNext$0() !== true)
-    throw $.$$throw($.CTC28);
-  return iter.next$0();
-},
- get$first: function() { return new $.BoundClosure1(this, 'first$1'); },
  forEach$1: function(f) {
   for (var t1 = $.iterator(this); t1.hasNext$0() === true;)
     f.call$1(t1.next$0());
@@ -4734,14 +4682,14 @@ $$.FutureValue = {"":
   this._cleanup$0();
   return true;
 },
- get$_futureException: function() { return new $.BoundClosure0(this, '_futureException$1'); },
+ get$_futureException: function() { return new $.BoundClosure(this, '_futureException$1'); },
  _futureCompleted$1: function(value) {
   this._future = null;
   this._output = value;
   this._outputChangedHandle.fireEvent$1($.CTC17);
   this._cleanup$0();
 },
- get$_futureCompleted: function() { return new $.BoundClosure0(this, '_futureCompleted$1'); },
+ get$_futureCompleted: function() { return new $.BoundClosure(this, '_futureCompleted$1'); },
  _cleanup$0: function() {
   if (this._pending) {
     this._pending = false;
@@ -4797,7 +4745,7 @@ $$.SendPortValue = {"":
   else
     this._complete$1(value);
 },
- get$__futureCompleted: function() { return new $.BoundClosure0(this, '__futureCompleted$1'); },
+ get$__futureCompleted: function() { return new $.BoundClosure(this, '__futureCompleted$1'); },
  _sendValueResultCompleted$1: function(value) {
   if (value.get$isException() === true)
     this._completeException$1(value.get$exception());
@@ -5762,7 +5710,7 @@ $$._IsolateNatives__processWorkerMessage_function = {"":
 }
 };
 
-$$.FilteredElementList__filtered_anon = {"":
+$$._FilteredElementList__filtered_anon = {"":
  [],
  "super": "Closure",
  call$1: function(n) {
@@ -5795,7 +5743,7 @@ $$._ChildrenElementList_filter_anon = {"":
 }
 };
 
-$$.FilteredElementList_removeRange_anon = {"":
+$$._FilteredElementList_removeRange_anon = {"":
  [],
  "super": "Closure",
  call$1: function(el) {
@@ -5848,14 +5796,6 @@ $$._DataAttributeMap_getValues_anon = {"":
 }
 };
 
-$$.Enumerable_first_anon = {"":
- [],
- "super": "Closure",
- call$1: function(e) {
-  return true;
-}
-};
-
 $$.startRootIsolate_anon = {"":
  [],
  "super": "Closure",
@@ -5902,20 +5842,7 @@ $$.Closure = {"":
 $$.BoundClosure = {'':
  ['self', 'target'],
  'super': 'Closure',
-call$0: function() { return this.self[this.target](); }
-};
-$$.BoundClosure0 = {'':
- ['self', 'target'],
- 'super': 'Closure',
 call$1: function(p0) { return this.self[this.target](p0); }
-};
-$$.BoundClosure1 = {'':
- ['self', 'target'],
- 'super': 'Closure',
-call$1: function(p0) { return this.self[this.target](p0); },
- call$0: function() {
-  return this.call$1(null)
-}
 };
 $.div$slow = function(a, b) {
   if ($.checkNumbers(a, b))
@@ -6135,7 +6062,7 @@ $.dynamicFunction = function(name$) {
   if (!(f == null) && !!f.methods)
     return f.methods;
   var methods = {};
-  var dartMethod = Object.getPrototypeOf($.CTC29)[name$];
+  var dartMethod = Object.getPrototypeOf($.CTC28)[name$];
   if (!(dartMethod == null))
     $.propertySet(methods, 'Object', dartMethod);
   var bind = function() {return $.dynamicBind.call$4(this, name$, methods, Array.prototype.slice.call(arguments));};
@@ -6682,6 +6609,10 @@ $.Uri__addIfNonEmpty = function(sb, test, first, second) {
   }
 };
 
+$._FilteredElementList$ = function(node) {
+  return new $._FilteredElementList(node, node.get$nodes());
+};
+
 $.NoMoreElementsException$ = function() {
   return new $.NoMoreElementsException();
 };
@@ -6746,10 +6677,6 @@ $.Collections__emitCollection = function(c, result, visiting) {
   }
   $.add$1(result, isList ? ']' : '}');
   $.removeLast(visiting);
-};
-
-$.FilteredElementList$ = function(node) {
-  return new $.FilteredElementList(node, node.get$nodes());
 };
 
 $._document = function() {
@@ -7376,10 +7303,6 @@ $.QrUtil_getBCHDigit = function(data) {
     data = $.shr(data, 1);
   }
   return digit;
-};
-
-$._ElementList$ = function(list) {
-  return new $._ElementList(list);
 };
 
 $.gtB = function(a, b) {
@@ -9402,232 +9325,230 @@ Isolate.makeConstantList = function(list) {
   return list;
 };
 $.CTC1 = Isolate.makeConstantList([]);
-$.CTC30 = 2;
-$.CTC31 = 60;
-$.CTC32 = 38;
-$.CTC33 = 61;
-$.CTC34 = 39;
-$.CTC35 = Isolate.makeConstantList([2, 60, 38, 2, 61, 39]);
-$.CTC36 = 3;
-$.CTC37 = 58;
-$.CTC38 = 36;
-$.CTC39 = 59;
-$.CTC40 = 37;
-$.CTC41 = Isolate.makeConstantList([3, 58, 36, 2, 59, 37]);
-$.CTC42 = 4;
-$.CTC43 = 16;
-$.CTC44 = 17;
-$.CTC45 = Isolate.makeConstantList([4, 36, 16, 4, 37, 17]);
-$.CTC46 = 33;
-$.CTC47 = 11;
-$.CTC48 = 34;
-$.CTC49 = 12;
-$.CTC50 = Isolate.makeConstantList([2, 33, 11, 2, 34, 12]);
-$.CTC51 = 6;
-$.CTC52 = 43;
-$.CTC53 = 19;
-$.CTC54 = 44;
-$.CTC55 = 20;
-$.CTC56 = Isolate.makeConstantList([6, 43, 19, 2, 44, 20]);
-$.CTC57 = 32;
-$.CTC58 = 14;
-$.CTC59 = 15;
-$.CTC60 = Isolate.makeConstantList([2, 32, 14, 4, 33, 15]);
-$.CTC61 = 40;
-$.CTC62 = 18;
-$.CTC63 = 41;
-$.CTC64 = Isolate.makeConstantList([4, 40, 18, 2, 41, 19]);
-$.CTC65 = 1;
-$.CTC66 = 26;
-$.CTC67 = Isolate.makeConstantList([1, 26, 19]);
-$.CTC68 = 13;
-$.CTC69 = Isolate.makeConstantList([4, 39, 13, 1, 40, 14]);
+$.CTC29 = 2;
+$.CTC30 = 60;
+$.CTC31 = 38;
+$.CTC32 = 61;
+$.CTC33 = 39;
+$.CTC34 = Isolate.makeConstantList([2, 60, 38, 2, 61, 39]);
+$.CTC35 = 3;
+$.CTC36 = 58;
+$.CTC37 = 36;
+$.CTC38 = 59;
+$.CTC39 = 37;
+$.CTC40 = Isolate.makeConstantList([3, 58, 36, 2, 59, 37]);
+$.CTC41 = 4;
+$.CTC42 = 16;
+$.CTC43 = 17;
+$.CTC44 = Isolate.makeConstantList([4, 36, 16, 4, 37, 17]);
+$.CTC45 = 33;
+$.CTC46 = 11;
+$.CTC47 = 34;
+$.CTC48 = 12;
+$.CTC49 = Isolate.makeConstantList([2, 33, 11, 2, 34, 12]);
+$.CTC50 = 6;
+$.CTC51 = 43;
+$.CTC52 = 19;
+$.CTC53 = 44;
+$.CTC54 = 20;
+$.CTC55 = Isolate.makeConstantList([6, 43, 19, 2, 44, 20]);
+$.CTC56 = 32;
+$.CTC57 = 14;
+$.CTC58 = 15;
+$.CTC59 = Isolate.makeConstantList([2, 32, 14, 4, 33, 15]);
+$.CTC60 = 40;
+$.CTC61 = 18;
+$.CTC62 = 41;
+$.CTC63 = Isolate.makeConstantList([4, 40, 18, 2, 41, 19]);
+$.CTC64 = 1;
+$.CTC65 = 26;
+$.CTC66 = Isolate.makeConstantList([1, 26, 19]);
+$.CTC67 = 13;
+$.CTC68 = Isolate.makeConstantList([4, 39, 13, 1, 40, 14]);
 $.CTC12 = new Isolate.$isolateProperties._DeletedKeySentinel();
-$.CTC70 = Isolate.makeConstantList([1, 26, 16]);
-$.CTC71 = Isolate.makeConstantList([4, 40, 14, 2, 41, 15]);
-$.CTC72 = 28;
-$.CTC73 = 54;
-$.CTC74 = 80;
-$.CTC75 = 106;
-$.CTC76 = 132;
-$.CTC77 = 158;
-$.CTC78 = Isolate.makeConstantList([6, 28, 54, 80, 106, 132, 158]);
-$.CTC79 = Isolate.makeConstantList([1, 44, 34]);
-$.CTC80 = 50;
-$.CTC81 = Isolate.makeConstantList([2, 50, 32]);
-$.CTC82 = 86;
-$.CTC83 = 68;
-$.CTC84 = Isolate.makeConstantList([2, 86, 68]);
-$.CTC85 = 9;
-$.CTC86 = Isolate.makeConstantList([1, 26, 9]);
-$.CTC87 = 22;
-$.CTC88 = Isolate.makeConstantList([6, 22]);
-$.CTC89 = 25;
-$.CTC90 = Isolate.makeConstantList([4, 25, 9]);
-$.CTC91 = Isolate.makeConstantList([4, 36, 12, 4, 37, 13]);
-$.CTC92 = Isolate.makeConstantList([1, 26, 13]);
-$.CTC93 = Isolate.makeConstantList([6, 18]);
-$.CTC94 = 30;
-$.CTC95 = Isolate.makeConstantList([6, 30]);
-$.CTC96 = Isolate.makeConstantList([6, 28, 54, 80, 106]);
-$.CTC97 = 121;
-$.CTC98 = 97;
-$.CTC99 = Isolate.makeConstantList([2, 121, 97]);
-$.CTC100 = 74;
-$.CTC101 = 98;
-$.CTC102 = Isolate.makeConstantList([6, 26, 50, 74, 98]);
-$.CTC103 = Isolate.makeConstantList([2, 33, 15, 2, 34, 16]);
-$.CTC104 = Isolate.makeConstantList([6, 43, 15, 2, 44, 16]);
-$.CTC105 = Isolate.makeConstantList([6, 26]);
-$.CTC106 = Isolate.makeConstantList([4, 43, 15]);
-$.CTC107 = 84;
-$.CTC108 = 110;
-$.CTC109 = 136;
-$.CTC110 = 162;
-$.CTC111 = Isolate.makeConstantList([6, 32, 58, 84, 110, 136, 162]);
-$.CTC112 = Isolate.makeConstantList([6, 32, 58]);
-$.CTC113 = 114;
-$.CTC114 = 142;
-$.CTC115 = 170;
-$.CTC116 = Isolate.makeConstantList([6, 30, 58, 86, 114, 142, 170]);
-$.CTC117 = 87;
-$.CTC118 = 69;
-$.CTC119 = Isolate.makeConstantList([2, 86, 68, 2, 87, 69]);
-$.CTC120 = 70;
-$.CTC121 = Isolate.makeConstantList([4, 69, 43, 1, 70, 44]);
-$.CTC122 = Isolate.makeConstantList([6, 32, 58, 84, 110]);
-$.CTC123 = Isolate.makeConstantList([6, 34]);
-$.CTC124 = 24;
-$.CTC125 = Isolate.makeConstantList([2, 50, 24]);
-$.CTC126 = Isolate.makeConstantList([6, 28, 50]);
-$.CTC127 = 49;
-$.CTC128 = 31;
-$.CTC129 = Isolate.makeConstantList([4, 49, 31]);
-$.CTC130 = 76;
-$.CTC131 = 102;
-$.CTC132 = 128;
-$.CTC133 = 154;
-$.CTC134 = Isolate.makeConstantList([6, 24, 50, 76, 102, 128, 154]);
-$.CTC135 = 35;
-$.CTC136 = Isolate.makeConstantList([2, 35, 13]);
-$.CTC137 = 0;
+$.CTC69 = Isolate.makeConstantList([1, 26, 16]);
+$.CTC70 = Isolate.makeConstantList([4, 40, 14, 2, 41, 15]);
+$.CTC71 = 28;
+$.CTC72 = 54;
+$.CTC73 = 80;
+$.CTC74 = 106;
+$.CTC75 = 132;
+$.CTC76 = 158;
+$.CTC77 = Isolate.makeConstantList([6, 28, 54, 80, 106, 132, 158]);
+$.CTC78 = Isolate.makeConstantList([1, 44, 34]);
+$.CTC79 = 50;
+$.CTC80 = Isolate.makeConstantList([2, 50, 32]);
+$.CTC81 = 86;
+$.CTC82 = 68;
+$.CTC83 = Isolate.makeConstantList([2, 86, 68]);
+$.CTC84 = 9;
+$.CTC85 = Isolate.makeConstantList([1, 26, 9]);
+$.CTC86 = 22;
+$.CTC87 = Isolate.makeConstantList([6, 22]);
+$.CTC88 = 25;
+$.CTC89 = Isolate.makeConstantList([4, 25, 9]);
+$.CTC90 = Isolate.makeConstantList([4, 36, 12, 4, 37, 13]);
+$.CTC91 = Isolate.makeConstantList([1, 26, 13]);
+$.CTC92 = Isolate.makeConstantList([6, 18]);
+$.CTC93 = 30;
+$.CTC94 = Isolate.makeConstantList([6, 30]);
+$.CTC95 = Isolate.makeConstantList([6, 28, 54, 80, 106]);
+$.CTC96 = 121;
+$.CTC97 = 97;
+$.CTC98 = Isolate.makeConstantList([2, 121, 97]);
+$.CTC99 = 62;
+$.CTC100 = Isolate.makeConstantList([6, 34, 62]);
+$.CTC101 = Isolate.makeConstantList([2, 33, 15, 2, 34, 16]);
+$.CTC102 = Isolate.makeConstantList([6, 43, 15, 2, 44, 16]);
+$.CTC103 = Isolate.makeConstantList([6, 26]);
+$.CTC104 = Isolate.makeConstantList([4, 43, 15]);
+$.CTC105 = 84;
+$.CTC106 = 110;
+$.CTC107 = 136;
+$.CTC108 = 162;
+$.CTC109 = Isolate.makeConstantList([6, 32, 58, 84, 110, 136, 162]);
+$.CTC110 = Isolate.makeConstantList([6, 32, 58]);
+$.CTC111 = 114;
+$.CTC112 = 142;
+$.CTC113 = 170;
+$.CTC114 = Isolate.makeConstantList([6, 30, 58, 86, 114, 142, 170]);
+$.CTC115 = 87;
+$.CTC116 = 69;
+$.CTC117 = Isolate.makeConstantList([2, 86, 68, 2, 87, 69]);
+$.CTC118 = Isolate.makeConstantList([6, 34]);
+$.CTC119 = Isolate.makeConstantList([6, 32, 58, 84, 110]);
+$.CTC120 = 24;
+$.CTC121 = Isolate.makeConstantList([2, 50, 24]);
+$.CTC122 = Isolate.makeConstantList([6, 28, 50]);
+$.CTC123 = 49;
+$.CTC124 = 31;
+$.CTC125 = Isolate.makeConstantList([4, 49, 31]);
+$.CTC126 = 76;
+$.CTC127 = 102;
+$.CTC128 = 128;
+$.CTC129 = 154;
+$.CTC130 = Isolate.makeConstantList([6, 24, 50, 76, 102, 128, 154]);
+$.CTC131 = 35;
+$.CTC132 = Isolate.makeConstantList([2, 35, 13]);
+$.CTC133 = 0;
 $.CTC21 = Isolate.makeConstantList([1, 0, 3, 2]);
-$.CTC138 = 78;
-$.CTC139 = Isolate.makeConstantList([2, 98, 78]);
-$.CTC140 = Isolate.makeConstantList([6, 30, 54]);
-$.CTC141 = Isolate.makeConstantList([2, 35, 17]);
-$.CTC142 = Isolate.makeConstantList([1, 44, 28]);
-$.CTC143 = 46;
-$.CTC144 = Isolate.makeConstantList([6, 26, 46]);
-$.CTC145 = Isolate.makeConstantList([6, 30, 54, 78, 102]);
-$.CTC146 = 27;
-$.CTC147 = Isolate.makeConstantList([4, 43, 27]);
-$.CTC148 = 100;
-$.CTC149 = Isolate.makeConstantList([1, 100, 80]);
-$.CTC150 = Isolate.makeConstantList([6, 22, 38]);
-$.CTC151 = 42;
-$.CTC152 = Isolate.makeConstantList([6, 24, 42]);
-$.CTC153 = 62;
-$.CTC154 = 90;
-$.CTC155 = 118;
-$.CTC156 = Isolate.makeConstantList([6, 34, 62, 90, 118]);
-$.CTC157 = 'structured clone of ImageData';
+$.CTC134 = 98;
+$.CTC135 = 78;
+$.CTC136 = Isolate.makeConstantList([2, 98, 78]);
+$.CTC137 = Isolate.makeConstantList([6, 30, 54]);
+$.CTC138 = Isolate.makeConstantList([2, 35, 17]);
+$.CTC139 = Isolate.makeConstantList([1, 44, 28]);
+$.CTC140 = 46;
+$.CTC141 = Isolate.makeConstantList([6, 26, 46]);
+$.CTC142 = 74;
+$.CTC143 = Isolate.makeConstantList([6, 26, 50, 74, 98]);
+$.CTC144 = 27;
+$.CTC145 = Isolate.makeConstantList([4, 43, 27]);
+$.CTC146 = 100;
+$.CTC147 = Isolate.makeConstantList([1, 100, 80]);
+$.CTC148 = Isolate.makeConstantList([6, 22, 38]);
+$.CTC149 = 42;
+$.CTC150 = Isolate.makeConstantList([6, 24, 42]);
+$.CTC151 = 70;
+$.CTC152 = Isolate.makeConstantList([4, 69, 43, 1, 70, 44]);
+$.CTC153 = 90;
+$.CTC154 = 118;
+$.CTC155 = Isolate.makeConstantList([6, 34, 62, 90, 118]);
+$.CTC156 = 'structured clone of ImageData';
 $.CTC8 = new Isolate.$isolateProperties.NotImplementedException('structured clone of ImageData');
-$.CTC158 = Isolate.makeConstantList([1, 44, 22]);
-$.CTC159 = null;
+$.CTC157 = Isolate.makeConstantList([1, 44, 22]);
+$.CTC158 = null;
 $.CTC0 = new Isolate.$isolateProperties.NullPointerException(null, Isolate.$isolateProperties.CTC1);
-$.CTC160 = Isolate.makeConstantList([1, 44, 16]);
+$.CTC159 = Isolate.makeConstantList([1, 44, 16]);
 $.CTC2 = new Isolate.$isolateProperties.NoMoreElementsException();
 $.CTC13 = new Isolate.$isolateProperties.EmptyQueueException();
-$.CTC161 = Isolate.makeConstantList([6, 34, 62, 90]);
-$.CTC162 = 'Cannot removeLast on immutable List.';
+$.CTC160 = Isolate.makeConstantList([6, 34, 62, 90]);
+$.CTC161 = 'Cannot removeLast on immutable List.';
 $.CTC3 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot removeLast on immutable List.');
-$.CTC163 = Isolate.makeConstantList([4, 43, 19]);
-$.CTC164 = 72;
-$.CTC165 = 94;
-$.CTC166 = Isolate.makeConstantList([6, 28, 50, 72, 94]);
+$.CTC162 = Isolate.makeConstantList([4, 43, 19]);
+$.CTC163 = 72;
+$.CTC164 = 94;
+$.CTC165 = Isolate.makeConstantList([6, 28, 50, 72, 94]);
 $.CTC24 = new Isolate.$isolateProperties.NotImplementedException(null);
-$.CTC167 = '';
+$.CTC166 = '';
 $.CTC23 = new Isolate.$isolateProperties.UnsupportedOperationException('');
-$.CTC168 = Isolate.makeConstantList([6, 34, 62]);
-$.CTC169 = Isolate.makeConstantList([6, 30, 58, 86, 114]);
-$.CTC170 = 'structured clone of ArrayBuffer';
+$.CTC167 = 66;
+$.CTC168 = Isolate.makeConstantList([6, 26, 46, 66]);
+$.CTC169 = 48;
+$.CTC170 = Isolate.makeConstantList([6, 26, 48, 70]);
+$.CTC171 = Isolate.makeConstantList([6, 26, 50, 74]);
+$.CTC172 = Isolate.makeConstantList([6, 30, 54, 78]);
+$.CTC173 = 56;
+$.CTC174 = 82;
+$.CTC175 = Isolate.makeConstantList([6, 30, 56, 82]);
+$.CTC176 = Isolate.makeConstantList([6, 30, 58, 86]);
+$.CTC177 = Isolate.makeConstantList([6, 30, 54, 78, 102]);
+$.CTC178 = Isolate.makeConstantList([6, 30, 58, 86, 114]);
+$.CTC179 = 122;
+$.CTC180 = Isolate.makeConstantList([6, 26, 50, 74, 98, 122]);
+$.CTC181 = 126;
+$.CTC182 = Isolate.makeConstantList([6, 30, 54, 78, 102, 126]);
+$.CTC183 = 52;
+$.CTC184 = 104;
+$.CTC185 = 130;
+$.CTC186 = Isolate.makeConstantList([6, 26, 52, 78, 104, 130]);
+$.CTC187 = 108;
+$.CTC188 = 134;
+$.CTC189 = Isolate.makeConstantList([6, 30, 56, 82, 108, 134]);
+$.CTC190 = 112;
+$.CTC191 = 138;
+$.CTC192 = Isolate.makeConstantList([6, 34, 60, 86, 112, 138]);
+$.CTC193 = Isolate.makeConstantList([6, 30, 58, 86, 114, 142]);
+$.CTC194 = 146;
+$.CTC195 = Isolate.makeConstantList([6, 34, 62, 90, 118, 146]);
+$.CTC196 = 150;
+$.CTC197 = Isolate.makeConstantList([6, 30, 54, 78, 102, 126, 150]);
+$.CTC198 = 166;
+$.CTC199 = Isolate.makeConstantList([6, 26, 54, 82, 110, 138, 166]);
+$.CTC20 = Isolate.makeConstantList([Isolate.$isolateProperties.CTC1, Isolate.$isolateProperties.CTC92, Isolate.$isolateProperties.CTC87, Isolate.$isolateProperties.CTC103, Isolate.$isolateProperties.CTC94, Isolate.$isolateProperties.CTC118, Isolate.$isolateProperties.CTC148, Isolate.$isolateProperties.CTC150, Isolate.$isolateProperties.CTC141, Isolate.$isolateProperties.CTC122, Isolate.$isolateProperties.CTC137, Isolate.$isolateProperties.CTC110, Isolate.$isolateProperties.CTC100, Isolate.$isolateProperties.CTC168, Isolate.$isolateProperties.CTC170, Isolate.$isolateProperties.CTC171, Isolate.$isolateProperties.CTC172, Isolate.$isolateProperties.CTC175, Isolate.$isolateProperties.CTC176, Isolate.$isolateProperties.CTC160, Isolate.$isolateProperties.CTC165, Isolate.$isolateProperties.CTC143, Isolate.$isolateProperties.CTC177, Isolate.$isolateProperties.CTC95, Isolate.$isolateProperties.CTC119, Isolate.$isolateProperties.CTC178, Isolate.$isolateProperties.CTC155, Isolate.$isolateProperties.CTC180, Isolate.$isolateProperties.CTC182, Isolate.$isolateProperties.CTC186, Isolate.$isolateProperties.CTC189, Isolate.$isolateProperties.CTC192, Isolate.$isolateProperties.CTC193, Isolate.$isolateProperties.CTC195, Isolate.$isolateProperties.CTC197, Isolate.$isolateProperties.CTC130, Isolate.$isolateProperties.CTC77, Isolate.$isolateProperties.CTC109, Isolate.$isolateProperties.CTC199, Isolate.$isolateProperties.CTC114]);
+$.CTC200 = 'structured clone of ArrayBuffer';
 $.CTC9 = new Isolate.$isolateProperties.NotImplementedException('structured clone of ArrayBuffer');
 $.CTC26 = new Isolate.$isolateProperties.ConstantMap(0, {}, Isolate.$isolateProperties.CTC1);
-$.CTC171 = 82;
-$.CTC172 = 138;
-$.CTC173 = 166;
-$.CTC174 = Isolate.makeConstantList([6, 26, 54, 82, 110, 138, 166]);
-$.CTC175 = 66;
-$.CTC176 = Isolate.makeConstantList([6, 26, 46, 66]);
-$.CTC177 = 48;
-$.CTC178 = Isolate.makeConstantList([6, 26, 48, 70]);
-$.CTC179 = Isolate.makeConstantList([6, 26, 50, 74]);
-$.CTC180 = Isolate.makeConstantList([6, 30, 54, 78]);
-$.CTC181 = 56;
-$.CTC182 = Isolate.makeConstantList([6, 30, 56, 82]);
-$.CTC183 = Isolate.makeConstantList([6, 30, 58, 86]);
-$.CTC184 = 122;
-$.CTC185 = Isolate.makeConstantList([6, 26, 50, 74, 98, 122]);
-$.CTC186 = 126;
-$.CTC187 = Isolate.makeConstantList([6, 30, 54, 78, 102, 126]);
-$.CTC188 = 52;
-$.CTC189 = 104;
-$.CTC190 = 130;
-$.CTC191 = Isolate.makeConstantList([6, 26, 52, 78, 104, 130]);
-$.CTC192 = 108;
-$.CTC193 = 134;
-$.CTC194 = Isolate.makeConstantList([6, 30, 56, 82, 108, 134]);
-$.CTC195 = 112;
-$.CTC196 = Isolate.makeConstantList([6, 34, 60, 86, 112, 138]);
-$.CTC197 = Isolate.makeConstantList([6, 30, 58, 86, 114, 142]);
-$.CTC198 = 146;
-$.CTC199 = Isolate.makeConstantList([6, 34, 62, 90, 118, 146]);
-$.CTC200 = 150;
-$.CTC201 = Isolate.makeConstantList([6, 30, 54, 78, 102, 126, 150]);
-$.CTC20 = Isolate.makeConstantList([Isolate.$isolateProperties.CTC1, Isolate.$isolateProperties.CTC93, Isolate.$isolateProperties.CTC88, Isolate.$isolateProperties.CTC105, Isolate.$isolateProperties.CTC95, Isolate.$isolateProperties.CTC123, Isolate.$isolateProperties.CTC150, Isolate.$isolateProperties.CTC152, Isolate.$isolateProperties.CTC144, Isolate.$isolateProperties.CTC126, Isolate.$isolateProperties.CTC140, Isolate.$isolateProperties.CTC112, Isolate.$isolateProperties.CTC168, Isolate.$isolateProperties.CTC176, Isolate.$isolateProperties.CTC178, Isolate.$isolateProperties.CTC179, Isolate.$isolateProperties.CTC180, Isolate.$isolateProperties.CTC182, Isolate.$isolateProperties.CTC183, Isolate.$isolateProperties.CTC161, Isolate.$isolateProperties.CTC166, Isolate.$isolateProperties.CTC102, Isolate.$isolateProperties.CTC145, Isolate.$isolateProperties.CTC96, Isolate.$isolateProperties.CTC122, Isolate.$isolateProperties.CTC169, Isolate.$isolateProperties.CTC156, Isolate.$isolateProperties.CTC185, Isolate.$isolateProperties.CTC187, Isolate.$isolateProperties.CTC191, Isolate.$isolateProperties.CTC194, Isolate.$isolateProperties.CTC196, Isolate.$isolateProperties.CTC197, Isolate.$isolateProperties.CTC199, Isolate.$isolateProperties.CTC201, Isolate.$isolateProperties.CTC134, Isolate.$isolateProperties.CTC78, Isolate.$isolateProperties.CTC111, Isolate.$isolateProperties.CTC174, Isolate.$isolateProperties.CTC116]);
-$.CTC29 = new Isolate.$isolateProperties.Object();
+$.CTC28 = new Isolate.$isolateProperties.Object();
 $.CTC27 = new Isolate.$isolateProperties.IllegalAccessException();
-$.CTC202 = 'Cannot insertRange on immutable List.';
+$.CTC201 = 'Cannot insertRange on immutable List.';
 $.CTC18 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot insertRange on immutable List.');
-$.CTC203 = 'structured clone of Blob';
+$.CTC202 = 'structured clone of Blob';
 $.CTC7 = new Isolate.$isolateProperties.NotImplementedException('structured clone of Blob');
-$.CTC204 = 'structured clone of RegExp';
+$.CTC203 = 'structured clone of RegExp';
 $.CTC5 = new Isolate.$isolateProperties.NotImplementedException('structured clone of RegExp');
-$.CTC205 = 67;
-$.CTC206 = Isolate.makeConstantList([2, 67, 43]);
-$.CTC207 = Isolate.makeConstantList([1, 70, 44]);
-$.CTC208 = 55;
-$.CTC209 = Isolate.makeConstantList([1, 70, 55]);
-$.CTC210 = Isolate.makeConstantList([1, 134, 108]);
-$.CTC211 = 116;
-$.CTC212 = Isolate.makeConstantList([2, 146, 116]);
-$.CTC213 = Isolate.makeConstantList([Isolate.$isolateProperties.CTC67, Isolate.$isolateProperties.CTC70, Isolate.$isolateProperties.CTC92, Isolate.$isolateProperties.CTC86, Isolate.$isolateProperties.CTC79, Isolate.$isolateProperties.CTC142, Isolate.$isolateProperties.CTC158, Isolate.$isolateProperties.CTC160, Isolate.$isolateProperties.CTC209, Isolate.$isolateProperties.CTC207, Isolate.$isolateProperties.CTC141, Isolate.$isolateProperties.CTC136, Isolate.$isolateProperties.CTC149, Isolate.$isolateProperties.CTC81, Isolate.$isolateProperties.CTC125, Isolate.$isolateProperties.CTC90, Isolate.$isolateProperties.CTC210, Isolate.$isolateProperties.CTC206, Isolate.$isolateProperties.CTC103, Isolate.$isolateProperties.CTC50, Isolate.$isolateProperties.CTC84, Isolate.$isolateProperties.CTC147, Isolate.$isolateProperties.CTC163, Isolate.$isolateProperties.CTC106, Isolate.$isolateProperties.CTC139, Isolate.$isolateProperties.CTC129, Isolate.$isolateProperties.CTC60, Isolate.$isolateProperties.CTC69, Isolate.$isolateProperties.CTC99, Isolate.$isolateProperties.CTC35, Isolate.$isolateProperties.CTC64, Isolate.$isolateProperties.CTC71, Isolate.$isolateProperties.CTC212, Isolate.$isolateProperties.CTC41, Isolate.$isolateProperties.CTC45, Isolate.$isolateProperties.CTC91, Isolate.$isolateProperties.CTC119, Isolate.$isolateProperties.CTC121, Isolate.$isolateProperties.CTC56, Isolate.$isolateProperties.CTC104]);
-$.CTC214 = 'structured clone of ArrayBufferView';
+$.CTC204 = 67;
+$.CTC205 = Isolate.makeConstantList([2, 67, 43]);
+$.CTC206 = Isolate.makeConstantList([1, 70, 44]);
+$.CTC207 = 55;
+$.CTC208 = Isolate.makeConstantList([1, 70, 55]);
+$.CTC209 = Isolate.makeConstantList([1, 134, 108]);
+$.CTC210 = 116;
+$.CTC211 = Isolate.makeConstantList([2, 146, 116]);
+$.CTC212 = Isolate.makeConstantList([Isolate.$isolateProperties.CTC66, Isolate.$isolateProperties.CTC69, Isolate.$isolateProperties.CTC91, Isolate.$isolateProperties.CTC85, Isolate.$isolateProperties.CTC78, Isolate.$isolateProperties.CTC139, Isolate.$isolateProperties.CTC157, Isolate.$isolateProperties.CTC159, Isolate.$isolateProperties.CTC208, Isolate.$isolateProperties.CTC206, Isolate.$isolateProperties.CTC138, Isolate.$isolateProperties.CTC132, Isolate.$isolateProperties.CTC147, Isolate.$isolateProperties.CTC80, Isolate.$isolateProperties.CTC121, Isolate.$isolateProperties.CTC89, Isolate.$isolateProperties.CTC209, Isolate.$isolateProperties.CTC205, Isolate.$isolateProperties.CTC101, Isolate.$isolateProperties.CTC49, Isolate.$isolateProperties.CTC83, Isolate.$isolateProperties.CTC145, Isolate.$isolateProperties.CTC162, Isolate.$isolateProperties.CTC104, Isolate.$isolateProperties.CTC136, Isolate.$isolateProperties.CTC125, Isolate.$isolateProperties.CTC59, Isolate.$isolateProperties.CTC68, Isolate.$isolateProperties.CTC98, Isolate.$isolateProperties.CTC34, Isolate.$isolateProperties.CTC63, Isolate.$isolateProperties.CTC70, Isolate.$isolateProperties.CTC211, Isolate.$isolateProperties.CTC40, Isolate.$isolateProperties.CTC44, Isolate.$isolateProperties.CTC90, Isolate.$isolateProperties.CTC117, Isolate.$isolateProperties.CTC152, Isolate.$isolateProperties.CTC55, Isolate.$isolateProperties.CTC102]);
+$.CTC213 = 'structured clone of ArrayBufferView';
 $.CTC10 = new Isolate.$isolateProperties.NotImplementedException('structured clone of ArrayBufferView');
-$.CTC215 = 'Cannot add to immutable List.';
+$.CTC214 = 'Cannot add to immutable List.';
 $.CTC = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot add to immutable List.');
 $.CTC17 = new Isolate.$isolateProperties.EventArgs();
-$.CTC216 = false;
-$.CTC217 = '[-[\\]{}()*+?.,\\\\^$|#\\s]';
+$.CTC215 = false;
+$.CTC216 = '[-[\\]{}()*+?.,\\\\^$|#\\s]';
 $.CTC16 = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, '[-[\\]{}()*+?.,\\\\^$|#\\s]');
-$.CTC218 = 'The input sequence is empty.';
-$.CTC28 = new Isolate.$isolateProperties.InvalidOperationException('The input sequence is empty.');
-$.CTC219 = 'structured clone of File';
+$.CTC217 = 'structured clone of File';
 $.CTC6 = new Isolate.$isolateProperties.NotImplementedException('structured clone of File');
-$.CTC220 = '^#[_a-zA-Z]\\w*$';
+$.CTC218 = '^#[_a-zA-Z]\\w*$';
 $.CTC15 = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, '^#[_a-zA-Z]\\w*$');
-$.CTC221 = 'structured clone of Date';
+$.CTC219 = 'structured clone of Date';
 $.CTC4 = new Isolate.$isolateProperties.NotImplementedException('structured clone of Date');
-$.CTC222 = 'IDBKey containing Date';
+$.CTC220 = 'IDBKey containing Date';
 $.CTC14 = new Isolate.$isolateProperties.NotImplementedException('IDBKey containing Date');
-$.CTC223 = 'Invalid list length';
+$.CTC221 = 'Invalid list length';
 $.CTC25 = new Isolate.$isolateProperties.ArgumentError('Invalid list length');
-$.CTC224 = 'structured clone of other type';
+$.CTC222 = 'structured clone of other type';
 $.CTC11 = new Isolate.$isolateProperties.NotImplementedException('structured clone of other type');
-$.CTC225 = '^(?:([^:/?#.]+):)?(?://(?:([^/?#]*)@)?([\\w\\d\\-\\u0100-\\uffff.%]*)(?::([0-9]+))?)?([^?#]+)?(?:\\?([^#]*))?(?:#(.*))?$';
+$.CTC223 = '^(?:([^:/?#.]+):)?(?://(?:([^/?#]*)@)?([\\w\\d\\-\\u0100-\\uffff.%]*)(?::([0-9]+))?)?([^?#]+)?(?:\\?([^#]*))?(?:#(.*))?$';
 $.CTC22 = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, '^(?:([^:/?#.]+):)?(?://(?:([^/?#]*)@)?([\\w\\d\\-\\u0100-\\uffff.%]*)(?::([0-9]+))?)?([^?#]+)?(?:\\?([^#]*))?(?:#(.*))?$');
-$.CTC226 = 'Mutation operations are not supported';
+$.CTC224 = 'Mutation operations are not supported';
 $.CTC19 = new Isolate.$isolateProperties.UnsupportedOperationException('Mutation operations are not supported');
 $.Uri__COMPONENT_PATH = 5;
 $.QrMaskPattern_PATTERN001 = 1;
@@ -9636,7 +9557,7 @@ $._BufferingSendPort__idCount = 0;
 $.QrMaskPattern_PATTERN101 = 5;
 $.QrErrorCorrectLevel_levels = Isolate.$isolateProperties.CTC21;
 $.QrMode_MODE_8BIT_BYTE = 4;
-$.QrRsBlock__rsBlockTable = Isolate.$isolateProperties.CTC213;
+$.QrRsBlock__rsBlockTable = Isolate.$isolateProperties.CTC212;
 $.Uri__COMPONENT_PORT = 4;
 $._lazyPort = null;
 $.Uri__COMPONENT_SCHEME = 1;
@@ -10112,7 +10033,7 @@ _ConsoleImpl = (typeof console == 'undefined' ? {} : console);
 _ConsoleImpl.error$1 = function(arg) {
   return this.error(arg);
 };
-_ConsoleImpl.get$error = function() { return new $.BoundClosure0(this, 'error$1'); };
+_ConsoleImpl.get$error = function() { return new $.BoundClosure(this, 'error$1'); };
 $.$defineNativeClass('HTMLContentElement', [], {
  is$Element: function() { return true; }
 });
@@ -10396,7 +10317,7 @@ $.$defineNativeClass('HTMLDivElement', [], {
 $.$defineNativeClass('DocumentFragment', [], {
  get$elements: function() {
   if (this._elements == null)
-    this._elements = $.FilteredElementList$(this);
+    this._elements = $._FilteredElementList$(this);
   return this._elements;
 },
  query$1: function(selectors) {
@@ -12065,9 +11986,6 @@ $.$defineNativeClass('NodeList', ["length?"], {
   }
 
 },
- get$first: function() {
-  return this.operator$index$1(0);
-},
  insertRange$3: function(start, rangeLength, initialValue) {
   if (Object.getPrototypeOf(this).hasOwnProperty('insertRange$3')) {
   {
@@ -12514,7 +12432,7 @@ $.$defineNativeClass('SVGDocument', [], {
 
 $.$defineNativeClass('SVGElement', [], {
  get$elements: function() {
-  return $.FilteredElementList$(this);
+  return $._FilteredElementList$(this);
 },
  set$elements: function(value) {
   var elements = this.get$elements();
@@ -12524,7 +12442,7 @@ $.$defineNativeClass('SVGElement', [], {
  set$innerHTML: function(svg) {
   var container = $.Element_Element$tag('div');
   container.set$innerHTML('<svg version="1.1">' + $.S(svg) + '</svg>');
-  this.set$elements(container.get$elements().get$first().get$elements());
+  this.set$elements($.index(container.get$elements(), 0).get$elements());
 },
  get$id: function() {
 return this.id;
@@ -14283,12 +14201,12 @@ $.$defineNativeClass('DOMWindow', [], {
   var v16/*class(_AbstractWorkerImpl)*/ = 'AbstractWorker|Worker|SharedWorker|Worker|SharedWorker';
   var table = [
     // [dynamic-dispatch-tag, tags of classes implementing dynamic-dispatch-tag]
-    ['SVGTextPositioningElement', v0/*class(_SVGTextPositioningElementImpl)*/],
-    ['SVGTextContentElement', v1/*class(_SVGTextContentElementImpl)*/],
     ['IDBRequest', v15/*class(_IDBRequestImpl)*/],
+    ['SVGTextPositioningElement', v0/*class(_SVGTextPositioningElementImpl)*/],
     ['HTMLMediaElement', v6/*class(_MediaElementImpl)*/],
     ['MediaStream', v14/*class(_MediaStreamImpl)*/],
     ['AbstractWorker', v16/*class(_AbstractWorkerImpl)*/],
+    ['SVGTextContentElement', v1/*class(_SVGTextContentElementImpl)*/],
     ['SVGGradientElement', v2/*class(_SVGGradientElementImpl)*/],
     ['SVGComponentTransferFunctionElement', v3/*class(_SVGComponentTransferFunctionElementImpl)*/],
     ['SVGAnimationElement', v4/*class(_SVGAnimationElementImpl)*/],

@@ -760,7 +760,6 @@ $$.DoubleLinkedQueue = {"":
  first$0: function() {
   return this._sentinel._next.get$element();
 },
- get$first: function() { return new $.BoundClosure(this, 'first$0'); },
  last$0: function() {
   return this._sentinel._previous.get$element();
 },
@@ -1526,22 +1525,12 @@ $$._DedicatedWorkerContextEventsImpl = {"":
 }
 };
 
-$$.FilteredElementList = {"":
+$$._FilteredElementList = {"":
  ["_node", "_childNodes"],
  "super": "Object",
  get$_filtered: function() {
-  return $.ListImplementation_List$from($.filter(this._childNodes, new $.FilteredElementList__filtered_anon()));
+  return $.ListImplementation_List$from($.filter(this._childNodes, new $._FilteredElementList__filtered_anon()));
 },
- get$first: function() {
-  for (var t1 = $.iterator(this._childNodes); t1.hasNext$0() === true;) {
-    var t2 = t1.next$0();
-    if (typeof t2 === 'object' && t2 !== null && t2.is$Element())
-      return t2;
-  }
-  return;
-},
- first$0: function() { return this.get$first().call$0(); },
- first$1: function(arg0) { return this.get$first().call$1(arg0); },
  forEach$1: function(f) {
   $.forEach(this.get$_filtered(), f);
 },
@@ -1559,7 +1548,7 @@ $$.FilteredElementList = {"":
  add$1: function(value) {
   $.add$1(this._childNodes, value);
 },
- get$add: function() { return new $.BoundClosure0(this, 'add$1'); },
+ get$add: function() { return new $.BoundClosure(this, 'add$1'); },
  addAll$1: function(collection) {
   $.forEach(collection, this.get$add());
 },
@@ -1570,7 +1559,7 @@ $$.FilteredElementList = {"":
   throw $.$$throw($.CTC33);
 },
  removeRange$2: function(start, rangeLength) {
-  $.forEach($.getRange(this.get$_filtered(), start, rangeLength), new $.FilteredElementList_removeRange_anon());
+  $.forEach($.getRange(this.get$_filtered(), start, rangeLength), new $._FilteredElementList_removeRange_anon());
 },
  insertRange$3: function(start, rangeLength, initialValue) {
   throw $.$$throw($.CTC46);
@@ -1678,11 +1667,6 @@ $$._ChildrenElementList = {"":
   }
   return output;
 },
- get$first: function() {
-  return this._lib_element.get$$$dom_firstElementChild();
-},
- first$0: function() { return this.get$first().call$0(); },
- first$1: function(arg0) { return this.get$first().call$1(arg0); },
  forEach$1: function(f) {
   for (var t1 = $.iterator(this._childElements); t1.hasNext$0() === true;)
     f.call$1(t1.next$0());
@@ -1801,11 +1785,11 @@ $$._FrozenElementList = {"":
   return out;
 },
  filter$1: function(f) {
-  var out = $._ElementList$([]);
+  var out = [];
   for (var t1 = $.iterator(this); t1.hasNext$0() === true;) {
     var t2 = t1.next$0();
     if (f.call$1(t2) === true)
-      out.add$1(t2);
+      out.push(t2);
   }
   return out;
 },
@@ -1907,20 +1891,6 @@ $$._FrozenElementListIterator = {"":
  hasNext$0$bailout: function(state, t1, t2) {
   return $.lt(t1, t2);
 }
-};
-
-$$._ElementList = {"":
- ["_lib_list"],
- "super": "_ListWrapper",
- filter$1: function(f) {
-  return $._ElementList$($._ListWrapper.prototype.filter$1.call(this, f));
-},
- getRange$2: function(start, rangeLength) {
-  return $._ElementList$($._ListWrapper.prototype.getRange$2.call(this, start, rangeLength));
-},
- is$List: function() { return true; },
- is$Collection: function() { return true; },
- is$Iterable: function() { return true; }
 };
 
 $$._ElementAttributeMap = {"":
@@ -3367,15 +3337,15 @@ $$._SpreadArgsHelper = {"":
   if (this._isDone$0() === true)
     $._handleCallbackFunctionComplete();
 },
- get$_after: function() { return new $.BoundClosure(this, '_after$0'); },
+ get$_after: function() { return new $.BoundClosure0(this, '_after$0'); },
  _allCallsDone$0: function() {
   return $.eq(this._actualCalls, this._expectedCalls);
 },
- get$_allCallsDone: function() { return new $.BoundClosure(this, '_allCallsDone$0'); },
+ get$_allCallsDone: function() { return new $.BoundClosure0(this, '_allCallsDone$0'); },
  invoke1$1: function(arg1) {
   return $.guardAsync(new $._SpreadArgsHelper_invoke1_anon(this, arg1), this.get$_after(), this._testNum);
 },
- get$invoke1: function() { return new $.BoundClosure0(this, 'invoke1$1'); },
+ get$invoke1: function() { return new $.BoundClosure(this, 'invoke1$1'); },
  _checkCallCount$0: function() {
   if ($.gtB(this._actualCalls, this._expectedCalls)) {
     this._testCase.error$2('Callback called more times than expected (' + $.S(this._actualCalls) + ' > ' + $.S(this._expectedCalls) + ').', '');
@@ -3383,7 +3353,7 @@ $$._SpreadArgsHelper = {"":
   }
   return true;
 },
- get$_checkCallCount: function() { return new $.BoundClosure(this, '_checkCallCount$0'); },
+ get$_checkCallCount: function() { return new $.BoundClosure0(this, '_checkCallCount$0'); },
  _SpreadArgsHelper$fixedCallCount$2: function(callback, expectedCalls) {
   this._init$4(callback, this.get$_checkCallCount(), this.get$_allCallsDone(), expectedCalls);
 }
@@ -4380,13 +4350,12 @@ $$.Enumerable = {"":
     f = new $.Enumerable_first_anon();
   var iter = $._WhereIterator$(this.iterator$0(), f);
   if (iter.hasNext$0() !== true)
-    throw $.$$throw($.CTC34);
+    throw $.$$throw($.CTC37);
   return iter.next$0();
 },
  first$0: function() {
   return this.first$1(null)
 },
- get$first: function() { return new $.BoundClosure3(this, 'first$1'); },
  firstOrDefault$2: function(f, defaultValue) {
   if (f == null)
     f = new $.Enumerable_firstOrDefault_anon();
@@ -4403,10 +4372,10 @@ $$.Enumerable = {"":
     f = new $.Enumerable_single_anon();
   var iter = $._WhereIterator$(this.iterator$0(), f);
   if (iter.hasNext$0() !== true)
-    throw $.$$throw($.CTC34);
+    throw $.$$throw($.CTC37);
   var value = iter.next$0();
   if (iter.hasNext$0() === true)
-    throw $.$$throw($.CTC37);
+    throw $.$$throw($.CTC36);
   return value;
 },
  single$0: function() {
@@ -4420,7 +4389,7 @@ $$.Enumerable = {"":
     return defaultValue;
   var value = iter.next$0();
   if (iter.hasNext$0() === true)
-    throw $.$$throw($.CTC37);
+    throw $.$$throw($.CTC36);
   return value;
 },
  singleOrDefault$1: function(f) {
@@ -5685,7 +5654,7 @@ $$.EventWatcher = {"":
   this._lastArgs = args;
   this._eventCount = this._eventCount + 1;
 },
- get$handler: function() { return new $.BoundClosure0(this, 'handler$1'); }
+ get$handler: function() { return new $.BoundClosure(this, 'handler$1'); }
 };
 
 $$._InvalidOperationException = {"":
@@ -7099,14 +7068,14 @@ $$.FutureValue = {"":
   this._cleanup$0();
   return true;
 },
- get$_futureException: function() { return new $.BoundClosure0(this, '_futureException$1'); },
+ get$_futureException: function() { return new $.BoundClosure(this, '_futureException$1'); },
  _futureCompleted$1: function(value) {
   this._future = null;
   this._output = value;
   this._outputChangedHandle.fireEvent$1($.CTC19);
   this._cleanup$0();
 },
- get$_futureCompleted: function() { return new $.BoundClosure0(this, '_futureCompleted$1'); },
+ get$_futureCompleted: function() { return new $.BoundClosure(this, '_futureCompleted$1'); },
  _cleanup$0: function() {
   if (this._pending) {
     this._pending = false;
@@ -7162,7 +7131,7 @@ $$.SendPortValue = {"":
   else
     this._lib5_complete$1(value);
 },
- get$__futureCompleted: function() { return new $.BoundClosure0(this, '__futureCompleted$1'); },
+ get$__futureCompleted: function() { return new $.BoundClosure(this, '__futureCompleted$1'); },
  _sendValueResultCompleted$1: function(value) {
   if (value.get$isException() === true)
     this._completeException$1(value.get$exception());
@@ -8836,7 +8805,7 @@ $$._ChildrenElementList_filter_anon = {"":
 }
 };
 
-$$.FilteredElementList__filtered_anon = {"":
+$$._FilteredElementList__filtered_anon = {"":
  [],
  "super": "Closure",
  call$1: function(n) {
@@ -8844,7 +8813,7 @@ $$.FilteredElementList__filtered_anon = {"":
 }
 };
 
-$$.FilteredElementList_removeRange_anon = {"":
+$$._FilteredElementList_removeRange_anon = {"":
  [],
  "super": "Closure",
  call$1: function(el) {
@@ -9047,14 +9016,6 @@ $$.Enumerable_filter_anon = {"":
  "super": "Closure",
  call$1: function(s) {
   return $._WhereIterator$(s, this.f_0);
-}
-};
-
-$$.Enumerable_first_anon = {"":
- [],
- "super": "Closure",
- call$1: function(e) {
-  return true;
 }
 };
 
@@ -9471,6 +9432,14 @@ $$.TestEnumerable__testFirst_anon4 = {"":
 };
 
 $$.Enumerable_firstOrDefault_anon = {"":
+ [],
+ "super": "Closure",
+ call$1: function(e) {
+  return true;
+}
+};
+
+$$.Enumerable_first_anon = {"":
  [],
  "super": "Closure",
  call$1: function(e) {
@@ -10080,15 +10049,24 @@ $$.anon6 = {"":
 }
 };
 
+$$.Closure = {"":
+ [],
+ "super": "Object",
+ toString$0: function() {
+  return 'Closure';
+},
+ is$Function: true
+};
+
 $$.BoundClosure = {'':
  ['self', 'target'],
  'super': 'Closure',
-call$0: function() { return this.self[this.target](); }
+call$1: function(p0) { return this.self[this.target](p0); }
 };
 $$.BoundClosure0 = {'':
  ['self', 'target'],
  'super': 'Closure',
-call$1: function(p0) { return this.self[this.target](p0); }
+call$0: function() { return this.self[this.target](); }
 };
 $$.BoundClosure1 = {'':
  ['self', 'target'],
@@ -10099,14 +10077,6 @@ $$.BoundClosure2 = {'':
  ['self', 'target'],
  'super': 'Closure',
 call$2: function(p0, p1) { return this.self[this.target](p0, p1); }
-};
-$$.BoundClosure3 = {'':
- ['self', 'target'],
- 'super': 'Closure',
-call$1: function(p0) { return this.self[this.target](p0); },
- call$0: function() {
-  return this.call$1(null)
-}
 };
 $._NativeJsSendPort$ = function(_receivePort, isolateId) {
   return new $._NativeJsSendPort(_receivePort, isolateId);
@@ -10139,6 +10109,13 @@ $.AffineTransform_AffineTransform$fromScale = function(sx, sy) {
   return $.AffineTransform$(1, 0, 0, 1, 0, 0).setToScale$2(sx, sy);
 };
 
+$.filter = function(receiver, predicate) {
+  if (!$.isJsArray(receiver))
+    return receiver.filter$1(predicate);
+  else
+    return $.Collections_filter(receiver, [], predicate);
+};
+
 $.TestEvents$ = function() {
   return new $.TestEvents($.EventHandle$());
 };
@@ -10149,6 +10126,15 @@ $.Size$ = function(width, height) {
 
 $.NumberEnumerable_NumberEnumerable$fromRange = function(start, count) {
   return $._RangeEnumerable$(start, count);
+};
+
+$.Collections_filter = function(source, destination, f) {
+  for (var t1 = $.iterator(source); t1.hasNext$0() === true;) {
+    var t2 = t1.next$0();
+    if (f.call$1(t2) === true)
+      destination.push(t2);
+  }
+  return destination;
 };
 
 $._IDBTransactionEventsImpl$ = function(_ptr) {
@@ -10198,24 +10184,17 @@ $.Element_Element$html = function(html) {
   return $._ElementFactoryProvider_createElement_html(html);
 };
 
-$.filter = function(receiver, predicate) {
-  if (!$.isJsArray(receiver))
-    return receiver.filter$1(predicate);
-  else
-    return $.Collections_filter(receiver, [], predicate);
-};
-
 $.TestEnumerable__testSingle = function() {
   $.expect($.$$([42]).single$0(), $.equals(42, 100), null, null, false);
-  $.expect(new $.TestEnumerable__testSingle_anon(), $.CTC36, null, null, false);
-  $.expect(new $.TestEnumerable__testSingle_anon0(), $.CTC36, null, null, false);
+  $.expect(new $.TestEnumerable__testSingle_anon(), $.CTC35, null, null, false);
+  $.expect(new $.TestEnumerable__testSingle_anon0(), $.CTC35, null, null, false);
   $.expect($.$$([3, 4, 5]).single$1(new $.TestEnumerable__testSingle_anon1()), $.equals(4, 100), null, null, false);
-  $.expect(new $.TestEnumerable__testSingle_anon2(), $.CTC36, null, null, false);
-  $.expect(new $.TestEnumerable__testSingle_anon3(), $.CTC36, null, null, false);
+  $.expect(new $.TestEnumerable__testSingle_anon2(), $.CTC35, null, null, false);
+  $.expect(new $.TestEnumerable__testSingle_anon3(), $.CTC35, null, null, false);
   $.expect($.$$([3, 4, 5]).singleOrDefault$1(new $.TestEnumerable__testSingle_anon4()), $.equals(4, 100), null, null, false);
   $.expect($.$$([3, 4, 5]).singleOrDefault$1(new $.TestEnumerable__testSingle_anon5()), $.equals(null, 100), null, null, false);
   $.expect($.$$([3, 4, 5]).singleOrDefault$2(new $.TestEnumerable__testSingle_anon6(), -42), $.equals(-42, 100), null, null, false);
-  $.expect(new $.TestEnumerable__testSingle_anon7(), $.CTC36, null, null, false);
+  $.expect(new $.TestEnumerable__testSingle_anon7(), $.CTC35, null, null, false);
 };
 
 $.TestTarjanCycleDetect__testSingle = function() {
@@ -10230,15 +10209,6 @@ $.SendValuePort$ = function(_func, inputDeserializer, outputSerializer) {
   var t1 = new $.SendValuePort(_func, inputDeserializer, outputSerializer);
   t1.SendValuePort$3$inputDeserializer$outputSerializer(_func, inputDeserializer, outputSerializer);
   return t1;
-};
-
-$.Collections_filter = function(source, destination, f) {
-  for (var t1 = $.iterator(source); t1.hasNext$0() === true;) {
-    var t2 = t1.next$0();
-    if (f.call$1(t2) === true)
-      destination.push(t2);
-  }
-  return destination;
 };
 
 $._convertDartToNative_PrepareForStructuredClone = function(value) {
@@ -10351,6 +10321,15 @@ $._EventsImpl$ = function(_ptr) {
   return new $._EventsImpl(_ptr);
 };
 
+$._Collections_filter = function(source, destination, f) {
+  for (var t1 = $.iterator(source); t1.hasNext$0() === true;) {
+    var t2 = t1.next$0();
+    if (f.call$1(t2) === true)
+      destination.push(t2);
+  }
+  return destination;
+};
+
 $.NoSuchMethodError$ = function(_receiver, _functionName, _arguments, existingArgumentNames) {
   return new $.NoSuchMethodError(_receiver, _functionName, _arguments, existingArgumentNames);
 };
@@ -10415,15 +10394,6 @@ $.or = function(a, b) {
   if ($.checkNumbers(a, b))
     return (a | b) >>> 0;
   return a.operator$or$1(b);
-};
-
-$._Collections_filter = function(source, destination, f) {
-  for (var t1 = $.iterator(source); t1.hasNext$0() === true;) {
-    var t2 = t1.next$0();
-    if (f.call$1(t2) === true)
-      destination.push(t2);
-  }
-  return destination;
 };
 
 $.Primitives_getYear = function(receiver) {
@@ -11151,6 +11121,30 @@ $._DOMWindowCrossFrameImpl__postMessage3 = function(win, message, targetOrigin, 
 
 };
 
+$.getRange = function(receiver, start, length$) {
+  if (!$.isJsArray(receiver))
+    return receiver.getRange$2(start, length$);
+  if (0 === length$)
+    return [];
+  $.checkNull(start);
+  $.checkNull(length$);
+  if (!(typeof start === 'number' && Math.floor(start) === start))
+    throw $.$$throw($.ArgumentError$(start));
+  if (!(typeof length$ === 'number' && Math.floor(length$) === length$))
+    throw $.$$throw($.ArgumentError$(length$));
+  var t1 = length$ < 0;
+  if (t1)
+    throw $.$$throw($.ArgumentError$(length$));
+  if (start < 0)
+    throw $.$$throw($.IndexOutOfRangeException$(start));
+  var end = start + length$;
+  if ($.gtB(end, $.get$length(receiver)))
+    throw $.$$throw($.IndexOutOfRangeException$(length$));
+  if (t1)
+    throw $.$$throw($.ArgumentError$(length$));
+  return receiver.slice(start, end);
+};
+
 $.HashSetIterator$ = function(set_) {
   var t1 = new $.HashSetIterator(set_._backingMap._keys, -1);
   t1.HashSetIterator$1(set_);
@@ -11222,45 +11216,6 @@ $.round = function(receiver) {
     return Math.round(receiver);
 };
 
-$.getRange = function(receiver, start, length$) {
-  if (!$.isJsArray(receiver))
-    return receiver.getRange$2(start, length$);
-  if (0 === length$)
-    return [];
-  $.checkNull(start);
-  $.checkNull(length$);
-  if (!(typeof start === 'number' && Math.floor(start) === start))
-    throw $.$$throw($.ArgumentError$(start));
-  if (!(typeof length$ === 'number' && Math.floor(length$) === length$))
-    throw $.$$throw($.ArgumentError$(length$));
-  var t1 = length$ < 0;
-  if (t1)
-    throw $.$$throw($.ArgumentError$(length$));
-  if (start < 0)
-    throw $.$$throw($.IndexOutOfRangeException$(start));
-  var end = start + length$;
-  if ($.gtB(end, $.get$length(receiver)))
-    throw $.$$throw($.IndexOutOfRangeException$(length$));
-  if (t1)
-    throw $.$$throw($.ArgumentError$(length$));
-  return receiver.slice(start, end);
-};
-
-$.print = function(obj) {
-  if (typeof obj === 'string')
-    $.Primitives_printString(obj);
-  else
-    $.Primitives_printString($.toString(obj));
-};
-
-$.StackOverflowException$ = function() {
-  return new $.StackOverflowException();
-};
-
-$.TestCollectionUtil__testListish = function() {
-  $.expect($.CollectionUtil_allUnique($.ReadOnlyCollection$([1, 2])), $.CTC15, null, null, false);
-};
-
 $._Lists_getRange = function(a, start, length$, accumulator) {
   if (typeof a !== 'string' && (typeof a !== 'object' || a === null || a.constructor !== Array && !a.is$JavaScriptIndexingBehavior()))
     return $._Lists_getRange$bailout(1, a, start, length$, accumulator);
@@ -11283,6 +11238,21 @@ $._Lists_getRange = function(a, start, length$, accumulator) {
     accumulator.push(a[i]);
   }
   return accumulator;
+};
+
+$.print = function(obj) {
+  if (typeof obj === 'string')
+    $.Primitives_printString(obj);
+  else
+    $.Primitives_printString($.toString(obj));
+};
+
+$.StackOverflowException$ = function() {
+  return new $.StackOverflowException();
+};
+
+$.TestCollectionUtil__testListish = function() {
+  $.expect($.CollectionUtil_allUnique($.ReadOnlyCollection$([1, 2])), $.CTC15, null, null, false);
 };
 
 $.QrPolynomial_QrPolynomial = function(thing, shift) {
@@ -11550,16 +11520,16 @@ $.TestEnumerable__testToHashMap = function() {
   var hashMap0 = noDupes.toHashMap$2(new $.TestEnumerable__testToHashMap_anon1(), new $.TestEnumerable__testToHashMap_anon2());
   $.forEach(hashMap0, new $.TestEnumerable__testToHashMap_anon3());
   $.expect(hashMap0.getValues$0(), $.unorderedEquals(noDupes), null, null, false);
-  $.expect(new $.TestEnumerable__testToHashMap_anon4(noDupes), $.CTC35, null, null, false);
-  $.expect(new $.TestEnumerable__testToHashMap_anon5($.$$(['the', 'cat', 'is', 'the', 'super', 'cat'])), $.CTC35, null, null, false);
+  $.expect(new $.TestEnumerable__testToHashMap_anon4(noDupes), $.CTC34, null, null, false);
+  $.expect(new $.TestEnumerable__testToHashMap_anon5($.$$(['the', 'cat', 'is', 'the', 'super', 'cat'])), $.CTC34, null, null, false);
 };
 
 $.TestEnumerable__testFirst = function() {
   var enum$ = $.$$([0, 1, 2]);
   $.expect(enum$.first$0(), $.equals(0, 100), null, null, false);
-  $.expect(new $.TestEnumerable__testFirst_anon(), $.CTC36, null, null, false);
+  $.expect(new $.TestEnumerable__testFirst_anon(), $.CTC35, null, null, false);
   $.expect(enum$.first$1(new $.TestEnumerable__testFirst_anon0()), $.equals(1, 100), null, null, false);
-  $.expect(new $.TestEnumerable__testFirst_anon1(enum$), $.CTC36, null, null, false);
+  $.expect(new $.TestEnumerable__testFirst_anon1(enum$), $.CTC35, null, null, false);
   $.expect(enum$.firstOrDefault$1(new $.TestEnumerable__testFirst_anon2()), $.equals(1, 100), null, null, false);
   $.expect(enum$.firstOrDefault$1(new $.TestEnumerable__testFirst_anon3()), $.equals(null, 100), null, null, false);
   $.expect(enum$.firstOrDefault$2(new $.TestEnumerable__testFirst_anon4(), -42), $.equals(-42, 100), null, null, false);
@@ -11703,27 +11673,6 @@ $.Array2d$wrap = function(width, source) {
   return t1;
 };
 
-$.typeNameInFirefox = function(obj) {
-  var name$ = $.constructorNameFallback(obj);
-  if (name$ === 'Window')
-    return 'DOMWindow';
-  if (name$ === 'Document')
-    return 'HTMLDocument';
-  if (name$ === 'XMLDocument')
-    return 'Document';
-  if (name$ === 'WorkerMessageEvent')
-    return 'MessageEvent';
-  if (name$ === 'DragEvent')
-    return 'MouseEvent';
-  if (name$ === 'DataTransfer')
-    return 'Clipboard';
-  if (name$ === 'FormData')
-    return 'DOMFormData';
-  if (name$ === 'MouseScrollEvent')
-    return 'WheelEvent';
-  return name$;
-};
-
 $.removeRange = function(receiver, start, length$) {
   if (!$.isJsArray(receiver))
     return receiver.removeRange$2(start, length$);
@@ -11743,6 +11692,27 @@ $.removeRange = function(receiver, start, length$) {
   var t2 = receiverLength - length$;
   $.Arrays_copy(receiver, t1, receiver, start, t2 - start);
   $.set$length(receiver, t2);
+};
+
+$.typeNameInFirefox = function(obj) {
+  var name$ = $.constructorNameFallback(obj);
+  if (name$ === 'Window')
+    return 'DOMWindow';
+  if (name$ === 'Document')
+    return 'HTMLDocument';
+  if (name$ === 'XMLDocument')
+    return 'Document';
+  if (name$ === 'WorkerMessageEvent')
+    return 'MessageEvent';
+  if (name$ === 'DragEvent')
+    return 'MouseEvent';
+  if (name$ === 'DataTransfer')
+    return 'Clipboard';
+  if (name$ === 'FormData')
+    return 'DOMFormData';
+  if (name$ === 'MouseScrollEvent')
+    return 'WheelEvent';
+  return name$;
 };
 
 $._WorkerEventsImpl$ = function(_ptr) {
@@ -11929,7 +11899,7 @@ $._ElementFactoryProvider_createElement_html = function(html) {
   var temp = $.Element_Element$tag(parentTag);
   temp.set$innerHTML(html);
   if ($.eqB($.get$length(temp.get$elements()), 1))
-    var element = temp.get$elements().get$first();
+    var element = $.index(temp.get$elements(), 0);
   else if ($.eqB(parentTag, 'html') && $.eqB($.get$length(temp.get$elements()), 2)) {
     var t1 = temp.get$elements();
     element = $.index(t1, $.eqB(tag, 'head') ? 0 : 1);
@@ -13552,6 +13522,10 @@ $.CollectionUtil_allUnique = function(items) {
   var t1;
 };
 
+$._FilteredElementList$ = function(node) {
+  return new $._FilteredElementList(node, node.get$nodes());
+};
+
 $.addAll = function(receiver, collection) {
   if (!$.isJsArray(receiver))
     return receiver.addAll$1(collection);
@@ -13608,8 +13582,8 @@ $.Collections__emitCollection = function(c, result, visiting) {
   $.removeLast(visiting);
 };
 
-$.FilteredElementList$ = function(node) {
-  return new $.FilteredElementList(node, node.get$nodes());
+$.TestEnumerable__testMap = function() {
+  $.expect($.map($.$$([1, 2, 3, 4, 5, 6]), new $.TestEnumerable__testMap_anon()), $.orderedEquals([2, 4, 6, 8, 10, 12]), null, null, false);
 };
 
 $.typeNameInChrome = function(obj) {
@@ -13634,8 +13608,10 @@ $.Array2d_Array2d$readonlyFrom = function(width, source) {
   return $.Array2d$wrap(width, s);
 };
 
-$.TestEnumerable__testMap = function() {
-  $.expect($.map($.$$([1, 2, 3, 4, 5, 6]), new $.TestEnumerable__testMap_anon()), $.orderedEquals([2, 4, 6, 8, 10, 12]), null, null, false);
+$.TestListBase__testMap = function() {
+  var list = $.CTC40.map$1(new $.TestListBase__testMap_anon());
+  $.expect($.get$length(list), $.equals(5, 100), null, null, false);
+  $.expect(list, $.orderedEquals([10, 8, 6, 4, 2]), null, null, false);
 };
 
 $.Expect__fail = function(message) {
@@ -13661,12 +13637,6 @@ $.Array2d_Array2d = function(width, height, initialValue) {
 
 $.toStringForNativeObject = function(obj) {
   return 'Instance of ' + $.getTypeNameOf(obj);
-};
-
-$.TestListBase__testMap = function() {
-  var list = $.CTC40.map$1(new $.TestListBase__testMap_anon());
-  $.expect($.get$length(list), $.equals(5, 100), null, null, false);
-  $.expect(list, $.orderedEquals([10, 8, 6, 4, 2]), null, null, false);
 };
 
 $.ltB = function(a, b) {
@@ -14124,13 +14094,6 @@ $._IsolateNatives__newWorker = function(url) {
 return new Worker(url);
 };
 
-$.map = function(receiver, f) {
-  if (!$.isJsArray(receiver))
-    return receiver.map$1(f);
-  else
-    return $.Collections_map(receiver, [], f);
-};
-
 $.checkMutable = function(list, reason) {
   if (!!(list.immutable$list))
     throw $.$$throw($.UnsupportedOperationException$(reason));
@@ -14138,6 +14101,13 @@ $.checkMutable = function(list, reason) {
 
 $.FutureValueResult_isMyMap = function(value) {
   return !(value == null) && $.eqB($.get$length(value), 2) && value.containsKey$1('value') === true && value.containsKey$1('exception') === true;
+};
+
+$.map = function(receiver, f) {
+  if (!$.isJsArray(receiver))
+    return receiver.map$1(f);
+  else
+    return $.Collections_map(receiver, [], f);
 };
 
 $.add = function(a, b) {
@@ -14258,10 +14228,6 @@ $.eq = function(a, b) {
 
 $.HashSet_HashSet$from = function(other) {
   return $.HashSetImplementation_HashSetImplementation$from(other);
-};
-
-$._ElementList$ = function(list) {
-  return new $._ElementList(list);
 };
 
 $.requireArgument = function(truth, arg, message) {
@@ -14448,12 +14414,6 @@ $.Date_Date$now = function() {
   return $.DateImplementation$now();
 };
 
-$.Collections_map = function(source, destination, f) {
-  for (var t1 = $.iterator(source); t1.hasNext$0() === true;)
-    destination.push(f.call$1(t1.next$0()));
-  return destination;
-};
-
 $.Property$ = function(name$, defaultValue) {
   return new $.Property(defaultValue, name$);
 };
@@ -14491,6 +14451,12 @@ $.indexSet$slow = function(a, index, value) {
     return;
   }
   a.operator$indexSet$2(index, value);
+};
+
+$.Collections_map = function(source, destination, f) {
+  for (var t1 = $.iterator(source); t1.hasNext$0() === true;)
+    destination.push(f.call$1(t1.next$0()));
+  return destination;
 };
 
 $._Collections_forEach = function(iterable, f) {
@@ -15136,12 +15102,6 @@ $._HttpRequestUploadEventsImpl$ = function(_ptr) {
   return new $._HttpRequestUploadEventsImpl(_ptr);
 };
 
-$._Collections_map = function(source, destination, f) {
-  for (var t1 = $.iterator(source); t1.hasNext$0() === true;)
-    destination.push(f.call$1(t1.next$0()));
-  return destination;
-};
-
 $.DualPivotQuicksort__doSort = function(a, left, right, compare) {
   if ($.leB($.sub(right, left), 32))
     $.DualPivotQuicksort_insertionSort_(a, left, right, compare);
@@ -15238,6 +15198,12 @@ $.concat = function(receiver, other) {
   if (!(typeof other === 'string'))
     throw $.$$throw($.ArgumentError$(other));
   return receiver + other;
+};
+
+$._Collections_map = function(source, destination, f) {
+  for (var t1 = $.iterator(source); t1.hasNext$0() === true;)
+    destination.push(f.call$1(t1.next$0()));
+  return destination;
 };
 
 $.Maps__emitMap = function(m, result, visiting) {
@@ -16355,7 +16321,7 @@ Isolate.makeConstantList = function(list) {
   return list;
 };
 $.CTC1 = Isolate.makeConstantList([]);
-$.CTC18 = new Isolate.$isolateProperties._UndefinedValue();
+$.CTC31 = new Isolate.$isolateProperties.ConstantMap(0, {}, Isolate.$isolateProperties.CTC1);
 $.CTC59 = 3;
 $.CTC60 = 58;
 $.CTC61 = 36;
@@ -16363,207 +16329,206 @@ $.CTC62 = 2;
 $.CTC63 = 59;
 $.CTC64 = 37;
 $.CTC65 = Isolate.makeConstantList([3, 58, 36, 2, 59, 37]);
-$.CTC31 = new Isolate.$isolateProperties.ConstantMap(0, {}, Isolate.$isolateProperties.CTC1);
-$.CTC66 = 'NullPointerException';
-$.CTC67 = new Isolate.$isolateProperties._NullPointerException('NullPointerException');
+$.CTC66 = 1;
+$.CTC67 = 0;
+$.CTC56 = Isolate.makeConstantList([1, 0, 3, 2]);
 $.CTC68 = 33;
 $.CTC69 = 11;
 $.CTC70 = 34;
 $.CTC71 = 12;
 $.CTC72 = Isolate.makeConstantList([2, 33, 11, 2, 34, 12]);
-$.CTC73 = false;
+$.CTC73 = 'NullPointerException';
+$.CTC74 = new Isolate.$isolateProperties._NullPointerException('NullPointerException');
+$.CTC75 = false;
 $.CTC40 = new Isolate.$isolateProperties.TestListBase(false);
-$.CTC74 = 32;
-$.CTC75 = 14;
-$.CTC76 = 4;
-$.CTC77 = 15;
-$.CTC78 = Isolate.makeConstantList([2, 32, 14, 4, 33, 15]);
-$.CTC79 = 1;
-$.CTC80 = 26;
-$.CTC81 = 19;
-$.CTC82 = Isolate.makeConstantList([1, 26, 19]);
-$.CTC83 = 39;
-$.CTC84 = 13;
-$.CTC85 = 40;
-$.CTC86 = Isolate.makeConstantList([4, 39, 13, 1, 40, 14]);
+$.CTC76 = 32;
+$.CTC77 = 14;
+$.CTC78 = 4;
+$.CTC79 = 15;
+$.CTC80 = Isolate.makeConstantList([2, 32, 14, 4, 33, 15]);
+$.CTC81 = 26;
+$.CTC82 = 19;
+$.CTC83 = Isolate.makeConstantList([1, 26, 19]);
+$.CTC84 = 39;
+$.CTC85 = 13;
+$.CTC86 = 40;
+$.CTC87 = Isolate.makeConstantList([4, 39, 13, 1, 40, 14]);
 $.CTC16 = new Isolate.$isolateProperties._DeletedKeySentinel();
-$.CTC87 = 16;
-$.CTC88 = Isolate.makeConstantList([1, 26, 16]);
-$.CTC89 = 18;
-$.CTC90 = 41;
-$.CTC91 = Isolate.makeConstantList([4, 40, 18, 2, 41, 19]);
-$.CTC92 = -1;
+$.CTC88 = 16;
+$.CTC89 = Isolate.makeConstantList([1, 26, 16]);
+$.CTC90 = -1;
 $.CTC49 = new Isolate.$isolateProperties.Vector(1, -1);
-$.CTC93 = 6;
-$.CTC94 = 43;
-$.CTC95 = 44;
-$.CTC96 = 20;
-$.CTC97 = Isolate.makeConstantList([6, 43, 19, 2, 44, 20]);
-$.CTC98 = Isolate.makeConstantList([1, 44, 34]);
-$.CTC99 = 50;
-$.CTC100 = Isolate.makeConstantList([2, 50, 32]);
-$.CTC101 = 'ArgumentError';
-$.CTC102 = new Isolate.$isolateProperties._ArgumentError('ArgumentError');
-$.CTC39 = new Isolate.$isolateProperties.Throws(Isolate.$isolateProperties.CTC102);
-$.CTC103 = 9;
-$.CTC104 = Isolate.makeConstantList([1, 26, 9]);
-$.CTC105 = 86;
-$.CTC106 = 68;
-$.CTC107 = Isolate.makeConstantList([2, 86, 68]);
-$.CTC108 = 25;
-$.CTC109 = Isolate.makeConstantList([4, 25, 9]);
-$.CTC110 = 'InvalidOperationException';
-$.CTC111 = new Isolate.$isolateProperties._InvalidOperationException('InvalidOperationException');
-$.CTC36 = new Isolate.$isolateProperties.Throws(Isolate.$isolateProperties.CTC111);
-$.CTC112 = Isolate.makeConstantList([1, 26, 13]);
-$.CTC113 = Isolate.makeConstantList([6, 18]);
-$.CTC114 = 30;
-$.CTC115 = Isolate.makeConstantList([6, 30]);
-$.CTC116 = 28;
-$.CTC117 = 54;
-$.CTC118 = 80;
-$.CTC119 = 106;
-$.CTC120 = Isolate.makeConstantList([6, 28, 54, 80, 106]);
-$.CTC121 = 121;
-$.CTC122 = 97;
-$.CTC123 = Isolate.makeConstantList([2, 121, 97]);
-$.CTC124 = 'The input sequence contains more than one element.';
-$.CTC37 = new Isolate.$isolateProperties.InvalidOperationException('The input sequence contains more than one element.');
-$.CTC125 = Isolate.makeConstantList([2, 33, 15, 2, 34, 16]);
-$.CTC126 = 69;
-$.CTC127 = 70;
-$.CTC128 = Isolate.makeConstantList([4, 69, 43, 1, 70, 44]);
-$.CTC129 = Isolate.makeConstantList([6, 43, 15, 2, 44, 16]);
-$.CTC130 = Isolate.makeConstantList([4, 43, 15]);
-$.CTC131 = 132;
-$.CTC132 = 158;
-$.CTC133 = Isolate.makeConstantList([6, 28, 54, 80, 106, 132, 158]);
-$.CTC134 = Isolate.makeConstantList([4, 40, 14, 2, 41, 15]);
-$.CTC135 = 114;
-$.CTC136 = 142;
-$.CTC137 = 170;
-$.CTC138 = Isolate.makeConstantList([6, 30, 58, 86, 114, 142, 170]);
-$.CTC139 = 0;
-$.CTC56 = Isolate.makeConstantList([1, 0, 3, 2]);
-$.CTC140 = 22;
-$.CTC141 = Isolate.makeConstantList([6, 22]);
-$.CTC142 = Isolate.makeConstantList([6, 26]);
-$.CTC143 = Isolate.makeConstantList([6, 34]);
-$.CTC144 = 24;
-$.CTC145 = Isolate.makeConstantList([2, 50, 24]);
-$.CTC146 = Isolate.makeConstantList([6, 28, 50]);
-$.CTC147 = 49;
-$.CTC148 = 31;
-$.CTC149 = Isolate.makeConstantList([4, 49, 31]);
-$.CTC150 = Isolate.makeConstantList([6, 32, 58]);
-$.CTC151 = 35;
-$.CTC152 = Isolate.makeConstantList([2, 35, 13]);
-$.CTC153 = 60;
-$.CTC154 = 38;
-$.CTC155 = 61;
-$.CTC156 = Isolate.makeConstantList([2, 60, 38, 2, 61, 39]);
-$.CTC157 = 98;
-$.CTC158 = 78;
-$.CTC159 = Isolate.makeConstantList([2, 98, 78]);
-$.CTC160 = Isolate.makeConstantList([6, 30, 54]);
-$.CTC161 = 'UnsupportedOperationException';
-$.CTC162 = new Isolate.$isolateProperties._UnsupportedOperationException('UnsupportedOperationException');
-$.CTC35 = new Isolate.$isolateProperties.Throws(Isolate.$isolateProperties.CTC162);
-$.CTC163 = true;
+$.CTC91 = 6;
+$.CTC92 = 28;
+$.CTC93 = 54;
+$.CTC94 = 80;
+$.CTC95 = 106;
+$.CTC96 = 132;
+$.CTC97 = 158;
+$.CTC98 = Isolate.makeConstantList([6, 28, 54, 80, 106, 132, 158]);
+$.CTC99 = 43;
+$.CTC100 = 44;
+$.CTC101 = 20;
+$.CTC102 = Isolate.makeConstantList([6, 43, 19, 2, 44, 20]);
+$.CTC103 = Isolate.makeConstantList([1, 44, 34]);
+$.CTC104 = 50;
+$.CTC105 = Isolate.makeConstantList([2, 50, 32]);
+$.CTC106 = 86;
+$.CTC107 = 68;
+$.CTC108 = Isolate.makeConstantList([2, 86, 68]);
+$.CTC109 = 9;
+$.CTC110 = Isolate.makeConstantList([1, 26, 9]);
+$.CTC111 = 'ArgumentError';
+$.CTC112 = new Isolate.$isolateProperties._ArgumentError('ArgumentError');
+$.CTC39 = new Isolate.$isolateProperties.Throws(Isolate.$isolateProperties.CTC112);
+$.CTC113 = 'The input sequence contains more than one element.';
+$.CTC36 = new Isolate.$isolateProperties.InvalidOperationException('The input sequence contains more than one element.');
+$.CTC114 = 'InvalidOperationException';
+$.CTC115 = new Isolate.$isolateProperties._InvalidOperationException('InvalidOperationException');
+$.CTC35 = new Isolate.$isolateProperties.Throws(Isolate.$isolateProperties.CTC115);
+$.CTC116 = Isolate.makeConstantList([1, 26, 13]);
+$.CTC117 = 25;
+$.CTC118 = Isolate.makeConstantList([4, 25, 9]);
+$.CTC119 = 30;
+$.CTC120 = Isolate.makeConstantList([6, 30]);
+$.CTC121 = Isolate.makeConstantList([6, 28, 54, 80, 106]);
+$.CTC122 = 121;
+$.CTC123 = 97;
+$.CTC124 = Isolate.makeConstantList([2, 121, 97]);
+$.CTC125 = 18;
+$.CTC126 = 41;
+$.CTC127 = Isolate.makeConstantList([4, 40, 18, 2, 41, 19]);
+$.CTC128 = Isolate.makeConstantList([2, 33, 15, 2, 34, 16]);
+$.CTC129 = 69;
+$.CTC130 = 70;
+$.CTC131 = Isolate.makeConstantList([4, 69, 43, 1, 70, 44]);
+$.CTC132 = Isolate.makeConstantList([6, 18]);
+$.CTC133 = Isolate.makeConstantList([6, 43, 15, 2, 44, 16]);
+$.CTC134 = Isolate.makeConstantList([4, 43, 15]);
+$.CTC135 = 84;
+$.CTC136 = 110;
+$.CTC137 = 136;
+$.CTC138 = 162;
+$.CTC139 = Isolate.makeConstantList([6, 32, 58, 84, 110, 136, 162]);
+$.CTC140 = Isolate.makeConstantList([4, 40, 14, 2, 41, 15]);
+$.CTC141 = 114;
+$.CTC142 = 142;
+$.CTC143 = 170;
+$.CTC144 = Isolate.makeConstantList([6, 30, 58, 86, 114, 142, 170]);
+$.CTC145 = 60;
+$.CTC146 = 38;
+$.CTC147 = 61;
+$.CTC148 = Isolate.makeConstantList([2, 60, 38, 2, 61, 39]);
+$.CTC149 = 22;
+$.CTC150 = Isolate.makeConstantList([6, 22]);
+$.CTC151 = Isolate.makeConstantList([6, 26]);
+$.CTC152 = Isolate.makeConstantList([6, 34]);
+$.CTC153 = 24;
+$.CTC154 = Isolate.makeConstantList([2, 50, 24]);
+$.CTC155 = Isolate.makeConstantList([6, 28, 50]);
+$.CTC156 = 49;
+$.CTC157 = 31;
+$.CTC158 = Isolate.makeConstantList([4, 49, 31]);
+$.CTC159 = Isolate.makeConstantList([6, 32, 58]);
+$.CTC160 = 35;
+$.CTC161 = Isolate.makeConstantList([2, 35, 13]);
+$.CTC162 = 'IndexOutOfRangeException';
+$.CTC163 = new Isolate.$isolateProperties._IndexOutOfRangeException('IndexOutOfRangeException');
+$.CTC44 = new Isolate.$isolateProperties.Throws(Isolate.$isolateProperties.CTC163);
+$.CTC164 = 98;
+$.CTC165 = 78;
+$.CTC166 = Isolate.makeConstantList([2, 98, 78]);
+$.CTC167 = Isolate.makeConstantList([6, 30, 54]);
+$.CTC168 = 17;
+$.CTC169 = Isolate.makeConstantList([2, 35, 17]);
+$.CTC170 = Isolate.makeConstantList([1, 44, 28]);
+$.CTC171 = true;
 $.CTC43 = new Isolate.$isolateProperties.TestListBase(true);
-$.CTC164 = Isolate.makeConstantList([1, 44, 28]);
 $.CTC25 = new Isolate.$isolateProperties.IllegalAccessException();
-$.CTC165 = '^[*a-zA-Z0-9]+$';
+$.CTC172 = '^[*a-zA-Z0-9]+$';
 $.CTC30 = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, '^[*a-zA-Z0-9]+$');
-$.CTC166 = 100;
-$.CTC167 = Isolate.makeConstantList([1, 100, 80]);
-$.CTC168 = 'IndexOutOfRangeException';
-$.CTC169 = new Isolate.$isolateProperties._IndexOutOfRangeException('IndexOutOfRangeException');
-$.CTC44 = new Isolate.$isolateProperties.Throws(Isolate.$isolateProperties.CTC169);
-$.CTC170 = 27;
-$.CTC171 = Isolate.makeConstantList([4, 43, 27]);
-$.CTC172 = 46;
-$.CTC173 = Isolate.makeConstantList([6, 26, 46]);
-$.CTC174 = Isolate.makeConstantList([6, 22, 38]);
-$.CTC175 = 'structured clone of ImageData';
+$.CTC173 = 100;
+$.CTC174 = Isolate.makeConstantList([1, 100, 80]);
+$.CTC175 = 'UnsupportedOperationException';
+$.CTC176 = new Isolate.$isolateProperties._UnsupportedOperationException('UnsupportedOperationException');
+$.CTC34 = new Isolate.$isolateProperties.Throws(Isolate.$isolateProperties.CTC176);
+$.CTC177 = 27;
+$.CTC178 = Isolate.makeConstantList([4, 43, 27]);
+$.CTC179 = 46;
+$.CTC180 = Isolate.makeConstantList([6, 26, 46]);
+$.CTC181 = Isolate.makeConstantList([6, 22, 38]);
+$.CTC182 = 'structured clone of ImageData';
 $.CTC7 = new Isolate.$isolateProperties.NotImplementedException('structured clone of ImageData');
-$.CTC176 = null;
+$.CTC183 = null;
 $.CTC0 = new Isolate.$isolateProperties.NullPointerException(null, Isolate.$isolateProperties.CTC1);
-$.CTC177 = '';
+$.CTC184 = '';
 $.CTC26 = new Isolate.$isolateProperties.UnsupportedOperationException('');
 $.CTC21 = new Isolate.$isolateProperties.EmptyQueueException();
-$.CTC11 = new Isolate.$isolateProperties.NoMoreElementsException();
-$.CTC178 = 'Cannot removeLast on immutable List.';
+$.CTC185 = 'Cannot removeLast on immutable List.';
 $.CTC12 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot removeLast on immutable List.');
 $.CTC46 = new Isolate.$isolateProperties.NotImplementedException(null);
-$.CTC179 = Isolate.makeConstantList([1, 44, 22]);
-$.CTC180 = Isolate.makeConstantList([4, 43, 19]);
-$.CTC181 = Isolate.makeConstantList([1, 44, 16]);
-$.CTC182 = 72;
-$.CTC183 = 94;
-$.CTC184 = Isolate.makeConstantList([6, 28, 50, 72, 94]);
-$.CTC185 = 17;
-$.CTC186 = Isolate.makeConstantList([2, 35, 17]);
-$.CTC187 = 62;
-$.CTC188 = 90;
-$.CTC189 = Isolate.makeConstantList([6, 34, 62, 90]);
-$.CTC190 = Isolate.makeConstantList([6, 34, 62]);
-$.CTC191 = 74;
-$.CTC192 = Isolate.makeConstantList([6, 26, 50, 74, 98]);
-$.CTC193 = 'structured clone of ArrayBuffer';
+$.CTC186 = Isolate.makeConstantList([1, 44, 16]);
+$.CTC11 = new Isolate.$isolateProperties.NoMoreElementsException();
+$.CTC187 = Isolate.makeConstantList([4, 43, 19]);
+$.CTC188 = 42;
+$.CTC189 = Isolate.makeConstantList([6, 24, 42]);
+$.CTC190 = 72;
+$.CTC191 = 94;
+$.CTC192 = Isolate.makeConstantList([6, 28, 50, 72, 94]);
+$.CTC193 = Isolate.makeConstantList([1, 44, 22]);
+$.CTC194 = 62;
+$.CTC195 = 90;
+$.CTC196 = Isolate.makeConstantList([6, 34, 62, 90]);
+$.CTC197 = Isolate.makeConstantList([6, 34, 62]);
+$.CTC198 = 74;
+$.CTC199 = Isolate.makeConstantList([6, 26, 50, 74, 98]);
+$.CTC200 = 'structured clone of ArrayBuffer';
 $.CTC8 = new Isolate.$isolateProperties.NotImplementedException('structured clone of ArrayBuffer');
-$.CTC194 = 84;
-$.CTC195 = 110;
-$.CTC196 = Isolate.makeConstantList([6, 32, 58, 84, 110]);
-$.CTC197 = 118;
-$.CTC198 = Isolate.makeConstantList([6, 34, 62, 90, 118]);
-$.CTC199 = Isolate.makeConstantList([4, 36, 16, 4, 37, 17]);
-$.CTC200 = 82;
-$.CTC201 = 138;
-$.CTC202 = 166;
-$.CTC203 = Isolate.makeConstantList([6, 26, 54, 82, 110, 138, 166]);
-$.CTC204 = 42;
-$.CTC205 = Isolate.makeConstantList([6, 24, 42]);
-$.CTC206 = 'body';
-$.CTC207 = 'head';
-$.CTC208 = 'caption';
-$.CTC209 = 'td';
-$.CTC210 = 'colgroup';
-$.CTC211 = 'col';
-$.CTC212 = 'tr';
-$.CTC213 = 'tbody';
-$.CTC214 = 'tfoot';
-$.CTC215 = 'thead';
-$.CTC216 = 'track';
-$.CTC217 = Isolate.makeConstantList(['body', 'head', 'caption', 'td', 'colgroup', 'col', 'tr', 'tbody', 'tfoot', 'thead', 'track']);
-$.CTC218 = 76;
-$.CTC219 = 102;
-$.CTC220 = 128;
-$.CTC221 = 154;
-$.CTC222 = Isolate.makeConstantList([6, 24, 50, 76, 102, 128, 154]);
-$.CTC223 = Isolate.makeConstantList([6, 30, 54, 78, 102]);
+$.CTC201 = Isolate.makeConstantList([6, 32, 58, 84, 110]);
+$.CTC202 = 118;
+$.CTC203 = Isolate.makeConstantList([6, 34, 62, 90, 118]);
+$.CTC204 = Isolate.makeConstantList([4, 36, 16, 4, 37, 17]);
+$.CTC205 = 82;
+$.CTC206 = 138;
+$.CTC207 = 166;
+$.CTC208 = Isolate.makeConstantList([6, 26, 54, 82, 110, 138, 166]);
+$.CTC209 = 'body';
+$.CTC210 = 'head';
+$.CTC211 = 'caption';
+$.CTC212 = 'td';
+$.CTC213 = 'colgroup';
+$.CTC214 = 'col';
+$.CTC215 = 'tr';
+$.CTC216 = 'tbody';
+$.CTC217 = 'tfoot';
+$.CTC218 = 'thead';
+$.CTC219 = 'track';
+$.CTC220 = Isolate.makeConstantList(['body', 'head', 'caption', 'td', 'colgroup', 'col', 'tr', 'tbody', 'tfoot', 'thead', 'track']);
+$.CTC221 = 76;
+$.CTC222 = 102;
+$.CTC223 = 128;
+$.CTC224 = 154;
+$.CTC225 = Isolate.makeConstantList([6, 24, 50, 76, 102, 128, 154]);
+$.CTC226 = Isolate.makeConstantList([6, 30, 54, 78, 102]);
 $.CTC58 = new Isolate.$isolateProperties.Object();
-$.CTC224 = 'Cannot insertRange on immutable List.';
+$.CTC227 = 'Cannot insertRange on immutable List.';
 $.CTC45 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot insertRange on immutable List.');
-$.CTC225 = 'Incorrect number or type of arguments';
+$.CTC228 = 'Incorrect number or type of arguments';
 $.CTC17 = new Isolate.$isolateProperties.ExceptionImplementation('Incorrect number or type of arguments');
-$.CTC226 = 'html';
-$.CTC227 = 'table';
-$.CTC228 = 'audio';
-$.CTC24 = new Isolate.$isolateProperties.ConstantMap(11, {'body': 'html', 'head': 'html', 'caption': 'table', 'td': 'tr', 'colgroup': 'table', 'col': 'colgroup', 'tr': 'tbody', 'tbody': 'table', 'tfoot': 'table', 'thead': 'table', 'track': 'audio'}, Isolate.$isolateProperties.CTC217);
-$.CTC229 = 'Cannot removeRange on immutable List.';
+$.CTC229 = 'html';
+$.CTC230 = 'table';
+$.CTC231 = 'audio';
+$.CTC24 = new Isolate.$isolateProperties.ConstantMap(11, {'body': 'html', 'head': 'html', 'caption': 'table', 'td': 'tr', 'colgroup': 'table', 'col': 'colgroup', 'tr': 'tbody', 'tbody': 'table', 'tfoot': 'table', 'thead': 'table', 'track': 'audio'}, Isolate.$isolateProperties.CTC220);
+$.CTC232 = 'Cannot removeRange on immutable List.';
 $.CTC52 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot removeRange on immutable List.');
-$.CTC230 = 'structured clone of Blob';
+$.CTC233 = 'structured clone of Blob';
 $.CTC6 = new Isolate.$isolateProperties.NotImplementedException('structured clone of Blob');
-$.CTC231 = Isolate.makeConstantList([6, 30, 54, 78]);
-$.CTC232 = Isolate.makeConstantList([6, 30, 58, 86, 114]);
-$.CTC233 = 'structured clone of RegExp';
+$.CTC234 = Isolate.makeConstantList([6, 30, 54, 78]);
+$.CTC235 = Isolate.makeConstantList([6, 30, 58, 86, 114]);
+$.CTC236 = 'structured clone of RegExp';
 $.CTC4 = new Isolate.$isolateProperties.NotImplementedException('structured clone of RegExp');
 $.CTC54 = new Isolate.$isolateProperties._Random();
-$.CTC234 = Isolate.makeConstantList([6, 26, 50, 74]);
-$.CTC235 = 136;
-$.CTC236 = 162;
-$.CTC237 = Isolate.makeConstantList([6, 32, 58, 84, 110, 136, 162]);
+$.CTC237 = Isolate.makeConstantList([6, 26, 50, 74]);
 $.CTC238 = Isolate.makeConstantList([4, 36, 12, 4, 37, 13]);
 $.CTC239 = 67;
 $.CTC240 = Isolate.makeConstantList([2, 67, 43]);
@@ -16580,44 +16545,44 @@ $.CTC249 = 116;
 $.CTC250 = Isolate.makeConstantList([2, 146, 116]);
 $.CTC251 = 87;
 $.CTC252 = Isolate.makeConstantList([2, 86, 68, 2, 87, 69]);
-$.CTC253 = Isolate.makeConstantList([Isolate.$isolateProperties.CTC82, Isolate.$isolateProperties.CTC88, Isolate.$isolateProperties.CTC112, Isolate.$isolateProperties.CTC104, Isolate.$isolateProperties.CTC98, Isolate.$isolateProperties.CTC164, Isolate.$isolateProperties.CTC179, Isolate.$isolateProperties.CTC181, Isolate.$isolateProperties.CTC244, Isolate.$isolateProperties.CTC241, Isolate.$isolateProperties.CTC186, Isolate.$isolateProperties.CTC152, Isolate.$isolateProperties.CTC167, Isolate.$isolateProperties.CTC100, Isolate.$isolateProperties.CTC145, Isolate.$isolateProperties.CTC109, Isolate.$isolateProperties.CTC247, Isolate.$isolateProperties.CTC240, Isolate.$isolateProperties.CTC125, Isolate.$isolateProperties.CTC72, Isolate.$isolateProperties.CTC107, Isolate.$isolateProperties.CTC171, Isolate.$isolateProperties.CTC180, Isolate.$isolateProperties.CTC130, Isolate.$isolateProperties.CTC159, Isolate.$isolateProperties.CTC149, Isolate.$isolateProperties.CTC78, Isolate.$isolateProperties.CTC86, Isolate.$isolateProperties.CTC123, Isolate.$isolateProperties.CTC156, Isolate.$isolateProperties.CTC91, Isolate.$isolateProperties.CTC134, Isolate.$isolateProperties.CTC250, Isolate.$isolateProperties.CTC65, Isolate.$isolateProperties.CTC199, Isolate.$isolateProperties.CTC238, Isolate.$isolateProperties.CTC252, Isolate.$isolateProperties.CTC128, Isolate.$isolateProperties.CTC97, Isolate.$isolateProperties.CTC129]);
-$.CTC254 = 66;
-$.CTC255 = Isolate.makeConstantList([6, 26, 46, 66]);
+$.CTC253 = Isolate.makeConstantList([Isolate.$isolateProperties.CTC83, Isolate.$isolateProperties.CTC89, Isolate.$isolateProperties.CTC116, Isolate.$isolateProperties.CTC110, Isolate.$isolateProperties.CTC103, Isolate.$isolateProperties.CTC170, Isolate.$isolateProperties.CTC193, Isolate.$isolateProperties.CTC186, Isolate.$isolateProperties.CTC244, Isolate.$isolateProperties.CTC241, Isolate.$isolateProperties.CTC169, Isolate.$isolateProperties.CTC161, Isolate.$isolateProperties.CTC174, Isolate.$isolateProperties.CTC105, Isolate.$isolateProperties.CTC154, Isolate.$isolateProperties.CTC118, Isolate.$isolateProperties.CTC247, Isolate.$isolateProperties.CTC240, Isolate.$isolateProperties.CTC128, Isolate.$isolateProperties.CTC72, Isolate.$isolateProperties.CTC108, Isolate.$isolateProperties.CTC178, Isolate.$isolateProperties.CTC187, Isolate.$isolateProperties.CTC134, Isolate.$isolateProperties.CTC166, Isolate.$isolateProperties.CTC158, Isolate.$isolateProperties.CTC80, Isolate.$isolateProperties.CTC87, Isolate.$isolateProperties.CTC124, Isolate.$isolateProperties.CTC148, Isolate.$isolateProperties.CTC127, Isolate.$isolateProperties.CTC140, Isolate.$isolateProperties.CTC250, Isolate.$isolateProperties.CTC65, Isolate.$isolateProperties.CTC204, Isolate.$isolateProperties.CTC238, Isolate.$isolateProperties.CTC252, Isolate.$isolateProperties.CTC131, Isolate.$isolateProperties.CTC102, Isolate.$isolateProperties.CTC133]);
+$.CTC254 = 'NullArgumentException';
+$.CTC255 = new Isolate.$isolateProperties._NullArgumentException('NullArgumentException');
 $.CTC256 = 56;
 $.CTC257 = Isolate.makeConstantList([6, 30, 56, 82]);
-$.CTC258 = 48;
-$.CTC259 = Isolate.makeConstantList([6, 26, 48, 70]);
-$.CTC260 = Isolate.makeConstantList([6, 30, 58, 86]);
-$.CTC261 = 'NullArgumentException';
-$.CTC262 = new Isolate.$isolateProperties._NullArgumentException('NullArgumentException');
+$.CTC258 = 66;
+$.CTC259 = Isolate.makeConstantList([6, 26, 46, 66]);
+$.CTC260 = 48;
+$.CTC261 = Isolate.makeConstantList([6, 26, 48, 70]);
+$.CTC262 = Isolate.makeConstantList([6, 30, 58, 86]);
 $.CTC263 = 126;
 $.CTC264 = Isolate.makeConstantList([6, 30, 54, 78, 102, 126]);
 $.CTC265 = 122;
 $.CTC266 = Isolate.makeConstantList([6, 26, 50, 74, 98, 122]);
 $.CTC14 = new Isolate.$isolateProperties._IsNull();
-$.CTC267 = 'structured clone of ArrayBufferView';
-$.CTC9 = new Isolate.$isolateProperties.NotImplementedException('structured clone of ArrayBufferView');
 $.CTC15 = new Isolate.$isolateProperties._IsTrue();
 $.CTC = new Isolate.$isolateProperties._IsFalse();
+$.CTC267 = 'structured clone of ArrayBufferView';
+$.CTC9 = new Isolate.$isolateProperties.NotImplementedException('structured clone of ArrayBufferView');
 $.CTC268 = Isolate.makeConstantList([6, 30, 58, 86, 114, 142]);
 $.CTC269 = 52;
 $.CTC270 = 104;
 $.CTC271 = 130;
 $.CTC272 = Isolate.makeConstantList([6, 26, 52, 78, 104, 130]);
-$.CTC38 = new Isolate.$isolateProperties.Throws(Isolate.$isolateProperties.CTC67);
+$.CTC38 = new Isolate.$isolateProperties.Throws(Isolate.$isolateProperties.CTC74);
 $.CTC273 = 'TODO(jacobr): should we impl?';
 $.CTC33 = new Isolate.$isolateProperties.UnsupportedOperationException('TODO(jacobr): should we impl?');
 $.CTC274 = 'Cannot add to immutable List.';
 $.CTC2 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot add to immutable List.');
-$.CTC275 = '[-[\\]{}()*+?.,\\\\^$|#\\s]';
+$.CTC275 = Isolate.makeConstantList([6, 30, 56, 82, 108, 134]);
+$.CTC276 = '[-[\\]{}()*+?.,\\\\^$|#\\s]';
 $.CTC13 = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, '[-[\\]{}()*+?.,\\\\^$|#\\s]');
-$.CTC276 = Isolate.makeConstantList([6, 30, 56, 82, 108, 134]);
 $.CTC277 = Isolate.makeConstantList([6, 34, 62, 90, 118, 146]);
 $.CTC278 = 112;
 $.CTC279 = Isolate.makeConstantList([6, 34, 60, 86, 112, 138]);
 $.CTC280 = 150;
 $.CTC281 = Isolate.makeConstantList([6, 30, 54, 78, 102, 126, 150]);
-$.CTC57 = Isolate.makeConstantList([Isolate.$isolateProperties.CTC1, Isolate.$isolateProperties.CTC113, Isolate.$isolateProperties.CTC141, Isolate.$isolateProperties.CTC142, Isolate.$isolateProperties.CTC115, Isolate.$isolateProperties.CTC143, Isolate.$isolateProperties.CTC174, Isolate.$isolateProperties.CTC205, Isolate.$isolateProperties.CTC173, Isolate.$isolateProperties.CTC146, Isolate.$isolateProperties.CTC160, Isolate.$isolateProperties.CTC150, Isolate.$isolateProperties.CTC190, Isolate.$isolateProperties.CTC255, Isolate.$isolateProperties.CTC259, Isolate.$isolateProperties.CTC234, Isolate.$isolateProperties.CTC231, Isolate.$isolateProperties.CTC257, Isolate.$isolateProperties.CTC260, Isolate.$isolateProperties.CTC189, Isolate.$isolateProperties.CTC184, Isolate.$isolateProperties.CTC192, Isolate.$isolateProperties.CTC223, Isolate.$isolateProperties.CTC120, Isolate.$isolateProperties.CTC196, Isolate.$isolateProperties.CTC232, Isolate.$isolateProperties.CTC198, Isolate.$isolateProperties.CTC266, Isolate.$isolateProperties.CTC264, Isolate.$isolateProperties.CTC272, Isolate.$isolateProperties.CTC276, Isolate.$isolateProperties.CTC279, Isolate.$isolateProperties.CTC268, Isolate.$isolateProperties.CTC277, Isolate.$isolateProperties.CTC281, Isolate.$isolateProperties.CTC222, Isolate.$isolateProperties.CTC133, Isolate.$isolateProperties.CTC237, Isolate.$isolateProperties.CTC203, Isolate.$isolateProperties.CTC138]);
+$.CTC57 = Isolate.makeConstantList([Isolate.$isolateProperties.CTC1, Isolate.$isolateProperties.CTC132, Isolate.$isolateProperties.CTC150, Isolate.$isolateProperties.CTC151, Isolate.$isolateProperties.CTC120, Isolate.$isolateProperties.CTC152, Isolate.$isolateProperties.CTC181, Isolate.$isolateProperties.CTC189, Isolate.$isolateProperties.CTC180, Isolate.$isolateProperties.CTC155, Isolate.$isolateProperties.CTC167, Isolate.$isolateProperties.CTC159, Isolate.$isolateProperties.CTC197, Isolate.$isolateProperties.CTC259, Isolate.$isolateProperties.CTC261, Isolate.$isolateProperties.CTC237, Isolate.$isolateProperties.CTC234, Isolate.$isolateProperties.CTC257, Isolate.$isolateProperties.CTC262, Isolate.$isolateProperties.CTC196, Isolate.$isolateProperties.CTC192, Isolate.$isolateProperties.CTC199, Isolate.$isolateProperties.CTC226, Isolate.$isolateProperties.CTC121, Isolate.$isolateProperties.CTC201, Isolate.$isolateProperties.CTC235, Isolate.$isolateProperties.CTC203, Isolate.$isolateProperties.CTC266, Isolate.$isolateProperties.CTC264, Isolate.$isolateProperties.CTC272, Isolate.$isolateProperties.CTC275, Isolate.$isolateProperties.CTC279, Isolate.$isolateProperties.CTC268, Isolate.$isolateProperties.CTC277, Isolate.$isolateProperties.CTC281, Isolate.$isolateProperties.CTC225, Isolate.$isolateProperties.CTC98, Isolate.$isolateProperties.CTC139, Isolate.$isolateProperties.CTC208, Isolate.$isolateProperties.CTC144]);
 $.CTC282 = '^#(?:[0-9a-f]{6})$';
 $.CTC53 = new Isolate.$isolateProperties.JSSyntaxRegExp(true, false, '^#(?:[0-9a-f]{6})$');
 $.CTC283 = 'structured clone of File';
@@ -16636,19 +16601,20 @@ $.CTC289 = 'Invalid list length';
 $.CTC27 = new Isolate.$isolateProperties.ArgumentError('Invalid list length');
 $.CTC41 = new Isolate.$isolateProperties.ReadOnlyCollection(Isolate.$isolateProperties.CTC1);
 $.CTC19 = new Isolate.$isolateProperties.EventArgs();
-$.CTC47 = new Isolate.$isolateProperties.Coordinate(2, 2);
 $.CTC50 = new Isolate.$isolateProperties.Coordinate(1, 0);
-$.CTC48 = new Isolate.$isolateProperties.Box(0, 0, 1, 1);
+$.CTC47 = new Isolate.$isolateProperties.Coordinate(2, 2);
 $.CTC51 = new Isolate.$isolateProperties.Vector(2, 2);
+$.CTC48 = new Isolate.$isolateProperties.Box(0, 0, 1, 1);
 $.CTC290 = 'The input sequence is empty.';
-$.CTC34 = new Isolate.$isolateProperties.InvalidOperationException('The input sequence is empty.');
-$.CTC291 = '^(?:([^:/?#.]+):)?(?://(?:([^/?#]*)@)?([\\w\\d\\-\\u0100-\\uffff.%]*)(?::([0-9]+))?)?([^?#]+)?(?:\\?([^#]*))?(?:#(.*))?$';
-$.CTC55 = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, '^(?:([^:/?#.]+):)?(?://(?:([^/?#]*)@)?([\\w\\d\\-\\u0100-\\uffff.%]*)(?::([0-9]+))?)?([^?#]+)?(?:\\?([^#]*))?(?:#(.*))?$');
+$.CTC37 = new Isolate.$isolateProperties.InvalidOperationException('The input sequence is empty.');
+$.CTC20 = new Isolate.$isolateProperties.Throws(Isolate.$isolateProperties.CTC255);
+$.CTC291 = 'structured clone of other type';
+$.CTC10 = new Isolate.$isolateProperties.NotImplementedException('structured clone of other type');
 $.CTC292 = 'Mutation operations are not supported';
 $.CTC42 = new Isolate.$isolateProperties.UnsupportedOperationException('Mutation operations are not supported');
-$.CTC293 = 'structured clone of other type';
-$.CTC10 = new Isolate.$isolateProperties.NotImplementedException('structured clone of other type');
-$.CTC20 = new Isolate.$isolateProperties.Throws(Isolate.$isolateProperties.CTC262);
+$.CTC293 = '^(?:([^:/?#.]+):)?(?://(?:([^/?#]*)@)?([\\w\\d\\-\\u0100-\\uffff.%]*)(?::([0-9]+))?)?([^?#]+)?(?:\\?([^#]*))?(?:#(.*))?$';
+$.CTC55 = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, '^(?:([^:/?#.]+):)?(?://(?:([^/?#]*)@)?([\\w\\d\\-\\u0100-\\uffff.%]*)(?::([0-9]+))?)?([^?#]+)?(?:\\?([^#]*))?(?:#(.*))?$');
+$.CTC18 = new Isolate.$isolateProperties._UndefinedValue();
 $.PASS = 'pass';
 $.Uri__COMPONENT_PATH = 5;
 $.Property_Undefined = Isolate.$isolateProperties.CTC18;
@@ -16659,7 +16625,7 @@ $._BufferingSendPort__idCount = 0;
 $.QrMaskPattern_PATTERN101 = 5;
 $.QrErrorCorrectLevel_levels = Isolate.$isolateProperties.CTC56;
 $._lazyPort = null;
-$.isNullPointerException = Isolate.$isolateProperties.CTC67;
+$.isNullPointerException = Isolate.$isolateProperties.CTC74;
 $.Uri__splitRe = Isolate.$isolateProperties.CTC55;
 $.SQRT2 = 1.4142135623730951;
 $.QrMaskPattern_PATTERN100 = 4;
@@ -16673,10 +16639,10 @@ $.QrMaskPattern_PATTERN110 = 6;
 $.PI = 3.141592653589793;
 $.DualPivotQuicksort__INSERTION_SORT_THRESHOLD = 32;
 $.Primitives_hashCodeSeed = 0;
-$.isArgumentError = Isolate.$isolateProperties.CTC102;
+$.isArgumentError = Isolate.$isolateProperties.CTC112;
 $.QrErrorCorrectLevel_Q = 3;
 $.QrErrorCorrectLevel_H = 2;
-$.throwsUnsupportedOperationException = Isolate.$isolateProperties.CTC35;
+$.throwsUnsupportedOperationException = Isolate.$isolateProperties.CTC34;
 $._testTeardown = null;
 $.QrUtil_G15 = 1335;
 $._assertErrorFormatter = null;
@@ -16696,7 +16662,7 @@ $.FAIL = 'fail';
 $.double_NAN = (0/0);
 $.Duration_HOURS_PER_DAY = 24;
 $.HashMapImplementation__DELETED_KEY = Isolate.$isolateProperties.CTC16;
-$.isIndexOutOfRangeException = Isolate.$isolateProperties.CTC169;
+$.isIndexOutOfRangeException = Isolate.$isolateProperties.CTC163;
 $._currentTest = 0;
 $.QrMode_MODE_8BIT_BYTE = 4;
 $.QrRsBlock__rsBlockTable = Isolate.$isolateProperties.CTC253;
@@ -16734,7 +16700,7 @@ $.QrMath__expTable = null;
 $.Uri__COMPONENT_USER_INFO = 2;
 $._cachedBrowserPrefix = null;
 $.QrMode_MODE_KANJI = 8;
-$.isUnsupportedOperationException = Isolate.$isolateProperties.CTC162;
+$.isUnsupportedOperationException = Isolate.$isolateProperties.CTC176;
 $._soloTest = null;
 $.QrMaskPattern_PATTERN000 = 0;
 Isolate.$lazy($, '_testEvent2', 'TestAttachedEvents__testEvent2', 'get$TestAttachedEvents__testEvent2', function() {
@@ -16785,25 +16751,25 @@ $.$defineNativeClass = function(cls, fields, methods) {
   }
 })({
  is$JavaScriptIndexingBehavior: function() { return false; },
- is$Iterable: function() { return false; },
  is$ArrayBufferView: function() { return false; },
+ is$_BlobImpl: function() { return false; },
  is$ArrayBuffer: function() { return false; },
- is$_ImageDataImpl: function() { return false; },
+ is$Iterable: function() { return false; },
  is$_ArrayBufferViewImpl: function() { return false; },
- is$IDBKeyRange: function() { return false; },
+ is$_ImageDataImpl: function() { return false; },
  is$_FileImpl: function() { return false; },
  is$_FileListImpl: function() { return false; },
  is$File: function() { return false; },
  toString$0: function() { return $.toStringForNativeObject(this); },
- is$Blob: function() { return false; },
- is$_BlobImpl: function() { return false; },
+ is$IDBKeyRange: function() { return false; },
  is$Element: function() { return false; },
  is$ImageData: function() { return false; },
  is$List: function() { return false; },
  is$_ArrayBufferImpl: function() { return false; },
  is$Map: function() { return false; },
  hashCode$0: function() { return $.hashCodeForNativeObject(this); },
- is$Collection: function() { return false; }
+ is$Collection: function() { return false; },
+ is$Blob: function() { return false; }
 });
 
 $.$defineNativeClass('AbstractWorker', [], {
@@ -17222,7 +17188,7 @@ _ConsoleImpl.group$1 = function(arg) {
 _ConsoleImpl.error$1 = function(arg) {
   return this.error(arg);
 };
-_ConsoleImpl.get$error = function() { return new $.BoundClosure0(this, 'error$1'); };
+_ConsoleImpl.get$error = function() { return new $.BoundClosure(this, 'error$1'); };
 _ConsoleImpl.count$1 = function(arg) {
   return this.count(arg);
 };
@@ -17566,7 +17532,7 @@ $.$defineNativeClass('HTMLDivElement', [], {
 $.$defineNativeClass('DocumentFragment', [], {
  get$elements: function() {
   if (this._elements == null)
-    this._elements = $.FilteredElementList$(this);
+    this._elements = $._FilteredElementList$(this);
   return this._elements;
 },
  query$1: function(selectors) {
@@ -17604,7 +17570,7 @@ $.$defineNativeClass('DocumentFragment', [], {
 },
  click$0: function() {
 },
- get$click: function() { return new $.BoundClosure(this, 'click$0'); },
+ get$click: function() { return new $.BoundClosure0(this, 'click$0'); },
  set$id: function(value) {
   throw $.$$throw($.UnsupportedOperationException$('ID can\'t be set for document fragments.'));
 },
@@ -17786,7 +17752,7 @@ return this.children;
  click$0: function() {
   return this.click();
 },
- get$click: function() { return new $.BoundClosure(this, 'click$0'); },
+ get$click: function() { return new $.BoundClosure0(this, 'click$0'); },
  get$$$dom_firstElementChild: function() {
 return this.firstElementChild;
 },
@@ -18774,7 +18740,7 @@ $.$defineNativeClass('IDBObjectStore', ["name?"], {
  index$1: function(name) {
   return this.index(name);
 },
- get$index: function() { return new $.BoundClosure0(this, 'index$1'); }
+ get$index: function() { return new $.BoundClosure(this, 'index$1'); }
 });
 
 $.$defineNativeClass('IDBOpenDBRequest', [], {
@@ -20234,7 +20200,7 @@ $.$defineNativeClass('SVGDocument', [], {
 
 $.$defineNativeClass('SVGElement', [], {
  get$elements: function() {
-  return $.FilteredElementList$(this);
+  return $._FilteredElementList$(this);
 },
  set$elements: function(value) {
   var elements = this.get$elements();
@@ -20244,7 +20210,7 @@ $.$defineNativeClass('SVGElement', [], {
  set$innerHTML: function(svg) {
   var container = $.Element_Element$tag('div');
   container.set$innerHTML('<svg version="1.1">' + $.S(svg) + '</svg>');
-  this.set$elements(container.get$elements().get$first().get$elements());
+  this.set$elements($.index(container.get$elements(), 0).get$elements());
 },
  get$id: function() {
 return this.id;

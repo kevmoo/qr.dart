@@ -7247,16 +7247,16 @@ $.CTC16 = new Isolate.$isolateProperties.NotImplementedException('IDBKey contain
 $.CTC22 = new Isolate.$isolateProperties.EventArgs();
 $.CTC43 = '[-[\\]{}()*+?.,\\\\^$|#\\s]';
 $.CTC13 = new Isolate.$isolateProperties.JSSyntaxRegExp(false, false, '[-[\\]{}()*+?.,\\\\^$|#\\s]');
-$.CTC44 = 'Cannot insertRange on immutable List.';
-$.CTC26 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot insertRange on immutable List.');
-$.CTC45 = 0;
-$.CTC46 = new Isolate.$isolateProperties.Coordinate(0, 0);
-$.CTC47 = 'Incorrect number or type of arguments';
+$.CTC44 = 0;
+$.CTC45 = new Isolate.$isolateProperties.Coordinate(0, 0);
+$.CTC46 = 'Incorrect number or type of arguments';
 $.CTC24 = new Isolate.$isolateProperties.ExceptionImplementation('Incorrect number or type of arguments');
-$.CTC48 = new Isolate.$isolateProperties._SimpleClientRect(0, 0, 0, 0);
-$.CTC20 = new Isolate.$isolateProperties.EmptyElementRect(Isolate.$isolateProperties.CTC48, Isolate.$isolateProperties.CTC48, Isolate.$isolateProperties.CTC48, Isolate.$isolateProperties.CTC48, Isolate.$isolateProperties.CTC1);
-$.CTC49 = 'structured clone of Blob';
+$.CTC47 = new Isolate.$isolateProperties._SimpleClientRect(0, 0, 0, 0);
+$.CTC20 = new Isolate.$isolateProperties.EmptyElementRect(Isolate.$isolateProperties.CTC47, Isolate.$isolateProperties.CTC47, Isolate.$isolateProperties.CTC47, Isolate.$isolateProperties.CTC47, Isolate.$isolateProperties.CTC1);
+$.CTC48 = 'structured clone of Blob';
 $.CTC6 = new Isolate.$isolateProperties.NotImplementedException('structured clone of Blob');
+$.CTC49 = 'Cannot insertRange on immutable List.';
+$.CTC26 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot insertRange on immutable List.');
 $.CTC50 = 'offsetX is only supported on elements';
 $.CTC25 = new Isolate.$isolateProperties.UnsupportedOperationException('offsetX is only supported on elements');
 $.CTC51 = 'structured clone of RegExp';
@@ -7369,12 +7369,12 @@ $.$defineNativeClass = function(cls, fields, methods) {
  toString$0: function() { return $.toStringForNativeObject(this); },
  is$Blob: function() { return false; },
  is$Element: function() { return false; },
- is$Collection: function() { return false; },
  is$ImageData: function() { return false; },
- is$_ArrayBufferImpl: function() { return false; },
  is$List: function() { return false; },
+ is$_ArrayBufferImpl: function() { return false; },
+ is$Map: function() { return false; },
  hashCode$0: function() { return $.hashCodeForNativeObject(this); },
- is$Map: function() { return false; }
+ is$Collection: function() { return false; }
 });
 
 $.$defineNativeClass('AbstractWorker', [], {
@@ -11550,13 +11550,13 @@ $.$defineNativeClass('DOMWindow', [], {
   var v17/*class(_AbstractWorkerImpl)*/ = 'AbstractWorker|Worker|SharedWorker|Worker|SharedWorker';
   var table = [
     // [dynamic-dispatch-tag, tags of classes implementing dynamic-dispatch-tag]
-    ['SVGTextPositioningElement', v0/*class(_SVGTextPositioningElementImpl)*/],
-    ['SVGTextContentElement', v1/*class(_SVGTextContentElementImpl)*/],
     ['IDBRequest', v16/*class(_IDBRequestImpl)*/],
+    ['SVGTextPositioningElement', v0/*class(_SVGTextPositioningElementImpl)*/],
     ['HTMLMediaElement', v6/*class(_MediaElementImpl)*/],
     ['MediaStream', v15/*class(_MediaStreamImpl)*/],
     ['MouseEvent', v12/*class(_MouseEventImpl)*/],
     ['AbstractWorker', v17/*class(_AbstractWorkerImpl)*/],
+    ['SVGTextContentElement', v1/*class(_SVGTextContentElementImpl)*/],
     ['SVGGradientElement', v2/*class(_SVGGradientElementImpl)*/],
     ['SVGComponentTransferFunctionElement', v3/*class(_SVGComponentTransferFunctionElementImpl)*/],
     ['SVGAnimationElement', v4/*class(_SVGAnimationElementImpl)*/],

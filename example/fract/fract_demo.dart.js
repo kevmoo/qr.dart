@@ -2111,11 +2111,11 @@ $.$defineNativeClass = function(cls, fields, methods) {
  is$File: function() { return false; },
  is$_BlobImpl: function() { return false; },
  is$Map: function() { return false; },
- is$List: function() { return false; },
+ is$ImageData: function() { return false; },
  is$_ArrayBufferImpl: function() { return false; },
- is$Collection: function() { return false; },
+ is$List: function() { return false; },
  hashCode$0: function() { return $.hashCodeForNativeObject(this); },
- is$ImageData: function() { return false; }
+ is$Collection: function() { return false; }
 });
 
 $.$defineNativeClass('HTMLAnchorElement', [], {
