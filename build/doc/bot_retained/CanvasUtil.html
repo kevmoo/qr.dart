@@ -30,16 +30,32 @@
           class
         </h2>
         
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
-
 </div>
+<div>
+<h3>Static Fields</h3>
+<div class="field"><h4 id="kappa">
+<button class="show-code">Code</button>
+final num         <strong>kappa</strong> <a class="anchor-link"
+            href="#kappa"
+            title="Permalink to CanvasUtil.kappa">#</a>
+        </h4>
+        <div class="doc">
+<p>(√2 - 1) * 4 / 3;</p>
+<pre class="source">
+static final num kappa = 0.55228474983079339840225163227959743809289583383593;
+</pre>
+</div>
+</div>
+</div>
+<div>
 <h3>Static Methods</h3>
 <div class="method"><h4 id="centeredCircle">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 void <strong>centeredCircle</strong>(CanvasRenderingContext2D ctx, num x, num y, num radius) <a class="anchor-link" href="#centeredCircle"
               title="Permalink to CanvasUtil.centeredCircle">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 static void centeredCircle(CanvasRenderingContext2D ctx,
                            num x, num y, num radius) {
@@ -49,11 +65,10 @@ static void centeredCircle(CanvasRenderingContext2D ctx,
 </div>
 </div>
 <div class="method"><h4 id="drawImage">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 void <strong>drawImage</strong>(CanvasRenderingContext2D ctx, ImageElement img, <a href="../bot/Box.html">Box</a> sourceBox, [<a href="../bot/Box.html">Box</a> targetBox = null]) <a class="anchor-link" href="#drawImage"
               title="Permalink to CanvasUtil.drawImage">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 static void drawImage(CanvasRenderingContext2D ctx, ImageElement img,
                       Box sourceBox, [Box targetBox = null]) {
@@ -70,11 +85,10 @@ static void drawImage(CanvasRenderingContext2D ctx, ImageElement img,
 </div>
 </div>
 <div class="method"><h4 id="ellipse">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 void <strong>ellipse</strong>(CanvasRenderingContext2D ctx, num x, num y, num width, num height) <a class="anchor-link" href="#ellipse"
               title="Permalink to CanvasUtil.ellipse">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 static void ellipse(CanvasRenderingContext2D ctx,
                     num x, num y, num width, num height) {
@@ -96,11 +110,10 @@ static void ellipse(CanvasRenderingContext2D ctx,
 </div>
 </div>
 <div class="method"><h4 id="getCanvasSize">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/Size.html">Size</a> <strong>getCanvasSize</strong>(CanvasElement canvasElement) <a class="anchor-link" href="#getCanvasSize"
               title="Permalink to CanvasUtil.getCanvasSize">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 static Size getCanvasSize(CanvasElement canvasElement) {
   return new Size(canvasElement.width, canvasElement.height);
@@ -109,11 +122,10 @@ static Size getCanvasSize(CanvasElement canvasElement) {
 </div>
 </div>
 <div class="method"><h4 id="star">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 void <strong>star</strong>(CanvasRenderingContext2D ctx, num x, num y, num outterRadius, [int pointCount = 5]) <a class="anchor-link" href="#star"
               title="Permalink to CanvasUtil.star">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 static void star(CanvasRenderingContext2D ctx, num x, num y,
                  num outterRadius, [int pointCount = 5]) {
@@ -166,11 +178,10 @@ static void star(CanvasRenderingContext2D ctx, num x, num y,
 </div>
 </div>
 <div class="method"><h4 id="transform">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 void <strong>transform</strong>(CanvasRenderingContext2D ctx, <a href="../bot/AffineTransform.html">AffineTransform</a> tx) <a class="anchor-link" href="#transform"
               title="Permalink to CanvasUtil.transform">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 static void transform(CanvasRenderingContext2D ctx, AffineTransform tx){
   requireArgumentNotNull(ctx, 'ctx');
@@ -182,18 +193,81 @@ static void transform(CanvasRenderingContext2D ctx, AffineTransform tx){
 </pre>
 </div>
 </div>
-<h3>Static Fields</h3>
-<div class="field"><h4 id="kappa">
-<span class="show-code">Code</span>
-final num         <strong>kappa</strong> <a class="anchor-link"
-            href="#kappa"
-            title="Permalink to CanvasUtil.kappa">#</a>
-        </h4>
-        <div class="doc">
-<p>(√2 - 1) * 4 / 3;</p>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method inherited"><h4 id="==">
+<button class="show-code">Code</button>
+bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
+              title="Permalink to CanvasUtil.operator ==">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>The equality operator.</p>
+<p>The default behavior for all <code>Object</code>s is to return true if and
+only if <code>this</code> and 
+<span class="param">other</span> are the same object.</p>
+<p>If a subclass overrides the equality operator it should override
+the <code>hashCode</code> method as well to maintain consistency.</p>
 <pre class="source">
-static final num kappa = 0.55228474983079339840225163227959743809289583383593;
+bool operator ==(other) =&gt; identical(this, other);
 </pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="hashCode">
+<button class="show-code">Code</button>
+int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
+              title="Permalink to CanvasUtil.hashCode">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Get a hash code for this object.</p>
+<p>All objects have hash codes. Hash codes are guaranteed to be the
+same for objects that are equal when compared using the equality
+operator <code>==</code>. Other than that there are no guarantees about
+the hash codes. They will not be consistent between runs and
+there are no distribution guarantees.</p>
+<p>If a subclass overrides <code>hashCode</code> it should override the
+equality operator as well to maintain consistency.</p>
+<pre class="source">
+external int hashCode();
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="noSuchMethod">
+<button class="show-code">Code</button>
+<strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
+              title="Permalink to CanvasUtil.noSuchMethod">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
+on an object. The name of the method and the arguments of the
+invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
+returns a value, that value becomes the result of the original
+invocation.</p>
+<p>The default behavior of <code>noSuchMethod</code> is to throw a
+<code>noSuchMethodError</code>.</p>
+<pre class="source">
+external Dynamic noSuchMethod(String name, List args);
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
+              title="Permalink to CanvasUtil.get runtimeType">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="toString">
+<button class="show-code">Code</button>
+String <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to CanvasUtil.toString">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Returns a string representation of this object.</p>
+<pre class="source">
+external String toString();
+</pre>
+</div>
 </div>
 </div>
         </div>

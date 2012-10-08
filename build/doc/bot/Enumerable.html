@@ -30,8 +30,8 @@
           class
         </h2>
         
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
-
 </div>
 <h3>Subclasses</h3>
 <p>
@@ -39,13 +39,23 @@
 <h3>Implements</h3>
 <p>
 <span class="type-box"><span class="icon-class"></span><a href="../dart_core/Collection.html">Collection&lt;E&gt;</a></span></p>
+<div>
 <h3>Constructors</h3>
-<div class="method"><h4 id="Enumerable.fromIterable">
-<span class="show-code">Code</span>
-factory <strong>Enumerable</strong>.fromIterable(Iterable&lt;<a href="../bot/Enumerable.html">T</a>&gt; source) <a class="anchor-link" href="#Enumerable.fromIterable"
+<div class="method"><h4 id="Enumerable">
+<button class="show-code">Code</button>
+const <strong>Enumerable</strong>() <a class="anchor-link" href="#Enumerable"
               title="Permalink to Enumerable&lt;T&gt;.Enumerable">#</a></h4>
 <div class="doc">
-
+<pre class="source">
+const Enumerable();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="Enumerable.fromIterable">
+<button class="show-code">Code</button>
+factory <strong>Enumerable.fromIterable</strong>(Iterable&lt;<a href="../bot/Enumerable.html">T</a>&gt; source) <a class="anchor-link" href="#Enumerable.fromIterable"
+              title="Permalink to Enumerable&lt;T&gt;.Enumerable.fromIterable">#</a></h4>
+<div class="doc">
 <pre class="source">
 factory Enumerable.fromIterable(Iterable&lt;T&gt; source) {
   requireArgumentNotNull(source, 'source');
@@ -54,24 +64,30 @@ factory Enumerable.fromIterable(Iterable&lt;T&gt; source) {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="Enumerable">
-<span class="show-code">Code</span>
-const <strong>Enumerable</strong>() <a class="anchor-link" href="#Enumerable"
-              title="Permalink to Enumerable&lt;T&gt;.Enumerable">#</a></h4>
-<div class="doc">
-
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method inherited"><h4 id="==">
+<button class="show-code">Code</button>
+bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
+              title="Permalink to Enumerable&lt;T&gt;.operator ==">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>The equality operator.</p>
+<p>The default behavior for all <code>Object</code>s is to return true if and
+only if <code>this</code> and 
+<span class="param">other</span> are the same object.</p>
+<p>If a subclass overrides the equality operator it should override
+the <code>hashCode</code> method as well to maintain consistency.</p>
 <pre class="source">
-const Enumerable();
+bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
-<h3>Methods</h3>
 <div class="method"><h4 id="aggregate">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 Object <strong>aggregate</strong>(Object seed, <a href="../bot/Func2.html">Func2</a> f) <a class="anchor-link" href="#aggregate"
               title="Permalink to Enumerable&lt;T&gt;.aggregate">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 Object aggregate(Object seed, Func2&lt;Object, T, Object&gt; f) {
   requireArgumentNotNull(f, 'f');
@@ -81,11 +97,10 @@ Object aggregate(Object seed, Func2&lt;Object, T, Object&gt; f) {
 </div>
 </div>
 <div class="method"><h4 id="contains">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 bool <strong>contains</strong>(<a href="../bot/Enumerable.html">T</a> item) <a class="anchor-link" href="#contains"
               title="Permalink to Enumerable&lt;T&gt;.contains">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 bool contains(T item) {
   for (final e in this) {
@@ -99,11 +114,10 @@ bool contains(T item) {
 </div>
 </div>
 <div class="method"><h4 id="count">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 int <strong>count</strong>([<a href="../bot/Func1.html">Func1</a> f = null]) <a class="anchor-link" href="#count"
               title="Permalink to Enumerable&lt;T&gt;.count">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 int count([Func1&lt;T, bool&gt; f = null]) {
   if(f == null) {
@@ -121,11 +135,10 @@ int count([Func1&lt;T, bool&gt; f = null]) {
 </div>
 </div>
 <div class="method"><h4 id="distinct">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/Enumerable.html">Enumerable</a>&lt;<a href="../bot/Enumerable.html">T</a>&gt; <strong>distinct</strong>([<a href="../bot/Func2.html">Func2</a> comparer = null]) <a class="anchor-link" href="#distinct"
               title="Permalink to Enumerable&lt;T&gt;.distinct">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 Enumerable&lt;T&gt; distinct([Func2&lt;T, T, bool&gt; comparer = null]) {
   if(comparer == null) {
@@ -137,7 +150,7 @@ Enumerable&lt;T&gt; distinct([Func2&lt;T, T, bool&gt; comparer = null]) {
 </div>
 </div>
 <div class="method"><h4 id="every">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 bool <strong>every</strong>(<a href="../bot/Func1.html">Func1</a> f) <a class="anchor-link" href="#every"
               title="Permalink to Enumerable&lt;T&gt;.every">#</a></h4>
 <div class="doc">
@@ -158,11 +171,10 @@ bool every(Func1&lt;T, bool&gt; f) {
 </div>
 </div>
 <div class="method"><h4 id="exclude">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/Enumerable.html">Enumerable</a>&lt;<a href="../bot/Enumerable.html">T</a>&gt; <strong>exclude</strong>(Iterable&lt;<a href="../bot/Enumerable.html">T</a>&gt; items) <a class="anchor-link" href="#exclude"
               title="Permalink to Enumerable&lt;T&gt;.exclude">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 Enumerable&lt;T&gt; exclude(Iterable&lt;T&gt; items) {
   requireArgumentNotNull(items, 'items');
@@ -174,11 +186,18 @@ Enumerable&lt;T&gt; exclude(Iterable&lt;T&gt; items) {
 </div>
 </div>
 <div class="method"><h4 id="filter">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/Enumerable.html">Enumerable</a>&lt;<a href="../bot/Enumerable.html">T</a>&gt; <strong>filter</strong>(<a href="../bot/Func1.html">Func1</a> f) <a class="anchor-link" href="#filter"
               title="Permalink to Enumerable&lt;T&gt;.filter">#</a></h4>
 <div class="doc">
-
+<div class="inherited">
+<p>Returns a new collection with the elements of this collection
+that satisfy the predicate 
+<span class="param">f</span>.</p>
+<p>An element satisfies the predicate 
+<span class="param">f</span> if <code>f(element)</code>
+returns true.</p>
+<div class="docs-inherited-from">docs inherited from Collection&lt;<a href="../bot/Enumerable.html">E</a>&gt; </div></div>
 <pre class="source">
 Enumerable&lt;T&gt; filter(Func1&lt;T, bool&gt; f) {
   requireArgumentNotNull(f, 'f');
@@ -188,11 +207,10 @@ Enumerable&lt;T&gt; filter(Func1&lt;T, bool&gt; f) {
 </div>
 </div>
 <div class="method"><h4 id="first">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/Enumerable.html">T</a> <strong>first</strong>([<a href="../bot/Func1.html">Func1</a> f = null]) <a class="anchor-link" href="#first"
               title="Permalink to Enumerable&lt;T&gt;.first">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 T first([Func1&lt;T, bool&gt; f = null]) {
   if(f == null) {
@@ -208,11 +226,10 @@ T first([Func1&lt;T, bool&gt; f = null]) {
 </div>
 </div>
 <div class="method"><h4 id="firstOrDefault">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/Enumerable.html">T</a> <strong>firstOrDefault</strong>([<a href="../bot/Func1.html">Func1</a> f = null, <a href="../bot/Enumerable.html">T</a> defaultValue = null]) <a class="anchor-link" href="#firstOrDefault"
               title="Permalink to Enumerable&lt;T&gt;.firstOrDefault">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 T firstOrDefault([Func1&lt;T, bool&gt; f = null, T defaultValue = null]) {
   if(f == null) {
@@ -228,11 +245,14 @@ T firstOrDefault([Func1&lt;T, bool&gt; f = null, T defaultValue = null]) {
 </div>
 </div>
 <div class="method"><h4 id="forEach">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 void <strong>forEach</strong>(<a href="../bot/Action1.html">Action1</a> f) <a class="anchor-link" href="#forEach"
               title="Permalink to Enumerable&lt;T&gt;.forEach">#</a></h4>
 <div class="doc">
-
+<div class="inherited">
+<p>Applies the function 
+<span class="param">f</span> to each element of this collection.</p>
+<div class="docs-inherited-from">docs inherited from Collection&lt;<a href="../bot/Enumerable.html">E</a>&gt; </div></div>
 <pre class="source">
 void forEach(Action1&lt;T&gt; f) {
   for(final e in this) {
@@ -243,11 +263,10 @@ void forEach(Action1&lt;T&gt; f) {
 </div>
 </div>
 <div class="method"><h4 id="forEachWithIndex">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 void <strong>forEachWithIndex</strong>(<a href="../bot/Action2.html">Action2</a> f) <a class="anchor-link" href="#forEachWithIndex"
               title="Permalink to Enumerable&lt;T&gt;.forEachWithIndex">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 void forEachWithIndex(Action2&lt;T, int&gt; f) {
   int i = 0;
@@ -259,11 +278,10 @@ void forEachWithIndex(Action2&lt;T, int&gt; f) {
 </div>
 </div>
 <div class="method"><h4 id="group">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/Grouping.html">Grouping</a>&lt;Dynamic, <a href="../bot/Enumerable.html">T</a>&gt; <strong>group</strong>([<a href="../bot/Func1.html">Func1</a> keyFunc = null]) <a class="anchor-link" href="#group"
               title="Permalink to Enumerable&lt;T&gt;.group">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 Grouping&lt;Dynamic, T&gt; group([Func1&lt;T, Object&gt; keyFunc = null]) {
   return new Grouping(this, keyFunc);
@@ -271,12 +289,32 @@ Grouping&lt;Dynamic, T&gt; group([Func1&lt;T, Object&gt; keyFunc = null]) {
 </pre>
 </div>
 </div>
+<div class="method inherited"><h4 id="hashCode">
+<button class="show-code">Code</button>
+int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
+              title="Permalink to Enumerable&lt;T&gt;.hashCode">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Get a hash code for this object.</p>
+<p>All objects have hash codes. Hash codes are guaranteed to be the
+same for objects that are equal when compared using the equality
+operator <code>==</code>. Other than that there are no guarantees about
+the hash codes. They will not be consistent between runs and
+there are no distribution guarantees.</p>
+<p>If a subclass overrides <code>hashCode</code> it should override the
+equality operator as well to maintain consistency.</p>
+<pre class="source">
+external int hashCode();
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="isEmpty">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 bool <strong>isEmpty</strong>() <a class="anchor-link" href="#isEmpty"
               title="Permalink to Enumerable&lt;T&gt;.isEmpty">#</a></h4>
 <div class="doc">
-
+<div class="inherited">
+<p>Returns true if there is no element in this collection.</p>
+<div class="docs-inherited-from">docs inherited from Collection&lt;<a href="../bot/Enumerable.html">E</a>&gt; </div></div>
 <pre class="source">
 bool isEmpty() =&gt; !some((e) =&gt; true);
 </pre>
@@ -286,15 +324,16 @@ bool isEmpty() =&gt; !some((e) =&gt; true);
 abstract Iterator <strong>iterator</strong>() <a class="anchor-link" href="#iterator"
               title="Permalink to Enumerable&lt;T&gt;.iterator">#</a></h4>
 <div class="doc">
-
+<div class="inherited">
+<p>Returns an <code>Iterator</code> that iterates over this <code>Iterable</code> object.</p>
+<div class="docs-inherited-from">docs inherited from Iterable&lt;<a href="../bot/Enumerable.html">E</a>&gt; </div></div>
 </div>
 </div>
 <div class="method"><h4 id="join">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 String <strong>join</strong>([String separator = ', ']) <a class="anchor-link" href="#join"
               title="Permalink to Enumerable&lt;T&gt;.join">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 String join([String separator = ', ']) {
   final StringBuffer sb = new StringBuffer();
@@ -309,8 +348,19 @@ String join([String separator = ', ']) {
 </pre>
 </div>
 </div>
+<div class="method inherited"><h4 id="length">
+<button class="show-code">Code</button>
+int <strong>get length</strong>() <a class="anchor-link" href="#length"
+              title="Permalink to Enumerable&lt;T&gt;.get length">#</a></h4>
+<div class="inherited-from">inherited from Collection </div><div class="doc">
+<p>Returns the number of elements in this collection.</p>
+<pre class="source">
+int get length;
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="map">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/Enumerable.html">Enumerable</a> <strong>map</strong>(<a href="../bot/Func1.html">Func1</a> f) <a class="anchor-link" href="#map"
               title="Permalink to Enumerable&lt;T&gt;.map">#</a></h4>
 <div class="doc">
@@ -327,8 +377,25 @@ Enumerable map(Func1&lt;T, Object&gt; f) {
 </pre>
 </div>
 </div>
+<div class="method inherited"><h4 id="noSuchMethod">
+<button class="show-code">Code</button>
+<strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
+              title="Permalink to Enumerable&lt;T&gt;.noSuchMethod">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
+on an object. The name of the method and the arguments of the
+invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
+returns a value, that value becomes the result of the original
+invocation.</p>
+<p>The default behavior of <code>noSuchMethod</code> is to throw a
+<code>noSuchMethodError</code>.</p>
+<pre class="source">
+external Dynamic noSuchMethod(String name, List args);
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="reduce">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <strong>reduce</strong>(initialValue, combine(previousValue, <a href="../bot/Enumerable.html">T</a> element)) <a class="anchor-link" href="#reduce"
               title="Permalink to Enumerable&lt;T&gt;.reduce">#</a></h4>
 <div class="doc">
@@ -348,12 +415,22 @@ Dynamic reduce(Dynamic initialValue,
 </pre>
 </div>
 </div>
+<div class="method inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
+              title="Permalink to Enumerable&lt;T&gt;.get runtimeType">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="selectMany">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/Enumerable.html">Enumerable</a> <strong>selectMany</strong>(<a href="../bot/Func1.html">Func1</a> f) <a class="anchor-link" href="#selectMany"
               title="Permalink to Enumerable&lt;T&gt;.selectMany">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 Enumerable selectMany(Func1&lt;T, Iterable&gt; f) {
   requireArgumentNotNull(f, 'f');
@@ -364,11 +441,10 @@ Enumerable selectMany(Func1&lt;T, Iterable&gt; f) {
 </div>
 </div>
 <div class="method"><h4 id="selectNumbers">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/NumberEnumerable.html">NumberEnumerable</a> <strong>selectNumbers</strong>(<a href="../bot/Func1.html">Func1</a> f) <a class="anchor-link" href="#selectNumbers"
               title="Permalink to Enumerable&lt;T&gt;.selectNumbers">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 NumberEnumerable selectNumbers(Func1&lt;T, num&gt; f) {
   requireArgumentNotNull(f, 'f');
@@ -378,11 +454,10 @@ NumberEnumerable selectNumbers(Func1&lt;T, num&gt; f) {
 </div>
 </div>
 <div class="method"><h4 id="single">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/Enumerable.html">T</a> <strong>single</strong>([<a href="../bot/Func1.html">Func1</a> f = null]) <a class="anchor-link" href="#single"
               title="Permalink to Enumerable&lt;T&gt;.single">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 T single([Func1&lt;T, bool&gt; f = null]) {
   if(f == null) {
@@ -402,11 +477,10 @@ T single([Func1&lt;T, bool&gt; f = null]) {
 </div>
 </div>
 <div class="method"><h4 id="singleOrDefault">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/Enumerable.html">T</a> <strong>singleOrDefault</strong>([<a href="../bot/Func1.html">Func1</a> f = null, <a href="../bot/Enumerable.html">T</a> defaultValue = null]) <a class="anchor-link" href="#singleOrDefault"
               title="Permalink to Enumerable&lt;T&gt;.singleOrDefault">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 T singleOrDefault([Func1&lt;T, bool&gt; f = null, T defaultValue = null]) {
   if(f == null) {
@@ -426,7 +500,7 @@ T singleOrDefault([Func1&lt;T, bool&gt; f = null, T defaultValue = null]) {
 </div>
 </div>
 <div class="method"><h4 id="some">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 bool <strong>some</strong>(<a href="../bot/Func1.html">Func1</a> f) <a class="anchor-link" href="#some"
               title="Permalink to Enumerable&lt;T&gt;.some">#</a></h4>
 <div class="doc">
@@ -447,33 +521,23 @@ bool some(Func1&lt;T, bool&gt; f) {
 </div>
 </div>
 <div class="method"><h4 id="toHashMap">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 HashMap <strong>toHashMap</strong>(<a href="../bot/Func1.html">Func1</a> valueFunc, [<a href="../bot/Func1.html">Func1</a> keyFunc]) <a class="anchor-link" href="#toHashMap"
               title="Permalink to Enumerable&lt;T&gt;.toHashMap">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 HashMap toHashMap(Func1&lt;T, Object&gt; valueFunc, [Func1&lt;T, Hashable&gt; keyFunc]) {
-  Iterable source;
   if(keyFunc == null) {
     keyFunc = (a) =&gt; a;
   }
 
-  var e;
-  bool duplicate;
-  Func populate = () {
-    duplicate = false;
-    return valueFunc(e);
-  };
-
   final map = new HashMap();
-  for(e in this) {
+  for(final e in this) {
     final k = keyFunc(e);
-    duplicate = true;
-    map.putIfAbsent(k, populate);
-    if(duplicate) {
+    if(map.containsKey(k)) {
       throw new UnsupportedOperationException("The key '$k' is duplicated");
     }
+    map[k] = valueFunc(e);
   }
   return map;
 }
@@ -481,11 +545,10 @@ HashMap toHashMap(Func1&lt;T, Object&gt; valueFunc, [Func1&lt;T, Hashable&gt; ke
 </div>
 </div>
 <div class="method"><h4 id="toHashSet">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 HashSet <strong>toHashSet</strong>([<a href="../bot/Func1.html">Func1</a> f]) <a class="anchor-link" href="#toHashSet"
               title="Permalink to Enumerable&lt;T&gt;.toHashSet">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 HashSet toHashSet([Func1&lt;T, Hashable&gt; f]) {
   if(f == null) {
@@ -498,36 +561,37 @@ HashSet toHashSet([Func1&lt;T, Hashable&gt; f]) {
 </div>
 </div>
 <div class="method"><h4 id="toList">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 List&lt;<a href="../bot/Enumerable.html">T</a>&gt; <strong>toList</strong>() <a class="anchor-link" href="#toList"
               title="Permalink to Enumerable&lt;T&gt;.toList">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 List&lt;T&gt; toList() =&gt; new List&lt;T&gt;.from(this);
 </pre>
 </div>
 </div>
 <div class="method"><h4 id="toReadOnlyCollection">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/ReadOnlyCollection.html">ReadOnlyCollection</a>&lt;<a href="../bot/Enumerable.html">T</a>&gt; <strong>toReadOnlyCollection</strong>() <a class="anchor-link" href="#toReadOnlyCollection"
               title="Permalink to Enumerable&lt;T&gt;.toReadOnlyCollection">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 ReadOnlyCollection&lt;T&gt; toReadOnlyCollection() =&gt; new ReadOnlyCollection&lt;T&gt;(this);
 </pre>
 </div>
 </div>
 <div class="method"><h4 id="toString">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 String <strong>toString</strong>() <a class="anchor-link" href="#toString"
               title="Permalink to Enumerable&lt;T&gt;.toString">#</a></h4>
 <div class="doc">
-
+<div class="inherited">
+<p>Returns a string representation of this object.</p>
+<div class="docs-inherited-from">docs inherited from Object </div></div>
 <pre class="source">
 String toString() =&gt; "[${this.join()}]";
 </pre>
+</div>
 </div>
 </div>
         </div>

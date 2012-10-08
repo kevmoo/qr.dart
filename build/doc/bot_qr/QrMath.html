@@ -30,16 +30,16 @@
           class
         </h2>
         
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
-
 </div>
+<div>
 <h3>Static Methods</h3>
 <div class="method"><h4 id="EXP_TABLE">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <strong>get EXP_TABLE</strong>() <a class="anchor-link" href="#EXP_TABLE"
               title="Permalink to QrMath.get EXP_TABLE">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 static get EXP_TABLE {
   if(_expTable == null) {
@@ -57,34 +57,11 @@ static get EXP_TABLE {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="LOG_TABLE">
-<span class="show-code">Code</span>
-<strong>get LOG_TABLE</strong>() <a class="anchor-link" href="#LOG_TABLE"
-              title="Permalink to QrMath.get LOG_TABLE">#</a></h4>
-<div class="doc">
-
-<pre class="source">
-static get LOG_TABLE {
-  if(_logTable == null) {
-    var t = QrMath.getZeroedList(256);
-    // this was the code I had in pl
-    // only to 255? seems really weird
-    for (int i = 0; i &lt; 255; i++) {
-      t[EXP_TABLE[i]] = i;
-    }
-    _logTable = new ReadOnlyCollection.wrap(t);
-  }
-  return _logTable;
-}
-</pre>
-</div>
-</div>
 <div class="method"><h4 id="getZeroedList">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 List&lt;int&gt; <strong>getZeroedList</strong>(int count) <a class="anchor-link" href="#getZeroedList"
               title="Permalink to QrMath.getZeroedList">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 static List&lt;int&gt; getZeroedList(int count) {
   final l = new List&lt;int&gt;();
@@ -95,11 +72,10 @@ static List&lt;int&gt; getZeroedList(int count) {
 </div>
 </div>
 <div class="method"><h4 id="gexp">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <strong>gexp</strong>(n) <a class="anchor-link" href="#gexp"
               title="Permalink to QrMath.gexp">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 static gexp(n) {
 
@@ -117,11 +93,10 @@ static gexp(n) {
 </div>
 </div>
 <div class="method"><h4 id="glog">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <strong>glog</strong>(n) <a class="anchor-link" href="#glog"
               title="Permalink to QrMath.glog">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 static glog(n) {
 
@@ -132,6 +107,104 @@ static glog(n) {
   return LOG_TABLE[n];
 }
 </pre>
+</div>
+</div>
+<div class="method"><h4 id="LOG_TABLE">
+<button class="show-code">Code</button>
+<strong>get LOG_TABLE</strong>() <a class="anchor-link" href="#LOG_TABLE"
+              title="Permalink to QrMath.get LOG_TABLE">#</a></h4>
+<div class="doc">
+<pre class="source">
+static get LOG_TABLE {
+  if(_logTable == null) {
+    var t = QrMath.getZeroedList(256);
+    // this was the code I had in pl
+    // only to 255? seems really weird
+    for (int i = 0; i &lt; 255; i++) {
+      t[EXP_TABLE[i]] = i;
+    }
+    _logTable = new ReadOnlyCollection.wrap(t);
+  }
+  return _logTable;
+}
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method inherited"><h4 id="==">
+<button class="show-code">Code</button>
+bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
+              title="Permalink to QrMath.operator ==">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>The equality operator.</p>
+<p>The default behavior for all <code>Object</code>s is to return true if and
+only if <code>this</code> and 
+<span class="param">other</span> are the same object.</p>
+<p>If a subclass overrides the equality operator it should override
+the <code>hashCode</code> method as well to maintain consistency.</p>
+<pre class="source">
+bool operator ==(other) =&gt; identical(this, other);
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="hashCode">
+<button class="show-code">Code</button>
+int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
+              title="Permalink to QrMath.hashCode">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Get a hash code for this object.</p>
+<p>All objects have hash codes. Hash codes are guaranteed to be the
+same for objects that are equal when compared using the equality
+operator <code>==</code>. Other than that there are no guarantees about
+the hash codes. They will not be consistent between runs and
+there are no distribution guarantees.</p>
+<p>If a subclass overrides <code>hashCode</code> it should override the
+equality operator as well to maintain consistency.</p>
+<pre class="source">
+external int hashCode();
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="noSuchMethod">
+<button class="show-code">Code</button>
+<strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
+              title="Permalink to QrMath.noSuchMethod">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
+on an object. The name of the method and the arguments of the
+invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
+returns a value, that value becomes the result of the original
+invocation.</p>
+<p>The default behavior of <code>noSuchMethod</code> is to throw a
+<code>noSuchMethodError</code>.</p>
+<pre class="source">
+external Dynamic noSuchMethod(String name, List args);
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
+              title="Permalink to QrMath.get runtimeType">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="toString">
+<button class="show-code">Code</button>
+String <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to QrMath.toString">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Returns a string representation of this object.</p>
+<pre class="source">
+external String toString();
+</pre>
+</div>
 </div>
 </div>
         </div>

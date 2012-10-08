@@ -30,19 +30,19 @@
           class
         </h2>
         
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
-
 </div>
 <h3>Implements</h3>
 <p>
 <span class="type-box"><span class="icon-class"></span><a href="../dart_core/Comparable.html">Comparable</a></span>, <span class="type-box"><span class="icon-class"></span><a href="../dart_core/Hashable.html">Hashable</a></span></p>
+<div>
 <h3>Constructors</h3>
 <div class="method"><h4 id="GlobalId">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 factory <strong>GlobalId</strong>() <a class="anchor-link" href="#GlobalId"
               title="Permalink to GlobalId.GlobalId">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 factory GlobalId() {
   return new GlobalId._internal(_globalId++);
@@ -51,11 +51,10 @@ factory GlobalId() {
 </div>
 </div>
 <div class="method"><h4 id="GlobalId._internal">
-<span class="show-code">Code</span>
-new <strong>GlobalId</strong>._internal(int value) <a class="anchor-link" href="#GlobalId._internal"
-              title="Permalink to GlobalId.GlobalId">#</a></h4>
+<button class="show-code">Code</button>
+new <strong>GlobalId._internal</strong>(int value) <a class="anchor-link" href="#GlobalId._internal"
+              title="Permalink to GlobalId.GlobalId._internal">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 GlobalId._internal(int value) :
   id = value,
@@ -63,52 +62,118 @@ GlobalId._internal(int value) :
 </pre>
 </div>
 </div>
+</div>
+<div>
+<h3>Fields</h3>
+<div class="field"><h4 id="id">
+<button class="show-code">Code</button>
+final int         <strong>id</strong> <a class="anchor-link"
+            href="#id"
+            title="Permalink to GlobalId.id">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final int id;
+</pre>
+</div>
+</div>
+</div>
+<div>
 <h3>Methods</h3>
+<div class="method"><h4 id="==">
+<button class="show-code">Code</button>
+bool <strong>operator ==</strong>(<a href="../bot/GlobalId.html">GlobalId</a> other) <a class="anchor-link" href="#=="
+              title="Permalink to GlobalId.operator ==">#</a></h4>
+<div class="doc">
+<div class="inherited">
+<p>The equality operator.</p>
+<p>The default behavior for all <code>Object</code>s is to return true if and
+only if <code>this</code> and 
+<span class="param">other</span> are the same object.</p>
+<p>If a subclass overrides the equality operator it should override
+the <a class="crossref" href="../bot/GlobalId.html#hashCode">hashCode</a> method as well to maintain consistency.</p>
+<div class="docs-inherited-from">docs inherited from Object </div></div>
+<pre class="source">
+bool operator ==(GlobalId other) =&gt; other != null &amp;&amp; other.id == id;
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="compareTo">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 int <strong>compareTo</strong>(<a href="../bot/GlobalId.html">GlobalId</a> other) <a class="anchor-link" href="#compareTo"
               title="Permalink to GlobalId.compareTo">#</a></h4>
 <div class="doc">
-
+<div class="inherited">
+<p>Compares this object to another <code>Comparable</code></p>
+<p>Returns a value like a <code>Comparator</code> when comparing <code>this</code> to 
+<span class="param">other</span>.</p>
+<p>May throw an <code>ArgumentError</code> if 
+<span class="param">other</span> is of a type that
+is not comparable to <code>this</code>.</p>
+<div class="docs-inherited-from">docs inherited from Comparable </div></div>
 <pre class="source">
 int compareTo(GlobalId other) =&gt; id.compareTo(other.id);
 </pre>
 </div>
 </div>
 <div class="method"><h4 id="hashCode">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
               title="Permalink to GlobalId.hashCode">#</a></h4>
 <div class="doc">
-
+<div class="inherited">
+<p>Get a hash code for this object.</p>
+<p>All objects have hash codes. Hash codes are guaranteed to be the
+same for objects that are equal when compared using the equality
+operator <code>==</code>. Other than that there are no guarantees about
+the hash codes. They will not be consistent between runs and
+there are no distribution guarantees.</p>
+<p>If a subclass overrides <a class="crossref" href="../bot/GlobalId.html#hashCode">hashCode</a> it should override the
+equality operator as well to maintain consistency.</p>
+<div class="docs-inherited-from">docs inherited from Object </div></div>
 <pre class="source">
 int hashCode() =&gt; _hashCode;
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="operator ==">
-<span class="show-code">Code</span>
-bool <strong>operator ==</strong>(<a href="../bot/GlobalId.html">GlobalId</a> other) <a class="anchor-link" href="#operator =="
-              title="Permalink to GlobalId.operator ==">#</a></h4>
-<div class="doc">
-
+<div class="method inherited"><h4 id="noSuchMethod">
+<button class="show-code">Code</button>
+<strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
+              title="Permalink to GlobalId.noSuchMethod">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
+on an object. The name of the method and the arguments of the
+invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
+returns a value, that value becomes the result of the original
+invocation.</p>
+<p>The default behavior of <code>noSuchMethod</code> is to throw a
+<code>noSuchMethodError</code>.</p>
 <pre class="source">
-bool operator ==(GlobalId other) =&gt; other != null &amp;&amp; other.id == id;
+external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
-<h3>Fields</h3>
-<div class="field"><h4 id="id">
-<span class="show-code">Code</span>
-final int         <strong>id</strong> <a class="anchor-link"
-            href="#id"
-            title="Permalink to GlobalId.id">#</a>
-        </h4>
-        <div class="doc">
-
+<div class="method inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
+              title="Permalink to GlobalId.get runtimeType">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
 <pre class="source">
-final int id;
+external Type get runtimeType;
 </pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="toString">
+<button class="show-code">Code</button>
+String <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to GlobalId.toString">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Returns a string representation of this object.</p>
+<pre class="source">
+external String toString();
+</pre>
+</div>
 </div>
 </div>
         </div>

@@ -30,45 +30,19 @@
           class
         </h2>
         
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
-
 </div>
 <h3>Implements</h3>
 <p>
 <span class="type-box"><span class="icon-interface"></span><a href="../bot/Cloneable.html">Cloneable&lt;T&gt;</a></span></p>
+<div>
 <h3>Constructors</h3>
-<div class="method"><h4 id="AffineTransform.fromScale">
-<span class="show-code">Code</span>
-factory <strong>AffineTransform</strong>.fromScale(sx, sy) <a class="anchor-link" href="#AffineTransform.fromScale"
-              title="Permalink to AffineTransform.AffineTransform">#</a></h4>
-<div class="doc">
-
-<pre class="source">
-factory AffineTransform.fromScale(sx, sy) {
-  return new AffineTransform().setToScale(sx, sy);
-}
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="AffineTransform.fromRotate">
-<span class="show-code">Code</span>
-factory <strong>AffineTransform</strong>.fromRotate(num theta, num x, num y) <a class="anchor-link" href="#AffineTransform.fromRotate"
-              title="Permalink to AffineTransform.AffineTransform">#</a></h4>
-<div class="doc">
-
-<pre class="source">
-factory AffineTransform.fromRotate(num theta, num x, num y) {
-  return new AffineTransform().setToRotation(theta, x, y);
-}
-</pre>
-</div>
-</div>
 <div class="method"><h4 id="AffineTransform">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 new <strong>AffineTransform</strong>([num scaleX = 1, num shearY = 0, num shearX = 0, num scaleY = 1, num translateX = 0, num translateY = 0]) <a class="anchor-link" href="#AffineTransform"
               title="Permalink to AffineTransform.AffineTransform">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 AffineTransform([num scaleX = 1, num shearY = 0,
     num shearX = 0, num scaleY = 1,
@@ -79,13 +53,60 @@ AffineTransform([num scaleX = 1, num shearY = 0,
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="AffineTransform.fromRotate">
+<button class="show-code">Code</button>
+factory <strong>AffineTransform.fromRotate</strong>(num theta, num x, num y) <a class="anchor-link" href="#AffineTransform.fromRotate"
+              title="Permalink to AffineTransform.AffineTransform.fromRotate">#</a></h4>
+<div class="doc">
+<pre class="source">
+factory AffineTransform.fromRotate(num theta, num x, num y) {
+  return new AffineTransform().setToRotation(theta, x, y);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="AffineTransform.fromScale">
+<button class="show-code">Code</button>
+factory <strong>AffineTransform.fromScale</strong>(sx, sy) <a class="anchor-link" href="#AffineTransform.fromScale"
+              title="Permalink to AffineTransform.AffineTransform.fromScale">#</a></h4>
+<div class="doc">
+<pre class="source">
+factory AffineTransform.fromScale(sx, sy) {
+  return new AffineTransform().setToScale(sx, sy);
+}
+</pre>
+</div>
+</div>
+</div>
+<div>
 <h3>Methods</h3>
+<div class="method"><h4 id="==">
+<button class="show-code">Code</button>
+bool <strong>operator ==</strong>(<a href="../bot/AffineTransform.html">AffineTransform</a> other) <a class="anchor-link" href="#=="
+              title="Permalink to AffineTransform.operator ==">#</a></h4>
+<div class="doc">
+<div class="inherited">
+<p>The equality operator.</p>
+<p>The default behavior for all <code>Object</code>s is to return true if and
+only if <code>this</code> and 
+<span class="param">other</span> are the same object.</p>
+<p>If a subclass overrides the equality operator it should override
+the <code>hashCode</code> method as well to maintain consistency.</p>
+<div class="docs-inherited-from">docs inherited from Object </div></div>
+<pre class="source">
+bool operator ==(AffineTransform other) {
+  return other != null &amp;&amp;
+      _m00 == other._m00 &amp;&amp; _m01 == other._m01 &amp;&amp; _m02 == other._m02 &amp;&amp;
+      _m10 == other._m10 &amp;&amp; _m11 == other._m11 &amp;&amp; _m12 == other._m12;
+}
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="clone">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/AffineTransform.html">AffineTransform</a> <strong>clone</strong>() <a class="anchor-link" href="#clone"
               title="Permalink to AffineTransform.clone">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 AffineTransform clone(){
   return new AffineTransform(_m00, _m10, _m01, _m11, _m02, _m12);
@@ -94,11 +115,10 @@ AffineTransform clone(){
 </div>
 </div>
 <div class="method"><h4 id="concatenate">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/AffineTransform.html">AffineTransform</a> <strong>concatenate</strong>(tx) <a class="anchor-link" href="#concatenate"
               title="Permalink to AffineTransform.concatenate">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 AffineTransform concatenate(tx) {
   var m0 = this._m00;
@@ -118,11 +138,10 @@ AffineTransform concatenate(tx) {
 </div>
 </div>
 <div class="method"><h4 id="createInverse">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/AffineTransform.html">AffineTransform</a> <strong>createInverse</strong>() <a class="anchor-link" href="#createInverse"
               title="Permalink to AffineTransform.createInverse">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 AffineTransform createInverse() {
   num det = determinant;
@@ -138,22 +157,38 @@ AffineTransform createInverse() {
 </div>
 </div>
 <div class="method"><h4 id="determinant">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 num <strong>get determinant</strong>() <a class="anchor-link" href="#determinant"
               title="Permalink to AffineTransform.get determinant">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 num get determinant =&gt; _m00 * _m11 - _m01 * _m10;
 </pre>
 </div>
 </div>
+<div class="method inherited"><h4 id="hashCode">
+<button class="show-code">Code</button>
+int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
+              title="Permalink to AffineTransform.hashCode">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Get a hash code for this object.</p>
+<p>All objects have hash codes. Hash codes are guaranteed to be the
+same for objects that are equal when compared using the equality
+operator <code>==</code>. Other than that there are no guarantees about
+the hash codes. They will not be consistent between runs and
+there are no distribution guarantees.</p>
+<p>If a subclass overrides <code>hashCode</code> it should override the
+equality operator as well to maintain consistency.</p>
+<pre class="source">
+external int hashCode();
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="isIdentity">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 bool <strong>get isIdentity</strong>() <a class="anchor-link" href="#isIdentity"
               title="Permalink to AffineTransform.get isIdentity">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 bool get isIdentity {
   return _m00 == 1 &amp;&amp; _m10 == 0 &amp;&amp;
@@ -163,27 +198,28 @@ bool get isIdentity {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="operator ==">
-<span class="show-code">Code</span>
-bool <strong>operator ==</strong>(<a href="../bot/AffineTransform.html">AffineTransform</a> other) <a class="anchor-link" href="#operator =="
-              title="Permalink to AffineTransform.operator ==">#</a></h4>
-<div class="doc">
-
+<div class="method inherited"><h4 id="noSuchMethod">
+<button class="show-code">Code</button>
+<strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
+              title="Permalink to AffineTransform.noSuchMethod">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
+on an object. The name of the method and the arguments of the
+invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
+returns a value, that value becomes the result of the original
+invocation.</p>
+<p>The default behavior of <code>noSuchMethod</code> is to throw a
+<code>noSuchMethodError</code>.</p>
 <pre class="source">
-bool operator ==(AffineTransform other) {
-  return other != null &amp;&amp;
-      _m00 == other._m00 &amp;&amp; _m01 == other._m01 &amp;&amp; _m02 == other._m02 &amp;&amp;
-      _m10 == other._m10 &amp;&amp; _m11 == other._m11 &amp;&amp; _m12 == other._m12;
-}
+external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
 <div class="method"><h4 id="rotate">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/AffineTransform.html">AffineTransform</a> <strong>rotate</strong>(num theta, num x, num y) <a class="anchor-link" href="#rotate"
               title="Permalink to AffineTransform.rotate">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 AffineTransform rotate(num theta, num x, num y) {
   return this.concatenate(new AffineTransform.fromRotate(theta, x, y));
@@ -191,12 +227,22 @@ AffineTransform rotate(num theta, num x, num y) {
 </pre>
 </div>
 </div>
+<div class="method inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
+              title="Permalink to AffineTransform.get runtimeType">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="scale">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/AffineTransform.html">AffineTransform</a> <strong>scale</strong>(num sx, num sy) <a class="anchor-link" href="#scale"
               title="Permalink to AffineTransform.scale">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 AffineTransform scale(num sx, num sy) {
   _m00 *= sx;
@@ -209,33 +255,30 @@ AffineTransform scale(num sx, num sy) {
 </div>
 </div>
 <div class="method"><h4 id="scaleX">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 num <strong>get scaleX</strong>() <a class="anchor-link" href="#scaleX"
               title="Permalink to AffineTransform.get scaleX">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 num get scaleX =&gt; _m00;
 </pre>
 </div>
 </div>
 <div class="method"><h4 id="scaleY">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 num <strong>get scaleY</strong>() <a class="anchor-link" href="#scaleY"
               title="Permalink to AffineTransform.get scaleY">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 num get scaleY =&gt; _m11;
 </pre>
 </div>
 </div>
 <div class="method"><h4 id="setFromTransfrom">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/AffineTransform.html">AffineTransform</a> <strong>setFromTransfrom</strong>(<a href="../bot/AffineTransform.html">AffineTransform</a> tx) <a class="anchor-link" href="#setFromTransfrom"
               title="Permalink to AffineTransform.setFromTransfrom">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 AffineTransform setFromTransfrom(AffineTransform tx) {
   requireArgumentNotNull(tx, 'tx');
@@ -247,11 +290,10 @@ AffineTransform setFromTransfrom(AffineTransform tx) {
 </div>
 </div>
 <div class="method"><h4 id="setToRotation">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/AffineTransform.html">AffineTransform</a> <strong>setToRotation</strong>(num theta, num x, num y) <a class="anchor-link" href="#setToRotation"
               title="Permalink to AffineTransform.setToRotation">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 AffineTransform setToRotation(num theta, num x, num y) {
   var cos = math.cos(theta);
@@ -263,11 +305,10 @@ AffineTransform setToRotation(num theta, num x, num y) {
 </div>
 </div>
 <div class="method"><h4 id="setToScale">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/AffineTransform.html">AffineTransform</a> <strong>setToScale</strong>(sx, sy) <a class="anchor-link" href="#setToScale"
               title="Permalink to AffineTransform.setToScale">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 AffineTransform setToScale(sx, sy) {
   return setTransform(sx, 0, 0, sy, 0, 0);
@@ -276,11 +317,10 @@ AffineTransform setToScale(sx, sy) {
 </div>
 </div>
 <div class="method"><h4 id="setToTranslation">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/AffineTransform.html">AffineTransform</a> <strong>setToTranslation</strong>(num dx, num dy) <a class="anchor-link" href="#setToTranslation"
               title="Permalink to AffineTransform.setToTranslation">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 AffineTransform setToTranslation(num dx, num dy) {
   return setTransform(1, 0, 0, 1, dx, dy);
@@ -289,11 +329,10 @@ AffineTransform setToTranslation(num dx, num dy) {
 </div>
 </div>
 <div class="method"><h4 id="setTransform">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/AffineTransform.html">AffineTransform</a> <strong>setTransform</strong>(num m00, num m10, num m01, num m11, num m02, num m12) <a class="anchor-link" href="#setTransform"
               title="Permalink to AffineTransform.setTransform">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 AffineTransform setTransform (num m00, num m10, num m01,
   num m11, num m02, num m12) {
@@ -309,33 +348,33 @@ AffineTransform setTransform (num m00, num m10, num m01,
 </div>
 </div>
 <div class="method"><h4 id="shearX">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 num <strong>get shearX</strong>() <a class="anchor-link" href="#shearX"
               title="Permalink to AffineTransform.get shearX">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 num get shearX =&gt; _m01;
 </pre>
 </div>
 </div>
 <div class="method"><h4 id="shearY">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 num <strong>get shearY</strong>() <a class="anchor-link" href="#shearY"
               title="Permalink to AffineTransform.get shearY">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 num get shearY =&gt; _m10;
 </pre>
 </div>
 </div>
 <div class="method"><h4 id="toString">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 String <strong>toString</strong>() <a class="anchor-link" href="#toString"
               title="Permalink to AffineTransform.toString">#</a></h4>
 <div class="doc">
-
+<div class="inherited">
+<p>Returns a string representation of this object.</p>
+<div class="docs-inherited-from">docs inherited from Object </div></div>
 <pre class="source">
 String toString() {
   final values = [translateX, translateY, scaleX, scaleY, shearX, shearY];
@@ -345,11 +384,10 @@ String toString() {
 </div>
 </div>
 <div class="method"><h4 id="transformCoordinate">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/Coordinate.html">Coordinate</a> <strong>transformCoordinate</strong>([<a href="../bot/Coordinate.html">Coordinate</a> point = const Coordinate()]) <a class="anchor-link" href="#transformCoordinate"
               title="Permalink to AffineTransform.transformCoordinate">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 Coordinate transformCoordinate([Coordinate point = const Coordinate()]){
   num x = point.x * _m00 + point.y * _m01 + _m02;
@@ -361,11 +399,10 @@ Coordinate transformCoordinate([Coordinate point = const Coordinate()]){
 </div>
 </div>
 <div class="method"><h4 id="translate">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/AffineTransform.html">AffineTransform</a> <strong>translate</strong>(num dx, num dy) <a class="anchor-link" href="#translate"
               title="Permalink to AffineTransform.translate">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 AffineTransform translate(num dx, num dy) {
   _m02 += dx * _m00 + dy * _m01;
@@ -376,36 +413,34 @@ AffineTransform translate(num dx, num dy) {
 </div>
 </div>
 <div class="method"><h4 id="translateVector">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/Vector.html">Vector</a> <strong>get translateVector</strong>() <a class="anchor-link" href="#translateVector"
               title="Permalink to AffineTransform.get translateVector">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 Vector get translateVector =&gt; new Vector(translateX, translateY);
 </pre>
 </div>
 </div>
 <div class="method"><h4 id="translateX">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 num <strong>get translateX</strong>() <a class="anchor-link" href="#translateX"
               title="Permalink to AffineTransform.get translateX">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 num get translateX =&gt; _m02;
 </pre>
 </div>
 </div>
 <div class="method"><h4 id="translateY">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 num <strong>get translateY</strong>() <a class="anchor-link" href="#translateY"
               title="Permalink to AffineTransform.get translateY">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 num get translateY =&gt; _m12;
 </pre>
+</div>
 </div>
 </div>
         </div>

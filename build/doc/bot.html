@@ -27,14 +27,13 @@
 </div>
 <div class="content">
 <h2><strong>bot</strong> library</h2>
-<div class="doc"></div>
-<h3>Methods</h3>
+<div>
+<h3>Functions</h3>
 <div class="method"><h4 id="$">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="bot/Enumerable.html">Enumerable</a> <strong>$</strong>(Iterable source) <a class="anchor-link" href="#$"
               title="Permalink to $">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 Enumerable $(Iterable source) {
   if(source is Enumerable) {
@@ -47,11 +46,10 @@ Enumerable $(Iterable source) {
 </div>
 </div>
 <div class="method"><h4 id="isValidNumber">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 bool <strong>isValidNumber</strong>(num value) <a class="anchor-link" href="#isValidNumber"
               title="Permalink to isValidNumber">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 bool isValidNumber(num value) {
   return value != null &amp;&amp; !value.isInfinite() &amp;&amp; !value.isNaN();
@@ -60,11 +58,10 @@ bool isValidNumber(num value) {
 </div>
 </div>
 <div class="method"><h4 id="n$">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="bot/NumberEnumerable.html">NumberEnumerable</a> <strong>n$</strong>(Iterable&lt;num&gt; source) <a class="anchor-link" href="#n$"
               title="Permalink to n$">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 NumberEnumerable n$(Iterable&lt;num&gt; source) {
   return new NumberEnumerable.from(source);
@@ -73,11 +70,10 @@ NumberEnumerable n$(Iterable&lt;num&gt; source) {
 </div>
 </div>
 <div class="method"><h4 id="require">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 void <strong>require</strong>(bool truth, [String message = '']) <a class="anchor-link" href="#require"
               title="Permalink to require">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 void require(bool truth, [String message = '']) {
   if(!truth) {
@@ -88,11 +84,10 @@ void require(bool truth, [String message = '']) {
 </div>
 </div>
 <div class="method"><h4 id="requireArgument">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 void <strong>requireArgument</strong>(bool truth, [String arg = "", String message]) <a class="anchor-link" href="#requireArgument"
               title="Permalink to requireArgument">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 void requireArgument(bool truth, [String arg = "", String message]) {
   if(!truth) {
@@ -107,11 +102,10 @@ void requireArgument(bool truth, [String arg = "", String message]) {
 </div>
 </div>
 <div class="method"><h4 id="requireArgumentNotNull">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 void <strong>requireArgumentNotNull</strong>(argument, [String argName = ""]) <a class="anchor-link" href="#requireArgumentNotNull"
               title="Permalink to requireArgumentNotNull">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 void requireArgumentNotNull(argument, [String argName = ""]) {
   if(argument == null) {
@@ -122,11 +116,10 @@ void requireArgumentNotNull(argument, [String argName = ""]) {
 </div>
 </div>
 <div class="method"><h4 id="rnd">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 Random <strong>get rnd</strong>() <a class="anchor-link" href="#rnd"
               title="Permalink to get rnd">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 math.Random get rnd {
   if(_botHelperRandom == null) {
@@ -137,6 +130,8 @@ math.Random get rnd {
 </pre>
 </div>
 </div>
+</div>
+<div>
 <h3>Classes</h3>
           <div class="type">
           <h4>
@@ -318,6 +313,8 @@ math.Random get rnd {
           </h4>
           </div>
           
+</div>
+<div>
 <h3>Interfaces</h3>
           <div class="type">
           <h4>
@@ -337,6 +334,8 @@ math.Random get rnd {
           </h4>
           </div>
           
+</div>
+<div>
 <h3>Typedefs</h3>
           <div class="type">
           <h4>
@@ -380,6 +379,8 @@ math.Random get rnd {
           </h4>
           </div>
           
+</div>
+<div>
 <h3>Exceptions</h3>
           <div class="type">
           <h4>
@@ -399,6 +400,7 @@ math.Random get rnd {
           </h4>
           </div>
           
+</div>
         </div>
         <div class="clear"></div>
         </div>

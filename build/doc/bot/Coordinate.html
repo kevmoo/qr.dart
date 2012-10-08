@@ -30,31 +30,32 @@
           class
         </h2>
         
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
-
 </div>
 <h3>Subclasses</h3>
 <p>
 <span class="type-box"><span class="icon-class"></span><a href="../bot/Vector.html">Vector</a></span></p>
+<div>
 <h3>Constructors</h3>
 <div class="method"><h4 id="Coordinate">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 const <strong>Coordinate</strong>([num x = 0, num y = 0]) <a class="anchor-link" href="#Coordinate"
               title="Permalink to Coordinate.Coordinate">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 const Coordinate([this.x = 0, this.y = 0]);
 </pre>
 </div>
 </div>
+</div>
+<div>
 <h3>Static Methods</h3>
 <div class="method"><h4 id="difference">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/Vector.html">Vector</a> <strong>difference</strong>(<a href="../bot/Coordinate.html">Coordinate</a> a, <a href="../bot/Coordinate.html">Coordinate</a> b) <a class="anchor-link" href="#difference"
               title="Permalink to Coordinate.difference">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 static Vector difference(Coordinate a, Coordinate b) {
   return new Vector(a.x - b.x, a.y - b.y);
@@ -62,9 +63,80 @@ static Vector difference(Coordinate a, Coordinate b) {
 </pre>
 </div>
 </div>
+</div>
+<div>
+<h3>Fields</h3>
+<div class="field"><h4 id="x">
+<button class="show-code">Code</button>
+final num         <strong>x</strong> <a class="anchor-link"
+            href="#x"
+            title="Permalink to Coordinate.x">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final num x, y;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="y">
+<button class="show-code">Code</button>
+final num         <strong>y</strong> <a class="anchor-link"
+            href="#y"
+            title="Permalink to Coordinate.y">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final num x, y;
+</pre>
+</div>
+</div>
+</div>
+<div>
 <h3>Methods</h3>
+<div class="method"><h4 id="+">
+<button class="show-code">Code</button>
+<a href="../bot/Coordinate.html">Coordinate</a> <strong>operator +</strong>(<a href="../bot/Vector.html">Vector</a> other) <a class="anchor-link" href="#+"
+              title="Permalink to Coordinate.operator +">#</a></h4>
+<div class="doc">
+<pre class="source">
+Coordinate operator +(Vector other) =&gt;
+    new Coordinate(x + other.x, y + other.y);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="-">
+<button class="show-code">Code</button>
+<a href="../bot/Vector.html">Vector</a> <strong>operator -</strong>(<a href="../bot/Coordinate.html">Coordinate</a> other) <a class="anchor-link" href="#-"
+              title="Permalink to Coordinate.operator -">#</a></h4>
+<div class="doc">
+<p>Subtract a <a class="crossref" href="../bot/Coordinate.html#Coordinate">Coordinate</a> and returns the result as new <a class="crossref" href="../bot/Vector.html">Vector</a>.</p>
+<pre class="source">
+Vector operator -(Coordinate other) =&gt; difference(this, other);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="==">
+<button class="show-code">Code</button>
+bool <strong>operator ==</strong>(<a href="../bot/Coordinate.html">Coordinate</a> other) <a class="anchor-link" href="#=="
+              title="Permalink to Coordinate.operator ==">#</a></h4>
+<div class="doc">
+<div class="inherited">
+<p>The equality operator.</p>
+<p>The default behavior for all <code>Object</code>s is to return true if and
+only if <code>this</code> and 
+<span class="param">other</span> are the same object.</p>
+<p>If a subclass overrides the equality operator it should override
+the <code>hashCode</code> method as well to maintain consistency.</p>
+<div class="docs-inherited-from">docs inherited from Object </div></div>
+<pre class="source">
+bool operator ==(Coordinate other) {
+  return other != null &amp;&amp; x == other.x &amp;&amp; y == other.y;
+}
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="getDistance">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 num <strong>getDistance</strong>(<a href="../bot/Coordinate.html">Coordinate</a> other) <a class="anchor-link" href="#getDistance"
               title="Permalink to Coordinate.getDistance">#</a></h4>
 <div class="doc">
@@ -74,122 +146,104 @@ num getDistance (Coordinate other) =&gt; (this - other).length;
 </pre>
 </div>
 </div>
+<div class="method inherited"><h4 id="hashCode">
+<button class="show-code">Code</button>
+int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
+              title="Permalink to Coordinate.hashCode">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Get a hash code for this object.</p>
+<p>All objects have hash codes. Hash codes are guaranteed to be the
+same for objects that are equal when compared using the equality
+operator <code>==</code>. Other than that there are no guarantees about
+the hash codes. They will not be consistent between runs and
+there are no distribution guarantees.</p>
+<p>If a subclass overrides <code>hashCode</code> it should override the
+equality operator as well to maintain consistency.</p>
+<pre class="source">
+external int hashCode();
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="isValid">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 bool <strong>get isValid</strong>() <a class="anchor-link" href="#isValid"
               title="Permalink to Coordinate.get isValid">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 bool get isValid =&gt; isValidNumber(x) &amp;&amp; isValidNumber(y);
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="operator ==">
-<span class="show-code">Code</span>
-bool <strong>operator ==</strong>(<a href="../bot/Coordinate.html">Coordinate</a> other) <a class="anchor-link" href="#operator =="
-              title="Permalink to Coordinate.operator ==">#</a></h4>
-<div class="doc">
-
+<div class="method inherited"><h4 id="noSuchMethod">
+<button class="show-code">Code</button>
+<strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
+              title="Permalink to Coordinate.noSuchMethod">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
+on an object. The name of the method and the arguments of the
+invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
+returns a value, that value becomes the result of the original
+invocation.</p>
+<p>The default behavior of <code>noSuchMethod</code> is to throw a
+<code>noSuchMethodError</code>.</p>
 <pre class="source">
-bool operator ==(Coordinate other) {
-  return other != null &amp;&amp; x == other.x &amp;&amp; y == other.y;
-}
+external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="operator +">
-<span class="show-code">Code</span>
-<a href="../bot/Coordinate.html">Coordinate</a> <strong>operator +</strong>(<a href="../bot/Vector.html">Vector</a> other) <a class="anchor-link" href="#operator +"
-              title="Permalink to Coordinate.operator +">#</a></h4>
-<div class="doc">
-
+<div class="method inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
+              title="Permalink to Coordinate.get runtimeType">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
 <pre class="source">
-Coordinate operator +(Vector other) =&gt;
-    new Coordinate(x + other.x, y + other.y);
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="operator -">
-<span class="show-code">Code</span>
-<a href="../bot/Vector.html">Vector</a> <strong>operator -</strong>(<a href="../bot/Coordinate.html">Coordinate</a> other) <a class="anchor-link" href="#operator -"
-              title="Permalink to Coordinate.operator -">#</a></h4>
-<div class="doc">
-<p>Subtract a <a class="crossref" href="../bot/Coordinate.html#Coordinate">Coordinate</a> and returns the result as new <a class="crossref" href="../bot/Vector.html">Vector</a>.</p>
-<pre class="source">
-Vector operator -(Coordinate other) =&gt; difference(this, other);
+external Type get runtimeType;
 </pre>
 </div>
 </div>
 <div class="method"><h4 id="toJson">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <strong>toJson</strong>() <a class="anchor-link" href="#toJson"
               title="Permalink to Coordinate.toJson">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 Dynamic toJson() =&gt; { 'x' : x, 'y' : y };
 </pre>
 </div>
 </div>
 <div class="method"><h4 id="toSize">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/Size.html">Size</a> <strong>toSize</strong>() <a class="anchor-link" href="#toSize"
               title="Permalink to Coordinate.toSize">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 Size toSize() =&gt; new Size(x, y);
 </pre>
 </div>
 </div>
 <div class="method"><h4 id="toString">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 String <strong>toString</strong>() <a class="anchor-link" href="#toString"
               title="Permalink to Coordinate.toString">#</a></h4>
 <div class="doc">
-
+<div class="inherited">
+<p>Returns a string representation of this object.</p>
+<div class="docs-inherited-from">docs inherited from Object </div></div>
 <pre class="source">
 String toString() =&gt; '{x:${x}, y:${y}}';
 </pre>
 </div>
 </div>
 <div class="method"><h4 id="toVector">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/Vector.html">Vector</a> <strong>toVector</strong>() <a class="anchor-link" href="#toVector"
               title="Permalink to Coordinate.toVector">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 Vector toVector() =&gt; new Vector(x, y);
 </pre>
 </div>
-</div>
-<h3>Fields</h3>
-<div class="field"><h4 id="x">
-<span class="show-code">Code</span>
-final num         <strong>x</strong> <a class="anchor-link"
-            href="#x"
-            title="Permalink to Coordinate.x">#</a>
-        </h4>
-        <div class="doc">
-
-<pre class="source">
-final num x, y;
-</pre>
-</div>
-</div>
-<div class="field"><h4 id="y">
-<span class="show-code">Code</span>
-final num         <strong>y</strong> <a class="anchor-link"
-            href="#y"
-            title="Permalink to Coordinate.y">#</a>
-        </h4>
-        <div class="doc">
-
-<pre class="source">
-final num x, y;
-</pre>
 </div>
 </div>
         </div>

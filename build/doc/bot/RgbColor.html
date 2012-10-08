@@ -30,19 +30,35 @@
           class
         </h2>
         
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
-
 </div>
 <h3>Implements</h3>
 <p>
 <span class="type-box"><span class="icon-class"></span><a href="../dart_core/Hashable.html">Hashable</a></span></p>
+<div>
 <h3>Constructors</h3>
-<div class="method"><h4 id="RgbColor.fromHex">
-<span class="show-code">Code</span>
-factory <strong>RgbColor</strong>.fromHex(String hexColor) <a class="anchor-link" href="#RgbColor.fromHex"
+<div class="method"><h4 id="RgbColor">
+<button class="show-code">Code</button>
+factory <strong>RgbColor</strong>(int r, int g, int b) <a class="anchor-link" href="#RgbColor"
               title="Permalink to RgbColor.RgbColor">#</a></h4>
 <div class="doc">
+<pre class="source">
+factory RgbColor(int r, int g, int b) {
+  _validateComponent(r, 'r');
+  _validateComponent(g, 'g');
+  _validateComponent(b, 'b');
 
+  return new RgbColor._internal(r, g, b);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="RgbColor.fromHex">
+<button class="show-code">Code</button>
+factory <strong>RgbColor.fromHex</strong>(String hexColor) <a class="anchor-link" href="#RgbColor.fromHex"
+              title="Permalink to RgbColor.RgbColor.fromHex">#</a></h4>
+<div class="doc">
 <pre class="source">
 factory RgbColor.fromHex(String hexColor) {
   requireArgumentNotNull(hexColor, 'hexColor');
@@ -56,52 +72,71 @@ factory RgbColor.fromHex(String hexColor) {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="RgbColor">
-<span class="show-code">Code</span>
-factory <strong>RgbColor</strong>(int r, int g, int b) <a class="anchor-link" href="#RgbColor"
-              title="Permalink to RgbColor.RgbColor">#</a></h4>
-<div class="doc">
-
-<pre class="source">
-factory RgbColor(int r, int g, int b) {
-  _validateComponent(r, 'r');
-  _validateComponent(g, 'g');
-  _validateComponent(b, 'b');
-
-  return new RgbColor._internal(r, g, b);
-}
-</pre>
-</div>
-</div>
 <div class="method"><h4 id="RgbColor._internal">
-<span class="show-code">Code</span>
-const <strong>RgbColor</strong>._internal(int r, int g, int b) <a class="anchor-link" href="#RgbColor._internal"
-              title="Permalink to RgbColor.RgbColor">#</a></h4>
+<button class="show-code">Code</button>
+const <strong>RgbColor._internal</strong>(int r, int g, int b) <a class="anchor-link" href="#RgbColor._internal"
+              title="Permalink to RgbColor.RgbColor._internal">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 const RgbColor._internal(this.r, this.g, this.b);
 </pre>
 </div>
 </div>
-<h3>Methods</h3>
-<div class="method"><h4 id="hashCode">
-<span class="show-code">Code</span>
-int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
-              title="Permalink to RgbColor.hashCode">#</a></h4>
-<div class="doc">
-
+</div>
+<div>
+<h3>Fields</h3>
+<div class="field"><h4 id="b">
+<button class="show-code">Code</button>
+final int         <strong>b</strong> <a class="anchor-link"
+            href="#b"
+            title="Permalink to RgbColor.b">#</a>
+        </h4>
+        <div class="doc">
 <pre class="source">
-int hashCode() =&gt; Util.getHashCode([r,g,b]);
+final int r, g, b;
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="operator ==">
-<span class="show-code">Code</span>
-bool <strong>operator ==</strong>(<a href="../bot/RgbColor.html">RgbColor</a> other) <a class="anchor-link" href="#operator =="
+<div class="field"><h4 id="g">
+<button class="show-code">Code</button>
+final int         <strong>g</strong> <a class="anchor-link"
+            href="#g"
+            title="Permalink to RgbColor.g">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final int r, g, b;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="r">
+<button class="show-code">Code</button>
+final int         <strong>r</strong> <a class="anchor-link"
+            href="#r"
+            title="Permalink to RgbColor.r">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final int r, g, b;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method"><h4 id="==">
+<button class="show-code">Code</button>
+bool <strong>operator ==</strong>(<a href="../bot/RgbColor.html">RgbColor</a> other) <a class="anchor-link" href="#=="
               title="Permalink to RgbColor.operator ==">#</a></h4>
 <div class="doc">
-
+<div class="inherited">
+<p>The equality operator.</p>
+<p>The default behavior for all <code>Object</code>s is to return true if and
+only if <code>this</code> and 
+<span class="param">other</span> are the same object.</p>
+<p>If a subclass overrides the equality operator it should override
+the <a class="crossref" href="../bot/RgbColor.html#hashCode">hashCode</a> method as well to maintain consistency.</p>
+<div class="docs-inherited-from">docs inherited from Object </div></div>
 <pre class="source">
 bool operator ==(RgbColor other) {
   return other != null &amp;&amp; other.r == r &amp;&amp; other.g == g &amp;&amp; other.b == b;
@@ -109,12 +144,59 @@ bool operator ==(RgbColor other) {
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="hashCode">
+<button class="show-code">Code</button>
+int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
+              title="Permalink to RgbColor.hashCode">#</a></h4>
+<div class="doc">
+<div class="inherited">
+<p>Get a hash code for this object.</p>
+<p>All objects have hash codes. Hash codes are guaranteed to be the
+same for objects that are equal when compared using the equality
+operator <code>==</code>. Other than that there are no guarantees about
+the hash codes. They will not be consistent between runs and
+there are no distribution guarantees.</p>
+<p>If a subclass overrides <a class="crossref" href="../bot/RgbColor.html#hashCode">hashCode</a> it should override the
+equality operator as well to maintain consistency.</p>
+<div class="docs-inherited-from">docs inherited from Object </div></div>
+<pre class="source">
+int hashCode() =&gt; Util.getHashCode([r,g,b]);
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="noSuchMethod">
+<button class="show-code">Code</button>
+<strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
+              title="Permalink to RgbColor.noSuchMethod">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
+on an object. The name of the method and the arguments of the
+invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
+returns a value, that value becomes the result of the original
+invocation.</p>
+<p>The default behavior of <code>noSuchMethod</code> is to throw a
+<code>noSuchMethodError</code>.</p>
+<pre class="source">
+external Dynamic noSuchMethod(String name, List args);
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
+              title="Permalink to RgbColor.get runtimeType">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="toHex">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 String <strong>toHex</strong>() <a class="anchor-link" href="#toHex"
               title="Permalink to RgbColor.toHex">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 String toHex() {
   final buffer = new StringBuffer('#');
@@ -127,11 +209,10 @@ String toHex() {
 </div>
 </div>
 <div class="method"><h4 id="toHsl">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/HslColor.html">HslColor</a> <strong>toHsl</strong>() <a class="anchor-link" href="#toHsl"
               title="Permalink to RgbColor.toHsl">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 HslColor toHsl() {
   // First must normalize r, g, b to be between 0 and 1.
@@ -172,54 +253,17 @@ HslColor toHsl() {
 </div>
 </div>
 <div class="method"><h4 id="toString">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 String <strong>toString</strong>() <a class="anchor-link" href="#toString"
               title="Permalink to RgbColor.toString">#</a></h4>
 <div class="doc">
-
+<div class="inherited">
+<p>Returns a string representation of this object.</p>
+<div class="docs-inherited-from">docs inherited from Object </div></div>
 <pre class="source">
 String toString() =&gt; '{RgbColor: $r, $g, $b}';
 </pre>
 </div>
-</div>
-<h3>Fields</h3>
-<div class="field"><h4 id="b">
-<span class="show-code">Code</span>
-final int         <strong>b</strong> <a class="anchor-link"
-            href="#b"
-            title="Permalink to RgbColor.b">#</a>
-        </h4>
-        <div class="doc">
-
-<pre class="source">
-final int r, g, b;
-</pre>
-</div>
-</div>
-<div class="field"><h4 id="g">
-<span class="show-code">Code</span>
-final int         <strong>g</strong> <a class="anchor-link"
-            href="#g"
-            title="Permalink to RgbColor.g">#</a>
-        </h4>
-        <div class="doc">
-
-<pre class="source">
-final int r, g, b;
-</pre>
-</div>
-</div>
-<div class="field"><h4 id="r">
-<span class="show-code">Code</span>
-final int         <strong>r</strong> <a class="anchor-link"
-            href="#r"
-            title="Permalink to RgbColor.r">#</a>
-        </h4>
-        <div class="doc">
-
-<pre class="source">
-final int r, g, b;
-</pre>
 </div>
 </div>
         </div>

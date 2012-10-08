@@ -30,16 +30,79 @@
           class
         </h2>
         
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
-
 </div>
+<div>
+<h3>Static Fields</h3>
+<div class="field"><h4 id="H">
+<button class="show-code">Code</button>
+int         <strong>H</strong> <a class="anchor-link"
+            href="#H"
+            title="Permalink to QrErrorCorrectLevel.H">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+static const int H = 2;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="L">
+<button class="show-code">Code</button>
+int         <strong>L</strong> <a class="anchor-link"
+            href="#L"
+            title="Permalink to QrErrorCorrectLevel.L">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+static const int L = 1;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="levels">
+<button class="show-code">Code</button>
+List&lt;int&gt;         <strong>levels</strong> <a class="anchor-link"
+            href="#levels"
+            title="Permalink to QrErrorCorrectLevel.levels">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+static const List&lt;int&gt; levels = const[L,M,Q,H];
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="M">
+<button class="show-code">Code</button>
+int         <strong>M</strong> <a class="anchor-link"
+            href="#M"
+            title="Permalink to QrErrorCorrectLevel.M">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+static const int M = 0;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="Q">
+<button class="show-code">Code</button>
+int         <strong>Q</strong> <a class="anchor-link"
+            href="#Q"
+            title="Permalink to QrErrorCorrectLevel.Q">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+static const int Q = 3;
+</pre>
+</div>
+</div>
+</div>
+<div>
 <h3>Static Methods</h3>
 <div class="method"><h4 id="getName">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 String <strong>getName</strong>(int level) <a class="anchor-link" href="#getName"
               title="Permalink to QrErrorCorrectLevel.getName">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 static String getName(int level) {
   switch(level) {
@@ -58,70 +121,81 @@ static String getName(int level) {
 </pre>
 </div>
 </div>
-<h3>Static Fields</h3>
-<div class="field"><h4 id="H">
-<span class="show-code">Code</span>
-int         <strong>H</strong> <a class="anchor-link"
-            href="#H"
-            title="Permalink to QrErrorCorrectLevel.H">#</a>
-        </h4>
-        <div class="doc">
-
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method inherited"><h4 id="==">
+<button class="show-code">Code</button>
+bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
+              title="Permalink to QrErrorCorrectLevel.operator ==">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>The equality operator.</p>
+<p>The default behavior for all <code>Object</code>s is to return true if and
+only if <code>this</code> and 
+<span class="param">other</span> are the same object.</p>
+<p>If a subclass overrides the equality operator it should override
+the <code>hashCode</code> method as well to maintain consistency.</p>
 <pre class="source">
-static const int H = 2;
+bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
-<div class="field"><h4 id="L">
-<span class="show-code">Code</span>
-int         <strong>L</strong> <a class="anchor-link"
-            href="#L"
-            title="Permalink to QrErrorCorrectLevel.L">#</a>
-        </h4>
-        <div class="doc">
-
+<div class="method inherited"><h4 id="hashCode">
+<button class="show-code">Code</button>
+int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
+              title="Permalink to QrErrorCorrectLevel.hashCode">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Get a hash code for this object.</p>
+<p>All objects have hash codes. Hash codes are guaranteed to be the
+same for objects that are equal when compared using the equality
+operator <code>==</code>. Other than that there are no guarantees about
+the hash codes. They will not be consistent between runs and
+there are no distribution guarantees.</p>
+<p>If a subclass overrides <code>hashCode</code> it should override the
+equality operator as well to maintain consistency.</p>
 <pre class="source">
-static const int L = 1;
+external int hashCode();
 </pre>
 </div>
 </div>
-<div class="field"><h4 id="M">
-<span class="show-code">Code</span>
-int         <strong>M</strong> <a class="anchor-link"
-            href="#M"
-            title="Permalink to QrErrorCorrectLevel.M">#</a>
-        </h4>
-        <div class="doc">
-
+<div class="method inherited"><h4 id="noSuchMethod">
+<button class="show-code">Code</button>
+<strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
+              title="Permalink to QrErrorCorrectLevel.noSuchMethod">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
+on an object. The name of the method and the arguments of the
+invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
+returns a value, that value becomes the result of the original
+invocation.</p>
+<p>The default behavior of <code>noSuchMethod</code> is to throw a
+<code>noSuchMethodError</code>.</p>
 <pre class="source">
-static const int M = 0;
+external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
-<div class="field"><h4 id="Q">
-<span class="show-code">Code</span>
-int         <strong>Q</strong> <a class="anchor-link"
-            href="#Q"
-            title="Permalink to QrErrorCorrectLevel.Q">#</a>
-        </h4>
-        <div class="doc">
-
+<div class="method inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
+              title="Permalink to QrErrorCorrectLevel.get runtimeType">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
 <pre class="source">
-static const int Q = 3;
+external Type get runtimeType;
 </pre>
 </div>
 </div>
-<div class="field"><h4 id="levels">
-<span class="show-code">Code</span>
-List&lt;int&gt;         <strong>levels</strong> <a class="anchor-link"
-            href="#levels"
-            title="Permalink to QrErrorCorrectLevel.levels">#</a>
-        </h4>
-        <div class="doc">
-
+<div class="method inherited"><h4 id="toString">
+<button class="show-code">Code</button>
+String <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to QrErrorCorrectLevel.toString">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Returns a string representation of this object.</p>
 <pre class="source">
-static const List&lt;int&gt; levels = const[L,M,Q,H];
+external String toString();
 </pre>
+</div>
 </div>
 </div>
         </div>

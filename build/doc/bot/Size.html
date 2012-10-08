@@ -30,24 +30,84 @@
           class
         </h2>
         
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
-
 </div>
+<div>
 <h3>Constructors</h3>
 <div class="method"><h4 id="Size">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 const <strong>Size</strong>(num width, num height) <a class="anchor-link" href="#Size"
               title="Permalink to Size.Size">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 const Size(this.width, this.height);
 </pre>
 </div>
 </div>
+</div>
+<div>
+<h3>Fields</h3>
+<div class="field"><h4 id="height">
+<button class="show-code">Code</button>
+final num         <strong>height</strong> <a class="anchor-link"
+            href="#height"
+            title="Permalink to Size.height">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final num width, height;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="width">
+<button class="show-code">Code</button>
+final num         <strong>width</strong> <a class="anchor-link"
+            href="#width"
+            title="Permalink to Size.width">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final num width, height;
+</pre>
+</div>
+</div>
+</div>
+<div>
 <h3>Methods</h3>
+<div class="method"><h4 id="*">
+<button class="show-code">Code</button>
+<a href="../bot/Size.html">Size</a> <strong>operator *</strong>(num magnitude) <a class="anchor-link" href="#*"
+              title="Permalink to Size.operator *">#</a></h4>
+<div class="doc">
+<p>Multiplies each dimensions by the provided magnitude and returns a new <a class="crossref" href="../bot/Size.html#Size">Size</a>.</p>
+<pre class="source">
+Size operator *(num magnitude) =&gt; this.scale(magnitude);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="==">
+<button class="show-code">Code</button>
+bool <strong>operator ==</strong>(<a href="../bot/Size.html">Size</a> other) <a class="anchor-link" href="#=="
+              title="Permalink to Size.operator ==">#</a></h4>
+<div class="doc">
+<div class="inherited">
+<p>The equality operator.</p>
+<p>The default behavior for all <code>Object</code>s is to return true if and
+only if <code>this</code> and 
+<span class="param">other</span> are the same object.</p>
+<p>If a subclass overrides the equality operator it should override
+the <code>hashCode</code> method as well to maintain consistency.</p>
+<div class="docs-inherited-from">docs inherited from Object </div></div>
+<pre class="source">
+bool operator ==(Size other) {
+  return other != null &amp;&amp; width == other.width &amp;&amp; height == other.height;
+}
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="area">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 num <strong>get area</strong>() <a class="anchor-link" href="#area"
               title="Permalink to Size.get area">#</a></h4>
 <div class="doc">
@@ -58,7 +118,7 @@ num get area =&gt; width * height;
 </div>
 </div>
 <div class="method"><h4 id="aspectRatio">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 num <strong>get aspectRatio</strong>() <a class="anchor-link" href="#aspectRatio"
               title="Permalink to Size.get aspectRatio">#</a></h4>
 <div class="doc">
@@ -69,7 +129,7 @@ num get aspectRatio =&gt; width / height;
 </div>
 </div>
 <div class="method"><h4 id="fitsInside">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 bool <strong>fitsInside</strong>(<a href="../bot/Size.html">Size</a> target) <a class="anchor-link" href="#fitsInside"
               title="Permalink to Size.fitsInside">#</a></h4>
 <div class="doc">
@@ -83,8 +143,26 @@ bool fitsInside(Size target) {
 </pre>
 </div>
 </div>
+<div class="method inherited"><h4 id="hashCode">
+<button class="show-code">Code</button>
+int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
+              title="Permalink to Size.hashCode">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Get a hash code for this object.</p>
+<p>All objects have hash codes. Hash codes are guaranteed to be the
+same for objects that are equal when compared using the equality
+operator <code>==</code>. Other than that there are no guarantees about
+the hash codes. They will not be consistent between runs and
+there are no distribution guarantees.</p>
+<p>If a subclass overrides <code>hashCode</code> it should override the
+equality operator as well to maintain consistency.</p>
+<pre class="source">
+external int hashCode();
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="isEmpty">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 bool <strong>isEmpty</strong>() <a class="anchor-link" href="#isEmpty"
               title="Permalink to Size.isEmpty">#</a></h4>
 <div class="doc">
@@ -97,43 +175,35 @@ bool isEmpty() =&gt; area == 0;
 </div>
 </div>
 <div class="method"><h4 id="isValid">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 bool <strong>get isValid</strong>() <a class="anchor-link" href="#isValid"
               title="Permalink to Size.get isValid">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 bool get isValid =&gt; isValidNumber(width) &amp;&amp; isValidNumber(height) &amp;&amp;
     width &gt;= 0 &amp;&amp; height &gt;= 0;
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="operator *">
-<span class="show-code">Code</span>
-<a href="../bot/Size.html">Size</a> <strong>operator *</strong>(num magnitude) <a class="anchor-link" href="#operator *"
-              title="Permalink to Size.operator *">#</a></h4>
-<div class="doc">
-<p>Multiplies each dimensions by the provided magnitude and returns a new <a class="crossref" href="../bot/Size.html#Size">Size</a>.</p>
+<div class="method inherited"><h4 id="noSuchMethod">
+<button class="show-code">Code</button>
+<strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
+              title="Permalink to Size.noSuchMethod">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
+on an object. The name of the method and the arguments of the
+invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
+returns a value, that value becomes the result of the original
+invocation.</p>
+<p>The default behavior of <code>noSuchMethod</code> is to throw a
+<code>noSuchMethodError</code>.</p>
 <pre class="source">
-Size operator *(num magnitude) =&gt; this.scale(magnitude);
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="operator ==">
-<span class="show-code">Code</span>
-bool <strong>operator ==</strong>(<a href="../bot/Size.html">Size</a> other) <a class="anchor-link" href="#operator =="
-              title="Permalink to Size.operator ==">#</a></h4>
-<div class="doc">
-
-<pre class="source">
-bool operator ==(Size other) {
-  return other != null &amp;&amp; width == other.width &amp;&amp; height == other.height;
-}
+external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
 <div class="method"><h4 id="perimeter">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 num <strong>get perimeter</strong>() <a class="anchor-link" href="#perimeter"
               title="Permalink to Size.get perimeter">#</a></h4>
 <div class="doc">
@@ -143,8 +213,19 @@ num get perimeter =&gt; (width + height) * 2;
 </pre>
 </div>
 </div>
+<div class="method inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
+              title="Permalink to Size.get runtimeType">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="scale">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/Size.html">Size</a> <strong>scale</strong>(num magnitude) <a class="anchor-link" href="#scale"
               title="Permalink to Size.scale">#</a></h4>
 <div class="doc">
@@ -155,7 +236,7 @@ Size scale(num magnitude) =&gt; new Size(width * magnitude, height * magnitude);
 </div>
 </div>
 <div class="method"><h4 id="toString">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 String <strong>toString</strong>() <a class="anchor-link" href="#toString"
               title="Permalink to Size.toString">#</a></h4>
 <div class="doc">
@@ -167,41 +248,14 @@ String toString() =&gt; "(${width} x ${height})";
 </div>
 </div>
 <div class="method"><h4 id="toVector">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/Vector.html">Vector</a> <strong>toVector</strong>() <a class="anchor-link" href="#toVector"
               title="Permalink to Size.toVector">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 Vector toVector() =&gt; new Vector(width, height);
 </pre>
 </div>
-</div>
-<h3>Fields</h3>
-<div class="field"><h4 id="height">
-<span class="show-code">Code</span>
-final num         <strong>height</strong> <a class="anchor-link"
-            href="#height"
-            title="Permalink to Size.height">#</a>
-        </h4>
-        <div class="doc">
-
-<pre class="source">
-final num width, height;
-</pre>
-</div>
-</div>
-<div class="field"><h4 id="width">
-<span class="show-code">Code</span>
-final num         <strong>width</strong> <a class="anchor-link"
-            href="#width"
-            title="Permalink to Size.width">#</a>
-        </h4>
-        <div class="doc">
-
-<pre class="source">
-final num width, height;
-</pre>
 </div>
 </div>
         </div>

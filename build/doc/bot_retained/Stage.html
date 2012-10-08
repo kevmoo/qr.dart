@@ -30,8 +30,8 @@
           class
         </h2>
         
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
-
 </div>
 <h3>Extends</h3>
 <p>
@@ -39,13 +39,13 @@
 <h3>Implements</h3>
 <p>
 <span class="type-box"><span class="icon-interface"></span><a href="../bot_retained/ElementParent.html">ElementParent</a></span></p>
+<div>
 <h3>Constructors</h3>
 <div class="method"><h4 id="Stage">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 new <strong>Stage</strong>(CanvasElement _canvas, <a href="../bot_retained/PElement.html">PElement</a> _element) <a class="anchor-link" href="#Stage"
               title="Permalink to Stage.Stage">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 Stage(this._canvas, this._element) {
   _element.registerParent(this);
@@ -53,13 +53,30 @@ Stage(this._canvas, this._element) {
 </pre>
 </div>
 </div>
+</div>
+<div>
 <h3>Methods</h3>
+<div class="method inherited"><h4 id="==">
+<button class="show-code">Code</button>
+bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
+              title="Permalink to Stage.operator ==">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>The equality operator.</p>
+<p>The default behavior for all <code>Object</code>s is to return true if and
+only if <code>this</code> and 
+<span class="param">other</span> are the same object.</p>
+<p>If a subclass overrides the equality operator it should override
+the <code>hashCode</code> method as well to maintain consistency.</p>
+<pre class="source">
+bool operator ==(other) =&gt; identical(this, other);
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="childInvalidated">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 void <strong>childInvalidated</strong>(<a href="../bot_retained/PElement.html">PElement</a> child) <a class="anchor-link" href="#childInvalidated"
               title="Permalink to Stage.childInvalidated">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 void childInvalidated(PElement child){
   validateNotDisposed();
@@ -70,11 +87,10 @@ void childInvalidated(PElement child){
 </div>
 </div>
 <div class="method"><h4 id="ctx">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 CanvasRenderingContext2D <strong>get ctx</strong>() <a class="anchor-link" href="#ctx"
               title="Permalink to Stage.get ctx">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 CanvasRenderingContext2D get ctx {
   validateNotDisposed();
@@ -86,12 +102,32 @@ CanvasRenderingContext2D get ctx {
 </pre>
 </div>
 </div>
+<div class="method inherited"><h4 id="dispose">
+<button class="show-code">Code</button>
+void <strong>dispose</strong>() <a class="anchor-link" href="#dispose"
+              title="Permalink to Stage.dispose">#</a></h4>
+<div class="inherited-from">inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div><div class="doc">
+<pre class="source">
+void dispose(){
+  if (!_disposed) {
+    // Set disposed_ to true first, in case during the chain of disposal this
+    // gets disposed recursively.
+    this._disposed = true;
+    this.disposeInternal();
+  }
+}
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="disposeInternal">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 void <strong>disposeInternal</strong>() <a class="anchor-link" href="#disposeInternal"
               title="Permalink to Stage.disposeInternal">#</a></h4>
 <div class="doc">
-
+<div class="inherited">
+<p>Do not call this method directly. Call <code>dispose</code> instead.
+Subclasses should override this method to implement <code>Disposable</code> behavior.</p>
+<div class="docs-inherited-from">docs inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div></div>
 <pre class="source">
 void disposeInternal(){
   super.disposeInternal();
@@ -101,11 +137,10 @@ void disposeInternal(){
 </div>
 </div>
 <div class="method"><h4 id="draw">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 bool <strong>draw</strong>() <a class="anchor-link" href="#draw"
               title="Permalink to Stage.draw">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 bool draw(){
   validateNotDisposed();
@@ -121,47 +156,123 @@ bool draw(){
 </div>
 </div>
 <div class="method"><h4 id="getTransformToRoot">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/AffineTransform.html">AffineTransform</a> <strong>getTransformToRoot</strong>() <a class="anchor-link" href="#getTransformToRoot"
               title="Permalink to Stage.getTransformToRoot">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 AffineTransform getTransformToRoot() =&gt; new AffineTransform();
 </pre>
 </div>
 </div>
+<div class="method inherited"><h4 id="hashCode">
+<button class="show-code">Code</button>
+int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
+              title="Permalink to Stage.hashCode">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Get a hash code for this object.</p>
+<p>All objects have hash codes. Hash codes are guaranteed to be the
+same for objects that are equal when compared using the equality
+operator <code>==</code>. Other than that there are no guarantees about
+the hash codes. They will not be consistent between runs and
+there are no distribution guarantees.</p>
+<p>If a subclass overrides <code>hashCode</code> it should override the
+equality operator as well to maintain consistency.</p>
+<pre class="source">
+external int hashCode();
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="invalidated">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/EventRoot.html">EventRoot</a>&lt;<a href="../bot/EventArgs.html">EventArgs</a>&gt; <strong>get invalidated</strong>() <a class="anchor-link" href="#invalidated"
               title="Permalink to Stage.get invalidated">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 EventRoot&lt;EventArgs&gt; get invalidated =&gt; _invalidatedEventHandle;
 </pre>
 </div>
 </div>
+<div class="method inherited"><h4 id="isDisposed">
+<button class="show-code">Code</button>
+bool <strong>get isDisposed</strong>() <a class="anchor-link" href="#isDisposed"
+              title="Permalink to Stage.get isDisposed">#</a></h4>
+<div class="inherited-from">inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div><div class="doc">
+<pre class="source">
+bool get isDisposed =&gt; _disposed;
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="noSuchMethod">
+<button class="show-code">Code</button>
+<strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
+              title="Permalink to Stage.noSuchMethod">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
+on an object. The name of the method and the arguments of the
+invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
+returns a value, that value becomes the result of the original
+invocation.</p>
+<p>The default behavior of <code>noSuchMethod</code> is to throw a
+<code>noSuchMethodError</code>.</p>
+<pre class="source">
+external Dynamic noSuchMethod(String name, List args);
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="rootElement">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot_retained/PElement.html">PElement</a> <strong>get rootElement</strong>() <a class="anchor-link" href="#rootElement"
               title="Permalink to Stage.get rootElement">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 PElement get rootElement =&gt; _element;
 </pre>
 </div>
 </div>
+<div class="method inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
+              title="Permalink to Stage.get runtimeType">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="size">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/Size.html">Size</a> <strong>get size</strong>() <a class="anchor-link" href="#size"
               title="Permalink to Stage.get size">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 Size get size =&gt; new Size(_canvas.width, _canvas.height);
 </pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="toString">
+<button class="show-code">Code</button>
+String <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to Stage.toString">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Returns a string representation of this object.</p>
+<pre class="source">
+external String toString();
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="validateNotDisposed">
+<button class="show-code">Code</button>
+void <strong>validateNotDisposed</strong>() <a class="anchor-link" href="#validateNotDisposed"
+              title="Permalink to Stage.validateNotDisposed">#</a></h4>
+<div class="inherited-from">inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div><div class="doc">
+<pre class="source">
+void validateNotDisposed() {
+  assert(!_disposed);
+}
+</pre>
+</div>
 </div>
 </div>
         </div>

@@ -30,43 +30,80 @@
           class
         </h2>
         
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
-
 </div>
 <h3>Extends</h3>
 <p>
 <span class="type-box"><span class="icon-class"></span><a href="../bot/Tuple.html">Tuple&lt;T1, T2&gt;</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>Tuple3&lt;T1, T2, T3&gt;</strong></span></p>
+<div>
 <h3>Constructors</h3>
 <div class="method"><h4 id="Tuple3">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 const <strong>Tuple3</strong>(<a href="../bot/Tuple3.html">T1</a> param1, <a href="../bot/Tuple3.html">T2</a> param2, <a href="../bot/Tuple3.html">T3</a> item3) <a class="anchor-link" href="#Tuple3"
               title="Permalink to Tuple3&lt;T1, T2, T3&gt;.Tuple3">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 const Tuple3(T1 param1, T2 param2, this.item3) :
   super(param1, param2);
 </pre>
 </div>
 </div>
-<h3>Methods</h3>
-<div class="method"><h4 id="hashCode">
-<span class="show-code">Code</span>
-int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
-              title="Permalink to Tuple3&lt;T1, T2, T3&gt;.hashCode">#</a></h4>
-<div class="doc">
-
+</div>
+<div>
+<h3>Fields</h3>
+<div class="field inherited"><h4 id="item1">
+<button class="show-code">Code</button>
+final <a href="../bot/Tuple3.html">T1</a>         <strong>item1</strong> <a class="anchor-link"
+            href="#item1"
+            title="Permalink to Tuple3&lt;T1, T2, T3&gt;.item1">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot/Tuple.html">Tuple</a> </div><div class="doc">
 <pre class="source">
-int hashCode() =&gt; Util.getHashCode([item1, item2, item3]);
+final T1 item1;
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="operator ==">
-<span class="show-code">Code</span>
-bool <strong>operator ==</strong>(<a href="../bot/Tuple3.html">Tuple3</a>&lt;<a href="../bot/Tuple3.html">T1</a>, <a href="../bot/Tuple3.html">T2</a>, <a href="../bot/Tuple3.html">T3</a>&gt; other) <a class="anchor-link" href="#operator =="
+<div class="field inherited"><h4 id="item2">
+<button class="show-code">Code</button>
+final <a href="../bot/Tuple3.html">T2</a>         <strong>item2</strong> <a class="anchor-link"
+            href="#item2"
+            title="Permalink to Tuple3&lt;T1, T2, T3&gt;.item2">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot/Tuple.html">Tuple</a> </div><div class="doc">
+<pre class="source">
+final T2 item2;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="item3">
+<button class="show-code">Code</button>
+final <a href="../bot/Tuple3.html">T3</a>         <strong>item3</strong> <a class="anchor-link"
+            href="#item3"
+            title="Permalink to Tuple3&lt;T1, T2, T3&gt;.item3">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final T3 item3;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method"><h4 id="==">
+<button class="show-code">Code</button>
+bool <strong>operator ==</strong>(<a href="../bot/Tuple3.html">Tuple3</a>&lt;<a href="../bot/Tuple3.html">T1</a>, <a href="../bot/Tuple3.html">T2</a>, <a href="../bot/Tuple3.html">T3</a>&gt; other) <a class="anchor-link" href="#=="
               title="Permalink to Tuple3&lt;T1, T2, T3&gt;.operator ==">#</a></h4>
 <div class="doc">
-
+<div class="inherited">
+<p>The equality operator.</p>
+<p>The default behavior for all <code>Object</code>s is to return true if and
+only if <code>this</code> and 
+<span class="param">other</span> are the same object.</p>
+<p>If a subclass overrides the equality operator it should override
+the <a class="crossref" href="../bot/Tuple3.html#hashCode">hashCode</a> method as well to maintain consistency.</p>
+<div class="docs-inherited-from">docs inherited from Object </div></div>
 <pre class="source">
 bool operator ==(Tuple3&lt;T1, T2, T3&gt; other) {
   return other != null &amp;&amp;
@@ -77,29 +114,76 @@ bool operator ==(Tuple3&lt;T1, T2, T3&gt; other) {
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="hashCode">
+<button class="show-code">Code</button>
+int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
+              title="Permalink to Tuple3&lt;T1, T2, T3&gt;.hashCode">#</a></h4>
+<div class="doc">
+<div class="inherited">
+<p>Get a hash code for this object.</p>
+<p>All objects have hash codes. Hash codes are guaranteed to be the
+same for objects that are equal when compared using the equality
+operator <code>==</code>. Other than that there are no guarantees about
+the hash codes. They will not be consistent between runs and
+there are no distribution guarantees.</p>
+<p>If a subclass overrides <a class="crossref" href="../bot/Tuple3.html#hashCode">hashCode</a> it should override the
+equality operator as well to maintain consistency.</p>
+<div class="docs-inherited-from">docs inherited from Object </div></div>
+<pre class="source">
+int hashCode() =&gt; Util.getHashCode([item1, item2, item3]);
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="noSuchMethod">
+<button class="show-code">Code</button>
+<strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
+              title="Permalink to Tuple3&lt;T1, T2, T3&gt;.noSuchMethod">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
+on an object. The name of the method and the arguments of the
+invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
+returns a value, that value becomes the result of the original
+invocation.</p>
+<p>The default behavior of <code>noSuchMethod</code> is to throw a
+<code>noSuchMethodError</code>.</p>
+<pre class="source">
+external Dynamic noSuchMethod(String name, List args);
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
+              title="Permalink to Tuple3&lt;T1, T2, T3&gt;.get runtimeType">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="toJson">
+<button class="show-code">Code</button>
+<strong>toJson</strong>() <a class="anchor-link" href="#toJson"
+              title="Permalink to Tuple3&lt;T1, T2, T3&gt;.toJson">#</a></h4>
+<div class="inherited-from">inherited from <a href="../bot/Tuple.html">Tuple</a> </div><div class="doc">
+<pre class="source">
+Dynamic toJson() =&gt; { 'item1' : item1, 'item2' : item2 };
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="toString">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 String <strong>toString</strong>() <a class="anchor-link" href="#toString"
               title="Permalink to Tuple3&lt;T1, T2, T3&gt;.toString">#</a></h4>
 <div class="doc">
-
+<div class="inherited">
+<p>Returns a string representation of this object.</p>
+<div class="docs-inherited-from">docs inherited from Object </div></div>
 <pre class="source">
 String toString() =&gt; "{item1: $item1, item2: $item2, item3: $item3}";
 </pre>
 </div>
-</div>
-<h3>Fields</h3>
-<div class="field"><h4 id="item3">
-<span class="show-code">Code</span>
-final <a href="../bot/Tuple3.html">T3</a>         <strong>item3</strong> <a class="anchor-link"
-            href="#item3"
-            title="Permalink to Tuple3&lt;T1, T2, T3&gt;.item3">#</a>
-        </h4>
-        <div class="doc">
-
-<pre class="source">
-final T3 item3;
-</pre>
 </div>
 </div>
         </div>

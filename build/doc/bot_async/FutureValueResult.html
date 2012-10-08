@@ -30,16 +30,40 @@
           class
         </h2>
         
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
-
 </div>
+<div>
 <h3>Constructors</h3>
-<div class="method"><h4 id="FutureValueResult.fromMap">
-<span class="show-code">Code</span>
-factory <strong>FutureValueResult</strong>.fromMap(Map value) <a class="anchor-link" href="#FutureValueResult.fromMap"
+<div class="method"><h4 id="FutureValueResult">
+<button class="show-code">Code</button>
+new <strong>FutureValueResult</strong>(<a href="../bot_async/FutureValueResult.html">TOutput</a> value, [<a href="../bot/Func1.html">Func1</a> _outputSerializer]) <a class="anchor-link" href="#FutureValueResult"
               title="Permalink to FutureValueResult&lt;TOutput&gt;.FutureValueResult">#</a></h4>
 <div class="doc">
-
+<pre class="source">
+FutureValueResult(this.value, [this._outputSerializer]) :
+  exception = null;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="FutureValueResult.fromException">
+<button class="show-code">Code</button>
+new <strong>FutureValueResult.fromException</strong>(exception) <a class="anchor-link" href="#FutureValueResult.fromException"
+              title="Permalink to FutureValueResult&lt;TOutput&gt;.FutureValueResult.fromException">#</a></h4>
+<div class="doc">
+<pre class="source">
+FutureValueResult.fromException(this.exception)
+: value = null, _outputSerializer = null {
+  requireArgumentNotNull(exception, 'exception');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="FutureValueResult.fromMap">
+<button class="show-code">Code</button>
+factory <strong>FutureValueResult.fromMap</strong>(Map value) <a class="anchor-link" href="#FutureValueResult.fromMap"
+              title="Permalink to FutureValueResult&lt;TOutput&gt;.FutureValueResult.fromMap">#</a></h4>
+<div class="doc">
 <pre class="source">
 factory FutureValueResult.fromMap(Map value) {
   requireArgumentNotNull(value, 'value');
@@ -55,39 +79,14 @@ factory FutureValueResult.fromMap(Map value) {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="FutureValueResult.fromException">
-<span class="show-code">Code</span>
-new <strong>FutureValueResult</strong>.fromException(exception) <a class="anchor-link" href="#FutureValueResult.fromException"
-              title="Permalink to FutureValueResult&lt;TOutput&gt;.FutureValueResult">#</a></h4>
-<div class="doc">
-
-<pre class="source">
-FutureValueResult.fromException(this.exception)
-: value = null, _outputSerializer = null {
-  requireArgumentNotNull(exception, 'exception');
-}
-</pre>
 </div>
-</div>
-<div class="method"><h4 id="FutureValueResult">
-<span class="show-code">Code</span>
-new <strong>FutureValueResult</strong>(<a href="../bot_async/FutureValueResult.html">TOutput</a> value, [<a href="../bot/Func1.html">Func1</a> _outputSerializer]) <a class="anchor-link" href="#FutureValueResult"
-              title="Permalink to FutureValueResult&lt;TOutput&gt;.FutureValueResult">#</a></h4>
-<div class="doc">
-
-<pre class="source">
-FutureValueResult(this.value, [this._outputSerializer]) :
-  exception = null;
-</pre>
-</div>
-</div>
+<div>
 <h3>Static Methods</h3>
 <div class="method"><h4 id="isMyMap">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 bool <strong>isMyMap</strong>(Map value) <a class="anchor-link" href="#isMyMap"
               title="Permalink to FutureValueResult&lt;TOutput&gt;.isMyMap">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 static bool isMyMap(Map value) {
   return value != null &amp;&amp; value.length == 2 &amp;&amp;
@@ -96,24 +95,49 @@ static bool isMyMap(Map value) {
 </pre>
 </div>
 </div>
-<h3>Methods</h3>
-<div class="method"><h4 id="isException">
-<span class="show-code">Code</span>
-bool <strong>get isException</strong>() <a class="anchor-link" href="#isException"
-              title="Permalink to FutureValueResult&lt;TOutput&gt;.get isException">#</a></h4>
-<div class="doc">
-
+</div>
+<div>
+<h3>Fields</h3>
+<div class="field"><h4 id="exception">
+<button class="show-code">Code</button>
+final         <strong>exception</strong> <a class="anchor-link"
+            href="#exception"
+            title="Permalink to FutureValueResult&lt;TOutput&gt;.exception">#</a>
+        </h4>
+        <div class="doc">
 <pre class="source">
-bool get isException =&gt; exception != null;
+final exception;
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="operator ==">
-<span class="show-code">Code</span>
-bool <strong>operator ==</strong>(<a href="../bot_async/FutureValueResult.html">FutureValueResult</a> other) <a class="anchor-link" href="#operator =="
+<div class="field"><h4 id="value">
+<button class="show-code">Code</button>
+final <a href="../bot_async/FutureValueResult.html">TOutput</a>         <strong>value</strong> <a class="anchor-link"
+            href="#value"
+            title="Permalink to FutureValueResult&lt;TOutput&gt;.value">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final TOutput value;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method"><h4 id="==">
+<button class="show-code">Code</button>
+bool <strong>operator ==</strong>(<a href="../bot_async/FutureValueResult.html">FutureValueResult</a> other) <a class="anchor-link" href="#=="
               title="Permalink to FutureValueResult&lt;TOutput&gt;.operator ==">#</a></h4>
 <div class="doc">
-
+<div class="inherited">
+<p>The equality operator.</p>
+<p>The default behavior for all <code>Object</code>s is to return true if and
+only if <code>this</code> and 
+<span class="param">other</span> are the same object.</p>
+<p>If a subclass overrides the equality operator it should override
+the <code>hashCode</code> method as well to maintain consistency.</p>
+<div class="docs-inherited-from">docs inherited from Object </div></div>
 <pre class="source">
 bool operator ==(FutureValueResult other) {
   return other != null &amp;&amp;
@@ -122,12 +146,67 @@ bool operator ==(FutureValueResult other) {
 </pre>
 </div>
 </div>
+<div class="method inherited"><h4 id="hashCode">
+<button class="show-code">Code</button>
+int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
+              title="Permalink to FutureValueResult&lt;TOutput&gt;.hashCode">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Get a hash code for this object.</p>
+<p>All objects have hash codes. Hash codes are guaranteed to be the
+same for objects that are equal when compared using the equality
+operator <code>==</code>. Other than that there are no guarantees about
+the hash codes. They will not be consistent between runs and
+there are no distribution guarantees.</p>
+<p>If a subclass overrides <code>hashCode</code> it should override the
+equality operator as well to maintain consistency.</p>
+<pre class="source">
+external int hashCode();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="isException">
+<button class="show-code">Code</button>
+bool <strong>get isException</strong>() <a class="anchor-link" href="#isException"
+              title="Permalink to FutureValueResult&lt;TOutput&gt;.get isException">#</a></h4>
+<div class="doc">
+<pre class="source">
+bool get isException =&gt; exception != null;
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="noSuchMethod">
+<button class="show-code">Code</button>
+<strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
+              title="Permalink to FutureValueResult&lt;TOutput&gt;.noSuchMethod">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
+on an object. The name of the method and the arguments of the
+invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
+returns a value, that value becomes the result of the original
+invocation.</p>
+<p>The default behavior of <code>noSuchMethod</code> is to throw a
+<code>noSuchMethodError</code>.</p>
+<pre class="source">
+external Dynamic noSuchMethod(String name, List args);
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
+              title="Permalink to FutureValueResult&lt;TOutput&gt;.get runtimeType">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="toMap">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 Map <strong>toMap</strong>() <a class="anchor-link" href="#toMap"
               title="Permalink to FutureValueResult&lt;TOutput&gt;.toMap">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 Map toMap() {
   // would love to use consts here, but the analyzer doesn't like it
@@ -138,31 +217,16 @@ Map toMap() {
 </pre>
 </div>
 </div>
-<h3>Fields</h3>
-<div class="field"><h4 id="exception">
-<span class="show-code">Code</span>
-final         <strong>exception</strong> <a class="anchor-link"
-            href="#exception"
-            title="Permalink to FutureValueResult&lt;TOutput&gt;.exception">#</a>
-        </h4>
-        <div class="doc">
-
+<div class="method inherited"><h4 id="toString">
+<button class="show-code">Code</button>
+String <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to FutureValueResult&lt;TOutput&gt;.toString">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Returns a string representation of this object.</p>
 <pre class="source">
-final exception;
+external String toString();
 </pre>
 </div>
-</div>
-<div class="field"><h4 id="value">
-<span class="show-code">Code</span>
-final <a href="../bot_async/FutureValueResult.html">TOutput</a>         <strong>value</strong> <a class="anchor-link"
-            href="#value"
-            title="Permalink to FutureValueResult&lt;TOutput&gt;.value">#</a>
-        </h4>
-        <div class="doc">
-
-<pre class="source">
-final TOutput value;
-</pre>
 </div>
 </div>
         </div>

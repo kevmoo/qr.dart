@@ -30,16 +30,16 @@
           class
         </h2>
         
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
-
 </div>
+<div>
 <h3>Constructors</h3>
 <div class="method"><h4 id="QrPolynomial">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 factory <strong>QrPolynomial</strong>(List&lt;int&gt; thing, int shift) <a class="anchor-link" href="#QrPolynomial"
               title="Permalink to QrPolynomial.QrPolynomial">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 factory	QrPolynomial(List&lt;int&gt; thing, int shift) {
 
@@ -61,34 +61,77 @@ factory	QrPolynomial(List&lt;int&gt; thing, int shift) {
 </div>
 </div>
 <div class="method"><h4 id="QrPolynomial._internal">
-<span class="show-code">Code</span>
-new <strong>QrPolynomial</strong>._internal(List&lt;int&gt; _myThings) <a class="anchor-link" href="#QrPolynomial._internal"
-              title="Permalink to QrPolynomial.QrPolynomial">#</a></h4>
+<button class="show-code">Code</button>
+new <strong>QrPolynomial._internal</strong>(List&lt;int&gt; _myThings) <a class="anchor-link" href="#QrPolynomial._internal"
+              title="Permalink to QrPolynomial.QrPolynomial._internal">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 QrPolynomial._internal(this._myThings);
 </pre>
 </div>
 </div>
+</div>
+<div>
 <h3>Methods</h3>
+<div class="method inherited"><h4 id="==">
+<button class="show-code">Code</button>
+bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
+              title="Permalink to QrPolynomial.operator ==">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>The equality operator.</p>
+<p>The default behavior for all <code>Object</code>s is to return true if and
+only if <code>this</code> and 
+<span class="param">other</span> are the same object.</p>
+<p>If a subclass overrides the equality operator it should override
+the <code>hashCode</code> method as well to maintain consistency.</p>
+<pre class="source">
+bool operator ==(other) =&gt; identical(this, other);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="[]">
+<button class="show-code">Code</button>
+<strong>operator []</strong>(int index) <a class="anchor-link" href="#[]"
+              title="Permalink to QrPolynomial.operator []">#</a></h4>
+<div class="doc">
+<pre class="source">
+operator [](int index) =&gt; _myThings[index];
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="hashCode">
+<button class="show-code">Code</button>
+int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
+              title="Permalink to QrPolynomial.hashCode">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Get a hash code for this object.</p>
+<p>All objects have hash codes. Hash codes are guaranteed to be the
+same for objects that are equal when compared using the equality
+operator <code>==</code>. Other than that there are no guarantees about
+the hash codes. They will not be consistent between runs and
+there are no distribution guarantees.</p>
+<p>If a subclass overrides <code>hashCode</code> it should override the
+equality operator as well to maintain consistency.</p>
+<pre class="source">
+external int hashCode();
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="length">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 int <strong>get length</strong>() <a class="anchor-link" href="#length"
               title="Permalink to QrPolynomial.get length">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 int get length =&gt; _myThings.length;
 </pre>
 </div>
 </div>
 <div class="method"><h4 id="mod">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot_qr/QrPolynomial.html">QrPolynomial</a> <strong>mod</strong>(<a href="../bot_qr/QrPolynomial.html">QrPolynomial</a> e) <a class="anchor-link" href="#mod"
               title="Permalink to QrPolynomial.mod">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 QrPolynomial mod(QrPolynomial e) {
 
@@ -115,11 +158,10 @@ QrPolynomial mod(QrPolynomial e) {
 </div>
 </div>
 <div class="method"><h4 id="multiply">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot_qr/QrPolynomial.html">QrPolynomial</a> <strong>multiply</strong>(<a href="../bot_qr/QrPolynomial.html">QrPolynomial</a> e) <a class="anchor-link" href="#multiply"
               title="Permalink to QrPolynomial.multiply">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 QrPolynomial multiply(QrPolynomial e) {
 
@@ -136,15 +178,44 @@ QrPolynomial multiply(QrPolynomial e) {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="operator []">
-<span class="show-code">Code</span>
-<strong>operator []</strong>(int index) <a class="anchor-link" href="#operator []"
-              title="Permalink to QrPolynomial.operator []">#</a></h4>
-<div class="doc">
-
+<div class="method inherited"><h4 id="noSuchMethod">
+<button class="show-code">Code</button>
+<strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
+              title="Permalink to QrPolynomial.noSuchMethod">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
+on an object. The name of the method and the arguments of the
+invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
+returns a value, that value becomes the result of the original
+invocation.</p>
+<p>The default behavior of <code>noSuchMethod</code> is to throw a
+<code>noSuchMethodError</code>.</p>
 <pre class="source">
-operator [](int index) =&gt; _myThings[index];
+external Dynamic noSuchMethod(String name, List args);
 </pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
+              title="Permalink to QrPolynomial.get runtimeType">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="toString">
+<button class="show-code">Code</button>
+String <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to QrPolynomial.toString">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Returns a string representation of this object.</p>
+<pre class="source">
+external String toString();
+</pre>
+</div>
 </div>
 </div>
         </div>

@@ -30,19 +30,19 @@
           class
         </h2>
         
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
-
 </div>
 <h3>Implements</h3>
 <p>
 <span class="type-box"><span class="icon-class"></span><a href="../dart_core/Hashable.html">Hashable</a></span></p>
+<div>
 <h3>Constructors</h3>
 <div class="method"><h4 id="HslColor">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 factory <strong>HslColor</strong>(num h, num s, num l) <a class="anchor-link" href="#HslColor"
               title="Permalink to HslColor.HslColor">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 factory HslColor(num h, num s, num l) {
   requireArgument(isValidNumber(h), 'h');
@@ -59,34 +59,70 @@ factory HslColor(num h, num s, num l) {
 </div>
 </div>
 <div class="method"><h4 id="HslColor._internal">
-<span class="show-code">Code</span>
-const <strong>HslColor</strong>._internal(num h, num s, num l) <a class="anchor-link" href="#HslColor._internal"
-              title="Permalink to HslColor.HslColor">#</a></h4>
+<button class="show-code">Code</button>
+const <strong>HslColor._internal</strong>(num h, num s, num l) <a class="anchor-link" href="#HslColor._internal"
+              title="Permalink to HslColor.HslColor._internal">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 const HslColor._internal(this.h, this.s, this.l);
 </pre>
 </div>
 </div>
-<h3>Methods</h3>
-<div class="method"><h4 id="hashCode">
-<span class="show-code">Code</span>
-int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
-              title="Permalink to HslColor.hashCode">#</a></h4>
-<div class="doc">
-
+</div>
+<div>
+<h3>Fields</h3>
+<div class="field"><h4 id="h">
+<button class="show-code">Code</button>
+final num         <strong>h</strong> <a class="anchor-link"
+            href="#h"
+            title="Permalink to HslColor.h">#</a>
+        </h4>
+        <div class="doc">
 <pre class="source">
-int hashCode() =&gt; Util.getHashCode([h,s,l]);
+final num h, s, l;
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="operator ==">
-<span class="show-code">Code</span>
-bool <strong>operator ==</strong>(<a href="../bot/HslColor.html">HslColor</a> other) <a class="anchor-link" href="#operator =="
+<div class="field"><h4 id="l">
+<button class="show-code">Code</button>
+final num         <strong>l</strong> <a class="anchor-link"
+            href="#l"
+            title="Permalink to HslColor.l">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final num h, s, l;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="s">
+<button class="show-code">Code</button>
+final num         <strong>s</strong> <a class="anchor-link"
+            href="#s"
+            title="Permalink to HslColor.s">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final num h, s, l;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method"><h4 id="==">
+<button class="show-code">Code</button>
+bool <strong>operator ==</strong>(<a href="../bot/HslColor.html">HslColor</a> other) <a class="anchor-link" href="#=="
               title="Permalink to HslColor.operator ==">#</a></h4>
 <div class="doc">
-
+<div class="inherited">
+<p>The equality operator.</p>
+<p>The default behavior for all <code>Object</code>s is to return true if and
+only if <code>this</code> and 
+<span class="param">other</span> are the same object.</p>
+<p>If a subclass overrides the equality operator it should override
+the <a class="crossref" href="../bot/HslColor.html#hashCode">hashCode</a> method as well to maintain consistency.</p>
+<div class="docs-inherited-from">docs inherited from Object </div></div>
 <pre class="source">
 bool operator ==(HslColor other) {
   return other != null &amp;&amp; other.h == h &amp;&amp; other.s == s &amp;&amp; other.l == l;
@@ -94,12 +130,59 @@ bool operator ==(HslColor other) {
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="hashCode">
+<button class="show-code">Code</button>
+int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
+              title="Permalink to HslColor.hashCode">#</a></h4>
+<div class="doc">
+<div class="inherited">
+<p>Get a hash code for this object.</p>
+<p>All objects have hash codes. Hash codes are guaranteed to be the
+same for objects that are equal when compared using the equality
+operator <code>==</code>. Other than that there are no guarantees about
+the hash codes. They will not be consistent between runs and
+there are no distribution guarantees.</p>
+<p>If a subclass overrides <a class="crossref" href="../bot/HslColor.html#hashCode">hashCode</a> it should override the
+equality operator as well to maintain consistency.</p>
+<div class="docs-inherited-from">docs inherited from Object </div></div>
+<pre class="source">
+int hashCode() =&gt; Util.getHashCode([h,s,l]);
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="noSuchMethod">
+<button class="show-code">Code</button>
+<strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
+              title="Permalink to HslColor.noSuchMethod">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
+on an object. The name of the method and the arguments of the
+invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
+returns a value, that value becomes the result of the original
+invocation.</p>
+<p>The default behavior of <code>noSuchMethod</code> is to throw a
+<code>noSuchMethodError</code>.</p>
+<pre class="source">
+external Dynamic noSuchMethod(String name, List args);
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
+              title="Permalink to HslColor.get runtimeType">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="toRgb">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 <a href="../bot/RgbColor.html">RgbColor</a> <strong>toRgb</strong>() <a class="anchor-link" href="#toRgb"
               title="Permalink to HslColor.toRgb">#</a></h4>
 <div class="doc">
-
 <pre class="source">
 RgbColor toRgb() {
   final normH = h / 360; // normalize h to fall in [0, 1]
@@ -128,54 +211,17 @@ RgbColor toRgb() {
 </div>
 </div>
 <div class="method"><h4 id="toString">
-<span class="show-code">Code</span>
+<button class="show-code">Code</button>
 String <strong>toString</strong>() <a class="anchor-link" href="#toString"
               title="Permalink to HslColor.toString">#</a></h4>
 <div class="doc">
-
+<div class="inherited">
+<p>Returns a string representation of this object.</p>
+<div class="docs-inherited-from">docs inherited from Object </div></div>
 <pre class="source">
 String toString() =&gt; '{HslColor: $h, $s, $l}';
 </pre>
 </div>
-</div>
-<h3>Fields</h3>
-<div class="field"><h4 id="h">
-<span class="show-code">Code</span>
-final num         <strong>h</strong> <a class="anchor-link"
-            href="#h"
-            title="Permalink to HslColor.h">#</a>
-        </h4>
-        <div class="doc">
-
-<pre class="source">
-final num h, s, l;
-</pre>
-</div>
-</div>
-<div class="field"><h4 id="l">
-<span class="show-code">Code</span>
-final num         <strong>l</strong> <a class="anchor-link"
-            href="#l"
-            title="Permalink to HslColor.l">#</a>
-        </h4>
-        <div class="doc">
-
-<pre class="source">
-final num h, s, l;
-</pre>
-</div>
-</div>
-<div class="field"><h4 id="s">
-<span class="show-code">Code</span>
-final num         <strong>s</strong> <a class="anchor-link"
-            href="#s"
-            title="Permalink to HslColor.s">#</a>
-        </h4>
-        <div class="doc">
-
-<pre class="source">
-final num h, s, l;
-</pre>
 </div>
 </div>
         </div>
