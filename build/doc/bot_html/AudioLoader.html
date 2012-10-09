@@ -1,0 +1,249 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>AudioLoader class / bot_html Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="bot_html" data-type="AudioLoader">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../bot_html.html">bot_html</a> &rsaquo; <a href="../bot_html/AudioLoader.html">AudioLoader</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>AudioLoader</strong>
+          class
+        </h2>
+        
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
+<div class="doc">
+</div>
+<h3>Extends</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../bot_html/ResourceLoader.html">ResourceLoader&lt;T&gt;</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>AudioLoader</strong></span></p>
+<div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="AudioLoader">
+<button class="show-code">Code</button>
+new <strong>AudioLoader</strong>(AudioContext context, Iterable&lt;String&gt; urlList) <a class="anchor-link" href="#AudioLoader"
+              title="Permalink to AudioLoader.AudioLoader">#</a></h4>
+<div class="doc">
+<pre class="source">
+AudioLoader(this.context, Iterable&lt;String&gt; urlList) :
+  super(urlList);
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Fields</h3>
+<div class="field"><h4 id="context">
+<button class="show-code">Code</button>
+final AudioContext         <strong>context</strong> <a class="anchor-link"
+            href="#context"
+            title="Permalink to AudioLoader.context">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final AudioContext context;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method inherited"><h4 id="==">
+<button class="show-code">Code</button>
+bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
+              title="Permalink to AudioLoader.operator ==">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>The equality operator.</p>
+<p>The default behavior for all <code>Object</code>s is to return true if and
+only if <code>this</code> and 
+<span class="param">other</span> are the same object.</p>
+<p>If a subclass overrides the equality operator it should override
+the <code>hashCode</code> method as well to maintain consistency.</p>
+<pre class="source">
+bool operator ==(other) =&gt; identical(this, other);
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="completedBytes">
+<button class="show-code">Code</button>
+int <strong>get completedBytes</strong>() <a class="anchor-link" href="#completedBytes"
+              title="Permalink to AudioLoader.get completedBytes">#</a></h4>
+<div class="inherited-from">inherited from <a href="../bot_html/ResourceLoader.html">ResourceLoader</a> </div><div class="doc">
+<pre class="source">
+int get completedBytes {
+  return _entries.selectNumbers((e) =&gt; e.completedBytes).sum();
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="completedCount">
+<button class="show-code">Code</button>
+int <strong>get completedCount</strong>() <a class="anchor-link" href="#completedCount"
+              title="Permalink to AudioLoader.get completedCount">#</a></h4>
+<div class="inherited-from">inherited from <a href="../bot_html/ResourceLoader.html">ResourceLoader</a> </div><div class="doc">
+<pre class="source">
+int get completedCount =&gt; _entries.count((e) =&gt; e.completed);
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="getResource">
+<button class="show-code">Code</button>
+<a href="../bot_html/AudioLoader.html">T</a> <strong>getResource</strong>(String url) <a class="anchor-link" href="#getResource"
+              title="Permalink to AudioLoader.getResource">#</a></h4>
+<div class="inherited-from">inherited from <a href="../bot_html/ResourceLoader.html">ResourceLoader</a> </div><div class="doc">
+<pre class="source">
+T getResource(String url) =&gt; _getByUrl(url).resource;
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="hashCode">
+<button class="show-code">Code</button>
+int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
+              title="Permalink to AudioLoader.hashCode">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Get a hash code for this object.</p>
+<p>All objects have hash codes. Hash codes are guaranteed to be the
+same for objects that are equal when compared using the equality
+operator <code>==</code>. Other than that there are no guarantees about
+the hash codes. They will not be consistent between runs and
+there are no distribution guarantees.</p>
+<p>If a subclass overrides <code>hashCode</code> it should override the
+equality operator as well to maintain consistency.</p>
+<pre class="source">
+external int hashCode();
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="load">
+<button class="show-code">Code</button>
+void <strong>load</strong>() <a class="anchor-link" href="#load"
+              title="Permalink to AudioLoader.load">#</a></h4>
+<div class="inherited-from">inherited from <a href="../bot_html/ResourceLoader.html">ResourceLoader</a> </div><div class="doc">
+<pre class="source">
+void load() {
+  assert(_state == StateUnloaded);
+  _state = StateLoading;
+  for(final e in _entries) {
+    _httpLoad(e.url);
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="loaded">
+<button class="show-code">Code</button>
+<a href="../bot/EventRoot.html">EventRoot</a> <strong>get loaded</strong>() <a class="anchor-link" href="#loaded"
+              title="Permalink to AudioLoader.get loaded">#</a></h4>
+<div class="inherited-from">inherited from <a href="../bot_html/ResourceLoader.html">ResourceLoader</a> </div><div class="doc">
+<pre class="source">
+EventRoot get loaded =&gt; _loadedEvent;
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="noSuchMethod">
+<button class="show-code">Code</button>
+<strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
+              title="Permalink to AudioLoader.noSuchMethod">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
+on an object. The name of the method and the arguments of the
+invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
+returns a value, that value becomes the result of the original
+invocation.</p>
+<p>The default behavior of <code>noSuchMethod</code> is to throw a
+<code>noSuchMethodError</code>.</p>
+<pre class="source">
+external Dynamic noSuchMethod(String name, List args);
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="progress">
+<button class="show-code">Code</button>
+<a href="../bot/EventRoot.html">EventRoot</a> <strong>get progress</strong>() <a class="anchor-link" href="#progress"
+              title="Permalink to AudioLoader.get progress">#</a></h4>
+<div class="inherited-from">inherited from <a href="../bot_html/ResourceLoader.html">ResourceLoader</a> </div><div class="doc">
+<pre class="source">
+EventRoot get progress =&gt; _progressEvent;
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
+              title="Permalink to AudioLoader.get runtimeType">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="state">
+<button class="show-code">Code</button>
+String <strong>get state</strong>() <a class="anchor-link" href="#state"
+              title="Permalink to AudioLoader.get state">#</a></h4>
+<div class="inherited-from">inherited from <a href="../bot_html/ResourceLoader.html">ResourceLoader</a> </div><div class="doc">
+<pre class="source">
+String get state =&gt; _state;
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="toString">
+<button class="show-code">Code</button>
+String <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to AudioLoader.toString">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Returns a string representation of this object.</p>
+<pre class="source">
+external String toString();
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="totalBytes">
+<button class="show-code">Code</button>
+int <strong>get totalBytes</strong>() <a class="anchor-link" href="#totalBytes"
+              title="Permalink to AudioLoader.get totalBytes">#</a></h4>
+<div class="inherited-from">inherited from <a href="../bot_html/ResourceLoader.html">ResourceLoader</a> </div><div class="doc">
+<pre class="source">
+int get totalBytes {
+  return _entries.selectNumbers((e) {
+    if(e.totalBytes == null) {
+      return _defaultSize;
+    } else {
+      return e.totalBytes;
+    }
+  }).sum();
+}
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        
