@@ -4,11 +4,11 @@
 
 #import('bot.dart');
 
-#source('html/dragger.dart');
-#source('html/html_view.dart');
-#source('html/html_util.dart');
+#source('src/html/dragger.dart');
+#source('src/html/html_view.dart');
+#source('src/html/html_util.dart');
 
-#source('html/_resource_entry.dart');
-#source('html/resource_loader.dart');
-#source('html/image_loader.dart');
-#source('html/audio_loader.dart');
+#source('src/html/_resource_entry.dart');
+#source('src/html/resource_loader.dart');
+#source('src/html/image_loader.dart');
+#source('src/html/audio_loader.dart');

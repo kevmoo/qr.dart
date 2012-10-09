@@ -3,5 +3,5 @@
 #import('bot.dart');
 #import('package:unittest/unittest.dart');
 
-#source('test/event_watcher.dart');
-#source('test/top_level.dart');
+#source('src/test/event_watcher.dart');
+#source('src/test/top_level.dart');

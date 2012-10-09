@@ -6,20 +6,20 @@
 #import('bot.dart');
 #import('html.dart');
 
-#source('retained/retained_debug.dart');
-#source('retained/mouse.dart');
-#source('retained/canvas_util.dart');
-#source('retained/retained_util.dart');
-#source('retained/pelement.dart');
-#source('retained/element_parent.dart');
-#source('retained/element_parent_impl.dart');
-#source('retained/panel.dart');
-#source('retained/pcanvas.dart');
-#source('retained/stage.dart');
-#source('retained/shape.dart');
-#source('retained/shape_type.dart');
-#source('retained/img_element.dart');
-#source('retained/sprite_element.dart');
+#source('src/retained/retained_debug.dart');
+#source('src/retained/mouse.dart');
+#source('src/retained/canvas_util.dart');
+#source('src/retained/retained_util.dart');
+#source('src/retained/pelement.dart');
+#source('src/retained/element_parent.dart');
+#source('src/retained/element_parent_impl.dart');
+#source('src/retained/panel.dart');
+#source('src/retained/pcanvas.dart');
+#source('src/retained/stage.dart');
+#source('src/retained/shape.dart');
+#source('src/retained/shape_type.dart');
+#source('src/retained/img_element.dart');
+#source('src/retained/sprite_element.dart');
 
-#source('retained/click_manager.dart');
-#source('retained/element_mouse_event_args.dart');
+#source('src/retained/click_manager.dart');
+#source('src/retained/element_mouse_event_args.dart');
