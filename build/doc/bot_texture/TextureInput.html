@@ -1,0 +1,242 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>TextureInput class / bot_texture Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="bot_texture" data-type="TextureInput">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../bot_texture.html">bot_texture</a> &rsaquo; <a href="../bot_texture/TextureInput.html">TextureInput</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>TextureInput</strong>
+          class
+        </h2>
+        
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
+<div class="doc">
+</div>
+<div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="TextureInput">
+<button class="show-code">Code</button>
+new <strong>TextureInput</strong>(String name, <a href="../bot/Box.html">Box</a> frame, bool rotated, bool trimmed, <a href="../bot/Box.html">Box</a> sourceColorRect, <a href="../bot/Size.html">Size</a> sourceSize, ImageElement image) <a class="anchor-link" href="#TextureInput"
+              title="Permalink to TextureInput.TextureInput">#</a></h4>
+<div class="doc">
+<pre class="source">
+TextureInput(this.name, this.frame, this.rotated, this.trimmed,
+    this.sourceColorRect, this.sourceSize, this.image);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="TextureInput.fromHash">
+<button class="show-code">Code</button>
+factory <strong>TextureInput.fromHash</strong>(String keyName, Map&lt;String, Dynamic&gt; map, ImageElement image) <a class="anchor-link" href="#TextureInput.fromHash"
+              title="Permalink to TextureInput.TextureInput.fromHash">#</a></h4>
+<div class="doc">
+<pre class="source">
+factory TextureInput.fromHash(String keyName, Map&lt;String, Dynamic&gt; map,
+    ImageElement image) {
+  final frame = _parseRect(map['frame']);
+  final sourceColorRect = _parseRect(map['spriteSourceSize']);
+  final sourceSize = _parseCoordinate(map['sourceSize']);
+
+  return new TextureInput(keyName, frame, map['rotated'], map['trimmed'],
+      sourceColorRect, sourceSize, image);
+}
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Fields</h3>
+<div class="field"><h4 id="frame">
+<button class="show-code">Code</button>
+final <a href="../bot/Box.html">Box</a>         <strong>frame</strong> <a class="anchor-link"
+            href="#frame"
+            title="Permalink to TextureInput.frame">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final Box frame;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="image">
+<button class="show-code">Code</button>
+final ImageElement         <strong>image</strong> <a class="anchor-link"
+            href="#image"
+            title="Permalink to TextureInput.image">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final ImageElement image;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="name">
+<button class="show-code">Code</button>
+final String         <strong>name</strong> <a class="anchor-link"
+            href="#name"
+            title="Permalink to TextureInput.name">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final String name;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="rotated">
+<button class="show-code">Code</button>
+final bool         <strong>rotated</strong> <a class="anchor-link"
+            href="#rotated"
+            title="Permalink to TextureInput.rotated">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final bool rotated;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="sourceColorRect">
+<button class="show-code">Code</button>
+final <a href="../bot/Box.html">Box</a>         <strong>sourceColorRect</strong> <a class="anchor-link"
+            href="#sourceColorRect"
+            title="Permalink to TextureInput.sourceColorRect">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final Box sourceColorRect;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="sourceSize">
+<button class="show-code">Code</button>
+final <a href="../bot/Size.html">Size</a>         <strong>sourceSize</strong> <a class="anchor-link"
+            href="#sourceSize"
+            title="Permalink to TextureInput.sourceSize">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final Size sourceSize;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="trimmed">
+<button class="show-code">Code</button>
+final bool         <strong>trimmed</strong> <a class="anchor-link"
+            href="#trimmed"
+            title="Permalink to TextureInput.trimmed">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final bool trimmed;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method inherited"><h4 id="==">
+<button class="show-code">Code</button>
+bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
+              title="Permalink to TextureInput.operator ==">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>The equality operator.</p>
+<p>The default behavior for all <code>Object</code>s is to return true if and
+only if <code>this</code> and 
+<span class="param">other</span> are the same object.</p>
+<p>If a subclass overrides the equality operator it should override
+the <code>hashCode</code> method as well to maintain consistency.</p>
+<pre class="source">
+bool operator ==(other) =&gt; identical(this, other);
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="hashCode">
+<button class="show-code">Code</button>
+int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
+              title="Permalink to TextureInput.hashCode">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Get a hash code for this object.</p>
+<p>All objects have hash codes. Hash codes are guaranteed to be the
+same for objects that are equal when compared using the equality
+operator <code>==</code>. Other than that there are no guarantees about
+the hash codes. They will not be consistent between runs and
+there are no distribution guarantees.</p>
+<p>If a subclass overrides <code>hashCode</code> it should override the
+equality operator as well to maintain consistency.</p>
+<pre class="source">
+external int hashCode();
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="noSuchMethod">
+<button class="show-code">Code</button>
+<strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
+              title="Permalink to TextureInput.noSuchMethod">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
+on an object. The name of the method and the arguments of the
+invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
+returns a value, that value becomes the result of the original
+invocation.</p>
+<p>The default behavior of <code>noSuchMethod</code> is to throw a
+<code>noSuchMethodError</code>.</p>
+<pre class="source">
+external Dynamic noSuchMethod(String name, List args);
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
+              title="Permalink to TextureInput.get runtimeType">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="toString">
+<button class="show-code">Code</button>
+String <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to TextureInput.toString">#</a></h4>
+<div class="doc">
+<div class="inherited">
+<p>Returns a string representation of this object.</p>
+<div class="docs-inherited-from">docs inherited from Object </div></div>
+<pre class="source">
+String toString() =&gt; this.name;
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

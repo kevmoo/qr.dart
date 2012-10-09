@@ -1,0 +1,193 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>TextureData class / bot_texture Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="bot_texture" data-type="TextureData">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../bot_texture.html">bot_texture</a> &rsaquo; <a href="../bot_texture/TextureData.html">TextureData</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>TextureData</strong>
+          class
+        </h2>
+        
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
+<div class="doc">
+</div>
+<div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="TextureData">
+<button class="show-code">Code</button>
+new <strong>TextureData</strong>(Map&lt;String, <a href="../bot_texture/TextureInput.html">TextureInput</a>&gt; _textures) <a class="anchor-link" href="#TextureData"
+              title="Permalink to TextureData.TextureData">#</a></h4>
+<div class="doc">
+<pre class="source">
+TextureData(this._textures);
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method inherited"><h4 id="==">
+<button class="show-code">Code</button>
+bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
+              title="Permalink to TextureData.operator ==">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>The equality operator.</p>
+<p>The default behavior for all <code>Object</code>s is to return true if and
+only if <code>this</code> and 
+<span class="param">other</span> are the same object.</p>
+<p>If a subclass overrides the equality operator it should override
+the <code>hashCode</code> method as well to maintain consistency.</p>
+<pre class="source">
+bool operator ==(other) =&gt; identical(this, other);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="drawTextureAt">
+<button class="show-code">Code</button>
+void <strong>drawTextureAt</strong>(CanvasRenderingContext2D ctx, <a href="../bot/Coordinate.html">Coordinate</a> location, <a href="../bot_texture/TextureInput.html">TextureInput</a> texture) <a class="anchor-link" href="#drawTextureAt"
+              title="Permalink to TextureData.drawTextureAt">#</a></h4>
+<div class="doc">
+<pre class="source">
+void drawTextureAt(CanvasRenderingContext2D ctx, Coordinate location,
+                   TextureInput texture) {
+  ctx.save();
+  final tx = new AffineTransform();
+  tx.translate(location.x, location.y);
+
+  var theFrame = texture.frame;
+  var source = texture.sourceColorRect.topLeft;
+  tx.translate(source.x, source.y);
+
+  if(texture.rotated) {
+    tx.rotate(-0.5 * math.PI, 0.5 * theFrame.height, 0.5 * theFrame.height);
+    theFrame = new Box(theFrame.left, theFrame.top,
+        theFrame.height, theFrame.width);
+  }
+
+  CanvasUtil.transform(ctx, tx);
+
+  CanvasUtil.drawImage(ctx, texture.image, theFrame);
+  ctx.restore();
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="drawTextureKeyAt">
+<button class="show-code">Code</button>
+void <strong>drawTextureKeyAt</strong>(CanvasRenderingContext2D ctx, String textureKey, [<a href="../bot/Coordinate.html">Coordinate</a> location = const Coordinate()]) <a class="anchor-link" href="#drawTextureKeyAt"
+              title="Permalink to TextureData.drawTextureKeyAt">#</a></h4>
+<div class="doc">
+<pre class="source">
+void drawTextureKeyAt(CanvasRenderingContext2D ctx, String textureKey,
+                      [Coordinate location = const Coordinate()]) {
+  assert(textureKey != null);
+  final texture = getTexture(textureKey);
+  assert(texture != null);
+  drawTextureAt(ctx, location, texture);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getTexture">
+<button class="show-code">Code</button>
+<a href="../bot_texture/TextureInput.html">TextureInput</a> <strong>getTexture</strong>(String key) <a class="anchor-link" href="#getTexture"
+              title="Permalink to TextureData.getTexture">#</a></h4>
+<div class="doc">
+<pre class="source">
+TextureInput getTexture(String key) {
+  assert(_textures != null);
+  return _textures[key];
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="hashCode">
+<button class="show-code">Code</button>
+int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
+              title="Permalink to TextureData.hashCode">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Get a hash code for this object.</p>
+<p>All objects have hash codes. Hash codes are guaranteed to be the
+same for objects that are equal when compared using the equality
+operator <code>==</code>. Other than that there are no guarantees about
+the hash codes. They will not be consistent between runs and
+there are no distribution guarantees.</p>
+<p>If a subclass overrides <code>hashCode</code> it should override the
+equality operator as well to maintain consistency.</p>
+<pre class="source">
+external int hashCode();
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="noSuchMethod">
+<button class="show-code">Code</button>
+<strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
+              title="Permalink to TextureData.noSuchMethod">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
+on an object. The name of the method and the arguments of the
+invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
+returns a value, that value becomes the result of the original
+invocation.</p>
+<p>The default behavior of <code>noSuchMethod</code> is to throw a
+<code>noSuchMethodError</code>.</p>
+<pre class="source">
+external Dynamic noSuchMethod(String name, List args);
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
+              title="Permalink to TextureData.get runtimeType">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="toString">
+<button class="show-code">Code</button>
+String <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to TextureData.toString">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Returns a string representation of this object.</p>
+<pre class="source">
+external String toString();
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        
