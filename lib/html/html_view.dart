@@ -1,4 +1,4 @@
-class HtmlView {
+abstract class HtmlView {
   final DivElement _node;
   bool _dirty;
 

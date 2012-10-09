@@ -1,4 +1,4 @@
-class ElementParentImpl
+abstract class ElementParentImpl
   extends PElement
   implements ElementParent {
 

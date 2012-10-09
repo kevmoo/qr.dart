@@ -1,6 +1,6 @@
-class ListBase<T> extends Enumerable<T> implements List<T> {
+abstract class ListBase<T> extends Enumerable<T> implements List<T> {
 
-  const ListBase() : super();
+  const ListBase();
 
   //
   // Iterable bits

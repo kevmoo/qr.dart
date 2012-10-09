@@ -1,4 +1,4 @@
-class FutureValue<TInput, TOutput> {
+abstract class FutureValue<TInput, TOutput> {
   FutureValue() :
     _outputChangedHandle = new EventHandle<EventArgs>(),
     _inputChangedHandle = new EventHandle<EventArgs>(),

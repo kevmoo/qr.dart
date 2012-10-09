@@ -2,7 +2,7 @@ NumberEnumerable n$(Iterable<num> source) {
   return new NumberEnumerable.from(source);
 }
 
-class NumberEnumerable<T extends num> extends Enumerable<T> {
+abstract class NumberEnumerable<T extends num> extends Enumerable<T> {
 
   const NumberEnumerable() : super();
 

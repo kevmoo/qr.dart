@@ -6,7 +6,7 @@ Enumerable $(Iterable source) {
   }
 }
 
-class Enumerable<T> implements Collection<T> {
+abstract class Enumerable<T> implements Collection<T> {
   // TODO:
   // last
   // take
