@@ -1,6 +1,6 @@
 ![BOT!](https://raw.github.com/kevmoo/bot.dart/master/resource/logo.png)
 # The Dart Bag-of-Tricks
-## A collection of (mostly) general libraries to make coding [Dart](http://www.dartlang.org/) more fun.
+## A collection of (mostly) general libraries to make working with [Dart](http://www.dartlang.org/) more productive.
 
 Starting by porting bits of the [PL javascript library](https://github.com/thinkpixellab/pl) and Google's [Closure javascript library](https://developers.google.com/closure/library/) to enable some interesting scenarios.
 
