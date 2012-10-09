@@ -136,7 +136,7 @@ class QrDemo{
     _qrMapper.input = t;
   }
 
-  bool _onFrame(num highResTime){
+  void _onFrame(int highResTime){
     _frameRequested = false;
 
     _ctx.clearRect(0, 0, _canvas.width, _canvas.height);

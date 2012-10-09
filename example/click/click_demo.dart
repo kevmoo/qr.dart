@@ -59,7 +59,7 @@ class ClickDemo{
     window.requestAnimationFrame(_onFrame);
   }
 
-  bool _onFrame(num highResTime){
+  void _onFrame(int highResTime){
     _stage.draw();
     requestFrame();
   }

@@ -74,7 +74,7 @@ class DraggerDemo{
     }
   }
 
-  bool _onFrame(num highResTime){
+  void _onFrame(int highResTime){
     _stage.draw();
 
     final ctx = _stage.ctx;
