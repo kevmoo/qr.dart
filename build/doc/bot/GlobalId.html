@@ -32,6 +32,27 @@
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+class GlobalId implements Hashable, Comparable {
+  static int _globalId = 0;
+  final int id;
+  final int _hashCode;
+
+  GlobalId._internal(int value) :
+    id = value,
+    _hashCode = Util.getHashCode([value]);
+
+  factory GlobalId() {
+    return new GlobalId._internal(_globalId++);
+  }
+
+  int compareTo(GlobalId other) =&gt; id.compareTo(other.id);
+
+  int hashCode() =&gt; _hashCode;
+
+  bool operator ==(GlobalId other) =&gt; other != null &amp;&amp; other.id == id;
+}
+</pre>
 </div>
 <h3>Implements</h3>
 <p>
@@ -64,7 +85,7 @@ GlobalId._internal(int value) :
 </div>
 </div>
 <div>
-<h3>Fields</h3>
+<h3>Properties</h3>
 <div class="field"><h4 id="id">
 <button class="show-code">Code</button>
 final int         <strong>id</strong> <a class="anchor-link"
@@ -77,9 +98,22 @@ final int id;
 </pre>
 </div>
 </div>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to GlobalId.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
 </div>
 <div>
-<h3>Methods</h3>
+<h3>Operators</h3>
 <div class="method"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(<a href="../bot/GlobalId.html">GlobalId</a> other) <a class="anchor-link" href="#=="
@@ -98,6 +132,9 @@ bool operator ==(GlobalId other) =&gt; other != null &amp;&amp; other.id == id;
 </pre>
 </div>
 </div>
+</div>
+<div>
+<h3>Methods</h3>
 <div class="method"><h4 id="compareTo">
 <button class="show-code">Code</button>
 int <strong>compareTo</strong>(<a href="../bot/GlobalId.html">GlobalId</a> other) <a class="anchor-link" href="#compareTo"
@@ -113,6 +150,30 @@ is not comparable to <code>this</code>.</p>
 <div class="docs-inherited-from">docs inherited from Comparable </div></div>
 <pre class="source">
 int compareTo(GlobalId other) =&gt; id.compareTo(other.id);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="GlobalId">
+<button class="show-code">Code</button>
+factory <strong>GlobalId</strong>() <a class="anchor-link" href="#GlobalId"
+              title="Permalink to GlobalId.GlobalId">#</a></h4>
+<div class="doc">
+<pre class="source">
+factory GlobalId() {
+  return new GlobalId._internal(_globalId++);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="GlobalId._internal">
+<button class="show-code">Code</button>
+new <strong>GlobalId._internal</strong>(int value) <a class="anchor-link" href="#GlobalId._internal"
+              title="Permalink to GlobalId.GlobalId._internal">#</a></h4>
+<div class="doc">
+<pre class="source">
+GlobalId._internal(int value) :
+  id = value,
+  _hashCode = Util.getHashCode([value]);
 </pre>
 </div>
 </div>
@@ -153,14 +214,17 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="runtimeType">
+<div class="method inherited"><h4 id="Object">
 <button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to GlobalId.get runtimeType">#</a></h4>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to GlobalId.Object">#</a></h4>
 <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
 <pre class="source">
-external Type get runtimeType;
+const Object();
 </pre>
 </div>
 </div>

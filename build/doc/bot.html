@@ -28,7 +28,39 @@
 <div class="content">
 <h2><strong>bot</strong> library</h2>
 <div>
+<h3>Properties</h3>
+<div class="field"><h4 id="rnd">
+<button class="show-code">Code</button>
+final Random         <strong>rnd</strong> <a class="anchor-link"
+            href="#rnd"
+            title="Permalink to rnd">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+math.Random get rnd {
+  if(_botHelperRandom == null) {
+    _botHelperRandom = new math.Random();
+  }
+  return _botHelperRandom;
+}
+</pre>
+</div>
+</div>
+</div>
+<div>
 <h3>Functions</h3>
+<div class="method"><h4 id="n$">
+<button class="show-code">Code</button>
+<a href="bot/NumberEnumerable.html">NumberEnumerable</a> <strong>n$</strong>(Iterable&lt;num&gt; source) <a class="anchor-link" href="#n$"
+              title="Permalink to n$">#</a></h4>
+<div class="doc">
+<pre class="source">
+NumberEnumerable n$(Iterable&lt;num&gt; source) {
+  return new NumberEnumerable.from(source);
+}
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="$">
 <button class="show-code">Code</button>
 <a href="bot/Enumerable.html">Enumerable</a> <strong>$</strong>(Iterable source) <a class="anchor-link" href="#$"
@@ -41,30 +73,6 @@ Enumerable $(Iterable source) {
   } else {
     return new Enumerable.fromIterable(source);
   }
-}
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="isValidNumber">
-<button class="show-code">Code</button>
-bool <strong>isValidNumber</strong>(num value) <a class="anchor-link" href="#isValidNumber"
-              title="Permalink to isValidNumber">#</a></h4>
-<div class="doc">
-<pre class="source">
-bool isValidNumber(num value) {
-  return value != null &amp;&amp; !value.isInfinite() &amp;&amp; !value.isNaN();
-}
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="n$">
-<button class="show-code">Code</button>
-<a href="bot/NumberEnumerable.html">NumberEnumerable</a> <strong>n$</strong>(Iterable&lt;num&gt; source) <a class="anchor-link" href="#n$"
-              title="Permalink to n$">#</a></h4>
-<div class="doc">
-<pre class="source">
-NumberEnumerable n$(Iterable&lt;num&gt; source) {
-  return new NumberEnumerable.from(source);
 }
 </pre>
 </div>
@@ -115,17 +123,14 @@ void requireArgumentNotNull(argument, [String argName = ""]) {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="rnd">
+<div class="method"><h4 id="isValidNumber">
 <button class="show-code">Code</button>
-Random <strong>get rnd</strong>() <a class="anchor-link" href="#rnd"
-              title="Permalink to get rnd">#</a></h4>
+bool <strong>isValidNumber</strong>(num value) <a class="anchor-link" href="#isValidNumber"
+              title="Permalink to isValidNumber">#</a></h4>
 <div class="doc">
 <pre class="source">
-math.Random get rnd {
-  if(_botHelperRandom == null) {
-    _botHelperRandom = new math.Random();
-  }
-  return _botHelperRandom;
+bool isValidNumber(num value) {
+  return value != null &amp;&amp; !value.isInfinite() &amp;&amp; !value.isNaN();
 }
 </pre>
 </div>

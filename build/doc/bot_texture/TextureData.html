@@ -32,6 +32,50 @@
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+class TextureData {
+  final Map&lt;String, TextureInput&gt; _textures;
+
+  TextureData(this._textures);
+
+  TextureInput getTexture(String key) {
+    assert(_textures != null);
+    return _textures[key];
+  }
+
+  void drawTextureKeyAt(CanvasRenderingContext2D ctx, String textureKey,
+                        [Coordinate location = const Coordinate()]) {
+    assert(textureKey != null);
+    final texture = getTexture(textureKey);
+    assert(texture != null);
+    drawTextureAt(ctx, location, texture);
+  }
+
+  void drawTextureAt(CanvasRenderingContext2D ctx, Coordinate location,
+                     TextureInput texture) {
+    ctx.save();
+    final tx = new AffineTransform();
+    tx.translate(location.x, location.y);
+
+    var theFrame = texture.frame;
+    var source = texture.sourceColorRect.topLeft;
+    tx.translate(source.x, source.y);
+
+    if(texture.rotated) {
+      tx.rotate(-0.5 * math.PI, 0.5 * theFrame.height, 0.5 * theFrame.height);
+      theFrame = new Box(theFrame.left, theFrame.top,
+          theFrame.height, theFrame.width);
+    }
+
+    CanvasUtil.transform(ctx, tx);
+
+    CanvasUtil.drawImage(ctx, texture.image, theFrame);
+    ctx.restore();
+  }
+
+
+}
+</pre>
 </div>
 <div>
 <h3>Constructors</h3>
@@ -47,7 +91,23 @@ TextureData(this._textures);
 </div>
 </div>
 <div>
-<h3>Methods</h3>
+<h3>Properties</h3>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to TextureData.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Operators</h3>
 <div class="method inherited"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
@@ -64,6 +124,9 @@ bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
+</div>
+<div>
+<h3>Methods</h3>
 <div class="method"><h4 id="drawTextureAt">
 <button class="show-code">Code</button>
 void <strong>drawTextureAt</strong>(CanvasRenderingContext2D ctx, <a href="../bot/Coordinate.html">Coordinate</a> location, <a href="../bot_texture/TextureInput.html">TextureInput</a> texture) <a class="anchor-link" href="#drawTextureAt"
@@ -158,14 +221,27 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="runtimeType">
+<div class="method inherited"><h4 id="Object">
 <button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to TextureData.get runtimeType">#</a></h4>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to TextureData.Object">#</a></h4>
 <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
 <pre class="source">
-external Type get runtimeType;
+const Object();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="TextureData">
+<button class="show-code">Code</button>
+new <strong>TextureData</strong>(Map&lt;String, <a href="../bot_texture/TextureInput.html">TextureInput</a>&gt; _textures) <a class="anchor-link" href="#TextureData"
+              title="Permalink to TextureData.TextureData">#</a></h4>
+<div class="doc">
+<pre class="source">
+TextureData(this._textures);
 </pre>
 </div>
 </div>

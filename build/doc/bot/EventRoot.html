@@ -32,12 +32,34 @@
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+interface EventRoot&lt;T&gt; {
+  GlobalId add(Action1&lt;T&gt; handler);
+  bool remove(GlobalId id);
+}
+</pre>
 </div>
 <h3>Implemented by</h3>
 <p>
 <span class="type-box"><span class="icon-class"></span><a href="../bot/EventHandle.html">EventHandle&lt;T&gt;</a></span></p>
 <div>
-<h3>Methods</h3>
+<h3>Properties</h3>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to EventRoot&lt;T&gt;.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Operators</h3>
 <div class="method inherited"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
@@ -54,6 +76,9 @@ bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
+</div>
+<div>
+<h3>Methods</h3>
 <div class="method"><h4 id="add">
 <button class="show-code">Code</button>
 <a href="../bot/GlobalId.html">GlobalId</a> <strong>add</strong>(<a href="../bot/Action1.html">Action1</a> handler) <a class="anchor-link" href="#add"
@@ -99,6 +124,20 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
+<div class="method inherited"><h4 id="Object">
+<button class="show-code">Code</button>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to EventRoot&lt;T&gt;.Object">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
+<pre class="source">
+const Object();
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="remove">
 <button class="show-code">Code</button>
 bool <strong>remove</strong>(<a href="../bot/GlobalId.html">GlobalId</a> id) <a class="anchor-link" href="#remove"
@@ -106,17 +145,6 @@ bool <strong>remove</strong>(<a href="../bot/GlobalId.html">GlobalId</a> id) <a 
 <div class="doc">
 <pre class="source">
 bool remove(GlobalId id);
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="runtimeType">
-<button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to EventRoot&lt;T&gt;.get runtimeType">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
-<pre class="source">
-external Type get runtimeType;
 </pre>
 </div>
 </div>

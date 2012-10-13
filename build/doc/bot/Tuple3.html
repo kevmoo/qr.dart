@@ -32,6 +32,26 @@
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+class Tuple3&lt;T1, T2, T3&gt;
+  extends Tuple&lt;T1, T2&gt; {
+  final T3 item3;
+
+  const Tuple3(T1 param1, T2 param2, this.item3) :
+    super(param1, param2);
+
+  bool operator ==(Tuple3&lt;T1, T2, T3&gt; other) {
+    return other != null &amp;&amp;
+        item1 == other.item1 &amp;&amp;
+        item2 == other.item2 &amp;&amp;
+        item3 == other.item3;
+  }
+
+  String toString() =&gt; "{item1: $item1, item2: $item2, item3: $item3}";
+
+  int hashCode() =&gt; Util.getHashCode([item1, item2, item3]);
+}
+</pre>
 </div>
 <h3>Extends</h3>
 <p>
@@ -51,7 +71,7 @@ const Tuple3(T1 param1, T2 param2, this.item3) :
 </div>
 </div>
 <div>
-<h3>Fields</h3>
+<h3>Properties</h3>
 <div class="field inherited"><h4 id="item1">
 <button class="show-code">Code</button>
 final <a href="../bot/Tuple3.html">T1</a>         <strong>item1</strong> <a class="anchor-link"
@@ -88,9 +108,22 @@ final T3 item3;
 </pre>
 </div>
 </div>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to Tuple3&lt;T1, T2, T3&gt;.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
 </div>
 <div>
-<h3>Methods</h3>
+<h3>Operators</h3>
 <div class="method"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(<a href="../bot/Tuple3.html">Tuple3</a>&lt;<a href="../bot/Tuple3.html">T1</a>, <a href="../bot/Tuple3.html">T2</a>, <a href="../bot/Tuple3.html">T3</a>&gt; other) <a class="anchor-link" href="#=="
@@ -114,6 +147,9 @@ bool operator ==(Tuple3&lt;T1, T2, T3&gt; other) {
 </pre>
 </div>
 </div>
+</div>
+<div>
+<h3>Methods</h3>
 <div class="method"><h4 id="hashCode">
 <button class="show-code">Code</button>
 int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
@@ -151,14 +187,17 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="runtimeType">
+<div class="method inherited"><h4 id="Object">
 <button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to Tuple3&lt;T1, T2, T3&gt;.get runtimeType">#</a></h4>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to Tuple3&lt;T1, T2, T3&gt;.Object">#</a></h4>
 <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
 <pre class="source">
-external Type get runtimeType;
+const Object();
 </pre>
 </div>
 </div>
@@ -182,6 +221,27 @@ String <strong>toString</strong>() <a class="anchor-link" href="#toString"
 <div class="docs-inherited-from">docs inherited from Object </div></div>
 <pre class="source">
 String toString() =&gt; "{item1: $item1, item2: $item2, item3: $item3}";
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="Tuple">
+<button class="show-code">Code</button>
+const <strong>Tuple</strong>(<a href="../bot/Tuple3.html">T1</a> item1, <a href="../bot/Tuple3.html">T2</a> item2) <a class="anchor-link" href="#Tuple"
+              title="Permalink to Tuple3&lt;T1, T2, T3&gt;.Tuple">#</a></h4>
+<div class="inherited-from">inherited from <a href="../bot/Tuple.html">Tuple</a> </div><div class="doc">
+<pre class="source">
+const Tuple(this.item1, this.item2);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="Tuple3">
+<button class="show-code">Code</button>
+const <strong>Tuple3</strong>(<a href="../bot/Tuple3.html">T1</a> param1, <a href="../bot/Tuple3.html">T2</a> param2, <a href="../bot/Tuple3.html">T3</a> item3) <a class="anchor-link" href="#Tuple3"
+              title="Permalink to Tuple3&lt;T1, T2, T3&gt;.Tuple3">#</a></h4>
+<div class="doc">
+<pre class="source">
+const Tuple3(T1 param1, T2 param2, this.item3) :
+  super(param1, param2);
 </pre>
 </div>
 </div>

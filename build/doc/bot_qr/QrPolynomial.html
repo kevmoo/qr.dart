@@ -32,6 +32,69 @@
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+class QrPolynomial {
+  final List&lt;int&gt; _myThings;
+
+  QrPolynomial._internal(this._myThings);
+
+  factory	QrPolynomial(List&lt;int&gt; thing, int shift) {
+
+    var offset = 0;
+
+    while (offset &lt; thing.length &amp;&amp; thing[offset] == 0) {
+      offset++;
+    }
+
+    final List&lt;int&gt; values = QrMath.getZeroedList(thing.length - offset + shift);
+
+    for (var i = 0; i &lt; thing.length - offset; i++) {
+      values[i] = thing[i + offset];
+    }
+
+    return new QrPolynomial._internal(values);
+  }
+
+  operator [](int index) =&gt; _myThings[index];
+
+  int get length =&gt; _myThings.length;
+
+  QrPolynomial multiply(QrPolynomial e) {
+
+    final List&lt;int&gt; foo = QrMath.getZeroedList(length + e.length - 1);
+
+    for (var i = 0; i &lt; length; i++) {
+      for (var j = 0; j &lt; e.length; j++) {
+        foo[i + j] ^= QrMath.gexp(QrMath.glog(this[i]) + QrMath.glog(e[j]));
+      }
+    }
+
+    return new QrPolynomial(foo, 0);
+  }
+
+  QrPolynomial mod(QrPolynomial e) {
+
+    if (length - e.length &lt; 0) {
+      return this;
+    }
+
+    var ratio = QrMath.glog(this[0]) - QrMath.glog(e[0]);
+
+    var thing = QrMath.getZeroedList(length);
+
+    for (int i = 0; i &lt; length; i++) {
+      thing[i] = this[i];
+    }
+
+    for (int i = 0; i &lt; e.length; i++) {
+      thing[i] ^= QrMath.gexp(QrMath.glog(e[i]) + ratio);
+    }
+
+    // recursive call
+    return (new QrPolynomial(thing, 0)).mod(e);
+  }
+}
+</pre>
 </div>
 <div>
 <h3>Constructors</h3>
@@ -72,7 +135,45 @@ QrPolynomial._internal(this._myThings);
 </div>
 </div>
 <div>
-<h3>Methods</h3>
+<h3>Properties</h3>
+<div class="field"><h4 id="length">
+<button class="show-code">Code</button>
+final int         <strong>length</strong> <a class="anchor-link"
+            href="#length"
+            title="Permalink to QrPolynomial.length">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+int get length =&gt; _myThings.length;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to QrPolynomial.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Operators</h3>
+<div class="method"><h4 id="[]">
+<button class="show-code">Code</button>
+<strong>operator []</strong>(int index) <a class="anchor-link" href="#[]"
+              title="Permalink to QrPolynomial.operator []">#</a></h4>
+<div class="doc">
+<pre class="source">
+operator [](int index) =&gt; _myThings[index];
+</pre>
+</div>
+</div>
 <div class="method inherited"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
@@ -89,16 +190,9 @@ bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="[]">
-<button class="show-code">Code</button>
-<strong>operator []</strong>(int index) <a class="anchor-link" href="#[]"
-              title="Permalink to QrPolynomial.operator []">#</a></h4>
-<div class="doc">
-<pre class="source">
-operator [](int index) =&gt; _myThings[index];
-</pre>
 </div>
-</div>
+<div>
+<h3>Methods</h3>
 <div class="method inherited"><h4 id="hashCode">
 <button class="show-code">Code</button>
 int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
@@ -114,16 +208,6 @@ there are no distribution guarantees.</p>
 equality operator as well to maintain consistency.</p>
 <pre class="source">
 external int hashCode();
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="length">
-<button class="show-code">Code</button>
-int <strong>get length</strong>() <a class="anchor-link" href="#length"
-              title="Permalink to QrPolynomial.get length">#</a></h4>
-<div class="doc">
-<pre class="source">
-int get length =&gt; _myThings.length;
 </pre>
 </div>
 </div>
@@ -195,14 +279,52 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="runtimeType">
+<div class="method inherited"><h4 id="Object">
 <button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to QrPolynomial.get runtimeType">#</a></h4>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to QrPolynomial.Object">#</a></h4>
 <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
 <pre class="source">
-external Type get runtimeType;
+const Object();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="QrPolynomial">
+<button class="show-code">Code</button>
+factory <strong>QrPolynomial</strong>(List&lt;int&gt; thing, int shift) <a class="anchor-link" href="#QrPolynomial"
+              title="Permalink to QrPolynomial.QrPolynomial">#</a></h4>
+<div class="doc">
+<pre class="source">
+factory	QrPolynomial(List&lt;int&gt; thing, int shift) {
+
+  var offset = 0;
+
+  while (offset &lt; thing.length &amp;&amp; thing[offset] == 0) {
+    offset++;
+  }
+
+  final List&lt;int&gt; values = QrMath.getZeroedList(thing.length - offset + shift);
+
+  for (var i = 0; i &lt; thing.length - offset; i++) {
+    values[i] = thing[i + offset];
+  }
+
+  return new QrPolynomial._internal(values);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="QrPolynomial._internal">
+<button class="show-code">Code</button>
+new <strong>QrPolynomial._internal</strong>(List&lt;int&gt; _myThings) <a class="anchor-link" href="#QrPolynomial._internal"
+              title="Permalink to QrPolynomial.QrPolynomial._internal">#</a></h4>
+<div class="doc">
+<pre class="source">
+QrPolynomial._internal(this._myThings);
 </pre>
 </div>
 </div>

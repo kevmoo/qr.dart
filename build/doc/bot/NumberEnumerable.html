@@ -2,7 +2,7 @@
         <html>
         <head>
                 <meta charset="utf-8">
-        <title>NumberEnumerable&lt;T&gt; class / bot Library / Dart Documentation</title>
+        <title>NumberEnumerable&lt;T&gt; abstract class / bot Library / Dart Documentation</title>
         <link rel="stylesheet" type="text/css"
             href="../styles.css">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
@@ -27,11 +27,60 @@
 </div>
 <div class="content">
         <h2><strong>NumberEnumerable&lt;T extends num&gt;</strong>
-          class
+          abstract class
         </h2>
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+abstract class NumberEnumerable&lt;T extends num&gt; extends Enumerable&lt;T&gt; {
+
+  const NumberEnumerable() : super();
+
+  factory NumberEnumerable.from(Iterable&lt;T&gt; source) {
+    requireArgumentNotNull(source, 'source');
+    return new _SimpleNumEnumerable&lt;T&gt;(source);
+  }
+
+  factory NumberEnumerable.fromRange(int start, int count) {
+    return new _RangeEnumerable(start, count);
+  }
+
+  num sum() {
+    num theSum = 0;
+    for(final n in this) {
+      theSum += n;
+    }
+    return theSum;
+  }
+
+  num average() {
+    int theCount = 0;
+    num theSum = 0;
+    for(final n in this) {
+      theSum += n;
+      theCount++;
+    }
+    return theSum / theCount;
+  }
+
+  num max() {
+    num theMax = null;
+    for(final n in this) {
+      theMax = theMax == null ? n : math.max(theMax, n);
+    }
+    return theMax;
+  }
+
+  num min() {
+    num theMin = null;
+    for(final n in this) {
+      theMin = theMin == null ? n : math.min(theMin, n);
+    }
+    return theMin;
+  }
+}
+</pre>
 </div>
 <h3>Extends</h3>
 <p>
@@ -75,7 +124,36 @@ factory NumberEnumerable.fromRange(int start, int count) {
 </div>
 </div>
 <div>
-<h3>Methods</h3>
+<h3>Properties</h3>
+<div class="field inherited"><h4 id="length">
+<button class="show-code">Code</button>
+final int         <strong>length</strong> <a class="anchor-link"
+            href="#length"
+            title="Permalink to NumberEnumerable&lt;T&gt;.length">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Collection </div><div class="doc">
+<p>Returns the number of elements in this collection.</p>
+<pre class="source">
+int get length;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to NumberEnumerable&lt;T&gt;.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Operators</h3>
 <div class="method inherited"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
@@ -92,6 +170,9 @@ bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
+</div>
+<div>
+<h3>Methods</h3>
 <div class="method inherited"><h4 id="aggregate">
 <button class="show-code">Code</button>
 Object <strong>aggregate</strong>(Object seed, <a href="../bot/Func2.html">Func2</a> f) <a class="anchor-link" href="#aggregate"
@@ -172,6 +253,29 @@ Enumerable&lt;T&gt; distinct([Func2&lt;T, T, bool&gt; comparer = null]) {
     comparer = (a,b) =&gt; a == b;
   }
   return new _FuncEnumerable(this, (s) =&gt; new _DistinctIterator(s, comparer));
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="Enumerable">
+<button class="show-code">Code</button>
+const <strong>Enumerable</strong>() <a class="anchor-link" href="#Enumerable"
+              title="Permalink to NumberEnumerable&lt;T&gt;.Enumerable">#</a></h4>
+<div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
+<pre class="source">
+const Enumerable();
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="Enumerable.fromIterable">
+<button class="show-code">Code</button>
+factory <strong>Enumerable.fromIterable</strong>(Iterable&lt;<a href="../bot/NumberEnumerable.html">T</a>&gt; source) <a class="anchor-link" href="#Enumerable.fromIterable"
+              title="Permalink to NumberEnumerable&lt;T&gt;.Enumerable.fromIterable">#</a></h4>
+<div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
+<pre class="source">
+factory Enumerable.fromIterable(Iterable&lt;T&gt; source) {
+  requireArgumentNotNull(source, 'source');
+  return new _SimpleEnumerable&lt;T&gt;(source);
 }
 </pre>
 </div>
@@ -375,17 +479,6 @@ String join([String separator = ', ']) {
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="length">
-<button class="show-code">Code</button>
-int <strong>get length</strong>() <a class="anchor-link" href="#length"
-              title="Permalink to NumberEnumerable&lt;T&gt;.get length">#</a></h4>
-<div class="inherited-from">inherited from Collection </div><div class="doc">
-<p>Returns the number of elements in this collection.</p>
-<pre class="source">
-int get length;
-</pre>
-</div>
-</div>
 <div class="method inherited"><h4 id="map">
 <button class="show-code">Code</button>
 <a href="../bot/Enumerable.html">Enumerable</a> <strong>map</strong>(<a href="../bot/Func1.html">Func1</a> f) <a class="anchor-link" href="#map"
@@ -453,6 +546,55 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="NumberEnumerable">
+<button class="show-code">Code</button>
+const <strong>NumberEnumerable</strong>() <a class="anchor-link" href="#NumberEnumerable"
+              title="Permalink to NumberEnumerable&lt;T&gt;.NumberEnumerable">#</a></h4>
+<div class="doc">
+<pre class="source">
+const NumberEnumerable() : super();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="NumberEnumerable.from">
+<button class="show-code">Code</button>
+factory <strong>NumberEnumerable.from</strong>(Iterable&lt;<a href="../bot/NumberEnumerable.html">T</a>&gt; source) <a class="anchor-link" href="#NumberEnumerable.from"
+              title="Permalink to NumberEnumerable&lt;T&gt;.NumberEnumerable.from">#</a></h4>
+<div class="doc">
+<pre class="source">
+factory NumberEnumerable.from(Iterable&lt;T&gt; source) {
+  requireArgumentNotNull(source, 'source');
+  return new _SimpleNumEnumerable&lt;T&gt;(source);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="NumberEnumerable.fromRange">
+<button class="show-code">Code</button>
+factory <strong>NumberEnumerable.fromRange</strong>(int start, int count) <a class="anchor-link" href="#NumberEnumerable.fromRange"
+              title="Permalink to NumberEnumerable&lt;T&gt;.NumberEnumerable.fromRange">#</a></h4>
+<div class="doc">
+<pre class="source">
+factory NumberEnumerable.fromRange(int start, int count) {
+  return new _RangeEnumerable(start, count);
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="Object">
+<button class="show-code">Code</button>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to NumberEnumerable&lt;T&gt;.Object">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
+<pre class="source">
+const Object();
+</pre>
+</div>
+</div>
 <div class="method inherited"><h4 id="reduce">
 <button class="show-code">Code</button>
 <strong>reduce</strong>(initialValue, combine(previousValue, <a href="../bot/NumberEnumerable.html">T</a> element)) <a class="anchor-link" href="#reduce"
@@ -471,17 +613,6 @@ Dynamic reduce(Dynamic initialValue,
                Dynamic combine(Dynamic previousValue, T element)) {
   return Collections.reduce(this, initialValue, combine);
 }
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="runtimeType">
-<button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to NumberEnumerable&lt;T&gt;.get runtimeType">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
-<pre class="source">
-external Type get runtimeType;
 </pre>
 </div>
 </div>

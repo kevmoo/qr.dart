@@ -32,6 +32,43 @@
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+class TextureInput {
+  final String name;
+  final Box frame;
+  final bool rotated;
+  final bool trimmed;
+  final Box sourceColorRect;
+  final Size sourceSize;
+  final ImageElement image;
+
+  TextureInput(this.name, this.frame, this.rotated, this.trimmed,
+      this.sourceColorRect, this.sourceSize, this.image);
+
+  factory TextureInput.fromHash(String keyName, Map&lt;String, Dynamic&gt; map,
+      ImageElement image) {
+    final frame = _parseRect(map['frame']);
+    final sourceColorRect = _parseRect(map['spriteSourceSize']);
+    final sourceSize = _parseCoordinate(map['sourceSize']);
+
+    return new TextureInput(keyName, frame, map['rotated'], map['trimmed'],
+        sourceColorRect, sourceSize, image);
+  }
+
+  String toString() =&gt; this.name;
+
+  static Box _parseRect(Map&lt;String, Dynamic&gt; input) {
+    var coord = new Coordinate(input['x'], input['y']);
+    var size = new Size(input['w'], input['h']);
+
+    return new Box.fromCoordSize(coord, size);
+  }
+
+  static Size _parseCoordinate(Map&lt;String, Dynamic&gt; input) {
+    return new Size(input['w'], input['h']);
+  }
+}
+</pre>
 </div>
 <div>
 <h3>Constructors</h3>
@@ -66,7 +103,7 @@ factory TextureInput.fromHash(String keyName, Map&lt;String, Dynamic&gt; map,
 </div>
 </div>
 <div>
-<h3>Fields</h3>
+<h3>Properties</h3>
 <div class="field"><h4 id="frame">
 <button class="show-code">Code</button>
 final <a href="../bot/Box.html">Box</a>         <strong>frame</strong> <a class="anchor-link"
@@ -115,6 +152,19 @@ final bool rotated;
 </pre>
 </div>
 </div>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to TextureInput.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
 <div class="field"><h4 id="sourceColorRect">
 <button class="show-code">Code</button>
 final <a href="../bot/Box.html">Box</a>         <strong>sourceColorRect</strong> <a class="anchor-link"
@@ -153,7 +203,7 @@ final bool trimmed;
 </div>
 </div>
 <div>
-<h3>Methods</h3>
+<h3>Operators</h3>
 <div class="method inherited"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
@@ -170,6 +220,9 @@ bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
+</div>
+<div>
+<h3>Methods</h3>
 <div class="method inherited"><h4 id="hashCode">
 <button class="show-code">Code</button>
 int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
@@ -205,14 +258,46 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="runtimeType">
+<div class="method inherited"><h4 id="Object">
 <button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to TextureInput.get runtimeType">#</a></h4>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to TextureInput.Object">#</a></h4>
 <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
 <pre class="source">
-external Type get runtimeType;
+const Object();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="TextureInput">
+<button class="show-code">Code</button>
+new <strong>TextureInput</strong>(String name, <a href="../bot/Box.html">Box</a> frame, bool rotated, bool trimmed, <a href="../bot/Box.html">Box</a> sourceColorRect, <a href="../bot/Size.html">Size</a> sourceSize, ImageElement image) <a class="anchor-link" href="#TextureInput"
+              title="Permalink to TextureInput.TextureInput">#</a></h4>
+<div class="doc">
+<pre class="source">
+TextureInput(this.name, this.frame, this.rotated, this.trimmed,
+    this.sourceColorRect, this.sourceSize, this.image);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="TextureInput.fromHash">
+<button class="show-code">Code</button>
+factory <strong>TextureInput.fromHash</strong>(String keyName, Map&lt;String, Dynamic&gt; map, ImageElement image) <a class="anchor-link" href="#TextureInput.fromHash"
+              title="Permalink to TextureInput.TextureInput.fromHash">#</a></h4>
+<div class="doc">
+<pre class="source">
+factory TextureInput.fromHash(String keyName, Map&lt;String, Dynamic&gt; map,
+    ImageElement image) {
+  final frame = _parseRect(map['frame']);
+  final sourceColorRect = _parseRect(map['spriteSourceSize']);
+  final sourceSize = _parseCoordinate(map['sourceSize']);
+
+  return new TextureInput(keyName, frame, map['rotated'], map['trimmed'],
+      sourceColorRect, sourceSize, image);
+}
 </pre>
 </div>
 </div>

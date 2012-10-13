@@ -2,7 +2,7 @@
         <html>
         <head>
                 <meta charset="utf-8">
-        <title>HtmlView class / bot_html Library / Dart Documentation</title>
+        <title>HtmlView abstract class / bot_html Library / Dart Documentation</title>
         <link rel="stylesheet" type="text/css"
             href="../styles.css">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
@@ -27,11 +27,37 @@
 </div>
 <div class="content">
         <h2><strong>HtmlView</strong>
-          class
+          abstract class
         </h2>
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+abstract class HtmlView {
+  final DivElement _node;
+  bool _dirty;
+
+  HtmlView(this._node) {
+    requireArgumentNotNull(this._node, 'node');
+    _dirty = true;
+  }
+
+  DivElement get node =&gt; _node;
+
+  void markDirty() {
+    _dirty = true;
+  }
+
+  void draw() {
+    if(_dirty) {
+      updateElement();
+      _dirty = false;
+    }
+  }
+
+  abstract void updateElement();
+}
+</pre>
 </div>
 <div>
 <h3>Constructors</h3>
@@ -50,7 +76,35 @@ HtmlView(this._node) {
 </div>
 </div>
 <div>
-<h3>Methods</h3>
+<h3>Properties</h3>
+<div class="field"><h4 id="node">
+<button class="show-code">Code</button>
+final DivElement         <strong>node</strong> <a class="anchor-link"
+            href="#node"
+            title="Permalink to HtmlView.node">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+DivElement get node =&gt; _node;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to HtmlView.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Operators</h3>
 <div class="method inherited"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
@@ -67,6 +121,9 @@ bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
+</div>
+<div>
+<h3>Methods</h3>
 <div class="method"><h4 id="draw">
 <button class="show-code">Code</button>
 void <strong>draw</strong>() <a class="anchor-link" href="#draw"
@@ -100,6 +157,19 @@ external int hashCode();
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="HtmlView">
+<button class="show-code">Code</button>
+new <strong>HtmlView</strong>(DivElement _node) <a class="anchor-link" href="#HtmlView"
+              title="Permalink to HtmlView.HtmlView">#</a></h4>
+<div class="doc">
+<pre class="source">
+HtmlView(this._node) {
+  requireArgumentNotNull(this._node, 'node');
+  _dirty = true;
+}
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="markDirty">
 <button class="show-code">Code</button>
 void <strong>markDirty</strong>() <a class="anchor-link" href="#markDirty"
@@ -109,16 +179,6 @@ void <strong>markDirty</strong>() <a class="anchor-link" href="#markDirty"
 void markDirty() {
   _dirty = true;
 }
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="node">
-<button class="show-code">Code</button>
-DivElement <strong>get node</strong>() <a class="anchor-link" href="#node"
-              title="Permalink to HtmlView.get node">#</a></h4>
-<div class="doc">
-<pre class="source">
-DivElement get node =&gt; _node;
 </pre>
 </div>
 </div>
@@ -139,14 +199,17 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="runtimeType">
+<div class="method inherited"><h4 id="Object">
 <button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to HtmlView.get runtimeType">#</a></h4>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to HtmlView.Object">#</a></h4>
 <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
 <pre class="source">
-external Type get runtimeType;
+const Object();
 </pre>
 </div>
 </div>

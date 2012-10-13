@@ -2,7 +2,7 @@
         <html>
         <head>
                 <meta charset="utf-8">
-        <title>ListBase&lt;T&gt; class / bot Library / Dart Documentation</title>
+        <title>ListBase&lt;T&gt; abstract class / bot Library / Dart Documentation</title>
         <link rel="stylesheet" type="text/css"
             href="../styles.css">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
@@ -27,11 +27,196 @@
 </div>
 <div class="content">
         <h2><strong>ListBase&lt;T&gt;</strong>
-          class
+          abstract class
         </h2>
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+abstract class ListBase&lt;T&gt; extends Enumerable&lt;T&gt; implements List&lt;T&gt; {
+
+  const ListBase();
+
+  //
+  // Iterable bits
+  //
+  /**
+   * Returns an [Iterator] that iterates over this [Iterable] object.
+   */
+  Iterator&lt;T&gt; iterator() {
+    return new IndexIterator&lt;T&gt;(length, (i) =&gt; this[i]);
+  }
+
+  //
+  // Collection bits
+  //
+  /**
+   * Applies the function [f] to each element of this collection.
+   */
+  void forEach(void f(T element)) {
+    for(var i = 0; i &lt; length; i++) {
+      f(this[i]);
+    }
+  }
+
+  /**
+   * Returns true if every elements of this collection satisify the
+   * predicate [f]. Returns false otherwise.
+   */
+  bool every(bool f(T element)) {
+    for (var i = 0; i &lt; length; i++) {
+      if(!f(this[i])) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /**
+   * Returns true if one element of this collection satisfies the
+   * predicate [f]. Returns false otherwise.
+   */
+  bool some(bool f(T element)) {
+    for (var i = 0; i &lt; length; i++) {
+      if(f(this[i])) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Returns true if there is no element in this collection.
+   */
+  bool isEmpty() =&gt; length == 0;
+
+  /**
+   * Returns the number of elements in this collection.
+   */
+  abstract int get length;
+
+  /**
+   * Returns the element at the given [index] in the list or throws
+   * an [IndexOutOfRangeException] if [index] is out of bounds.
+   */
+  abstract T operator [](int index);
+
+  /**
+   * Returns the first index of [element] in the list. Searches the
+   * list from index [start] to the length of the list. Returns
+   * -1 if [element] is not found.
+   */
+  int indexOf(T element, [int start=0]) {
+    for (var i = start; i &lt; length; i++) {
+      if(this[i] == element) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+  /**
+   * Returns the last index of [element] in the list. Searches the
+   * list from index [start] to 0. Returns -1 if [element] is not found.
+   */
+  int lastIndexOf(T element, [int start=0]) {
+    // DARTBUG: having trouble testing this in the compiler. :-/
+    var lastIndex = -1;
+    for (var i = start; i &lt; length; i++) {
+      if(this[i] == element) {
+        lastIndex = i;
+      }
+    }
+    return lastIndex;
+  }
+
+  /**
+   * Returns the last element of the list, or throws an out of bounds
+   * exception if the list is empty.
+   */
+  T last() =&gt; this[this.length-1];
+
+  /**
+   * Returns a new list containing [itemCount] elements from the list,
+   * starting at [start].
+   * Returns an empty list if [itemCount] is 0.
+   * Throws an [IllegalArgumentException] if [itemCount] is negative.
+   * Throws an [IndexOutOfRangeException] if [start] or
+   * [:start + itemCount - 1:] are out of range.
+   */
+  List&lt;T&gt; getRange(int start, int itemCount)  {
+    requireArgument(itemCount &gt;= 0, 'count');
+
+    final lastIndex = start + itemCount - 1;
+
+    if(itemCount &gt; 0) {
+      if(start &lt; 0) {
+        throw new IndexOutOfRangeException(start);
+      }
+      else if(lastIndex &gt;= length) {
+        throw new IndexOutOfRangeException(lastIndex);
+      }
+    }
+
+    var list = new List&lt;T&gt;();
+    for(var i = start; i &lt;= lastIndex; i++) {
+      list.add(this[i]);
+    }
+    return list;
+  }
+
+  //
+  // Mutation operations are explicitly not supported in the baseclass
+  //
+  void set length(int newLength) {
+    throw const UnsupportedOperationException('Mutation operations are not supported');
+  }
+
+  void operator []=(int index, T value) {
+    throw const UnsupportedOperationException('Mutation operations are not supported');
+  }
+
+  void add(T value) {
+    throw const UnsupportedOperationException('Mutation operations are not supported');
+  }
+
+  void addLast(T value) {
+    throw const UnsupportedOperationException('Mutation operations are not supported');
+  }
+
+  void addAll(Collection&lt;T&gt; value) {
+    throw const UnsupportedOperationException('Mutation operations are not supported');
+  }
+
+  void sort(Func2&lt;T,T,int&gt; comparer) {
+    throw const UnsupportedOperationException('Mutation operations are not supported');
+  }
+
+  void clear() {
+    throw const UnsupportedOperationException('Mutation operations are not supported');
+  }
+
+  T removeAt(int index) {
+    throw const UnsupportedOperationException('Mutation operations are not supported');
+  }
+
+  T removeLast() {
+    throw const UnsupportedOperationException('Mutation operations are not supported');
+  }
+
+  void setRange(int start, int length, List&lt;T&gt; from, [int startFrom]) {
+    throw const UnsupportedOperationException('Mutation operations are not supported');
+  }
+
+  void removeRange(int start, int length) {
+    throw const UnsupportedOperationException('Mutation operations are not supported');
+  }
+
+  void insertRange(int start, int length, [T initialValue]) {
+    throw const UnsupportedOperationException('Mutation operations are not supported');
+  }
+}
+</pre>
 </div>
 <h3>Extends</h3>
 <p>
@@ -56,23 +241,48 @@ const ListBase();
 </div>
 </div>
 <div>
-<h3>Methods</h3>
-<div class="method inherited"><h4 id="==">
+<h3>Properties</h3>
+<div class="method"><h4 id="length">
+abstract int <strong>get length</strong> <a class="anchor-link" href="#length"
+              title="Permalink to ListBase&lt;T&gt;.get length">#</a></h4>
+<div class="doc">
+<p>Returns the number of elements in this collection.</p>
+</div>
+</div>
+<div class="method"><h4 id="length=">
 <button class="show-code">Code</button>
-bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
-              title="Permalink to ListBase&lt;T&gt;.operator ==">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>The equality operator.</p>
-<p>The default behavior for all <code>Object</code>s is to return true if and
-only if <code>this</code> and 
-<span class="param">other</span> are the same object.</p>
-<p>If a subclass overrides the equality operator it should override
-the <code>hashCode</code> method as well to maintain consistency.</p>
+void <strong>set length</strong>(int newLength) <a class="anchor-link" href="#length="
+              title="Permalink to ListBase&lt;T&gt;.set length">#</a></h4>
+<div class="doc">
+<div class="inherited">
+<p>Changes the length of the list. If 
+<span class="param">newLength</span> is greater than
+the current <a class="crossref" href="../bot/ListBase.html#length">length</a>, entries are initialized to <code>null</code>. Throws
+an <code>UnsupportedOperationException</code> if the list is not extendable.</p>
+<div class="docs-inherited-from">docs inherited from List&lt;<a href="../bot/ListBase.html">E</a>&gt; </div></div>
 <pre class="source">
-bool operator ==(other) =&gt; identical(this, other);
+void set length(int newLength) {
+  throw const UnsupportedOperationException('Mutation operations are not supported');
+}
 </pre>
 </div>
 </div>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to ListBase&lt;T&gt;.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Operators</h3>
 <div class="method"><h4 id="[]">
 abstract <a href="../bot/ListBase.html">T</a> <strong>operator []</strong>(int index) <a class="anchor-link" href="#[]"
               title="Permalink to ListBase&lt;T&gt;.operator []">#</a></h4>
@@ -102,6 +312,25 @@ void operator []=(int index, T value) {
 </pre>
 </div>
 </div>
+<div class="method inherited"><h4 id="==">
+<button class="show-code">Code</button>
+bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
+              title="Permalink to ListBase&lt;T&gt;.operator ==">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>The equality operator.</p>
+<p>The default behavior for all <code>Object</code>s is to return true if and
+only if <code>this</code> and 
+<span class="param">other</span> are the same object.</p>
+<p>If a subclass overrides the equality operator it should override
+the <code>hashCode</code> method as well to maintain consistency.</p>
+<pre class="source">
+bool operator ==(other) =&gt; identical(this, other);
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
 <div class="method"><h4 id="add">
 <button class="show-code">Code</button>
 void <strong>add</strong>(<a href="../bot/ListBase.html">T</a> value) <a class="anchor-link" href="#add"
@@ -236,6 +465,29 @@ Enumerable&lt;T&gt; distinct([Func2&lt;T, T, bool&gt; comparer = null]) {
     comparer = (a,b) =&gt; a == b;
   }
   return new _FuncEnumerable(this, (s) =&gt; new _DistinctIterator(s, comparer));
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="Enumerable">
+<button class="show-code">Code</button>
+const <strong>Enumerable</strong>() <a class="anchor-link" href="#Enumerable"
+              title="Permalink to ListBase&lt;T&gt;.Enumerable">#</a></h4>
+<div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
+<pre class="source">
+const Enumerable();
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="Enumerable.fromIterable">
+<button class="show-code">Code</button>
+factory <strong>Enumerable.fromIterable</strong>(Iterable&lt;<a href="../bot/ListBase.html">T</a>&gt; source) <a class="anchor-link" href="#Enumerable.fromIterable"
+              title="Permalink to ListBase&lt;T&gt;.Enumerable.fromIterable">#</a></h4>
+<div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
+<pre class="source">
+factory Enumerable.fromIterable(Iterable&lt;T&gt; source) {
+  requireArgumentNotNull(source, 'source');
+  return new _SimpleEnumerable&lt;T&gt;(source);
 }
 </pre>
 </div>
@@ -568,28 +820,45 @@ int lastIndexOf(T element, [int start=0]) {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="length">
-abstract int <strong>get length</strong>() <a class="anchor-link" href="#length"
-              title="Permalink to ListBase&lt;T&gt;.get length">#</a></h4>
-<div class="doc">
-<p>Returns the number of elements in this collection.</p>
-</div>
-</div>
-<div class="method"><h4 id="length=">
+<div class="method inherited"><h4 id="List">
 <button class="show-code">Code</button>
-void <strong>set length</strong>(int newLength) <a class="anchor-link" href="#length="
-              title="Permalink to ListBase&lt;T&gt;.set length">#</a></h4>
-<div class="doc">
-<div class="inherited">
-<p>Changes the length of the list. If 
-<span class="param">newLength</span> is greater than
-the current <a class="crossref" href="../bot/ListBase.html#length">length</a>, entries are initialized to <code>null</code>. Throws
-an <code>UnsupportedOperationException</code> if the list is not extendable.</p>
-<div class="docs-inherited-from">docs inherited from List&lt;<a href="../bot/ListBase.html">E</a>&gt; </div></div>
+new <strong>List</strong>([int length]) <a class="anchor-link" href="#List"
+              title="Permalink to ListBase&lt;T&gt;.List">#</a></h4>
+<div class="inherited-from">inherited from List </div><div class="doc">
+<p>Creates a list of the given 
+<span class="param">length</span>.</p>
+<p>If no 
+<span class="param">length</span> argument is supplied an extendable list of
+length 0 is created.</p>
+<p>If a 
+<span class="param">length</span> argument is supplied, a fixed size list of that
+length is created.</p>
 <pre class="source">
-void set length(int newLength) {
-  throw const UnsupportedOperationException('Mutation operations are not supported');
-}
+List([int length]);
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="List.from">
+<button class="show-code">Code</button>
+new <strong>List.from</strong>(Iterable&lt;<a href="../bot/ListBase.html">E</a>&gt; other) <a class="anchor-link" href="#List.from"
+              title="Permalink to ListBase&lt;T&gt;.List.from">#</a></h4>
+<div class="inherited-from">inherited from List </div><div class="doc">
+<p>Creates a list with the elements of 
+<span class="param">other</span>. The order in
+the list will be the order provided by the iterator of 
+<span class="param">other</span>.</p>
+<pre class="source">
+List.from(Iterable&lt;E&gt; other);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="ListBase">
+<button class="show-code">Code</button>
+const <strong>ListBase</strong>() <a class="anchor-link" href="#ListBase"
+              title="Permalink to ListBase&lt;T&gt;.ListBase">#</a></h4>
+<div class="doc">
+<pre class="source">
+const ListBase();
 </pre>
 </div>
 </div>
@@ -625,6 +894,20 @@ invocation.</p>
 <code>noSuchMethodError</code>.</p>
 <pre class="source">
 external Dynamic noSuchMethod(String name, List args);
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="Object">
+<button class="show-code">Code</button>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to ListBase&lt;T&gt;.Object">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
+<pre class="source">
+const Object();
 </pre>
 </div>
 </div>
@@ -715,17 +998,6 @@ Throws an <code>IndexOutOfRangeException</code> if
 void removeRange(int start, int length) {
   throw const UnsupportedOperationException('Mutation operations are not supported');
 }
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="runtimeType">
-<button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to ListBase&lt;T&gt;.get runtimeType">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
-<pre class="source">
-external Type get runtimeType;
 </pre>
 </div>
 </div>

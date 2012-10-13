@@ -32,6 +32,64 @@
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+class BungeeNum {
+  num _target;
+  num _current;
+  num _velocity;
+
+  BungeeNum(num target, [num current]) {
+    this.target = target;
+    if(current == null) {
+      current = target;
+    }
+    this.current = current;
+  }
+
+  num get target =&gt; _target;
+
+  void set target(num value) {
+    requireArgument(isValidNumber(value), 'value');
+    _target = value;
+  }
+
+  num get current =&gt; _current;
+
+  void set current(num value) {
+    requireArgument(isValidNumber(value), 'value');
+    _current = value;
+  }
+
+  bool update() {
+    assert(isValidNumber(_target));
+    assert(isValidNumber(_current));
+
+    if(_velocity == null) {
+      _velocity = 0;
+    } else {
+      _velocity *= 0.8;
+    }
+    assert(isValidNumber(_velocity));
+
+    final force = _target - _current;
+
+    _velocity += (force * 0.05);
+
+    _current += _velocity;
+
+    final delta = (_current - _target).abs();
+
+    if(delta &lt; 0.01 &amp;&amp; _velocity.abs() &lt; 0.01) {
+      _current = _target;
+      _velocity = null;
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+}
+</pre>
 </div>
 <div>
 <h3>Constructors</h3>
@@ -53,7 +111,59 @@ BungeeNum(num target, [num current]) {
 </div>
 </div>
 <div>
-<h3>Methods</h3>
+<h3>Properties</h3>
+<div class="field"><h4 id="current">
+<button class="show-code">Code</button>
+num         <strong>current</strong> <a class="anchor-link"
+            href="#current"
+            title="Permalink to BungeeNum.current">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num get current =&gt; _current;
+</pre>
+<pre class="source">
+void set current(num value) {
+  requireArgument(isValidNumber(value), 'value');
+  _current = value;
+}
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to BungeeNum.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="target">
+<button class="show-code">Code</button>
+num         <strong>target</strong> <a class="anchor-link"
+            href="#target"
+            title="Permalink to BungeeNum.target">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num get target =&gt; _target;
+</pre>
+<pre class="source">
+void set target(num value) {
+  requireArgument(isValidNumber(value), 'value');
+  _target = value;
+}
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Operators</h3>
 <div class="method inherited"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
@@ -70,25 +180,21 @@ bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="current">
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method"><h4 id="BungeeNum">
 <button class="show-code">Code</button>
-num <strong>get current</strong>() <a class="anchor-link" href="#current"
-              title="Permalink to BungeeNum.get current">#</a></h4>
+new <strong>BungeeNum</strong>(num target, [num current]) <a class="anchor-link" href="#BungeeNum"
+              title="Permalink to BungeeNum.BungeeNum">#</a></h4>
 <div class="doc">
 <pre class="source">
-num get current =&gt; _current;
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="current=">
-<button class="show-code">Code</button>
-void <strong>set current</strong>(num value) <a class="anchor-link" href="#current="
-              title="Permalink to BungeeNum.set current">#</a></h4>
-<div class="doc">
-<pre class="source">
-void set current(num value) {
-  requireArgument(isValidNumber(value), 'value');
-  _current = value;
+BungeeNum(num target, [num current]) {
+  this.target = target;
+  if(current == null) {
+    current = target;
+  }
+  this.current = current;
 }
 </pre>
 </div>
@@ -128,37 +234,17 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="runtimeType">
+<div class="method inherited"><h4 id="Object">
 <button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to BungeeNum.get runtimeType">#</a></h4>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to BungeeNum.Object">#</a></h4>
 <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
 <pre class="source">
-external Type get runtimeType;
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="target">
-<button class="show-code">Code</button>
-num <strong>get target</strong>() <a class="anchor-link" href="#target"
-              title="Permalink to BungeeNum.get target">#</a></h4>
-<div class="doc">
-<pre class="source">
-num get target =&gt; _target;
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="target=">
-<button class="show-code">Code</button>
-void <strong>set target</strong>(num value) <a class="anchor-link" href="#target="
-              title="Permalink to BungeeNum.set target">#</a></h4>
-<div class="doc">
-<pre class="source">
-void set target(num value) {
-  requireArgument(isValidNumber(value), 'value');
-  _target = value;
-}
+const Object();
 </pre>
 </div>
 </div>

@@ -32,6 +32,72 @@
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+class RetainedDebug {
+  static void borderElements(stage) {
+    var ctx = stage.ctx;
+    ctx.save();
+    ctx.globalAlpha = 0.5;
+    ctx.lineWidth = 5;
+    ctx.beginPath();
+    _borderElement(ctx, stage.rootElement);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  static void borderHitTest(Stage stage, Coordinate point){
+    var ctx = stage.ctx;
+
+    var hits = RetainedUtil.hitTest(stage, point);
+
+    if(hits.length &gt; 0){
+      ctx.save();
+      ctx.lineWidth = 2;
+
+      hits.forEach((e) {
+        _borderElement(ctx, e, true);
+      });
+      ctx.restore();
+    }
+  }
+
+  static void _borderElement(CanvasRenderingContext2D ctx, PElement element,
+                             [bool excludeChildren = false,
+                             Func1&lt;PElement, bool&gt; filter = null]) {
+    if (filter == null || filter(element)) {
+      _borderElementCore(ctx, element);
+    }
+
+    if (!excludeChildren) {
+      for (var i = 0; i &lt; element.visualChildCount; i++) {
+        var e = element.getVisualChild(i);
+        _borderElement(ctx, e, false, filter);
+      }
+    }
+  }
+
+  static void _borderElementCore(CanvasRenderingContext2D ctx, PElement element) {
+    if (Mouse.isMouseDirectlyOver(element)) {
+      ctx.strokeStyle = 'red';
+    } else if (Mouse.isMouseOver(element)) {
+      ctx.strokeStyle = 'pink';
+    } else if (element.cacheEnabled) {
+      ctx.strokeStyle = 'yellow';
+    } else {
+      ctx.strokeStyle = 'orange';
+    }
+
+    final corners = RetainedUtil.getCorners(element);
+
+    ctx.beginPath();
+    ctx.moveTo(corners[3].x, corners[3].y);
+    for(final p in corners) {
+      ctx.lineTo(p.x, p.y);
+    }
+    ctx.stroke();
+  }
+}
+</pre>
 </div>
 <div>
 <h3>Static Methods</h3>
@@ -80,7 +146,23 @@ static void borderHitTest(Stage stage, Coordinate point){
 </div>
 </div>
 <div>
-<h3>Methods</h3>
+<h3>Properties</h3>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to RetainedDebug.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Operators</h3>
 <div class="method inherited"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
@@ -97,6 +179,9 @@ bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
+</div>
+<div>
+<h3>Methods</h3>
 <div class="method inherited"><h4 id="hashCode">
 <button class="show-code">Code</button>
 int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
@@ -132,14 +217,17 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="runtimeType">
+<div class="method inherited"><h4 id="Object">
 <button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to RetainedDebug.get runtimeType">#</a></h4>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to RetainedDebug.Object">#</a></h4>
 <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
 <pre class="source">
-external Type get runtimeType;
+const Object();
 </pre>
 </div>
 </div>

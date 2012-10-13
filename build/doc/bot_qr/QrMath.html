@@ -32,14 +32,77 @@
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+class QrMath {
+  static ReadOnlyCollection&lt;int&gt; _logTable;
+  static ReadOnlyCollection&lt;int&gt; _expTable;
+
+  static List&lt;int&gt; getZeroedList(int count) {
+    final l = new List&lt;int&gt;();
+    l.insertRange(0, count, 0);
+    return l;
+  }
+
+  static glog(n) {
+
+    if (n &lt; 1) {
+      throw 'glog($n)';
+    }
+
+    return LOG_TABLE[n];
+  }
+
+  static gexp(n) {
+
+    while (n &lt; 0) {
+      n += 255;
+    }
+
+    while (n &gt;= 256) {
+      n -= 255;
+    }
+
+    return EXP_TABLE[n];
+  }
+
+  static get EXP_TABLE {
+    if(_expTable == null) {
+      var t = QrMath.getZeroedList(256);
+      for (int i = 0; i &lt; 8; i++) {
+        t[i] = 1 &lt;&lt; i;
+      }
+      for (int i = 8; i &lt; 256; i++) {
+        t[i] = t[i - 4] ^ t[i - 5] ^ t[i - 6] ^ t[i - 8];
+      }
+      _expTable = new ReadOnlyCollection.wrap(t);
+    }
+    return _expTable;
+  }
+
+  static get LOG_TABLE {
+    if(_logTable == null) {
+      var t = QrMath.getZeroedList(256);
+      // this was the code I had in pl
+      // only to 255? seems really weird
+      for (int i = 0; i &lt; 255; i++) {
+        t[EXP_TABLE[i]] = i;
+      }
+      _logTable = new ReadOnlyCollection.wrap(t);
+    }
+    return _logTable;
+  }
+}
+</pre>
 </div>
 <div>
-<h3>Static Methods</h3>
-<div class="method"><h4 id="EXP_TABLE">
+<h3>Static Properties</h3>
+<div class="field"><h4 id="EXP_TABLE">
 <button class="show-code">Code</button>
-<strong>get EXP_TABLE</strong>() <a class="anchor-link" href="#EXP_TABLE"
-              title="Permalink to QrMath.get EXP_TABLE">#</a></h4>
-<div class="doc">
+final         <strong>EXP_TABLE</strong> <a class="anchor-link"
+            href="#EXP_TABLE"
+            title="Permalink to QrMath.EXP_TABLE">#</a>
+        </h4>
+        <div class="doc">
 <pre class="source">
 static get EXP_TABLE {
   if(_expTable == null) {
@@ -57,6 +120,32 @@ static get EXP_TABLE {
 </pre>
 </div>
 </div>
+<div class="field"><h4 id="LOG_TABLE">
+<button class="show-code">Code</button>
+final         <strong>LOG_TABLE</strong> <a class="anchor-link"
+            href="#LOG_TABLE"
+            title="Permalink to QrMath.LOG_TABLE">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+static get LOG_TABLE {
+  if(_logTable == null) {
+    var t = QrMath.getZeroedList(256);
+    // this was the code I had in pl
+    // only to 255? seems really weird
+    for (int i = 0; i &lt; 255; i++) {
+      t[EXP_TABLE[i]] = i;
+    }
+    _logTable = new ReadOnlyCollection.wrap(t);
+  }
+  return _logTable;
+}
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Static Methods</h3>
 <div class="method"><h4 id="getZeroedList">
 <button class="show-code">Code</button>
 List&lt;int&gt; <strong>getZeroedList</strong>(int count) <a class="anchor-link" href="#getZeroedList"
@@ -67,6 +156,23 @@ static List&lt;int&gt; getZeroedList(int count) {
   final l = new List&lt;int&gt;();
   l.insertRange(0, count, 0);
   return l;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="glog">
+<button class="show-code">Code</button>
+<strong>glog</strong>(n) <a class="anchor-link" href="#glog"
+              title="Permalink to QrMath.glog">#</a></h4>
+<div class="doc">
+<pre class="source">
+static glog(n) {
+
+  if (n &lt; 1) {
+    throw 'glog($n)';
+  }
+
+  return LOG_TABLE[n];
 }
 </pre>
 </div>
@@ -92,47 +198,25 @@ static gexp(n) {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="glog">
-<button class="show-code">Code</button>
-<strong>glog</strong>(n) <a class="anchor-link" href="#glog"
-              title="Permalink to QrMath.glog">#</a></h4>
-<div class="doc">
-<pre class="source">
-static glog(n) {
-
-  if (n &lt; 1) {
-    throw 'glog($n)';
-  }
-
-  return LOG_TABLE[n];
-}
-</pre>
 </div>
-</div>
-<div class="method"><h4 id="LOG_TABLE">
+<div>
+<h3>Properties</h3>
+<div class="field inherited"><h4 id="runtimeType">
 <button class="show-code">Code</button>
-<strong>get LOG_TABLE</strong>() <a class="anchor-link" href="#LOG_TABLE"
-              title="Permalink to QrMath.get LOG_TABLE">#</a></h4>
-<div class="doc">
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to QrMath.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
 <pre class="source">
-static get LOG_TABLE {
-  if(_logTable == null) {
-    var t = QrMath.getZeroedList(256);
-    // this was the code I had in pl
-    // only to 255? seems really weird
-    for (int i = 0; i &lt; 255; i++) {
-      t[EXP_TABLE[i]] = i;
-    }
-    _logTable = new ReadOnlyCollection.wrap(t);
-  }
-  return _logTable;
-}
+external Type get runtimeType;
 </pre>
 </div>
 </div>
 </div>
 <div>
-<h3>Methods</h3>
+<h3>Operators</h3>
 <div class="method inherited"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
@@ -149,6 +233,9 @@ bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
+</div>
+<div>
+<h3>Methods</h3>
 <div class="method inherited"><h4 id="hashCode">
 <button class="show-code">Code</button>
 int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
@@ -184,14 +271,17 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="runtimeType">
+<div class="method inherited"><h4 id="Object">
 <button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to QrMath.get runtimeType">#</a></h4>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to QrMath.Object">#</a></h4>
 <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
 <pre class="source">
-external Type get runtimeType;
+const Object();
 </pre>
 </div>
 </div>

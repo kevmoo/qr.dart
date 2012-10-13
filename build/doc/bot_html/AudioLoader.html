@@ -32,6 +32,47 @@
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+class AudioLoader extends ResourceLoader&lt;AudioBuffer&gt; {
+  final AudioContext context;
+
+  AudioLoader(this.context, Iterable&lt;String&gt; urlList) :
+    super(urlList);
+
+  void _doLoad(String blobUrl) {
+    // Load buffer asynchronously
+    final HttpRequest arrayBufferRequest = new HttpRequest();
+    arrayBufferRequest.open("GET", blobUrl, true);
+    arrayBufferRequest.responseType = "arraybuffer";
+
+    arrayBufferRequest.on.load.add((args) {
+      // Asynchronously decode the audio file data in request.response
+      context.decodeAudioData(
+        arrayBufferRequest.response,
+        (buffer) =&gt; _saveBuffer(blobUrl, buffer),
+        (buffer) =&gt; _onAudioLoadError(blobUrl, 'decode error', buffer));
+    });
+
+    arrayBufferRequest.on.error.add((args) {
+      _onAudioLoadError(blobUrl, 'BufferLoader: XHR error', args);
+    });
+
+    arrayBufferRequest.send();
+  }
+
+  void _onAudioLoadError(String blobUrl, String description, error) {
+    print(['Error!', description, error]);
+    _loadResourceFailed(blobUrl);
+  }
+
+  void _saveBuffer(String blobUrl, AudioBuffer buffer) {
+    if (buffer == null) {
+      _onAudioLoadError(blobUrl, 'null buffer', '');
+    }
+    _loadResourceSucceed(blobUrl, buffer);
+  }
+}
+</pre>
 </div>
 <h3>Extends</h3>
 <p>
@@ -51,7 +92,33 @@ AudioLoader(this.context, Iterable&lt;String&gt; urlList) :
 </div>
 </div>
 <div>
-<h3>Fields</h3>
+<h3>Properties</h3>
+<div class="field inherited"><h4 id="completedBytes">
+<button class="show-code">Code</button>
+final int         <strong>completedBytes</strong> <a class="anchor-link"
+            href="#completedBytes"
+            title="Permalink to AudioLoader.completedBytes">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_html/ResourceLoader.html">ResourceLoader</a> </div><div class="doc">
+<pre class="source">
+int get completedBytes {
+  return _entries.selectNumbers((e) =&gt; e.completedBytes).sum();
+}
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="completedCount">
+<button class="show-code">Code</button>
+final int         <strong>completedCount</strong> <a class="anchor-link"
+            href="#completedCount"
+            title="Permalink to AudioLoader.completedCount">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_html/ResourceLoader.html">ResourceLoader</a> </div><div class="doc">
+<pre class="source">
+int get completedCount =&gt; _entries.count((e) =&gt; e.completed);
+</pre>
+</div>
+</div>
 <div class="field"><h4 id="context">
 <button class="show-code">Code</button>
 final AudioContext         <strong>context</strong> <a class="anchor-link"
@@ -64,9 +131,78 @@ final AudioContext context;
 </pre>
 </div>
 </div>
+<div class="field inherited"><h4 id="loaded">
+<button class="show-code">Code</button>
+final <a href="../bot/EventRoot.html">EventRoot</a>         <strong>loaded</strong> <a class="anchor-link"
+            href="#loaded"
+            title="Permalink to AudioLoader.loaded">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_html/ResourceLoader.html">ResourceLoader</a> </div><div class="doc">
+<pre class="source">
+EventRoot get loaded =&gt; _loadedEvent;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="progress">
+<button class="show-code">Code</button>
+final <a href="../bot/EventRoot.html">EventRoot</a>         <strong>progress</strong> <a class="anchor-link"
+            href="#progress"
+            title="Permalink to AudioLoader.progress">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_html/ResourceLoader.html">ResourceLoader</a> </div><div class="doc">
+<pre class="source">
+EventRoot get progress =&gt; _progressEvent;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to AudioLoader.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="state">
+<button class="show-code">Code</button>
+final String         <strong>state</strong> <a class="anchor-link"
+            href="#state"
+            title="Permalink to AudioLoader.state">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_html/ResourceLoader.html">ResourceLoader</a> </div><div class="doc">
+<pre class="source">
+String get state =&gt; _state;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="totalBytes">
+<button class="show-code">Code</button>
+final int         <strong>totalBytes</strong> <a class="anchor-link"
+            href="#totalBytes"
+            title="Permalink to AudioLoader.totalBytes">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_html/ResourceLoader.html">ResourceLoader</a> </div><div class="doc">
+<pre class="source">
+int get totalBytes {
+  return _entries.selectNumbers((e) {
+    if(e.totalBytes == null) {
+      return _defaultSize;
+    } else {
+      return e.totalBytes;
+    }
+  }).sum();
+}
+</pre>
+</div>
+</div>
 </div>
 <div>
-<h3>Methods</h3>
+<h3>Operators</h3>
 <div class="method inherited"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
@@ -83,25 +219,17 @@ bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="completedBytes">
-<button class="show-code">Code</button>
-int <strong>get completedBytes</strong>() <a class="anchor-link" href="#completedBytes"
-              title="Permalink to AudioLoader.get completedBytes">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_html/ResourceLoader.html">ResourceLoader</a> </div><div class="doc">
-<pre class="source">
-int get completedBytes {
-  return _entries.selectNumbers((e) =&gt; e.completedBytes).sum();
-}
-</pre>
 </div>
-</div>
-<div class="method inherited"><h4 id="completedCount">
+<div>
+<h3>Methods</h3>
+<div class="method"><h4 id="AudioLoader">
 <button class="show-code">Code</button>
-int <strong>get completedCount</strong>() <a class="anchor-link" href="#completedCount"
-              title="Permalink to AudioLoader.get completedCount">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_html/ResourceLoader.html">ResourceLoader</a> </div><div class="doc">
+new <strong>AudioLoader</strong>(AudioContext context, Iterable&lt;String&gt; urlList) <a class="anchor-link" href="#AudioLoader"
+              title="Permalink to AudioLoader.AudioLoader">#</a></h4>
+<div class="doc">
 <pre class="source">
-int get completedCount =&gt; _entries.count((e) =&gt; e.completed);
+AudioLoader(this.context, Iterable&lt;String&gt; urlList) :
+  super(urlList);
 </pre>
 </div>
 </div>
@@ -149,16 +277,6 @@ void load() {
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="loaded">
-<button class="show-code">Code</button>
-<a href="../bot/EventRoot.html">EventRoot</a> <strong>get loaded</strong>() <a class="anchor-link" href="#loaded"
-              title="Permalink to AudioLoader.get loaded">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_html/ResourceLoader.html">ResourceLoader</a> </div><div class="doc">
-<pre class="source">
-EventRoot get loaded =&gt; _loadedEvent;
-</pre>
-</div>
-</div>
 <div class="method inherited"><h4 id="noSuchMethod">
 <button class="show-code">Code</button>
 <strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
@@ -176,34 +294,28 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="progress">
+<div class="method inherited"><h4 id="Object">
 <button class="show-code">Code</button>
-<a href="../bot/EventRoot.html">EventRoot</a> <strong>get progress</strong>() <a class="anchor-link" href="#progress"
-              title="Permalink to AudioLoader.get progress">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_html/ResourceLoader.html">ResourceLoader</a> </div><div class="doc">
-<pre class="source">
-EventRoot get progress =&gt; _progressEvent;
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="runtimeType">
-<button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to AudioLoader.get runtimeType">#</a></h4>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to AudioLoader.Object">#</a></h4>
 <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
 <pre class="source">
-external Type get runtimeType;
+const Object();
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="state">
+<div class="method inherited"><h4 id="ResourceLoader">
 <button class="show-code">Code</button>
-String <strong>get state</strong>() <a class="anchor-link" href="#state"
-              title="Permalink to AudioLoader.get state">#</a></h4>
+new <strong>ResourceLoader</strong>(Iterable&lt;String&gt; urlList) <a class="anchor-link" href="#ResourceLoader"
+              title="Permalink to AudioLoader.ResourceLoader">#</a></h4>
 <div class="inherited-from">inherited from <a href="../bot_html/ResourceLoader.html">ResourceLoader</a> </div><div class="doc">
 <pre class="source">
-String get state =&gt; _state;
+ResourceLoader(Iterable&lt;String&gt; urlList) :
+  _entries = _buildRORE(urlList);
 </pre>
 </div>
 </div>
@@ -215,24 +327,6 @@ String <strong>toString</strong>() <a class="anchor-link" href="#toString"
 <p>Returns a string representation of this object.</p>
 <pre class="source">
 external String toString();
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="totalBytes">
-<button class="show-code">Code</button>
-int <strong>get totalBytes</strong>() <a class="anchor-link" href="#totalBytes"
-              title="Permalink to AudioLoader.get totalBytes">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_html/ResourceLoader.html">ResourceLoader</a> </div><div class="doc">
-<pre class="source">
-int get totalBytes {
-  return _entries.selectNumbers((e) {
-    if(e.totalBytes == null) {
-      return _defaultSize;
-    } else {
-      return e.totalBytes;
-    }
-  }).sum();
-}
 </pre>
 </div>
 </div>

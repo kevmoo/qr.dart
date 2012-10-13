@@ -32,6 +32,15 @@
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+class ShapeType {
+  static const ShapeType rect = const ShapeType._internal("Boxangle");
+  static const ShapeType ellipse = const ShapeType._internal("Ellipse");
+  final String name;
+
+  const ShapeType._internal(this.name);
+}
+</pre>
 </div>
 <div>
 <h3>Constructors</h3>
@@ -47,10 +56,10 @@ const ShapeType._internal(this.name);
 </div>
 </div>
 <div>
-<h3>Static Fields</h3>
+<h3>Static Properties</h3>
 <div class="field"><h4 id="ellipse">
 <button class="show-code">Code</button>
-<a href="../bot_retained/ShapeType.html">ShapeType</a>         <strong>ellipse</strong> <a class="anchor-link"
+const <a href="../bot_retained/ShapeType.html">ShapeType</a>         <strong>ellipse</strong> <a class="anchor-link"
             href="#ellipse"
             title="Permalink to ShapeType.ellipse">#</a>
         </h4>
@@ -62,7 +71,7 @@ static const ShapeType ellipse = const ShapeType._internal("Ellipse");
 </div>
 <div class="field"><h4 id="rect">
 <button class="show-code">Code</button>
-<a href="../bot_retained/ShapeType.html">ShapeType</a>         <strong>rect</strong> <a class="anchor-link"
+const <a href="../bot_retained/ShapeType.html">ShapeType</a>         <strong>rect</strong> <a class="anchor-link"
             href="#rect"
             title="Permalink to ShapeType.rect">#</a>
         </h4>
@@ -74,7 +83,7 @@ static const ShapeType rect = const ShapeType._internal("Boxangle");
 </div>
 </div>
 <div>
-<h3>Fields</h3>
+<h3>Properties</h3>
 <div class="field"><h4 id="name">
 <button class="show-code">Code</button>
 final String         <strong>name</strong> <a class="anchor-link"
@@ -87,9 +96,22 @@ final String name;
 </pre>
 </div>
 </div>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to ShapeType.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
 </div>
 <div>
-<h3>Methods</h3>
+<h3>Operators</h3>
 <div class="method inherited"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
@@ -106,6 +128,9 @@ bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
+</div>
+<div>
+<h3>Methods</h3>
 <div class="method inherited"><h4 id="hashCode">
 <button class="show-code">Code</button>
 int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
@@ -141,14 +166,27 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="runtimeType">
+<div class="method inherited"><h4 id="Object">
 <button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to ShapeType.get runtimeType">#</a></h4>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to ShapeType.Object">#</a></h4>
 <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
 <pre class="source">
-external Type get runtimeType;
+const Object();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="ShapeType._internal">
+<button class="show-code">Code</button>
+const <strong>ShapeType._internal</strong>(String name) <a class="anchor-link" href="#ShapeType._internal"
+              title="Permalink to ShapeType.ShapeType._internal">#</a></h4>
+<div class="doc">
+<pre class="source">
+const ShapeType._internal(this.name);
 </pre>
 </div>
 </div>

@@ -32,6 +32,63 @@
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+class FutureValueResult&lt;TOutput&gt; {
+  static final String _valueKey = 'value';
+  static final String _exceptionKey = 'exception';
+
+  final TOutput value;
+  final exception;
+  final Func1&lt;Dynamic, TOutput&gt; _outputSerializer;
+
+  FutureValueResult(this.value, [this._outputSerializer]) :
+    exception = null;
+
+  FutureValueResult.fromException(this.exception)
+  : value = null, _outputSerializer = null {
+    requireArgumentNotNull(exception, 'exception');
+  }
+
+  factory FutureValueResult.fromMap(Map value) {
+    requireArgumentNotNull(value, 'value');
+    requireArgument(isMyMap(value), 'value');
+
+    final ex = value[_exceptionKey];
+    if(ex != null) {
+      return new FutureValueResult.fromException(ex);
+    } else {
+      return new FutureValueResult(value[_valueKey]);
+    }
+  }
+
+  bool get isException =&gt; exception != null;
+
+  Map toMap() {
+    // would love to use consts here, but the analyzer doesn't like it
+    // DARTBUG: http://code.google.com/p/dart/issues/detail?id=4207
+    final rawValue = _serialize(value);
+    return { 'value' : rawValue, 'exception' : exception };
+  }
+
+  static bool isMyMap(Map value) {
+    return value != null &amp;&amp; value.length == 2 &amp;&amp;
+        value.containsKey(_valueKey) &amp;&amp; value.containsKey(_exceptionKey);
+  }
+
+  bool operator ==(FutureValueResult other) {
+    return other != null &amp;&amp;
+        other.value == value &amp;&amp; other.exception == exception;
+  }
+
+  Dynamic _serialize(TOutput output) {
+    if(_outputSerializer == null) {
+      return output;
+    } else {
+      return _outputSerializer(output);
+    }
+  }
+}
+</pre>
 </div>
 <div>
 <h3>Constructors</h3>
@@ -97,7 +154,7 @@ static bool isMyMap(Map value) {
 </div>
 </div>
 <div>
-<h3>Fields</h3>
+<h3>Properties</h3>
 <div class="field"><h4 id="exception">
 <button class="show-code">Code</button>
 final         <strong>exception</strong> <a class="anchor-link"
@@ -107,6 +164,31 @@ final         <strong>exception</strong> <a class="anchor-link"
         <div class="doc">
 <pre class="source">
 final exception;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="isException">
+<button class="show-code">Code</button>
+final bool         <strong>isException</strong> <a class="anchor-link"
+            href="#isException"
+            title="Permalink to FutureValueResult&lt;TOutput&gt;.isException">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+bool get isException =&gt; exception != null;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to FutureValueResult&lt;TOutput&gt;.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
 </pre>
 </div>
 </div>
@@ -124,7 +206,7 @@ final TOutput value;
 </div>
 </div>
 <div>
-<h3>Methods</h3>
+<h3>Operators</h3>
 <div class="method"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(<a href="../bot_async/FutureValueResult.html">FutureValueResult</a> other) <a class="anchor-link" href="#=="
@@ -142,6 +224,53 @@ the <code>hashCode</code> method as well to maintain consistency.</p>
 bool operator ==(FutureValueResult other) {
   return other != null &amp;&amp;
       other.value == value &amp;&amp; other.exception == exception;
+}
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method"><h4 id="FutureValueResult">
+<button class="show-code">Code</button>
+new <strong>FutureValueResult</strong>(<a href="../bot_async/FutureValueResult.html">TOutput</a> value, [<a href="../bot/Func1.html">Func1</a> _outputSerializer]) <a class="anchor-link" href="#FutureValueResult"
+              title="Permalink to FutureValueResult&lt;TOutput&gt;.FutureValueResult">#</a></h4>
+<div class="doc">
+<pre class="source">
+FutureValueResult(this.value, [this._outputSerializer]) :
+  exception = null;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="FutureValueResult.fromException">
+<button class="show-code">Code</button>
+new <strong>FutureValueResult.fromException</strong>(exception) <a class="anchor-link" href="#FutureValueResult.fromException"
+              title="Permalink to FutureValueResult&lt;TOutput&gt;.FutureValueResult.fromException">#</a></h4>
+<div class="doc">
+<pre class="source">
+FutureValueResult.fromException(this.exception)
+: value = null, _outputSerializer = null {
+  requireArgumentNotNull(exception, 'exception');
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="FutureValueResult.fromMap">
+<button class="show-code">Code</button>
+factory <strong>FutureValueResult.fromMap</strong>(Map value) <a class="anchor-link" href="#FutureValueResult.fromMap"
+              title="Permalink to FutureValueResult&lt;TOutput&gt;.FutureValueResult.fromMap">#</a></h4>
+<div class="doc">
+<pre class="source">
+factory FutureValueResult.fromMap(Map value) {
+  requireArgumentNotNull(value, 'value');
+  requireArgument(isMyMap(value), 'value');
+
+  final ex = value[_exceptionKey];
+  if(ex != null) {
+    return new FutureValueResult.fromException(ex);
+  } else {
+    return new FutureValueResult(value[_valueKey]);
+  }
 }
 </pre>
 </div>
@@ -164,16 +293,6 @@ external int hashCode();
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="isException">
-<button class="show-code">Code</button>
-bool <strong>get isException</strong>() <a class="anchor-link" href="#isException"
-              title="Permalink to FutureValueResult&lt;TOutput&gt;.get isException">#</a></h4>
-<div class="doc">
-<pre class="source">
-bool get isException =&gt; exception != null;
-</pre>
-</div>
-</div>
 <div class="method inherited"><h4 id="noSuchMethod">
 <button class="show-code">Code</button>
 <strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
@@ -191,14 +310,17 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="runtimeType">
+<div class="method inherited"><h4 id="Object">
 <button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to FutureValueResult&lt;TOutput&gt;.get runtimeType">#</a></h4>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to FutureValueResult&lt;TOutput&gt;.Object">#</a></h4>
 <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
 <pre class="source">
-external Type get runtimeType;
+const Object();
 </pre>
 </div>
 </div>

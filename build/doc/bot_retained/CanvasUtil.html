@@ -32,9 +32,111 @@
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+class CanvasUtil {
+  /**
+   * (√2 - 1) * 4 / 3;
+   */
+  static final num kappa = 0.55228474983079339840225163227959743809289583383593;
+
+  static Size getCanvasSize(CanvasElement canvasElement) {
+    return new Size(canvasElement.width, canvasElement.height);
+  }
+
+  static void transform(CanvasRenderingContext2D ctx, AffineTransform tx){
+    requireArgumentNotNull(ctx, 'ctx');
+    requireArgumentNotNull(tx, 'tx');
+
+    ctx.transform(tx.scaleX, tx.shearY, tx.shearX,
+      tx.scaleY, tx.translateX, tx.translateY);
+  }
+
+  static void centeredCircle(CanvasRenderingContext2D ctx,
+                             num x, num y, num radius) {
+    ellipse(ctx, x - radius, y - radius, radius * 2, radius * 2);
+  }
+
+  static void star(CanvasRenderingContext2D ctx, num x, num y,
+                   num outterRadius, [int pointCount = 5]) {
+    requireArgumentNotNull(ctx, 'ctx');
+    requireArgument(isValidNumber(x), 'x');
+    requireArgument(isValidNumber(y), 'y');
+    requireArgument(isValidNumber(outterRadius), 'outterRadius');
+    requireArgument(outterRadius &gt;= 0, 'outterRadius');
+    requireArgument(isValidNumber(pointCount), 'pointCount');
+    requireArgument(pointCount &gt;= 5, 'pointCount');
+
+    final sliceSize = math.PI / pointCount;
+
+    // some day I'll document how I found this
+    // It was a lot of paper + WolframAlpha
+    // value is the ratio of the inner radius to the outter radius
+    // to give the star 'clean lines'
+    final innerRatio = math.cos(2 * sliceSize) / math.cos(sliceSize);
+
+    final center = new Coordinate(x, y);
+    final tx = new AffineTransform();
+    final outterVect = new Vector(0, -outterRadius);
+    final innerVect = outterVect.scale(innerRatio);
+
+    ctx.beginPath();
+
+    for(var i = 0; i &lt; pointCount; i++) {
+      // outter point
+      var radians = i * 2 * sliceSize;
+      tx.setToRotation(radians, x, y);
+      var point = outterVect + center;
+      point = tx.transformCoordinate(point);
+      if(i == 0) {
+        ctx.moveTo(point.x, point.y);
+      }
+      else {
+        ctx.lineTo(point.x, point.y);
+      }
+
+      // inner point
+      radians = radians + sliceSize;
+      tx.setToRotation(radians, x, y);
+      point = innerVect + center;
+      point = tx.transformCoordinate(point);
+      ctx.lineTo(point.x, point.y);
+    }
+    ctx.closePath();
+  }
+
+  static void drawImage(CanvasRenderingContext2D ctx, ImageElement img,
+                        Box sourceBox, [Box targetBox = null]) {
+
+    if(targetBox == null) {
+      targetBox = new Box(0, 0, sourceBox.width, sourceBox.height);
+    }
+
+    ctx.drawImage(img,
+        sourceBox.left, sourceBox.top, sourceBox.width, sourceBox.height,
+        targetBox.left, targetBox.top, targetBox.width, targetBox.height);
+  }
+
+  static void ellipse(CanvasRenderingContext2D ctx,
+                      num x, num y, num width, num height) {
+    var hB = (width / 2) * kappa,
+      vB = (height / 2) * kappa,
+      eX = x + width,
+      eY = y + height,
+      mX = x + width / 2,
+      mY = y + height / 2;
+    ctx.beginPath();
+    ctx.moveTo(x, mY);
+    ctx.bezierCurveTo(x, mY - vB, mX - hB, y, mX, y);
+    ctx.bezierCurveTo(mX + hB, y, eX, mY - vB, eX, mY);
+    ctx.bezierCurveTo(eX, mY + vB, mX + hB, eY, mX, eY);
+    ctx.bezierCurveTo(mX - hB, eY, x, mY + vB, x, mY);
+    ctx.closePath();
+  }
+}
+</pre>
 </div>
 <div>
-<h3>Static Fields</h3>
+<h3>Static Properties</h3>
 <div class="field"><h4 id="kappa">
 <button class="show-code">Code</button>
 final num         <strong>kappa</strong> <a class="anchor-link"
@@ -51,6 +153,34 @@ static final num kappa = 0.55228474983079339840225163227959743809289583383593;
 </div>
 <div>
 <h3>Static Methods</h3>
+<div class="method"><h4 id="getCanvasSize">
+<button class="show-code">Code</button>
+<a href="../bot/Size.html">Size</a> <strong>getCanvasSize</strong>(CanvasElement canvasElement) <a class="anchor-link" href="#getCanvasSize"
+              title="Permalink to CanvasUtil.getCanvasSize">#</a></h4>
+<div class="doc">
+<pre class="source">
+static Size getCanvasSize(CanvasElement canvasElement) {
+  return new Size(canvasElement.width, canvasElement.height);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="transform">
+<button class="show-code">Code</button>
+void <strong>transform</strong>(CanvasRenderingContext2D ctx, <a href="../bot/AffineTransform.html">AffineTransform</a> tx) <a class="anchor-link" href="#transform"
+              title="Permalink to CanvasUtil.transform">#</a></h4>
+<div class="doc">
+<pre class="source">
+static void transform(CanvasRenderingContext2D ctx, AffineTransform tx){
+  requireArgumentNotNull(ctx, 'ctx');
+  requireArgumentNotNull(tx, 'tx');
+
+  ctx.transform(tx.scaleX, tx.shearY, tx.shearX,
+    tx.scaleY, tx.translateX, tx.translateY);
+}
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="centeredCircle">
 <button class="show-code">Code</button>
 void <strong>centeredCircle</strong>(CanvasRenderingContext2D ctx, num x, num y, num radius) <a class="anchor-link" href="#centeredCircle"
@@ -60,63 +190,6 @@ void <strong>centeredCircle</strong>(CanvasRenderingContext2D ctx, num x, num y,
 static void centeredCircle(CanvasRenderingContext2D ctx,
                            num x, num y, num radius) {
   ellipse(ctx, x - radius, y - radius, radius * 2, radius * 2);
-}
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="drawImage">
-<button class="show-code">Code</button>
-void <strong>drawImage</strong>(CanvasRenderingContext2D ctx, ImageElement img, <a href="../bot/Box.html">Box</a> sourceBox, [<a href="../bot/Box.html">Box</a> targetBox = null]) <a class="anchor-link" href="#drawImage"
-              title="Permalink to CanvasUtil.drawImage">#</a></h4>
-<div class="doc">
-<pre class="source">
-static void drawImage(CanvasRenderingContext2D ctx, ImageElement img,
-                      Box sourceBox, [Box targetBox = null]) {
-
-  if(targetBox == null) {
-    targetBox = new Box(0, 0, sourceBox.width, sourceBox.height);
-  }
-
-  ctx.drawImage(img,
-      sourceBox.left, sourceBox.top, sourceBox.width, sourceBox.height,
-      targetBox.left, targetBox.top, targetBox.width, targetBox.height);
-}
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="ellipse">
-<button class="show-code">Code</button>
-void <strong>ellipse</strong>(CanvasRenderingContext2D ctx, num x, num y, num width, num height) <a class="anchor-link" href="#ellipse"
-              title="Permalink to CanvasUtil.ellipse">#</a></h4>
-<div class="doc">
-<pre class="source">
-static void ellipse(CanvasRenderingContext2D ctx,
-                    num x, num y, num width, num height) {
-  var hB = (width / 2) * kappa,
-    vB = (height / 2) * kappa,
-    eX = x + width,
-    eY = y + height,
-    mX = x + width / 2,
-    mY = y + height / 2;
-  ctx.beginPath();
-  ctx.moveTo(x, mY);
-  ctx.bezierCurveTo(x, mY - vB, mX - hB, y, mX, y);
-  ctx.bezierCurveTo(mX + hB, y, eX, mY - vB, eX, mY);
-  ctx.bezierCurveTo(eX, mY + vB, mX + hB, eY, mX, eY);
-  ctx.bezierCurveTo(mX - hB, eY, x, mY + vB, x, mY);
-  ctx.closePath();
-}
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="getCanvasSize">
-<button class="show-code">Code</button>
-<a href="../bot/Size.html">Size</a> <strong>getCanvasSize</strong>(CanvasElement canvasElement) <a class="anchor-link" href="#getCanvasSize"
-              title="Permalink to CanvasUtil.getCanvasSize">#</a></h4>
-<div class="doc">
-<pre class="source">
-static Size getCanvasSize(CanvasElement canvasElement) {
-  return new Size(canvasElement.width, canvasElement.height);
 }
 </pre>
 </div>
@@ -177,25 +250,70 @@ static void star(CanvasRenderingContext2D ctx, num x, num y,
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="transform">
+<div class="method"><h4 id="drawImage">
 <button class="show-code">Code</button>
-void <strong>transform</strong>(CanvasRenderingContext2D ctx, <a href="../bot/AffineTransform.html">AffineTransform</a> tx) <a class="anchor-link" href="#transform"
-              title="Permalink to CanvasUtil.transform">#</a></h4>
+void <strong>drawImage</strong>(CanvasRenderingContext2D ctx, ImageElement img, <a href="../bot/Box.html">Box</a> sourceBox, [<a href="../bot/Box.html">Box</a> targetBox = null]) <a class="anchor-link" href="#drawImage"
+              title="Permalink to CanvasUtil.drawImage">#</a></h4>
 <div class="doc">
 <pre class="source">
-static void transform(CanvasRenderingContext2D ctx, AffineTransform tx){
-  requireArgumentNotNull(ctx, 'ctx');
-  requireArgumentNotNull(tx, 'tx');
+static void drawImage(CanvasRenderingContext2D ctx, ImageElement img,
+                      Box sourceBox, [Box targetBox = null]) {
 
-  ctx.transform(tx.scaleX, tx.shearY, tx.shearX,
-    tx.scaleY, tx.translateX, tx.translateY);
+  if(targetBox == null) {
+    targetBox = new Box(0, 0, sourceBox.width, sourceBox.height);
+  }
+
+  ctx.drawImage(img,
+      sourceBox.left, sourceBox.top, sourceBox.width, sourceBox.height,
+      targetBox.left, targetBox.top, targetBox.width, targetBox.height);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="ellipse">
+<button class="show-code">Code</button>
+void <strong>ellipse</strong>(CanvasRenderingContext2D ctx, num x, num y, num width, num height) <a class="anchor-link" href="#ellipse"
+              title="Permalink to CanvasUtil.ellipse">#</a></h4>
+<div class="doc">
+<pre class="source">
+static void ellipse(CanvasRenderingContext2D ctx,
+                    num x, num y, num width, num height) {
+  var hB = (width / 2) * kappa,
+    vB = (height / 2) * kappa,
+    eX = x + width,
+    eY = y + height,
+    mX = x + width / 2,
+    mY = y + height / 2;
+  ctx.beginPath();
+  ctx.moveTo(x, mY);
+  ctx.bezierCurveTo(x, mY - vB, mX - hB, y, mX, y);
+  ctx.bezierCurveTo(mX + hB, y, eX, mY - vB, eX, mY);
+  ctx.bezierCurveTo(eX, mY + vB, mX + hB, eY, mX, eY);
+  ctx.bezierCurveTo(mX - hB, eY, x, mY + vB, x, mY);
+  ctx.closePath();
 }
 </pre>
 </div>
 </div>
 </div>
 <div>
-<h3>Methods</h3>
+<h3>Properties</h3>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to CanvasUtil.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Operators</h3>
 <div class="method inherited"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
@@ -212,6 +330,9 @@ bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
+</div>
+<div>
+<h3>Methods</h3>
 <div class="method inherited"><h4 id="hashCode">
 <button class="show-code">Code</button>
 int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
@@ -247,14 +368,17 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="runtimeType">
+<div class="method inherited"><h4 id="Object">
 <button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to CanvasUtil.get runtimeType">#</a></h4>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to CanvasUtil.Object">#</a></h4>
 <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
 <pre class="source">
-external Type get runtimeType;
+const Object();
 </pre>
 </div>
 </div>

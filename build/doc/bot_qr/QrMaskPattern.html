@@ -32,12 +32,24 @@
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+class QrMaskPattern {
+  static const int PATTERN000 = 0;
+  static const int PATTERN001 = 1;
+  static const int PATTERN010 = 2;
+  static const int PATTERN011 = 3;
+  static const int PATTERN100 = 4;
+  static const int PATTERN101 = 5;
+  static const int PATTERN110 = 6;
+  static const int PATTERN111 = 7;
+}
+</pre>
 </div>
 <div>
-<h3>Static Fields</h3>
+<h3>Static Properties</h3>
 <div class="field"><h4 id="PATTERN000">
 <button class="show-code">Code</button>
-int         <strong>PATTERN000</strong> <a class="anchor-link"
+const int         <strong>PATTERN000</strong> <a class="anchor-link"
             href="#PATTERN000"
             title="Permalink to QrMaskPattern.PATTERN000">#</a>
         </h4>
@@ -49,7 +61,7 @@ static const int PATTERN000 = 0;
 </div>
 <div class="field"><h4 id="PATTERN001">
 <button class="show-code">Code</button>
-int         <strong>PATTERN001</strong> <a class="anchor-link"
+const int         <strong>PATTERN001</strong> <a class="anchor-link"
             href="#PATTERN001"
             title="Permalink to QrMaskPattern.PATTERN001">#</a>
         </h4>
@@ -61,7 +73,7 @@ static const int PATTERN001 = 1;
 </div>
 <div class="field"><h4 id="PATTERN010">
 <button class="show-code">Code</button>
-int         <strong>PATTERN010</strong> <a class="anchor-link"
+const int         <strong>PATTERN010</strong> <a class="anchor-link"
             href="#PATTERN010"
             title="Permalink to QrMaskPattern.PATTERN010">#</a>
         </h4>
@@ -73,7 +85,7 @@ static const int PATTERN010 = 2;
 </div>
 <div class="field"><h4 id="PATTERN011">
 <button class="show-code">Code</button>
-int         <strong>PATTERN011</strong> <a class="anchor-link"
+const int         <strong>PATTERN011</strong> <a class="anchor-link"
             href="#PATTERN011"
             title="Permalink to QrMaskPattern.PATTERN011">#</a>
         </h4>
@@ -85,7 +97,7 @@ static const int PATTERN011 = 3;
 </div>
 <div class="field"><h4 id="PATTERN100">
 <button class="show-code">Code</button>
-int         <strong>PATTERN100</strong> <a class="anchor-link"
+const int         <strong>PATTERN100</strong> <a class="anchor-link"
             href="#PATTERN100"
             title="Permalink to QrMaskPattern.PATTERN100">#</a>
         </h4>
@@ -97,7 +109,7 @@ static const int PATTERN100 = 4;
 </div>
 <div class="field"><h4 id="PATTERN101">
 <button class="show-code">Code</button>
-int         <strong>PATTERN101</strong> <a class="anchor-link"
+const int         <strong>PATTERN101</strong> <a class="anchor-link"
             href="#PATTERN101"
             title="Permalink to QrMaskPattern.PATTERN101">#</a>
         </h4>
@@ -109,7 +121,7 @@ static const int PATTERN101 = 5;
 </div>
 <div class="field"><h4 id="PATTERN110">
 <button class="show-code">Code</button>
-int         <strong>PATTERN110</strong> <a class="anchor-link"
+const int         <strong>PATTERN110</strong> <a class="anchor-link"
             href="#PATTERN110"
             title="Permalink to QrMaskPattern.PATTERN110">#</a>
         </h4>
@@ -121,7 +133,7 @@ static const int PATTERN110 = 6;
 </div>
 <div class="field"><h4 id="PATTERN111">
 <button class="show-code">Code</button>
-int         <strong>PATTERN111</strong> <a class="anchor-link"
+const int         <strong>PATTERN111</strong> <a class="anchor-link"
             href="#PATTERN111"
             title="Permalink to QrMaskPattern.PATTERN111">#</a>
         </h4>
@@ -133,7 +145,23 @@ static const int PATTERN111 = 7;
 </div>
 </div>
 <div>
-<h3>Methods</h3>
+<h3>Properties</h3>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to QrMaskPattern.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Operators</h3>
 <div class="method inherited"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
@@ -150,6 +178,9 @@ bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
+</div>
+<div>
+<h3>Methods</h3>
 <div class="method inherited"><h4 id="hashCode">
 <button class="show-code">Code</button>
 int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
@@ -185,14 +216,17 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="runtimeType">
+<div class="method inherited"><h4 id="Object">
 <button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to QrMaskPattern.get runtimeType">#</a></h4>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to QrMaskPattern.Object">#</a></h4>
 <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
 <pre class="source">
-external Type get runtimeType;
+const Object();
 </pre>
 </div>
 </div>

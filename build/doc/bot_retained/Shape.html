@@ -32,6 +32,39 @@
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+class Shape extends PElement {
+  Dynamic _fillStyle;
+  final ShapeType shapeType;
+
+  Shape(num w, num h, [Dynamic fillStyle = 'blue', this.shapeType = ShapeType.rect])
+    : _fillStyle = fillStyle, super(w, h, true);
+
+  Dynamic get fillStyle =&gt; _fillStyle;
+
+  void set fillStyle(Dynamic value) {
+    _fillStyle = value;
+    invalidateDraw();
+  }
+
+  void drawOverride(CanvasRenderingContext2D ctx) {
+    ctx.fillStyle = _fillStyle;
+    switch(shapeType){
+      case ShapeType.rect:
+        ctx.fillRect(0, 0, size.width, size.height);
+        break;
+      case ShapeType.ellipse:
+        CanvasUtil.ellipse(ctx, 0, 0, this.width, this.height);
+        ctx.fill();
+        break;
+      default:
+        throw "shape not known...";
+    }
+  }
+
+  String toString() =&gt; 'Shape [$_fillStyle, ${shapeType.name}]';
+}
+</pre>
 </div>
 <h3>Extends</h3>
 <p>
@@ -51,7 +84,7 @@ Shape(num w, num h, [Dynamic fillStyle = 'blue', this.shapeType = ShapeType.rect
 </div>
 </div>
 <div>
-<h3>Fields</h3>
+<h3>Properties</h3>
 <div class="field inherited"><h4 id="cacheEnabled">
 <button class="show-code">Code</button>
 final bool         <strong>cacheEnabled</strong> <a class="anchor-link"
@@ -76,6 +109,92 @@ bool clip = false;
 </pre>
 </div>
 </div>
+<div class="field"><h4 id="fillStyle">
+<button class="show-code">Code</button>
+var         <strong>fillStyle</strong> <a class="anchor-link"
+            href="#fillStyle"
+            title="Permalink to Shape.fillStyle">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+Dynamic get fillStyle =&gt; _fillStyle;
+</pre>
+<pre class="source">
+void set fillStyle(Dynamic value) {
+  _fillStyle = value;
+  invalidateDraw();
+}
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="height">
+<button class="show-code">Code</button>
+num         <strong>height</strong> <a class="anchor-link"
+            href="#height"
+            title="Permalink to Shape.height">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
+<pre class="source">
+num get height =&gt; _height;
+</pre>
+<pre class="source">
+void set height(num value) {
+  assert(isValidNumber(value));
+  _height = value;
+  invalidateDraw();
+}
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="invalidated">
+<button class="show-code">Code</button>
+final <a href="../bot/EventRoot.html">EventRoot</a>&lt;<a href="../bot/EventArgs.html">EventArgs</a>&gt;         <strong>invalidated</strong> <a class="anchor-link"
+            href="#invalidated"
+            title="Permalink to Shape.invalidated">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
+<pre class="source">
+EventRoot&lt;EventArgs&gt; get invalidated =&gt; _invalidatedEventHandle;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="isDisposed">
+<button class="show-code">Code</button>
+final bool         <strong>isDisposed</strong> <a class="anchor-link"
+            href="#isDisposed"
+            title="Permalink to Shape.isDisposed">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div><div class="doc">
+<pre class="source">
+bool get isDisposed =&gt; _disposed;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="parent">
+<button class="show-code">Code</button>
+final <a href="../bot_retained/ElementParent.html">ElementParent</a>         <strong>parent</strong> <a class="anchor-link"
+            href="#parent"
+            title="Permalink to Shape.parent">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
+<pre class="source">
+ElementParent get parent =&gt; _parent;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to Shape.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
 <div class="field"><h4 id="shapeType">
 <button class="show-code">Code</button>
 final <a href="../bot_retained/ShapeType.html">ShapeType</a>         <strong>shapeType</strong> <a class="anchor-link"
@@ -88,9 +207,72 @@ final ShapeType shapeType;
 </pre>
 </div>
 </div>
+<div class="field inherited"><h4 id="size">
+<button class="show-code">Code</button>
+<a href="../bot/Size.html">Size</a>         <strong>size</strong> <a class="anchor-link"
+            href="#size"
+            title="Permalink to Shape.size">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
+<pre class="source">
+Size get size =&gt; new Size(_width, _height);
+</pre>
+<pre class="source">
+void set size(Size value) {
+  assert(value.isValid);
+  _width = value.width;
+  _height = value.height;
+  invalidateDraw();
+}
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="updated">
+<button class="show-code">Code</button>
+final <a href="../bot/EventRoot.html">EventRoot</a>&lt;<a href="../bot/EventArgs.html">EventArgs</a>&gt;         <strong>updated</strong> <a class="anchor-link"
+            href="#updated"
+            title="Permalink to Shape.updated">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
+<pre class="source">
+EventRoot&lt;EventArgs&gt; get updated =&gt; _updatedEventHandle;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="visualChildCount">
+<button class="show-code">Code</button>
+final int         <strong>visualChildCount</strong> <a class="anchor-link"
+            href="#visualChildCount"
+            title="Permalink to Shape.visualChildCount">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
+<pre class="source">
+int get visualChildCount =&gt; 0;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="width">
+<button class="show-code">Code</button>
+num         <strong>width</strong> <a class="anchor-link"
+            href="#width"
+            title="Permalink to Shape.width">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
+<pre class="source">
+num get width =&gt; _width;
+</pre>
+<pre class="source">
+void set width(num value) {
+  assert(isValidNumber(value));
+  _width = value;
+  invalidateDraw();
+}
+</pre>
+</div>
+</div>
 </div>
 <div>
-<h3>Methods</h3>
+<h3>Operators</h3>
 <div class="method inherited"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
@@ -107,6 +289,9 @@ bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
+</div>
+<div>
+<h3>Methods</h3>
 <div class="method inherited"><h4 id="addTransform">
 <button class="show-code">Code</button>
 <a href="../bot/AffineTransform.html">AffineTransform</a> <strong>addTransform</strong>() <a class="anchor-link" href="#addTransform"
@@ -211,29 +396,6 @@ void drawOverride(CanvasRenderingContext2D ctx) {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="fillStyle">
-<button class="show-code">Code</button>
-<strong>get fillStyle</strong>() <a class="anchor-link" href="#fillStyle"
-              title="Permalink to Shape.get fillStyle">#</a></h4>
-<div class="doc">
-<pre class="source">
-Dynamic get fillStyle =&gt; _fillStyle;
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="fillStyle=">
-<button class="show-code">Code</button>
-void <strong>set fillStyle</strong>(value) <a class="anchor-link" href="#fillStyle="
-              title="Permalink to Shape.set fillStyle">#</a></h4>
-<div class="doc">
-<pre class="source">
-void set fillStyle(Dynamic value) {
-  _fillStyle = value;
-  invalidateDraw();
-}
-</pre>
-</div>
-</div>
 <div class="method inherited"><h4 id="getTransform">
 <button class="show-code">Code</button>
 <a href="../bot/AffineTransform.html">AffineTransform</a> <strong>getTransform</strong>() <a class="anchor-link" href="#getTransform"
@@ -313,40 +475,6 @@ bool hasVisualChild(PElement element){
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="height">
-<button class="show-code">Code</button>
-num <strong>get height</strong>() <a class="anchor-link" href="#height"
-              title="Permalink to Shape.get height">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
-<pre class="source">
-num get height =&gt; _height;
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="height=">
-<button class="show-code">Code</button>
-void <strong>set height</strong>(num value) <a class="anchor-link" href="#height="
-              title="Permalink to Shape.set height">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
-<pre class="source">
-void set height(num value) {
-  assert(isValidNumber(value));
-  _height = value;
-  invalidateDraw();
-}
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="invalidated">
-<button class="show-code">Code</button>
-<a href="../bot/EventRoot.html">EventRoot</a>&lt;<a href="../bot/EventArgs.html">EventArgs</a>&gt; <strong>get invalidated</strong>() <a class="anchor-link" href="#invalidated"
-              title="Permalink to Shape.get invalidated">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
-<pre class="source">
-EventRoot&lt;EventArgs&gt; get invalidated =&gt; _invalidatedEventHandle;
-</pre>
-</div>
-</div>
 <div class="method inherited"><h4 id="invalidateDraw">
 <button class="show-code">Code</button>
 void <strong>invalidateDraw</strong>() <a class="anchor-link" href="#invalidateDraw"
@@ -360,16 +488,6 @@ void invalidateDraw(){
     _invalidateParent();
   }
 }
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="isDisposed">
-<button class="show-code">Code</button>
-bool <strong>get isDisposed</strong>() <a class="anchor-link" href="#isDisposed"
-              title="Permalink to Shape.get isDisposed">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div><div class="doc">
-<pre class="source">
-bool get isDisposed =&gt; _disposed;
 </pre>
 </div>
 </div>
@@ -390,13 +508,27 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="parent">
+<div class="method inherited"><h4 id="Object">
 <button class="show-code">Code</button>
-<a href="../bot_retained/ElementParent.html">ElementParent</a> <strong>get parent</strong>() <a class="anchor-link" href="#parent"
-              title="Permalink to Shape.get parent">#</a></h4>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to Shape.Object">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
+<pre class="source">
+const Object();
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="PElement">
+<button class="show-code">Code</button>
+new <strong>PElement</strong>(num _width, num _height, [bool cacheEnabled = false]) <a class="anchor-link" href="#PElement"
+              title="Permalink to Shape.PElement">#</a></h4>
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
-ElementParent get parent =&gt; _parent;
+PElement(this._width, this._height, [this.cacheEnabled = false]);
 </pre>
 </div>
 </div>
@@ -414,39 +546,14 @@ void registerParent(ElementParent parent) {
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="runtimeType">
+<div class="method"><h4 id="Shape">
 <button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to Shape.get runtimeType">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
+new <strong>Shape</strong>(num w, num h, [fillStyle = 'blue', <a href="../bot_retained/ShapeType.html">ShapeType</a> shapeType = ShapeType.rect]) <a class="anchor-link" href="#Shape"
+              title="Permalink to Shape.Shape">#</a></h4>
+<div class="doc">
 <pre class="source">
-external Type get runtimeType;
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="size">
-<button class="show-code">Code</button>
-<a href="../bot/Size.html">Size</a> <strong>get size</strong>() <a class="anchor-link" href="#size"
-              title="Permalink to Shape.get size">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
-<pre class="source">
-Size get size =&gt; new Size(_width, _height);
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="size=">
-<button class="show-code">Code</button>
-void <strong>set size</strong>(<a href="../bot/Size.html">Size</a> value) <a class="anchor-link" href="#size="
-              title="Permalink to Shape.set size">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
-<pre class="source">
-void set size(Size value) {
-  assert(value.isValid);
-  _width = value.width;
-  _height = value.height;
-  invalidateDraw();
-}
+Shape(num w, num h, [Dynamic fillStyle = 'blue', this.shapeType = ShapeType.rect])
+  : _fillStyle = fillStyle, super(w, h, true);
 </pre>
 </div>
 </div>
@@ -475,16 +582,6 @@ void update(){
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="updated">
-<button class="show-code">Code</button>
-<a href="../bot/EventRoot.html">EventRoot</a>&lt;<a href="../bot/EventArgs.html">EventArgs</a>&gt; <strong>get updated</strong>() <a class="anchor-link" href="#updated"
-              title="Permalink to Shape.get updated">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
-<pre class="source">
-EventRoot&lt;EventArgs&gt; get updated =&gt; _updatedEventHandle;
-</pre>
-</div>
-</div>
 <div class="method inherited"><h4 id="validateNotDisposed">
 <button class="show-code">Code</button>
 void <strong>validateNotDisposed</strong>() <a class="anchor-link" href="#validateNotDisposed"
@@ -493,40 +590,6 @@ void <strong>validateNotDisposed</strong>() <a class="anchor-link" href="#valida
 <pre class="source">
 void validateNotDisposed() {
   assert(!_disposed);
-}
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="visualChildCount">
-<button class="show-code">Code</button>
-int <strong>get visualChildCount</strong>() <a class="anchor-link" href="#visualChildCount"
-              title="Permalink to Shape.get visualChildCount">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
-<pre class="source">
-int get visualChildCount =&gt; 0;
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="width">
-<button class="show-code">Code</button>
-num <strong>get width</strong>() <a class="anchor-link" href="#width"
-              title="Permalink to Shape.get width">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
-<pre class="source">
-num get width =&gt; _width;
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="width=">
-<button class="show-code">Code</button>
-void <strong>set width</strong>(num value) <a class="anchor-link" href="#width="
-              title="Permalink to Shape.set width">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
-<pre class="source">
-void set width(num value) {
-  assert(isValidNumber(value));
-  _width = value;
-  invalidateDraw();
 }
 </pre>
 </div>

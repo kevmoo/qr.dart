@@ -32,6 +32,71 @@
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+class HslColor implements Hashable {
+  final num h, s, l;
+
+  const HslColor._internal(this.h, this.s, this.l);
+
+  factory HslColor(num h, num s, num l) {
+    requireArgument(isValidNumber(h), 'h');
+    h = (h % 360);
+
+    requireArgument(isValidNumber(s), 's', 'must be a valid number');
+    requireArgument(s &gt;= 0 &amp;&amp; s &lt;= 1, 's', 'must be &gt;= 0 &amp;&amp; &lt;= 1 but was $s');
+    requireArgument(isValidNumber(l), 'l', 'must be a valid number');
+    requireArgument(l &gt;= 0 &amp;&amp; l &lt;= 1, 'l', 'must be &gt;= 0 &amp;&amp; &lt;=1 but was $l');
+
+    return new HslColor._internal(h, s, l);
+  }
+
+  RgbColor toRgb() {
+    final normH = h / 360; // normalize h to fall in [0, 1]
+
+    num r, g, b;
+
+    if (s == 0) {
+      r = g = b = l * 255;
+    } else {
+      var temp1 = 0;
+      var temp2 = 0;
+      if (l &lt; 0.5) {
+        temp2 = l * (1 + s);
+      } else {
+        temp2 = l + s - (s * l);
+      }
+      temp1 = 2 * l - temp2;
+      r = 255 * _hueToRgb(temp1, temp2, normH + (1 / 3));
+      g = 255 * _hueToRgb(temp1, temp2, normH);
+      b = 255 * _hueToRgb(temp1, temp2, normH - (1 / 3));
+    }
+
+    return new RgbColor(r.round().toInt(), g.round().toInt(), b.round().toInt());
+  }
+
+  int hashCode() =&gt; Util.getHashCode([h,s,l]);
+
+  bool operator ==(HslColor other) {
+    return other != null &amp;&amp; other.h == h &amp;&amp; other.s == s &amp;&amp; other.l == l;
+  }
+
+  String toString() =&gt; '{HslColor: $h, $s, $l}';
+
+  static num _hueToRgb(num v1, num v2, num vH) {
+    vH %= 1.0;
+
+    if ((6 * vH) &lt; 1) {
+      return (v1 + (v2 - v1) * 6 * vH);
+    } else if (2 * vH &lt; 1) {
+      return v2;
+    } else if (3 * vH &lt; 2) {
+      return (v1 + (v2 - v1) * ((2 / 3) - vH) * 6);
+    }
+    return v1;
+  }
+
+}
+</pre>
 </div>
 <h3>Implements</h3>
 <p>
@@ -70,7 +135,7 @@ const HslColor._internal(this.h, this.s, this.l);
 </div>
 </div>
 <div>
-<h3>Fields</h3>
+<h3>Properties</h3>
 <div class="field"><h4 id="h">
 <button class="show-code">Code</button>
 final num         <strong>h</strong> <a class="anchor-link"
@@ -95,6 +160,19 @@ final num h, s, l;
 </pre>
 </div>
 </div>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to HslColor.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
 <div class="field"><h4 id="s">
 <button class="show-code">Code</button>
 final num         <strong>s</strong> <a class="anchor-link"
@@ -109,7 +187,7 @@ final num h, s, l;
 </div>
 </div>
 <div>
-<h3>Methods</h3>
+<h3>Operators</h3>
 <div class="method"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(<a href="../bot/HslColor.html">HslColor</a> other) <a class="anchor-link" href="#=="
@@ -130,6 +208,9 @@ bool operator ==(HslColor other) {
 </pre>
 </div>
 </div>
+</div>
+<div>
+<h3>Methods</h3>
 <div class="method"><h4 id="hashCode">
 <button class="show-code">Code</button>
 int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
@@ -150,6 +231,36 @@ int hashCode() =&gt; Util.getHashCode([h,s,l]);
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="HslColor">
+<button class="show-code">Code</button>
+factory <strong>HslColor</strong>(num h, num s, num l) <a class="anchor-link" href="#HslColor"
+              title="Permalink to HslColor.HslColor">#</a></h4>
+<div class="doc">
+<pre class="source">
+factory HslColor(num h, num s, num l) {
+  requireArgument(isValidNumber(h), 'h');
+  h = (h % 360);
+
+  requireArgument(isValidNumber(s), 's', 'must be a valid number');
+  requireArgument(s &gt;= 0 &amp;&amp; s &lt;= 1, 's', 'must be &gt;= 0 &amp;&amp; &lt;= 1 but was $s');
+  requireArgument(isValidNumber(l), 'l', 'must be a valid number');
+  requireArgument(l &gt;= 0 &amp;&amp; l &lt;= 1, 'l', 'must be &gt;= 0 &amp;&amp; &lt;=1 but was $l');
+
+  return new HslColor._internal(h, s, l);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="HslColor._internal">
+<button class="show-code">Code</button>
+const <strong>HslColor._internal</strong>(num h, num s, num l) <a class="anchor-link" href="#HslColor._internal"
+              title="Permalink to HslColor.HslColor._internal">#</a></h4>
+<div class="doc">
+<pre class="source">
+const HslColor._internal(this.h, this.s, this.l);
+</pre>
+</div>
+</div>
 <div class="method inherited"><h4 id="noSuchMethod">
 <button class="show-code">Code</button>
 <strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
@@ -167,14 +278,17 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="runtimeType">
+<div class="method inherited"><h4 id="Object">
 <button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to HslColor.get runtimeType">#</a></h4>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to HslColor.Object">#</a></h4>
 <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
 <pre class="source">
-external Type get runtimeType;
+const Object();
 </pre>
 </div>
 </div>

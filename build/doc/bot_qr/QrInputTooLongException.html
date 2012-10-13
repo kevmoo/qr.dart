@@ -32,6 +32,25 @@
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+class QrInputTooLongException implements Exception {
+  final int providedInput;
+  final int inputLimit;
+  final String message;
+
+  QrInputTooLongException._internal(this.providedInput, this.inputLimit,
+    this.message);
+
+  factory QrInputTooLongException(int providedInput, int inputLimit) {
+    final String message = "Input too long. $providedInput &gt; $inputLimit";
+
+    return new QrInputTooLongException._internal(providedInput, inputLimit,
+      message);
+  }
+
+  String toString() =&gt; 'QrInputTooLongException: $message';
+}
+</pre>
 </div>
 <h3>Implements</h3>
 <p>
@@ -66,7 +85,7 @@ QrInputTooLongException._internal(this.providedInput, this.inputLimit,
 </div>
 </div>
 <div>
-<h3>Fields</h3>
+<h3>Properties</h3>
 <div class="field"><h4 id="inputLimit">
 <button class="show-code">Code</button>
 final int         <strong>inputLimit</strong> <a class="anchor-link"
@@ -103,9 +122,22 @@ final int providedInput;
 </pre>
 </div>
 </div>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to QrInputTooLongException.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
 </div>
 <div>
-<h3>Methods</h3>
+<h3>Operators</h3>
 <div class="method inherited"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
@@ -119,6 +151,19 @@ only if <code>this</code> and
 the <code>hashCode</code> method as well to maintain consistency.</p>
 <pre class="source">
 bool operator ==(other) =&gt; identical(this, other);
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method inherited"><h4 id="Exception">
+<button class="show-code">Code</button>
+const <strong>Exception</strong>([message]) <a class="anchor-link" href="#Exception"
+              title="Permalink to QrInputTooLongException.Exception">#</a></h4>
+<div class="inherited-from">inherited from Exception </div><div class="doc">
+<pre class="source">
+const Exception([var message]);
 </pre>
 </div>
 </div>
@@ -157,14 +202,43 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="runtimeType">
+<div class="method inherited"><h4 id="Object">
 <button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to QrInputTooLongException.get runtimeType">#</a></h4>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to QrInputTooLongException.Object">#</a></h4>
 <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
 <pre class="source">
-external Type get runtimeType;
+const Object();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="QrInputTooLongException">
+<button class="show-code">Code</button>
+factory <strong>QrInputTooLongException</strong>(int providedInput, int inputLimit) <a class="anchor-link" href="#QrInputTooLongException"
+              title="Permalink to QrInputTooLongException.QrInputTooLongException">#</a></h4>
+<div class="doc">
+<pre class="source">
+factory QrInputTooLongException(int providedInput, int inputLimit) {
+  final String message = "Input too long. $providedInput &gt; $inputLimit";
+
+  return new QrInputTooLongException._internal(providedInput, inputLimit,
+    message);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="QrInputTooLongException._internal">
+<button class="show-code">Code</button>
+new <strong>QrInputTooLongException._internal</strong>(int providedInput, int inputLimit, String message) <a class="anchor-link" href="#QrInputTooLongException._internal"
+              title="Permalink to QrInputTooLongException.QrInputTooLongException._internal">#</a></h4>
+<div class="doc">
+<pre class="source">
+QrInputTooLongException._internal(this.providedInput, this.inputLimit,
+  this.message);
 </pre>
 </div>
 </div>

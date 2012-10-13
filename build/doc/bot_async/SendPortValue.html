@@ -32,6 +32,80 @@
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+class SendPortValue&lt;TInput, TOutput&gt; extends FutureValue&lt;TInput, TOutput&gt; {
+  final SendPort _sendPort;
+  final Func1&lt;TInput, Dynamic&gt; inputSerializer;
+  final Func1&lt;Dynamic, TOutput&gt; outputDeserializer;
+  Completer&lt;TOutput&gt; _completer;
+  Future&lt;TOutput&gt; _innerFuture;
+
+  SendPortValue(this._sendPort, {this.inputSerializer, this.outputDeserializer});
+
+  Future&lt;TOutput&gt; getFuture(TInput value) {
+    assert(_completer == null);
+    assert(_innerFuture == null);
+
+    _completer = new Completer&lt;TOutput&gt;();
+
+    if(inputSerializer == null) {
+      _innerFuture = _sendPort.call(value);
+    } else {
+      var serializedValue = inputSerializer(value);
+      _innerFuture = _sendPort.call(serializedValue);
+    }
+    // I don't think this is working yet in isolates
+    // _future.handleException(_futureException);
+    // DARTBUG: http://dartbug.com/3734
+    _innerFuture.then(__futureCompleted);
+
+    return _completer.future;
+  }
+
+  void __futureCompleted(value) {
+    assert(_completer != null);
+    assert(_innerFuture != null);
+    _innerFuture = null;
+
+    if(value is Map &amp;&amp; FutureValueResult.isMyMap(value)) {
+      final fvr = new FutureValueResult.fromMap(value);
+      _sendValueResultCompleted(fvr);
+    } else {
+      _complete(value);
+    }
+  }
+
+  void _sendValueResultCompleted(FutureValueResult&lt;TOutput&gt; value) {
+    if(value.isException) {
+      _completeException(value.exception);
+    } else {
+      _complete(value.value);
+    }
+  }
+
+  void _complete(Dynamic rawValue) {
+    final c = _completer;
+    _completer = null;
+
+    final value = _deserializer(rawValue);
+    c.complete(value);
+  }
+
+  void _completeException(exception) {
+    final c = _completer;
+    _completer = null;
+    c.completeException(exception);
+  }
+
+  TOutput _deserializer(Dynamic input) {
+    if(outputDeserializer == null) {
+      return input;
+    } else {
+      return outputDeserializer(input);
+    }
+  }
+}
+</pre>
 </div>
 <h3>Extends</h3>
 <p>
@@ -50,7 +124,54 @@ SendPortValue(this._sendPort, {this.inputSerializer, this.outputDeserializer});
 </div>
 </div>
 <div>
-<h3>Fields</h3>
+<h3>Properties</h3>
+<div class="field inherited"><h4 id="error">
+<button class="show-code">Code</button>
+final <a href="../bot/EventRoot.html">EventRoot</a>         <strong>error</strong> <a class="anchor-link"
+            href="#error"
+            title="Permalink to SendPortValue&lt;TInput, TOutput&gt;.error">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_async/FutureValue.html">FutureValue</a> </div><div class="doc">
+<pre class="source">
+EventRoot get error =&gt; _errorHandle;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="input">
+<button class="show-code">Code</button>
+<a href="../bot_async/SendPortValue.html">TInput</a>         <strong>input</strong> <a class="anchor-link"
+            href="#input"
+            title="Permalink to SendPortValue&lt;TInput, TOutput&gt;.input">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_async/FutureValue.html">FutureValue</a> </div><div class="doc">
+<pre class="source">
+TInput get input =&gt; _input;
+</pre>
+<pre class="source">
+void set input(TInput value) {
+  _input = value;
+  if(_future == null) {
+    _startFuture();
+  } else {
+    _pending = true;
+  }
+  _inputChangedHandle.fireEvent(EventArgs.empty);
+}
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="inputChanged">
+<button class="show-code">Code</button>
+final <a href="../bot/EventRoot.html">EventRoot</a>&lt;<a href="../bot/EventArgs.html">EventArgs</a>&gt;         <strong>inputChanged</strong> <a class="anchor-link"
+            href="#inputChanged"
+            title="Permalink to SendPortValue&lt;TInput, TOutput&gt;.inputChanged">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_async/FutureValue.html">FutureValue</a> </div><div class="doc">
+<pre class="source">
+EventRoot&lt;EventArgs&gt; get inputChanged =&gt; _inputChangedHandle;
+</pre>
+</div>
+</div>
 <div class="field"><h4 id="inputSerializer">
 <button class="show-code">Code</button>
 final <a href="../bot/Func1.html">Func1</a>         <strong>inputSerializer</strong> <a class="anchor-link"
@@ -60,6 +181,30 @@ final <a href="../bot/Func1.html">Func1</a>         <strong>inputSerializer</str
         <div class="doc">
 <pre class="source">
 final Func1&lt;TInput, Dynamic&gt; inputSerializer;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="output">
+<button class="show-code">Code</button>
+final <a href="../bot_async/SendPortValue.html">TOutput</a>         <strong>output</strong> <a class="anchor-link"
+            href="#output"
+            title="Permalink to SendPortValue&lt;TInput, TOutput&gt;.output">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_async/FutureValue.html">FutureValue</a> </div><div class="doc">
+<pre class="source">
+TOutput get output =&gt; _output;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="outputChanged">
+<button class="show-code">Code</button>
+final <a href="../bot/EventRoot.html">EventRoot</a>&lt;<a href="../bot/EventArgs.html">EventArgs</a>&gt;         <strong>outputChanged</strong> <a class="anchor-link"
+            href="#outputChanged"
+            title="Permalink to SendPortValue&lt;TInput, TOutput&gt;.outputChanged">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_async/FutureValue.html">FutureValue</a> </div><div class="doc">
+<pre class="source">
+EventRoot&lt;EventArgs&gt; get outputChanged =&gt; _outputChangedHandle;
 </pre>
 </div>
 </div>
@@ -75,9 +220,22 @@ final Func1&lt;Dynamic, TOutput&gt; outputDeserializer;
 </pre>
 </div>
 </div>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to SendPortValue&lt;TInput, TOutput&gt;.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
 </div>
 <div>
-<h3>Methods</h3>
+<h3>Operators</h3>
 <div class="method inherited"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
@@ -94,13 +252,19 @@ bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="error">
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method inherited"><h4 id="FutureValue">
 <button class="show-code">Code</button>
-<a href="../bot/EventRoot.html">EventRoot</a> <strong>get error</strong>() <a class="anchor-link" href="#error"
-              title="Permalink to SendPortValue&lt;TInput, TOutput&gt;.get error">#</a></h4>
+new <strong>FutureValue</strong>() <a class="anchor-link" href="#FutureValue"
+              title="Permalink to SendPortValue&lt;TInput, TOutput&gt;.FutureValue">#</a></h4>
 <div class="inherited-from">inherited from <a href="../bot_async/FutureValue.html">FutureValue</a> </div><div class="doc">
 <pre class="source">
-EventRoot get error =&gt; _errorHandle;
+FutureValue() :
+  _outputChangedHandle = new EventHandle&lt;EventArgs&gt;(),
+  _inputChangedHandle = new EventHandle&lt;EventArgs&gt;(),
+  _errorHandle = new EventHandle&lt;Object&gt;();
 </pre>
 </div>
 </div>
@@ -150,44 +314,6 @@ external int hashCode();
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="input">
-<button class="show-code">Code</button>
-<a href="../bot_async/SendPortValue.html">TInput</a> <strong>get input</strong>() <a class="anchor-link" href="#input"
-              title="Permalink to SendPortValue&lt;TInput, TOutput&gt;.get input">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_async/FutureValue.html">FutureValue</a> </div><div class="doc">
-<pre class="source">
-TInput get input =&gt; _input;
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="input=">
-<button class="show-code">Code</button>
-void <strong>set input</strong>(<a href="../bot_async/SendPortValue.html">TInput</a> value) <a class="anchor-link" href="#input="
-              title="Permalink to SendPortValue&lt;TInput, TOutput&gt;.set input">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_async/FutureValue.html">FutureValue</a> </div><div class="doc">
-<pre class="source">
-void set input(TInput value) {
-  _input = value;
-  if(_future == null) {
-    _startFuture();
-  } else {
-    _pending = true;
-  }
-  _inputChangedHandle.fireEvent(EventArgs.empty);
-}
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="inputChanged">
-<button class="show-code">Code</button>
-<a href="../bot/EventRoot.html">EventRoot</a>&lt;<a href="../bot/EventArgs.html">EventArgs</a>&gt; <strong>get inputChanged</strong>() <a class="anchor-link" href="#inputChanged"
-              title="Permalink to SendPortValue&lt;TInput, TOutput&gt;.get inputChanged">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_async/FutureValue.html">FutureValue</a> </div><div class="doc">
-<pre class="source">
-EventRoot&lt;EventArgs&gt; get inputChanged =&gt; _inputChangedHandle;
-</pre>
-</div>
-</div>
 <div class="method inherited"><h4 id="noSuchMethod">
 <button class="show-code">Code</button>
 <strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
@@ -205,34 +331,27 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="output">
+<div class="method inherited"><h4 id="Object">
 <button class="show-code">Code</button>
-<a href="../bot_async/SendPortValue.html">TOutput</a> <strong>get output</strong>() <a class="anchor-link" href="#output"
-              title="Permalink to SendPortValue&lt;TInput, TOutput&gt;.get output">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_async/FutureValue.html">FutureValue</a> </div><div class="doc">
-<pre class="source">
-TOutput get output =&gt; _output;
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="outputChanged">
-<button class="show-code">Code</button>
-<a href="../bot/EventRoot.html">EventRoot</a>&lt;<a href="../bot/EventArgs.html">EventArgs</a>&gt; <strong>get outputChanged</strong>() <a class="anchor-link" href="#outputChanged"
-              title="Permalink to SendPortValue&lt;TInput, TOutput&gt;.get outputChanged">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_async/FutureValue.html">FutureValue</a> </div><div class="doc">
-<pre class="source">
-EventRoot&lt;EventArgs&gt; get outputChanged =&gt; _outputChangedHandle;
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="runtimeType">
-<button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to SendPortValue&lt;TInput, TOutput&gt;.get runtimeType">#</a></h4>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to SendPortValue&lt;TInput, TOutput&gt;.Object">#</a></h4>
 <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
 <pre class="source">
-external Type get runtimeType;
+const Object();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="SendPortValue">
+<button class="show-code">Code</button>
+new <strong>SendPortValue</strong>(SendPort _sendPort, [<a href="../bot/Func1.html">Func1</a> inputSerializer, <a href="../bot/Func1.html">Func1</a> outputDeserializer]) <a class="anchor-link" href="#SendPortValue"
+              title="Permalink to SendPortValue&lt;TInput, TOutput&gt;.SendPortValue">#</a></h4>
+<div class="doc">
+<pre class="source">
+SendPortValue(this._sendPort, {this.inputSerializer, this.outputDeserializer});
 </pre>
 </div>
 </div>

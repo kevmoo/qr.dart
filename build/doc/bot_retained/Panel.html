@@ -32,6 +32,52 @@
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+class Panel extends ElementParentImpl {
+  static final Property&lt;AffineTransform&gt; _containerTransformProperty =
+      new Property&lt;AffineTransform&gt;("panelTransform");
+
+  final List&lt;PElement&gt; _children;
+  String background;
+
+  Panel(num w, num h, [bool enableCache = false]) :
+    _children = new List&lt;PElement&gt;(),
+    super(w, h, enableCache);
+
+  void addElement(PElement element){
+    insertAt(element, _children.length);
+  }
+
+  void insertAt(PElement element, [int index=null]){
+    index = (index == null) ? 0 : index;
+    element.registerParent(this);
+    _children.insertRange(index, 1, element);
+
+    assert(!_containerTransformProperty.isSet(element));
+    _containerTransformProperty.set(element, element.addTransform());
+    onChildrenChanged();
+  }
+
+  PElement getVisualChild(index) =&gt; _children[index];
+
+  int get visualChildCount =&gt; _children.length;
+
+  AffineTransform getChildTransform(child) {
+    assert(hasVisualChild(child));
+    var tx = _containerTransformProperty.get(child);
+    assert(tx != null);
+    return tx;
+  }
+
+  void drawOverride(CanvasRenderingContext2D ctx) {
+    if(background != null) {
+      ctx.fillStyle = background;
+      ctx.fillRect(0, 0, width, height);
+    }
+    super.drawOverride(ctx);
+  }
+}
+</pre>
 </div>
 <h3>Extends</h3>
 <p>
@@ -55,7 +101,7 @@ Panel(num w, num h, [bool enableCache = false]) :
 </div>
 </div>
 <div>
-<h3>Fields</h3>
+<h3>Properties</h3>
 <div class="field"><h4 id="background">
 <button class="show-code">Code</button>
 String         <strong>background</strong> <a class="anchor-link"
@@ -92,9 +138,140 @@ bool clip = false;
 </pre>
 </div>
 </div>
+<div class="field inherited"><h4 id="height">
+<button class="show-code">Code</button>
+num         <strong>height</strong> <a class="anchor-link"
+            href="#height"
+            title="Permalink to Panel.height">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
+<pre class="source">
+num get height =&gt; _height;
+</pre>
+<pre class="source">
+void set height(num value) {
+  assert(isValidNumber(value));
+  _height = value;
+  invalidateDraw();
+}
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="invalidated">
+<button class="show-code">Code</button>
+final <a href="../bot/EventRoot.html">EventRoot</a>&lt;<a href="../bot/EventArgs.html">EventArgs</a>&gt;         <strong>invalidated</strong> <a class="anchor-link"
+            href="#invalidated"
+            title="Permalink to Panel.invalidated">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
+<pre class="source">
+EventRoot&lt;EventArgs&gt; get invalidated =&gt; _invalidatedEventHandle;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="isDisposed">
+<button class="show-code">Code</button>
+final bool         <strong>isDisposed</strong> <a class="anchor-link"
+            href="#isDisposed"
+            title="Permalink to Panel.isDisposed">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div><div class="doc">
+<pre class="source">
+bool get isDisposed =&gt; _disposed;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="parent">
+<button class="show-code">Code</button>
+final <a href="../bot_retained/ElementParent.html">ElementParent</a>         <strong>parent</strong> <a class="anchor-link"
+            href="#parent"
+            title="Permalink to Panel.parent">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
+<pre class="source">
+ElementParent get parent =&gt; _parent;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to Panel.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="size">
+<button class="show-code">Code</button>
+<a href="../bot/Size.html">Size</a>         <strong>size</strong> <a class="anchor-link"
+            href="#size"
+            title="Permalink to Panel.size">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
+<pre class="source">
+Size get size =&gt; new Size(_width, _height);
+</pre>
+<pre class="source">
+void set size(Size value) {
+  assert(value.isValid);
+  _width = value.width;
+  _height = value.height;
+  invalidateDraw();
+}
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="updated">
+<button class="show-code">Code</button>
+final <a href="../bot/EventRoot.html">EventRoot</a>&lt;<a href="../bot/EventArgs.html">EventArgs</a>&gt;         <strong>updated</strong> <a class="anchor-link"
+            href="#updated"
+            title="Permalink to Panel.updated">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
+<pre class="source">
+EventRoot&lt;EventArgs&gt; get updated =&gt; _updatedEventHandle;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="visualChildCount">
+<button class="show-code">Code</button>
+final int         <strong>visualChildCount</strong> <a class="anchor-link"
+            href="#visualChildCount"
+            title="Permalink to Panel.visualChildCount">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+int get visualChildCount =&gt; _children.length;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="width">
+<button class="show-code">Code</button>
+num         <strong>width</strong> <a class="anchor-link"
+            href="#width"
+            title="Permalink to Panel.width">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
+<pre class="source">
+num get width =&gt; _width;
+</pre>
+<pre class="source">
+void set width(num value) {
+  assert(isValidNumber(value));
+  _width = value;
+  invalidateDraw();
+}
+</pre>
+</div>
+</div>
 </div>
 <div>
-<h3>Methods</h3>
+<h3>Operators</h3>
 <div class="method inherited"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
@@ -111,6 +288,9 @@ bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
+</div>
+<div>
+<h3>Methods</h3>
 <div class="method"><h4 id="addElement">
 <button class="show-code">Code</button>
 void <strong>addElement</strong>(<a href="../bot_retained/PElement.html">PElement</a> element) <a class="anchor-link" href="#addElement"
@@ -233,6 +413,17 @@ void drawOverride(CanvasRenderingContext2D ctx) {
 </pre>
 </div>
 </div>
+<div class="method inherited"><h4 id="ElementParentImpl">
+<button class="show-code">Code</button>
+new <strong>ElementParentImpl</strong>(num w, num h, [bool enableCache = false]) <a class="anchor-link" href="#ElementParentImpl"
+              title="Permalink to Panel.ElementParentImpl">#</a></h4>
+<div class="inherited-from">inherited from <a href="../bot_retained/ElementParentImpl.html">ElementParentImpl</a> </div><div class="doc">
+<pre class="source">
+ElementParentImpl(num w, num h, [bool enableCache = false]) :
+  super(w, h, enableCache);
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="getChildTransform">
 <button class="show-code">Code</button>
 <a href="../bot/AffineTransform.html">AffineTransform</a> <strong>getChildTransform</strong>(child) <a class="anchor-link" href="#getChildTransform"
@@ -325,30 +516,6 @@ bool hasVisualChild(PElement element){
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="height">
-<button class="show-code">Code</button>
-num <strong>get height</strong>() <a class="anchor-link" href="#height"
-              title="Permalink to Panel.get height">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
-<pre class="source">
-num get height =&gt; _height;
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="height=">
-<button class="show-code">Code</button>
-void <strong>set height</strong>(num value) <a class="anchor-link" href="#height="
-              title="Permalink to Panel.set height">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
-<pre class="source">
-void set height(num value) {
-  assert(isValidNumber(value));
-  _height = value;
-  invalidateDraw();
-}
-</pre>
-</div>
-</div>
 <div class="method"><h4 id="insertAt">
 <button class="show-code">Code</button>
 void <strong>insertAt</strong>(<a href="../bot_retained/PElement.html">PElement</a> element, [int index = null]) <a class="anchor-link" href="#insertAt"
@@ -367,16 +534,6 @@ void insertAt(PElement element, [int index=null]){
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="invalidated">
-<button class="show-code">Code</button>
-<a href="../bot/EventRoot.html">EventRoot</a>&lt;<a href="../bot/EventArgs.html">EventArgs</a>&gt; <strong>get invalidated</strong>() <a class="anchor-link" href="#invalidated"
-              title="Permalink to Panel.get invalidated">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
-<pre class="source">
-EventRoot&lt;EventArgs&gt; get invalidated =&gt; _invalidatedEventHandle;
-</pre>
-</div>
-</div>
 <div class="method inherited"><h4 id="invalidateDraw">
 <button class="show-code">Code</button>
 void <strong>invalidateDraw</strong>() <a class="anchor-link" href="#invalidateDraw"
@@ -390,16 +547,6 @@ void invalidateDraw(){
     _invalidateParent();
   }
 }
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="isDisposed">
-<button class="show-code">Code</button>
-bool <strong>get isDisposed</strong>() <a class="anchor-link" href="#isDisposed"
-              title="Permalink to Panel.get isDisposed">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div><div class="doc">
-<pre class="source">
-bool get isDisposed =&gt; _disposed;
 </pre>
 </div>
 </div>
@@ -420,6 +567,20 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
+<div class="method inherited"><h4 id="Object">
+<button class="show-code">Code</button>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to Panel.Object">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
+<pre class="source">
+const Object();
+</pre>
+</div>
+</div>
 <div class="method inherited"><h4 id="onChildrenChanged">
 <button class="show-code">Code</button>
 void <strong>onChildrenChanged</strong>() <a class="anchor-link" href="#onChildrenChanged"
@@ -432,13 +593,25 @@ void onChildrenChanged(){
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="parent">
+<div class="method"><h4 id="Panel">
 <button class="show-code">Code</button>
-<a href="../bot_retained/ElementParent.html">ElementParent</a> <strong>get parent</strong>() <a class="anchor-link" href="#parent"
-              title="Permalink to Panel.get parent">#</a></h4>
+new <strong>Panel</strong>(num w, num h, [bool enableCache = false]) <a class="anchor-link" href="#Panel"
+              title="Permalink to Panel.Panel">#</a></h4>
+<div class="doc">
+<pre class="source">
+Panel(num w, num h, [bool enableCache = false]) :
+  _children = new List&lt;PElement&gt;(),
+  super(w, h, enableCache);
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="PElement">
+<button class="show-code">Code</button>
+new <strong>PElement</strong>(num _width, num _height, [bool cacheEnabled = false]) <a class="anchor-link" href="#PElement"
+              title="Permalink to Panel.PElement">#</a></h4>
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
-ElementParent get parent =&gt; _parent;
+PElement(this._width, this._height, [this.cacheEnabled = false]);
 </pre>
 </div>
 </div>
@@ -452,42 +625,6 @@ void registerParent(ElementParent parent) {
   assert(_parent == null);
   assert(parent != null);
   _parent = parent;
-}
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="runtimeType">
-<button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to Panel.get runtimeType">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
-<pre class="source">
-external Type get runtimeType;
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="size">
-<button class="show-code">Code</button>
-<a href="../bot/Size.html">Size</a> <strong>get size</strong>() <a class="anchor-link" href="#size"
-              title="Permalink to Panel.get size">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
-<pre class="source">
-Size get size =&gt; new Size(_width, _height);
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="size=">
-<button class="show-code">Code</button>
-void <strong>set size</strong>(<a href="../bot/Size.html">Size</a> value) <a class="anchor-link" href="#size="
-              title="Permalink to Panel.set size">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
-<pre class="source">
-void set size(Size value) {
-  assert(value.isValid);
-  _width = value.width;
-  _height = value.height;
-  invalidateDraw();
 }
 </pre>
 </div>
@@ -516,16 +653,6 @@ void update(){
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="updated">
-<button class="show-code">Code</button>
-<a href="../bot/EventRoot.html">EventRoot</a>&lt;<a href="../bot/EventArgs.html">EventArgs</a>&gt; <strong>get updated</strong>() <a class="anchor-link" href="#updated"
-              title="Permalink to Panel.get updated">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
-<pre class="source">
-EventRoot&lt;EventArgs&gt; get updated =&gt; _updatedEventHandle;
-</pre>
-</div>
-</div>
 <div class="method inherited"><h4 id="validateNotDisposed">
 <button class="show-code">Code</button>
 void <strong>validateNotDisposed</strong>() <a class="anchor-link" href="#validateNotDisposed"
@@ -534,40 +661,6 @@ void <strong>validateNotDisposed</strong>() <a class="anchor-link" href="#valida
 <pre class="source">
 void validateNotDisposed() {
   assert(!_disposed);
-}
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="visualChildCount">
-<button class="show-code">Code</button>
-int <strong>get visualChildCount</strong>() <a class="anchor-link" href="#visualChildCount"
-              title="Permalink to Panel.get visualChildCount">#</a></h4>
-<div class="doc">
-<pre class="source">
-int get visualChildCount =&gt; _children.length;
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="width">
-<button class="show-code">Code</button>
-num <strong>get width</strong>() <a class="anchor-link" href="#width"
-              title="Permalink to Panel.get width">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
-<pre class="source">
-num get width =&gt; _width;
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="width=">
-<button class="show-code">Code</button>
-void <strong>set width</strong>(num value) <a class="anchor-link" href="#width="
-              title="Permalink to Panel.set width">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
-<pre class="source">
-void set width(num value) {
-  assert(isValidNumber(value));
-  _width = value;
-  invalidateDraw();
 }
 </pre>
 </div>

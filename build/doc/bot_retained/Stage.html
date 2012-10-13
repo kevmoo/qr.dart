@@ -32,6 +32,59 @@
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+class Stage extends AttachableObject
+  implements ElementParent {
+  final EventHandle&lt;EventArgs&gt; _invalidatedEventHandle =
+      new EventHandle&lt;EventArgs&gt;();
+
+  final CanvasElement _canvas;
+  final PElement _element;
+  CanvasRenderingContext2D _ctx;
+
+  Stage(this._canvas, this._element) {
+    _element.registerParent(this);
+  }
+
+  Size get size =&gt; new Size(_canvas.width, _canvas.height);
+
+  EventRoot&lt;EventArgs&gt; get invalidated =&gt; _invalidatedEventHandle;
+
+  PElement get rootElement =&gt; _element;
+
+  CanvasRenderingContext2D get ctx {
+    validateNotDisposed();
+    if(_ctx == null) {
+      _ctx = _canvas.context2d;
+    }
+    return _ctx;
+  }
+
+  bool draw(){
+    validateNotDisposed();
+    if (_ctx == null) {
+      _ctx = _canvas.context2d;
+    } else {
+      this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
+    }
+
+    return this._element.draw(this._ctx);
+  }
+
+  void childInvalidated(PElement child){
+    validateNotDisposed();
+    assert(child == _element);
+    _invalidatedEventHandle.fireEvent(EventArgs.empty);
+  }
+
+  void disposeInternal(){
+    super.disposeInternal();
+    _invalidatedEventHandle.dispose();
+  }
+
+  AffineTransform getTransformToRoot() =&gt; new AffineTransform();
+}
+</pre>
 </div>
 <h3>Extends</h3>
 <p>
@@ -55,7 +108,89 @@ Stage(this._canvas, this._element) {
 </div>
 </div>
 <div>
-<h3>Methods</h3>
+<h3>Properties</h3>
+<div class="field"><h4 id="ctx">
+<button class="show-code">Code</button>
+final CanvasRenderingContext2D         <strong>ctx</strong> <a class="anchor-link"
+            href="#ctx"
+            title="Permalink to Stage.ctx">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+CanvasRenderingContext2D get ctx {
+  validateNotDisposed();
+  if(_ctx == null) {
+    _ctx = _canvas.context2d;
+  }
+  return _ctx;
+}
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="invalidated">
+<button class="show-code">Code</button>
+final <a href="../bot/EventRoot.html">EventRoot</a>&lt;<a href="../bot/EventArgs.html">EventArgs</a>&gt;         <strong>invalidated</strong> <a class="anchor-link"
+            href="#invalidated"
+            title="Permalink to Stage.invalidated">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+EventRoot&lt;EventArgs&gt; get invalidated =&gt; _invalidatedEventHandle;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="isDisposed">
+<button class="show-code">Code</button>
+final bool         <strong>isDisposed</strong> <a class="anchor-link"
+            href="#isDisposed"
+            title="Permalink to Stage.isDisposed">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div><div class="doc">
+<pre class="source">
+bool get isDisposed =&gt; _disposed;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="rootElement">
+<button class="show-code">Code</button>
+final <a href="../bot_retained/PElement.html">PElement</a>         <strong>rootElement</strong> <a class="anchor-link"
+            href="#rootElement"
+            title="Permalink to Stage.rootElement">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+PElement get rootElement =&gt; _element;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to Stage.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="size">
+<button class="show-code">Code</button>
+final <a href="../bot/Size.html">Size</a>         <strong>size</strong> <a class="anchor-link"
+            href="#size"
+            title="Permalink to Stage.size">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+Size get size =&gt; new Size(_canvas.width, _canvas.height);
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Operators</h3>
 <div class="method inherited"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
@@ -72,6 +207,9 @@ bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
+</div>
+<div>
+<h3>Methods</h3>
 <div class="method"><h4 id="childInvalidated">
 <button class="show-code">Code</button>
 void <strong>childInvalidated</strong>(<a href="../bot_retained/PElement.html">PElement</a> child) <a class="anchor-link" href="#childInvalidated"
@@ -82,22 +220,6 @@ void childInvalidated(PElement child){
   validateNotDisposed();
   assert(child == _element);
   _invalidatedEventHandle.fireEvent(EventArgs.empty);
-}
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="ctx">
-<button class="show-code">Code</button>
-CanvasRenderingContext2D <strong>get ctx</strong>() <a class="anchor-link" href="#ctx"
-              title="Permalink to Stage.get ctx">#</a></h4>
-<div class="doc">
-<pre class="source">
-CanvasRenderingContext2D get ctx {
-  validateNotDisposed();
-  if(_ctx == null) {
-    _ctx = _canvas.context2d;
-  }
-  return _ctx;
 }
 </pre>
 </div>
@@ -183,26 +305,6 @@ external int hashCode();
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="invalidated">
-<button class="show-code">Code</button>
-<a href="../bot/EventRoot.html">EventRoot</a>&lt;<a href="../bot/EventArgs.html">EventArgs</a>&gt; <strong>get invalidated</strong>() <a class="anchor-link" href="#invalidated"
-              title="Permalink to Stage.get invalidated">#</a></h4>
-<div class="doc">
-<pre class="source">
-EventRoot&lt;EventArgs&gt; get invalidated =&gt; _invalidatedEventHandle;
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="isDisposed">
-<button class="show-code">Code</button>
-bool <strong>get isDisposed</strong>() <a class="anchor-link" href="#isDisposed"
-              title="Permalink to Stage.get isDisposed">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div><div class="doc">
-<pre class="source">
-bool get isDisposed =&gt; _disposed;
-</pre>
-</div>
-</div>
 <div class="method inherited"><h4 id="noSuchMethod">
 <button class="show-code">Code</button>
 <strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
@@ -220,34 +322,29 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="rootElement">
+<div class="method inherited"><h4 id="Object">
 <button class="show-code">Code</button>
-<a href="../bot_retained/PElement.html">PElement</a> <strong>get rootElement</strong>() <a class="anchor-link" href="#rootElement"
-              title="Permalink to Stage.get rootElement">#</a></h4>
-<div class="doc">
-<pre class="source">
-PElement get rootElement =&gt; _element;
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="runtimeType">
-<button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to Stage.get runtimeType">#</a></h4>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to Stage.Object">#</a></h4>
 <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
 <pre class="source">
-external Type get runtimeType;
+const Object();
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="size">
+<div class="method"><h4 id="Stage">
 <button class="show-code">Code</button>
-<a href="../bot/Size.html">Size</a> <strong>get size</strong>() <a class="anchor-link" href="#size"
-              title="Permalink to Stage.get size">#</a></h4>
+new <strong>Stage</strong>(CanvasElement _canvas, <a href="../bot_retained/PElement.html">PElement</a> _element) <a class="anchor-link" href="#Stage"
+              title="Permalink to Stage.Stage">#</a></h4>
 <div class="doc">
 <pre class="source">
-Size get size =&gt; new Size(_canvas.width, _canvas.height);
+Stage(this._canvas, this._element) {
+  _element.registerParent(this);
+}
 </pre>
 </div>
 </div>

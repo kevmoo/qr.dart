@@ -32,6 +32,44 @@
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+class QrBitBuffer extends ListBase&lt;bool&gt; {
+  final List&lt;int&gt; _buffer;
+  int _length = 0;
+
+  QrBitBuffer() : _buffer = new List&lt;int&gt;();
+
+  bool operator[](int index) {
+    final bufIndex = index ~/ 8;
+    return ((_buffer[bufIndex] &gt;&gt; (7 - index % 8)) &amp; 1) == 1;
+  }
+
+  int get length =&gt; _length;
+
+  int getByte(int index) =&gt; _buffer[index];
+
+  void put(int number, int length) {
+    for(var i = 0; i &lt; length; i++) {
+      final bit = ((number &gt;&gt; (length - i - 1)) &amp; 1) == 1;
+      putBit(bit);
+    }
+  }
+
+  void putBit(bool bit) {
+
+    final bufIndex = _length ~/ 8;
+    if (_buffer.length &lt;= bufIndex) {
+      _buffer.add(0);
+    }
+
+    if (bit) {
+      _buffer[bufIndex] |= (0x80 &gt;&gt; (_length % 8));
+    }
+
+    _length++;
+  }
+}
+</pre>
 </div>
 <h3>Extends</h3>
 <p>
@@ -50,23 +88,54 @@ QrBitBuffer() : _buffer = new List&lt;int&gt;();
 </div>
 </div>
 <div>
-<h3>Methods</h3>
-<div class="method inherited"><h4 id="==">
+<h3>Properties</h3>
+<div class="method"><h4 id="length">
 <button class="show-code">Code</button>
-bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
-              title="Permalink to QrBitBuffer.operator ==">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>The equality operator.</p>
-<p>The default behavior for all <code>Object</code>s is to return true if and
-only if <code>this</code> and 
-<span class="param">other</span> are the same object.</p>
-<p>If a subclass overrides the equality operator it should override
-the <code>hashCode</code> method as well to maintain consistency.</p>
+int <strong>get length</strong> <a class="anchor-link" href="#length"
+              title="Permalink to QrBitBuffer.get length">#</a></h4>
+<div class="doc">
+<div class="inherited">
+<p>Returns the number of elements in this collection.</p>
+<div class="docs-inherited-from">docs inherited from <a href="../bot/ListBase.html">ListBase</a>&lt;<a href="../bot_qr/QrBitBuffer.html">T</a>&gt; </div></div>
 <pre class="source">
-bool operator ==(other) =&gt; identical(this, other);
+int get length =&gt; _length;
 </pre>
 </div>
 </div>
+<div class="method inherited"><h4 id="length=">
+<button class="show-code">Code</button>
+void <strong>set length</strong>(int newLength) <a class="anchor-link" href="#length="
+              title="Permalink to QrBitBuffer.set length">#</a></h4>
+<div class="inherited-from">inherited from <a href="../bot/ListBase.html">ListBase</a> </div><div class="doc">
+<div class="inherited">
+<p>Changes the length of the list. If 
+<span class="param">newLength</span> is greater than
+the current <a class="crossref" href="../bot_qr/QrBitBuffer.html#length">length</a>, entries are initialized to <code>null</code>. Throws
+an <code>UnsupportedOperationException</code> if the list is not extendable.</p>
+<div class="docs-inherited-from">docs inherited from List&lt;<a href="../bot_qr/QrBitBuffer.html">E</a>&gt; </div></div>
+<pre class="source">
+void set length(int newLength) {
+  throw const UnsupportedOperationException('Mutation operations are not supported');
+}
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to QrBitBuffer.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Operators</h3>
 <div class="method"><h4 id="[]">
 <button class="show-code">Code</button>
 bool <strong>operator []</strong>(int index) <a class="anchor-link" href="#[]"
@@ -105,6 +174,25 @@ void operator []=(int index, T value) {
 </pre>
 </div>
 </div>
+<div class="method inherited"><h4 id="==">
+<button class="show-code">Code</button>
+bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
+              title="Permalink to QrBitBuffer.operator ==">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>The equality operator.</p>
+<p>The default behavior for all <code>Object</code>s is to return true if and
+only if <code>this</code> and 
+<span class="param">other</span> are the same object.</p>
+<p>If a subclass overrides the equality operator it should override
+the <code>hashCode</code> method as well to maintain consistency.</p>
+<pre class="source">
+bool operator ==(other) =&gt; identical(this, other);
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
 <div class="method inherited"><h4 id="add">
 <button class="show-code">Code</button>
 void <strong>add</strong>(<a href="../bot_qr/QrBitBuffer.html">T</a> value) <a class="anchor-link" href="#add"
@@ -239,6 +327,29 @@ Enumerable&lt;T&gt; distinct([Func2&lt;T, T, bool&gt; comparer = null]) {
     comparer = (a,b) =&gt; a == b;
   }
   return new _FuncEnumerable(this, (s) =&gt; new _DistinctIterator(s, comparer));
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="Enumerable">
+<button class="show-code">Code</button>
+const <strong>Enumerable</strong>() <a class="anchor-link" href="#Enumerable"
+              title="Permalink to QrBitBuffer.Enumerable">#</a></h4>
+<div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
+<pre class="source">
+const Enumerable();
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="Enumerable.fromIterable">
+<button class="show-code">Code</button>
+factory <strong>Enumerable.fromIterable</strong>(Iterable&lt;<a href="../bot_qr/QrBitBuffer.html">T</a>&gt; source) <a class="anchor-link" href="#Enumerable.fromIterable"
+              title="Permalink to QrBitBuffer.Enumerable.fromIterable">#</a></h4>
+<div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
+<pre class="source">
+factory Enumerable.fromIterable(Iterable&lt;T&gt; source) {
+  requireArgumentNotNull(source, 'source');
+  return new _SimpleEnumerable&lt;T&gt;(source);
 }
 </pre>
 </div>
@@ -581,34 +692,45 @@ int lastIndexOf(T element, [int start=0]) {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="length">
+<div class="method inherited"><h4 id="List">
 <button class="show-code">Code</button>
-int <strong>get length</strong>() <a class="anchor-link" href="#length"
-              title="Permalink to QrBitBuffer.get length">#</a></h4>
-<div class="doc">
-<div class="inherited">
-<p>Returns the number of elements in this collection.</p>
-<div class="docs-inherited-from">docs inherited from <a href="../bot/ListBase.html">ListBase</a>&lt;<a href="../bot_qr/QrBitBuffer.html">T</a>&gt; </div></div>
+new <strong>List</strong>([int length]) <a class="anchor-link" href="#List"
+              title="Permalink to QrBitBuffer.List">#</a></h4>
+<div class="inherited-from">inherited from List </div><div class="doc">
+<p>Creates a list of the given 
+<span class="param">length</span>.</p>
+<p>If no 
+<span class="param">length</span> argument is supplied an extendable list of
+length 0 is created.</p>
+<p>If a 
+<span class="param">length</span> argument is supplied, a fixed size list of that
+length is created.</p>
 <pre class="source">
-int get length =&gt; _length;
+List([int length]);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="length=">
+<div class="method inherited"><h4 id="List.from">
 <button class="show-code">Code</button>
-void <strong>set length</strong>(int newLength) <a class="anchor-link" href="#length="
-              title="Permalink to QrBitBuffer.set length">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot/ListBase.html">ListBase</a> </div><div class="doc">
-<div class="inherited">
-<p>Changes the length of the list. If 
-<span class="param">newLength</span> is greater than
-the current <a class="crossref" href="../bot_qr/QrBitBuffer.html#length">length</a>, entries are initialized to <code>null</code>. Throws
-an <code>UnsupportedOperationException</code> if the list is not extendable.</p>
-<div class="docs-inherited-from">docs inherited from List&lt;<a href="../bot_qr/QrBitBuffer.html">E</a>&gt; </div></div>
+new <strong>List.from</strong>(Iterable&lt;<a href="../bot_qr/QrBitBuffer.html">E</a>&gt; other) <a class="anchor-link" href="#List.from"
+              title="Permalink to QrBitBuffer.List.from">#</a></h4>
+<div class="inherited-from">inherited from List </div><div class="doc">
+<p>Creates a list with the elements of 
+<span class="param">other</span>. The order in
+the list will be the order provided by the iterator of 
+<span class="param">other</span>.</p>
 <pre class="source">
-void set length(int newLength) {
-  throw const UnsupportedOperationException('Mutation operations are not supported');
-}
+List.from(Iterable&lt;E&gt; other);
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="ListBase">
+<button class="show-code">Code</button>
+const <strong>ListBase</strong>() <a class="anchor-link" href="#ListBase"
+              title="Permalink to QrBitBuffer.ListBase">#</a></h4>
+<div class="inherited-from">inherited from <a href="../bot/ListBase.html">ListBase</a> </div><div class="doc">
+<pre class="source">
+const ListBase();
 </pre>
 </div>
 </div>
@@ -647,6 +769,20 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
+<div class="method inherited"><h4 id="Object">
+<button class="show-code">Code</button>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to QrBitBuffer.Object">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
+<pre class="source">
+const Object();
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="put">
 <button class="show-code">Code</button>
 void <strong>put</strong>(int number, int length) <a class="anchor-link" href="#put"
@@ -681,6 +817,16 @@ void putBit(bool bit) {
 
   _length++;
 }
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="QrBitBuffer">
+<button class="show-code">Code</button>
+new <strong>QrBitBuffer</strong>() <a class="anchor-link" href="#QrBitBuffer"
+              title="Permalink to QrBitBuffer.QrBitBuffer">#</a></h4>
+<div class="doc">
+<pre class="source">
+QrBitBuffer() : _buffer = new List&lt;int&gt;();
 </pre>
 </div>
 </div>
@@ -771,17 +917,6 @@ Throws an <code>IndexOutOfRangeException</code> if
 void removeRange(int start, int length) {
   throw const UnsupportedOperationException('Mutation operations are not supported');
 }
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="runtimeType">
-<button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to QrBitBuffer.get runtimeType">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
-<pre class="source">
-external Type get runtimeType;
 </pre>
 </div>
 </div>

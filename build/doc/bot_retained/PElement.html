@@ -2,7 +2,7 @@
         <html>
         <head>
                 <meta charset="utf-8">
-        <title>PElement class / bot_retained Library / Dart Documentation</title>
+        <title>PElement abstract class / bot_retained Library / Dart Documentation</title>
         <link rel="stylesheet" type="text/css"
             href="../styles.css">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
@@ -27,11 +27,214 @@
 </div>
 <div class="content">
         <h2><strong>PElement</strong>
-          class
+          abstract class
         </h2>
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+abstract class PElement extends AttachableObject {
+  final List&lt;AffineTransform&gt; _transforms = new List&lt;AffineTransform&gt;();
+  final bool cacheEnabled;
+  final EventHandle&lt;EventArgs&gt; _updatedEventHandle = new EventHandle&lt;EventArgs&gt;();
+  final EventHandle&lt;EventArgs&gt; _invalidatedEventHandle = new EventHandle&lt;EventArgs&gt;();
+  CanvasElement _cacheCanvas;
+
+  num _width, _height, _alpha;
+  Size _lastDrawSize;
+  bool clip = false;
+  ElementParent _parent;
+
+  PElement(this._width, this._height, [this.cacheEnabled = false]);
+
+  num get width =&gt; _width;
+
+  void set width(num value) {
+    assert(isValidNumber(value));
+    _width = value;
+    invalidateDraw();
+  }
+
+  num get height =&gt; _height;
+
+  void set height(num value) {
+    assert(isValidNumber(value));
+    _height = value;
+    invalidateDraw();
+  }
+
+  Size get size =&gt; new Size(_width, _height);
+
+  void set size(Size value) {
+    assert(value.isValid);
+    _width = value.width;
+    _height = value.height;
+    invalidateDraw();
+  }
+
+  int get visualChildCount =&gt; 0;
+
+  ElementParent get parent =&gt; _parent;
+
+  EventRoot&lt;EventArgs&gt; get updated =&gt; _updatedEventHandle;
+
+  EventRoot&lt;EventArgs&gt; get invalidated =&gt; _invalidatedEventHandle;
+
+  AffineTransform getTransform() {
+    var tx = new AffineTransform();
+    _transforms.forEach(tx.concatenate);
+    return tx;
+  }
+
+  AffineTransform getTransformToRoot(){
+    var tx = new AffineTransform();
+    if(_parent != null){
+      tx.concatenate(_parent.getTransformToRoot());
+    }
+    tx.concatenate(getTransform());
+    return tx;
+  }
+
+  bool draw(CanvasRenderingContext2D ctx){
+    update();
+    var dirty = (_lastDrawSize == null);
+    drawCore(ctx);
+    return dirty;
+  }
+
+  void update(){
+    _updatedEventHandle.fireEvent(EventArgs.empty);
+  }
+
+  void drawCore(CanvasRenderingContext2D ctx){
+    if(cacheEnabled) {
+      _drawCached(ctx);
+    } else {
+      _drawNormal(ctx);
+    }
+  }
+
+  AffineTransform addTransform(){
+    validateNotDisposed();
+    var tx = new AffineTransform();
+    _transforms.add(tx);
+    return tx;
+  }
+
+  // abstract
+  abstract void drawOverride(CanvasRenderingContext2D ctx);
+
+  void invalidateDraw(){
+    validateNotDisposed();
+    if(_lastDrawSize != null){
+      _lastDrawSize = null;
+      _invalidateParent();
+    }
+  }
+
+  bool hasVisualChild(PElement element){
+    var length = visualChildCount;
+    for(var i=0;i&lt;length;i++){
+      if(identical(element, getVisualChild(i))){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  PElement getVisualChild(int index){
+    throw "no children for this type";
+  }
+
+  void registerParent(ElementParent parent) {
+    assert(_parent == null);
+    assert(parent != null);
+    _parent = parent;
+  }
+
+  void disposeInternal(){
+    super.disposeInternal();
+    _updatedEventHandle.dispose();
+    _invalidatedEventHandle.dispose();
+  }
+
+  //
+  // Privates
+  //
+
+  void _drawCached(CanvasRenderingContext2D ctx) {
+    if (this._cacheCanvas == null) {
+      this._cacheCanvas = new CanvasElement();
+    }
+
+    final intLastDrawSize = (_lastDrawSize == null) ?
+        null : new Size(_lastDrawSize.width.toInt(), _lastDrawSize.height.toInt());
+
+    if (CanvasUtil.getCanvasSize(this._cacheCanvas) != intLastDrawSize) {
+
+      // DARTBUG: 5172 - width and height don't work on CanvasElement
+      this._cacheCanvas.attributes["width"] = this.width;
+      this._cacheCanvas.attributes["height"] = this.height;
+
+      var cacheCtx = _cacheCanvas.context2d;
+
+      _drawInternal(cacheCtx);
+    }
+
+    ctx.save();
+    var tx = this.getTransform();
+    CanvasUtil.transform(ctx, tx);
+
+    ctx.drawImage(this._cacheCanvas, 0, 0);
+    ctx.restore();
+  }
+
+  void _drawNormal(CanvasRenderingContext2D ctx){
+    var tx = this.getTransform();
+    if (this._isClipped(tx, ctx)) {
+      return;
+    }
+
+    ctx.save();
+
+    // Translate to the starting position
+    CanvasUtil.transform(ctx, tx);
+
+    // clip to the bounds of the object
+    if (this.clip) {
+      ctx.beginPath();
+      ctx.rect(0, 0, width, height);
+      ctx.clip();
+    }
+
+    _drawInternal(ctx);
+    ctx.restore();
+  }
+
+    void _drawInternal(CanvasRenderingContext2D ctx){
+    if (_alpha != null) {
+      ctx.globalAlpha = _alpha;
+    }
+
+    // call the abstract draw method
+    drawOverride(ctx);
+    _lastDrawSize = this.size;
+  }
+
+  bool _isClipped(AffineTransform tx, CanvasRenderingContext2D ctx){
+    if(clip){
+      // a lot more impl to do here...
+    }
+    return false;
+  }
+
+  void _invalidateParent(){
+    assert(this._parent != null);
+    _invalidatedEventHandle.fireEvent(EventArgs.empty);
+    _parent.childInvalidated(this);
+  }
+}
+</pre>
 </div>
 <h3>Extends</h3>
 <p>
@@ -53,7 +256,7 @@ PElement(this._width, this._height, [this.cacheEnabled = false]);
 </div>
 </div>
 <div>
-<h3>Fields</h3>
+<h3>Properties</h3>
 <div class="field"><h4 id="cacheEnabled">
 <button class="show-code">Code</button>
 final bool         <strong>cacheEnabled</strong> <a class="anchor-link"
@@ -78,9 +281,140 @@ bool clip = false;
 </pre>
 </div>
 </div>
+<div class="field"><h4 id="height">
+<button class="show-code">Code</button>
+num         <strong>height</strong> <a class="anchor-link"
+            href="#height"
+            title="Permalink to PElement.height">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num get height =&gt; _height;
+</pre>
+<pre class="source">
+void set height(num value) {
+  assert(isValidNumber(value));
+  _height = value;
+  invalidateDraw();
+}
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="invalidated">
+<button class="show-code">Code</button>
+final <a href="../bot/EventRoot.html">EventRoot</a>&lt;<a href="../bot/EventArgs.html">EventArgs</a>&gt;         <strong>invalidated</strong> <a class="anchor-link"
+            href="#invalidated"
+            title="Permalink to PElement.invalidated">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+EventRoot&lt;EventArgs&gt; get invalidated =&gt; _invalidatedEventHandle;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="isDisposed">
+<button class="show-code">Code</button>
+final bool         <strong>isDisposed</strong> <a class="anchor-link"
+            href="#isDisposed"
+            title="Permalink to PElement.isDisposed">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div><div class="doc">
+<pre class="source">
+bool get isDisposed =&gt; _disposed;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="parent">
+<button class="show-code">Code</button>
+final <a href="../bot_retained/ElementParent.html">ElementParent</a>         <strong>parent</strong> <a class="anchor-link"
+            href="#parent"
+            title="Permalink to PElement.parent">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+ElementParent get parent =&gt; _parent;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to PElement.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="size">
+<button class="show-code">Code</button>
+<a href="../bot/Size.html">Size</a>         <strong>size</strong> <a class="anchor-link"
+            href="#size"
+            title="Permalink to PElement.size">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+Size get size =&gt; new Size(_width, _height);
+</pre>
+<pre class="source">
+void set size(Size value) {
+  assert(value.isValid);
+  _width = value.width;
+  _height = value.height;
+  invalidateDraw();
+}
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="updated">
+<button class="show-code">Code</button>
+final <a href="../bot/EventRoot.html">EventRoot</a>&lt;<a href="../bot/EventArgs.html">EventArgs</a>&gt;         <strong>updated</strong> <a class="anchor-link"
+            href="#updated"
+            title="Permalink to PElement.updated">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+EventRoot&lt;EventArgs&gt; get updated =&gt; _updatedEventHandle;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="visualChildCount">
+<button class="show-code">Code</button>
+final int         <strong>visualChildCount</strong> <a class="anchor-link"
+            href="#visualChildCount"
+            title="Permalink to PElement.visualChildCount">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+int get visualChildCount =&gt; 0;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="width">
+<button class="show-code">Code</button>
+num         <strong>width</strong> <a class="anchor-link"
+            href="#width"
+            title="Permalink to PElement.width">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num get width =&gt; _width;
+</pre>
+<pre class="source">
+void set width(num value) {
+  assert(isValidNumber(value));
+  _width = value;
+  invalidateDraw();
+}
+</pre>
+</div>
+</div>
 </div>
 <div>
-<h3>Methods</h3>
+<h3>Operators</h3>
 <div class="method inherited"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
@@ -97,6 +431,9 @@ bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
+</div>
+<div>
+<h3>Methods</h3>
 <div class="method"><h4 id="addTransform">
 <button class="show-code">Code</button>
 <a href="../bot/AffineTransform.html">AffineTransform</a> <strong>addTransform</strong>() <a class="anchor-link" href="#addTransform"
@@ -263,40 +600,6 @@ bool hasVisualChild(PElement element){
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="height">
-<button class="show-code">Code</button>
-num <strong>get height</strong>() <a class="anchor-link" href="#height"
-              title="Permalink to PElement.get height">#</a></h4>
-<div class="doc">
-<pre class="source">
-num get height =&gt; _height;
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="height=">
-<button class="show-code">Code</button>
-void <strong>set height</strong>(num value) <a class="anchor-link" href="#height="
-              title="Permalink to PElement.set height">#</a></h4>
-<div class="doc">
-<pre class="source">
-void set height(num value) {
-  assert(isValidNumber(value));
-  _height = value;
-  invalidateDraw();
-}
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="invalidated">
-<button class="show-code">Code</button>
-<a href="../bot/EventRoot.html">EventRoot</a>&lt;<a href="../bot/EventArgs.html">EventArgs</a>&gt; <strong>get invalidated</strong>() <a class="anchor-link" href="#invalidated"
-              title="Permalink to PElement.get invalidated">#</a></h4>
-<div class="doc">
-<pre class="source">
-EventRoot&lt;EventArgs&gt; get invalidated =&gt; _invalidatedEventHandle;
-</pre>
-</div>
-</div>
 <div class="method"><h4 id="invalidateDraw">
 <button class="show-code">Code</button>
 void <strong>invalidateDraw</strong>() <a class="anchor-link" href="#invalidateDraw"
@@ -310,16 +613,6 @@ void invalidateDraw(){
     _invalidateParent();
   }
 }
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="isDisposed">
-<button class="show-code">Code</button>
-bool <strong>get isDisposed</strong>() <a class="anchor-link" href="#isDisposed"
-              title="Permalink to PElement.get isDisposed">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div><div class="doc">
-<pre class="source">
-bool get isDisposed =&gt; _disposed;
 </pre>
 </div>
 </div>
@@ -340,13 +633,27 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="parent">
+<div class="method inherited"><h4 id="Object">
 <button class="show-code">Code</button>
-<a href="../bot_retained/ElementParent.html">ElementParent</a> <strong>get parent</strong>() <a class="anchor-link" href="#parent"
-              title="Permalink to PElement.get parent">#</a></h4>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to PElement.Object">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
+<pre class="source">
+const Object();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="PElement">
+<button class="show-code">Code</button>
+new <strong>PElement</strong>(num _width, num _height, [bool cacheEnabled = false]) <a class="anchor-link" href="#PElement"
+              title="Permalink to PElement.PElement">#</a></h4>
 <div class="doc">
 <pre class="source">
-ElementParent get parent =&gt; _parent;
+PElement(this._width, this._height, [this.cacheEnabled = false]);
 </pre>
 </div>
 </div>
@@ -360,42 +667,6 @@ void registerParent(ElementParent parent) {
   assert(_parent == null);
   assert(parent != null);
   _parent = parent;
-}
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="runtimeType">
-<button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to PElement.get runtimeType">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
-<pre class="source">
-external Type get runtimeType;
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="size">
-<button class="show-code">Code</button>
-<a href="../bot/Size.html">Size</a> <strong>get size</strong>() <a class="anchor-link" href="#size"
-              title="Permalink to PElement.get size">#</a></h4>
-<div class="doc">
-<pre class="source">
-Size get size =&gt; new Size(_width, _height);
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="size=">
-<button class="show-code">Code</button>
-void <strong>set size</strong>(<a href="../bot/Size.html">Size</a> value) <a class="anchor-link" href="#size="
-              title="Permalink to PElement.set size">#</a></h4>
-<div class="doc">
-<pre class="source">
-void set size(Size value) {
-  assert(value.isValid);
-  _width = value.width;
-  _height = value.height;
-  invalidateDraw();
 }
 </pre>
 </div>
@@ -423,16 +694,6 @@ void update(){
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="updated">
-<button class="show-code">Code</button>
-<a href="../bot/EventRoot.html">EventRoot</a>&lt;<a href="../bot/EventArgs.html">EventArgs</a>&gt; <strong>get updated</strong>() <a class="anchor-link" href="#updated"
-              title="Permalink to PElement.get updated">#</a></h4>
-<div class="doc">
-<pre class="source">
-EventRoot&lt;EventArgs&gt; get updated =&gt; _updatedEventHandle;
-</pre>
-</div>
-</div>
 <div class="method inherited"><h4 id="validateNotDisposed">
 <button class="show-code">Code</button>
 void <strong>validateNotDisposed</strong>() <a class="anchor-link" href="#validateNotDisposed"
@@ -441,40 +702,6 @@ void <strong>validateNotDisposed</strong>() <a class="anchor-link" href="#valida
 <pre class="source">
 void validateNotDisposed() {
   assert(!_disposed);
-}
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="visualChildCount">
-<button class="show-code">Code</button>
-int <strong>get visualChildCount</strong>() <a class="anchor-link" href="#visualChildCount"
-              title="Permalink to PElement.get visualChildCount">#</a></h4>
-<div class="doc">
-<pre class="source">
-int get visualChildCount =&gt; 0;
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="width">
-<button class="show-code">Code</button>
-num <strong>get width</strong>() <a class="anchor-link" href="#width"
-              title="Permalink to PElement.get width">#</a></h4>
-<div class="doc">
-<pre class="source">
-num get width =&gt; _width;
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="width=">
-<button class="show-code">Code</button>
-void <strong>set width</strong>(num value) <a class="anchor-link" href="#width="
-              title="Permalink to PElement.set width">#</a></h4>
-<div class="doc">
-<pre class="source">
-void set width(num value) {
-  assert(isValidNumber(value));
-  _width = value;
-  invalidateDraw();
 }
 </pre>
 </div>

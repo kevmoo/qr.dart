@@ -32,6 +32,23 @@
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+class AttachedEvent&lt;T&gt; extends Attachable {
+
+  AttachedEvent(String name) : super(name);
+
+  GlobalId addHandler(AttachableObject obj, Action1&lt;T&gt; handler) {
+    return obj._addHandler(this, handler);
+  }
+
+  bool removeHandler(AttachableObject obj, GlobalId handlerId) {
+    requireArgumentNotNull(obj, 'obj');
+    return obj._removeHandler(this, handlerId);
+  }
+
+  void fireEvent(AttachableObject obj, T args) =&gt; obj._fireEvent(this, args);
+}
+</pre>
 </div>
 <h3>Extends</h3>
 <p>
@@ -50,7 +67,7 @@ AttachedEvent(String name) : super(name);
 </div>
 </div>
 <div>
-<h3>Fields</h3>
+<h3>Properties</h3>
 <div class="field inherited"><h4 id="name">
 <button class="show-code">Code</button>
 final String         <strong>name</strong> <a class="anchor-link"
@@ -63,9 +80,22 @@ final String name;
 </pre>
 </div>
 </div>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to AttachedEvent&lt;T&gt;.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
 </div>
 <div>
-<h3>Methods</h3>
+<h3>Operators</h3>
 <div class="method inherited"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
@@ -82,6 +112,9 @@ bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
+</div>
+<div>
+<h3>Methods</h3>
 <div class="method"><h4 id="addHandler">
 <button class="show-code">Code</button>
 <a href="../bot/GlobalId.html">GlobalId</a> <strong>addHandler</strong>(<a href="../bot/AttachableObject.html">AttachableObject</a> obj, <a href="../bot/Action1.html">Action1</a> handler) <a class="anchor-link" href="#addHandler"
@@ -91,6 +124,26 @@ bool operator ==(other) =&gt; identical(this, other);
 GlobalId addHandler(AttachableObject obj, Action1&lt;T&gt; handler) {
   return obj._addHandler(this, handler);
 }
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="Attachable">
+<button class="show-code">Code</button>
+new <strong>Attachable</strong>(String name) <a class="anchor-link" href="#Attachable"
+              title="Permalink to AttachedEvent&lt;T&gt;.Attachable">#</a></h4>
+<div class="inherited-from">inherited from <a href="../bot/Attachable.html">Attachable</a> </div><div class="doc">
+<pre class="source">
+Attachable(this.name);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="AttachedEvent">
+<button class="show-code">Code</button>
+new <strong>AttachedEvent</strong>(String name) <a class="anchor-link" href="#AttachedEvent"
+              title="Permalink to AttachedEvent&lt;T&gt;.AttachedEvent">#</a></h4>
+<div class="doc">
+<pre class="source">
+AttachedEvent(String name) : super(name);
 </pre>
 </div>
 </div>
@@ -137,6 +190,20 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
+<div class="method inherited"><h4 id="Object">
+<button class="show-code">Code</button>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to AttachedEvent&lt;T&gt;.Object">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
+<pre class="source">
+const Object();
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="removeHandler">
 <button class="show-code">Code</button>
 bool <strong>removeHandler</strong>(<a href="../bot/AttachableObject.html">AttachableObject</a> obj, <a href="../bot/GlobalId.html">GlobalId</a> handlerId) <a class="anchor-link" href="#removeHandler"
@@ -147,17 +214,6 @@ bool removeHandler(AttachableObject obj, GlobalId handlerId) {
   requireArgumentNotNull(obj, 'obj');
   return obj._removeHandler(this, handlerId);
 }
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="runtimeType">
-<button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to AttachedEvent&lt;T&gt;.get runtimeType">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
-<pre class="source">
-external Type get runtimeType;
 </pre>
 </div>
 </div>

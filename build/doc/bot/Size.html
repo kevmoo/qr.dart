@@ -32,6 +32,67 @@
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+class Size {
+  final num width, height;
+
+  const Size(this.width, this.height);
+
+  bool operator ==(Size other) {
+    return other != null &amp;&amp; width == other.width &amp;&amp; height == other.height;
+  }
+
+  /**
+   * Returns the area of the size (width * height).
+   */
+  num get area =&gt; width * height;
+
+  /**
+   * Returns the ratio of the size's width to its height.
+   */
+  num get aspectRatio =&gt; width / height;
+
+  /**
+   * Returns true if this Size is the same size or smaller than the
+   * [target] size in both dimensions.
+   */
+  bool fitsInside(Size target) {
+    return width &lt;= target.width &amp;&amp; height &lt;= target.height;
+  }
+
+  /**
+   * Returns true if the size has zero area, false if both dimensions
+   *     are non-zero numbers.
+   */
+  bool isEmpty() =&gt; area == 0;
+
+  /**
+   * Returns the perimeter of the size (width + height) * 2.
+   */
+  num get perimeter =&gt; (width + height) * 2;
+
+  bool get isValid =&gt; isValidNumber(width) &amp;&amp; isValidNumber(height) &amp;&amp;
+      width &gt;= 0 &amp;&amp; height &gt;= 0;
+
+  /**
+   * Multiplies each dimensions by the provided magnitude and returns a new [Size].
+   **/
+  Size scale(num magnitude) =&gt; new Size(width * magnitude, height * magnitude);
+
+  /**
+   * Multiplies each dimensions by the provided magnitude and returns a new [Size].
+   **/
+  Size operator *(num magnitude) =&gt; this.scale(magnitude);
+
+  Vector toVector() =&gt; new Vector(width, height);
+
+  /**
+   * Returns a nice string representing size.
+   * Returns in the form (50 x 73).
+   */
+  String toString() =&gt; "(${width} x ${height})";
+}
+</pre>
 </div>
 <div>
 <h3>Constructors</h3>
@@ -47,7 +108,33 @@ const Size(this.width, this.height);
 </div>
 </div>
 <div>
-<h3>Fields</h3>
+<h3>Properties</h3>
+<div class="field"><h4 id="area">
+<button class="show-code">Code</button>
+final num         <strong>area</strong> <a class="anchor-link"
+            href="#area"
+            title="Permalink to Size.area">#</a>
+        </h4>
+        <div class="doc">
+<p>Returns the area of the size (width * height).</p>
+<pre class="source">
+num get area =&gt; width * height;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="aspectRatio">
+<button class="show-code">Code</button>
+final num         <strong>aspectRatio</strong> <a class="anchor-link"
+            href="#aspectRatio"
+            title="Permalink to Size.aspectRatio">#</a>
+        </h4>
+        <div class="doc">
+<p>Returns the ratio of the size's width to its height.</p>
+<pre class="source">
+num get aspectRatio =&gt; width / height;
+</pre>
+</div>
+</div>
 <div class="field"><h4 id="height">
 <button class="show-code">Code</button>
 final num         <strong>height</strong> <a class="anchor-link"
@@ -57,6 +144,45 @@ final num         <strong>height</strong> <a class="anchor-link"
         <div class="doc">
 <pre class="source">
 final num width, height;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="isValid">
+<button class="show-code">Code</button>
+final bool         <strong>isValid</strong> <a class="anchor-link"
+            href="#isValid"
+            title="Permalink to Size.isValid">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+bool get isValid =&gt; isValidNumber(width) &amp;&amp; isValidNumber(height) &amp;&amp;
+    width &gt;= 0 &amp;&amp; height &gt;= 0;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="perimeter">
+<button class="show-code">Code</button>
+final num         <strong>perimeter</strong> <a class="anchor-link"
+            href="#perimeter"
+            title="Permalink to Size.perimeter">#</a>
+        </h4>
+        <div class="doc">
+<p>Returns the perimeter of the size (width + height) * 2.</p>
+<pre class="source">
+num get perimeter =&gt; (width + height) * 2;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to Size.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
 </pre>
 </div>
 </div>
@@ -74,7 +200,7 @@ final num width, height;
 </div>
 </div>
 <div>
-<h3>Methods</h3>
+<h3>Operators</h3>
 <div class="method"><h4 id="*">
 <button class="show-code">Code</button>
 <a href="../bot/Size.html">Size</a> <strong>operator *</strong>(num magnitude) <a class="anchor-link" href="#*"
@@ -106,28 +232,9 @@ bool operator ==(Size other) {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="area">
-<button class="show-code">Code</button>
-num <strong>get area</strong>() <a class="anchor-link" href="#area"
-              title="Permalink to Size.get area">#</a></h4>
-<div class="doc">
-<p>Returns the area of the size (width * height).</p>
-<pre class="source">
-num get area =&gt; width * height;
-</pre>
 </div>
-</div>
-<div class="method"><h4 id="aspectRatio">
-<button class="show-code">Code</button>
-num <strong>get aspectRatio</strong>() <a class="anchor-link" href="#aspectRatio"
-              title="Permalink to Size.get aspectRatio">#</a></h4>
-<div class="doc">
-<p>Returns the ratio of the size's width to its height.</p>
-<pre class="source">
-num get aspectRatio =&gt; width / height;
-</pre>
-</div>
-</div>
+<div>
+<h3>Methods</h3>
 <div class="method"><h4 id="fitsInside">
 <button class="show-code">Code</button>
 bool <strong>fitsInside</strong>(<a href="../bot/Size.html">Size</a> target) <a class="anchor-link" href="#fitsInside"
@@ -174,17 +281,6 @@ bool isEmpty() =&gt; area == 0;
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="isValid">
-<button class="show-code">Code</button>
-bool <strong>get isValid</strong>() <a class="anchor-link" href="#isValid"
-              title="Permalink to Size.get isValid">#</a></h4>
-<div class="doc">
-<pre class="source">
-bool get isValid =&gt; isValidNumber(width) &amp;&amp; isValidNumber(height) &amp;&amp;
-    width &gt;= 0 &amp;&amp; height &gt;= 0;
-</pre>
-</div>
-</div>
 <div class="method inherited"><h4 id="noSuchMethod">
 <button class="show-code">Code</button>
 <strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
@@ -202,25 +298,17 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="perimeter">
+<div class="method inherited"><h4 id="Object">
 <button class="show-code">Code</button>
-num <strong>get perimeter</strong>() <a class="anchor-link" href="#perimeter"
-              title="Permalink to Size.get perimeter">#</a></h4>
-<div class="doc">
-<p>Returns the perimeter of the size (width + height) * 2.</p>
-<pre class="source">
-num get perimeter =&gt; (width + height) * 2;
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="runtimeType">
-<button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to Size.get runtimeType">#</a></h4>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to Size.Object">#</a></h4>
 <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
 <pre class="source">
-external Type get runtimeType;
+const Object();
 </pre>
 </div>
 </div>
@@ -232,6 +320,16 @@ external Type get runtimeType;
 <p>Multiplies each dimensions by the provided magnitude and returns a new <a class="crossref" href="../bot/Size.html#Size">Size</a>.</p>
 <pre class="source">
 Size scale(num magnitude) =&gt; new Size(width * magnitude, height * magnitude);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="Size">
+<button class="show-code">Code</button>
+const <strong>Size</strong>(num width, num height) <a class="anchor-link" href="#Size"
+              title="Permalink to Size.Size">#</a></h4>
+<div class="doc">
+<pre class="source">
+const Size(this.width, this.height);
 </pre>
 </div>
 </div>

@@ -32,6 +32,31 @@
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+class QrByte {
+  final int mode = QrMode.MODE_8BIT_BYTE;
+  final List&lt;int&gt; _data;
+
+  factory QrByte(String input) {
+    requireArgumentNotNull(input, 'input');
+    final charCodes = input.charCodes();
+    for(final v in charCodes) {
+      requireArgument(v &lt; 255, 'ascii-only');
+    }
+    return new QrByte._internal(charCodes);
+  }
+
+  QrByte._internal(this._data);
+
+  int get length =&gt; _data.length;
+
+  void write(QrBitBuffer buffer) {
+    for(final int v in _data) {
+      buffer.put(v, 8);
+    }
+  }
+}
+</pre>
 </div>
 <div>
 <h3>Constructors</h3>
@@ -64,7 +89,19 @@ QrByte._internal(this._data);
 </div>
 </div>
 <div>
-<h3>Fields</h3>
+<h3>Properties</h3>
+<div class="field"><h4 id="length">
+<button class="show-code">Code</button>
+final int         <strong>length</strong> <a class="anchor-link"
+            href="#length"
+            title="Permalink to QrByte.length">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+int get length =&gt; _data.length;
+</pre>
+</div>
+</div>
 <div class="field"><h4 id="mode">
 <button class="show-code">Code</button>
 final int         <strong>mode</strong> <a class="anchor-link"
@@ -77,9 +114,22 @@ final int mode = QrMode.MODE_8BIT_BYTE;
 </pre>
 </div>
 </div>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to QrByte.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
 </div>
 <div>
-<h3>Methods</h3>
+<h3>Operators</h3>
 <div class="method inherited"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
@@ -96,6 +146,9 @@ bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
+</div>
+<div>
+<h3>Methods</h3>
 <div class="method inherited"><h4 id="hashCode">
 <button class="show-code">Code</button>
 int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
@@ -111,16 +164,6 @@ there are no distribution guarantees.</p>
 equality operator as well to maintain consistency.</p>
 <pre class="source">
 external int hashCode();
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="length">
-<button class="show-code">Code</button>
-int <strong>get length</strong>() <a class="anchor-link" href="#length"
-              title="Permalink to QrByte.get length">#</a></h4>
-<div class="doc">
-<pre class="source">
-int get length =&gt; _data.length;
 </pre>
 </div>
 </div>
@@ -141,14 +184,44 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="runtimeType">
+<div class="method inherited"><h4 id="Object">
 <button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to QrByte.get runtimeType">#</a></h4>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to QrByte.Object">#</a></h4>
 <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
 <pre class="source">
-external Type get runtimeType;
+const Object();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="QrByte">
+<button class="show-code">Code</button>
+factory <strong>QrByte</strong>(String input) <a class="anchor-link" href="#QrByte"
+              title="Permalink to QrByte.QrByte">#</a></h4>
+<div class="doc">
+<pre class="source">
+factory QrByte(String input) {
+  requireArgumentNotNull(input, 'input');
+  final charCodes = input.charCodes();
+  for(final v in charCodes) {
+    requireArgument(v &lt; 255, 'ascii-only');
+  }
+  return new QrByte._internal(charCodes);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="QrByte._internal">
+<button class="show-code">Code</button>
+new <strong>QrByte._internal</strong>(List&lt;int&gt; _data) <a class="anchor-link" href="#QrByte._internal"
+              title="Permalink to QrByte.QrByte._internal">#</a></h4>
+<div class="doc">
+<pre class="source">
+QrByte._internal(this._data);
 </pre>
 </div>
 </div>

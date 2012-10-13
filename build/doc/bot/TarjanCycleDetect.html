@@ -32,6 +32,64 @@
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+class TarjanCycleDetect&lt;TNode extends Hashable&gt; {
+
+  int _index = 0;
+  final List&lt;_TarjanNode&gt; _stack;
+  final List&lt;List&lt;TNode&gt;&gt; _scc;
+  final _TarjanList _list;
+
+  TarjanCycleDetect._internal(this._list) :
+    _index = 0,
+    _stack = new List&lt;_TarjanNode&lt;TNode&gt;&gt;(),
+    _scc = new List&lt;List&lt;TNode&gt;&gt;();
+
+  static List&lt;List&gt; getStronglyConnectedComponents(HashMap graph) {
+    assert(graph != null);
+
+    var nodes = new _TarjanList(graph);
+    var tarjan = new TarjanCycleDetect._internal(nodes);
+    return tarjan._executeTarjan();
+  }
+
+  List&lt;List&lt;TNode&gt;&gt; _executeTarjan() {
+    List&lt;_TarjanNode&gt; nodeList = new List&lt;_TarjanNode&gt;.from(_list.getSourceNodeSet());
+    for (final node in nodeList)
+    {
+      if(node.index == -1) {
+        _tarjan(node);
+      }
+    }
+    return _scc;
+  }
+
+  void _tarjan(_TarjanNode&lt;TNode&gt; v){
+    v.index = _index;
+    v.lowlink = _index;
+    _index++;
+    _stack.insertRange(0, 1, v);
+    for(final n in _list.getAdjacent(v)){
+      if(n.index == -1){
+        _tarjan(n);
+        v.lowlink = math.min(v.lowlink, n.lowlink);
+      } else if(_stack.indexOf(n) &gt;= 0){
+        v.lowlink = math.min(v.lowlink, n.index);
+      }
+    }
+    if(v.lowlink == v.index){
+      _TarjanNode n;
+      var component = new List&lt;TNode&gt;();
+      do {
+        n = _stack[0];
+        _stack.removeRange(0, 1);
+        component.add(n.value);
+      } while(n != v);
+      _scc.add(component);
+    }
+  }
+}
+</pre>
 </div>
 <div>
 <h3>Constructors</h3>
@@ -69,7 +127,23 @@ static List&lt;List&gt; getStronglyConnectedComponents(HashMap graph) {
 </div>
 </div>
 <div>
-<h3>Methods</h3>
+<h3>Properties</h3>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to TarjanCycleDetect&lt;TNode&gt;.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Operators</h3>
 <div class="method inherited"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
@@ -86,6 +160,9 @@ bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
+</div>
+<div>
+<h3>Methods</h3>
 <div class="method inherited"><h4 id="hashCode">
 <button class="show-code">Code</button>
 int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
@@ -121,14 +198,30 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="runtimeType">
+<div class="method inherited"><h4 id="Object">
 <button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to TarjanCycleDetect&lt;TNode&gt;.get runtimeType">#</a></h4>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to TarjanCycleDetect&lt;TNode&gt;.Object">#</a></h4>
 <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
 <pre class="source">
-external Type get runtimeType;
+const Object();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="TarjanCycleDetect._internal">
+<button class="show-code">Code</button>
+new <strong>TarjanCycleDetect._internal</strong>(<a href="../bot/_TarjanList.html">_TarjanList</a> _list) <a class="anchor-link" href="#TarjanCycleDetect._internal"
+              title="Permalink to TarjanCycleDetect&lt;TNode&gt;.TarjanCycleDetect._internal">#</a></h4>
+<div class="doc">
+<pre class="source">
+TarjanCycleDetect._internal(this._list) :
+  _index = 0,
+  _stack = new List&lt;_TarjanNode&lt;TNode&gt;&gt;(),
+  _scc = new List&lt;List&lt;TNode&gt;&gt;();
 </pre>
 </div>
 </div>

@@ -32,6 +32,64 @@
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+class Box implements Hashable{
+  final num left, top, width, height;
+
+  const Box(this.left, this.top, this.width, this.height);
+
+  factory Box.fromCoordSize(Coordinate topLeft, Size size) {
+    return new Box(topLeft.x, topLeft.y, size.width, size.height);
+  }
+
+  Coordinate get topLeft =&gt; new Coordinate(left, top);
+
+  Size get size =&gt; new Size(width, height);
+
+  bool get isValid =&gt; topLeft.isValid &amp;&amp; size.isValid;
+
+  num get right =&gt; left + width;
+
+  num get bottom =&gt; top + height;
+
+  bool contains(Coordinate point){
+    return point.x &gt;= left &amp;&amp;
+        point.x &lt;= left + width &amp;&amp;
+        point.y &gt;= top &amp;&amp;
+        point.y &lt;= top + height;
+  }
+
+  // TODO: test!!
+  Coordinate constrain(Coordinate value) {
+    requireArgumentNotNull(value, 'value');
+    requireArgument(value.isValid, 'value');
+    assert(isValid);
+
+    final x = math.min(right, math.max(left, value.x));
+    final y = math.min(bottom, math.max(top, value.y));
+
+    return new Coordinate(x, y);
+  }
+
+  List&lt;Coordinate&gt; getCorners() {
+    return [
+      new Coordinate(left, top),
+      new Coordinate(left + width, top),
+      new Coordinate(left + width, top + height),
+      new Coordinate(left, top + height)
+    ];
+  }
+
+  bool operator ==(Box other) {
+    return other != null &amp;&amp; other.left == left &amp;&amp; other.top == top &amp;&amp;
+        other.width == width &amp;&amp; other.height == height;
+  }
+
+  String toString() =&gt; "Location: $topLeft, Size: $size";
+
+  int hashCode() =&gt; Util.getHashCode([left, top, width, height]);
+}
+</pre>
 </div>
 <h3>Implements</h3>
 <p>
@@ -62,7 +120,19 @@ factory Box.fromCoordSize(Coordinate topLeft, Size size) {
 </div>
 </div>
 <div>
-<h3>Fields</h3>
+<h3>Properties</h3>
+<div class="field"><h4 id="bottom">
+<button class="show-code">Code</button>
+final num         <strong>bottom</strong> <a class="anchor-link"
+            href="#bottom"
+            title="Permalink to Box.bottom">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num get bottom =&gt; top + height;
+</pre>
+</div>
+</div>
 <div class="field"><h4 id="height">
 <button class="show-code">Code</button>
 final num         <strong>height</strong> <a class="anchor-link"
@@ -72,6 +142,18 @@ final num         <strong>height</strong> <a class="anchor-link"
         <div class="doc">
 <pre class="source">
 final num left, top, width, height;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="isValid">
+<button class="show-code">Code</button>
+final bool         <strong>isValid</strong> <a class="anchor-link"
+            href="#isValid"
+            title="Permalink to Box.isValid">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+bool get isValid =&gt; topLeft.isValid &amp;&amp; size.isValid;
 </pre>
 </div>
 </div>
@@ -87,6 +169,43 @@ final num left, top, width, height;
 </pre>
 </div>
 </div>
+<div class="field"><h4 id="right">
+<button class="show-code">Code</button>
+final num         <strong>right</strong> <a class="anchor-link"
+            href="#right"
+            title="Permalink to Box.right">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num get right =&gt; left + width;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to Box.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="size">
+<button class="show-code">Code</button>
+final <a href="../bot/Size.html">Size</a>         <strong>size</strong> <a class="anchor-link"
+            href="#size"
+            title="Permalink to Box.size">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+Size get size =&gt; new Size(width, height);
+</pre>
+</div>
+</div>
 <div class="field"><h4 id="top">
 <button class="show-code">Code</button>
 final num         <strong>top</strong> <a class="anchor-link"
@@ -96,6 +215,18 @@ final num         <strong>top</strong> <a class="anchor-link"
         <div class="doc">
 <pre class="source">
 final num left, top, width, height;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="topLeft">
+<button class="show-code">Code</button>
+final <a href="../bot/Coordinate.html">Coordinate</a>         <strong>topLeft</strong> <a class="anchor-link"
+            href="#topLeft"
+            title="Permalink to Box.topLeft">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+Coordinate get topLeft =&gt; new Coordinate(left, top);
 </pre>
 </div>
 </div>
@@ -113,7 +244,7 @@ final num left, top, width, height;
 </div>
 </div>
 <div>
-<h3>Methods</h3>
+<h3>Operators</h3>
 <div class="method"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(<a href="../bot/Box.html">Box</a> other) <a class="anchor-link" href="#=="
@@ -135,13 +266,28 @@ bool operator ==(Box other) {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="bottom">
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method"><h4 id="Box">
 <button class="show-code">Code</button>
-num <strong>get bottom</strong>() <a class="anchor-link" href="#bottom"
-              title="Permalink to Box.get bottom">#</a></h4>
+const <strong>Box</strong>(num left, num top, num width, num height) <a class="anchor-link" href="#Box"
+              title="Permalink to Box.Box">#</a></h4>
 <div class="doc">
 <pre class="source">
-num get bottom =&gt; top + height;
+const Box(this.left, this.top, this.width, this.height);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="Box.fromCoordSize">
+<button class="show-code">Code</button>
+factory <strong>Box.fromCoordSize</strong>(<a href="../bot/Coordinate.html">Coordinate</a> topLeft, <a href="../bot/Size.html">Size</a> size) <a class="anchor-link" href="#Box.fromCoordSize"
+              title="Permalink to Box.Box.fromCoordSize">#</a></h4>
+<div class="doc">
+<pre class="source">
+factory Box.fromCoordSize(Coordinate topLeft, Size size) {
+  return new Box(topLeft.x, topLeft.y, size.width, size.height);
+}
 </pre>
 </div>
 </div>
@@ -216,16 +362,6 @@ int hashCode() =&gt; Util.getHashCode([left, top, width, height]);
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="isValid">
-<button class="show-code">Code</button>
-bool <strong>get isValid</strong>() <a class="anchor-link" href="#isValid"
-              title="Permalink to Box.get isValid">#</a></h4>
-<div class="doc">
-<pre class="source">
-bool get isValid =&gt; topLeft.isValid &amp;&amp; size.isValid;
-</pre>
-</div>
-</div>
 <div class="method inherited"><h4 id="noSuchMethod">
 <button class="show-code">Code</button>
 <strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
@@ -243,44 +379,17 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="right">
+<div class="method inherited"><h4 id="Object">
 <button class="show-code">Code</button>
-num <strong>get right</strong>() <a class="anchor-link" href="#right"
-              title="Permalink to Box.get right">#</a></h4>
-<div class="doc">
-<pre class="source">
-num get right =&gt; left + width;
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="runtimeType">
-<button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to Box.get runtimeType">#</a></h4>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to Box.Object">#</a></h4>
 <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
 <pre class="source">
-external Type get runtimeType;
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="size">
-<button class="show-code">Code</button>
-<a href="../bot/Size.html">Size</a> <strong>get size</strong>() <a class="anchor-link" href="#size"
-              title="Permalink to Box.get size">#</a></h4>
-<div class="doc">
-<pre class="source">
-Size get size =&gt; new Size(width, height);
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="topLeft">
-<button class="show-code">Code</button>
-<a href="../bot/Coordinate.html">Coordinate</a> <strong>get topLeft</strong>() <a class="anchor-link" href="#topLeft"
-              title="Permalink to Box.get topLeft">#</a></h4>
-<div class="doc">
-<pre class="source">
-Coordinate get topLeft =&gt; new Coordinate(left, top);
+const Object();
 </pre>
 </div>
 </div>

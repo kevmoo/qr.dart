@@ -32,12 +32,51 @@
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+class CancelableEventArgs extends EventArgs {
+  bool _canceled = false;
+
+  bool get isCanceled =&gt; _canceled;
+
+  void cancel() {
+    _canceled = true;
+  }
+}
+</pre>
 </div>
 <h3>Extends</h3>
 <p>
 <span class="type-box"><span class="icon-class"></span><a href="../bot/EventArgs.html">EventArgs</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>CancelableEventArgs</strong></span></p>
 <div>
-<h3>Methods</h3>
+<h3>Properties</h3>
+<div class="field"><h4 id="isCanceled">
+<button class="show-code">Code</button>
+final bool         <strong>isCanceled</strong> <a class="anchor-link"
+            href="#isCanceled"
+            title="Permalink to CancelableEventArgs.isCanceled">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+bool get isCanceled =&gt; _canceled;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to CancelableEventArgs.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Operators</h3>
 <div class="method inherited"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
@@ -54,6 +93,9 @@ bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
+</div>
+<div>
+<h3>Methods</h3>
 <div class="method"><h4 id="cancel">
 <button class="show-code">Code</button>
 void <strong>cancel</strong>() <a class="anchor-link" href="#cancel"
@@ -63,6 +105,26 @@ void <strong>cancel</strong>() <a class="anchor-link" href="#cancel"
 void cancel() {
   _canceled = true;
 }
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="EventArgs">
+<button class="show-code">Code</button>
+new <strong>EventArgs</strong>() <a class="anchor-link" href="#EventArgs"
+              title="Permalink to CancelableEventArgs.EventArgs">#</a></h4>
+<div class="inherited-from">inherited from <a href="../bot/EventArgs.html">EventArgs</a> </div><div class="doc">
+<pre class="source">
+EventArgs();
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="EventArgs._empty">
+<button class="show-code">Code</button>
+const <strong>EventArgs._empty</strong>() <a class="anchor-link" href="#EventArgs._empty"
+              title="Permalink to CancelableEventArgs.EventArgs._empty">#</a></h4>
+<div class="inherited-from">inherited from <a href="../bot/EventArgs.html">EventArgs</a> </div><div class="doc">
+<pre class="source">
+const EventArgs._empty();
 </pre>
 </div>
 </div>
@@ -84,16 +146,6 @@ external int hashCode();
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="isCanceled">
-<button class="show-code">Code</button>
-bool <strong>get isCanceled</strong>() <a class="anchor-link" href="#isCanceled"
-              title="Permalink to CancelableEventArgs.get isCanceled">#</a></h4>
-<div class="doc">
-<pre class="source">
-bool get isCanceled =&gt; _canceled;
-</pre>
-</div>
-</div>
 <div class="method inherited"><h4 id="noSuchMethod">
 <button class="show-code">Code</button>
 <strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
@@ -111,14 +163,17 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="runtimeType">
+<div class="method inherited"><h4 id="Object">
 <button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to CancelableEventArgs.get runtimeType">#</a></h4>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to CancelableEventArgs.Object">#</a></h4>
 <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
 <pre class="source">
-external Type get runtimeType;
+const Object();
 </pre>
 </div>
 </div>

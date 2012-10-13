@@ -32,6 +32,53 @@
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+class SpriteElement extends ImgElement {
+  final Coordinate startCoordinate;
+  final Vector nextDelta;
+  final int count;
+
+  int _frame = 0;
+
+  factory SpriteElement.horizontalFromUrl(String src, num w, num h,
+      int count, num xDelta, [Coordinate start = const Coordinate()]) {
+    final img = new ImageElement(src, null, null);
+
+    return new SpriteElement(img, w, h, start, new Vector(xDelta, 0), count);
+  }
+
+  SpriteElement(ImageElement image, num width, num height,
+                this.startCoordinate, this.nextDelta, this.count) :
+    super(width, height, image);
+
+  void nextFrame() {
+    setFrame(_frame + 1);
+  }
+
+  void previousFrame() {
+    setFrame(_frame - 1);
+  }
+
+  void setFrame(int frame) {
+    _frame = (frame % count);
+    invalidateDraw();
+  }
+
+  void _doDraw(CanvasRenderingContext2D ctx) {
+    final int msPerFrame = 1000 ~/ count;
+
+    final int currentMS = window.performance.webkitNow().toInt();
+
+    final int theFrame = (currentMS ~/ msPerFrame) % count;
+
+    final sourceCoord = startCoordinate + nextDelta * theFrame;
+
+    final rect = new Box.fromCoordSize(sourceCoord, size);
+
+    CanvasUtil.drawImage(ctx, _image, rect);
+  }
+}
+</pre>
 </div>
 <h3>Extends</h3>
 <p>
@@ -67,7 +114,7 @@ factory SpriteElement.horizontalFromUrl(String src, num w, num h,
 </div>
 </div>
 <div>
-<h3>Fields</h3>
+<h3>Properties</h3>
 <div class="field inherited"><h4 id="cacheEnabled">
 <button class="show-code">Code</button>
 final bool         <strong>cacheEnabled</strong> <a class="anchor-link"
@@ -104,6 +151,49 @@ final int count;
 </pre>
 </div>
 </div>
+<div class="field inherited"><h4 id="height">
+<button class="show-code">Code</button>
+num         <strong>height</strong> <a class="anchor-link"
+            href="#height"
+            title="Permalink to SpriteElement.height">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
+<pre class="source">
+num get height =&gt; _height;
+</pre>
+<pre class="source">
+void set height(num value) {
+  assert(isValidNumber(value));
+  _height = value;
+  invalidateDraw();
+}
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="invalidated">
+<button class="show-code">Code</button>
+final <a href="../bot/EventRoot.html">EventRoot</a>&lt;<a href="../bot/EventArgs.html">EventArgs</a>&gt;         <strong>invalidated</strong> <a class="anchor-link"
+            href="#invalidated"
+            title="Permalink to SpriteElement.invalidated">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
+<pre class="source">
+EventRoot&lt;EventArgs&gt; get invalidated =&gt; _invalidatedEventHandle;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="isDisposed">
+<button class="show-code">Code</button>
+final bool         <strong>isDisposed</strong> <a class="anchor-link"
+            href="#isDisposed"
+            title="Permalink to SpriteElement.isDisposed">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div><div class="doc">
+<pre class="source">
+bool get isDisposed =&gt; _disposed;
+</pre>
+</div>
+</div>
 <div class="field"><h4 id="nextDelta">
 <button class="show-code">Code</button>
 final <a href="../bot/Vector.html">Vector</a>         <strong>nextDelta</strong> <a class="anchor-link"
@@ -113,6 +203,51 @@ final <a href="../bot/Vector.html">Vector</a>         <strong>nextDelta</strong>
         <div class="doc">
 <pre class="source">
 final Vector nextDelta;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="parent">
+<button class="show-code">Code</button>
+final <a href="../bot_retained/ElementParent.html">ElementParent</a>         <strong>parent</strong> <a class="anchor-link"
+            href="#parent"
+            title="Permalink to SpriteElement.parent">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
+<pre class="source">
+ElementParent get parent =&gt; _parent;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to SpriteElement.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="size">
+<button class="show-code">Code</button>
+<a href="../bot/Size.html">Size</a>         <strong>size</strong> <a class="anchor-link"
+            href="#size"
+            title="Permalink to SpriteElement.size">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
+<pre class="source">
+Size get size =&gt; new Size(_width, _height);
+</pre>
+<pre class="source">
+void set size(Size value) {
+  assert(value.isValid);
+  _width = value.width;
+  _height = value.height;
+  invalidateDraw();
+}
 </pre>
 </div>
 </div>
@@ -128,9 +263,52 @@ final Coordinate startCoordinate;
 </pre>
 </div>
 </div>
+<div class="field inherited"><h4 id="updated">
+<button class="show-code">Code</button>
+final <a href="../bot/EventRoot.html">EventRoot</a>&lt;<a href="../bot/EventArgs.html">EventArgs</a>&gt;         <strong>updated</strong> <a class="anchor-link"
+            href="#updated"
+            title="Permalink to SpriteElement.updated">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
+<pre class="source">
+EventRoot&lt;EventArgs&gt; get updated =&gt; _updatedEventHandle;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="visualChildCount">
+<button class="show-code">Code</button>
+final int         <strong>visualChildCount</strong> <a class="anchor-link"
+            href="#visualChildCount"
+            title="Permalink to SpriteElement.visualChildCount">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
+<pre class="source">
+int get visualChildCount =&gt; 0;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="width">
+<button class="show-code">Code</button>
+num         <strong>width</strong> <a class="anchor-link"
+            href="#width"
+            title="Permalink to SpriteElement.width">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
+<pre class="source">
+num get width =&gt; _width;
+</pre>
+<pre class="source">
+void set width(num value) {
+  assert(isValidNumber(value));
+  _width = value;
+  invalidateDraw();
+}
+</pre>
+</div>
+</div>
 </div>
 <div>
-<h3>Methods</h3>
+<h3>Operators</h3>
 <div class="method inherited"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
@@ -147,6 +325,9 @@ bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
+</div>
+<div>
+<h3>Methods</h3>
 <div class="method inherited"><h4 id="addTransform">
 <button class="show-code">Code</button>
 <a href="../bot/AffineTransform.html">AffineTransform</a> <strong>addTransform</strong>() <a class="anchor-link" href="#addTransform"
@@ -326,37 +507,28 @@ bool hasVisualChild(PElement element){
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="height">
+<div class="method inherited"><h4 id="ImgElement">
 <button class="show-code">Code</button>
-num <strong>get height</strong>() <a class="anchor-link" href="#height"
-              title="Permalink to SpriteElement.get height">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
+new <strong>ImgElement</strong>(num width, num height, ImageElement _image, [bool cacheEnabled = false]) <a class="anchor-link" href="#ImgElement"
+              title="Permalink to SpriteElement.ImgElement">#</a></h4>
+<div class="inherited-from">inherited from <a href="../bot_retained/ImgElement.html">ImgElement</a> </div><div class="doc">
 <pre class="source">
-num get height =&gt; _height;
+ImgElement(num width, num height, this._image, [bool cacheEnabled = false]) :
+  super(width, height, cacheEnabled);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="height=">
+<div class="method inherited"><h4 id="ImgElement.fromUrl">
 <button class="show-code">Code</button>
-void <strong>set height</strong>(num value) <a class="anchor-link" href="#height="
-              title="Permalink to SpriteElement.set height">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
+factory <strong>ImgElement.fromUrl</strong>(String src, num w, num h) <a class="anchor-link" href="#ImgElement.fromUrl"
+              title="Permalink to SpriteElement.ImgElement.fromUrl">#</a></h4>
+<div class="inherited-from">inherited from <a href="../bot_retained/ImgElement.html">ImgElement</a> </div><div class="doc">
 <pre class="source">
-void set height(num value) {
-  assert(isValidNumber(value));
-  _height = value;
-  invalidateDraw();
+factory ImgElement.fromUrl(String src, num w, num h) {
+  final img = new ImageElement(src, null, null);
+
+  return new ImgElement(w, h, img);
 }
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="invalidated">
-<button class="show-code">Code</button>
-<a href="../bot/EventRoot.html">EventRoot</a>&lt;<a href="../bot/EventArgs.html">EventArgs</a>&gt; <strong>get invalidated</strong>() <a class="anchor-link" href="#invalidated"
-              title="Permalink to SpriteElement.get invalidated">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
-<pre class="source">
-EventRoot&lt;EventArgs&gt; get invalidated =&gt; _invalidatedEventHandle;
 </pre>
 </div>
 </div>
@@ -373,16 +545,6 @@ void invalidateDraw(){
     _invalidateParent();
   }
 }
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="isDisposed">
-<button class="show-code">Code</button>
-bool <strong>get isDisposed</strong>() <a class="anchor-link" href="#isDisposed"
-              title="Permalink to SpriteElement.get isDisposed">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div><div class="doc">
-<pre class="source">
-bool get isDisposed =&gt; _disposed;
 </pre>
 </div>
 </div>
@@ -415,13 +577,27 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="parent">
+<div class="method inherited"><h4 id="Object">
 <button class="show-code">Code</button>
-<a href="../bot_retained/ElementParent.html">ElementParent</a> <strong>get parent</strong>() <a class="anchor-link" href="#parent"
-              title="Permalink to SpriteElement.get parent">#</a></h4>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to SpriteElement.Object">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
+<pre class="source">
+const Object();
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="PElement">
+<button class="show-code">Code</button>
+new <strong>PElement</strong>(num _width, num _height, [bool cacheEnabled = false]) <a class="anchor-link" href="#PElement"
+              title="Permalink to SpriteElement.PElement">#</a></h4>
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
-ElementParent get parent =&gt; _parent;
+PElement(this._width, this._height, [this.cacheEnabled = false]);
 </pre>
 </div>
 </div>
@@ -451,17 +627,6 @@ void registerParent(ElementParent parent) {
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="runtimeType">
-<button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to SpriteElement.get runtimeType">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
-<pre class="source">
-external Type get runtimeType;
-</pre>
-</div>
-</div>
 <div class="method"><h4 id="setFrame">
 <button class="show-code">Code</button>
 void <strong>setFrame</strong>(int frame) <a class="anchor-link" href="#setFrame"
@@ -475,27 +640,29 @@ void setFrame(int frame) {
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="size">
+<div class="method"><h4 id="SpriteElement">
 <button class="show-code">Code</button>
-<a href="../bot/Size.html">Size</a> <strong>get size</strong>() <a class="anchor-link" href="#size"
-              title="Permalink to SpriteElement.get size">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
+new <strong>SpriteElement</strong>(ImageElement image, num width, num height, <a href="../bot/Coordinate.html">Coordinate</a> startCoordinate, <a href="../bot/Vector.html">Vector</a> nextDelta, int count) <a class="anchor-link" href="#SpriteElement"
+              title="Permalink to SpriteElement.SpriteElement">#</a></h4>
+<div class="doc">
 <pre class="source">
-Size get size =&gt; new Size(_width, _height);
+SpriteElement(ImageElement image, num width, num height,
+              this.startCoordinate, this.nextDelta, this.count) :
+  super(width, height, image);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="size=">
+<div class="method"><h4 id="SpriteElement.horizontalFromUrl">
 <button class="show-code">Code</button>
-void <strong>set size</strong>(<a href="../bot/Size.html">Size</a> value) <a class="anchor-link" href="#size="
-              title="Permalink to SpriteElement.set size">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
+factory <strong>SpriteElement.horizontalFromUrl</strong>(String src, num w, num h, int count, num xDelta, [<a href="../bot/Coordinate.html">Coordinate</a> start = const Coordinate()]) <a class="anchor-link" href="#SpriteElement.horizontalFromUrl"
+              title="Permalink to SpriteElement.SpriteElement.horizontalFromUrl">#</a></h4>
+<div class="doc">
 <pre class="source">
-void set size(Size value) {
-  assert(value.isValid);
-  _width = value.width;
-  _height = value.height;
-  invalidateDraw();
+factory SpriteElement.horizontalFromUrl(String src, num w, num h,
+    int count, num xDelta, [Coordinate start = const Coordinate()]) {
+  final img = new ImageElement(src, null, null);
+
+  return new SpriteElement(img, w, h, start, new Vector(xDelta, 0), count);
 }
 </pre>
 </div>
@@ -523,16 +690,6 @@ void update(){
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="updated">
-<button class="show-code">Code</button>
-<a href="../bot/EventRoot.html">EventRoot</a>&lt;<a href="../bot/EventArgs.html">EventArgs</a>&gt; <strong>get updated</strong>() <a class="anchor-link" href="#updated"
-              title="Permalink to SpriteElement.get updated">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
-<pre class="source">
-EventRoot&lt;EventArgs&gt; get updated =&gt; _updatedEventHandle;
-</pre>
-</div>
-</div>
 <div class="method inherited"><h4 id="validateNotDisposed">
 <button class="show-code">Code</button>
 void <strong>validateNotDisposed</strong>() <a class="anchor-link" href="#validateNotDisposed"
@@ -541,40 +698,6 @@ void <strong>validateNotDisposed</strong>() <a class="anchor-link" href="#valida
 <pre class="source">
 void validateNotDisposed() {
   assert(!_disposed);
-}
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="visualChildCount">
-<button class="show-code">Code</button>
-int <strong>get visualChildCount</strong>() <a class="anchor-link" href="#visualChildCount"
-              title="Permalink to SpriteElement.get visualChildCount">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
-<pre class="source">
-int get visualChildCount =&gt; 0;
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="width">
-<button class="show-code">Code</button>
-num <strong>get width</strong>() <a class="anchor-link" href="#width"
-              title="Permalink to SpriteElement.get width">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
-<pre class="source">
-num get width =&gt; _width;
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="width=">
-<button class="show-code">Code</button>
-void <strong>set width</strong>(num value) <a class="anchor-link" href="#width="
-              title="Permalink to SpriteElement.set width">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
-<pre class="source">
-void set width(num value) {
-  assert(isValidNumber(value));
-  _width = value;
-  invalidateDraw();
 }
 </pre>
 </div>

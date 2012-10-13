@@ -32,12 +32,20 @@
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+class QrMode {
+  static const int MODE_NUMBER = 1 &lt;&lt; 0;
+  static const int MODE_ALPHA_NUM = 1 &lt;&lt; 1;
+  static const int MODE_8BIT_BYTE = 1 &lt;&lt; 2;
+  static const int MODE_KANJI = 1 &lt;&lt; 3;
+}
+</pre>
 </div>
 <div>
-<h3>Static Fields</h3>
+<h3>Static Properties</h3>
 <div class="field"><h4 id="MODE_8BIT_BYTE">
 <button class="show-code">Code</button>
-int         <strong>MODE_8BIT_BYTE</strong> <a class="anchor-link"
+const int         <strong>MODE_8BIT_BYTE</strong> <a class="anchor-link"
             href="#MODE_8BIT_BYTE"
             title="Permalink to QrMode.MODE_8BIT_BYTE">#</a>
         </h4>
@@ -49,7 +57,7 @@ static const int MODE_8BIT_BYTE = 1 &lt;&lt; 2;
 </div>
 <div class="field"><h4 id="MODE_ALPHA_NUM">
 <button class="show-code">Code</button>
-int         <strong>MODE_ALPHA_NUM</strong> <a class="anchor-link"
+const int         <strong>MODE_ALPHA_NUM</strong> <a class="anchor-link"
             href="#MODE_ALPHA_NUM"
             title="Permalink to QrMode.MODE_ALPHA_NUM">#</a>
         </h4>
@@ -61,7 +69,7 @@ static const int MODE_ALPHA_NUM = 1 &lt;&lt; 1;
 </div>
 <div class="field"><h4 id="MODE_KANJI">
 <button class="show-code">Code</button>
-int         <strong>MODE_KANJI</strong> <a class="anchor-link"
+const int         <strong>MODE_KANJI</strong> <a class="anchor-link"
             href="#MODE_KANJI"
             title="Permalink to QrMode.MODE_KANJI">#</a>
         </h4>
@@ -73,7 +81,7 @@ static const int MODE_KANJI = 1 &lt;&lt; 3;
 </div>
 <div class="field"><h4 id="MODE_NUMBER">
 <button class="show-code">Code</button>
-int         <strong>MODE_NUMBER</strong> <a class="anchor-link"
+const int         <strong>MODE_NUMBER</strong> <a class="anchor-link"
             href="#MODE_NUMBER"
             title="Permalink to QrMode.MODE_NUMBER">#</a>
         </h4>
@@ -85,7 +93,23 @@ static const int MODE_NUMBER = 1 &lt;&lt; 0;
 </div>
 </div>
 <div>
-<h3>Methods</h3>
+<h3>Properties</h3>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to QrMode.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Operators</h3>
 <div class="method inherited"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
@@ -102,6 +126,9 @@ bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
+</div>
+<div>
+<h3>Methods</h3>
 <div class="method inherited"><h4 id="hashCode">
 <button class="show-code">Code</button>
 int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
@@ -137,14 +164,17 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="runtimeType">
+<div class="method inherited"><h4 id="Object">
 <button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to QrMode.get runtimeType">#</a></h4>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to QrMode.Object">#</a></h4>
 <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
 <pre class="source">
-external Type get runtimeType;
+const Object();
 </pre>
 </div>
 </div>

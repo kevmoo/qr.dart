@@ -2,7 +2,7 @@
         <html>
         <head>
                 <meta charset="utf-8">
-        <title>Enumerable&lt;T&gt; class / bot Library / Dart Documentation</title>
+        <title>Enumerable&lt;T&gt; abstract class / bot Library / Dart Documentation</title>
         <link rel="stylesheet" type="text/css"
             href="../styles.css">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
@@ -27,11 +27,256 @@
 </div>
 <div class="content">
         <h2><strong>Enumerable&lt;T&gt;</strong>
-          class
+          abstract class
         </h2>
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+abstract class Enumerable&lt;T&gt; implements Collection&lt;T&gt; {
+  // TODO:
+  // last
+  // take
+  // takeWhile
+  // skip
+  // skipWhile
+  // isEmpty
+
+  const Enumerable();
+
+  factory Enumerable.fromIterable(Iterable&lt;T&gt; source) {
+    requireArgumentNotNull(source, 'source');
+    return new _SimpleEnumerable&lt;T&gt;(source);
+  }
+
+  abstract Iterator iterator();
+
+  /**
+   * Returns true if every elements of this collection satisify the
+   * predicate [f]. Returns false otherwise.
+   */
+  bool every(Func1&lt;T, bool&gt; f) {
+    requireArgumentNotNull(f, 'f');
+    for (final e in this) {
+      if(!f(e)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  bool contains(T item) {
+    for (final e in this) {
+      if(e == item) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  bool isEmpty() =&gt; !some((e) =&gt; true);
+
+  /**
+   * Returns true if one element of this collection satisfies the
+   * predicate [f]. Returns false otherwise.
+   */
+  bool some(Func1&lt;T, bool&gt; f) {
+    requireArgumentNotNull(f, 'f');
+    for (final e in this) {
+      if(f(e)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  int count([Func1&lt;T, bool&gt; f = null]) {
+    if(f == null) {
+      f = (a) =&gt; true;
+    }
+    int c = 0;
+    for(final e in this) {
+      if(f(e)) {
+        c++;
+      }
+    }
+    return c;
+  }
+
+  String join([String separator = ', ']) {
+    final StringBuffer sb = new StringBuffer();
+    for(final e in this) {
+      if(sb.length &gt; 0) {
+        sb.add(separator);
+      }
+      sb.add(e);
+    }
+    return sb.toString();
+  }
+
+  /**
+   * Returns a new collection with the elements [: f(e) :]
+   * for each element [:e:] of this collection.
+   *
+   * Note on typing: the return type of f() could be an arbitrary
+   * type and consequently the returned collection's
+   * typeis Collection.
+   */
+  Enumerable map(Func1&lt;T, Object&gt; f) {
+    requireArgumentNotNull(f, 'f');
+    return new _FuncEnumerable(this, (s) =&gt; new _SelectIterator&lt;T, Object&gt;(s, f));
+  }
+
+  Enumerable&lt;T&gt; filter(Func1&lt;T, bool&gt; f) {
+    requireArgumentNotNull(f, 'f');
+    return new _FuncEnumerable(this, (s) =&gt; new _WhereIterator&lt;T&gt;(s, f));
+  }
+
+  /**
+   * Reduce a collection to a single value by iteratively combining each element
+   * of the collection with an existing value using the provided function.
+   * Use [initialValue] as the initial value, and the function [combine] to
+   * create a new value from the previous one and an element.
+   *
+   * Example of calculating the sum of a collection:
+   *
+   *   collection.reduce(0, (prev, element) =&gt; prev + element);
+   */
+  Dynamic reduce(Dynamic initialValue,
+                 Dynamic combine(Dynamic previousValue, T element)) {
+    return Collections.reduce(this, initialValue, combine);
+  }
+
+  Enumerable&lt;T&gt; exclude(Iterable&lt;T&gt; items) {
+    requireArgumentNotNull(items, 'items');
+    final iEnum = $(items);
+    Func1&lt;T, bool&gt; f = (e) =&gt; !iEnum.contains(e);
+    return new _FuncEnumerable(this, (s) =&gt; new _WhereIterator&lt;T&gt;(s, f));
+  }
+
+  Enumerable selectMany(Func1&lt;T, Iterable&gt; f) {
+    requireArgumentNotNull(f, 'f');
+    return new _FuncEnumerable(this,
+      (s) =&gt; new _SelectManyIterator._internal(s, f));
+  }
+
+  T first([Func1&lt;T, bool&gt; f = null]) {
+    if(f == null) {
+      f = (e) =&gt; true;
+    }
+    final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
+    if(!iter.hasNext()) {
+      throw const InvalidOperationException('The input sequence is empty.');
+    }
+    return iter.next();
+  }
+
+  T firstOrDefault([Func1&lt;T, bool&gt; f = null, T defaultValue = null]) {
+    if(f == null) {
+      f = (e) =&gt; true;
+    }
+    final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
+    if(!iter.hasNext()) {
+      return defaultValue;
+    }
+    return iter.next();
+  }
+
+  T single([Func1&lt;T, bool&gt; f = null]) {
+    if(f == null) {
+      f = (e) =&gt; true;
+    }
+    final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
+    if(!iter.hasNext()) {
+      throw const InvalidOperationException('The input sequence is empty.');
+    }
+    final value = iter.next();
+    if(iter.hasNext()) {
+      throw const InvalidOperationException('The input sequence contains more than one element.');
+    }
+    return value;
+  }
+
+  T singleOrDefault([Func1&lt;T, bool&gt; f = null, T defaultValue = null]) {
+    if(f == null) {
+      f = (e) =&gt; true;
+    }
+    final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
+    if(!iter.hasNext()) {
+      return defaultValue;
+    }
+    final value = iter.next();
+    if(iter.hasNext()) {
+      throw const InvalidOperationException('The input sequence contains more than one element.');
+    }
+    return value;
+  }
+
+  Enumerable&lt;T&gt; distinct([Func2&lt;T, T, bool&gt; comparer = null]) {
+    if(comparer == null) {
+      comparer = (a,b) =&gt; a == b;
+    }
+    return new _FuncEnumerable(this, (s) =&gt; new _DistinctIterator(s, comparer));
+  }
+
+  Object aggregate(Object seed, Func2&lt;Object, T, Object&gt; f) {
+    requireArgumentNotNull(f, 'f');
+    return CollectionUtil.aggregate(this, seed, f);
+  }
+
+  Grouping&lt;Dynamic, T&gt; group([Func1&lt;T, Object&gt; keyFunc = null]) {
+    return new Grouping(this, keyFunc);
+  }
+
+  ReadOnlyCollection&lt;T&gt; toReadOnlyCollection() =&gt; new ReadOnlyCollection&lt;T&gt;(this);
+
+  void forEach(Action1&lt;T&gt; f) {
+    for(final e in this) {
+      f(e);
+    }
+  }
+
+  void forEachWithIndex(Action2&lt;T, int&gt; f) {
+    int i = 0;
+    for(final e in this) {
+      f(e, i++);
+    }
+  }
+
+  List&lt;T&gt; toList() =&gt; new List&lt;T&gt;.from(this);
+
+  HashSet toHashSet([Func1&lt;T, Hashable&gt; f]) {
+    if(f == null) {
+      return new HashSet.from(this);
+    } else {
+      return new HashSet.from(this.map(f));
+    }
+  }
+
+  HashMap toHashMap(Func1&lt;T, Object&gt; valueFunc, [Func1&lt;T, Hashable&gt; keyFunc]) {
+    if(keyFunc == null) {
+      keyFunc = (a) =&gt; a;
+    }
+
+    final map = new HashMap();
+    for(final e in this) {
+      final k = keyFunc(e);
+      if(map.containsKey(k)) {
+        throw new UnsupportedOperationException("The key '$k' is duplicated");
+      }
+      map[k] = valueFunc(e);
+    }
+    return map;
+  }
+
+  NumberEnumerable selectNumbers(Func1&lt;T, num&gt; f) {
+    requireArgumentNotNull(f, 'f');
+    return new _FuncNumEnumerable&lt;T&gt;(this, (s) =&gt; new _SelectIterator&lt;T, num&gt;(s, f));
+  }
+
+  String toString() =&gt; "[${this.join()}]";
+}
+</pre>
 </div>
 <h3>Subclasses</h3>
 <p>
@@ -66,7 +311,36 @@ factory Enumerable.fromIterable(Iterable&lt;T&gt; source) {
 </div>
 </div>
 <div>
-<h3>Methods</h3>
+<h3>Properties</h3>
+<div class="field inherited"><h4 id="length">
+<button class="show-code">Code</button>
+final int         <strong>length</strong> <a class="anchor-link"
+            href="#length"
+            title="Permalink to Enumerable&lt;T&gt;.length">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Collection </div><div class="doc">
+<p>Returns the number of elements in this collection.</p>
+<pre class="source">
+int get length;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+final Type         <strong>runtimeType</strong> <a class="anchor-link"
+            href="#runtimeType"
+            title="Permalink to Enumerable&lt;T&gt;.runtimeType">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Object </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Operators</h3>
 <div class="method inherited"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
@@ -83,6 +357,9 @@ bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
+</div>
+<div>
+<h3>Methods</h3>
 <div class="method"><h4 id="aggregate">
 <button class="show-code">Code</button>
 Object <strong>aggregate</strong>(Object seed, <a href="../bot/Func2.html">Func2</a> f) <a class="anchor-link" href="#aggregate"
@@ -145,6 +422,29 @@ Enumerable&lt;T&gt; distinct([Func2&lt;T, T, bool&gt; comparer = null]) {
     comparer = (a,b) =&gt; a == b;
   }
   return new _FuncEnumerable(this, (s) =&gt; new _DistinctIterator(s, comparer));
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="Enumerable">
+<button class="show-code">Code</button>
+const <strong>Enumerable</strong>() <a class="anchor-link" href="#Enumerable"
+              title="Permalink to Enumerable&lt;T&gt;.Enumerable">#</a></h4>
+<div class="doc">
+<pre class="source">
+const Enumerable();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="Enumerable.fromIterable">
+<button class="show-code">Code</button>
+factory <strong>Enumerable.fromIterable</strong>(Iterable&lt;<a href="../bot/Enumerable.html">T</a>&gt; source) <a class="anchor-link" href="#Enumerable.fromIterable"
+              title="Permalink to Enumerable&lt;T&gt;.Enumerable.fromIterable">#</a></h4>
+<div class="doc">
+<pre class="source">
+factory Enumerable.fromIterable(Iterable&lt;T&gt; source) {
+  requireArgumentNotNull(source, 'source');
+  return new _SimpleEnumerable&lt;T&gt;(source);
 }
 </pre>
 </div>
@@ -348,17 +648,6 @@ String join([String separator = ', ']) {
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="length">
-<button class="show-code">Code</button>
-int <strong>get length</strong>() <a class="anchor-link" href="#length"
-              title="Permalink to Enumerable&lt;T&gt;.get length">#</a></h4>
-<div class="inherited-from">inherited from Collection </div><div class="doc">
-<p>Returns the number of elements in this collection.</p>
-<pre class="source">
-int get length;
-</pre>
-</div>
-</div>
 <div class="method"><h4 id="map">
 <button class="show-code">Code</button>
 <a href="../bot/Enumerable.html">Enumerable</a> <strong>map</strong>(<a href="../bot/Func1.html">Func1</a> f) <a class="anchor-link" href="#map"
@@ -394,6 +683,20 @@ external Dynamic noSuchMethod(String name, List args);
 </pre>
 </div>
 </div>
+<div class="method inherited"><h4 id="Object">
+<button class="show-code">Code</button>
+const <strong>Object</strong>() <a class="anchor-link" href="#Object"
+              title="Permalink to Enumerable&lt;T&gt;.Object">#</a></h4>
+<div class="inherited-from">inherited from Object </div><div class="doc">
+<p>Creates a new <code>Object</code> instance.</p>
+<p><code>Object</code> instances have no meaningful state, and are only useful
+through their identity. An <code>Object</code> instance is equal to itself
+only.</p>
+<pre class="source">
+const Object();
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="reduce">
 <button class="show-code">Code</button>
 <strong>reduce</strong>(initialValue, combine(previousValue, <a href="../bot/Enumerable.html">T</a> element)) <a class="anchor-link" href="#reduce"
@@ -412,17 +715,6 @@ Dynamic reduce(Dynamic initialValue,
                Dynamic combine(Dynamic previousValue, T element)) {
   return Collections.reduce(this, initialValue, combine);
 }
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="runtimeType">
-<button class="show-code">Code</button>
-Type <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to Enumerable&lt;T&gt;.get runtimeType">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
-<pre class="source">
-external Type get runtimeType;
 </pre>
 </div>
 </div>
