@@ -1,4 +1,4 @@
-#library('bot_test_async');
+#library('test_bot_async');
 
 #import('dart:isolate');
 #import('package:unittest/unittest.dart');

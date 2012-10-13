@@ -1,4 +1,4 @@
-#library('bot_test_core');
+#library('test_bot_qr');
 
 #import('package:unittest/unittest.dart');
 #import('package:bot/bot.dart');

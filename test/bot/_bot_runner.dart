@@ -1,4 +1,4 @@
-#library('bot_test_core');
+#library('test_bot');
 
 #import('dart:math', prefix:'math');
 #import('package:unittest/unittest.dart');
