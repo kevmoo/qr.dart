@@ -1,5 +1,10 @@
 // TODO: rename MouseManager or similiar -> doing more than click now
+// TODO: implement dispose. Unregister events from Canvas, etc
+
 class ClickManager {
+  static final Property<ClickManager> _clickManagerProperty =
+      new Property<ClickManager>("_clickManager");
+
   static final Property<bool> _isClickableProperty =
       new Property<bool>("isClickable", false);
 
@@ -16,10 +21,16 @@ class ClickManager {
 
   PElement _mouseDownElement;
 
-  ClickManager(this._stage) {
-    // TODO: attached property to make sure this is the only CM for this stage
-    assert(_stage != null);
+  factory ClickManager(Stage stage) {
+    requireArgumentNotNull(stage, 'stage');
 
+    return _clickManagerProperty.get(stage, (s) {
+      return new ClickManager._internal(s);
+    });
+  }
+
+  ClickManager._internal(this._stage) {
+    assert(!_clickManagerProperty.isSet(this._stage));
     _stage._canvas.on.mouseMove.add(_mouseMove);
     _stage._canvas.on.mouseOut.add(_mouseOut);
     _stage._canvas.on.mouseUp.add(_mouseUp);

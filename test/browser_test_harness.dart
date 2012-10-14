@@ -5,6 +5,7 @@
 #import('bot/_bot_runner.dart');
 #import('qr/_qr_runner.dart');
 #import('async/_async_runner.dart');
+#import('retained/_retained_runner.dart');
 
 main() {
   groupSep = ' - ';
@@ -13,4 +14,5 @@ main() {
   runBotTests();
   runAsyncTests();
   runQrTests();
+  runRetainedTests();
 }
