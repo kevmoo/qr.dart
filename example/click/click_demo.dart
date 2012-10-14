@@ -9,7 +9,7 @@ main(){
 }
 
 class ClickDemo{
-  static final _blueColor = 'blue';
+  static const _blueColor = 'blue';
 
   final CanvasElement _canvas;
   final Stage _stage;
@@ -32,11 +32,11 @@ class ClickDemo{
 
     var green = new Shape(70, 70, 'green');
     pCanvas.addElement(green);
-    pCanvas.setTopLeft(green, new Coordinate(110, 15));
+    pCanvas.setTopLeft(green, const Coordinate(110, 15));
 
     var red = new Shape(40, 40, 'red', ShapeType.ellipse);
     pCanvas.addElement(red);
-    pCanvas.setCenter(red, new Coordinate(50, 150));
+    pCanvas.setCenter(red, const Coordinate(50, 150));
 
     pCanvas.addTransform().translate(
       (canvas.width - pCanvas.width) / 2,
@@ -52,8 +52,7 @@ class ClickDemo{
     return new ClickDemo._internal(canvas, stage, cm);
   }
 
-  ClickDemo._internal(this._canvas, this._stage, this._clickMan){
-  }
+  ClickDemo._internal(this._canvas, this._stage, this._clickMan);
 
   void requestFrame(){
     window.requestAnimationFrame(_onFrame);
