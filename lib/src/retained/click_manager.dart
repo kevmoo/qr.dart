@@ -52,7 +52,8 @@ class ClickManager {
     return _isClickableProperty.get(element);
   }
 
-  static GlobalId addHandler(PElement element, Action1 handler) {
+  static GlobalId addHandler(PElement element,
+                             Action1<ElementMouseEventArgs> handler) {
     return _clickEvent.addHandler(element, handler);
   }
 
@@ -60,7 +61,8 @@ class ClickManager {
     return _clickEvent.removeHandler(obj, handlerId);
   }
 
-  static GlobalId addMouseMoveHandler(PElement obj, Action1 handler) {
+  static GlobalId addMouseMoveHandler(PElement obj,
+                                      Action1<ElementMouseEventArgs> handler) {
     return _mouseMoveEvent.addHandler(obj, handler);
   }
 
@@ -68,7 +70,8 @@ class ClickManager {
     return _mouseMoveEvent.removeHandler(obj, handlerId);
   }
 
-  static GlobalId addMouseOutHandler(Stage obj, Action1 handler) {
+  static GlobalId addMouseOutHandler(Stage obj,
+                                     Action1<ElementMouseEventArgs> handler) {
     return _mouseOutEvent.addHandler(obj, handler);
   }
 
