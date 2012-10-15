@@ -1,7 +1,7 @@
 name: bot
 author: Kevin Moore <kevin@thinkpixellab.com>
 homepage: https://github.com/kevmoo/bot.dart
-version: 0.0.2
+version: 0.0.3
 description: A collection of (mostly) general libraries to make working with Dart more productive.
 dependencies:
   unittest:
