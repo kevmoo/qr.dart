@@ -34,6 +34,9 @@
 <div class="doc">
 <pre class="source">
 class ClickManager {
+  static final Property&lt;ClickManager&gt; _clickManagerProperty =
+      new Property&lt;ClickManager&gt;("_clickManager");
+
   static final Property&lt;bool&gt; _isClickableProperty =
       new Property&lt;bool&gt;("isClickable", false);
 
@@ -50,10 +53,16 @@ class ClickManager {
 
   PElement _mouseDownElement;
 
-  ClickManager(this._stage) {
-    // TODO: attached property to make sure this is the only CM for this stage
-    assert(_stage != null);
+  factory ClickManager(Stage stage) {
+    requireArgumentNotNull(stage, 'stage');
 
+    return _clickManagerProperty.get(stage, (s) {
+      return new ClickManager._internal(s);
+    });
+  }
+
+  ClickManager._internal(this._stage) {
+    assert(!_clickManagerProperty.isSet(this._stage));
     _stage._canvas.on.mouseMove.add(_mouseMove);
     _stage._canvas.on.mouseOut.add(_mouseOut);
     _stage._canvas.on.mouseUp.add(_mouseUp);
@@ -75,7 +84,8 @@ class ClickManager {
     return _isClickableProperty.get(element);
   }
 
-  static GlobalId addHandler(PElement element, Action1 handler) {
+  static GlobalId addHandler(PElement element,
+                             Action1&lt;ElementMouseEventArgs&gt; handler) {
     return _clickEvent.addHandler(element, handler);
   }
 
@@ -83,7 +93,8 @@ class ClickManager {
     return _clickEvent.removeHandler(obj, handlerId);
   }
 
-  static GlobalId addMouseMoveHandler(PElement obj, Action1 handler) {
+  static GlobalId addMouseMoveHandler(PElement obj,
+                                      Action1&lt;ElementMouseEventArgs&gt; handler) {
     return _mouseMoveEvent.addHandler(obj, handler);
   }
 
@@ -91,7 +102,8 @@ class ClickManager {
     return _mouseMoveEvent.removeHandler(obj, handlerId);
   }
 
-  static GlobalId addMouseOutHandler(Stage obj, Action1 handler) {
+  static GlobalId addMouseOutHandler(Stage obj,
+                                     Action1&lt;ElementMouseEventArgs&gt; handler) {
     return _mouseOutEvent.addHandler(obj, handler);
   }
 
@@ -157,14 +169,28 @@ class ClickManager {
 <h3>Constructors</h3>
 <div class="method"><h4 id="ClickManager">
 <button class="show-code">Code</button>
-new <strong>ClickManager</strong>(<a href="../bot_retained/Stage.html">Stage</a> _stage) <a class="anchor-link" href="#ClickManager"
+factory <strong>ClickManager</strong>(<a href="../bot_retained/Stage.html">Stage</a> stage) <a class="anchor-link" href="#ClickManager"
               title="Permalink to ClickManager.ClickManager">#</a></h4>
 <div class="doc">
 <pre class="source">
-ClickManager(this._stage) {
-  // TODO: attached property to make sure this is the only CM for this stage
-  assert(_stage != null);
+factory ClickManager(Stage stage) {
+  requireArgumentNotNull(stage, 'stage');
 
+  return _clickManagerProperty.get(stage, (s) {
+    return new ClickManager._internal(s);
+  });
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="ClickManager._internal">
+<button class="show-code">Code</button>
+new <strong>ClickManager._internal</strong>(<a href="../bot_retained/Stage.html">Stage</a> _stage) <a class="anchor-link" href="#ClickManager._internal"
+              title="Permalink to ClickManager.ClickManager._internal">#</a></h4>
+<div class="doc">
+<pre class="source">
+ClickManager._internal(this._stage) {
+  assert(!_clickManagerProperty.isSet(this._stage));
   _stage._canvas.on.mouseMove.add(_mouseMove);
   _stage._canvas.on.mouseOut.add(_mouseOut);
   _stage._canvas.on.mouseUp.add(_mouseUp);
@@ -213,7 +239,8 @@ static bool getClickable(PElement element) {
               title="Permalink to ClickManager.addHandler">#</a></h4>
 <div class="doc">
 <pre class="source">
-static GlobalId addHandler(PElement element, Action1 handler) {
+static GlobalId addHandler(PElement element,
+                           Action1&lt;ElementMouseEventArgs&gt; handler) {
   return _clickEvent.addHandler(element, handler);
 }
 </pre>
@@ -237,7 +264,8 @@ static bool removeHandler(PElement obj, GlobalId handlerId) {
               title="Permalink to ClickManager.addMouseMoveHandler">#</a></h4>
 <div class="doc">
 <pre class="source">
-static GlobalId addMouseMoveHandler(PElement obj, Action1 handler) {
+static GlobalId addMouseMoveHandler(PElement obj,
+                                    Action1&lt;ElementMouseEventArgs&gt; handler) {
   return _mouseMoveEvent.addHandler(obj, handler);
 }
 </pre>
@@ -261,7 +289,8 @@ static bool removeMouseMoveHandler(PElement obj, GlobalId handlerId) {
               title="Permalink to ClickManager.addMouseOutHandler">#</a></h4>
 <div class="doc">
 <pre class="source">
-static GlobalId addMouseOutHandler(Stage obj, Action1 handler) {
+static GlobalId addMouseOutHandler(Stage obj,
+                                   Action1&lt;ElementMouseEventArgs&gt; handler) {
   return _mouseOutEvent.addHandler(obj, handler);
 }
 </pre>
@@ -319,14 +348,28 @@ bool operator ==(other) =&gt; identical(this, other);
 <h3>Methods</h3>
 <div class="method"><h4 id="ClickManager">
 <button class="show-code">Code</button>
-new <strong>ClickManager</strong>(<a href="../bot_retained/Stage.html">Stage</a> _stage) <a class="anchor-link" href="#ClickManager"
+factory <strong>ClickManager</strong>(<a href="../bot_retained/Stage.html">Stage</a> stage) <a class="anchor-link" href="#ClickManager"
               title="Permalink to ClickManager.ClickManager">#</a></h4>
 <div class="doc">
 <pre class="source">
-ClickManager(this._stage) {
-  // TODO: attached property to make sure this is the only CM for this stage
-  assert(_stage != null);
+factory ClickManager(Stage stage) {
+  requireArgumentNotNull(stage, 'stage');
 
+  return _clickManagerProperty.get(stage, (s) {
+    return new ClickManager._internal(s);
+  });
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="ClickManager._internal">
+<button class="show-code">Code</button>
+new <strong>ClickManager._internal</strong>(<a href="../bot_retained/Stage.html">Stage</a> _stage) <a class="anchor-link" href="#ClickManager._internal"
+              title="Permalink to ClickManager.ClickManager._internal">#</a></h4>
+<div class="doc">
+<pre class="source">
+ClickManager._internal(this._stage) {
+  assert(!_clickManagerProperty.isSet(this._stage));
   _stage._canvas.on.mouseMove.add(_mouseMove);
   _stage._canvas.on.mouseOut.add(_mouseOut);
   _stage._canvas.on.mouseUp.add(_mouseUp);
