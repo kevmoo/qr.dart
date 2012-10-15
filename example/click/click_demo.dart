@@ -38,6 +38,10 @@ class ClickDemo{
     pCanvas.addElement(red);
     pCanvas.setCenter(red, const Coordinate(50, 150));
 
+    ClickManager.setClickable(red, true);
+    ClickManager.addMouseUpHandler(red, (args) => print(['up', args]));
+    ClickManager.addMouseDownHandler(red, (args) => print(['down', args]));
+
     pCanvas.addTransform().translate(
       (canvas.width - pCanvas.width) / 2,
       (canvas.height - pCanvas.height) / 2);
