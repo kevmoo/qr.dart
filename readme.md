@@ -6,35 +6,37 @@ Starting by porting bits of the [PL javascript library](https://github.com/think
 
 [![](https://drone.io/kevmoo/bot.dart/status.png)](https://drone.io/kevmoo/bot.dart/latest)
 
-## Highlights
+# Highlights
 
-### bot -- default library
- * __collection__
+## bot -- default library
  * __color__
      * `RgbColor`, `HslColor` with associated conversions back and forth
      * `RgbColor` supports to/from hex
- * __events__
- * __exceptions__
- * __graph__
  * __math__
      * `Coordinate`, `Box`, `Size`, `Vector`, `AffineTransfrom`
  * __property__
      * A general model for supporting runtime-defined properties supported objects.
      * This functionality is inspired by the Dependency Property model in WPF/Silverlight.
 
-### async
+## async
   * `FutureValue`: an abstract model for async conversions via `Future<T>`
   * `SendPortValue`: an implementation of `FutureValue` using isolates.
 
-### html
+## html
 
-### qr
+## qr
 
-### retained
+## retained
 
-### test
+## test
 
-## Authors
+# Versioning
+
+Our goal is to follow [Semantic Versioning](http://semver.org/).
+
+_Note: we have not released v1 (yet)._
+
+# Authors
  * [Kevin Moore](https://github.com/kevmoo) ([@kevmoo](http://twitter.com/kevmoo))
  * [Andreas Köberle](https://github.com/eskimoblood) ([@eskimobloood](https://twitter.com/eskimobloood))
  * _You? File bugs. Fork and Fix bugs. Let's build this community._
