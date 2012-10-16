@@ -8,6 +8,6 @@ cmd="dart
 --enable_asserts
 --error_on_malformed_type
 --package-root=$PACK_DIR
-./test/console_test_harness.dart"
+./bin/hop_runner.dart $@"
 echo $cmd
 exec $cmd

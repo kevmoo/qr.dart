@@ -6,3 +6,5 @@ description: A collection of (mostly) general libraries to make working with Dar
 dependencies:
   unittest:
     sdk: unittest
+  args:
+    sdk: args

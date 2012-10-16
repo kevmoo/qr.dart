@@ -1,3 +1,5 @@
+#library('console_test_harness');
+
 #import('package:unittest/unittest.dart');
 #import('package:unittest/vm_config.dart');
 
@@ -6,8 +8,13 @@
 #import('async/_async_runner.dart');
 
 main() {
+  final config = new VmConfiguration();
+  testCore(config);
+}
+
+void testCore(Configuration config) {
+  configure(config);
   groupSep = ' - ';
-  useVmConfiguration();
 
   runBotTests();
   runAsyncTests();
