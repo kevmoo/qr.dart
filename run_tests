@@ -7,6 +7,7 @@ cmd="dart
 --enable_type_checks
 --enable_asserts
 --error_on_malformed_type
---package-root=$PACK_DIR ./test/console_test_harness.dart"
+--package-root=$PACK_DIR
+./test/console_test_harness.dart"
 echo $cmd
 exec $cmd
