@@ -1,5 +1,3 @@
-#!/usr/bin/env dart --enable_type_checks --enable_asserts
-
 #import('package:unittest/unittest.dart');
 #import('package:unittest/vm_config.dart');
 
