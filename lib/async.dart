@@ -1,7 +1,7 @@
 #library('bot_async');
 
-#import('bot.dart');
 #import("dart:isolate");
+#import('bot.dart');
 
 #source('src/async/future_value.dart');
 #source('src/async/future_value_result.dart');

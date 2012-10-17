@@ -1,6 +1,6 @@
 #library('bot');
 
-#import("dart:coreimpl");
+#import('dart:coreimpl');
 #import('dart:math', prefix:'math');
 
 #source('src/bot/typedefs.dart');
