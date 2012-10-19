@@ -1630,6 +1630,18 @@ $$._DocumentEventsImpl = {"":
   return this.operator$index$1('error');
 },
  error$2: function(arg0, arg1) { return this.get$error().call$2(arg0, arg1); },
+ get$mouseDown: function() {
+  return this.operator$index$1('mousedown');
+},
+ get$mouseMove: function() {
+  return this.operator$index$1('mousemove');
+},
+ get$mouseOut: function() {
+  return this.operator$index$1('mouseout');
+},
+ get$mouseUp: function() {
+  return this.operator$index$1('mouseup');
+},
  get$reset: function() {
   return this.operator$index$1('reset');
 },
@@ -2014,6 +2026,18 @@ $$._ElementEventsImpl = {"":
   return this.operator$index$1('error');
 },
  error$2: function(arg0, arg1) { return this.get$error().call$2(arg0, arg1); },
+ get$mouseDown: function() {
+  return this.operator$index$1('mousedown');
+},
+ get$mouseMove: function() {
+  return this.operator$index$1('mousemove');
+},
+ get$mouseOut: function() {
+  return this.operator$index$1('mouseout');
+},
+ get$mouseUp: function() {
+  return this.operator$index$1('mouseup');
+},
  get$reset: function() {
   return this.operator$index$1('reset');
 },
@@ -2180,6 +2204,18 @@ $$._LocalWindowEventsImpl = {"":
  error$2: function(arg0, arg1) { return this.get$error().call$2(arg0, arg1); },
  get$message: function() {
   return this.operator$index$1('message');
+},
+ get$mouseDown: function() {
+  return this.operator$index$1('mousedown');
+},
+ get$mouseMove: function() {
+  return this.operator$index$1('mousemove');
+},
+ get$mouseOut: function() {
+  return this.operator$index$1('mouseout');
+},
+ get$mouseUp: function() {
+  return this.operator$index$1('mouseup');
 },
  get$reset: function() {
   return this.operator$index$1('reset');
@@ -2442,6 +2478,18 @@ $$._SVGElementInstanceEventsImpl = {"":
   return this.operator$index$1('error');
 },
  error$2: function(arg0, arg1) { return this.get$error().call$2(arg0, arg1); },
+ get$mouseDown: function() {
+  return this.operator$index$1('mousedown');
+},
+ get$mouseMove: function() {
+  return this.operator$index$1('mousemove');
+},
+ get$mouseOut: function() {
+  return this.operator$index$1('mouseout');
+},
+ get$mouseUp: function() {
+  return this.operator$index$1('mouseup');
+},
  get$reset: function() {
   return this.operator$index$1('reset');
 },
@@ -4990,10 +5038,36 @@ $$.Array2d = {"":
   return adj;
 },
  _getIndex$2: function(x, y) {
+  if (typeof x !== 'number')
+    return this._getIndex$2$bailout(1, x, y, 0);
+  if (typeof y !== 'number')
+    return this._getIndex$2$bailout(1, x, y, 0);
   var t1 = this.width;
   if (typeof t1 !== 'number')
-    throw $.iae(t1);
+    return this._getIndex$2$bailout(2, x, y, t1);
   return x + y * t1;
+},
+ _getIndex$2$bailout: function(state0, env0, env1, env2) {
+  switch (state0) {
+    case 1:
+      var x = env0;
+      var y = env1;
+      break;
+    case 2:
+      x = env0;
+      y = env1;
+      t1 = env2;
+      break;
+  }
+  switch (state0) {
+    case 0:
+    case 1:
+      state0 = 0;
+      var t1 = this.width;
+    case 2:
+      state0 = 0;
+      return $.add(x, $.mul(y, t1));
+  }
 },
  Array2d$wrap$2: function(width, source) {
   $.requireArgumentNotNull(width, 'width');
@@ -5222,6 +5296,7 @@ $$.AffineTransform = {"":
   this._m12 = $.add(this._m12, $.add($.mul(tx.get$_m02(), m00), $.mul(tx.get$_m12(), m10)));
   return this;
 },
+ get$concatenate: function() { return new $.BoundClosure(this, 'concatenate$1'); },
  rotate$3: function(theta, x, y) {
   return this.concatenate$1($.AffineTransform_AffineTransform$fromRotate(theta, x, y));
 },
@@ -5262,6 +5337,9 @@ $$.AffineTransform = {"":
   this._m02 = m02;
   this._m12 = m12;
   return this;
+},
+ transformCoordinate$1: function(point) {
+  return $.Coordinate$($.add($.add($.mul(point.get$x(), this._m00), $.mul(point.get$y(), this._m01)), this._m02), $.add($.add($.mul(point.get$x(), this._m10), $.mul(point.get$y(), this._m11)), this._m12));
 },
  createInverse$0: function() {
   var det = this.get$determinant();
@@ -7162,6 +7240,155 @@ $$.SendValuePort = {"":
 },
  SendValuePort$3$inputDeserializer$outputSerializer: function(_func, inputDeserializer, outputSerializer) {
   $.port().receive$1(new $.anon3(this));
+}
+};
+
+$$.PElement = {"":
+ [],
+ "super": "AttachableObject",
+ get$width: function() {
+  return this._width;
+},
+ set$width: function(value) {
+  this._width = value;
+  this.invalidateDraw$0();
+},
+ get$height: function() {
+  return this._height;
+},
+ set$height: function(value) {
+  this._height = value;
+  this.invalidateDraw$0();
+},
+ get$visualChildCount: function() {
+  return 0;
+},
+ getTransform$0: function() {
+  var tx = $.AffineTransform$(1, 0, 0, 1, 0, 0);
+  $.forEach(this._transforms, tx.get$concatenate());
+  return tx;
+},
+ invalidateDraw$0: function() {
+  this.validateNotDisposed$0();
+  if (!(this._lastDrawSize == null)) {
+    this._lastDrawSize = null;
+    this._invalidateParent$0();
+  }
+},
+ getVisualChild$1: function(index) {
+  throw $.$$throw('no children for this type');
+},
+ registerParent$1: function(parent$) {
+  this._lib7_parent = parent$;
+},
+ disposeInternal$0: function() {
+  $.AttachableObject.prototype.disposeInternal$0.call(this);
+  this._updatedEventHandle.dispose$0();
+  this._invalidatedEventHandle.dispose$0();
+},
+ _invalidateParent$0: function() {
+  this._invalidatedEventHandle.fireEvent$1($.CTC19);
+  this._lib7_parent.childInvalidated$1(this);
+}
+};
+
+$$.Stage = {"":
+ ["_invalidatedEventHandle", "_canvas?", "_lib7_element?", "_ctx", "_propertyValues", "_eventHandlers", "_disposed"],
+ "super": "AttachableObject",
+ get$rootElement: function() {
+  return this._lib7_element;
+},
+ childInvalidated$1: function(child) {
+  this.validateNotDisposed$0();
+  this._invalidatedEventHandle.fireEvent$1($.CTC19);
+},
+ disposeInternal$0: function() {
+  $.AttachableObject.prototype.disposeInternal$0.call(this);
+  this._invalidatedEventHandle.dispose$0();
+},
+ Stage$2: function(_canvas, _element) {
+  this._lib7_element.registerParent$1(this);
+}
+};
+
+$$.Shape = {"":
+ ["_fillStyle", "shapeType", "_transforms", "cacheEnabled", "_updatedEventHandle", "_invalidatedEventHandle", "_cacheCanvas", "_width", "_height", "_alpha", "_lastDrawSize", "clip", "_lib7_parent", "_propertyValues", "_eventHandlers", "_disposed"],
+ "super": "PElement",
+ toString$0: function() {
+  return 'Shape [' + this._fillStyle + ', ' + $.S(this.shapeType.name) + ']';
+}
+};
+
+$$.ShapeType = {"":
+ ["name?"],
+ "super": "Object"
+};
+
+$$.ClickManager = {"":
+ ["_stage", "_mouseDownElement"],
+ "super": "Object",
+ _mouseMove$1: function(e) {
+  var items = this._updateMouseLocation$1($.getMouseEventCoordinate(e));
+  if ($.gtB($.get$length(items), 0))
+    $.forEach(items, new $.ClickManager__mouseMove_anon($.ElementMouseEventArgs_ElementMouseEventArgs($.index(items, 0), e)));
+},
+ get$_mouseMove: function() { return new $.BoundClosure(this, '_mouseMove$1'); },
+ _mouseOut$1: function(e) {
+  this._updateMouseLocation$1(null);
+  $.get$ClickManager__mouseOutEvent().fireEvent$2(this._stage, $.CTC19);
+},
+ get$_mouseOut: function() { return new $.BoundClosure(this, '_mouseOut$1'); },
+ _mouseUp$1: function(e) {
+  var upElement = $.$$(this._updateMouseLocation$1($.getMouseEventCoordinate(e))).firstOrDefault$1(new $.ClickManager__mouseUp_anon());
+  if (!(upElement == null)) {
+    this._doMouseUp$2(upElement, e);
+    if ($.eqB(upElement, this._mouseDownElement))
+      this._doClick$2(upElement, e);
+    this._mouseDownElement = null;
+  }
+},
+ get$_mouseUp: function() { return new $.BoundClosure(this, '_mouseUp$1'); },
+ _mouseDown$1: function(e) {
+  this._mouseDownElement = $.$$(this._updateMouseLocation$1($.getMouseEventCoordinate(e))).firstOrDefault$1(new $.ClickManager__mouseDown_anon());
+  var t1 = this._mouseDownElement;
+  if (!(t1 == null))
+    this._doMouseDown$2(t1, e);
+},
+ get$_mouseDown: function() { return new $.BoundClosure(this, '_mouseDown$1'); },
+ _updateMouseLocation$1: function(value) {
+  return $.Mouse_markMouseOver(this._stage, value);
+},
+ _doMouseDown$2: function(element, e) {
+  var args = $.ElementMouseEventArgs_ElementMouseEventArgs(element, e);
+  $.get$ClickManager__mouseDownEvent().fireEvent$2(element, args);
+},
+ _doMouseUp$2: function(element, e) {
+  var args = $.ElementMouseEventArgs_ElementMouseEventArgs(element, e);
+  $.get$ClickManager__mouseUpEvent().fireEvent$2(element, args);
+},
+ _doClick$2: function(element, e) {
+  var args = $.ElementMouseEventArgs_ElementMouseEventArgs(element, e);
+  $.get$ClickManager__clickEvent().fireEvent$2(element, args);
+},
+ ClickManager$_internal$1: function(_stage) {
+  var t1 = this._stage;
+  $.add$1(t1.get$_canvas().get$on().get$mouseMove(), this.get$_mouseMove());
+  $.add$1(t1.get$_canvas().get$on().get$mouseOut(), this.get$_mouseOut());
+  $.add$1(t1.get$_canvas().get$on().get$mouseUp(), this.get$_mouseUp());
+  $.add$1(t1.get$_canvas().get$on().get$mouseDown(), this.get$_mouseDown());
+}
+};
+
+$$.ElementMouseEventArgs = {"":
+ ["element?", "shiftKey?"],
+ "super": "EventArgs"
+};
+
+$$.runRetainedTests_anon = {"":
+ [],
+ "super": "Closure",
+ call$0: function() {
+  $.solo_test('foo!', $._testDoudbleClickManager);
 }
 };
 
@@ -10053,6 +10280,55 @@ $$.TestQrBitBuffer_run_anon = {"":
 }
 };
 
+$$.ClickManager_ClickManager_anon = {"":
+ [],
+ "super": "Closure",
+ call$1: function(s) {
+  return $.ClickManager$_internal(s);
+}
+};
+
+$$.ClickManager__mouseDown_anon = {"":
+ [],
+ "super": "Closure",
+ call$1: function(e) {
+  return $.get$ClickManager__isClickableProperty().get$1(e);
+}
+};
+
+$$.Mouse_markMouseOver_anon = {"":
+ [],
+ "super": "Closure",
+ call$1: function(e) {
+  $.get$Mouse_isMouseOverProperty().clear$1(e);
+  $.get$Mouse_isMouseDirectlyOverProperty().clear$1(e);
+}
+};
+
+$$.Mouse_markMouseOver_anon0 = {"":
+ [],
+ "super": "Closure",
+ call$1: function(e) {
+  $.get$Mouse_isMouseOverProperty().set$2(e, true);
+}
+};
+
+$$.ClickManager__mouseUp_anon = {"":
+ [],
+ "super": "Closure",
+ call$1: function(e) {
+  return $.get$ClickManager__isClickableProperty().get$1(e);
+}
+};
+
+$$.ClickManager__mouseMove_anon = {"":
+ ["args_0"],
+ "super": "Closure",
+ call$1: function(e) {
+  return $.get$ClickManager__mouseMoveEvent().fireEvent$2(e, this.args_0);
+}
+};
+
 $$.startRootIsolate_anon = {"":
  [],
  "super": "Closure",
@@ -10147,6 +10423,14 @@ $.TestEvents$ = function() {
 
 $.Size$ = function(width, height) {
   return new $.Size(width, height);
+};
+
+$.solo_test = function(spec, body) {
+  if (!($._soloTest == null))
+    throw $.$$throw($.ExceptionImplementation$('Only one test can be soloed right now.'));
+  $.ensureInitialized();
+  $._soloTest = $.TestCase$($.add($.get$length($._tests), 1), $._fullSpec(spec), body, 0);
+  $.add$1($._tests, $._soloTest);
 };
 
 $.NumberEnumerable_NumberEnumerable$fromRange = function(start, count) {
@@ -10320,6 +10604,10 @@ $.TestTarjanCycleDetect__testImpliedKey = function() {
   $.expect($.get$length(result), $.equals(2, 100), null, null, false);
   $.expect($.index(result, 0), $.unorderedEquals([2]), null, null, false);
   $.expect($.index(result, 1), $.unorderedEquals([1]), null, null, false);
+};
+
+$.runRetainedTests = function() {
+  $.group('bot_retained', new $.runRetainedTests_anon());
 };
 
 $._DeepMatcher$ = function(_expected, limit) {
@@ -10998,6 +11286,15 @@ $.min = function(a, b) {
   throw $.$$throw($.ArgumentError$(a));
 };
 
+$._Elements_createCanvasElement = function(width, height) {
+  var _e = $._document().$dom_createElement$1('canvas');
+  if (!(width == null))
+    _e.set$width(width);
+  if (!(height == null))
+    _e.set$height(height);
+  return _e;
+};
+
 $.index = function(a, index) {
   if (typeof a == "string" || a.constructor === Array) {
     var key = index >>> 0;
@@ -11044,6 +11341,11 @@ $.Primitives_dateNow = function() {
   return Date.now();
 };
 
+$.ClickManager_ClickManager = function(stage) {
+  $.requireArgumentNotNull(stage, 'stage');
+  return $.get$ClickManager__clickManagerProperty().get$2(stage, new $.ClickManager_ClickManager_anon());
+};
+
 $.NullPointerException$ = function(functionName, arguments$) {
   return new $.NullPointerException(functionName, arguments$);
 };
@@ -11087,6 +11389,12 @@ $.last = function(receiver) {
   return $.index(receiver, $.sub($.get$length(receiver), 1));
 };
 
+$._testDoudbleClickManager = function() {
+  var stage = $.Stage$($.CanvasElement_CanvasElement($, $), $.Shape$(100, 100, 'blue', $.CTC58));
+  var cm = $.ClickManager_ClickManager(stage);
+  $.expect($.ClickManager_ClickManager(stage), $.same(cm), null, null, false);
+};
+
 $.gtB = function(a, b) {
   return typeof a === 'number' && typeof b === 'number' ? a > b : $.gt$slow(a, b) === true;
 };
@@ -11117,6 +11425,10 @@ $._currentIsolate = function() {
 
 $.Coordinate_difference = function(a, b) {
   return $.Vector$($.sub(a.x, b.get$x()), $.sub(a.y, b.get$y()));
+};
+
+$.getMouseEventCoordinate = function(event$) {
+  return $.Coordinate$(event$.get$offsetX(), event$.get$offsetY());
 };
 
 $.startsWith = function(receiver, other) {
@@ -11300,6 +11612,13 @@ $.RgbColor__normalizeHex = function(hexColor) {
 
 $.identical = function(a, b) {
   return a === b;
+};
+
+$._convertNativeToDart_EventTarget = function(e) {
+  if ("setInterval" in e)
+    return $._DOMWindowCrossFrameImpl__createSafe(e);
+  else
+    return e;
 };
 
 $.max = function(a, b) {
@@ -12010,6 +12329,12 @@ $.Vector$ = function(x, y) {
   return new $.Vector(x, y);
 };
 
+$.ClickManager$_internal = function(_stage) {
+  var t1 = new $.ClickManager(_stage, null);
+  t1.ClickManager$_internal$1(_stage);
+  return t1;
+};
+
 $._ReceivePortImpl$ = function() {
   var t1 = $._ReceivePortImpl__nextFreeId;
   $._ReceivePortImpl__nextFreeId = $.add(t1, 1);
@@ -12488,6 +12813,10 @@ $._TextTrackListEventsImpl$ = function(_ptr) {
 
 $._JsVisitedMap$ = function() {
   return new $._JsVisitedMap(null);
+};
+
+$.ElementMouseEventArgs$_internal = function(element, shiftKey) {
+  return new $.ElementMouseEventArgs(element, shiftKey);
 };
 
 $._fillStatics = function(context) {
@@ -12992,7 +13321,7 @@ $.dynamicFunction = function(name$) {
   if (!(f == null) && !!f.methods)
     return f.methods;
   var methods = {};
-  var dartMethod = Object.getPrototypeOf($.CTC58)[name$];
+  var dartMethod = Object.getPrototypeOf($.CTC60)[name$];
   if (!(dartMethod == null))
     $.propertySet(methods, 'Object', dartMethod);
   var bind = function() {return $.dynamicBind.call$4(this, name$, methods, Array.prototype.slice.call(arguments));};
@@ -13247,6 +13576,7 @@ $.main = function() {
   $.runBotTests();
   $.runAsyncTests();
   $.runQrTests();
+  $.runRetainedTests();
 };
 
 $.FutureValueResult$fromException = function(exception) {
@@ -13383,6 +13713,10 @@ $._DOMWindowCrossFrameImpl$ = function(_window) {
   return new $._DOMWindowCrossFrameImpl(_window);
 };
 
+$.RetainedUtil_transformPointGlobalToLocal = function(element, point) {
+  return element.getTransform$0().createInverse$0().transformCoordinate$1(point);
+};
+
 $.Collections_collectionToString = function(c) {
   var result = $.StringBuffer_StringBuffer('');
   $.Collections__emitCollection(c, result, $.ListImplementation_List(null));
@@ -13409,6 +13743,10 @@ $.indexOf$2 = function(receiver, element, start) {
     return receiver.indexOf(element, start);
   }
   return receiver.indexOf$2(element, start);
+};
+
+$.RetainedUtil_hitTest = function(stage, point) {
+  return $.RetainedUtil__hitTest(stage.get$rootElement(), point);
 };
 
 $.StringBufferImpl$ = function(content$) {
@@ -13567,6 +13905,10 @@ $.Collections__emitCollection = function(c, result, visiting) {
 
 $.TestEnumerable__testMap = function() {
   $.expect($.map($.$$([1, 2, 3, 4, 5, 6]), new $.TestEnumerable__testMap_anon()), $.orderedEquals([2, 4, 6, 8, 10, 12]), null, null, false);
+};
+
+$._document = function() {
+return document;
 };
 
 $._FrameSetElementEventsImpl$ = function(_ptr) {
@@ -13977,6 +14319,20 @@ $.TestArray2d_run = function() {
   $.group('Array2d', new $.TestArray2d_run_anon());
 };
 
+$.CanvasElement_CanvasElement = function(width, height) {
+  var t1 = $ === width;
+  if (t1)
+    width = null;
+  var t2 = $ === height;
+  if (t2)
+    height = null;
+  if (t1)
+    return $._Elements_createCanvasElement(null, null);
+  if (t2)
+    return $._Elements_createCanvasElement(width, null);
+  return $._Elements_createCanvasElement(width, height);
+};
+
 $.Uri$fromString = function(uri) {
   var t1 = $.CTC55.firstMatch$1(uri);
   return new $.Uri($.Uri__emptyIfNull($.index(t1, 1)), $.Uri__emptyIfNull($.index(t1, 2)), $.Uri__emptyIfNull($.index(t1, 3)), $.Uri__parseIntOrZero($.index(t1, 4)), $.Uri__emptyIfNull($.index(t1, 5)), $.Uri__emptyIfNull($.index(t1, 6)), $.Uri__emptyIfNull($.index(t1, 7)));
@@ -14076,6 +14432,25 @@ $.checkMutable = function(list, reason) {
 
 $.FutureValueResult_isMyMap = function(value) {
   return !(value == null) && $.eqB($.get$length(value), 2) && value.containsKey$1('value') === true && value.containsKey$1('exception') === true;
+};
+
+$.RetainedUtil__hitTest = function(element, point) {
+  point = $.RetainedUtil_transformPointGlobalToLocal(element, point);
+  var bounds = $.Box$(0, 0, element.get$width(), element.get$height());
+  var hits = $.ListImplementation_List(null);
+  if (bounds.contains$1(point) === true) {
+    var length$ = element.get$visualChildCount();
+    if (typeof length$ !== 'number')
+      return $.RetainedUtil__hitTest$bailout(1, element, length$, point, hits);
+    for (var t1 = length$ - 1, i = 0; i < length$; ++i) {
+      hits = $.RetainedUtil__hitTest(element.getVisualChild$1(t1 - i), point);
+      if (hits.length > 0)
+        break;
+    }
+    hits.push(element);
+    return hits;
+  } else
+    return [];
 };
 
 $.TestQrCode_run = function() {
@@ -14932,6 +15307,12 @@ $.Element_Element$tag = function(tag) {
   return $._ElementFactoryProvider_createElement_tag(tag);
 };
 
+$.Stage$ = function(_canvas, _element) {
+  var t1 = new $.Stage($.EventHandle$(), _canvas, _element, null, $.HashMapImplementation$(), $.HashMapImplementation$(), false);
+  t1.Stage$2(_canvas, _element);
+  return t1;
+};
+
 $.toLowerCase = function(receiver) {
   if (!(typeof receiver === 'string'))
     return receiver.toLowerCase$0();
@@ -15032,6 +15413,26 @@ $.stringLastIndexOfUnchecked = function(receiver, element, start) {
 
 $._HttpRequestUploadEventsImpl$ = function(_ptr) {
   return new $._HttpRequestUploadEventsImpl(_ptr);
+};
+
+$.Mouse_markMouseOver = function(stage, coordinate) {
+  $.requireArgumentNotNull(stage, 'stage');
+  var t1 = !(coordinate == null);
+  $.requireArgument(coordinate == null || coordinate.get$isValid() === true, 'coordinate', null);
+  var items = $.get$Mouse__stageMouseCacheProperty().get$1(stage);
+  if (!(items == null)) {
+    $.forEach(items, new $.Mouse_markMouseOver_anon());
+    $.get$Mouse__stageMouseCacheProperty().clear$1(stage);
+  }
+  if (t1) {
+    var hits = $.RetainedUtil_hitTest(stage, coordinate);
+    $.get$Mouse__stageMouseCacheProperty().set$2(stage, hits);
+    $.forEach(hits, new $.Mouse_markMouseOver_anon0());
+    if ($.gtB($.get$length(hits), 0))
+      $.get$Mouse_isMouseDirectlyOverProperty().set$2($.index(hits, 0), true);
+    return hits;
+  }
+  return;
 };
 
 $._Collections_map = function(source, destination, f) {
@@ -15218,6 +15619,10 @@ $.IndexOutOfRangeException$ = function(_value) {
   return new $.IndexOutOfRangeException(_value);
 };
 
+$.Shape$ = function(w, h, fillStyle, shapeType) {
+  return new $.Shape(fillStyle, shapeType, $.ListImplementation_List(null), true, $.EventHandle$(), $.EventHandle$(), null, w, h, null, null, false, null, $.HashMapImplementation$(), $.HashMapImplementation$(), false);
+};
+
 $._IDBVersionChangeRequestEventsImpl$ = function(_ptr) {
   return new $._IDBVersionChangeRequestEventsImpl(_ptr);
 };
@@ -15279,6 +15684,10 @@ $._DOMWindowCrossFrameImpl__createSafe = function(w) {
 $.TestNumberEnumerable__testSum = function() {
   $.expect($.n$([1, 2, 3]).sum$0(), $.equals(6, 100), null, null, false);
   $.expect(new $.TestNumberEnumerable__testSum_anon(), $.CTC38, null, null, false);
+};
+
+$.ElementMouseEventArgs_ElementMouseEventArgs = function(element, mouseEvent) {
+  return $.ElementMouseEventArgs$_internal(element, mouseEvent.get$shiftKey());
 };
 
 $.TestListBase__gt0 = function(a) {
@@ -15915,6 +16324,40 @@ $.QrCode__createData$bailout = function(state0, typeNumber, errorCorrectLevel, d
   return $.QrCode__createBytes(buffer, rsBlocks);
 };
 
+$.RetainedUtil__hitTest$bailout = function(state0, env0, env1, env2, env3) {
+  switch (state0) {
+    case 1:
+      var element = env0;
+      length$ = env1;
+      point = env2;
+      hits = env3;
+      break;
+  }
+  switch (state0) {
+    case 0:
+      var point = $.RetainedUtil_transformPointGlobalToLocal(element, point);
+      var bounds = $.Box$(0, 0, element.get$width(), element.get$height());
+      var hits = $.ListImplementation_List(null);
+    case 1:
+      if (state0 === 1 || state0 === 0 && bounds.contains$1(point) === true)
+        switch (state0) {
+          case 0:
+            var length$ = element.get$visualChildCount();
+          case 1:
+            state0 = 0;
+            for (var i = 0; $.ltB(i, length$); ++i) {
+              hits = $.RetainedUtil__hitTest(element.getVisualChild$1($.sub($.sub(length$, 1), i)), point);
+              if (hits.length > 0)
+                break;
+            }
+            hits.push(element);
+            return hits;
+        }
+      else
+        return [];
+  }
+};
+
 $.QrUtil_getBCHTypeInfo$bailout = function(state0, data, d) {
   for (; $.QrUtil_getBCHDigit(d) - $.QrUtil_getBCHDigit($.QrUtil_G15) >= 0;)
     d = $.xor(d, $.shl($.QrUtil_G15, $.QrUtil_getBCHDigit(d) - $.QrUtil_getBCHDigit($.QrUtil_G15)));
@@ -16204,6 +16647,8 @@ $.TestCloneable__test.call$0 = $.TestCloneable__test;
 $.TestCloneable__test.$name = "TestCloneable__test";
 $.TestQrBitBuffer__testComplex.call$0 = $.TestQrBitBuffer__testComplex;
 $.TestQrBitBuffer__testComplex.$name = "TestQrBitBuffer__testComplex";
+$._testDoudbleClickManager.call$0 = $._testDoudbleClickManager;
+$._testDoudbleClickManager.$name = "_testDoudbleClickManager";
 $.TestEnumerable__testSelectNumbers.call$0 = $.TestEnumerable__testSelectNumbers;
 $.TestEnumerable__testSelectNumbers.$name = "TestEnumerable__testSelectNumbers";
 $._defaultErrorFormatter.call$5 = $._defaultErrorFormatter;
@@ -16287,295 +16732,300 @@ Isolate.makeConstantList = function(list) {
 };
 $.CTC1 = Isolate.makeConstantList([]);
 $.CTC31 = new Isolate.$isolateProperties.ConstantMap(0, {}, Isolate.$isolateProperties.CTC1);
-$.CTC59 = 'InvalidOperationException';
-$.CTC60 = new Isolate.$isolateProperties._InvalidOperationException('InvalidOperationException');
-$.CTC35 = new Isolate.$isolateProperties.Throws(Isolate.$isolateProperties.CTC60);
-$.CTC61 = 1;
-$.CTC62 = -1;
+$.CTC61 = 'InvalidOperationException';
+$.CTC62 = new Isolate.$isolateProperties._InvalidOperationException('InvalidOperationException');
+$.CTC35 = new Isolate.$isolateProperties.Throws(Isolate.$isolateProperties.CTC62);
+$.CTC63 = 1;
+$.CTC64 = -1;
 $.CTC49 = new Isolate.$isolateProperties.Vector(1, -1);
-$.CTC63 = 2;
-$.CTC64 = 33;
-$.CTC65 = 11;
-$.CTC66 = 34;
-$.CTC67 = 12;
-$.CTC68 = Isolate.makeConstantList([2, 33, 11, 2, 34, 12]);
-$.CTC69 = 6;
-$.CTC70 = 43;
-$.CTC71 = 19;
-$.CTC72 = 44;
-$.CTC73 = 20;
-$.CTC74 = Isolate.makeConstantList([6, 43, 19, 2, 44, 20]);
-$.CTC75 = 0;
-$.CTC76 = 3;
+$.CTC65 = 2;
+$.CTC66 = 33;
+$.CTC67 = 11;
+$.CTC68 = 34;
+$.CTC69 = 12;
+$.CTC70 = Isolate.makeConstantList([2, 33, 11, 2, 34, 12]);
+$.CTC71 = 6;
+$.CTC72 = 43;
+$.CTC73 = 19;
+$.CTC74 = 44;
+$.CTC75 = 20;
+$.CTC76 = Isolate.makeConstantList([6, 43, 19, 2, 44, 20]);
+$.CTC77 = 0;
+$.CTC78 = 3;
 $.CTC56 = Isolate.makeConstantList([1, 0, 3, 2]);
-$.CTC77 = 32;
-$.CTC78 = 14;
-$.CTC79 = 4;
-$.CTC80 = 15;
-$.CTC81 = Isolate.makeConstantList([2, 32, 14, 4, 33, 15]);
-$.CTC82 = 26;
-$.CTC83 = Isolate.makeConstantList([1, 26, 19]);
-$.CTC84 = 39;
-$.CTC85 = 13;
-$.CTC86 = 40;
-$.CTC87 = Isolate.makeConstantList([4, 39, 13, 1, 40, 14]);
+$.CTC79 = 32;
+$.CTC80 = 14;
+$.CTC81 = 4;
+$.CTC82 = 15;
+$.CTC83 = Isolate.makeConstantList([2, 32, 14, 4, 33, 15]);
+$.CTC84 = 26;
+$.CTC85 = Isolate.makeConstantList([1, 26, 19]);
+$.CTC86 = 39;
+$.CTC87 = 13;
+$.CTC88 = 40;
+$.CTC89 = Isolate.makeConstantList([4, 39, 13, 1, 40, 14]);
 $.CTC16 = new Isolate.$isolateProperties._DeletedKeySentinel();
-$.CTC88 = false;
+$.CTC90 = false;
 $.CTC40 = new Isolate.$isolateProperties.TestListBase(false);
-$.CTC89 = 16;
-$.CTC90 = Isolate.makeConstantList([1, 26, 16]);
+$.CTC91 = 16;
+$.CTC92 = Isolate.makeConstantList([1, 26, 16]);
 $.CTC18 = new Isolate.$isolateProperties._UndefinedValue();
-$.CTC91 = Isolate.makeConstantList([1, 44, 34]);
-$.CTC92 = 86;
-$.CTC93 = 68;
-$.CTC94 = Isolate.makeConstantList([2, 86, 68]);
-$.CTC95 = 50;
-$.CTC96 = Isolate.makeConstantList([2, 50, 32]);
-$.CTC97 = 9;
-$.CTC98 = Isolate.makeConstantList([1, 26, 9]);
+$.CTC93 = Isolate.makeConstantList([1, 44, 34]);
+$.CTC94 = 86;
+$.CTC95 = 68;
+$.CTC96 = Isolate.makeConstantList([2, 86, 68]);
+$.CTC97 = 50;
+$.CTC98 = Isolate.makeConstantList([2, 50, 32]);
+$.CTC99 = 9;
+$.CTC100 = Isolate.makeConstantList([1, 26, 9]);
 $.CTC48 = new Isolate.$isolateProperties.Box(0, 0, 1, 1);
-$.CTC99 = 25;
-$.CTC100 = Isolate.makeConstantList([4, 25, 9]);
-$.CTC101 = 60;
-$.CTC102 = 38;
-$.CTC103 = 61;
-$.CTC104 = Isolate.makeConstantList([2, 60, 38, 2, 61, 39]);
-$.CTC105 = Isolate.makeConstantList([1, 26, 13]);
-$.CTC106 = 18;
-$.CTC107 = Isolate.makeConstantList([6, 18]);
-$.CTC108 = 30;
-$.CTC109 = Isolate.makeConstantList([6, 30]);
-$.CTC110 = 'NullPointerException';
-$.CTC111 = new Isolate.$isolateProperties._NullPointerException('NullPointerException');
-$.CTC112 = 121;
-$.CTC113 = 97;
-$.CTC114 = Isolate.makeConstantList([2, 121, 97]);
-$.CTC115 = 41;
-$.CTC116 = Isolate.makeConstantList([4, 40, 18, 2, 41, 19]);
-$.CTC117 = Isolate.makeConstantList([2, 33, 15, 2, 34, 16]);
-$.CTC118 = 'ArgumentError';
-$.CTC119 = new Isolate.$isolateProperties._ArgumentError('ArgumentError');
-$.CTC39 = new Isolate.$isolateProperties.Throws(Isolate.$isolateProperties.CTC119);
-$.CTC120 = Isolate.makeConstantList([6, 43, 15, 2, 44, 16]);
-$.CTC121 = 'UnsupportedOperationException';
-$.CTC122 = new Isolate.$isolateProperties._UnsupportedOperationException('UnsupportedOperationException');
-$.CTC34 = new Isolate.$isolateProperties.Throws(Isolate.$isolateProperties.CTC122);
-$.CTC123 = 'The input sequence contains more than one element.';
+$.CTC101 = 25;
+$.CTC102 = Isolate.makeConstantList([4, 25, 9]);
+$.CTC103 = 60;
+$.CTC104 = 38;
+$.CTC105 = 61;
+$.CTC106 = Isolate.makeConstantList([2, 60, 38, 2, 61, 39]);
+$.CTC107 = Isolate.makeConstantList([1, 26, 13]);
+$.CTC108 = 18;
+$.CTC109 = Isolate.makeConstantList([6, 18]);
+$.CTC110 = 30;
+$.CTC111 = Isolate.makeConstantList([6, 30]);
+$.CTC112 = 'NullPointerException';
+$.CTC113 = new Isolate.$isolateProperties._NullPointerException('NullPointerException');
+$.CTC114 = 121;
+$.CTC115 = 97;
+$.CTC116 = Isolate.makeConstantList([2, 121, 97]);
+$.CTC117 = 41;
+$.CTC118 = Isolate.makeConstantList([4, 40, 18, 2, 41, 19]);
+$.CTC119 = Isolate.makeConstantList([2, 33, 15, 2, 34, 16]);
+$.CTC120 = 'ArgumentError';
+$.CTC121 = new Isolate.$isolateProperties._ArgumentError('ArgumentError');
+$.CTC39 = new Isolate.$isolateProperties.Throws(Isolate.$isolateProperties.CTC121);
+$.CTC122 = 'Boxangle';
+$.CTC58 = new Isolate.$isolateProperties.ShapeType('Boxangle');
+$.CTC123 = Isolate.makeConstantList([6, 43, 15, 2, 44, 16]);
+$.CTC124 = 'UnsupportedOperationException';
+$.CTC125 = new Isolate.$isolateProperties._UnsupportedOperationException('UnsupportedOperationException');
+$.CTC34 = new Isolate.$isolateProperties.Throws(Isolate.$isolateProperties.CTC125);
+$.CTC126 = 'The input sequence contains more than one element.';
 $.CTC36 = new Isolate.$isolateProperties.InvalidOperationException('The input sequence contains more than one element.');
-$.CTC124 = Isolate.makeConstantList([4, 40, 14, 2, 41, 15]);
-$.CTC125 = 'IndexOutOfRangeException';
-$.CTC126 = new Isolate.$isolateProperties._IndexOutOfRangeException('IndexOutOfRangeException');
-$.CTC44 = new Isolate.$isolateProperties.Throws(Isolate.$isolateProperties.CTC126);
-$.CTC127 = 36;
-$.CTC128 = 37;
-$.CTC129 = 17;
-$.CTC130 = Isolate.makeConstantList([4, 36, 16, 4, 37, 17]);
-$.CTC131 = 58;
-$.CTC132 = 59;
-$.CTC133 = Isolate.makeConstantList([3, 58, 36, 2, 59, 37]);
-$.CTC134 = Isolate.makeConstantList([4, 43, 15]);
-$.CTC135 = Isolate.makeConstantList([6, 34]);
-$.CTC136 = 24;
-$.CTC137 = Isolate.makeConstantList([2, 50, 24]);
-$.CTC138 = 28;
-$.CTC139 = Isolate.makeConstantList([6, 28, 50]);
-$.CTC140 = 49;
-$.CTC141 = 31;
-$.CTC142 = Isolate.makeConstantList([4, 49, 31]);
-$.CTC143 = Isolate.makeConstantList([6, 26]);
-$.CTC144 = 35;
-$.CTC145 = Isolate.makeConstantList([2, 35, 13]);
-$.CTC146 = Isolate.makeConstantList([4, 36, 12, 4, 37, 13]);
-$.CTC147 = 98;
-$.CTC148 = 78;
-$.CTC149 = Isolate.makeConstantList([2, 98, 78]);
-$.CTC150 = 54;
-$.CTC151 = Isolate.makeConstantList([6, 30, 54]);
-$.CTC152 = Isolate.makeConstantList([2, 35, 17]);
-$.CTC153 = Isolate.makeConstantList([1, 44, 28]);
-$.CTC154 = 46;
-$.CTC155 = Isolate.makeConstantList([6, 26, 46]);
+$.CTC127 = Isolate.makeConstantList([4, 40, 14, 2, 41, 15]);
+$.CTC128 = 'IndexOutOfRangeException';
+$.CTC129 = new Isolate.$isolateProperties._IndexOutOfRangeException('IndexOutOfRangeException');
+$.CTC44 = new Isolate.$isolateProperties.Throws(Isolate.$isolateProperties.CTC129);
+$.CTC130 = 36;
+$.CTC131 = 37;
+$.CTC132 = 17;
+$.CTC133 = Isolate.makeConstantList([4, 36, 16, 4, 37, 17]);
+$.CTC134 = 58;
+$.CTC135 = 59;
+$.CTC136 = Isolate.makeConstantList([3, 58, 36, 2, 59, 37]);
+$.CTC137 = Isolate.makeConstantList([4, 43, 15]);
+$.CTC138 = Isolate.makeConstantList([6, 34]);
+$.CTC139 = 24;
+$.CTC140 = Isolate.makeConstantList([2, 50, 24]);
+$.CTC141 = 28;
+$.CTC142 = Isolate.makeConstantList([6, 28, 50]);
+$.CTC143 = 49;
+$.CTC144 = 31;
+$.CTC145 = Isolate.makeConstantList([4, 49, 31]);
+$.CTC146 = Isolate.makeConstantList([6, 26]);
+$.CTC147 = 35;
+$.CTC148 = Isolate.makeConstantList([2, 35, 13]);
+$.CTC149 = Isolate.makeConstantList([4, 36, 12, 4, 37, 13]);
+$.CTC150 = 98;
+$.CTC151 = 78;
+$.CTC152 = Isolate.makeConstantList([2, 98, 78]);
+$.CTC153 = 54;
+$.CTC154 = Isolate.makeConstantList([6, 30, 54]);
+$.CTC155 = Isolate.makeConstantList([2, 35, 17]);
+$.CTC156 = Isolate.makeConstantList([1, 44, 28]);
+$.CTC157 = 46;
+$.CTC158 = Isolate.makeConstantList([6, 26, 46]);
 $.CTC25 = new Isolate.$isolateProperties.IllegalAccessException();
-$.CTC156 = '^[*a-zA-Z0-9]+$';
+$.CTC159 = '^[*a-zA-Z0-9]+$';
 $.CTC30 = new Isolate.$isolateProperties.JSSyntaxRegExp('^[*a-zA-Z0-9]+$', false, false);
-$.CTC157 = 100;
-$.CTC158 = 80;
-$.CTC159 = Isolate.makeConstantList([1, 100, 80]);
-$.CTC160 = 22;
-$.CTC161 = Isolate.makeConstantList([6, 22, 38]);
-$.CTC162 = 27;
-$.CTC163 = Isolate.makeConstantList([4, 43, 27]);
-$.CTC164 = 69;
-$.CTC165 = 70;
-$.CTC166 = Isolate.makeConstantList([4, 69, 43, 1, 70, 44]);
-$.CTC167 = 62;
-$.CTC168 = 90;
-$.CTC169 = 118;
-$.CTC170 = Isolate.makeConstantList([6, 34, 62, 90, 118]);
-$.CTC171 = 'structured clone of ImageData';
+$.CTC160 = 100;
+$.CTC161 = 80;
+$.CTC162 = Isolate.makeConstantList([1, 100, 80]);
+$.CTC163 = 22;
+$.CTC164 = Isolate.makeConstantList([6, 22, 38]);
+$.CTC165 = 27;
+$.CTC166 = Isolate.makeConstantList([4, 43, 27]);
+$.CTC167 = 69;
+$.CTC168 = 70;
+$.CTC169 = Isolate.makeConstantList([4, 69, 43, 1, 70, 44]);
+$.CTC170 = 62;
+$.CTC171 = 90;
+$.CTC172 = 118;
+$.CTC173 = Isolate.makeConstantList([6, 34, 62, 90, 118]);
+$.CTC174 = 'structured clone of ImageData';
 $.CTC7 = new Isolate.$isolateProperties.NotImplementedException('structured clone of ImageData');
-$.CTC172 = null;
+$.CTC175 = null;
 $.CTC0 = new Isolate.$isolateProperties.NullPointerException(null, Isolate.$isolateProperties.CTC1);
 $.CTC21 = new Isolate.$isolateProperties.EmptyQueueException();
-$.CTC173 = '';
+$.CTC176 = '';
 $.CTC26 = new Isolate.$isolateProperties.UnsupportedOperationException('');
 $.CTC11 = new Isolate.$isolateProperties.NoMoreElementsException();
-$.CTC174 = true;
+$.CTC177 = true;
 $.CTC43 = new Isolate.$isolateProperties.TestListBase(true);
 $.CTC46 = new Isolate.$isolateProperties.NotImplementedException(null);
-$.CTC175 = 'Cannot removeLast on immutable List.';
+$.CTC178 = 'Cannot removeLast on immutable List.';
 $.CTC12 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot removeLast on immutable List.');
-$.CTC176 = Isolate.makeConstantList([4, 43, 19]);
-$.CTC177 = Isolate.makeConstantList([1, 44, 16]);
-$.CTC178 = 72;
-$.CTC179 = 94;
-$.CTC180 = Isolate.makeConstantList([6, 28, 50, 72, 94]);
-$.CTC181 = Isolate.makeConstantList([1, 44, 22]);
-$.CTC182 = Isolate.makeConstantList([6, 34, 62, 90]);
-$.CTC183 = Isolate.makeConstantList([6, 22]);
-$.CTC184 = 74;
-$.CTC185 = Isolate.makeConstantList([6, 26, 50, 74, 98]);
-$.CTC186 = 'structured clone of ArrayBuffer';
+$.CTC179 = Isolate.makeConstantList([4, 43, 19]);
+$.CTC180 = Isolate.makeConstantList([1, 44, 16]);
+$.CTC181 = 72;
+$.CTC182 = 94;
+$.CTC183 = Isolate.makeConstantList([6, 28, 50, 72, 94]);
+$.CTC184 = Isolate.makeConstantList([1, 44, 22]);
+$.CTC185 = Isolate.makeConstantList([6, 34, 62, 90]);
+$.CTC186 = Isolate.makeConstantList([6, 22]);
+$.CTC187 = 74;
+$.CTC188 = Isolate.makeConstantList([6, 26, 50, 74, 98]);
+$.CTC189 = 'structured clone of ArrayBuffer';
 $.CTC8 = new Isolate.$isolateProperties.NotImplementedException('structured clone of ArrayBuffer');
-$.CTC187 = 84;
-$.CTC188 = 110;
-$.CTC189 = Isolate.makeConstantList([6, 32, 58, 84, 110]);
-$.CTC190 = 106;
-$.CTC191 = Isolate.makeConstantList([6, 28, 54, 80, 106]);
-$.CTC192 = 87;
-$.CTC193 = Isolate.makeConstantList([2, 86, 68, 2, 87, 69]);
-$.CTC194 = 82;
-$.CTC195 = 138;
-$.CTC196 = 166;
-$.CTC197 = Isolate.makeConstantList([6, 26, 54, 82, 110, 138, 166]);
-$.CTC198 = 42;
-$.CTC199 = Isolate.makeConstantList([6, 24, 42]);
-$.CTC200 = Isolate.makeConstantList([6, 34, 62]);
-$.CTC201 = 'body';
-$.CTC202 = 'head';
-$.CTC203 = 'caption';
-$.CTC204 = 'td';
-$.CTC205 = 'colgroup';
-$.CTC206 = 'col';
-$.CTC207 = 'tr';
-$.CTC208 = 'tbody';
-$.CTC209 = 'tfoot';
-$.CTC210 = 'thead';
-$.CTC211 = 'track';
-$.CTC212 = Isolate.makeConstantList(['body', 'head', 'caption', 'td', 'colgroup', 'col', 'tr', 'tbody', 'tfoot', 'thead', 'track']);
-$.CTC213 = Isolate.makeConstantList([6, 32, 58]);
-$.CTC214 = 102;
-$.CTC215 = Isolate.makeConstantList([6, 30, 54, 78, 102]);
-$.CTC58 = new Isolate.$isolateProperties.Object();
-$.CTC216 = 114;
-$.CTC217 = 142;
-$.CTC218 = 170;
-$.CTC219 = Isolate.makeConstantList([6, 30, 58, 86, 114, 142, 170]);
-$.CTC220 = 'Cannot insertRange on immutable List.';
+$.CTC190 = 84;
+$.CTC191 = 110;
+$.CTC192 = Isolate.makeConstantList([6, 32, 58, 84, 110]);
+$.CTC193 = 106;
+$.CTC194 = Isolate.makeConstantList([6, 28, 54, 80, 106]);
+$.CTC195 = 87;
+$.CTC196 = Isolate.makeConstantList([2, 86, 68, 2, 87, 69]);
+$.CTC197 = 82;
+$.CTC198 = 138;
+$.CTC199 = 166;
+$.CTC200 = Isolate.makeConstantList([6, 26, 54, 82, 110, 138, 166]);
+$.CTC201 = 42;
+$.CTC202 = Isolate.makeConstantList([6, 24, 42]);
+$.CTC203 = Isolate.makeConstantList([6, 34, 62]);
+$.CTC204 = 'body';
+$.CTC205 = 'head';
+$.CTC206 = 'caption';
+$.CTC207 = 'td';
+$.CTC208 = 'colgroup';
+$.CTC209 = 'col';
+$.CTC210 = 'tr';
+$.CTC211 = 'tbody';
+$.CTC212 = 'tfoot';
+$.CTC213 = 'thead';
+$.CTC214 = 'track';
+$.CTC215 = Isolate.makeConstantList(['body', 'head', 'caption', 'td', 'colgroup', 'col', 'tr', 'tbody', 'tfoot', 'thead', 'track']);
+$.CTC216 = Isolate.makeConstantList([6, 32, 58]);
+$.CTC217 = 102;
+$.CTC218 = Isolate.makeConstantList([6, 30, 54, 78, 102]);
+$.CTC60 = new Isolate.$isolateProperties.Object();
+$.CTC219 = new Isolate.$isolateProperties.Coordinate(0, 0);
+$.CTC220 = 'offsetX is only supported on elements';
+$.CTC59 = new Isolate.$isolateProperties.UnsupportedOperationException('offsetX is only supported on elements');
+$.CTC221 = 114;
+$.CTC222 = 142;
+$.CTC223 = 170;
+$.CTC224 = Isolate.makeConstantList([6, 30, 58, 86, 114, 142, 170]);
+$.CTC225 = 'Cannot insertRange on immutable List.';
 $.CTC45 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot insertRange on immutable List.');
-$.CTC221 = 'Incorrect number or type of arguments';
+$.CTC226 = 'Incorrect number or type of arguments';
 $.CTC17 = new Isolate.$isolateProperties.ExceptionImplementation('Incorrect number or type of arguments');
-$.CTC222 = 'html';
-$.CTC223 = 'table';
-$.CTC224 = 'audio';
-$.CTC24 = new Isolate.$isolateProperties.ConstantMap(11, {'body': 'html', 'head': 'html', 'caption': 'table', 'td': 'tr', 'colgroup': 'table', 'col': 'colgroup', 'tr': 'tbody', 'tbody': 'table', 'tfoot': 'table', 'thead': 'table', 'track': 'audio'}, Isolate.$isolateProperties.CTC212);
-$.CTC225 = 'Cannot removeRange on immutable List.';
+$.CTC227 = 'html';
+$.CTC228 = 'table';
+$.CTC229 = 'audio';
+$.CTC24 = new Isolate.$isolateProperties.ConstantMap(11, {'body': 'html', 'head': 'html', 'caption': 'table', 'td': 'tr', 'colgroup': 'table', 'col': 'colgroup', 'tr': 'tbody', 'tbody': 'table', 'tfoot': 'table', 'thead': 'table', 'track': 'audio'}, Isolate.$isolateProperties.CTC215);
+$.CTC230 = 'Cannot removeRange on immutable List.';
 $.CTC52 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot removeRange on immutable List.');
-$.CTC226 = 'structured clone of Blob';
+$.CTC231 = 'structured clone of Blob';
 $.CTC6 = new Isolate.$isolateProperties.NotImplementedException('structured clone of Blob');
-$.CTC227 = Isolate.makeConstantList([6, 30, 54, 78]);
-$.CTC228 = Isolate.makeConstantList([6, 30, 58, 86, 114]);
-$.CTC229 = 'structured clone of RegExp';
+$.CTC232 = Isolate.makeConstantList([6, 30, 54, 78]);
+$.CTC233 = Isolate.makeConstantList([6, 30, 58, 86, 114]);
+$.CTC234 = 'structured clone of RegExp';
 $.CTC4 = new Isolate.$isolateProperties.NotImplementedException('structured clone of RegExp');
-$.CTC230 = Isolate.makeConstantList([6, 26, 50, 74]);
-$.CTC231 = 132;
-$.CTC232 = 158;
-$.CTC233 = Isolate.makeConstantList([6, 28, 54, 80, 106, 132, 158]);
-$.CTC234 = 67;
-$.CTC235 = Isolate.makeConstantList([2, 67, 43]);
-$.CTC236 = Isolate.makeConstantList([1, 70, 44]);
-$.CTC237 = '^\\[name=["\'][^\'"]+[\'"]\\]$';
+$.CTC235 = Isolate.makeConstantList([6, 26, 50, 74]);
+$.CTC236 = 132;
+$.CTC237 = 158;
+$.CTC238 = Isolate.makeConstantList([6, 28, 54, 80, 106, 132, 158]);
+$.CTC239 = 67;
+$.CTC240 = Isolate.makeConstantList([2, 67, 43]);
+$.CTC241 = Isolate.makeConstantList([1, 70, 44]);
+$.CTC242 = '^\\[name=["\'][^\'"]+[\'"]\\]$';
 $.CTC29 = new Isolate.$isolateProperties.JSSyntaxRegExp('^\\[name=["\'][^\'"]+[\'"]\\]$', false, false);
 $.CTC54 = new Isolate.$isolateProperties._Random();
-$.CTC238 = 55;
-$.CTC239 = Isolate.makeConstantList([1, 70, 55]);
-$.CTC240 = 66;
-$.CTC241 = Isolate.makeConstantList([6, 26, 46, 66]);
-$.CTC242 = 56;
-$.CTC243 = Isolate.makeConstantList([6, 30, 56, 82]);
-$.CTC244 = 134;
-$.CTC245 = 108;
-$.CTC246 = Isolate.makeConstantList([1, 134, 108]);
-$.CTC247 = 146;
-$.CTC248 = 116;
-$.CTC249 = Isolate.makeConstantList([2, 146, 116]);
-$.CTC250 = Isolate.makeConstantList([Isolate.$isolateProperties.CTC83, Isolate.$isolateProperties.CTC90, Isolate.$isolateProperties.CTC105, Isolate.$isolateProperties.CTC98, Isolate.$isolateProperties.CTC91, Isolate.$isolateProperties.CTC153, Isolate.$isolateProperties.CTC181, Isolate.$isolateProperties.CTC177, Isolate.$isolateProperties.CTC239, Isolate.$isolateProperties.CTC236, Isolate.$isolateProperties.CTC152, Isolate.$isolateProperties.CTC145, Isolate.$isolateProperties.CTC159, Isolate.$isolateProperties.CTC96, Isolate.$isolateProperties.CTC137, Isolate.$isolateProperties.CTC100, Isolate.$isolateProperties.CTC246, Isolate.$isolateProperties.CTC235, Isolate.$isolateProperties.CTC117, Isolate.$isolateProperties.CTC68, Isolate.$isolateProperties.CTC94, Isolate.$isolateProperties.CTC163, Isolate.$isolateProperties.CTC176, Isolate.$isolateProperties.CTC134, Isolate.$isolateProperties.CTC149, Isolate.$isolateProperties.CTC142, Isolate.$isolateProperties.CTC81, Isolate.$isolateProperties.CTC87, Isolate.$isolateProperties.CTC114, Isolate.$isolateProperties.CTC104, Isolate.$isolateProperties.CTC116, Isolate.$isolateProperties.CTC124, Isolate.$isolateProperties.CTC249, Isolate.$isolateProperties.CTC133, Isolate.$isolateProperties.CTC130, Isolate.$isolateProperties.CTC146, Isolate.$isolateProperties.CTC193, Isolate.$isolateProperties.CTC166, Isolate.$isolateProperties.CTC74, Isolate.$isolateProperties.CTC120]);
-$.CTC251 = 48;
-$.CTC252 = Isolate.makeConstantList([6, 26, 48, 70]);
-$.CTC253 = Isolate.makeConstantList([6, 30, 58, 86]);
-$.CTC254 = 76;
-$.CTC255 = 128;
-$.CTC256 = 154;
-$.CTC257 = Isolate.makeConstantList([6, 24, 50, 76, 102, 128, 154]);
-$.CTC258 = 126;
-$.CTC259 = Isolate.makeConstantList([6, 30, 54, 78, 102, 126]);
-$.CTC260 = 122;
-$.CTC261 = Isolate.makeConstantList([6, 26, 50, 74, 98, 122]);
-$.CTC262 = 52;
-$.CTC263 = 104;
-$.CTC264 = 130;
-$.CTC265 = Isolate.makeConstantList([6, 26, 52, 78, 104, 130]);
-$.CTC266 = Isolate.makeConstantList([6, 30, 56, 82, 108, 134]);
-$.CTC267 = 112;
-$.CTC268 = Isolate.makeConstantList([6, 34, 60, 86, 112, 138]);
-$.CTC269 = Isolate.makeConstantList([6, 30, 58, 86, 114, 142]);
-$.CTC270 = Isolate.makeConstantList([6, 34, 62, 90, 118, 146]);
-$.CTC271 = 150;
-$.CTC272 = Isolate.makeConstantList([6, 30, 54, 78, 102, 126, 150]);
-$.CTC273 = 136;
-$.CTC274 = 162;
-$.CTC275 = Isolate.makeConstantList([6, 32, 58, 84, 110, 136, 162]);
-$.CTC57 = Isolate.makeConstantList([Isolate.$isolateProperties.CTC1, Isolate.$isolateProperties.CTC107, Isolate.$isolateProperties.CTC183, Isolate.$isolateProperties.CTC143, Isolate.$isolateProperties.CTC109, Isolate.$isolateProperties.CTC135, Isolate.$isolateProperties.CTC161, Isolate.$isolateProperties.CTC199, Isolate.$isolateProperties.CTC155, Isolate.$isolateProperties.CTC139, Isolate.$isolateProperties.CTC151, Isolate.$isolateProperties.CTC213, Isolate.$isolateProperties.CTC200, Isolate.$isolateProperties.CTC241, Isolate.$isolateProperties.CTC252, Isolate.$isolateProperties.CTC230, Isolate.$isolateProperties.CTC227, Isolate.$isolateProperties.CTC243, Isolate.$isolateProperties.CTC253, Isolate.$isolateProperties.CTC182, Isolate.$isolateProperties.CTC180, Isolate.$isolateProperties.CTC185, Isolate.$isolateProperties.CTC215, Isolate.$isolateProperties.CTC191, Isolate.$isolateProperties.CTC189, Isolate.$isolateProperties.CTC228, Isolate.$isolateProperties.CTC170, Isolate.$isolateProperties.CTC261, Isolate.$isolateProperties.CTC259, Isolate.$isolateProperties.CTC265, Isolate.$isolateProperties.CTC266, Isolate.$isolateProperties.CTC268, Isolate.$isolateProperties.CTC269, Isolate.$isolateProperties.CTC270, Isolate.$isolateProperties.CTC272, Isolate.$isolateProperties.CTC257, Isolate.$isolateProperties.CTC233, Isolate.$isolateProperties.CTC275, Isolate.$isolateProperties.CTC197, Isolate.$isolateProperties.CTC219]);
-$.CTC276 = 'NullArgumentException';
-$.CTC277 = new Isolate.$isolateProperties._NullArgumentException('NullArgumentException');
-$.CTC278 = 'structured clone of ArrayBufferView';
+$.CTC243 = 55;
+$.CTC244 = Isolate.makeConstantList([1, 70, 55]);
+$.CTC245 = 66;
+$.CTC246 = Isolate.makeConstantList([6, 26, 46, 66]);
+$.CTC247 = 56;
+$.CTC248 = Isolate.makeConstantList([6, 30, 56, 82]);
+$.CTC249 = 134;
+$.CTC250 = 108;
+$.CTC251 = Isolate.makeConstantList([1, 134, 108]);
+$.CTC252 = 146;
+$.CTC253 = 116;
+$.CTC254 = Isolate.makeConstantList([2, 146, 116]);
+$.CTC255 = Isolate.makeConstantList([Isolate.$isolateProperties.CTC85, Isolate.$isolateProperties.CTC92, Isolate.$isolateProperties.CTC107, Isolate.$isolateProperties.CTC100, Isolate.$isolateProperties.CTC93, Isolate.$isolateProperties.CTC156, Isolate.$isolateProperties.CTC184, Isolate.$isolateProperties.CTC180, Isolate.$isolateProperties.CTC244, Isolate.$isolateProperties.CTC241, Isolate.$isolateProperties.CTC155, Isolate.$isolateProperties.CTC148, Isolate.$isolateProperties.CTC162, Isolate.$isolateProperties.CTC98, Isolate.$isolateProperties.CTC140, Isolate.$isolateProperties.CTC102, Isolate.$isolateProperties.CTC251, Isolate.$isolateProperties.CTC240, Isolate.$isolateProperties.CTC119, Isolate.$isolateProperties.CTC70, Isolate.$isolateProperties.CTC96, Isolate.$isolateProperties.CTC166, Isolate.$isolateProperties.CTC179, Isolate.$isolateProperties.CTC137, Isolate.$isolateProperties.CTC152, Isolate.$isolateProperties.CTC145, Isolate.$isolateProperties.CTC83, Isolate.$isolateProperties.CTC89, Isolate.$isolateProperties.CTC116, Isolate.$isolateProperties.CTC106, Isolate.$isolateProperties.CTC118, Isolate.$isolateProperties.CTC127, Isolate.$isolateProperties.CTC254, Isolate.$isolateProperties.CTC136, Isolate.$isolateProperties.CTC133, Isolate.$isolateProperties.CTC149, Isolate.$isolateProperties.CTC196, Isolate.$isolateProperties.CTC169, Isolate.$isolateProperties.CTC76, Isolate.$isolateProperties.CTC123]);
+$.CTC256 = 48;
+$.CTC257 = Isolate.makeConstantList([6, 26, 48, 70]);
+$.CTC258 = Isolate.makeConstantList([6, 30, 58, 86]);
+$.CTC259 = 76;
+$.CTC260 = 128;
+$.CTC261 = 154;
+$.CTC262 = Isolate.makeConstantList([6, 24, 50, 76, 102, 128, 154]);
+$.CTC263 = 126;
+$.CTC264 = Isolate.makeConstantList([6, 30, 54, 78, 102, 126]);
+$.CTC265 = 122;
+$.CTC266 = Isolate.makeConstantList([6, 26, 50, 74, 98, 122]);
+$.CTC267 = 52;
+$.CTC268 = 104;
+$.CTC269 = 130;
+$.CTC270 = Isolate.makeConstantList([6, 26, 52, 78, 104, 130]);
+$.CTC271 = Isolate.makeConstantList([6, 30, 56, 82, 108, 134]);
+$.CTC272 = 112;
+$.CTC273 = Isolate.makeConstantList([6, 34, 60, 86, 112, 138]);
+$.CTC274 = Isolate.makeConstantList([6, 30, 58, 86, 114, 142]);
+$.CTC275 = Isolate.makeConstantList([6, 34, 62, 90, 118, 146]);
+$.CTC276 = 150;
+$.CTC277 = Isolate.makeConstantList([6, 30, 54, 78, 102, 126, 150]);
+$.CTC278 = 136;
+$.CTC279 = 162;
+$.CTC280 = Isolate.makeConstantList([6, 32, 58, 84, 110, 136, 162]);
+$.CTC57 = Isolate.makeConstantList([Isolate.$isolateProperties.CTC1, Isolate.$isolateProperties.CTC109, Isolate.$isolateProperties.CTC186, Isolate.$isolateProperties.CTC146, Isolate.$isolateProperties.CTC111, Isolate.$isolateProperties.CTC138, Isolate.$isolateProperties.CTC164, Isolate.$isolateProperties.CTC202, Isolate.$isolateProperties.CTC158, Isolate.$isolateProperties.CTC142, Isolate.$isolateProperties.CTC154, Isolate.$isolateProperties.CTC216, Isolate.$isolateProperties.CTC203, Isolate.$isolateProperties.CTC246, Isolate.$isolateProperties.CTC257, Isolate.$isolateProperties.CTC235, Isolate.$isolateProperties.CTC232, Isolate.$isolateProperties.CTC248, Isolate.$isolateProperties.CTC258, Isolate.$isolateProperties.CTC185, Isolate.$isolateProperties.CTC183, Isolate.$isolateProperties.CTC188, Isolate.$isolateProperties.CTC218, Isolate.$isolateProperties.CTC194, Isolate.$isolateProperties.CTC192, Isolate.$isolateProperties.CTC233, Isolate.$isolateProperties.CTC173, Isolate.$isolateProperties.CTC266, Isolate.$isolateProperties.CTC264, Isolate.$isolateProperties.CTC270, Isolate.$isolateProperties.CTC271, Isolate.$isolateProperties.CTC273, Isolate.$isolateProperties.CTC274, Isolate.$isolateProperties.CTC275, Isolate.$isolateProperties.CTC277, Isolate.$isolateProperties.CTC262, Isolate.$isolateProperties.CTC238, Isolate.$isolateProperties.CTC280, Isolate.$isolateProperties.CTC200, Isolate.$isolateProperties.CTC224]);
+$.CTC281 = 'NullArgumentException';
+$.CTC282 = new Isolate.$isolateProperties._NullArgumentException('NullArgumentException');
+$.CTC283 = 'structured clone of ArrayBufferView';
 $.CTC9 = new Isolate.$isolateProperties.NotImplementedException('structured clone of ArrayBufferView');
 $.CTC14 = new Isolate.$isolateProperties._IsNull();
 $.CTC15 = new Isolate.$isolateProperties._IsTrue();
 $.CTC = new Isolate.$isolateProperties._IsFalse();
-$.CTC279 = 'TODO(jacobr): should we impl?';
+$.CTC284 = 'TODO(jacobr): should we impl?';
 $.CTC33 = new Isolate.$isolateProperties.UnsupportedOperationException('TODO(jacobr): should we impl?');
-$.CTC280 = 'Cannot add to immutable List.';
+$.CTC285 = 'Cannot add to immutable List.';
 $.CTC2 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot add to immutable List.');
-$.CTC281 = '[-[\\]{}()*+?.,\\\\^$|#\\s]';
+$.CTC286 = '[-[\\]{}()*+?.,\\\\^$|#\\s]';
 $.CTC13 = new Isolate.$isolateProperties.JSSyntaxRegExp('[-[\\]{}()*+?.,\\\\^$|#\\s]', false, false);
-$.CTC38 = new Isolate.$isolateProperties.Throws(Isolate.$isolateProperties.CTC111);
-$.CTC282 = '^#(?:[0-9a-f]{6})$';
+$.CTC38 = new Isolate.$isolateProperties.Throws(Isolate.$isolateProperties.CTC113);
+$.CTC287 = '^#(?:[0-9a-f]{6})$';
 $.CTC53 = new Isolate.$isolateProperties.JSSyntaxRegExp('^#(?:[0-9a-f]{6})$', false, true);
-$.CTC283 = 'structured clone of File';
+$.CTC288 = 'structured clone of File';
 $.CTC5 = new Isolate.$isolateProperties.NotImplementedException('structured clone of File');
-$.CTC284 = '<(\\w+)';
+$.CTC289 = '<(\\w+)';
 $.CTC23 = new Isolate.$isolateProperties.JSSyntaxRegExp('<(\\w+)', false, false);
-$.CTC285 = 'The input sequence is empty.';
+$.CTC290 = 'The input sequence is empty.';
 $.CTC37 = new Isolate.$isolateProperties.InvalidOperationException('The input sequence is empty.');
-$.CTC286 = '^#[_a-zA-Z]\\w*$';
+$.CTC291 = '^#[_a-zA-Z]\\w*$';
 $.CTC28 = new Isolate.$isolateProperties.JSSyntaxRegExp('^#[_a-zA-Z]\\w*$', false, false);
-$.CTC287 = 'Cannot sort immutable List.';
+$.CTC292 = 'Cannot sort immutable List.';
 $.CTC32 = new Isolate.$isolateProperties.UnsupportedOperationException('Cannot sort immutable List.');
-$.CTC288 = 'structured clone of Date';
+$.CTC293 = 'structured clone of Date';
 $.CTC3 = new Isolate.$isolateProperties.NotImplementedException('structured clone of Date');
-$.CTC289 = 'IDBKey containing Date';
+$.CTC294 = 'IDBKey containing Date';
 $.CTC22 = new Isolate.$isolateProperties.NotImplementedException('IDBKey containing Date');
-$.CTC290 = 'Invalid list length';
+$.CTC295 = 'Invalid list length';
 $.CTC27 = new Isolate.$isolateProperties.ArgumentError('Invalid list length');
-$.CTC20 = new Isolate.$isolateProperties.Throws(Isolate.$isolateProperties.CTC277);
+$.CTC20 = new Isolate.$isolateProperties.Throws(Isolate.$isolateProperties.CTC282);
 $.CTC41 = new Isolate.$isolateProperties.ReadOnlyCollection(Isolate.$isolateProperties.CTC1);
 $.CTC19 = new Isolate.$isolateProperties.EventArgs();
-$.CTC291 = '^(?:([^:/?#.]+):)?(?://(?:([^/?#]*)@)?([\\w\\d\\-\\u0100-\\uffff.%]*)(?::([0-9]+))?)?([^?#]+)?(?:\\?([^#]*))?(?:#(.*))?$';
+$.CTC296 = '^(?:([^:/?#.]+):)?(?://(?:([^/?#]*)@)?([\\w\\d\\-\\u0100-\\uffff.%]*)(?::([0-9]+))?)?([^?#]+)?(?:\\?([^#]*))?(?:#(.*))?$';
 $.CTC55 = new Isolate.$isolateProperties.JSSyntaxRegExp('^(?:([^:/?#.]+):)?(?://(?:([^/?#]*)@)?([\\w\\d\\-\\u0100-\\uffff.%]*)(?::([0-9]+))?)?([^?#]+)?(?:\\?([^#]*))?(?:#(.*))?$', false, false);
-$.CTC292 = 'Mutation operations are not supported';
+$.CTC297 = 'Mutation operations are not supported';
 $.CTC42 = new Isolate.$isolateProperties.UnsupportedOperationException('Mutation operations are not supported');
-$.CTC293 = 'structured clone of other type';
+$.CTC298 = 'structured clone of other type';
 $.CTC10 = new Isolate.$isolateProperties.NotImplementedException('structured clone of other type');
 $.CTC50 = new Isolate.$isolateProperties.Coordinate(1, 0);
 $.CTC51 = new Isolate.$isolateProperties.Vector(2, 2);
@@ -16590,7 +17040,7 @@ $._BufferingSendPort__idCount = 0;
 $.QrMaskPattern_PATTERN101 = 5;
 $.QrErrorCorrectLevel_levels = Isolate.$isolateProperties.CTC56;
 $._lazyPort = null;
-$.isNullPointerException = Isolate.$isolateProperties.CTC111;
+$.isNullPointerException = Isolate.$isolateProperties.CTC113;
 $.Uri__splitRe = Isolate.$isolateProperties.CTC55;
 $.SQRT2 = 1.4142135623730951;
 $.QrMaskPattern_PATTERN100 = 4;
@@ -16604,7 +17054,7 @@ $.QrMaskPattern_PATTERN110 = 6;
 $.PI = 3.141592653589793;
 $.DualPivotQuicksort__INSERTION_SORT_THRESHOLD = 32;
 $.Primitives_hashCodeSeed = 0;
-$.isArgumentError = Isolate.$isolateProperties.CTC119;
+$.isArgumentError = Isolate.$isolateProperties.CTC121;
 $.QrErrorCorrectLevel_Q = 3;
 $.QrErrorCorrectLevel_H = 2;
 $.throwsUnsupportedOperationException = Isolate.$isolateProperties.CTC34;
@@ -16627,10 +17077,10 @@ $.FAIL = 'fail';
 $.double_NAN = (0/0);
 $.Duration_HOURS_PER_DAY = 24;
 $.HashMapImplementation__DELETED_KEY = Isolate.$isolateProperties.CTC16;
-$.isIndexOutOfRangeException = Isolate.$isolateProperties.CTC126;
+$.isIndexOutOfRangeException = Isolate.$isolateProperties.CTC129;
 $._currentTest = 0;
 $.QrMode_MODE_8BIT_BYTE = 4;
-$.QrRsBlock__rsBlockTable = Isolate.$isolateProperties.CTC250;
+$.QrRsBlock__rsBlockTable = Isolate.$isolateProperties.CTC255;
 $.Uri__COMPONENT_PORT = 4;
 $.Uri__COMPONENT_SCHEME = 1;
 $.Duration_MINUTES_PER_HOUR = 60;
@@ -16645,6 +17095,7 @@ $.Uri__COMPONENT_FRAGMENT = 7;
 $.QrMaskPattern_PATTERN011 = 3;
 $._ReceivePortImpl__nextFreeId = 1;
 $.RgbColor__validHexColorRe = Isolate.$isolateProperties.CTC53;
+$.ShapeType_rect = Isolate.$isolateProperties.CTC58;
 $._uncaughtErrorMessage = null;
 $.Uri__COMPONENT_QUERY_DATA = 6;
 $.throwsIndexOutOfRangeException = Isolate.$isolateProperties.CTC44;
@@ -16665,9 +17116,15 @@ $.QrMath__expTable = null;
 $.Uri__COMPONENT_USER_INFO = 2;
 $._cachedBrowserPrefix = null;
 $.QrMode_MODE_KANJI = 8;
-$.isUnsupportedOperationException = Isolate.$isolateProperties.CTC122;
+$.isUnsupportedOperationException = Isolate.$isolateProperties.CTC125;
 $._soloTest = null;
 $.QrMaskPattern_PATTERN000 = 0;
+Isolate.$lazy($, '_mouseOutEvent', 'ClickManager__mouseOutEvent', 'get$ClickManager__mouseOutEvent', function() {
+  return $.AttachedEvent$('mouseOut');
+});
+Isolate.$lazy($, '_mouseUpEvent', 'ClickManager__mouseUpEvent', 'get$ClickManager__mouseUpEvent', function() {
+  return $.AttachedEvent$('mouseUp');
+});
 Isolate.$lazy($, '_testEvent2', 'TestAttachedEvents__testEvent2', 'get$TestAttachedEvents__testEvent2', function() {
   return $.AttachedEvent$('testEvent2');
 });
@@ -16677,8 +17134,32 @@ Isolate.$lazy($, '_testEvent1', 'TestAttachedEvents__testEvent1', 'get$TestAttac
 Isolate.$lazy($, '_ageProperty', 'TestPropertyEventIntegration__ageProperty', 'get$TestPropertyEventIntegration__ageProperty', function() {
   return $.Property$('age', 0);
 });
+Isolate.$lazy($, 'isMouseDirectlyOverProperty', 'Mouse_isMouseDirectlyOverProperty', 'get$Mouse_isMouseDirectlyOverProperty', function() {
+  return $.Property$('IsMouseDirectlyOver', false);
+});
+Isolate.$lazy($, 'isMouseOverProperty', 'Mouse_isMouseOverProperty', 'get$Mouse_isMouseOverProperty', function() {
+  return $.Property$('IsMouseOver', false);
+});
+Isolate.$lazy($, '_mouseMoveEvent', 'ClickManager__mouseMoveEvent', 'get$ClickManager__mouseMoveEvent', function() {
+  return $.AttachedEvent$('mouseMove');
+});
+Isolate.$lazy($, '_isClickableProperty', 'ClickManager__isClickableProperty', 'get$ClickManager__isClickableProperty', function() {
+  return $.Property$('isClickable', false);
+});
+Isolate.$lazy($, '_mouseDownEvent', 'ClickManager__mouseDownEvent', 'get$ClickManager__mouseDownEvent', function() {
+  return $.AttachedEvent$('mouseDown');
+});
+Isolate.$lazy($, '_clickEvent', 'ClickManager__clickEvent', 'get$ClickManager__clickEvent', function() {
+  return $.AttachedEvent$('clickEvent');
+});
+Isolate.$lazy($, '_clickManagerProperty', 'ClickManager__clickManagerProperty', 'get$ClickManager__clickManagerProperty', function() {
+  return $.Property$('_clickManager', null);
+});
 Isolate.$lazy($, '_nameProperty', 'TestPropertyEventIntegration__nameProperty', 'get$TestPropertyEventIntegration__nameProperty', function() {
   return $.Property$('name', null);
+});
+Isolate.$lazy($, '_stageMouseCacheProperty', 'Mouse__stageMouseCacheProperty', 'get$Mouse__stageMouseCacheProperty', function() {
+  return $.Property$('_stageMouseCacheProperty', null);
 });
 var $ = null;
 Isolate.$finishClasses($$);
@@ -16766,7 +17247,7 @@ $.$defineNativeClass('HTMLAnchorElement', ["name?"], {
 $.$defineNativeClass('WebKitAnimation', ["name?"], {
 });
 
-$.$defineNativeClass('HTMLAppletElement', ["height?", "name?", "width?"], {
+$.$defineNativeClass('HTMLAppletElement', ["height=", "name?", "width="], {
  is$Element: function() { return true; }
 });
 
@@ -16943,6 +17424,14 @@ $.$defineNativeClass('CSSStyleDeclaration', ["length?"], {
   var propValue = this._getPropertyValue$1(propertyName);
   return !(propValue == null) ? propValue : '';
 },
+ setProperty$3: function(propertyName, value, priority) {
+    this.setProperty(propertyName, value, priority);
+    // Bug #2772, IE9 requires a poke to actually apply the value.
+    if (this.setAttribute) {
+      this.setAttribute(propertyName, value);
+    }
+  
+},
  get$clear: function() {
   return this.getPropertyValue$1('clear');
 },
@@ -16955,6 +17444,9 @@ $.$defineNativeClass('CSSStyleDeclaration', ["length?"], {
  get$height: function() {
   return this.getPropertyValue$1('height');
 },
+ set$height: function(value) {
+  this.setProperty$3('height', value, '');
+},
  get$left: function() {
   return this.getPropertyValue$1('left');
 },
@@ -16963,6 +17455,9 @@ $.$defineNativeClass('CSSStyleDeclaration', ["length?"], {
 },
  get$width: function() {
   return this.getPropertyValue$1('width');
+},
+ set$width: function(value) {
+  this.setProperty$3('width', value, '');
 }
 });
 
@@ -17047,7 +17542,7 @@ return this[index];
  is$Iterable: function() { return true; }
 });
 
-$.$defineNativeClass('HTMLCanvasElement', ["height?", "width?"], {
+$.$defineNativeClass('HTMLCanvasElement', ["height=", "width="], {
  is$Element: function() { return true; }
 });
 
@@ -17570,6 +18065,9 @@ $.$defineNativeClass('HTMLDocument', ["body?", "head?"], {
  get$_window: function() {
 return this.defaultView;
 },
+ $dom_createElement$1: function(tagName) {
+  return this.createElement(tagName);
+},
  $dom_getElementById$1: function(elementId) {
   return this.getElementById(elementId);
 },
@@ -17739,6 +18237,9 @@ return this.lastElementChild;
  $dom_getAttribute$1: function(name) {
   return this.getAttribute(name);
 },
+ getBoundingClientRect$0: function() {
+  return this.getBoundingClientRect();
+},
  $dom_hasAttribute$1: function(name) {
   return this.hasAttribute(name);
 },
@@ -17757,7 +18258,7 @@ return this.lastElementChild;
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('HTMLEmbedElement', ["height?", "name?", "width?"], {
+$.$defineNativeClass('HTMLEmbedElement', ["height=", "name?", "width="], {
  is$Element: function() { return true; }
 });
 
@@ -17933,6 +18434,15 @@ $.$defineNativeClass('ErrorEvent', ["message?"], {
 $.$defineNativeClass('EventException', ["message?", "name?"], {
  toString$0: function() {
   return this.toString();
+}
+});
+
+$.$defineNativeClass('Event', [], {
+ get$target: function() {
+  return $._convertNativeToDart_EventTarget(this.get$_target());
+},
+ get$_target: function() {
+return this.target;
 }
 });
 
@@ -18363,7 +18873,7 @@ return this[index];
  is$Iterable: function() { return true; }
 });
 
-$.$defineNativeClass('HTMLHRElement', ["width?"], {
+$.$defineNativeClass('HTMLHRElement', ["width="], {
  is$Element: function() { return true; }
 });
 
@@ -18794,7 +19304,7 @@ $.$defineNativeClass('IDBVersionChangeRequest', [], {
 }
 });
 
-$.$defineNativeClass('HTMLIFrameElement', ["height?", "name?", "width?"], {
+$.$defineNativeClass('HTMLIFrameElement', ["height=", "name?", "width="], {
  is$Element: function() { return true; }
 });
 
@@ -18803,12 +19313,12 @@ $.$defineNativeClass('ImageData', ["data?", "height?", "width?"], {
  is$ImageData: function() { return true; }
 });
 
-$.$defineNativeClass('HTMLImageElement', ["height?", "name?", "width?", "x?", "y?"], {
+$.$defineNativeClass('HTMLImageElement', ["height=", "name?", "width=", "x?", "y?"], {
  complete$1: function(arg0) { return this.complete.call$1(arg0); },
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('HTMLInputElement', ["height?", "name?", "value=", "width?"], {
+$.$defineNativeClass('HTMLInputElement', ["height=", "name?", "value=", "width="], {
  get$on: function() {
   return $._InputElementEventsImpl$(this);
 },
@@ -19057,6 +19567,9 @@ $.$defineNativeClass('JavaScriptAudioNode', [], {
 }
 });
 
+$.$defineNativeClass('KeyboardEvent', ["shiftKey?"], {
+});
+
 $.$defineNativeClass('HTMLKeygenElement', ["name?"], {
  is$Element: function() { return true; }
 });
@@ -19163,7 +19676,7 @@ $.$defineNativeClass('HTMLMapElement', ["name?"], {
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('HTMLMarqueeElement', ["height?", "width?"], {
+$.$defineNativeClass('HTMLMarqueeElement', ["height=", "width="], {
  is$Element: function() { return true; }
 });
 
@@ -19396,7 +19909,33 @@ $.$defineNativeClass('HTMLModElement', [], {
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('MouseEvent', ["x?", "y?"], {
+$.$defineNativeClass('MouseEvent', ["shiftKey?", "x?", "y?"], {
+ get$offsetX: function() {
+  if (!!this.offsetX)
+    return this.get$_offsetX();
+  else {
+    var target = this.get$target();
+    if (!(typeof target === 'object' && target !== null && target.is$Element()))
+      throw $.$$throw($.CTC59);
+    return $.sub(this.clientX, this.get$target().getBoundingClientRect$0().get$left());
+  }
+},
+ get$offsetY: function() {
+  if (!!this.offsetY)
+    return this.get$_offsetY();
+  else {
+    var target = this.get$target();
+    if (!(typeof target === 'object' && target !== null && target.is$Element()))
+      throw $.$$throw($.CTC59);
+    return $.sub(this.clientY, this.get$target().getBoundingClientRect$0().get$top());
+  }
+},
+ get$_offsetX: function() {
+return this.offsetX
+},
+ get$_offsetY: function() {
+return this.offsetY
+}
 });
 
 $.$defineNativeClass('NamedNodeMap', ["length?"], {
@@ -19556,8 +20095,10 @@ $.$defineNativeClass('NodeList', ["length?"], {
   this._parent.$dom_appendChild$1(value);
 },
  addAll$1: function(collection) {
-  for (var t1 = $.iterator(collection), t2 = this._parent; t1.hasNext$0() === true;)
-    t2.$dom_appendChild$1(t1.next$0());
+  for (var t1 = $.iterator(collection); t1.hasNext$0() === true;) {
+    var t2 = t1.next$0();
+    this._parent.$dom_appendChild$1(t2);
+  }
 },
  removeLast$0: function() {
   var result = this.last$0();
@@ -19649,7 +20190,7 @@ $.$defineNativeClass('HTMLOListElement', [], {
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('HTMLObjectElement', ["data?", "height?", "name?", "width?"], {
+$.$defineNativeClass('HTMLObjectElement', ["data?", "height=", "name?", "width="], {
  is$Element: function() { return true; }
 });
 
@@ -19697,7 +20238,7 @@ $.$defineNativeClass('PopStateEvent', ["state?"], {
 $.$defineNativeClass('PositionError', ["message?"], {
 });
 
-$.$defineNativeClass('HTMLPreElement', ["width?"], {
+$.$defineNativeClass('HTMLPreElement', ["width="], {
  is$Element: function() { return true; }
 });
 
@@ -19748,6 +20289,9 @@ $.$defineNativeClass('RangeException', ["message?", "name?"], {
 });
 
 $.$defineNativeClass('Range', [], {
+ getBoundingClientRect$0: function() {
+  return this.getBoundingClientRect();
+},
  toString$0: function() {
   return this.toString();
 }
@@ -20125,7 +20669,7 @@ $.$defineNativeClass('SVGDescElement', [], {
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('SVGDocument', [], {
+$.$defineNativeClass('SVGDocument', ["rootElement?"], {
  is$Element: function() { return true; }
 });
 
@@ -20766,7 +21310,7 @@ $.$defineNativeClass('SVGRectElement', ["height?", "width?", "x?", "y?"], {
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('SVGRect', ["height?", "width?", "x?", "y?"], {
+$.$defineNativeClass('SVGRect', ["height=", "width=", "x?", "y?"], {
 });
 
 $.$defineNativeClass('SVGSVGElement', ["height?", "width?", "x?", "y?"], {
@@ -21512,15 +22056,15 @@ $.$defineNativeClass('HTMLTableCaptionElement', [], {
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('HTMLTableCellElement', ["height?", "width?"], {
+$.$defineNativeClass('HTMLTableCellElement', ["height=", "width="], {
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('HTMLTableColElement', ["width?"], {
+$.$defineNativeClass('HTMLTableColElement', ["width="], {
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('HTMLTableElement', ["width?"], {
+$.$defineNativeClass('HTMLTableElement', ["width="], {
  is$Element: function() { return true; }
 });
 
@@ -21730,6 +22274,15 @@ $.$defineNativeClass('TimeRanges', ["length?"], {
 
 $.$defineNativeClass('HTMLTitleElement', [], {
  is$Element: function() { return true; }
+});
+
+$.$defineNativeClass('TouchEvent', ["shiftKey?"], {
+});
+
+$.$defineNativeClass('Touch', [], {
+ get$_target: function() {
+return this.target;
+}
 });
 
 $.$defineNativeClass('TouchList', ["length?"], {
@@ -22058,7 +22611,7 @@ $.$defineNativeClass('HTMLUnknownElement', [], {
  is$Element: function() { return true; }
 });
 
-$.$defineNativeClass('HTMLVideoElement', ["height?", "width?"], {
+$.$defineNativeClass('HTMLVideoElement', ["height=", "width="], {
  is$Element: function() { return true; }
 });
 
@@ -22284,9 +22837,9 @@ $.$defineNativeClass('DOMWindow', [], {
 }
 });
 
-// 351 dynamic classes.
-// 366 classes
-// 30 !leaf
+// 355 dynamic classes.
+// 395 classes
+// 33 !leaf
 (function(){
   var v0/*class(_SVGTextPositioningElementImpl)*/ = 'SVGTextPositioningElement|SVGTextElement|SVGTSpanElement|SVGTRefElement|SVGAltGlyphElement|SVGTextElement|SVGTSpanElement|SVGTRefElement|SVGAltGlyphElement';
   var v1/*class(_Uint8ArrayImpl)*/ = 'Uint8Array|Uint8ClampedArray|Uint8ClampedArray';
@@ -22300,19 +22853,20 @@ $.$defineNativeClass('DOMWindow', [], {
   var v9/*class(_DocumentImpl)*/ = 'HTMLDocument|SVGDocument|SVGDocument';
   var v10/*class(_DocumentFragmentImpl)*/ = 'DocumentFragment|ShadowRoot|ShadowRoot';
   var v11/*class(_CharacterDataImpl)*/ = 'CharacterData|Text|CDATASection|CDATASection|Comment|Text|CDATASection|CDATASection|Comment';
-  var v12/*class(_WorkerContextImpl)*/ = 'WorkerContext|SharedWorkerContext|DedicatedWorkerContext|SharedWorkerContext|DedicatedWorkerContext';
-  var v13/*class(_NodeImpl)*/ = [v8/*class(_ElementImpl)*/,v9/*class(_DocumentImpl)*/,v10/*class(_DocumentFragmentImpl)*/,v11/*class(_CharacterDataImpl)*/,v8/*class(_ElementImpl)*/,v9/*class(_DocumentImpl)*/,v10/*class(_DocumentFragmentImpl)*/,v11/*class(_CharacterDataImpl)*/,'Node|ProcessingInstruction|Notation|EntityReference|Entity|DocumentType|Attr|ProcessingInstruction|Notation|EntityReference|Entity|DocumentType|Attr'].join('|');
-  var v14/*class(_MediaStreamImpl)*/ = 'MediaStream|LocalMediaStream|LocalMediaStream';
-  var v15/*class(_IDBRequestImpl)*/ = 'IDBRequest|IDBVersionChangeRequest|IDBOpenDBRequest|IDBVersionChangeRequest|IDBOpenDBRequest';
-  var v16/*class(_AbstractWorkerImpl)*/ = 'AbstractWorker|Worker|SharedWorker|Worker|SharedWorker';
+  var v12/*class(_MouseEventImpl)*/ = 'MouseEvent|WheelEvent|WheelEvent';
+  var v13/*class(_WorkerContextImpl)*/ = 'WorkerContext|SharedWorkerContext|DedicatedWorkerContext|SharedWorkerContext|DedicatedWorkerContext';
+  var v14/*class(_NodeImpl)*/ = [v8/*class(_ElementImpl)*/,v9/*class(_DocumentImpl)*/,v10/*class(_DocumentFragmentImpl)*/,v11/*class(_CharacterDataImpl)*/,v8/*class(_ElementImpl)*/,v9/*class(_DocumentImpl)*/,v10/*class(_DocumentFragmentImpl)*/,v11/*class(_CharacterDataImpl)*/,'Node|ProcessingInstruction|Notation|EntityReference|Entity|DocumentType|Attr|ProcessingInstruction|Notation|EntityReference|Entity|DocumentType|Attr'].join('|');
+  var v15/*class(_MediaStreamImpl)*/ = 'MediaStream|LocalMediaStream|LocalMediaStream';
+  var v16/*class(_IDBRequestImpl)*/ = 'IDBRequest|IDBVersionChangeRequest|IDBOpenDBRequest|IDBVersionChangeRequest|IDBOpenDBRequest';
+  var v17/*class(_AbstractWorkerImpl)*/ = 'AbstractWorker|Worker|SharedWorker|Worker|SharedWorker';
   var table = [
     // [dynamic-dispatch-tag, tags of classes implementing dynamic-dispatch-tag]
     ['SVGTextPositioningElement', v0/*class(_SVGTextPositioningElementImpl)*/],
     ['SVGTextContentElement', v2/*class(_SVGTextContentElementImpl)*/],
     ['HTMLMediaElement', v7/*class(_MediaElementImpl)*/],
-    ['MediaStream', v14/*class(_MediaStreamImpl)*/],
-    ['MouseEvent', 'MouseEvent|WheelEvent|WheelEvent'],
-    ['AbstractWorker', v16/*class(_AbstractWorkerImpl)*/],
+    ['MediaStream', v15/*class(_MediaStreamImpl)*/],
+    ['MouseEvent', v12/*class(_MouseEventImpl)*/],
+    ['AbstractWorker', v17/*class(_AbstractWorkerImpl)*/],
     ['Uint8Array', v1/*class(_Uint8ArrayImpl)*/],
     ['ArrayBufferView', [v1/*class(_Uint8ArrayImpl)*/,v1/*class(_Uint8ArrayImpl)*/,'ArrayBufferView|Uint32Array|Uint16Array|Int8Array|Int32Array|Int16Array|Float64Array|Float32Array|DataView|Uint32Array|Uint16Array|Int8Array|Int32Array|Int16Array|Float64Array|Float32Array|DataView'].join('|')],
     ['SVGGradientElement', v3/*class(_SVGGradientElementImpl)*/],
@@ -22323,17 +22877,18 @@ $.$defineNativeClass('DOMWindow', [], {
     ['HTMLDocument', v9/*class(_DocumentImpl)*/],
     ['DocumentFragment', v10/*class(_DocumentFragmentImpl)*/],
     ['CharacterData', v11/*class(_CharacterDataImpl)*/],
-    ['Node', v13/*class(_NodeImpl)*/],
+    ['Node', v14/*class(_NodeImpl)*/],
     ['NodeList', 'NodeList|RadioNodeList|RadioNodeList'],
     ['AudioParam', 'AudioParam|AudioGain|AudioGain'],
     ['Blob', 'Blob|File|File'],
-    ['WorkerContext', v12/*class(_WorkerContextImpl)*/],
+    ['WorkerContext', v13/*class(_WorkerContextImpl)*/],
     ['CSSValueList', 'CSSValueList|WebKitCSSFilterValue|WebKitCSSTransformValue|WebKitCSSFilterValue|WebKitCSSTransformValue'],
     ['DOMTokenList', 'DOMTokenList|DOMSettableTokenList|DOMSettableTokenList'],
     ['Entry', 'Entry|FileEntry|DirectoryEntry|FileEntry|DirectoryEntry'],
     ['EntrySync', 'EntrySync|FileEntrySync|DirectoryEntrySync|FileEntrySync|DirectoryEntrySync'],
-    ['IDBRequest', v15/*class(_IDBRequestImpl)*/],
-    ['EventTarget', [v12/*class(_WorkerContextImpl)*/,v13/*class(_NodeImpl)*/,v14/*class(_MediaStreamImpl)*/,v15/*class(_IDBRequestImpl)*/,v16/*class(_AbstractWorkerImpl)*/,v12/*class(_WorkerContextImpl)*/,v13/*class(_NodeImpl)*/,v14/*class(_MediaStreamImpl)*/,v15/*class(_IDBRequestImpl)*/,v16/*class(_AbstractWorkerImpl)*/,'EventTarget|WebSocket|WebKitNamedFlow|TextTrack|TextTrackCue|SpeechRecognition|SVGElementInstance|RTCPeerConnection|Performance|PeerConnection00|Notification|MessagePort|MediaStreamTrackList|MediaStreamTrack|MediaSource|MediaController|DOMWindow|IDBTransaction|IDBDatabase|XMLHttpRequestUpload|XMLHttpRequest|FileWriter|FileReader|EventSource|DOMApplicationCache|BatteryManager|AudioContext|WebSocket|WebKitNamedFlow|TextTrack|TextTrackCue|SpeechRecognition|SVGElementInstance|RTCPeerConnection|Performance|PeerConnection00|Notification|MessagePort|MediaStreamTrackList|MediaStreamTrack|MediaSource|MediaController|DOMWindow|IDBTransaction|IDBDatabase|XMLHttpRequestUpload|XMLHttpRequest|FileWriter|FileReader|EventSource|DOMApplicationCache|BatteryManager|AudioContext'].join('|')],
+    ['Event', [v12/*class(_MouseEventImpl)*/,v12/*class(_MouseEventImpl)*/,v12/*class(_MouseEventImpl)*/,v12/*class(_MouseEventImpl)*/,'Event|WebGLContextEvent|UIEvent|TouchEvent|TextEvent|SVGZoomEvent|KeyboardEvent|CompositionEvent|TouchEvent|TextEvent|SVGZoomEvent|KeyboardEvent|CompositionEvent|WebKitTransitionEvent|TrackEvent|StorageEvent|SpeechRecognitionEvent|SpeechRecognitionError|SpeechInputEvent|RTCIceCandidateEvent|ProgressEvent|XMLHttpRequestProgressEvent|XMLHttpRequestProgressEvent|PopStateEvent|PageTransitionEvent|OverflowEvent|OfflineAudioCompletionEvent|MutationEvent|MessageEvent|MediaStreamTrackEvent|MediaStreamEvent|MediaKeyEvent|IDBVersionChangeEvent|IDBVersionChangeEvent|HashChangeEvent|ErrorEvent|DeviceOrientationEvent|DeviceMotionEvent|CustomEvent|CloseEvent|BeforeLoadEvent|AudioProcessingEvent|WebKitAnimationEvent|WebGLContextEvent|UIEvent|TouchEvent|TextEvent|SVGZoomEvent|KeyboardEvent|CompositionEvent|TouchEvent|TextEvent|SVGZoomEvent|KeyboardEvent|CompositionEvent|WebKitTransitionEvent|TrackEvent|StorageEvent|SpeechRecognitionEvent|SpeechRecognitionError|SpeechInputEvent|RTCIceCandidateEvent|ProgressEvent|XMLHttpRequestProgressEvent|XMLHttpRequestProgressEvent|PopStateEvent|PageTransitionEvent|OverflowEvent|OfflineAudioCompletionEvent|MutationEvent|MessageEvent|MediaStreamTrackEvent|MediaStreamEvent|MediaKeyEvent|IDBVersionChangeEvent|IDBVersionChangeEvent|HashChangeEvent|ErrorEvent|DeviceOrientationEvent|DeviceMotionEvent|CustomEvent|CloseEvent|BeforeLoadEvent|AudioProcessingEvent|WebKitAnimationEvent'].join('|')],
+    ['IDBRequest', v16/*class(_IDBRequestImpl)*/],
+    ['EventTarget', [v13/*class(_WorkerContextImpl)*/,v14/*class(_NodeImpl)*/,v15/*class(_MediaStreamImpl)*/,v16/*class(_IDBRequestImpl)*/,v17/*class(_AbstractWorkerImpl)*/,v13/*class(_WorkerContextImpl)*/,v14/*class(_NodeImpl)*/,v15/*class(_MediaStreamImpl)*/,v16/*class(_IDBRequestImpl)*/,v17/*class(_AbstractWorkerImpl)*/,'EventTarget|WebSocket|WebKitNamedFlow|TextTrack|TextTrackCue|SpeechRecognition|SVGElementInstance|RTCPeerConnection|Performance|PeerConnection00|Notification|MessagePort|MediaStreamTrackList|MediaStreamTrack|MediaSource|MediaController|DOMWindow|IDBTransaction|IDBDatabase|XMLHttpRequestUpload|XMLHttpRequest|FileWriter|FileReader|EventSource|DOMApplicationCache|BatteryManager|AudioContext|WebSocket|WebKitNamedFlow|TextTrack|TextTrackCue|SpeechRecognition|SVGElementInstance|RTCPeerConnection|Performance|PeerConnection00|Notification|MessagePort|MediaStreamTrackList|MediaStreamTrack|MediaSource|MediaController|DOMWindow|IDBTransaction|IDBDatabase|XMLHttpRequestUpload|XMLHttpRequest|FileWriter|FileReader|EventSource|DOMApplicationCache|BatteryManager|AudioContext'].join('|')],
     ['HTMLCollection', 'HTMLCollection|HTMLOptionsCollection|HTMLOptionsCollection'],
     ['IDBCursor', 'IDBCursor|IDBCursorWithValue|IDBCursorWithValue']];
 $.dynamicSetMetadata(table);
