@@ -60,13 +60,6 @@ abstract class PElement extends AttachableObject {
     return tx;
   }
 
-  bool draw(CanvasRenderingContext2D ctx){
-    update();
-    var dirty = (_lastDrawSize == null);
-    drawCore(ctx);
-    return dirty;
-  }
-
   void update(){
     _updatedEventHandle.fireEvent(EventArgs.empty);
   }
@@ -86,7 +79,6 @@ abstract class PElement extends AttachableObject {
     return tx;
   }
 
-  // abstract
   abstract void drawOverride(CanvasRenderingContext2D ctx);
 
   void invalidateDraw(){
@@ -126,6 +118,13 @@ abstract class PElement extends AttachableObject {
   //
   // Privates
   //
+
+  bool _stageDraw(CanvasRenderingContext2D ctx){
+    update();
+    var dirty = (_lastDrawSize == null);
+    drawCore(ctx);
+    return dirty;
+  }
 
   void _drawCached(CanvasRenderingContext2D ctx) {
     if (this._cacheCanvas == null) {
@@ -176,7 +175,7 @@ abstract class PElement extends AttachableObject {
     ctx.restore();
   }
 
-    void _drawInternal(CanvasRenderingContext2D ctx){
+  void _drawInternal(CanvasRenderingContext2D ctx){
     if (_alpha != null) {
       ctx.globalAlpha = _alpha;
     }
