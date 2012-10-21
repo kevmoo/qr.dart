@@ -345,21 +345,6 @@ void disposeInternal(){
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="draw">
-<button class="show-code">Code</button>
-bool <strong>draw</strong>(CanvasRenderingContext2D ctx) <a class="anchor-link" href="#draw"
-              title="Permalink to TextureAnimationElement.draw">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
-<pre class="source">
-bool draw(CanvasRenderingContext2D ctx){
-  update();
-  var dirty = (_lastDrawSize == null);
-  drawCore(ctx);
-  return dirty;
-}
-</pre>
-</div>
-</div>
 <div class="method inherited"><h4 id="drawCore">
 <button class="show-code">Code</button>
 void <strong>drawCore</strong>(CanvasRenderingContext2D ctx) <a class="anchor-link" href="#drawCore"

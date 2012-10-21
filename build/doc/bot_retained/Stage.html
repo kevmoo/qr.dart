@@ -68,7 +68,7 @@ class Stage extends AttachableObject
       this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
     }
 
-    return this._element.draw(this._ctx);
+    return this._element._stageDraw(this._ctx);
   }
 
   void childInvalidated(PElement child){
@@ -272,7 +272,7 @@ bool draw(){
     this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
   }
 
-  return this._element.draw(this._ctx);
+  return this._element._stageDraw(this._ctx);
 }
 </pre>
 </div>
