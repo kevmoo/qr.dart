@@ -2775,44 +2775,6 @@ $$.Uri = {"":
 }
 };
 
-$$.DisposableImpl = {"":
- [],
- "super": "Object"
-};
-
-$$.GlobalId = {"":
- ["id?", "_hashCode"],
- "super": "Object",
- hashCode$0: function() {
-  return this._hashCode;
-},
- operator$eq$1: function(other) {
-  return !(other == null) && $.eqB(other.get$id(), this.id);
-}
-};
-
-$$.NullArgumentException = {"":
- ["arg", "message"],
- "super": "ArgumentError",
- toString$0: function() {
-  return 'Null argument: ' + this.arg;
-}
-};
-
-$$.DetailedIllegalArgumentException = {"":
- ["argument", "message"],
- "super": "ArgumentError",
- toString$0: function() {
-  var t1 = this.message;
-  var t2 = t1 == null || $.eqB($.get$length(t1), 0);
-  var t3 = this.argument;
-  if (t2)
-    return 'Illegal argument: ' + t3;
-  else
-    return 'Illegal argument: ' + t3 + ' -- ' + $.S(t1);
-}
-};
-
 $$.Enumerable = {"":
  [],
  "super": "Object",
@@ -3048,6 +3010,16 @@ $$.ReadOnlyCollection = {"":
 }
 };
 
+$$.DisposableImpl = {"":
+ [],
+ "super": "Object"
+};
+
+$$.EventArgs = {"":
+ [],
+ "super": "Object"
+};
+
 $$.EventHandle = {"":
  ["_handlers", "_disposed"],
  "super": "DisposableImpl",
@@ -3072,9 +3044,37 @@ $$.EventHandle = {"":
 }
 };
 
-$$.EventArgs = {"":
- [],
- "super": "Object"
+$$.DetailedIllegalArgumentException = {"":
+ ["argument", "message"],
+ "super": "ArgumentError",
+ toString$0: function() {
+  var t1 = this.message;
+  var t2 = t1 == null || $.eqB($.get$length(t1), 0);
+  var t3 = this.argument;
+  if (t2)
+    return 'Illegal argument: ' + t3;
+  else
+    return 'Illegal argument: ' + t3 + ' -- ' + $.S(t1);
+}
+};
+
+$$.NullArgumentException = {"":
+ ["arg", "message"],
+ "super": "ArgumentError",
+ toString$0: function() {
+  return 'Null argument: ' + this.arg;
+}
+};
+
+$$.GlobalId = {"":
+ ["id?", "_hashCode"],
+ "super": "Object",
+ hashCode$0: function() {
+  return this._hashCode;
+},
+ operator$eq$1: function(other) {
+  return !(other == null) && $.eqB(other.get$id(), this.id);
+}
 };
 
 $$.BungeeNum = {"":
@@ -3301,325 +3301,6 @@ $$.QrByte = {"":
   for (var t1 = $.iterator(this._data); t1.hasNext$0() === true;)
     buffer.put$2(t1.next$0(), 8);
 }
-};
-
-$$.QrPolynomial = {"":
- ["_myThings"],
- "super": "Object",
- operator$index$1: function(index) {
-  var t1 = this._myThings;
-  if (index !== (index | 0))
-    throw $.iae(index);
-  if (index < 0 || index >= t1.length)
-    throw $.ioore(index);
-  return t1[index];
-},
- get$length: function() {
-  return this._myThings.length;
-},
- multiply$1: function(e) {
-  if (typeof e !== 'string' && (typeof e !== 'object' || e === null || e.constructor !== Array && !e.is$JavaScriptIndexingBehavior()))
-    return this.multiply$1$bailout(1, e, 0, 0, 0, 0, 0, 0);
-  var t1 = $.get$length(this);
-  if (typeof t1 !== 'number')
-    return this.multiply$1$bailout(2, e, t1, 0, 0, 0, 0, 0);
-  var foo = $.QrMath_getZeroedList(t1 + e.length - 1);
-  var i = 0;
-  while (true) {
-    t1 = $.get$length(this);
-    if (typeof t1 !== 'number')
-      return this.multiply$1$bailout(3, e, i, foo, t1, 0, 0, 0);
-    if (!(i < t1))
-      break;
-    for (var j = 0; j < e.length; ++j) {
-      t1 = i + j;
-      var t2 = $.QrMath_glog(this.operator$index$1(i));
-      if (typeof t2 !== 'number')
-        return this.multiply$1$bailout(4, e, j, t2, i, foo, t1, 0);
-      if (j >= e.length)
-        throw $.ioore(j);
-      var t4 = $.QrMath_glog(e[j]);
-      if (typeof t4 !== 'number')
-        return this.multiply$1$bailout(5, e, j, t2, i, t4, foo, t1);
-      var t6 = $.QrMath_gexp(t2 + t4);
-      if (t6 !== (t6 | 0))
-        return this.multiply$1$bailout(6, e, j, i, t6, foo, t1, 0);
-      if (t1 >= foo.length)
-        throw $.ioore(t1);
-      var t8 = foo[t1];
-      if (t8 !== (t8 | 0))
-        return this.multiply$1$bailout(7, e, j, i, t6, foo, t8, t1);
-      foo[t1] = (t8 ^ t6) >>> 0;
-    }
-    ++i;
-  }
-  return $.QrPolynomial_QrPolynomial(foo, 0);
-},
- multiply$1$bailout: function(state0, env0, env1, env2, env3, env4, env5, env6) {
-  switch (state0) {
-    case 1:
-      var e = env0;
-      break;
-    case 2:
-      e = env0;
-      t1 = env1;
-      break;
-    case 3:
-      e = env0;
-      i = env1;
-      foo = env2;
-      t1 = env3;
-      break;
-    case 4:
-      e = env0;
-      j = env1;
-      t2 = env2;
-      i = env3;
-      foo = env4;
-      t1 = env5;
-      break;
-    case 5:
-      e = env0;
-      j = env1;
-      t2 = env2;
-      i = env3;
-      t4 = env4;
-      foo = env5;
-      t1 = env6;
-      break;
-    case 6:
-      e = env0;
-      j = env1;
-      i = env2;
-      t6 = env3;
-      foo = env4;
-      t1 = env5;
-      break;
-    case 7:
-      e = env0;
-      j = env1;
-      i = env2;
-      t6 = env3;
-      foo = env4;
-      t8 = env5;
-      t1 = env6;
-      break;
-  }
-  switch (state0) {
-    case 0:
-    case 1:
-      state0 = 0;
-      var t1 = $.get$length(this);
-    case 2:
-      state0 = 0;
-      var foo = $.QrMath_getZeroedList($.sub($.add(t1, $.get$length(e)), 1));
-      var i = 0;
-    default:
-      L0:
-        while (true)
-          switch (state0) {
-            case 0:
-              t1 = $.get$length(this);
-            case 3:
-              state0 = 0;
-              if (!$.ltB(i, t1))
-                break L0;
-              var j = 0;
-            default:
-              L1:
-                while (true)
-                  switch (state0) {
-                    case 0:
-                      if (!$.ltB(j, $.get$length(e)))
-                        break L1;
-                      t1 = i + j;
-                      var t2 = $.QrMath_glog(this.operator$index$1(i));
-                    case 4:
-                      state0 = 0;
-                      var t4 = $.QrMath_glog($.index(e, j));
-                    case 5:
-                      state0 = 0;
-                      var t6 = $.QrMath_gexp($.add(t2, t4));
-                    case 6:
-                      state0 = 0;
-                      if (t1 >= foo.length)
-                        throw $.ioore(t1);
-                      var t8 = foo[t1];
-                    case 7:
-                      state0 = 0;
-                      t6 = $.xor(t8, t6);
-                      if (t1 >= foo.length)
-                        throw $.ioore(t1);
-                      foo[t1] = t6;
-                      ++j;
-                  }
-              ++i;
-          }
-      return $.QrPolynomial_QrPolynomial(foo, 0);
-  }
-},
- mod$1: function(e) {
-  if (typeof e !== 'string' && (typeof e !== 'object' || e === null || e.constructor !== Array && !e.is$JavaScriptIndexingBehavior()))
-    return this.mod$1$bailout(1, e, 0, 0, 0, 0, 0);
-  var t1 = $.get$length(this);
-  if (typeof t1 !== 'number')
-    return this.mod$1$bailout(2, e, t1, 0, 0, 0, 0);
-  if (t1 - e.length < 0)
-    return this;
-  t1 = $.QrMath_glog(this.operator$index$1(0));
-  if (typeof t1 !== 'number')
-    return this.mod$1$bailout(3, e, t1, 0, 0, 0, 0);
-  if (0 >= e.length)
-    throw $.ioore(0);
-  var t3 = $.QrMath_glog(e[0]);
-  if (typeof t3 !== 'number')
-    return this.mod$1$bailout(4, e, t3, t1, 0, 0, 0);
-  var ratio = t1 - t3;
-  var thing = $.QrMath_getZeroedList($.get$length(this));
-  var i = 0;
-  while (true) {
-    t1 = $.get$length(this);
-    if (typeof t1 !== 'number')
-      return this.mod$1$bailout(5, e, i, t1, ratio, thing, 0);
-    if (!(i < t1))
-      break;
-    t1 = this.operator$index$1(i);
-    if (i >= thing.length)
-      throw $.ioore(i);
-    thing[i] = t1;
-    ++i;
-  }
-  for (i = 0; i < e.length; ++i) {
-    t1 = $.QrMath_glog(e[i]);
-    if (typeof t1 !== 'number')
-      return this.mod$1$bailout(6, i, e, ratio, thing, t1, 0);
-    t3 = $.QrMath_gexp(t1 + ratio);
-    if (t3 !== (t3 | 0))
-      return this.mod$1$bailout(7, i, e, t3, ratio, thing, 0);
-    if (i >= thing.length)
-      throw $.ioore(i);
-    var t5 = thing[i];
-    if (t5 !== (t5 | 0))
-      return this.mod$1$bailout(8, i, e, t3, t5, ratio, thing);
-    thing[i] = (t5 ^ t3) >>> 0;
-  }
-  return $.QrPolynomial_QrPolynomial(thing, 0).mod$1(e);
-},
- mod$1$bailout: function(state0, env0, env1, env2, env3, env4, env5) {
-  switch (state0) {
-    case 1:
-      var e = env0;
-      break;
-    case 2:
-      e = env0;
-      t1 = env1;
-      break;
-    case 3:
-      e = env0;
-      t1 = env1;
-      break;
-    case 4:
-      e = env0;
-      t3 = env1;
-      t1 = env2;
-      break;
-    case 5:
-      e = env0;
-      i = env1;
-      t1 = env2;
-      ratio = env3;
-      thing = env4;
-      break;
-    case 6:
-      i = env0;
-      e = env1;
-      ratio = env2;
-      thing = env3;
-      t1 = env4;
-      break;
-    case 7:
-      i = env0;
-      e = env1;
-      t3 = env2;
-      ratio = env3;
-      thing = env4;
-      break;
-    case 8:
-      i = env0;
-      e = env1;
-      t3 = env2;
-      t5 = env3;
-      ratio = env4;
-      thing = env5;
-      break;
-  }
-  switch (state0) {
-    case 0:
-    case 1:
-      state0 = 0;
-      var t1 = $.get$length(this);
-    case 2:
-      state0 = 0;
-      if ($.ltB($.sub(t1, $.get$length(e)), 0))
-        return this;
-      t1 = $.QrMath_glog(this.operator$index$1(0));
-    case 3:
-      state0 = 0;
-      var t3 = $.QrMath_glog($.index(e, 0));
-    case 4:
-      state0 = 0;
-      var ratio = $.sub(t1, t3);
-      var thing = $.QrMath_getZeroedList($.get$length(this));
-      var i = 0;
-    case 5:
-      L0:
-        while (true)
-          switch (state0) {
-            case 0:
-              t1 = $.get$length(this);
-            case 5:
-              state0 = 0;
-              if (!$.ltB(i, t1))
-                break L0;
-              t1 = this.operator$index$1(i);
-              if (i >= thing.length)
-                throw $.ioore(i);
-              thing[i] = t1;
-              ++i;
-          }
-      i = 0;
-    default:
-      L1:
-        while (true)
-          switch (state0) {
-            case 0:
-              if (!$.ltB(i, $.get$length(e)))
-                break L1;
-              t1 = $.QrMath_glog($.index(e, i));
-            case 6:
-              state0 = 0;
-              t3 = $.QrMath_gexp($.add(t1, ratio));
-            case 7:
-              state0 = 0;
-              if (i >= thing.length)
-                throw $.ioore(i);
-              var t5 = thing[i];
-            case 8:
-              state0 = 0;
-              t3 = $.xor(t5, t3);
-              if (i >= thing.length)
-                throw $.ioore(i);
-              thing[i] = t3;
-              ++i;
-          }
-      return $.QrPolynomial_QrPolynomial(thing, 0).mod$1(e);
-  }
-}
-};
-
-$$.QrRsBlock = {"":
- ["totalCount?", "dataCount?"],
- "super": "Object"
 };
 
 $$.QrCode = {"":
@@ -4647,6 +4328,325 @@ $$.QrInputTooLongException = {"":
   return 'QrInputTooLongException: ' + this.message;
 },
  is$Exception: true
+};
+
+$$.QrPolynomial = {"":
+ ["_myThings"],
+ "super": "Object",
+ operator$index$1: function(index) {
+  var t1 = this._myThings;
+  if (index !== (index | 0))
+    throw $.iae(index);
+  if (index < 0 || index >= t1.length)
+    throw $.ioore(index);
+  return t1[index];
+},
+ get$length: function() {
+  return this._myThings.length;
+},
+ multiply$1: function(e) {
+  if (typeof e !== 'string' && (typeof e !== 'object' || e === null || e.constructor !== Array && !e.is$JavaScriptIndexingBehavior()))
+    return this.multiply$1$bailout(1, e, 0, 0, 0, 0, 0, 0);
+  var t1 = $.get$length(this);
+  if (typeof t1 !== 'number')
+    return this.multiply$1$bailout(2, e, t1, 0, 0, 0, 0, 0);
+  var foo = $.QrMath_getZeroedList(t1 + e.length - 1);
+  var i = 0;
+  while (true) {
+    t1 = $.get$length(this);
+    if (typeof t1 !== 'number')
+      return this.multiply$1$bailout(3, e, i, foo, t1, 0, 0, 0);
+    if (!(i < t1))
+      break;
+    for (var j = 0; j < e.length; ++j) {
+      t1 = i + j;
+      var t2 = $.QrMath_glog(this.operator$index$1(i));
+      if (typeof t2 !== 'number')
+        return this.multiply$1$bailout(4, e, j, t2, i, foo, t1, 0);
+      if (j >= e.length)
+        throw $.ioore(j);
+      var t4 = $.QrMath_glog(e[j]);
+      if (typeof t4 !== 'number')
+        return this.multiply$1$bailout(5, e, j, t2, i, t4, foo, t1);
+      var t6 = $.QrMath_gexp(t2 + t4);
+      if (t6 !== (t6 | 0))
+        return this.multiply$1$bailout(6, e, j, i, t6, foo, t1, 0);
+      if (t1 >= foo.length)
+        throw $.ioore(t1);
+      var t8 = foo[t1];
+      if (t8 !== (t8 | 0))
+        return this.multiply$1$bailout(7, e, j, i, t6, foo, t8, t1);
+      foo[t1] = (t8 ^ t6) >>> 0;
+    }
+    ++i;
+  }
+  return $.QrPolynomial_QrPolynomial(foo, 0);
+},
+ multiply$1$bailout: function(state0, env0, env1, env2, env3, env4, env5, env6) {
+  switch (state0) {
+    case 1:
+      var e = env0;
+      break;
+    case 2:
+      e = env0;
+      t1 = env1;
+      break;
+    case 3:
+      e = env0;
+      i = env1;
+      foo = env2;
+      t1 = env3;
+      break;
+    case 4:
+      e = env0;
+      j = env1;
+      t2 = env2;
+      i = env3;
+      foo = env4;
+      t1 = env5;
+      break;
+    case 5:
+      e = env0;
+      j = env1;
+      t2 = env2;
+      i = env3;
+      t4 = env4;
+      foo = env5;
+      t1 = env6;
+      break;
+    case 6:
+      e = env0;
+      j = env1;
+      i = env2;
+      t6 = env3;
+      foo = env4;
+      t1 = env5;
+      break;
+    case 7:
+      e = env0;
+      j = env1;
+      i = env2;
+      t6 = env3;
+      foo = env4;
+      t8 = env5;
+      t1 = env6;
+      break;
+  }
+  switch (state0) {
+    case 0:
+    case 1:
+      state0 = 0;
+      var t1 = $.get$length(this);
+    case 2:
+      state0 = 0;
+      var foo = $.QrMath_getZeroedList($.sub($.add(t1, $.get$length(e)), 1));
+      var i = 0;
+    default:
+      L0:
+        while (true)
+          switch (state0) {
+            case 0:
+              t1 = $.get$length(this);
+            case 3:
+              state0 = 0;
+              if (!$.ltB(i, t1))
+                break L0;
+              var j = 0;
+            default:
+              L1:
+                while (true)
+                  switch (state0) {
+                    case 0:
+                      if (!$.ltB(j, $.get$length(e)))
+                        break L1;
+                      t1 = i + j;
+                      var t2 = $.QrMath_glog(this.operator$index$1(i));
+                    case 4:
+                      state0 = 0;
+                      var t4 = $.QrMath_glog($.index(e, j));
+                    case 5:
+                      state0 = 0;
+                      var t6 = $.QrMath_gexp($.add(t2, t4));
+                    case 6:
+                      state0 = 0;
+                      if (t1 >= foo.length)
+                        throw $.ioore(t1);
+                      var t8 = foo[t1];
+                    case 7:
+                      state0 = 0;
+                      t6 = $.xor(t8, t6);
+                      if (t1 >= foo.length)
+                        throw $.ioore(t1);
+                      foo[t1] = t6;
+                      ++j;
+                  }
+              ++i;
+          }
+      return $.QrPolynomial_QrPolynomial(foo, 0);
+  }
+},
+ mod$1: function(e) {
+  if (typeof e !== 'string' && (typeof e !== 'object' || e === null || e.constructor !== Array && !e.is$JavaScriptIndexingBehavior()))
+    return this.mod$1$bailout(1, e, 0, 0, 0, 0, 0);
+  var t1 = $.get$length(this);
+  if (typeof t1 !== 'number')
+    return this.mod$1$bailout(2, e, t1, 0, 0, 0, 0);
+  if (t1 - e.length < 0)
+    return this;
+  t1 = $.QrMath_glog(this.operator$index$1(0));
+  if (typeof t1 !== 'number')
+    return this.mod$1$bailout(3, e, t1, 0, 0, 0, 0);
+  if (0 >= e.length)
+    throw $.ioore(0);
+  var t3 = $.QrMath_glog(e[0]);
+  if (typeof t3 !== 'number')
+    return this.mod$1$bailout(4, e, t3, t1, 0, 0, 0);
+  var ratio = t1 - t3;
+  var thing = $.QrMath_getZeroedList($.get$length(this));
+  var i = 0;
+  while (true) {
+    t1 = $.get$length(this);
+    if (typeof t1 !== 'number')
+      return this.mod$1$bailout(5, e, i, t1, ratio, thing, 0);
+    if (!(i < t1))
+      break;
+    t1 = this.operator$index$1(i);
+    if (i >= thing.length)
+      throw $.ioore(i);
+    thing[i] = t1;
+    ++i;
+  }
+  for (i = 0; i < e.length; ++i) {
+    t1 = $.QrMath_glog(e[i]);
+    if (typeof t1 !== 'number')
+      return this.mod$1$bailout(6, i, e, ratio, thing, t1, 0);
+    t3 = $.QrMath_gexp(t1 + ratio);
+    if (t3 !== (t3 | 0))
+      return this.mod$1$bailout(7, i, e, t3, ratio, thing, 0);
+    if (i >= thing.length)
+      throw $.ioore(i);
+    var t5 = thing[i];
+    if (t5 !== (t5 | 0))
+      return this.mod$1$bailout(8, i, e, t3, t5, ratio, thing);
+    thing[i] = (t5 ^ t3) >>> 0;
+  }
+  return $.QrPolynomial_QrPolynomial(thing, 0).mod$1(e);
+},
+ mod$1$bailout: function(state0, env0, env1, env2, env3, env4, env5) {
+  switch (state0) {
+    case 1:
+      var e = env0;
+      break;
+    case 2:
+      e = env0;
+      t1 = env1;
+      break;
+    case 3:
+      e = env0;
+      t1 = env1;
+      break;
+    case 4:
+      e = env0;
+      t3 = env1;
+      t1 = env2;
+      break;
+    case 5:
+      e = env0;
+      i = env1;
+      t1 = env2;
+      ratio = env3;
+      thing = env4;
+      break;
+    case 6:
+      i = env0;
+      e = env1;
+      ratio = env2;
+      thing = env3;
+      t1 = env4;
+      break;
+    case 7:
+      i = env0;
+      e = env1;
+      t3 = env2;
+      ratio = env3;
+      thing = env4;
+      break;
+    case 8:
+      i = env0;
+      e = env1;
+      t3 = env2;
+      t5 = env3;
+      ratio = env4;
+      thing = env5;
+      break;
+  }
+  switch (state0) {
+    case 0:
+    case 1:
+      state0 = 0;
+      var t1 = $.get$length(this);
+    case 2:
+      state0 = 0;
+      if ($.ltB($.sub(t1, $.get$length(e)), 0))
+        return this;
+      t1 = $.QrMath_glog(this.operator$index$1(0));
+    case 3:
+      state0 = 0;
+      var t3 = $.QrMath_glog($.index(e, 0));
+    case 4:
+      state0 = 0;
+      var ratio = $.sub(t1, t3);
+      var thing = $.QrMath_getZeroedList($.get$length(this));
+      var i = 0;
+    case 5:
+      L0:
+        while (true)
+          switch (state0) {
+            case 0:
+              t1 = $.get$length(this);
+            case 5:
+              state0 = 0;
+              if (!$.ltB(i, t1))
+                break L0;
+              t1 = this.operator$index$1(i);
+              if (i >= thing.length)
+                throw $.ioore(i);
+              thing[i] = t1;
+              ++i;
+          }
+      i = 0;
+    default:
+      L1:
+        while (true)
+          switch (state0) {
+            case 0:
+              if (!$.ltB(i, $.get$length(e)))
+                break L1;
+              t1 = $.QrMath_glog($.index(e, i));
+            case 6:
+              state0 = 0;
+              t3 = $.QrMath_gexp($.add(t1, ratio));
+            case 7:
+              state0 = 0;
+              if (i >= thing.length)
+                throw $.ioore(i);
+              var t5 = thing[i];
+            case 8:
+              state0 = 0;
+              t3 = $.xor(t5, t3);
+              if (i >= thing.length)
+                throw $.ioore(i);
+              thing[i] = t3;
+              ++i;
+          }
+      return $.QrPolynomial_QrPolynomial(thing, 0).mod$1(e);
+  }
+}
+};
+
+$$.QrRsBlock = {"":
+ ["totalCount?", "dataCount?"],
+ "super": "Object"
 };
 
 $$.FutureValue = {"":

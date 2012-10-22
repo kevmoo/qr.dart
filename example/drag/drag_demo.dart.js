@@ -2532,44 +2532,80 @@ $$.Uri = {"":
 }
 };
 
-$$.DisposableImpl = {"":
+$$.Attachable = {"":
+ ["name?"],
+ "super": "Object"
+};
+
+$$.AttachableObject = {"":
  [],
- "super": "Object",
- validateNotDisposed$0: function() {
-}
-};
-
-$$.GlobalId = {"":
- ["id?", "_hashCode"],
- "super": "Object",
- hashCode$0: function() {
-  return this._hashCode;
+ "super": "DisposableImpl",
+ _set$2: function(key, value) {
+  this.validateNotDisposed$0();
+  this._propertyValues.operator$indexSet$2(key, value);
+  this._fireChange$1(key);
 },
- operator$eq$1: function(other) {
-  return !(other == null) && $.eqB(other.get$id(), this.id);
+ get$_set: function() { return new $.BoundClosure1(this, '_set$2'); },
+ _isSet$1: function(key) {
+  this.validateNotDisposed$0();
+  return this._propertyValues.containsKey$1(key);
+},
+ _lib3_remove$1: function(key) {
+  this.validateNotDisposed$0();
+  if (this._isSet$1(key) === true) {
+    this._propertyValues.remove$1(key);
+    this._fireChange$1(key);
+  }
+},
+ _getValueOrUndefined$3: function(key, obj, ifAbsent) {
+  this.validateNotDisposed$0();
+  if (this._isSet$1(key) === true)
+    return this._propertyValues.operator$index$1(key);
+  else if (!(ifAbsent == null)) {
+    var value = ifAbsent.call$1(obj);
+    this._set$2(key, value);
+    return value;
+  } else
+    return $.CTC24;
+},
+ _fireChange$1: function(key) {
+  this.validateNotDisposed$0();
+  var handle = this._eventHandlers.operator$index$1(key);
+  if (!(handle == null))
+    handle.fireEvent$1(key);
 }
 };
 
-$$.NullArgumentException = {"":
- ["arg", "message"],
- "super": "ArgumentError",
- toString$0: function() {
-  return 'Null argument: ' + this.arg;
-}
-};
-
-$$.DetailedIllegalArgumentException = {"":
- ["argument", "message"],
- "super": "ArgumentError",
- toString$0: function() {
-  var t1 = this.message;
-  var t2 = t1 == null || $.eqB($.get$length(t1), 0);
-  var t3 = this.argument;
-  if (t2)
-    return 'Illegal argument: ' + t3;
+$$.Property = {"":
+ ["defaultValue", "name"],
+ "super": "Attachable",
+ get$2: function(obj, ifAbsent) {
+  var coreValue = this.getCore$2(obj, ifAbsent);
+  if (!$.identical(coreValue, $.CTC24))
+    return coreValue;
   else
-    return 'Illegal argument: ' + t3 + ' -- ' + $.S(t1);
+    return this.defaultValue;
+},
+ get$1: function(obj) {
+  return this.get$2(obj,null)
+},
+ getCore$2: function(obj, ifAbsent) {
+  return obj._getValueOrUndefined$3(this, obj, ifAbsent);
+},
+ set$2: function(obj, value) {
+  obj._set$2(this, value);
+},
+ clear$1: function(obj) {
+  return obj._lib3_remove$1(this);
+},
+ toString$0: function() {
+  return 'Property \'' + this.name + '\'';
 }
+};
+
+$$._UndefinedValue = {"":
+ [],
+ "super": "Object"
 };
 
 $$.Enumerable = {"":
@@ -2663,6 +2699,29 @@ $$._SelectIterator = {"":
 }
 };
 
+$$.DisposableImpl = {"":
+ [],
+ "super": "Object",
+ validateNotDisposed$0: function() {
+}
+};
+
+$$.CancelableEventArgs = {"":
+ ["_canceled"],
+ "super": "EventArgs",
+ get$isCanceled: function() {
+  return this._canceled;
+},
+ cancel$0: function() {
+  this._canceled = true;
+}
+};
+
+$$.EventArgs = {"":
+ [],
+ "super": "Object"
+};
+
 $$.EventHandle = {"":
  ["_handlers", "_disposed"],
  "super": "DisposableImpl",
@@ -2687,128 +2746,36 @@ $$.EventHandle = {"":
 }
 };
 
-$$.EventArgs = {"":
- [],
- "super": "Object"
-};
-
-$$.CancelableEventArgs = {"":
- ["_canceled"],
- "super": "EventArgs",
- get$isCanceled: function() {
-  return this._canceled;
-},
- cancel$0: function() {
-  this._canceled = true;
-}
-};
-
-$$.Size = {"":
- ["width?", "height?"],
- "super": "Object",
- operator$eq$1: function(other) {
-  return !(other == null) && $.eqB(this.width, other.get$width()) && $.eqB(this.height, other.get$height());
-},
- get$area: function() {
-  return $.mul(this.width, this.height);
-},
- isEmpty$0: function() {
-  return $.eq(this.get$area(), 0);
-},
- get$isValid: function() {
-  var t1 = this.width;
-  if ($.isValidNumber(t1)) {
-    var t2 = this.height;
-    t1 = $.isValidNumber(t2) && $.geB(t1, 0) && $.geB(t2, 0);
-  } else
-    t1 = false;
-  return t1;
-},
- scale$1: function(magnitude) {
-  return $.Size$($.mul(this.width, magnitude), $.mul(this.height, magnitude));
-},
- operator$mul$1: function(magnitude) {
-  return this.scale$1(magnitude);
-},
+$$.DetailedIllegalArgumentException = {"":
+ ["argument", "message"],
+ "super": "ArgumentError",
  toString$0: function() {
-  return '(' + $.S(this.width) + ' x ' + $.S(this.height) + ')';
-}
-};
-
-$$.Coordinate = {"":
- ["x?", "y?"],
- "super": "Object",
- get$isValid: function() {
-  return $.isValidNumber(this.x) && $.isValidNumber(this.y);
-},
- operator$sub$1: function(other) {
-  return $.Coordinate_difference(this, other);
-},
- operator$add$1: function(other) {
-  return $.Coordinate$($.add(this.x, other.get$x()), $.add(this.y, other.get$y()));
-},
- operator$eq$1: function(other) {
-  return !(other == null) && $.eqB(this.x, other.get$x()) && $.eqB(this.y, other.get$y());
-},
- toString$0: function() {
-  return '{x:' + $.S(this.x) + ', y:' + $.S(this.y) + '}';
-}
-};
-
-$$.Vector = {"":
- ["x", "y"],
- "super": "Coordinate",
- get$length: function() {
-  var t1 = this.x;
-  t1 = $.mul(t1, t1);
-  var t2 = this.y;
-  return $.sqrt($.add(t1, $.mul(t2, t2)));
-},
- operator$add$1: function(other) {
-  return $.Vector$($.add(this.x, other.get$x()), $.add(this.y, other.get$y()));
-},
- operator$mul$1: function(magnitude) {
-  return this.scale$1(magnitude);
-},
- scale$1: function(magnitude) {
-  return $.Vector$($.mul(this.x, magnitude), $.mul(this.y, magnitude));
-}
-};
-
-$$.Box = {"":
- ["left?", "top?", "width?", "height?"],
- "super": "Object",
- get$topLeft: function() {
-  return $.Coordinate$(this.left, this.top);
-},
- get$size: function() {
-  return $.Size$(this.width, this.height);
-},
- get$isValid: function() {
-  return this.get$topLeft().get$isValid() === true && this.get$size().get$isValid() === true;
-},
- contains$1: function(point) {
-  var t1 = point.get$x();
-  var t2 = this.left;
-  if ($.geB(t1, t2))
-    if ($.leB(point.get$x(), $.add(t2, this.width))) {
-      t1 = point.get$y();
-      t2 = this.top;
-      t1 = $.geB(t1, t2) && $.leB(point.get$y(), $.add(t2, this.height));
-    } else
-      t1 = false;
+  var t1 = this.message;
+  var t2 = t1 == null || $.eqB($.get$length(t1), 0);
+  var t3 = this.argument;
+  if (t2)
+    return 'Illegal argument: ' + t3;
   else
-    t1 = false;
-  return t1;
+    return 'Illegal argument: ' + t3 + ' -- ' + $.S(t1);
+}
+};
+
+$$.NullArgumentException = {"":
+ ["arg", "message"],
+ "super": "ArgumentError",
+ toString$0: function() {
+  return 'Null argument: ' + this.arg;
+}
+};
+
+$$.GlobalId = {"":
+ ["id?", "_hashCode"],
+ "super": "Object",
+ hashCode$0: function() {
+  return this._hashCode;
 },
  operator$eq$1: function(other) {
-  return !(other == null) && $.eqB(other.get$left(), this.left) && $.eqB(other.get$top(), this.top) && $.eqB(other.get$width(), this.width) && $.eqB(other.get$height(), this.height);
-},
- toString$0: function() {
-  return 'Location: ' + $.S(this.get$topLeft()) + ', Size: ' + $.S(this.get$size());
-},
- hashCode$0: function() {
-  return $.Util_getHashCode([this.left, this.top, this.width, this.height]);
+  return !(other == null) && $.eqB(other.get$id(), this.id);
 }
 };
 
@@ -2873,80 +2840,113 @@ $$.AffineTransform = {"":
 }
 };
 
-$$.Attachable = {"":
- ["name?"],
- "super": "Object"
-};
-
-$$.AttachableObject = {"":
- [],
- "super": "DisposableImpl",
- _set$2: function(key, value) {
-  this.validateNotDisposed$0();
-  this._propertyValues.operator$indexSet$2(key, value);
-  this._fireChange$1(key);
+$$.Coordinate = {"":
+ ["x?", "y?"],
+ "super": "Object",
+ get$isValid: function() {
+  return $.isValidNumber(this.x) && $.isValidNumber(this.y);
 },
- get$_set: function() { return new $.BoundClosure1(this, '_set$2'); },
- _isSet$1: function(key) {
-  this.validateNotDisposed$0();
-  return this._propertyValues.containsKey$1(key);
+ operator$sub$1: function(other) {
+  return $.Coordinate_difference(this, other);
 },
- _lib3_remove$1: function(key) {
-  this.validateNotDisposed$0();
-  if (this._isSet$1(key) === true) {
-    this._propertyValues.remove$1(key);
-    this._fireChange$1(key);
-  }
+ operator$add$1: function(other) {
+  return $.Coordinate$($.add(this.x, other.get$x()), $.add(this.y, other.get$y()));
 },
- _getValueOrUndefined$3: function(key, obj, ifAbsent) {
-  this.validateNotDisposed$0();
-  if (this._isSet$1(key) === true)
-    return this._propertyValues.operator$index$1(key);
-  else if (!(ifAbsent == null)) {
-    var value = ifAbsent.call$1(obj);
-    this._set$2(key, value);
-    return value;
-  } else
-    return $.CTC24;
-},
- _fireChange$1: function(key) {
-  this.validateNotDisposed$0();
-  var handle = this._eventHandlers.operator$index$1(key);
-  if (!(handle == null))
-    handle.fireEvent$1(key);
-}
-};
-
-$$.Property = {"":
- ["defaultValue", "name"],
- "super": "Attachable",
- get$2: function(obj, ifAbsent) {
-  var coreValue = this.getCore$2(obj, ifAbsent);
-  if (!$.identical(coreValue, $.CTC24))
-    return coreValue;
-  else
-    return this.defaultValue;
-},
- get$1: function(obj) {
-  return this.get$2(obj,null)
-},
- getCore$2: function(obj, ifAbsent) {
-  return obj._getValueOrUndefined$3(this, obj, ifAbsent);
-},
- set$2: function(obj, value) {
-  obj._set$2(this, value);
-},
- clear$1: function(obj) {
-  return obj._lib3_remove$1(this);
+ operator$eq$1: function(other) {
+  return !(other == null) && $.eqB(this.x, other.get$x()) && $.eqB(this.y, other.get$y());
 },
  toString$0: function() {
-  return 'Property \'' + this.name + '\'';
+  return '{x:' + $.S(this.x) + ', y:' + $.S(this.y) + '}';
 }
 };
 
-$$._UndefinedValue = {"":
- [],
- "super": "Object"
+$$.Box = {"":
+ ["left?", "top?", "width?", "height?"],
+ "super": "Object",
+ get$topLeft: function() {
+  return $.Coordinate$(this.left, this.top);
+},
+ get$size: function() {
+  return $.Size$(this.width, this.height);
+},
+ get$isValid: function() {
+  return this.get$topLeft().get$isValid() === true && this.get$size().get$isValid() === true;
+},
+ contains$1: function(point) {
+  var t1 = point.get$x();
+  var t2 = this.left;
+  if ($.geB(t1, t2))
+    if ($.leB(point.get$x(), $.add(t2, this.width))) {
+      t1 = point.get$y();
+      t2 = this.top;
+      t1 = $.geB(t1, t2) && $.leB(point.get$y(), $.add(t2, this.height));
+    } else
+      t1 = false;
+  else
+    t1 = false;
+  return t1;
+},
+ operator$eq$1: function(other) {
+  return !(other == null) && $.eqB(other.get$left(), this.left) && $.eqB(other.get$top(), this.top) && $.eqB(other.get$width(), this.width) && $.eqB(other.get$height(), this.height);
+},
+ toString$0: function() {
+  return 'Location: ' + $.S(this.get$topLeft()) + ', Size: ' + $.S(this.get$size());
+},
+ hashCode$0: function() {
+  return $.Util_getHashCode([this.left, this.top, this.width, this.height]);
+}
+};
+
+$$.Size = {"":
+ ["width?", "height?"],
+ "super": "Object",
+ operator$eq$1: function(other) {
+  return !(other == null) && $.eqB(this.width, other.get$width()) && $.eqB(this.height, other.get$height());
+},
+ get$area: function() {
+  return $.mul(this.width, this.height);
+},
+ isEmpty$0: function() {
+  return $.eq(this.get$area(), 0);
+},
+ get$isValid: function() {
+  var t1 = this.width;
+  if ($.isValidNumber(t1)) {
+    var t2 = this.height;
+    t1 = $.isValidNumber(t2) && $.geB(t1, 0) && $.geB(t2, 0);
+  } else
+    t1 = false;
+  return t1;
+},
+ scale$1: function(magnitude) {
+  return $.Size$($.mul(this.width, magnitude), $.mul(this.height, magnitude));
+},
+ operator$mul$1: function(magnitude) {
+  return this.scale$1(magnitude);
+},
+ toString$0: function() {
+  return '(' + $.S(this.width) + ' x ' + $.S(this.height) + ')';
+}
+};
+
+$$.Vector = {"":
+ ["x", "y"],
+ "super": "Coordinate",
+ get$length: function() {
+  var t1 = this.x;
+  t1 = $.mul(t1, t1);
+  var t2 = this.y;
+  return $.sqrt($.add(t1, $.mul(t2, t2)));
+},
+ operator$add$1: function(other) {
+  return $.Vector$($.add(this.x, other.get$x()), $.add(this.y, other.get$y()));
+},
+ operator$mul$1: function(magnitude) {
+  return this.scale$1(magnitude);
+},
+ scale$1: function(magnitude) {
+  return $.Vector$($.mul(this.x, magnitude), $.mul(this.y, magnitude));
+}
 };
 
 $$.FutureValue = {"":
@@ -3128,6 +3128,98 @@ $$.Dragger = {"":
 }
 };
 
+$$.ImgElement = {"":
+ [],
+ "super": "PElement",
+ drawOverride$1: function(ctx) {
+  var t1 = this._image;
+  if (t1.get$complete() === true)
+    this._doDraw$1(ctx);
+  else if (!this._waitingOnLoad) {
+    this._waitingOnLoad = true;
+    $.add$1(t1.get$on().get$load(), this.get$_onImageLoad());
+  }
+},
+ _doDraw$1: function(ctx) {
+  ctx.drawImage$5(this._image, 0, 0, this.get$width(), this.get$height());
+},
+ _onImageLoad$1: function(event$) {
+  this.invalidateDraw$0();
+},
+ get$_onImageLoad: function() { return new $.BoundClosure(this, '_onImageLoad$1'); },
+ is$ImgElement: true
+};
+
+$$.Panel = {"":
+ [],
+ "super": "ParentElement",
+ addElement$1: function(element) {
+  this.insertAt$2(element, this._children.length);
+},
+ insertAt$2: function(element, index) {
+  if (index == null)
+    index = 0;
+  element.registerParent$1(this);
+  $.insertRange$3(this._children, index, 1, element);
+  $.get$Panel__containerTransformProperty().set$2(element, element.addTransform$0());
+  this.onChildrenChanged$0();
+},
+ getVisualChild$1: function(index) {
+  var t1 = this._children;
+  if (index !== (index | 0))
+    throw $.iae(index);
+  if (index < 0 || index >= t1.length)
+    throw $.ioore(index);
+  return t1[index];
+},
+ get$visualChildCount: function() {
+  return this._children.length;
+},
+ drawOverride$1: function(ctx) {
+  var t1 = this.background;
+  if (!(t1 == null)) {
+    ctx.set$fillStyle(t1);
+    ctx.fillRect$4(0, 0, this.get$width(), this.get$height());
+  }
+  $.ParentElement.prototype.drawOverride$1.call(this, ctx);
+}
+};
+
+$$.ParentElement = {"":
+ [],
+ "super": "PElement",
+ onChildrenChanged$0: function() {
+  this.invalidateDraw$0();
+},
+ childInvalidated$1: function(child) {
+  this.invalidateDraw$0();
+},
+ update$0: function() {
+  this._forEach$1(new $.ParentElement_update_anon());
+  $.PElement.prototype.update$0.call(this);
+},
+ drawOverride$1: function(ctx) {
+  this._forEach$1(new $.ParentElement_drawOverride_anon(ctx));
+},
+ _forEach$1: function(f) {
+  var length$ = this.get$visualChildCount();
+  if (typeof length$ !== 'number')
+    return this._forEach$1$bailout(1, f, length$);
+  for (var i = 0; i < length$; ++i)
+    f.call$1(this.getVisualChild$1(i));
+},
+ _forEach$1$bailout: function(state0, f, length$) {
+  for (var i = 0; $.ltB(i, length$); ++i)
+    f.call$1(this.getVisualChild$1(i));
+},
+ is$ParentElement: true
+};
+
+$$.PCanvas = {"":
+ ["_children", "background", "_transforms", "cacheEnabled", "_invalidatedEventHandle", "_cacheCanvas", "_width", "_height", "_alpha", "_lastDrawSize", "clip", "_lib1_parent", "_propertyValues", "_eventHandlers", "_disposed"],
+ "super": "Panel"
+};
+
 $$.PElement = {"":
  [],
  "super": "AttachableObject",
@@ -3149,22 +3241,12 @@ $$.PElement = {"":
  get$size: function() {
   return $.Size$(this._width, this._height);
 },
- get$visualChildCount: function() {
-  return 0;
-},
  getTransform$0: function() {
   var tx = $.AffineTransform$(1, 0, 0, 1, 0, 0);
   $.forEach(this._transforms, tx.get$concatenate());
   return tx;
 },
- draw$1: function(ctx) {
-  this.update$0();
-  var dirty = this._lastDrawSize == null;
-  this.drawCore$1(ctx);
-  return dirty;
-},
  update$0: function() {
-  this._updatedEventHandle.fireEvent$1($.CTC23);
 },
  drawCore$1: function(ctx) {
   if (this.cacheEnabled)
@@ -3185,11 +3267,14 @@ $$.PElement = {"":
     this._invalidateParent$0();
   }
 },
- getVisualChild$1: function(index) {
-  throw $.$$throw('no children for this type');
-},
  registerParent$1: function(parent$) {
   this._lib1_parent = parent$;
+},
+ _stageDraw$1: function(ctx) {
+  this.update$0();
+  var dirty = this._lastDrawSize == null;
+  this.drawCore$1(ctx);
+  return dirty;
 },
  _drawCached$1: function(ctx) {
   if (this._cacheCanvas == null)
@@ -3238,73 +3323,16 @@ $$.PElement = {"":
 }
 };
 
-$$.ElementParentImpl = {"":
- [],
- "super": "PElement",
- onChildrenChanged$0: function() {
-  this.invalidateDraw$0();
-},
- childInvalidated$1: function(child) {
-  this.invalidateDraw$0();
-},
- update$0: function() {
-  this._forEach$1(new $.ElementParentImpl_update_anon());
-  $.PElement.prototype.update$0.call(this);
-},
- drawOverride$1: function(ctx) {
-  this._forEach$1(new $.ElementParentImpl_drawOverride_anon(ctx));
-},
- _forEach$1: function(f) {
-  var length$ = this.get$visualChildCount();
-  if (typeof length$ !== 'number')
-    return this._forEach$1$bailout(1, f, length$);
-  for (var i = 0; i < length$; ++i)
-    f.call$1(this.getVisualChild$1(i));
-},
- _forEach$1$bailout: function(state0, f, length$) {
-  for (var i = 0; $.ltB(i, length$); ++i)
-    f.call$1(this.getVisualChild$1(i));
+$$.SpriteElement = {"":
+ ["startCoordinate", "nextDelta", "count", "_frame", "_image", "_waitingOnLoad", "_transforms", "cacheEnabled", "_invalidatedEventHandle", "_cacheCanvas", "_width", "_height", "_alpha", "_lastDrawSize", "clip", "_lib1_parent", "_propertyValues", "_eventHandlers", "_disposed"],
+ "super": "ImgElement",
+ _doDraw$1: function(ctx) {
+  var t1 = this.count;
+  var msPerFrame = $.tdiv(1000, t1);
+  var theFrame = $.mod($.tdiv($.toInt($.window().get$performance().webkitNow$0()), msPerFrame), t1);
+  var rect = $.Box_Box$fromCoordSize(this.startCoordinate.operator$add$1(this.nextDelta.operator$mul$1(theFrame)), this.get$size());
+  $.CanvasUtil_drawImage(ctx, this._image, rect, null);
 }
-};
-
-$$.Panel = {"":
- [],
- "super": "ElementParentImpl",
- addElement$1: function(element) {
-  this.insertAt$2(element, this._children.length);
-},
- insertAt$2: function(element, index) {
-  if (index == null)
-    index = 0;
-  element.registerParent$1(this);
-  $.insertRange$3(this._children, index, 1, element);
-  $.get$Panel__containerTransformProperty().set$2(element, element.addTransform$0());
-  this.onChildrenChanged$0();
-},
- getVisualChild$1: function(index) {
-  var t1 = this._children;
-  if (index !== (index | 0))
-    throw $.iae(index);
-  if (index < 0 || index >= t1.length)
-    throw $.ioore(index);
-  return t1[index];
-},
- get$visualChildCount: function() {
-  return this._children.length;
-},
- drawOverride$1: function(ctx) {
-  var t1 = this.background;
-  if (!(t1 == null)) {
-    ctx.set$fillStyle(t1);
-    ctx.fillRect$4(0, 0, this.get$width(), this.get$height());
-  }
-  $.ElementParentImpl.prototype.drawOverride$1.call(this, ctx);
-}
-};
-
-$$.PCanvas = {"":
- ["_children", "background", "_transforms", "cacheEnabled", "_updatedEventHandle", "_invalidatedEventHandle", "_cacheCanvas", "_width", "_height", "_alpha", "_lastDrawSize", "clip", "_lib1_parent", "_propertyValues", "_eventHandlers", "_disposed"],
- "super": "Panel"
 };
 
 $$.Stage = {"":
@@ -3331,7 +3359,7 @@ $$.Stage = {"":
     this._ctx = t3.get$context2d();
   else
     t1.clearRect$4(0, 0, t3.get$width(), t3.get$height());
-  return this._lib1_element.draw$1(this._ctx);
+  return this._lib1_element._stageDraw$1(this._ctx);
 },
  childInvalidated$1: function(child) {
   this.validateNotDisposed$0();
@@ -3339,40 +3367,6 @@ $$.Stage = {"":
 },
  Stage$2: function(_canvas, _element) {
   this._lib1_element.registerParent$1(this);
-}
-};
-
-$$.ImgElement = {"":
- [],
- "super": "PElement",
- drawOverride$1: function(ctx) {
-  var t1 = this._image;
-  if (t1.get$complete() === true)
-    this._doDraw$1(ctx);
-  else if (!this._waitingOnLoad) {
-    this._waitingOnLoad = true;
-    $.add$1(t1.get$on().get$load(), this.get$_onImageLoad());
-  }
-},
- _doDraw$1: function(ctx) {
-  ctx.drawImage$5(this._image, 0, 0, this.get$width(), this.get$height());
-},
- _onImageLoad$1: function(event$) {
-  this.invalidateDraw$0();
-},
- get$_onImageLoad: function() { return new $.BoundClosure(this, '_onImageLoad$1'); },
- is$ImgElement: true
-};
-
-$$.SpriteElement = {"":
- ["startCoordinate", "nextDelta", "count", "_frame", "_image", "_waitingOnLoad", "_transforms", "cacheEnabled", "_updatedEventHandle", "_invalidatedEventHandle", "_cacheCanvas", "_width", "_height", "_alpha", "_lastDrawSize", "clip", "_lib1_parent", "_propertyValues", "_eventHandlers", "_disposed"],
- "super": "ImgElement",
- _doDraw$1: function(ctx) {
-  var t1 = this.count;
-  var msPerFrame = $.tdiv(1000, t1);
-  var theFrame = $.mod($.tdiv($.toInt($.window().get$performance().webkitNow$0()), msPerFrame), t1);
-  var rect = $.Box_Box$fromCoordSize(this.startCoordinate.operator$add$1(this.nextDelta.operator$mul$1(theFrame)), this.get$size());
-  $.CanvasUtil_drawImage(ctx, this._image, rect, null);
 }
 };
 
@@ -4348,7 +4342,7 @@ $$.anon2 = {"":
 }
 };
 
-$$.ElementParentImpl_drawOverride_anon = {"":
+$$.ParentElement_drawOverride_anon = {"":
  ["ctx_0"],
  "super": "Closure",
  call$1: function(e) {
@@ -4442,7 +4436,7 @@ $$.Enumerable_isEmpty_anon = {"":
 }
 };
 
-$$.ElementParentImpl_update_anon = {"":
+$$.ParentElement_update_anon = {"":
  [],
  "super": "Closure",
  call$1: function(e) {
@@ -5715,18 +5709,20 @@ $.RetainedUtil__hitTest = function(element, point) {
   var bounds = $.Box$(0, 0, element.get$width(), element.get$height());
   var hits = $.ListImplementation_List(null);
   if (bounds.contains$1(point) === true) {
-    var length$ = element.get$visualChildCount();
-    if (typeof length$ !== 'number')
-      return $.RetainedUtil__hitTest$bailout(1, element, length$, point, hits);
-    for (var t1 = length$ - 1, i = 0; i < length$; ++i) {
-      hits = $.RetainedUtil__hitTest(element.getVisualChild$1(t1 - i), point);
-      if (hits.length > 0)
-        break;
+    if (typeof element === 'object' && element !== null && !!element.is$ParentElement) {
+      var length$ = element.get$visualChildCount();
+      if (typeof length$ !== 'number')
+        return $.RetainedUtil__hitTest$bailout(1, element, point, hits, length$);
+      for (var t1 = length$ - 1, i = 0; i < length$; ++i) {
+        hits = $.RetainedUtil__hitTest(element.getVisualChild$1(t1 - i), point);
+        if (hits.length > 0)
+          break;
+      }
+      element = element;
     }
     hits.push(element);
-    return hits;
-  } else
-    return [];
+  }
+  return hits;
 };
 
 $.typeNameInOpera = function(obj) {
@@ -6031,7 +6027,7 @@ $._convertNativeToDart_AcceptStructuredClone = function(object, mustCopy) {
 };
 
 $.PCanvas$ = function(w, h, enableCache) {
-  return new $.PCanvas($.ListImplementation_List(null), null, $.ListImplementation_List(null), enableCache, $.EventHandle$(), $.EventHandle$(), null, w, h, null, null, false, null, $.HashMapImplementation$(), $.HashMapImplementation$(), false);
+  return new $.PCanvas($.ListImplementation_List(null), null, $.ListImplementation_List(null), enableCache, $.EventHandle$(), null, w, h, null, null, false, null, $.HashMapImplementation$(), $.HashMapImplementation$(), false);
 };
 
 $.Date_Date$now = function() {
@@ -6222,7 +6218,7 @@ $.lastIndexOf$1 = function(receiver, element) {
 };
 
 $.SpriteElement$ = function(image, width, height, startCoordinate, nextDelta, count) {
-  return new $.SpriteElement(startCoordinate, nextDelta, count, 0, image, false, $.ListImplementation_List(null), false, $.EventHandle$(), $.EventHandle$(), null, width, height, null, null, false, null, $.HashMapImplementation$(), $.HashMapImplementation$(), false);
+  return new $.SpriteElement(startCoordinate, nextDelta, count, 0, image, false, $.ListImplementation_List(null), false, $.EventHandle$(), null, width, height, null, null, false, null, $.HashMapImplementation$(), $.HashMapImplementation$(), false);
 };
 
 $.GlobalId$_internal = function(value) {
@@ -7149,9 +7145,9 @@ $.RetainedUtil__hitTest$bailout = function(state0, env0, env1, env2, env3) {
   switch (state0) {
     case 1:
       var element = env0;
-      length$ = env1;
-      point = env2;
-      hits = env3;
+      point = env1;
+      hits = env2;
+      length$ = env3;
       break;
   }
   switch (state0) {
@@ -7163,19 +7159,23 @@ $.RetainedUtil__hitTest$bailout = function(state0, env0, env1, env2, env3) {
       if (state0 === 1 || state0 === 0 && bounds.contains$1(point) === true)
         switch (state0) {
           case 0:
-            var length$ = element.get$visualChildCount();
           case 1:
-            state0 = 0;
-            for (var i = 0; $.ltB(i, length$); ++i) {
-              hits = $.RetainedUtil__hitTest(element.getVisualChild$1($.sub($.sub(length$, 1), i)), point);
-              if (hits.length > 0)
-                break;
-            }
+            if (state0 === 1 || state0 === 0 && typeof element === 'object' && element !== null && !!element.is$ParentElement)
+              switch (state0) {
+                case 0:
+                  var length$ = element.get$visualChildCount();
+                case 1:
+                  state0 = 0;
+                  for (var i = 0; $.ltB(i, length$); ++i) {
+                    hits = $.RetainedUtil__hitTest(element.getVisualChild$1($.sub($.sub(length$, 1), i)), point);
+                    if (hits.length > 0)
+                      break;
+                  }
+                  element = element;
+              }
             hits.push(element);
-            return hits;
         }
-      else
-        return [];
+      return hits;
   }
 };
 

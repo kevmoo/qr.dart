@@ -273,14 +273,6 @@ $$._VariableSizeListIterator = {"":
 }
 };
 
-$$.NullArgumentException = {"":
- ["arg", "message"],
- "super": "ArgumentError",
- toString$0: function() {
-  return 'Null argument: ' + this.arg;
-}
-};
-
 $$.Enumerable = {"":
  [],
  "super": "Object",
@@ -363,6 +355,14 @@ $$._SelectIterator = {"":
 },
  next$0: function() {
   return this._func$1(this._source.next$0());
+}
+};
+
+$$.NullArgumentException = {"":
+ ["arg", "message"],
+ "super": "ArgumentError",
+ toString$0: function() {
+  return 'Null argument: ' + this.arg;
 }
 };
 
