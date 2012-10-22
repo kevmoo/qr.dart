@@ -9,8 +9,8 @@ class RetainedUtil {
     var bounds = new Box(0, 0, element.width, element.height);
 
     var hits = new List<PElement>();
-    if (bounds.contains(point) && element is ElementParentImpl) {
-      final ElementParentImpl p = element;
+    if (bounds.contains(point) && element is ParentElement) {
+      final ParentElement p = element;
 
       var length = p.visualChildCount;
       for (var i = 0; i < length; i++) {

@@ -12,7 +12,7 @@
 #source('src/retained/retained_util.dart');
 #source('src/retained/pelement.dart');
 #source('src/retained/element_parent.dart');
-#source('src/retained/element_parent_impl.dart');
+#source('src/retained/parent_element.dart');
 #source('src/retained/panel.dart');
 #source('src/retained/pcanvas.dart');
 #source('src/retained/stage.dart');

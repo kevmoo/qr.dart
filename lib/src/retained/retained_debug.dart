@@ -33,8 +33,8 @@ class RetainedDebug {
       _borderElementCore(ctx, element);
     }
 
-    if (!excludeChildren && element is ElementParentImpl) {
-      final ElementParentImpl p = element;
+    if (!excludeChildren && element is ParentElement) {
+      final ParentElement p = element;
       for (var i = 0; i < p.visualChildCount; i++) {
         var e = p.getVisualChild(i);
         _borderElement(ctx, e, false, filter);

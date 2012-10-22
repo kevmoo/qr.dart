@@ -1,8 +1,8 @@
-abstract class ElementParentImpl
+abstract class ParentElement
   extends PElement
   implements ElementParent {
 
-  ElementParentImpl(num w, num h, [bool enableCache = false]) :
+  ParentElement(num w, num h, [bool enableCache = false]) :
     super(w, h, enableCache);
 
   bool hasVisualChild(PElement element){
