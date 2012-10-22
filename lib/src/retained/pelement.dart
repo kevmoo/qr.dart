@@ -1,7 +1,6 @@
 abstract class PElement extends AttachableObject {
   final List<AffineTransform> _transforms = new List<AffineTransform>();
   final bool cacheEnabled;
-  final EventHandle<EventArgs> _updatedEventHandle = new EventHandle<EventArgs>();
   final EventHandle<EventArgs> _invalidatedEventHandle = new EventHandle<EventArgs>();
   CanvasElement _cacheCanvas;
 
@@ -41,8 +40,6 @@ abstract class PElement extends AttachableObject {
 
   ElementParent get parent => _parent;
 
-  EventRoot<EventArgs> get updated => _updatedEventHandle;
-
   EventRoot<EventArgs> get invalidated => _invalidatedEventHandle;
 
   AffineTransform getTransform() {
@@ -60,9 +57,7 @@ abstract class PElement extends AttachableObject {
     return tx;
   }
 
-  void update(){
-    _updatedEventHandle.fireEvent(EventArgs.empty);
-  }
+  void update(){ }
 
   void drawCore(CanvasRenderingContext2D ctx){
     if(cacheEnabled) {
@@ -111,7 +106,6 @@ abstract class PElement extends AttachableObject {
 
   void disposeInternal(){
     super.disposeInternal();
-    _updatedEventHandle.dispose();
     _invalidatedEventHandle.dispose();
   }
 
