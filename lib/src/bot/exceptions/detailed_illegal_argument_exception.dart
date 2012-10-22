@@ -1,7 +1,7 @@
 class DetailedIllegalArgumentException extends ArgumentError {
   final argument;
 
-  DetailedIllegalArgumentException([String arg = '', String message]) :
+  const DetailedIllegalArgumentException([String arg = '', String message]) :
     this.argument = arg,
     super(message);
 
