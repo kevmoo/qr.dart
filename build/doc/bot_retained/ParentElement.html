@@ -2,19 +2,19 @@
         <html>
         <head>
                 <meta charset="utf-8">
-        <title>ElementParentImpl abstract class / bot_retained Library / Dart Documentation</title>
+        <title>ParentElement abstract class / bot_retained Library / Dart Documentation</title>
         <link rel="stylesheet" type="text/css"
             href="../styles.css">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
         <link rel="shortcut icon" href="../favicon.ico">
         
         </head>
-        <body data-library="bot_retained" data-type="ElementParentImpl">
+        <body data-library="bot_retained" data-type="ParentElement">
         <div class="page">
         <div class="header">
           <a href="../index.html"><div class="logo"></div></a>
           <a href="../index.html">Dart Documentation</a>
-         &rsaquo; <a href="../bot_retained.html">bot_retained</a> &rsaquo; <a href="../bot_retained/ElementParentImpl.html">ElementParentImpl</a>        <div id="search-box">
+         &rsaquo; <a href="../bot_retained.html">bot_retained</a> &rsaquo; <a href="../bot_retained/ParentElement.html">ParentElement</a>        <div id="search-box">
           <input type="search" name="q" id="q" autocomplete="off"
               class="search-input" placeholder="Search API">
         </div>
@@ -26,19 +26,29 @@
         
 </div>
 <div class="content">
-        <h2><strong>ElementParentImpl</strong>
+        <h2><strong>ParentElement</strong>
           abstract class
         </h2>
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
 <pre class="source">
-abstract class ElementParentImpl
+abstract class ParentElement
   extends PElement
   implements ElementParent {
 
-  ElementParentImpl(num w, num h, [bool enableCache = false]) :
+  ParentElement(num w, num h, [bool enableCache = false]) :
     super(w, h, enableCache);
+
+  bool hasVisualChild(PElement element){
+    var length = visualChildCount;
+    for(var i=0;i&lt;length;i++){
+      if(identical(element, getVisualChild(i))){
+        return true;
+      }
+    }
+    return false;
+  }
 
   void onChildrenChanged(){
     invalidateDraw();
@@ -73,7 +83,7 @@ abstract class ElementParentImpl
 </div>
 <h3>Extends</h3>
 <p>
-<span class="type-box"><span class="icon-class"></span><a href="../bot/DisposableImpl.html">DisposableImpl</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../bot/AttachableObject.html">AttachableObject</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../bot_retained/PElement.html">PElement</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>ElementParentImpl</strong></span></p>
+<span class="type-box"><span class="icon-class"></span><a href="../bot/DisposableImpl.html">DisposableImpl</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../bot/AttachableObject.html">AttachableObject</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../bot_retained/PElement.html">PElement</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>ParentElement</strong></span></p>
 <h3>Subclasses</h3>
 <p>
 <span class="type-box"><span class="icon-class"></span><a href="../bot_retained/Panel.html">Panel</a></span></p>
@@ -82,13 +92,13 @@ abstract class ElementParentImpl
 <span class="type-box"><span class="icon-interface"></span><a href="../bot_retained/ElementParent.html">ElementParent</a></span></p>
 <div>
 <h3>Constructors</h3>
-<div class="method"><h4 id="ElementParentImpl">
+<div class="method"><h4 id="ParentElement">
 <button class="show-code">Code</button>
-new <strong>ElementParentImpl</strong>(num w, num h, [bool enableCache = false]) <a class="anchor-link" href="#ElementParentImpl"
-              title="Permalink to ElementParentImpl.ElementParentImpl">#</a></h4>
+new <strong>ParentElement</strong>(num w, num h, [bool enableCache = false]) <a class="anchor-link" href="#ParentElement"
+              title="Permalink to ParentElement.ParentElement">#</a></h4>
 <div class="doc">
 <pre class="source">
-ElementParentImpl(num w, num h, [bool enableCache = false]) :
+ParentElement(num w, num h, [bool enableCache = false]) :
   super(w, h, enableCache);
 </pre>
 </div>
@@ -100,7 +110,7 @@ ElementParentImpl(num w, num h, [bool enableCache = false]) :
 <button class="show-code">Code</button>
 final bool         <strong>cacheEnabled</strong> <a class="anchor-link"
             href="#cacheEnabled"
-            title="Permalink to ElementParentImpl.cacheEnabled">#</a>
+            title="Permalink to ParentElement.cacheEnabled">#</a>
         </h4>
         <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
@@ -112,7 +122,7 @@ final bool cacheEnabled;
 <button class="show-code">Code</button>
 bool         <strong>clip</strong> <a class="anchor-link"
             href="#clip"
-            title="Permalink to ElementParentImpl.clip">#</a>
+            title="Permalink to ParentElement.clip">#</a>
         </h4>
         <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
@@ -124,7 +134,7 @@ bool clip = false;
 <button class="show-code">Code</button>
 num         <strong>height</strong> <a class="anchor-link"
             href="#height"
-            title="Permalink to ElementParentImpl.height">#</a>
+            title="Permalink to ParentElement.height">#</a>
         </h4>
         <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
@@ -143,7 +153,7 @@ void set height(num value) {
 <button class="show-code">Code</button>
 final <a href="../bot/EventRoot.html">EventRoot</a>&lt;<a href="../bot/EventArgs.html">EventArgs</a>&gt;         <strong>invalidated</strong> <a class="anchor-link"
             href="#invalidated"
-            title="Permalink to ElementParentImpl.invalidated">#</a>
+            title="Permalink to ParentElement.invalidated">#</a>
         </h4>
         <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
@@ -155,7 +165,7 @@ EventRoot&lt;EventArgs&gt; get invalidated =&gt; _invalidatedEventHandle;
 <button class="show-code">Code</button>
 final bool         <strong>isDisposed</strong> <a class="anchor-link"
             href="#isDisposed"
-            title="Permalink to ElementParentImpl.isDisposed">#</a>
+            title="Permalink to ParentElement.isDisposed">#</a>
         </h4>
         <div class="inherited-from">inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div><div class="doc">
 <pre class="source">
@@ -167,7 +177,7 @@ bool get isDisposed =&gt; _disposed;
 <button class="show-code">Code</button>
 final <a href="../bot_retained/ElementParent.html">ElementParent</a>         <strong>parent</strong> <a class="anchor-link"
             href="#parent"
-            title="Permalink to ElementParentImpl.parent">#</a>
+            title="Permalink to ParentElement.parent">#</a>
         </h4>
         <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
@@ -179,7 +189,7 @@ ElementParent get parent =&gt; _parent;
 <button class="show-code">Code</button>
 final Type         <strong>runtimeType</strong> <a class="anchor-link"
             href="#runtimeType"
-            title="Permalink to ElementParentImpl.runtimeType">#</a>
+            title="Permalink to ParentElement.runtimeType">#</a>
         </h4>
         <div class="inherited-from">inherited from Object </div><div class="doc">
 <p>A representation of the runtime type of the object.</p>
@@ -192,7 +202,7 @@ external Type get runtimeType;
 <button class="show-code">Code</button>
 <a href="../bot/Size.html">Size</a>         <strong>size</strong> <a class="anchor-link"
             href="#size"
-            title="Permalink to ElementParentImpl.size">#</a>
+            title="Permalink to ParentElement.size">#</a>
         </h4>
         <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
@@ -208,23 +218,11 @@ void set size(Size value) {
 </pre>
 </div>
 </div>
-<div class="field inherited"><h4 id="updated">
-<button class="show-code">Code</button>
-final <a href="../bot/EventRoot.html">EventRoot</a>&lt;<a href="../bot/EventArgs.html">EventArgs</a>&gt;         <strong>updated</strong> <a class="anchor-link"
-            href="#updated"
-            title="Permalink to ElementParentImpl.updated">#</a>
-        </h4>
-        <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
-<pre class="source">
-EventRoot&lt;EventArgs&gt; get updated =&gt; _updatedEventHandle;
-</pre>
-</div>
-</div>
 <div class="field"><h4 id="visualChildCount">
 <button class="show-code">Code</button>
 final int         <strong>visualChildCount</strong> <a class="anchor-link"
             href="#visualChildCount"
-            title="Permalink to ElementParentImpl.visualChildCount">#</a>
+            title="Permalink to ParentElement.visualChildCount">#</a>
         </h4>
         <div class="doc">
 <pre class="source">
@@ -236,7 +234,7 @@ abstract int get visualChildCount;
 <button class="show-code">Code</button>
 num         <strong>width</strong> <a class="anchor-link"
             href="#width"
-            title="Permalink to ElementParentImpl.width">#</a>
+            title="Permalink to ParentElement.width">#</a>
         </h4>
         <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
@@ -257,7 +255,7 @@ void set width(num value) {
 <div class="method inherited"><h4 id="==">
 <button class="show-code">Code</button>
 bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
-              title="Permalink to ElementParentImpl.operator ==">#</a></h4>
+              title="Permalink to ParentElement.operator ==">#</a></h4>
 <div class="inherited-from">inherited from Object </div><div class="doc">
 <p>The equality operator.</p>
 <p>The default behavior for all <code>Object</code>s is to return true if and
@@ -276,7 +274,7 @@ bool operator ==(other) =&gt; identical(this, other);
 <div class="method inherited"><h4 id="addTransform">
 <button class="show-code">Code</button>
 <a href="../bot/AffineTransform.html">AffineTransform</a> <strong>addTransform</strong>() <a class="anchor-link" href="#addTransform"
-              title="Permalink to ElementParentImpl.addTransform">#</a></h4>
+              title="Permalink to ParentElement.addTransform">#</a></h4>
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 AffineTransform addTransform(){
@@ -291,7 +289,7 @@ AffineTransform addTransform(){
 <div class="method"><h4 id="childInvalidated">
 <button class="show-code">Code</button>
 void <strong>childInvalidated</strong>(<a href="../bot_retained/PElement.html">PElement</a> child) <a class="anchor-link" href="#childInvalidated"
-              title="Permalink to ElementParentImpl.childInvalidated">#</a></h4>
+              title="Permalink to ParentElement.childInvalidated">#</a></h4>
 <div class="doc">
 <pre class="source">
 void childInvalidated(PElement child){
@@ -304,7 +302,7 @@ void childInvalidated(PElement child){
 <div class="method inherited"><h4 id="dispose">
 <button class="show-code">Code</button>
 void <strong>dispose</strong>() <a class="anchor-link" href="#dispose"
-              title="Permalink to ElementParentImpl.dispose">#</a></h4>
+              title="Permalink to ParentElement.dispose">#</a></h4>
 <div class="inherited-from">inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div><div class="doc">
 <pre class="source">
 void dispose(){
@@ -321,7 +319,7 @@ void dispose(){
 <div class="method inherited"><h4 id="disposeInternal">
 <button class="show-code">Code</button>
 void <strong>disposeInternal</strong>() <a class="anchor-link" href="#disposeInternal"
-              title="Permalink to ElementParentImpl.disposeInternal">#</a></h4>
+              title="Permalink to ParentElement.disposeInternal">#</a></h4>
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <div class="inherited">
 <p>Do not call this method directly. Call <code>dispose</code> instead.
@@ -330,7 +328,6 @@ Subclasses should override this method to implement <code>Disposable</code> beha
 <pre class="source">
 void disposeInternal(){
   super.disposeInternal();
-  _updatedEventHandle.dispose();
   _invalidatedEventHandle.dispose();
 }
 </pre>
@@ -339,7 +336,7 @@ void disposeInternal(){
 <div class="method inherited"><h4 id="drawCore">
 <button class="show-code">Code</button>
 void <strong>drawCore</strong>(CanvasRenderingContext2D ctx) <a class="anchor-link" href="#drawCore"
-              title="Permalink to ElementParentImpl.drawCore">#</a></h4>
+              title="Permalink to ParentElement.drawCore">#</a></h4>
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 void drawCore(CanvasRenderingContext2D ctx){
@@ -355,7 +352,7 @@ void drawCore(CanvasRenderingContext2D ctx){
 <div class="method"><h4 id="drawOverride">
 <button class="show-code">Code</button>
 void <strong>drawOverride</strong>(CanvasRenderingContext2D ctx) <a class="anchor-link" href="#drawOverride"
-              title="Permalink to ElementParentImpl.drawOverride">#</a></h4>
+              title="Permalink to ParentElement.drawOverride">#</a></h4>
 <div class="doc">
 <pre class="source">
 void drawOverride(CanvasRenderingContext2D ctx) {
@@ -364,21 +361,10 @@ void drawOverride(CanvasRenderingContext2D ctx) {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="ElementParentImpl">
-<button class="show-code">Code</button>
-new <strong>ElementParentImpl</strong>(num w, num h, [bool enableCache = false]) <a class="anchor-link" href="#ElementParentImpl"
-              title="Permalink to ElementParentImpl.ElementParentImpl">#</a></h4>
-<div class="doc">
-<pre class="source">
-ElementParentImpl(num w, num h, [bool enableCache = false]) :
-  super(w, h, enableCache);
-</pre>
-</div>
-</div>
 <div class="method inherited"><h4 id="getTransform">
 <button class="show-code">Code</button>
 <a href="../bot/AffineTransform.html">AffineTransform</a> <strong>getTransform</strong>() <a class="anchor-link" href="#getTransform"
-              title="Permalink to ElementParentImpl.getTransform">#</a></h4>
+              title="Permalink to ParentElement.getTransform">#</a></h4>
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 AffineTransform getTransform() {
@@ -392,7 +378,7 @@ AffineTransform getTransform() {
 <div class="method inherited"><h4 id="getTransformToRoot">
 <button class="show-code">Code</button>
 <a href="../bot/AffineTransform.html">AffineTransform</a> <strong>getTransformToRoot</strong>() <a class="anchor-link" href="#getTransformToRoot"
-              title="Permalink to ElementParentImpl.getTransformToRoot">#</a></h4>
+              title="Permalink to ParentElement.getTransformToRoot">#</a></h4>
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 AffineTransform getTransformToRoot(){
@@ -408,14 +394,14 @@ AffineTransform getTransformToRoot(){
 </div>
 <div class="method"><h4 id="getVisualChild">
 abstract <a href="../bot_retained/PElement.html">PElement</a> <strong>getVisualChild</strong>(index) <a class="anchor-link" href="#getVisualChild"
-              title="Permalink to ElementParentImpl.getVisualChild">#</a></h4>
+              title="Permalink to ParentElement.getVisualChild">#</a></h4>
 <div class="doc">
 </div>
 </div>
 <div class="method inherited"><h4 id="hashCode">
 <button class="show-code">Code</button>
 int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
-              title="Permalink to ElementParentImpl.hashCode">#</a></h4>
+              title="Permalink to ParentElement.hashCode">#</a></h4>
 <div class="inherited-from">inherited from Object </div><div class="doc">
 <p>Get a hash code for this object.</p>
 <p>All objects have hash codes. Hash codes are guaranteed to be the
@@ -430,11 +416,11 @@ external int hashCode();
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="hasVisualChild">
+<div class="method"><h4 id="hasVisualChild">
 <button class="show-code">Code</button>
 bool <strong>hasVisualChild</strong>(<a href="../bot_retained/PElement.html">PElement</a> element) <a class="anchor-link" href="#hasVisualChild"
-              title="Permalink to ElementParentImpl.hasVisualChild">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
+              title="Permalink to ParentElement.hasVisualChild">#</a></h4>
+<div class="doc">
 <pre class="source">
 bool hasVisualChild(PElement element){
   var length = visualChildCount;
@@ -451,7 +437,7 @@ bool hasVisualChild(PElement element){
 <div class="method inherited"><h4 id="invalidateDraw">
 <button class="show-code">Code</button>
 void <strong>invalidateDraw</strong>() <a class="anchor-link" href="#invalidateDraw"
-              title="Permalink to ElementParentImpl.invalidateDraw">#</a></h4>
+              title="Permalink to ParentElement.invalidateDraw">#</a></h4>
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 void invalidateDraw(){
@@ -467,7 +453,7 @@ void invalidateDraw(){
 <div class="method inherited"><h4 id="noSuchMethod">
 <button class="show-code">Code</button>
 <strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
-              title="Permalink to ElementParentImpl.noSuchMethod">#</a></h4>
+              title="Permalink to ParentElement.noSuchMethod">#</a></h4>
 <div class="inherited-from">inherited from Object </div><div class="doc">
 <p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
 on an object. The name of the method and the arguments of the
@@ -484,7 +470,7 @@ external Dynamic noSuchMethod(String name, List args);
 <div class="method inherited"><h4 id="Object">
 <button class="show-code">Code</button>
 const <strong>Object</strong>() <a class="anchor-link" href="#Object"
-              title="Permalink to ElementParentImpl.Object">#</a></h4>
+              title="Permalink to ParentElement.Object">#</a></h4>
 <div class="inherited-from">inherited from Object </div><div class="doc">
 <p>Creates a new <code>Object</code> instance.</p>
 <p><code>Object</code> instances have no meaningful state, and are only useful
@@ -498,7 +484,7 @@ const Object();
 <div class="method"><h4 id="onChildrenChanged">
 <button class="show-code">Code</button>
 void <strong>onChildrenChanged</strong>() <a class="anchor-link" href="#onChildrenChanged"
-              title="Permalink to ElementParentImpl.onChildrenChanged">#</a></h4>
+              title="Permalink to ParentElement.onChildrenChanged">#</a></h4>
 <div class="doc">
 <pre class="source">
 void onChildrenChanged(){
@@ -507,10 +493,21 @@ void onChildrenChanged(){
 </pre>
 </div>
 </div>
+<div class="method"><h4 id="ParentElement">
+<button class="show-code">Code</button>
+new <strong>ParentElement</strong>(num w, num h, [bool enableCache = false]) <a class="anchor-link" href="#ParentElement"
+              title="Permalink to ParentElement.ParentElement">#</a></h4>
+<div class="doc">
+<pre class="source">
+ParentElement(num w, num h, [bool enableCache = false]) :
+  super(w, h, enableCache);
+</pre>
+</div>
+</div>
 <div class="method inherited"><h4 id="PElement">
 <button class="show-code">Code</button>
 new <strong>PElement</strong>(num _width, num _height, [bool cacheEnabled = false]) <a class="anchor-link" href="#PElement"
-              title="Permalink to ElementParentImpl.PElement">#</a></h4>
+              title="Permalink to ParentElement.PElement">#</a></h4>
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 PElement(this._width, this._height, [this.cacheEnabled = false]);
@@ -520,7 +517,7 @@ PElement(this._width, this._height, [this.cacheEnabled = false]);
 <div class="method inherited"><h4 id="registerParent">
 <button class="show-code">Code</button>
 void <strong>registerParent</strong>(<a href="../bot_retained/ElementParent.html">ElementParent</a> parent) <a class="anchor-link" href="#registerParent"
-              title="Permalink to ElementParentImpl.registerParent">#</a></h4>
+              title="Permalink to ParentElement.registerParent">#</a></h4>
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 void registerParent(ElementParent parent) {
@@ -534,7 +531,7 @@ void registerParent(ElementParent parent) {
 <div class="method inherited"><h4 id="toString">
 <button class="show-code">Code</button>
 String <strong>toString</strong>() <a class="anchor-link" href="#toString"
-              title="Permalink to ElementParentImpl.toString">#</a></h4>
+              title="Permalink to ParentElement.toString">#</a></h4>
 <div class="inherited-from">inherited from Object </div><div class="doc">
 <p>Returns a string representation of this object.</p>
 <pre class="source">
@@ -545,7 +542,7 @@ external String toString();
 <div class="method"><h4 id="update">
 <button class="show-code">Code</button>
 void <strong>update</strong>() <a class="anchor-link" href="#update"
-              title="Permalink to ElementParentImpl.update">#</a></h4>
+              title="Permalink to ParentElement.update">#</a></h4>
 <div class="doc">
 <pre class="source">
 void update(){
@@ -558,7 +555,7 @@ void update(){
 <div class="method inherited"><h4 id="validateNotDisposed">
 <button class="show-code">Code</button>
 void <strong>validateNotDisposed</strong>() <a class="anchor-link" href="#validateNotDisposed"
-              title="Permalink to ElementParentImpl.validateNotDisposed">#</a></h4>
+              title="Permalink to ParentElement.validateNotDisposed">#</a></h4>
 <div class="inherited-from">inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div><div class="doc">
 <pre class="source">
 void validateNotDisposed() {

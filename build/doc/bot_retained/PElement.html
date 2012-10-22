@@ -36,7 +36,6 @@
 abstract class PElement extends AttachableObject {
   final List&lt;AffineTransform&gt; _transforms = new List&lt;AffineTransform&gt;();
   final bool cacheEnabled;
-  final EventHandle&lt;EventArgs&gt; _updatedEventHandle = new EventHandle&lt;EventArgs&gt;();
   final EventHandle&lt;EventArgs&gt; _invalidatedEventHandle = new EventHandle&lt;EventArgs&gt;();
   CanvasElement _cacheCanvas;
 
@@ -72,11 +71,7 @@ abstract class PElement extends AttachableObject {
     invalidateDraw();
   }
 
-  int get visualChildCount =&gt; 0;
-
   ElementParent get parent =&gt; _parent;
-
-  EventRoot&lt;EventArgs&gt; get updated =&gt; _updatedEventHandle;
 
   EventRoot&lt;EventArgs&gt; get invalidated =&gt; _invalidatedEventHandle;
 
@@ -95,9 +90,7 @@ abstract class PElement extends AttachableObject {
     return tx;
   }
 
-  void update(){
-    _updatedEventHandle.fireEvent(EventArgs.empty);
-  }
+  void update(){ }
 
   void drawCore(CanvasRenderingContext2D ctx){
     if(cacheEnabled) {
@@ -124,20 +117,6 @@ abstract class PElement extends AttachableObject {
     }
   }
 
-  bool hasVisualChild(PElement element){
-    var length = visualChildCount;
-    for(var i=0;i&lt;length;i++){
-      if(identical(element, getVisualChild(i))){
-        return true;
-      }
-    }
-    return false;
-  }
-
-  PElement getVisualChild(int index){
-    throw "no children for this type";
-  }
-
   void registerParent(ElementParent parent) {
     assert(_parent == null);
     assert(parent != null);
@@ -146,7 +125,6 @@ abstract class PElement extends AttachableObject {
 
   void disposeInternal(){
     super.disposeInternal();
-    _updatedEventHandle.dispose();
     _invalidatedEventHandle.dispose();
   }
 
@@ -240,7 +218,7 @@ abstract class PElement extends AttachableObject {
 <span class="type-box"><span class="icon-class"></span><a href="../bot/DisposableImpl.html">DisposableImpl</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../bot/AttachableObject.html">AttachableObject</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>PElement</strong></span></p>
 <h3>Subclasses</h3>
 <p>
-<span class="type-box"><span class="icon-class"></span><a href="../bot_retained/ElementParentImpl.html">ElementParentImpl</a></span>, <span class="type-box"><span class="icon-class"></span><a href="../bot_retained/ImgElement.html">ImgElement</a></span>, <span class="type-box"><span class="icon-class"></span><a href="../bot_retained/Shape.html">Shape</a></span>, <span class="type-box"><span class="icon-class"></span><a href="../bot_texture/TextureAnimationElement.html">TextureAnimationElement</a></span></p>
+<span class="type-box"><span class="icon-class"></span><a href="../bot_retained/ImgElement.html">ImgElement</a></span>, <span class="type-box"><span class="icon-class"></span><a href="../bot_retained/ParentElement.html">ParentElement</a></span>, <span class="type-box"><span class="icon-class"></span><a href="../bot_retained/Shape.html">Shape</a></span>, <span class="type-box"><span class="icon-class"></span><a href="../bot_texture/TextureAnimationElement.html">TextureAnimationElement</a></span></p>
 <div>
 <h3>Constructors</h3>
 <div class="method"><h4 id="PElement">
@@ -368,30 +346,6 @@ void set size(Size value) {
 </pre>
 </div>
 </div>
-<div class="field"><h4 id="updated">
-<button class="show-code">Code</button>
-final <a href="../bot/EventRoot.html">EventRoot</a>&lt;<a href="../bot/EventArgs.html">EventArgs</a>&gt;         <strong>updated</strong> <a class="anchor-link"
-            href="#updated"
-            title="Permalink to PElement.updated">#</a>
-        </h4>
-        <div class="doc">
-<pre class="source">
-EventRoot&lt;EventArgs&gt; get updated =&gt; _updatedEventHandle;
-</pre>
-</div>
-</div>
-<div class="field"><h4 id="visualChildCount">
-<button class="show-code">Code</button>
-final int         <strong>visualChildCount</strong> <a class="anchor-link"
-            href="#visualChildCount"
-            title="Permalink to PElement.visualChildCount">#</a>
-        </h4>
-        <div class="doc">
-<pre class="source">
-int get visualChildCount =&gt; 0;
-</pre>
-</div>
-</div>
 <div class="field"><h4 id="width">
 <button class="show-code">Code</button>
 num         <strong>width</strong> <a class="anchor-link"
@@ -477,7 +431,6 @@ Subclasses should override this method to implement <code>Disposable</code> beha
 <pre class="source">
 void disposeInternal(){
   super.disposeInternal();
-  _updatedEventHandle.dispose();
   _invalidatedEventHandle.dispose();
 }
 </pre>
@@ -536,18 +489,6 @@ AffineTransform getTransformToRoot(){
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="getVisualChild">
-<button class="show-code">Code</button>
-<a href="../bot_retained/PElement.html">PElement</a> <strong>getVisualChild</strong>(int index) <a class="anchor-link" href="#getVisualChild"
-              title="Permalink to PElement.getVisualChild">#</a></h4>
-<div class="doc">
-<pre class="source">
-PElement getVisualChild(int index){
-  throw "no children for this type";
-}
-</pre>
-</div>
-</div>
 <div class="method inherited"><h4 id="hashCode">
 <button class="show-code">Code</button>
 int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
@@ -563,24 +504,6 @@ there are no distribution guarantees.</p>
 equality operator as well to maintain consistency.</p>
 <pre class="source">
 external int hashCode();
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="hasVisualChild">
-<button class="show-code">Code</button>
-bool <strong>hasVisualChild</strong>(<a href="../bot_retained/PElement.html">PElement</a> element) <a class="anchor-link" href="#hasVisualChild"
-              title="Permalink to PElement.hasVisualChild">#</a></h4>
-<div class="doc">
-<pre class="source">
-bool hasVisualChild(PElement element){
-  var length = visualChildCount;
-  for(var i=0;i&lt;length;i++){
-    if(identical(element, getVisualChild(i))){
-      return true;
-    }
-  }
-  return false;
-}
 </pre>
 </div>
 </div>
@@ -672,9 +595,7 @@ void <strong>update</strong>() <a class="anchor-link" href="#update"
               title="Permalink to PElement.update">#</a></h4>
 <div class="doc">
 <pre class="source">
-void update(){
-  _updatedEventHandle.fireEvent(EventArgs.empty);
-}
+void update(){ }
 </pre>
 </div>
 </div>

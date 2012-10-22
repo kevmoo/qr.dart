@@ -227,30 +227,6 @@ void set size(Size value) {
 </pre>
 </div>
 </div>
-<div class="field inherited"><h4 id="updated">
-<button class="show-code">Code</button>
-final <a href="../bot/EventRoot.html">EventRoot</a>&lt;<a href="../bot/EventArgs.html">EventArgs</a>&gt;         <strong>updated</strong> <a class="anchor-link"
-            href="#updated"
-            title="Permalink to Shape.updated">#</a>
-        </h4>
-        <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
-<pre class="source">
-EventRoot&lt;EventArgs&gt; get updated =&gt; _updatedEventHandle;
-</pre>
-</div>
-</div>
-<div class="field inherited"><h4 id="visualChildCount">
-<button class="show-code">Code</button>
-final int         <strong>visualChildCount</strong> <a class="anchor-link"
-            href="#visualChildCount"
-            title="Permalink to Shape.visualChildCount">#</a>
-        </h4>
-        <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
-<pre class="source">
-int get visualChildCount =&gt; 0;
-</pre>
-</div>
-</div>
 <div class="field inherited"><h4 id="width">
 <button class="show-code">Code</button>
 num         <strong>width</strong> <a class="anchor-link"
@@ -336,7 +312,6 @@ Subclasses should override this method to implement <code>Disposable</code> beha
 <pre class="source">
 void disposeInternal(){
   super.disposeInternal();
-  _updatedEventHandle.dispose();
   _invalidatedEventHandle.dispose();
 }
 </pre>
@@ -412,18 +387,6 @@ AffineTransform getTransformToRoot(){
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="getVisualChild">
-<button class="show-code">Code</button>
-<a href="../bot_retained/PElement.html">PElement</a> <strong>getVisualChild</strong>(int index) <a class="anchor-link" href="#getVisualChild"
-              title="Permalink to Shape.getVisualChild">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
-<pre class="source">
-PElement getVisualChild(int index){
-  throw "no children for this type";
-}
-</pre>
-</div>
-</div>
 <div class="method inherited"><h4 id="hashCode">
 <button class="show-code">Code</button>
 int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
@@ -439,24 +402,6 @@ there are no distribution guarantees.</p>
 equality operator as well to maintain consistency.</p>
 <pre class="source">
 external int hashCode();
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="hasVisualChild">
-<button class="show-code">Code</button>
-bool <strong>hasVisualChild</strong>(<a href="../bot_retained/PElement.html">PElement</a> element) <a class="anchor-link" href="#hasVisualChild"
-              title="Permalink to Shape.hasVisualChild">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
-<pre class="source">
-bool hasVisualChild(PElement element){
-  var length = visualChildCount;
-  for(var i=0;i&lt;length;i++){
-    if(identical(element, getVisualChild(i))){
-      return true;
-    }
-  }
-  return false;
-}
 </pre>
 </div>
 </div>
@@ -561,9 +506,7 @@ void <strong>update</strong>() <a class="anchor-link" href="#update"
               title="Permalink to Shape.update">#</a></h4>
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
-void update(){
-  _updatedEventHandle.fireEvent(EventArgs.empty);
-}
+void update(){ }
 </pre>
 </div>
 </div>
