@@ -5,6 +5,16 @@ abstract class ElementParentImpl
   ElementParentImpl(num w, num h, [bool enableCache = false]) :
     super(w, h, enableCache);
 
+  bool hasVisualChild(PElement element){
+    var length = visualChildCount;
+    for(var i=0;i<length;i++){
+      if(identical(element, getVisualChild(i))){
+        return true;
+      }
+    }
+    return false;
+  }
+
   void onChildrenChanged(){
     invalidateDraw();
   }

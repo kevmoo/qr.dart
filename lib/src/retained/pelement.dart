@@ -36,8 +36,6 @@ abstract class PElement extends AttachableObject {
     invalidateDraw();
   }
 
-  int get visualChildCount => 0;
-
   ElementParent get parent => _parent;
 
   EventRoot<EventArgs> get invalidated => _invalidatedEventHandle;
@@ -82,20 +80,6 @@ abstract class PElement extends AttachableObject {
       _lastDrawSize = null;
       _invalidateParent();
     }
-  }
-
-  bool hasVisualChild(PElement element){
-    var length = visualChildCount;
-    for(var i=0;i<length;i++){
-      if(identical(element, getVisualChild(i))){
-        return true;
-      }
-    }
-    return false;
-  }
-
-  PElement getVisualChild(int index){
-    throw "no children for this type";
   }
 
   void registerParent(ElementParent parent) {
