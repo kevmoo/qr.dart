@@ -7,7 +7,7 @@
 #import('html.dart');
 #import('retained.dart');
 
-#source('src/texture/texture_input.dart');
-#source('src/texture/texture_data.dart');
 #source('src/texture/texture_animation_element.dart');
 #source('src/texture/texture_animation_request.dart');
+#source('src/texture/texture_data.dart');
+#source('src/texture/texture_input.dart');

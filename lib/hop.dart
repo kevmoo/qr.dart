@@ -10,11 +10,11 @@
 #import('package:bot/bot.dart');
 #import('package:bot/io.dart');
 
+#source('src/hop/_hop_runner.dart');
+#source('src/hop/_hop_state.dart');
+#source('src/hop/_hop_task.dart');
 #source('src/hop/test_context.dart');
 #source('src/hop/test_runner.dart');
-#source('src/hop/_hop_runner.dart');
-#source('src/hop/_hop_task.dart');
-#source('src/hop/_hop_state.dart');
 
 final _sharedState = new _HopState();
 
