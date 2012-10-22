@@ -8,7 +8,7 @@
 
 void runRetainedTests() {
   group('bot_retained', () {
-    solo_test('foo!', _testDoudbleClickManager);
+    test('test double click manager', _testDoudbleClickManager);
   });
 }
 
