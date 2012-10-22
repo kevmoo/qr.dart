@@ -6,25 +6,25 @@ class RetainedUtil {
   static List<PElement> _hitTest(PElement element, Coordinate point){
     point = transformPointGlobalToLocal(element, point);
 
-    var bounds = new Box(0, 0, element.width, element.height);
+    final bounds = new Box(0, 0, element.width, element.height);
 
     var hits = new List<PElement>();
-    if (bounds.contains(point) && element is ParentElement) {
-      final ParentElement p = element;
+    if (bounds.contains(point)) {
+      if(element is ParentElement) {
+        final ParentElement p = element;
 
-      var length = p.visualChildCount;
-      for (var i = 0; i < length; i++) {
-        var e = p.getVisualChild(length - 1 - i);
-        hits = _hitTest(e, point);
-        if (hits.length > 0) {
-          break;
+        var length = p.visualChildCount;
+        for (var i = 0; i < length; i++) {
+          var e = p.getVisualChild(length - 1 - i);
+          hits = _hitTest(e, point);
+          if (hits.length > 0) {
+            break;
+          }
         }
       }
       hits.add(element);
-      return hits;
-    } else {
-      return [];
     }
+    return hits;
   }
 
   static Coordinate transformPointLocalToGlobal(PElement element,
