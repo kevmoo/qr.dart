@@ -39,8 +39,6 @@
 
 #source('src/bot/graph/tarjan_cycle_detect.dart');
 
-#source('src/bot/internal/_simple_set.dart');
-
 #source('src/bot/math/affine_transform.dart');
 #source('src/bot/math/bungee_num.dart');
 #source('src/bot/math/coordinate.dart');
