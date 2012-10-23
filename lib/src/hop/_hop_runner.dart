@@ -59,7 +59,7 @@ class _HopRunner {
     final parser = new ArgParser();
 
     // TODO: put help in a const
-    parser.addFlag('help', '?', 'print help text', false, false);
+    parser.addFlag('help', abbr: '?', help: 'print help text', negatable: false);
 
     // TODO: other global flag ideas
     // verbose - show a lot of output
