@@ -23,13 +23,13 @@ void main() {
 
 Future<bool> _compileDocs(TaskContext state) {
   _assertKnownPath();
-  return runProcess(state, "bin/compile_docs", []);
+  return runProcess(state, "tool/compile_docs", []);
 }
 
 void _assertKnownPath() {
   // since there is no way to determine the path of 'this' file
   // assume that Directory.current() is the root of the project.
   // So check for existance of /bin/hop_runner.dart
-  final thisFile = new File('bin/hop_runner.dart');
+  final thisFile = new File('tool/hop_runner.dart');
   assert(thisFile.existsSync());
 }
