@@ -18,10 +18,10 @@ class SpinDemo{
 
   factory SpinDemo(CanvasElement canvas){
 
-    PCanvas pCanvas = new PCanvas(200, 200);
-    var blue = new Shape(100, 100, 'blue');
-    var green = new Shape(70, 70, 'green');
-    var red = new Shape(40, 40, 'red', ShapeType.ellipse);
+    final pCanvas = new PCanvas(200, 200);
+    final blue = new Shape(100, 100, 'blue');
+    final green = new Shape(70, 70, 'green');
+    final red = new Shape(40, 40, 'red', ShapeType.ellipse);
 
     pCanvas.addElement(blue);
 
@@ -36,12 +36,12 @@ class SpinDemo{
       (canvas.width - pCanvas.width) / 2,
       (canvas.height - pCanvas.height) / 2);
 
-    var tx = pCanvas.addTransform();
+    final tx = pCanvas.addTransform();
 
-    var rootPanel = new PCanvas(500, 500);
+    final rootPanel = new PCanvas(500, 500);
     rootPanel.addElement(pCanvas);
 
-    var stage = new Stage(canvas, rootPanel);
+    final stage = new Stage(canvas, rootPanel);
 
     return new SpinDemo._internal(canvas, stage, tx);
   }
