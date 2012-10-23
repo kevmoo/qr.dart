@@ -153,7 +153,7 @@ abstract class ListBase<T> extends Enumerable<T> implements List<T> {
     throw const UnsupportedOperationException('Mutation operations are not supported');
   }
 
-  void sort(Func2<T,T,int> comparer) {
+  void sort([Comparator compare = Comparable.compare]) {
     throw const UnsupportedOperationException('Mutation operations are not supported');
   }
 
