@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1 -- 22 October 2012
+
+* Moved `hop` files into `tool` dir. These are for devs working with `bot.dart` not end users.
+
 ## 0.2.0 -- 21 October 2012
 
 * Aligned with M1 build of Dart v13679
