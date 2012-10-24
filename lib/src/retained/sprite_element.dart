@@ -7,7 +7,7 @@ class SpriteElement extends ImgElement {
 
   factory SpriteElement.horizontalFromUrl(String src, num w, num h,
       int count, num xDelta, [Coordinate start = const Coordinate()]) {
-    final img = new ImageElement(src, null, null);
+    final img = new ImageElement(src: src);
 
     return new SpriteElement(img, w, h, start, new Vector(xDelta, 0), count);
   }

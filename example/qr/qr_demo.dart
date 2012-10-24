@@ -62,7 +62,7 @@ class QrDemo{
     // Type Div
     //
     for(int i = 1; i <= 10; i++) {
-      final InputElement radio = new InputElement('radio');
+      final InputElement radio = new InputElement(type: 'radio');
       radio.innerHTML = '$i';
       radio.id = 'type_$i';
       radio.name = 'type';
@@ -83,7 +83,7 @@ class QrDemo{
     // Error Correct Levels
     //
     for(final v in QrErrorCorrectLevel.levels) {
-      final InputElement radio = new InputElement('radio');
+      final InputElement radio = new InputElement(type: 'radio');
       radio.id = 'error_$v';
       radio.name = 'error-level';
       radio.on.change.add(_errorClick);
