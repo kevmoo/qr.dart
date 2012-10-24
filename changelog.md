@@ -1,4 +1,7 @@
 # Changelog
+## 0.3.0 -- 24 October 2012
+
+* Changes to align with Dart integration build v13851 
 
 ## 0.2.1 -- 22 October 2012
 
