@@ -38,6 +38,8 @@ class _HopRunner {
         }
       } else {
         context.error('Error');
+        context.error(f.exception.toString());
+        context.error(f.stackTrace.toString());
       }
       context.dispose();
     });
