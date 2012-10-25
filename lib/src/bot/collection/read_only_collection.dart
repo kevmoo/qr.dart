@@ -1,10 +1,10 @@
 class ReadOnlyCollection<T> extends ListBase<T> {
-  final List<T> _items;
+  final Sequence<T> _items;
 
   /**
    * Wraps [source]. Changes to [source] will be reflected.
    **/
-  ReadOnlyCollection.wrap(List<T> source) :
+  ReadOnlyCollection.wrap(Sequence<T> source) :
     _items = source;
 
   const ReadOnlyCollection.empty() :

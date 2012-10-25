@@ -1,4 +1,4 @@
-abstract class ListBase<T> extends Enumerable<T> implements List<T> {
+abstract class ListBase<T> extends Enumerable<T> implements SequenceCollection<T> {
 
   const ListBase();
 
@@ -128,56 +128,5 @@ abstract class ListBase<T> extends Enumerable<T> implements List<T> {
       list.add(this[i]);
     }
     return list;
-  }
-
-  //
-  // Mutation operations are explicitly not supported in the baseclass
-  //
-  void set length(int newLength) {
-    throw const UnsupportedOperationException('Mutation operations are not supported');
-  }
-
-  void operator []=(int index, T value) {
-    throw const UnsupportedOperationException('Mutation operations are not supported');
-  }
-
-  void add(T value) {
-    throw const UnsupportedOperationException('Mutation operations are not supported');
-  }
-
-  void addLast(T value) {
-    throw const UnsupportedOperationException('Mutation operations are not supported');
-  }
-
-  void addAll(Collection<T> value) {
-    throw const UnsupportedOperationException('Mutation operations are not supported');
-  }
-
-  void sort([Comparator compare = Comparable.compare]) {
-    throw const UnsupportedOperationException('Mutation operations are not supported');
-  }
-
-  void clear() {
-    throw const UnsupportedOperationException('Mutation operations are not supported');
-  }
-
-  T removeAt(int index) {
-    throw const UnsupportedOperationException('Mutation operations are not supported');
-  }
-
-  T removeLast() {
-    throw const UnsupportedOperationException('Mutation operations are not supported');
-  }
-
-  void setRange(int start, int length, List<T> from, [int startFrom]) {
-    throw const UnsupportedOperationException('Mutation operations are not supported');
-  }
-
-  void removeRange(int start, int length) {
-    throw const UnsupportedOperationException('Mutation operations are not supported');
-  }
-
-  void insertRange(int start, int length, [T initialValue]) {
-    throw const UnsupportedOperationException('Mutation operations are not supported');
   }
 }

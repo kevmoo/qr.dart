@@ -9,7 +9,10 @@ class Array2d<T> extends ListBase<T> {
   final List<T> _source;
 
   factory Array2d.readonlyFrom(int width, Iterable<T> source) {
-    final s = source == null ? null : new ReadOnlyCollection(source);
+    requireArgumentNotNull(width, 'width');
+    requireArgumentNotNull(source, 'source');
+    final list = new List<T>.from(source);
+    final s = source == null ? null : new SequenceList<T>(list);
     return new Array2d.wrap(width, s);
   }
 

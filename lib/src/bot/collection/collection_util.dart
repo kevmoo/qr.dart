@@ -1,5 +1,5 @@
 class CollectionUtil {
-  static bool allUnique(List items) {
+  static bool allUnique(Sequence items) {
     requireArgumentNotNull(items, 'items');
 
     for(int i = 0; i < items.length; i++) {

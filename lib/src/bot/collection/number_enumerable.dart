@@ -56,8 +56,6 @@ class _SimpleNumEnumerable<T extends num> extends NumberEnumerable<T> {
   const _SimpleNumEnumerable(this._source) : super();
 
   Iterator<T> iterator() => _source.iterator();
-
-  int get length => count();
 }
 
 class _FuncNumEnumerable<TSource> extends NumberEnumerable {
@@ -67,8 +65,6 @@ class _FuncNumEnumerable<TSource> extends NumberEnumerable {
   const _FuncNumEnumerable(this._source, this._func) : super();
 
   Iterator<num> iterator() => _func(_source.iterator());
-
-  int get length => count();
 }
 
 class _RangeEnumerable extends NumberEnumerable<int> {
@@ -78,8 +74,6 @@ class _RangeEnumerable extends NumberEnumerable<int> {
   const _RangeEnumerable(this._start, this._count);
 
   Iterator<int> iterator() => new _RangeIterator(_start, _count);
-
-  int get length => count();
 }
 
 class _RangeIterator implements Iterator<int> {

@@ -56,7 +56,7 @@ class TestListBase extends ListBase<int> {
     Func1<int, int> dub = (i) => i * 2;
 
     var list = instance.map(dub);
-    expect(list.length, equals(_length));
+    expect(list.count(), equals(_length));
     expect(list, orderedEquals([10, 8, 6, 4, 2]));
   }
 

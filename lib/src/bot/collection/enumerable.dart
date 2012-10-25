@@ -6,7 +6,7 @@ Enumerable $(Iterable source) {
   }
 }
 
-abstract class Enumerable<T> implements Collection<T> {
+abstract class Enumerable<T> implements Iterable<T> {
   // TODO:
   // last
   // take
@@ -256,8 +256,6 @@ class _SimpleEnumerable<T> extends Enumerable<T> {
   const _SimpleEnumerable(this._source) : super();
 
   Iterator<T> iterator() => _source.iterator();
-
-  int get length => count();
 }
 
 class _FuncEnumerable<TSource, TOutput> extends Enumerable<TOutput> {
@@ -267,8 +265,6 @@ class _FuncEnumerable<TSource, TOutput> extends Enumerable<TOutput> {
   const _FuncEnumerable(this._source, this._func) : super();
 
   Iterator<TOutput> iterator() => _func(_source.iterator());
-
-  int get length => count();
 }
 
 class _SelectIterator<TSource, TOutput> implements Iterator<TOutput> {
