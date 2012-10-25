@@ -1,3 +1,5 @@
+part of test_bot;
+
 class TestRgbColor {
   static void run() {
     group('RgbColor', (){

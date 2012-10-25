@@ -1,3 +1,5 @@
+part of bot_qr;
+
 class QrByte {
   final int mode = QrMode.MODE_8BIT_BYTE;
   final List<int> _data;

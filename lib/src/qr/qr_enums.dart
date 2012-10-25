@@ -1,3 +1,5 @@
+part of bot_qr;
+
 class QrMode {
   static const int MODE_NUMBER = 1 << 0;
   static const int MODE_ALPHA_NUM = 1 << 1;

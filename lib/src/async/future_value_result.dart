@@ -1,3 +1,5 @@
+part of bot_async;
+
 class FutureValueResult<TOutput> {
   static final String _valueKey = 'value';
   static final String _exceptionKey = 'exception';

@@ -1,3 +1,5 @@
+part of bot_html;
+
 class _ResourceEntry<T> {
   final String url;
   T _resource;

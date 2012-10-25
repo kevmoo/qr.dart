@@ -1,3 +1,5 @@
+part of test_bot_qr;
+
 class TestQrCode {
   static void run() {
     group('QrCode', () {

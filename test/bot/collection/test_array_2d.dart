@@ -1,3 +1,5 @@
+part of test_bot;
+
 class TestArray2d {
   static void run() {
     group('Array2d', () {

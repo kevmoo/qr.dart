@@ -1,3 +1,5 @@
+part of bot_html;
+
 class ImageLoader extends ResourceLoader<ImageElement> {
   ImageLoader(Iterable<String> urls) : super(urls);
 

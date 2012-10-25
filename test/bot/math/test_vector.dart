@@ -1,3 +1,5 @@
+part of test_bot;
+
 class TestVector {
   static void run(){
     group('Vector', (){

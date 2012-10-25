@@ -1,3 +1,5 @@
+part of bot_html;
+
 // TODO: error events?
 abstract class ResourceLoader<T> {
   static const String StateUnloaded = 'unloaded';

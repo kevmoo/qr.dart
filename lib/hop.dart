@@ -1,20 +1,20 @@
-#library('bot_hop');
+library bot_hop;
 
 // TODO: documentation for tasks
 // TODO: formalize print/log model
 
-#import('dart:io');
-#import('dart:isolate');
-#import('package:args/args.dart');
-#import('package:unittest/unittest.dart');
-#import('package:bot/bot.dart');
-#import('package:bot/io.dart');
+import 'dart:io';
+import 'dart:isolate';
+import 'package:args/args.dart';
+import 'package:unittest/unittest.dart';
+import 'package:bot/bot.dart';
+import 'package:bot/io.dart';
 
-#source('src/hop/_hop_runner.dart');
-#source('src/hop/_hop_state.dart');
-#source('src/hop/_hop_task.dart');
-#source('src/hop/test_context.dart');
-#source('src/hop/test_runner.dart');
+part 'src/hop/_hop_runner.dart';
+part 'src/hop/_hop_state.dart';
+part 'src/hop/_hop_task.dart';
+part 'src/hop/test_context.dart';
+part 'src/hop/test_runner.dart';
 
 final _sharedState = new _HopState();
 

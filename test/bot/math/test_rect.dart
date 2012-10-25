@@ -1,3 +1,5 @@
+part of test_bot;
+
 class TestBox {
   static void run() {
     group('Box', () {

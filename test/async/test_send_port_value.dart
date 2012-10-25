@@ -1,3 +1,5 @@
+part of test_bot_async;
+
 class TestSendPortValue {
   static void run() {
     test('simple', _testSimple);

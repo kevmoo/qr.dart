@@ -1,3 +1,5 @@
+part of bot_qr;
+
 class QrMath {
   static ReadOnlyCollection<int> _logTable;
   static ReadOnlyCollection<int> _expTable;

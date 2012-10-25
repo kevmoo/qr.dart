@@ -1,3 +1,5 @@
+part of bot_html;
+
 // a laughably incomplete version of dragger from the closure library
 // http://closure-library.googlecode.com/svn/docs/class_goog_fx_Dragger.html
 // ...but it works for what I need now

@@ -1,3 +1,5 @@
+part of test_bot;
+
 class TestPropertyEventIntegration extends AttachableObject {
   static final Property<String> _nameProperty = new Property<String>("name");
   static final Property<int> _ageProperty = new Property<int>("age", 0);

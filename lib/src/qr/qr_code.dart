@@ -1,3 +1,5 @@
+part of bot_qr;
+
 class QrCode {
   static final int _PAD0 = 0xEC;
   static final int _PAD1 = 0x11;

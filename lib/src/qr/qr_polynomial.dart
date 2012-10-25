@@ -1,3 +1,5 @@
+part of bot_qr;
+
 class QrPolynomial {
   final List<int> _myThings;
 

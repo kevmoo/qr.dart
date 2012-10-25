@@ -1,13 +1,13 @@
-#library('bot_html');
+library bot_html;
 
-#import('dart:html');
+import 'dart:html';
 
-#import('bot.dart');
+import 'bot.dart';
 
-#source('src/html/_resource_entry.dart');
-#source('src/html/audio_loader.dart');
-#source('src/html/dragger.dart');
-#source('src/html/html_util.dart');
-#source('src/html/html_view.dart');
-#source('src/html/image_loader.dart');
-#source('src/html/resource_loader.dart');
+part 'src/html/_resource_entry.dart';
+part 'src/html/audio_loader.dart';
+part 'src/html/dragger.dart';
+part 'src/html/html_util.dart';
+part 'src/html/html_view.dart';
+part 'src/html/image_loader.dart';
+part 'src/html/resource_loader.dart';

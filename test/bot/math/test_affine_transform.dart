@@ -1,3 +1,5 @@
+part of test_bot;
+
 class TestAffineTransform {
   static void run(){
     group('AffineTransform', (){

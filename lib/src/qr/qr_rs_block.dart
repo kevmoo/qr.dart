@@ -1,3 +1,5 @@
+part of bot_qr;
+
 class QrRsBlock {
   final int totalCount;
   final int dataCount;

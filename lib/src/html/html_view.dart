@@ -1,3 +1,5 @@
+part of bot_html;
+
 abstract class HtmlView {
   final DivElement _node;
   bool _dirty;

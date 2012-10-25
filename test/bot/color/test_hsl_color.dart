@@ -1,3 +1,5 @@
+part of test_bot;
+
 class TestHslColor {
   static void run() {
     group('HslColor', (){

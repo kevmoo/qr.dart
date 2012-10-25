@@ -1,3 +1,5 @@
+part of test_bot_async;
+
 class TestFutureValueResult {
   static void run() {
     group('FutureValueResult', () {

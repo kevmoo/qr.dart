@@ -1,3 +1,5 @@
+part of test_bot;
+
 class TestEvents {
   final EventHandle<String> _testEventHandle;
 

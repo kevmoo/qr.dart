@@ -1,10 +1,10 @@
-#library('test_bot_retained');
+library test_bot_retained;
 
-#import('dart:html');
-#import('package:unittest/unittest.dart');
+import 'dart:html';
+import 'package:unittest/unittest.dart';
 
-#import('package:bot/bot.dart');
-#import('package:bot/retained.dart');
+import 'package:bot/bot.dart';
+import 'package:bot/retained.dart';
 
 void runRetainedTests() {
   group('bot_retained', () {

@@ -1,35 +1,35 @@
-#library('test_bot');
+library test_bot;
 
-#import('dart:math', prefix:'math');
-#import('package:unittest/unittest.dart');
-#import('package:bot/bot.dart');
-#import('package:bot/test.dart');
+import 'dart:math' as math;
+import 'package:unittest/unittest.dart';
+import 'package:bot/bot.dart';
+import 'package:bot/test.dart';
 
-#source('test_cloneable.dart');
-#source('test_tuple.dart');
+part 'test_cloneable.dart';
+part 'test_tuple.dart';
 
-#source('events/test_events.dart');
+part 'events/test_events.dart';
 
-#source('collection/test_enumerable.dart');
-#source('collection/test_number_enumerable.dart');
-#source('collection/test_list_base.dart');
-#source('collection/test_collection_util.dart');
-#source('collection/test_array_2d.dart');
+part 'collection/test_enumerable.dart';
+part 'collection/test_number_enumerable.dart';
+part 'collection/test_list_base.dart';
+part 'collection/test_collection_util.dart';
+part 'collection/test_array_2d.dart';
 
-#source('test_util.dart');
-#source('math/test_coordinate.dart');
-#source('math/test_vector.dart');
-#source('math/test_affine_transform.dart');
-#source('math/test_rect.dart');
-#source('graph/test_tarjan.dart');
+part 'test_util.dart';
+part 'math/test_coordinate.dart';
+part 'math/test_vector.dart';
+part 'math/test_affine_transform.dart';
+part 'math/test_rect.dart';
+part 'graph/test_tarjan.dart';
 
-#source('color/test_rgb_color.dart');
-#source('color/test_hsl_color.dart');
+part 'color/test_rgb_color.dart';
+part 'color/test_hsl_color.dart';
 
-#source('attached/test_property_event_integration.dart');
-#source('attached/test_properties.dart');
+part 'attached/test_property_event_integration.dart';
+part 'attached/test_properties.dart';
 
-#source('attached/test_attached_events.dart');
+part 'attached/test_attached_events.dart';
 
 void runBotTests() {
   group('bot', (){

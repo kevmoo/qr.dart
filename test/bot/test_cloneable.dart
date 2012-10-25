@@ -1,3 +1,5 @@
+part of test_bot;
+
 class TestCloneable implements Cloneable<TestCloneable> {
   static int _globalId = 0;
   final int _id;

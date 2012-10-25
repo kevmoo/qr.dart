@@ -1,3 +1,5 @@
+part of test_bot;
+
 class TestUtil {
   static void run() {
     group('Util', () {

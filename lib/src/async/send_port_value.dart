@@ -1,3 +1,5 @@
+part of bot_async;
+
 class SendPortValue<TInput, TOutput> extends FutureValue<TInput, TOutput> {
   final SendPort _sendPort;
   final Func1<TInput, Dynamic> inputSerializer;

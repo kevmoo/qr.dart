@@ -1,3 +1,5 @@
+part of test_bot;
+
 class TestTarjanCycleDetect {
   static void run() {
     group('Tarjan', (){

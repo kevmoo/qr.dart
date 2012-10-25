@@ -1,3 +1,5 @@
+part of bot_html;
+
 class AudioLoader extends ResourceLoader<AudioBuffer> {
   final AudioContext context;
 

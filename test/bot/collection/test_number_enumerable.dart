@@ -1,3 +1,5 @@
+part of test_bot;
+
 class TestNumberEnumerable {
 
   static void run() {

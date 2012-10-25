@@ -1,3 +1,5 @@
+part of test_bot;
+
 class TestCollectionUtil {
 
   static void run() {

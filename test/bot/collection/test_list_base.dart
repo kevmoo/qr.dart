@@ -1,3 +1,5 @@
+part of test_bot;
+
 class TestListBase extends ListBase<int> {
   static final int _length = 5;
   static final TestListBase instance = const TestListBase();

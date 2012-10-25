@@ -1,3 +1,5 @@
+part of test_bot;
+
 class TestCoordinate {
   static void run(){
     group('Coordinate', (){

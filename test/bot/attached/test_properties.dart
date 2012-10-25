@@ -1,3 +1,5 @@
+part of test_bot;
+
 class TestProperties extends AttachableObject {
 
   static void run(){

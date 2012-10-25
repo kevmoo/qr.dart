@@ -1,3 +1,5 @@
+part of test_bot_qr;
+
 class TestQrBitBuffer {
   static void run() {
     group('QrBitBuffer', () {

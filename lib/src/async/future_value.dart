@@ -1,3 +1,5 @@
+part of bot_async;
+
 abstract class FutureValue<TInput, TOutput> {
   FutureValue() :
     _outputChangedHandle = new EventHandle<EventArgs>(),

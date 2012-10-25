@@ -1,3 +1,5 @@
+part of bot_qr;
+
 class QrInputTooLongException implements Exception {
   final int providedInput;
   final int inputLimit;

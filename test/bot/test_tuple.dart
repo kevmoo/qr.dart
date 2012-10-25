@@ -1,3 +1,5 @@
+part of test_bot;
+
 class TestTuple {
   static void run() {
     test('Tuple', (){

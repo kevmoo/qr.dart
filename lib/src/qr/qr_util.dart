@@ -1,3 +1,5 @@
+part of bot_qr;
+
 class QrUtil {
 
   static final List<List<int>> _PATTERN_POSITION_TABLE = const [

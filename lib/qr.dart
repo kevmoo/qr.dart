@@ -1,15 +1,15 @@
-#library('bot_qr');
+library bot_qr;
 
-#import('dart:math', prefix:'math');
+import 'dart:math' as math;
 
-#import('bot.dart');
+import 'bot.dart';
 
-#source('src/qr/qr_bit_buffer.dart');
-#source('src/qr/qr_byte.dart');
-#source('src/qr/qr_code.dart');
-#source('src/qr/qr_enums.dart');
-#source('src/qr/qr_input_too_long_exception.dart');
-#source('src/qr/qr_math.dart');
-#source('src/qr/qr_polynomial.dart');
-#source('src/qr/qr_rs_block.dart');
-#source('src/qr/qr_util.dart');
+part 'src/qr/qr_bit_buffer.dart';
+part 'src/qr/qr_byte.dart';
+part 'src/qr/qr_code.dart';
+part 'src/qr/qr_enums.dart';
+part 'src/qr/qr_input_too_long_exception.dart';
+part 'src/qr/qr_math.dart';
+part 'src/qr/qr_polynomial.dart';
+part 'src/qr/qr_rs_block.dart';
+part 'src/qr/qr_util.dart';

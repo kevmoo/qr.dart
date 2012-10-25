@@ -1,13 +1,13 @@
-#library('test_bot_async');
+library test_bot_async;
 
-#import('dart:isolate');
-#import('package:unittest/unittest.dart');
-#import('package:bot/bot.dart');
-#import('package:bot/async.dart');
-#import('package:bot/test.dart');
+import 'dart:isolate';
+import 'package:unittest/unittest.dart';
+import 'package:bot/bot.dart';
+import 'package:bot/async.dart';
+import 'package:bot/test.dart';
 
-#source('test_send_port_value.dart');
-#source('test_future_value_result.dart');
+part 'test_send_port_value.dart';
+part 'test_future_value_result.dart';
 
 void runAsyncTests() {
   group('bot_async', (){
