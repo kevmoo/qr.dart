@@ -143,19 +143,6 @@ Vector get normal =&gt; this.scale(1 / this.length);
 </pre>
 </div>
 </div>
-<div class="field inherited"><h4 id="runtimeType">
-<button class="show-code">Code</button>
-final Type         <strong>runtimeType</strong> <a class="anchor-link"
-            href="#runtimeType"
-            title="Permalink to Vector.runtimeType">#</a>
-        </h4>
-        <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
-<pre class="source">
-external Type get runtimeType;
-</pre>
-</div>
-</div>
 <div class="field inherited"><h4 id="x">
 <button class="show-code">Code</button>
 final num         <strong>x</strong> <a class="anchor-link"
@@ -239,16 +226,6 @@ bool operator ==(Coordinate other) {
 </div>
 <div>
 <h3>Methods</h3>
-<div class="method inherited"><h4 id="Coordinate">
-<button class="show-code">Code</button>
-const <strong>Coordinate</strong>([num x = 0, num y = 0]) <a class="anchor-link" href="#Coordinate"
-              title="Permalink to Vector.Coordinate">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot/Coordinate.html">Coordinate</a> </div><div class="doc">
-<pre class="source">
-const Coordinate([this.x = 0, this.y = 0]);
-</pre>
-</div>
-</div>
 <div class="method"><h4 id="cross">
 <button class="show-code">Code</button>
 num <strong>cross</strong>(<a href="../bot/Vector.html">Vector</a> other) <a class="anchor-link" href="#cross"
@@ -290,55 +267,6 @@ num <strong>getDistance</strong>(<a href="../bot/Coordinate.html">Coordinate</a>
 <p>Computes the distance to another <a class="crossref" href="../bot/Coordinate.html">Coordinate</a>.</p>
 <pre class="source">
 num getDistance (Coordinate other) =&gt; (this - other).length;
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="hashCode">
-<button class="show-code">Code</button>
-int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
-              title="Permalink to Vector.hashCode">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>Get a hash code for this object.</p>
-<p>All objects have hash codes. Hash codes are guaranteed to be the
-same for objects that are equal when compared using the equality
-operator <code>==</code>. Other than that there are no guarantees about
-the hash codes. They will not be consistent between runs and
-there are no distribution guarantees.</p>
-<p>If a subclass overrides <code>hashCode</code> it should override the
-equality operator as well to maintain consistency.</p>
-<pre class="source">
-external int hashCode();
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="noSuchMethod">
-<button class="show-code">Code</button>
-<strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
-              title="Permalink to Vector.noSuchMethod">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
-on an object. The name of the method and the arguments of the
-invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
-returns a value, that value becomes the result of the original
-invocation.</p>
-<p>The default behavior of <code>noSuchMethod</code> is to throw a
-<code>noSuchMethodError</code>.</p>
-<pre class="source">
-external Dynamic noSuchMethod(String name, List args);
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="Object">
-<button class="show-code">Code</button>
-const <strong>Object</strong>() <a class="anchor-link" href="#Object"
-              title="Permalink to Vector.Object">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>Creates a new <code>Object</code> instance.</p>
-<p><code>Object</code> instances have no meaningful state, and are only useful
-through their identity. An <code>Object</code> instance is equal to itself
-only.</p>
-<pre class="source">
-const Object();
 </pre>
 </div>
 </div>
@@ -421,16 +349,6 @@ String toString() =&gt; '{x:${x}, y:${y}}';
 <div class="inherited-from">inherited from <a href="../bot/Coordinate.html">Coordinate</a> </div><div class="doc">
 <pre class="source">
 Vector toVector() =&gt; new Vector(x, y);
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="Vector">
-<button class="show-code">Code</button>
-const <strong>Vector</strong>([num x = 0, num y = 0]) <a class="anchor-link" href="#Vector"
-              title="Permalink to Vector.Vector">#</a></h4>
-<div class="doc">
-<pre class="source">
-const Vector([num x = 0, num y = 0]) : super(x,y);
 </pre>
 </div>
 </div>

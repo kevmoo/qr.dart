@@ -71,18 +71,6 @@ factory GlobalId() {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="GlobalId._internal">
-<button class="show-code">Code</button>
-new <strong>GlobalId._internal</strong>(int value) <a class="anchor-link" href="#GlobalId._internal"
-              title="Permalink to GlobalId.GlobalId._internal">#</a></h4>
-<div class="doc">
-<pre class="source">
-GlobalId._internal(int value) :
-  id = value,
-  _hashCode = Util.getHashCode([value]);
-</pre>
-</div>
-</div>
 </div>
 <div>
 <h3>Properties</h3>
@@ -95,19 +83,6 @@ final int         <strong>id</strong> <a class="anchor-link"
         <div class="doc">
 <pre class="source">
 final int id;
-</pre>
-</div>
-</div>
-<div class="field inherited"><h4 id="runtimeType">
-<button class="show-code">Code</button>
-final Type         <strong>runtimeType</strong> <a class="anchor-link"
-            href="#runtimeType"
-            title="Permalink to GlobalId.runtimeType">#</a>
-        </h4>
-        <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
-<pre class="source">
-external Type get runtimeType;
 </pre>
 </div>
 </div>
@@ -153,30 +128,6 @@ int compareTo(GlobalId other) =&gt; id.compareTo(other.id);
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="GlobalId">
-<button class="show-code">Code</button>
-factory <strong>GlobalId</strong>() <a class="anchor-link" href="#GlobalId"
-              title="Permalink to GlobalId.GlobalId">#</a></h4>
-<div class="doc">
-<pre class="source">
-factory GlobalId() {
-  return new GlobalId._internal(_globalId++);
-}
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="GlobalId._internal">
-<button class="show-code">Code</button>
-new <strong>GlobalId._internal</strong>(int value) <a class="anchor-link" href="#GlobalId._internal"
-              title="Permalink to GlobalId.GlobalId._internal">#</a></h4>
-<div class="doc">
-<pre class="source">
-GlobalId._internal(int value) :
-  id = value,
-  _hashCode = Util.getHashCode([value]);
-</pre>
-</div>
-</div>
 <div class="method"><h4 id="hashCode">
 <button class="show-code">Code</button>
 int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
@@ -194,48 +145,6 @@ equality operator as well to maintain consistency.</p>
 <div class="docs-inherited-from">docs inherited from Object </div></div>
 <pre class="source">
 int hashCode() =&gt; _hashCode;
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="noSuchMethod">
-<button class="show-code">Code</button>
-<strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
-              title="Permalink to GlobalId.noSuchMethod">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
-on an object. The name of the method and the arguments of the
-invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
-returns a value, that value becomes the result of the original
-invocation.</p>
-<p>The default behavior of <code>noSuchMethod</code> is to throw a
-<code>noSuchMethodError</code>.</p>
-<pre class="source">
-external Dynamic noSuchMethod(String name, List args);
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="Object">
-<button class="show-code">Code</button>
-const <strong>Object</strong>() <a class="anchor-link" href="#Object"
-              title="Permalink to GlobalId.Object">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>Creates a new <code>Object</code> instance.</p>
-<p><code>Object</code> instances have no meaningful state, and are only useful
-through their identity. An <code>Object</code> instance is equal to itself
-only.</p>
-<pre class="source">
-const Object();
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="toString">
-<button class="show-code">Code</button>
-String <strong>toString</strong>() <a class="anchor-link" href="#toString"
-              title="Permalink to GlobalId.toString">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>Returns a string representation of this object.</p>
-<pre class="source">
-external String toString();
 </pre>
 </div>
 </div>

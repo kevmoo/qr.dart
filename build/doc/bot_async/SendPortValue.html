@@ -220,54 +220,9 @@ final Func1&lt;Dynamic, TOutput&gt; outputDeserializer;
 </pre>
 </div>
 </div>
-<div class="field inherited"><h4 id="runtimeType">
-<button class="show-code">Code</button>
-final Type         <strong>runtimeType</strong> <a class="anchor-link"
-            href="#runtimeType"
-            title="Permalink to SendPortValue&lt;TInput, TOutput&gt;.runtimeType">#</a>
-        </h4>
-        <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
-<pre class="source">
-external Type get runtimeType;
-</pre>
-</div>
-</div>
-</div>
-<div>
-<h3>Operators</h3>
-<div class="method inherited"><h4 id="==">
-<button class="show-code">Code</button>
-bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
-              title="Permalink to SendPortValue&lt;TInput, TOutput&gt;.operator ==">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>The equality operator.</p>
-<p>The default behavior for all <code>Object</code>s is to return true if and
-only if <code>this</code> and 
-<span class="param">other</span> are the same object.</p>
-<p>If a subclass overrides the equality operator it should override
-the <code>hashCode</code> method as well to maintain consistency.</p>
-<pre class="source">
-bool operator ==(other) =&gt; identical(this, other);
-</pre>
-</div>
-</div>
 </div>
 <div>
 <h3>Methods</h3>
-<div class="method inherited"><h4 id="FutureValue">
-<button class="show-code">Code</button>
-new <strong>FutureValue</strong>() <a class="anchor-link" href="#FutureValue"
-              title="Permalink to SendPortValue&lt;TInput, TOutput&gt;.FutureValue">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_async/FutureValue.html">FutureValue</a> </div><div class="doc">
-<pre class="source">
-FutureValue() :
-  _outputChangedHandle = new EventHandle&lt;EventArgs&gt;(),
-  _inputChangedHandle = new EventHandle&lt;EventArgs&gt;(),
-  _errorHandle = new EventHandle&lt;Object&gt;();
-</pre>
-</div>
-</div>
 <div class="method"><h4 id="getFuture">
 <button class="show-code">Code</button>
 Future&lt;<a href="../bot_async/SendPortValue.html">TOutput</a>&gt; <strong>getFuture</strong>(<a href="../bot_async/SendPortValue.html">TInput</a> value) <a class="anchor-link" href="#getFuture"
@@ -293,76 +248,6 @@ Future&lt;TOutput&gt; getFuture(TInput value) {
 
   return _completer.future;
 }
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="hashCode">
-<button class="show-code">Code</button>
-int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
-              title="Permalink to SendPortValue&lt;TInput, TOutput&gt;.hashCode">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>Get a hash code for this object.</p>
-<p>All objects have hash codes. Hash codes are guaranteed to be the
-same for objects that are equal when compared using the equality
-operator <code>==</code>. Other than that there are no guarantees about
-the hash codes. They will not be consistent between runs and
-there are no distribution guarantees.</p>
-<p>If a subclass overrides <code>hashCode</code> it should override the
-equality operator as well to maintain consistency.</p>
-<pre class="source">
-external int hashCode();
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="noSuchMethod">
-<button class="show-code">Code</button>
-<strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
-              title="Permalink to SendPortValue&lt;TInput, TOutput&gt;.noSuchMethod">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
-on an object. The name of the method and the arguments of the
-invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
-returns a value, that value becomes the result of the original
-invocation.</p>
-<p>The default behavior of <code>noSuchMethod</code> is to throw a
-<code>noSuchMethodError</code>.</p>
-<pre class="source">
-external Dynamic noSuchMethod(String name, List args);
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="Object">
-<button class="show-code">Code</button>
-const <strong>Object</strong>() <a class="anchor-link" href="#Object"
-              title="Permalink to SendPortValue&lt;TInput, TOutput&gt;.Object">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>Creates a new <code>Object</code> instance.</p>
-<p><code>Object</code> instances have no meaningful state, and are only useful
-through their identity. An <code>Object</code> instance is equal to itself
-only.</p>
-<pre class="source">
-const Object();
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="SendPortValue">
-<button class="show-code">Code</button>
-new <strong>SendPortValue</strong>(SendPort _sendPort, [<a href="../bot/Func1.html">Func1</a> inputSerializer, <a href="../bot/Func1.html">Func1</a> outputDeserializer]) <a class="anchor-link" href="#SendPortValue"
-              title="Permalink to SendPortValue&lt;TInput, TOutput&gt;.SendPortValue">#</a></h4>
-<div class="doc">
-<pre class="source">
-SendPortValue(this._sendPort, {this.inputSerializer, this.outputDeserializer});
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="toString">
-<button class="show-code">Code</button>
-String <strong>toString</strong>() <a class="anchor-link" href="#toString"
-              title="Permalink to SendPortValue&lt;TInput, TOutput&gt;.toString">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>Returns a string representation of this object.</p>
-<pre class="source">
-external String toString();
 </pre>
 </div>
 </div>

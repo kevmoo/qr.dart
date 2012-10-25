@@ -123,16 +123,6 @@ factory HslColor(num h, num s, num l) {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="HslColor._internal">
-<button class="show-code">Code</button>
-const <strong>HslColor._internal</strong>(num h, num s, num l) <a class="anchor-link" href="#HslColor._internal"
-              title="Permalink to HslColor.HslColor._internal">#</a></h4>
-<div class="doc">
-<pre class="source">
-const HslColor._internal(this.h, this.s, this.l);
-</pre>
-</div>
-</div>
 </div>
 <div>
 <h3>Properties</h3>
@@ -157,19 +147,6 @@ final num         <strong>l</strong> <a class="anchor-link"
         <div class="doc">
 <pre class="source">
 final num h, s, l;
-</pre>
-</div>
-</div>
-<div class="field inherited"><h4 id="runtimeType">
-<button class="show-code">Code</button>
-final Type         <strong>runtimeType</strong> <a class="anchor-link"
-            href="#runtimeType"
-            title="Permalink to HslColor.runtimeType">#</a>
-        </h4>
-        <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
-<pre class="source">
-external Type get runtimeType;
 </pre>
 </div>
 </div>
@@ -228,67 +205,6 @@ equality operator as well to maintain consistency.</p>
 <div class="docs-inherited-from">docs inherited from Object </div></div>
 <pre class="source">
 int hashCode() =&gt; Util.getHashCode([h,s,l]);
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="HslColor">
-<button class="show-code">Code</button>
-factory <strong>HslColor</strong>(num h, num s, num l) <a class="anchor-link" href="#HslColor"
-              title="Permalink to HslColor.HslColor">#</a></h4>
-<div class="doc">
-<pre class="source">
-factory HslColor(num h, num s, num l) {
-  requireArgument(isValidNumber(h), 'h');
-  h = (h % 360);
-
-  requireArgument(isValidNumber(s), 's', 'must be a valid number');
-  requireArgument(s &gt;= 0 &amp;&amp; s &lt;= 1, 's', 'must be &gt;= 0 &amp;&amp; &lt;= 1 but was $s');
-  requireArgument(isValidNumber(l), 'l', 'must be a valid number');
-  requireArgument(l &gt;= 0 &amp;&amp; l &lt;= 1, 'l', 'must be &gt;= 0 &amp;&amp; &lt;=1 but was $l');
-
-  return new HslColor._internal(h, s, l);
-}
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="HslColor._internal">
-<button class="show-code">Code</button>
-const <strong>HslColor._internal</strong>(num h, num s, num l) <a class="anchor-link" href="#HslColor._internal"
-              title="Permalink to HslColor.HslColor._internal">#</a></h4>
-<div class="doc">
-<pre class="source">
-const HslColor._internal(this.h, this.s, this.l);
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="noSuchMethod">
-<button class="show-code">Code</button>
-<strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
-              title="Permalink to HslColor.noSuchMethod">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
-on an object. The name of the method and the arguments of the
-invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
-returns a value, that value becomes the result of the original
-invocation.</p>
-<p>The default behavior of <code>noSuchMethod</code> is to throw a
-<code>noSuchMethodError</code>.</p>
-<pre class="source">
-external Dynamic noSuchMethod(String name, List args);
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="Object">
-<button class="show-code">Code</button>
-const <strong>Object</strong>() <a class="anchor-link" href="#Object"
-              title="Permalink to HslColor.Object">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>Creates a new <code>Object</code> instance.</p>
-<p><code>Object</code> instances have no meaningful state, and are only useful
-through their identity. An <code>Object</code> instance is equal to itself
-only.</p>
-<pre class="source">
-const Object();
 </pre>
 </div>
 </div>

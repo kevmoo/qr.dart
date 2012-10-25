@@ -138,19 +138,6 @@ int get length =&gt; _values.length;
 </pre>
 </div>
 </div>
-<div class="field inherited"><h4 id="runtimeType">
-<button class="show-code">Code</button>
-final Type         <strong>runtimeType</strong> <a class="anchor-link"
-            href="#runtimeType"
-            title="Permalink to Grouping&lt;K, V&gt;.runtimeType">#</a>
-        </h4>
-        <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
-<pre class="source">
-external Type get runtimeType;
-</pre>
-</div>
-</div>
 </div>
 <div>
 <h3>Operators</h3>
@@ -167,22 +154,6 @@ use containsKey to distinguish between an absent key and a null
 value, or use the <code>putIfAbsent</code> method.</p>
 <pre class="source">
 List&lt;V&gt; operator [](K key) =&gt; _values[key];
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="==">
-<button class="show-code">Code</button>
-bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
-              title="Permalink to Grouping&lt;K, V&gt;.operator ==">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>The equality operator.</p>
-<p>The default behavior for all <code>Object</code>s is to return true if and
-only if <code>this</code> and 
-<span class="param">other</span> are the same object.</p>
-<p>If a subclass overrides the equality operator it should override
-the <code>hashCode</code> method as well to maintain consistency.</p>
-<pre class="source">
-bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
@@ -231,75 +202,6 @@ Collection&lt;K&gt; getKeys() =&gt; _values.getKeys();
 <div class="doc">
 <pre class="source">
 Enumerable&lt;V&gt; getValues() =&gt; $(_values.getValues()).selectMany((a) =&gt; a);
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="Grouping">
-<button class="show-code">Code</button>
-new <strong>Grouping</strong>(Iterable&lt;<a href="../bot/Grouping.html">V</a>&gt; source, [<a href="../bot/Func1.html">Func1</a> keyFunc = null]) <a class="anchor-link" href="#Grouping"
-              title="Permalink to Grouping&lt;K, V&gt;.Grouping">#</a></h4>
-<div class="doc">
-<pre class="source">
-Grouping(Iterable&lt;V&gt; source, [Func1&lt;V, K&gt; keyFunc = null]) {
-  if(keyFunc == null) {
-    keyFunc = (v) =&gt; v;
-  }
-
-  for (final V value in source) {
-    final K key = keyFunc(value);
-    final values = _values.putIfAbsent(key, () =&gt; new List&lt;V&gt;());
-    values.add(value);
-  }
-}
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="hashCode">
-<button class="show-code">Code</button>
-int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
-              title="Permalink to Grouping&lt;K, V&gt;.hashCode">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>Get a hash code for this object.</p>
-<p>All objects have hash codes. Hash codes are guaranteed to be the
-same for objects that are equal when compared using the equality
-operator <code>==</code>. Other than that there are no guarantees about
-the hash codes. They will not be consistent between runs and
-there are no distribution guarantees.</p>
-<p>If a subclass overrides <code>hashCode</code> it should override the
-equality operator as well to maintain consistency.</p>
-<pre class="source">
-external int hashCode();
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="noSuchMethod">
-<button class="show-code">Code</button>
-<strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
-              title="Permalink to Grouping&lt;K, V&gt;.noSuchMethod">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
-on an object. The name of the method and the arguments of the
-invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
-returns a value, that value becomes the result of the original
-invocation.</p>
-<p>The default behavior of <code>noSuchMethod</code> is to throw a
-<code>noSuchMethodError</code>.</p>
-<pre class="source">
-external Dynamic noSuchMethod(String name, List args);
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="Object">
-<button class="show-code">Code</button>
-const <strong>Object</strong>() <a class="anchor-link" href="#Object"
-              title="Permalink to Grouping&lt;K, V&gt;.Object">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>Creates a new <code>Object</code> instance.</p>
-<p><code>Object</code> instances have no meaningful state, and are only useful
-through their identity. An <code>Object</code> instance is equal to itself
-only.</p>
-<pre class="source">
-const Object();
 </pre>
 </div>
 </div>

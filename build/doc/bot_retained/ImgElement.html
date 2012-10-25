@@ -103,7 +103,7 @@ factory ImgElement.fromUrl(String src, num w, num h) {
 </div>
 </div>
 </div>
-<div>
+<div class="inherited">
 <h3>Properties</h3>
 <div class="field inherited"><h4 id="cacheEnabled">
 <button class="show-code">Code</button>
@@ -184,19 +184,6 @@ ElementParent get parent =&gt; _parent;
 </pre>
 </div>
 </div>
-<div class="field inherited"><h4 id="runtimeType">
-<button class="show-code">Code</button>
-final Type         <strong>runtimeType</strong> <a class="anchor-link"
-            href="#runtimeType"
-            title="Permalink to ImgElement.runtimeType">#</a>
-        </h4>
-        <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
-<pre class="source">
-external Type get runtimeType;
-</pre>
-</div>
-</div>
 <div class="field inherited"><h4 id="size">
 <button class="show-code">Code</button>
 <a href="../bot/Size.html">Size</a>         <strong>size</strong> <a class="anchor-link"
@@ -233,25 +220,6 @@ void set width(num value) {
   _width = value;
   invalidateDraw();
 }
-</pre>
-</div>
-</div>
-</div>
-<div>
-<h3>Operators</h3>
-<div class="method inherited"><h4 id="==">
-<button class="show-code">Code</button>
-bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
-              title="Permalink to ImgElement.operator ==">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>The equality operator.</p>
-<p>The default behavior for all <code>Object</code>s is to return true if and
-only if <code>this</code> and 
-<span class="param">other</span> are the same object.</p>
-<p>If a subclass overrides the equality operator it should override
-the <code>hashCode</code> method as well to maintain consistency.</p>
-<pre class="source">
-bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
@@ -373,49 +341,6 @@ AffineTransform getTransformToRoot(){
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="hashCode">
-<button class="show-code">Code</button>
-int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
-              title="Permalink to ImgElement.hashCode">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>Get a hash code for this object.</p>
-<p>All objects have hash codes. Hash codes are guaranteed to be the
-same for objects that are equal when compared using the equality
-operator <code>==</code>. Other than that there are no guarantees about
-the hash codes. They will not be consistent between runs and
-there are no distribution guarantees.</p>
-<p>If a subclass overrides <code>hashCode</code> it should override the
-equality operator as well to maintain consistency.</p>
-<pre class="source">
-external int hashCode();
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="ImgElement">
-<button class="show-code">Code</button>
-new <strong>ImgElement</strong>(num width, num height, ImageElement _image, [bool cacheEnabled = false]) <a class="anchor-link" href="#ImgElement"
-              title="Permalink to ImgElement.ImgElement">#</a></h4>
-<div class="doc">
-<pre class="source">
-ImgElement(num width, num height, this._image, [bool cacheEnabled = false]) :
-  super(width, height, cacheEnabled);
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="ImgElement.fromUrl">
-<button class="show-code">Code</button>
-factory <strong>ImgElement.fromUrl</strong>(String src, num w, num h) <a class="anchor-link" href="#ImgElement.fromUrl"
-              title="Permalink to ImgElement.ImgElement.fromUrl">#</a></h4>
-<div class="doc">
-<pre class="source">
-factory ImgElement.fromUrl(String src, num w, num h) {
-  final img = new ImageElement(src, null, null);
-
-  return new ImgElement(w, h, img);
-}
-</pre>
-</div>
-</div>
 <div class="method inherited"><h4 id="invalidateDraw">
 <button class="show-code">Code</button>
 void <strong>invalidateDraw</strong>() <a class="anchor-link" href="#invalidateDraw"
@@ -432,47 +357,6 @@ void invalidateDraw(){
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="noSuchMethod">
-<button class="show-code">Code</button>
-<strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
-              title="Permalink to ImgElement.noSuchMethod">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
-on an object. The name of the method and the arguments of the
-invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
-returns a value, that value becomes the result of the original
-invocation.</p>
-<p>The default behavior of <code>noSuchMethod</code> is to throw a
-<code>noSuchMethodError</code>.</p>
-<pre class="source">
-external Dynamic noSuchMethod(String name, List args);
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="Object">
-<button class="show-code">Code</button>
-const <strong>Object</strong>() <a class="anchor-link" href="#Object"
-              title="Permalink to ImgElement.Object">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>Creates a new <code>Object</code> instance.</p>
-<p><code>Object</code> instances have no meaningful state, and are only useful
-through their identity. An <code>Object</code> instance is equal to itself
-only.</p>
-<pre class="source">
-const Object();
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="PElement">
-<button class="show-code">Code</button>
-new <strong>PElement</strong>(num _width, num _height, [bool cacheEnabled = false]) <a class="anchor-link" href="#PElement"
-              title="Permalink to ImgElement.PElement">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
-<pre class="source">
-PElement(this._width, this._height, [this.cacheEnabled = false]);
-</pre>
-</div>
-</div>
 <div class="method inherited"><h4 id="registerParent">
 <button class="show-code">Code</button>
 void <strong>registerParent</strong>(<a href="../bot_retained/ElementParent.html">ElementParent</a> parent) <a class="anchor-link" href="#registerParent"
@@ -484,17 +368,6 @@ void registerParent(ElementParent parent) {
   assert(parent != null);
   _parent = parent;
 }
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="toString">
-<button class="show-code">Code</button>
-String <strong>toString</strong>() <a class="anchor-link" href="#toString"
-              title="Permalink to ImgElement.toString">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>Returns a string representation of this object.</p>
-<pre class="source">
-external String toString();
 </pre>
 </div>
 </div>

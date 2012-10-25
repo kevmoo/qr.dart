@@ -49,6 +49,64 @@ math.Random get rnd {
 </div>
 <div>
 <h3>Functions</h3>
+<div class="method"><h4 id="requireArgumentNotNull">
+<button class="show-code">Code</button>
+void <strong>requireArgumentNotNull</strong>(argument, [String argName = ""]) <a class="anchor-link" href="#requireArgumentNotNull"
+              title="Permalink to requireArgumentNotNull">#</a></h4>
+<div class="doc">
+<pre class="source">
+void requireArgumentNotNull(argument, [String argName = ""]) {
+  if(argument == null) {
+    throw new NullArgumentException(argName);
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="requireArgument">
+<button class="show-code">Code</button>
+void <strong>requireArgument</strong>(bool truth, [String arg = "", String message]) <a class="anchor-link" href="#requireArgument"
+              title="Permalink to requireArgument">#</a></h4>
+<div class="doc">
+<pre class="source">
+void requireArgument(bool truth, [String arg = "", String message]) {
+  if(!truth) {
+    if(message != null) {
+      throw new DetailedIllegalArgumentException(arg, message);
+    } else {
+      throw new IllegalArgumentException(arg);
+    }
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="require">
+<button class="show-code">Code</button>
+void <strong>require</strong>(bool truth, [String message = '']) <a class="anchor-link" href="#require"
+              title="Permalink to require">#</a></h4>
+<div class="doc">
+<pre class="source">
+void require(bool truth, [String message = '']) {
+  if(!truth) {
+    throw new Exception(message);
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="isValidNumber">
+<button class="show-code">Code</button>
+bool <strong>isValidNumber</strong>(num value) <a class="anchor-link" href="#isValidNumber"
+              title="Permalink to isValidNumber">#</a></h4>
+<div class="doc">
+<pre class="source">
+bool isValidNumber(num value) {
+  return value != null &amp;&amp; !value.isInfinite() &amp;&amp; !value.isNaN();
+}
+</pre>
+</div>
+</div>
 <div class="method"><h4 id="n$">
 <button class="show-code">Code</button>
 <a href="bot/NumberEnumerable.html">NumberEnumerable</a> <strong>n$</strong>(Iterable&lt;num&gt; source) <a class="anchor-link" href="#n$"
@@ -73,64 +131,6 @@ Enumerable $(Iterable source) {
   } else {
     return new Enumerable.fromIterable(source);
   }
-}
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="require">
-<button class="show-code">Code</button>
-void <strong>require</strong>(bool truth, [String message = '']) <a class="anchor-link" href="#require"
-              title="Permalink to require">#</a></h4>
-<div class="doc">
-<pre class="source">
-void require(bool truth, [String message = '']) {
-  if(!truth) {
-    throw new Exception(message);
-  }
-}
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="requireArgument">
-<button class="show-code">Code</button>
-void <strong>requireArgument</strong>(bool truth, [String arg = "", String message]) <a class="anchor-link" href="#requireArgument"
-              title="Permalink to requireArgument">#</a></h4>
-<div class="doc">
-<pre class="source">
-void requireArgument(bool truth, [String arg = "", String message]) {
-  if(!truth) {
-    if(message != null) {
-      throw new DetailedIllegalArgumentException(arg, message);
-    } else {
-      throw new IllegalArgumentException(arg);
-    }
-  }
-}
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="requireArgumentNotNull">
-<button class="show-code">Code</button>
-void <strong>requireArgumentNotNull</strong>(argument, [String argName = ""]) <a class="anchor-link" href="#requireArgumentNotNull"
-              title="Permalink to requireArgumentNotNull">#</a></h4>
-<div class="doc">
-<pre class="source">
-void requireArgumentNotNull(argument, [String argName = ""]) {
-  if(argument == null) {
-    throw new NullArgumentException(argName);
-  }
-}
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="isValidNumber">
-<button class="show-code">Code</button>
-bool <strong>isValidNumber</strong>(num value) <a class="anchor-link" href="#isValidNumber"
-              title="Permalink to isValidNumber">#</a></h4>
-<div class="doc">
-<pre class="source">
-bool isValidNumber(num value) {
-  return value != null &amp;&amp; !value.isInfinite() &amp;&amp; !value.isNaN();
 }
 </pre>
 </div>

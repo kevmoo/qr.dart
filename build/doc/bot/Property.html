@@ -79,19 +79,6 @@ class Property&lt;T&gt; extends Attachable {
 <p>
 <span class="type-box"><span class="icon-class"></span><a href="../bot/Attachable.html">Attachable</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>Property&lt;T&gt;</strong></span></p>
 <div>
-<h3>Constructors</h3>
-<div class="method"><h4 id="Property">
-<button class="show-code">Code</button>
-new <strong>Property</strong>(String name, [<a href="../bot/Property.html">T</a> defaultValue = null]) <a class="anchor-link" href="#Property"
-              title="Permalink to Property&lt;T&gt;.Property">#</a></h4>
-<div class="doc">
-<pre class="source">
-Property(String name, [T this.defaultValue = null]) : super(name);
-</pre>
-</div>
-</div>
-</div>
-<div>
 <h3>Static Properties</h3>
 <div class="field"><h4 id="Undefined">
 <button class="show-code">Code</button>
@@ -102,6 +89,19 @@ const Object         <strong>Undefined</strong> <a class="anchor-link"
         <div class="doc">
 <pre class="source">
 static const Object Undefined = const _UndefinedValue();
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="Property">
+<button class="show-code">Code</button>
+new <strong>Property</strong>(String name, [<a href="../bot/Property.html">T</a> defaultValue = null]) <a class="anchor-link" href="#Property"
+              title="Permalink to Property&lt;T&gt;.Property">#</a></h4>
+<div class="doc">
+<pre class="source">
+Property(String name, [T this.defaultValue = null]) : super(name);
 </pre>
 </div>
 </div>
@@ -132,38 +132,6 @@ final String name;
 </pre>
 </div>
 </div>
-<div class="field inherited"><h4 id="runtimeType">
-<button class="show-code">Code</button>
-final Type         <strong>runtimeType</strong> <a class="anchor-link"
-            href="#runtimeType"
-            title="Permalink to Property&lt;T&gt;.runtimeType">#</a>
-        </h4>
-        <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
-<pre class="source">
-external Type get runtimeType;
-</pre>
-</div>
-</div>
-</div>
-<div>
-<h3>Operators</h3>
-<div class="method inherited"><h4 id="==">
-<button class="show-code">Code</button>
-bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
-              title="Permalink to Property&lt;T&gt;.operator ==">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>The equality operator.</p>
-<p>The default behavior for all <code>Object</code>s is to return true if and
-only if <code>this</code> and 
-<span class="param">other</span> are the same object.</p>
-<p>If a subclass overrides the equality operator it should override
-the <code>hashCode</code> method as well to maintain consistency.</p>
-<pre class="source">
-bool operator ==(other) =&gt; identical(this, other);
-</pre>
-</div>
-</div>
 </div>
 <div>
 <h3>Methods</h3>
@@ -176,16 +144,6 @@ bool operator ==(other) =&gt; identical(this, other);
 GlobalId addHandler(AttachableObject obj, Action1&lt;Property&gt; handler){
   return obj._addHandler(this, handler);
 }
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="Attachable">
-<button class="show-code">Code</button>
-new <strong>Attachable</strong>(String name) <a class="anchor-link" href="#Attachable"
-              title="Permalink to Property&lt;T&gt;.Attachable">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot/Attachable.html">Attachable</a> </div><div class="doc">
-<pre class="source">
-Attachable(this.name);
 </pre>
 </div>
 </div>
@@ -252,47 +210,6 @@ bool <strong>isSet</strong>(<a href="../bot/AttachableObject.html">AttachableObj
 <div class="doc">
 <pre class="source">
 bool isSet(AttachableObject obj) =&gt; obj._isSet(this);
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="noSuchMethod">
-<button class="show-code">Code</button>
-<strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
-              title="Permalink to Property&lt;T&gt;.noSuchMethod">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
-on an object. The name of the method and the arguments of the
-invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
-returns a value, that value becomes the result of the original
-invocation.</p>
-<p>The default behavior of <code>noSuchMethod</code> is to throw a
-<code>noSuchMethodError</code>.</p>
-<pre class="source">
-external Dynamic noSuchMethod(String name, List args);
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="Object">
-<button class="show-code">Code</button>
-const <strong>Object</strong>() <a class="anchor-link" href="#Object"
-              title="Permalink to Property&lt;T&gt;.Object">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>Creates a new <code>Object</code> instance.</p>
-<p><code>Object</code> instances have no meaningful state, and are only useful
-through their identity. An <code>Object</code> instance is equal to itself
-only.</p>
-<pre class="source">
-const Object();
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="Property">
-<button class="show-code">Code</button>
-new <strong>Property</strong>(String name, [<a href="../bot/Property.html">T</a> defaultValue = null]) <a class="anchor-link" href="#Property"
-              title="Permalink to Property&lt;T&gt;.Property">#</a></h4>
-<div class="doc">
-<pre class="source">
-Property(String name, [T this.defaultValue = null]) : super(name);
 </pre>
 </div>
 </div>

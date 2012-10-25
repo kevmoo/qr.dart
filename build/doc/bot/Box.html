@@ -181,19 +181,6 @@ num get right =&gt; left + width;
 </pre>
 </div>
 </div>
-<div class="field inherited"><h4 id="runtimeType">
-<button class="show-code">Code</button>
-final Type         <strong>runtimeType</strong> <a class="anchor-link"
-            href="#runtimeType"
-            title="Permalink to Box.runtimeType">#</a>
-        </h4>
-        <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
-<pre class="source">
-external Type get runtimeType;
-</pre>
-</div>
-</div>
 <div class="field"><h4 id="size">
 <button class="show-code">Code</button>
 final <a href="../bot/Size.html">Size</a>         <strong>size</strong> <a class="anchor-link"
@@ -269,28 +256,6 @@ bool operator ==(Box other) {
 </div>
 <div>
 <h3>Methods</h3>
-<div class="method"><h4 id="Box">
-<button class="show-code">Code</button>
-const <strong>Box</strong>(num left, num top, num width, num height) <a class="anchor-link" href="#Box"
-              title="Permalink to Box.Box">#</a></h4>
-<div class="doc">
-<pre class="source">
-const Box(this.left, this.top, this.width, this.height);
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="Box.fromCoordSize">
-<button class="show-code">Code</button>
-factory <strong>Box.fromCoordSize</strong>(<a href="../bot/Coordinate.html">Coordinate</a> topLeft, <a href="../bot/Size.html">Size</a> size) <a class="anchor-link" href="#Box.fromCoordSize"
-              title="Permalink to Box.Box.fromCoordSize">#</a></h4>
-<div class="doc">
-<pre class="source">
-factory Box.fromCoordSize(Coordinate topLeft, Size size) {
-  return new Box(topLeft.x, topLeft.y, size.width, size.height);
-}
-</pre>
-</div>
-</div>
 <div class="method"><h4 id="constrain">
 <button class="show-code">Code</button>
 <a href="../bot/Coordinate.html">Coordinate</a> <strong>constrain</strong>(<a href="../bot/Coordinate.html">Coordinate</a> value) <a class="anchor-link" href="#constrain"
@@ -359,37 +324,6 @@ equality operator as well to maintain consistency.</p>
 <div class="docs-inherited-from">docs inherited from Object </div></div>
 <pre class="source">
 int hashCode() =&gt; Util.getHashCode([left, top, width, height]);
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="noSuchMethod">
-<button class="show-code">Code</button>
-<strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
-              title="Permalink to Box.noSuchMethod">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
-on an object. The name of the method and the arguments of the
-invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
-returns a value, that value becomes the result of the original
-invocation.</p>
-<p>The default behavior of <code>noSuchMethod</code> is to throw a
-<code>noSuchMethodError</code>.</p>
-<pre class="source">
-external Dynamic noSuchMethod(String name, List args);
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="Object">
-<button class="show-code">Code</button>
-const <strong>Object</strong>() <a class="anchor-link" href="#Object"
-              title="Permalink to Box.Object">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>Creates a new <code>Object</code> instance.</p>
-<p><code>Object</code> instances have no meaningful state, and are only useful
-through their identity. An <code>Object</code> instance is equal to itself
-only.</p>
-<pre class="source">
-const Object();
 </pre>
 </div>
 </div>

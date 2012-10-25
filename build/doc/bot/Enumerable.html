@@ -310,7 +310,7 @@ factory Enumerable.fromIterable(Iterable&lt;T&gt; source) {
 </div>
 </div>
 </div>
-<div>
+<div class="inherited">
 <h3>Properties</h3>
 <div class="field inherited"><h4 id="length">
 <button class="show-code">Code</button>
@@ -322,38 +322,6 @@ final int         <strong>length</strong> <a class="anchor-link"
 <p>Returns the number of elements in this collection.</p>
 <pre class="source">
 int get length;
-</pre>
-</div>
-</div>
-<div class="field inherited"><h4 id="runtimeType">
-<button class="show-code">Code</button>
-final Type         <strong>runtimeType</strong> <a class="anchor-link"
-            href="#runtimeType"
-            title="Permalink to Enumerable&lt;T&gt;.runtimeType">#</a>
-        </h4>
-        <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
-<pre class="source">
-external Type get runtimeType;
-</pre>
-</div>
-</div>
-</div>
-<div>
-<h3>Operators</h3>
-<div class="method inherited"><h4 id="==">
-<button class="show-code">Code</button>
-bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
-              title="Permalink to Enumerable&lt;T&gt;.operator ==">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>The equality operator.</p>
-<p>The default behavior for all <code>Object</code>s is to return true if and
-only if <code>this</code> and 
-<span class="param">other</span> are the same object.</p>
-<p>If a subclass overrides the equality operator it should override
-the <code>hashCode</code> method as well to maintain consistency.</p>
-<pre class="source">
-bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
@@ -378,6 +346,9 @@ Object aggregate(Object seed, Func2&lt;Object, T, Object&gt; f) {
 bool <strong>contains</strong>(<a href="../bot/Enumerable.html">T</a> item) <a class="anchor-link" href="#contains"
               title="Permalink to Enumerable&lt;T&gt;.contains">#</a></h4>
 <div class="doc">
+<div class="inherited">
+<p>Check whether the collection contains an element equal to <code>element</code>.</p>
+<div class="docs-inherited-from">docs inherited from Collection&lt;<a href="../bot/Enumerable.html">E</a>&gt; </div></div>
 <pre class="source">
 bool contains(T item) {
   for (final e in this) {
@@ -426,29 +397,6 @@ Enumerable&lt;T&gt; distinct([Func2&lt;T, T, bool&gt; comparer = null]) {
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="Enumerable">
-<button class="show-code">Code</button>
-const <strong>Enumerable</strong>() <a class="anchor-link" href="#Enumerable"
-              title="Permalink to Enumerable&lt;T&gt;.Enumerable">#</a></h4>
-<div class="doc">
-<pre class="source">
-const Enumerable();
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="Enumerable.fromIterable">
-<button class="show-code">Code</button>
-factory <strong>Enumerable.fromIterable</strong>(Iterable&lt;<a href="../bot/Enumerable.html">T</a>&gt; source) <a class="anchor-link" href="#Enumerable.fromIterable"
-              title="Permalink to Enumerable&lt;T&gt;.Enumerable.fromIterable">#</a></h4>
-<div class="doc">
-<pre class="source">
-factory Enumerable.fromIterable(Iterable&lt;T&gt; source) {
-  requireArgumentNotNull(source, 'source');
-  return new _SimpleEnumerable&lt;T&gt;(source);
-}
-</pre>
-</div>
-</div>
 <div class="method"><h4 id="every">
 <button class="show-code">Code</button>
 bool <strong>every</strong>(<a href="../bot/Func1.html">Func1</a> f) <a class="anchor-link" href="#every"
@@ -491,9 +439,11 @@ Enumerable&lt;T&gt; exclude(Iterable&lt;T&gt; items) {
               title="Permalink to Enumerable&lt;T&gt;.filter">#</a></h4>
 <div class="doc">
 <div class="inherited">
-<p>Returns a new collection with the elements of this collection
+<p>Returns a collection with the elements of this collection
 that satisfy the predicate 
 <span class="param">f</span>.</p>
+<p>The returned collection should be of the same type as the collection
+creating it.</p>
 <p>An element satisfies the predicate 
 <span class="param">f</span> if <code>f(element)</code>
 returns true.</p>
@@ -589,24 +539,6 @@ Grouping&lt;Dynamic, T&gt; group([Func1&lt;T, Object&gt; keyFunc = null]) {
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="hashCode">
-<button class="show-code">Code</button>
-int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
-              title="Permalink to Enumerable&lt;T&gt;.hashCode">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>Get a hash code for this object.</p>
-<p>All objects have hash codes. Hash codes are guaranteed to be the
-same for objects that are equal when compared using the equality
-operator <code>==</code>. Other than that there are no guarantees about
-the hash codes. They will not be consistent between runs and
-there are no distribution guarantees.</p>
-<p>If a subclass overrides <code>hashCode</code> it should override the
-equality operator as well to maintain consistency.</p>
-<pre class="source">
-external int hashCode();
-</pre>
-</div>
-</div>
 <div class="method"><h4 id="isEmpty">
 <button class="show-code">Code</button>
 bool <strong>isEmpty</strong>() <a class="anchor-link" href="#isEmpty"
@@ -663,37 +595,6 @@ Enumerable map(Func1&lt;T, Object&gt; f) {
   requireArgumentNotNull(f, 'f');
   return new _FuncEnumerable(this, (s) =&gt; new _SelectIterator&lt;T, Object&gt;(s, f));
 }
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="noSuchMethod">
-<button class="show-code">Code</button>
-<strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
-              title="Permalink to Enumerable&lt;T&gt;.noSuchMethod">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
-on an object. The name of the method and the arguments of the
-invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
-returns a value, that value becomes the result of the original
-invocation.</p>
-<p>The default behavior of <code>noSuchMethod</code> is to throw a
-<code>noSuchMethodError</code>.</p>
-<pre class="source">
-external Dynamic noSuchMethod(String name, List args);
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="Object">
-<button class="show-code">Code</button>
-const <strong>Object</strong>() <a class="anchor-link" href="#Object"
-              title="Permalink to Enumerable&lt;T&gt;.Object">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>Creates a new <code>Object</code> instance.</p>
-<p><code>Object</code> instances have no meaningful state, and are only useful
-through their identity. An <code>Object</code> instance is equal to itself
-only.</p>
-<pre class="source">
-const Object();
 </pre>
 </div>
 </div>

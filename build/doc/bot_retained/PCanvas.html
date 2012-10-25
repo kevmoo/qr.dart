@@ -76,7 +76,7 @@ PCanvas(int w, int h, [bool enableCache = false]):super(w, h, enableCache);
 </div>
 </div>
 </div>
-<div>
+<div class="inherited">
 <h3>Properties</h3>
 <div class="field inherited"><h4 id="background">
 <button class="show-code">Code</button>
@@ -169,19 +169,6 @@ ElementParent get parent =&gt; _parent;
 </pre>
 </div>
 </div>
-<div class="field inherited"><h4 id="runtimeType">
-<button class="show-code">Code</button>
-final Type         <strong>runtimeType</strong> <a class="anchor-link"
-            href="#runtimeType"
-            title="Permalink to PCanvas.runtimeType">#</a>
-        </h4>
-        <div class="inherited-from">inherited from Object </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
-<pre class="source">
-external Type get runtimeType;
-</pre>
-</div>
-</div>
 <div class="field inherited"><h4 id="size">
 <button class="show-code">Code</button>
 <a href="../bot/Size.html">Size</a>         <strong>size</strong> <a class="anchor-link"
@@ -230,25 +217,6 @@ void set width(num value) {
   _width = value;
   invalidateDraw();
 }
-</pre>
-</div>
-</div>
-</div>
-<div>
-<h3>Operators</h3>
-<div class="method inherited"><h4 id="==">
-<button class="show-code">Code</button>
-bool <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
-              title="Permalink to PCanvas.operator ==">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>The equality operator.</p>
-<p>The default behavior for all <code>Object</code>s is to return true if and
-only if <code>this</code> and 
-<span class="param">other</span> are the same object.</p>
-<p>If a subclass overrides the equality operator it should override
-the <code>hashCode</code> method as well to maintain consistency.</p>
-<pre class="source">
-bool operator ==(other) =&gt; identical(this, other);
 </pre>
 </div>
 </div>
@@ -443,24 +411,6 @@ PElement getVisualChild(index) =&gt; _children[index];
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="hashCode">
-<button class="show-code">Code</button>
-int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
-              title="Permalink to PCanvas.hashCode">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>Get a hash code for this object.</p>
-<p>All objects have hash codes. Hash codes are guaranteed to be the
-same for objects that are equal when compared using the equality
-operator <code>==</code>. Other than that there are no guarantees about
-the hash codes. They will not be consistent between runs and
-there are no distribution guarantees.</p>
-<p>If a subclass overrides <code>hashCode</code> it should override the
-equality operator as well to maintain consistency.</p>
-<pre class="source">
-external int hashCode();
-</pre>
-</div>
-</div>
 <div class="method inherited"><h4 id="hasVisualChild">
 <button class="show-code">Code</button>
 bool <strong>hasVisualChild</strong>(<a href="../bot_retained/PElement.html">PElement</a> element) <a class="anchor-link" href="#hasVisualChild"
@@ -513,37 +463,6 @@ void invalidateDraw(){
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="noSuchMethod">
-<button class="show-code">Code</button>
-<strong>noSuchMethod</strong>(String name, List args) <a class="anchor-link" href="#noSuchMethod"
-              title="Permalink to PCanvas.noSuchMethod">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
-on an object. The name of the method and the arguments of the
-invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
-returns a value, that value becomes the result of the original
-invocation.</p>
-<p>The default behavior of <code>noSuchMethod</code> is to throw a
-<code>noSuchMethodError</code>.</p>
-<pre class="source">
-external Dynamic noSuchMethod(String name, List args);
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="Object">
-<button class="show-code">Code</button>
-const <strong>Object</strong>() <a class="anchor-link" href="#Object"
-              title="Permalink to PCanvas.Object">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>Creates a new <code>Object</code> instance.</p>
-<p><code>Object</code> instances have no meaningful state, and are only useful
-through their identity. An <code>Object</code> instance is equal to itself
-only.</p>
-<pre class="source">
-const Object();
-</pre>
-</div>
-</div>
 <div class="method inherited"><h4 id="onChildrenChanged">
 <button class="show-code">Code</button>
 void <strong>onChildrenChanged</strong>() <a class="anchor-link" href="#onChildrenChanged"
@@ -553,49 +472,6 @@ void <strong>onChildrenChanged</strong>() <a class="anchor-link" href="#onChildr
 void onChildrenChanged(){
   invalidateDraw();
 }
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="Panel">
-<button class="show-code">Code</button>
-new <strong>Panel</strong>(num w, num h, [bool enableCache = false]) <a class="anchor-link" href="#Panel"
-              title="Permalink to PCanvas.Panel">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/Panel.html">Panel</a> </div><div class="doc">
-<pre class="source">
-Panel(num w, num h, [bool enableCache = false]) :
-  _children = new List&lt;PElement&gt;(),
-  super(w, h, enableCache);
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="ParentElement">
-<button class="show-code">Code</button>
-new <strong>ParentElement</strong>(num w, num h, [bool enableCache = false]) <a class="anchor-link" href="#ParentElement"
-              title="Permalink to PCanvas.ParentElement">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/ParentElement.html">ParentElement</a> </div><div class="doc">
-<pre class="source">
-ParentElement(num w, num h, [bool enableCache = false]) :
-  super(w, h, enableCache);
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="PCanvas">
-<button class="show-code">Code</button>
-new <strong>PCanvas</strong>(int w, int h, [bool enableCache = false]) <a class="anchor-link" href="#PCanvas"
-              title="Permalink to PCanvas.PCanvas">#</a></h4>
-<div class="doc">
-<pre class="source">
-PCanvas(int w, int h, [bool enableCache = false]):super(w, h, enableCache);
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="PElement">
-<button class="show-code">Code</button>
-new <strong>PElement</strong>(num _width, num _height, [bool cacheEnabled = false]) <a class="anchor-link" href="#PElement"
-              title="Permalink to PCanvas.PElement">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
-<pre class="source">
-PElement(this._width, this._height, [this.cacheEnabled = false]);
 </pre>
 </div>
 </div>
@@ -637,17 +513,6 @@ void setTopLeft(PElement element, Coordinate value){
   var tx = getChildTransform(element);
   tx.setToTranslation(value.x, value.y);
 }
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="toString">
-<button class="show-code">Code</button>
-String <strong>toString</strong>() <a class="anchor-link" href="#toString"
-              title="Permalink to PCanvas.toString">#</a></h4>
-<div class="inherited-from">inherited from Object </div><div class="doc">
-<p>Returns a string representation of this object.</p>
-<pre class="source">
-external String toString();
 </pre>
 </div>
 </div>
