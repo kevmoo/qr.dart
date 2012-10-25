@@ -1,7 +1,14 @@
 # Changelog
+
+## 0.4.0 -- 25 October 2012
+
+### Bot
+
+* __BREAKING__ Changes to align with new Sequence types
+
 ## 0.3.0 -- 24 October 2012
 
-* Changes to align with Dart integration build v13851 
+* __BREAKING__ Changes to align with Dart integration build v13851 
 
 ## 0.2.1 -- 22 October 2012
 
