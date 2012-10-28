@@ -8,3 +8,5 @@ dependencies:
     sdk: unittest
   args:
     sdk: args
+  bot:
+    git: https://github.com/kevmoo/bot.dart.git

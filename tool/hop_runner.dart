@@ -1,6 +1,6 @@
 #import('dart:io');
 #import('package:bot/bot.dart');
-#import('package:bot/hop.dart');
+#import('package:hop/hop.dart');
 #import('../test/console_test_harness.dart', prefix: 'test_console');
 
 void main() {
@@ -9,15 +9,6 @@ void main() {
   addAsyncTask('test', getTestRunner(test_console.testCore));
   addAsyncTask('docs', _compileDocs);
 
-  //
-  // Dart2js
-  //
-  final paths = $(['click', 'drag', 'fract', 'qr', 'spin'])
-      .map((d) => "example/$d/${d}_demo.dart")
-      .toList();
-  paths.add('test/browser_test_harness.dart');
-
-  addAsyncTask('dart2js', getDart2jsTask(paths));
   runHopCore();
 }
 
