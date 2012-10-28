@@ -39,7 +39,10 @@ class Array2d&lt;T&gt; extends ListBase&lt;T&gt; {
   final List&lt;T&gt; _source;
 
   factory Array2d.readonlyFrom(int width, Iterable&lt;T&gt; source) {
-    final s = source == null ? null : new ReadOnlyCollection(source);
+    requireArgumentNotNull(width, 'width');
+    requireArgumentNotNull(source, 'source');
+    final list = new List&lt;T&gt;.from(source);
+    final s = source == null ? null : new SequenceList&lt;T&gt;(list);
     return new Array2d.wrap(width, s);
   }
 
@@ -154,7 +157,10 @@ factory <strong>Array2d.readonlyFrom</strong>(int width, Iterable&lt;<a href="..
 <div class="doc">
 <pre class="source">
 factory Array2d.readonlyFrom(int width, Iterable&lt;T&gt; source) {
-  final s = source == null ? null : new ReadOnlyCollection(source);
+  requireArgumentNotNull(width, 'width');
+  requireArgumentNotNull(source, 'source');
+  final list = new List&lt;T&gt;.from(source);
+  final s = source == null ? null : new SequenceList&lt;T&gt;(list);
   return new Array2d.wrap(width, s);
 }
 </pre>
@@ -203,34 +209,18 @@ final int height;
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="length">
+<div class="field"><h4 id="length">
 <button class="show-code">Code</button>
-int <strong>get length</strong> <a class="anchor-link" href="#length"
-              title="Permalink to Array2d&lt;T&gt;.get length">#</a></h4>
-<div class="doc">
+final int         <strong>length</strong> <a class="anchor-link"
+            href="#length"
+            title="Permalink to Array2d&lt;T&gt;.length">#</a>
+        </h4>
+        <div class="doc">
 <div class="inherited">
 <p>Returns the number of elements in this collection.</p>
 <div class="docs-inherited-from">docs inherited from <a href="../bot/ListBase.html">ListBase</a>&lt;<a href="../bot/Array2d.html">T</a>&gt; </div></div>
 <pre class="source">
 int get length =&gt; _source.length;
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="length=">
-<button class="show-code">Code</button>
-void <strong>set length</strong>(int newLength) <a class="anchor-link" href="#length="
-              title="Permalink to Array2d&lt;T&gt;.set length">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot/ListBase.html">ListBase</a> </div><div class="doc">
-<div class="inherited">
-<p>Changes the length of the list. If 
-<span class="param">newLength</span> is greater than
-the current <a class="crossref" href="../bot/Array2d.html#length">length</a>, entries are initialized to <code>null</code>. Throws
-an <code>UnsupportedOperationException</code> if the list is not extendable.</p>
-<div class="docs-inherited-from">docs inherited from List&lt;<a href="../bot/Array2d.html">E</a>&gt; </div></div>
-<pre class="source">
-void set length(int newLength) {
-  throw const UnsupportedOperationException('Mutation operations are not supported');
-}
 </pre>
 </div>
 </div>
@@ -270,13 +260,6 @@ T operator [](int index) =&gt; _source[index];
 void <strong>operator []=</strong>(int index, <a href="../bot/Array2d.html">T</a> value) <a class="anchor-link" href="#[]="
               title="Permalink to Array2d&lt;T&gt;.operator []=">#</a></h4>
 <div class="doc">
-<div class="inherited">
-<p>Sets the entry at the given 
-<span class="param">index</span> in the list to 
-<span class="param">value</span>.
-Throws an <code>IndexOutOfRangeException</code> if 
-<span class="param">index</span> is out of bounds.</p>
-<div class="docs-inherited-from">docs inherited from List&lt;<a href="../bot/Array2d.html">E</a>&gt; </div></div>
 <pre class="source">
 void operator []=(int index, T value) {
   _source[index] = value;
@@ -287,60 +270,6 @@ void operator []=(int index, T value) {
 </div>
 <div>
 <h3>Methods</h3>
-<div class="method inherited"><h4 id="add">
-<button class="show-code">Code</button>
-void <strong>add</strong>(<a href="../bot/Array2d.html">T</a> value) <a class="anchor-link" href="#add"
-              title="Permalink to Array2d&lt;T&gt;.add">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot/ListBase.html">ListBase</a> </div><div class="doc">
-<div class="inherited">
-<p>Adds 
-<span class="param">value</span> at the end of the list, extending the length by
-one. Throws an <code>UnsupportedOperationException</code> if the list is not
-extendable.</p>
-<div class="docs-inherited-from">docs inherited from List&lt;<a href="../bot/Array2d.html">E</a>&gt; </div></div>
-<pre class="source">
-void add(T value) {
-  throw const UnsupportedOperationException('Mutation operations are not supported');
-}
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="addAll">
-<button class="show-code">Code</button>
-void <strong>addAll</strong>(Collection&lt;<a href="../bot/Array2d.html">T</a>&gt; value) <a class="anchor-link" href="#addAll"
-              title="Permalink to Array2d&lt;T&gt;.addAll">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot/ListBase.html">ListBase</a> </div><div class="doc">
-<div class="inherited">
-<p>Appends all elements of the <code>collection</code> to the end of this list.
-Extends the length of the list by the number of elements in <code>collection</code>.
-Throws an <code>UnsupportedOperationException</code> if this list is not
-extendable.</p>
-<div class="docs-inherited-from">docs inherited from List&lt;<a href="../bot/Array2d.html">E</a>&gt; </div></div>
-<pre class="source">
-void addAll(Collection&lt;T&gt; value) {
-  throw const UnsupportedOperationException('Mutation operations are not supported');
-}
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="addLast">
-<button class="show-code">Code</button>
-void <strong>addLast</strong>(<a href="../bot/Array2d.html">T</a> value) <a class="anchor-link" href="#addLast"
-              title="Permalink to Array2d&lt;T&gt;.addLast">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot/ListBase.html">ListBase</a> </div><div class="doc">
-<div class="inherited">
-<p>Adds 
-<span class="param">value</span> at the end of the list, extending the length by
-one. Throws an <code>UnsupportedOperationException</code> if the list is not
-extendable.</p>
-<div class="docs-inherited-from">docs inherited from List&lt;<a href="../bot/Array2d.html">E</a>&gt; </div></div>
-<pre class="source">
-void addLast(T value) {
-  throw const UnsupportedOperationException('Mutation operations are not supported');
-}
-</pre>
-</div>
-</div>
 <div class="method inherited"><h4 id="aggregate">
 <button class="show-code">Code</button>
 Object <strong>aggregate</strong>(Object seed, <a href="../bot/Func2.html">Func2</a> f) <a class="anchor-link" href="#aggregate"
@@ -354,32 +283,11 @@ Object aggregate(Object seed, Func2&lt;Object, T, Object&gt; f) {
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="clear">
-<button class="show-code">Code</button>
-void <strong>clear</strong>() <a class="anchor-link" href="#clear"
-              title="Permalink to Array2d&lt;T&gt;.clear">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot/ListBase.html">ListBase</a> </div><div class="doc">
-<div class="inherited">
-<p>Removes all elements in the list.</p>
-<p>The length of the list becomes zero.
-Throws an <code>UnsupportedOperationException</code>, and retains all elements, if the
-length of the list cannot be changed.</p>
-<div class="docs-inherited-from">docs inherited from List&lt;<a href="../bot/Array2d.html">E</a>&gt; </div></div>
-<pre class="source">
-void clear() {
-  throw const UnsupportedOperationException('Mutation operations are not supported');
-}
-</pre>
-</div>
-</div>
 <div class="method inherited"><h4 id="contains">
 <button class="show-code">Code</button>
 bool <strong>contains</strong>(<a href="../bot/Array2d.html">T</a> item) <a class="anchor-link" href="#contains"
               title="Permalink to Array2d&lt;T&gt;.contains">#</a></h4>
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
-<div class="inherited">
-<p>Check whether the collection contains an element equal to <code>element</code>.</p>
-<div class="docs-inherited-from">docs inherited from Collection&lt;<a href="../bot/Array2d.html">E</a>&gt; </div></div>
 <pre class="source">
 bool contains(T item) {
   for (final e in this) {
@@ -468,16 +376,6 @@ Enumerable&lt;T&gt; exclude(Iterable&lt;T&gt; items) {
 <a href="../bot/Enumerable.html">Enumerable</a>&lt;<a href="../bot/Array2d.html">T</a>&gt; <strong>filter</strong>(<a href="../bot/Func1.html">Func1</a> f) <a class="anchor-link" href="#filter"
               title="Permalink to Array2d&lt;T&gt;.filter">#</a></h4>
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
-<div class="inherited">
-<p>Returns a collection with the elements of this collection
-that satisfy the predicate 
-<span class="param">f</span>.</p>
-<p>The returned collection should be of the same type as the collection
-creating it.</p>
-<p>An element satisfies the predicate 
-<span class="param">f</span> if <code>f(element)</code>
-returns true.</p>
-<div class="docs-inherited-from">docs inherited from Collection&lt;<a href="../bot/Array2d.html">E</a>&gt; </div></div>
 <pre class="source">
 Enumerable&lt;T&gt; filter(Func1&lt;T, bool&gt; f) {
   requireArgumentNotNull(f, 'f');
@@ -692,37 +590,6 @@ int indexOf(T element, [int start=0]) {
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="insertRange">
-<button class="show-code">Code</button>
-void <strong>insertRange</strong>(int start, int length, [<a href="../bot/Array2d.html">T</a> initialValue]) <a class="anchor-link" href="#insertRange"
-              title="Permalink to Array2d&lt;T&gt;.insertRange">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot/ListBase.html">ListBase</a> </div><div class="doc">
-<div class="inherited">
-<p>Inserts a new range into the list, starting from 
-<span class="param">start</span> to
-<code>start + length - 1</code>. The entries are filled with 
-<span class="param">initialValue</span>.
-Throws an <code>UnsupportedOperationException</code> if the list is
-not extendable.
-If 
-<span class="param">length</span> is 0, this method does not do anything.
-If 
-<span class="param">start</span> is the length of the list, this method inserts the
-range at the end of the list.
-Throws an <code>ArgumentError</code> if 
-<span class="param">length</span> is negative.
-Throws an <code>IndexOutOfRangeException</code> if 
-<span class="param">start</span> is negative or if
-
-<span class="param">start</span> is greater than the length of the list.</p>
-<div class="docs-inherited-from">docs inherited from List&lt;<a href="../bot/Array2d.html">E</a>&gt; </div></div>
-<pre class="source">
-void insertRange(int start, int length, [T initialValue]) {
-  throw const UnsupportedOperationException('Mutation operations are not supported');
-}
-</pre>
-</div>
-</div>
 <div class="method inherited"><h4 id="isEmpty">
 <button class="show-code">Code</button>
 bool <strong>isEmpty</strong>() <a class="anchor-link" href="#isEmpty"
@@ -841,75 +708,6 @@ Dynamic reduce(Dynamic initialValue,
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="removeAt">
-<button class="show-code">Code</button>
-<a href="../bot/Array2d.html">T</a> <strong>removeAt</strong>(int index) <a class="anchor-link" href="#removeAt"
-              title="Permalink to Array2d&lt;T&gt;.removeAt">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot/ListBase.html">ListBase</a> </div><div class="doc">
-<div class="inherited">
-<p>Removes the element at position
-<span class="param">index</span> from the list.</p>
-<p>This reduces the length of the list by one and moves all later elements
-down by one position.
-Returns the removed element.
-Throws an <code>ArgumentError</code> if 
-<span class="param">index</span> is not an <code>int</code>.
-Throws an <code>IndexOutOfRangeException</code> if the 
-<span class="param">index</span> does not point inside
-the list.
-Throws an <code>UnsupportedOperationException</code>, and doesn't remove the element,
-if the length of the list cannot be changed.</p>
-<div class="docs-inherited-from">docs inherited from List&lt;<a href="../bot/Array2d.html">E</a>&gt; </div></div>
-<pre class="source">
-T removeAt(int index) {
-  throw const UnsupportedOperationException('Mutation operations are not supported');
-}
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="removeLast">
-<button class="show-code">Code</button>
-<a href="../bot/Array2d.html">T</a> <strong>removeLast</strong>() <a class="anchor-link" href="#removeLast"
-              title="Permalink to Array2d&lt;T&gt;.removeLast">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot/ListBase.html">ListBase</a> </div><div class="doc">
-<div class="inherited">
-<p>Pops and returns the last element of the list.
-Throws a <code>UnsupportedOperationException</code> if the length of the
-list cannot be changed.</p>
-<div class="docs-inherited-from">docs inherited from List&lt;<a href="../bot/Array2d.html">E</a>&gt; </div></div>
-<pre class="source">
-T removeLast() {
-  throw const UnsupportedOperationException('Mutation operations are not supported');
-}
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="removeRange">
-<button class="show-code">Code</button>
-void <strong>removeRange</strong>(int start, int length) <a class="anchor-link" href="#removeRange"
-              title="Permalink to Array2d&lt;T&gt;.removeRange">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot/ListBase.html">ListBase</a> </div><div class="doc">
-<div class="inherited">
-<p>Removes 
-<span class="param">length</span> elements from the list, beginning at 
-<span class="param">start</span>.
-Throws an <code>UnsupportedOperationException</code> if the list is
-not extendable.
-If 
-<span class="param">length</span> is 0, this method does not do anything.
-Throws an <code>ArgumentError</code> if 
-<span class="param">length</span> is negative.
-Throws an <code>IndexOutOfRangeException</code> if 
-<span class="param">start</span> or
-<code>:start + length: - 1</code> are out of range.</p>
-<div class="docs-inherited-from">docs inherited from List&lt;<a href="../bot/Array2d.html">E</a>&gt; </div></div>
-<pre class="source">
-void removeRange(int start, int length) {
-  throw const UnsupportedOperationException('Mutation operations are not supported');
-}
-</pre>
-</div>
-</div>
 <div class="method inherited"><h4 id="selectMany">
 <button class="show-code">Code</button>
 <a href="../bot/Enumerable.html">Enumerable</a> <strong>selectMany</strong>(<a href="../bot/Func1.html">Func1</a> f) <a class="anchor-link" href="#selectMany"
@@ -946,36 +744,6 @@ void <strong>set</strong>(int x, int y, <a href="../bot/Array2d.html">T</a> valu
 void set(int x, int y, T value) {
   final i = _getIndex(x, y);
   this[i] = value;
-}
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="setRange">
-<button class="show-code">Code</button>
-void <strong>setRange</strong>(int start, int length, List&lt;<a href="../bot/Array2d.html">T</a>&gt; from, [int startFrom]) <a class="anchor-link" href="#setRange"
-              title="Permalink to Array2d&lt;T&gt;.setRange">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot/ListBase.html">ListBase</a> </div><div class="doc">
-<div class="inherited">
-<p>Copies 
-<span class="param">length</span> elements of 
-<span class="param">from</span>, starting
-at 
-<span class="param">startFrom</span>, into the list, starting at 
-<span class="param">start</span>.
-If 
-<span class="param">length</span> is 0, this method does not do anything.
-Throws an <code>ArgumentError</code> if 
-<span class="param">length</span> is negative.
-Throws an <code>IndexOutOfRangeException</code> if 
-<span class="param">start</span> or
-<code>start + length - 1</code> are out of range for <code>this</code>, or if
-
-<span class="param">startFrom</span> or <code>startFrom + length - 1</code> are out of range for 
-<span class="param">from</span>.</p>
-<div class="docs-inherited-from">docs inherited from List&lt;<a href="../bot/Array2d.html">E</a>&gt; </div></div>
-<pre class="source">
-void setRange(int start, int length, List&lt;T&gt; from, [int startFrom]) {
-  throw const UnsupportedOperationException('Mutation operations are not supported');
 }
 </pre>
 </div>
@@ -1042,21 +810,6 @@ bool some(bool f(T element)) {
     }
   }
   return false;
-}
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="sort">
-<button class="show-code">Code</button>
-void <strong>sort</strong>([Comparator compare = Comparable.compare]) <a class="anchor-link" href="#sort"
-              title="Permalink to Array2d&lt;T&gt;.sort">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot/ListBase.html">ListBase</a> </div><div class="doc">
-<div class="inherited">
-<p>Sorts the list according to the order specified by the <code>Comparator</code>.</p>
-<div class="docs-inherited-from">docs inherited from List&lt;<a href="../bot/Array2d.html">E</a>&gt; </div></div>
-<pre class="source">
-void sort([Comparator compare = Comparable.compare]) {
-  throw const UnsupportedOperationException('Mutation operations are not supported');
 }
 </pre>
 </div>

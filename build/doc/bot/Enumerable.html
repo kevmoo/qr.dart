@@ -33,7 +33,7 @@
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
 <pre class="source">
-abstract class Enumerable&lt;T&gt; implements Collection&lt;T&gt; {
+abstract class Enumerable&lt;T&gt; implements Iterable&lt;T&gt; {
   // TODO:
   // last
   // take
@@ -283,7 +283,7 @@ abstract class Enumerable&lt;T&gt; implements Collection&lt;T&gt; {
 <span class="type-box"><span class="icon-class"></span><a href="../bot/ListBase.html">ListBase&lt;T&gt;</a></span>, <span class="type-box"><span class="icon-class"></span><a href="../bot/NumberEnumerable.html">NumberEnumerable&lt;T&gt;</a></span></p>
 <h3>Implements</h3>
 <p>
-<span class="type-box"><span class="icon-class"></span><a href="../dart_core/Collection.html">Collection&lt;E&gt;</a></span></p>
+<span class="type-box"><span class="icon-class"></span><a href="../dart_core/Iterable.html">Iterable&lt;E&gt;</a></span></p>
 <div>
 <h3>Constructors</h3>
 <div class="method"><h4 id="Enumerable">
@@ -310,22 +310,6 @@ factory Enumerable.fromIterable(Iterable&lt;T&gt; source) {
 </div>
 </div>
 </div>
-<div class="inherited">
-<h3>Properties</h3>
-<div class="field inherited"><h4 id="length">
-<button class="show-code">Code</button>
-final int         <strong>length</strong> <a class="anchor-link"
-            href="#length"
-            title="Permalink to Enumerable&lt;T&gt;.length">#</a>
-        </h4>
-        <div class="inherited-from">inherited from Collection </div><div class="doc">
-<p>Returns the number of elements in this collection.</p>
-<pre class="source">
-int get length;
-</pre>
-</div>
-</div>
-</div>
 <div>
 <h3>Methods</h3>
 <div class="method"><h4 id="aggregate">
@@ -346,9 +330,6 @@ Object aggregate(Object seed, Func2&lt;Object, T, Object&gt; f) {
 bool <strong>contains</strong>(<a href="../bot/Enumerable.html">T</a> item) <a class="anchor-link" href="#contains"
               title="Permalink to Enumerable&lt;T&gt;.contains">#</a></h4>
 <div class="doc">
-<div class="inherited">
-<p>Check whether the collection contains an element equal to <code>element</code>.</p>
-<div class="docs-inherited-from">docs inherited from Collection&lt;<a href="../bot/Enumerable.html">E</a>&gt; </div></div>
 <pre class="source">
 bool contains(T item) {
   for (final e in this) {
@@ -438,16 +419,6 @@ Enumerable&lt;T&gt; exclude(Iterable&lt;T&gt; items) {
 <a href="../bot/Enumerable.html">Enumerable</a>&lt;<a href="../bot/Enumerable.html">T</a>&gt; <strong>filter</strong>(<a href="../bot/Func1.html">Func1</a> f) <a class="anchor-link" href="#filter"
               title="Permalink to Enumerable&lt;T&gt;.filter">#</a></h4>
 <div class="doc">
-<div class="inherited">
-<p>Returns a collection with the elements of this collection
-that satisfy the predicate 
-<span class="param">f</span>.</p>
-<p>The returned collection should be of the same type as the collection
-creating it.</p>
-<p>An element satisfies the predicate 
-<span class="param">f</span> if <code>f(element)</code>
-returns true.</p>
-<div class="docs-inherited-from">docs inherited from Collection&lt;<a href="../bot/Enumerable.html">E</a>&gt; </div></div>
 <pre class="source">
 Enumerable&lt;T&gt; filter(Func1&lt;T, bool&gt; f) {
   requireArgumentNotNull(f, 'f');
@@ -499,10 +470,6 @@ T firstOrDefault([Func1&lt;T, bool&gt; f = null, T defaultValue = null]) {
 void <strong>forEach</strong>(<a href="../bot/Action1.html">Action1</a> f) <a class="anchor-link" href="#forEach"
               title="Permalink to Enumerable&lt;T&gt;.forEach">#</a></h4>
 <div class="doc">
-<div class="inherited">
-<p>Applies the function 
-<span class="param">f</span> to each element of this collection.</p>
-<div class="docs-inherited-from">docs inherited from Collection&lt;<a href="../bot/Enumerable.html">E</a>&gt; </div></div>
 <pre class="source">
 void forEach(Action1&lt;T&gt; f) {
   for(final e in this) {
@@ -544,9 +511,6 @@ Grouping&lt;Dynamic, T&gt; group([Func1&lt;T, Object&gt; keyFunc = null]) {
 bool <strong>isEmpty</strong>() <a class="anchor-link" href="#isEmpty"
               title="Permalink to Enumerable&lt;T&gt;.isEmpty">#</a></h4>
 <div class="doc">
-<div class="inherited">
-<p>Returns true if there is no element in this collection.</p>
-<div class="docs-inherited-from">docs inherited from Collection&lt;<a href="../bot/Enumerable.html">E</a>&gt; </div></div>
 <pre class="source">
 bool isEmpty() =&gt; !some((e) =&gt; true);
 </pre>
