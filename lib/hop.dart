@@ -2,6 +2,8 @@ library bot_hop;
 
 // TODO: documentation for tasks
 // TODO: formalize print/log model
+// TODO: tests
+// TODO: auto-complete model?
 
 import 'dart:io';
 import 'dart:isolate';
