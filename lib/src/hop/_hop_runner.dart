@@ -1,6 +1,7 @@
 part of bot_hop;
 
 class _HopRunner {
+  static const String RAW_TASK_LIST_CMD = 'print_raw_task_list';
   static final ArgParser _parser = _getParser();
   final ArgResults _args;
   final _HopState _state;
@@ -16,7 +17,10 @@ class _HopRunner {
       final taskName = _args.rest[0];
       if(_state.hasTask(taskName)) {
         _runTask(taskName);
-      } else {
+      } else if(taskName == RAW_TASK_LIST_CMD) {
+        _printRawTasks();
+      }
+      else {
         print('No task named "$taskName".');
       }
     } else {
@@ -51,24 +55,26 @@ class _HopRunner {
     print('Welcome to HOP');
     print('');
     print('Tasks:');
+    _printRawTasks();
+    // print('');
+    // print(_parser.getUsage());
+  }
+
+  void _printRawTasks() {
     for(final t in _state.taskNames) {
       print(t);
     }
-
-    print('');
-    print(_parser.getUsage());
   }
 
   static ArgParser _getParser() {
     final parser = new ArgParser();
 
     // TODO: put help in a const
-    parser.addFlag('help', abbr: '?', help: 'print help text', negatable: false);
+    // parser.addFlag('help', abbr: '?', help: 'print help text', negatable: false);
 
     // TODO: other global flag ideas
     // verbose - show a lot of output
     // trace - show stack dump on fail?
-
 
     return parser;
   }
