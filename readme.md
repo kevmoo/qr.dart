@@ -1,6 +1,72 @@
 # HOP
 ## A version of Make (or Ruby Rake or Coffeescript Cake or Javascript Jake) for Dart.
 
+# Goals
+
+* Allow easy task generation in Dart.
+* Allow easy task reuse by referencing packages.
+* Support command completion on command line (Bash currently supported)
+
+# Setup
+
+* **Must** define a file `tools/hop_runner.dart` realative to the root of
+the project.
+    * This file must import the default hop library and define a main to be executed.
+    * This file should add one or more task using `addTask` and `addAsyncTask`.
+
+```dart
+#import('package:hop/hop.dart');
+
+void main() {
+  addTask('normal_task', _myNormalTask);
+  addAsyncTask('async_task', _myAsyncTask);
+  runHopCore();
+}
+
+bool _myNormalTask(TaskContext context) {
+  context.fine('Print out messages using context');
+  return true; // on success
+}
+
+Future<bool> _myAsyncTask(TaskContext content) {
+  // You'll want to do something more interesting here, but Futures are supported.
+  return new Future.immediate(true);
+}
+```
+
+* **Must** define a runner for hop, normally named `hop`.
+    * Option 1: copy `bin/hop` from the hop project into the root of your project.
+    * Option 2: copy or create a symbolic link to `bin/hop` in your path
+* **Optional** (but really nice): _source_ `tool/hop-completion.bash` to enable
+    command completion in bash.
+
+# Usage
+
+### See a list of commands
+`hop`
+
+```text
+Welcome to HOP
+
+Tasks:
+test
+about
+docs
+```
+
+### Execute a command
+
+`hop [command_name]`
+
+### Auto-complete command (if enabled)
+
+`hop [tab]`
+
+# Future
+
+* Allow task paramaters
+* Allow easy task nesting: tasks within tasks, tasks depending on tasks, etc.
+
 # Versioning
 
 Our goal is to follow [Semantic Versioning](http://semver.org/).
