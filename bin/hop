@@ -9,5 +9,4 @@ cmd="dart
 --error_on_malformed_type
 --package-root=$PACK_DIR
 ./tool/hop_runner.dart $@"
-echo $cmd
 exec $cmd
