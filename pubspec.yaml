@@ -1,7 +1,7 @@
 name: hop
 author: Kevin Moore <kevin@thinkpixellab.com>
 homepage: https://github.com/kevmoo/bot.dart
-version: 0.1.0
+version: 0.0.1
 description: A version of Make (or Ruby Rake or Coffeescript Cake or Javascript Jake) for Dart
 dependencies:
   unittest:
