@@ -1,4 +1,4 @@
-# Changelog
+# Changelog - Dart Bag of Tricks
 
 ## 0.4.0 -- 25 October 2012
 
