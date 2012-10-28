@@ -1,6 +1,7 @@
 part of bot_hop;
 
 class _HopState {
+  static const _reservedTasks = const[_HopRunner.RAW_TASK_LIST_CMD];
   final Map<String, _HopTask> _tasks = new Map();
   bool _frozen = false;
 
@@ -39,7 +40,8 @@ class _HopState {
   void _addTask(_HopTask task) {
     assert(task != null);
     assert(!_frozen);
-    require(!_tasks.containsKey(task.name));
+    require(!_reservedTasks.contains(task.name));
+    require(!_tasks.containsKey(task.name), 'A task with name ${task.name} already exists');
     _tasks[task.name] = task;
   }
 }
