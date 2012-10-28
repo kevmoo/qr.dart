@@ -1,3 +1,5 @@
+part of bot_hop;
+
 class _HopState {
   final Map<String, _HopTask> _tasks = new Map();
   bool _frozen = false;

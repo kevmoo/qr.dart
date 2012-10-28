@@ -1,3 +1,5 @@
+part of bot_hop;
+
 class _HopRunner {
   static final ArgParser _parser = _getParser();
   final ArgResults _args;

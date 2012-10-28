@@ -1,3 +1,5 @@
+part of bot_hop;
+
 class _HopTask {
   final name;
   final Func1<TaskContext, Future<bool>> _exec;

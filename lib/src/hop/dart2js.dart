@@ -1,3 +1,5 @@
+part of bot_hop;
+
 Func1<TaskContext, Future<bool>> getDart2jsTask(List<String> inputs) {
   return (context) {
     final futureFuncs = $(inputs).map((p) => () => _dart2js(context, p)).toList();

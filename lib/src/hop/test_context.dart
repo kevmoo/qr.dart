@@ -1,3 +1,5 @@
+part of bot_hop;
+
 class TaskContext extends DisposableImpl {
   final String name;
 
