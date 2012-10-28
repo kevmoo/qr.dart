@@ -28,7 +28,7 @@ void runHopCore() {
   new _HopRunner(_sharedState, options.arguments);
 }
 
-void addTask(String name, Action1<TaskContext> execFunc) {
+void addTask(String name, Func1<TaskContext, bool> execFunc) {
   _sharedState.addTask(name, execFunc);
 }
 
