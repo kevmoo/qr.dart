@@ -37,10 +37,13 @@ class _HopRunner {
 
     future.onComplete((f) {
       if(f.hasValue) {
-        if(f.value) {
+        if(f.value == true) {
           context.success('Finished');
         } else {
           context.error('Failed');
+          if(f.value != false) {
+            context.error('${f.value} returned from task');
+          }
         }
       } else {
         context.error('Error');
