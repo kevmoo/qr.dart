@@ -30,3 +30,22 @@ class _HopTask {
     });
   }
 }
+
+Future<bool> _chainTasks(List<Func<Future<bool>>> futures, [int index=0]) {
+  assert(futures.length > 0);
+  assert(index >= 0);
+  assert(index <= futures.length);
+  if(index == futures.length) {
+    return new Future.immediate(true);
+  }
+  final func = futures[index];
+  final future = func();
+  return future.chain((bool status) {
+    if(status) {
+      return _chainTasks(futures, index+1);
+    }
+    else {
+      return new Future.immediate(false);
+    }
+  });
+}
