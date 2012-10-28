@@ -8,6 +8,7 @@ void main() {
 
   addAsyncTask('test', getTestRunner(test_console.testCore));
   addAsyncTask('docs', _compileDocs);
+  addTask('about', _about);
 
   runHopCore();
 }
@@ -23,4 +24,9 @@ void _assertKnownPath() {
   // So check for existance of /bin/hop_runner.dart
   final thisFile = new File('tool/hop_runner.dart');
   assert(thisFile.existsSync());
+}
+
+bool _about(TaskContext context) {
+  context.fine('Welcome to HOP!');
+  return true;
 }
