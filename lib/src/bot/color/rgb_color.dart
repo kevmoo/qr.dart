@@ -1,3 +1,5 @@
+part of bot;
+
 // RGB-HSL conversion logic borrowed with love from Google Closure Library
 // http://code.google.com/p/closure-library/source/browse/trunk/closure/goog/color/color.js
 
@@ -68,7 +70,7 @@ class RgbColor implements Hashable {
     return new HslColor(h, s, l);
   }
 
-  int hashCode() => Util.getHashCode([r,g,b]);
+  int get hashCode => Util.getHashCode([r,g,b]);
 
   bool operator ==(RgbColor other) {
     return other != null && other.r == r && other.g == g && other.b == b;

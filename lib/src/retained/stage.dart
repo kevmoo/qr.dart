@@ -1,3 +1,5 @@
+part of bot_retained;
+
 class Stage extends AttachableObject
   implements ElementParent {
   final EventHandle<EventArgs> _invalidatedEventHandle =

@@ -5,11 +5,11 @@ part of bot_async;
 //       http://dartbug.com/3734
 class SendValuePort<TInput, TOutput> {
   final Func1<TInput, TOutput> _func;
-  final Func1<Dynamic, TInput> inputDeserializer;
-  final Func1<TOutput, Dynamic> outputSerializer;
+  final Func1<dynamic, TInput> inputDeserializer;
+  final Func1<TOutput, dynamic> outputSerializer;
 
   SendValuePort(this._func, {this.inputDeserializer, this.outputSerializer}) {
-    port.receive((Dynamic rawValue, SendPort reply) {
+    port.receive((dynamic rawValue, SendPort reply) {
       final value = _deserialize(rawValue);
 
       FutureValueResult<TOutput> _message;
@@ -29,7 +29,7 @@ class SendValuePort<TInput, TOutput> {
     });
   }
 
-  TInput _deserialize(Dynamic input) {
+  TInput _deserialize(dynamic input) {
     if(inputDeserializer == null) {
       return input;
     } else {

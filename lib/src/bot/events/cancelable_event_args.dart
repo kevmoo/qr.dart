@@ -1,3 +1,5 @@
+part of bot;
+
 class CancelableEventArgs extends EventArgs {
   bool _canceled = false;
 

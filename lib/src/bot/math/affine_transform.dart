@@ -1,3 +1,5 @@
+part of bot;
+
 class AffineTransform implements Cloneable<AffineTransform> {
   num _m00, _m10, _m01, _m11, _m02, _m12;
 

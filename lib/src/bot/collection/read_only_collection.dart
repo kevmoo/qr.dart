@@ -1,3 +1,5 @@
+part of bot;
+
 class ReadOnlyCollection<T> extends ListBase<T> {
   final Sequence<T> _items;
 

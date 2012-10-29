@@ -64,7 +64,7 @@ class _ComplexTestValue extends SendPortValue<Tuple<int, int>, Tuple3<int, int, 
       inputSerializer: _t2ToList, outputDeserializer: _listToT3);
 }
 
-Dynamic _t2ToList(Tuple<int, int> input) {
+dynamic _t2ToList(Tuple<int, int> input) {
   if(input == null) {
     return null;
   } else {
@@ -81,7 +81,7 @@ Tuple<int, int> _listToT2(List input) {
   }
 }
 
-Dynamic _t3ToList(Tuple3<int, int, int> input) {
+dynamic _t3ToList(Tuple3<int, int, int> input) {
   return [input.item1, input.item2, input.item3];
 }
 

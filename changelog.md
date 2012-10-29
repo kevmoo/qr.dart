@@ -1,5 +1,9 @@
 # Changelog - Dart Bag of Tricks
 
+### 0.5.0 (pre)
+
+* Aligned with Dart r14406 - with issues
+
 ## 0.4.0 -- 25 October 2012
 
 ### Bot

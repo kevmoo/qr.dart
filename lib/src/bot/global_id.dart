@@ -1,3 +1,5 @@
+part of bot;
+
 class GlobalId implements Hashable, Comparable {
   static int _globalId = 0;
   final int id;
@@ -13,7 +15,7 @@ class GlobalId implements Hashable, Comparable {
 
   int compareTo(GlobalId other) => id.compareTo(other.id);
 
-  int hashCode() => _hashCode;
+  int get hashCode => _hashCode;
 
   bool operator ==(GlobalId other) => other != null && other.id == id;
 }

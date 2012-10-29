@@ -1,3 +1,5 @@
+part of bot;
+
 // http://en.wikipedia.org/wiki/Tarjan's_strongly_connected_components_algorithm
 
 class TarjanCycleDetect<TNode extends Hashable> {
@@ -65,7 +67,7 @@ class _TarjanNode<TNode extends Hashable> implements Hashable {
   _TarjanNode(this.value):
     index = -1;
 
-  int hashCode() => value.hashCode();
+  int get hashCode => value.hashCode;
 
   bool operator ==(_TarjanNode<TNode> other) => other.value == value;
 }
@@ -98,7 +100,7 @@ class _TarjanList<TNode extends Hashable> {
   }
 
   Iterable<_TarjanNode> getSourceNodeSet() {
-    return _nodes.getKeys();
+    return _nodes.keys;
   }
 
   Iterable<_TarjanNode> getAdjacent(_TarjanNode v) {

@@ -1,3 +1,5 @@
+part of bot_texture;
+
 class TextureData {
   final Map<String, TextureInput> _textures;
 

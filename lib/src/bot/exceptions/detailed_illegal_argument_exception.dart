@@ -1,3 +1,5 @@
+part of bot;
+
 class DetailedIllegalArgumentException extends ArgumentError {
   final argument;
 

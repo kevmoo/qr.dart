@@ -1,3 +1,5 @@
+part of bot;
+
 NumberEnumerable n$(Iterable<num> source) {
   return new NumberEnumerable.from(source);
 }
@@ -84,10 +86,10 @@ class _RangeIterator implements Iterator<int> {
 
   _RangeIterator(this._start, this._count);
 
-  bool hasNext() => _current < _count;
+  bool get hasNext => _current < _count;
 
   int next() {
-    assert(hasNext());
+    assert(hasNext);
     final val = _start + _current;
     _current++;
     return val;

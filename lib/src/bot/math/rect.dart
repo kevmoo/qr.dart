@@ -1,3 +1,5 @@
+part of bot;
+
 class Box implements Hashable{
   final num left, top, width, height;
 
@@ -52,5 +54,5 @@ class Box implements Hashable{
 
   String toString() => "Location: $topLeft, Size: $size";
 
-  int hashCode() => Util.getHashCode([left, top, width, height]);
+  int get hashCode => Util.getHashCode([left, top, width, height]);
 }

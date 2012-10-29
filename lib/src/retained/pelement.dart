@@ -1,3 +1,5 @@
+part of bot_retained;
+
 abstract class PElement extends AttachableObject {
   final List<AffineTransform> _transforms = new List<AffineTransform>();
   final bool cacheEnabled;
@@ -72,7 +74,7 @@ abstract class PElement extends AttachableObject {
     return tx;
   }
 
-  abstract void drawOverride(CanvasRenderingContext2D ctx);
+  void drawOverride(CanvasRenderingContext2D ctx);
 
   void invalidateDraw(){
     validateNotDisposed();

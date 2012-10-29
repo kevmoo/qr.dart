@@ -1,3 +1,5 @@
+part of bot_retained;
+
 class CanvasUtil {
   /**
    * (√2 - 1) * 4 / 3;

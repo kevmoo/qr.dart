@@ -22,5 +22,5 @@ abstract class HtmlView {
     }
   }
 
-  abstract void updateElement();
+  void updateElement();
 }

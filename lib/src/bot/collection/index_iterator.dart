@@ -1,3 +1,5 @@
+part of bot;
+
 class IndexIterator<T> implements Iterator<T> {
   IndexIterator(int length, Func1<int, T> indexer) :
     _indexer = indexer,
@@ -7,11 +9,11 @@ class IndexIterator<T> implements Iterator<T> {
     assert(_length >= 0);
   }
 
-  bool hasNext() => _length > _pos;
+  bool get hasNext => _length > _pos;
 
   T next() {
-    if (!hasNext()) {
-      throw const NoMoreElementsException();
+    if (!hasNext) {
+      throw new StateError("No more elements");
     }
     return _indexer(_pos++);
   }

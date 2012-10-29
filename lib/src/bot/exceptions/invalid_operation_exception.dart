@@ -1,3 +1,5 @@
+part of bot;
+
 class InvalidOperationException implements Exception {
   final String message;
 

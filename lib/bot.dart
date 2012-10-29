@@ -1,6 +1,6 @@
 library bot;
 
-import 'dart:coreimpl';
+import 'dart:collection';
 import 'dart:math' as math;
 
 part 'src/bot/attached/attachable.dart';

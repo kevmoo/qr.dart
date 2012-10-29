@@ -1,3 +1,5 @@
+part of bot;
+
 // TODO
 // ponder implementing other mutation methods
 // implement equals

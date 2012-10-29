@@ -1,3 +1,4 @@
+part of bot_texture;
 
 class TextureAnimationRequest {
   final EventHandle<EventArgs> _startEventHandle = new EventHandle<EventArgs>();

@@ -1,3 +1,5 @@
+part of bot;
+
 class Property<T> extends Attachable {
   static const Object Undefined = const _UndefinedValue();
 

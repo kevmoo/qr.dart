@@ -1,3 +1,5 @@
+part of bot_retained;
+
 // TODO: rename MouseManager or similiar -> doing more than click now
 // TODO: implement dispose. Unregister events from Canvas, etc
 

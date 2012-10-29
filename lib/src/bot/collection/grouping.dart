@@ -1,3 +1,5 @@
+part of bot;
+
 class Grouping<K extends Hashable, V> {
   final HashMap<K, List<V>> _values = new HashMap<K, List<V>>();
 
@@ -34,9 +36,9 @@ class Grouping<K extends Hashable, V> {
   /**
    * Returns a collection containing all the keys in the map.
    */
-  Collection<K> getKeys() => _values.getKeys();
+  Collection<K> getKeys() => _values.keys;
 
-  Enumerable<V> getValues() => $(_values.getValues()).selectMany((a) => a);
+  Enumerable<V> getValues() => $(_values.values).selectMany((a) => a);
 
   /**
    * The number of {key, value} pairs in the map.
@@ -46,7 +48,7 @@ class Grouping<K extends Hashable, V> {
   /**
    * Returns true if there is no {key, value} pair in the map.
    */
-  bool get isEmpty => _values.isEmpty();
+  bool get isEmpty => _values.isEmpty;
 
   String toString() => _values.toString();
 }

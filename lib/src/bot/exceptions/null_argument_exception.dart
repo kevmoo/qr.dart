@@ -1,3 +1,5 @@
+part of bot;
+
 class NullArgumentException extends ArgumentError {
   final String arg;
   const NullArgumentException([String arg = '']) :

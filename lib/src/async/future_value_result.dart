@@ -6,7 +6,7 @@ class FutureValueResult<TOutput> {
 
   final TOutput value;
   final exception;
-  final Func1<Dynamic, TOutput> _outputSerializer;
+  final Func1<dynamic, TOutput> _outputSerializer;
 
   FutureValueResult(this.value, [this._outputSerializer]) :
     exception = null;
@@ -47,7 +47,7 @@ class FutureValueResult<TOutput> {
         other.value == value && other.exception == exception;
   }
 
-  Dynamic _serialize(TOutput output) {
+  dynamic _serialize(TOutput output) {
     if(_outputSerializer == null) {
       return output;
     } else {

@@ -1,3 +1,5 @@
+part of bot;
+
 void require(bool truth, [String message = '']) {
   if(!truth) {
     throw new Exception(message);

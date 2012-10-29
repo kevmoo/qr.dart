@@ -1,3 +1,5 @@
+part of bot_test;
+
 class EventWatcher<T> {
   T _lastArgs = null;
   int _eventCount = 0;

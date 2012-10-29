@@ -1,3 +1,5 @@
+part of bot;
+
 class AttachableObject extends DisposableImpl {
   final HashMap<Property, Object> _propertyValues =
       new HashMap<Property, Object>();
@@ -29,7 +31,7 @@ class AttachableObject extends DisposableImpl {
     return false;
   }
 
-  void _fireEvent(Attachable attachable, Dynamic args) {
+  void _fireEvent(Attachable attachable, dynamic args) {
     validateNotDisposed();
     var handle = _eventHandlers[attachable];
     if(handle != null){

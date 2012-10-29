@@ -1,10 +1,12 @@
+part of bot_retained;
+
 class ImgElement extends PElement {
   final ImageElement _image;
 
   bool _waitingOnLoad = false;
 
   factory ImgElement.fromUrl(String src, num w, num h) {
-    final img = new ImageElement(src, null, null);
+    final img = new ImageElement(src: src);
 
     return new ImgElement(w, h, img);
   }

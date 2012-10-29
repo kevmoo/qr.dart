@@ -1,3 +1,5 @@
+part of bot_retained;
+
 class ElementMouseEventArgs extends EventArgs {
   final PElement element;
   final bool shiftKey;

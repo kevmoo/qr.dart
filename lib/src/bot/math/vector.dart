@@ -1,3 +1,5 @@
+part of bot;
+
 /**
  * Class reperesenting a 2d vector.
  **/

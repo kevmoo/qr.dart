@@ -1,3 +1,5 @@
+part of bot;
+
 class Coordinate {
   final num x, y;
 
@@ -32,5 +34,5 @@ class Coordinate {
 
   String toString() => '{x:${x}, y:${y}}';
 
-  Dynamic toJson() => { 'x' : x, 'y' : y };
+  dynamic toJson() => { 'x' : x, 'y' : y };
 }

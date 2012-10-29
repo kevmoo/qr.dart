@@ -1,3 +1,5 @@
+part of bot;
+
 typedef void Action0();
 typedef void Action1<T>(T param);
 typedef void Action2<T1, T2>(T1 param1, T2 param2);

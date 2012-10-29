@@ -1,3 +1,5 @@
+part of bot_retained;
+
 class SpriteElement extends ImgElement {
   final Coordinate startCoordinate;
   final Vector nextDelta;
@@ -32,7 +34,7 @@ class SpriteElement extends ImgElement {
   void _doDraw(CanvasRenderingContext2D ctx) {
     final int msPerFrame = 1000 ~/ count;
 
-    final int currentMS = window.performance.webkitNow().toInt();
+    final int currentMS = window.performance.now().toInt();
 
     final int theFrame = (currentMS ~/ msPerFrame) % count;
 

@@ -1,3 +1,5 @@
+part of bot;
+
 class CollectionUtil {
   static bool allUnique(Sequence items) {
     requireArgumentNotNull(items, 'items');

@@ -1,3 +1,5 @@
+part of bot;
+
 class AttachedEvent<T> extends Attachable {
 
   AttachedEvent(String name) : super(name);

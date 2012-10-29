@@ -1,3 +1,5 @@
+part of bot_retained;
+
 class Panel extends ParentElement {
   static final Property<AffineTransform> _containerTransformProperty =
       new Property<AffineTransform>("panelTransform");

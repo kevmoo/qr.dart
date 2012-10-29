@@ -1,3 +1,5 @@
+part of bot;
+
 // shamelessly starting with
 // http://code.google.com/p/dart/source/browse/branches/bleeding_edge/dart/samples/ui_lib/base/Size.dart?r=4154
 

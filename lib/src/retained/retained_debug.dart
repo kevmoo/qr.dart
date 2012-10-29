@@ -1,3 +1,5 @@
+part of bot_retained;
+
 class RetainedDebug {
   static void borderElements(stage) {
     var ctx = stage.ctx;

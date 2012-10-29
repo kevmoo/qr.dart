@@ -1,3 +1,5 @@
+part of bot_retained;
+
 class RetainedUtil {
   static List<PElement> hitTest(Stage stage, Coordinate point){
     return _hitTest(stage.rootElement, point);

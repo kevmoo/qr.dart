@@ -6,7 +6,7 @@ class QrByte {
 
   factory QrByte(String input) {
     requireArgumentNotNull(input, 'input');
-    final charCodes = input.charCodes();
+    final charCodes = input.charCodes;
     for(final v in charCodes) {
       requireArgument(v < 255, 'ascii-only');
     }

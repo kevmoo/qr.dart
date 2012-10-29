@@ -2,8 +2,8 @@ part of bot_async;
 
 class SendPortValue<TInput, TOutput> extends FutureValue<TInput, TOutput> {
   final SendPort _sendPort;
-  final Func1<TInput, Dynamic> inputSerializer;
-  final Func1<Dynamic, TOutput> outputDeserializer;
+  final Func1<TInput, dynamic> inputSerializer;
+  final Func1<dynamic, TOutput> outputDeserializer;
   Completer<TOutput> _completer;
   Future<TOutput> _innerFuture;
 
@@ -50,7 +50,7 @@ class SendPortValue<TInput, TOutput> extends FutureValue<TInput, TOutput> {
     }
   }
 
-  void _complete(Dynamic rawValue) {
+  void _complete(dynamic rawValue) {
     final c = _completer;
     _completer = null;
 
@@ -64,7 +64,7 @@ class SendPortValue<TInput, TOutput> extends FutureValue<TInput, TOutput> {
     c.completeException(exception);
   }
 
-  TOutput _deserializer(Dynamic input) {
+  TOutput _deserializer(dynamic input) {
     if(outputDeserializer == null) {
       return input;
     } else {

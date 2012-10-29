@@ -1,3 +1,5 @@
+part of bot;
+
 class DisposableImpl implements Disposable {
   bool _disposed = false;
 

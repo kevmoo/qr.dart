@@ -1,3 +1,5 @@
+part of bot;
+
 // shamelessly borrowed from https://github.com/boronine/husl
 // On 2012-07-05
 // Commit: 501439fc483a283838b299b8973a47a5a437942b, June 27

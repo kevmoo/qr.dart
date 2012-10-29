@@ -1,13 +1,15 @@
+part of bot_retained;
+
 class Shape extends PElement {
-  Dynamic _fillStyle;
+  dynamic _fillStyle;
   final ShapeType shapeType;
 
-  Shape(num w, num h, [Dynamic fillStyle = 'blue', this.shapeType = ShapeType.rect])
+  Shape(num w, num h, [dynamic fillStyle = 'blue', this.shapeType = ShapeType.rect])
     : _fillStyle = fillStyle, super(w, h, true);
 
-  Dynamic get fillStyle => _fillStyle;
+  dynamic get fillStyle => _fillStyle;
 
-  void set fillStyle(Dynamic value) {
+  void set fillStyle(dynamic value) {
     _fillStyle = value;
     invalidateDraw();
   }

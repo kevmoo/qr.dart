@@ -1,3 +1,5 @@
+part of bot;
+
 class EventHandle<T> extends DisposableImpl implements EventRoot<T> {
   HashMap<GlobalId, Action1<T>> _handlers;
 

@@ -1,3 +1,5 @@
+part of bot;
+
 Enumerable $(Iterable source) {
   if(source is Enumerable) {
     return source;
@@ -22,7 +24,7 @@ abstract class Enumerable<T> implements Iterable<T> {
     return new _SimpleEnumerable<T>(source);
   }
 
-  abstract Iterator iterator();
+  Iterator iterator();
 
   /**
    * Returns true if every elements of this collection satisify the
@@ -47,7 +49,7 @@ abstract class Enumerable<T> implements Iterable<T> {
     return false;
   }
 
-  bool isEmpty() => !some((e) => true);
+  bool get isEmpty => !some((e) => true);
 
   /**
    * Returns true if one element of this collection satisfies the
@@ -115,8 +117,8 @@ abstract class Enumerable<T> implements Iterable<T> {
    *
    *   collection.reduce(0, (prev, element) => prev + element);
    */
-  Dynamic reduce(Dynamic initialValue,
-                 Dynamic combine(Dynamic previousValue, T element)) {
+  dynamic reduce(dynamic initialValue,
+                 dynamic combine(dynamic previousValue, T element)) {
     return Collections.reduce(this, initialValue, combine);
   }
 
@@ -138,7 +140,7 @@ abstract class Enumerable<T> implements Iterable<T> {
       f = (e) => true;
     }
     final iter = new _WhereIterator<T>(this.iterator(), f);
-    if(!iter.hasNext()) {
+    if(!iter.hasNext) {
       throw const InvalidOperationException('The input sequence is empty.');
     }
     return iter.next();
@@ -149,7 +151,7 @@ abstract class Enumerable<T> implements Iterable<T> {
       f = (e) => true;
     }
     final iter = new _WhereIterator<T>(this.iterator(), f);
-    if(!iter.hasNext()) {
+    if(!iter.hasNext) {
       return defaultValue;
     }
     return iter.next();
@@ -160,11 +162,11 @@ abstract class Enumerable<T> implements Iterable<T> {
       f = (e) => true;
     }
     final iter = new _WhereIterator<T>(this.iterator(), f);
-    if(!iter.hasNext()) {
+    if(!iter.hasNext) {
       throw const InvalidOperationException('The input sequence is empty.');
     }
     final value = iter.next();
-    if(iter.hasNext()) {
+    if(iter.hasNext) {
       throw const InvalidOperationException('The input sequence contains more than one element.');
     }
     return value;
@@ -175,11 +177,11 @@ abstract class Enumerable<T> implements Iterable<T> {
       f = (e) => true;
     }
     final iter = new _WhereIterator<T>(this.iterator(), f);
-    if(!iter.hasNext()) {
+    if(!iter.hasNext) {
       return defaultValue;
     }
     final value = iter.next();
-    if(iter.hasNext()) {
+    if(iter.hasNext) {
       throw const InvalidOperationException('The input sequence contains more than one element.');
     }
     return value;
@@ -197,7 +199,7 @@ abstract class Enumerable<T> implements Iterable<T> {
     return CollectionUtil.aggregate(this, seed, f);
   }
 
-  Grouping<Dynamic, T> group([Func1<T, Object> keyFunc = null]) {
+  Grouping<dynamic, T> group([Func1<T, Object> keyFunc = null]) {
     return new Grouping(this, keyFunc);
   }
 
@@ -235,7 +237,7 @@ abstract class Enumerable<T> implements Iterable<T> {
     for(final e in this) {
       final k = keyFunc(e);
       if(map.containsKey(k)) {
-        throw new UnsupportedOperationException("The key '$k' is duplicated");
+        throw new UnsupportedError("The key '$k' is duplicated");
       }
       map[k] = valueFunc(e);
     }
@@ -273,7 +275,7 @@ class _SelectIterator<TSource, TOutput> implements Iterator<TOutput> {
 
   const _SelectIterator(this._source, this._func);
 
-  bool hasNext() => _source.hasNext();
+  bool get hasNext => _source.hasNext;
 
   TOutput next() => _func(_source.next());
 }
@@ -286,10 +288,10 @@ class _WhereIterator<T> implements Iterator<T> {
 
   _WhereIterator(this._source, this._func);
 
-  bool hasNext() {
+  bool get hasNext {
     if(_next == null) {
       _next = false;
-      while(_source.hasNext()) {
+      while(_source.hasNext) {
         _current = _source.next();
         if(_func(_current)) {
           _next = true;
@@ -301,8 +303,8 @@ class _WhereIterator<T> implements Iterator<T> {
   }
 
   T next() {
-    if(!hasNext()) {
-      throw const NoMoreElementsException();
+    if(!hasNext) {
+      throw new StateError("No more elements");
     }
     assert(_func(_current));
     _next = null;
@@ -322,10 +324,10 @@ class _DistinctIterator<T> implements Iterator<T> {
   _DistinctIterator(this._source, this._comparer) :
     _found = new List<T>();
 
-  bool hasNext() {
+  bool get hasNext {
     if(_next == null) {
       _next = false;
-      while(_source.hasNext()) {
+      while(_source.hasNext) {
         _current = _source.next();
         if(_found.every((e) => !_comparer(e, _current))) {
           _next = true;
@@ -338,8 +340,8 @@ class _DistinctIterator<T> implements Iterator<T> {
   }
 
   T next() {
-    if(!hasNext()) {
-      throw const NoMoreElementsException();
+    if(!hasNext) {
+      throw new StateError("No more elements");
     }
     _next = null;
     return _current;
@@ -356,9 +358,9 @@ class _SelectManyIterator<TSource, TOutput>
 
   _SelectManyIterator._internal(this._sourceIterator, this._func);
 
-  bool hasNext() {
+  bool get hasNext {
     if(_outputIterator != null) {
-      if(_outputIterator.hasNext()) {
+      if(_outputIterator.hasNext) {
         return true;
       }
       else {
@@ -368,17 +370,17 @@ class _SelectManyIterator<TSource, TOutput>
 
     assert(_outputIterator == null);
 
-    if(_sourceIterator.hasNext()) {
+    if(_sourceIterator.hasNext) {
       var nextOutputIterable = _sourceIterator.next();
       _outputIterator = _func(nextOutputIterable).iterator();
-      return _outputIterator.hasNext();
+      return _outputIterator.hasNext;
     }
     return false;
   }
 
   TOutput next() {
-    if(!hasNext()) {
-      throw const NoMoreElementsException();
+    if(!hasNext) {
+      throw new StateError("No more elements");
     }
     return _outputIterator.next();
   }

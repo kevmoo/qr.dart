@@ -31,8 +31,8 @@ class TestEnumerable {
   }
 
   static void _testIsEmpty() {
-    expect($([]).isEmpty(), isTrue);
-    expect($([1]).isEmpty(), isFalse);
+    expect($([]).isEmpty, isTrue);
+    expect($([1]).isEmpty, isFalse);
   }
 
   static void _testReduce() {
@@ -129,7 +129,7 @@ class TestEnumerable {
     hashMap.forEach((k,v) {
       expect(k.length, equals(v));
     });
-    expect(hashMap.getKeys(), unorderedEquals(noDupes));
+    expect(hashMap.keys, unorderedEquals(noDupes));
 
     //
     // where the key is produced by a func, too
@@ -138,17 +138,17 @@ class TestEnumerable {
     hashMap.forEach((k,v) {
       expect(k, equals(v[0]));
     });
-    expect(hashMap.getValues(), unorderedEquals(noDupes));
+    expect(hashMap.values, unorderedEquals(noDupes));
 
     //
     // doesn't support duplicate keys
     //
     expect(() => noDupes.toHashMap((s) => s, (s) => s.length),
-        throwsUnsupportedOperationException);
+        throwsUnsupportedError);
 
     final withDupes = $(['the', 'cat', 'is', 'the', 'super', 'cat']);
     expect(() => withDupes.toHashMap((s) => s.length),
-        throwsUnsupportedOperationException);
+        throwsUnsupportedError);
   }
 
   static void _testCount() {

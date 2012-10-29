@@ -111,10 +111,10 @@ class TestListBase extends ListBase<int> {
 
     expect(() => mt.getRange(0, -1), throwsArgumentError);
 
-    expect(() => mt.getRange(-1, 1), throwsIndexOutOfRangeException);
-    expect(() => mt.getRange(1, 1), throwsIndexOutOfRangeException);
-    expect(() => roc([1]).getRange(0, 2), throwsIndexOutOfRangeException);
-    expect(() => roc([1]).getRange(1, 1), throwsIndexOutOfRangeException);
+    expect(() => mt.getRange(-1, 1), throwsArgumentError);
+    expect(() => mt.getRange(1, 1), throwsArgumentError);
+    expect(() => roc([1]).getRange(0, 2), throwsArgumentError);
+    expect(() => roc([1]).getRange(1, 1), throwsArgumentError);
   }
 
   static void _testForEach() {

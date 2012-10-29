@@ -1,3 +1,5 @@
+part of bot;
+
 abstract class ListBase<T> extends Enumerable<T> implements SequenceCollection<T> {
 
   const ListBase();
@@ -53,18 +55,18 @@ abstract class ListBase<T> extends Enumerable<T> implements SequenceCollection<T
   /**
    * Returns true if there is no element in this collection.
    */
-  bool isEmpty() => length == 0;
+  bool get isEmpty => length == 0;
 
   /**
    * Returns the number of elements in this collection.
    */
-  abstract int get length;
+  int get length;
 
   /**
    * Returns the element at the given [index] in the list or throws
    * an [IndexOutOfRangeException] if [index] is out of bounds.
    */
-  abstract T operator [](int index);
+  T operator [](int index);
 
   /**
    * Returns the first index of [element] in the list. Searches the

@@ -1,3 +1,5 @@
+part of bot_texture;
+
 class TextureAnimationElement extends PElement {
   final TextureData _textureData;
   final List<TextureAnimationRequest> _requests = new List<TextureAnimationRequest>();

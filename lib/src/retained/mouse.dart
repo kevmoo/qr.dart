@@ -1,3 +1,5 @@
+part of bot_retained;
+
 class Mouse {
   static final Property<bool> isMouseOverProperty =
       new Property<bool>("IsMouseOver", false);

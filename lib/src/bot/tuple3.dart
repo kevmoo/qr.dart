@@ -1,3 +1,5 @@
+part of bot;
+
 class Tuple3<T1, T2, T3>
   extends Tuple<T1, T2> {
   final T3 item3;
@@ -14,5 +16,5 @@ class Tuple3<T1, T2, T3>
 
   String toString() => "{item1: $item1, item2: $item2, item3: $item3}";
 
-  int hashCode() => Util.getHashCode([item1, item2, item3]);
+  int get hashCode => Util.getHashCode([item1, item2, item3]);
 }

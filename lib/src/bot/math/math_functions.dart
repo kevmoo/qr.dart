@@ -1,5 +1,7 @@
+part of bot;
+
 bool isValidNumber(num value) {
-  return value != null && !value.isInfinite() && !value.isNaN();
+  return value != null && !value.isInfinite && !value.isNaN;
 }
 
 math.Random get rnd {

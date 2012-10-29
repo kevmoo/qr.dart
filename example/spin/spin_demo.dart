@@ -55,7 +55,7 @@ class SpinDemo{
     window.requestAnimationFrame(_onFrame);
   }
 
-  void _onFrame(int highResTime){
+  void _onFrame(double highResTime){
     _tx.rotate(math.PI * 0.01, 100, 100);
     _stage.draw();
     if(_mouseLocation != null){

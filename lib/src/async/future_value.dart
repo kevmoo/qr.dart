@@ -24,7 +24,7 @@ abstract class FutureValue<TInput, TOutput> {
   EventRoot<EventArgs> get inputChanged => _inputChangedHandle;
   EventRoot get error => _errorHandle;
 
-  abstract Future<TOutput> getFuture(TInput value);
+  Future<TOutput> getFuture(TInput value);
 
   void _startFuture() {
     assert(_future == null);

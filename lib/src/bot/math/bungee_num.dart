@@ -1,3 +1,5 @@
+part of bot;
+
 // TODO: test!
 class BungeeNum {
   num _target;

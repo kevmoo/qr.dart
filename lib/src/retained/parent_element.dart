@@ -1,3 +1,5 @@
+part of bot_retained;
+
 abstract class ParentElement
   extends PElement
   implements ElementParent {
@@ -19,9 +21,9 @@ abstract class ParentElement
     invalidateDraw();
   }
 
-  abstract PElement getVisualChild(index);
+  PElement getVisualChild(index);
 
-  abstract int get visualChildCount;
+  int get visualChildCount;
 
   void childInvalidated(PElement child){
     assert(hasVisualChild(child));

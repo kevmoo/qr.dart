@@ -1,3 +1,5 @@
-interface Cloneable<T> {
+part of bot;
+
+abstract class Cloneable<T> {
   T clone();
 }
