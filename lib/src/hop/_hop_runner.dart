@@ -13,6 +13,10 @@ class _HopRunner {
 
   _HopRunner._internal(this._state, this._args){
     _state.requireFrozen();
+  }
+
+  void run() {
+    _state.requireFrozen();
     if(_args.rest.length > 0) {
       final taskName = _args.rest[0];
       if(_state.hasTask(taskName)) {

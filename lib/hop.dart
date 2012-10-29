@@ -3,7 +3,6 @@ library hop;
 // TODO: documentation for tasks
 // TODO: formalize print/log model
 // TODO: tests
-// TODO: auto-complete model?
 
 import 'dart:io';
 import 'dart:isolate';
@@ -25,7 +24,8 @@ final _sharedState = new _HopState();
 void runHopCore() {
   _sharedState.freeze();
   final options = new Options();
-  new _HopRunner(_sharedState, options.arguments);
+  final runner = new _HopRunner(_sharedState, options.arguments);
+  runner.run();
 }
 
 void addTask(String name, Func1<TaskContext, bool> execFunc) {
