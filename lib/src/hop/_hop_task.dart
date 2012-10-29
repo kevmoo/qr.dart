@@ -1,4 +1,4 @@
-part of bot_hop;
+part of hop;
 
 class _HopTask {
   final name;

@@ -1,4 +1,4 @@
-part of bot_hop;
+part of hop;
 
 Func1<TaskContext, Future<bool>> getDart2jsTask(List<String> inputs) {
   return (context) {

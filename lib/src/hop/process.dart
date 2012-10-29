@@ -1,4 +1,4 @@
-part of bot_hop;
+part of hop;
 
 Future<bool> runProcess(TaskContext state, String command, List<String> args) {
   state.fine("Starting process:");

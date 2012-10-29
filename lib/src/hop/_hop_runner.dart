@@ -1,4 +1,4 @@
-part of bot_hop;
+part of hop;
 
 class _HopRunner {
   static const String RAW_TASK_LIST_CMD = 'print_raw_task_list';

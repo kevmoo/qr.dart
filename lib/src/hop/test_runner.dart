@@ -1,4 +1,4 @@
-part of bot_hop;
+part of hop;
 
 Func1<TaskContext, Future<bool>> getTestRunner(Action1<Configuration> testRunner) {
   return (TaskContext state) {

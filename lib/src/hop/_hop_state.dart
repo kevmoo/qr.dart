@@ -1,4 +1,4 @@
-part of bot_hop;
+part of hop;
 
 class _HopState {
   static const _reservedTasks = const[_HopRunner.RAW_TASK_LIST_CMD];

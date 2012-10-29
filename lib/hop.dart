@@ -1,4 +1,4 @@
-library bot_hop;
+library hop;
 
 // TODO: documentation for tasks
 // TODO: formalize print/log model
