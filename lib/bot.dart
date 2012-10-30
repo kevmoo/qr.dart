@@ -27,7 +27,7 @@ part 'src/bot/disposable.dart';
 part 'src/bot/disposable_impl.dart';
 
 part 'src/bot/events/cancelable_event_args.dart';
-part 'src/bot/events/event.dart';
+part 'src/bot/events/event_root.dart';
 part 'src/bot/events/event_args.dart';
 part 'src/bot/events/event_handle.dart';
 
