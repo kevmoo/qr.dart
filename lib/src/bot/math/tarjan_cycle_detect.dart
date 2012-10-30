@@ -1,4 +1,5 @@
 // http://en.wikipedia.org/wiki/Tarjan's_strongly_connected_components_algorithm
+
 class TarjanCycleDetect<TNode extends Hashable> {
 
   int _index = 0;
