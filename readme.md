@@ -9,14 +9,26 @@ Starting by porting bits of the [PL javascript library](https://github.com/think
 # Highlights
 
 ## bot -- default library
+ * __attached__
+     * A general model for supporting extensible, runtime-defined events and
+       properties on supported objects.
+     * This functionality is inspired by the Dependency Object/Property model
+       in WPF/Silverlight.
+ * __collection__
+     * `Array2d`
+     * `CollectionUtil`
+     * `Grouping`
+     * `IndexIterator`
+     * `ListBase`
+     * `NumberEnumerable`
+     * `ReadOnlyCollection`
  * __color__
      * `RgbColor`, `HslColor` with associated conversions back and forth
      * `RgbColor` supports to/from hex
+ * __events__
  * __math__
+     * Mostly classes related to 2D geometry and graphicsgeometry-related classes
      * `Coordinate`, `Box`, `Size`, `Vector`, `AffineTransfrom`
- * __property__
-     * A general model for supporting runtime-defined properties supported objects.
-     * This functionality is inspired by the Dependency Property model in WPF/Silverlight.
 
 ## async
   * `FutureValue`: an abstract model for async conversions via `Future<T>`
