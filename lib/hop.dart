@@ -14,7 +14,7 @@ import 'package:bot/io.dart';
 part 'src/hop/_hop_runner.dart';
 part 'src/hop/_hop_state.dart';
 part 'src/hop/_hop_task.dart';
-part 'src/hop/test_context.dart';
+part 'src/hop/task_context.dart';
 part 'src/hop/test_runner.dart';
 part 'src/hop/process.dart';
 part 'src/hop/dart2js.dart';
