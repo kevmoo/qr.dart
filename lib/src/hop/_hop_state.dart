@@ -7,7 +7,7 @@ class _HopState {
 
   _HopState();
 
-  Collection<String> get taskNames => _tasks.getKeys();
+  Collection<String> get taskNames => _tasks.keys;
 
   bool hasTask(String taskName) {
     requireFrozen();

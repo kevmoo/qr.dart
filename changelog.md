@@ -1,5 +1,9 @@
 # Changelog - HOP task system
 
+## 0.2.0 (pre)
+
+* Aligned with SDK r14406
+
 ## 0.1.0 -- 1 November 2012
 
 * Aligned with SDK r13851
