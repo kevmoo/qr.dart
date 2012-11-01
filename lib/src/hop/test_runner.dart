@@ -14,16 +14,16 @@ Func1<TaskContext, Future<bool>> getTestRunner(Action1<Configuration> testRunner
 
 class _HopTestConfiguration extends Configuration {
   final Completer<bool> _completer;
-  final TaskContext _state;
+  final TaskContext _context;
 
-  _HopTestConfiguration(this._state) : this._completer = new Completer<bool>();
+  _HopTestConfiguration(this._context) : this._completer = new Completer<bool>();
 
   Future<bool> get future => _completer.future;
 
   get autoStart => false;
 
   void onStart() {
-     // no need to post message
+     // overloading to prevent 'print' in baseclass
   }
 
   void logTestcaseMessage(TestCase testCase, String message) {
@@ -32,7 +32,18 @@ class _HopTestConfiguration extends Configuration {
 
   void onTestResult(TestCase testCase) {
     super.onTestResult(testCase);
-    _state.fine(testCase.description);
+
+    // result should not be null here
+    assert(testCase.result != null);
+
+    if(testCase.result == PASS) {
+      _context.fine(testCase.description);
+    }
+    else {
+      _context.error(
+'''${testCase.result} - ${testCase.description}
+${testCase.stackTrace}''');
+    }
   }
 
   void onDone(int passed, int failed, int errors, List<TestCase> results,
