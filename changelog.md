@@ -2,7 +2,7 @@
 
 ## 0.2.0 (pre)
 
-* Aligned with SDK r14406
+* Aligned with SDK r14494
 
 ## 0.1.0 -- 1 November 2012
 
