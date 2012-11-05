@@ -1,5 +1,8 @@
 part of test_hop;
 
+// TODO: create a custom runer to silence output
+// ...and to allow testing output
+
 class SyncTests {
   static void run() {
     test('true result is cool', _testTrueIsCool);
