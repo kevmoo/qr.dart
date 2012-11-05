@@ -6,12 +6,8 @@ class Runner {
   final ArgResults _args;
   final Tasks _state;
 
-  factory Runner(Tasks state, List<String> arguments) {
-    final result = _parser.parse(arguments);
-    return new Runner._internal(state, result);
-  }
-
-  Runner._internal(this._state, this._args){
+  Runner(this._state, List<String> arguments) :
+    _args = _parser.parse(arguments) {
     _state.requireFrozen();
   }
 
