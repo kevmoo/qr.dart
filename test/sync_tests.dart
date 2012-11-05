@@ -5,6 +5,7 @@ class SyncTests {
     test('true result is cool', _testTrueIsCool);
     test('false result fails', _testFalseIsFail);
     test('null result is sad', _testNullIsSad);
+    test('exception is sad', _testExceptionIsSad);
   }
 
   static void _testTrueIsCool() {
@@ -23,6 +24,16 @@ class SyncTests {
     _testSimpleSyncTask('null', (ctx) => null,(Future f) {
       expect(f.exception, isNotNull);
     });
+  }
+
+  static void _testExceptionIsSad() {
+    _testSimpleSyncTask('exception', (ctx) {
+        throw 'sorry';
+      },
+      (Future f) {
+        expect(f.exception, isNotNull);
+      }
+    );
   }
 
   static Action0 _testSimpleSyncTask(String name, Func1<TaskContext, bool> task,

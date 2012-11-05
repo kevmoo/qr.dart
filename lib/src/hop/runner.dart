@@ -45,9 +45,19 @@ class Runner {
     assert(task != null);
 
     final context = getContext(task.name);
-    final future = task.run(context);
-
     final completer = new Completer<bool>();
+
+    Future<bool> future;
+    try {
+      future = task.run(context);
+    } catch(e) {
+      context.error('Error');
+      context.error(e.toString());
+      completer.completeException(e);
+      return completer.future;
+    }
+
+    assert(future != null);
 
     future.onComplete((f) {
       if(f.hasValue) {
@@ -67,6 +77,7 @@ class Runner {
         context.error('Error');
         context.error(f.exception.toString());
         context.error(f.stackTrace.toString());
+        completer.completeException(f.exception, f.stackTrace);
       }
       context.dispose();
     });
