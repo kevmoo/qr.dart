@@ -15,38 +15,52 @@ class Runner {
     _state.requireFrozen();
   }
 
-  void run() {
+  Future<bool> run() {
     _state.requireFrozen();
     if(_args.rest.length > 0) {
       final taskName = _args.rest[0];
       if(_state.hasTask(taskName)) {
-        _runTask(taskName);
+        return _runTask(taskName);
       } else if(taskName == RAW_TASK_LIST_CMD) {
         _printRawTasks();
+        return new Future.immediate(true);
       }
       else {
         print('No task named "$taskName".');
+        return new Future.immediate(false);
       }
     } else {
       _printHelp();
+      return new Future.immediate(true);
     }
   }
 
-  void _runTask(String taskName) {
+  @protected
+  TaskContext getContext(String taskName) {
+    return new TaskContext(taskName);
+  }
+
+  Future<bool> _runTask(String taskName) {
     final task = _state.getTask(taskName);
     assert(task != null);
 
-    final context = new TaskContext(task.name);
+    final context = getContext(task.name);
     final future = task.run(context);
+
+    final completer = new Completer<bool>();
 
     future.onComplete((f) {
       if(f.hasValue) {
         if(f.value == true) {
           context.success('Finished');
+          completer.complete(true);
         } else {
           context.error('Failed');
-          if(f.value != false) {
+          if(f.value == false) {
+            completer.complete(false);
+          } else {
             context.error('${f.value} returned from task');
+            completer.completeException('Return value from task must be true or false');
           }
         }
       } else {
@@ -56,6 +70,8 @@ class Runner {
       }
       context.dispose();
     });
+
+    return completer.future;
   }
 
   void _printHelp() {

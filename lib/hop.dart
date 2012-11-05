@@ -2,7 +2,6 @@ library hop;
 
 // TODO: documentation for tasks
 // TODO: formalize print/log model
-// TODO: tests
 
 import 'dart:io';
 import 'dart:isolate';

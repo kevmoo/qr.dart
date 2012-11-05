@@ -1,8 +1,9 @@
 library console_test_harness;
 
+import 'package:bot/test.dart';
+import 'package:hop/hop.dart';
 import 'package:unittest/unittest.dart';
 import 'package:unittest/vm_config.dart';
-import 'package:bot/test.dart';
 
 part '_basic_sync_tests.dart';
 
