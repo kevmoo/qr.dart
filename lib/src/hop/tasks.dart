@@ -1,11 +1,11 @@
 part of hop;
 
-class _HopState {
+class Tasks {
   static const _reservedTasks = const[Runner.RAW_TASK_LIST_CMD];
   final Map<String, _HopTask> _tasks = new Map();
   bool _frozen = false;
 
-  _HopState();
+  Tasks();
 
   Collection<String> get taskNames => _tasks.keys;
 

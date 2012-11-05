@@ -4,9 +4,9 @@ class Runner {
   static const String RAW_TASK_LIST_CMD = 'print_raw_task_list';
   static final ArgParser _parser = _getParser();
   final ArgResults _args;
-  final _HopState _state;
+  final Tasks _state;
 
-  factory Runner(_HopState state, List<String> arguments) {
+  factory Runner(Tasks state, List<String> arguments) {
     final result = _parser.parse(arguments);
     return new Runner._internal(state, result);
   }
