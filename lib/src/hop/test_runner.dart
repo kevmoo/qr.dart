@@ -41,7 +41,8 @@ class _HopTestConfiguration extends Configuration {
     }
     else {
       _context.error(
-'''${testCase.result} - ${testCase.description}
+'''[${testCase.result}] ${testCase.description}
+${testCase.message}
 ${testCase.stackTrace}''');
     }
   }
