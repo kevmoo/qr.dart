@@ -6,6 +6,8 @@ class SyncTests {
     test('false result fails', _testFalseIsFail);
     test('null result is sad', _testNullIsSad);
     test('exception is sad', _testExceptionIsSad);
+    test('bad task name', _testBadParam);
+    test('no task name', _testNoParam);
   }
 
   static void _testTrueIsCool() {
@@ -31,9 +33,45 @@ class SyncTests {
         throw 'sorry';
       },
       (Future f) {
-        expect(f.exception, isNotNull);
+        expect(f.exception, 'sorry');
       }
     );
+  }
+
+  static void _testBadParam() {
+    final tasks = new Tasks();
+    tasks.addTask('good', (ctx) => true);
+    tasks.freeze();
+
+    final runner = new Runner(tasks, ['bad']);
+    final future = runner.run();
+    expect(future, isNotNull);
+    expect(future.isComplete, isTrue);
+
+    final onComplete = expectAsync1((f) {
+      expect(f.value, isFalse);
+      // TODO: test that proper error message is printed
+    });
+
+    future.onComplete(onComplete);
+  }
+
+  static void _testNoParam() {
+    final tasks = new Tasks();
+    tasks.addTask('good', (ctx) => true);
+    tasks.freeze();
+
+    final runner = new Runner(tasks, []);
+    final future = runner.run();
+    expect(future, isNotNull);
+    expect(future.isComplete, isTrue);
+
+    final onComplete = expectAsync1((f) {
+      expect(f.value, isTrue);
+      // TODO: test that task list is printed
+    });
+
+    future.onComplete(onComplete);
   }
 
   static Action0 _testSimpleSyncTask(String name, Func1<TaskContext, bool> task,
