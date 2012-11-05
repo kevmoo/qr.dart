@@ -11,7 +11,7 @@ import 'package:unittest/unittest.dart';
 import 'package:bot/bot.dart';
 import 'package:bot/io.dart';
 
-part 'src/hop/_hop_runner.dart';
+part 'src/hop/runner.dart';
 part 'src/hop/_hop_state.dart';
 part 'src/hop/_hop_task.dart';
 part 'src/hop/task_context.dart';
@@ -25,7 +25,7 @@ final _sharedState = new _HopState();
 void runHopCore() {
   _sharedState.freeze();
   final options = new Options();
-  final runner = new _HopRunner(_sharedState, options.arguments);
+  final runner = new Runner(_sharedState, options.arguments);
   runner.run();
 }
 

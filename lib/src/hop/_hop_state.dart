@@ -1,7 +1,7 @@
 part of hop;
 
 class _HopState {
-  static const _reservedTasks = const[_HopRunner.RAW_TASK_LIST_CMD];
+  static const _reservedTasks = const[Runner.RAW_TASK_LIST_CMD];
   final Map<String, _HopTask> _tasks = new Map();
   bool _frozen = false;
 

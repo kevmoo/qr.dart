@@ -1,17 +1,17 @@
 part of hop;
 
-class _HopRunner {
+class Runner {
   static const String RAW_TASK_LIST_CMD = 'print_raw_task_list';
   static final ArgParser _parser = _getParser();
   final ArgResults _args;
   final _HopState _state;
 
-  factory _HopRunner(_HopState state, List<String> arguments) {
+  factory Runner(_HopState state, List<String> arguments) {
     final result = _parser.parse(arguments);
-    return new _HopRunner._internal(state, result);
+    return new Runner._internal(state, result);
   }
 
-  _HopRunner._internal(this._state, this._args){
+  Runner._internal(this._state, this._args){
     _state.requireFrozen();
   }
 
