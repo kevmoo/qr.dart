@@ -47,6 +47,9 @@ class Runner {
     final context = getContext(task.name);
     final completer = new Completer<bool>();
 
+    // DARTBUG: http://code.google.com/p/dart/issues/detail?id=6405
+    // Hopefully this issue will be resolved. Having the catch inline here
+    // means we're missing the stack trace and duplicating error handling code.
     Future<bool> future;
     try {
       future = task.run(context);
