@@ -1,4 +1,4 @@
-part of console_test_harness;
+part of test_hop;
 
 class SyncTests {
   static void run() {

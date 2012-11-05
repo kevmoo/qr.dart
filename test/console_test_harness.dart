@@ -1,4 +1,4 @@
-library console_test_harness;
+library test_hop;
 
 import 'package:bot/bot.dart';
 import 'package:bot/test.dart';
