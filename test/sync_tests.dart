@@ -45,7 +45,7 @@ class SyncTests {
     tasks.addTask('good', (ctx) => true);
     tasks.freeze();
 
-    final runner = new Runner(tasks, ['bad']);
+    final runner = new TestRunner(tasks, ['bad']);
     final future = runner.run();
     expect(future, isNotNull);
     expect(future.isComplete, isTrue);
@@ -63,7 +63,7 @@ class SyncTests {
     tasks.addTask('good', (ctx) => true);
     tasks.freeze();
 
-    final runner = new Runner(tasks, []);
+    final runner = new TestRunner(tasks, []);
     final future = runner.run();
     expect(future, isNotNull);
     expect(future.isComplete, isTrue);
