@@ -11,8 +11,11 @@ class _HopTask {
   }
 
   _HopTask.async(this.name, this._exec) {
-    // TODO: name not null
-    // TODO: other name requirements?
+    requireArgumentNotNull(name, 'name');
+    requireArgument(name.length > 0, 'name');
+    // TODO: no whitespace
+    // TODO: only alpha-numeric + underscore + hyphen?
+    // TODO: must start with alpha
   }
 
   Future<bool> run(TaskContext state) {

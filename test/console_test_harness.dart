@@ -7,6 +7,7 @@ import 'package:unittest/unittest.dart';
 import 'package:unittest/vm_config.dart';
 
 part 'sync_tests.dart';
+part 'task_list_tests.dart';
 
 main() {
   final config = new VmConfiguration();
@@ -17,9 +18,6 @@ void testCore(Configuration config) {
   configure(config);
   groupSep = ' - ';
 
-  group('sync tests', SyncTests.run);
+  group('sync tasks', SyncTests.run);
+  group('task list', TaskListTests.run);
 }
-
-// TODO: things to test
-// * dupe names should fail
-// * null values should fail
