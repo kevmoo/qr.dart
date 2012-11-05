@@ -1,7 +1,6 @@
 part of test_hop;
 
-// TODO: create a custom runer to silence output
-// ...and to allow testing output
+// TODO: test output using new TestRunner
 
 class SyncTests {
   static void run() {
@@ -83,7 +82,7 @@ class SyncTests {
     tasks.addTask(name, task);
     tasks.freeze();
 
-    final runner = new Runner(tasks, [name]);
+    final runner = new TestRunner(tasks, [name]);
     final future = runner.run();
     expect(future, isNotNull);
     expect(future.isComplete, isTrue);
