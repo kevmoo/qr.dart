@@ -7,16 +7,15 @@ class TestRunner extends Runner {
 
 
   @protected
-  TaskContext getContext(String taskName) {
-    return new TestTaskContext(taskName);
+  RootTaskContext getContext() {
+    return new TestTaskContext();
   }
 }
 
-class TestTaskContext extends TaskContext {
-  TestTaskContext(String name):super(name);
+class TestTaskContext extends RootTaskContext {
 
   @protected
-  void printCore(String msg, Color color) {
+  void printCore(String msg, [Color color = null, String taskName = null]) {
     // at the moment, just swallowing all print output
   }
 }

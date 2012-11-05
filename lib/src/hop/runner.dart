@@ -1,8 +1,5 @@
 part of hop;
 
-// TODO: eliminate usage of 'print' directly
-// ponder nested TestContext with a default root Context? Hmm...
-
 class Runner {
   static const String RAW_TASK_LIST_CMD = 'print_raw_task_list';
   static final ArgParser _parser = _getParser();
@@ -16,34 +13,37 @@ class Runner {
 
   Future<bool> run() {
     _state.requireFrozen();
+
+    final ctx = getContext();
+
     if(_args.rest.length > 0) {
       final taskName = _args.rest[0];
       if(_state.hasTask(taskName)) {
-        return _runTask(taskName);
+        var subCtx = ctx.getSubContext(taskName);
+        return _runTask(subCtx, taskName);
       } else if(taskName == RAW_TASK_LIST_CMD) {
-        _printRawTasks();
+        _printRawTasks(ctx);
         return new Future.immediate(true);
       }
       else {
-        print('No task named "$taskName".');
+        ctx.print('No task named "$taskName".');
         return new Future.immediate(false);
       }
     } else {
-      _printHelp();
+      _printHelp(ctx);
       return new Future.immediate(true);
     }
   }
 
   @protected
-  TaskContext getContext(String taskName) {
-    return new TaskContext(taskName);
+  RootTaskContext getContext() {
+    return new RootTaskContext();
   }
 
-  Future<bool> _runTask(String taskName) {
+  Future<bool> _runTask(TaskContext context, String taskName) {
     final task = _state.getTask(taskName);
     assert(task != null);
 
-    final context = getContext(task.name);
     final completer = new Completer<bool>();
 
     // DARTBUG: http://code.google.com/p/dart/issues/detail?id=6405
@@ -87,18 +87,18 @@ class Runner {
     return completer.future;
   }
 
-  void _printHelp() {
-    print('Welcome to HOP');
-    print('');
-    print('Tasks:');
-    _printRawTasks();
+  void _printHelp(RootTaskContext ctx) {
+    ctx.print('Welcome to HOP');
+    ctx.print('');
+    ctx.print('Tasks:');
+    _printRawTasks(ctx);
     // print('');
     // print(_parser.getUsage());
   }
 
-  void _printRawTasks() {
+  void _printRawTasks(RootTaskContext ctx) {
     for(final t in _state.taskNames) {
-      print(t);
+      ctx.print(t);
     }
   }
 

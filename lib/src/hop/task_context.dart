@@ -1,26 +1,47 @@
 part of hop;
 
-class TaskContext extends DisposableImpl {
-  final String name;
-
-  TaskContext(this.name);
+abstract class TaskContext extends DisposableImpl {
 
   void fine(String message) {
-    printCore(message, Color.BLUE);
+    _printCore(message, Color.BLUE);
   }
 
   void error(String message) {
-    printCore(message, Color.RED);
+    _printCore(message, Color.RED);
   }
 
   void success(String message) {
-    printCore(message, Color.GREEN);
+    _printCore(message, Color.GREEN);
+  }
+
+  void _printCore(String message, Color color);
+}
+
+class _SubTaskContext extends TaskContext {
+  final String _name;
+  final RootTaskContext _parent;
+
+  _SubTaskContext(this._parent, this._name);
+
+  void _printCore(String message, Color color) {
+    _parent.printCore(message, color, _name);
+  }
+}
+
+class RootTaskContext {
+  TaskContext getSubContext(String name) {
+    return new _SubTaskContext(this, name);
+  }
+
+  void print(String message) {
+    printCore(message);
   }
 
   @protected
-  void printCore(String message, Color color) {
-    validateNotDisposed();
-    prnt("${name}: ", color);
+  void printCore(String message, [Color color = null, String taskName = null]) {
+    if(taskName != null) {
+      prnt("${taskName}: ", color);
+    }
     prntLine(message);
   }
 }
