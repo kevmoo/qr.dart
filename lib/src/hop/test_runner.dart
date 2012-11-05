@@ -50,6 +50,12 @@ ${testCase.stackTrace}''');
   void onDone(int passed, int failed, int errors, List<TestCase> results,
               String uncaughtError) {
     final bool success = failed == 0 && errors == 0 && uncaughtError == null;
+    final message = "$passed PASSED, $failed FAILED, $errors ERRORS";
+    if(success) {
+      _context.fine(message);
+    } else {
+      _context.error(message);
+    }
     _completer.complete(success);
   }
 }
