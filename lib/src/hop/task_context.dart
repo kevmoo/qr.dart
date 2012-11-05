@@ -6,18 +6,19 @@ class TaskContext extends DisposableImpl {
   TaskContext(this.name);
 
   void fine(String message) {
-    _print(message, Color.BLUE);
+    printCore(message, Color.BLUE);
   }
 
   void error(String message) {
-    _print(message, Color.RED);
+    printCore(message, Color.RED);
   }
 
   void success(String message) {
-    _print(message, Color.GREEN);
+    printCore(message, Color.GREEN);
   }
 
-  void _print(String message, Color color) {
+  @protected
+  void printCore(String message, Color color) {
     validateNotDisposed();
     prnt("${name}: ", color);
     prntLine(message);
