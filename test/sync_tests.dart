@@ -8,52 +8,35 @@ class SyncTests {
   }
 
   static void _testTrueIsCool() {
-    final tasks = new Tasks();
-    tasks.addTask('good', (ctx) => true);
-    tasks.freeze();
-
-    final runner = new Runner(tasks, ['good']);
-    final future = runner.run();
-    expect(future, isNotNull);
-    expect(future.isComplete, isTrue);
-
-    final onComplete = expectAsync1((f) {
+    _testSimpleSyncTask('good', (ctx) => true, (f) {
       expect(f.value, isTrue);
     });
-
-    future.onComplete(onComplete);
   }
 
   static void _testFalseIsFail() {
-    final tasks = new Tasks();
-    tasks.addTask('fail', (ctx) => false);
-    tasks.freeze();
-
-    final runner = new Runner(tasks, ['fail']);
-    final future = runner.run();
-    expect(future, isNotNull);
-    expect(future.isComplete, isTrue);
-
-    final onComplete = expectAsync1((f) {
+    _testSimpleSyncTask('fail', (ctx) => false, (f) {
       expect(f.value, isFalse);
     });
-
-    future.onComplete(onComplete);
   }
 
   static void _testNullIsSad() {
+    _testSimpleSyncTask('null', (ctx) => null,(Future f) {
+      expect(f.exception, isNotNull);
+    });
+  }
+
+  static Action0 _testSimpleSyncTask(String name, Func1<TaskContext, bool> task,
+                            Action1<Future<bool>> completeHandler) {
     final tasks = new Tasks();
-    tasks.addTask('null', (ctx) => null);
+    tasks.addTask(name, task);
     tasks.freeze();
 
-    final runner = new Runner(tasks, ['null']);
+    final runner = new Runner(tasks, [name]);
     final future = runner.run();
     expect(future, isNotNull);
     expect(future.isComplete, isTrue);
 
-    final onComplete = expectAsync1((Future f) {
-      expect(f.exception, isNotNull);
-    });
+    final onComplete = expectAsync1(completeHandler);
 
     future.onComplete(onComplete);
   }

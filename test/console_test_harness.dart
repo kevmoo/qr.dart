@@ -1,5 +1,6 @@
 library console_test_harness;
 
+import 'package:bot/bot.dart';
 import 'package:bot/test.dart';
 import 'package:hop/hop.dart';
 import 'package:unittest/unittest.dart';
