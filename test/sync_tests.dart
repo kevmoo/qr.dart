@@ -9,7 +9,7 @@ class SyncTests {
 
   static void _testTrueIsCool() {
     final tasks = new Tasks();
-    tasks.addTask('good', _goodTask);
+    tasks.addTask('good', (ctx) => true);
     tasks.freeze();
 
     final runner = new Runner(tasks, ['good']);
@@ -26,7 +26,7 @@ class SyncTests {
 
   static void _testFalseIsFail() {
     final tasks = new Tasks();
-    tasks.addTask('fail', _failedTask);
+    tasks.addTask('fail', (ctx) => false);
     tasks.freeze();
 
     final runner = new Runner(tasks, ['fail']);
@@ -43,7 +43,7 @@ class SyncTests {
 
   static void _testNullIsSad() {
     final tasks = new Tasks();
-    tasks.addTask('null', _sadTask);
+    tasks.addTask('null', (ctx) => null);
     tasks.freeze();
 
     final runner = new Runner(tasks, ['null']);
@@ -56,17 +56,5 @@ class SyncTests {
     });
 
     future.onComplete(onComplete);
-  }
-
-  static bool _goodTask(TaskContext context) {
-    return true;
-  }
-
-  static bool _failedTask(TaskContext context) {
-    return false;
-  }
-
-  static bool _sadTask(TaskContext context) {
-    return null;
   }
 }
