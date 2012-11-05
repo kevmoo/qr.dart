@@ -1,5 +1,8 @@
 part of hop;
 
+// TODO: eliminate usage of 'print' directly
+// ponder nested TestContext with a default root Context? Hmm...
+
 class Runner {
   static const String RAW_TASK_LIST_CMD = 'print_raw_task_list';
   static final ArgParser _parser = _getParser();
