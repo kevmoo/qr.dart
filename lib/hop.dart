@@ -2,6 +2,8 @@ library hop;
 
 // TODO: documentation for tasks
 // TODO: formalize print/log model
+// TODO: move dart2js, process into another library
+// TODO: ponder indent for output
 
 import 'dart:io';
 import 'dart:isolate';

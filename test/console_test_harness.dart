@@ -18,3 +18,7 @@ void testCore(Configuration config) {
 
   group('sync tests', SyncTests.run);
 }
+
+// TODO: things to test
+// * dupe names should fail
+// * null values should fail
