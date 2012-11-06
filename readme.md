@@ -1,6 +1,8 @@
 # HOP
 ## A version of Make (or Ruby Rake or Coffeescript Cake or Javascript Jake) for Dart.
 
+[![](https://drone.io/kevmoo/hop.dart/status.png)](https://drone.io/kevmoo/hop.dart/latest)
+
 # Goals
 
 * Allow easy task generation in Dart.
