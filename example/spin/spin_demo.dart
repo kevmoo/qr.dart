@@ -1,8 +1,8 @@
-#import('dart:html');
-#import('dart:math', prefix:'math');
-#import('package:bot/bot.dart');
-#import('package:bot/html.dart');
-#import('package:bot/retained.dart');
+import 'dart:html';
+import 'dart:math' as math;
+import 'package:bot/bot.dart';
+import 'package:bot/html.dart';
+import 'package:bot/retained.dart';
 
 main(){
   CanvasElement canvas = document.query("#content");

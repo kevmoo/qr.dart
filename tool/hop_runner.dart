@@ -1,7 +1,7 @@
-#import('dart:io');
-#import('package:bot/bot.dart');
-#import('package:hop/hop.dart');
-#import('../test/console_test_harness.dart', prefix: 'test_console');
+import 'dart:io';
+import 'package:bot/bot.dart';
+import 'package:hop/hop.dart';
+import '../test/console_test_harness.dart' as test_console;
 
 void main() {
   _assertKnownPath();

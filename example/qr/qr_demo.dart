@@ -1,10 +1,10 @@
-#import('dart:html');
-#import('dart:isolate');
-#import('dart:math', prefix:'math');
+import 'dart:html';
+import 'dart:isolate';
+import 'dart:math' as math;
 
-#import('package:bot/bot.dart');
-#import('package:bot/qr.dart');
-#import('package:bot/async.dart');
+import 'package:bot/bot.dart';
+import 'package:bot/qr.dart';
+import 'package:bot/async.dart';
 
 main(){
   final CanvasElement canvas = query("#content");

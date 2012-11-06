@@ -49,7 +49,7 @@ class _ResourceEntry<T> {
   String getBlobUrl(Blob blob) {
     assert(blob != null);
     assert(_blobUrl == null);
-    _blobUrl = window.createObjectUrl(blob);
+    _blobUrl = Url.createObjectUrl(blob);
     if(_blobUrl == null) {
       _blobUrl = url;
     }
@@ -58,6 +58,6 @@ class _ResourceEntry<T> {
 
   void revokeBlobUrl() {
     assert(_blobUrl != null);
-    window.revokeObjectUrl(_blobUrl);
+    Url.revokeObjectUrl(_blobUrl);
   }
 }

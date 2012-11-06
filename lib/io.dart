@@ -1,7 +1,7 @@
-#library('bot_io');
+library bot_io;
 
-#import('dart:io');
-#import('bot.dart');
+import 'dart:io';
+import 'bot.dart';
 
 void prnt(obj, [Color color = null]) {
   String value;
