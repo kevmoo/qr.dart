@@ -1,8 +1,12 @@
 # Changelog - HOP task system
 
-## 0.2.0 (pre) - (SDK r13851)
+## 0.2.0 - 6 Nov 2012 (SDK r14554)
 
-* Aligned with SDK r14494
+* __BREAKING__ Changes to align with Dart r14554.
+* No changes to existing APIs.
+* Lots of internal refactoring.
+* Many classes are now public to allow testing.
+* Good start on test coverage with related fixes
 
 ## 0.1.0 -- 1 November 2012 - (SDK r13851)
 
