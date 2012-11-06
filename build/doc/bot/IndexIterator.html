@@ -34,26 +34,26 @@
 <div class="doc">
 <pre class="source">
 class IndexIterator&lt;T&gt; implements Iterator&lt;T&gt; {
-  IndexIterator(int length, Func1&lt;int, T&gt; indexer) :
-    _indexer = indexer,
-    _length = length,
-    _pos = 0 {
-    requireArgumentNotNull(_indexer, '_indexer');
-    assert(_length &gt;= 0);
-  }
+ IndexIterator(int length, Func1&lt;int, T&gt; indexer) :
+   _indexer = indexer,
+   _length = length,
+   _pos = 0 {
+   requireArgumentNotNull(_indexer, '_indexer');
+   assert(_length &gt;= 0);
+ }
 
-  bool hasNext() =&gt; _length &gt; _pos;
+ bool get hasNext =&gt; _length &gt; _pos;
 
-  T next() {
-    if (!hasNext()) {
-      throw const NoMoreElementsException();
-    }
-    return _indexer(_pos++);
-  }
+ T next() {
+   if (!hasNext) {
+     throw new StateError("No more elements");
+   }
+   return _indexer(_pos++);
+ }
 
-  final Func1&lt;int, T&gt; _indexer;
-  final int _length;
-  int _pos;
+ final Func1&lt;int, T&gt; _indexer;
+ final int _length;
+ int _pos;
 }
 </pre>
 </div>
@@ -69,31 +69,36 @@ new <strong>IndexIterator</strong>(int length, <a href="../bot/Func1.html">Func1
 <div class="doc">
 <pre class="source">
 IndexIterator(int length, Func1&lt;int, T&gt; indexer) :
-  _indexer = indexer,
-  _length = length,
-  _pos = 0 {
-  requireArgumentNotNull(_indexer, '_indexer');
-  assert(_length &gt;= 0);
+ _indexer = indexer,
+ _length = length,
+ _pos = 0 {
+ requireArgumentNotNull(_indexer, '_indexer');
+ assert(_length &gt;= 0);
 }
 </pre>
 </div>
 </div>
 </div>
 <div>
-<h3>Methods</h3>
-<div class="method"><h4 id="hasNext">
+<h3>Properties</h3>
+<div class="field"><h4 id="hasNext">
 <button class="show-code">Code</button>
-bool <strong>hasNext</strong>() <a class="anchor-link" href="#hasNext"
-              title="Permalink to IndexIterator&lt;T&gt;.hasNext">#</a></h4>
-<div class="doc">
+final bool         <strong>hasNext</strong> <a class="anchor-link"
+            href="#hasNext"
+            title="Permalink to IndexIterator&lt;T&gt;.hasNext">#</a>
+        </h4>
+        <div class="doc">
 <div class="inherited">
 <p>Returns whether the <code>Iterator</code> has elements left.</p>
 <div class="docs-inherited-from">docs inherited from Iterator&lt;<a href="../bot/IndexIterator.html">E</a>&gt; </div></div>
 <pre class="source">
-bool hasNext() =&gt; _length &gt; _pos;
+bool get hasNext =&gt; _length &gt; _pos;
 </pre>
 </div>
 </div>
+</div>
+<div>
+<h3>Methods</h3>
 <div class="method"><h4 id="next">
 <button class="show-code">Code</button>
 <a href="../bot/IndexIterator.html">T</a> <strong>next</strong>() <a class="anchor-link" href="#next"
@@ -101,14 +106,14 @@ bool hasNext() =&gt; _length &gt; _pos;
 <div class="doc">
 <div class="inherited">
 <p>Gets the next element in the iteration. Throws a
-<code>NoMoreElementsException</code> if no element is left.</p>
+<code>StateError</code> if no element is left.</p>
 <div class="docs-inherited-from">docs inherited from Iterator&lt;<a href="../bot/IndexIterator.html">E</a>&gt; </div></div>
 <pre class="source">
 T next() {
-  if (!hasNext()) {
-    throw const NoMoreElementsException();
-  }
-  return _indexer(_pos++);
+ if (!hasNext) {
+   throw new StateError("No more elements");
+ }
+ return _indexer(_pos++);
 }
 </pre>
 </div>

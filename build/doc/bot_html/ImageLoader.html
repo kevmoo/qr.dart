@@ -34,16 +34,16 @@
 <div class="doc">
 <pre class="source">
 class ImageLoader extends ResourceLoader&lt;ImageElement&gt; {
-  ImageLoader(Iterable&lt;String&gt; urls) : super(urls);
+ ImageLoader(Iterable&lt;String&gt; urls) : super(urls);
 
-  void _doLoad(String blobUrl) {
-    final img = new ImageElement(blobUrl);
-    assert(!img.complete);
-    img.on.load.add((args) {
-      assert(args.type == 'load');
-      _loadResourceSucceed(blobUrl, img);
-    });
-  }
+ void _doLoad(String blobUrl) {
+   final img = new ImageElement(src: blobUrl);
+   assert(!img.complete);
+   img.on.load.add((args) {
+     assert(args.type == 'load');
+     _loadResourceSucceed(blobUrl, img);
+   });
+ }
 }
 </pre>
 </div>
@@ -74,7 +74,7 @@ final int         <strong>completedBytes</strong> <a class="anchor-link"
         <div class="inherited-from">inherited from <a href="../bot_html/ResourceLoader.html">ResourceLoader</a> </div><div class="doc">
 <pre class="source">
 int get completedBytes {
-  return _entries.selectNumbers((e) =&gt; e.completedBytes).sum();
+ return _entries.selectNumbers((e) =&gt; e.completedBytes).sum();
 }
 </pre>
 </div>
@@ -136,13 +136,13 @@ final int         <strong>totalBytes</strong> <a class="anchor-link"
         <div class="inherited-from">inherited from <a href="../bot_html/ResourceLoader.html">ResourceLoader</a> </div><div class="doc">
 <pre class="source">
 int get totalBytes {
-  return _entries.selectNumbers((e) {
-    if(e.totalBytes == null) {
-      return _defaultSize;
-    } else {
-      return e.totalBytes;
-    }
-  }).sum();
+ return _entries.selectNumbers((e) {
+   if(e.totalBytes == null) {
+     return _defaultSize;
+   } else {
+     return e.totalBytes;
+   }
+ }).sum();
 }
 </pre>
 </div>
@@ -167,11 +167,11 @@ void <strong>load</strong>() <a class="anchor-link" href="#load"
 <div class="inherited-from">inherited from <a href="../bot_html/ResourceLoader.html">ResourceLoader</a> </div><div class="doc">
 <pre class="source">
 void load() {
-  assert(_state == StateUnloaded);
-  _state = StateLoading;
-  for(final e in _entries) {
-    _httpLoad(e.url);
-  }
+ assert(_state == StateUnloaded);
+ _state = StateLoading;
+ for(final e in _entries) {
+   _httpLoad(e.url);
+ }
 }
 </pre>
 </div>

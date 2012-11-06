@@ -34,72 +34,72 @@
 <div class="doc">
 <pre class="source">
 class TextureAnimationRequest {
-  final EventHandle&lt;EventArgs&gt; _startEventHandle = new EventHandle&lt;EventArgs&gt;();
-  final String _texturePrefix;
-  final int _frameCount;
-  final Coordinate _offset;
-  final int _delay;
-  final String _initialFrame;
-  final Coordinate _initialFrameOffset;
+ final EventHandle&lt;EventArgs&gt; _startEventHandle = new EventHandle&lt;EventArgs&gt;();
+ final String _texturePrefix;
+ final int _frameCount;
+ final Coordinate _offset;
+ final int _delay;
+ final String _initialFrame;
+ final Coordinate _initialFrameOffset;
 
-  bool _done = false;
-  int _frame = null;
+ bool _done = false;
+ int _frame = null;
 
-  TextureAnimationRequest(this._texturePrefix, this._frameCount,
-      this._offset, {int delay: 0, int startFrame: 0,
-    String initialFrame: null, Coordinate initialFrameOffset: null}) :
-      this._delay = delay,
-      this._initialFrame = initialFrame,
-      this._initialFrameOffset = initialFrameOffset {
-    assert(_delay &gt;= 0);
-    assert(_texturePrefix != null);
-    assert(_frameCount &gt; 0);
-    assert(_offset.isValid);
-  }
+ TextureAnimationRequest(this._texturePrefix, this._frameCount,
+     this._offset, {int delay: 0, int startFrame: 0,
+   String initialFrame: null, Coordinate initialFrameOffset: null}) :
+     this._delay = delay,
+     this._initialFrame = initialFrame,
+     this._initialFrameOffset = initialFrameOffset {
+   assert(_delay &gt;= 0);
+   assert(_texturePrefix != null);
+   assert(_frameCount &gt; 0);
+   assert(_offset.isValid);
+ }
 
-  bool get fresh =&gt; _frame == null;
-  bool get done =&gt; _done;
+ bool get fresh =&gt; _frame == null;
+ bool get done =&gt; _done;
 
-  EventRoot&lt;EventArgs&gt; get started =&gt; _startEventHandle;
+ EventRoot&lt;EventArgs&gt; get started =&gt; _startEventHandle;
 
-  void update() {
-    if(_frame == null) {
-      _frame = -_delay;
-    } else if(_frame &lt; (_frameCount - 1)){
-      _frame++;
-      assert(_frame &lt; _frameCount);
-    } else {
-      _done = true;
-    }
+ void update() {
+   if(_frame == null) {
+     _frame = -_delay;
+   } else if(_frame &lt; (_frameCount - 1)){
+     _frame++;
+     assert(_frame &lt; _frameCount);
+   } else {
+     _done = true;
+   }
 
-    if(_frame == 0 &amp;&amp; !_done) {
-      _startEventHandle.fireEvent(EventArgs.empty);
-    }
-  }
+   if(_frame == 0 &amp;&amp; !_done) {
+     _startEventHandle.fireEvent(EventArgs.empty);
+   }
+ }
 
-  Tuple&lt;Coordinate, String&gt; _getFrameDetails() {
-    var frameName;
-    var offset = _offset;
-    if(_frame &lt; 0 &amp;&amp; _initialFrame != null) {
-      frameName = _initialFrame;
-      if(_initialFrameOffset != null) {
-        offset = _initialFrameOffset;
-      }
-    } else {
+ Tuple&lt;Coordinate, String&gt; _getFrameDetails() {
+   var frameName;
+   var offset = _offset;
+   if(_frame &lt; 0 &amp;&amp; _initialFrame != null) {
+     frameName = _initialFrame;
+     if(_initialFrameOffset != null) {
+       offset = _initialFrameOffset;
+     }
+   } else {
 
-      // if we're delayed (_frame &lt; 0), then draw frame 0
-      final frame = (_frame &lt; 0) ? 0 : _frame;
+     // if we're delayed (_frame &lt; 0), then draw frame 0
+     final frame = (_frame &lt; 0) ? 0 : _frame;
 
-      var frameString = frame.toInt().toString();
-      while(frameString.length &lt; 4) {
-        frameString = "0$frameString";
-      }
+     var frameString = frame.toInt().toString();
+     while(frameString.length &lt; 4) {
+       frameString = "0$frameString";
+     }
 
-      frameName = "${_texturePrefix}_$frameString.png";
-    }
+     frameName = "${_texturePrefix}_$frameString.png";
+   }
 
-    return new Tuple(offset, frameName);
-  }
+   return new Tuple(offset, frameName);
+ }
 }
 </pre>
 </div>
@@ -107,20 +107,20 @@ class TextureAnimationRequest {
 <h3>Constructors</h3>
 <div class="method"><h4 id="TextureAnimationRequest">
 <button class="show-code">Code</button>
-new <strong>TextureAnimationRequest</strong>(String _texturePrefix, int _frameCount, <a href="../bot/Coordinate.html">Coordinate</a> _offset, [int delay = 0, int startFrame = 0, String initialFrame = null, <a href="../bot/Coordinate.html">Coordinate</a> initialFrameOffset = null]) <a class="anchor-link" href="#TextureAnimationRequest"
+new <strong>TextureAnimationRequest</strong>(String _texturePrefix, int _frameCount, <a href="../bot/Coordinate.html">Coordinate</a> _offset, {int delay: 0, int startFrame: 0, String initialFrame: null, <a href="../bot/Coordinate.html">Coordinate</a> initialFrameOffset: null}) <a class="anchor-link" href="#TextureAnimationRequest"
               title="Permalink to TextureAnimationRequest.TextureAnimationRequest">#</a></h4>
 <div class="doc">
 <pre class="source">
 TextureAnimationRequest(this._texturePrefix, this._frameCount,
-    this._offset, {int delay: 0, int startFrame: 0,
-  String initialFrame: null, Coordinate initialFrameOffset: null}) :
-    this._delay = delay,
-    this._initialFrame = initialFrame,
-    this._initialFrameOffset = initialFrameOffset {
-  assert(_delay &gt;= 0);
-  assert(_texturePrefix != null);
-  assert(_frameCount &gt; 0);
-  assert(_offset.isValid);
+   this._offset, {int delay: 0, int startFrame: 0,
+ String initialFrame: null, Coordinate initialFrameOffset: null}) :
+   this._delay = delay,
+   this._initialFrame = initialFrame,
+   this._initialFrameOffset = initialFrameOffset {
+ assert(_delay &gt;= 0);
+ assert(_texturePrefix != null);
+ assert(_frameCount &gt; 0);
+ assert(_offset.isValid);
 }
 </pre>
 </div>
@@ -174,18 +174,18 @@ void <strong>update</strong>() <a class="anchor-link" href="#update"
 <div class="doc">
 <pre class="source">
 void update() {
-  if(_frame == null) {
-    _frame = -_delay;
-  } else if(_frame &lt; (_frameCount - 1)){
-    _frame++;
-    assert(_frame &lt; _frameCount);
-  } else {
-    _done = true;
-  }
+ if(_frame == null) {
+   _frame = -_delay;
+ } else if(_frame &lt; (_frameCount - 1)){
+   _frame++;
+   assert(_frame &lt; _frameCount);
+ } else {
+   _done = true;
+ }
 
-  if(_frame == 0 &amp;&amp; !_done) {
-    _startEventHandle.fireEvent(EventArgs.empty);
-  }
+ if(_frame == 0 &amp;&amp; !_done) {
+   _startEventHandle.fireEvent(EventArgs.empty);
+ }
 }
 </pre>
 </div>

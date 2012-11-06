@@ -34,96 +34,96 @@
 <div class="doc">
 <pre class="source">
 class Array2d&lt;T&gt; extends ListBase&lt;T&gt; {
-  final int width;
-  final int height;
-  final List&lt;T&gt; _source;
+ final int width;
+ final int height;
+ final List&lt;T&gt; _source;
 
-  factory Array2d.readonlyFrom(int width, Iterable&lt;T&gt; source) {
-    requireArgumentNotNull(width, 'width');
-    requireArgumentNotNull(source, 'source');
-    final list = new List&lt;T&gt;.from(source);
-    final s = source == null ? null : new SequenceList&lt;T&gt;(list);
-    return new Array2d.wrap(width, s);
-  }
+ factory Array2d.readonlyFrom(int width, Iterable&lt;T&gt; source) {
+   requireArgumentNotNull(width, 'width');
+   requireArgumentNotNull(source, 'source');
+   final list = new List&lt;T&gt;.from(source);
+   final s = source == null ? null : new SequenceList&lt;T&gt;(list);
+   return new Array2d.wrap(width, s);
+ }
 
-  factory Array2d(int width, int height, [T initialValue]) {
-    requireArgumentNotNull(width, 'width');
-    requireArgumentNotNull(height, 'height');
-    requireArgument(width &gt; 0, 'width');
-    requireArgument(height &gt; 0, 'height');
-    final s = new List&lt;T&gt;();
-    s.insertRange(0, width * height, initialValue);
-    return new Array2d.wrap(width, s);
-  }
+ factory Array2d(int width, int height, [T initialValue]) {
+   requireArgumentNotNull(width, 'width');
+   requireArgumentNotNull(height, 'height');
+   requireArgument(width &gt; 0, 'width');
+   requireArgument(height &gt; 0, 'height');
+   final s = new List&lt;T&gt;();
+   s.insertRange(0, width * height, initialValue);
+   return new Array2d.wrap(width, s);
+ }
 
-  Array2d.wrap(int width, List&lt;T&gt; source):
-    this.width = width,
-    this._source = source,
-    this.height = (width != null &amp;&amp; width &gt; 0 &amp;&amp; source != null) ?
-        source.length ~/ width : 0 {
-    requireArgumentNotNull(width, 'width');
-    requireArgumentNotNull(source, 'source');
-    requireArgument(width &gt;= 0, 'width', 'width must be non-zero');
+ Array2d.wrap(int width, List&lt;T&gt; source):
+   this.width = width,
+   this._source = source,
+   this.height = (width != null &amp;&amp; width &gt; 0 &amp;&amp; source != null) ?
+       source.length ~/ width : 0 {
+   requireArgumentNotNull(width, 'width');
+   requireArgumentNotNull(source, 'source');
+   requireArgument(width &gt;= 0, 'width', 'width must be non-zero');
 
-    if(width == 0) {
-      requireArgument(_source.length == 0, 'width',
-        'width must be greater than zero if the source is non-empty');
-    } else {
-      requireArgument(_source.length &gt; 0, 'source',
-          'if width is non-zero, source must be non-empty');
-      requireArgument(_source.length % width == 0, 'width',
-          'width must evenly divide the source');
-    }
-  }
+   if(width == 0) {
+     requireArgument(_source.length == 0, 'width',
+       'width must be greater than zero if the source is non-empty');
+   } else {
+     requireArgument(_source.length &gt; 0, 'source',
+         'if width is non-zero, source must be non-empty');
+     requireArgument(_source.length % width == 0, 'width',
+         'width must evenly divide the source');
+   }
+ }
 
-  int get length =&gt; _source.length;
+ int get length =&gt; _source.length;
 
-  T operator [](int index) =&gt; _source[index];
+ T operator [](int index) =&gt; _source[index];
 
-  void operator []=(int index, T value) {
-    _source[index] = value;
-  }
+ void operator []=(int index, T value) {
+   _source[index] = value;
+ }
 
-  T get(int x, int y) {
-    final i = _getIndex(x, y);
-    return this[i];
-  }
+ T get(int x, int y) {
+   final i = _getIndex(x, y);
+   return this[i];
+ }
 
-  void set(int x, int y, T value) {
-    final i = _getIndex(x, y);
-    this[i] = value;
-  }
+ void set(int x, int y, T value) {
+   final i = _getIndex(x, y);
+   this[i] = value;
+ }
 
-  List&lt;T&gt; getAdjacent(int x, int y) {
-    final m = getAdjacentIndices(x, y).map((i) =&gt; this[i]);
-    return new List&lt;T&gt;.from(m);
-  }
+ List&lt;T&gt; getAdjacent(int x, int y) {
+   final m = getAdjacentIndices(x, y).map((i) =&gt; this[i]);
+   return new List&lt;T&gt;.from(m);
+ }
 
-  List&lt;int&gt; getAdjacentIndices(int x, int y) {
-    final List&lt;int&gt; adj = new List&lt;int&gt;();
+ List&lt;int&gt; getAdjacentIndices(int x, int y) {
+   final List&lt;int&gt; adj = new List&lt;int&gt;();
 
-    for(int k = math.max(0, y - 1); k &lt; math.min(height, (y + 2)); k++) {
-      for(int j = math.max(0, x - 1); j &lt; math.min(width, (x + 2)); j++) {
-        if(j != x || k != y) {
-          adj.add(_getIndex(j, k));
-        }
-      }
-    }
-    return adj;
-  }
+   for(int k = math.max(0, y - 1); k &lt; math.min(height, (y + 2)); k++) {
+     for(int j = math.max(0, x - 1); j &lt; math.min(width, (x + 2)); j++) {
+       if(j != x || k != y) {
+         adj.add(_getIndex(j, k));
+       }
+     }
+   }
+   return adj;
+ }
 
-  Tuple&lt;int, int&gt; getCoordinate(int index) {
-    final x = index % width;
-    final y = index ~/ width;
-    assert(_getIndex(x, y) == index);
-    return new Tuple&lt;int, int&gt;(x, y);
-  }
+ Tuple&lt;int, int&gt; getCoordinate(int index) {
+   final x = index % width;
+   final y = index ~/ width;
+   assert(_getIndex(x, y) == index);
+   return new Tuple&lt;int, int&gt;(x, y);
+ }
 
-  int _getIndex(int x, int y) {
-    assert(x &gt;= 0 &amp;&amp; x &lt; width);
-    assert(y &gt;= 0 &amp;&amp; y &lt; height);
-    return x + y * width;
-  }
+ int _getIndex(int x, int y) {
+   assert(x &gt;= 0 &amp;&amp; x &lt; width);
+   assert(y &gt;= 0 &amp;&amp; y &lt; height);
+   return x + y * width;
+ }
 }
 </pre>
 </div>
@@ -139,13 +139,13 @@ factory <strong>Array2d</strong>(int width, int height, [<a href="../bot/Array2d
 <div class="doc">
 <pre class="source">
 factory Array2d(int width, int height, [T initialValue]) {
-  requireArgumentNotNull(width, 'width');
-  requireArgumentNotNull(height, 'height');
-  requireArgument(width &gt; 0, 'width');
-  requireArgument(height &gt; 0, 'height');
-  final s = new List&lt;T&gt;();
-  s.insertRange(0, width * height, initialValue);
-  return new Array2d.wrap(width, s);
+ requireArgumentNotNull(width, 'width');
+ requireArgumentNotNull(height, 'height');
+ requireArgument(width &gt; 0, 'width');
+ requireArgument(height &gt; 0, 'height');
+ final s = new List&lt;T&gt;();
+ s.insertRange(0, width * height, initialValue);
+ return new Array2d.wrap(width, s);
 }
 </pre>
 </div>
@@ -157,11 +157,11 @@ factory <strong>Array2d.readonlyFrom</strong>(int width, Iterable&lt;<a href="..
 <div class="doc">
 <pre class="source">
 factory Array2d.readonlyFrom(int width, Iterable&lt;T&gt; source) {
-  requireArgumentNotNull(width, 'width');
-  requireArgumentNotNull(source, 'source');
-  final list = new List&lt;T&gt;.from(source);
-  final s = source == null ? null : new SequenceList&lt;T&gt;(list);
-  return new Array2d.wrap(width, s);
+ requireArgumentNotNull(width, 'width');
+ requireArgumentNotNull(source, 'source');
+ final list = new List&lt;T&gt;.from(source);
+ final s = source == null ? null : new SequenceList&lt;T&gt;(list);
+ return new Array2d.wrap(width, s);
 }
 </pre>
 </div>
@@ -173,23 +173,23 @@ new <strong>Array2d.wrap</strong>(int width, List&lt;<a href="../bot/Array2d.htm
 <div class="doc">
 <pre class="source">
 Array2d.wrap(int width, List&lt;T&gt; source):
-  this.width = width,
-  this._source = source,
-  this.height = (width != null &amp;&amp; width &gt; 0 &amp;&amp; source != null) ?
-      source.length ~/ width : 0 {
-  requireArgumentNotNull(width, 'width');
-  requireArgumentNotNull(source, 'source');
-  requireArgument(width &gt;= 0, 'width', 'width must be non-zero');
+ this.width = width,
+ this._source = source,
+ this.height = (width != null &amp;&amp; width &gt; 0 &amp;&amp; source != null) ?
+     source.length ~/ width : 0 {
+ requireArgumentNotNull(width, 'width');
+ requireArgumentNotNull(source, 'source');
+ requireArgument(width &gt;= 0, 'width', 'width must be non-zero');
 
-  if(width == 0) {
-    requireArgument(_source.length == 0, 'width',
-      'width must be greater than zero if the source is non-empty');
-  } else {
-    requireArgument(_source.length &gt; 0, 'source',
-        'if width is non-zero, source must be non-empty');
-    requireArgument(_source.length % width == 0, 'width',
-        'width must evenly divide the source');
-  }
+ if(width == 0) {
+   requireArgument(_source.length == 0, 'width',
+     'width must be greater than zero if the source is non-empty');
+ } else {
+   requireArgument(_source.length &gt; 0, 'source',
+       'if width is non-zero, source must be non-empty');
+   requireArgument(_source.length % width == 0, 'width',
+       'width must evenly divide the source');
+ }
 }
 </pre>
 </div>
@@ -206,6 +206,19 @@ final int         <strong>height</strong> <a class="anchor-link"
         <div class="doc">
 <pre class="source">
 final int height;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="isEmpty">
+<button class="show-code">Code</button>
+final bool         <strong>isEmpty</strong> <a class="anchor-link"
+            href="#isEmpty"
+            title="Permalink to Array2d&lt;T&gt;.isEmpty">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot/ListBase.html">ListBase</a> </div><div class="doc">
+<p>Returns true if there is no element in this collection.</p>
+<pre class="source">
+bool get isEmpty =&gt; length == 0;
 </pre>
 </div>
 </div>
@@ -262,7 +275,7 @@ void <strong>operator []=</strong>(int index, <a href="../bot/Array2d.html">T</a
 <div class="doc">
 <pre class="source">
 void operator []=(int index, T value) {
-  _source[index] = value;
+ _source[index] = value;
 }
 </pre>
 </div>
@@ -277,8 +290,8 @@ Object <strong>aggregate</strong>(Object seed, <a href="../bot/Func2.html">Func2
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 Object aggregate(Object seed, Func2&lt;Object, T, Object&gt; f) {
-  requireArgumentNotNull(f, 'f');
-  return CollectionUtil.aggregate(this, seed, f);
+ requireArgumentNotNull(f, 'f');
+ return CollectionUtil.aggregate(this, seed, f);
 }
 </pre>
 </div>
@@ -290,12 +303,12 @@ bool <strong>contains</strong>(<a href="../bot/Array2d.html">T</a> item) <a clas
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 bool contains(T item) {
-  for (final e in this) {
-    if(e == item) {
-      return true;
-    }
-  }
-  return false;
+ for (final e in this) {
+   if(e == item) {
+     return true;
+   }
+ }
+ return false;
 }
 </pre>
 </div>
@@ -307,16 +320,16 @@ int <strong>count</strong>([<a href="../bot/Func1.html">Func1</a> f = null]) <a 
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 int count([Func1&lt;T, bool&gt; f = null]) {
-  if(f == null) {
-    f = (a) =&gt; true;
-  }
-  int c = 0;
-  for(final e in this) {
-    if(f(e)) {
-      c++;
-    }
-  }
-  return c;
+ if(f == null) {
+   f = (a) =&gt; true;
+ }
+ int c = 0;
+ for(final e in this) {
+   if(f(e)) {
+     c++;
+   }
+ }
+ return c;
 }
 </pre>
 </div>
@@ -328,10 +341,10 @@ int count([Func1&lt;T, bool&gt; f = null]) {
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 Enumerable&lt;T&gt; distinct([Func2&lt;T, T, bool&gt; comparer = null]) {
-  if(comparer == null) {
-    comparer = (a,b) =&gt; a == b;
-  }
-  return new _FuncEnumerable(this, (s) =&gt; new _DistinctIterator(s, comparer));
+ if(comparer == null) {
+   comparer = (a,b) =&gt; a == b;
+ }
+ return new _FuncEnumerable(this, (s) =&gt; new _DistinctIterator(s, comparer));
 }
 </pre>
 </div>
@@ -346,12 +359,12 @@ predicate
 <span class="param">f</span>. Returns false otherwise.</p>
 <pre class="source">
 bool every(bool f(T element)) {
-  for (var i = 0; i &lt; length; i++) {
-    if(!f(this[i])) {
-      return false;
-    }
-  }
-  return true;
+ for (var i = 0; i &lt; length; i++) {
+   if(!f(this[i])) {
+     return false;
+   }
+ }
+ return true;
 }
 </pre>
 </div>
@@ -363,10 +376,10 @@ bool every(bool f(T element)) {
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 Enumerable&lt;T&gt; exclude(Iterable&lt;T&gt; items) {
-  requireArgumentNotNull(items, 'items');
-  final iEnum = $(items);
-  Func1&lt;T, bool&gt; f = (e) =&gt; !iEnum.contains(e);
-  return new _FuncEnumerable(this, (s) =&gt; new _WhereIterator&lt;T&gt;(s, f));
+ requireArgumentNotNull(items, 'items');
+ final iEnum = $(items);
+ Func1&lt;T, bool&gt; f = (e) =&gt; !iEnum.contains(e);
+ return new _FuncEnumerable(this, (s) =&gt; new _WhereIterator&lt;T&gt;(s, f));
 }
 </pre>
 </div>
@@ -378,8 +391,8 @@ Enumerable&lt;T&gt; exclude(Iterable&lt;T&gt; items) {
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 Enumerable&lt;T&gt; filter(Func1&lt;T, bool&gt; f) {
-  requireArgumentNotNull(f, 'f');
-  return new _FuncEnumerable(this, (s) =&gt; new _WhereIterator&lt;T&gt;(s, f));
+ requireArgumentNotNull(f, 'f');
+ return new _FuncEnumerable(this, (s) =&gt; new _WhereIterator&lt;T&gt;(s, f));
 }
 </pre>
 </div>
@@ -391,14 +404,14 @@ Enumerable&lt;T&gt; filter(Func1&lt;T, bool&gt; f) {
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 T first([Func1&lt;T, bool&gt; f = null]) {
-  if(f == null) {
-    f = (e) =&gt; true;
-  }
-  final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
-  if(!iter.hasNext()) {
-    throw const InvalidOperationException('The input sequence is empty.');
-  }
-  return iter.next();
+ if(f == null) {
+   f = (e) =&gt; true;
+ }
+ final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
+ if(!iter.hasNext) {
+   throw const InvalidOperationException('The input sequence is empty.');
+ }
+ return iter.next();
 }
 </pre>
 </div>
@@ -410,14 +423,14 @@ T first([Func1&lt;T, bool&gt; f = null]) {
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 T firstOrDefault([Func1&lt;T, bool&gt; f = null, T defaultValue = null]) {
-  if(f == null) {
-    f = (e) =&gt; true;
-  }
-  final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
-  if(!iter.hasNext()) {
-    return defaultValue;
-  }
-  return iter.next();
+ if(f == null) {
+   f = (e) =&gt; true;
+ }
+ final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
+ if(!iter.hasNext) {
+   return defaultValue;
+ }
+ return iter.next();
 }
 </pre>
 </div>
@@ -431,9 +444,9 @@ void <strong>forEach</strong>(void f(<a href="../bot/Array2d.html">T</a> element
 <span class="param">f</span> to each element of this collection.</p>
 <pre class="source">
 void forEach(void f(T element)) {
-  for(var i = 0; i &lt; length; i++) {
-    f(this[i]);
-  }
+ for(var i = 0; i &lt; length; i++) {
+   f(this[i]);
+ }
 }
 </pre>
 </div>
@@ -445,10 +458,10 @@ void <strong>forEachWithIndex</strong>(<a href="../bot/Action2.html">Action2</a>
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 void forEachWithIndex(Action2&lt;T, int&gt; f) {
-  int i = 0;
-  for(final e in this) {
-    f(e, i++);
-  }
+ int i = 0;
+ for(final e in this) {
+   f(e, i++);
+ }
 }
 </pre>
 </div>
@@ -460,8 +473,8 @@ void forEachWithIndex(Action2&lt;T, int&gt; f) {
 <div class="doc">
 <pre class="source">
 T get(int x, int y) {
-  final i = _getIndex(x, y);
-  return this[i];
+ final i = _getIndex(x, y);
+ return this[i];
 }
 </pre>
 </div>
@@ -473,8 +486,8 @@ List&lt;<a href="../bot/Array2d.html">T</a>&gt; <strong>getAdjacent</strong>(int
 <div class="doc">
 <pre class="source">
 List&lt;T&gt; getAdjacent(int x, int y) {
-  final m = getAdjacentIndices(x, y).map((i) =&gt; this[i]);
-  return new List&lt;T&gt;.from(m);
+ final m = getAdjacentIndices(x, y).map((i) =&gt; this[i]);
+ return new List&lt;T&gt;.from(m);
 }
 </pre>
 </div>
@@ -486,16 +499,16 @@ List&lt;int&gt; <strong>getAdjacentIndices</strong>(int x, int y) <a class="anch
 <div class="doc">
 <pre class="source">
 List&lt;int&gt; getAdjacentIndices(int x, int y) {
-  final List&lt;int&gt; adj = new List&lt;int&gt;();
+ final List&lt;int&gt; adj = new List&lt;int&gt;();
 
-  for(int k = math.max(0, y - 1); k &lt; math.min(height, (y + 2)); k++) {
-    for(int j = math.max(0, x - 1); j &lt; math.min(width, (x + 2)); j++) {
-      if(j != x || k != y) {
-        adj.add(_getIndex(j, k));
-      }
-    }
-  }
-  return adj;
+ for(int k = math.max(0, y - 1); k &lt; math.min(height, (y + 2)); k++) {
+   for(int j = math.max(0, x - 1); j &lt; math.min(width, (x + 2)); j++) {
+     if(j != x || k != y) {
+       adj.add(_getIndex(j, k));
+     }
+   }
+ }
+ return adj;
 }
 </pre>
 </div>
@@ -507,10 +520,10 @@ List&lt;int&gt; getAdjacentIndices(int x, int y) {
 <div class="doc">
 <pre class="source">
 Tuple&lt;int, int&gt; getCoordinate(int index) {
-  final x = index % width;
-  final y = index ~/ width;
-  assert(_getIndex(x, y) == index);
-  return new Tuple&lt;int, int&gt;(x, y);
+ final x = index % width;
+ final y = index ~/ width;
+ assert(_getIndex(x, y) == index);
+ return new Tuple&lt;int, int&gt;(x, y);
 }
 </pre>
 </div>
@@ -533,24 +546,24 @@ Throws an <code>IndexOutOfRangeException</code> if
 <code>start + itemCount - 1</code> are out of range.</p>
 <pre class="source">
 List&lt;T&gt; getRange(int start, int itemCount)  {
-  requireArgument(itemCount &gt;= 0, 'count');
+ requireArgument(itemCount &gt;= 0, 'count');
 
-  final lastIndex = start + itemCount - 1;
+ final lastIndex = start + itemCount - 1;
 
-  if(itemCount &gt; 0) {
-    if(start &lt; 0) {
-      throw new IndexOutOfRangeException(start);
-    }
-    else if(lastIndex &gt;= length) {
-      throw new IndexOutOfRangeException(lastIndex);
-    }
-  }
+ if(itemCount &gt; 0) {
+   if(start &lt; 0) {
+     throw new IndexOutOfRangeException(start);
+   }
+   else if(lastIndex &gt;= length) {
+     throw new IndexOutOfRangeException(lastIndex);
+   }
+ }
 
-  var list = new List&lt;T&gt;();
-  for(var i = start; i &lt;= lastIndex; i++) {
-    list.add(this[i]);
-  }
-  return list;
+ var list = new List&lt;T&gt;();
+ for(var i = start; i &lt;= lastIndex; i++) {
+   list.add(this[i]);
+ }
+ return list;
 }
 </pre>
 </div>
@@ -561,8 +574,8 @@ List&lt;T&gt; getRange(int start, int itemCount)  {
               title="Permalink to Array2d&lt;T&gt;.group">#</a></h4>
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
-Grouping&lt;Dynamic, T&gt; group([Func1&lt;T, Object&gt; keyFunc = null]) {
-  return new Grouping(this, keyFunc);
+Grouping&lt;dynamic, T&gt; group([Func1&lt;T, Object&gt; keyFunc = null]) {
+ return new Grouping(this, keyFunc);
 }
 </pre>
 </div>
@@ -580,24 +593,13 @@ list from index
 <span class="param">element</span> is not found.</p>
 <pre class="source">
 int indexOf(T element, [int start=0]) {
-  for (var i = start; i &lt; length; i++) {
-    if(this[i] == element) {
-      return i;
-    }
-  }
-  return -1;
+ for (var i = start; i &lt; length; i++) {
+   if(this[i] == element) {
+     return i;
+   }
+ }
+ return -1;
 }
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="isEmpty">
-<button class="show-code">Code</button>
-bool <strong>isEmpty</strong>() <a class="anchor-link" href="#isEmpty"
-              title="Permalink to Array2d&lt;T&gt;.isEmpty">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot/ListBase.html">ListBase</a> </div><div class="doc">
-<p>Returns true if there is no element in this collection.</p>
-<pre class="source">
-bool isEmpty() =&gt; length == 0;
 </pre>
 </div>
 </div>
@@ -609,7 +611,7 @@ Iterator&lt;<a href="../bot/Array2d.html">T</a>&gt; <strong>iterator</strong>() 
 <p>Returns an <code>Iterator</code> that iterates over this <code>Iterable</code> object.</p>
 <pre class="source">
 Iterator&lt;T&gt; iterator() {
-  return new IndexIterator&lt;T&gt;(length, (i) =&gt; this[i]);
+ return new IndexIterator&lt;T&gt;(length, (i) =&gt; this[i]);
 }
 </pre>
 </div>
@@ -621,14 +623,14 @@ String <strong>join</strong>([String separator = ', ']) <a class="anchor-link" h
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 String join([String separator = ', ']) {
-  final StringBuffer sb = new StringBuffer();
-  for(final e in this) {
-    if(sb.length &gt; 0) {
-      sb.add(separator);
-    }
-    sb.add(e);
-  }
-  return sb.toString();
+ final StringBuffer sb = new StringBuffer();
+ for(final e in this) {
+   if(sb.length &gt; 0) {
+     sb.add(separator);
+   }
+   sb.add(e);
+ }
+ return sb.toString();
 }
 </pre>
 </div>
@@ -657,14 +659,14 @@ list from index
 <span class="param">element</span> is not found.</p>
 <pre class="source">
 int lastIndexOf(T element, [int start=0]) {
-  // DARTBUG: having trouble testing this in the compiler. :-/
-  var lastIndex = -1;
-  for (var i = start; i &lt; length; i++) {
-    if(this[i] == element) {
-      lastIndex = i;
-    }
-  }
-  return lastIndex;
+ // DARTBUG: having trouble testing this in the compiler. :-/
+ var lastIndex = -1;
+ for (var i = start; i &lt; length; i++) {
+   if(this[i] == element) {
+     lastIndex = i;
+   }
+ }
+ return lastIndex;
 }
 </pre>
 </div>
@@ -681,8 +683,8 @@ type and consequently the returned collection's
 typeis Collection.</p>
 <pre class="source">
 Enumerable map(Func1&lt;T, Object&gt; f) {
-  requireArgumentNotNull(f, 'f');
-  return new _FuncEnumerable(this, (s) =&gt; new _SelectIterator&lt;T, Object&gt;(s, f));
+ requireArgumentNotNull(f, 'f');
+ return new _FuncEnumerable(this, (s) =&gt; new _SelectIterator&lt;T, Object&gt;(s, f));
 }
 </pre>
 </div>
@@ -701,9 +703,9 @@ create a new value from the previous one and an element.</p>
 <p>Example of calculating the sum of a collection:</p>
 <p>  collection.reduce(0, (prev, element) => prev + element);</p>
 <pre class="source">
-Dynamic reduce(Dynamic initialValue,
-               Dynamic combine(Dynamic previousValue, T element)) {
-  return Collections.reduce(this, initialValue, combine);
+dynamic reduce(dynamic initialValue,
+              dynamic combine(dynamic previousValue, T element)) {
+ return Collections.reduce(this, initialValue, combine);
 }
 </pre>
 </div>
@@ -715,9 +717,9 @@ Dynamic reduce(Dynamic initialValue,
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 Enumerable selectMany(Func1&lt;T, Iterable&gt; f) {
-  requireArgumentNotNull(f, 'f');
-  return new _FuncEnumerable(this,
-    (s) =&gt; new _SelectManyIterator._internal(s, f));
+ requireArgumentNotNull(f, 'f');
+ return new _FuncEnumerable(this,
+   (s) =&gt; new _SelectManyIterator._internal(s, f));
 }
 </pre>
 </div>
@@ -729,8 +731,8 @@ Enumerable selectMany(Func1&lt;T, Iterable&gt; f) {
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 NumberEnumerable selectNumbers(Func1&lt;T, num&gt; f) {
-  requireArgumentNotNull(f, 'f');
-  return new _FuncNumEnumerable&lt;T&gt;(this, (s) =&gt; new _SelectIterator&lt;T, num&gt;(s, f));
+ requireArgumentNotNull(f, 'f');
+ return new _FuncNumEnumerable&lt;T&gt;(this, (s) =&gt; new _SelectIterator&lt;T, num&gt;(s, f));
 }
 </pre>
 </div>
@@ -742,8 +744,8 @@ void <strong>set</strong>(int x, int y, <a href="../bot/Array2d.html">T</a> valu
 <div class="doc">
 <pre class="source">
 void set(int x, int y, T value) {
-  final i = _getIndex(x, y);
-  this[i] = value;
+ final i = _getIndex(x, y);
+ this[i] = value;
 }
 </pre>
 </div>
@@ -755,18 +757,18 @@ void set(int x, int y, T value) {
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 T single([Func1&lt;T, bool&gt; f = null]) {
-  if(f == null) {
-    f = (e) =&gt; true;
-  }
-  final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
-  if(!iter.hasNext()) {
-    throw const InvalidOperationException('The input sequence is empty.');
-  }
-  final value = iter.next();
-  if(iter.hasNext()) {
-    throw const InvalidOperationException('The input sequence contains more than one element.');
-  }
-  return value;
+ if(f == null) {
+   f = (e) =&gt; true;
+ }
+ final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
+ if(!iter.hasNext) {
+   throw const InvalidOperationException('The input sequence is empty.');
+ }
+ final value = iter.next();
+ if(iter.hasNext) {
+   throw const InvalidOperationException('The input sequence contains more than one element.');
+ }
+ return value;
 }
 </pre>
 </div>
@@ -778,18 +780,18 @@ T single([Func1&lt;T, bool&gt; f = null]) {
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 T singleOrDefault([Func1&lt;T, bool&gt; f = null, T defaultValue = null]) {
-  if(f == null) {
-    f = (e) =&gt; true;
-  }
-  final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
-  if(!iter.hasNext()) {
-    return defaultValue;
-  }
-  final value = iter.next();
-  if(iter.hasNext()) {
-    throw const InvalidOperationException('The input sequence contains more than one element.');
-  }
-  return value;
+ if(f == null) {
+   f = (e) =&gt; true;
+ }
+ final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
+ if(!iter.hasNext) {
+   return defaultValue;
+ }
+ final value = iter.next();
+ if(iter.hasNext) {
+   throw const InvalidOperationException('The input sequence contains more than one element.');
+ }
+ return value;
 }
 </pre>
 </div>
@@ -804,12 +806,12 @@ predicate
 <span class="param">f</span>. Returns false otherwise.</p>
 <pre class="source">
 bool some(bool f(T element)) {
-  for (var i = 0; i &lt; length; i++) {
-    if(f(this[i])) {
-      return true;
-    }
-  }
-  return false;
+ for (var i = 0; i &lt; length; i++) {
+   if(f(this[i])) {
+     return true;
+   }
+ }
+ return false;
 }
 </pre>
 </div>
@@ -821,19 +823,19 @@ HashMap <strong>toHashMap</strong>(<a href="../bot/Func1.html">Func1</a> valueFu
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 HashMap toHashMap(Func1&lt;T, Object&gt; valueFunc, [Func1&lt;T, Hashable&gt; keyFunc]) {
-  if(keyFunc == null) {
-    keyFunc = (a) =&gt; a;
-  }
+ if(keyFunc == null) {
+   keyFunc = (a) =&gt; a;
+ }
 
-  final map = new HashMap();
-  for(final e in this) {
-    final k = keyFunc(e);
-    if(map.containsKey(k)) {
-      throw new UnsupportedOperationException("The key '$k' is duplicated");
-    }
-    map[k] = valueFunc(e);
-  }
-  return map;
+ final map = new HashMap();
+ for(final e in this) {
+   final k = keyFunc(e);
+   if(map.containsKey(k)) {
+     throw new UnsupportedError("The key '$k' is duplicated");
+   }
+   map[k] = valueFunc(e);
+ }
+ return map;
 }
 </pre>
 </div>
@@ -845,11 +847,11 @@ HashSet <strong>toHashSet</strong>([<a href="../bot/Func1.html">Func1</a> f]) <a
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 HashSet toHashSet([Func1&lt;T, Hashable&gt; f]) {
-  if(f == null) {
-    return new HashSet.from(this);
-  } else {
-    return new HashSet.from(this.map(f));
-  }
+ if(f == null) {
+   return new HashSet.from(this);
+ } else {
+   return new HashSet.from(this.map(f));
+ }
 }
 </pre>
 </div>

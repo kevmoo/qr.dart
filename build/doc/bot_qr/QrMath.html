@@ -34,63 +34,63 @@
 <div class="doc">
 <pre class="source">
 class QrMath {
-  static ReadOnlyCollection&lt;int&gt; _logTable;
-  static ReadOnlyCollection&lt;int&gt; _expTable;
+ static ReadOnlyCollection&lt;int&gt; _logTable;
+ static ReadOnlyCollection&lt;int&gt; _expTable;
 
-  static List&lt;int&gt; getZeroedList(int count) {
-    final l = new List&lt;int&gt;();
-    l.insertRange(0, count, 0);
-    return l;
-  }
+ static List&lt;int&gt; getZeroedList(int count) {
+   final l = new List&lt;int&gt;();
+   l.insertRange(0, count, 0);
+   return l;
+ }
 
-  static glog(n) {
+ static glog(n) {
 
-    if (n &lt; 1) {
-      throw 'glog($n)';
-    }
+   if (n &lt; 1) {
+     throw 'glog($n)';
+   }
 
-    return LOG_TABLE[n];
-  }
+   return LOG_TABLE[n];
+ }
 
-  static gexp(n) {
+ static gexp(n) {
 
-    while (n &lt; 0) {
-      n += 255;
-    }
+   while (n &lt; 0) {
+     n += 255;
+   }
 
-    while (n &gt;= 256) {
-      n -= 255;
-    }
+   while (n &gt;= 256) {
+     n -= 255;
+   }
 
-    return EXP_TABLE[n];
-  }
+   return EXP_TABLE[n];
+ }
 
-  static get EXP_TABLE {
-    if(_expTable == null) {
-      var t = QrMath.getZeroedList(256);
-      for (int i = 0; i &lt; 8; i++) {
-        t[i] = 1 &lt;&lt; i;
-      }
-      for (int i = 8; i &lt; 256; i++) {
-        t[i] = t[i - 4] ^ t[i - 5] ^ t[i - 6] ^ t[i - 8];
-      }
-      _expTable = new ReadOnlyCollection.wrap(t);
-    }
-    return _expTable;
-  }
+ static get EXP_TABLE {
+   if(_expTable == null) {
+     var t = QrMath.getZeroedList(256);
+     for (int i = 0; i &lt; 8; i++) {
+       t[i] = 1 &lt;&lt; i;
+     }
+     for (int i = 8; i &lt; 256; i++) {
+       t[i] = t[i - 4] ^ t[i - 5] ^ t[i - 6] ^ t[i - 8];
+     }
+     _expTable = new ReadOnlyCollection.wrap(t);
+   }
+   return _expTable;
+ }
 
-  static get LOG_TABLE {
-    if(_logTable == null) {
-      var t = QrMath.getZeroedList(256);
-      // this was the code I had in pl
-      // only to 255? seems really weird
-      for (int i = 0; i &lt; 255; i++) {
-        t[EXP_TABLE[i]] = i;
-      }
-      _logTable = new ReadOnlyCollection.wrap(t);
-    }
-    return _logTable;
-  }
+ static get LOG_TABLE {
+   if(_logTable == null) {
+     var t = QrMath.getZeroedList(256);
+     // this was the code I had in pl
+     // only to 255? seems really weird
+     for (int i = 0; i &lt; 255; i++) {
+       t[EXP_TABLE[i]] = i;
+     }
+     _logTable = new ReadOnlyCollection.wrap(t);
+   }
+   return _logTable;
+ }
 }
 </pre>
 </div>
@@ -105,17 +105,17 @@ final         <strong>EXP_TABLE</strong> <a class="anchor-link"
         <div class="doc">
 <pre class="source">
 static get EXP_TABLE {
-  if(_expTable == null) {
-    var t = QrMath.getZeroedList(256);
-    for (int i = 0; i &lt; 8; i++) {
-      t[i] = 1 &lt;&lt; i;
-    }
-    for (int i = 8; i &lt; 256; i++) {
-      t[i] = t[i - 4] ^ t[i - 5] ^ t[i - 6] ^ t[i - 8];
-    }
-    _expTable = new ReadOnlyCollection.wrap(t);
-  }
-  return _expTable;
+ if(_expTable == null) {
+   var t = QrMath.getZeroedList(256);
+   for (int i = 0; i &lt; 8; i++) {
+     t[i] = 1 &lt;&lt; i;
+   }
+   for (int i = 8; i &lt; 256; i++) {
+     t[i] = t[i - 4] ^ t[i - 5] ^ t[i - 6] ^ t[i - 8];
+   }
+   _expTable = new ReadOnlyCollection.wrap(t);
+ }
+ return _expTable;
 }
 </pre>
 </div>
@@ -129,16 +129,16 @@ final         <strong>LOG_TABLE</strong> <a class="anchor-link"
         <div class="doc">
 <pre class="source">
 static get LOG_TABLE {
-  if(_logTable == null) {
-    var t = QrMath.getZeroedList(256);
-    // this was the code I had in pl
-    // only to 255? seems really weird
-    for (int i = 0; i &lt; 255; i++) {
-      t[EXP_TABLE[i]] = i;
-    }
-    _logTable = new ReadOnlyCollection.wrap(t);
-  }
-  return _logTable;
+ if(_logTable == null) {
+   var t = QrMath.getZeroedList(256);
+   // this was the code I had in pl
+   // only to 255? seems really weird
+   for (int i = 0; i &lt; 255; i++) {
+     t[EXP_TABLE[i]] = i;
+   }
+   _logTable = new ReadOnlyCollection.wrap(t);
+ }
+ return _logTable;
 }
 </pre>
 </div>
@@ -153,9 +153,9 @@ List&lt;int&gt; <strong>getZeroedList</strong>(int count) <a class="anchor-link"
 <div class="doc">
 <pre class="source">
 static List&lt;int&gt; getZeroedList(int count) {
-  final l = new List&lt;int&gt;();
-  l.insertRange(0, count, 0);
-  return l;
+ final l = new List&lt;int&gt;();
+ l.insertRange(0, count, 0);
+ return l;
 }
 </pre>
 </div>
@@ -168,11 +168,11 @@ static List&lt;int&gt; getZeroedList(int count) {
 <pre class="source">
 static glog(n) {
 
-  if (n &lt; 1) {
-    throw 'glog($n)';
-  }
+ if (n &lt; 1) {
+   throw 'glog($n)';
+ }
 
-  return LOG_TABLE[n];
+ return LOG_TABLE[n];
 }
 </pre>
 </div>
@@ -185,15 +185,15 @@ static glog(n) {
 <pre class="source">
 static gexp(n) {
 
-  while (n &lt; 0) {
-    n += 255;
-  }
+ while (n &lt; 0) {
+   n += 255;
+ }
 
-  while (n &gt;= 256) {
-    n -= 255;
-  }
+ while (n &gt;= 256) {
+   n -= 255;
+ }
 
-  return EXP_TABLE[n];
+ return EXP_TABLE[n];
 }
 </pre>
 </div>

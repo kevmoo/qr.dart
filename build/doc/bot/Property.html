@@ -34,44 +34,44 @@
 <div class="doc">
 <pre class="source">
 class Property&lt;T&gt; extends Attachable {
-  static const Object Undefined = const _UndefinedValue();
+ static const Object Undefined = const _UndefinedValue();
 
-  final T defaultValue;
+ final T defaultValue;
 
-  Property(String name, [T this.defaultValue = null]) : super(name);
+ Property(String name, [T this.defaultValue = null]) : super(name);
 
-  T get(AttachableObject obj, [Func1&lt;AttachableObject, T&gt; ifAbsent = null]){
-    var coreValue = getCore(obj, ifAbsent);
-    if(!identical(coreValue, Undefined)){
-      return coreValue;
-    }
-    else{
-      return defaultValue;
-    }
-  }
+ T get(AttachableObject obj, [Func1&lt;AttachableObject, T&gt; ifAbsent = null]){
+   var coreValue = getCore(obj, ifAbsent);
+   if(!identical(coreValue, Undefined)){
+     return coreValue;
+   }
+   else{
+     return defaultValue;
+   }
+ }
 
-  Object getCore(AttachableObject obj, [Func1&lt;AttachableObject, T&gt; ifAbsent = null]){
-    return obj._getValueOrUndefined(this, obj, ifAbsent);
-  }
+ Object getCore(AttachableObject obj, [Func1&lt;AttachableObject, T&gt; ifAbsent = null]){
+   return obj._getValueOrUndefined(this, obj, ifAbsent);
+ }
 
-  void set(AttachableObject obj, T value){
-    assert(!identical(value, Undefined));
-    obj._set(this, value);
-  }
+ void set(AttachableObject obj, T value){
+   assert(!identical(value, Undefined));
+   obj._set(this, value);
+ }
 
-  void clear(AttachableObject obj) =&gt; obj._remove(this);
+ void clear(AttachableObject obj) =&gt; obj._remove(this);
 
-  bool isSet(AttachableObject obj) =&gt; obj._isSet(this);
+ bool isSet(AttachableObject obj) =&gt; obj._isSet(this);
 
-  GlobalId addHandler(AttachableObject obj, Action1&lt;Property&gt; handler){
-    return obj._addHandler(this, handler);
-  }
+ GlobalId addHandler(AttachableObject obj, Action1&lt;Property&gt; handler){
+   return obj._addHandler(this, handler);
+ }
 
-  bool removeHandler(AttachableObject obj, GlobalId handlerId){
-    return obj._removeHandler(this, handlerId);
-  }
+ bool removeHandler(AttachableObject obj, GlobalId handlerId){
+   return obj._removeHandler(this, handlerId);
+ }
 
-  String toString() =&gt; "Property '$name'";
+ String toString() =&gt; "Property '$name'";
 }
 </pre>
 </div>
@@ -120,6 +120,28 @@ final T defaultValue;
 </pre>
 </div>
 </div>
+<div class="field inherited"><h4 id="hashCode">
+<button class="show-code">Code</button>
+final int         <strong>hashCode</strong> <a class="anchor-link"
+            href="#hashCode"
+            title="Permalink to Property&lt;T&gt;.hashCode">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Hashable </div><div class="doc">
+<div class="inherited">
+<p>Get a hash code for this object.</p>
+<p>All objects have hash codes. Hash codes are guaranteed to be the
+same for objects that are equal when compared using the equality
+operator <code>==</code>. Other than that there are no guarantees about
+the hash codes. They will not be consistent between runs and
+there are no distribution guarantees.</p>
+<p>If a subclass overrides <code>hashCode</code> it should override the
+equality operator as well to maintain consistency.</p>
+<div class="docs-inherited-from">docs inherited from Object </div></div>
+<pre class="source">
+abstract int get hashCode;
+</pre>
+</div>
+</div>
 <div class="field inherited"><h4 id="name">
 <button class="show-code">Code</button>
 final String         <strong>name</strong> <a class="anchor-link"
@@ -142,7 +164,7 @@ final String name;
 <div class="doc">
 <pre class="source">
 GlobalId addHandler(AttachableObject obj, Action1&lt;Property&gt; handler){
-  return obj._addHandler(this, handler);
+ return obj._addHandler(this, handler);
 }
 </pre>
 </div>
@@ -164,13 +186,13 @@ void clear(AttachableObject obj) =&gt; obj._remove(this);
 <div class="doc">
 <pre class="source">
 T get(AttachableObject obj, [Func1&lt;AttachableObject, T&gt; ifAbsent = null]){
-  var coreValue = getCore(obj, ifAbsent);
-  if(!identical(coreValue, Undefined)){
-    return coreValue;
-  }
-  else{
-    return defaultValue;
-  }
+ var coreValue = getCore(obj, ifAbsent);
+ if(!identical(coreValue, Undefined)){
+   return coreValue;
+ }
+ else{
+   return defaultValue;
+ }
 }
 </pre>
 </div>
@@ -182,25 +204,9 @@ Object <strong>getCore</strong>(<a href="../bot/AttachableObject.html">Attachabl
 <div class="doc">
 <pre class="source">
 Object getCore(AttachableObject obj, [Func1&lt;AttachableObject, T&gt; ifAbsent = null]){
-  return obj._getValueOrUndefined(this, obj, ifAbsent);
+ return obj._getValueOrUndefined(this, obj, ifAbsent);
 }
 </pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="hashCode">
-abstract int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
-              title="Permalink to Property&lt;T&gt;.hashCode">#</a></h4>
-<div class="inherited-from">inherited from Hashable </div><div class="doc">
-<div class="inherited">
-<p>Get a hash code for this object.</p>
-<p>All objects have hash codes. Hash codes are guaranteed to be the
-same for objects that are equal when compared using the equality
-operator <code>==</code>. Other than that there are no guarantees about
-the hash codes. They will not be consistent between runs and
-there are no distribution guarantees.</p>
-<p>If a subclass overrides <code>hashCode</code> it should override the
-equality operator as well to maintain consistency.</p>
-<div class="docs-inherited-from">docs inherited from Object </div></div>
 </div>
 </div>
 <div class="method"><h4 id="isSet">
@@ -220,7 +226,7 @@ bool <strong>removeHandler</strong>(<a href="../bot/AttachableObject.html">Attac
 <div class="doc">
 <pre class="source">
 bool removeHandler(AttachableObject obj, GlobalId handlerId){
-  return obj._removeHandler(this, handlerId);
+ return obj._removeHandler(this, handlerId);
 }
 </pre>
 </div>
@@ -232,8 +238,8 @@ void <strong>set</strong>(<a href="../bot/AttachableObject.html">AttachableObjec
 <div class="doc">
 <pre class="source">
 void set(AttachableObject obj, T value){
-  assert(!identical(value, Undefined));
-  obj._set(this, value);
+ assert(!identical(value, Undefined));
+ obj._set(this, value);
 }
 </pre>
 </div>

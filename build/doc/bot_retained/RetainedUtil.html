@@ -34,53 +34,53 @@
 <div class="doc">
 <pre class="source">
 class RetainedUtil {
-  static List&lt;PElement&gt; hitTest(Stage stage, Coordinate point){
-    return _hitTest(stage.rootElement, point);
-  }
+ static List&lt;PElement&gt; hitTest(Stage stage, Coordinate point){
+   return _hitTest(stage.rootElement, point);
+ }
 
-  static List&lt;PElement&gt; _hitTest(PElement element, Coordinate point){
-    point = transformPointGlobalToLocal(element, point);
+ static List&lt;PElement&gt; _hitTest(PElement element, Coordinate point){
+   point = transformPointGlobalToLocal(element, point);
 
-    final bounds = new Box(0, 0, element.width, element.height);
+   final bounds = new Box(0, 0, element.width, element.height);
 
-    var hits = new List&lt;PElement&gt;();
-    if (bounds.contains(point)) {
-      if(element is ParentElement) {
-        final ParentElement p = element;
+   var hits = new List&lt;PElement&gt;();
+   if (bounds.contains(point)) {
+     if(element is ParentElement) {
+       final ParentElement p = element;
 
-        var length = p.visualChildCount;
-        for (var i = 0; i &lt; length; i++) {
-          var e = p.getVisualChild(length - 1 - i);
-          hits = _hitTest(e, point);
-          if (hits.length &gt; 0) {
-            break;
-          }
-        }
-      }
-      hits.add(element);
-    }
-    return hits;
-  }
+       var length = p.visualChildCount;
+       for (var i = 0; i &lt; length; i++) {
+         var e = p.getVisualChild(length - 1 - i);
+         hits = _hitTest(e, point);
+         if (hits.length &gt; 0) {
+           break;
+         }
+       }
+     }
+     hits.add(element);
+   }
+   return hits;
+ }
 
-  static Coordinate transformPointLocalToGlobal(PElement element,
-                                                     Coordinate point) {
-    var tx = element.getTransformToRoot();
-    return tx.transformCoordinate(point);
-  }
+ static Coordinate transformPointLocalToGlobal(PElement element,
+                                                    Coordinate point) {
+   var tx = element.getTransformToRoot();
+   return tx.transformCoordinate(point);
+ }
 
-  static Coordinate transformPointGlobalToLocal(PElement element,
-                                                     Coordinate point) {
-    var tx = element.getTransform();
-    return tx.createInverse().transformCoordinate(point);
-  }
+ static Coordinate transformPointGlobalToLocal(PElement element,
+                                                    Coordinate point) {
+   var tx = element.getTransform();
+   return tx.createInverse().transformCoordinate(point);
+ }
 
-  static List&lt;Coordinate&gt; getCorners(PElement element) {
-    final rect = new Box(0,0,element.width, element.height);
-    final points = rect.getCorners();
-    return $(points).map((p) {
-      return transformPointLocalToGlobal(element, p);
-    }).toList();
-  }
+ static List&lt;Coordinate&gt; getCorners(PElement element) {
+   final rect = new Box(0,0,element.width, element.height);
+   final points = rect.getCorners();
+   return $(points).map((p) {
+     return transformPointLocalToGlobal(element, p);
+   }).toList();
+ }
 }
 </pre>
 </div>
@@ -93,7 +93,7 @@ List&lt;<a href="../bot_retained/PElement.html">PElement</a>&gt; <strong>hitTest
 <div class="doc">
 <pre class="source">
 static List&lt;PElement&gt; hitTest(Stage stage, Coordinate point){
-  return _hitTest(stage.rootElement, point);
+ return _hitTest(stage.rootElement, point);
 }
 </pre>
 </div>
@@ -105,9 +105,9 @@ static List&lt;PElement&gt; hitTest(Stage stage, Coordinate point){
 <div class="doc">
 <pre class="source">
 static Coordinate transformPointLocalToGlobal(PElement element,
-                                                   Coordinate point) {
-  var tx = element.getTransformToRoot();
-  return tx.transformCoordinate(point);
+                                                  Coordinate point) {
+ var tx = element.getTransformToRoot();
+ return tx.transformCoordinate(point);
 }
 </pre>
 </div>
@@ -119,9 +119,9 @@ static Coordinate transformPointLocalToGlobal(PElement element,
 <div class="doc">
 <pre class="source">
 static Coordinate transformPointGlobalToLocal(PElement element,
-                                                   Coordinate point) {
-  var tx = element.getTransform();
-  return tx.createInverse().transformCoordinate(point);
+                                                  Coordinate point) {
+ var tx = element.getTransform();
+ return tx.createInverse().transformCoordinate(point);
 }
 </pre>
 </div>
@@ -133,11 +133,11 @@ List&lt;<a href="../bot/Coordinate.html">Coordinate</a>&gt; <strong>getCorners</
 <div class="doc">
 <pre class="source">
 static List&lt;Coordinate&gt; getCorners(PElement element) {
-  final rect = new Box(0,0,element.width, element.height);
-  final points = rect.getCorners();
-  return $(points).map((p) {
-    return transformPointLocalToGlobal(element, p);
-  }).toList();
+ final rect = new Box(0,0,element.width, element.height);
+ final points = rect.getCorners();
+ return $(points).map((p) {
+   return transformPointLocalToGlobal(element, p);
+ }).toList();
 }
 </pre>
 </div>

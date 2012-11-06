@@ -34,59 +34,59 @@
 <div class="doc">
 <pre class="source">
 class BungeeNum {
-  num _target;
-  num _current;
-  num _velocity;
+ num _target;
+ num _current;
+ num _velocity;
 
-  BungeeNum(num target, [num current]) {
-    this.target = target;
-    if(current == null) {
-      current = target;
-    }
-    this.current = current;
-  }
+ BungeeNum(num target, [num current]) {
+   this.target = target;
+   if(current == null) {
+     current = target;
+   }
+   this.current = current;
+ }
 
-  num get target =&gt; _target;
+ num get target =&gt; _target;
 
-  void set target(num value) {
-    requireArgument(isValidNumber(value), 'value');
-    _target = value;
-  }
+ void set target(num value) {
+   requireArgument(isValidNumber(value), 'value');
+   _target = value;
+ }
 
-  num get current =&gt; _current;
+ num get current =&gt; _current;
 
-  void set current(num value) {
-    requireArgument(isValidNumber(value), 'value');
-    _current = value;
-  }
+ void set current(num value) {
+   requireArgument(isValidNumber(value), 'value');
+   _current = value;
+ }
 
-  bool update() {
-    assert(isValidNumber(_target));
-    assert(isValidNumber(_current));
+ bool update() {
+   assert(isValidNumber(_target));
+   assert(isValidNumber(_current));
 
-    if(_velocity == null) {
-      _velocity = 0;
-    } else {
-      _velocity *= 0.8;
-    }
-    assert(isValidNumber(_velocity));
+   if(_velocity == null) {
+     _velocity = 0;
+   } else {
+     _velocity *= 0.8;
+   }
+   assert(isValidNumber(_velocity));
 
-    final force = _target - _current;
+   final force = _target - _current;
 
-    _velocity += (force * 0.05);
+   _velocity += (force * 0.05);
 
-    _current += _velocity;
+   _current += _velocity;
 
-    final delta = (_current - _target).abs();
+   final delta = (_current - _target).abs();
 
-    if(delta &lt; 0.01 &amp;&amp; _velocity.abs() &lt; 0.01) {
-      _current = _target;
-      _velocity = null;
-      return false;
-    } else {
-      return true;
-    }
-  }
+   if(delta &lt; 0.01 &amp;&amp; _velocity.abs() &lt; 0.01) {
+     _current = _target;
+     _velocity = null;
+     return false;
+   } else {
+     return true;
+   }
+ }
 
 }
 </pre>
@@ -100,11 +100,11 @@ new <strong>BungeeNum</strong>(num target, [num current]) <a class="anchor-link"
 <div class="doc">
 <pre class="source">
 BungeeNum(num target, [num current]) {
-  this.target = target;
-  if(current == null) {
-    current = target;
-  }
-  this.current = current;
+ this.target = target;
+ if(current == null) {
+   current = target;
+ }
+ this.current = current;
 }
 </pre>
 </div>
@@ -124,8 +124,8 @@ num get current =&gt; _current;
 </pre>
 <pre class="source">
 void set current(num value) {
-  requireArgument(isValidNumber(value), 'value');
-  _current = value;
+ requireArgument(isValidNumber(value), 'value');
+ _current = value;
 }
 </pre>
 </div>
@@ -142,8 +142,8 @@ num get target =&gt; _target;
 </pre>
 <pre class="source">
 void set target(num value) {
-  requireArgument(isValidNumber(value), 'value');
-  _target = value;
+ requireArgument(isValidNumber(value), 'value');
+ _target = value;
 }
 </pre>
 </div>
@@ -158,31 +158,31 @@ bool <strong>update</strong>() <a class="anchor-link" href="#update"
 <div class="doc">
 <pre class="source">
 bool update() {
-  assert(isValidNumber(_target));
-  assert(isValidNumber(_current));
+ assert(isValidNumber(_target));
+ assert(isValidNumber(_current));
 
-  if(_velocity == null) {
-    _velocity = 0;
-  } else {
-    _velocity *= 0.8;
-  }
-  assert(isValidNumber(_velocity));
+ if(_velocity == null) {
+   _velocity = 0;
+ } else {
+   _velocity *= 0.8;
+ }
+ assert(isValidNumber(_velocity));
 
-  final force = _target - _current;
+ final force = _target - _current;
 
-  _velocity += (force * 0.05);
+ _velocity += (force * 0.05);
 
-  _current += _velocity;
+ _current += _velocity;
 
-  final delta = (_current - _target).abs();
+ final delta = (_current - _target).abs();
 
-  if(delta &lt; 0.01 &amp;&amp; _velocity.abs() &lt; 0.01) {
-    _current = _target;
-    _velocity = null;
-    return false;
-  } else {
-    return true;
-  }
+ if(delta &lt; 0.01 &amp;&amp; _velocity.abs() &lt; 0.01) {
+   _current = _target;
+   _velocity = null;
+   return false;
+ } else {
+   return true;
+ }
 }
 </pre>
 </div>

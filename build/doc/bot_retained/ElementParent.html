@@ -2,7 +2,7 @@
         <html>
         <head>
                 <meta charset="utf-8">
-        <title>ElementParent interface / bot_retained Library / Dart Documentation</title>
+        <title>ElementParent abstract class / bot_retained Library / Dart Documentation</title>
         <link rel="stylesheet" type="text/css"
             href="../styles.css">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
@@ -27,20 +27,20 @@
 </div>
 <div class="content">
         <h2><strong>ElementParent</strong>
-          interface
+          abstract class
         </h2>
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
 <pre class="source">
-interface ElementParent {
-  void childInvalidated(PElement child);
-  AffineTransform getTransformToRoot();
-  EventRoot&lt;EventArgs&gt; get invalidated;
+abstract class ElementParent {
+ void childInvalidated(PElement child);
+ AffineTransform getTransformToRoot();
+ EventRoot&lt;EventArgs&gt; get invalidated;
 }
 </pre>
 </div>
-<h3>Implemented by</h3>
+<h3>Subclasses</h3>
 <p>
 <span class="type-box"><span class="icon-class"></span><a href="../bot_retained/ParentElement.html">ParentElement</a></span>, <span class="type-box"><span class="icon-class"></span><a href="../bot_retained/Stage.html">Stage</a></span></p>
 <div>
@@ -61,23 +61,15 @@ EventRoot&lt;EventArgs&gt; get invalidated;
 <div>
 <h3>Methods</h3>
 <div class="method"><h4 id="childInvalidated">
-<button class="show-code">Code</button>
-void <strong>childInvalidated</strong>(<a href="../bot_retained/PElement.html">PElement</a> child) <a class="anchor-link" href="#childInvalidated"
+abstract void <strong>childInvalidated</strong>(<a href="../bot_retained/PElement.html">PElement</a> child) <a class="anchor-link" href="#childInvalidated"
               title="Permalink to ElementParent.childInvalidated">#</a></h4>
 <div class="doc">
-<pre class="source">
-void childInvalidated(PElement child);
-</pre>
 </div>
 </div>
 <div class="method"><h4 id="getTransformToRoot">
-<button class="show-code">Code</button>
-<a href="../bot/AffineTransform.html">AffineTransform</a> <strong>getTransformToRoot</strong>() <a class="anchor-link" href="#getTransformToRoot"
+abstract <a href="../bot/AffineTransform.html">AffineTransform</a> <strong>getTransformToRoot</strong>() <a class="anchor-link" href="#getTransformToRoot"
               title="Permalink to ElementParent.getTransformToRoot">#</a></h4>
 <div class="doc">
-<pre class="source">
-AffineTransform getTransformToRoot();
-</pre>
 </div>
 </div>
 </div>

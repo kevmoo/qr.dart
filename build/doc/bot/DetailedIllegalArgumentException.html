@@ -34,19 +34,19 @@
 <div class="doc">
 <pre class="source">
 class DetailedIllegalArgumentException extends ArgumentError {
-  final argument;
+ final argument;
 
-  const DetailedIllegalArgumentException([String arg = '', String message]) :
-    this.argument = arg,
-    super(message);
+ const DetailedIllegalArgumentException([String arg = '', String message]) :
+   this.argument = arg,
+   super(message);
 
-  String toString() {
-    if(message == null || message.length == 0) {
-      return "Illegal argument: $argument";
-    } else {
-      return "Illegal argument: $argument -- $message";
-    }
-  }
+ String toString() {
+   if(message == null || message.length == 0) {
+     return "Illegal argument: $argument";
+   } else {
+     return "Illegal argument: $argument -- $message";
+   }
+ }
 }
 </pre>
 </div>
@@ -62,8 +62,8 @@ const <strong>DetailedIllegalArgumentException</strong>([String arg = '', String
 <div class="doc">
 <pre class="source">
 const DetailedIllegalArgumentException([String arg = '', String message]) :
-  this.argument = arg,
-  super(message);
+ this.argument = arg,
+ super(message);
 </pre>
 </div>
 </div>
@@ -107,11 +107,11 @@ String <strong>toString</strong>() <a class="anchor-link" href="#toString"
 <div class="docs-inherited-from">docs inherited from Object </div></div>
 <pre class="source">
 String toString() {
-  if(message == null || message.length == 0) {
-    return "Illegal argument: $argument";
-  } else {
-    return "Illegal argument: $argument -- $message";
-  }
+ if(message == null || message.length == 0) {
+   return "Illegal argument: $argument";
+ } else {
+   return "Illegal argument: $argument -- $message";
+ }
 }
 </pre>
 </div>

@@ -34,43 +34,43 @@
 <div class="doc">
 <pre class="source">
 class AudioLoader extends ResourceLoader&lt;AudioBuffer&gt; {
-  final AudioContext context;
+ final AudioContext context;
 
-  AudioLoader(this.context, Iterable&lt;String&gt; urlList) :
-    super(urlList);
+ AudioLoader(this.context, Iterable&lt;String&gt; urlList) :
+   super(urlList);
 
-  void _doLoad(String blobUrl) {
-    // Load buffer asynchronously
-    final HttpRequest arrayBufferRequest = new HttpRequest();
-    arrayBufferRequest.open("GET", blobUrl, true);
-    arrayBufferRequest.responseType = "arraybuffer";
+ void _doLoad(String blobUrl) {
+   // Load buffer asynchronously
+   final HttpRequest arrayBufferRequest = new HttpRequest();
+   arrayBufferRequest.open("GET", blobUrl, true);
+   arrayBufferRequest.responseType = "arraybuffer";
 
-    arrayBufferRequest.on.load.add((args) {
-      // Asynchronously decode the audio file data in request.response
-      context.decodeAudioData(
-        arrayBufferRequest.response,
-        (buffer) =&gt; _saveBuffer(blobUrl, buffer),
-        (buffer) =&gt; _onAudioLoadError(blobUrl, 'decode error', buffer));
-    });
+   arrayBufferRequest.on.load.add((args) {
+     // Asynchronously decode the audio file data in request.response
+     context.decodeAudioData(
+       arrayBufferRequest.response,
+       (buffer) =&gt; _saveBuffer(blobUrl, buffer),
+       (buffer) =&gt; _onAudioLoadError(blobUrl, 'decode error', buffer));
+   });
 
-    arrayBufferRequest.on.error.add((args) {
-      _onAudioLoadError(blobUrl, 'BufferLoader: XHR error', args);
-    });
+   arrayBufferRequest.on.error.add((args) {
+     _onAudioLoadError(blobUrl, 'BufferLoader: XHR error', args);
+   });
 
-    arrayBufferRequest.send();
-  }
+   arrayBufferRequest.send();
+ }
 
-  void _onAudioLoadError(String blobUrl, String description, error) {
-    print(['Error!', description, error]);
-    _loadResourceFailed(blobUrl);
-  }
+ void _onAudioLoadError(String blobUrl, String description, error) {
+   print(['Error!', description, error]);
+   _loadResourceFailed(blobUrl);
+ }
 
-  void _saveBuffer(String blobUrl, AudioBuffer buffer) {
-    if (buffer == null) {
-      _onAudioLoadError(blobUrl, 'null buffer', '');
-    }
-    _loadResourceSucceed(blobUrl, buffer);
-  }
+ void _saveBuffer(String blobUrl, AudioBuffer buffer) {
+   if (buffer == null) {
+     _onAudioLoadError(blobUrl, 'null buffer', '');
+   }
+   _loadResourceSucceed(blobUrl, buffer);
+ }
 }
 </pre>
 </div>
@@ -86,7 +86,7 @@ new <strong>AudioLoader</strong>(AudioContext context, Iterable&lt;String&gt; ur
 <div class="doc">
 <pre class="source">
 AudioLoader(this.context, Iterable&lt;String&gt; urlList) :
-  super(urlList);
+ super(urlList);
 </pre>
 </div>
 </div>
@@ -102,7 +102,7 @@ final int         <strong>completedBytes</strong> <a class="anchor-link"
         <div class="inherited-from">inherited from <a href="../bot_html/ResourceLoader.html">ResourceLoader</a> </div><div class="doc">
 <pre class="source">
 int get completedBytes {
-  return _entries.selectNumbers((e) =&gt; e.completedBytes).sum();
+ return _entries.selectNumbers((e) =&gt; e.completedBytes).sum();
 }
 </pre>
 </div>
@@ -176,13 +176,13 @@ final int         <strong>totalBytes</strong> <a class="anchor-link"
         <div class="inherited-from">inherited from <a href="../bot_html/ResourceLoader.html">ResourceLoader</a> </div><div class="doc">
 <pre class="source">
 int get totalBytes {
-  return _entries.selectNumbers((e) {
-    if(e.totalBytes == null) {
-      return _defaultSize;
-    } else {
-      return e.totalBytes;
-    }
-  }).sum();
+ return _entries.selectNumbers((e) {
+   if(e.totalBytes == null) {
+     return _defaultSize;
+   } else {
+     return e.totalBytes;
+   }
+ }).sum();
 }
 </pre>
 </div>
@@ -207,11 +207,11 @@ void <strong>load</strong>() <a class="anchor-link" href="#load"
 <div class="inherited-from">inherited from <a href="../bot_html/ResourceLoader.html">ResourceLoader</a> </div><div class="doc">
 <pre class="source">
 void load() {
-  assert(_state == StateUnloaded);
-  _state = StateLoading;
-  for(final e in _entries) {
-    _httpLoad(e.url);
-  }
+ assert(_state == StateUnloaded);
+ _state = StateLoading;
+ for(final e in _entries) {
+   _httpLoad(e.url);
+ }
 }
 </pre>
 </div>

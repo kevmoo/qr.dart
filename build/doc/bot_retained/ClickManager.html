@@ -34,177 +34,177 @@
 <div class="doc">
 <pre class="source">
 class ClickManager {
-  static final Property&lt;ClickManager&gt; _clickManagerProperty =
-      new Property&lt;ClickManager&gt;("_clickManager");
+ static final Property&lt;ClickManager&gt; _clickManagerProperty =
+     new Property&lt;ClickManager&gt;("_clickManager");
 
-  static final Property&lt;bool&gt; _isClickableProperty =
-      new Property&lt;bool&gt;("isClickable", false);
+ static final Property&lt;bool&gt; _isClickableProperty =
+     new Property&lt;bool&gt;("isClickable", false);
 
-  static final AttachedEvent&lt;ElementMouseEventArgs&gt; _clickEvent =
-      new AttachedEvent&lt;ElementMouseEventArgs&gt;('clickEvent');
+ static final AttachedEvent&lt;ElementMouseEventArgs&gt; _clickEvent =
+     new AttachedEvent&lt;ElementMouseEventArgs&gt;('clickEvent');
 
-  static final AttachedEvent&lt;ElementMouseEventArgs&gt; _mouseDownEvent =
-      new AttachedEvent&lt;ElementMouseEventArgs&gt;('mouseDown');
+ static final AttachedEvent&lt;ElementMouseEventArgs&gt; _mouseDownEvent =
+     new AttachedEvent&lt;ElementMouseEventArgs&gt;('mouseDown');
 
-  static final AttachedEvent&lt;ElementMouseEventArgs&gt; _mouseUpEvent =
-      new AttachedEvent&lt;ElementMouseEventArgs&gt;('mouseUp');
+ static final AttachedEvent&lt;ElementMouseEventArgs&gt; _mouseUpEvent =
+     new AttachedEvent&lt;ElementMouseEventArgs&gt;('mouseUp');
 
-  static final AttachedEvent&lt;ElementMouseEventArgs&gt; _mouseMoveEvent =
-      new AttachedEvent&lt;ElementMouseEventArgs&gt;('mouseMove');
+ static final AttachedEvent&lt;ElementMouseEventArgs&gt; _mouseMoveEvent =
+     new AttachedEvent&lt;ElementMouseEventArgs&gt;('mouseMove');
 
-  static final AttachedEvent _mouseOutEvent =
-      new AttachedEvent('mouseOut');
+ static final AttachedEvent _mouseOutEvent =
+     new AttachedEvent('mouseOut');
 
-  final Stage _stage;
+ final Stage _stage;
 
-  PElement _mouseDownElement;
+ PElement _mouseDownElement;
 
-  factory ClickManager(Stage stage) {
-    requireArgumentNotNull(stage, 'stage');
+ factory ClickManager(Stage stage) {
+   requireArgumentNotNull(stage, 'stage');
 
-    return _clickManagerProperty.get(stage, (s) {
-      return new ClickManager._internal(s);
-    });
-  }
+   return _clickManagerProperty.get(stage, (s) {
+     return new ClickManager._internal(s);
+   });
+ }
 
-  ClickManager._internal(this._stage) {
-    assert(!_clickManagerProperty.isSet(this._stage));
-    _stage._canvas.on.mouseMove.add(_mouseMove);
-    _stage._canvas.on.mouseOut.add(_mouseOut);
-    _stage._canvas.on.mouseUp.add(_mouseUp);
-    _stage._canvas.on.mouseDown.add(_mouseDown);
-  }
+ ClickManager._internal(this._stage) {
+   assert(!_clickManagerProperty.isSet(this._stage));
+   _stage._canvas.on.mouseMove.add(_mouseMove);
+   _stage._canvas.on.mouseOut.add(_mouseOut);
+   _stage._canvas.on.mouseUp.add(_mouseUp);
+   _stage._canvas.on.mouseDown.add(_mouseDown);
+ }
 
-  static void setClickable(PElement element, bool value) {
-    assert(element != null);
-    assert(value != null);
-    if(value) {
-      _isClickableProperty.set(element, true);
-    } else {
-      _isClickableProperty.clear(element);
-    }
-  }
+ static void setClickable(PElement element, bool value) {
+   assert(element != null);
+   assert(value != null);
+   if(value) {
+     _isClickableProperty.set(element, true);
+   } else {
+     _isClickableProperty.clear(element);
+   }
+ }
 
-  static bool getClickable(PElement element) {
-    assert(element != null);
-    return _isClickableProperty.get(element);
-  }
+ static bool getClickable(PElement element) {
+   assert(element != null);
+   return _isClickableProperty.get(element);
+ }
 
-  static GlobalId addHandler(PElement element,
-                             Action1&lt;ElementMouseEventArgs&gt; handler) {
-    return _clickEvent.addHandler(element, handler);
-  }
+ static GlobalId addHandler(PElement element,
+                            Action1&lt;ElementMouseEventArgs&gt; handler) {
+   return _clickEvent.addHandler(element, handler);
+ }
 
-  static bool removeHandler(PElement obj, GlobalId handlerId) {
-    return _clickEvent.removeHandler(obj, handlerId);
-  }
+ static bool removeHandler(PElement obj, GlobalId handlerId) {
+   return _clickEvent.removeHandler(obj, handlerId);
+ }
 
-  static GlobalId addMouseMoveHandler(PElement obj,
-                                      Action1&lt;ElementMouseEventArgs&gt; handler) {
-    return _mouseMoveEvent.addHandler(obj, handler);
-  }
-
-  static bool removeMouseMoveHandler(PElement obj, GlobalId handlerId) {
-    return _mouseMoveEvent.removeHandler(obj, handlerId);
-  }
-
-  static GlobalId addMouseUpHandler(PElement obj,
-                                      Action1&lt;ElementMouseEventArgs&gt; handler) {
-    return _mouseUpEvent.addHandler(obj, handler);
-  }
-
-  static bool removeMouseUpHandler(PElement obj, GlobalId handlerId) {
-    return _mouseUpEvent.removeHandler(obj, handlerId);
-  }
-
-  static GlobalId addMouseDownHandler(PElement obj,
-                                      Action1&lt;ElementMouseEventArgs&gt; handler) {
-    return _mouseDownEvent.addHandler(obj, handler);
-  }
-
-  static bool removeMouseDownHandler(PElement obj, GlobalId handlerId) {
-    return _mouseDownEvent.removeHandler(obj, handlerId);
-  }
-
-  static GlobalId addMouseOutHandler(Stage obj,
+ static GlobalId addMouseMoveHandler(PElement obj,
                                      Action1&lt;ElementMouseEventArgs&gt; handler) {
-    return _mouseOutEvent.addHandler(obj, handler);
-  }
+   return _mouseMoveEvent.addHandler(obj, handler);
+ }
 
-  static bool removeMouseOutHandler(Stage obj, GlobalId handlerId) {
-    return _mouseOutEvent.removeHandler(obj, handlerId);
-  }
+ static bool removeMouseMoveHandler(PElement obj, GlobalId handlerId) {
+   return _mouseMoveEvent.removeHandler(obj, handlerId);
+ }
 
-  void _mouseMove(MouseEvent e) {
-    final items = _updateMouseLocation(getMouseEventCoordinate(e));
-    if(items.length &gt; 0) {
-      final args = new ElementMouseEventArgs(items[0], e);
-      items.forEach((e) =&gt; _mouseMoveEvent.fireEvent(e, args));
-    }
-  }
+ static GlobalId addMouseUpHandler(PElement obj,
+                                     Action1&lt;ElementMouseEventArgs&gt; handler) {
+   return _mouseUpEvent.addHandler(obj, handler);
+ }
 
-  void _mouseOut(MouseEvent e) {
-    _updateMouseLocation(null);
-    _mouseOutEvent.fireEvent(_stage, EventArgs.empty);
-  }
+ static bool removeMouseUpHandler(PElement obj, GlobalId handlerId) {
+   return _mouseUpEvent.removeHandler(obj, handlerId);
+ }
 
-  void _mouseUp(MouseEvent e) {
-    // TODO: this does not handle the case where:
-    //       1) the mouse left the element
-    //       2) mouse up
-    //       3) mouse down (outside the element)
-    //       4) mouse up on the down element
-    //       Weird edge case, but important for comeletness :-/
-    //       Mouse capture anyone?
+ static GlobalId addMouseDownHandler(PElement obj,
+                                     Action1&lt;ElementMouseEventArgs&gt; handler) {
+   return _mouseDownEvent.addHandler(obj, handler);
+ }
 
-    final hits = _updateMouseLocation(getMouseEventCoordinate(e));
-    final upElement = $(hits).firstOrDefault((e) {
-      return _isClickableProperty.get(e);
-    });
+ static bool removeMouseDownHandler(PElement obj, GlobalId handlerId) {
+   return _mouseDownEvent.removeHandler(obj, handlerId);
+ }
 
-    if(upElement != null) {
-      _doMouseUp(upElement, e);
+ static GlobalId addMouseOutHandler(Stage obj,
+                                    Action1&lt;ElementMouseEventArgs&gt; handler) {
+   return _mouseOutEvent.addHandler(obj, handler);
+ }
 
-      // handle click
-      if(upElement == _mouseDownElement) {
-        _doClick(upElement, e);
-      }
-      _mouseDownElement = null;
-    }
-  }
+ static bool removeMouseOutHandler(Stage obj, GlobalId handlerId) {
+   return _mouseOutEvent.removeHandler(obj, handlerId);
+ }
 
-  void _mouseDown(MouseEvent e) {
-    final coord = getMouseEventCoordinate(e);
-    final hits = _updateMouseLocation(coord);
-    _mouseDownElement = $(hits).firstOrDefault((e) {
-      return _isClickableProperty.get(e);
-    });
-    if(_mouseDownElement != null) {
-      _doMouseDown(_mouseDownElement, e);
-    }
-  }
+ void _mouseMove(MouseEvent e) {
+   final items = _updateMouseLocation(getMouseEventCoordinate(e));
+   if(items.length &gt; 0) {
+     final args = new ElementMouseEventArgs(items[0], e);
+     items.forEach((e) =&gt; _mouseMoveEvent.fireEvent(e, args));
+   }
+ }
 
-  List&lt;PElement&gt; _updateMouseLocation(Coordinate value) {
-    return Mouse.markMouseOver(_stage, value);
-  }
+ void _mouseOut(MouseEvent e) {
+   _updateMouseLocation(null);
+   _mouseOutEvent.fireEvent(_stage, EventArgs.empty);
+ }
 
-  void _doMouseDown(PElement element, MouseEvent e) {
-    assert(element != null);
-    final args = new ElementMouseEventArgs(element, e);
-    _mouseDownEvent.fireEvent(element, args);
-  }
+ void _mouseUp(MouseEvent e) {
+   // TODO: this does not handle the case where:
+   //       1) the mouse left the element
+   //       2) mouse up
+   //       3) mouse down (outside the element)
+   //       4) mouse up on the down element
+   //       Weird edge case, but important for comeletness :-/
+   //       Mouse capture anyone?
 
-  void _doMouseUp(PElement element, MouseEvent e) {
-    assert(element != null);
-    final args = new ElementMouseEventArgs(element, e);
-    _mouseUpEvent.fireEvent(element, args);
-  }
+   final hits = _updateMouseLocation(getMouseEventCoordinate(e));
+   final upElement = $(hits).firstOrDefault((e) {
+     return _isClickableProperty.get(e);
+   });
 
-  void _doClick(PElement element, MouseEvent e) {
-    assert(element != null);
-    final args = new ElementMouseEventArgs(element, e);
-    _clickEvent.fireEvent(element, args);
-  }
+   if(upElement != null) {
+     _doMouseUp(upElement, e);
+
+     // handle click
+     if(upElement == _mouseDownElement) {
+       _doClick(upElement, e);
+     }
+     _mouseDownElement = null;
+   }
+ }
+
+ void _mouseDown(MouseEvent e) {
+   final coord = getMouseEventCoordinate(e);
+   final hits = _updateMouseLocation(coord);
+   _mouseDownElement = $(hits).firstOrDefault((e) {
+     return _isClickableProperty.get(e);
+   });
+   if(_mouseDownElement != null) {
+     _doMouseDown(_mouseDownElement, e);
+   }
+ }
+
+ List&lt;PElement&gt; _updateMouseLocation(Coordinate value) {
+   return Mouse.markMouseOver(_stage, value);
+ }
+
+ void _doMouseDown(PElement element, MouseEvent e) {
+   assert(element != null);
+   final args = new ElementMouseEventArgs(element, e);
+   _mouseDownEvent.fireEvent(element, args);
+ }
+
+ void _doMouseUp(PElement element, MouseEvent e) {
+   assert(element != null);
+   final args = new ElementMouseEventArgs(element, e);
+   _mouseUpEvent.fireEvent(element, args);
+ }
+
+ void _doClick(PElement element, MouseEvent e) {
+   assert(element != null);
+   final args = new ElementMouseEventArgs(element, e);
+   _clickEvent.fireEvent(element, args);
+ }
 }
 </pre>
 </div>
@@ -217,13 +217,13 @@ void <strong>setClickable</strong>(<a href="../bot_retained/PElement.html">PElem
 <div class="doc">
 <pre class="source">
 static void setClickable(PElement element, bool value) {
-  assert(element != null);
-  assert(value != null);
-  if(value) {
-    _isClickableProperty.set(element, true);
-  } else {
-    _isClickableProperty.clear(element);
-  }
+ assert(element != null);
+ assert(value != null);
+ if(value) {
+   _isClickableProperty.set(element, true);
+ } else {
+   _isClickableProperty.clear(element);
+ }
 }
 </pre>
 </div>
@@ -235,8 +235,8 @@ bool <strong>getClickable</strong>(<a href="../bot_retained/PElement.html">PElem
 <div class="doc">
 <pre class="source">
 static bool getClickable(PElement element) {
-  assert(element != null);
-  return _isClickableProperty.get(element);
+ assert(element != null);
+ return _isClickableProperty.get(element);
 }
 </pre>
 </div>
@@ -248,8 +248,8 @@ static bool getClickable(PElement element) {
 <div class="doc">
 <pre class="source">
 static GlobalId addHandler(PElement element,
-                           Action1&lt;ElementMouseEventArgs&gt; handler) {
-  return _clickEvent.addHandler(element, handler);
+                          Action1&lt;ElementMouseEventArgs&gt; handler) {
+ return _clickEvent.addHandler(element, handler);
 }
 </pre>
 </div>
@@ -261,7 +261,7 @@ bool <strong>removeHandler</strong>(<a href="../bot_retained/PElement.html">PEle
 <div class="doc">
 <pre class="source">
 static bool removeHandler(PElement obj, GlobalId handlerId) {
-  return _clickEvent.removeHandler(obj, handlerId);
+ return _clickEvent.removeHandler(obj, handlerId);
 }
 </pre>
 </div>
@@ -273,8 +273,8 @@ static bool removeHandler(PElement obj, GlobalId handlerId) {
 <div class="doc">
 <pre class="source">
 static GlobalId addMouseMoveHandler(PElement obj,
-                                    Action1&lt;ElementMouseEventArgs&gt; handler) {
-  return _mouseMoveEvent.addHandler(obj, handler);
+                                   Action1&lt;ElementMouseEventArgs&gt; handler) {
+ return _mouseMoveEvent.addHandler(obj, handler);
 }
 </pre>
 </div>
@@ -286,7 +286,7 @@ bool <strong>removeMouseMoveHandler</strong>(<a href="../bot_retained/PElement.h
 <div class="doc">
 <pre class="source">
 static bool removeMouseMoveHandler(PElement obj, GlobalId handlerId) {
-  return _mouseMoveEvent.removeHandler(obj, handlerId);
+ return _mouseMoveEvent.removeHandler(obj, handlerId);
 }
 </pre>
 </div>
@@ -298,8 +298,8 @@ static bool removeMouseMoveHandler(PElement obj, GlobalId handlerId) {
 <div class="doc">
 <pre class="source">
 static GlobalId addMouseUpHandler(PElement obj,
-                                    Action1&lt;ElementMouseEventArgs&gt; handler) {
-  return _mouseUpEvent.addHandler(obj, handler);
+                                   Action1&lt;ElementMouseEventArgs&gt; handler) {
+ return _mouseUpEvent.addHandler(obj, handler);
 }
 </pre>
 </div>
@@ -311,7 +311,7 @@ bool <strong>removeMouseUpHandler</strong>(<a href="../bot_retained/PElement.htm
 <div class="doc">
 <pre class="source">
 static bool removeMouseUpHandler(PElement obj, GlobalId handlerId) {
-  return _mouseUpEvent.removeHandler(obj, handlerId);
+ return _mouseUpEvent.removeHandler(obj, handlerId);
 }
 </pre>
 </div>
@@ -323,8 +323,8 @@ static bool removeMouseUpHandler(PElement obj, GlobalId handlerId) {
 <div class="doc">
 <pre class="source">
 static GlobalId addMouseDownHandler(PElement obj,
-                                    Action1&lt;ElementMouseEventArgs&gt; handler) {
-  return _mouseDownEvent.addHandler(obj, handler);
+                                   Action1&lt;ElementMouseEventArgs&gt; handler) {
+ return _mouseDownEvent.addHandler(obj, handler);
 }
 </pre>
 </div>
@@ -336,7 +336,7 @@ bool <strong>removeMouseDownHandler</strong>(<a href="../bot_retained/PElement.h
 <div class="doc">
 <pre class="source">
 static bool removeMouseDownHandler(PElement obj, GlobalId handlerId) {
-  return _mouseDownEvent.removeHandler(obj, handlerId);
+ return _mouseDownEvent.removeHandler(obj, handlerId);
 }
 </pre>
 </div>
@@ -348,8 +348,8 @@ static bool removeMouseDownHandler(PElement obj, GlobalId handlerId) {
 <div class="doc">
 <pre class="source">
 static GlobalId addMouseOutHandler(Stage obj,
-                                   Action1&lt;ElementMouseEventArgs&gt; handler) {
-  return _mouseOutEvent.addHandler(obj, handler);
+                                  Action1&lt;ElementMouseEventArgs&gt; handler) {
+ return _mouseOutEvent.addHandler(obj, handler);
 }
 </pre>
 </div>
@@ -361,7 +361,7 @@ bool <strong>removeMouseOutHandler</strong>(<a href="../bot_retained/Stage.html"
 <div class="doc">
 <pre class="source">
 static bool removeMouseOutHandler(Stage obj, GlobalId handlerId) {
-  return _mouseOutEvent.removeHandler(obj, handlerId);
+ return _mouseOutEvent.removeHandler(obj, handlerId);
 }
 </pre>
 </div>
@@ -376,11 +376,11 @@ factory <strong>ClickManager</strong>(<a href="../bot_retained/Stage.html">Stage
 <div class="doc">
 <pre class="source">
 factory ClickManager(Stage stage) {
-  requireArgumentNotNull(stage, 'stage');
+ requireArgumentNotNull(stage, 'stage');
 
-  return _clickManagerProperty.get(stage, (s) {
-    return new ClickManager._internal(s);
-  });
+ return _clickManagerProperty.get(stage, (s) {
+   return new ClickManager._internal(s);
+ });
 }
 </pre>
 </div>

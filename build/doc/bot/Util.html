@@ -34,18 +34,18 @@
 <div class="doc">
 <pre class="source">
 class Util {
-  static int getHashCode(Iterable&lt;Hashable&gt; source) {
-    int hash = 0;
-    for (final h in source) {
-      int next = h == null ? 0 : h.hashCode();
-      hash = 0x1fffffff &amp; (hash + next);
-      hash = 0x1fffffff &amp; (hash + ((0x0007ffff &amp; hash) &lt;&lt; 10));
-      hash ^= hash &gt;&gt; 6;
-    }
-    hash = 0x1fffffff &amp; (hash + ((0x03ffffff &amp; hash) &lt;&lt; 3));
-    hash ^= hash &gt;&gt; 11;
-    return 0x1fffffff &amp; (hash + ((0x00003fff &amp; hash) &lt;&lt; 15));
-  }
+ static int getHashCode(Iterable&lt;Hashable&gt; source) {
+   int hash = 0;
+   for (final h in source) {
+     int next = h == null ? 0 : h.hashCode;
+     hash = 0x1fffffff &amp; (hash + next);
+     hash = 0x1fffffff &amp; (hash + ((0x0007ffff &amp; hash) &lt;&lt; 10));
+     hash ^= hash &gt;&gt; 6;
+   }
+   hash = 0x1fffffff &amp; (hash + ((0x03ffffff &amp; hash) &lt;&lt; 3));
+   hash ^= hash &gt;&gt; 11;
+   return 0x1fffffff &amp; (hash + ((0x00003fff &amp; hash) &lt;&lt; 15));
+ }
 }
 </pre>
 </div>
@@ -58,16 +58,16 @@ int <strong>getHashCode</strong>(Iterable&lt;Hashable&gt; source) <a class="anch
 <div class="doc">
 <pre class="source">
 static int getHashCode(Iterable&lt;Hashable&gt; source) {
-  int hash = 0;
-  for (final h in source) {
-    int next = h == null ? 0 : h.hashCode();
-    hash = 0x1fffffff &amp; (hash + next);
-    hash = 0x1fffffff &amp; (hash + ((0x0007ffff &amp; hash) &lt;&lt; 10));
-    hash ^= hash &gt;&gt; 6;
-  }
-  hash = 0x1fffffff &amp; (hash + ((0x03ffffff &amp; hash) &lt;&lt; 3));
-  hash ^= hash &gt;&gt; 11;
-  return 0x1fffffff &amp; (hash + ((0x00003fff &amp; hash) &lt;&lt; 15));
+ int hash = 0;
+ for (final h in source) {
+   int next = h == null ? 0 : h.hashCode;
+   hash = 0x1fffffff &amp; (hash + next);
+   hash = 0x1fffffff &amp; (hash + ((0x0007ffff &amp; hash) &lt;&lt; 10));
+   hash ^= hash &gt;&gt; 6;
+ }
+ hash = 0x1fffffff &amp; (hash + ((0x03ffffff &amp; hash) &lt;&lt; 3));
+ hash ^= hash &gt;&gt; 11;
+ return 0x1fffffff &amp; (hash + ((0x00003fff &amp; hash) &lt;&lt; 15));
 }
 </pre>
 </div>

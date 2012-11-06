@@ -34,38 +34,38 @@
 <div class="doc">
 <pre class="source">
 class SendValuePort&lt;TInput, TOutput&gt; {
-  final Func1&lt;TInput, TOutput&gt; _func;
-  final Func1&lt;Dynamic, TInput&gt; inputDeserializer;
-  final Func1&lt;TOutput, Dynamic&gt; outputSerializer;
+ final Func1&lt;TInput, TOutput&gt; _func;
+ final Func1&lt;dynamic, TInput&gt; inputDeserializer;
+ final Func1&lt;TOutput, dynamic&gt; outputSerializer;
 
-  SendValuePort(this._func, {this.inputDeserializer, this.outputSerializer}) {
-    port.receive((Dynamic rawValue, SendPort reply) {
-      final value = _deserialize(rawValue);
+ SendValuePort(this._func, {this.inputDeserializer, this.outputSerializer}) {
+   port.receive((dynamic rawValue, SendPort reply) {
+     final value = _deserialize(rawValue);
 
-      FutureValueResult&lt;TOutput&gt; _message;
-      try {
-        final TOutput output = _func(value);
-        _message = new FutureValueResult&lt;TOutput&gt;(output, outputSerializer);
-      } catch (ex) {
-        // TODO: I'd love to use real exceptions here
-        // but they blow up over the wire
-        // so: to string!
-        final String exString = ex.toString();
-        _message = new FutureValueResult&lt;TOutput&gt;.fromException(exString);
-      }
+     FutureValueResult&lt;TOutput&gt; _message;
+     try {
+       final TOutput output = _func(value);
+       _message = new FutureValueResult&lt;TOutput&gt;(output, outputSerializer);
+     } catch (ex) {
+       // TODO: I'd love to use real exceptions here
+       // but they blow up over the wire
+       // so: to string!
+       final String exString = ex.toString();
+       _message = new FutureValueResult&lt;TOutput&gt;.fromException(exString);
+     }
 
-      final map = _message.toMap();
-      reply.send(map);
-    });
-  }
+     final map = _message.toMap();
+     reply.send(map);
+   });
+ }
 
-  TInput _deserialize(Dynamic input) {
-    if(inputDeserializer == null) {
-      return input;
-    } else {
-      return inputDeserializer(input);
-    }
-  }
+ TInput _deserialize(dynamic input) {
+   if(inputDeserializer == null) {
+     return input;
+   } else {
+     return inputDeserializer(input);
+   }
+ }
 }
 </pre>
 </div>
@@ -73,29 +73,29 @@ class SendValuePort&lt;TInput, TOutput&gt; {
 <h3>Constructors</h3>
 <div class="method"><h4 id="SendValuePort">
 <button class="show-code">Code</button>
-new <strong>SendValuePort</strong>(<a href="../bot/Func1.html">Func1</a> _func, [<a href="../bot/Func1.html">Func1</a> inputDeserializer, <a href="../bot/Func1.html">Func1</a> outputSerializer]) <a class="anchor-link" href="#SendValuePort"
+new <strong>SendValuePort</strong>(<a href="../bot/Func1.html">Func1</a> _func, {<a href="../bot/Func1.html">Func1</a> inputDeserializer, <a href="../bot/Func1.html">Func1</a> outputSerializer}) <a class="anchor-link" href="#SendValuePort"
               title="Permalink to SendValuePort&lt;TInput, TOutput&gt;.SendValuePort">#</a></h4>
 <div class="doc">
 <pre class="source">
 SendValuePort(this._func, {this.inputDeserializer, this.outputSerializer}) {
-  port.receive((Dynamic rawValue, SendPort reply) {
-    final value = _deserialize(rawValue);
+ port.receive((dynamic rawValue, SendPort reply) {
+   final value = _deserialize(rawValue);
 
-    FutureValueResult&lt;TOutput&gt; _message;
-    try {
-      final TOutput output = _func(value);
-      _message = new FutureValueResult&lt;TOutput&gt;(output, outputSerializer);
-    } catch (ex) {
-      // TODO: I'd love to use real exceptions here
-      // but they blow up over the wire
-      // so: to string!
-      final String exString = ex.toString();
-      _message = new FutureValueResult&lt;TOutput&gt;.fromException(exString);
-    }
+   FutureValueResult&lt;TOutput&gt; _message;
+   try {
+     final TOutput output = _func(value);
+     _message = new FutureValueResult&lt;TOutput&gt;(output, outputSerializer);
+   } catch (ex) {
+     // TODO: I'd love to use real exceptions here
+     // but they blow up over the wire
+     // so: to string!
+     final String exString = ex.toString();
+     _message = new FutureValueResult&lt;TOutput&gt;.fromException(exString);
+   }
 
-    final map = _message.toMap();
-    reply.send(map);
-  });
+   final map = _message.toMap();
+   reply.send(map);
+ });
 }
 </pre>
 </div>
@@ -111,7 +111,7 @@ final <a href="../bot/Func1.html">Func1</a>         <strong>inputDeserializer</s
         </h4>
         <div class="doc">
 <pre class="source">
-final Func1&lt;Dynamic, TInput&gt; inputDeserializer;
+final Func1&lt;dynamic, TInput&gt; inputDeserializer;
 </pre>
 </div>
 </div>
@@ -123,7 +123,7 @@ final <a href="../bot/Func1.html">Func1</a>         <strong>outputSerializer</st
         </h4>
         <div class="doc">
 <pre class="source">
-final Func1&lt;TOutput, Dynamic&gt; outputSerializer;
+final Func1&lt;TOutput, dynamic&gt; outputSerializer;
 </pre>
 </div>
 </div>

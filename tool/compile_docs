@@ -5,12 +5,11 @@
 
 # NOTE: assumes 'current dir' is the root of the project
 
-libs=`ls lib/*.dart`
+libs=`ls lib/*.dart | grep -v test`
 cmd="dartdoc
 --omit-generation-time
 --out build/doc
 --verbose
---exclude-lib unittest
 $libs"
 echo $cmd
 exec $cmd

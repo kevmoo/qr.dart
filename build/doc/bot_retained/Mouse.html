@@ -34,44 +34,44 @@
 <div class="doc">
 <pre class="source">
 class Mouse {
-  static final Property&lt;bool&gt; isMouseOverProperty =
-      new Property&lt;bool&gt;("IsMouseOver", false);
-  static final Property&lt;bool&gt; isMouseDirectlyOverProperty =
-      new Property&lt;bool&gt;("IsMouseDirectlyOver", false);
-  static final Property&lt;List&lt;PElement&gt;&gt; _stageMouseCacheProperty =
-      new Property&lt;List&lt;PElement&gt;&gt;("_stageMouseCacheProperty");
+ static final Property&lt;bool&gt; isMouseOverProperty =
+     new Property&lt;bool&gt;("IsMouseOver", false);
+ static final Property&lt;bool&gt; isMouseDirectlyOverProperty =
+     new Property&lt;bool&gt;("IsMouseDirectlyOver", false);
+ static final Property&lt;List&lt;PElement&gt;&gt; _stageMouseCacheProperty =
+     new Property&lt;List&lt;PElement&gt;&gt;("_stageMouseCacheProperty");
 
-  static bool isMouseOver(PElement element) =&gt; isMouseOverProperty.get(element);
+ static bool isMouseOver(PElement element) =&gt; isMouseOverProperty.get(element);
 
-  static bool isMouseDirectlyOver(PElement element) =&gt;
-      isMouseDirectlyOverProperty.get(element);
+ static bool isMouseDirectlyOver(PElement element) =&gt;
+     isMouseDirectlyOverProperty.get(element);
 
-  static List&lt;PElement&gt; markMouseOver(Stage stage,
-      [Coordinate coordinate = null]) {
-    requireArgumentNotNull(stage, 'stage');
-    requireArgument(coordinate == null || coordinate.isValid, 'coordinate');
+ static List&lt;PElement&gt; markMouseOver(Stage stage,
+     [Coordinate coordinate = null]) {
+   requireArgumentNotNull(stage, 'stage');
+   requireArgument(coordinate == null || coordinate.isValid, 'coordinate');
 
-    final items = _stageMouseCacheProperty.get(stage);
-    if (items != null) {
-      items.forEach((e) {
-        isMouseOverProperty.clear(e);
-        isMouseDirectlyOverProperty.clear(e);
-      });
-      _stageMouseCacheProperty.clear(stage);
-    }
-    if (coordinate != null) {
-      var hits = RetainedUtil.hitTest(stage, coordinate);
-      _stageMouseCacheProperty.set(stage, hits);
-      hits.forEach((e) {
-        isMouseOverProperty.set(e, true);
-      });
-      if (hits.length &gt; 0) {
-        isMouseDirectlyOverProperty.set(hits[0], true);
-      }
-      return hits;
-    }
-    return null;
-  }
+   final items = _stageMouseCacheProperty.get(stage);
+   if (items != null) {
+     items.forEach((e) {
+       isMouseOverProperty.clear(e);
+       isMouseDirectlyOverProperty.clear(e);
+     });
+     _stageMouseCacheProperty.clear(stage);
+   }
+   if (coordinate != null) {
+     var hits = RetainedUtil.hitTest(stage, coordinate);
+     _stageMouseCacheProperty.set(stage, hits);
+     hits.forEach((e) {
+       isMouseOverProperty.set(e, true);
+     });
+     if (hits.length &gt; 0) {
+       isMouseDirectlyOverProperty.set(hits[0], true);
+     }
+     return hits;
+   }
+   return null;
+ }
 }
 </pre>
 </div>
@@ -86,7 +86,7 @@ final <a href="../bot/Property.html">Property</a>&lt;bool&gt;         <strong>is
         <div class="doc">
 <pre class="source">
 static final Property&lt;bool&gt; isMouseDirectlyOverProperty =
-    new Property&lt;bool&gt;("IsMouseDirectlyOver", false);
+   new Property&lt;bool&gt;("IsMouseDirectlyOver", false);
 </pre>
 </div>
 </div>
@@ -99,7 +99,7 @@ final <a href="../bot/Property.html">Property</a>&lt;bool&gt;         <strong>is
         <div class="doc">
 <pre class="source">
 static final Property&lt;bool&gt; isMouseOverProperty =
-    new Property&lt;bool&gt;("IsMouseOver", false);
+   new Property&lt;bool&gt;("IsMouseOver", false);
 </pre>
 </div>
 </div>
@@ -123,7 +123,7 @@ bool <strong>isMouseDirectlyOver</strong>(<a href="../bot_retained/PElement.html
 <div class="doc">
 <pre class="source">
 static bool isMouseDirectlyOver(PElement element) =&gt;
-    isMouseDirectlyOverProperty.get(element);
+   isMouseDirectlyOverProperty.get(element);
 </pre>
 </div>
 </div>
@@ -134,30 +134,30 @@ List&lt;<a href="../bot_retained/PElement.html">PElement</a>&gt; <strong>markMou
 <div class="doc">
 <pre class="source">
 static List&lt;PElement&gt; markMouseOver(Stage stage,
-    [Coordinate coordinate = null]) {
-  requireArgumentNotNull(stage, 'stage');
-  requireArgument(coordinate == null || coordinate.isValid, 'coordinate');
+   [Coordinate coordinate = null]) {
+ requireArgumentNotNull(stage, 'stage');
+ requireArgument(coordinate == null || coordinate.isValid, 'coordinate');
 
-  final items = _stageMouseCacheProperty.get(stage);
-  if (items != null) {
-    items.forEach((e) {
-      isMouseOverProperty.clear(e);
-      isMouseDirectlyOverProperty.clear(e);
-    });
-    _stageMouseCacheProperty.clear(stage);
-  }
-  if (coordinate != null) {
-    var hits = RetainedUtil.hitTest(stage, coordinate);
-    _stageMouseCacheProperty.set(stage, hits);
-    hits.forEach((e) {
-      isMouseOverProperty.set(e, true);
-    });
-    if (hits.length &gt; 0) {
-      isMouseDirectlyOverProperty.set(hits[0], true);
-    }
-    return hits;
-  }
-  return null;
+ final items = _stageMouseCacheProperty.get(stage);
+ if (items != null) {
+   items.forEach((e) {
+     isMouseOverProperty.clear(e);
+     isMouseDirectlyOverProperty.clear(e);
+   });
+   _stageMouseCacheProperty.clear(stage);
+ }
+ if (coordinate != null) {
+   var hits = RetainedUtil.hitTest(stage, coordinate);
+   _stageMouseCacheProperty.set(stage, hits);
+   hits.forEach((e) {
+     isMouseOverProperty.set(e, true);
+   });
+   if (hits.length &gt; 0) {
+     isMouseDirectlyOverProperty.set(hits[0], true);
+   }
+   return hits;
+ }
+ return null;
 }
 </pre>
 </div>

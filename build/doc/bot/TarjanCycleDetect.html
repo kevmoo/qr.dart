@@ -35,59 +35,59 @@
 <pre class="source">
 class TarjanCycleDetect&lt;TNode extends Hashable&gt; {
 
-  int _index = 0;
-  final List&lt;_TarjanNode&gt; _stack;
-  final List&lt;List&lt;TNode&gt;&gt; _scc;
-  final _TarjanList _list;
+ int _index = 0;
+ final List&lt;_TarjanNode&gt; _stack;
+ final List&lt;List&lt;TNode&gt;&gt; _scc;
+ final _TarjanList _list;
 
-  TarjanCycleDetect._internal(this._list) :
-    _index = 0,
-    _stack = new List&lt;_TarjanNode&lt;TNode&gt;&gt;(),
-    _scc = new List&lt;List&lt;TNode&gt;&gt;();
+ TarjanCycleDetect._internal(this._list) :
+   _index = 0,
+   _stack = new List&lt;_TarjanNode&lt;TNode&gt;&gt;(),
+   _scc = new List&lt;List&lt;TNode&gt;&gt;();
 
-  static List&lt;List&gt; getStronglyConnectedComponents(HashMap graph) {
-    assert(graph != null);
+ static List&lt;List&gt; getStronglyConnectedComponents(HashMap graph) {
+   assert(graph != null);
 
-    var nodes = new _TarjanList(graph);
-    var tarjan = new TarjanCycleDetect._internal(nodes);
-    return tarjan._executeTarjan();
-  }
+   var nodes = new _TarjanList(graph);
+   var tarjan = new TarjanCycleDetect._internal(nodes);
+   return tarjan._executeTarjan();
+ }
 
-  List&lt;List&lt;TNode&gt;&gt; _executeTarjan() {
-    List&lt;_TarjanNode&gt; nodeList = new List&lt;_TarjanNode&gt;.from(_list.getSourceNodeSet());
-    for (final node in nodeList)
-    {
-      if(node.index == -1) {
-        _tarjan(node);
-      }
-    }
-    return _scc;
-  }
+ List&lt;List&lt;TNode&gt;&gt; _executeTarjan() {
+   List&lt;_TarjanNode&gt; nodeList = new List&lt;_TarjanNode&gt;.from(_list.getSourceNodeSet());
+   for (final node in nodeList)
+   {
+     if(node.index == -1) {
+       _tarjan(node);
+     }
+   }
+   return _scc;
+ }
 
-  void _tarjan(_TarjanNode&lt;TNode&gt; v){
-    v.index = _index;
-    v.lowlink = _index;
-    _index++;
-    _stack.insertRange(0, 1, v);
-    for(final n in _list.getAdjacent(v)){
-      if(n.index == -1){
-        _tarjan(n);
-        v.lowlink = math.min(v.lowlink, n.lowlink);
-      } else if(_stack.indexOf(n) &gt;= 0){
-        v.lowlink = math.min(v.lowlink, n.index);
-      }
-    }
-    if(v.lowlink == v.index){
-      _TarjanNode n;
-      var component = new List&lt;TNode&gt;();
-      do {
-        n = _stack[0];
-        _stack.removeRange(0, 1);
-        component.add(n.value);
-      } while(n != v);
-      _scc.add(component);
-    }
-  }
+ void _tarjan(_TarjanNode&lt;TNode&gt; v){
+   v.index = _index;
+   v.lowlink = _index;
+   _index++;
+   _stack.insertRange(0, 1, v);
+   for(final n in _list.getAdjacent(v)){
+     if(n.index == -1){
+       _tarjan(n);
+       v.lowlink = math.min(v.lowlink, n.lowlink);
+     } else if(_stack.indexOf(n) &gt;= 0){
+       v.lowlink = math.min(v.lowlink, n.index);
+     }
+   }
+   if(v.lowlink == v.index){
+     _TarjanNode n;
+     var component = new List&lt;TNode&gt;();
+     do {
+       n = _stack[0];
+       _stack.removeRange(0, 1);
+       component.add(n.value);
+     } while(n != v);
+     _scc.add(component);
+   }
+ }
 }
 </pre>
 </div>
@@ -100,11 +100,11 @@ List&lt;List&gt; <strong>getStronglyConnectedComponents</strong>(HashMap graph) 
 <div class="doc">
 <pre class="source">
 static List&lt;List&gt; getStronglyConnectedComponents(HashMap graph) {
-  assert(graph != null);
+ assert(graph != null);
 
-  var nodes = new _TarjanList(graph);
-  var tarjan = new TarjanCycleDetect._internal(nodes);
-  return tarjan._executeTarjan();
+ var nodes = new _TarjanList(graph);
+ var tarjan = new TarjanCycleDetect._internal(nodes);
+ return tarjan._executeTarjan();
 }
 </pre>
 </div>

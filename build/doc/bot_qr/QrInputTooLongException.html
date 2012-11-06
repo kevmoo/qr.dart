@@ -34,21 +34,21 @@
 <div class="doc">
 <pre class="source">
 class QrInputTooLongException implements Exception {
-  final int providedInput;
-  final int inputLimit;
-  final String message;
+ final int providedInput;
+ final int inputLimit;
+ final String message;
 
-  QrInputTooLongException._internal(this.providedInput, this.inputLimit,
-    this.message);
+ QrInputTooLongException._internal(this.providedInput, this.inputLimit,
+   this.message);
 
-  factory QrInputTooLongException(int providedInput, int inputLimit) {
-    final String message = "Input too long. $providedInput &gt; $inputLimit";
+ factory QrInputTooLongException(int providedInput, int inputLimit) {
+   final String message = "Input too long. $providedInput &gt; $inputLimit";
 
-    return new QrInputTooLongException._internal(providedInput, inputLimit,
-      message);
-  }
+   return new QrInputTooLongException._internal(providedInput, inputLimit,
+     message);
+ }
 
-  String toString() =&gt; 'QrInputTooLongException: $message';
+ String toString() =&gt; 'QrInputTooLongException: $message';
 }
 </pre>
 </div>
@@ -64,10 +64,10 @@ factory <strong>QrInputTooLongException</strong>(int providedInput, int inputLim
 <div class="doc">
 <pre class="source">
 factory QrInputTooLongException(int providedInput, int inputLimit) {
-  final String message = "Input too long. $providedInput &gt; $inputLimit";
+ final String message = "Input too long. $providedInput &gt; $inputLimit";
 
-  return new QrInputTooLongException._internal(providedInput, inputLimit,
-    message);
+ return new QrInputTooLongException._internal(providedInput, inputLimit,
+   message);
 }
 </pre>
 </div>

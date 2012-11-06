@@ -34,9 +34,9 @@
 <div class="doc">
 <pre class="source">
 class Attachable implements Hashable {
-  final String name;
+ final String name;
 
-  Attachable(this.name);
+ Attachable(this.name);
 }
 </pre>
 </div>
@@ -61,25 +61,13 @@ Attachable(this.name);
 </div>
 <div>
 <h3>Properties</h3>
-<div class="field"><h4 id="name">
+<div class="field inherited"><h4 id="hashCode">
 <button class="show-code">Code</button>
-final String         <strong>name</strong> <a class="anchor-link"
-            href="#name"
-            title="Permalink to Attachable.name">#</a>
+final int         <strong>hashCode</strong> <a class="anchor-link"
+            href="#hashCode"
+            title="Permalink to Attachable.hashCode">#</a>
         </h4>
-        <div class="doc">
-<pre class="source">
-final String name;
-</pre>
-</div>
-</div>
-</div>
-<div class="inherited">
-<h3>Methods</h3>
-<div class="method inherited"><h4 id="hashCode">
-abstract int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
-              title="Permalink to Attachable.hashCode">#</a></h4>
-<div class="inherited-from">inherited from Hashable </div><div class="doc">
+        <div class="inherited-from">inherited from Hashable </div><div class="doc">
 <div class="inherited">
 <p>Get a hash code for this object.</p>
 <p>All objects have hash codes. Hash codes are guaranteed to be the
@@ -90,6 +78,21 @@ there are no distribution guarantees.</p>
 <p>If a subclass overrides <code>hashCode</code> it should override the
 equality operator as well to maintain consistency.</p>
 <div class="docs-inherited-from">docs inherited from Object </div></div>
+<pre class="source">
+abstract int get hashCode;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="name">
+<button class="show-code">Code</button>
+final String         <strong>name</strong> <a class="anchor-link"
+            href="#name"
+            title="Permalink to Attachable.name">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final String name;
+</pre>
 </div>
 </div>
 </div>

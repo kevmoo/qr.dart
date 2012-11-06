@@ -34,65 +34,65 @@
 <div class="doc">
 <pre class="source">
 class QrPolynomial {
-  final List&lt;int&gt; _myThings;
+ final List&lt;int&gt; _myThings;
 
-  QrPolynomial._internal(this._myThings);
+ QrPolynomial._internal(this._myThings);
 
-  factory	QrPolynomial(List&lt;int&gt; thing, int shift) {
+ factory	QrPolynomial(List&lt;int&gt; thing, int shift) {
 
-    var offset = 0;
+   var offset = 0;
 
-    while (offset &lt; thing.length &amp;&amp; thing[offset] == 0) {
-      offset++;
-    }
+   while (offset &lt; thing.length &amp;&amp; thing[offset] == 0) {
+     offset++;
+   }
 
-    final List&lt;int&gt; values = QrMath.getZeroedList(thing.length - offset + shift);
+   final List&lt;int&gt; values = QrMath.getZeroedList(thing.length - offset + shift);
 
-    for (var i = 0; i &lt; thing.length - offset; i++) {
-      values[i] = thing[i + offset];
-    }
+   for (var i = 0; i &lt; thing.length - offset; i++) {
+     values[i] = thing[i + offset];
+   }
 
-    return new QrPolynomial._internal(values);
-  }
+   return new QrPolynomial._internal(values);
+ }
 
-  operator [](int index) =&gt; _myThings[index];
+ operator [](int index) =&gt; _myThings[index];
 
-  int get length =&gt; _myThings.length;
+ int get length =&gt; _myThings.length;
 
-  QrPolynomial multiply(QrPolynomial e) {
+ QrPolynomial multiply(QrPolynomial e) {
 
-    final List&lt;int&gt; foo = QrMath.getZeroedList(length + e.length - 1);
+   final List&lt;int&gt; foo = QrMath.getZeroedList(length + e.length - 1);
 
-    for (var i = 0; i &lt; length; i++) {
-      for (var j = 0; j &lt; e.length; j++) {
-        foo[i + j] ^= QrMath.gexp(QrMath.glog(this[i]) + QrMath.glog(e[j]));
-      }
-    }
+   for (var i = 0; i &lt; length; i++) {
+     for (var j = 0; j &lt; e.length; j++) {
+       foo[i + j] ^= QrMath.gexp(QrMath.glog(this[i]) + QrMath.glog(e[j]));
+     }
+   }
 
-    return new QrPolynomial(foo, 0);
-  }
+   return new QrPolynomial(foo, 0);
+ }
 
-  QrPolynomial mod(QrPolynomial e) {
+ QrPolynomial mod(QrPolynomial e) {
 
-    if (length - e.length &lt; 0) {
-      return this;
-    }
+   if (length - e.length &lt; 0) {
+     return this;
+   }
 
-    var ratio = QrMath.glog(this[0]) - QrMath.glog(e[0]);
+   var ratio = QrMath.glog(this[0]) - QrMath.glog(e[0]);
 
-    var thing = QrMath.getZeroedList(length);
+   var thing = QrMath.getZeroedList(length);
 
-    for (int i = 0; i &lt; length; i++) {
-      thing[i] = this[i];
-    }
+   for (int i = 0; i &lt; length; i++) {
+     thing[i] = this[i];
+   }
 
-    for (int i = 0; i &lt; e.length; i++) {
-      thing[i] ^= QrMath.gexp(QrMath.glog(e[i]) + ratio);
-    }
+   for (int i = 0; i &lt; e.length; i++) {
+     thing[i] ^= QrMath.gexp(QrMath.glog(e[i]) + ratio);
+   }
 
-    // recursive call
-    return (new QrPolynomial(thing, 0)).mod(e);
-  }
+   // recursive call
+   return (new QrPolynomial(thing, 0)).mod(e);
+ }
 }
 </pre>
 </div>
@@ -106,19 +106,19 @@ factory <strong>QrPolynomial</strong>(List&lt;int&gt; thing, int shift) <a class
 <pre class="source">
 factory	QrPolynomial(List&lt;int&gt; thing, int shift) {
 
-  var offset = 0;
+ var offset = 0;
 
-  while (offset &lt; thing.length &amp;&amp; thing[offset] == 0) {
-    offset++;
-  }
+ while (offset &lt; thing.length &amp;&amp; thing[offset] == 0) {
+   offset++;
+ }
 
-  final List&lt;int&gt; values = QrMath.getZeroedList(thing.length - offset + shift);
+ final List&lt;int&gt; values = QrMath.getZeroedList(thing.length - offset + shift);
 
-  for (var i = 0; i &lt; thing.length - offset; i++) {
-    values[i] = thing[i + offset];
-  }
+ for (var i = 0; i &lt; thing.length - offset; i++) {
+   values[i] = thing[i + offset];
+ }
 
-  return new QrPolynomial._internal(values);
+ return new QrPolynomial._internal(values);
 }
 </pre>
 </div>
@@ -162,24 +162,24 @@ operator [](int index) =&gt; _myThings[index];
 <pre class="source">
 QrPolynomial mod(QrPolynomial e) {
 
-  if (length - e.length &lt; 0) {
-    return this;
-  }
+ if (length - e.length &lt; 0) {
+   return this;
+ }
 
-  var ratio = QrMath.glog(this[0]) - QrMath.glog(e[0]);
+ var ratio = QrMath.glog(this[0]) - QrMath.glog(e[0]);
 
-  var thing = QrMath.getZeroedList(length);
+ var thing = QrMath.getZeroedList(length);
 
-  for (int i = 0; i &lt; length; i++) {
-    thing[i] = this[i];
-  }
+ for (int i = 0; i &lt; length; i++) {
+   thing[i] = this[i];
+ }
 
-  for (int i = 0; i &lt; e.length; i++) {
-    thing[i] ^= QrMath.gexp(QrMath.glog(e[i]) + ratio);
-  }
+ for (int i = 0; i &lt; e.length; i++) {
+   thing[i] ^= QrMath.gexp(QrMath.glog(e[i]) + ratio);
+ }
 
-  // recursive call
-  return (new QrPolynomial(thing, 0)).mod(e);
+ // recursive call
+ return (new QrPolynomial(thing, 0)).mod(e);
 }
 </pre>
 </div>
@@ -192,15 +192,15 @@ QrPolynomial mod(QrPolynomial e) {
 <pre class="source">
 QrPolynomial multiply(QrPolynomial e) {
 
-  final List&lt;int&gt; foo = QrMath.getZeroedList(length + e.length - 1);
+ final List&lt;int&gt; foo = QrMath.getZeroedList(length + e.length - 1);
 
-  for (var i = 0; i &lt; length; i++) {
-    for (var j = 0; j &lt; e.length; j++) {
-      foo[i + j] ^= QrMath.gexp(QrMath.glog(this[i]) + QrMath.glog(e[j]));
-    }
-  }
+ for (var i = 0; i &lt; length; i++) {
+   for (var j = 0; j &lt; e.length; j++) {
+     foo[i + j] ^= QrMath.gexp(QrMath.glog(this[i]) + QrMath.glog(e[j]));
+   }
+ }
 
-  return new QrPolynomial(foo, 0);
+ return new QrPolynomial(foo, 0);
 }
 </pre>
 </div>

@@ -35,56 +35,56 @@
 <p>Class reperesenting a 2d vector.</p>
 <pre class="source">
 class Vector extends Coordinate {
-  const Vector([num x = 0, num y = 0]) : super(x,y);
+ const Vector([num x = 0, num y = 0]) : super(x,y);
 
-  /**
-   * Computes the length of this [Vector].
-   **/
-  num get length =&gt; math.sqrt(x * x + y * y);
+ /**
+  * Computes the length of this [Vector].
+  **/
+ num get length =&gt; math.sqrt(x * x + y * y);
 
-  Vector get normal =&gt; this.scale(1 / this.length);
+ Vector get normal =&gt; this.scale(1 / this.length);
 
-  /**
-   * Adds a [Coordinate] and returns the result as new [Vector].
-   **/
-  Vector operator +(Coordinate other) =&gt; new Vector(x + other.x, y + other.y);
+ /**
+  * Adds a [Coordinate] and returns the result as new [Vector].
+  **/
+ Vector operator +(Coordinate other) =&gt; new Vector(x + other.x, y + other.y);
 
-  /**
-   * Multiplies each dimensions by the provided magnitude and returns a new [Vector].
-   **/
-  Vector operator *(num magnitude) =&gt; this.scale(magnitude);
+ /**
+  * Multiplies each dimensions by the provided magnitude and returns a new [Vector].
+  **/
+ Vector operator *(num magnitude) =&gt; this.scale(magnitude);
 
-  /**
-   * Multiplies each dimensions by the provided magnitude and returns a new [Vector].
-   **/
-  Vector scale(num magnitude) =&gt; new Vector(x * magnitude, y * magnitude);
+ /**
+  * Multiplies each dimensions by the provided magnitude and returns a new [Vector].
+  **/
+ Vector scale(num magnitude) =&gt; new Vector(x * magnitude, y * magnitude);
 
-  /**
-   * Computes the dot product with the given [Vector].
-   **/
-  num dot(Vector other) =&gt; x * other.x + y * other.y;
+ /**
+  * Computes the dot product with the given [Vector].
+  **/
+ num dot(Vector other) =&gt; x * other.x + y * other.y;
 
-  /**
-   * Computes the cross product with the given [Vector].
-   **/
-  num cross(Vector other) =&gt; x * other.y - y * other.x;
+ /**
+  * Computes the cross product with the given [Vector].
+  **/
+ num cross(Vector other) =&gt; x * other.y - y * other.x;
 
-  /**
-   * Computes the angle between this and another [Vector].
-   **/
-  num getAngle (Vector other) =&gt; math.acos(dot(other));
+ /**
+  * Computes the angle between this and another [Vector].
+  **/
+ num getAngle (Vector other) =&gt; math.acos(dot(other));
 
-  Vector rotate(num angle) {
-    var cos = math.cos(angle);
-    var sin = math.sin(angle);
-    var newX = this.x * cos - this.y * sin;
-    var newY = this.y * cos + this.x * sin;
-    return new Vector(newX, newY);
-  }
+ Vector rotate(num angle) {
+   var cos = math.cos(angle);
+   var sin = math.sin(angle);
+   var newX = this.x * cos - this.y * sin;
+   var newY = this.y * cos + this.x * sin;
+   return new Vector(newX, newY);
+ }
 
-  Vector rotateAroundPoint(Coordinate axisPoint, num angle) {
-    return (this - axisPoint).rotate(angle) + axisPoint;
-  }
+ Vector rotateAroundPoint(Coordinate axisPoint, num angle) {
+   return (this - axisPoint).rotate(angle) + axisPoint;
+ }
 }
 </pre>
 </div>
@@ -218,7 +218,7 @@ the <code>hashCode</code> method as well to maintain consistency.</p>
 <div class="docs-inherited-from">docs inherited from Object </div></div>
 <pre class="source">
 bool operator ==(Coordinate other) {
-  return other != null &amp;&amp; x == other.x &amp;&amp; y == other.y;
+ return other != null &amp;&amp; x == other.x &amp;&amp; y == other.y;
 }
 </pre>
 </div>
@@ -277,11 +277,11 @@ num getDistance (Coordinate other) =&gt; (this - other).length;
 <div class="doc">
 <pre class="source">
 Vector rotate(num angle) {
-  var cos = math.cos(angle);
-  var sin = math.sin(angle);
-  var newX = this.x * cos - this.y * sin;
-  var newY = this.y * cos + this.x * sin;
-  return new Vector(newX, newY);
+ var cos = math.cos(angle);
+ var sin = math.sin(angle);
+ var newX = this.x * cos - this.y * sin;
+ var newY = this.y * cos + this.x * sin;
+ return new Vector(newX, newY);
 }
 </pre>
 </div>
@@ -293,7 +293,7 @@ Vector rotate(num angle) {
 <div class="doc">
 <pre class="source">
 Vector rotateAroundPoint(Coordinate axisPoint, num angle) {
-  return (this - axisPoint).rotate(angle) + axisPoint;
+ return (this - axisPoint).rotate(angle) + axisPoint;
 }
 </pre>
 </div>
@@ -315,7 +315,7 @@ Vector scale(num magnitude) =&gt; new Vector(x * magnitude, y * magnitude);
               title="Permalink to Vector.toJson">#</a></h4>
 <div class="inherited-from">inherited from <a href="../bot/Coordinate.html">Coordinate</a> </div><div class="doc">
 <pre class="source">
-Dynamic toJson() =&gt; { 'x' : x, 'y' : y };
+dynamic toJson() =&gt; { 'x' : x, 'y' : y };
 </pre>
 </div>
 </div>

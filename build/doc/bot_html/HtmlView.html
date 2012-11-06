@@ -34,28 +34,28 @@
 <div class="doc">
 <pre class="source">
 abstract class HtmlView {
-  final DivElement _node;
-  bool _dirty;
+ final DivElement _node;
+ bool _dirty;
 
-  HtmlView(this._node) {
-    requireArgumentNotNull(this._node, 'node');
-    _dirty = true;
-  }
+ HtmlView(this._node) {
+   requireArgumentNotNull(this._node, 'node');
+   _dirty = true;
+ }
 
-  DivElement get node =&gt; _node;
+ DivElement get node =&gt; _node;
 
-  void markDirty() {
-    _dirty = true;
-  }
+ void markDirty() {
+   _dirty = true;
+ }
 
-  void draw() {
-    if(_dirty) {
-      updateElement();
-      _dirty = false;
-    }
-  }
+ void draw() {
+   if(_dirty) {
+     updateElement();
+     _dirty = false;
+   }
+ }
 
-  abstract void updateElement();
+ void updateElement();
 }
 </pre>
 </div>
@@ -68,8 +68,8 @@ new <strong>HtmlView</strong>(DivElement _node) <a class="anchor-link" href="#Ht
 <div class="doc">
 <pre class="source">
 HtmlView(this._node) {
-  requireArgumentNotNull(this._node, 'node');
-  _dirty = true;
+ requireArgumentNotNull(this._node, 'node');
+ _dirty = true;
 }
 </pre>
 </div>
@@ -99,10 +99,10 @@ void <strong>draw</strong>() <a class="anchor-link" href="#draw"
 <div class="doc">
 <pre class="source">
 void draw() {
-  if(_dirty) {
-    updateElement();
-    _dirty = false;
-  }
+ if(_dirty) {
+   updateElement();
+   _dirty = false;
+ }
 }
 </pre>
 </div>
@@ -114,7 +114,7 @@ void <strong>markDirty</strong>() <a class="anchor-link" href="#markDirty"
 <div class="doc">
 <pre class="source">
 void markDirty() {
-  _dirty = true;
+ _dirty = true;
 }
 </pre>
 </div>

@@ -34,90 +34,90 @@
 <div class="doc">
 <pre class="source">
 class AttachableObject extends DisposableImpl {
-  final HashMap&lt;Property, Object&gt; _propertyValues =
-      new HashMap&lt;Property, Object&gt;();
+ final HashMap&lt;Property, Object&gt; _propertyValues =
+     new HashMap&lt;Property, Object&gt;();
 
-  final HashMap&lt;Attachable, EventHandle&gt; _eventHandlers =
-      new HashMap&lt;Attachable, EventHandle&gt;();
+ final HashMap&lt;Attachable, EventHandle&gt; _eventHandlers =
+     new HashMap&lt;Attachable, EventHandle&gt;();
 
-  void disposeInternal(){
-    super.disposeInternal();
-    _eventHandlers.forEach((a, e) {
-      e.dispose();
-    });
-    _eventHandlers.clear();
-  }
+ void disposeInternal(){
+   super.disposeInternal();
+   _eventHandlers.forEach((a, e) {
+     e.dispose();
+   });
+   _eventHandlers.clear();
+ }
 
-  GlobalId _addHandler(Attachable property, Action1 watcher) {
-    validateNotDisposed();
-    var handle = _eventHandlers.putIfAbsent(property, () =&gt; new EventHandle());
-    return handle.add(watcher);
-  }
+ GlobalId _addHandler(Attachable property, Action1 watcher) {
+   validateNotDisposed();
+   var handle = _eventHandlers.putIfAbsent(property, () =&gt; new EventHandle());
+   return handle.add(watcher);
+ }
 
-  bool _removeHandler(Attachable property, GlobalId handlerId){
-    validateNotDisposed();
-    requireArgumentNotNull(handlerId, 'handlerId');
-    var handle = _eventHandlers[property];
-    if(handle != null){
-      return handle.remove(handlerId);
-    }
-    return false;
-  }
+ bool _removeHandler(Attachable property, GlobalId handlerId){
+   validateNotDisposed();
+   requireArgumentNotNull(handlerId, 'handlerId');
+   var handle = _eventHandlers[property];
+   if(handle != null){
+     return handle.remove(handlerId);
+   }
+   return false;
+ }
 
-  void _fireEvent(Attachable attachable, Dynamic args) {
-    validateNotDisposed();
-    var handle = _eventHandlers[attachable];
-    if(handle != null){
-      handle.fireEvent(args);
-    }
-  }
+ void _fireEvent(Attachable attachable, dynamic args) {
+   validateNotDisposed();
+   var handle = _eventHandlers[attachable];
+   if(handle != null){
+     handle.fireEvent(args);
+   }
+ }
 
-  void _set(Property key, Object value){
-    validateNotDisposed();
-    assert(!identical(value, Property.Undefined));
-    _propertyValues[key] = value;
-    _fireChange(key);
-  }
+ void _set(Property key, Object value){
+   validateNotDisposed();
+   assert(!identical(value, Property.Undefined));
+   _propertyValues[key] = value;
+   _fireChange(key);
+ }
 
-  bool _isSet(Property key){
-    validateNotDisposed();
-    return _propertyValues.containsKey(key);
-  }
+ bool _isSet(Property key){
+   validateNotDisposed();
+   return _propertyValues.containsKey(key);
+ }
 
-  void _remove(Property key){
-    validateNotDisposed();
-    var exists = _isSet(key);
-    if(exists){
-      // NOTE: remove returns the removed item, which could be null. Bleh.
-      // TODO: ponder null-ish value to avoid these double access scenarios? Maybe?
-      _propertyValues.remove(key);
-      _fireChange(key);
-    }
-  }
+ void _remove(Property key){
+   validateNotDisposed();
+   var exists = _isSet(key);
+   if(exists){
+     // NOTE: remove returns the removed item, which could be null. Bleh.
+     // TODO: ponder null-ish value to avoid these double access scenarios? Maybe?
+     _propertyValues.remove(key);
+     _fireChange(key);
+   }
+ }
 
-  Object _getValueOrUndefined(Property key, AttachableObject obj,
-                              Func1&lt;AttachableObject, Object&gt; ifAbsent){
-    validateNotDisposed();
-    if(_isSet(key)){
-      return _propertyValues[key];
-    }
-    else if(ifAbsent != null){
-      var value = ifAbsent(obj);
-      _set(key, value);
-      return value;
-    }
-    else{
-      return Property.Undefined;
-    }
-  }
+ Object _getValueOrUndefined(Property key, AttachableObject obj,
+                             Func1&lt;AttachableObject, Object&gt; ifAbsent){
+   validateNotDisposed();
+   if(_isSet(key)){
+     return _propertyValues[key];
+   }
+   else if(ifAbsent != null){
+     var value = ifAbsent(obj);
+     _set(key, value);
+     return value;
+   }
+   else{
+     return Property.Undefined;
+   }
+ }
 
-  void _fireChange(Property key) {
-    validateNotDisposed();
-    var handle = _eventHandlers[key];
-    if(handle != null){
-      handle.fireEvent(key);
-    }
-  }
+ void _fireChange(Property key) {
+   validateNotDisposed();
+   var handle = _eventHandlers[key];
+   if(handle != null){
+     handle.fireEvent(key);
+   }
+ }
 }
 </pre>
 </div>
@@ -151,12 +151,12 @@ void <strong>dispose</strong>() <a class="anchor-link" href="#dispose"
 <div class="inherited-from">inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div><div class="doc">
 <pre class="source">
 void dispose(){
-  if (!_disposed) {
-    // Set disposed_ to true first, in case during the chain of disposal this
-    // gets disposed recursively.
-    this._disposed = true;
-    this.disposeInternal();
-  }
+ if (!_disposed) {
+   // Set disposed_ to true first, in case during the chain of disposal this
+   // gets disposed recursively.
+   this._disposed = true;
+   this.disposeInternal();
+ }
 }
 </pre>
 </div>
@@ -172,11 +172,11 @@ Subclasses should override this method to implement <a class="crossref" href="..
 <div class="docs-inherited-from">docs inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div></div>
 <pre class="source">
 void disposeInternal(){
-  super.disposeInternal();
-  _eventHandlers.forEach((a, e) {
-    e.dispose();
-  });
-  _eventHandlers.clear();
+ super.disposeInternal();
+ _eventHandlers.forEach((a, e) {
+   e.dispose();
+ });
+ _eventHandlers.clear();
 }
 </pre>
 </div>
@@ -188,7 +188,7 @@ void <strong>validateNotDisposed</strong>() <a class="anchor-link" href="#valida
 <div class="inherited-from">inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div><div class="doc">
 <pre class="source">
 void validateNotDisposed() {
-  assert(!_disposed);
+ assert(!_disposed);
 }
 </pre>
 </div>

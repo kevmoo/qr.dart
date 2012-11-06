@@ -34,66 +34,66 @@
 <div class="doc">
 <pre class="source">
 class HslColor implements Hashable {
-  final num h, s, l;
+ final num h, s, l;
 
-  const HslColor._internal(this.h, this.s, this.l);
+ const HslColor._internal(this.h, this.s, this.l);
 
-  factory HslColor(num h, num s, num l) {
-    requireArgument(isValidNumber(h), 'h');
-    h = (h % 360);
+ factory HslColor(num h, num s, num l) {
+   requireArgument(isValidNumber(h), 'h');
+   h = (h % 360);
 
-    requireArgument(isValidNumber(s), 's', 'must be a valid number');
-    requireArgument(s &gt;= 0 &amp;&amp; s &lt;= 1, 's', 'must be &gt;= 0 &amp;&amp; &lt;= 1 but was $s');
-    requireArgument(isValidNumber(l), 'l', 'must be a valid number');
-    requireArgument(l &gt;= 0 &amp;&amp; l &lt;= 1, 'l', 'must be &gt;= 0 &amp;&amp; &lt;=1 but was $l');
+   requireArgument(isValidNumber(s), 's', 'must be a valid number');
+   requireArgument(s &gt;= 0 &amp;&amp; s &lt;= 1, 's', 'must be &gt;= 0 &amp;&amp; &lt;= 1 but was $s');
+   requireArgument(isValidNumber(l), 'l', 'must be a valid number');
+   requireArgument(l &gt;= 0 &amp;&amp; l &lt;= 1, 'l', 'must be &gt;= 0 &amp;&amp; &lt;=1 but was $l');
 
-    return new HslColor._internal(h, s, l);
-  }
+   return new HslColor._internal(h, s, l);
+ }
 
-  RgbColor toRgb() {
-    final normH = h / 360; // normalize h to fall in [0, 1]
+ RgbColor toRgb() {
+   final normH = h / 360; // normalize h to fall in [0, 1]
 
-    num r, g, b;
+   num r, g, b;
 
-    if (s == 0) {
-      r = g = b = l * 255;
-    } else {
-      var temp1 = 0;
-      var temp2 = 0;
-      if (l &lt; 0.5) {
-        temp2 = l * (1 + s);
-      } else {
-        temp2 = l + s - (s * l);
-      }
-      temp1 = 2 * l - temp2;
-      r = 255 * _hueToRgb(temp1, temp2, normH + (1 / 3));
-      g = 255 * _hueToRgb(temp1, temp2, normH);
-      b = 255 * _hueToRgb(temp1, temp2, normH - (1 / 3));
-    }
+   if (s == 0) {
+     r = g = b = l * 255;
+   } else {
+     var temp1 = 0;
+     var temp2 = 0;
+     if (l &lt; 0.5) {
+       temp2 = l * (1 + s);
+     } else {
+       temp2 = l + s - (s * l);
+     }
+     temp1 = 2 * l - temp2;
+     r = 255 * _hueToRgb(temp1, temp2, normH + (1 / 3));
+     g = 255 * _hueToRgb(temp1, temp2, normH);
+     b = 255 * _hueToRgb(temp1, temp2, normH - (1 / 3));
+   }
 
-    return new RgbColor(r.round().toInt(), g.round().toInt(), b.round().toInt());
-  }
+   return new RgbColor(r.round().toInt(), g.round().toInt(), b.round().toInt());
+ }
 
-  int hashCode() =&gt; Util.getHashCode([h,s,l]);
+ int get hashCode =&gt; Util.getHashCode([h,s,l]);
 
-  bool operator ==(HslColor other) {
-    return other != null &amp;&amp; other.h == h &amp;&amp; other.s == s &amp;&amp; other.l == l;
-  }
+ bool operator ==(HslColor other) {
+   return other != null &amp;&amp; other.h == h &amp;&amp; other.s == s &amp;&amp; other.l == l;
+ }
 
-  String toString() =&gt; '{HslColor: $h, $s, $l}';
+ String toString() =&gt; '{HslColor: $h, $s, $l}';
 
-  static num _hueToRgb(num v1, num v2, num vH) {
-    vH %= 1.0;
+ static num _hueToRgb(num v1, num v2, num vH) {
+   vH %= 1.0;
 
-    if ((6 * vH) &lt; 1) {
-      return (v1 + (v2 - v1) * 6 * vH);
-    } else if (2 * vH &lt; 1) {
-      return v2;
-    } else if (3 * vH &lt; 2) {
-      return (v1 + (v2 - v1) * ((2 / 3) - vH) * 6);
-    }
-    return v1;
-  }
+   if ((6 * vH) &lt; 1) {
+     return (v1 + (v2 - v1) * 6 * vH);
+   } else if (2 * vH &lt; 1) {
+     return v2;
+   } else if (3 * vH &lt; 2) {
+     return (v1 + (v2 - v1) * ((2 / 3) - vH) * 6);
+   }
+   return v1;
+ }
 
 }
 </pre>
@@ -110,15 +110,15 @@ factory <strong>HslColor</strong>(num h, num s, num l) <a class="anchor-link" hr
 <div class="doc">
 <pre class="source">
 factory HslColor(num h, num s, num l) {
-  requireArgument(isValidNumber(h), 'h');
-  h = (h % 360);
+ requireArgument(isValidNumber(h), 'h');
+ h = (h % 360);
 
-  requireArgument(isValidNumber(s), 's', 'must be a valid number');
-  requireArgument(s &gt;= 0 &amp;&amp; s &lt;= 1, 's', 'must be &gt;= 0 &amp;&amp; &lt;= 1 but was $s');
-  requireArgument(isValidNumber(l), 'l', 'must be a valid number');
-  requireArgument(l &gt;= 0 &amp;&amp; l &lt;= 1, 'l', 'must be &gt;= 0 &amp;&amp; &lt;=1 but was $l');
+ requireArgument(isValidNumber(s), 's', 'must be a valid number');
+ requireArgument(s &gt;= 0 &amp;&amp; s &lt;= 1, 's', 'must be &gt;= 0 &amp;&amp; &lt;= 1 but was $s');
+ requireArgument(isValidNumber(l), 'l', 'must be a valid number');
+ requireArgument(l &gt;= 0 &amp;&amp; l &lt;= 1, 'l', 'must be &gt;= 0 &amp;&amp; &lt;=1 but was $l');
 
-  return new HslColor._internal(h, s, l);
+ return new HslColor._internal(h, s, l);
 }
 </pre>
 </div>
@@ -135,6 +135,28 @@ final num         <strong>h</strong> <a class="anchor-link"
         <div class="doc">
 <pre class="source">
 final num h, s, l;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="hashCode">
+<button class="show-code">Code</button>
+final int         <strong>hashCode</strong> <a class="anchor-link"
+            href="#hashCode"
+            title="Permalink to HslColor.hashCode">#</a>
+        </h4>
+        <div class="doc">
+<div class="inherited">
+<p>Get a hash code for this object.</p>
+<p>All objects have hash codes. Hash codes are guaranteed to be the
+same for objects that are equal when compared using the equality
+operator <code>==</code>. Other than that there are no guarantees about
+the hash codes. They will not be consistent between runs and
+there are no distribution guarantees.</p>
+<p>If a subclass overrides <a class="crossref" href="../bot/HslColor.html#hashCode">hashCode</a> it should override the
+equality operator as well to maintain consistency.</p>
+<div class="docs-inherited-from">docs inherited from Object </div></div>
+<pre class="source">
+int get hashCode =&gt; Util.getHashCode([h,s,l]);
 </pre>
 </div>
 </div>
@@ -180,7 +202,7 @@ the <a class="crossref" href="../bot/HslColor.html#hashCode">hashCode</a> method
 <div class="docs-inherited-from">docs inherited from Object </div></div>
 <pre class="source">
 bool operator ==(HslColor other) {
-  return other != null &amp;&amp; other.h == h &amp;&amp; other.s == s &amp;&amp; other.l == l;
+ return other != null &amp;&amp; other.h == h &amp;&amp; other.s == s &amp;&amp; other.l == l;
 }
 </pre>
 </div>
@@ -188,26 +210,6 @@ bool operator ==(HslColor other) {
 </div>
 <div>
 <h3>Methods</h3>
-<div class="method"><h4 id="hashCode">
-<button class="show-code">Code</button>
-int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
-              title="Permalink to HslColor.hashCode">#</a></h4>
-<div class="doc">
-<div class="inherited">
-<p>Get a hash code for this object.</p>
-<p>All objects have hash codes. Hash codes are guaranteed to be the
-same for objects that are equal when compared using the equality
-operator <code>==</code>. Other than that there are no guarantees about
-the hash codes. They will not be consistent between runs and
-there are no distribution guarantees.</p>
-<p>If a subclass overrides <a class="crossref" href="../bot/HslColor.html#hashCode">hashCode</a> it should override the
-equality operator as well to maintain consistency.</p>
-<div class="docs-inherited-from">docs inherited from Object </div></div>
-<pre class="source">
-int hashCode() =&gt; Util.getHashCode([h,s,l]);
-</pre>
-</div>
-</div>
 <div class="method"><h4 id="toRgb">
 <button class="show-code">Code</button>
 <a href="../bot/RgbColor.html">RgbColor</a> <strong>toRgb</strong>() <a class="anchor-link" href="#toRgb"
@@ -215,27 +217,27 @@ int hashCode() =&gt; Util.getHashCode([h,s,l]);
 <div class="doc">
 <pre class="source">
 RgbColor toRgb() {
-  final normH = h / 360; // normalize h to fall in [0, 1]
+ final normH = h / 360; // normalize h to fall in [0, 1]
 
-  num r, g, b;
+ num r, g, b;
 
-  if (s == 0) {
-    r = g = b = l * 255;
-  } else {
-    var temp1 = 0;
-    var temp2 = 0;
-    if (l &lt; 0.5) {
-      temp2 = l * (1 + s);
-    } else {
-      temp2 = l + s - (s * l);
-    }
-    temp1 = 2 * l - temp2;
-    r = 255 * _hueToRgb(temp1, temp2, normH + (1 / 3));
-    g = 255 * _hueToRgb(temp1, temp2, normH);
-    b = 255 * _hueToRgb(temp1, temp2, normH - (1 / 3));
-  }
+ if (s == 0) {
+   r = g = b = l * 255;
+ } else {
+   var temp1 = 0;
+   var temp2 = 0;
+   if (l &lt; 0.5) {
+     temp2 = l * (1 + s);
+   } else {
+     temp2 = l + s - (s * l);
+   }
+   temp1 = 2 * l - temp2;
+   r = 255 * _hueToRgb(temp1, temp2, normH + (1 / 3));
+   g = 255 * _hueToRgb(temp1, temp2, normH);
+   b = 255 * _hueToRgb(temp1, temp2, normH - (1 / 3));
+ }
 
-  return new RgbColor(r.round().toInt(), g.round().toInt(), b.round().toInt());
+ return new RgbColor(r.round().toInt(), g.round().toInt(), b.round().toInt());
 }
 </pre>
 </div>

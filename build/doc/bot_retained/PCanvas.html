@@ -35,28 +35,28 @@
 <pre class="source">
 class PCanvas extends Panel{
 
-  PCanvas(int w, int h, [bool enableCache = false]):super(w, h, enableCache);
+ PCanvas(int w, int h, [bool enableCache = false]):super(w, h, enableCache);
 
-  void setTopLeft(PElement element, Coordinate value){
-    var tx = getChildTransform(element);
-    tx.setToTranslation(value.x, value.y);
-  }
+ void setTopLeft(PElement element, Coordinate value){
+   var tx = getChildTransform(element);
+   tx.setToTranslation(value.x, value.y);
+ }
 
-  Coordinate getTopLeft(PElement element){
-    var tx = getChildTransform(element);
-    return tx.transformCoordinate();
-  }
+ Coordinate getTopLeft(PElement element){
+   var tx = getChildTransform(element);
+   return tx.transformCoordinate();
+ }
 
-  void setCenter(PElement element, Coordinate value){
-    var sizeOffset = new Vector(element.width/2, element.height/2);
-    var delta = Coordinate.difference(value, sizeOffset);
-    setTopLeft(element, delta);
-  }
+ void setCenter(PElement element, Coordinate value){
+   var sizeOffset = new Vector(element.width/2, element.height/2);
+   var delta = Coordinate.difference(value, sizeOffset);
+   setTopLeft(element, delta);
+ }
 
-  Coordinate getCenter(PElement element){
-    var sizeOffset = new Vector(element.width/2, element.height/2);
-    return sizeOffset + getTopLeft(element);
-  }
+ Coordinate getCenter(PElement element){
+   var sizeOffset = new Vector(element.width/2, element.height/2);
+   return sizeOffset + getTopLeft(element);
+ }
 }
 </pre>
 </div>
@@ -126,9 +126,9 @@ num get height =&gt; _height;
 </pre>
 <pre class="source">
 void set height(num value) {
-  assert(isValidNumber(value));
-  _height = value;
-  invalidateDraw();
+ assert(isValidNumber(value));
+ _height = value;
+ invalidateDraw();
 }
 </pre>
 </div>
@@ -181,10 +181,10 @@ Size get size =&gt; new Size(_width, _height);
 </pre>
 <pre class="source">
 void set size(Size value) {
-  assert(value.isValid);
-  _width = value.width;
-  _height = value.height;
-  invalidateDraw();
+ assert(value.isValid);
+ _width = value.width;
+ _height = value.height;
+ invalidateDraw();
 }
 </pre>
 </div>
@@ -213,9 +213,9 @@ num get width =&gt; _width;
 </pre>
 <pre class="source">
 void set width(num value) {
-  assert(isValidNumber(value));
-  _width = value;
-  invalidateDraw();
+ assert(isValidNumber(value));
+ _width = value;
+ invalidateDraw();
 }
 </pre>
 </div>
@@ -230,7 +230,7 @@ void <strong>addElement</strong>(<a href="../bot_retained/PElement.html">PElemen
 <div class="inherited-from">inherited from <a href="../bot_retained/Panel.html">Panel</a> </div><div class="doc">
 <pre class="source">
 void addElement(PElement element){
-  insertAt(element, _children.length);
+ insertAt(element, _children.length);
 }
 </pre>
 </div>
@@ -242,10 +242,10 @@ void addElement(PElement element){
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 AffineTransform addTransform(){
-  validateNotDisposed();
-  var tx = new AffineTransform();
-  _transforms.add(tx);
-  return tx;
+ validateNotDisposed();
+ var tx = new AffineTransform();
+ _transforms.add(tx);
+ return tx;
 }
 </pre>
 </div>
@@ -257,8 +257,8 @@ void <strong>childInvalidated</strong>(<a href="../bot_retained/PElement.html">P
 <div class="inherited-from">inherited from <a href="../bot_retained/ParentElement.html">ParentElement</a> </div><div class="doc">
 <pre class="source">
 void childInvalidated(PElement child){
-  assert(hasVisualChild(child));
-  invalidateDraw();
+ assert(hasVisualChild(child));
+ invalidateDraw();
 }
 </pre>
 </div>
@@ -270,12 +270,12 @@ void <strong>dispose</strong>() <a class="anchor-link" href="#dispose"
 <div class="inherited-from">inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div><div class="doc">
 <pre class="source">
 void dispose(){
-  if (!_disposed) {
-    // Set disposed_ to true first, in case during the chain of disposal this
-    // gets disposed recursively.
-    this._disposed = true;
-    this.disposeInternal();
-  }
+ if (!_disposed) {
+   // Set disposed_ to true first, in case during the chain of disposal this
+   // gets disposed recursively.
+   this._disposed = true;
+   this.disposeInternal();
+ }
 }
 </pre>
 </div>
@@ -291,8 +291,8 @@ Subclasses should override this method to implement <code>Disposable</code> beha
 <div class="docs-inherited-from">docs inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div></div>
 <pre class="source">
 void disposeInternal(){
-  super.disposeInternal();
-  _invalidatedEventHandle.dispose();
+ super.disposeInternal();
+ _invalidatedEventHandle.dispose();
 }
 </pre>
 </div>
@@ -304,11 +304,11 @@ void <strong>drawCore</strong>(CanvasRenderingContext2D ctx) <a class="anchor-li
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 void drawCore(CanvasRenderingContext2D ctx){
-  if(cacheEnabled) {
-    _drawCached(ctx);
-  } else {
-    _drawNormal(ctx);
-  }
+ if(cacheEnabled) {
+   _drawCached(ctx);
+ } else {
+   _drawNormal(ctx);
+ }
 }
 </pre>
 </div>
@@ -320,11 +320,11 @@ void <strong>drawOverride</strong>(CanvasRenderingContext2D ctx) <a class="ancho
 <div class="inherited-from">inherited from <a href="../bot_retained/Panel.html">Panel</a> </div><div class="doc">
 <pre class="source">
 void drawOverride(CanvasRenderingContext2D ctx) {
-  if(background != null) {
-    ctx.fillStyle = background;
-    ctx.fillRect(0, 0, width, height);
-  }
-  super.drawOverride(ctx);
+ if(background != null) {
+   ctx.fillStyle = background;
+   ctx.fillRect(0, 0, width, height);
+ }
+ super.drawOverride(ctx);
 }
 </pre>
 </div>
@@ -336,8 +336,8 @@ void drawOverride(CanvasRenderingContext2D ctx) {
 <div class="doc">
 <pre class="source">
 Coordinate getCenter(PElement element){
-  var sizeOffset = new Vector(element.width/2, element.height/2);
-  return sizeOffset + getTopLeft(element);
+ var sizeOffset = new Vector(element.width/2, element.height/2);
+ return sizeOffset + getTopLeft(element);
 }
 </pre>
 </div>
@@ -349,10 +349,10 @@ Coordinate getCenter(PElement element){
 <div class="inherited-from">inherited from <a href="../bot_retained/Panel.html">Panel</a> </div><div class="doc">
 <pre class="source">
 AffineTransform getChildTransform(child) {
-  assert(hasVisualChild(child));
-  var tx = _containerTransformProperty.get(child);
-  assert(tx != null);
-  return tx;
+ assert(hasVisualChild(child));
+ var tx = _containerTransformProperty.get(child);
+ assert(tx != null);
+ return tx;
 }
 </pre>
 </div>
@@ -364,8 +364,8 @@ AffineTransform getChildTransform(child) {
 <div class="doc">
 <pre class="source">
 Coordinate getTopLeft(PElement element){
-  var tx = getChildTransform(element);
-  return tx.transformCoordinate();
+ var tx = getChildTransform(element);
+ return tx.transformCoordinate();
 }
 </pre>
 </div>
@@ -377,9 +377,9 @@ Coordinate getTopLeft(PElement element){
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 AffineTransform getTransform() {
-  var tx = new AffineTransform();
-  _transforms.forEach(tx.concatenate);
-  return tx;
+ var tx = new AffineTransform();
+ _transforms.forEach(tx.concatenate);
+ return tx;
 }
 </pre>
 </div>
@@ -391,12 +391,12 @@ AffineTransform getTransform() {
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 AffineTransform getTransformToRoot(){
-  var tx = new AffineTransform();
-  if(_parent != null){
-    tx.concatenate(_parent.getTransformToRoot());
-  }
-  tx.concatenate(getTransform());
-  return tx;
+ var tx = new AffineTransform();
+ if(_parent != null){
+   tx.concatenate(_parent.getTransformToRoot());
+ }
+ tx.concatenate(getTransform());
+ return tx;
 }
 </pre>
 </div>
@@ -418,13 +418,13 @@ bool <strong>hasVisualChild</strong>(<a href="../bot_retained/PElement.html">PEl
 <div class="inherited-from">inherited from <a href="../bot_retained/ParentElement.html">ParentElement</a> </div><div class="doc">
 <pre class="source">
 bool hasVisualChild(PElement element){
-  var length = visualChildCount;
-  for(var i=0;i&lt;length;i++){
-    if(identical(element, getVisualChild(i))){
-      return true;
-    }
-  }
-  return false;
+ var length = visualChildCount;
+ for(var i=0;i&lt;length;i++){
+   if(identical(element, getVisualChild(i))){
+     return true;
+   }
+ }
+ return false;
 }
 </pre>
 </div>
@@ -436,13 +436,13 @@ void <strong>insertAt</strong>(<a href="../bot_retained/PElement.html">PElement<
 <div class="inherited-from">inherited from <a href="../bot_retained/Panel.html">Panel</a> </div><div class="doc">
 <pre class="source">
 void insertAt(PElement element, [int index=null]){
-  index = (index == null) ? 0 : index;
-  element.registerParent(this);
-  _children.insertRange(index, 1, element);
+ index = (index == null) ? 0 : index;
+ element.registerParent(this);
+ _children.insertRange(index, 1, element);
 
-  assert(!_containerTransformProperty.isSet(element));
-  _containerTransformProperty.set(element, element.addTransform());
-  onChildrenChanged();
+ assert(!_containerTransformProperty.isSet(element));
+ _containerTransformProperty.set(element, element.addTransform());
+ onChildrenChanged();
 }
 </pre>
 </div>
@@ -454,11 +454,11 @@ void <strong>invalidateDraw</strong>() <a class="anchor-link" href="#invalidateD
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 void invalidateDraw(){
-  validateNotDisposed();
-  if(_lastDrawSize != null){
-    _lastDrawSize = null;
-    _invalidateParent();
-  }
+ validateNotDisposed();
+ if(_lastDrawSize != null){
+   _lastDrawSize = null;
+   _invalidateParent();
+ }
 }
 </pre>
 </div>
@@ -470,7 +470,7 @@ void <strong>onChildrenChanged</strong>() <a class="anchor-link" href="#onChildr
 <div class="inherited-from">inherited from <a href="../bot_retained/ParentElement.html">ParentElement</a> </div><div class="doc">
 <pre class="source">
 void onChildrenChanged(){
-  invalidateDraw();
+ invalidateDraw();
 }
 </pre>
 </div>
@@ -482,9 +482,9 @@ void <strong>registerParent</strong>(<a href="../bot_retained/ElementParent.html
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 void registerParent(ElementParent parent) {
-  assert(_parent == null);
-  assert(parent != null);
-  _parent = parent;
+ assert(_parent == null);
+ assert(parent != null);
+ _parent = parent;
 }
 </pre>
 </div>
@@ -496,9 +496,9 @@ void <strong>setCenter</strong>(<a href="../bot_retained/PElement.html">PElement
 <div class="doc">
 <pre class="source">
 void setCenter(PElement element, Coordinate value){
-  var sizeOffset = new Vector(element.width/2, element.height/2);
-  var delta = Coordinate.difference(value, sizeOffset);
-  setTopLeft(element, delta);
+ var sizeOffset = new Vector(element.width/2, element.height/2);
+ var delta = Coordinate.difference(value, sizeOffset);
+ setTopLeft(element, delta);
 }
 </pre>
 </div>
@@ -510,8 +510,8 @@ void <strong>setTopLeft</strong>(<a href="../bot_retained/PElement.html">PElemen
 <div class="doc">
 <pre class="source">
 void setTopLeft(PElement element, Coordinate value){
-  var tx = getChildTransform(element);
-  tx.setToTranslation(value.x, value.y);
+ var tx = getChildTransform(element);
+ tx.setToTranslation(value.x, value.y);
 }
 </pre>
 </div>
@@ -523,8 +523,8 @@ void <strong>update</strong>() <a class="anchor-link" href="#update"
 <div class="inherited-from">inherited from <a href="../bot_retained/ParentElement.html">ParentElement</a> </div><div class="doc">
 <pre class="source">
 void update(){
-  _forEach((e) =&gt; e.update());
-  super.update();
+ _forEach((e) =&gt; e.update());
+ super.update();
 }
 </pre>
 </div>
@@ -536,7 +536,7 @@ void <strong>validateNotDisposed</strong>() <a class="anchor-link" href="#valida
 <div class="inherited-from">inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div><div class="doc">
 <pre class="source">
 void validateNotDisposed() {
-  assert(!_disposed);
+ assert(!_disposed);
 }
 </pre>
 </div>

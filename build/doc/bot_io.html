@@ -36,7 +36,7 @@ void <strong>prntLine</strong>(obj, [<a href="bot_io/Color.html">Color</a> color
 <div class="doc">
 <pre class="source">
 void prntLine(obj, [Color color = null]) {
-  prnt("$obj\n", color);
+ prnt("$obj\n", color);
 }
 </pre>
 </div>
@@ -48,16 +48,16 @@ void <strong>prnt</strong>(obj, [<a href="bot_io/Color.html">Color</a> color = n
 <div class="doc">
 <pre class="source">
 void prnt(obj, [Color color = null]) {
-  String value;
-  if(obj == null) {
-    value = '';
-  } else {
-    value = obj.toString();
-  }
-  if(color != null) {
-    value = color.wrap(value);
-  }
-  stdout.writeString(value);
+ String value;
+ if(obj == null) {
+   value = '';
+ } else {
+   value = obj.toString();
+ }
+ if(color != null) {
+   value = color.wrap(value);
+ }
+ stdout.writeString(value);
 }
 </pre>
 </div>

@@ -34,23 +34,23 @@
 <div class="doc">
 <pre class="source">
 class GlobalId implements Hashable, Comparable {
-  static int _globalId = 0;
-  final int id;
-  final int _hashCode;
+ static int _globalId = 0;
+ final int id;
+ final int _hashCode;
 
-  GlobalId._internal(int value) :
-    id = value,
-    _hashCode = Util.getHashCode([value]);
+ GlobalId._internal(int value) :
+   id = value,
+   _hashCode = Util.getHashCode([value]);
 
-  factory GlobalId() {
-    return new GlobalId._internal(_globalId++);
-  }
+ factory GlobalId() {
+   return new GlobalId._internal(_globalId++);
+ }
 
-  int compareTo(GlobalId other) =&gt; id.compareTo(other.id);
+ int compareTo(GlobalId other) =&gt; id.compareTo(other.id);
 
-  int hashCode() =&gt; _hashCode;
+ int get hashCode =&gt; _hashCode;
 
-  bool operator ==(GlobalId other) =&gt; other != null &amp;&amp; other.id == id;
+ bool operator ==(GlobalId other) =&gt; other != null &amp;&amp; other.id == id;
 }
 </pre>
 </div>
@@ -66,7 +66,7 @@ factory <strong>GlobalId</strong>() <a class="anchor-link" href="#GlobalId"
 <div class="doc">
 <pre class="source">
 factory GlobalId() {
-  return new GlobalId._internal(_globalId++);
+ return new GlobalId._internal(_globalId++);
 }
 </pre>
 </div>
@@ -74,6 +74,28 @@ factory GlobalId() {
 </div>
 <div>
 <h3>Properties</h3>
+<div class="field"><h4 id="hashCode">
+<button class="show-code">Code</button>
+final int         <strong>hashCode</strong> <a class="anchor-link"
+            href="#hashCode"
+            title="Permalink to GlobalId.hashCode">#</a>
+        </h4>
+        <div class="doc">
+<div class="inherited">
+<p>Get a hash code for this object.</p>
+<p>All objects have hash codes. Hash codes are guaranteed to be the
+same for objects that are equal when compared using the equality
+operator <code>==</code>. Other than that there are no guarantees about
+the hash codes. They will not be consistent between runs and
+there are no distribution guarantees.</p>
+<p>If a subclass overrides <a class="crossref" href="../bot/GlobalId.html#hashCode">hashCode</a> it should override the
+equality operator as well to maintain consistency.</p>
+<div class="docs-inherited-from">docs inherited from Object </div></div>
+<pre class="source">
+int get hashCode =&gt; _hashCode;
+</pre>
+</div>
+</div>
 <div class="field"><h4 id="id">
 <button class="show-code">Code</button>
 final int         <strong>id</strong> <a class="anchor-link"
@@ -125,26 +147,6 @@ is not comparable to <code>this</code>.</p>
 <div class="docs-inherited-from">docs inherited from Comparable </div></div>
 <pre class="source">
 int compareTo(GlobalId other) =&gt; id.compareTo(other.id);
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="hashCode">
-<button class="show-code">Code</button>
-int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
-              title="Permalink to GlobalId.hashCode">#</a></h4>
-<div class="doc">
-<div class="inherited">
-<p>Get a hash code for this object.</p>
-<p>All objects have hash codes. Hash codes are guaranteed to be the
-same for objects that are equal when compared using the equality
-operator <code>==</code>. Other than that there are no guarantees about
-the hash codes. They will not be consistent between runs and
-there are no distribution guarantees.</p>
-<p>If a subclass overrides <a class="crossref" href="../bot/GlobalId.html#hashCode">hashCode</a> it should override the
-equality operator as well to maintain consistency.</p>
-<div class="docs-inherited-from">docs inherited from Object </div></div>
-<pre class="source">
-int hashCode() =&gt; _hashCode;
 </pre>
 </div>
 </div>

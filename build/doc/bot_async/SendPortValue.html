@@ -34,76 +34,76 @@
 <div class="doc">
 <pre class="source">
 class SendPortValue&lt;TInput, TOutput&gt; extends FutureValue&lt;TInput, TOutput&gt; {
-  final SendPort _sendPort;
-  final Func1&lt;TInput, Dynamic&gt; inputSerializer;
-  final Func1&lt;Dynamic, TOutput&gt; outputDeserializer;
-  Completer&lt;TOutput&gt; _completer;
-  Future&lt;TOutput&gt; _innerFuture;
+ final SendPort _sendPort;
+ final Func1&lt;TInput, dynamic&gt; inputSerializer;
+ final Func1&lt;dynamic, TOutput&gt; outputDeserializer;
+ Completer&lt;TOutput&gt; _completer;
+ Future&lt;TOutput&gt; _innerFuture;
 
-  SendPortValue(this._sendPort, {this.inputSerializer, this.outputDeserializer});
+ SendPortValue(this._sendPort, {this.inputSerializer, this.outputDeserializer});
 
-  Future&lt;TOutput&gt; getFuture(TInput value) {
-    assert(_completer == null);
-    assert(_innerFuture == null);
+ Future&lt;TOutput&gt; getFuture(TInput value) {
+   assert(_completer == null);
+   assert(_innerFuture == null);
 
-    _completer = new Completer&lt;TOutput&gt;();
+   _completer = new Completer&lt;TOutput&gt;();
 
-    if(inputSerializer == null) {
-      _innerFuture = _sendPort.call(value);
-    } else {
-      var serializedValue = inputSerializer(value);
-      _innerFuture = _sendPort.call(serializedValue);
-    }
-    // I don't think this is working yet in isolates
-    // _future.handleException(_futureException);
-    // DARTBUG: http://dartbug.com/3734
-    _innerFuture.then(__futureCompleted);
+   if(inputSerializer == null) {
+     _innerFuture = _sendPort.call(value);
+   } else {
+     var serializedValue = inputSerializer(value);
+     _innerFuture = _sendPort.call(serializedValue);
+   }
+   // I don't think this is working yet in isolates
+   // _future.handleException(_futureException);
+   // DARTBUG: http://dartbug.com/3734
+   _innerFuture.then(__futureCompleted);
 
-    return _completer.future;
-  }
+   return _completer.future;
+ }
 
-  void __futureCompleted(value) {
-    assert(_completer != null);
-    assert(_innerFuture != null);
-    _innerFuture = null;
+ void __futureCompleted(value) {
+   assert(_completer != null);
+   assert(_innerFuture != null);
+   _innerFuture = null;
 
-    if(value is Map &amp;&amp; FutureValueResult.isMyMap(value)) {
-      final fvr = new FutureValueResult.fromMap(value);
-      _sendValueResultCompleted(fvr);
-    } else {
-      _complete(value);
-    }
-  }
+   if(value is Map &amp;&amp; FutureValueResult.isMyMap(value)) {
+     final fvr = new FutureValueResult.fromMap(value);
+     _sendValueResultCompleted(fvr);
+   } else {
+     _complete(value);
+   }
+ }
 
-  void _sendValueResultCompleted(FutureValueResult&lt;TOutput&gt; value) {
-    if(value.isException) {
-      _completeException(value.exception);
-    } else {
-      _complete(value.value);
-    }
-  }
+ void _sendValueResultCompleted(FutureValueResult&lt;TOutput&gt; value) {
+   if(value.isException) {
+     _completeException(value.exception);
+   } else {
+     _complete(value.value);
+   }
+ }
 
-  void _complete(Dynamic rawValue) {
-    final c = _completer;
-    _completer = null;
+ void _complete(dynamic rawValue) {
+   final c = _completer;
+   _completer = null;
 
-    final value = _deserializer(rawValue);
-    c.complete(value);
-  }
+   final value = _deserializer(rawValue);
+   c.complete(value);
+ }
 
-  void _completeException(exception) {
-    final c = _completer;
-    _completer = null;
-    c.completeException(exception);
-  }
+ void _completeException(exception) {
+   final c = _completer;
+   _completer = null;
+   c.completeException(exception);
+ }
 
-  TOutput _deserializer(Dynamic input) {
-    if(outputDeserializer == null) {
-      return input;
-    } else {
-      return outputDeserializer(input);
-    }
-  }
+ TOutput _deserializer(dynamic input) {
+   if(outputDeserializer == null) {
+     return input;
+   } else {
+     return outputDeserializer(input);
+   }
+ }
 }
 </pre>
 </div>
@@ -114,7 +114,7 @@ class SendPortValue&lt;TInput, TOutput&gt; extends FutureValue&lt;TInput, TOutpu
 <h3>Constructors</h3>
 <div class="method"><h4 id="SendPortValue">
 <button class="show-code">Code</button>
-new <strong>SendPortValue</strong>(SendPort _sendPort, [<a href="../bot/Func1.html">Func1</a> inputSerializer, <a href="../bot/Func1.html">Func1</a> outputDeserializer]) <a class="anchor-link" href="#SendPortValue"
+new <strong>SendPortValue</strong>(SendPort _sendPort, {<a href="../bot/Func1.html">Func1</a> inputSerializer, <a href="../bot/Func1.html">Func1</a> outputDeserializer}) <a class="anchor-link" href="#SendPortValue"
               title="Permalink to SendPortValue&lt;TInput, TOutput&gt;.SendPortValue">#</a></h4>
 <div class="doc">
 <pre class="source">
@@ -149,13 +149,13 @@ TInput get input =&gt; _input;
 </pre>
 <pre class="source">
 void set input(TInput value) {
-  _input = value;
-  if(_future == null) {
-    _startFuture();
-  } else {
-    _pending = true;
-  }
-  _inputChangedHandle.fireEvent(EventArgs.empty);
+ _input = value;
+ if(_future == null) {
+   _startFuture();
+ } else {
+   _pending = true;
+ }
+ _inputChangedHandle.fireEvent(EventArgs.empty);
 }
 </pre>
 </div>
@@ -180,7 +180,7 @@ final <a href="../bot/Func1.html">Func1</a>         <strong>inputSerializer</str
         </h4>
         <div class="doc">
 <pre class="source">
-final Func1&lt;TInput, Dynamic&gt; inputSerializer;
+final Func1&lt;TInput, dynamic&gt; inputSerializer;
 </pre>
 </div>
 </div>
@@ -216,7 +216,7 @@ final <a href="../bot/Func1.html">Func1</a>         <strong>outputDeserializer</
         </h4>
         <div class="doc">
 <pre class="source">
-final Func1&lt;Dynamic, TOutput&gt; outputDeserializer;
+final Func1&lt;dynamic, TOutput&gt; outputDeserializer;
 </pre>
 </div>
 </div>
@@ -230,23 +230,23 @@ Future&lt;<a href="../bot_async/SendPortValue.html">TOutput</a>&gt; <strong>getF
 <div class="doc">
 <pre class="source">
 Future&lt;TOutput&gt; getFuture(TInput value) {
-  assert(_completer == null);
-  assert(_innerFuture == null);
+ assert(_completer == null);
+ assert(_innerFuture == null);
 
-  _completer = new Completer&lt;TOutput&gt;();
+ _completer = new Completer&lt;TOutput&gt;();
 
-  if(inputSerializer == null) {
-    _innerFuture = _sendPort.call(value);
-  } else {
-    var serializedValue = inputSerializer(value);
-    _innerFuture = _sendPort.call(serializedValue);
-  }
-  // I don't think this is working yet in isolates
-  // _future.handleException(_futureException);
-  // DARTBUG: http://dartbug.com/3734
-  _innerFuture.then(__futureCompleted);
+ if(inputSerializer == null) {
+   _innerFuture = _sendPort.call(value);
+ } else {
+   var serializedValue = inputSerializer(value);
+   _innerFuture = _sendPort.call(serializedValue);
+ }
+ // I don't think this is working yet in isolates
+ // _future.handleException(_futureException);
+ // DARTBUG: http://dartbug.com/3734
+ _innerFuture.then(__futureCompleted);
 
-  return _completer.future;
+ return _completer.future;
 }
 </pre>
 </div>

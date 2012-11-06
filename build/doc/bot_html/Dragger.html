@@ -34,54 +34,54 @@
 <div class="doc">
 <pre class="source">
 class Dragger {
-  final Element _element;
-  final EventHandle&lt;Vector&gt; _dragDeltaHandle;
-  final EventHandle&lt;CancelableEventArgs&gt; _dragStartHandle;
+ final Element _element;
+ final EventHandle&lt;Vector&gt; _dragDeltaHandle;
+ final EventHandle&lt;CancelableEventArgs&gt; _dragStartHandle;
 
-  Coordinate _clientLoc;
+ Coordinate _clientLoc;
 
-  Dragger(this._element) :
-    _dragDeltaHandle = new EventHandle&lt;Vector&gt;(),
-    _dragStartHandle = new EventHandle&lt;CancelableEventArgs&gt;() {
-    _element.on.mouseDown.add(_onMouseDown);
-    window.on.mouseMove.add(_handleMove);
-    window.on.mouseUp.add(_endDrag);
-    window.on.blur.add(_endDrag);
-  }
+ Dragger(this._element) :
+   _dragDeltaHandle = new EventHandle&lt;Vector&gt;(),
+   _dragStartHandle = new EventHandle&lt;CancelableEventArgs&gt;() {
+   _element.on.mouseDown.add(_onMouseDown);
+   window.on.mouseMove.add(_handleMove);
+   window.on.mouseUp.add(_endDrag);
+   window.on.blur.add(_endDrag);
+ }
 
-  EventRoot&lt;Vector&gt; get dragDelta =&gt; _dragDeltaHandle;
+ EventRoot&lt;Vector&gt; get dragDelta =&gt; _dragDeltaHandle;
 
-  EventRoot&lt;CancelableEventArgs&gt; get dragStart =&gt; _dragStartHandle;
+ EventRoot&lt;CancelableEventArgs&gt; get dragStart =&gt; _dragStartHandle;
 
-  bool get isDragging =&gt; _clientLoc != null;
+ bool get isDragging =&gt; _clientLoc != null;
 
-  void _onMouseDown(MouseEvent event) {
-    assert(!isDragging);
-    final args = new CancelableEventArgs();
-    _dragStartHandle.fireEvent(args);
-    if(!args.isCanceled) {
-      event.preventDefault();
-      _clientLoc = new Coordinate(event.clientX, event.clientY);
-    }
-  }
+ void _onMouseDown(MouseEvent event) {
+   assert(!isDragging);
+   final args = new CancelableEventArgs();
+   _dragStartHandle.fireEvent(args);
+   if(!args.isCanceled) {
+     event.preventDefault();
+     _clientLoc = new Coordinate(event.clientX, event.clientY);
+   }
+ }
 
-  void _handleMove(MouseEvent event) {
-    if(isDragging) {
+ void _handleMove(MouseEvent event) {
+   if(isDragging) {
 
-      final newLoc = new Coordinate(event.clientX, event.clientY);
+     final newLoc = new Coordinate(event.clientX, event.clientY);
 
-      final delta = newLoc - _clientLoc;
-      _dragDeltaHandle.fireEvent(delta);
+     final delta = newLoc - _clientLoc;
+     _dragDeltaHandle.fireEvent(delta);
 
-      _clientLoc = newLoc;
-    }
-  }
+     _clientLoc = newLoc;
+   }
+ }
 
-  void _endDrag(Event event) {
-    if(isDragging) {
-      _clientLoc = null;
-    }
-  }
+ void _endDrag(Event event) {
+   if(isDragging) {
+     _clientLoc = null;
+   }
+ }
 }
 </pre>
 </div>
@@ -94,12 +94,12 @@ new <strong>Dragger</strong>(Element _element) <a class="anchor-link" href="#Dra
 <div class="doc">
 <pre class="source">
 Dragger(this._element) :
-  _dragDeltaHandle = new EventHandle&lt;Vector&gt;(),
-  _dragStartHandle = new EventHandle&lt;CancelableEventArgs&gt;() {
-  _element.on.mouseDown.add(_onMouseDown);
-  window.on.mouseMove.add(_handleMove);
-  window.on.mouseUp.add(_endDrag);
-  window.on.blur.add(_endDrag);
+ _dragDeltaHandle = new EventHandle&lt;Vector&gt;(),
+ _dragStartHandle = new EventHandle&lt;CancelableEventArgs&gt;() {
+ _element.on.mouseDown.add(_onMouseDown);
+ window.on.mouseMove.add(_handleMove);
+ window.on.mouseUp.add(_endDrag);
+ window.on.blur.add(_endDrag);
 }
 </pre>
 </div>

@@ -35,264 +35,264 @@
 <pre class="source">
 class QrUtil {
 
-  static final List&lt;List&lt;int&gt;&gt; _PATTERN_POSITION_TABLE = const [
-    const [],
-    const [6, 18],
-    const [6, 22],
-    const [6, 26],
-    const [6, 30],
-    const [6, 34],
-    const [6, 22, 38],
-    const [6, 24, 42],
-    const [6, 26, 46],
-    const [6, 28, 50],
-    const [6, 30, 54],
-    const [6, 32, 58],
-    const [6, 34, 62],
-    const [6, 26, 46, 66],
-    const [6, 26, 48, 70],
-    const [6, 26, 50, 74],
-    const [6, 30, 54, 78],
-    const [6, 30, 56, 82],
-    const [6, 30, 58, 86],
-    const [6, 34, 62, 90],
-    const [6, 28, 50, 72, 94],
-    const [6, 26, 50, 74, 98],
-    const [6, 30, 54, 78, 102],
-    const [6, 28, 54, 80, 106],
-    const [6, 32, 58, 84, 110],
-    const [6, 30, 58, 86, 114],
-    const [6, 34, 62, 90, 118],
-    const [6, 26, 50, 74, 98, 122],
-    const [6, 30, 54, 78, 102, 126],
-    const [6, 26, 52, 78, 104, 130],
-    const [6, 30, 56, 82, 108, 134],
-    const [6, 34, 60, 86, 112, 138],
-    const [6, 30, 58, 86, 114, 142],
-    const [6, 34, 62, 90, 118, 146],
-    const [6, 30, 54, 78, 102, 126, 150],
-    const [6, 24, 50, 76, 102, 128, 154],
-    const [6, 28, 54, 80, 106, 132, 158],
-    const [6, 32, 58, 84, 110, 136, 162],
-    const [6, 26, 54, 82, 110, 138, 166],
-    const [6, 30, 58, 86, 114, 142, 170]
-  ];
+ static final List&lt;List&lt;int&gt;&gt; _PATTERN_POSITION_TABLE = const [
+   const [],
+   const [6, 18],
+   const [6, 22],
+   const [6, 26],
+   const [6, 30],
+   const [6, 34],
+   const [6, 22, 38],
+   const [6, 24, 42],
+   const [6, 26, 46],
+   const [6, 28, 50],
+   const [6, 30, 54],
+   const [6, 32, 58],
+   const [6, 34, 62],
+   const [6, 26, 46, 66],
+   const [6, 26, 48, 70],
+   const [6, 26, 50, 74],
+   const [6, 30, 54, 78],
+   const [6, 30, 56, 82],
+   const [6, 30, 58, 86],
+   const [6, 34, 62, 90],
+   const [6, 28, 50, 72, 94],
+   const [6, 26, 50, 74, 98],
+   const [6, 30, 54, 78, 102],
+   const [6, 28, 54, 80, 106],
+   const [6, 32, 58, 84, 110],
+   const [6, 30, 58, 86, 114],
+   const [6, 34, 62, 90, 118],
+   const [6, 26, 50, 74, 98, 122],
+   const [6, 30, 54, 78, 102, 126],
+   const [6, 26, 52, 78, 104, 130],
+   const [6, 30, 56, 82, 108, 134],
+   const [6, 34, 60, 86, 112, 138],
+   const [6, 30, 58, 86, 114, 142],
+   const [6, 34, 62, 90, 118, 146],
+   const [6, 30, 54, 78, 102, 126, 150],
+   const [6, 24, 50, 76, 102, 128, 154],
+   const [6, 28, 54, 80, 106, 132, 158],
+   const [6, 32, 58, 84, 110, 136, 162],
+   const [6, 26, 54, 82, 110, 138, 166],
+   const [6, 30, 58, 86, 114, 142, 170]
+ ];
 
-  static int G15 = (1 &lt;&lt; 10) | (1 &lt;&lt; 8) | (1 &lt;&lt; 5) | (1 &lt;&lt; 4) | (1 &lt;&lt; 2) | (1 &lt;&lt; 1) | (1 &lt;&lt; 0);
-  static int G18 = (1 &lt;&lt; 12) | (1 &lt;&lt; 11) | (1 &lt;&lt; 10) | (1 &lt;&lt; 9) | (1 &lt;&lt; 8) | (1 &lt;&lt; 5) | (1 &lt;&lt; 2) | (1 &lt;&lt; 0);
-  static int G15_MASK = (1 &lt;&lt; 14) | (1 &lt;&lt; 12) | (1 &lt;&lt; 10) | (1 &lt;&lt; 4) | (1 &lt;&lt; 1);
+ static int G15 = (1 &lt;&lt; 10) | (1 &lt;&lt; 8) | (1 &lt;&lt; 5) | (1 &lt;&lt; 4) | (1 &lt;&lt; 2) | (1 &lt;&lt; 1) | (1 &lt;&lt; 0);
+ static int G18 = (1 &lt;&lt; 12) | (1 &lt;&lt; 11) | (1 &lt;&lt; 10) | (1 &lt;&lt; 9) | (1 &lt;&lt; 8) | (1 &lt;&lt; 5) | (1 &lt;&lt; 2) | (1 &lt;&lt; 0);
+ static int G15_MASK = (1 &lt;&lt; 14) | (1 &lt;&lt; 12) | (1 &lt;&lt; 10) | (1 &lt;&lt; 4) | (1 &lt;&lt; 1);
 
-  static int getBCHTypeInfo(int data) {
-    var d = data &lt;&lt; 10;
-    while (getBCHDigit(d) - getBCHDigit(G15) &gt;= 0) {
-      d ^= (G15 &lt;&lt; (getBCHDigit(d) - getBCHDigit(G15)));
-    }
-    return ((data &lt;&lt; 10) | d) ^ G15_MASK;
-  }
+ static int getBCHTypeInfo(int data) {
+   var d = data &lt;&lt; 10;
+   while (getBCHDigit(d) - getBCHDigit(G15) &gt;= 0) {
+     d ^= (G15 &lt;&lt; (getBCHDigit(d) - getBCHDigit(G15)));
+   }
+   return ((data &lt;&lt; 10) | d) ^ G15_MASK;
+ }
 
-  static int getBCHTypeNumber(int data) {
-    var d = data &lt;&lt; 12;
-    while (getBCHDigit(d) - getBCHDigit(G18) &gt;= 0) {
-      d ^= (G18 &lt;&lt; (getBCHDigit(d) - getBCHDigit(G18)));
-    }
-    return (data &lt;&lt; 12) | d;
-  }
+ static int getBCHTypeNumber(int data) {
+   var d = data &lt;&lt; 12;
+   while (getBCHDigit(d) - getBCHDigit(G18) &gt;= 0) {
+     d ^= (G18 &lt;&lt; (getBCHDigit(d) - getBCHDigit(G18)));
+   }
+   return (data &lt;&lt; 12) | d;
+ }
 
-  static int getBCHDigit(int data) {
+ static int getBCHDigit(int data) {
 
-    var digit = 0;
+   var digit = 0;
 
-    while (data != 0) {
-      digit++;
-      data &gt;&gt;= 1;
-    }
+   while (data != 0) {
+     digit++;
+     data &gt;&gt;= 1;
+   }
 
-    return digit;
-  }
+   return digit;
+ }
 
-  static List&lt;int&gt; getPatternPosition(int typeNumber) {
-    return _PATTERN_POSITION_TABLE[typeNumber - 1];
-  }
+ static List&lt;int&gt; getPatternPosition(int typeNumber) {
+   return _PATTERN_POSITION_TABLE[typeNumber - 1];
+ }
 
-  static bool getMask(int maskPattern, int i, int j) {
-    switch (maskPattern) {
-      case QrMaskPattern.PATTERN000:
-        return (i + j) % 2 == 0;
-      case QrMaskPattern.PATTERN001:
-        return i % 2 == 0;
-      case QrMaskPattern.PATTERN010:
-        return j % 3 == 0;
-      case QrMaskPattern.PATTERN011:
-        return (i + j) % 3 == 0;
-      case QrMaskPattern.PATTERN100:
-        return ((i ~/ 2) + (j ~/ 3)) % 2 == 0;
-      case QrMaskPattern.PATTERN101:
-        return (i * j) % 2 + (i * j) % 3 == 0;
-      case QrMaskPattern.PATTERN110:
-        return ((i * j) % 2 + (i * j) % 3) % 2 == 0;
-      case QrMaskPattern.PATTERN111:
-        return ((i * j) % 3 + (i + j) % 2) % 2 == 0;
-      default:
-        throw 'bad maskPattern:$maskPattern';
-    }
-  }
+ static bool getMask(int maskPattern, int i, int j) {
+   switch (maskPattern) {
+     case QrMaskPattern.PATTERN000:
+       return (i + j) % 2 == 0;
+     case QrMaskPattern.PATTERN001:
+       return i % 2 == 0;
+     case QrMaskPattern.PATTERN010:
+       return j % 3 == 0;
+     case QrMaskPattern.PATTERN011:
+       return (i + j) % 3 == 0;
+     case QrMaskPattern.PATTERN100:
+       return ((i ~/ 2) + (j ~/ 3)) % 2 == 0;
+     case QrMaskPattern.PATTERN101:
+       return (i * j) % 2 + (i * j) % 3 == 0;
+     case QrMaskPattern.PATTERN110:
+       return ((i * j) % 2 + (i * j) % 3) % 2 == 0;
+     case QrMaskPattern.PATTERN111:
+       return ((i * j) % 3 + (i + j) % 2) % 2 == 0;
+     default:
+       throw 'bad maskPattern:$maskPattern';
+   }
+ }
 
-  static QrPolynomial getErrorCorrectPolynomial(int errorCorrectLength) {
+ static QrPolynomial getErrorCorrectPolynomial(int errorCorrectLength) {
 
-    var a = new QrPolynomial([1], 0);
+   var a = new QrPolynomial([1], 0);
 
-    for (var i = 0; i &lt; errorCorrectLength; i++) {
-      a = a.multiply(new QrPolynomial([1, QrMath.gexp(i)], 0));
-    }
+   for (var i = 0; i &lt; errorCorrectLength; i++) {
+     a = a.multiply(new QrPolynomial([1, QrMath.gexp(i)], 0));
+   }
 
-    return a;
-  }
+   return a;
+ }
 
-  static int getLengthInBits(int mode, int type) {
+ static int getLengthInBits(int mode, int type) {
 
-    if (1 &lt;= type &amp;&amp; type &lt; 10) {
+   if (1 &lt;= type &amp;&amp; type &lt; 10) {
 
-      // 1 - 9
-      switch (mode) {
-      case QrMode.MODE_NUMBER:
-        return 10;
-      case QrMode.MODE_ALPHA_NUM:
-        return 9;
-      case QrMode.MODE_8BIT_BYTE:
-        return 8;
-      case QrMode.MODE_KANJI:
-        return 8;
-      default:
-        throw 'mode:$mode';
-      }
+     // 1 - 9
+     switch (mode) {
+     case QrMode.MODE_NUMBER:
+       return 10;
+     case QrMode.MODE_ALPHA_NUM:
+       return 9;
+     case QrMode.MODE_8BIT_BYTE:
+       return 8;
+     case QrMode.MODE_KANJI:
+       return 8;
+     default:
+       throw 'mode:$mode';
+     }
 
-    } else if (type &lt; 27) {
+   } else if (type &lt; 27) {
 
-      // 10 - 26
-      switch (mode) {
-      case QrMode.MODE_NUMBER:
-        return 12;
-      case QrMode.MODE_ALPHA_NUM:
-        return 11;
-      case QrMode.MODE_8BIT_BYTE:
-        return 16;
-      case QrMode.MODE_KANJI:
-        return 10;
-      default:
-        throw 'mode:$mode';
-      }
+     // 10 - 26
+     switch (mode) {
+     case QrMode.MODE_NUMBER:
+       return 12;
+     case QrMode.MODE_ALPHA_NUM:
+       return 11;
+     case QrMode.MODE_8BIT_BYTE:
+       return 16;
+     case QrMode.MODE_KANJI:
+       return 10;
+     default:
+       throw 'mode:$mode';
+     }
 
-    } else if (type &lt; 41) {
+   } else if (type &lt; 41) {
 
-      // 27 - 40
-      switch (mode) {
-      case QrMode.MODE_NUMBER:
-        return 14;
-      case QrMode.MODE_ALPHA_NUM:
-        return 13;
-      case QrMode.MODE_8BIT_BYTE:
-        return 16;
-      case QrMode.MODE_KANJI:
-        return 12;
-      default:
-        throw 'mode:$mode';
-      }
+     // 27 - 40
+     switch (mode) {
+     case QrMode.MODE_NUMBER:
+       return 14;
+     case QrMode.MODE_ALPHA_NUM:
+       return 13;
+     case QrMode.MODE_8BIT_BYTE:
+       return 16;
+     case QrMode.MODE_KANJI:
+       return 12;
+     default:
+       throw 'mode:$mode';
+     }
 
-    } else {
-      throw 'type:$type';
-    }
-  }
+   } else {
+     throw 'type:$type';
+   }
+ }
 
-  static num getLostPoint(QrCode qrCode) {
+ static num getLostPoint(QrCode qrCode) {
 
-    var moduleCount = qrCode.moduleCount;
+   var moduleCount = qrCode.moduleCount;
 
-    var lostPoint = 0.0;
-    int row, col;
+   var lostPoint = 0.0;
+   int row, col;
 
-    // LEVEL1
-    for (row = 0; row &lt; moduleCount; row++) {
+   // LEVEL1
+   for (row = 0; row &lt; moduleCount; row++) {
 
-      for (col = 0; col &lt; moduleCount; col++) {
+     for (col = 0; col &lt; moduleCount; col++) {
 
-        var sameCount = 0;
-        var dark = qrCode.isDark(row, col);
+       var sameCount = 0;
+       var dark = qrCode.isDark(row, col);
 
-        for (var r = -1; r &lt;= 1; r++) {
+       for (var r = -1; r &lt;= 1; r++) {
 
-          if (row + r &lt; 0 || moduleCount &lt;= row + r) {
-            continue;
-          }
+         if (row + r &lt; 0 || moduleCount &lt;= row + r) {
+           continue;
+         }
 
-          for (var c = -1; c &lt;= 1; c++) {
+         for (var c = -1; c &lt;= 1; c++) {
 
-            if (col + c &lt; 0 || moduleCount &lt;= col + c) {
-              continue;
-            }
+           if (col + c &lt; 0 || moduleCount &lt;= col + c) {
+             continue;
+           }
 
-            if (r == 0 &amp;&amp; c == 0) {
-              continue;
-            }
+           if (r == 0 &amp;&amp; c == 0) {
+             continue;
+           }
 
-            if (dark == qrCode.isDark(row + r, col + c)) {
-              sameCount++;
-            }
-          }
-        }
+           if (dark == qrCode.isDark(row + r, col + c)) {
+             sameCount++;
+           }
+         }
+       }
 
-        if (sameCount &gt; 5) {
-          lostPoint += (3 + sameCount - 5);
-        }
-      }
-    }
+       if (sameCount &gt; 5) {
+         lostPoint += (3 + sameCount - 5);
+       }
+     }
+   }
 
-    // LEVEL2
-    for (row = 0; row &lt; moduleCount - 1; row++) {
-      for (col = 0; col &lt; moduleCount - 1; col++) {
-        var count = 0;
-        if (qrCode.isDark(row, col)) count++;
-        if (qrCode.isDark(row + 1, col)) count++;
-        if (qrCode.isDark(row, col + 1)) count++;
-        if (qrCode.isDark(row + 1, col + 1)) count++;
-        if (count == 0 || count == 4) {
-          lostPoint += 3;
-        }
-      }
-    }
+   // LEVEL2
+   for (row = 0; row &lt; moduleCount - 1; row++) {
+     for (col = 0; col &lt; moduleCount - 1; col++) {
+       var count = 0;
+       if (qrCode.isDark(row, col)) count++;
+       if (qrCode.isDark(row + 1, col)) count++;
+       if (qrCode.isDark(row, col + 1)) count++;
+       if (qrCode.isDark(row + 1, col + 1)) count++;
+       if (count == 0 || count == 4) {
+         lostPoint += 3;
+       }
+     }
+   }
 
-    // LEVEL3
-    for (row = 0; row &lt; moduleCount; row++) {
-      for (col = 0; col &lt; moduleCount - 6; col++) {
-        if (qrCode.isDark(row, col) &amp;&amp; !qrCode.isDark(row, col + 1) &amp;&amp; qrCode.isDark(row, col + 2) &amp;&amp; qrCode.isDark(row, col + 3) &amp;&amp; qrCode.isDark(row, col + 4) &amp;&amp; !qrCode.isDark(row, col + 5) &amp;&amp; qrCode.isDark(row, col + 6)) {
-          lostPoint += 40;
-        }
-      }
-    }
+   // LEVEL3
+   for (row = 0; row &lt; moduleCount; row++) {
+     for (col = 0; col &lt; moduleCount - 6; col++) {
+       if (qrCode.isDark(row, col) &amp;&amp; !qrCode.isDark(row, col + 1) &amp;&amp; qrCode.isDark(row, col + 2) &amp;&amp; qrCode.isDark(row, col + 3) &amp;&amp; qrCode.isDark(row, col + 4) &amp;&amp; !qrCode.isDark(row, col + 5) &amp;&amp; qrCode.isDark(row, col + 6)) {
+         lostPoint += 40;
+       }
+     }
+   }
 
-    for (col = 0; col &lt; moduleCount; col++) {
-      for (row = 0; row &lt; moduleCount - 6; row++) {
-        if (qrCode.isDark(row, col) &amp;&amp; !qrCode.isDark(row + 1, col) &amp;&amp; qrCode.isDark(row + 2, col) &amp;&amp; qrCode.isDark(row + 3, col) &amp;&amp; qrCode.isDark(row + 4, col) &amp;&amp; !qrCode.isDark(row + 5, col) &amp;&amp; qrCode.isDark(row + 6, col)) {
-          lostPoint += 40;
-        }
-      }
-    }
+   for (col = 0; col &lt; moduleCount; col++) {
+     for (row = 0; row &lt; moduleCount - 6; row++) {
+       if (qrCode.isDark(row, col) &amp;&amp; !qrCode.isDark(row + 1, col) &amp;&amp; qrCode.isDark(row + 2, col) &amp;&amp; qrCode.isDark(row + 3, col) &amp;&amp; qrCode.isDark(row + 4, col) &amp;&amp; !qrCode.isDark(row + 5, col) &amp;&amp; qrCode.isDark(row + 6, col)) {
+         lostPoint += 40;
+       }
+     }
+   }
 
-    // LEVEL4
-    var darkCount = 0;
+   // LEVEL4
+   var darkCount = 0;
 
-    for (col = 0; col &lt; moduleCount; col++) {
-      for (row = 0; row &lt; moduleCount; row++) {
-        if (qrCode.isDark(row, col)) {
-          darkCount++;
-        }
-      }
-    }
+   for (col = 0; col &lt; moduleCount; col++) {
+     for (row = 0; row &lt; moduleCount; row++) {
+       if (qrCode.isDark(row, col)) {
+         darkCount++;
+       }
+     }
+   }
 
-    var ratio = (100 * darkCount / moduleCount / moduleCount - 50).abs() / 5;
-    lostPoint += ratio * 10;
+   var ratio = (100 * darkCount / moduleCount / moduleCount - 50).abs() / 5;
+   lostPoint += ratio * 10;
 
-    return lostPoint;
-  }
+   return lostPoint;
+ }
 }
 </pre>
 </div>
@@ -344,11 +344,11 @@ int <strong>getBCHTypeInfo</strong>(int data) <a class="anchor-link" href="#getB
 <div class="doc">
 <pre class="source">
 static int getBCHTypeInfo(int data) {
-  var d = data &lt;&lt; 10;
-  while (getBCHDigit(d) - getBCHDigit(G15) &gt;= 0) {
-    d ^= (G15 &lt;&lt; (getBCHDigit(d) - getBCHDigit(G15)));
-  }
-  return ((data &lt;&lt; 10) | d) ^ G15_MASK;
+ var d = data &lt;&lt; 10;
+ while (getBCHDigit(d) - getBCHDigit(G15) &gt;= 0) {
+   d ^= (G15 &lt;&lt; (getBCHDigit(d) - getBCHDigit(G15)));
+ }
+ return ((data &lt;&lt; 10) | d) ^ G15_MASK;
 }
 </pre>
 </div>
@@ -360,11 +360,11 @@ int <strong>getBCHTypeNumber</strong>(int data) <a class="anchor-link" href="#ge
 <div class="doc">
 <pre class="source">
 static int getBCHTypeNumber(int data) {
-  var d = data &lt;&lt; 12;
-  while (getBCHDigit(d) - getBCHDigit(G18) &gt;= 0) {
-    d ^= (G18 &lt;&lt; (getBCHDigit(d) - getBCHDigit(G18)));
-  }
-  return (data &lt;&lt; 12) | d;
+ var d = data &lt;&lt; 12;
+ while (getBCHDigit(d) - getBCHDigit(G18) &gt;= 0) {
+   d ^= (G18 &lt;&lt; (getBCHDigit(d) - getBCHDigit(G18)));
+ }
+ return (data &lt;&lt; 12) | d;
 }
 </pre>
 </div>
@@ -377,14 +377,14 @@ int <strong>getBCHDigit</strong>(int data) <a class="anchor-link" href="#getBCHD
 <pre class="source">
 static int getBCHDigit(int data) {
 
-  var digit = 0;
+ var digit = 0;
 
-  while (data != 0) {
-    digit++;
-    data &gt;&gt;= 1;
-  }
+ while (data != 0) {
+   digit++;
+   data &gt;&gt;= 1;
+ }
 
-  return digit;
+ return digit;
 }
 </pre>
 </div>
@@ -396,7 +396,7 @@ List&lt;int&gt; <strong>getPatternPosition</strong>(int typeNumber) <a class="an
 <div class="doc">
 <pre class="source">
 static List&lt;int&gt; getPatternPosition(int typeNumber) {
-  return _PATTERN_POSITION_TABLE[typeNumber - 1];
+ return _PATTERN_POSITION_TABLE[typeNumber - 1];
 }
 </pre>
 </div>
@@ -408,26 +408,26 @@ bool <strong>getMask</strong>(int maskPattern, int i, int j) <a class="anchor-li
 <div class="doc">
 <pre class="source">
 static bool getMask(int maskPattern, int i, int j) {
-  switch (maskPattern) {
-    case QrMaskPattern.PATTERN000:
-      return (i + j) % 2 == 0;
-    case QrMaskPattern.PATTERN001:
-      return i % 2 == 0;
-    case QrMaskPattern.PATTERN010:
-      return j % 3 == 0;
-    case QrMaskPattern.PATTERN011:
-      return (i + j) % 3 == 0;
-    case QrMaskPattern.PATTERN100:
-      return ((i ~/ 2) + (j ~/ 3)) % 2 == 0;
-    case QrMaskPattern.PATTERN101:
-      return (i * j) % 2 + (i * j) % 3 == 0;
-    case QrMaskPattern.PATTERN110:
-      return ((i * j) % 2 + (i * j) % 3) % 2 == 0;
-    case QrMaskPattern.PATTERN111:
-      return ((i * j) % 3 + (i + j) % 2) % 2 == 0;
-    default:
-      throw 'bad maskPattern:$maskPattern';
-  }
+ switch (maskPattern) {
+   case QrMaskPattern.PATTERN000:
+     return (i + j) % 2 == 0;
+   case QrMaskPattern.PATTERN001:
+     return i % 2 == 0;
+   case QrMaskPattern.PATTERN010:
+     return j % 3 == 0;
+   case QrMaskPattern.PATTERN011:
+     return (i + j) % 3 == 0;
+   case QrMaskPattern.PATTERN100:
+     return ((i ~/ 2) + (j ~/ 3)) % 2 == 0;
+   case QrMaskPattern.PATTERN101:
+     return (i * j) % 2 + (i * j) % 3 == 0;
+   case QrMaskPattern.PATTERN110:
+     return ((i * j) % 2 + (i * j) % 3) % 2 == 0;
+   case QrMaskPattern.PATTERN111:
+     return ((i * j) % 3 + (i + j) % 2) % 2 == 0;
+   default:
+     throw 'bad maskPattern:$maskPattern';
+ }
 }
 </pre>
 </div>
@@ -440,13 +440,13 @@ static bool getMask(int maskPattern, int i, int j) {
 <pre class="source">
 static QrPolynomial getErrorCorrectPolynomial(int errorCorrectLength) {
 
-  var a = new QrPolynomial([1], 0);
+ var a = new QrPolynomial([1], 0);
 
-  for (var i = 0; i &lt; errorCorrectLength; i++) {
-    a = a.multiply(new QrPolynomial([1, QrMath.gexp(i)], 0));
-  }
+ for (var i = 0; i &lt; errorCorrectLength; i++) {
+   a = a.multiply(new QrPolynomial([1, QrMath.gexp(i)], 0));
+ }
 
-  return a;
+ return a;
 }
 </pre>
 </div>
@@ -459,57 +459,57 @@ int <strong>getLengthInBits</strong>(int mode, int type) <a class="anchor-link" 
 <pre class="source">
 static int getLengthInBits(int mode, int type) {
 
-  if (1 &lt;= type &amp;&amp; type &lt; 10) {
+ if (1 &lt;= type &amp;&amp; type &lt; 10) {
 
-    // 1 - 9
-    switch (mode) {
-    case QrMode.MODE_NUMBER:
-      return 10;
-    case QrMode.MODE_ALPHA_NUM:
-      return 9;
-    case QrMode.MODE_8BIT_BYTE:
-      return 8;
-    case QrMode.MODE_KANJI:
-      return 8;
-    default:
-      throw 'mode:$mode';
-    }
+   // 1 - 9
+   switch (mode) {
+   case QrMode.MODE_NUMBER:
+     return 10;
+   case QrMode.MODE_ALPHA_NUM:
+     return 9;
+   case QrMode.MODE_8BIT_BYTE:
+     return 8;
+   case QrMode.MODE_KANJI:
+     return 8;
+   default:
+     throw 'mode:$mode';
+   }
 
-  } else if (type &lt; 27) {
+ } else if (type &lt; 27) {
 
-    // 10 - 26
-    switch (mode) {
-    case QrMode.MODE_NUMBER:
-      return 12;
-    case QrMode.MODE_ALPHA_NUM:
-      return 11;
-    case QrMode.MODE_8BIT_BYTE:
-      return 16;
-    case QrMode.MODE_KANJI:
-      return 10;
-    default:
-      throw 'mode:$mode';
-    }
+   // 10 - 26
+   switch (mode) {
+   case QrMode.MODE_NUMBER:
+     return 12;
+   case QrMode.MODE_ALPHA_NUM:
+     return 11;
+   case QrMode.MODE_8BIT_BYTE:
+     return 16;
+   case QrMode.MODE_KANJI:
+     return 10;
+   default:
+     throw 'mode:$mode';
+   }
 
-  } else if (type &lt; 41) {
+ } else if (type &lt; 41) {
 
-    // 27 - 40
-    switch (mode) {
-    case QrMode.MODE_NUMBER:
-      return 14;
-    case QrMode.MODE_ALPHA_NUM:
-      return 13;
-    case QrMode.MODE_8BIT_BYTE:
-      return 16;
-    case QrMode.MODE_KANJI:
-      return 12;
-    default:
-      throw 'mode:$mode';
-    }
+   // 27 - 40
+   switch (mode) {
+   case QrMode.MODE_NUMBER:
+     return 14;
+   case QrMode.MODE_ALPHA_NUM:
+     return 13;
+   case QrMode.MODE_8BIT_BYTE:
+     return 16;
+   case QrMode.MODE_KANJI:
+     return 12;
+   default:
+     throw 'mode:$mode';
+   }
 
-  } else {
-    throw 'type:$type';
-  }
+ } else {
+   throw 'type:$type';
+ }
 }
 </pre>
 </div>
@@ -522,93 +522,93 @@ num <strong>getLostPoint</strong>(<a href="../bot_qr/QrCode.html">QrCode</a> qrC
 <pre class="source">
 static num getLostPoint(QrCode qrCode) {
 
-  var moduleCount = qrCode.moduleCount;
+ var moduleCount = qrCode.moduleCount;
 
-  var lostPoint = 0.0;
-  int row, col;
+ var lostPoint = 0.0;
+ int row, col;
 
-  // LEVEL1
-  for (row = 0; row &lt; moduleCount; row++) {
+ // LEVEL1
+ for (row = 0; row &lt; moduleCount; row++) {
 
-    for (col = 0; col &lt; moduleCount; col++) {
+   for (col = 0; col &lt; moduleCount; col++) {
 
-      var sameCount = 0;
-      var dark = qrCode.isDark(row, col);
+     var sameCount = 0;
+     var dark = qrCode.isDark(row, col);
 
-      for (var r = -1; r &lt;= 1; r++) {
+     for (var r = -1; r &lt;= 1; r++) {
 
-        if (row + r &lt; 0 || moduleCount &lt;= row + r) {
-          continue;
-        }
+       if (row + r &lt; 0 || moduleCount &lt;= row + r) {
+         continue;
+       }
 
-        for (var c = -1; c &lt;= 1; c++) {
+       for (var c = -1; c &lt;= 1; c++) {
 
-          if (col + c &lt; 0 || moduleCount &lt;= col + c) {
-            continue;
-          }
+         if (col + c &lt; 0 || moduleCount &lt;= col + c) {
+           continue;
+         }
 
-          if (r == 0 &amp;&amp; c == 0) {
-            continue;
-          }
+         if (r == 0 &amp;&amp; c == 0) {
+           continue;
+         }
 
-          if (dark == qrCode.isDark(row + r, col + c)) {
-            sameCount++;
-          }
-        }
-      }
+         if (dark == qrCode.isDark(row + r, col + c)) {
+           sameCount++;
+         }
+       }
+     }
 
-      if (sameCount &gt; 5) {
-        lostPoint += (3 + sameCount - 5);
-      }
-    }
-  }
+     if (sameCount &gt; 5) {
+       lostPoint += (3 + sameCount - 5);
+     }
+   }
+ }
 
-  // LEVEL2
-  for (row = 0; row &lt; moduleCount - 1; row++) {
-    for (col = 0; col &lt; moduleCount - 1; col++) {
-      var count = 0;
-      if (qrCode.isDark(row, col)) count++;
-      if (qrCode.isDark(row + 1, col)) count++;
-      if (qrCode.isDark(row, col + 1)) count++;
-      if (qrCode.isDark(row + 1, col + 1)) count++;
-      if (count == 0 || count == 4) {
-        lostPoint += 3;
-      }
-    }
-  }
+ // LEVEL2
+ for (row = 0; row &lt; moduleCount - 1; row++) {
+   for (col = 0; col &lt; moduleCount - 1; col++) {
+     var count = 0;
+     if (qrCode.isDark(row, col)) count++;
+     if (qrCode.isDark(row + 1, col)) count++;
+     if (qrCode.isDark(row, col + 1)) count++;
+     if (qrCode.isDark(row + 1, col + 1)) count++;
+     if (count == 0 || count == 4) {
+       lostPoint += 3;
+     }
+   }
+ }
 
-  // LEVEL3
-  for (row = 0; row &lt; moduleCount; row++) {
-    for (col = 0; col &lt; moduleCount - 6; col++) {
-      if (qrCode.isDark(row, col) &amp;&amp; !qrCode.isDark(row, col + 1) &amp;&amp; qrCode.isDark(row, col + 2) &amp;&amp; qrCode.isDark(row, col + 3) &amp;&amp; qrCode.isDark(row, col + 4) &amp;&amp; !qrCode.isDark(row, col + 5) &amp;&amp; qrCode.isDark(row, col + 6)) {
-        lostPoint += 40;
-      }
-    }
-  }
+ // LEVEL3
+ for (row = 0; row &lt; moduleCount; row++) {
+   for (col = 0; col &lt; moduleCount - 6; col++) {
+     if (qrCode.isDark(row, col) &amp;&amp; !qrCode.isDark(row, col + 1) &amp;&amp; qrCode.isDark(row, col + 2) &amp;&amp; qrCode.isDark(row, col + 3) &amp;&amp; qrCode.isDark(row, col + 4) &amp;&amp; !qrCode.isDark(row, col + 5) &amp;&amp; qrCode.isDark(row, col + 6)) {
+       lostPoint += 40;
+     }
+   }
+ }
 
-  for (col = 0; col &lt; moduleCount; col++) {
-    for (row = 0; row &lt; moduleCount - 6; row++) {
-      if (qrCode.isDark(row, col) &amp;&amp; !qrCode.isDark(row + 1, col) &amp;&amp; qrCode.isDark(row + 2, col) &amp;&amp; qrCode.isDark(row + 3, col) &amp;&amp; qrCode.isDark(row + 4, col) &amp;&amp; !qrCode.isDark(row + 5, col) &amp;&amp; qrCode.isDark(row + 6, col)) {
-        lostPoint += 40;
-      }
-    }
-  }
+ for (col = 0; col &lt; moduleCount; col++) {
+   for (row = 0; row &lt; moduleCount - 6; row++) {
+     if (qrCode.isDark(row, col) &amp;&amp; !qrCode.isDark(row + 1, col) &amp;&amp; qrCode.isDark(row + 2, col) &amp;&amp; qrCode.isDark(row + 3, col) &amp;&amp; qrCode.isDark(row + 4, col) &amp;&amp; !qrCode.isDark(row + 5, col) &amp;&amp; qrCode.isDark(row + 6, col)) {
+       lostPoint += 40;
+     }
+   }
+ }
 
-  // LEVEL4
-  var darkCount = 0;
+ // LEVEL4
+ var darkCount = 0;
 
-  for (col = 0; col &lt; moduleCount; col++) {
-    for (row = 0; row &lt; moduleCount; row++) {
-      if (qrCode.isDark(row, col)) {
-        darkCount++;
-      }
-    }
-  }
+ for (col = 0; col &lt; moduleCount; col++) {
+   for (row = 0; row &lt; moduleCount; row++) {
+     if (qrCode.isDark(row, col)) {
+       darkCount++;
+     }
+   }
+ }
 
-  var ratio = (100 * darkCount / moduleCount / moduleCount - 50).abs() / 5;
-  lostPoint += ratio * 10;
+ var ratio = (100 * darkCount / moduleCount / moduleCount - 50).abs() / 5;
+ lostPoint += ratio * 10;
 
-  return lostPoint;
+ return lostPoint;
 }
 </pre>
 </div>

@@ -34,59 +34,59 @@
 <div class="doc">
 <pre class="source">
 class FutureValueResult&lt;TOutput&gt; {
-  static final String _valueKey = 'value';
-  static final String _exceptionKey = 'exception';
+ static final String _valueKey = 'value';
+ static final String _exceptionKey = 'exception';
 
-  final TOutput value;
-  final exception;
-  final Func1&lt;Dynamic, TOutput&gt; _outputSerializer;
+ final TOutput value;
+ final exception;
+ final Func1&lt;dynamic, TOutput&gt; _outputSerializer;
 
-  FutureValueResult(this.value, [this._outputSerializer]) :
-    exception = null;
+ FutureValueResult(this.value, [this._outputSerializer]) :
+   exception = null;
 
-  FutureValueResult.fromException(this.exception)
-  : value = null, _outputSerializer = null {
-    requireArgumentNotNull(exception, 'exception');
-  }
+ FutureValueResult.fromException(this.exception)
+ : value = null, _outputSerializer = null {
+   requireArgumentNotNull(exception, 'exception');
+ }
 
-  factory FutureValueResult.fromMap(Map value) {
-    requireArgumentNotNull(value, 'value');
-    requireArgument(isMyMap(value), 'value');
+ factory FutureValueResult.fromMap(Map value) {
+   requireArgumentNotNull(value, 'value');
+   requireArgument(isMyMap(value), 'value');
 
-    final ex = value[_exceptionKey];
-    if(ex != null) {
-      return new FutureValueResult.fromException(ex);
-    } else {
-      return new FutureValueResult(value[_valueKey]);
-    }
-  }
+   final ex = value[_exceptionKey];
+   if(ex != null) {
+     return new FutureValueResult.fromException(ex);
+   } else {
+     return new FutureValueResult(value[_valueKey]);
+   }
+ }
 
-  bool get isException =&gt; exception != null;
+ bool get isException =&gt; exception != null;
 
-  Map toMap() {
-    // would love to use consts here, but the analyzer doesn't like it
-    // DARTBUG: http://code.google.com/p/dart/issues/detail?id=4207
-    final rawValue = _serialize(value);
-    return { 'value' : rawValue, 'exception' : exception };
-  }
+ Map toMap() {
+   // would love to use consts here, but the analyzer doesn't like it
+   // DARTBUG: http://code.google.com/p/dart/issues/detail?id=4207
+   final rawValue = _serialize(value);
+   return { 'value' : rawValue, 'exception' : exception };
+ }
 
-  static bool isMyMap(Map value) {
-    return value != null &amp;&amp; value.length == 2 &amp;&amp;
-        value.containsKey(_valueKey) &amp;&amp; value.containsKey(_exceptionKey);
-  }
+ static bool isMyMap(Map value) {
+   return value != null &amp;&amp; value.length == 2 &amp;&amp;
+       value.containsKey(_valueKey) &amp;&amp; value.containsKey(_exceptionKey);
+ }
 
-  bool operator ==(FutureValueResult other) {
-    return other != null &amp;&amp;
-        other.value == value &amp;&amp; other.exception == exception;
-  }
+ bool operator ==(FutureValueResult other) {
+   return other != null &amp;&amp;
+       other.value == value &amp;&amp; other.exception == exception;
+ }
 
-  Dynamic _serialize(TOutput output) {
-    if(_outputSerializer == null) {
-      return output;
-    } else {
-      return _outputSerializer(output);
-    }
-  }
+ dynamic _serialize(TOutput output) {
+   if(_outputSerializer == null) {
+     return output;
+   } else {
+     return _outputSerializer(output);
+   }
+ }
 }
 </pre>
 </div>
@@ -99,8 +99,8 @@ bool <strong>isMyMap</strong>(Map value) <a class="anchor-link" href="#isMyMap"
 <div class="doc">
 <pre class="source">
 static bool isMyMap(Map value) {
-  return value != null &amp;&amp; value.length == 2 &amp;&amp;
-      value.containsKey(_valueKey) &amp;&amp; value.containsKey(_exceptionKey);
+ return value != null &amp;&amp; value.length == 2 &amp;&amp;
+     value.containsKey(_valueKey) &amp;&amp; value.containsKey(_exceptionKey);
 }
 </pre>
 </div>
@@ -115,7 +115,7 @@ new <strong>FutureValueResult</strong>(<a href="../bot_async/FutureValueResult.h
 <div class="doc">
 <pre class="source">
 FutureValueResult(this.value, [this._outputSerializer]) :
-  exception = null;
+ exception = null;
 </pre>
 </div>
 </div>
@@ -127,7 +127,7 @@ new <strong>FutureValueResult.fromException</strong>(exception) <a class="anchor
 <pre class="source">
 FutureValueResult.fromException(this.exception)
 : value = null, _outputSerializer = null {
-  requireArgumentNotNull(exception, 'exception');
+ requireArgumentNotNull(exception, 'exception');
 }
 </pre>
 </div>
@@ -139,15 +139,15 @@ factory <strong>FutureValueResult.fromMap</strong>(Map value) <a class="anchor-l
 <div class="doc">
 <pre class="source">
 factory FutureValueResult.fromMap(Map value) {
-  requireArgumentNotNull(value, 'value');
-  requireArgument(isMyMap(value), 'value');
+ requireArgumentNotNull(value, 'value');
+ requireArgument(isMyMap(value), 'value');
 
-  final ex = value[_exceptionKey];
-  if(ex != null) {
-    return new FutureValueResult.fromException(ex);
-  } else {
-    return new FutureValueResult(value[_valueKey]);
-  }
+ final ex = value[_exceptionKey];
+ if(ex != null) {
+   return new FutureValueResult.fromException(ex);
+ } else {
+   return new FutureValueResult(value[_valueKey]);
+ }
 }
 </pre>
 </div>
@@ -209,8 +209,8 @@ the <code>hashCode</code> method as well to maintain consistency.</p>
 <div class="docs-inherited-from">docs inherited from Object </div></div>
 <pre class="source">
 bool operator ==(FutureValueResult other) {
-  return other != null &amp;&amp;
-      other.value == value &amp;&amp; other.exception == exception;
+ return other != null &amp;&amp;
+     other.value == value &amp;&amp; other.exception == exception;
 }
 </pre>
 </div>
@@ -225,10 +225,10 @@ Map <strong>toMap</strong>() <a class="anchor-link" href="#toMap"
 <div class="doc">
 <pre class="source">
 Map toMap() {
-  // would love to use consts here, but the analyzer doesn't like it
-  // DARTBUG: http://code.google.com/p/dart/issues/detail?id=4207
-  final rawValue = _serialize(value);
-  return { 'value' : rawValue, 'exception' : exception };
+ // would love to use consts here, but the analyzer doesn't like it
+ // DARTBUG: http://code.google.com/p/dart/issues/detail?id=4207
+ final rawValue = _serialize(value);
+ return { 'value' : rawValue, 'exception' : exception };
 }
 </pre>
 </div>

@@ -34,70 +34,70 @@
 <div class="doc">
 <pre class="source">
 abstract class FutureValue&lt;TInput, TOutput&gt; {
-  FutureValue() :
-    _outputChangedHandle = new EventHandle&lt;EventArgs&gt;(),
-    _inputChangedHandle = new EventHandle&lt;EventArgs&gt;(),
-    _errorHandle = new EventHandle&lt;Object&gt;();
+ FutureValue() :
+   _outputChangedHandle = new EventHandle&lt;EventArgs&gt;(),
+   _inputChangedHandle = new EventHandle&lt;EventArgs&gt;(),
+   _errorHandle = new EventHandle&lt;Object&gt;();
 
-  TInput get input =&gt; _input;
+ TInput get input =&gt; _input;
 
-  void set input(TInput value) {
-    _input = value;
-    if(_future == null) {
-      _startFuture();
-    } else {
-      _pending = true;
-    }
-    _inputChangedHandle.fireEvent(EventArgs.empty);
-  }
+ void set input(TInput value) {
+   _input = value;
+   if(_future == null) {
+     _startFuture();
+   } else {
+     _pending = true;
+   }
+   _inputChangedHandle.fireEvent(EventArgs.empty);
+ }
 
-  TOutput get output =&gt; _output;
+ TOutput get output =&gt; _output;
 
-  EventRoot&lt;EventArgs&gt; get outputChanged =&gt; _outputChangedHandle;
-  EventRoot&lt;EventArgs&gt; get inputChanged =&gt; _inputChangedHandle;
-  EventRoot get error =&gt; _errorHandle;
+ EventRoot&lt;EventArgs&gt; get outputChanged =&gt; _outputChangedHandle;
+ EventRoot&lt;EventArgs&gt; get inputChanged =&gt; _inputChangedHandle;
+ EventRoot get error =&gt; _errorHandle;
 
-  abstract Future&lt;TOutput&gt; getFuture(TInput value);
+ Future&lt;TOutput&gt; getFuture(TInput value);
 
-  void _startFuture() {
-    assert(_future == null);
-    assert(!_pending);
-    _future = getFuture(_input);
-    _future.handleException(_futureException);
-    _future.then(_futureCompleted);
-  }
+ void _startFuture() {
+   assert(_future == null);
+   assert(!_pending);
+   _future = getFuture(_input);
+   _future.handleException(_futureException);
+   _future.then(_futureCompleted);
+ }
 
-  bool _futureException(Object exception) {
-    assert(_future != null);
-    _future = null;
-    _errorHandle.fireEvent(exception);
-    _cleanup();
-    return true;
-  }
+ bool _futureException(Object exception) {
+   assert(_future != null);
+   _future = null;
+   _errorHandle.fireEvent(exception);
+   _cleanup();
+   return true;
+ }
 
-  void _futureCompleted(TOutput value) {
-    assert(_future != null);
-    _future = null;
-    _output = value;
-    _outputChangedHandle.fireEvent(EventArgs.empty);
-    _cleanup();
-  }
+ void _futureCompleted(TOutput value) {
+   assert(_future != null);
+   _future = null;
+   _output = value;
+   _outputChangedHandle.fireEvent(EventArgs.empty);
+   _cleanup();
+ }
 
-  void _cleanup() {
-    if(_pending) {
-      _pending = false;
-      _startFuture();
-    }
-  }
+ void _cleanup() {
+   if(_pending) {
+     _pending = false;
+     _startFuture();
+   }
+ }
 
-  TInput _input;
-  Future&lt;TOutput&gt; _future;
-  TOutput _output;
-  bool _pending = false;
+ TInput _input;
+ Future&lt;TOutput&gt; _future;
+ TOutput _output;
+ bool _pending = false;
 
-  final EventHandle&lt;EventArgs&gt; _outputChangedHandle;
-  final EventHandle&lt;EventArgs&gt; _inputChangedHandle;
-  final EventHandle&lt;Object&gt; _errorHandle;
+ final EventHandle&lt;EventArgs&gt; _outputChangedHandle;
+ final EventHandle&lt;EventArgs&gt; _inputChangedHandle;
+ final EventHandle&lt;Object&gt; _errorHandle;
 }
 </pre>
 </div>
@@ -113,9 +113,9 @@ new <strong>FutureValue</strong>() <a class="anchor-link" href="#FutureValue"
 <div class="doc">
 <pre class="source">
 FutureValue() :
-  _outputChangedHandle = new EventHandle&lt;EventArgs&gt;(),
-  _inputChangedHandle = new EventHandle&lt;EventArgs&gt;(),
-  _errorHandle = new EventHandle&lt;Object&gt;();
+ _outputChangedHandle = new EventHandle&lt;EventArgs&gt;(),
+ _inputChangedHandle = new EventHandle&lt;EventArgs&gt;(),
+ _errorHandle = new EventHandle&lt;Object&gt;();
 </pre>
 </div>
 </div>
@@ -146,13 +146,13 @@ TInput get input =&gt; _input;
 </pre>
 <pre class="source">
 void set input(TInput value) {
-  _input = value;
-  if(_future == null) {
-    _startFuture();
-  } else {
-    _pending = true;
-  }
-  _inputChangedHandle.fireEvent(EventArgs.empty);
+ _input = value;
+ if(_future == null) {
+   _startFuture();
+ } else {
+   _pending = true;
+ }
+ _inputChangedHandle.fireEvent(EventArgs.empty);
 }
 </pre>
 </div>

@@ -34,50 +34,50 @@
 <div class="doc">
 <pre class="source">
 class EventHandle&lt;T&gt; extends DisposableImpl implements EventRoot&lt;T&gt; {
-  HashMap&lt;GlobalId, Action1&lt;T&gt;&gt; _handlers;
+ HashMap&lt;GlobalId, Action1&lt;T&gt;&gt; _handlers;
 
-  void fireEvent(T args){
-    assert(!isDisposed);
-    if(_handlers != null){
-      _handlers.forEach((GlobalId id, Action1&lt;T&gt; handler){
-        handler(args);
-      });
-    }
-  }
+ void fireEvent(T args){
+   assert(!isDisposed);
+   if(_handlers != null){
+     _handlers.forEach((GlobalId id, Action1&lt;T&gt; handler){
+       handler(args);
+     });
+   }
+ }
 
-  /**
-   * _I'm not a huge fan of returning a [GlobalId] but at the moment
-   * functions don't have a simple model for identity. [GlobalId] allows
-   * reliable removal of an added handler._
-   *
-   * Related dart bug [167](http://code.google.com/p/dart/issues/detail?id=167)
-   */
-  GlobalId add(Action1&lt;T&gt; handler){
-    assert(!isDisposed);
-    var id = new GlobalId();
-    if(_handlers == null){
-      _handlers = new HashMap&lt;GlobalId, Action1&lt;T&gt;&gt;();
-    }
-    _handlers[id] = handler;
-    return id;
-  }
+ /**
+  * _I'm not a huge fan of returning a [GlobalId] but at the moment
+  * functions don't have a simple model for identity. [GlobalId] allows
+  * reliable removal of an added handler._
+  *
+  * Related dart bug [167](http://code.google.com/p/dart/issues/detail?id=167)
+  */
+ GlobalId add(Action1&lt;T&gt; handler){
+   assert(!isDisposed);
+   var id = new GlobalId();
+   if(_handlers == null){
+     _handlers = new HashMap&lt;GlobalId, Action1&lt;T&gt;&gt;();
+   }
+   _handlers[id] = handler;
+   return id;
+ }
 
-  bool remove(GlobalId id){
-    if(_handlers != null){
-      return _handlers.remove(id) != null;
-    }
-    else{
-      return false;
-    }
-  }
+ bool remove(GlobalId id){
+   if(_handlers != null){
+     return _handlers.remove(id) != null;
+   }
+   else{
+     return false;
+   }
+ }
 
-  void disposeInternal(){
-    super.disposeInternal();
-    if(_handlers != null){
-      _handlers.clear();
-      _handlers = null;
-    }
-  }
+ void disposeInternal(){
+   super.disposeInternal();
+   if(_handlers != null){
+     _handlers.clear();
+     _handlers = null;
+   }
+ }
 }
 </pre>
 </div>
@@ -86,7 +86,7 @@ class EventHandle&lt;T&gt; extends DisposableImpl implements EventRoot&lt;T&gt; 
 <span class="type-box"><span class="icon-class"></span><a href="../bot/DisposableImpl.html">DisposableImpl</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>EventHandle&lt;T&gt;</strong></span></p>
 <h3>Implements</h3>
 <p>
-<span class="type-box"><span class="icon-interface"></span><a href="../bot/EventRoot.html">EventRoot&lt;T&gt;</a></span></p>
+<span class="type-box"><span class="icon-class"></span><a href="../bot/EventRoot.html">EventRoot&lt;T&gt;</a></span></p>
 <div class="inherited">
 <h3>Properties</h3>
 <div class="field inherited"><h4 id="isDisposed">
@@ -115,13 +115,13 @@ reliable removal of an added handler.</em></p>
 <p>Related dart bug <a href="http://code.google.com/p/dart/issues/detail?id=167">167</a></p>
 <pre class="source">
 GlobalId add(Action1&lt;T&gt; handler){
-  assert(!isDisposed);
-  var id = new GlobalId();
-  if(_handlers == null){
-    _handlers = new HashMap&lt;GlobalId, Action1&lt;T&gt;&gt;();
-  }
-  _handlers[id] = handler;
-  return id;
+ assert(!isDisposed);
+ var id = new GlobalId();
+ if(_handlers == null){
+   _handlers = new HashMap&lt;GlobalId, Action1&lt;T&gt;&gt;();
+ }
+ _handlers[id] = handler;
+ return id;
 }
 </pre>
 </div>
@@ -133,12 +133,12 @@ void <strong>dispose</strong>() <a class="anchor-link" href="#dispose"
 <div class="inherited-from">inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div><div class="doc">
 <pre class="source">
 void dispose(){
-  if (!_disposed) {
-    // Set disposed_ to true first, in case during the chain of disposal this
-    // gets disposed recursively.
-    this._disposed = true;
-    this.disposeInternal();
-  }
+ if (!_disposed) {
+   // Set disposed_ to true first, in case during the chain of disposal this
+   // gets disposed recursively.
+   this._disposed = true;
+   this.disposeInternal();
+ }
 }
 </pre>
 </div>
@@ -154,11 +154,11 @@ Subclasses should override this method to implement <a class="crossref" href="..
 <div class="docs-inherited-from">docs inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div></div>
 <pre class="source">
 void disposeInternal(){
-  super.disposeInternal();
-  if(_handlers != null){
-    _handlers.clear();
-    _handlers = null;
-  }
+ super.disposeInternal();
+ if(_handlers != null){
+   _handlers.clear();
+   _handlers = null;
+ }
 }
 </pre>
 </div>
@@ -170,12 +170,12 @@ void <strong>fireEvent</strong>(<a href="../bot/EventHandle.html">T</a> args) <a
 <div class="doc">
 <pre class="source">
 void fireEvent(T args){
-  assert(!isDisposed);
-  if(_handlers != null){
-    _handlers.forEach((GlobalId id, Action1&lt;T&gt; handler){
-      handler(args);
-    });
-  }
+ assert(!isDisposed);
+ if(_handlers != null){
+   _handlers.forEach((GlobalId id, Action1&lt;T&gt; handler){
+     handler(args);
+   });
+ }
 }
 </pre>
 </div>
@@ -187,12 +187,12 @@ bool <strong>remove</strong>(<a href="../bot/GlobalId.html">GlobalId</a> id) <a 
 <div class="doc">
 <pre class="source">
 bool remove(GlobalId id){
-  if(_handlers != null){
-    return _handlers.remove(id) != null;
-  }
-  else{
-    return false;
-  }
+ if(_handlers != null){
+   return _handlers.remove(id) != null;
+ }
+ else{
+   return false;
+ }
 }
 </pre>
 </div>
@@ -204,7 +204,7 @@ void <strong>validateNotDisposed</strong>() <a class="anchor-link" href="#valida
 <div class="inherited-from">inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div><div class="doc">
 <pre class="source">
 void validateNotDisposed() {
-  assert(!_disposed);
+ assert(!_disposed);
 }
 </pre>
 </div>

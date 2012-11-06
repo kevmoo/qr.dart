@@ -34,104 +34,104 @@
 <div class="doc">
 <pre class="source">
 class RgbColor implements Hashable {
-  final int r, g, b;
+ final int r, g, b;
 
-  const RgbColor._internal(this.r, this.g, this.b);
+ const RgbColor._internal(this.r, this.g, this.b);
 
-  factory RgbColor(int r, int g, int b) {
-    _validateComponent(r, 'r');
-    _validateComponent(g, 'g');
-    _validateComponent(b, 'b');
+ factory RgbColor(int r, int g, int b) {
+   _validateComponent(r, 'r');
+   _validateComponent(g, 'g');
+   _validateComponent(b, 'b');
 
-    return new RgbColor._internal(r, g, b);
-  }
+   return new RgbColor._internal(r, g, b);
+ }
 
-  factory RgbColor.fromHex(String hexColor) {
-    requireArgumentNotNull(hexColor, 'hexColor');
-    hexColor = _normalizeHex(hexColor);
-    var r = math.parseInt('0x'.concat(hexColor.substring(1, 3)));
-    var g = math.parseInt('0x'.concat(hexColor.substring(3, 5)));
-    var b = math.parseInt('0x'.concat(hexColor.substring(5, 7)));
+ factory RgbColor.fromHex(String hexColor) {
+   requireArgumentNotNull(hexColor, 'hexColor');
+   hexColor = _normalizeHex(hexColor);
+   var r = math.parseInt('0x'.concat(hexColor.substring(1, 3)));
+   var g = math.parseInt('0x'.concat(hexColor.substring(3, 5)));
+   var b = math.parseInt('0x'.concat(hexColor.substring(5, 7)));
 
-    return new RgbColor(r,g,b);
-  }
+   return new RgbColor(r,g,b);
+ }
 
-  String toHex() {
-    final buffer = new StringBuffer('#');
-    [r,g,b].forEach((c) {
-      buffer.add(_prependZeroIfNecessaryHelper(c.toRadixString(16)));
-    });
-    return buffer.toString();
-  }
+ String toHex() {
+   final buffer = new StringBuffer('#');
+   [r,g,b].forEach((c) {
+     buffer.add(_prependZeroIfNecessaryHelper(c.toRadixString(16)));
+   });
+   return buffer.toString();
+ }
 
-  HslColor toHsl() {
-    // First must normalize r, g, b to be between 0 and 1.
-    final normR = r / 255;
-    final normG = g / 255;
-    final normB = b / 255;
-    final max = math.max(normR, math.max(normG, normB));
-    final min = math.min(normR, math.min(normG, normB));
-    // Luminosity is the average of the max and min rgb color intensities.
-    final l = 0.5 * (max + min);
+ HslColor toHsl() {
+   // First must normalize r, g, b to be between 0 and 1.
+   final normR = r / 255;
+   final normG = g / 255;
+   final normB = b / 255;
+   final max = math.max(normR, math.max(normG, normB));
+   final min = math.min(normR, math.min(normG, normB));
+   // Luminosity is the average of the max and min rgb color intensities.
+   final l = 0.5 * (max + min);
 
-    double h = 0.0;
-    double s = 0.0;
+   double h = 0.0;
+   double s = 0.0;
 
-    // The hue and saturation are dependent on which color intensity is the max.
-    // If max and min are equal, the color is gray and h and s should be 0.
-    if (max != min) {
-      if (max == normR) {
-        h = 60 * (normG - normB) / (max - min);
-      } else if (max == normG) {
-        h = 60 * (normB - normR) / (max - min) + 120;
-      } else if (max == normB) {
-        h = 60 * (normR - normG) / (max - min) + 240;
-      }
+   // The hue and saturation are dependent on which color intensity is the max.
+   // If max and min are equal, the color is gray and h and s should be 0.
+   if (max != min) {
+     if (max == normR) {
+       h = 60 * (normG - normB) / (max - min);
+     } else if (max == normG) {
+       h = 60 * (normB - normR) / (max - min) + 120;
+     } else if (max == normB) {
+       h = 60 * (normR - normG) / (max - min) + 240;
+     }
 
-      if (0 &lt; l &amp;&amp; l &lt;= 0.5) {
-        s = (max - min) / (2 * l);
-      } else {
-        s = (max - min) / (2 - 2 * l);
-        // handle a nice case where s can be just over 1
-        s = math.min(1.0, s);
-      }
-    }
+     if (0 &lt; l &amp;&amp; l &lt;= 0.5) {
+       s = (max - min) / (2 * l);
+     } else {
+       s = (max - min) / (2 - 2 * l);
+       // handle a nice case where s can be just over 1
+       s = math.min(1.0, s);
+     }
+   }
 
-    return new HslColor(h, s, l);
-  }
+   return new HslColor(h, s, l);
+ }
 
-  int hashCode() =&gt; Util.getHashCode([r,g,b]);
+ int get hashCode =&gt; Util.getHashCode([r,g,b]);
 
-  bool operator ==(RgbColor other) {
-    return other != null &amp;&amp; other.r == r &amp;&amp; other.g == g &amp;&amp; other.b == b;
-  }
+ bool operator ==(RgbColor other) {
+   return other != null &amp;&amp; other.r == r &amp;&amp; other.g == g &amp;&amp; other.b == b;
+ }
 
-  String toString() =&gt; '{RgbColor: $r, $g, $b}';
+ String toString() =&gt; '{RgbColor: $r, $g, $b}';
 
-  static void _validateComponent(int c, String name) {
-    requireArgument(isValidNumber(c), name);
-    requireArgument(c &gt;= 0 &amp;&amp; c &lt;= 255, name);
-  }
+ static void _validateComponent(int c, String name) {
+   requireArgument(isValidNumber(c), name);
+   requireArgument(c &gt;= 0 &amp;&amp; c &lt;= 255, name);
+ }
 
-  static String _prependZeroIfNecessaryHelper(String hex) {
-    return hex.length == 1 ? '0'.concat(hex) : hex;
-  }
+ static String _prependZeroIfNecessaryHelper(String hex) {
+   return hex.length == 1 ? '0'.concat(hex) : hex;
+ }
 
-  // TODO: support colors in the format #rgb
-  //       right now we only support #rrggbb
-  static String _normalizeHex(String hexColor) {
-    if (!_isValidHexColor(hexColor)) {
-      throw new IllegalArgumentException("'$hexColor' is not a valid hex color");
-    }
-    return hexColor.toLowerCase();
-  }
+ // TODO: support colors in the format #rgb
+ //       right now we only support #rrggbb
+ static String _normalizeHex(String hexColor) {
+   if (!_isValidHexColor(hexColor)) {
+     throw new IllegalArgumentException("'$hexColor' is not a valid hex color");
+   }
+   return hexColor.toLowerCase();
+ }
 
-  static const RegExp _validHexColorRe = const RegExp('^#(?:[0-9a-f]{6})\$',
-      multiLine: false, ignoreCase: true);
+ static const RegExp _validHexColorRe = const RegExp('^#(?:[0-9a-f]{6})\$',
+     multiLine: false, ignoreCase: true);
 
-  static bool _isValidHexColor(String str) {
-    return _validHexColorRe.hasMatch(str);
-  }
+ static bool _isValidHexColor(String str) {
+   return _validHexColorRe.hasMatch(str);
+ }
 }
 </pre>
 </div>
@@ -147,11 +147,11 @@ factory <strong>RgbColor</strong>(int r, int g, int b) <a class="anchor-link" hr
 <div class="doc">
 <pre class="source">
 factory RgbColor(int r, int g, int b) {
-  _validateComponent(r, 'r');
-  _validateComponent(g, 'g');
-  _validateComponent(b, 'b');
+ _validateComponent(r, 'r');
+ _validateComponent(g, 'g');
+ _validateComponent(b, 'b');
 
-  return new RgbColor._internal(r, g, b);
+ return new RgbColor._internal(r, g, b);
 }
 </pre>
 </div>
@@ -163,13 +163,13 @@ factory <strong>RgbColor.fromHex</strong>(String hexColor) <a class="anchor-link
 <div class="doc">
 <pre class="source">
 factory RgbColor.fromHex(String hexColor) {
-  requireArgumentNotNull(hexColor, 'hexColor');
-  hexColor = _normalizeHex(hexColor);
-  var r = math.parseInt('0x'.concat(hexColor.substring(1, 3)));
-  var g = math.parseInt('0x'.concat(hexColor.substring(3, 5)));
-  var b = math.parseInt('0x'.concat(hexColor.substring(5, 7)));
+ requireArgumentNotNull(hexColor, 'hexColor');
+ hexColor = _normalizeHex(hexColor);
+ var r = math.parseInt('0x'.concat(hexColor.substring(1, 3)));
+ var g = math.parseInt('0x'.concat(hexColor.substring(3, 5)));
+ var b = math.parseInt('0x'.concat(hexColor.substring(5, 7)));
 
-  return new RgbColor(r,g,b);
+ return new RgbColor(r,g,b);
 }
 </pre>
 </div>
@@ -198,6 +198,28 @@ final int         <strong>g</strong> <a class="anchor-link"
         <div class="doc">
 <pre class="source">
 final int r, g, b;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="hashCode">
+<button class="show-code">Code</button>
+final int         <strong>hashCode</strong> <a class="anchor-link"
+            href="#hashCode"
+            title="Permalink to RgbColor.hashCode">#</a>
+        </h4>
+        <div class="doc">
+<div class="inherited">
+<p>Get a hash code for this object.</p>
+<p>All objects have hash codes. Hash codes are guaranteed to be the
+same for objects that are equal when compared using the equality
+operator <code>==</code>. Other than that there are no guarantees about
+the hash codes. They will not be consistent between runs and
+there are no distribution guarantees.</p>
+<p>If a subclass overrides <a class="crossref" href="../bot/RgbColor.html#hashCode">hashCode</a> it should override the
+equality operator as well to maintain consistency.</p>
+<div class="docs-inherited-from">docs inherited from Object </div></div>
+<pre class="source">
+int get hashCode =&gt; Util.getHashCode([r,g,b]);
 </pre>
 </div>
 </div>
@@ -231,7 +253,7 @@ the <a class="crossref" href="../bot/RgbColor.html#hashCode">hashCode</a> method
 <div class="docs-inherited-from">docs inherited from Object </div></div>
 <pre class="source">
 bool operator ==(RgbColor other) {
-  return other != null &amp;&amp; other.r == r &amp;&amp; other.g == g &amp;&amp; other.b == b;
+ return other != null &amp;&amp; other.r == r &amp;&amp; other.g == g &amp;&amp; other.b == b;
 }
 </pre>
 </div>
@@ -239,26 +261,6 @@ bool operator ==(RgbColor other) {
 </div>
 <div>
 <h3>Methods</h3>
-<div class="method"><h4 id="hashCode">
-<button class="show-code">Code</button>
-int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
-              title="Permalink to RgbColor.hashCode">#</a></h4>
-<div class="doc">
-<div class="inherited">
-<p>Get a hash code for this object.</p>
-<p>All objects have hash codes. Hash codes are guaranteed to be the
-same for objects that are equal when compared using the equality
-operator <code>==</code>. Other than that there are no guarantees about
-the hash codes. They will not be consistent between runs and
-there are no distribution guarantees.</p>
-<p>If a subclass overrides <a class="crossref" href="../bot/RgbColor.html#hashCode">hashCode</a> it should override the
-equality operator as well to maintain consistency.</p>
-<div class="docs-inherited-from">docs inherited from Object </div></div>
-<pre class="source">
-int hashCode() =&gt; Util.getHashCode([r,g,b]);
-</pre>
-</div>
-</div>
 <div class="method"><h4 id="toHex">
 <button class="show-code">Code</button>
 String <strong>toHex</strong>() <a class="anchor-link" href="#toHex"
@@ -266,11 +268,11 @@ String <strong>toHex</strong>() <a class="anchor-link" href="#toHex"
 <div class="doc">
 <pre class="source">
 String toHex() {
-  final buffer = new StringBuffer('#');
-  [r,g,b].forEach((c) {
-    buffer.add(_prependZeroIfNecessaryHelper(c.toRadixString(16)));
-  });
-  return buffer.toString();
+ final buffer = new StringBuffer('#');
+ [r,g,b].forEach((c) {
+   buffer.add(_prependZeroIfNecessaryHelper(c.toRadixString(16)));
+ });
+ return buffer.toString();
 }
 </pre>
 </div>
@@ -282,39 +284,39 @@ String toHex() {
 <div class="doc">
 <pre class="source">
 HslColor toHsl() {
-  // First must normalize r, g, b to be between 0 and 1.
-  final normR = r / 255;
-  final normG = g / 255;
-  final normB = b / 255;
-  final max = math.max(normR, math.max(normG, normB));
-  final min = math.min(normR, math.min(normG, normB));
-  // Luminosity is the average of the max and min rgb color intensities.
-  final l = 0.5 * (max + min);
+ // First must normalize r, g, b to be between 0 and 1.
+ final normR = r / 255;
+ final normG = g / 255;
+ final normB = b / 255;
+ final max = math.max(normR, math.max(normG, normB));
+ final min = math.min(normR, math.min(normG, normB));
+ // Luminosity is the average of the max and min rgb color intensities.
+ final l = 0.5 * (max + min);
 
-  double h = 0.0;
-  double s = 0.0;
+ double h = 0.0;
+ double s = 0.0;
 
-  // The hue and saturation are dependent on which color intensity is the max.
-  // If max and min are equal, the color is gray and h and s should be 0.
-  if (max != min) {
-    if (max == normR) {
-      h = 60 * (normG - normB) / (max - min);
-    } else if (max == normG) {
-      h = 60 * (normB - normR) / (max - min) + 120;
-    } else if (max == normB) {
-      h = 60 * (normR - normG) / (max - min) + 240;
-    }
+ // The hue and saturation are dependent on which color intensity is the max.
+ // If max and min are equal, the color is gray and h and s should be 0.
+ if (max != min) {
+   if (max == normR) {
+     h = 60 * (normG - normB) / (max - min);
+   } else if (max == normG) {
+     h = 60 * (normB - normR) / (max - min) + 120;
+   } else if (max == normB) {
+     h = 60 * (normR - normG) / (max - min) + 240;
+   }
 
-    if (0 &lt; l &amp;&amp; l &lt;= 0.5) {
-      s = (max - min) / (2 * l);
-    } else {
-      s = (max - min) / (2 - 2 * l);
-      // handle a nice case where s can be just over 1
-      s = math.min(1.0, s);
-    }
-  }
+   if (0 &lt; l &amp;&amp; l &lt;= 0.5) {
+     s = (max - min) / (2 * l);
+   } else {
+     s = (max - min) / (2 - 2 * l);
+     // handle a nice case where s can be just over 1
+     s = math.min(1.0, s);
+   }
+ }
 
-  return new HslColor(h, s, l);
+ return new HslColor(h, s, l);
 }
 </pre>
 </div>

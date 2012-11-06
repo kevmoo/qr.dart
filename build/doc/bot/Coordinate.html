@@ -34,40 +34,40 @@
 <div class="doc">
 <pre class="source">
 class Coordinate {
-  final num x, y;
+ final num x, y;
 
-  const Coordinate([this.x = 0, this.y = 0]);
+ const Coordinate([this.x = 0, this.y = 0]);
 
-  /**
-   * Computes the distance to another [Coordinate].
-   **/
-  num getDistance (Coordinate other) =&gt; (this - other).length;
+ /**
+  * Computes the distance to another [Coordinate].
+  **/
+ num getDistance (Coordinate other) =&gt; (this - other).length;
 
-  bool get isValid =&gt; isValidNumber(x) &amp;&amp; isValidNumber(y);
+ bool get isValid =&gt; isValidNumber(x) &amp;&amp; isValidNumber(y);
 
-  /**
-   * Subtract a [Coordinate] and returns the result as new [Vector].
-   **/
-  Vector operator -(Coordinate other) =&gt; difference(this, other);
+ /**
+  * Subtract a [Coordinate] and returns the result as new [Vector].
+  **/
+ Vector operator -(Coordinate other) =&gt; difference(this, other);
 
-  Coordinate operator +(Vector other) =&gt;
-      new Coordinate(x + other.x, y + other.y);
+ Coordinate operator +(Vector other) =&gt;
+     new Coordinate(x + other.x, y + other.y);
 
-  Vector toVector() =&gt; new Vector(x, y);
+ Vector toVector() =&gt; new Vector(x, y);
 
-  Size toSize() =&gt; new Size(x, y);
+ Size toSize() =&gt; new Size(x, y);
 
-  bool operator ==(Coordinate other) {
-    return other != null &amp;&amp; x == other.x &amp;&amp; y == other.y;
-  }
+ bool operator ==(Coordinate other) {
+   return other != null &amp;&amp; x == other.x &amp;&amp; y == other.y;
+ }
 
-  static Vector difference(Coordinate a, Coordinate b) {
-    return new Vector(a.x - b.x, a.y - b.y);
-  }
+ static Vector difference(Coordinate a, Coordinate b) {
+   return new Vector(a.x - b.x, a.y - b.y);
+ }
 
-  String toString() =&gt; '{x:${x}, y:${y}}';
+ String toString() =&gt; '{x:${x}, y:${y}}';
 
-  Dynamic toJson() =&gt; { 'x' : x, 'y' : y };
+ dynamic toJson() =&gt; { 'x' : x, 'y' : y };
 }
 </pre>
 </div>
@@ -83,7 +83,7 @@ class Coordinate {
 <div class="doc">
 <pre class="source">
 static Vector difference(Coordinate a, Coordinate b) {
-  return new Vector(a.x - b.x, a.y - b.y);
+ return new Vector(a.x - b.x, a.y - b.y);
 }
 </pre>
 </div>
@@ -150,7 +150,7 @@ final num x, y;
 <div class="doc">
 <pre class="source">
 Coordinate operator +(Vector other) =&gt;
-    new Coordinate(x + other.x, y + other.y);
+   new Coordinate(x + other.x, y + other.y);
 </pre>
 </div>
 </div>
@@ -180,7 +180,7 @@ the <code>hashCode</code> method as well to maintain consistency.</p>
 <div class="docs-inherited-from">docs inherited from Object </div></div>
 <pre class="source">
 bool operator ==(Coordinate other) {
-  return other != null &amp;&amp; x == other.x &amp;&amp; y == other.y;
+ return other != null &amp;&amp; x == other.x &amp;&amp; y == other.y;
 }
 </pre>
 </div>
@@ -205,7 +205,7 @@ num getDistance (Coordinate other) =&gt; (this - other).length;
               title="Permalink to Coordinate.toJson">#</a></h4>
 <div class="doc">
 <pre class="source">
-Dynamic toJson() =&gt; { 'x' : x, 'y' : y };
+dynamic toJson() =&gt; { 'x' : x, 'y' : y };
 </pre>
 </div>
 </div>

@@ -34,56 +34,56 @@
 <div class="doc">
 <pre class="source">
 class Grouping&lt;K extends Hashable, V&gt; {
-  final HashMap&lt;K, List&lt;V&gt;&gt; _values = new HashMap&lt;K, List&lt;V&gt;&gt;();
+ final HashMap&lt;K, List&lt;V&gt;&gt; _values = new HashMap&lt;K, List&lt;V&gt;&gt;();
 
-  Grouping(Iterable&lt;V&gt; source, [Func1&lt;V, K&gt; keyFunc = null]) {
-    if(keyFunc == null) {
-      keyFunc = (v) =&gt; v;
-    }
+ Grouping(Iterable&lt;V&gt; source, [Func1&lt;V, K&gt; keyFunc = null]) {
+   if(keyFunc == null) {
+     keyFunc = (v) =&gt; v;
+   }
 
-    for (final V value in source) {
-      final K key = keyFunc(value);
-      final values = _values.putIfAbsent(key, () =&gt; new List&lt;V&gt;());
-      values.add(value);
-    }
-  }
+   for (final V value in source) {
+     final K key = keyFunc(value);
+     final values = _values.putIfAbsent(key, () =&gt; new List&lt;V&gt;());
+     values.add(value);
+   }
+ }
 
-  /**
-   * Returns whether this map contains the given [key].
-   */
-  bool containsKey(K key) =&gt; _values.containsKey(key);
+ /**
+  * Returns whether this map contains the given [key].
+  */
+ bool containsKey(K key) =&gt; _values.containsKey(key);
 
-  /**
-   * Returns the value for the given [key] or null if [key] is not
-   * in the map. Because null values are supported, one should either
-   * use containsKey to distinguish between an absent key and a null
-   * value, or use the [putIfAbsent] method.
-   */
-  List&lt;V&gt; operator [](K key) =&gt; _values[key];
+ /**
+  * Returns the value for the given [key] or null if [key] is not
+  * in the map. Because null values are supported, one should either
+  * use containsKey to distinguish between an absent key and a null
+  * value, or use the [putIfAbsent] method.
+  */
+ List&lt;V&gt; operator [](K key) =&gt; _values[key];
 
-  /**
-   * Applies [f] to each {key, value} pair of the map.
-   */
-  void forEach(void f(K key, List&lt;V&gt; value)) =&gt; _values.forEach(f);
+ /**
+  * Applies [f] to each {key, value} pair of the map.
+  */
+ void forEach(void f(K key, List&lt;V&gt; value)) =&gt; _values.forEach(f);
 
-  /**
-   * Returns a collection containing all the keys in the map.
-   */
-  Collection&lt;K&gt; getKeys() =&gt; _values.getKeys();
+ /**
+  * Returns a collection containing all the keys in the map.
+  */
+ Collection&lt;K&gt; getKeys() =&gt; _values.keys;
 
-  Enumerable&lt;V&gt; getValues() =&gt; $(_values.getValues()).selectMany((a) =&gt; a);
+ Enumerable&lt;V&gt; getValues() =&gt; $(_values.values).selectMany((a) =&gt; a);
 
-  /**
-   * The number of {key, value} pairs in the map.
-   */
-  int get length =&gt; _values.length;
+ /**
+  * The number of {key, value} pairs in the map.
+  */
+ int get length =&gt; _values.length;
 
-  /**
-   * Returns true if there is no {key, value} pair in the map.
-   */
-  bool get isEmpty =&gt; _values.isEmpty();
+ /**
+  * Returns true if there is no {key, value} pair in the map.
+  */
+ bool get isEmpty =&gt; _values.isEmpty;
 
-  String toString() =&gt; _values.toString();
+ String toString() =&gt; _values.toString();
 }
 </pre>
 </div>
@@ -96,15 +96,15 @@ new <strong>Grouping</strong>(Iterable&lt;<a href="../bot/Grouping.html">V</a>&g
 <div class="doc">
 <pre class="source">
 Grouping(Iterable&lt;V&gt; source, [Func1&lt;V, K&gt; keyFunc = null]) {
-  if(keyFunc == null) {
-    keyFunc = (v) =&gt; v;
-  }
+ if(keyFunc == null) {
+   keyFunc = (v) =&gt; v;
+ }
 
-  for (final V value in source) {
-    final K key = keyFunc(value);
-    final values = _values.putIfAbsent(key, () =&gt; new List&lt;V&gt;());
-    values.add(value);
-  }
+ for (final V value in source) {
+   final K key = keyFunc(value);
+   final values = _values.putIfAbsent(key, () =&gt; new List&lt;V&gt;());
+   values.add(value);
+ }
 }
 </pre>
 </div>
@@ -121,7 +121,7 @@ final bool         <strong>isEmpty</strong> <a class="anchor-link"
         <div class="doc">
 <p>Returns true if there is no {key, value} pair in the map.</p>
 <pre class="source">
-bool get isEmpty =&gt; _values.isEmpty();
+bool get isEmpty =&gt; _values.isEmpty;
 </pre>
 </div>
 </div>
@@ -191,7 +191,7 @@ Collection&lt;<a href="../bot/Grouping.html">K</a>&gt; <strong>getKeys</strong>(
 <div class="doc">
 <p>Returns a collection containing all the keys in the map.</p>
 <pre class="source">
-Collection&lt;K&gt; getKeys() =&gt; _values.getKeys();
+Collection&lt;K&gt; getKeys() =&gt; _values.keys;
 </pre>
 </div>
 </div>
@@ -201,7 +201,7 @@ Collection&lt;K&gt; getKeys() =&gt; _values.getKeys();
               title="Permalink to Grouping&lt;K, V&gt;.getValues">#</a></h4>
 <div class="doc">
 <pre class="source">
-Enumerable&lt;V&gt; getValues() =&gt; $(_values.getValues()).selectMany((a) =&gt; a);
+Enumerable&lt;V&gt; getValues() =&gt; $(_values.values).selectMany((a) =&gt; a);
 </pre>
 </div>
 </div>

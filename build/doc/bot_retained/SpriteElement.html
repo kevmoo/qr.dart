@@ -34,49 +34,49 @@
 <div class="doc">
 <pre class="source">
 class SpriteElement extends ImgElement {
-  final Coordinate startCoordinate;
-  final Vector nextDelta;
-  final int count;
+ final Coordinate startCoordinate;
+ final Vector nextDelta;
+ final int count;
 
-  int _frame = 0;
+ int _frame = 0;
 
-  factory SpriteElement.horizontalFromUrl(String src, num w, num h,
-      int count, num xDelta, [Coordinate start = const Coordinate()]) {
-    final img = new ImageElement(src: src);
+ factory SpriteElement.horizontalFromUrl(String src, num w, num h,
+     int count, num xDelta, [Coordinate start = const Coordinate()]) {
+   final img = new ImageElement(src: src);
 
-    return new SpriteElement(img, w, h, start, new Vector(xDelta, 0), count);
-  }
+   return new SpriteElement(img, w, h, start, new Vector(xDelta, 0), count);
+ }
 
-  SpriteElement(ImageElement image, num width, num height,
-                this.startCoordinate, this.nextDelta, this.count) :
-    super(width, height, image);
+ SpriteElement(ImageElement image, num width, num height,
+               this.startCoordinate, this.nextDelta, this.count) :
+   super(width, height, image);
 
-  void nextFrame() {
-    setFrame(_frame + 1);
-  }
+ void nextFrame() {
+   setFrame(_frame + 1);
+ }
 
-  void previousFrame() {
-    setFrame(_frame - 1);
-  }
+ void previousFrame() {
+   setFrame(_frame - 1);
+ }
 
-  void setFrame(int frame) {
-    _frame = (frame % count);
-    invalidateDraw();
-  }
+ void setFrame(int frame) {
+   _frame = (frame % count);
+   invalidateDraw();
+ }
 
-  void _doDraw(CanvasRenderingContext2D ctx) {
-    final int msPerFrame = 1000 ~/ count;
+ void _doDraw(CanvasRenderingContext2D ctx) {
+   final int msPerFrame = 1000 ~/ count;
 
-    final int currentMS = window.performance.webkitNow().toInt();
+   final int currentMS = window.performance.now().toInt();
 
-    final int theFrame = (currentMS ~/ msPerFrame) % count;
+   final int theFrame = (currentMS ~/ msPerFrame) % count;
 
-    final sourceCoord = startCoordinate + nextDelta * theFrame;
+   final sourceCoord = startCoordinate + nextDelta * theFrame;
 
-    final rect = new Box.fromCoordSize(sourceCoord, size);
+   final rect = new Box.fromCoordSize(sourceCoord, size);
 
-    CanvasUtil.drawImage(ctx, _image, rect);
-  }
+   CanvasUtil.drawImage(ctx, _image, rect);
+ }
 }
 </pre>
 </div>
@@ -92,8 +92,8 @@ new <strong>SpriteElement</strong>(ImageElement image, num width, num height, <a
 <div class="doc">
 <pre class="source">
 SpriteElement(ImageElement image, num width, num height,
-              this.startCoordinate, this.nextDelta, this.count) :
-  super(width, height, image);
+             this.startCoordinate, this.nextDelta, this.count) :
+ super(width, height, image);
 </pre>
 </div>
 </div>
@@ -104,10 +104,10 @@ factory <strong>SpriteElement.horizontalFromUrl</strong>(String src, num w, num 
 <div class="doc">
 <pre class="source">
 factory SpriteElement.horizontalFromUrl(String src, num w, num h,
-    int count, num xDelta, [Coordinate start = const Coordinate()]) {
-  final img = new ImageElement(src: src);
+   int count, num xDelta, [Coordinate start = const Coordinate()]) {
+ final img = new ImageElement(src: src);
 
-  return new SpriteElement(img, w, h, start, new Vector(xDelta, 0), count);
+ return new SpriteElement(img, w, h, start, new Vector(xDelta, 0), count);
 }
 </pre>
 </div>
@@ -163,9 +163,9 @@ num get height =&gt; _height;
 </pre>
 <pre class="source">
 void set height(num value) {
-  assert(isValidNumber(value));
-  _height = value;
-  invalidateDraw();
+ assert(isValidNumber(value));
+ _height = value;
+ invalidateDraw();
 }
 </pre>
 </div>
@@ -230,10 +230,10 @@ Size get size =&gt; new Size(_width, _height);
 </pre>
 <pre class="source">
 void set size(Size value) {
-  assert(value.isValid);
-  _width = value.width;
-  _height = value.height;
-  invalidateDraw();
+ assert(value.isValid);
+ _width = value.width;
+ _height = value.height;
+ invalidateDraw();
 }
 </pre>
 </div>
@@ -262,9 +262,9 @@ num get width =&gt; _width;
 </pre>
 <pre class="source">
 void set width(num value) {
-  assert(isValidNumber(value));
-  _width = value;
-  invalidateDraw();
+ assert(isValidNumber(value));
+ _width = value;
+ invalidateDraw();
 }
 </pre>
 </div>
@@ -279,10 +279,10 @@ void set width(num value) {
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 AffineTransform addTransform(){
-  validateNotDisposed();
-  var tx = new AffineTransform();
-  _transforms.add(tx);
-  return tx;
+ validateNotDisposed();
+ var tx = new AffineTransform();
+ _transforms.add(tx);
+ return tx;
 }
 </pre>
 </div>
@@ -294,12 +294,12 @@ void <strong>dispose</strong>() <a class="anchor-link" href="#dispose"
 <div class="inherited-from">inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div><div class="doc">
 <pre class="source">
 void dispose(){
-  if (!_disposed) {
-    // Set disposed_ to true first, in case during the chain of disposal this
-    // gets disposed recursively.
-    this._disposed = true;
-    this.disposeInternal();
-  }
+ if (!_disposed) {
+   // Set disposed_ to true first, in case during the chain of disposal this
+   // gets disposed recursively.
+   this._disposed = true;
+   this.disposeInternal();
+ }
 }
 </pre>
 </div>
@@ -315,8 +315,8 @@ Subclasses should override this method to implement <code>Disposable</code> beha
 <div class="docs-inherited-from">docs inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div></div>
 <pre class="source">
 void disposeInternal(){
-  super.disposeInternal();
-  _invalidatedEventHandle.dispose();
+ super.disposeInternal();
+ _invalidatedEventHandle.dispose();
 }
 </pre>
 </div>
@@ -328,11 +328,11 @@ void <strong>drawCore</strong>(CanvasRenderingContext2D ctx) <a class="anchor-li
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 void drawCore(CanvasRenderingContext2D ctx){
-  if(cacheEnabled) {
-    _drawCached(ctx);
-  } else {
-    _drawNormal(ctx);
-  }
+ if(cacheEnabled) {
+   _drawCached(ctx);
+ } else {
+   _drawNormal(ctx);
+ }
 }
 </pre>
 </div>
@@ -344,14 +344,14 @@ void <strong>drawOverride</strong>(CanvasRenderingContext2D ctx) <a class="ancho
 <div class="inherited-from">inherited from <a href="../bot_retained/ImgElement.html">ImgElement</a> </div><div class="doc">
 <pre class="source">
 void drawOverride(CanvasRenderingContext2D ctx) {
-  if(_image.complete) {
-    _doDraw(ctx);
-  } else if(!_waitingOnLoad) {
-    _waitingOnLoad = true;
-    // TODO: some day we'll have a way to remove these cleanly
-    //       ...because this handled should be disposed :-/
-    _image.on.load.add(_onImageLoad);
-  }
+ if(_image.complete) {
+   _doDraw(ctx);
+ } else if(!_waitingOnLoad) {
+   _waitingOnLoad = true;
+   // TODO: some day we'll have a way to remove these cleanly
+   //       ...because this handled should be disposed :-/
+   _image.on.load.add(_onImageLoad);
+ }
 }
 </pre>
 </div>
@@ -363,9 +363,9 @@ void drawOverride(CanvasRenderingContext2D ctx) {
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 AffineTransform getTransform() {
-  var tx = new AffineTransform();
-  _transforms.forEach(tx.concatenate);
-  return tx;
+ var tx = new AffineTransform();
+ _transforms.forEach(tx.concatenate);
+ return tx;
 }
 </pre>
 </div>
@@ -377,12 +377,12 @@ AffineTransform getTransform() {
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 AffineTransform getTransformToRoot(){
-  var tx = new AffineTransform();
-  if(_parent != null){
-    tx.concatenate(_parent.getTransformToRoot());
-  }
-  tx.concatenate(getTransform());
-  return tx;
+ var tx = new AffineTransform();
+ if(_parent != null){
+   tx.concatenate(_parent.getTransformToRoot());
+ }
+ tx.concatenate(getTransform());
+ return tx;
 }
 </pre>
 </div>
@@ -394,11 +394,11 @@ void <strong>invalidateDraw</strong>() <a class="anchor-link" href="#invalidateD
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 void invalidateDraw(){
-  validateNotDisposed();
-  if(_lastDrawSize != null){
-    _lastDrawSize = null;
-    _invalidateParent();
-  }
+ validateNotDisposed();
+ if(_lastDrawSize != null){
+   _lastDrawSize = null;
+   _invalidateParent();
+ }
 }
 </pre>
 </div>
@@ -410,7 +410,7 @@ void <strong>nextFrame</strong>() <a class="anchor-link" href="#nextFrame"
 <div class="doc">
 <pre class="source">
 void nextFrame() {
-  setFrame(_frame + 1);
+ setFrame(_frame + 1);
 }
 </pre>
 </div>
@@ -422,7 +422,7 @@ void <strong>previousFrame</strong>() <a class="anchor-link" href="#previousFram
 <div class="doc">
 <pre class="source">
 void previousFrame() {
-  setFrame(_frame - 1);
+ setFrame(_frame - 1);
 }
 </pre>
 </div>
@@ -434,9 +434,9 @@ void <strong>registerParent</strong>(<a href="../bot_retained/ElementParent.html
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 void registerParent(ElementParent parent) {
-  assert(_parent == null);
-  assert(parent != null);
-  _parent = parent;
+ assert(_parent == null);
+ assert(parent != null);
+ _parent = parent;
 }
 </pre>
 </div>
@@ -448,8 +448,8 @@ void <strong>setFrame</strong>(int frame) <a class="anchor-link" href="#setFrame
 <div class="doc">
 <pre class="source">
 void setFrame(int frame) {
-  _frame = (frame % count);
-  invalidateDraw();
+ _frame = (frame % count);
+ invalidateDraw();
 }
 </pre>
 </div>
@@ -471,7 +471,7 @@ void <strong>validateNotDisposed</strong>() <a class="anchor-link" href="#valida
 <div class="inherited-from">inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div><div class="doc">
 <pre class="source">
 void validateNotDisposed() {
-  assert(!_disposed);
+ assert(!_disposed);
 }
 </pre>
 </div>

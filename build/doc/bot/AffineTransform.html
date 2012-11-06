@@ -34,150 +34,150 @@
 <div class="doc">
 <pre class="source">
 class AffineTransform implements Cloneable&lt;AffineTransform&gt; {
-  num _m00, _m10, _m01, _m11, _m02, _m12;
+ num _m00, _m10, _m01, _m11, _m02, _m12;
 
-  AffineTransform([num scaleX = 1, num shearY = 0,
-      num shearX = 0, num scaleY = 1,
-      num translateX = 0, num translateY = 0]) :
-        _m00 = scaleX, _m11 = scaleY,
-        _m02 = translateX, _m12 = translateY,
-        _m01 = shearX, _m10 = shearY;
+ AffineTransform([num scaleX = 1, num shearY = 0,
+     num shearX = 0, num scaleY = 1,
+     num translateX = 0, num translateY = 0]) :
+       _m00 = scaleX, _m11 = scaleY,
+       _m02 = translateX, _m12 = translateY,
+       _m01 = shearX, _m10 = shearY;
 
-  factory AffineTransform.fromRotate(num theta, num x, num y) {
-    return new AffineTransform().setToRotation(theta, x, y);
-  }
+ factory AffineTransform.fromRotate(num theta, num x, num y) {
+   return new AffineTransform().setToRotation(theta, x, y);
+ }
 
-  factory AffineTransform.fromScale(sx, sy) {
-    return new AffineTransform().setToScale(sx, sy);
-  }
+ factory AffineTransform.fromScale(sx, sy) {
+   return new AffineTransform().setToScale(sx, sy);
+ }
 
-  num get scaleX =&gt; _m00;
+ num get scaleX =&gt; _m00;
 
-  num get scaleY =&gt; _m11;
+ num get scaleY =&gt; _m11;
 
-  num get translateX =&gt; _m02;
+ num get translateX =&gt; _m02;
 
-  num get translateY =&gt; _m12;
+ num get translateY =&gt; _m12;
 
-  Vector get translateVector =&gt; new Vector(translateX, translateY);
+ Vector get translateVector =&gt; new Vector(translateX, translateY);
 
-  num get shearX =&gt; _m01;
+ num get shearX =&gt; _m01;
 
-  num get shearY =&gt; _m10;
+ num get shearY =&gt; _m10;
 
-  num get determinant =&gt; _m00 * _m11 - _m01 * _m10;
+ num get determinant =&gt; _m00 * _m11 - _m01 * _m10;
 
-  bool get isIdentity {
-    return _m00 == 1 &amp;&amp; _m10 == 0 &amp;&amp;
-        _m01 == 0 &amp;&amp; _m11 == 1 &amp;&amp;
-        _m02 == 0 &amp;&amp; _m12 == 0;
-  }
+ bool get isIdentity {
+   return _m00 == 1 &amp;&amp; _m10 == 0 &amp;&amp;
+       _m01 == 0 &amp;&amp; _m11 == 1 &amp;&amp;
+       _m02 == 0 &amp;&amp; _m12 == 0;
+ }
 
-  AffineTransform scale(num sx, num sy) {
-    _m00 *= sx;
-    _m10 *= sx;
-    _m01 *= sy;
-    _m11 *= sy;
-    return this;
-  }
+ AffineTransform scale(num sx, num sy) {
+   _m00 *= sx;
+   _m10 *= sx;
+   _m01 *= sy;
+   _m11 *= sy;
+   return this;
+ }
 
-  AffineTransform concatenate(tx) {
-    var m0 = this._m00;
-    var m1 = this._m01;
-    this._m00 = tx._m00 * m0 + tx._m10 * m1;
-    this._m01 = tx._m01 * m0 + tx._m11 * m1;
-    this._m02 += tx._m02 * m0 + tx._m12 * m1;
+ AffineTransform concatenate(tx) {
+   var m0 = this._m00;
+   var m1 = this._m01;
+   this._m00 = tx._m00 * m0 + tx._m10 * m1;
+   this._m01 = tx._m01 * m0 + tx._m11 * m1;
+   this._m02 += tx._m02 * m0 + tx._m12 * m1;
 
-    m0 = this._m10;
-    m1 = this._m11;
-    this._m10 = tx._m00 * m0 + tx._m10 * m1;
-    this._m11 = tx._m01 * m0 + tx._m11 * m1;
-    this._m12 += tx._m02 * m0 + tx._m12 * m1;
-    return this;
-  }
+   m0 = this._m10;
+   m1 = this._m11;
+   this._m10 = tx._m00 * m0 + tx._m10 * m1;
+   this._m11 = tx._m01 * m0 + tx._m11 * m1;
+   this._m12 += tx._m02 * m0 + tx._m12 * m1;
+   return this;
+ }
 
-  AffineTransform rotate(num theta, num x, num y) {
-    return this.concatenate(new AffineTransform.fromRotate(theta, x, y));
-  }
+ AffineTransform rotate(num theta, num x, num y) {
+   return this.concatenate(new AffineTransform.fromRotate(theta, x, y));
+ }
 
-  AffineTransform translate(num dx, num dy) {
-    _m02 += dx * _m00 + dy * _m01;
-    _m12 += dx * _m10 + dy * _m11;
-    return this;
-  }
+ AffineTransform translate(num dx, num dy) {
+   _m02 += dx * _m00 + dy * _m01;
+   _m12 += dx * _m10 + dy * _m11;
+   return this;
+ }
 
-  AffineTransform setToScale(sx, sy) {
-    return setTransform(sx, 0, 0, sy, 0, 0);
-  }
+ AffineTransform setToScale(sx, sy) {
+   return setTransform(sx, 0, 0, sy, 0, 0);
+ }
 
-  AffineTransform setToRotation(num theta, num x, num y) {
-    var cos = math.cos(theta);
-    var sin = math.sin(theta);
-    return this.setTransform(cos, sin, -sin, cos,
-      x - x * cos + y * sin, y - x * sin - y * cos);
-  }
+ AffineTransform setToRotation(num theta, num x, num y) {
+   var cos = math.cos(theta);
+   var sin = math.sin(theta);
+   return this.setTransform(cos, sin, -sin, cos,
+     x - x * cos + y * sin, y - x * sin - y * cos);
+ }
 
-  AffineTransform setToTranslation(num dx, num dy) {
-    return setTransform(1, 0, 0, 1, dx, dy);
-  }
+ AffineTransform setToTranslation(num dx, num dy) {
+   return setTransform(1, 0, 0, 1, dx, dy);
+ }
 
-  // TODO: test!!
-  AffineTransform setFromTransfrom(AffineTransform tx) {
-    requireArgumentNotNull(tx, 'tx');
-    return setTransform(tx._m00, tx._m10,
-      tx._m01, tx._m11,
-      tx._m02, tx._m12);
-  }
+ // TODO: test!!
+ AffineTransform setFromTransfrom(AffineTransform tx) {
+   requireArgumentNotNull(tx, 'tx');
+   return setTransform(tx._m00, tx._m10,
+     tx._m01, tx._m11,
+     tx._m02, tx._m12);
+ }
 
-  AffineTransform setTransform (num m00, num m10, num m01,
-    num m11, num m02, num m12) {
-    this._m00 = m00;
-    this._m10 = m10;
-    this._m01 = m01;
-    this._m11 = m11;
-    this._m02 = m02;
-    this._m12 = m12;
-    return this;
-  }
+ AffineTransform setTransform (num m00, num m10, num m01,
+   num m11, num m02, num m12) {
+   this._m00 = m00;
+   this._m10 = m10;
+   this._m01 = m01;
+   this._m11 = m11;
+   this._m02 = m02;
+   this._m12 = m12;
+   return this;
+ }
 
-  Coordinate transformCoordinate([Coordinate point = const Coordinate()]){
-    num x = point.x * _m00 + point.y * _m01 + _m02;
-    num y = point.x * _m10 + point.y * _m11 + _m12;
+ Coordinate transformCoordinate([Coordinate point = const Coordinate()]){
+   num x = point.x * _m00 + point.y * _m01 + _m02;
+   num y = point.x * _m10 + point.y * _m11 + _m12;
 
-    return new Coordinate(x, y);
-  }
+   return new Coordinate(x, y);
+ }
 
-  AffineTransform createInverse() {
-    num det = determinant;
-    return new AffineTransform(
-        _m11 / det,
-        -_m10 / det,
-        -_m01 / det,
-        _m00 / det,
-        (_m01 * _m12 - _m11 * _m02) / det,
-        (_m10 * _m02 - _m00 * _m12) / det);
-  }
+ AffineTransform createInverse() {
+   num det = determinant;
+   return new AffineTransform(
+       _m11 / det,
+       -_m10 / det,
+       -_m01 / det,
+       _m00 / det,
+       (_m01 * _m12 - _m11 * _m02) / det,
+       (_m10 * _m02 - _m00 * _m12) / det);
+ }
 
-  AffineTransform clone(){
-    return new AffineTransform(_m00, _m10, _m01, _m11, _m02, _m12);
-  }
+ AffineTransform clone(){
+   return new AffineTransform(_m00, _m10, _m01, _m11, _m02, _m12);
+ }
 
-  bool operator ==(AffineTransform other) {
-    return other != null &amp;&amp;
-        _m00 == other._m00 &amp;&amp; _m01 == other._m01 &amp;&amp; _m02 == other._m02 &amp;&amp;
-        _m10 == other._m10 &amp;&amp; _m11 == other._m11 &amp;&amp; _m12 == other._m12;
-  }
+ bool operator ==(AffineTransform other) {
+   return other != null &amp;&amp;
+       _m00 == other._m00 &amp;&amp; _m01 == other._m01 &amp;&amp; _m02 == other._m02 &amp;&amp;
+       _m10 == other._m10 &amp;&amp; _m11 == other._m11 &amp;&amp; _m12 == other._m12;
+ }
 
-  String toString() {
-    final values = [translateX, translateY, scaleX, scaleY, shearX, shearY];
-    return Strings.join($(values).map((n) =&gt; n.toString()).toList(), ', ');
-  }
+ String toString() {
+   final values = [translateX, translateY, scaleX, scaleY, shearX, shearY];
+   return Strings.join($(values).map((n) =&gt; n.toString()).toList(), ', ');
+ }
 }
 </pre>
 </div>
 <h3>Implements</h3>
 <p>
-<span class="type-box"><span class="icon-interface"></span><a href="../bot/Cloneable.html">Cloneable&lt;T&gt;</a></span></p>
+<span class="type-box"><span class="icon-class"></span><a href="../bot/Cloneable.html">Cloneable&lt;T&gt;</a></span></p>
 <div>
 <h3>Constructors</h3>
 <div class="method"><h4 id="AffineTransform">
@@ -187,11 +187,11 @@ new <strong>AffineTransform</strong>([num scaleX = 1, num shearY = 0, num shearX
 <div class="doc">
 <pre class="source">
 AffineTransform([num scaleX = 1, num shearY = 0,
-    num shearX = 0, num scaleY = 1,
-    num translateX = 0, num translateY = 0]) :
-      _m00 = scaleX, _m11 = scaleY,
-      _m02 = translateX, _m12 = translateY,
-      _m01 = shearX, _m10 = shearY;
+   num shearX = 0, num scaleY = 1,
+   num translateX = 0, num translateY = 0]) :
+     _m00 = scaleX, _m11 = scaleY,
+     _m02 = translateX, _m12 = translateY,
+     _m01 = shearX, _m10 = shearY;
 </pre>
 </div>
 </div>
@@ -202,7 +202,7 @@ factory <strong>AffineTransform.fromRotate</strong>(num theta, num x, num y) <a 
 <div class="doc">
 <pre class="source">
 factory AffineTransform.fromRotate(num theta, num x, num y) {
-  return new AffineTransform().setToRotation(theta, x, y);
+ return new AffineTransform().setToRotation(theta, x, y);
 }
 </pre>
 </div>
@@ -214,7 +214,7 @@ factory <strong>AffineTransform.fromScale</strong>(sx, sy) <a class="anchor-link
 <div class="doc">
 <pre class="source">
 factory AffineTransform.fromScale(sx, sy) {
-  return new AffineTransform().setToScale(sx, sy);
+ return new AffineTransform().setToScale(sx, sy);
 }
 </pre>
 </div>
@@ -243,9 +243,9 @@ final bool         <strong>isIdentity</strong> <a class="anchor-link"
         <div class="doc">
 <pre class="source">
 bool get isIdentity {
-  return _m00 == 1 &amp;&amp; _m10 == 0 &amp;&amp;
-      _m01 == 0 &amp;&amp; _m11 == 1 &amp;&amp;
-      _m02 == 0 &amp;&amp; _m12 == 0;
+ return _m00 == 1 &amp;&amp; _m10 == 0 &amp;&amp;
+     _m01 == 0 &amp;&amp; _m11 == 1 &amp;&amp;
+     _m02 == 0 &amp;&amp; _m12 == 0;
 }
 </pre>
 </div>
@@ -352,9 +352,9 @@ the <code>hashCode</code> method as well to maintain consistency.</p>
 <div class="docs-inherited-from">docs inherited from Object </div></div>
 <pre class="source">
 bool operator ==(AffineTransform other) {
-  return other != null &amp;&amp;
-      _m00 == other._m00 &amp;&amp; _m01 == other._m01 &amp;&amp; _m02 == other._m02 &amp;&amp;
-      _m10 == other._m10 &amp;&amp; _m11 == other._m11 &amp;&amp; _m12 == other._m12;
+ return other != null &amp;&amp;
+     _m00 == other._m00 &amp;&amp; _m01 == other._m01 &amp;&amp; _m02 == other._m02 &amp;&amp;
+     _m10 == other._m10 &amp;&amp; _m11 == other._m11 &amp;&amp; _m12 == other._m12;
 }
 </pre>
 </div>
@@ -369,7 +369,7 @@ bool operator ==(AffineTransform other) {
 <div class="doc">
 <pre class="source">
 AffineTransform clone(){
-  return new AffineTransform(_m00, _m10, _m01, _m11, _m02, _m12);
+ return new AffineTransform(_m00, _m10, _m01, _m11, _m02, _m12);
 }
 </pre>
 </div>
@@ -381,18 +381,18 @@ AffineTransform clone(){
 <div class="doc">
 <pre class="source">
 AffineTransform concatenate(tx) {
-  var m0 = this._m00;
-  var m1 = this._m01;
-  this._m00 = tx._m00 * m0 + tx._m10 * m1;
-  this._m01 = tx._m01 * m0 + tx._m11 * m1;
-  this._m02 += tx._m02 * m0 + tx._m12 * m1;
+ var m0 = this._m00;
+ var m1 = this._m01;
+ this._m00 = tx._m00 * m0 + tx._m10 * m1;
+ this._m01 = tx._m01 * m0 + tx._m11 * m1;
+ this._m02 += tx._m02 * m0 + tx._m12 * m1;
 
-  m0 = this._m10;
-  m1 = this._m11;
-  this._m10 = tx._m00 * m0 + tx._m10 * m1;
-  this._m11 = tx._m01 * m0 + tx._m11 * m1;
-  this._m12 += tx._m02 * m0 + tx._m12 * m1;
-  return this;
+ m0 = this._m10;
+ m1 = this._m11;
+ this._m10 = tx._m00 * m0 + tx._m10 * m1;
+ this._m11 = tx._m01 * m0 + tx._m11 * m1;
+ this._m12 += tx._m02 * m0 + tx._m12 * m1;
+ return this;
 }
 </pre>
 </div>
@@ -404,14 +404,14 @@ AffineTransform concatenate(tx) {
 <div class="doc">
 <pre class="source">
 AffineTransform createInverse() {
-  num det = determinant;
-  return new AffineTransform(
-      _m11 / det,
-      -_m10 / det,
-      -_m01 / det,
-      _m00 / det,
-      (_m01 * _m12 - _m11 * _m02) / det,
-      (_m10 * _m02 - _m00 * _m12) / det);
+ num det = determinant;
+ return new AffineTransform(
+     _m11 / det,
+     -_m10 / det,
+     -_m01 / det,
+     _m00 / det,
+     (_m01 * _m12 - _m11 * _m02) / det,
+     (_m10 * _m02 - _m00 * _m12) / det);
 }
 </pre>
 </div>
@@ -423,7 +423,7 @@ AffineTransform createInverse() {
 <div class="doc">
 <pre class="source">
 AffineTransform rotate(num theta, num x, num y) {
-  return this.concatenate(new AffineTransform.fromRotate(theta, x, y));
+ return this.concatenate(new AffineTransform.fromRotate(theta, x, y));
 }
 </pre>
 </div>
@@ -435,11 +435,11 @@ AffineTransform rotate(num theta, num x, num y) {
 <div class="doc">
 <pre class="source">
 AffineTransform scale(num sx, num sy) {
-  _m00 *= sx;
-  _m10 *= sx;
-  _m01 *= sy;
-  _m11 *= sy;
-  return this;
+ _m00 *= sx;
+ _m10 *= sx;
+ _m01 *= sy;
+ _m11 *= sy;
+ return this;
 }
 </pre>
 </div>
@@ -451,10 +451,10 @@ AffineTransform scale(num sx, num sy) {
 <div class="doc">
 <pre class="source">
 AffineTransform setFromTransfrom(AffineTransform tx) {
-  requireArgumentNotNull(tx, 'tx');
-  return setTransform(tx._m00, tx._m10,
-    tx._m01, tx._m11,
-    tx._m02, tx._m12);
+ requireArgumentNotNull(tx, 'tx');
+ return setTransform(tx._m00, tx._m10,
+   tx._m01, tx._m11,
+   tx._m02, tx._m12);
 }
 </pre>
 </div>
@@ -466,10 +466,10 @@ AffineTransform setFromTransfrom(AffineTransform tx) {
 <div class="doc">
 <pre class="source">
 AffineTransform setToRotation(num theta, num x, num y) {
-  var cos = math.cos(theta);
-  var sin = math.sin(theta);
-  return this.setTransform(cos, sin, -sin, cos,
-    x - x * cos + y * sin, y - x * sin - y * cos);
+ var cos = math.cos(theta);
+ var sin = math.sin(theta);
+ return this.setTransform(cos, sin, -sin, cos,
+   x - x * cos + y * sin, y - x * sin - y * cos);
 }
 </pre>
 </div>
@@ -481,7 +481,7 @@ AffineTransform setToRotation(num theta, num x, num y) {
 <div class="doc">
 <pre class="source">
 AffineTransform setToScale(sx, sy) {
-  return setTransform(sx, 0, 0, sy, 0, 0);
+ return setTransform(sx, 0, 0, sy, 0, 0);
 }
 </pre>
 </div>
@@ -493,7 +493,7 @@ AffineTransform setToScale(sx, sy) {
 <div class="doc">
 <pre class="source">
 AffineTransform setToTranslation(num dx, num dy) {
-  return setTransform(1, 0, 0, 1, dx, dy);
+ return setTransform(1, 0, 0, 1, dx, dy);
 }
 </pre>
 </div>
@@ -505,14 +505,14 @@ AffineTransform setToTranslation(num dx, num dy) {
 <div class="doc">
 <pre class="source">
 AffineTransform setTransform (num m00, num m10, num m01,
-  num m11, num m02, num m12) {
-  this._m00 = m00;
-  this._m10 = m10;
-  this._m01 = m01;
-  this._m11 = m11;
-  this._m02 = m02;
-  this._m12 = m12;
-  return this;
+ num m11, num m02, num m12) {
+ this._m00 = m00;
+ this._m10 = m10;
+ this._m01 = m01;
+ this._m11 = m11;
+ this._m02 = m02;
+ this._m12 = m12;
+ return this;
 }
 </pre>
 </div>
@@ -527,8 +527,8 @@ String <strong>toString</strong>() <a class="anchor-link" href="#toString"
 <div class="docs-inherited-from">docs inherited from Object </div></div>
 <pre class="source">
 String toString() {
-  final values = [translateX, translateY, scaleX, scaleY, shearX, shearY];
-  return Strings.join($(values).map((n) =&gt; n.toString()).toList(), ', ');
+ final values = [translateX, translateY, scaleX, scaleY, shearX, shearY];
+ return Strings.join($(values).map((n) =&gt; n.toString()).toList(), ', ');
 }
 </pre>
 </div>
@@ -540,10 +540,10 @@ String toString() {
 <div class="doc">
 <pre class="source">
 Coordinate transformCoordinate([Coordinate point = const Coordinate()]){
-  num x = point.x * _m00 + point.y * _m01 + _m02;
-  num y = point.x * _m10 + point.y * _m11 + _m12;
+ num x = point.x * _m00 + point.y * _m01 + _m02;
+ num y = point.x * _m10 + point.y * _m11 + _m12;
 
-  return new Coordinate(x, y);
+ return new Coordinate(x, y);
 }
 </pre>
 </div>
@@ -555,9 +555,9 @@ Coordinate transformCoordinate([Coordinate point = const Coordinate()]){
 <div class="doc">
 <pre class="source">
 AffineTransform translate(num dx, num dy) {
-  _m02 += dx * _m00 + dy * _m01;
-  _m12 += dx * _m10 + dy * _m11;
-  return this;
+ _m02 += dx * _m00 + dy * _m01;
+ _m12 += dx * _m10 + dy * _m11;
+ return this;
 }
 </pre>
 </div>

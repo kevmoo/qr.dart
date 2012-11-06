@@ -35,18 +35,18 @@
 <pre class="source">
 class AttachedEvent&lt;T&gt; extends Attachable {
 
-  AttachedEvent(String name) : super(name);
+ AttachedEvent(String name) : super(name);
 
-  GlobalId addHandler(AttachableObject obj, Action1&lt;T&gt; handler) {
-    return obj._addHandler(this, handler);
-  }
+ GlobalId addHandler(AttachableObject obj, Action1&lt;T&gt; handler) {
+   return obj._addHandler(this, handler);
+ }
 
-  bool removeHandler(AttachableObject obj, GlobalId handlerId) {
-    requireArgumentNotNull(obj, 'obj');
-    return obj._removeHandler(this, handlerId);
-  }
+ bool removeHandler(AttachableObject obj, GlobalId handlerId) {
+   requireArgumentNotNull(obj, 'obj');
+   return obj._removeHandler(this, handlerId);
+ }
 
-  void fireEvent(AttachableObject obj, T args) =&gt; obj._fireEvent(this, args);
+ void fireEvent(AttachableObject obj, T args) =&gt; obj._fireEvent(this, args);
 }
 </pre>
 </div>
@@ -68,6 +68,28 @@ AttachedEvent(String name) : super(name);
 </div>
 <div class="inherited">
 <h3>Properties</h3>
+<div class="field inherited"><h4 id="hashCode">
+<button class="show-code">Code</button>
+final int         <strong>hashCode</strong> <a class="anchor-link"
+            href="#hashCode"
+            title="Permalink to AttachedEvent&lt;T&gt;.hashCode">#</a>
+        </h4>
+        <div class="inherited-from">inherited from Hashable </div><div class="doc">
+<div class="inherited">
+<p>Get a hash code for this object.</p>
+<p>All objects have hash codes. Hash codes are guaranteed to be the
+same for objects that are equal when compared using the equality
+operator <code>==</code>. Other than that there are no guarantees about
+the hash codes. They will not be consistent between runs and
+there are no distribution guarantees.</p>
+<p>If a subclass overrides <code>hashCode</code> it should override the
+equality operator as well to maintain consistency.</p>
+<div class="docs-inherited-from">docs inherited from Object </div></div>
+<pre class="source">
+abstract int get hashCode;
+</pre>
+</div>
+</div>
 <div class="field inherited"><h4 id="name">
 <button class="show-code">Code</button>
 final String         <strong>name</strong> <a class="anchor-link"
@@ -90,7 +112,7 @@ final String name;
 <div class="doc">
 <pre class="source">
 GlobalId addHandler(AttachableObject obj, Action1&lt;T&gt; handler) {
-  return obj._addHandler(this, handler);
+ return obj._addHandler(this, handler);
 }
 </pre>
 </div>
@@ -105,22 +127,6 @@ void fireEvent(AttachableObject obj, T args) =&gt; obj._fireEvent(this, args);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="hashCode">
-abstract int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
-              title="Permalink to AttachedEvent&lt;T&gt;.hashCode">#</a></h4>
-<div class="inherited-from">inherited from Hashable </div><div class="doc">
-<div class="inherited">
-<p>Get a hash code for this object.</p>
-<p>All objects have hash codes. Hash codes are guaranteed to be the
-same for objects that are equal when compared using the equality
-operator <code>==</code>. Other than that there are no guarantees about
-the hash codes. They will not be consistent between runs and
-there are no distribution guarantees.</p>
-<p>If a subclass overrides <code>hashCode</code> it should override the
-equality operator as well to maintain consistency.</p>
-<div class="docs-inherited-from">docs inherited from Object </div></div>
-</div>
-</div>
 <div class="method"><h4 id="removeHandler">
 <button class="show-code">Code</button>
 bool <strong>removeHandler</strong>(<a href="../bot/AttachableObject.html">AttachableObject</a> obj, <a href="../bot/GlobalId.html">GlobalId</a> handlerId) <a class="anchor-link" href="#removeHandler"
@@ -128,8 +134,8 @@ bool <strong>removeHandler</strong>(<a href="../bot/AttachableObject.html">Attac
 <div class="doc">
 <pre class="source">
 bool removeHandler(AttachableObject obj, GlobalId handlerId) {
-  requireArgumentNotNull(obj, 'obj');
-  return obj._removeHandler(this, handlerId);
+ requireArgumentNotNull(obj, 'obj');
+ return obj._removeHandler(this, handlerId);
 }
 </pre>
 </div>

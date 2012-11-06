@@ -34,55 +34,55 @@
 <div class="doc">
 <pre class="source">
 class Stage extends AttachableObject
-  implements ElementParent {
-  final EventHandle&lt;EventArgs&gt; _invalidatedEventHandle =
-      new EventHandle&lt;EventArgs&gt;();
+ implements ElementParent {
+ final EventHandle&lt;EventArgs&gt; _invalidatedEventHandle =
+     new EventHandle&lt;EventArgs&gt;();
 
-  final CanvasElement _canvas;
-  final PElement _element;
-  CanvasRenderingContext2D _ctx;
+ final CanvasElement _canvas;
+ final PElement _element;
+ CanvasRenderingContext2D _ctx;
 
-  Stage(this._canvas, this._element) {
-    _element.registerParent(this);
-  }
+ Stage(this._canvas, this._element) {
+   _element.registerParent(this);
+ }
 
-  Size get size =&gt; new Size(_canvas.width, _canvas.height);
+ Size get size =&gt; new Size(_canvas.width, _canvas.height);
 
-  EventRoot&lt;EventArgs&gt; get invalidated =&gt; _invalidatedEventHandle;
+ EventRoot&lt;EventArgs&gt; get invalidated =&gt; _invalidatedEventHandle;
 
-  PElement get rootElement =&gt; _element;
+ PElement get rootElement =&gt; _element;
 
-  CanvasRenderingContext2D get ctx {
-    validateNotDisposed();
-    if(_ctx == null) {
-      _ctx = _canvas.context2d;
-    }
-    return _ctx;
-  }
+ CanvasRenderingContext2D get ctx {
+   validateNotDisposed();
+   if(_ctx == null) {
+     _ctx = _canvas.context2d;
+   }
+   return _ctx;
+ }
 
-  bool draw(){
-    validateNotDisposed();
-    if (_ctx == null) {
-      _ctx = _canvas.context2d;
-    } else {
-      this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
-    }
+ bool draw(){
+   validateNotDisposed();
+   if (_ctx == null) {
+     _ctx = _canvas.context2d;
+   } else {
+     this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
+   }
 
-    return this._element._stageDraw(this._ctx);
-  }
+   return this._element._stageDraw(this._ctx);
+ }
 
-  void childInvalidated(PElement child){
-    validateNotDisposed();
-    assert(child == _element);
-    _invalidatedEventHandle.fireEvent(EventArgs.empty);
-  }
+ void childInvalidated(PElement child){
+   validateNotDisposed();
+   assert(child == _element);
+   _invalidatedEventHandle.fireEvent(EventArgs.empty);
+ }
 
-  void disposeInternal(){
-    super.disposeInternal();
-    _invalidatedEventHandle.dispose();
-  }
+ void disposeInternal(){
+   super.disposeInternal();
+   _invalidatedEventHandle.dispose();
+ }
 
-  AffineTransform getTransformToRoot() =&gt; new AffineTransform();
+ AffineTransform getTransformToRoot() =&gt; new AffineTransform();
 }
 </pre>
 </div>
@@ -91,7 +91,7 @@ class Stage extends AttachableObject
 <span class="type-box"><span class="icon-class"></span><a href="../bot/DisposableImpl.html">DisposableImpl</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../bot/AttachableObject.html">AttachableObject</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>Stage</strong></span></p>
 <h3>Implements</h3>
 <p>
-<span class="type-box"><span class="icon-interface"></span><a href="../bot_retained/ElementParent.html">ElementParent</a></span></p>
+<span class="type-box"><span class="icon-class"></span><a href="../bot_retained/ElementParent.html">ElementParent</a></span></p>
 <div>
 <h3>Constructors</h3>
 <div class="method"><h4 id="Stage">
@@ -101,7 +101,7 @@ new <strong>Stage</strong>(CanvasElement _canvas, <a href="../bot_retained/PElem
 <div class="doc">
 <pre class="source">
 Stage(this._canvas, this._element) {
-  _element.registerParent(this);
+ _element.registerParent(this);
 }
 </pre>
 </div>
@@ -118,11 +118,11 @@ final CanvasRenderingContext2D         <strong>ctx</strong> <a class="anchor-lin
         <div class="doc">
 <pre class="source">
 CanvasRenderingContext2D get ctx {
-  validateNotDisposed();
-  if(_ctx == null) {
-    _ctx = _canvas.context2d;
-  }
-  return _ctx;
+ validateNotDisposed();
+ if(_ctx == null) {
+   _ctx = _canvas.context2d;
+ }
+ return _ctx;
 }
 </pre>
 </div>
@@ -185,9 +185,9 @@ void <strong>childInvalidated</strong>(<a href="../bot_retained/PElement.html">P
 <div class="doc">
 <pre class="source">
 void childInvalidated(PElement child){
-  validateNotDisposed();
-  assert(child == _element);
-  _invalidatedEventHandle.fireEvent(EventArgs.empty);
+ validateNotDisposed();
+ assert(child == _element);
+ _invalidatedEventHandle.fireEvent(EventArgs.empty);
 }
 </pre>
 </div>
@@ -199,12 +199,12 @@ void <strong>dispose</strong>() <a class="anchor-link" href="#dispose"
 <div class="inherited-from">inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div><div class="doc">
 <pre class="source">
 void dispose(){
-  if (!_disposed) {
-    // Set disposed_ to true first, in case during the chain of disposal this
-    // gets disposed recursively.
-    this._disposed = true;
-    this.disposeInternal();
-  }
+ if (!_disposed) {
+   // Set disposed_ to true first, in case during the chain of disposal this
+   // gets disposed recursively.
+   this._disposed = true;
+   this.disposeInternal();
+ }
 }
 </pre>
 </div>
@@ -220,8 +220,8 @@ Subclasses should override this method to implement <code>Disposable</code> beha
 <div class="docs-inherited-from">docs inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div></div>
 <pre class="source">
 void disposeInternal(){
-  super.disposeInternal();
-  _invalidatedEventHandle.dispose();
+ super.disposeInternal();
+ _invalidatedEventHandle.dispose();
 }
 </pre>
 </div>
@@ -233,14 +233,14 @@ bool <strong>draw</strong>() <a class="anchor-link" href="#draw"
 <div class="doc">
 <pre class="source">
 bool draw(){
-  validateNotDisposed();
-  if (_ctx == null) {
-    _ctx = _canvas.context2d;
-  } else {
-    this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
-  }
+ validateNotDisposed();
+ if (_ctx == null) {
+   _ctx = _canvas.context2d;
+ } else {
+   this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
+ }
 
-  return this._element._stageDraw(this._ctx);
+ return this._element._stageDraw(this._ctx);
 }
 </pre>
 </div>
@@ -262,7 +262,7 @@ void <strong>validateNotDisposed</strong>() <a class="anchor-link" href="#valida
 <div class="inherited-from">inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div><div class="doc">
 <pre class="source">
 void validateNotDisposed() {
-  assert(!_disposed);
+ assert(!_disposed);
 }
 </pre>
 </div>

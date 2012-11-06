@@ -34,17 +34,17 @@
 <div class="doc">
 <pre class="source">
 class ElementMouseEventArgs extends EventArgs {
-  final PElement element;
-  final bool shiftKey;
+ final PElement element;
+ final bool shiftKey;
 
-  factory ElementMouseEventArgs(PElement element, MouseEvent mouseEvent) {
-    assert(element != null);
-    assert(mouseEvent != null);
+ factory ElementMouseEventArgs(PElement element, MouseEvent mouseEvent) {
+   assert(element != null);
+   assert(mouseEvent != null);
 
-    return new ElementMouseEventArgs._internal(element, mouseEvent.shiftKey);
-  }
+   return new ElementMouseEventArgs._internal(element, mouseEvent.shiftKey);
+ }
 
-  ElementMouseEventArgs._internal(this.element, this.shiftKey);
+ ElementMouseEventArgs._internal(this.element, this.shiftKey);
 }
 </pre>
 </div>
@@ -60,10 +60,10 @@ factory <strong>ElementMouseEventArgs</strong>(<a href="../bot_retained/PElement
 <div class="doc">
 <pre class="source">
 factory ElementMouseEventArgs(PElement element, MouseEvent mouseEvent) {
-  assert(element != null);
-  assert(mouseEvent != null);
+ assert(element != null);
+ assert(mouseEvent != null);
 
-  return new ElementMouseEventArgs._internal(element, mouseEvent.shiftKey);
+ return new ElementMouseEventArgs._internal(element, mouseEvent.shiftKey);
 }
 </pre>
 </div>

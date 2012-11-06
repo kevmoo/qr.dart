@@ -34,29 +34,29 @@
 <div class="doc">
 <pre class="source">
 class CollectionUtil {
-  static bool allUnique(Sequence items) {
-    requireArgumentNotNull(items, 'items');
+ static bool allUnique(Sequence items) {
+   requireArgumentNotNull(items, 'items');
 
-    for(int i = 0; i &lt; items.length; i++) {
-      for(int j = i + 1; j &lt; items.length; j++) {
-        if(items[i] == items[j]) {
-          return false;
-        }
-      }
-    }
-    return true;
-  }
+   for(int i = 0; i &lt; items.length; i++) {
+     for(int j = i + 1; j &lt; items.length; j++) {
+       if(items[i] == items[j]) {
+         return false;
+       }
+     }
+   }
+   return true;
+ }
 
-  static Object aggregate(Iterable source, Object seed, Func2 func) {
-    requireArgumentNotNull(source, 'source');
-    requireArgumentNotNull(func, 'func');
+ static Object aggregate(Iterable source, Object seed, Func2 func) {
+   requireArgumentNotNull(source, 'source');
+   requireArgumentNotNull(func, 'func');
 
-    for (final Object local in source) {
-      seed = func(seed, local);
-    }
+   for (final Object local in source) {
+     seed = func(seed, local);
+   }
 
-    return seed;
-  }
+   return seed;
+ }
 }
 </pre>
 </div>
@@ -69,16 +69,16 @@ bool <strong>allUnique</strong>(Sequence items) <a class="anchor-link" href="#al
 <div class="doc">
 <pre class="source">
 static bool allUnique(Sequence items) {
-  requireArgumentNotNull(items, 'items');
+ requireArgumentNotNull(items, 'items');
 
-  for(int i = 0; i &lt; items.length; i++) {
-    for(int j = i + 1; j &lt; items.length; j++) {
-      if(items[i] == items[j]) {
-        return false;
-      }
-    }
-  }
-  return true;
+ for(int i = 0; i &lt; items.length; i++) {
+   for(int j = i + 1; j &lt; items.length; j++) {
+     if(items[i] == items[j]) {
+       return false;
+     }
+   }
+ }
+ return true;
 }
 </pre>
 </div>
@@ -90,14 +90,14 @@ Object <strong>aggregate</strong>(Iterable source, Object seed, <a href="../bot/
 <div class="doc">
 <pre class="source">
 static Object aggregate(Iterable source, Object seed, Func2 func) {
-  requireArgumentNotNull(source, 'source');
-  requireArgumentNotNull(func, 'func');
+ requireArgumentNotNull(source, 'source');
+ requireArgumentNotNull(func, 'func');
 
-  for (final Object local in source) {
-    seed = func(seed, local);
-  }
+ for (final Object local in source) {
+   seed = func(seed, local);
+ }
 
-  return seed;
+ return seed;
 }
 </pre>
 </div>

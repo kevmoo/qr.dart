@@ -34,60 +34,60 @@
 <div class="doc">
 <pre class="source">
 class Box implements Hashable{
-  final num left, top, width, height;
+ final num left, top, width, height;
 
-  const Box(this.left, this.top, this.width, this.height);
+ const Box(this.left, this.top, this.width, this.height);
 
-  factory Box.fromCoordSize(Coordinate topLeft, Size size) {
-    return new Box(topLeft.x, topLeft.y, size.width, size.height);
-  }
+ factory Box.fromCoordSize(Coordinate topLeft, Size size) {
+   return new Box(topLeft.x, topLeft.y, size.width, size.height);
+ }
 
-  Coordinate get topLeft =&gt; new Coordinate(left, top);
+ Coordinate get topLeft =&gt; new Coordinate(left, top);
 
-  Size get size =&gt; new Size(width, height);
+ Size get size =&gt; new Size(width, height);
 
-  bool get isValid =&gt; topLeft.isValid &amp;&amp; size.isValid;
+ bool get isValid =&gt; topLeft.isValid &amp;&amp; size.isValid;
 
-  num get right =&gt; left + width;
+ num get right =&gt; left + width;
 
-  num get bottom =&gt; top + height;
+ num get bottom =&gt; top + height;
 
-  bool contains(Coordinate point){
-    return point.x &gt;= left &amp;&amp;
-        point.x &lt;= left + width &amp;&amp;
-        point.y &gt;= top &amp;&amp;
-        point.y &lt;= top + height;
-  }
+ bool contains(Coordinate point){
+   return point.x &gt;= left &amp;&amp;
+       point.x &lt;= left + width &amp;&amp;
+       point.y &gt;= top &amp;&amp;
+       point.y &lt;= top + height;
+ }
 
-  // TODO: test!!
-  Coordinate constrain(Coordinate value) {
-    requireArgumentNotNull(value, 'value');
-    requireArgument(value.isValid, 'value');
-    assert(isValid);
+ // TODO: test!!
+ Coordinate constrain(Coordinate value) {
+   requireArgumentNotNull(value, 'value');
+   requireArgument(value.isValid, 'value');
+   assert(isValid);
 
-    final x = math.min(right, math.max(left, value.x));
-    final y = math.min(bottom, math.max(top, value.y));
+   final x = math.min(right, math.max(left, value.x));
+   final y = math.min(bottom, math.max(top, value.y));
 
-    return new Coordinate(x, y);
-  }
+   return new Coordinate(x, y);
+ }
 
-  List&lt;Coordinate&gt; getCorners() {
-    return [
-      new Coordinate(left, top),
-      new Coordinate(left + width, top),
-      new Coordinate(left + width, top + height),
-      new Coordinate(left, top + height)
-    ];
-  }
+ List&lt;Coordinate&gt; getCorners() {
+   return [
+     new Coordinate(left, top),
+     new Coordinate(left + width, top),
+     new Coordinate(left + width, top + height),
+     new Coordinate(left, top + height)
+   ];
+ }
 
-  bool operator ==(Box other) {
-    return other != null &amp;&amp; other.left == left &amp;&amp; other.top == top &amp;&amp;
-        other.width == width &amp;&amp; other.height == height;
-  }
+ bool operator ==(Box other) {
+   return other != null &amp;&amp; other.left == left &amp;&amp; other.top == top &amp;&amp;
+       other.width == width &amp;&amp; other.height == height;
+ }
 
-  String toString() =&gt; "Location: $topLeft, Size: $size";
+ String toString() =&gt; "Location: $topLeft, Size: $size";
 
-  int hashCode() =&gt; Util.getHashCode([left, top, width, height]);
+ int get hashCode =&gt; Util.getHashCode([left, top, width, height]);
 }
 </pre>
 </div>
@@ -113,7 +113,7 @@ factory <strong>Box.fromCoordSize</strong>(<a href="../bot/Coordinate.html">Coor
 <div class="doc">
 <pre class="source">
 factory Box.fromCoordSize(Coordinate topLeft, Size size) {
-  return new Box(topLeft.x, topLeft.y, size.width, size.height);
+ return new Box(topLeft.x, topLeft.y, size.width, size.height);
 }
 </pre>
 </div>
@@ -130,6 +130,28 @@ final num         <strong>bottom</strong> <a class="anchor-link"
         <div class="doc">
 <pre class="source">
 num get bottom =&gt; top + height;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="hashCode">
+<button class="show-code">Code</button>
+final int         <strong>hashCode</strong> <a class="anchor-link"
+            href="#hashCode"
+            title="Permalink to Box.hashCode">#</a>
+        </h4>
+        <div class="doc">
+<div class="inherited">
+<p>Get a hash code for this object.</p>
+<p>All objects have hash codes. Hash codes are guaranteed to be the
+same for objects that are equal when compared using the equality
+operator <code>==</code>. Other than that there are no guarantees about
+the hash codes. They will not be consistent between runs and
+there are no distribution guarantees.</p>
+<p>If a subclass overrides <a class="crossref" href="../bot/Box.html#hashCode">hashCode</a> it should override the
+equality operator as well to maintain consistency.</p>
+<div class="docs-inherited-from">docs inherited from Object </div></div>
+<pre class="source">
+int get hashCode =&gt; Util.getHashCode([left, top, width, height]);
 </pre>
 </div>
 </div>
@@ -247,8 +269,8 @@ the <a class="crossref" href="../bot/Box.html#hashCode">hashCode</a> method as w
 <div class="docs-inherited-from">docs inherited from Object </div></div>
 <pre class="source">
 bool operator ==(Box other) {
-  return other != null &amp;&amp; other.left == left &amp;&amp; other.top == top &amp;&amp;
-      other.width == width &amp;&amp; other.height == height;
+ return other != null &amp;&amp; other.left == left &amp;&amp; other.top == top &amp;&amp;
+     other.width == width &amp;&amp; other.height == height;
 }
 </pre>
 </div>
@@ -263,14 +285,14 @@ bool operator ==(Box other) {
 <div class="doc">
 <pre class="source">
 Coordinate constrain(Coordinate value) {
-  requireArgumentNotNull(value, 'value');
-  requireArgument(value.isValid, 'value');
-  assert(isValid);
+ requireArgumentNotNull(value, 'value');
+ requireArgument(value.isValid, 'value');
+ assert(isValid);
 
-  final x = math.min(right, math.max(left, value.x));
-  final y = math.min(bottom, math.max(top, value.y));
+ final x = math.min(right, math.max(left, value.x));
+ final y = math.min(bottom, math.max(top, value.y));
 
-  return new Coordinate(x, y);
+ return new Coordinate(x, y);
 }
 </pre>
 </div>
@@ -282,10 +304,10 @@ bool <strong>contains</strong>(<a href="../bot/Coordinate.html">Coordinate</a> p
 <div class="doc">
 <pre class="source">
 bool contains(Coordinate point){
-  return point.x &gt;= left &amp;&amp;
-      point.x &lt;= left + width &amp;&amp;
-      point.y &gt;= top &amp;&amp;
-      point.y &lt;= top + height;
+ return point.x &gt;= left &amp;&amp;
+     point.x &lt;= left + width &amp;&amp;
+     point.y &gt;= top &amp;&amp;
+     point.y &lt;= top + height;
 }
 </pre>
 </div>
@@ -297,33 +319,13 @@ List&lt;<a href="../bot/Coordinate.html">Coordinate</a>&gt; <strong>getCorners</
 <div class="doc">
 <pre class="source">
 List&lt;Coordinate&gt; getCorners() {
-  return [
-    new Coordinate(left, top),
-    new Coordinate(left + width, top),
-    new Coordinate(left + width, top + height),
-    new Coordinate(left, top + height)
-  ];
+ return [
+   new Coordinate(left, top),
+   new Coordinate(left + width, top),
+   new Coordinate(left + width, top + height),
+   new Coordinate(left, top + height)
+ ];
 }
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="hashCode">
-<button class="show-code">Code</button>
-int <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
-              title="Permalink to Box.hashCode">#</a></h4>
-<div class="doc">
-<div class="inherited">
-<p>Get a hash code for this object.</p>
-<p>All objects have hash codes. Hash codes are guaranteed to be the
-same for objects that are equal when compared using the equality
-operator <code>==</code>. Other than that there are no guarantees about
-the hash codes. They will not be consistent between runs and
-there are no distribution guarantees.</p>
-<p>If a subclass overrides <a class="crossref" href="../bot/Box.html#hashCode">hashCode</a> it should override the
-equality operator as well to maintain consistency.</p>
-<div class="docs-inherited-from">docs inherited from Object </div></div>
-<pre class="source">
-int hashCode() =&gt; Util.getHashCode([left, top, width, height]);
 </pre>
 </div>
 </div>

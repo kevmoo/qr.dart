@@ -35,50 +35,50 @@
 <pre class="source">
 abstract class NumberEnumerable&lt;T extends num&gt; extends Enumerable&lt;T&gt; {
 
-  const NumberEnumerable() : super();
+ const NumberEnumerable() : super();
 
-  factory NumberEnumerable.from(Iterable&lt;T&gt; source) {
-    requireArgumentNotNull(source, 'source');
-    return new _SimpleNumEnumerable&lt;T&gt;(source);
-  }
+ factory NumberEnumerable.from(Iterable&lt;T&gt; source) {
+   requireArgumentNotNull(source, 'source');
+   return new _SimpleNumEnumerable&lt;T&gt;(source);
+ }
 
-  factory NumberEnumerable.fromRange(int start, int count) {
-    return new _RangeEnumerable(start, count);
-  }
+ factory NumberEnumerable.fromRange(int start, int count) {
+   return new _RangeEnumerable(start, count);
+ }
 
-  num sum() {
-    num theSum = 0;
-    for(final n in this) {
-      theSum += n;
-    }
-    return theSum;
-  }
+ num sum() {
+   num theSum = 0;
+   for(final n in this) {
+     theSum += n;
+   }
+   return theSum;
+ }
 
-  num average() {
-    int theCount = 0;
-    num theSum = 0;
-    for(final n in this) {
-      theSum += n;
-      theCount++;
-    }
-    return theSum / theCount;
-  }
+ num average() {
+   int theCount = 0;
+   num theSum = 0;
+   for(final n in this) {
+     theSum += n;
+     theCount++;
+   }
+   return theSum / theCount;
+ }
 
-  num max() {
-    num theMax = null;
-    for(final n in this) {
-      theMax = theMax == null ? n : math.max(theMax, n);
-    }
-    return theMax;
-  }
+ num max() {
+   num theMax = null;
+   for(final n in this) {
+     theMax = theMax == null ? n : math.max(theMax, n);
+   }
+   return theMax;
+ }
 
-  num min() {
-    num theMin = null;
-    for(final n in this) {
-      theMin = theMin == null ? n : math.min(theMin, n);
-    }
-    return theMin;
-  }
+ num min() {
+   num theMin = null;
+   for(final n in this) {
+     theMin = theMin == null ? n : math.min(theMin, n);
+   }
+   return theMin;
+ }
 }
 </pre>
 </div>
@@ -104,8 +104,8 @@ factory <strong>NumberEnumerable.from</strong>(Iterable&lt;<a href="../bot/Numbe
 <div class="doc">
 <pre class="source">
 factory NumberEnumerable.from(Iterable&lt;T&gt; source) {
-  requireArgumentNotNull(source, 'source');
-  return new _SimpleNumEnumerable&lt;T&gt;(source);
+ requireArgumentNotNull(source, 'source');
+ return new _SimpleNumEnumerable&lt;T&gt;(source);
 }
 </pre>
 </div>
@@ -117,8 +117,23 @@ factory <strong>NumberEnumerable.fromRange</strong>(int start, int count) <a cla
 <div class="doc">
 <pre class="source">
 factory NumberEnumerable.fromRange(int start, int count) {
-  return new _RangeEnumerable(start, count);
+ return new _RangeEnumerable(start, count);
 }
+</pre>
+</div>
+</div>
+</div>
+<div class="inherited">
+<h3>Properties</h3>
+<div class="field inherited"><h4 id="isEmpty">
+<button class="show-code">Code</button>
+final bool         <strong>isEmpty</strong> <a class="anchor-link"
+            href="#isEmpty"
+            title="Permalink to NumberEnumerable&lt;T&gt;.isEmpty">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
+<pre class="source">
+bool get isEmpty =&gt; !some((e) =&gt; true);
 </pre>
 </div>
 </div>
@@ -132,8 +147,8 @@ Object <strong>aggregate</strong>(Object seed, <a href="../bot/Func2.html">Func2
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 Object aggregate(Object seed, Func2&lt;Object, T, Object&gt; f) {
-  requireArgumentNotNull(f, 'f');
-  return CollectionUtil.aggregate(this, seed, f);
+ requireArgumentNotNull(f, 'f');
+ return CollectionUtil.aggregate(this, seed, f);
 }
 </pre>
 </div>
@@ -145,13 +160,13 @@ num <strong>average</strong>() <a class="anchor-link" href="#average"
 <div class="doc">
 <pre class="source">
 num average() {
-  int theCount = 0;
-  num theSum = 0;
-  for(final n in this) {
-    theSum += n;
-    theCount++;
-  }
-  return theSum / theCount;
+ int theCount = 0;
+ num theSum = 0;
+ for(final n in this) {
+   theSum += n;
+   theCount++;
+ }
+ return theSum / theCount;
 }
 </pre>
 </div>
@@ -163,12 +178,12 @@ bool <strong>contains</strong>(<a href="../bot/NumberEnumerable.html">T</a> item
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 bool contains(T item) {
-  for (final e in this) {
-    if(e == item) {
-      return true;
-    }
-  }
-  return false;
+ for (final e in this) {
+   if(e == item) {
+     return true;
+   }
+ }
+ return false;
 }
 </pre>
 </div>
@@ -180,16 +195,16 @@ int <strong>count</strong>([<a href="../bot/Func1.html">Func1</a> f = null]) <a 
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 int count([Func1&lt;T, bool&gt; f = null]) {
-  if(f == null) {
-    f = (a) =&gt; true;
-  }
-  int c = 0;
-  for(final e in this) {
-    if(f(e)) {
-      c++;
-    }
-  }
-  return c;
+ if(f == null) {
+   f = (a) =&gt; true;
+ }
+ int c = 0;
+ for(final e in this) {
+   if(f(e)) {
+     c++;
+   }
+ }
+ return c;
 }
 </pre>
 </div>
@@ -201,10 +216,10 @@ int count([Func1&lt;T, bool&gt; f = null]) {
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 Enumerable&lt;T&gt; distinct([Func2&lt;T, T, bool&gt; comparer = null]) {
-  if(comparer == null) {
-    comparer = (a,b) =&gt; a == b;
-  }
-  return new _FuncEnumerable(this, (s) =&gt; new _DistinctIterator(s, comparer));
+ if(comparer == null) {
+   comparer = (a,b) =&gt; a == b;
+ }
+ return new _FuncEnumerable(this, (s) =&gt; new _DistinctIterator(s, comparer));
 }
 </pre>
 </div>
@@ -219,13 +234,13 @@ predicate
 <span class="param">f</span>. Returns false otherwise.</p>
 <pre class="source">
 bool every(Func1&lt;T, bool&gt; f) {
-  requireArgumentNotNull(f, 'f');
-  for (final e in this) {
-    if(!f(e)) {
-      return false;
-    }
-  }
-  return true;
+ requireArgumentNotNull(f, 'f');
+ for (final e in this) {
+   if(!f(e)) {
+     return false;
+   }
+ }
+ return true;
 }
 </pre>
 </div>
@@ -237,10 +252,10 @@ bool every(Func1&lt;T, bool&gt; f) {
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 Enumerable&lt;T&gt; exclude(Iterable&lt;T&gt; items) {
-  requireArgumentNotNull(items, 'items');
-  final iEnum = $(items);
-  Func1&lt;T, bool&gt; f = (e) =&gt; !iEnum.contains(e);
-  return new _FuncEnumerable(this, (s) =&gt; new _WhereIterator&lt;T&gt;(s, f));
+ requireArgumentNotNull(items, 'items');
+ final iEnum = $(items);
+ Func1&lt;T, bool&gt; f = (e) =&gt; !iEnum.contains(e);
+ return new _FuncEnumerable(this, (s) =&gt; new _WhereIterator&lt;T&gt;(s, f));
 }
 </pre>
 </div>
@@ -252,8 +267,8 @@ Enumerable&lt;T&gt; exclude(Iterable&lt;T&gt; items) {
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 Enumerable&lt;T&gt; filter(Func1&lt;T, bool&gt; f) {
-  requireArgumentNotNull(f, 'f');
-  return new _FuncEnumerable(this, (s) =&gt; new _WhereIterator&lt;T&gt;(s, f));
+ requireArgumentNotNull(f, 'f');
+ return new _FuncEnumerable(this, (s) =&gt; new _WhereIterator&lt;T&gt;(s, f));
 }
 </pre>
 </div>
@@ -265,14 +280,14 @@ Enumerable&lt;T&gt; filter(Func1&lt;T, bool&gt; f) {
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 T first([Func1&lt;T, bool&gt; f = null]) {
-  if(f == null) {
-    f = (e) =&gt; true;
-  }
-  final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
-  if(!iter.hasNext()) {
-    throw const InvalidOperationException('The input sequence is empty.');
-  }
-  return iter.next();
+ if(f == null) {
+   f = (e) =&gt; true;
+ }
+ final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
+ if(!iter.hasNext) {
+   throw const InvalidOperationException('The input sequence is empty.');
+ }
+ return iter.next();
 }
 </pre>
 </div>
@@ -284,14 +299,14 @@ T first([Func1&lt;T, bool&gt; f = null]) {
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 T firstOrDefault([Func1&lt;T, bool&gt; f = null, T defaultValue = null]) {
-  if(f == null) {
-    f = (e) =&gt; true;
-  }
-  final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
-  if(!iter.hasNext()) {
-    return defaultValue;
-  }
-  return iter.next();
+ if(f == null) {
+   f = (e) =&gt; true;
+ }
+ final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
+ if(!iter.hasNext) {
+   return defaultValue;
+ }
+ return iter.next();
 }
 </pre>
 </div>
@@ -303,9 +318,9 @@ void <strong>forEach</strong>(<a href="../bot/Action1.html">Action1</a> f) <a cl
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 void forEach(Action1&lt;T&gt; f) {
-  for(final e in this) {
-    f(e);
-  }
+ for(final e in this) {
+   f(e);
+ }
 }
 </pre>
 </div>
@@ -317,10 +332,10 @@ void <strong>forEachWithIndex</strong>(<a href="../bot/Action2.html">Action2</a>
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 void forEachWithIndex(Action2&lt;T, int&gt; f) {
-  int i = 0;
-  for(final e in this) {
-    f(e, i++);
-  }
+ int i = 0;
+ for(final e in this) {
+   f(e, i++);
+ }
 }
 </pre>
 </div>
@@ -331,19 +346,9 @@ void forEachWithIndex(Action2&lt;T, int&gt; f) {
               title="Permalink to NumberEnumerable&lt;T&gt;.group">#</a></h4>
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
-Grouping&lt;Dynamic, T&gt; group([Func1&lt;T, Object&gt; keyFunc = null]) {
-  return new Grouping(this, keyFunc);
+Grouping&lt;dynamic, T&gt; group([Func1&lt;T, Object&gt; keyFunc = null]) {
+ return new Grouping(this, keyFunc);
 }
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="isEmpty">
-<button class="show-code">Code</button>
-bool <strong>isEmpty</strong>() <a class="anchor-link" href="#isEmpty"
-              title="Permalink to NumberEnumerable&lt;T&gt;.isEmpty">#</a></h4>
-<div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
-<pre class="source">
-bool isEmpty() =&gt; !some((e) =&gt; true);
 </pre>
 </div>
 </div>
@@ -363,14 +368,14 @@ String <strong>join</strong>([String separator = ', ']) <a class="anchor-link" h
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 String join([String separator = ', ']) {
-  final StringBuffer sb = new StringBuffer();
-  for(final e in this) {
-    if(sb.length &gt; 0) {
-      sb.add(separator);
-    }
-    sb.add(e);
-  }
-  return sb.toString();
+ final StringBuffer sb = new StringBuffer();
+ for(final e in this) {
+   if(sb.length &gt; 0) {
+     sb.add(separator);
+   }
+   sb.add(e);
+ }
+ return sb.toString();
 }
 </pre>
 </div>
@@ -387,8 +392,8 @@ type and consequently the returned collection's
 typeis Collection.</p>
 <pre class="source">
 Enumerable map(Func1&lt;T, Object&gt; f) {
-  requireArgumentNotNull(f, 'f');
-  return new _FuncEnumerable(this, (s) =&gt; new _SelectIterator&lt;T, Object&gt;(s, f));
+ requireArgumentNotNull(f, 'f');
+ return new _FuncEnumerable(this, (s) =&gt; new _SelectIterator&lt;T, Object&gt;(s, f));
 }
 </pre>
 </div>
@@ -400,11 +405,11 @@ num <strong>max</strong>() <a class="anchor-link" href="#max"
 <div class="doc">
 <pre class="source">
 num max() {
-  num theMax = null;
-  for(final n in this) {
-    theMax = theMax == null ? n : math.max(theMax, n);
-  }
-  return theMax;
+ num theMax = null;
+ for(final n in this) {
+   theMax = theMax == null ? n : math.max(theMax, n);
+ }
+ return theMax;
 }
 </pre>
 </div>
@@ -416,11 +421,11 @@ num <strong>min</strong>() <a class="anchor-link" href="#min"
 <div class="doc">
 <pre class="source">
 num min() {
-  num theMin = null;
-  for(final n in this) {
-    theMin = theMin == null ? n : math.min(theMin, n);
-  }
-  return theMin;
+ num theMin = null;
+ for(final n in this) {
+   theMin = theMin == null ? n : math.min(theMin, n);
+ }
+ return theMin;
 }
 </pre>
 </div>
@@ -439,9 +444,9 @@ create a new value from the previous one and an element.</p>
 <p>Example of calculating the sum of a collection:</p>
 <p>  collection.reduce(0, (prev, element) => prev + element);</p>
 <pre class="source">
-Dynamic reduce(Dynamic initialValue,
-               Dynamic combine(Dynamic previousValue, T element)) {
-  return Collections.reduce(this, initialValue, combine);
+dynamic reduce(dynamic initialValue,
+              dynamic combine(dynamic previousValue, T element)) {
+ return Collections.reduce(this, initialValue, combine);
 }
 </pre>
 </div>
@@ -453,9 +458,9 @@ Dynamic reduce(Dynamic initialValue,
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 Enumerable selectMany(Func1&lt;T, Iterable&gt; f) {
-  requireArgumentNotNull(f, 'f');
-  return new _FuncEnumerable(this,
-    (s) =&gt; new _SelectManyIterator._internal(s, f));
+ requireArgumentNotNull(f, 'f');
+ return new _FuncEnumerable(this,
+   (s) =&gt; new _SelectManyIterator._internal(s, f));
 }
 </pre>
 </div>
@@ -467,8 +472,8 @@ Enumerable selectMany(Func1&lt;T, Iterable&gt; f) {
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 NumberEnumerable selectNumbers(Func1&lt;T, num&gt; f) {
-  requireArgumentNotNull(f, 'f');
-  return new _FuncNumEnumerable&lt;T&gt;(this, (s) =&gt; new _SelectIterator&lt;T, num&gt;(s, f));
+ requireArgumentNotNull(f, 'f');
+ return new _FuncNumEnumerable&lt;T&gt;(this, (s) =&gt; new _SelectIterator&lt;T, num&gt;(s, f));
 }
 </pre>
 </div>
@@ -480,18 +485,18 @@ NumberEnumerable selectNumbers(Func1&lt;T, num&gt; f) {
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 T single([Func1&lt;T, bool&gt; f = null]) {
-  if(f == null) {
-    f = (e) =&gt; true;
-  }
-  final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
-  if(!iter.hasNext()) {
-    throw const InvalidOperationException('The input sequence is empty.');
-  }
-  final value = iter.next();
-  if(iter.hasNext()) {
-    throw const InvalidOperationException('The input sequence contains more than one element.');
-  }
-  return value;
+ if(f == null) {
+   f = (e) =&gt; true;
+ }
+ final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
+ if(!iter.hasNext) {
+   throw const InvalidOperationException('The input sequence is empty.');
+ }
+ final value = iter.next();
+ if(iter.hasNext) {
+   throw const InvalidOperationException('The input sequence contains more than one element.');
+ }
+ return value;
 }
 </pre>
 </div>
@@ -503,18 +508,18 @@ T single([Func1&lt;T, bool&gt; f = null]) {
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 T singleOrDefault([Func1&lt;T, bool&gt; f = null, T defaultValue = null]) {
-  if(f == null) {
-    f = (e) =&gt; true;
-  }
-  final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
-  if(!iter.hasNext()) {
-    return defaultValue;
-  }
-  final value = iter.next();
-  if(iter.hasNext()) {
-    throw const InvalidOperationException('The input sequence contains more than one element.');
-  }
-  return value;
+ if(f == null) {
+   f = (e) =&gt; true;
+ }
+ final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
+ if(!iter.hasNext) {
+   return defaultValue;
+ }
+ final value = iter.next();
+ if(iter.hasNext) {
+   throw const InvalidOperationException('The input sequence contains more than one element.');
+ }
+ return value;
 }
 </pre>
 </div>
@@ -529,13 +534,13 @@ predicate
 <span class="param">f</span>. Returns false otherwise.</p>
 <pre class="source">
 bool some(Func1&lt;T, bool&gt; f) {
-  requireArgumentNotNull(f, 'f');
-  for (final e in this) {
-    if(f(e)) {
-      return true;
-    }
-  }
-  return false;
+ requireArgumentNotNull(f, 'f');
+ for (final e in this) {
+   if(f(e)) {
+     return true;
+   }
+ }
+ return false;
 }
 </pre>
 </div>
@@ -547,11 +552,11 @@ num <strong>sum</strong>() <a class="anchor-link" href="#sum"
 <div class="doc">
 <pre class="source">
 num sum() {
-  num theSum = 0;
-  for(final n in this) {
-    theSum += n;
-  }
-  return theSum;
+ num theSum = 0;
+ for(final n in this) {
+   theSum += n;
+ }
+ return theSum;
 }
 </pre>
 </div>
@@ -563,19 +568,19 @@ HashMap <strong>toHashMap</strong>(<a href="../bot/Func1.html">Func1</a> valueFu
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 HashMap toHashMap(Func1&lt;T, Object&gt; valueFunc, [Func1&lt;T, Hashable&gt; keyFunc]) {
-  if(keyFunc == null) {
-    keyFunc = (a) =&gt; a;
-  }
+ if(keyFunc == null) {
+   keyFunc = (a) =&gt; a;
+ }
 
-  final map = new HashMap();
-  for(final e in this) {
-    final k = keyFunc(e);
-    if(map.containsKey(k)) {
-      throw new UnsupportedOperationException("The key '$k' is duplicated");
-    }
-    map[k] = valueFunc(e);
-  }
-  return map;
+ final map = new HashMap();
+ for(final e in this) {
+   final k = keyFunc(e);
+   if(map.containsKey(k)) {
+     throw new UnsupportedError("The key '$k' is duplicated");
+   }
+   map[k] = valueFunc(e);
+ }
+ return map;
 }
 </pre>
 </div>
@@ -587,11 +592,11 @@ HashSet <strong>toHashSet</strong>([<a href="../bot/Func1.html">Func1</a> f]) <a
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 HashSet toHashSet([Func1&lt;T, Hashable&gt; f]) {
-  if(f == null) {
-    return new HashSet.from(this);
-  } else {
-    return new HashSet.from(this.map(f));
-  }
+ if(f == null) {
+   return new HashSet.from(this);
+ } else {
+   return new HashSet.from(this.map(f));
+ }
 }
 </pre>
 </div>

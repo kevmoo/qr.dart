@@ -35,135 +35,135 @@
 <pre class="source">
 abstract class ListBase&lt;T&gt; extends Enumerable&lt;T&gt; implements SequenceCollection&lt;T&gt; {
 
-  const ListBase();
+ const ListBase();
 
-  //
-  // Iterable bits
-  //
-  /**
-   * Returns an [Iterator] that iterates over this [Iterable] object.
-   */
-  Iterator&lt;T&gt; iterator() {
-    return new IndexIterator&lt;T&gt;(length, (i) =&gt; this[i]);
-  }
+ //
+ // Iterable bits
+ //
+ /**
+  * Returns an [Iterator] that iterates over this [Iterable] object.
+  */
+ Iterator&lt;T&gt; iterator() {
+   return new IndexIterator&lt;T&gt;(length, (i) =&gt; this[i]);
+ }
 
-  //
-  // Collection bits
-  //
-  /**
-   * Applies the function [f] to each element of this collection.
-   */
-  void forEach(void f(T element)) {
-    for(var i = 0; i &lt; length; i++) {
-      f(this[i]);
-    }
-  }
+ //
+ // Collection bits
+ //
+ /**
+  * Applies the function [f] to each element of this collection.
+  */
+ void forEach(void f(T element)) {
+   for(var i = 0; i &lt; length; i++) {
+     f(this[i]);
+   }
+ }
 
-  /**
-   * Returns true if every elements of this collection satisify the
-   * predicate [f]. Returns false otherwise.
-   */
-  bool every(bool f(T element)) {
-    for (var i = 0; i &lt; length; i++) {
-      if(!f(this[i])) {
-        return false;
-      }
-    }
-    return true;
-  }
+ /**
+  * Returns true if every elements of this collection satisify the
+  * predicate [f]. Returns false otherwise.
+  */
+ bool every(bool f(T element)) {
+   for (var i = 0; i &lt; length; i++) {
+     if(!f(this[i])) {
+       return false;
+     }
+   }
+   return true;
+ }
 
-  /**
-   * Returns true if one element of this collection satisfies the
-   * predicate [f]. Returns false otherwise.
-   */
-  bool some(bool f(T element)) {
-    for (var i = 0; i &lt; length; i++) {
-      if(f(this[i])) {
-        return true;
-      }
-    }
-    return false;
-  }
+ /**
+  * Returns true if one element of this collection satisfies the
+  * predicate [f]. Returns false otherwise.
+  */
+ bool some(bool f(T element)) {
+   for (var i = 0; i &lt; length; i++) {
+     if(f(this[i])) {
+       return true;
+     }
+   }
+   return false;
+ }
 
-  /**
-   * Returns true if there is no element in this collection.
-   */
-  bool isEmpty() =&gt; length == 0;
+ /**
+  * Returns true if there is no element in this collection.
+  */
+ bool get isEmpty =&gt; length == 0;
 
-  /**
-   * Returns the number of elements in this collection.
-   */
-  abstract int get length;
+ /**
+  * Returns the number of elements in this collection.
+  */
+ int get length;
 
-  /**
-   * Returns the element at the given [index] in the list or throws
-   * an [IndexOutOfRangeException] if [index] is out of bounds.
-   */
-  abstract T operator [](int index);
+ /**
+  * Returns the element at the given [index] in the list or throws
+  * an [IndexOutOfRangeException] if [index] is out of bounds.
+  */
+ T operator [](int index);
 
-  /**
-   * Returns the first index of [element] in the list. Searches the
-   * list from index [start] to the length of the list. Returns
-   * -1 if [element] is not found.
-   */
-  int indexOf(T element, [int start=0]) {
-    for (var i = start; i &lt; length; i++) {
-      if(this[i] == element) {
-        return i;
-      }
-    }
-    return -1;
-  }
+ /**
+  * Returns the first index of [element] in the list. Searches the
+  * list from index [start] to the length of the list. Returns
+  * -1 if [element] is not found.
+  */
+ int indexOf(T element, [int start=0]) {
+   for (var i = start; i &lt; length; i++) {
+     if(this[i] == element) {
+       return i;
+     }
+   }
+   return -1;
+ }
 
-  /**
-   * Returns the last index of [element] in the list. Searches the
-   * list from index [start] to 0. Returns -1 if [element] is not found.
-   */
-  int lastIndexOf(T element, [int start=0]) {
-    // DARTBUG: having trouble testing this in the compiler. :-/
-    var lastIndex = -1;
-    for (var i = start; i &lt; length; i++) {
-      if(this[i] == element) {
-        lastIndex = i;
-      }
-    }
-    return lastIndex;
-  }
+ /**
+  * Returns the last index of [element] in the list. Searches the
+  * list from index [start] to 0. Returns -1 if [element] is not found.
+  */
+ int lastIndexOf(T element, [int start=0]) {
+   // DARTBUG: having trouble testing this in the compiler. :-/
+   var lastIndex = -1;
+   for (var i = start; i &lt; length; i++) {
+     if(this[i] == element) {
+       lastIndex = i;
+     }
+   }
+   return lastIndex;
+ }
 
-  /**
-   * Returns the last element of the list, or throws an out of bounds
-   * exception if the list is empty.
-   */
-  T last() =&gt; this[this.length-1];
+ /**
+  * Returns the last element of the list, or throws an out of bounds
+  * exception if the list is empty.
+  */
+ T last() =&gt; this[this.length-1];
 
-  /**
-   * Returns a new list containing [itemCount] elements from the list,
-   * starting at [start].
-   * Returns an empty list if [itemCount] is 0.
-   * Throws an [IllegalArgumentException] if [itemCount] is negative.
-   * Throws an [IndexOutOfRangeException] if [start] or
-   * [:start + itemCount - 1:] are out of range.
-   */
-  List&lt;T&gt; getRange(int start, int itemCount)  {
-    requireArgument(itemCount &gt;= 0, 'count');
+ /**
+  * Returns a new list containing [itemCount] elements from the list,
+  * starting at [start].
+  * Returns an empty list if [itemCount] is 0.
+  * Throws an [IllegalArgumentException] if [itemCount] is negative.
+  * Throws an [IndexOutOfRangeException] if [start] or
+  * [:start + itemCount - 1:] are out of range.
+  */
+ List&lt;T&gt; getRange(int start, int itemCount)  {
+   requireArgument(itemCount &gt;= 0, 'count');
 
-    final lastIndex = start + itemCount - 1;
+   final lastIndex = start + itemCount - 1;
 
-    if(itemCount &gt; 0) {
-      if(start &lt; 0) {
-        throw new IndexOutOfRangeException(start);
-      }
-      else if(lastIndex &gt;= length) {
-        throw new IndexOutOfRangeException(lastIndex);
-      }
-    }
+   if(itemCount &gt; 0) {
+     if(start &lt; 0) {
+       throw new IndexOutOfRangeException(start);
+     }
+     else if(lastIndex &gt;= length) {
+       throw new IndexOutOfRangeException(lastIndex);
+     }
+   }
 
-    var list = new List&lt;T&gt;();
-    for(var i = start; i &lt;= lastIndex; i++) {
-      list.add(this[i]);
-    }
-    return list;
-  }
+   var list = new List&lt;T&gt;();
+   for(var i = start; i &lt;= lastIndex; i++) {
+     list.add(this[i]);
+   }
+   return list;
+ }
 }
 </pre>
 </div>
@@ -191,6 +191,19 @@ const ListBase();
 </div>
 <div>
 <h3>Properties</h3>
+<div class="field"><h4 id="isEmpty">
+<button class="show-code">Code</button>
+final bool         <strong>isEmpty</strong> <a class="anchor-link"
+            href="#isEmpty"
+            title="Permalink to ListBase&lt;T&gt;.isEmpty">#</a>
+        </h4>
+        <div class="doc">
+<p>Returns true if there is no element in this collection.</p>
+<pre class="source">
+bool get isEmpty =&gt; length == 0;
+</pre>
+</div>
+</div>
 <div class="field"><h4 id="length">
 <button class="show-code">Code</button>
 final int         <strong>length</strong> <a class="anchor-link"
@@ -200,7 +213,7 @@ final int         <strong>length</strong> <a class="anchor-link"
         <div class="doc">
 <p>Returns the number of elements in this collection.</p>
 <pre class="source">
-abstract int get length;
+int get length;
 </pre>
 </div>
 </div>
@@ -227,8 +240,8 @@ Object <strong>aggregate</strong>(Object seed, <a href="../bot/Func2.html">Func2
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 Object aggregate(Object seed, Func2&lt;Object, T, Object&gt; f) {
-  requireArgumentNotNull(f, 'f');
-  return CollectionUtil.aggregate(this, seed, f);
+ requireArgumentNotNull(f, 'f');
+ return CollectionUtil.aggregate(this, seed, f);
 }
 </pre>
 </div>
@@ -240,12 +253,12 @@ bool <strong>contains</strong>(<a href="../bot/ListBase.html">T</a> item) <a cla
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 bool contains(T item) {
-  for (final e in this) {
-    if(e == item) {
-      return true;
-    }
-  }
-  return false;
+ for (final e in this) {
+   if(e == item) {
+     return true;
+   }
+ }
+ return false;
 }
 </pre>
 </div>
@@ -257,16 +270,16 @@ int <strong>count</strong>([<a href="../bot/Func1.html">Func1</a> f = null]) <a 
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 int count([Func1&lt;T, bool&gt; f = null]) {
-  if(f == null) {
-    f = (a) =&gt; true;
-  }
-  int c = 0;
-  for(final e in this) {
-    if(f(e)) {
-      c++;
-    }
-  }
-  return c;
+ if(f == null) {
+   f = (a) =&gt; true;
+ }
+ int c = 0;
+ for(final e in this) {
+   if(f(e)) {
+     c++;
+   }
+ }
+ return c;
 }
 </pre>
 </div>
@@ -278,10 +291,10 @@ int count([Func1&lt;T, bool&gt; f = null]) {
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 Enumerable&lt;T&gt; distinct([Func2&lt;T, T, bool&gt; comparer = null]) {
-  if(comparer == null) {
-    comparer = (a,b) =&gt; a == b;
-  }
-  return new _FuncEnumerable(this, (s) =&gt; new _DistinctIterator(s, comparer));
+ if(comparer == null) {
+   comparer = (a,b) =&gt; a == b;
+ }
+ return new _FuncEnumerable(this, (s) =&gt; new _DistinctIterator(s, comparer));
 }
 </pre>
 </div>
@@ -296,12 +309,12 @@ predicate
 <span class="param">f</span>. Returns false otherwise.</p>
 <pre class="source">
 bool every(bool f(T element)) {
-  for (var i = 0; i &lt; length; i++) {
-    if(!f(this[i])) {
-      return false;
-    }
-  }
-  return true;
+ for (var i = 0; i &lt; length; i++) {
+   if(!f(this[i])) {
+     return false;
+   }
+ }
+ return true;
 }
 </pre>
 </div>
@@ -313,10 +326,10 @@ bool every(bool f(T element)) {
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 Enumerable&lt;T&gt; exclude(Iterable&lt;T&gt; items) {
-  requireArgumentNotNull(items, 'items');
-  final iEnum = $(items);
-  Func1&lt;T, bool&gt; f = (e) =&gt; !iEnum.contains(e);
-  return new _FuncEnumerable(this, (s) =&gt; new _WhereIterator&lt;T&gt;(s, f));
+ requireArgumentNotNull(items, 'items');
+ final iEnum = $(items);
+ Func1&lt;T, bool&gt; f = (e) =&gt; !iEnum.contains(e);
+ return new _FuncEnumerable(this, (s) =&gt; new _WhereIterator&lt;T&gt;(s, f));
 }
 </pre>
 </div>
@@ -328,8 +341,8 @@ Enumerable&lt;T&gt; exclude(Iterable&lt;T&gt; items) {
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 Enumerable&lt;T&gt; filter(Func1&lt;T, bool&gt; f) {
-  requireArgumentNotNull(f, 'f');
-  return new _FuncEnumerable(this, (s) =&gt; new _WhereIterator&lt;T&gt;(s, f));
+ requireArgumentNotNull(f, 'f');
+ return new _FuncEnumerable(this, (s) =&gt; new _WhereIterator&lt;T&gt;(s, f));
 }
 </pre>
 </div>
@@ -341,14 +354,14 @@ Enumerable&lt;T&gt; filter(Func1&lt;T, bool&gt; f) {
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 T first([Func1&lt;T, bool&gt; f = null]) {
-  if(f == null) {
-    f = (e) =&gt; true;
-  }
-  final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
-  if(!iter.hasNext()) {
-    throw const InvalidOperationException('The input sequence is empty.');
-  }
-  return iter.next();
+ if(f == null) {
+   f = (e) =&gt; true;
+ }
+ final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
+ if(!iter.hasNext) {
+   throw const InvalidOperationException('The input sequence is empty.');
+ }
+ return iter.next();
 }
 </pre>
 </div>
@@ -360,14 +373,14 @@ T first([Func1&lt;T, bool&gt; f = null]) {
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 T firstOrDefault([Func1&lt;T, bool&gt; f = null, T defaultValue = null]) {
-  if(f == null) {
-    f = (e) =&gt; true;
-  }
-  final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
-  if(!iter.hasNext()) {
-    return defaultValue;
-  }
-  return iter.next();
+ if(f == null) {
+   f = (e) =&gt; true;
+ }
+ final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
+ if(!iter.hasNext) {
+   return defaultValue;
+ }
+ return iter.next();
 }
 </pre>
 </div>
@@ -381,9 +394,9 @@ void <strong>forEach</strong>(void f(<a href="../bot/ListBase.html">T</a> elemen
 <span class="param">f</span> to each element of this collection.</p>
 <pre class="source">
 void forEach(void f(T element)) {
-  for(var i = 0; i &lt; length; i++) {
-    f(this[i]);
-  }
+ for(var i = 0; i &lt; length; i++) {
+   f(this[i]);
+ }
 }
 </pre>
 </div>
@@ -395,10 +408,10 @@ void <strong>forEachWithIndex</strong>(<a href="../bot/Action2.html">Action2</a>
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 void forEachWithIndex(Action2&lt;T, int&gt; f) {
-  int i = 0;
-  for(final e in this) {
-    f(e, i++);
-  }
+ int i = 0;
+ for(final e in this) {
+   f(e, i++);
+ }
 }
 </pre>
 </div>
@@ -421,24 +434,24 @@ Throws an <code>IndexOutOfRangeException</code> if
 <code>start + itemCount - 1</code> are out of range.</p>
 <pre class="source">
 List&lt;T&gt; getRange(int start, int itemCount)  {
-  requireArgument(itemCount &gt;= 0, 'count');
+ requireArgument(itemCount &gt;= 0, 'count');
 
-  final lastIndex = start + itemCount - 1;
+ final lastIndex = start + itemCount - 1;
 
-  if(itemCount &gt; 0) {
-    if(start &lt; 0) {
-      throw new IndexOutOfRangeException(start);
-    }
-    else if(lastIndex &gt;= length) {
-      throw new IndexOutOfRangeException(lastIndex);
-    }
-  }
+ if(itemCount &gt; 0) {
+   if(start &lt; 0) {
+     throw new IndexOutOfRangeException(start);
+   }
+   else if(lastIndex &gt;= length) {
+     throw new IndexOutOfRangeException(lastIndex);
+   }
+ }
 
-  var list = new List&lt;T&gt;();
-  for(var i = start; i &lt;= lastIndex; i++) {
-    list.add(this[i]);
-  }
-  return list;
+ var list = new List&lt;T&gt;();
+ for(var i = start; i &lt;= lastIndex; i++) {
+   list.add(this[i]);
+ }
+ return list;
 }
 </pre>
 </div>
@@ -449,8 +462,8 @@ List&lt;T&gt; getRange(int start, int itemCount)  {
               title="Permalink to ListBase&lt;T&gt;.group">#</a></h4>
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
-Grouping&lt;Dynamic, T&gt; group([Func1&lt;T, Object&gt; keyFunc = null]) {
-  return new Grouping(this, keyFunc);
+Grouping&lt;dynamic, T&gt; group([Func1&lt;T, Object&gt; keyFunc = null]) {
+ return new Grouping(this, keyFunc);
 }
 </pre>
 </div>
@@ -468,24 +481,13 @@ list from index
 <span class="param">element</span> is not found.</p>
 <pre class="source">
 int indexOf(T element, [int start=0]) {
-  for (var i = start; i &lt; length; i++) {
-    if(this[i] == element) {
-      return i;
-    }
-  }
-  return -1;
+ for (var i = start; i &lt; length; i++) {
+   if(this[i] == element) {
+     return i;
+   }
+ }
+ return -1;
 }
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="isEmpty">
-<button class="show-code">Code</button>
-bool <strong>isEmpty</strong>() <a class="anchor-link" href="#isEmpty"
-              title="Permalink to ListBase&lt;T&gt;.isEmpty">#</a></h4>
-<div class="doc">
-<p>Returns true if there is no element in this collection.</p>
-<pre class="source">
-bool isEmpty() =&gt; length == 0;
 </pre>
 </div>
 </div>
@@ -497,7 +499,7 @@ Iterator&lt;<a href="../bot/ListBase.html">T</a>&gt; <strong>iterator</strong>()
 <p>Returns an <code>Iterator</code> that iterates over this <code>Iterable</code> object.</p>
 <pre class="source">
 Iterator&lt;T&gt; iterator() {
-  return new IndexIterator&lt;T&gt;(length, (i) =&gt; this[i]);
+ return new IndexIterator&lt;T&gt;(length, (i) =&gt; this[i]);
 }
 </pre>
 </div>
@@ -509,14 +511,14 @@ String <strong>join</strong>([String separator = ', ']) <a class="anchor-link" h
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 String join([String separator = ', ']) {
-  final StringBuffer sb = new StringBuffer();
-  for(final e in this) {
-    if(sb.length &gt; 0) {
-      sb.add(separator);
-    }
-    sb.add(e);
-  }
-  return sb.toString();
+ final StringBuffer sb = new StringBuffer();
+ for(final e in this) {
+   if(sb.length &gt; 0) {
+     sb.add(separator);
+   }
+   sb.add(e);
+ }
+ return sb.toString();
 }
 </pre>
 </div>
@@ -545,14 +547,14 @@ list from index
 <span class="param">element</span> is not found.</p>
 <pre class="source">
 int lastIndexOf(T element, [int start=0]) {
-  // DARTBUG: having trouble testing this in the compiler. :-/
-  var lastIndex = -1;
-  for (var i = start; i &lt; length; i++) {
-    if(this[i] == element) {
-      lastIndex = i;
-    }
-  }
-  return lastIndex;
+ // DARTBUG: having trouble testing this in the compiler. :-/
+ var lastIndex = -1;
+ for (var i = start; i &lt; length; i++) {
+   if(this[i] == element) {
+     lastIndex = i;
+   }
+ }
+ return lastIndex;
 }
 </pre>
 </div>
@@ -569,8 +571,8 @@ type and consequently the returned collection's
 typeis Collection.</p>
 <pre class="source">
 Enumerable map(Func1&lt;T, Object&gt; f) {
-  requireArgumentNotNull(f, 'f');
-  return new _FuncEnumerable(this, (s) =&gt; new _SelectIterator&lt;T, Object&gt;(s, f));
+ requireArgumentNotNull(f, 'f');
+ return new _FuncEnumerable(this, (s) =&gt; new _SelectIterator&lt;T, Object&gt;(s, f));
 }
 </pre>
 </div>
@@ -589,9 +591,9 @@ create a new value from the previous one and an element.</p>
 <p>Example of calculating the sum of a collection:</p>
 <p>  collection.reduce(0, (prev, element) => prev + element);</p>
 <pre class="source">
-Dynamic reduce(Dynamic initialValue,
-               Dynamic combine(Dynamic previousValue, T element)) {
-  return Collections.reduce(this, initialValue, combine);
+dynamic reduce(dynamic initialValue,
+              dynamic combine(dynamic previousValue, T element)) {
+ return Collections.reduce(this, initialValue, combine);
 }
 </pre>
 </div>
@@ -603,9 +605,9 @@ Dynamic reduce(Dynamic initialValue,
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 Enumerable selectMany(Func1&lt;T, Iterable&gt; f) {
-  requireArgumentNotNull(f, 'f');
-  return new _FuncEnumerable(this,
-    (s) =&gt; new _SelectManyIterator._internal(s, f));
+ requireArgumentNotNull(f, 'f');
+ return new _FuncEnumerable(this,
+   (s) =&gt; new _SelectManyIterator._internal(s, f));
 }
 </pre>
 </div>
@@ -617,8 +619,8 @@ Enumerable selectMany(Func1&lt;T, Iterable&gt; f) {
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 NumberEnumerable selectNumbers(Func1&lt;T, num&gt; f) {
-  requireArgumentNotNull(f, 'f');
-  return new _FuncNumEnumerable&lt;T&gt;(this, (s) =&gt; new _SelectIterator&lt;T, num&gt;(s, f));
+ requireArgumentNotNull(f, 'f');
+ return new _FuncNumEnumerable&lt;T&gt;(this, (s) =&gt; new _SelectIterator&lt;T, num&gt;(s, f));
 }
 </pre>
 </div>
@@ -630,18 +632,18 @@ NumberEnumerable selectNumbers(Func1&lt;T, num&gt; f) {
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 T single([Func1&lt;T, bool&gt; f = null]) {
-  if(f == null) {
-    f = (e) =&gt; true;
-  }
-  final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
-  if(!iter.hasNext()) {
-    throw const InvalidOperationException('The input sequence is empty.');
-  }
-  final value = iter.next();
-  if(iter.hasNext()) {
-    throw const InvalidOperationException('The input sequence contains more than one element.');
-  }
-  return value;
+ if(f == null) {
+   f = (e) =&gt; true;
+ }
+ final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
+ if(!iter.hasNext) {
+   throw const InvalidOperationException('The input sequence is empty.');
+ }
+ final value = iter.next();
+ if(iter.hasNext) {
+   throw const InvalidOperationException('The input sequence contains more than one element.');
+ }
+ return value;
 }
 </pre>
 </div>
@@ -653,18 +655,18 @@ T single([Func1&lt;T, bool&gt; f = null]) {
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 T singleOrDefault([Func1&lt;T, bool&gt; f = null, T defaultValue = null]) {
-  if(f == null) {
-    f = (e) =&gt; true;
-  }
-  final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
-  if(!iter.hasNext()) {
-    return defaultValue;
-  }
-  final value = iter.next();
-  if(iter.hasNext()) {
-    throw const InvalidOperationException('The input sequence contains more than one element.');
-  }
-  return value;
+ if(f == null) {
+   f = (e) =&gt; true;
+ }
+ final iter = new _WhereIterator&lt;T&gt;(this.iterator(), f);
+ if(!iter.hasNext) {
+   return defaultValue;
+ }
+ final value = iter.next();
+ if(iter.hasNext) {
+   throw const InvalidOperationException('The input sequence contains more than one element.');
+ }
+ return value;
 }
 </pre>
 </div>
@@ -679,12 +681,12 @@ predicate
 <span class="param">f</span>. Returns false otherwise.</p>
 <pre class="source">
 bool some(bool f(T element)) {
-  for (var i = 0; i &lt; length; i++) {
-    if(f(this[i])) {
-      return true;
-    }
-  }
-  return false;
+ for (var i = 0; i &lt; length; i++) {
+   if(f(this[i])) {
+     return true;
+   }
+ }
+ return false;
 }
 </pre>
 </div>
@@ -696,19 +698,19 @@ HashMap <strong>toHashMap</strong>(<a href="../bot/Func1.html">Func1</a> valueFu
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 HashMap toHashMap(Func1&lt;T, Object&gt; valueFunc, [Func1&lt;T, Hashable&gt; keyFunc]) {
-  if(keyFunc == null) {
-    keyFunc = (a) =&gt; a;
-  }
+ if(keyFunc == null) {
+   keyFunc = (a) =&gt; a;
+ }
 
-  final map = new HashMap();
-  for(final e in this) {
-    final k = keyFunc(e);
-    if(map.containsKey(k)) {
-      throw new UnsupportedOperationException("The key '$k' is duplicated");
-    }
-    map[k] = valueFunc(e);
-  }
-  return map;
+ final map = new HashMap();
+ for(final e in this) {
+   final k = keyFunc(e);
+   if(map.containsKey(k)) {
+     throw new UnsupportedError("The key '$k' is duplicated");
+   }
+   map[k] = valueFunc(e);
+ }
+ return map;
 }
 </pre>
 </div>
@@ -720,11 +722,11 @@ HashSet <strong>toHashSet</strong>([<a href="../bot/Func1.html">Func1</a> f]) <a
 <div class="inherited-from">inherited from <a href="../bot/Enumerable.html">Enumerable</a> </div><div class="doc">
 <pre class="source">
 HashSet toHashSet([Func1&lt;T, Hashable&gt; f]) {
-  if(f == null) {
-    return new HashSet.from(this);
-  } else {
-    return new HashSet.from(this.map(f));
-  }
+ if(f == null) {
+   return new HashSet.from(this);
+ } else {
+   return new HashSet.from(this.map(f));
+ }
 }
 </pre>
 </div>

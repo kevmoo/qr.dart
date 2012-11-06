@@ -34,53 +34,53 @@
 <div class="doc">
 <pre class="source">
 class TextureAnimationElement extends PElement {
-  final TextureData _textureData;
-  final List&lt;TextureAnimationRequest&gt; _requests = new List&lt;TextureAnimationRequest&gt;();
+ final TextureData _textureData;
+ final List&lt;TextureAnimationRequest&gt; _requests = new List&lt;TextureAnimationRequest&gt;();
 
-  TextureAnimationElement(num width, num height, this._textureData) :
-    super(width, height);
+ TextureAnimationElement(num width, num height, this._textureData) :
+   super(width, height);
 
-  void add(TextureAnimationRequest request) {
-    assert(request != null);
-    assert(request.fresh);
-    _requests.add(request);
-    invalidateDraw();
-  }
+ void add(TextureAnimationRequest request) {
+   assert(request != null);
+   assert(request.fresh);
+   _requests.add(request);
+   invalidateDraw();
+ }
 
-  void update() {
+ void update() {
 
-    var toRemove = new List&lt;TextureAnimationRequest&gt;();
-    for(final r in _requests) {
-      r.update();
-      assert(!r.fresh);
-      if(r.done) {
-        toRemove.add(r);
-      }
-    }
+   var toRemove = new List&lt;TextureAnimationRequest&gt;();
+   for(final r in _requests) {
+     r.update();
+     assert(!r.fresh);
+     if(r.done) {
+       toRemove.add(r);
+     }
+   }
 
-    for(final r in toRemove) {
-      final i = _requests.indexOf(r, 0);
-      assert(i &gt;= 0);
-      _requests.removeRange(i, 1);
-    }
+   for(final r in toRemove) {
+     final i = _requests.indexOf(r, 0);
+     assert(i &gt;= 0);
+     _requests.removeRange(i, 1);
+   }
 
-    if(_requests.length &gt; 0) {
-      invalidateDraw();
-    }
-  }
+   if(_requests.length &gt; 0) {
+     invalidateDraw();
+   }
+ }
 
-  void drawOverride(CanvasRenderingContext2D ctx) {
-    for(final r in _requests) {
-      final data = r._getFrameDetails();
-      final offset = data.item1;
-      final frameName = data.item2;
+ void drawOverride(CanvasRenderingContext2D ctx) {
+   for(final r in _requests) {
+     final data = r._getFrameDetails();
+     final offset = data.item1;
+     final frameName = data.item2;
 
-      ctx.save();
-      ctx.translate(offset.x, offset.y);
-      _textureData.drawTextureKeyAt(ctx, frameName);
-      ctx.restore();
-    }
-  }
+     ctx.save();
+     ctx.translate(offset.x, offset.y);
+     _textureData.drawTextureKeyAt(ctx, frameName);
+     ctx.restore();
+   }
+ }
 }
 </pre>
 </div>
@@ -96,7 +96,7 @@ new <strong>TextureAnimationElement</strong>(num width, num height, <a href="../
 <div class="doc">
 <pre class="source">
 TextureAnimationElement(num width, num height, this._textureData) :
-  super(width, height);
+ super(width, height);
 </pre>
 </div>
 </div>
@@ -139,9 +139,9 @@ num get height =&gt; _height;
 </pre>
 <pre class="source">
 void set height(num value) {
-  assert(isValidNumber(value));
-  _height = value;
-  invalidateDraw();
+ assert(isValidNumber(value));
+ _height = value;
+ invalidateDraw();
 }
 </pre>
 </div>
@@ -194,10 +194,10 @@ Size get size =&gt; new Size(_width, _height);
 </pre>
 <pre class="source">
 void set size(Size value) {
-  assert(value.isValid);
-  _width = value.width;
-  _height = value.height;
-  invalidateDraw();
+ assert(value.isValid);
+ _width = value.width;
+ _height = value.height;
+ invalidateDraw();
 }
 </pre>
 </div>
@@ -214,9 +214,9 @@ num get width =&gt; _width;
 </pre>
 <pre class="source">
 void set width(num value) {
-  assert(isValidNumber(value));
-  _width = value;
-  invalidateDraw();
+ assert(isValidNumber(value));
+ _width = value;
+ invalidateDraw();
 }
 </pre>
 </div>
@@ -231,10 +231,10 @@ void <strong>add</strong>(<a href="../bot_texture/TextureAnimationRequest.html">
 <div class="doc">
 <pre class="source">
 void add(TextureAnimationRequest request) {
-  assert(request != null);
-  assert(request.fresh);
-  _requests.add(request);
-  invalidateDraw();
+ assert(request != null);
+ assert(request.fresh);
+ _requests.add(request);
+ invalidateDraw();
 }
 </pre>
 </div>
@@ -246,10 +246,10 @@ void add(TextureAnimationRequest request) {
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 AffineTransform addTransform(){
-  validateNotDisposed();
-  var tx = new AffineTransform();
-  _transforms.add(tx);
-  return tx;
+ validateNotDisposed();
+ var tx = new AffineTransform();
+ _transforms.add(tx);
+ return tx;
 }
 </pre>
 </div>
@@ -261,12 +261,12 @@ void <strong>dispose</strong>() <a class="anchor-link" href="#dispose"
 <div class="inherited-from">inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div><div class="doc">
 <pre class="source">
 void dispose(){
-  if (!_disposed) {
-    // Set disposed_ to true first, in case during the chain of disposal this
-    // gets disposed recursively.
-    this._disposed = true;
-    this.disposeInternal();
-  }
+ if (!_disposed) {
+   // Set disposed_ to true first, in case during the chain of disposal this
+   // gets disposed recursively.
+   this._disposed = true;
+   this.disposeInternal();
+ }
 }
 </pre>
 </div>
@@ -282,8 +282,8 @@ Subclasses should override this method to implement <code>Disposable</code> beha
 <div class="docs-inherited-from">docs inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div></div>
 <pre class="source">
 void disposeInternal(){
-  super.disposeInternal();
-  _invalidatedEventHandle.dispose();
+ super.disposeInternal();
+ _invalidatedEventHandle.dispose();
 }
 </pre>
 </div>
@@ -295,11 +295,11 @@ void <strong>drawCore</strong>(CanvasRenderingContext2D ctx) <a class="anchor-li
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 void drawCore(CanvasRenderingContext2D ctx){
-  if(cacheEnabled) {
-    _drawCached(ctx);
-  } else {
-    _drawNormal(ctx);
-  }
+ if(cacheEnabled) {
+   _drawCached(ctx);
+ } else {
+   _drawNormal(ctx);
+ }
 }
 </pre>
 </div>
@@ -311,16 +311,16 @@ void <strong>drawOverride</strong>(CanvasRenderingContext2D ctx) <a class="ancho
 <div class="doc">
 <pre class="source">
 void drawOverride(CanvasRenderingContext2D ctx) {
-  for(final r in _requests) {
-    final data = r._getFrameDetails();
-    final offset = data.item1;
-    final frameName = data.item2;
+ for(final r in _requests) {
+   final data = r._getFrameDetails();
+   final offset = data.item1;
+   final frameName = data.item2;
 
-    ctx.save();
-    ctx.translate(offset.x, offset.y);
-    _textureData.drawTextureKeyAt(ctx, frameName);
-    ctx.restore();
-  }
+   ctx.save();
+   ctx.translate(offset.x, offset.y);
+   _textureData.drawTextureKeyAt(ctx, frameName);
+   ctx.restore();
+ }
 }
 </pre>
 </div>
@@ -332,9 +332,9 @@ void drawOverride(CanvasRenderingContext2D ctx) {
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 AffineTransform getTransform() {
-  var tx = new AffineTransform();
-  _transforms.forEach(tx.concatenate);
-  return tx;
+ var tx = new AffineTransform();
+ _transforms.forEach(tx.concatenate);
+ return tx;
 }
 </pre>
 </div>
@@ -346,12 +346,12 @@ AffineTransform getTransform() {
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 AffineTransform getTransformToRoot(){
-  var tx = new AffineTransform();
-  if(_parent != null){
-    tx.concatenate(_parent.getTransformToRoot());
-  }
-  tx.concatenate(getTransform());
-  return tx;
+ var tx = new AffineTransform();
+ if(_parent != null){
+   tx.concatenate(_parent.getTransformToRoot());
+ }
+ tx.concatenate(getTransform());
+ return tx;
 }
 </pre>
 </div>
@@ -363,11 +363,11 @@ void <strong>invalidateDraw</strong>() <a class="anchor-link" href="#invalidateD
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 void invalidateDraw(){
-  validateNotDisposed();
-  if(_lastDrawSize != null){
-    _lastDrawSize = null;
-    _invalidateParent();
-  }
+ validateNotDisposed();
+ if(_lastDrawSize != null){
+   _lastDrawSize = null;
+   _invalidateParent();
+ }
 }
 </pre>
 </div>
@@ -379,9 +379,9 @@ void <strong>registerParent</strong>(<a href="../bot_retained/ElementParent.html
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 void registerParent(ElementParent parent) {
-  assert(_parent == null);
-  assert(parent != null);
-  _parent = parent;
+ assert(_parent == null);
+ assert(parent != null);
+ _parent = parent;
 }
 </pre>
 </div>
@@ -394,24 +394,24 @@ void <strong>update</strong>() <a class="anchor-link" href="#update"
 <pre class="source">
 void update() {
 
-  var toRemove = new List&lt;TextureAnimationRequest&gt;();
-  for(final r in _requests) {
-    r.update();
-    assert(!r.fresh);
-    if(r.done) {
-      toRemove.add(r);
-    }
-  }
+ var toRemove = new List&lt;TextureAnimationRequest&gt;();
+ for(final r in _requests) {
+   r.update();
+   assert(!r.fresh);
+   if(r.done) {
+     toRemove.add(r);
+   }
+ }
 
-  for(final r in toRemove) {
-    final i = _requests.indexOf(r, 0);
-    assert(i &gt;= 0);
-    _requests.removeRange(i, 1);
-  }
+ for(final r in toRemove) {
+   final i = _requests.indexOf(r, 0);
+   assert(i &gt;= 0);
+   _requests.removeRange(i, 1);
+ }
 
-  if(_requests.length &gt; 0) {
-    invalidateDraw();
-  }
+ if(_requests.length &gt; 0) {
+   invalidateDraw();
+ }
 }
 </pre>
 </div>
@@ -423,7 +423,7 @@ void <strong>validateNotDisposed</strong>() <a class="anchor-link" href="#valida
 <div class="inherited-from">inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div><div class="doc">
 <pre class="source">
 void validateNotDisposed() {
-  assert(!_disposed);
+ assert(!_disposed);
 }
 </pre>
 </div>

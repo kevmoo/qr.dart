@@ -34,38 +34,38 @@
 <div class="doc">
 <pre class="source">
 class ImgElement extends PElement {
-  final ImageElement _image;
+ final ImageElement _image;
 
-  bool _waitingOnLoad = false;
+ bool _waitingOnLoad = false;
 
-  factory ImgElement.fromUrl(String src, num w, num h) {
-    final img = new ImageElement(src, null, null);
+ factory ImgElement.fromUrl(String src, num w, num h) {
+   final img = new ImageElement(src: src);
 
-    return new ImgElement(w, h, img);
-  }
+   return new ImgElement(w, h, img);
+ }
 
-  ImgElement(num width, num height, this._image, [bool cacheEnabled = false]) :
-    super(width, height, cacheEnabled);
+ ImgElement(num width, num height, this._image, [bool cacheEnabled = false]) :
+   super(width, height, cacheEnabled);
 
-  void drawOverride(CanvasRenderingContext2D ctx) {
-    if(_image.complete) {
-      _doDraw(ctx);
-    } else if(!_waitingOnLoad) {
-      _waitingOnLoad = true;
-      // TODO: some day we'll have a way to remove these cleanly
-      //       ...because this handled should be disposed :-/
-      _image.on.load.add(_onImageLoad);
-    }
-  }
+ void drawOverride(CanvasRenderingContext2D ctx) {
+   if(_image.complete) {
+     _doDraw(ctx);
+   } else if(!_waitingOnLoad) {
+     _waitingOnLoad = true;
+     // TODO: some day we'll have a way to remove these cleanly
+     //       ...because this handled should be disposed :-/
+     _image.on.load.add(_onImageLoad);
+   }
+ }
 
-  void _doDraw(CanvasRenderingContext2D ctx) {
-    ctx.drawImage(_image, 0, 0, width, height);
-  }
+ void _doDraw(CanvasRenderingContext2D ctx) {
+   ctx.drawImage(_image, 0, 0, width, height);
+ }
 
-  void _onImageLoad(Event event) {
-    invalidateDraw();
-    // TODO: should unwire event, here, too
-  }
+ void _onImageLoad(Event event) {
+   invalidateDraw();
+   // TODO: should unwire event, here, too
+ }
 }
 </pre>
 </div>
@@ -84,7 +84,7 @@ new <strong>ImgElement</strong>(num width, num height, ImageElement _image, [boo
 <div class="doc">
 <pre class="source">
 ImgElement(num width, num height, this._image, [bool cacheEnabled = false]) :
-  super(width, height, cacheEnabled);
+ super(width, height, cacheEnabled);
 </pre>
 </div>
 </div>
@@ -95,9 +95,9 @@ factory <strong>ImgElement.fromUrl</strong>(String src, num w, num h) <a class="
 <div class="doc">
 <pre class="source">
 factory ImgElement.fromUrl(String src, num w, num h) {
-  final img = new ImageElement(src, null, null);
+ final img = new ImageElement(src: src);
 
-  return new ImgElement(w, h, img);
+ return new ImgElement(w, h, img);
 }
 </pre>
 </div>
@@ -141,9 +141,9 @@ num get height =&gt; _height;
 </pre>
 <pre class="source">
 void set height(num value) {
-  assert(isValidNumber(value));
-  _height = value;
-  invalidateDraw();
+ assert(isValidNumber(value));
+ _height = value;
+ invalidateDraw();
 }
 </pre>
 </div>
@@ -196,10 +196,10 @@ Size get size =&gt; new Size(_width, _height);
 </pre>
 <pre class="source">
 void set size(Size value) {
-  assert(value.isValid);
-  _width = value.width;
-  _height = value.height;
-  invalidateDraw();
+ assert(value.isValid);
+ _width = value.width;
+ _height = value.height;
+ invalidateDraw();
 }
 </pre>
 </div>
@@ -216,9 +216,9 @@ num get width =&gt; _width;
 </pre>
 <pre class="source">
 void set width(num value) {
-  assert(isValidNumber(value));
-  _width = value;
-  invalidateDraw();
+ assert(isValidNumber(value));
+ _width = value;
+ invalidateDraw();
 }
 </pre>
 </div>
@@ -233,10 +233,10 @@ void set width(num value) {
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 AffineTransform addTransform(){
-  validateNotDisposed();
-  var tx = new AffineTransform();
-  _transforms.add(tx);
-  return tx;
+ validateNotDisposed();
+ var tx = new AffineTransform();
+ _transforms.add(tx);
+ return tx;
 }
 </pre>
 </div>
@@ -248,12 +248,12 @@ void <strong>dispose</strong>() <a class="anchor-link" href="#dispose"
 <div class="inherited-from">inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div><div class="doc">
 <pre class="source">
 void dispose(){
-  if (!_disposed) {
-    // Set disposed_ to true first, in case during the chain of disposal this
-    // gets disposed recursively.
-    this._disposed = true;
-    this.disposeInternal();
-  }
+ if (!_disposed) {
+   // Set disposed_ to true first, in case during the chain of disposal this
+   // gets disposed recursively.
+   this._disposed = true;
+   this.disposeInternal();
+ }
 }
 </pre>
 </div>
@@ -269,8 +269,8 @@ Subclasses should override this method to implement <code>Disposable</code> beha
 <div class="docs-inherited-from">docs inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div></div>
 <pre class="source">
 void disposeInternal(){
-  super.disposeInternal();
-  _invalidatedEventHandle.dispose();
+ super.disposeInternal();
+ _invalidatedEventHandle.dispose();
 }
 </pre>
 </div>
@@ -282,11 +282,11 @@ void <strong>drawCore</strong>(CanvasRenderingContext2D ctx) <a class="anchor-li
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 void drawCore(CanvasRenderingContext2D ctx){
-  if(cacheEnabled) {
-    _drawCached(ctx);
-  } else {
-    _drawNormal(ctx);
-  }
+ if(cacheEnabled) {
+   _drawCached(ctx);
+ } else {
+   _drawNormal(ctx);
+ }
 }
 </pre>
 </div>
@@ -298,14 +298,14 @@ void <strong>drawOverride</strong>(CanvasRenderingContext2D ctx) <a class="ancho
 <div class="doc">
 <pre class="source">
 void drawOverride(CanvasRenderingContext2D ctx) {
-  if(_image.complete) {
-    _doDraw(ctx);
-  } else if(!_waitingOnLoad) {
-    _waitingOnLoad = true;
-    // TODO: some day we'll have a way to remove these cleanly
-    //       ...because this handled should be disposed :-/
-    _image.on.load.add(_onImageLoad);
-  }
+ if(_image.complete) {
+   _doDraw(ctx);
+ } else if(!_waitingOnLoad) {
+   _waitingOnLoad = true;
+   // TODO: some day we'll have a way to remove these cleanly
+   //       ...because this handled should be disposed :-/
+   _image.on.load.add(_onImageLoad);
+ }
 }
 </pre>
 </div>
@@ -317,9 +317,9 @@ void drawOverride(CanvasRenderingContext2D ctx) {
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 AffineTransform getTransform() {
-  var tx = new AffineTransform();
-  _transforms.forEach(tx.concatenate);
-  return tx;
+ var tx = new AffineTransform();
+ _transforms.forEach(tx.concatenate);
+ return tx;
 }
 </pre>
 </div>
@@ -331,12 +331,12 @@ AffineTransform getTransform() {
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 AffineTransform getTransformToRoot(){
-  var tx = new AffineTransform();
-  if(_parent != null){
-    tx.concatenate(_parent.getTransformToRoot());
-  }
-  tx.concatenate(getTransform());
-  return tx;
+ var tx = new AffineTransform();
+ if(_parent != null){
+   tx.concatenate(_parent.getTransformToRoot());
+ }
+ tx.concatenate(getTransform());
+ return tx;
 }
 </pre>
 </div>
@@ -348,11 +348,11 @@ void <strong>invalidateDraw</strong>() <a class="anchor-link" href="#invalidateD
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 void invalidateDraw(){
-  validateNotDisposed();
-  if(_lastDrawSize != null){
-    _lastDrawSize = null;
-    _invalidateParent();
-  }
+ validateNotDisposed();
+ if(_lastDrawSize != null){
+   _lastDrawSize = null;
+   _invalidateParent();
+ }
 }
 </pre>
 </div>
@@ -364,9 +364,9 @@ void <strong>registerParent</strong>(<a href="../bot_retained/ElementParent.html
 <div class="inherited-from">inherited from <a href="../bot_retained/PElement.html">PElement</a> </div><div class="doc">
 <pre class="source">
 void registerParent(ElementParent parent) {
-  assert(_parent == null);
-  assert(parent != null);
-  _parent = parent;
+ assert(_parent == null);
+ assert(parent != null);
+ _parent = parent;
 }
 </pre>
 </div>
@@ -388,7 +388,7 @@ void <strong>validateNotDisposed</strong>() <a class="anchor-link" href="#valida
 <div class="inherited-from">inherited from <a href="../bot/DisposableImpl.html">DisposableImpl</a> </div><div class="doc">
 <pre class="source">
 void validateNotDisposed() {
-  assert(!_disposed);
+ assert(!_disposed);
 }
 </pre>
 </div>

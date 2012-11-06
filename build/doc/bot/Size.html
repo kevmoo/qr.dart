@@ -34,63 +34,63 @@
 <div class="doc">
 <pre class="source">
 class Size {
-  final num width, height;
+ final num width, height;
 
-  const Size(this.width, this.height);
+ const Size(this.width, this.height);
 
-  bool operator ==(Size other) {
-    return other != null &amp;&amp; width == other.width &amp;&amp; height == other.height;
-  }
+ bool operator ==(Size other) {
+   return other != null &amp;&amp; width == other.width &amp;&amp; height == other.height;
+ }
 
-  /**
-   * Returns the area of the size (width * height).
-   */
-  num get area =&gt; width * height;
+ /**
+  * Returns the area of the size (width * height).
+  */
+ num get area =&gt; width * height;
 
-  /**
-   * Returns the ratio of the size's width to its height.
-   */
-  num get aspectRatio =&gt; width / height;
+ /**
+  * Returns the ratio of the size's width to its height.
+  */
+ num get aspectRatio =&gt; width / height;
 
-  /**
-   * Returns true if this Size is the same size or smaller than the
-   * [target] size in both dimensions.
-   */
-  bool fitsInside(Size target) {
-    return width &lt;= target.width &amp;&amp; height &lt;= target.height;
-  }
+ /**
+  * Returns true if this Size is the same size or smaller than the
+  * [target] size in both dimensions.
+  */
+ bool fitsInside(Size target) {
+   return width &lt;= target.width &amp;&amp; height &lt;= target.height;
+ }
 
-  /**
-   * Returns true if the size has zero area, false if both dimensions
-   *     are non-zero numbers.
-   */
-  bool isEmpty() =&gt; area == 0;
+ /**
+  * Returns true if the size has zero area, false if both dimensions
+  *     are non-zero numbers.
+  */
+ bool isEmpty() =&gt; area == 0;
 
-  /**
-   * Returns the perimeter of the size (width + height) * 2.
-   */
-  num get perimeter =&gt; (width + height) * 2;
+ /**
+  * Returns the perimeter of the size (width + height) * 2.
+  */
+ num get perimeter =&gt; (width + height) * 2;
 
-  bool get isValid =&gt; isValidNumber(width) &amp;&amp; isValidNumber(height) &amp;&amp;
-      width &gt;= 0 &amp;&amp; height &gt;= 0;
+ bool get isValid =&gt; isValidNumber(width) &amp;&amp; isValidNumber(height) &amp;&amp;
+     width &gt;= 0 &amp;&amp; height &gt;= 0;
 
-  /**
-   * Multiplies each dimensions by the provided magnitude and returns a new [Size].
-   **/
-  Size scale(num magnitude) =&gt; new Size(width * magnitude, height * magnitude);
+ /**
+  * Multiplies each dimensions by the provided magnitude and returns a new [Size].
+  **/
+ Size scale(num magnitude) =&gt; new Size(width * magnitude, height * magnitude);
 
-  /**
-   * Multiplies each dimensions by the provided magnitude and returns a new [Size].
-   **/
-  Size operator *(num magnitude) =&gt; this.scale(magnitude);
+ /**
+  * Multiplies each dimensions by the provided magnitude and returns a new [Size].
+  **/
+ Size operator *(num magnitude) =&gt; this.scale(magnitude);
 
-  Vector toVector() =&gt; new Vector(width, height);
+ Vector toVector() =&gt; new Vector(width, height);
 
-  /**
-   * Returns a nice string representing size.
-   * Returns in the form (50 x 73).
-   */
-  String toString() =&gt; "(${width} x ${height})";
+ /**
+  * Returns a nice string representing size.
+  * Returns in the form (50 x 73).
+  */
+ String toString() =&gt; "(${width} x ${height})";
 }
 </pre>
 </div>
@@ -156,7 +156,7 @@ final bool         <strong>isValid</strong> <a class="anchor-link"
         <div class="doc">
 <pre class="source">
 bool get isValid =&gt; isValidNumber(width) &amp;&amp; isValidNumber(height) &amp;&amp;
-    width &gt;= 0 &amp;&amp; height &gt;= 0;
+   width &gt;= 0 &amp;&amp; height &gt;= 0;
 </pre>
 </div>
 </div>
@@ -214,7 +214,7 @@ the <code>hashCode</code> method as well to maintain consistency.</p>
 <div class="docs-inherited-from">docs inherited from Object </div></div>
 <pre class="source">
 bool operator ==(Size other) {
-  return other != null &amp;&amp; width == other.width &amp;&amp; height == other.height;
+ return other != null &amp;&amp; width == other.width &amp;&amp; height == other.height;
 }
 </pre>
 </div>
@@ -232,7 +232,7 @@ bool <strong>fitsInside</strong>(<a href="../bot/Size.html">Size</a> target) <a 
 <span class="param">target</span> size in both dimensions.</p>
 <pre class="source">
 bool fitsInside(Size target) {
-  return width &lt;= target.width &amp;&amp; height &lt;= target.height;
+ return width &lt;= target.width &amp;&amp; height &lt;= target.height;
 }
 </pre>
 </div>

@@ -34,27 +34,27 @@
 <div class="doc">
 <pre class="source">
 class QrByte {
-  final int mode = QrMode.MODE_8BIT_BYTE;
-  final List&lt;int&gt; _data;
+ final int mode = QrMode.MODE_8BIT_BYTE;
+ final List&lt;int&gt; _data;
 
-  factory QrByte(String input) {
-    requireArgumentNotNull(input, 'input');
-    final charCodes = input.charCodes();
-    for(final v in charCodes) {
-      requireArgument(v &lt; 255, 'ascii-only');
-    }
-    return new QrByte._internal(charCodes);
-  }
+ factory QrByte(String input) {
+   requireArgumentNotNull(input, 'input');
+   final charCodes = input.charCodes;
+   for(final v in charCodes) {
+     requireArgument(v &lt; 255, 'ascii-only');
+   }
+   return new QrByte._internal(charCodes);
+ }
 
-  QrByte._internal(this._data);
+ QrByte._internal(this._data);
 
-  int get length =&gt; _data.length;
+ int get length =&gt; _data.length;
 
-  void write(QrBitBuffer buffer) {
-    for(final int v in _data) {
-      buffer.put(v, 8);
-    }
-  }
+ void write(QrBitBuffer buffer) {
+   for(final int v in _data) {
+     buffer.put(v, 8);
+   }
+ }
 }
 </pre>
 </div>
@@ -67,12 +67,12 @@ factory <strong>QrByte</strong>(String input) <a class="anchor-link" href="#QrBy
 <div class="doc">
 <pre class="source">
 factory QrByte(String input) {
-  requireArgumentNotNull(input, 'input');
-  final charCodes = input.charCodes();
-  for(final v in charCodes) {
-    requireArgument(v &lt; 255, 'ascii-only');
-  }
-  return new QrByte._internal(charCodes);
+ requireArgumentNotNull(input, 'input');
+ final charCodes = input.charCodes;
+ for(final v in charCodes) {
+   requireArgument(v &lt; 255, 'ascii-only');
+ }
+ return new QrByte._internal(charCodes);
 }
 </pre>
 </div>
@@ -114,9 +114,9 @@ void <strong>write</strong>(<a href="../bot_qr/QrBitBuffer.html">QrBitBuffer</a>
 <div class="doc">
 <pre class="source">
 void write(QrBitBuffer buffer) {
-  for(final int v in _data) {
-    buffer.put(v, 8);
-  }
+ for(final int v in _data) {
+   buffer.put(v, 8);
+ }
 }
 </pre>
 </div>
