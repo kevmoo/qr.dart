@@ -7,6 +7,7 @@ class Runner {
   final Tasks _state;
 
   Runner(this._state, List<String> arguments) :
+    // TODO: better error or output for invalid arguments
     _args = _parser.parse(arguments) {
     _state.requireFrozen();
   }
