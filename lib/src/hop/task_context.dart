@@ -29,6 +29,10 @@ class _SubTaskContext extends TaskContext {
 }
 
 class RootTaskContext {
+  final bool _enableColor;
+
+  RootTaskContext([bool enableColor=true]) : _enableColor = enableColor;
+
   TaskContext getSubContext(String name) {
     return new _SubTaskContext(this, name);
   }
@@ -39,6 +43,9 @@ class RootTaskContext {
 
   @protected
   void printCore(String message, [Color color = null, String taskName = null]) {
+    if(!_enableColor) {
+      color = null;
+    }
     if(taskName != null) {
       prnt("${taskName}: ", color);
     }

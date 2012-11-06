@@ -16,28 +16,38 @@ class Runner {
 
     final ctx = getContext();
 
-    if(_args.rest.length > 0) {
-      final taskName = _args.rest[0];
-      if(_state.hasTask(taskName)) {
-        var subCtx = ctx.getSubContext(taskName);
-        return _runTask(subCtx, taskName);
-      } else if(taskName == RAW_TASK_LIST_CMD) {
-        _printRawTasks(ctx);
+    switch(_args.rest.length) {
+      case 0:
+        _printHelp(ctx);
         return new Future.immediate(true);
-      }
-      else {
-        ctx.print('No task named "$taskName".');
+      case 1:
+        final taskName = _args.rest[0];
+        if(_state.hasTask(taskName)) {
+          var subCtx = ctx.getSubContext(taskName);
+          return _runTask(subCtx, taskName);
+        } else if(taskName == RAW_TASK_LIST_CMD) {
+          _printRawTasks(ctx);
+          return new Future.immediate(true);
+        }
+        else {
+          ctx.print('No task named "$taskName".');
+          return new Future.immediate(false);
+        }
+
+        // DARTBUG: http://code.google.com/p/dart/issues/detail?id=6563
+        // all paths have a return, this break shouldn't be needed
+        break;
+      default:
+        ctx.print('Too many arguments');
+        ctx.print('--options must come before task name');
         return new Future.immediate(false);
-      }
-    } else {
-      _printHelp(ctx);
-      return new Future.immediate(true);
     }
   }
 
   @protected
   RootTaskContext getContext() {
-    return new RootTaskContext();
+    final bool colorEnabled = _args['color'];
+    return new RootTaskContext(colorEnabled);
   }
 
   Future<bool> _runTask(TaskContext context, String taskName) {
@@ -92,8 +102,8 @@ class Runner {
     ctx.print('');
     ctx.print('Tasks:');
     _printRawTasks(ctx);
-    // print('');
-    // print(_parser.getUsage());
+    ctx.print('');
+    ctx.print(_parser.getUsage());
   }
 
   void _printRawTasks(RootTaskContext ctx) {
@@ -104,6 +114,9 @@ class Runner {
 
   static ArgParser _getParser() {
     final parser = new ArgParser();
+
+    parser.addFlag('color', defaultsTo: true);
+
 
     // TODO: put help in a const
     // parser.addFlag('help', abbr: '?', help: 'print help text', negatable: false);
