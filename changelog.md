@@ -1,5 +1,10 @@
 # Changelog - HOP task system
 
+## 0.2.1 - 6 Nov 2012 (SDK r14554)
+
+* Learned --[no-]-color option. Great for black-and-white output, line drone.io.
+    * Closed [Issue #3](https://github.com/kevmoo/hop.dart/issues/3)
+
 ## 0.2.0 - 6 Nov 2012 (SDK r14554)
 
 * __BREAKING__ Changes to align with Dart r14554.
