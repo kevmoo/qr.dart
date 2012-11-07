@@ -3,11 +3,16 @@ part of hop;
 class Tasks {
   static const _reservedTasks = const[Runner.RAW_TASK_LIST_CMD];
   final Map<String, _HopTask> _tasks = new Map();
-  bool _frozen = false;
+  ReadOnlyCollection<String> _sortedTaskNames;
 
   Tasks();
 
-  Collection<String> get taskNames => _tasks.keys;
+  /// Can only be accessed when frozen
+  /// Always sorted
+  SequenceCollection<String> get taskNames {
+    requireFrozen();
+    return _sortedTaskNames;
+  }
 
   bool hasTask(String taskName) {
     requireFrozen();
@@ -27,21 +32,23 @@ class Tasks {
   }
 
   void requireFrozen() {
-    if(!_frozen) {
+    if(!isFrozen) {
       throw "not frozen!";
     }
   }
 
   void freeze() {
-    require(!_frozen, "Already frozen.");
-    _frozen = true;
+    require(!isFrozen, "Already frozen.");
+    final list = new List<String>.from(_tasks.keys);
+    list.sort();
+    _sortedTaskNames = new ReadOnlyCollection<String>.wrap(list);
   }
 
-  bool get isFrozen => _frozen;
+  bool get isFrozen => _sortedTaskNames != null;
 
   void _addTask(_HopTask task) {
     requireArgumentNotNull(task);
-    require(!_frozen, "Cannot add a task. Frozen.");
+    require(!isFrozen, "Cannot add a task. Frozen.");
     requireArgument(!_reservedTasks.contains(task.name));
     requireArgument(!_tasks.containsKey(task.name), 'A task with name ${task.name} already exists');
     _tasks[task.name] = task;

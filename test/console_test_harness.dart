@@ -11,6 +11,7 @@ import 'package:unittest/vm_config.dart';
 
 part 'hop/sync_tests.dart';
 part 'hop/task_list_tests.dart';
+part 'hop/integration_tests.dart';
 part 'tasks/process_tests.dart';
 part 'test_runner.dart';
 
@@ -26,6 +27,7 @@ void testCore(Configuration config) {
   group('hop', () {
     group('sync tasks', SyncTests.run);
     group('task list', TaskListTests.run);
+    group('integration', IntegrationTests.run);
   });
 
   group('tasks', () {

@@ -4,6 +4,12 @@
 
 * __BREAKING__ Moved task implementations to new `hop_tasks` library
 
+### hop
+
+* __BREAKING__ `Tasks.taskNames` is only accessible after freeze
+* `Tasks.taskNames` is now a sorted `SequenceCollection` 
+	-- [Issue #4](https://github.com/kevmoo/hop.dart/issues/4)
+
 ### hop_tasks
 * __BREAKING__ Renamed `getTestRunner` to `createUnitTestTask`
 * __BREAKING__ Renamed `getDart2jsTask` to `createDart2JsTask`
