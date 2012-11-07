@@ -1,17 +1,24 @@
 part of hop_tasks;
 
-// TODO: add `createRunProcessTask`
+Func1<TaskContext, Future<bool>> createStartProcessTask(String command, List<String> args) {
+  return (context) {
+    return startProcess(context, command, args);
+  };
+}
 
-Future<bool> runProcess(TaskContext state, String command, List<String> args) {
+// TODO: document that start does an 'interactive' process
+//       stderr and stdout are piped to context, etc
+//       This aligns with io.Process.start
+Future<bool> startProcess(TaskContext state, String command, List<String> args) {
   state.fine("Starting process:");
   state.fine("$command ${Strings.join(args, ' ')}");
   final processFuture = io.Process.start(command, args);
   return processFuture.chain((process) {
-    return _runProcess(process, state);
+    return _startProcess(process, state);
   });
 }
 
-Future<bool> _runProcess(process, state) {
+Future<bool> _startProcess(process, state) {
   final completer = new Completer<bool>();
 
   process.stdout.onData = () {

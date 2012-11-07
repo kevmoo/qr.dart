@@ -23,7 +23,7 @@ Future<bool> _dart2js(TaskContext state, String file, [String output = null]) {
                 "--out=$output",
                 file];
 
-  return runProcess(state, 'dart2js', args);
+  return startProcess(state, 'dart2js', args);
 }
 
 Future<bool> _chainTasks(List<Func<Future<bool>>> futures, [int index=0]) {

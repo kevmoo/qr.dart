@@ -1,12 +1,14 @@
 # Changelog - HOP task system
 
-## 0.3.0 - (pre)
+## 0.3.0 - *pre-release* (SDK r14554)
 
 * __BREAKING__ Moved task implementations to new `hop_tasks` library
 
 ### hop_tasks
 * __BREAKING__ Renamed `getTestRunner` to `createUnitTestTask`
 * __BREAKING__ Renamed `getDart2jsTask` to `createDart2JsTask`
+* __BREAKING__ Renamed `runProcess` to `startProcess`
+* __NEW__ Added `createStartProcessTask`
 
 ## 0.2.1 - 6 Nov 2012 (SDK r14554)
 

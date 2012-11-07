@@ -16,7 +16,7 @@ void main() {
 
 Future<bool> _compileDocs(TaskContext state) {
   _assertKnownPath();
-  return runProcess(state, "tool/compile_docs", []);
+  return startProcess(state, "tool/compile_docs", []);
 }
 
 void _assertKnownPath() {
