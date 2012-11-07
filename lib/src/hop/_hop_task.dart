@@ -19,6 +19,7 @@ class _HopTask {
   }
 
   Future<bool> run(TaskContext state) {
+    requireArgumentNotNull(state, 'state');
     return _exec(state);
   }
 }
