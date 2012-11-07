@@ -12,9 +12,12 @@ part 'src/hop/runner.dart';
 part 'src/hop/tasks.dart';
 part 'src/hop/_hop_task.dart';
 part 'src/hop/task_context.dart';
-part 'src/hop/return_code.dart';
 
 final _sharedState = new Tasks();
+
+// per /usr/include/sysexits.h
+final EXIT_CODE_SUCCESS = 0;
+final EXIT_CODE_USAGE = 64;
 
 void runHopCore() {
   _sharedState.freeze();

@@ -44,7 +44,7 @@ Future<bool> _startProcess(process, state) {
   };
 
   process.onExit = (int exitCode){
-    completer.complete(exitCode == 0);
+    completer.complete(exitCode == EXIT_CODE_SUCCESS);
   };
 
   return completer.future;

@@ -9,6 +9,7 @@ class IntegrationTests {
     final onComplete = expectAsync1((Future<io.ProcessResult> f) {
       expect(f.hasValue, isTrue);
       final pr = f.value;
+      expect(pr.exitCode, equals(EXIT_CODE_SUCCESS));
       final lines = pr.stdout.trim().split('\n');
       expect(lines, orderedEquals(['about', 'docs', 'test']));
     });

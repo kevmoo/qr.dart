@@ -9,6 +9,7 @@
 * __BREAKING__ `Tasks.taskNames` is only accessible after freeze
 * `Tasks.taskNames` is now a sorted `SequenceCollection` 
 	-- [Issue #4](https://github.com/kevmoo/hop.dart/issues/4)
+* __BREAKING__ Removed `ReturnCode` -- not using it anyway
 
 ### hop_tasks
 * __BREAKING__ Renamed `getTestRunner` to `createUnitTestTask`
