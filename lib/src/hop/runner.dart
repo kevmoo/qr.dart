@@ -12,7 +12,7 @@ class Runner {
     _state.requireFrozen();
   }
 
-  Future<bool> run() {
+  Future<int> run() {
     _state.requireFrozen();
 
     final ctx = getContext();
@@ -20,7 +20,7 @@ class Runner {
     switch(_args.rest.length) {
       case 0:
         _printHelp(ctx);
-        return new Future.immediate(true);
+        return new Future.immediate(EXIT_CODE_SUCCESS);
       case 1:
         final taskName = _args.rest[0];
         if(_state.hasTask(taskName)) {
@@ -28,11 +28,11 @@ class Runner {
           return _runTask(subCtx, taskName);
         } else if(taskName == RAW_TASK_LIST_CMD) {
           _printRawTasks(ctx);
-          return new Future.immediate(true);
+          return new Future.immediate(EXIT_CODE_SUCCESS);
         }
         else {
           ctx.print('No task named "$taskName".');
-          return new Future.immediate(false);
+          return new Future.immediate(EXIT_CODE_USAGE);
         }
 
         // DARTBUG: http://code.google.com/p/dart/issues/detail?id=6563
@@ -41,7 +41,7 @@ class Runner {
       default:
         ctx.print('Too many arguments');
         ctx.print('--options must come before task name');
-        return new Future.immediate(false);
+        return new Future.immediate(EXIT_CODE_USAGE);
     }
   }
 
@@ -51,11 +51,11 @@ class Runner {
     return new RootTaskContext(colorEnabled);
   }
 
-  Future<bool> _runTask(TaskContext context, String taskName) {
+  Future<int> _runTask(TaskContext context, String taskName) {
     final task = _state.getTask(taskName);
     assert(task != null);
 
-    final completer = new Completer<bool>();
+    final completer = new Completer<int>();
 
     // DARTBUG: http://code.google.com/p/dart/issues/detail?id=6405
     // Hopefully this issue will be resolved. Having the catch inline here
@@ -66,7 +66,7 @@ class Runner {
     } catch(e) {
       context.error('Error');
       context.error(e.toString());
-      completer.completeException(e);
+      completer.complete(EXIT_CODE_TASK_EXCEPTION);
       return completer.future;
     }
 
@@ -76,21 +76,23 @@ class Runner {
       if(f.hasValue) {
         if(f.value == true) {
           context.success('Finished');
-          completer.complete(true);
+          completer.complete(EXIT_CODE_SUCCESS);
         } else {
           context.error('Failed');
           if(f.value == false) {
-            completer.complete(false);
+            completer.complete(EXIT_CODE_TASK_FAIL);
           } else {
             context.error('${f.value} returned from task');
-            completer.completeException('Return value from task must be true or false');
+            context.error('Return value from task must be true or false');
+            completer.complete(EXIT_CODE_TASK_ERROR);
           }
         }
       } else {
+        // has as exception, need to test this
         context.error('Error');
         context.error(f.exception.toString());
         context.error(f.stackTrace.toString());
-        completer.completeException(f.exception, f.stackTrace);
+        completer.complete(EXIT_CODE_TASK_EXCEPTION);
       }
       context.dispose();
     });

@@ -10,6 +10,10 @@
 * `Tasks.taskNames` is now a sorted `SequenceCollection` 
 	-- [Issue #4](https://github.com/kevmoo/hop.dart/issues/4)
 * __BREAKING__ Removed `ReturnCode` -- not using it anyway
+* __BREAKING__ `Runner.run` returns a `Future<int>` with output values 
+	corresponding to exit codes. (Non-zero is error, etc.)
+* __BREAKING__ `runHopCore` now calls `io.exit` with exit code
+	-- [Issue #2](https://github.com/kevmoo/hop.dart/issues/2)
 
 ### hop_tasks
 * __BREAKING__ Renamed `getTestRunner` to `createUnitTestTask`

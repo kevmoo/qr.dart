@@ -14,19 +14,19 @@ class SyncTests {
 
   static void _testTrueIsCool() {
     _testSimpleSyncTask('good', (ctx) => true, (f) {
-      expect(f.value, isTrue);
+      expect(f.value, EXIT_CODE_SUCCESS);
     });
   }
 
   static void _testFalseIsFail() {
     _testSimpleSyncTask('fail', (ctx) => false, (f) {
-      expect(f.value, isFalse);
+      expect(f.value, EXIT_CODE_TASK_FAIL);
     });
   }
 
   static void _testNullIsSad() {
     _testSimpleSyncTask('null', (ctx) => null,(Future f) {
-      expect(f.exception, isNotNull);
+      expect(f.value, EXIT_CODE_TASK_ERROR);
     });
   }
 
@@ -35,7 +35,7 @@ class SyncTests {
         throw 'sorry';
       },
       (Future f) {
-        expect(f.exception, 'sorry');
+        expect(f.value, EXIT_CODE_TASK_EXCEPTION);
       }
     );
   }
@@ -51,7 +51,7 @@ class SyncTests {
     expect(future.isComplete, isTrue);
 
     final onComplete = expectAsync1((f) {
-      expect(f.value, isFalse);
+      expect(f.value, EXIT_CODE_USAGE);
       // TODO: test that proper error message is printed
     });
 
@@ -69,7 +69,7 @@ class SyncTests {
     expect(future.isComplete, isTrue);
 
     final onComplete = expectAsync1((f) {
-      expect(f.value, isTrue);
+      expect(f.value, EXIT_CODE_SUCCESS);
       // TODO: test that task list is printed
     });
 
