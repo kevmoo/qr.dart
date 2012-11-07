@@ -9,12 +9,20 @@ Func1<TaskContext, Future<bool>> createStartProcessTask(String command, List<Str
 // TODO: document that start does an 'interactive' process
 //       stderr and stdout are piped to context, etc
 //       This aligns with io.Process.start
-Future<bool> startProcess(TaskContext state, String command, List<String> args) {
-  state.fine("Starting process:");
-  state.fine("$command ${Strings.join(args, ' ')}");
+Future<bool> startProcess(TaskContext ctx,
+    String command,
+    [List<String> args = null]) {
+  requireArgumentNotNull(ctx, 'ctx');
+  requireArgumentNotNull(command, 'command');
+  if(args == null) {
+    args = [];
+  }
+
+  ctx.fine("Starting process:");
+  ctx.fine("$command ${Strings.join(args, ' ')}");
   final processFuture = io.Process.start(command, args);
   return processFuture.chain((process) {
-    return _startProcess(process, state);
+    return _startProcess(process, ctx);
   });
 }
 
