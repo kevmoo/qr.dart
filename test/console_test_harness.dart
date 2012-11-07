@@ -7,8 +7,8 @@ import 'package:unittest/unittest.dart';
 import 'package:unittest/vm_config.dart';
 import 'package:bot/io.dart';
 
-part 'sync_tests.dart';
-part 'task_list_tests.dart';
+part 'hop/sync_tests.dart';
+part 'hop/task_list_tests.dart';
 part 'test_runner.dart';
 
 main() {
@@ -20,6 +20,8 @@ void testCore(Configuration config) {
   configure(config);
   groupSep = ' - ';
 
-  group('sync tasks', SyncTests.run);
-  group('task list', TaskListTests.run);
+  group('hop', () {
+    group('sync tasks', SyncTests.run);
+    group('task list', TaskListTests.run);
+  });
 }
