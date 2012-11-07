@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo Going to return an exit code of 1 - success
+exit 0

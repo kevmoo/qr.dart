@@ -1,14 +1,17 @@
 library test_hop;
 
+import 'dart:io' as io;
 import 'package:bot/bot.dart';
+import 'package:bot/io.dart';
 import 'package:bot/test.dart';
 import 'package:hop/hop.dart';
+import 'package:hop/tasks.dart';
 import 'package:unittest/unittest.dart';
 import 'package:unittest/vm_config.dart';
-import 'package:bot/io.dart';
 
 part 'hop/sync_tests.dart';
 part 'hop/task_list_tests.dart';
+part 'tasks/process_tests.dart';
 part 'test_runner.dart';
 
 main() {
@@ -23,5 +26,9 @@ void testCore(Configuration config) {
   group('hop', () {
     group('sync tasks', SyncTests.run);
     group('task list', TaskListTests.run);
+  });
+
+  group('tasks', () {
+    group('process', ProcessTests.run);
   });
 }
