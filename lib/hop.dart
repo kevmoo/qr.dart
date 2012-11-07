@@ -2,13 +2,10 @@ library hop;
 
 // TODO: documentation for tasks
 // TODO: formalize print/log model
-// TODO: move dart2js, process into another library
 // TODO: ponder indent for output
 
-import 'dart:io';
 import 'dart:isolate';
 import 'package:args/args.dart';
-import 'package:unittest/unittest.dart';
 import 'package:bot/bot.dart';
 import 'package:bot/io.dart';
 
@@ -16,9 +13,6 @@ part 'src/hop/runner.dart';
 part 'src/hop/tasks.dart';
 part 'src/hop/_hop_task.dart';
 part 'src/hop/task_context.dart';
-part 'src/hop/test_runner.dart';
-part 'src/hop/process.dart';
-part 'src/hop/dart2js.dart';
 part 'src/hop/return_code.dart';
 
 final _sharedState = new Tasks();

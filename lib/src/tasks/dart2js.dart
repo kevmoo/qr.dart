@@ -1,4 +1,4 @@
-part of hop;
+part of hop_tasks;
 
 Func1<TaskContext, Future<bool>> getDart2jsTask(List<String> inputs) {
   return (context) {
@@ -12,7 +12,7 @@ Future<bool> _dart2js(TaskContext state, String file, [String output = null]) {
     output = "${file}.js";
   }
 
-  final packageDir = new Directory('packages');
+  final packageDir = new io.Directory('packages');
   assert(packageDir.existsSync());
 
   final args = ["--package-root=${packageDir.path}",
@@ -22,4 +22,23 @@ Future<bool> _dart2js(TaskContext state, String file, [String output = null]) {
                 file];
 
   return runProcess(state, 'dart2js', args);
+}
+
+Future<bool> _chainTasks(List<Func<Future<bool>>> futures, [int index=0]) {
+  assert(futures.length > 0);
+  assert(index >= 0);
+  assert(index <= futures.length);
+  if(index == futures.length) {
+    return new Future.immediate(true);
+  }
+  final func = futures[index];
+  final future = func();
+  return future.chain((bool status) {
+    if(status) {
+      return _chainTasks(futures, index+1);
+    }
+    else {
+      return new Future.immediate(false);
+    }
+  });
 }

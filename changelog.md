@@ -3,6 +3,7 @@
 ## 0.3.0 - (pre)
 
 * __BREAKING__ Renamed `getTestRunner` to `createUnitTestTask`
+* __BREAKING__ Moved task implementations to new `hop_tasks` library
 
 ## 0.2.1 - 6 Nov 2012 (SDK r14554)
 

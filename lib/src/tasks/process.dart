@@ -1,9 +1,9 @@
-part of hop;
+part of hop_tasks;
 
 Future<bool> runProcess(TaskContext state, String command, List<String> args) {
   state.fine("Starting process:");
   state.fine("$command ${Strings.join(args, ' ')}");
-  final processFuture = Process.start(command, args);
+  final processFuture = io.Process.start(command, args);
   return processFuture.chain((process) {
     return _runProcess(process, state);
   });

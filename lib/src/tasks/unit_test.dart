@@ -1,16 +1,16 @@
-part of hop;
+part of hop_tasks;
 
-Func1<TaskContext, Future<bool>> createUnitTestTask(Action1<Configuration> unitTestAction) {
+Func1<TaskContext, Future<bool>> createUnitTestTask(Action1<unittest.Configuration> unitTestAction) {
   return (TaskContext state) {
     final config = new _HopTestConfiguration(state);
     final future = config.future;
     unitTestAction(config);
-    runTests();
+    unittest.runTests();
     return future;
   };
 }
 
-class _HopTestConfiguration extends Configuration {
+class _HopTestConfiguration extends unittest.Configuration {
   final Completer<bool> _completer;
   final TaskContext _context;
 
@@ -24,17 +24,17 @@ class _HopTestConfiguration extends Configuration {
      // overloading to prevent 'print' in baseclass
   }
 
-  void logTestcaseMessage(TestCase testCase, String message) {
+  void logTestcaseMessage(unittest.TestCase testCase, String message) {
     // something eles?
   }
 
-  void onTestResult(TestCase testCase) {
+  void onTestResult(unittest.TestCase testCase) {
     super.onTestResult(testCase);
 
     // result should not be null here
     assert(testCase.result != null);
 
-    if(testCase.result == PASS) {
+    if(testCase.result == unittest.PASS) {
       _context.fine(testCase.description);
     }
     else {
@@ -45,7 +45,7 @@ ${testCase.stackTrace}''');
     }
   }
 
-  void onDone(int passed, int failed, int errors, List<TestCase> results,
+  void onDone(int passed, int failed, int errors, List<unittest.TestCase> results,
               String uncaughtError) {
     final bool success = failed == 0 && errors == 0 && uncaughtError == null;
     final message = "$passed PASSED, $failed FAILED, $errors ERRORS";
