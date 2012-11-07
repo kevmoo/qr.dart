@@ -6,7 +6,7 @@ import '../test/console_test_harness.dart' as test_console;
 void main() {
   _assertKnownPath();
 
-  addAsyncTask('test', getTestRunner(test_console.testCore));
+  addAsyncTask('test', createUnitTestTask(test_console.testCore));
   addAsyncTask('docs', _compileDocs);
   addTask('about', _about);
 

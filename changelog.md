@@ -1,5 +1,9 @@
 # Changelog - HOP task system
 
+## 0.3.0 - (pre)
+
+* __BREAKING__ Renamed `getTestRunner` to `createUnitTestTask`
+
 ## 0.2.1 - 6 Nov 2012 (SDK r14554)
 
 * Learned --[no-]-color option. Great for black-and-white output, line drone.io.

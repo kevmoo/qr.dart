@@ -1,10 +1,10 @@
 part of hop;
 
-Func1<TaskContext, Future<bool>> getTestRunner(Action1<Configuration> testRunner) {
+Func1<TaskContext, Future<bool>> createUnitTestTask(Action1<Configuration> unitTestAction) {
   return (TaskContext state) {
     final config = new _HopTestConfiguration(state);
     final future = config.future;
-    testRunner(config);
+    unitTestAction(config);
     runTests();
     return future;
   };
