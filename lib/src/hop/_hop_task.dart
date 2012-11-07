@@ -21,17 +21,4 @@ class _HopTask {
   Future<bool> run(TaskContext state) {
     return _exec(state);
   }
-
-  // TODO: ponder this. Nice for showing a heart-beat for long running tasks
-  static void _trackFuture(Future future) {
-    final timer = new Timer.repeating(100, (t) {
-      if(future.isComplete) {
-        print('done!');
-        t.cancel();
-      } else {
-        // need to ponder a unified model for 'hearth beat' output
-        //_printInline('.');
-      }
-    });
-  }
 }

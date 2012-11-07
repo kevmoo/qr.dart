@@ -4,7 +4,6 @@ library hop;
 // TODO: formalize print/log model
 // TODO: ponder indent for output
 
-import 'dart:isolate';
 import 'package:args/args.dart';
 import 'package:bot/bot.dart';
 import 'package:bot/io.dart';
