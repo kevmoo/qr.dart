@@ -2,8 +2,6 @@ part of hop;
 
 Func1<TaskContext, Future<bool>> getTestRunner(Action1<Configuration> testRunner) {
   return (TaskContext state) {
-    // TODO: do something w/ state
-
     final config = new _HopTestConfiguration(state);
     final future = config.future;
     testRunner(config);
