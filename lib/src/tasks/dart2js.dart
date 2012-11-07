@@ -1,6 +1,8 @@
 part of hop_tasks;
 
-Func1<TaskContext, Future<bool>> getDart2jsTask(List<String> inputs) {
+// TODO: allow arguments? Specifically minify
+
+Func1<TaskContext, Future<bool>> createDart2JsTask(List<String> inputs) {
   return (context) {
     final futureFuncs = $(inputs).map((p) => () => _dart2js(context, p)).toList();
     return _chainTasks(futureFuncs);
