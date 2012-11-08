@@ -70,7 +70,11 @@ class Runner {
       return completer.future;
     }
 
-    assert(future != null);
+    if(future == null) {
+      context.error('The provided task returned null instead of a future');
+      completer.complete(EXIT_CODE_TASK_ERROR);
+      return completer.future;
+    }
 
     future.onComplete((f) {
       if(f.hasValue) {
