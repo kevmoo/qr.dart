@@ -8,6 +8,9 @@ class IntegrationTests {
 
   static void _testBadHopCommand() {
     final onComplete = expectAsync1((Future<io.ProcessResult> f) {
+      if(!f.hasValue) {
+        print(f.exception);
+      }
       expect(f.hasValue, isTrue);
       final pr = f.value;
       expect(pr.exitCode, equals(EXIT_CODE_USAGE));
@@ -19,6 +22,9 @@ class IntegrationTests {
 
   static void _testOutputSorted() {
     final onComplete = expectAsync1((Future<io.ProcessResult> f) {
+      if(!f.hasValue) {
+        print(f.exception);
+      }
       expect(f.hasValue, isTrue);
       final pr = f.value;
       expect(pr.exitCode, equals(EXIT_CODE_SUCCESS));
