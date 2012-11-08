@@ -1,5 +1,7 @@
 # Changelog - Dart Bag of Tricks
 
+### 0.6.0 - *pre-release* (SDK r14649)
+
 ### 0.5.0 -- 6 Nov 2012 (SDK r14554)
 
 * __BREAKING__ Changes to align with Dart r14554.
