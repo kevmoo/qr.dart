@@ -49,9 +49,9 @@ class RgbColor implements Hashable {
  factory RgbColor.fromHex(String hexColor) {
    requireArgumentNotNull(hexColor, 'hexColor');
    hexColor = _normalizeHex(hexColor);
-   var r = math.parseInt('0x'.concat(hexColor.substring(1, 3)));
-   var g = math.parseInt('0x'.concat(hexColor.substring(3, 5)));
-   var b = math.parseInt('0x'.concat(hexColor.substring(5, 7)));
+   var r = int.parse('0x'.concat(hexColor.substring(1, 3)));
+   var g = int.parse('0x'.concat(hexColor.substring(3, 5)));
+   var b = int.parse('0x'.concat(hexColor.substring(5, 7)));
 
    return new RgbColor(r,g,b);
  }
@@ -165,9 +165,9 @@ factory <strong>RgbColor.fromHex</strong>(String hexColor) <a class="anchor-link
 factory RgbColor.fromHex(String hexColor) {
  requireArgumentNotNull(hexColor, 'hexColor');
  hexColor = _normalizeHex(hexColor);
- var r = math.parseInt('0x'.concat(hexColor.substring(1, 3)));
- var g = math.parseInt('0x'.concat(hexColor.substring(3, 5)));
- var b = math.parseInt('0x'.concat(hexColor.substring(5, 7)));
+ var r = int.parse('0x'.concat(hexColor.substring(1, 3)));
+ var g = int.parse('0x'.concat(hexColor.substring(3, 5)));
+ var b = int.parse('0x'.concat(hexColor.substring(5, 7)));
 
  return new RgbColor(r,g,b);
 }
