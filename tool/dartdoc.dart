@@ -1,11 +1,11 @@
 part of hop_runner;
 
-Future<bool> _compileDocs(TaskContext state) {
+Future<bool> _compileDocs(TaskContext ctx) {
   _assertKnownPath();
   return _getLibs().chain((libs) {
     final args = ['--omit-generation-time', '--out', 'build/doc', '--verbose'];
     args.addAll(libs);
-    return startProcess(state, "dartdoc", args);
+    return startProcess(ctx, "dartdoc", args);
   });
 }
 
