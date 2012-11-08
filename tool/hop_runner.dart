@@ -1,12 +1,13 @@
 import 'dart:io';
 import 'package:bot/bot.dart';
 import 'package:hop/hop.dart';
+import 'package:hop/tasks.dart';
 import '../test/console_test_harness.dart' as test_console;
 
 void main() {
   _assertKnownPath();
 
-  addAsyncTask('test', getTestRunner(test_console.testCore));
+  addAsyncTask('test', createUnitTestTask(test_console.testCore));
   addAsyncTask('docs', _compileDocs);
 
   //
@@ -17,13 +18,13 @@ void main() {
       .toList();
   paths.add('test/browser_test_harness.dart');
 
-  addAsyncTask('dart2js', getDart2jsTask(paths));
+  addAsyncTask('dart2js', createDart2JsTask(paths));
   runHopCore();
 }
 
 Future<bool> _compileDocs(TaskContext state) {
   _assertKnownPath();
-  return runProcess(state, "tool/compile_docs", []);
+  return startProcess(state, "tool/compile_docs", []);
 }
 
 void _assertKnownPath() {
