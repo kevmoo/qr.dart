@@ -15,16 +15,9 @@ abstract class ResourceLoader<T> {
 
   String _state = StateUnloaded;
 
-  // DARTBUG: dart2js
-  // Closures inside initializers not implemented
-  // http://code.google.com/p/dart/issues/detail?id=3905
-  static _buildRORE(Iterable<String> urlList) {
-    return $(urlList).map((url) => new _ResourceEntry(url))
-        .toReadOnlyCollection();
-  }
-
   ResourceLoader(Iterable<String> urlList) :
-    _entries = _buildRORE(urlList);
+    _entries = $(urlList).map((url) => new _ResourceEntry(url))
+        .toReadOnlyCollection();
 
   int get completedCount => _entries.count((e) => e.completed);
 
