@@ -1,7 +1,6 @@
 library bot_qr;
 
 import 'dart:math' as math;
-
 import 'bot.dart';
 
 part 'src/qr/qr_bit_buffer.dart';

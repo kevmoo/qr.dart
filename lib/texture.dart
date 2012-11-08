@@ -2,7 +2,6 @@ library bot_texture;
 
 import 'dart:html';
 import 'dart:math' as math;
-
 import 'bot.dart';
 import 'html.dart';
 import 'retained.dart';
