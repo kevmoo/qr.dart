@@ -11,7 +11,7 @@ void requireArgument(bool truth, [String arg = "", String message]) {
     if(message != null) {
       throw new DetailedIllegalArgumentException(arg, message);
     } else {
-      throw new IllegalArgumentException(arg);
+      throw new ArgumentError(arg);
     }
   }
 }

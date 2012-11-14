@@ -118,10 +118,10 @@ abstract class ListBase<T> extends Enumerable<T> implements SequenceCollection<T
 
     if(itemCount > 0) {
       if(start < 0) {
-        throw new IndexOutOfRangeException(start);
+        throw new RangeError(start);
       }
       else if(lastIndex >= length) {
-        throw new IndexOutOfRangeException(lastIndex);
+        throw new RangeError(lastIndex);
       }
     }
 

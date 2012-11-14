@@ -1,6 +1,6 @@
 # Changelog - Dart Bag of Tricks
 
-### 0.6.0 - *pre-release* (SDK r14828)
+### 0.6.0 - *pre-release* (SDK r14873)
 
 * Updated `hop` version to 0.3.0 - *pre-release*
 
