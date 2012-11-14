@@ -7,7 +7,6 @@ import 'package:hop/tasks.dart';
 import '../test/console_test_harness.dart' as test_console;
 
 part 'dartdoc.dart';
-part 'git.dart';
 
 void main() {
   _assertKnownPath();
