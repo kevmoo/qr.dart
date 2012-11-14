@@ -4,6 +4,7 @@
 
 * __BREAKING__ Moved task implementations to new `hop_tasks` library
 * Updated `bot` version to 0.6.0 - *pre-release*
+* __NEW__ Added task for creating git branches from a directry.
 
 ### hop
 
