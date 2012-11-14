@@ -1,15 +1,16 @@
 part of hop_tasks;
 
-// TODO: allow arguments? Specifically minify
-
-Func1<TaskContext, Future<bool>> createDart2JsTask(List<String> inputs) {
+Func1<TaskContext, Future<bool>> createDart2JsTask(List<String> inputs,
+    {bool minify: false}) {
   return (context) {
-    final futureFuncs = $(inputs).map((p) => () => _dart2js(context, p)).toList();
+    final futureFuncs = $(inputs).map((p) =>
+        () => _dart2js(context, p, minify: minify)).toList();
     return _chainTasks(futureFuncs);
   };
 }
 
-Future<bool> _dart2js(TaskContext state, String file, [String output = null]) {
+Future<bool> _dart2js(TaskContext state, String file,
+    {String output: null, bool minify: false}) {
   if(output == null) {
     output = "${file}.js";
   }
@@ -22,6 +23,10 @@ Future<bool> _dart2js(TaskContext state, String file, [String output = null]) {
                 '-v',
                 "--out=$output",
                 file];
+
+  if(minify) {
+    args.add('--minify');
+  }
 
   return startProcess(state, 'dart2js', args);
 }
