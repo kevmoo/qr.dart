@@ -16,9 +16,8 @@ String _getTreeFromLsTree(ProcessResult pr) {
 
 Future<bool> _fromSourceDirTree(TaskContext ctx, String tree,
     String targetBranch, String sourceDir, String sourceBranch) {
-  final match = LsTreeExp.firstMatch(tree);
-  assert(match.groupCount == 4);
-  final sha = match[3];
+  final split = tree.split(_whiteSpaceExp);
+  final sha = split[2];
 
   final gitArgs = new List<String>.from(['commit-tree', sha]);
   final branchNameRef = 'refs/heads/$targetBranch';
@@ -50,7 +49,7 @@ Future<bool> _withExistingBranch(TaskContext ctx, String parent, String dirSha,
 
 String _getParentTree(ProcessResult pr) {
   require(pr.exitCode == 0, 'cat-file returned an error');
-  final split = pr.stdout.split(WhiteSpaceExp);
+  final split = pr.stdout.split(_whiteSpaceExp);
   require(split[0] == 'tree', "Should be a tree");
   return split[1].trim();
 }
@@ -107,5 +106,4 @@ Future<bool> _doCommit(TaskContext ctx, String verb, List<String> gitArgs,
       });
 }
 
-final WhiteSpaceExp = new RegExp(r'\s+', multiLine: true);
-final LsTreeExp = new RegExp(r'^(\d+)\s+(\w+)\s+(\w+)\s+([\w\/]+)');
+final _whiteSpaceExp = new RegExp(r'\s+', multiLine: true);
