@@ -1,6 +1,6 @@
 # Changelog - HOP task system
 
-## 0.3.0 - *pre-release* (SDK r14649)
+## 0.3.0 - *pre-release* (SDK r14873)
 
 * __BREAKING__ Moved task implementations to new `hop_tasks` library
 * Updated `bot` version to 0.6.0 - *pre-release*
