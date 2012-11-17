@@ -8,7 +8,21 @@ import 'package:unittest/unittest.dart';
 void runRetainedTests() {
   group('bot_retained', () {
     test('test double click manager', _testDoudbleClickManager);
+    test('PElement remove transform', _testRemoveTransform);
   });
+}
+
+void _testRemoveTransform() {
+  // null param throws
+  final element = new Shape(10, 10);
+  expect(() => element.removeTransform(null), throwsArgumentError);
+
+  final tx = element.addTransform();
+  // valid param returns true
+  expect(element.removeTransform(tx), isTrue);
+
+  // calling remove a second time returns false
+  expect(element.removeTransform(tx), isFalse);
 }
 
 void _testDoudbleClickManager() {

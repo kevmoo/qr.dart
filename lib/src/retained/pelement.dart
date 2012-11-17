@@ -74,6 +74,17 @@ abstract class PElement extends AttachableObject {
     return tx;
   }
 
+  bool removeTransform(AffineTransform tx) {
+    requireArgumentNotNull(tx, 'tx');
+    final index = _transforms.indexOf(tx);
+    if(index < 0) {
+      return false;
+    } else {
+      _transforms.removeAt(index);
+      return true;
+    }
+  }
+
   void drawOverride(CanvasRenderingContext2D ctx);
 
   void invalidateDraw(){
