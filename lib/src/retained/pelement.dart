@@ -96,9 +96,15 @@ abstract class PElement extends AttachableObject {
   }
 
   void registerParent(ElementParent parent) {
-    assert(_parent == null);
-    assert(parent != null);
+    require(_parent == null, 'parent already set');
+    requireArgumentNotNull(parent, 'parent');
     _parent = parent;
+  }
+
+  void unregisterParent(ElementParent parent) {
+    requireArgumentNotNull(parent, 'parent');
+    requireArgument(parent == _parent, 'parent');
+    _parent = null;
   }
 
   void disposeInternal(){
