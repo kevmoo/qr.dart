@@ -32,7 +32,7 @@ void _assertKnownPath() {
 }
 
 Future<bool> _ghPages(TaskContext ctx) {
-  final sourceDir = 'build/doc';
+  final sourceDir = 'web';
   final targetBranch = 'gh-pages';
   final sourceBranch = 'master';
 
