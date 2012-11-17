@@ -1,10 +1,10 @@
-name: bot
+name: qr
 author: Kevin Moore <kevin@thinkpixellab.com>
 homepage: https://github.com/kevmoo/bot.dart
-version: 0.6.0
-description: A collection of (mostly) general libraries to make working with Dart more productive.
+version: 0.1.0
+description: A demo of generating QR codes in Dart.
 dependencies:
-  unittest:
-    sdk: unittest
-  args:
-    sdk: args
+  bot:
+    git:
+      url: https://github.com/kevmoo/bot.dart.git
+      ref: master
