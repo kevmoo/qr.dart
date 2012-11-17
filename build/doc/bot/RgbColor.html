@@ -120,13 +120,12 @@ class RgbColor implements Hashable {
  // TODO: support colors in the format #rgb
  //       right now we only support #rrggbb
  static String _normalizeHex(String hexColor) {
-   if (!_isValidHexColor(hexColor)) {
-     throw new IllegalArgumentException("'$hexColor' is not a valid hex color");
-   }
+   requireArgument(_isValidHexColor(hexColor), 'hexColor',
+       "'$hexColor' is not a valid hex color");
    return hexColor.toLowerCase();
  }
 
- static const RegExp _validHexColorRe = const RegExp('^#(?:[0-9a-f]{6})\$',
+ static final RegExp _validHexColorRe = new RegExp('^#(?:[0-9a-f]{6})\$',
      multiLine: false, ignoreCase: true);
 
  static bool _isValidHexColor(String str) {

@@ -359,10 +359,10 @@ List&lt;T&gt; getRange(int start, int itemCount)  {
 
  if(itemCount &gt; 0) {
    if(start &lt; 0) {
-     throw new IndexOutOfRangeException(start);
+     throw new RangeError(start);
    }
    else if(lastIndex &gt;= length) {
-     throw new IndexOutOfRangeException(lastIndex);
+     throw new RangeError(lastIndex);
    }
  }
 

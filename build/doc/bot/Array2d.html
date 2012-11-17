@@ -268,18 +268,6 @@ T operator [](int index) =&gt; _source[index];
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="[]=">
-<button class="show-code">Code</button>
-void <strong>operator []=</strong>(int index, <a href="../bot/Array2d.html">T</a> value) <a class="anchor-link" href="#[]="
-              title="Permalink to Array2d&lt;T&gt;.operator []=">#</a></h4>
-<div class="doc">
-<pre class="source">
-void operator []=(int index, T value) {
- _source[index] = value;
-}
-</pre>
-</div>
-</div>
 </div>
 <div>
 <h3>Methods</h3>
@@ -552,10 +540,10 @@ List&lt;T&gt; getRange(int start, int itemCount)  {
 
  if(itemCount &gt; 0) {
    if(start &lt; 0) {
-     throw new IndexOutOfRangeException(start);
+     throw new RangeError(start);
    }
    else if(lastIndex &gt;= length) {
-     throw new IndexOutOfRangeException(lastIndex);
+     throw new RangeError(lastIndex);
    }
  }
 
@@ -685,6 +673,18 @@ typeis Collection.</p>
 Enumerable map(Func1&lt;T, Object&gt; f) {
  requireArgumentNotNull(f, 'f');
  return new _FuncEnumerable(this, (s) =&gt; new _SelectIterator&lt;T, Object&gt;(s, f));
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="oprator$indexSet">
+<button class="show-code">Code</button>
+void <strong>oprator$indexSet</strong>(int index, <a href="../bot/Array2d.html">T</a> value) <a class="anchor-link" href="#oprator$indexSet"
+              title="Permalink to Array2d&lt;T&gt;.oprator$indexSet">#</a></h4>
+<div class="doc">
+<pre class="source">
+void operator []=(int index, T value) {
+ _source[index] = value;
 }
 </pre>
 </div>
