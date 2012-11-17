@@ -115,10 +115,8 @@ abstract class PElement extends AttachableObject {
         null : new Size(_lastDrawSize.width.toInt(), _lastDrawSize.height.toInt());
 
     if (CanvasUtil.getCanvasSize(this._cacheCanvas) != intLastDrawSize) {
-
-      // DARTBUG: 5172 - width and height don't work on CanvasElement
-      this._cacheCanvas.attributes["width"] = this.width;
-      this._cacheCanvas.attributes["height"] = this.height;
+      this._cacheCanvas.width = this.width.toInt();
+      this._cacheCanvas.height = this.height.toInt();
 
       var cacheCtx = _cacheCanvas.context2d;
 
