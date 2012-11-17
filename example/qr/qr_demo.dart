@@ -118,13 +118,13 @@ class QrDemo{
   }
 
   void _levelClick(Event args) {
-    final InputElement source = args.srcElement;
+    final InputElement source = args.target;
     _typeNumber = int.parse(source.dataAttributes[_typeRadioIdKey]);
     _update();
   }
 
   void _errorClick(Event args) {
-    final InputElement source = args.srcElement;
+    final InputElement source = args.target;
     _errorCorrectLevel = int.parse(source.dataAttributes[_errorLevelIdKey]);
     _update();
   }
