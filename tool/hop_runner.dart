@@ -2,8 +2,8 @@ library hop_runner;
 
 import 'dart:io';
 import 'package:bot/bot.dart';
-import 'package:hop/hop.dart';
-import 'package:hop/tasks.dart';
+import 'package:bot/hop.dart';
+import 'package:bot/tasks.dart';
 import '../test/console_test_harness.dart' as test_console;
 
 part 'dartdoc.dart';
@@ -24,6 +24,8 @@ void main() {
   paths.add('test/browser_test_harness.dart');
 
   addAsyncTask('dart2js', createDart2JsTask(paths));
+
+  addTask('about', _about);
   runHopCore();
 }
 
@@ -41,4 +43,9 @@ Future<bool> _ghPages(TaskContext ctx) {
   final sourceBranch = 'master';
 
   return branchForDir(ctx, sourceBranch, sourceDir, targetBranch);
+}
+
+bool _about(TaskContext context) {
+  context.fine('Welcome to HOP!');
+  return true;
 }
