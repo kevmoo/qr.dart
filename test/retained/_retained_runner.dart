@@ -8,6 +8,7 @@ import 'package:unittest/unittest.dart';
 void runRetainedTests() {
   group('bot_retained', () {
     test('test double click manager', _testDoudbleClickManager);
+    test('test add/remove from Panel', _testAddRemoveFromPanel);
     test('PElement remove transform', _testRemoveTransform);
     test('PElement parent', _testPElementParent);
   });
@@ -63,6 +64,39 @@ void _testDoudbleClickManager() {
 
   expect(cm2, same(cm));
 }
+
+void _testAddRemoveFromPanel() {
+  final panel = new PCanvas(100, 100);
+  expect(() => panel.addElement(null), throwsArgumentError);
+
+  expect(panel.visualChildCount, 0);
+
+  final shape = new Shape(10, 10);
+
+  expect(shape.parent, isNull);
+
+  panel.addElement(shape);
+
+  expect(panel.visualChildCount, 1);
+  expect(shape.parent, isNotNull);
+
+  // cannot add the same element twice
+  expect(() => panel.addElement(shape), throwsArgumentError);
+
+  // cannot remove 'null'
+  expect(() => panel.removeElement(null), throwsArgumentError);
+
+  expect(panel.removeElement(shape), isTrue);
+  expect(panel.visualChildCount, 0);
+  expect(shape.parent, isNull);
+
+  // cannot add an element that already has a parent
+  final panel2 = new PCanvas(10, 10);
+  panel2.addElement(shape);
+
+  expect(() => panel.addElement(shape), throwsArgumentError);
+}
+
 class _TestParentElement extends ParentElement {
   _TestParentElement() : super(10, 10);
 }
