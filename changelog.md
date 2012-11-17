@@ -1,8 +1,9 @@
 # Changelog - Dart Bag of Tricks
 
-### 0.6.0 - *pre-release* (SDK r14873)
+### 0.6.0 - *pre-release* (SDK r15005)
 
-* Updated `hop` version to 0.3.0 - *pre-release*
+* __BREAKING__ Merged `hop` back in. Circular dependencies just make no sense.
+* A bunch of fixes to support more recent Dart release.
 
 ### 0.5.0 -- 6 Nov 2012 (SDK r14554)
 
