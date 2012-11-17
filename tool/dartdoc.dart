@@ -19,8 +19,9 @@ Future<List<String>> _getLibs() {
     if(file.endsWith('.dart')) {
       // excluded test because of issues with dartdoc and sdk libs
       // DARTBUG: http://code.google.com/p/dart/issues/detail?id=5460
-      // in this case, unittest
-      if(!file.endsWith('test.dart')) {
+      // in this case, unittest and args
+      final forbidden = ['test', 'hop', 'tasks'].map((n) => '$n.dart');
+      if(forbidden.every((f) => !file.endsWith(f))) {
         libs.add(file);
       }
     }
