@@ -1,8 +1,8 @@
 library test_bot_qr;
 
 import 'package:bot/bot.dart';
-import 'package:bot/qr.dart';
 import 'package:bot/test.dart';
+import 'package:qr/qr.dart';
 import 'package:unittest/unittest.dart';
 
 part 'test_qr_bit_buffer.dart';

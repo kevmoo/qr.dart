@@ -1,4 +1,4 @@
-library test_hop;
+library test_qr;
 
 import 'package:unittest/unittest.dart';
 import 'package:unittest/vm_config.dart';
