@@ -10,7 +10,7 @@ import '../test/console_test_harness.dart' as test_console;
 void main() {
   _assertKnownPath();
 
-  addAsyncTask('test', createUnitTestTask(test_console.testCore));
+  addTask('test', createUnitTestTask(test_console.testCore));
   addAsyncTask('pages', _ghPages);
 
   //
@@ -18,7 +18,7 @@ void main() {
   //
   final paths = ['web/qr_demo.dart', 'test/browser_test_harness.dart'];
 
-  addAsyncTask('dart2js', createDart2JsTask(paths));
+  addTask('dart2js', createDart2JsTask(paths));
 
   runHopCore();
 }
