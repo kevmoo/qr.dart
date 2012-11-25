@@ -1,0 +1,13 @@
+#!/bin/bash
+PACK_DIR=`pwd`/packages/
+cmd="dart
+--enable_checked_mode
+--warn_legacy_map_literal
+--warning_as_error
+--enable_type_checks
+--enable_asserts
+--error_on_malformed_type
+--package-root=$PACK_DIR
+./tool/hop_runner.dart $@"
+echo $cmd
+exec $cmd
