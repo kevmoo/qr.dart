@@ -1,6 +1,8 @@
 # qr.dart
 ## A demo of generating QR codes in Dart.
 
+[![](https://drone.io/kevmoo/qr.dart/status.png)](https://drone.io/kevmoo/qr.dart/latest)
+
 # Versioning
 
 Our goal is to follow [Semantic Versioning](http://semver.org/).
