@@ -43,4 +43,5 @@ iframe {
   height: 30px;
   margin: 0 auto;
   display: block;
+  clear: both;
 }
