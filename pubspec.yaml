@@ -5,6 +5,4 @@ version: 0.1.0
 description: A demo of generating QR codes in Dart.
 dependencies:
   bot:
-    git:
-      url: https://github.com/kevmoo/bot.dart.git
-      ref: master
+    git: https://github.com/kevmoo/bot.dart.git
