@@ -3,16 +3,22 @@
 <html>
   <head>
     <title>Dart QR Code Demo</title>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap.no-responsive.no-icons.min.css" rel="stylesheet">
     <link rel='stylesheet' type='text/css' href='style.css' />
   </head>
   <body>
     <script type="application/dart" src="qr_demo.dart"></script>
     <script src="dart.js"></script>
-      <canvas height='600' id='content' width='600'>
-      </canvas>
+      <canvas height='600' id='content' width='600'></canvas>
       <input type='text' id='input' style='font-size:30px;'></input>
-      <div id='type-div'>Size: </div>
-      <div id='error-div'>Error Correction: </div>
+      <div class='setting'>
+        <span>Size:</span>
+        <div id='type-div' class='button-group'></div>
+      </div>
+      <div class='setting'>
+        <span>Error Correction:</span>
+        <div id='error-div' class='button-group'></div>
+      </div>
       <iframe src="http://ghbtns.com/github-btn.html?user=kevmoo&repo=qr.dart&type=watch&count=true&size=large"
       allowtransparency="true" frameborder="0" scrolling="0"></iframe>
   </body>
