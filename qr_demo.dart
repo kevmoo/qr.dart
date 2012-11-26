@@ -62,7 +62,6 @@ class QrDemo{
     //
     for(int i = 1; i <= 10; i++) {
       final InputElement radio = new InputElement(type: 'radio');
-      radio.innerHTML = '$i';
       radio.id = 'type_$i';
       radio.name = 'type';
       radio.on.change.add(_levelClick);
@@ -75,6 +74,7 @@ class QrDemo{
       final label = new LabelElement();
       label.innerHTML = "$i";
       label.htmlFor = radio.id;
+      label.classes.add('btn');
       typeDiv.elements.add(label);
     }
 
@@ -95,6 +95,7 @@ class QrDemo{
       final label = new LabelElement();
       label.innerHTML = QrErrorCorrectLevel.getName(v);
       label.htmlFor = radio.id;
+      label.classes.add('btn');
       errorDiv.elements.add(label);
     }
   }
