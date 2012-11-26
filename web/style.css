@@ -1,0 +1,10 @@
+input#input, canvas, #type-div, #error-div {
+  margin: 20px auto;
+  display: block;
+  width: 600px;
+}
+label {
+  display: inline-block;
+  min-width: 20px;
+  margin: 0 5px 0 1px;
+}
