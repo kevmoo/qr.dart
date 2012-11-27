@@ -3,6 +3,7 @@ import 'dart:isolate';
 import 'dart:math' as math;
 import 'package:bot/async.dart';
 import 'package:bot/bot.dart';
+import 'package:bot/html.dart';
 import 'package:qr/qr.dart';
 
 main(){
@@ -143,8 +144,7 @@ class QrDemo{
 
     final size = math.sqrt(_squares.length).toInt();
     final minDimension = math.min(_canvas.width, _canvas.height);
-    final scale = minDimension ~/ size;
-    final offset = (minDimension - (scale * size)) ~/ 2;
+    final scale = minDimension ~/ (1.1 * size);
 
     _scale.target = scale;
 
@@ -152,7 +152,16 @@ class QrDemo{
       requestFrame();
     }
 
-    _ctx.setTransform(_scale.current, 0, 0, _scale.current, offset, offset);
+    final tx = new AffineTransform();
+
+    // first, center drawing on center of canvas
+    tx.translate(0.5 * _canvas.width, 0.5 * _canvas.height);
+
+    tx.scale(_scale.current, _scale.current);
+    tx.translate(-0.5 * size, -0.5 * size);
+
+    _ctx.save();
+    CanvasUtil.setTransform(_ctx, tx);
 
     if(_squares.length > 0) {
       assert(_squares.length == size * size);
@@ -164,6 +173,7 @@ class QrDemo{
         }
       }
     }
+    _ctx.restore();
   }
 }
 
