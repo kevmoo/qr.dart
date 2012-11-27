@@ -1,3 +1,4 @@
+![QR.DART](http://kevmoo.github.com/qr.dart/dartqr.png)
 # qr.dart
 ## A demo of generating QR codes in Dart.
 
