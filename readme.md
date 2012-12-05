@@ -4,12 +4,6 @@
 
 [![](https://drone.io/kevmoo/qr.dart/status.png)](https://drone.io/kevmoo/qr.dart/latest)
 
-# Versioning
-
-Our goal is to follow [Semantic Versioning](http://semver.org/).
-
-_Note: we have not released v1 (yet)._
-
 # Authors
  * [Kevin Moore](https://github.com/kevmoo) ([@kevmoo](http://twitter.com/kevmoo))
  * _You? File bugs. Fork and Fix bugs. Let's build this community._
