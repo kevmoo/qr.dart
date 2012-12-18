@@ -70,13 +70,13 @@ class QrDemo{
       if(i == _typeNumber) {
         radio.attributes['checked'] = 'checked';
       }
-      typeDiv.elements.add(radio);
+      typeDiv.children.add(radio);
 
       final label = new LabelElement();
-      label.innerHTML = "$i";
+      label.innerHtml = "$i";
       label.htmlFor = radio.id;
       label.classes.add('btn');
-      typeDiv.elements.add(label);
+      typeDiv.children.add(label);
     }
 
     //
@@ -91,13 +91,13 @@ class QrDemo{
       if(v == _errorCorrectLevel) {
         radio.attributes['checked'] = 'checked';
       }
-      errorDiv.elements.add(radio);
+      errorDiv.children.add(radio);
 
       final label = new LabelElement();
-      label.innerHTML = QrErrorCorrectLevel.getName(v);
+      label.innerHtml = QrErrorCorrectLevel.getName(v);
       label.htmlFor = radio.id;
       label.classes.add('btn');
-      errorDiv.elements.add(label);
+      errorDiv.children.add(label);
     }
   }
 
