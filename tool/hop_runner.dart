@@ -16,9 +16,7 @@ void main() {
   //
   // Dart2js
   //
-  final paths = ['web/qr_demo.dart', 'test/browser_test_harness.dart'];
-
-  addTask('dart2js', createDart2JsTask(paths));
+  addTask('dart2js', createDart2JsTask(['web/qr_demo.dart'], minify: true));
 
   runHopCore();
 }
