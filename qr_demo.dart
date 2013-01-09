@@ -1,9 +1,9 @@
 import 'dart:html';
 import 'dart:isolate';
 import 'dart:math' as math;
-import 'package:bot/async.dart';
 import 'package:bot/bot.dart';
-import 'package:bot/html.dart';
+import 'package:bot/bot_async.dart';
+import 'package:bot/bot_html.dart';
 import 'package:qr/qr.dart';
 
 main(){
