@@ -5,7 +5,7 @@ import 'package:unittest/vm_config.dart';
 import 'qr/_qr_runner.dart';
 
 main() {
-  final config = new VmConfiguration();
+  final config = new VMConfiguration();
   testCore(config);
 }
 

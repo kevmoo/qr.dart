@@ -20,7 +20,7 @@ class QrCode {
         'errorCorrectLevel');
 
     for (var row = 0; row < moduleCount; row++) {
-      _modules.add(new List<bool>(moduleCount));
+      _modules.add(new List<bool>.fixedLength(moduleCount));
     }
 
     _dataCache = null;
