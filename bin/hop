@@ -2,7 +2,6 @@
 PACK_DIR=`pwd`/packages/
 cmd="dart
 --enable_checked_mode
---warn_legacy_map_literal
 --warning_as_error
 --enable_type_checks
 --enable_asserts
