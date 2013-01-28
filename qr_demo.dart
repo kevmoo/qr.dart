@@ -17,7 +17,7 @@ main(){
   input.value = "Type your message in here...";
   demo.value = input.value;
 
-  input.on.keyUp.add((KeyboardEvent args) {
+  input.onKeyUp.listen((KeyboardEvent args) {
     demo.value = input.value;
   });
 
@@ -65,7 +65,7 @@ class QrDemo{
       final InputElement radio = new InputElement(type: 'radio');
       radio.id = 'type_$i';
       radio.name = 'type';
-      radio.on.change.add(_levelClick);
+      radio.onChange.listen(_levelClick);
       radio.dataAttributes[_typeRadioIdKey] = i.toString();
       if(i == _typeNumber) {
         radio.attributes['checked'] = 'checked';
@@ -86,7 +86,7 @@ class QrDemo{
       final InputElement radio = new InputElement(type: 'radio');
       radio.id = 'error_$v';
       radio.name = 'error-level';
-      radio.on.change.add(_errorClick);
+      radio.onChange.listen(_errorClick);
       radio.dataAttributes[_errorLevelIdKey] = v.toString();
       if(v == _errorCorrectLevel) {
         radio.attributes['checked'] = 'checked';
