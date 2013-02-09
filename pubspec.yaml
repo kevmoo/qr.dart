@@ -6,4 +6,4 @@ homepage: https://github.com/kevmoo/bot.dart
 environment:
   sdk: '>=0.3.4'
 dependencies:
-  bot: '>=0.13.0'
+  bot: '>=0.13.1'
