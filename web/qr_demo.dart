@@ -66,7 +66,7 @@ class QrDemo{
       radio.id = 'type_$i';
       radio.name = 'type';
       radio.onChange.listen(_levelClick);
-      radio.dataAttributes[_typeRadioIdKey] = i.toString();
+      radio.dataset[_typeRadioIdKey] = i.toString();
       if(i == _typeNumber) {
         radio.attributes['checked'] = 'checked';
       }
@@ -87,7 +87,7 @@ class QrDemo{
       radio.id = 'error_$v';
       radio.name = 'error-level';
       radio.onChange.listen(_errorClick);
-      radio.dataAttributes[_errorLevelIdKey] = v.toString();
+      radio.dataset[_errorLevelIdKey] = v.toString();
       if(v == _errorCorrectLevel) {
         radio.attributes['checked'] = 'checked';
       }
@@ -121,13 +121,13 @@ class QrDemo{
 
   void _levelClick(Event args) {
     final InputElement source = args.target;
-    _typeNumber = int.parse(source.dataAttributes[_typeRadioIdKey]);
+    _typeNumber = int.parse(source.dataset[_typeRadioIdKey]);
     _update();
   }
 
   void _errorClick(Event args) {
     final InputElement source = args.target;
-    _errorCorrectLevel = int.parse(source.dataAttributes[_errorLevelIdKey]);
+    _errorCorrectLevel = int.parse(source.dataset[_errorLevelIdKey]);
     _update();
   }
 
