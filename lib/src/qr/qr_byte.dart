@@ -6,11 +6,11 @@ class QrByte {
 
   factory QrByte(String input) {
     requireArgumentNotNull(input, 'input');
-    final charCodes = input.charCodes;
-    for(final v in charCodes) {
+    final charUnits = input.codeUnits;
+    for(final v in charUnits) {
       requireArgument(v < 255, 'ascii-only');
     }
-    return new QrByte._internal(charCodes);
+    return new QrByte._internal(charUnits);
   }
 
   QrByte._internal(this._data);

@@ -1,6 +1,6 @@
 part of bot_qr;
 
-class QrBitBuffer extends ListBase<bool> {
+class QrBitBuffer extends Sequence<bool> {
   final List<int> _buffer;
   int _length = 0;
 

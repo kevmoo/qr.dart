@@ -19,7 +19,7 @@ void main() {
   //
   addTask('dart2js', createDart2JsTask(['web/qr_demo.dart'], minify: true));
 
-  runHopCore();
+  runHop();
 }
 
 void _assertKnownPath() {
