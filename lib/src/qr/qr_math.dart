@@ -4,11 +4,7 @@ class QrMath {
   static ReadOnlyCollection<int> _logTable;
   static ReadOnlyCollection<int> _expTable;
 
-  static List<int> getZeroedList(int count) {
-    final l = new List<int>();
-    l.insertRange(0, count, 0);
-    return l;
-  }
+  static List<int> getZeroedList(int count) => new List.filled(count, 0);
 
   static glog(n) {
 
