@@ -27,6 +27,11 @@ if (navigator.webkitStartDart) {
           var script = document.createElement('script');
           script.src = scripts[i].src.replace(/\.dart(?=\?|$)/, '.dart.js');
           var parent = scripts[i].parentNode;
+          //
+          // HACK!
+          // https://code.google.com/p/dart/issues/detail?id=8455
+          //
+          document.currentScript = script;
           parent.replaceChild(script, scripts[i]);
         }
       }
