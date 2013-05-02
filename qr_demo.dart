@@ -1,9 +1,10 @@
 import 'dart:html';
+import 'dart:async';
 import 'dart:isolate';
 import 'dart:math' as math;
 import 'package:bot/bot.dart';
 import 'package:bot/bot_async.dart';
-import 'package:bot/bot_html.dart';
+import 'package:bot_web/bot_html.dart';
 import 'package:qr/qr.dart';
 
 main(){
@@ -21,11 +22,11 @@ main(){
     demo.value = input.value;
   });
 
-  demo.updated.add((args) {
+  demo.updated.listen((args) {
     input.style.background = '';
   });
 
-  demo.error.add((args) {
+  demo.error.listen((args) {
     input.style.background = 'red';
   });
 }
@@ -48,12 +49,12 @@ class QrDemo{
 
   QrDemo(CanvasElement canvas, DivElement typeDiv, DivElement errorDiv) :
     _canvas = canvas,
-    _ctx = canvas.context2d,
+    _ctx = canvas.context2D,
     _qrMapper = new _QrCalc(),
     _scale = new BungeeNum(1) {
     _ctx.fillStyle = 'black';
 
-    _qrMapper.outputChanged.add((args) {
+    _qrMapper.outputChanged.listen((args) {
       _squares = _qrMapper.output;
       requestFrame();
     });
@@ -101,9 +102,9 @@ class QrDemo{
     }
   }
 
-  EventRoot get updated => _qrMapper.outputChanged;
+  Stream get updated => _qrMapper.outputChanged;
 
-  EventRoot get error => _qrMapper.error;
+  Stream get error => _qrMapper.error;
 
   String get value => _value;
 
