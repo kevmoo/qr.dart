@@ -9,4 +9,5 @@ dependencies:
   bot_web: '>=0.20.4'
 dev_dependencies:
   bot_test: '>=0.1.0'
+  browser: '>=0.6.9'
   hop: '>=0.24.1'
