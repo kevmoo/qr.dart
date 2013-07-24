@@ -2,7 +2,6 @@ library hop_runner;
 
 import 'dart:async';
 import 'dart:io';
-import 'package:bot/bot.dart';
 import 'package:hop/hop.dart';
 import 'package:hop/hop_tasks.dart';
 import '../test/console_test_harness.dart' as test_console;
@@ -15,13 +14,13 @@ void main() {
   //
   // Dart2js
   //
-  addTask('dart2js', createDart2JsTask(['web/qr_demo.dart'], minify: true));
+  addTask('dart2js', createDartCompilerTask(['web/qr_demo.dart'], minify: true));
 
   //
   // Analyzer
   //
   addTask('analyze_libs',
-      createDartAnalyzerTask(() => _getLibs(['lib', 'web'])));
+      createAnalyzerTask(() => _getLibs(['lib', 'web'])));
 
 
   runHop();
