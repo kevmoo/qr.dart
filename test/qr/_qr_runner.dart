@@ -1,7 +1,6 @@
 library test_bot_qr;
 
 import 'package:bot/bot.dart';
-import 'package:bot_test/bot_test.dart';
 import 'package:qr/qr.dart';
 import 'package:unittest/unittest.dart';
 

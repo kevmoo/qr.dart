@@ -3,7 +3,6 @@ library test_dump_render_tree;
 import 'dart:async';
 import 'dart:io';
 import 'package:unittest/unittest.dart';
-import 'package:bot_test/bot_test.dart';
 
 void main() {
   final browserTests = ['test/harness_browser.html'];
