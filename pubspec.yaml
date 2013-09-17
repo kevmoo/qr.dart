@@ -3,11 +3,11 @@ author: Kevin Moore <kevin@thinkpixellab.com>
 description: A demo of generating QR codes in Dart.
 homepage: https://github.com/kevmoo/bot.dart
 environment:
-  sdk: '>=0.6.13'
+  sdk: '>=0.7.3+1'
 dependencies:
   bot: '>=0.23.0'
   bot_web: '>=0.20.4'
 dev_dependencies:
   bot_test: '>=0.1.2'
-  browser: '>=0.6.13'
-  hop: '>=0.24.1+1'
+  browser: '>=0.7.3+1'
+  hop: '>=0.24.5'
