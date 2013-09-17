@@ -4456,7 +4456,7 @@ this.a.zk(a)
 z=J.Gc(a)
 for(;z!=null;z=y){y=z.previousSibling
 this.call$1(z)}}},qE:{"":"cv;"},Gh:{"":"qE;y0:hostname=,LU:href},oc:name%,tp:port=,A8:protocol=,N:target=,t5:type}",
-bu:function(a){return a.toString()}},fY:{"":"qE;y0:hostname=,LU:href},tp:port=,A8:protocol=,N:target="},VH:{"":"qE;LU:href},N:target="},QP:{"":"qE;",$isQP:true,$asQP:null},IF:{"":"qE;oc:name%,t5:type},P:value%"},Ny:{"":"qE;fg:height=,R:width=",
+bu:function(a){return a.toString()}},fY:{"":"qE;y0:hostname=,LU:href},tp:port=,A8:protocol=,N:target="},VH:{"":"qE;LU:href},N:target="},QP:{"":"qE;",$isQP:true,$asQP:null},IF:{"":"qE;oc:name%,t5:type},P:value="},Ny:{"":"qE;fg:height=,R:width=",
 gVE:function(a){return a.getContext("2d")}},OM:{"":"KV;B:length="},Um:{"":"ea;kc:error="},oJ:{"":"BV;B:length=",
 hV:function(a,b,c,d){var z
 try{if(d==null)d=""
@@ -4515,10 +4515,10 @@ return a[b]},
 $aszM:function(){return[W.KV]},
 $asXj:null,
 $isList:true,
-$isXj:true},tb:{"":"qE;fg:height=,oc:name%,R:width="},pA:{"":"qE;fg:height=,R:width=,x=,y="},Mi:{"":"qE;fg:height=,oc:name%,t5:type},P:value%,R:width=",$iscv:true,$ascv:null,$isD0:true,$asD0:null},MX:{"":"qE;oc:name%"},wP:{"":"qE;t5:type},P:value%"},eP:{"":"qE;aI:htmlFor}"},Og:{"":"qE;LU:href},t5:type}"},cS:{"":"vB;y0:hostname=,tp:port=,A8:protocol=",
+$isXj:true},tb:{"":"qE;fg:height=,oc:name%,R:width="},pA:{"":"qE;fg:height=,R:width=,x=,y="},Mi:{"":"qE;fg:height=,oc:name%,t5:type},P:value=,R:width=",$iscv:true,$ascv:null,$isD0:true,$asD0:null},MX:{"":"qE;oc:name%"},wP:{"":"qE;t5:type},P:value="},eP:{"":"qE;aI:htmlFor}"},Og:{"":"qE;LU:href},t5:type}"},cS:{"":"vB;y0:hostname=,tp:port=,A8:protocol=",
 bu:function(a){return a.toString()},
 $iscS:true,
-$ascS:null},M6:{"":"qE;oc:name%"},El:{"":"qE;kc:error="},Ee:{"":"qE;oc:name%"},Qb:{"":"qE;P:value%"},PG:{"":"ea;tp:port="},bn:{"":"Ik;",
+$ascS:null},M6:{"":"qE;oc:name%"},El:{"":"qE;kc:error="},Ee:{"":"qE;oc:name%"},Qb:{"":"qE;P:value="},PG:{"":"ea;tp:port="},bn:{"":"Ik;",
 LV:function(a,b,c){return a.send(b,c)},
 wR:function(a,b){return a.send(b)}},Ik:{"":"D0;"},KV:{"":"D0;nv:lastChild=,zp:nodeType=",
 gni:function(a){return new W.e7(a)},
@@ -4541,8 +4541,8 @@ return a[b]},
 $aszM:function(){return[W.KV]},
 $asXj:null,
 $isList:true,
-$isXj:true},KY:{"":"qE;t5:type}"},G7:{"":"qE;fg:height=,oc:name%,t5:type},R:width="},ax:{"":"qE;P:value%"},wL:{"":"qE;oc:name%,P:value%"},HD:{"":"qE;oc:name%,P:value%"},qW:{"":"OM;N:target="},KR:{"":"qE;P:value%"},u2:{"":"vB;",
-bu:function(a){return a.toString()}},qI:{"":"qE;aI:htmlFor},t5:type}"},lp:{"":"qE;B:length=,oc:name%,P:value%"},QR:{"":"qE;t5:type}"},zD:{"":"ea;kc:error="},fq:{"":"qE;t5:type}"},Tb:{"":"qE;",
+$isXj:true},KY:{"":"qE;t5:type}"},G7:{"":"qE;fg:height=,oc:name%,t5:type},R:width="},ax:{"":"qE;P:value="},wL:{"":"qE;oc:name%,P:value="},HD:{"":"qE;oc:name%,P:value="},qW:{"":"OM;N:target="},KR:{"":"qE;P:value="},u2:{"":"vB;",
+bu:function(a){return a.toString()}},qI:{"":"qE;aI:htmlFor},t5:type}"},lp:{"":"qE;B:length=,oc:name%,P:value="},QR:{"":"qE;t5:type}"},zD:{"":"ea;kc:error="},fq:{"":"qE;t5:type}"},Tb:{"":"qE;",
 r6:function(a,b,c,d){var z,y,x
 if("createContextualFragment" in window.Range.prototype)return W.cv.prototype.r6.call(this,a,b,c,d)
 z=W.U9("<table>"+b+"</table>",c,d)
@@ -4584,7 +4584,7 @@ z=this.r6(a,b,c,d)
 a.content.appendChild(z)},
 YC:function(a,b){return this.WN(a,b,null,null)},
 $isyY:true,
-$asyY:null},AE:{"":"qE;oc:name%,P:value%"},SW:{"":"El;fg:height=,R:width="},K5:{"":"D0;",
+$asyY:null},AE:{"":"qE;oc:name%,P:value="},SW:{"":"El;fg:height=,R:width="},K5:{"":"D0;",
 gmW:function(a){var z=a.location
 if(W.uC(z)===!0)return z
 if(null==a._location_wrapper)a._location_wrapper=new W.rB(z)
@@ -4752,9 +4752,7 @@ return typeof a==="object"&&a!==null&&!!z.$iscv}},GS:{"":"Tp;",
 call$1:function(a){return J.Mp(a)}}}],["meta","package:meta/meta.dart",,Q,{uD:{"":"a;"}}],["metadata","/usr/local/Cellar/dart-editor/27487/dart-sdk/lib/html/html_common/metadata.dart",,B,{fA:{"":"a;d9,Ln",static:{"":"n4,zi,pj,b6,Dp",}},tz:{"":"a;"},jR:{"":"a;oc"},jp:{"":"a;"},oB:{"":"a;"}}],["qr_demo.dart","qr_demo.dart",,F,{E2:function(){var z,y,x,w,v
 z=F.RM(document.querySelector("#content"),document.querySelector("#type-div"),document.querySelector("#error-div"))
 y=document.querySelector("#input")
-x=J.RE(y)
-x.sP(y,"Type your message in here...")
-z.GL=x.gP(y)
+z.GL=J.Vm(y)
 z.Hv()
 C.Z4.Qm
 x=new W.Cq(y,C.Z4.fV,!1)
