@@ -15,7 +15,6 @@ main(){
 
   final InputElement input = query('#input');
 
-  input.value = "Type your message in here...";
   demo.value = input.value;
 
   input.onKeyUp.listen((KeyboardEvent args) {
