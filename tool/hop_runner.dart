@@ -23,6 +23,8 @@ void main() {
       createAnalyzerTask(() => _getLibs(['lib', 'web'])));
 
 
+  addTask('update_js', createCopyJSTask('web', browserDart: true));
+
   runHop();
 }
 
