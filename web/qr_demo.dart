@@ -8,12 +8,12 @@ import 'package:bot_web/bot_html.dart';
 import 'package:qr/qr.dart';
 
 main(){
-  final CanvasElement canvas = query("#content");
-  final DivElement typeDiv = query('#type-div');
-  final DivElement errorDiv = query('#error-div');
+  final CanvasElement canvas = querySelector("#content");
+  final DivElement typeDiv = querySelector('#type-div');
+  final DivElement errorDiv = querySelector('#error-div');
   final demo = new QrDemo(canvas, typeDiv, errorDiv);
 
-  final InputElement input = query('#input');
+  final InputElement input = querySelector('#input');
 
   demo.value = input.value;
 
