@@ -1,19 +1,18 @@
 import 'dart:html';
 import 'dart:async';
-import 'dart:isolate';
 import 'dart:math' as math;
 import 'package:bot/bot.dart';
-import 'package:bot/bot_async.dart';
 import 'package:bot_web/bot_html.dart';
 import 'package:qr/qr.dart';
+import 'package:qr/src/send_port_value.dart';
 
-main(){
-  final CanvasElement canvas = query("#content");
-  final DivElement typeDiv = query('#type-div');
-  final DivElement errorDiv = query('#error-div');
+void main() {
+  final CanvasElement canvas = querySelector("#content");
+  final DivElement typeDiv = querySelector('#type-div');
+  final DivElement errorDiv = querySelector('#error-div');
   final demo = new QrDemo(canvas, typeDiv, errorDiv);
 
-  final InputElement input = query('#input');
+  final InputElement input = querySelector('#input');
 
   demo.value = input.value;
 
@@ -21,11 +20,9 @@ main(){
     demo.value = input.value;
   });
 
-  demo.updated.listen((args) {
+  demo.output.listen((data) {
     input.style.background = '';
-  });
-
-  demo.error.listen((args) {
+  }, onError: (error) {
     input.style.background = 'red';
   });
 }
@@ -35,7 +32,7 @@ class QrDemo{
   static final String _errorLevelIdKey = 'error-value';
   final BungeeNum _scale;
   final CanvasElement _canvas;
-  final _QrCalc _qrMapper;
+  final ThrottledStream<dynamic, List<bool>> _qrMapper;
   final CanvasRenderingContext2D _ctx;
 
   String _value = '';
@@ -49,12 +46,12 @@ class QrDemo{
   QrDemo(CanvasElement canvas, DivElement typeDiv, DivElement errorDiv) :
     _canvas = canvas,
     _ctx = canvas.context2D,
-    _qrMapper = new _QrCalc(),
+    _qrMapper = new ThrottledStream(_calc),
     _scale = new BungeeNum(1) {
     _ctx.fillStyle = 'black';
 
-    _qrMapper.outputChanged.listen((args) {
-      _squares = _qrMapper.output;
+    _qrMapper.outputStream.listen((args) {
+      _squares = _qrMapper.outputValue;
       requestFrame();
     });
 
@@ -101,9 +98,7 @@ class QrDemo{
     }
   }
 
-  Stream get updated => _qrMapper.outputChanged;
-
-  Stream get error => _qrMapper.error;
+  Stream get output => _qrMapper.outputStream;
 
   String get value => _value;
 
@@ -134,7 +129,7 @@ class QrDemo{
   void _update() {
     final t = [_typeNumber, _errorCorrectLevel, _value];
 
-    _qrMapper.input = t;
+    _qrMapper.source = t;
   }
 
   void _onFrame(double highResTime){
@@ -177,26 +172,18 @@ class QrDemo{
   }
 }
 
-class _QrCalc
-  extends SendPortValue<List, List<bool>> {
-  _QrCalc() : super(spawnFunction(_qrIsolate));
-}
+List<bool> _calc(input) {
+  final code = new QrCode(input[0], input[1]);
+  code.addData(input[2]);
+  code.make();
 
-void _qrIsolate() {
+  final List<bool> squares = new List<bool>();
 
-  new SendValuePort<List, List<bool>>((input) {
-    final code = new QrCode(input[0], input[1]);
-    code.addData(input[2]);
-    code.make();
-
-    final List<bool> squares = new List<bool>();
-
-    for(int x = 0; x < code.moduleCount; x++) {
-      for(int y = 0; y < code.moduleCount; y++) {
-        squares.add(code.isDark(y, x));
-      }
+  for(int x = 0; x < code.moduleCount; x++) {
+    for(int y = 0; y < code.moduleCount; y++) {
+      squares.add(code.isDark(y, x));
     }
+  }
 
-    return squares;
-  });
+  return squares;
 }
