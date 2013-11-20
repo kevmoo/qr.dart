@@ -6,10 +6,9 @@ class QrByte {
 
   factory QrByte(String input) {
     requireArgumentNotNull(input, 'input');
-    final charUnits = input.codeUnits;
-    for(final v in charUnits) {
-      requireArgument(v < 255, 'ascii-only');
-    }
+
+    var charUnits = UTF8.encode(input);
+
     return new QrByte._internal(charUnits);
   }
 
