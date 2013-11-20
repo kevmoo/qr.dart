@@ -24,6 +24,7 @@ void main() {
     input.style.background = '';
   }, onError: (error) {
     input.style.background = 'red';
+    print(error);
   });
 }
 
