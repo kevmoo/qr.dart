@@ -2,7 +2,7 @@ part of bot_qr;
 
 class QrUtil {
 
-  static final List<List<int>> _PATTERN_POSITION_TABLE = const [
+  static const List<List<int>> _PATTERN_POSITION_TABLE = const [
     const [],
     const [6, 18],
     const [6, 22],
@@ -45,9 +45,9 @@ class QrUtil {
     const [6, 30, 58, 86, 114, 142, 170]
   ];
 
-  static int G15 = (1 << 10) | (1 << 8) | (1 << 5) | (1 << 4) | (1 << 2) | (1 << 1) | (1 << 0);
-  static int G18 = (1 << 12) | (1 << 11) | (1 << 10) | (1 << 9) | (1 << 8) | (1 << 5) | (1 << 2) | (1 << 0);
-  static int G15_MASK = (1 << 14) | (1 << 12) | (1 << 10) | (1 << 4) | (1 << 1);
+  static const int G15 = (1 << 10) | (1 << 8) | (1 << 5) | (1 << 4) | (1 << 2) | (1 << 1) | (1 << 0);
+  static const int G18 = (1 << 12) | (1 << 11) | (1 << 10) | (1 << 9) | (1 << 8) | (1 << 5) | (1 << 2) | (1 << 0);
+  static const int G15_MASK = (1 << 14) | (1 << 12) | (1 << 10) | (1 << 4) | (1 << 1);
 
   static int getBCHTypeInfo(int data) {
     var d = data << 10;
@@ -77,9 +77,8 @@ class QrUtil {
     return digit;
   }
 
-  static List<int> getPatternPosition(int typeNumber) {
-    return _PATTERN_POSITION_TABLE[typeNumber - 1];
-  }
+  static List<int> getPatternPosition(int typeNumber) =>
+    _PATTERN_POSITION_TABLE[typeNumber - 1];
 
   static bool getMask(int maskPattern, int i, int j) {
     switch (maskPattern) {
