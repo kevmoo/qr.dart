@@ -1,15 +1,15 @@
 part of bot_qr;
 
 class QrCode {
-  static final int _PAD0 = 0xEC;
-  static final int _PAD1 = 0x11;
+  static const int _PAD0 = 0xEC;
+  static const int _PAD1 = 0x11;
 
   final typeNumber;
   final errorCorrectLevel;
   final int moduleCount;
   final List<List> _modules;
   List<int> _dataCache;
-  List<QrByte> _dataList;
+  final List<QrByte> _dataList = new List<QrByte>();
 
   QrCode(int typeNumber, this.errorCorrectLevel)
   : this.typeNumber = typeNumber,
@@ -22,9 +22,6 @@ class QrCode {
     for (var row = 0; row < moduleCount; row++) {
       _modules.add(new List<bool>(moduleCount));
     }
-
-    _dataCache = null;
-    _dataList = [];
   }
 
   bool isDark(int row, int col) {
@@ -375,4 +372,3 @@ class QrCode {
     return data;
   }
 }
-

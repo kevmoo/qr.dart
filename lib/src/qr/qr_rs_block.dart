@@ -44,7 +44,7 @@ class QrRsBlock {
     }
   }
 
-  static List<List<int>> _rsBlockTable = const [
+  static const List<List<int>> _rsBlockTable = const [
     // L
     // M
     // Q
