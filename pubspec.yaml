@@ -5,7 +5,7 @@ homepage: https://github.com/kevmoo/bot.dart
 environment:
   sdk: '>=0.8.10+6 <2.0.0'
 dependencies:
-  bot: '>=0.25.1'
+  bot: '>=0.25.2'
   bot_web: '>=0.21.0'
 dev_dependencies:
   bot_test: '>=0.1.5'
