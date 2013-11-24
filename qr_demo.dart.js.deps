@@ -34,6 +34,7 @@ file:///Users/kevin/source/github/qr.dart/packages/bot/src/bot/math/tarjan_cycle
 file:///Users/kevin/source/github/qr.dart/packages/bot/src/bot/math/vector.dart
 file:///Users/kevin/source/github/qr.dart/packages/bot/src/bot/requires.dart
 file:///Users/kevin/source/github/qr.dart/packages/bot/src/bot/string_line_reader.dart
+file:///Users/kevin/source/github/qr.dart/packages/bot/src/bot/throttled_stream.dart
 file:///Users/kevin/source/github/qr.dart/packages/bot/src/bot/tuple.dart
 file:///Users/kevin/source/github/qr.dart/packages/bot/src/bot/tuple3.dart
 file:///Users/kevin/source/github/qr.dart/packages/bot/src/bot/typedefs.dart
@@ -57,7 +58,6 @@ file:///Users/kevin/source/github/qr.dart/packages/qr/src/qr/qr_math.dart
 file:///Users/kevin/source/github/qr.dart/packages/qr/src/qr/qr_polynomial.dart
 file:///Users/kevin/source/github/qr.dart/packages/qr/src/qr/qr_rs_block.dart
 file:///Users/kevin/source/github/qr.dart/packages/qr/src/qr/qr_util.dart
-file:///Users/kevin/source/github/qr.dart/packages/qr/src/send_port_value.dart
 file:///Users/kevin/source/github/qr.dart/packages/unmodifiable_collection/unmodifiable_collection.dart
 file:///Users/kevin/source/github/qr.dart/web/qr_demo.dart
 file:///usr/local/Cellar/dart-editor/30188/dart-sdk/lib/_collection_dev/arrays.dart

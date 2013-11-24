@@ -4,7 +4,6 @@ import 'dart:math' as math;
 import 'package:bot/bot.dart';
 import 'package:bot_web/bot_html.dart';
 import 'package:qr/qr.dart';
-import 'package:qr/src/send_port_value.dart';
 
 void main() {
   final CanvasElement canvas = querySelector("#content");

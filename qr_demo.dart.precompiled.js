@@ -1114,7 +1114,31 @@ X.De(X.xm(a),"value",null)
 this.Ah=a},
 static:{Sq:function(a,b){var z=new X.yN(null,null,null)
 z.Ii(a,b)
-return z}}}}],["bot_html","package:bot_web/bot_html.dart",,B,{Il:function(a,b){X.xl("ctx")
+return z}}}}],["bot.throttled_stream","package:bot/src/bot/throttled_stream.dart",,Y,{Zh:{"":"a;i5,ik,N2,ic,OD,CG",
+x7:function(a){return this.i5.call$1(a)},
+QX:function(){var z,y
+if((this.ik.Gv&4)===0)if(this.CG==null){z=this.N2
+y=this.ic
+y=z==null?y!=null:z!==y
+z=y}else z=!1
+else z=!1
+if(z){this.ic=this.N2
+this.CG=P.e4(new Y.Eo(this),null).ml(new Y.ec(this)).OA(new Y.dR(this)).wM(new Y.EP(this))}}},Eo:{"":"Tp;a",
+call$0:function(){var z=this.a
+return z.x7(z.ic)}},ec:{"":"Tp;b",
+call$1:function(a){var z=this.b
+z.OD=a
+z=z.ik
+if(z.Gv>=4)H.vh(z.q7())
+z.Iv(a)},
+$is_aB:true},dR:{"":"Tp;c",
+call$2:function(a,b){var z=this.c.ik
+if(z.Gv>=4)H.vh(z.q7())
+z.pb(a,b)},
+$is_bh:true},EP:{"":"Tp;d",
+call$0:function(){var z=this.d
+z.CG=null
+z.QX()}}}],["bot_html","package:bot_web/bot_html.dart",,B,{Il:function(a,b){X.xl("ctx")
 if(a==null)H.vh(X.zT("ctx"))
 X.xl("tx")
 a.setTransform(b.vi,b.p6,b.Vi,b.qv,b.k9,b.fP)}}],["bot_qr","package:qr/qr.dart",,L,{Bc:function(a){switch(a){case 1:return"Low"
@@ -1884,7 +1908,7 @@ w0:function(a,b){var z
 if(a==null)throw H.b(new P.AT("Error must not be null"))
 z=this.MM
 if(z.Gv!==0)throw H.b(new P.lj("Future already completed"))
-z.CG(a,b)},
+z.lF(a,b)},
 pm:function(a){return this.w0(a,null)},
 $asPf:null},vs:{"":"a;Gv,Lj<,jk,BQ<,OY,As,qV,o4",
 gcg:function(){return this.Gv>=4},
@@ -1934,7 +1958,7 @@ OH:function(a){if(this.Gv!==0)H.vh(new P.lj("Future already completed"))
 this.Gv=1
 this.Lj.toString
 P.IA(new P.rH(this,a))},
-CG:function(a,b){if(this.Gv!==0)H.vh(new P.lj("Future already completed"))
+lF:function(a,b){if(this.Gv!==0)H.vh(new P.lj("Future already completed"))
 this.Gv=1
 this.Lj.toString
 P.IA(new P.ZL(this,a,b))},
@@ -3815,31 +3839,7 @@ call$1:function(a){var z=J.x(a)
 return typeof a==="object"&&a!==null&&!!z.$iscv},
 $is_aB:true},GS:{"":"Tp;",
 call$1:function(a){return J.Mp(a)},
-$is_aB:true}}],["qr.lib","package:qr/src/send_port_value.dart",,S,{Zh:{"":"a;DU,Bm,xr,dZ,AT,mT",
-Uy:function(a){return this.DU.call$1(a)},
-Ww:function(){var z,y
-if((this.Bm.Gv&4)===0)if(this.mT==null){z=this.xr
-y=this.dZ
-y=z==null?y!=null:z!==y
-z=y}else z=!1
-else z=!1
-if(z){this.dZ=this.xr
-this.mT=P.e4(new S.Eo(this),null).ml(new S.ec(this)).OA(new S.dR(this)).wM(new S.EP(this))}}},Eo:{"":"Tp;a",
-call$0:function(){var z=this.a
-return z.Uy(z.dZ)}},ec:{"":"Tp;b",
-call$1:function(a){var z=this.b
-z.AT=a
-z=z.Bm
-if(z.Gv>=4)H.vh(z.q7())
-z.Iv(a)},
-$is_aB:true},dR:{"":"Tp;c",
-call$2:function(a,b){var z=this.c.Bm
-if(z.Gv>=4)H.vh(z.q7())
-z.pb(a,b)},
-$is_bh:true},EP:{"":"Tp;d",
-call$0:function(){var z=this.d
-z.mT=null
-z.Ww()}}}],["","qr_demo.dart",,F,{E2:function(){var z,y,x,w
+$is_aB:true}}],["","qr_demo.dart",,F,{E2:function(){var z,y,x,w
 z=F.RM(document.querySelector("#content"),document.querySelector("#type-div"),document.querySelector("#error-div"))
 y=document.querySelector("#input")
 z.Yl=J.Vm(y)
@@ -3849,7 +3849,7 @@ H.VM(x,[null])
 w=new W.xC(0,x.uv,x.Ph,W.VF(new F.em(z,y)),x.Sg)
 H.VM(w,[H.W8(x,"RO",0)])
 w.Zz()
-w=z.t5.Bm
+w=z.t5.ik
 x=new P.Gm(w)
 H.VM(x,[H.W8(w,"WV",0)])
 x.kT(new F.Lb(y),new F.QA(y))},O9:function(a){var z,y,x,w,v
@@ -3882,18 +3882,18 @@ C.ol.oB(z,W.VF(y))}},
 eZ:function(a){var z=J.P5(J.l2(a))
 this.o1=H.BU(z.V5.MW.getAttribute("data-"+z.kZ("type-value")),null,null)
 z=this.t5
-z.xr=[this.o1,this.OC,this.Yl]
-z.Ww()},
+z.N2=[this.o1,this.OC,this.Yl]
+z.QX()},
 gqk:function(){return new H.Pm(this,F.by.prototype.eZ,null,"eZ")},
 wa:function(a){var z=J.P5(J.l2(a))
 this.OC=H.BU(z.V5.MW.getAttribute("data-"+z.kZ("error-value")),null,null)
 z=this.t5
-z.xr=[this.o1,this.OC,this.Yl]
-z.Ww()},
+z.N2=[this.o1,this.OC,this.Yl]
+z.QX()},
 gtQ:function(){return new H.Pm(this,F.by.prototype.wa,null,"wa")},
 Ak:function(){var z=this.t5
-z.xr=[this.o1,this.OC,this.Yl]
-z.Ww()},
+z.N2=[this.o1,this.OC,this.Yl]
+z.QX()},
 aZ:function(a){var z,y,x,w,v,u,t,s,r,q
 this.kr=!1
 z=this.aw
@@ -3927,7 +3927,7 @@ z.restore()},
 gHt:function(){return new H.Pm(this,F.by.prototype.aZ,null,"aZ")},
 GR:function(a,b,c){var z,y,x,w,v,u,t,s,r,q
 this.aw.fillStyle="black"
-z=this.t5.Bm
+z=this.t5.ik
 y=new P.Gm(z)
 H.VM(y,[H.W8(z,"WV",0)])
 y.yI(new F.A6(this))
@@ -3986,13 +3986,13 @@ v=y.gwd(c)
 v.h(v,s)}},
 static:{"":"ID,YM",RM:function(a,b,c){var z,y
 z=J.uP(a)
-y=new S.Zh(F.Z9,P.bK(null,null,!1,null),null,null,null,null)
+y=new Y.Zh(F.Z9,P.bK(null,null,!1,null),null,null,null,null)
 H.VM(y,[null,null])
 z=new F.by(X.Sq(1,null),a,y,z,"",10,0,null,!1)
 z.GR(a,b,c)
 return z}}},A6:{"":"Tp;a",
 call$1:function(a){var z=this.a
-z.Ul=z.t5.AT
+z.Ul=z.t5.OD
 z.q3()},
 $is_aB:true}},1],])
 I.$finishClasses($$,$,null)
@@ -6490,6 +6490,36 @@ if(!"name" in yN)yN.name="yN"
 $desc=$collectedClasses.yN
 if($desc instanceof Array)$desc=$desc[1]
 yN.prototype=$desc
+function Zh(i5,ik,N2,ic,OD,CG){this.i5=i5
+this.ik=ik
+this.N2=N2
+this.ic=ic
+this.OD=OD
+this.CG=CG}Zh.builtin$cls="Zh"
+if(!"name" in Zh)Zh.name="Zh"
+$desc=$collectedClasses.Zh
+if($desc instanceof Array)$desc=$desc[1]
+Zh.prototype=$desc
+function Eo(a){this.a=a}Eo.builtin$cls="Eo"
+if(!"name" in Eo)Eo.name="Eo"
+$desc=$collectedClasses.Eo
+if($desc instanceof Array)$desc=$desc[1]
+Eo.prototype=$desc
+function ec(b){this.b=b}ec.builtin$cls="ec"
+if(!"name" in ec)ec.name="ec"
+$desc=$collectedClasses.ec
+if($desc instanceof Array)$desc=$desc[1]
+ec.prototype=$desc
+function dR(c){this.c=c}dR.builtin$cls="dR"
+if(!"name" in dR)dR.name="dR"
+$desc=$collectedClasses.dR
+if($desc instanceof Array)$desc=$desc[1]
+dR.prototype=$desc
+function EP(d){this.d=d}EP.builtin$cls="EP"
+if(!"name" in EP)EP.name="EP"
+$desc=$collectedClasses.EP
+if($desc instanceof Array)$desc=$desc[1]
+EP.prototype=$desc
 function eL(AI,ZR){this.AI=AI
 this.ZR=ZR}eL.builtin$cls="eL"
 if(!"name" in eL)eL.name="eL"
@@ -7632,36 +7662,6 @@ if(!"name" in GS)GS.name="GS"
 $desc=$collectedClasses.GS
 if($desc instanceof Array)$desc=$desc[1]
 GS.prototype=$desc
-function Zh(DU,Bm,xr,dZ,AT,mT){this.DU=DU
-this.Bm=Bm
-this.xr=xr
-this.dZ=dZ
-this.AT=AT
-this.mT=mT}Zh.builtin$cls="Zh"
-if(!"name" in Zh)Zh.name="Zh"
-$desc=$collectedClasses.Zh
-if($desc instanceof Array)$desc=$desc[1]
-Zh.prototype=$desc
-function Eo(a){this.a=a}Eo.builtin$cls="Eo"
-if(!"name" in Eo)Eo.name="Eo"
-$desc=$collectedClasses.Eo
-if($desc instanceof Array)$desc=$desc[1]
-Eo.prototype=$desc
-function ec(b){this.b=b}ec.builtin$cls="ec"
-if(!"name" in ec)ec.name="ec"
-$desc=$collectedClasses.ec
-if($desc instanceof Array)$desc=$desc[1]
-ec.prototype=$desc
-function dR(c){this.c=c}dR.builtin$cls="dR"
-if(!"name" in dR)dR.name="dR"
-$desc=$collectedClasses.dR
-if($desc instanceof Array)$desc=$desc[1]
-dR.prototype=$desc
-function EP(d){this.d=d}EP.builtin$cls="EP"
-if(!"name" in EP)EP.name="EP"
-$desc=$collectedClasses.EP
-if($desc instanceof Array)$desc=$desc[1]
-EP.prototype=$desc
 function em(a,b){this.a=a
 this.b=b}em.builtin$cls="em"
 if(!"name" in em)em.name="em"
@@ -7726,4 +7726,4 @@ this.$name=$name}kq.builtin$cls="kq"
 $desc=$collectedClasses.kq
 if($desc instanceof Array)$desc=$desc[1]
 kq.prototype=$desc
-return[qE,Gh,rK,fY,Mr,lJ,P2,nB,i3,it,QP,IF,n6,Ny,Kh,TK,Y5,mj,OM,QQ,MA,y4,d7,Um,oJ,DG,HA,vH,xO,Em,NW,rV,Wy,QF,hs,Wq,cm,Nh,ae,cv,Fs,hY,ea,D0,as,Aa,u5,Yu,iG,jP,mK,xf,xn,Vb,QH,ST,X2,tb,pA,Mi,HL,MX,wP,eP,AL,Og,cS,M6,El,mC,SV,aB,fJ,Ih,D8,Vh,qm,ZY,cx,Ee,Qb,PG,xe,AI,bn,Im,xI,OK,N7,eY,KV,BH,KY,G7,l9,Ql,wL,bP,mX,SN,HD,ni,p3,qj,nC,KR,kQ,fs,u2,bX,BL,ip,iQ,qI,Ea,lp,kd,I0,QR,Cp,ua,zD,Ul,KK,ii,fq,h4,qk,GI,Tb,Iv,BT,yY,kJ,FB,xV,FH,y6,RH,Kn,Z2,w6,BR,vw,aG,T4,Oi,UM,WS,rq,nK,yp,c1,Mq,Nf,nj,Mx,rh,Zv,nA,yK,Y0,ZJ,mU,eZ,IT,y5,IQ,Pq,kx,nV,Zc,ui,D6,DQ,Sm,xL,es,jw,lv,pf,py,Ef,zo,wf,TU,ih,Nd,zp,Xu,lu,tk,me,oB,Ah,d4,MI,oa,bM,eW,Qy,ju,OE,N9,BA,tp,rE,CC,PQ,uz,Yd,p8,AD,Gr,Gq,GH,To,jr,j2,jf,rQ,Lx,f6,d5,hy,r8,aS,CG,qF,MT,Rk,Pt,Pe,ox,ZD,vt,cu,BD,vR,j8,Ja,zI,cB,LQ,yR,HP,fa,l4,Et,QS,Pi,qO,xt,tG,P0,Jq,Xr,Sl,Qm,AS,F0,FK,Gv,kn,PE,Ue,iC,is,Q,nM,tN,Jt,P,im,VA,O,PK,JO,O2,aX,cC,RA,IY,JH,jl,Iy,JM,Ua,JG,ns,wd,fc,YP,yc,I9,Bj,NO,II,fP,X1,HU,Pm,oo,OW,Tf,iY,yH,FA,Av,Zr,W0,az,vV,Am,XO,dr,TL,KX,uZ,OQ,Tp,v,dC,wN,VX,f4,wC,Zd,WU,YS,vE,Ng,yN,eL,eK,pR,v6,E4,dI,aL,a7,i1,xy,MH,A8,U5,SO,SU,Ca,Gm,JI,EV,WV,zW,tK,OR,DL,b8,w4,VN,iK,Pf,Lj,vs,CQ,da,xw,dm,rH,ZL,mi,jb,wB,Pu,qh,lz,Rl,Jb,M4,B5,PI,MO,Kd,UO,A1,VT,Fj,q1,Zz,ly,Jy,u8,WY,nP,KA,Vo,qB,ez,fI,LV,DS,dp,B3,CR,Qk,v1,uR,fZ,TF,K5,Cg,Hs,pK,eM,R8,k6,oi,fG,EQ,YB,a1,db,i5,N6,jg,YO,oz,b6,tj,zQ,u3,mW,ar,lD,ZQ,Sw,o0,Uk,wI,ob,z0,E3,Rw,CL,a6,P7,DW,Ge,LK,AT,bJ,ub,ds,lj,UV,VS,t7,HG,aE,eV,kM,EH,An,c8,a,mE,Rn,wv,M0,C7,BV,id,VG,Cv,nN,kE,e7,yo,x5,zL,HR,D9,E9,Sy,KS,A3,aY,I4,Fk,RO,Cq,xC,JQ,Pb,vD,mD,Eg,m6,ct,tE,Ow,W9,dW,rB,kF,mk,MM,fm,rR,xG,Vj,As,GE,D7,Zf,GS,Zh,Eo,ec,dR,EP,em,Lb,QA,by,A6,Wv,GW,yh,Pz,zy,kq]}
+return[qE,Gh,rK,fY,Mr,lJ,P2,nB,i3,it,QP,IF,n6,Ny,Kh,TK,Y5,mj,OM,QQ,MA,y4,d7,Um,oJ,DG,HA,vH,xO,Em,NW,rV,Wy,QF,hs,Wq,cm,Nh,ae,cv,Fs,hY,ea,D0,as,Aa,u5,Yu,iG,jP,mK,xf,xn,Vb,QH,ST,X2,tb,pA,Mi,HL,MX,wP,eP,AL,Og,cS,M6,El,mC,SV,aB,fJ,Ih,D8,Vh,qm,ZY,cx,Ee,Qb,PG,xe,AI,bn,Im,xI,OK,N7,eY,KV,BH,KY,G7,l9,Ql,wL,bP,mX,SN,HD,ni,p3,qj,nC,KR,kQ,fs,u2,bX,BL,ip,iQ,qI,Ea,lp,kd,I0,QR,Cp,ua,zD,Ul,KK,ii,fq,h4,qk,GI,Tb,Iv,BT,yY,kJ,FB,xV,FH,y6,RH,Kn,Z2,w6,BR,vw,aG,T4,Oi,UM,WS,rq,nK,yp,c1,Mq,Nf,nj,Mx,rh,Zv,nA,yK,Y0,ZJ,mU,eZ,IT,y5,IQ,Pq,kx,nV,Zc,ui,D6,DQ,Sm,xL,es,jw,lv,pf,py,Ef,zo,wf,TU,ih,Nd,zp,Xu,lu,tk,me,oB,Ah,d4,MI,oa,bM,eW,Qy,ju,OE,N9,BA,tp,rE,CC,PQ,uz,Yd,p8,AD,Gr,Gq,GH,To,jr,j2,jf,rQ,Lx,f6,d5,hy,r8,aS,CG,qF,MT,Rk,Pt,Pe,ox,ZD,vt,cu,BD,vR,j8,Ja,zI,cB,LQ,yR,HP,fa,l4,Et,QS,Pi,qO,xt,tG,P0,Jq,Xr,Sl,Qm,AS,F0,FK,Gv,kn,PE,Ue,iC,is,Q,nM,tN,Jt,P,im,VA,O,PK,JO,O2,aX,cC,RA,IY,JH,jl,Iy,JM,Ua,JG,ns,wd,fc,YP,yc,I9,Bj,NO,II,fP,X1,HU,Pm,oo,OW,Tf,iY,yH,FA,Av,Zr,W0,az,vV,Am,XO,dr,TL,KX,uZ,OQ,Tp,v,dC,wN,VX,f4,wC,Zd,WU,YS,vE,Ng,yN,Zh,Eo,ec,dR,EP,eL,eK,pR,v6,E4,dI,aL,a7,i1,xy,MH,A8,U5,SO,SU,Ca,Gm,JI,EV,WV,zW,tK,OR,DL,b8,w4,VN,iK,Pf,Lj,vs,CQ,da,xw,dm,rH,ZL,mi,jb,wB,Pu,qh,lz,Rl,Jb,M4,B5,PI,MO,Kd,UO,A1,VT,Fj,q1,Zz,ly,Jy,u8,WY,nP,KA,Vo,qB,ez,fI,LV,DS,dp,B3,CR,Qk,v1,uR,fZ,TF,K5,Cg,Hs,pK,eM,R8,k6,oi,fG,EQ,YB,a1,db,i5,N6,jg,YO,oz,b6,tj,zQ,u3,mW,ar,lD,ZQ,Sw,o0,Uk,wI,ob,z0,E3,Rw,CL,a6,P7,DW,Ge,LK,AT,bJ,ub,ds,lj,UV,VS,t7,HG,aE,eV,kM,EH,An,c8,a,mE,Rn,wv,M0,C7,BV,id,VG,Cv,nN,kE,e7,yo,x5,zL,HR,D9,E9,Sy,KS,A3,aY,I4,Fk,RO,Cq,xC,JQ,Pb,vD,mD,Eg,m6,ct,tE,Ow,W9,dW,rB,kF,mk,MM,fm,rR,xG,Vj,As,GE,D7,Zf,GS,em,Lb,QA,by,A6,Wv,GW,yh,Pz,zy,kq]}
