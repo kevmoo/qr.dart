@@ -9,7 +9,7 @@ import '../test/harness_console.dart' as test_console;
 void main(List<String> args) {
 
   addTask('test', createUnitTestTask(test_console.testCore));
-  addAsyncTask('pages', _ghPages);
+  addTask('pages', _ghPages);
 
   //
   // Dart2js
