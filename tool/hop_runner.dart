@@ -9,7 +9,7 @@ import '../test/harness_console.dart' as test_console;
 void main(List<String> args) {
 
   addTask('test', createUnitTestTask(test_console.testCore));
-  addTask('pages', _ghPages);
+  addTask('pages', getBranchForDirTask('master', 'web', 'gh-pages'));
 
   //
   // Dart2js
@@ -42,12 +42,4 @@ Future<List<String>> _getLibs(Iterable<String> parentDirs) {
       });
     })
     .then((_) => files);
-}
-
-Future<bool> _ghPages(TaskContext ctx) {
-  final sourceDir = 'web';
-  final targetBranch = 'gh-pages';
-  final sourceBranch = 'master';
-
-  return branchForDir(ctx, sourceBranch, sourceDir, targetBranch);
 }
