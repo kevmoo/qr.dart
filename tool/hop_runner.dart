@@ -9,21 +9,12 @@ import '../test/harness_console.dart' as test_console;
 void main(List<String> args) {
 
   addTask('test', createUnitTestTask(test_console.testCore));
-  addTask('pages', getBranchForDirTask('master', 'web', 'gh-pages'));
-
-  //
-  // Dart2js
-  //
-  addTask('dart2js', createDartCompilerTask(['web/qr_demo.dart'], minify: true));
 
   //
   // Analyzer
   //
   addTask('analyze_libs',
       createAnalyzerTask(() => _getLibs(['lib', 'web'])));
-
-
-  addTask('update_js', createCopyJSTask('web', browserDart: true));
 
   runHop(args);
 }

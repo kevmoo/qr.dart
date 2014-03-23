@@ -1,4 +1,4 @@
-![QR.DART](http://kevmoo.github.com/qr.dart/dartqr.png)
+![QR.DART](https://raw.githubusercontent.com/kevmoo/qr.dart/master/web/dartqr.png)
 # qr.dart
 ## A demo of generating QR codes in Dart.
 
