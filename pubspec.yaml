@@ -10,4 +10,6 @@ dependencies:
 dev_dependencies:
   bot_test: '>=0.1.5 <0.2.0'
   browser: '>=0.9.0 <0.11.0'
+  git: '>=0.3.0 <0.4.0'
   hop: '>=0.28.3+2 <0.31.0'
+  path: '>=1.0.0 <2.0.0'

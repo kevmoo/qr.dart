@@ -4,6 +4,8 @@ import 'dart:async';
 import 'dart:io';
 import 'package:hop/hop.dart';
 import 'package:hop/hop_tasks.dart';
+
+import 'src/pages.dart';
 import '../test/harness_console.dart' as test_console;
 
 void main(List<String> args) {
@@ -15,6 +17,10 @@ void main(List<String> args) {
   //
   addTask('analyze_libs',
       createAnalyzerTask(() => _getLibs(['lib', 'web'])));
+
+  addTask('build', createProcessTask('pub', args: ['build']));
+
+  addTask('pages', buildWebToPages, dependencies: ['build']);
 
   runHop(args);
 }
