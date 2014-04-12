@@ -1,10 +1,13 @@
 part of bot_qr;
 
-class QrBitBuffer extends Sequence<bool> {
+class QrBitBuffer extends Object with ListMixin<bool> {
   final List<int> _buffer;
   int _length = 0;
 
   QrBitBuffer() : _buffer = new List<int>();
+
+  void operator[]=(int index, bool value) =>
+      throw new UnsupportedError('cannot change');
 
   bool operator[](int index) {
     final bufIndex = index ~/ 8;
@@ -12,6 +15,8 @@ class QrBitBuffer extends Sequence<bool> {
   }
 
   int get length => _length;
+
+  void set length(int value) => throw new UnsupportedError('Cannot change');
 
   int getByte(int index) => _buffer[index];
 

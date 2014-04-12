@@ -1,5 +1,6 @@
 library bot_qr;
 
+import 'dart:collection';
 import 'dart:convert';
 import 'dart:math' as math;
 import 'package:bot/bot.dart';
