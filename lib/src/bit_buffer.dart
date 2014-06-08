@@ -1,4 +1,6 @@
-part of bot_qr;
+library qr.bit_buffer;
+
+import 'dart:collection';
 
 class QrBitBuffer extends Object with ListMixin<bool> {
   final List<int> _buffer;
@@ -9,7 +11,7 @@ class QrBitBuffer extends Object with ListMixin<bool> {
   void operator[]=(int index, bool value) =>
       throw new UnsupportedError('cannot change');
 
-  bool operator[](int index) {
+  bool operator [](int index) {
     final bufIndex = index ~/ 8;
     return ((_buffer[bufIndex] >> (7 - index % 8)) & 1) == 1;
   }
@@ -21,15 +23,14 @@ class QrBitBuffer extends Object with ListMixin<bool> {
   int getByte(int index) => _buffer[index];
 
   void put(int number, int length) {
-    for(var i = 0; i < length; i++) {
+    for (var i = 0; i < length; i++) {
       final bit = ((number >> (length - i - 1)) & 1) == 1;
       putBit(bit);
     }
   }
 
   void putBit(bool bit) {
-
-    final bufIndex = _length ~/ 8;
+    var bufIndex = _length ~/ 8;
     if (_buffer.length <= bufIndex) {
       _buffer.add(0);
     }

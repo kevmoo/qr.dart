@@ -1,4 +1,6 @@
-part of bot_qr;
+library qr.rs_block;
+
+import 'error_correct_level.dart';
 
 class QrRsBlock {
   final int totalCount;
@@ -32,13 +34,13 @@ class QrRsBlock {
 
     switch (errorCorrectLevel) {
       case QrErrorCorrectLevel.L:
-      return _rsBlockTable[(typeNumber - 1) * 4 + 0];
+        return _rsBlockTable[(typeNumber - 1) * 4 + 0];
       case QrErrorCorrectLevel.M:
-      return _rsBlockTable[(typeNumber - 1) * 4 + 1];
+        return _rsBlockTable[(typeNumber - 1) * 4 + 1];
       case QrErrorCorrectLevel.Q:
-      return _rsBlockTable[(typeNumber - 1) * 4 + 2];
+        return _rsBlockTable[(typeNumber - 1) * 4 + 2];
       case QrErrorCorrectLevel.H:
-      return _rsBlockTable[(typeNumber - 1) * 4 + 3];
+        return _rsBlockTable[(typeNumber - 1) * 4 + 3];
       default:
       throw 'bad rs block @ typeNumber: $typeNumber/errorCorrectLevel:$errorCorrectLevel';
     }

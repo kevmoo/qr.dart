@@ -1,0 +1,49 @@
+input#input, canvas, .setting {
+  margin: 20px auto;
+  display: block;
+  width: 600px;
+}
+
+input#input {
+  height: 35px;
+  line-height: 35px;
+  margin: 0 auto;
+  text-align: center;
+  font-size:30px;
+}
+
+.setting span {
+  width: 120px;
+  display: block;
+  float: left;
+  margin-right: 5px;
+  text-align: right;
+  padding-top: 6px;
+}
+
+input[type='radio'] {
+  display: none;
+}
+
+[type=radio]:checked + label {
+  background: #ddd;
+}
+
+label {
+  display: inline-block;
+  min-width: 15px;
+  margin: 0 5px 0 1px;
+  text-align: center;
+}
+
+#error-div label {
+  min-width: 85px;
+}
+
+iframe {
+  width: 139px;
+  height: 30px;
+  margin: 0 auto;
+  display: block;
+  clear: both;
+}

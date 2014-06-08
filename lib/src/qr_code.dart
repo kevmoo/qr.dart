@@ -1,20 +1,33 @@
-part of bot_qr;
+library qr.code;
+
+import 'dart:math' as math;
+
+import 'package:bot/bot.dart';
+
+import 'bit_buffer.dart';
+import 'byte.dart';
+import 'error_correct_level.dart';
+import 'input_too_long_exception.dart';
+import 'math.dart' as QrMath;
+import 'polynomial.dart';
+import 'rs_block.dart';
+import 'util.dart' as QrUtil;
 
 class QrCode {
   static const int _PAD0 = 0xEC;
   static const int _PAD1 = 0x11;
 
-  final typeNumber;
-  final errorCorrectLevel;
+  final int typeNumber;
+  final int errorCorrectLevel;
   final int moduleCount;
   final List<List> _modules;
   List<int> _dataCache;
   final List<QrByte> _dataList = new List<QrByte>();
 
   QrCode(int typeNumber, this.errorCorrectLevel)
-  : this.typeNumber = typeNumber,
-    moduleCount = typeNumber * 4 + 17,
-  _modules = new List<List<bool>>() {
+      : this.typeNumber = typeNumber,
+        moduleCount = typeNumber * 4 + 17,
+        _modules = new List<List<bool>>() {
     requireArgument(typeNumber > 0 && typeNumber < 11, 'typeNumber');
     requireArgument(QrErrorCorrectLevel.levels.indexOf(errorCorrectLevel) >= 0,
         'errorCorrectLevel');
@@ -254,7 +267,8 @@ class QrCode {
     _mapData(_dataCache, maskPattern);
   }
 
-  static List<int> _createData(int typeNumber, int errorCorrectLevel, List<QrByte> dataList) {
+  static List<int> _createData(int typeNumber, int errorCorrectLevel,
+      List<QrByte> dataList) {
 
     var rsBlocks = QrRsBlock.getRSBlocks(typeNumber, errorCorrectLevel);
 
@@ -276,7 +290,7 @@ class QrCode {
 
     final totalByteCount = totalDataCount * 8;
     if (buffer.length > totalByteCount) {
-      throw new QrInputTooLongException(buffer.length, totalByteCount);
+      throw new InputTooLongException(buffer.length, totalByteCount);
     }
 
     // HUH?

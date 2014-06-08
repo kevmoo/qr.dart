@@ -1,4 +1,11 @@
-part of bot_qr;
+library qr.byte;
+
+import 'dart:convert';
+
+import 'package:bot/bot.dart';
+
+import 'bit_buffer.dart';
+import 'mode.dart' as QrMode;
 
 class QrByte {
   final int mode = QrMode.MODE_8BIT_BYTE;
@@ -17,7 +24,7 @@ class QrByte {
   int get length => _data.length;
 
   void write(QrBitBuffer buffer) {
-    for(final int v in _data) {
+    for (final int v in _data) {
       buffer.put(v, 8);
     }
   }

@@ -27,9 +27,9 @@ void main() {
   });
 }
 
-class QrDemo{
-  static final String _typeRadioIdKey = 'type-value';
-  static final String _errorLevelIdKey = 'error-value';
+class QrDemo {
+  static const String _typeRadioIdKey = 'type-value';
+  static const String _errorLevelIdKey = 'error-value';
   final BungeeNum _scale;
   final CanvasElement _canvas;
   final ThrottledStream<dynamic, List<bool>> _qrMapper;
@@ -43,11 +43,11 @@ class QrDemo{
 
   bool _frameRequested = false;
 
-  QrDemo(CanvasElement canvas, DivElement typeDiv, DivElement errorDiv) :
-    _canvas = canvas,
-    _ctx = canvas.context2D,
-    _qrMapper = new ThrottledStream(_calc),
-    _scale = new BungeeNum(1) {
+  QrDemo(CanvasElement canvas, DivElement typeDiv, DivElement errorDiv)
+      : _canvas = canvas,
+        _ctx = canvas.context2D,
+        _qrMapper = new ThrottledStream(_calc),
+        _scale = new BungeeNum(1) {
     _ctx.fillStyle = 'black';
 
     _qrMapper.outputStream.listen((args) {
@@ -58,42 +58,42 @@ class QrDemo{
     //
     // Type Div
     //
-    for(int i = 1; i <= 10; i++) {
+    for (int i = 1; i <= 10; i++) {
       var radio = new InputElement(type: 'radio')
-        ..id = 'type_$i'
-        ..name = 'type'
-        ..onChange.listen(_levelClick)
-        ..dataset[_typeRadioIdKey] = i.toString();
-      if(i == _typeNumber) {
+          ..id = 'type_$i'
+          ..name = 'type'
+          ..onChange.listen(_levelClick)
+          ..dataset[_typeRadioIdKey] = i.toString();
+      if (i == _typeNumber) {
         radio.attributes['checked'] = 'checked';
       }
       typeDiv.children.add(radio);
 
       var label = new LabelElement()
-        ..innerHtml = "$i"
-        ..htmlFor = radio.id
-        ..classes.add('btn');
+          ..innerHtml = "$i"
+          ..htmlFor = radio.id
+          ..classes.add('btn');
       typeDiv.children.add(label);
     }
 
     //
     // Error Correct Levels
     //
-    for(final v in QrErrorCorrectLevel.levels) {
+    for (final v in QrErrorCorrectLevel.levels) {
       var radio = new InputElement(type: 'radio')
-        ..id = 'error_$v'
-        ..name = 'error-level'
-        ..onChange.listen(_errorClick)
-        ..dataset[_errorLevelIdKey] = v.toString();
-      if(v == _errorCorrectLevel) {
+          ..id = 'error_$v'
+          ..name = 'error-level'
+          ..onChange.listen(_errorClick)
+          ..dataset[_errorLevelIdKey] = v.toString();
+      if (v == _errorCorrectLevel) {
         radio.attributes['checked'] = 'checked';
       }
       errorDiv.children.add(radio);
 
       var label = new LabelElement()
-        ..innerHtml = QrErrorCorrectLevel.getName(v)
-        ..htmlFor = radio.id
-        ..classes.add('btn');
+          ..innerHtml = QrErrorCorrectLevel.getName(v)
+          ..htmlFor = radio.id
+          ..classes.add('btn');
       errorDiv.children.add(label);
     }
   }
@@ -107,8 +107,8 @@ class QrDemo{
     _update();
   }
 
-  void requestFrame(){
-    if(!_frameRequested) {
+  void requestFrame() {
+    if (!_frameRequested) {
       _frameRequested = true;
       window.requestAnimationFrame(_onFrame);
     }
@@ -132,7 +132,7 @@ class QrDemo{
     _qrMapper.source = t;
   }
 
-  void _onFrame(double highResTime){
+  void _onFrame(double highResTime) {
     _frameRequested = false;
 
     _ctx.clearRect(0, 0, _canvas.width, _canvas.height);
@@ -143,7 +143,7 @@ class QrDemo{
 
     _scale.target = scale;
 
-    if(_scale.update()) {
+    if (_scale.update()) {
       requestFrame();
     }
 
@@ -158,11 +158,11 @@ class QrDemo{
     _ctx.save();
     CanvasUtil.setTransform(_ctx, tx);
 
-    if(_squares.length > 0) {
+    if (_squares.length > 0) {
       assert(_squares.length == size * size);
-      for(int x = 0; x < size; x++) {
-        for(int y = 0; y < size; y++) {
-          if(_squares[x * size + y]) {
+      for (int x = 0; x < size; x++) {
+        for (int y = 0; y < size; y++) {
+          if (_squares[x * size + y]) {
             _ctx.fillRect(x, y, 1, 1);
           }
         }
@@ -172,15 +172,15 @@ class QrDemo{
   }
 }
 
-List<bool> _calc(input) {
+List<bool> _calc(List input) {
   final code = new QrCode(input[0], input[1]);
   code.addData(input[2]);
   code.make();
 
   final List<bool> squares = new List<bool>();
 
-  for(int x = 0; x < code.moduleCount; x++) {
-    for(int y = 0; y < code.moduleCount; y++) {
+  for (int x = 0; x < code.moduleCount; x++) {
+    for (int y = 0; y < code.moduleCount; y++) {
       squares.add(code.isDark(y, x));
     }
   }

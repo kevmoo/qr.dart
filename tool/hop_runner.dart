@@ -2,10 +2,12 @@ library hop_runner;
 
 import 'dart:async';
 import 'dart:io';
+
 import 'package:hop/hop.dart';
 import 'package:hop/hop_tasks.dart';
+import 'package:hop_git/hop_git.dart';
+import 'package:hop_unittest/hop_unittest.dart';
 
-import 'src/pages.dart';
 import '../test/harness_console.dart' as test_console;
 
 void main(List<String> args) {
@@ -15,12 +17,11 @@ void main(List<String> args) {
   //
   // Analyzer
   //
-  addTask('analyze_libs',
-      createAnalyzerTask(() => _getLibs(['lib', 'web'])));
+  addTask('analyze_libs', createAnalyzerTask(() => _getLibs(['lib', 'web'])));
 
   addTask('build', createProcessTask('pub', args: ['build']));
 
-  addTask('pages', buildWebToPages, dependencies: ['build']);
+  addTask('pages', _ghPages);
 
   runHop(args);
 }
@@ -40,3 +41,6 @@ Future<List<String>> _getLibs(Iterable<String> parentDirs) {
     })
     .then((_) => files);
 }
+
+Future<bool> _ghPages(TaskContext ctx) =>
+    branchForDir(ctx, 'master', 'build/web', 'gh-pages');
