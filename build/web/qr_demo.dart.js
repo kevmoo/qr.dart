@@ -318,12 +318,7 @@ $isG:true,
 $isDD:true,
 $iszM:true,
 $aszM:null,
-$isqC:true,
-static:{Qi:function(a,b){var z
-if(typeof a!=="number"||Math.floor(a)!==a||a<0)throw H.b(P.p("Length must be a non-negative integer: "+H.d(a)))
-z=H.J(new Array(a),[b])
-z.fixed$length=Array
-return z}}},
+$isqC:true},
 F:{
 "^":"Gv;",
 gzP:function(a){return a===0?1/a<0:a<0},
@@ -3125,8 +3120,8 @@ y=z.gv(a)
 P.jB(b,c,y,null,null,null)
 if(typeof y!=="number")return y.T()
 x=y-b
-if(x===0)return new Uint8Array(0)
-w=x*3
+if(x===0)return new Uint8Array(H.T0(0))
+w=H.T0(x*3)
 v=new Uint8Array(w)
 u=new P.Rw(0,0,v)
 if(u.Gx(a,b,y)!==y)u.O6(z.O2(a,y-1),0)
@@ -3204,10 +3199,6 @@ return"Instance of '"+H.lh(a)+"'"},
 FM:function(a){return new P.HG(a)},
 ad:[function(a,b){return a==null?b==null:a===b},"$2","N3",4,0,8],
 xv:[function(a){return H.CU(a)},"$1","J2",2,0,9],
-O8:function(a,b,c){var z,y,x
-z=J.Qi(a,c)
-if(a!==0&&!0)for(y=z.length,x=0;x<y;++x)z[x]=b
-return z},
 z:function(a,b,c){var z,y
 z=H.J([],[c])
 for(y=J.Nx(a);y.D();)z.push(y.gk())
@@ -4512,6 +4503,8 @@ $iszM:true,
 $aszM:function(){return[P.KN]},
 $isqC:true,
 "%":";Uint8Array"},
+T0:function(a){if(typeof a!=="number"||Math.floor(a)!==a)throw H.b(P.p("Invalid length "+H.d(a)))
+return a},
 b0:{
 "^":"ET;",
 gv:function(a){return a.length},
@@ -4642,6 +4635,52 @@ KF:function(a){var z
 for(z=C.NA.gu(this.a);z.D();)a.Dp(z.c,8)},
 $isa:true}}],["","",,M,{
 "^":"",
+Mt:function(a,b,c){var z,y,x,w,v,u,t
+z=A.Kf(a,b)
+y=new M.eL(H.J([],[P.KN]),0)
+for(x=0;x<c.length;++x){w=c[x]
+v=w.Q
+y.Dp(v,4)
+y.Dp(w.a.length,G.mt(v,a))
+w.KF(y)}for(v=z.length,u=0,x=0;x<v;++x)u+=z[x].a
+t=u*8
+v=y.a
+if(v>t){v=y.gv(y)
+throw H.b(new L.KM(v,t,"Input too long. "+v+" > "+t))}if(v+4<=t)y.Dp(0,4)
+for(;C.jn.V(y.a,8)!==0;)y.Ge(!1)
+for(;!0;){if(y.a>=t)break
+y.Dp(236,8)
+if(y.a>=t)break
+y.Dp(17,8)}return M.vX(y,z)},
+vX:function(a,b){var z,y,x,w,v,u,t,s,r,q,p,o,n,m,l,k,j,i,h,g
+z=H.J(Array(b.length),[P.zM])
+y=H.J(Array(b.length),[P.zM])
+for(x=y.length,w=z.length,v=a.Q,u=0,t=0,s=0,r=0;r<b.length;++r){q=b[r]
+p=q.a
+o=q.Q-p
+t=P.u(t,p)
+s=P.u(s,o)
+q=new Uint8Array(p)
+if(r>=w)return H.e(z,r)
+z[r]=q
+for(n=v.length,m=0;m<q.length;++m){l=m+u
+if(l<0||l>=n)return H.e(v,l)
+q[m]=255&v[l]}u+=p
+k=G.yC(o)
+q=k.Q.length-1
+j=F.yU(z[r],q).vP(k)
+q=new Uint8Array(q)
+if(r>=x)return H.e(y,r)
+y[r]=q
+for(n=j.Q,l=n.length,m=0;i=q.length,m<i;++m){h=m+l-i
+if(h>=0){if(h>=l)return H.e(n,h)
+i=n[h]}else i=0
+q[m]=i}}g=[]
+for(m=0;m<t;++m)for(r=0;r<b.length;++r){if(r>=w)return H.e(z,r)
+v=z[r]
+if(m<v.length)g.push(v[m])}for(m=0;m<s;++m)for(r=0;r<b.length;++r){if(r>=x)return H.e(y,r)
+w=y[r]
+if(m<w.length)g.push(w[m])}return g},
 pR:{
 "^":"a;Q,a,b,c,d,e",
 Tb:function(a,b){var z,y
@@ -4777,7 +4816,7 @@ this.Pv(a,b)
 z=this.Q
 if(J.u6(z,7))this.aW(a)
 y=this.d
-if(y==null){z=M.No(z,this.a,this.e)
+if(y==null){z=M.Mt(z,this.a,this.e)
 this.d=z}else z=y
 this.Yj(z,b)},
 A4:function(a,b){var z,y,x,w
@@ -4792,54 +4831,10 @@ for(;x<z;++x){w=Array(z)
 w.fixed$length=Array
 w.$builtinTypeInfo=[P.a2]
 y.push(w)}},
-static:{"^":"Jz,GJ",ty:function(a,b){var z=H.J([],[T.eK])
+static:{ty:function(a,b){var z=H.J([],[T.eK])
 z=new M.pR(a,b,J.WB(J.lX(a,4),17),H.J([],[[P.zM,P.a2]]),null,z)
 z.A4(a,b)
-return z},No:function(a,b,c){var z,y,x,w,v,u,t
-z=A.Kf(a,b)
-y=new M.eL(H.J([],[P.KN]),0)
-for(x=0;x<c.length;++x){w=c[x]
-v=w.Q
-y.Dp(v,4)
-y.Dp(w.a.length,G.mt(v,a))
-w.KF(y)}for(v=z.length,u=0,x=0;x<v;++x)u+=z[x].a
-t=u*8
-v=y.a
-if(v>t){v=y.gv(y)
-throw H.b(new L.KM(v,t,"Input too long. "+v+" > "+t))}if(v+4<=t)y.Dp(0,4)
-for(;C.jn.V(y.a,8)!==0;)y.Ge(!1)
-for(;!0;){if(y.a>=t)break
-y.Dp(236,8)
-if(y.a>=t)break
-y.Dp(17,8)}return M.LA(y,z)},LA:function(a,b){var z,y,x,w,v,u,t,s,r,q,p,o,n,m,l,k,j,i,h,g
-z=H.J(Array(b.length),[P.zM])
-y=H.J(Array(b.length),[P.zM])
-for(x=y.length,w=z.length,v=a.Q,u=0,t=0,s=0,r=0;r<b.length;++r){q=b[r]
-p=q.a
-o=q.Q-p
-t=P.u(t,p)
-s=P.u(s,o)
-q=P.O8(p,0,null)
-if(r>=w)return H.e(z,r)
-z[r]=q
-for(q=v.length,n=0;m=z[r],n<m.length;++n){l=n+u
-if(l<0||l>=q)return H.e(v,l)
-m[n]=255&v[l]}u+=p
-k=G.yC(o)
-q=k.Q.length-1
-j=F.yU(z[r],q).vP(k)
-q=P.O8(q,0,null)
-if(r>=x)return H.e(y,r)
-y[r]=q
-for(q=j.Q,m=q.length,n=0;l=y[r],i=l.length,n<i;++n){h=n+m-i
-if(h>=0){if(h>=m)return H.e(q,h)
-i=q[h]}else i=0
-l[n]=i}}g=[]
-for(n=0;n<t;++n)for(r=0;r<b.length;++r){if(r>=w)return H.e(z,r)
-v=z[r]
-if(n<v.length)g.push(v[n])}for(n=0;n<s;++n)for(r=0;r<b.length;++r){if(r>=x)return H.e(y,r)
-w=y[r]
-if(n<w.length)g.push(w[n])}return g}}}}],["","",,T,{
+return z}}}}],["","",,T,{
 "^":"",
 Bc:function(a){switch(a){case 1:return"Low"
 case 0:return"Medium"
@@ -4853,31 +4848,42 @@ X:function(a){return"QrInputTooLongException: "+this.b}}}],["","",,O,{
 "^":"",
 zx:function(a){var z
 if(a<1)throw H.b("glog("+a+")")
-z=O.Ia()
+z=$.wc()
 if(a>=z.length)return H.e(z,a)
 return z[a]},
 rN:function(a){var z
 for(;a<0;)a+=255
 for(;a>=256;)a-=255
-z=O.bH()
+z=$.EQ()
 if(a<0||a>=z.length)return H.e(z,a)
 return z[a]},
-bH:function(){var z,y,x
-z=$.my
-if(z==null){y=P.O8(256,0,null)
-for(x=0;x<8;++x)y[x]=C.jn.iK(1,x)
-for(x=8;x<256;++x)y[x]=(y[x-4]^y[x-5]^y[x-6]^y[x-8])>>>0
-$.my=y
-z=y}return z},
-Ia:function(){var z,y,x
-z=$.VZ
-if(z==null){y=P.O8(256,0,null)
-for(x=0;x<255;++x){z=O.bH()
-if(x>=z.length)return H.e(z,x)
-z=z[x]
-if(z>=256)return H.e(y,z)
-y[z]=x}$.VZ=y
-z=y}return z}}],["","",,F,{
+D6:function(){var z,y,x,w,v,u,t
+z=H.T0(256)
+y=new Uint8Array(z)
+for(x=0;x<8;++x){w=C.jn.iK(1,x)
+if(x>=z)return H.e(y,x)
+y[x]=w}for(x=8;x<256;++x){w=x-4
+if(w>=z)return H.e(y,w)
+w=y[w]
+v=x-5
+if(v>=z)return H.e(y,v)
+v=y[v]
+u=x-6
+if(u>=z)return H.e(y,u)
+u=y[u]
+t=x-8
+if(t>=z)return H.e(y,t)
+t=y[t]
+if(x>=z)return H.e(y,x)
+y[x]=(w^v^u^t)>>>0}return y},
+jM:function(){var z,y,x,w
+z=H.T0(256)
+y=new Uint8Array(z)
+for(x=0;x<255;++x){w=$.EQ()
+if(x>=w.length)return H.e(w,x)
+w=w[x]
+if(w>=z)return H.e(y,w)
+y[w]=x}return y}}],["","",,F,{
 "^":"",
 E4:{
 "^":"a;Q",
@@ -4890,21 +4896,20 @@ z=this.Q
 y=z.length
 x=a.Q
 w=x.length
-v=y+w-1
-u=P.O8(v,0,null)
+v=H.T0(y+w-1)
+u=new Uint8Array(v)
 for(t=0;t<y;++t)for(s=0;s<w;++s){r=t+s
 if(r>=v)return H.e(u,r)
 q=u[r]
 p=z[t]
 if(p<1)H.vh("glog("+p+")")
-o=O.Ia()
+o=$.wc()
 if(p>=o.length)return H.e(o,p)
 p=o[p]
-o=x[s]
-if(o<1)H.vh("glog("+o+")")
-n=O.Ia()
-if(o>=n.length)return H.e(n,o)
-u[r]=(q^O.rN(p+n[o]))>>>0}return F.yU(u,0)},
+n=x[s]
+if(n<1)H.vh("glog("+n+")")
+if(n>=o.length)return H.e(o,n)
+u[r]=(q^O.rN(p+o[n]))>>>0}return F.yU(u,0)},
 vP:function(a){var z,y,x,w,v,u,t,s,r
 z=this.Q
 y=z.length
@@ -4915,44 +4920,29 @@ if(0>=y)return H.e(z,0)
 v=O.zx(z[0])
 if(0>=w)return H.e(x,0)
 u=v-O.zx(x[0])
-t=P.O8(y,0,null)
-for(s=0;s<y;++s)t[s]=z[s]
-for(s=0;s<w;++s){if(s>=y)return H.e(t,s)
+v=H.T0(y)
+t=new Uint8Array(v)
+for(s=0;s<y;++s){r=z[s]
+if(s>=v)return H.e(t,s)
+t[s]=r}for(s=0;s<w;++s){if(s>=v)return H.e(t,s)
 z=t[s]
-v=x[s]
-if(v<1)H.vh("glog("+v+")")
-r=O.Ia()
-if(v>=r.length)return H.e(r,v)
-t[s]=(z^O.rN(r[v]+u))>>>0}return F.yU(t,0).vP(a)},
+y=x[s]
+if(y<1)H.vh("glog("+y+")")
+r=$.wc()
+if(y>=r.length)return H.e(r,y)
+t[s]=(z^O.rN(r[y]+u))>>>0}return F.yU(t,0).vP(a)},
 static:{yU:function(a,b){var z,y,x,w,v,u,t
 z=a.length
 y=0
 while(!0){if(!(y<z&&a[y]===0))break;++y}z=z-y+b
-x=P.O8(z,0,null)
+x=new Uint8Array(z)
 for(w=a.length,v=w-y,u=0;u<v;++u){t=u+y
 if(t>=w)return H.e(a,t)
 t=a[t]
 if(u>=z)return H.e(x,u)
 x[u]=t}return new F.E4(x)}}}}],["","",,A,{
 "^":"",
-dI:{
-"^":"a;Q,a",
-$isa:true,
-static:{"^":"yz",Kf:function(a,b){var z,y,x,w,v,u,t,s,r,q,p
-z=A.JY(a,b)
-y=C.jn.BU(z.length,3)
-x=H.J([],[A.dI])
-for(w=0;w<y;++w){v=w*3
-u=z.length
-if(v>=u)return H.e(z,v)
-t=z[v]
-s=v+1
-if(s>=u)return H.e(z,s)
-r=z[s]
-v+=2
-if(v>=u)return H.e(z,v)
-q=z[v]
-for(p=0;p<t;++p)x.push(new A.dI(r,q))}return x},JY:function(a,b){var z
+Uo:function(a,b){var z
 switch(b){case 1:z=J.WB(J.lX(J.aF(a,1),4),0)
 if(z>>>0!==z||z>=40)return H.e(C.FR,z)
 return C.FR[z]
@@ -4965,7 +4955,25 @@ return C.FR[z]
 case 2:z=J.WB(J.lX(J.aF(a,1),4),3)
 if(z>>>0!==z||z>=40)return H.e(C.FR,z)
 return C.FR[z]
-default:throw H.b("bad rs block @ typeNumber: "+H.d(a)+"/errorCorrectLevel:"+H.d(b))}}}}}],["","",,G,{
+default:throw H.b("bad rs block @ typeNumber: "+H.d(a)+"/errorCorrectLevel:"+H.d(b))}},
+dI:{
+"^":"a;Q,a",
+$isa:true,
+static:{Kf:function(a,b){var z,y,x,w,v,u,t,s,r,q,p
+z=A.Uo(a,b)
+y=C.jn.BU(z.length,3)
+x=H.J([],[A.dI])
+for(w=0;w<y;++w){v=w*3
+u=z.length
+if(v>=u)return H.e(z,v)
+t=z[v]
+s=v+1
+if(s>=u)return H.e(z,s)
+r=z[s]
+v+=2
+if(v>=u)return H.e(z,v)
+q=z[v]
+for(p=0;p<t;++p)x.push(new A.dI(r,q))}return x}}}}],["","",,G,{
 "^":"",
 Xz:function(a){var z,y
 z=a<<10>>>0
@@ -5584,8 +5592,6 @@ $.EM=null
 $.w5=null
 $.PN=null
 $.aj=null
-$.VZ=null
-$.my=null
 I.$lazy($,"thisScript","Kb","Rs",function(){return H.Td()})
 I.$lazy($,"workerIds","rS","p6",function(){return new P.kM(null)})
 I.$lazy($,"noSuchMethodPattern","lm","WD",function(){return H.cM(H.S7({toString:function(){return"$receiver$"}}))})
@@ -5604,6 +5610,8 @@ I.$lazy($,"scheduleImmediateClosure","lI","ej",function(){return P.xg()})
 I.$lazy($,"_toStringVisiting","nM","Ex",function(){return[]})
 I.$lazy($,"_allowedElements","zX","AM",function(){return P.tM(["A","ABBR","ACRONYM","ADDRESS","AREA","ARTICLE","ASIDE","AUDIO","B","BDI","BDO","BIG","BLOCKQUOTE","BR","BUTTON","CANVAS","CAPTION","CENTER","CITE","CODE","COL","COLGROUP","COMMAND","DATA","DATALIST","DD","DEL","DETAILS","DFN","DIR","DIV","DL","DT","EM","FIELDSET","FIGCAPTION","FIGURE","FONT","FOOTER","FORM","H1","H2","H3","H4","H5","H6","HEADER","HGROUP","HR","I","IFRAME","IMG","INPUT","INS","KBD","LABEL","LEGEND","LI","MAP","MARK","MENU","METER","NAV","NOBR","OL","OPTGROUP","OPTION","OUTPUT","P","PRE","PROGRESS","Q","S","SAMP","SECTION","SELECT","SMALL","SOURCE","SPAN","STRIKE","STRONG","SUB","SUMMARY","SUP","TABLE","TBODY","TD","TEXTAREA","TFOOT","TH","THEAD","TIME","TR","TRACK","TT","U","UL","VAR","VIDEO","WBR"],null)})
 I.$lazy($,"_attributeValidators","or","NJ",function(){return P.A(null,null)})
+I.$lazy($,"_logTable","Ia","wc",function(){return O.jM()})
+I.$lazy($,"_expTable","bH","EQ",function(){return O.D6()})
 
 
 init.metadata=[,{func:"uO",args:[P.I]},{func:"n9",void:true,args:[{func:"X0",void:true}]},{func:"X0",void:true},{func:"G5",void:true,args:[null]},{func:"mQ",void:true,args:[null],opt:[P.Gz]},{func:"Ib",ret:P.a2,args:[null,null]},{func:"bX",ret:P.KN,args:[null]},{func:"E0",ret:P.a2,args:[P.a,P.a]},{func:"ZY",ret:P.KN,args:[P.a]},{func:"Vv",ret:P.a2,args:[W.cv,P.I,P.I,W.JQ]},{func:"R1",ret:[P.zM,P.a2],args:[P.zM]},{func:"NT"},{func:"aB",args:[null]},{func:"TS",args:[null,P.I]},{func:"bb",args:[null,P.Gz]},{func:"xO",args:[{func:"X0",void:true}]},{func:"BG",args:[null],opt:[null]},{func:"Uf",ret:P.a2},{func:"N5",void:true,args:[null,P.Gz]},{func:"bh",args:[null,null]},{func:"lv",args:[P.wv,null]},{func:"Pt",ret:P.I,args:[P.KN]},{func:"B2",args:[P.I,P.I]},{func:"qu",void:true,args:[W.KV]},{func:"Se",args:[W.HL]},{func:"WW",void:true,args:[W.ea]},{func:"Xd",void:true,args:[P.Vf]},];$=null
