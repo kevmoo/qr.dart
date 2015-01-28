@@ -360,11 +360,6 @@ class QrCode {
 
     }
 
-    var totalCodeCount = 0;
-    for (int i = 0; i < rsBlocks.length; i++) {
-      totalCodeCount += rsBlocks[i].totalCount;
-    }
-
     var data = [];
 
     for (int i = 0; i < maxDcCount; i++) {
