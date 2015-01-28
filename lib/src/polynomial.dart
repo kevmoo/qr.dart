@@ -1,9 +1,11 @@
 library qr.polynomial;
 
+import 'dart:typed_data';
+
 import 'math.dart' as qrMath;
 
 class QrPolynomial {
-  final List<int> _myThings;
+  final Uint8List _myThings;
 
   QrPolynomial._internal(this._myThings);
 
@@ -14,8 +16,7 @@ class QrPolynomial {
       offset++;
     }
 
-    final List<int> values =
-        qrMath.getZeroedList(thing.length - offset + shift);
+    final List<int> values = qrMath.getByteList(thing.length - offset + shift);
 
     for (var i = 0; i < thing.length - offset; i++) {
       values[i] = thing[i + offset];
@@ -29,7 +30,7 @@ class QrPolynomial {
   int get length => _myThings.length;
 
   QrPolynomial multiply(QrPolynomial e) {
-    final List<int> foo = qrMath.getZeroedList(length + e.length - 1);
+    final List<int> foo = qrMath.getByteList(length + e.length - 1);
 
     for (var i = 0; i < length; i++) {
       for (var j = 0; j < e.length; j++) {
@@ -47,7 +48,7 @@ class QrPolynomial {
 
     var ratio = qrMath.glog(this[0]) - qrMath.glog(e[0]);
 
-    var thing = qrMath.getZeroedList(length);
+    var thing = qrMath.getByteList(length);
 
     for (int i = 0; i < length; i++) {
       thing[i] = this[i];

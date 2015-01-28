@@ -14,9 +14,6 @@ import 'rs_block.dart';
 import 'util.dart' as QrUtil;
 
 class QrCode {
-  static const int _PAD0 = 0xEC;
-  static const int _PAD1 = 0x11;
-
   final int typeNumber;
   final int errorCorrectLevel;
   final int moduleCount;
@@ -244,113 +241,114 @@ class QrCode {
 
     _mapData(_dataCache, maskPattern);
   }
+}
 
-  static List<int> _createData(
-      int typeNumber, int errorCorrectLevel, List<QrByte> dataList) {
-    var rsBlocks = QrRsBlock.getRSBlocks(typeNumber, errorCorrectLevel);
+const int _PAD0 = 0xEC;
+const int _PAD1 = 0x11;
 
-    final buffer = new QrBitBuffer();
+List<int> _createData(
+    int typeNumber, int errorCorrectLevel, List<QrByte> dataList) {
+  var rsBlocks = QrRsBlock.getRSBlocks(typeNumber, errorCorrectLevel);
 
-    for (int i = 0; i < dataList.length; i++) {
-      var data = dataList[i];
-      buffer.put(data.mode, 4);
-      buffer.put(data.length, QrUtil.getLengthInBits(data.mode, typeNumber));
-      data.write(buffer);
-    }
+  final buffer = new QrBitBuffer();
 
-    // HUH?
-    // ç≈ëÂÉfÅ[É^êîÇåvéZ
-    var totalDataCount = 0;
-    for (int i = 0; i < rsBlocks.length; i++) {
-      totalDataCount += rsBlocks[i].dataCount;
-    }
-
-    final totalByteCount = totalDataCount * 8;
-    if (buffer.length > totalByteCount) {
-      throw new InputTooLongException(buffer.length, totalByteCount);
-    }
-
-    // HUH?
-    // èIí[ÉRÅ[Éh
-    if (buffer.length + 4 <= totalByteCount) {
-      buffer.put(0, 4);
-    }
-
-    // padding
-    while (buffer.length % 8 != 0) {
-      buffer.putBit(false);
-    }
-
-    // padding
-    while (true) {
-      if (buffer.length >= totalDataCount * 8) {
-        break;
-      }
-      buffer.put(_PAD0, 8);
-
-      if (buffer.length >= totalDataCount * 8) {
-        break;
-      }
-      buffer.put(_PAD1, 8);
-    }
-
-    return _createBytes(buffer, rsBlocks);
+  for (int i = 0; i < dataList.length; i++) {
+    var data = dataList[i];
+    buffer.put(data.mode, 4);
+    buffer.put(data.length, QrUtil.getLengthInBits(data.mode, typeNumber));
+    data.write(buffer);
   }
 
-  static List<int> _createBytes(QrBitBuffer buffer, rsBlocks) {
-    var offset = 0;
+  // HUH?
+  // ç≈ëÂÉfÅ[É^êîÇåvéZ
+  var totalDataCount = 0;
+  for (int i = 0; i < rsBlocks.length; i++) {
+    totalDataCount += rsBlocks[i].dataCount;
+  }
 
-    var maxDcCount = 0;
-    var maxEcCount = 0;
+  final totalByteCount = totalDataCount * 8;
+  if (buffer.length > totalByteCount) {
+    throw new InputTooLongException(buffer.length, totalByteCount);
+  }
 
-    var dcdata = new List<List>(rsBlocks.length);
+  // HUH?
+  // èIí[ÉRÅ[Éh
+  if (buffer.length + 4 <= totalByteCount) {
+    buffer.put(0, 4);
+  }
 
-    var ecdata = new List<List>(rsBlocks.length);
+  // padding
+  while (buffer.length % 8 != 0) {
+    buffer.putBit(false);
+  }
 
+  // padding
+  while (true) {
+    if (buffer.length >= totalDataCount * 8) {
+      break;
+    }
+    buffer.put(_PAD0, 8);
+
+    if (buffer.length >= totalDataCount * 8) {
+      break;
+    }
+    buffer.put(_PAD1, 8);
+  }
+
+  return _createBytes(buffer, rsBlocks);
+}
+List<int> _createBytes(QrBitBuffer buffer, rsBlocks) {
+  var offset = 0;
+
+  var maxDcCount = 0;
+  var maxEcCount = 0;
+
+  var dcdata = new List<List>(rsBlocks.length);
+  var ecdata = new List<List>(rsBlocks.length);
+
+  for (int r = 0; r < rsBlocks.length; r++) {
+    var dcCount = rsBlocks[r].dataCount;
+    var ecCount = rsBlocks[r].totalCount - dcCount;
+
+    maxDcCount = math.max(maxDcCount, dcCount);
+    maxEcCount = math.max(maxEcCount, ecCount);
+
+    dcdata[r] = QrMath.getByteList(dcCount);
+
+    for (int i = 0; i < dcdata[r].length; i++) {
+      dcdata[r][i] = 0xff & buffer.getByte(i + offset);
+    }
+    offset += dcCount;
+
+    var rsPoly = QrUtil.getErrorCorrectPolynomial(ecCount);
+    var rawPoly = new QrPolynomial(dcdata[r], rsPoly.length - 1);
+
+    var modPoly = rawPoly.mod(rsPoly);
+    ecdata[r] = QrMath.getByteList(rsPoly.length - 1);
+
+    for (int i = 0; i < ecdata[r].length; i++) {
+      var modIndex = i + modPoly.length - ecdata[r].length;
+      ecdata[r][i] = (modIndex >= 0) ? modPoly[modIndex] : 0;
+    }
+  }
+
+  var data = [];
+
+  for (int i = 0; i < maxDcCount; i++) {
     for (int r = 0; r < rsBlocks.length; r++) {
-      var dcCount = rsBlocks[r].dataCount;
-      var ecCount = rsBlocks[r].totalCount - dcCount;
-
-      maxDcCount = math.max(maxDcCount, dcCount);
-      maxEcCount = math.max(maxEcCount, ecCount);
-
-      dcdata[r] = QrMath.getZeroedList(dcCount);
-
-      for (int i = 0; i < dcdata[r].length; i++) {
-        dcdata[r][i] = 0xff & buffer.getByte(i + offset);
-      }
-      offset += dcCount;
-
-      var rsPoly = QrUtil.getErrorCorrectPolynomial(ecCount);
-      var rawPoly = new QrPolynomial(dcdata[r], rsPoly.length - 1);
-
-      var modPoly = rawPoly.mod(rsPoly);
-      ecdata[r] = QrMath.getZeroedList(rsPoly.length - 1);
-
-      for (int i = 0; i < ecdata[r].length; i++) {
-        var modIndex = i + modPoly.length - ecdata[r].length;
-        ecdata[r][i] = (modIndex >= 0) ? modPoly[modIndex] : 0;
+      if (i < dcdata[r].length) {
+        data.add(dcdata[r][i]);
       }
     }
-
-    var data = [];
-
-    for (int i = 0; i < maxDcCount; i++) {
-      for (int r = 0; r < rsBlocks.length; r++) {
-        if (i < dcdata[r].length) {
-          data.add(dcdata[r][i]);
-        }
-      }
-    }
-
-    for (int i = 0; i < maxEcCount; i++) {
-      for (int r = 0; r < rsBlocks.length; r++) {
-        if (i < ecdata[r].length) {
-          data.add(ecdata[r][i]);
-        }
-      }
-    }
-
-    return data;
   }
+
+  for (int i = 0; i < maxEcCount; i++) {
+    for (int r = 0; r < rsBlocks.length; r++) {
+      if (i < ecdata[r].length) {
+        data.add(ecdata[r][i]);
+      }
+    }
+  }
+
+  return data;
 }

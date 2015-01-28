@@ -1,9 +1,11 @@
 library qr.math;
 
-List<int> __logTable;
-List<int> __expTable;
+import 'dart:typed_data';
 
-List<int> getZeroedList(int count) => new List.filled(count, 0);
+final Uint8List _logTable = _createLogTable();
+final Uint8List _expTable = _createExpTable();
+
+Uint8List getByteList(int count) => new Uint8List(count);
 
 int glog(int n) {
   if (n < 1) {
@@ -25,29 +27,21 @@ int gexp(int n) {
   return _expTable[n];
 }
 
-List<int> get _expTable {
-  if (__expTable == null) {
-    var t = getZeroedList(256);
-    for (int i = 0; i < 8; i++) {
-      t[i] = 1 << i;
-    }
-    for (int i = 8; i < 256; i++) {
-      t[i] = t[i - 4] ^ t[i - 5] ^ t[i - 6] ^ t[i - 8];
-    }
-    __expTable = t;
+Uint8List _createExpTable() {
+  var list = getByteList(256);
+  for (int i = 0; i < 8; i++) {
+    list[i] = 1 << i;
   }
-  return __expTable;
+  for (int i = 8; i < 256; i++) {
+    list[i] = list[i - 4] ^ list[i - 5] ^ list[i - 6] ^ list[i - 8];
+  }
+  return list;
 }
 
-List<int> get _logTable {
-  if (__logTable == null) {
-    var t = getZeroedList(256);
-    // this was the code I had in pl
-    // only to 255? seems really weird
-    for (int i = 0; i < 255; i++) {
-      t[_expTable[i]] = i;
-    }
-    __logTable = t;
+Uint8List _createLogTable() {
+  var list = getByteList(256);
+  for (int i = 0; i < 255; i++) {
+    list[_expTable[i]] = i;
   }
-  return __logTable;
+  return list;
 }
