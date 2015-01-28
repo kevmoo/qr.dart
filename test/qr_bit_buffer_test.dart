@@ -27,11 +27,13 @@ void _testGetByte() {
 void _testComplex() {
   var bb = new QrBitBuffer();
   bb.put(0, 8);
-  expect(bb, orderedEquals([false, false, false, false, false, false, false, false]));
+  expect(bb,
+      orderedEquals([false, false, false, false, false, false, false, false]));
 
   bb = new QrBitBuffer();
   bb.put(1, 8);
-  expect(bb, orderedEquals([false, false, false, false, false, false, false, true]));
+  expect(bb,
+      orderedEquals([false, false, false, false, false, false, false, true]));
 
   bb = new QrBitBuffer();
   bb.put(255, 8);
@@ -39,11 +41,13 @@ void _testComplex() {
 
   bb = new QrBitBuffer();
   bb.put(256, 8);
-  expect(bb, orderedEquals([false, false, false, false, false, false, false, false]));
+  expect(bb,
+      orderedEquals([false, false, false, false, false, false, false, false]));
 
   bb = new QrBitBuffer();
   bb.put(256, 9);
-  expect(bb, orderedEquals([true, false, false, false, false, false, false, false, false]));
+  expect(bb, orderedEquals(
+      [true, false, false, false, false, false, false, false, false]));
 }
 
 void _testSimple() {

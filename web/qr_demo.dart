@@ -60,19 +60,19 @@ class QrDemo {
     //
     for (int i = 1; i <= 10; i++) {
       var radio = new InputElement(type: 'radio')
-          ..id = 'type_$i'
-          ..name = 'type'
-          ..onChange.listen(_levelClick)
-          ..dataset[_typeRadioIdKey] = i.toString();
+        ..id = 'type_$i'
+        ..name = 'type'
+        ..onChange.listen(_levelClick)
+        ..dataset[_typeRadioIdKey] = i.toString();
       if (i == _typeNumber) {
         radio.attributes['checked'] = 'checked';
       }
       typeDiv.children.add(radio);
 
       var label = new LabelElement()
-          ..innerHtml = "$i"
-          ..htmlFor = radio.id
-          ..classes.add('btn');
+        ..innerHtml = "$i"
+        ..htmlFor = radio.id
+        ..classes.add('btn');
       typeDiv.children.add(label);
     }
 
@@ -81,19 +81,19 @@ class QrDemo {
     //
     for (final v in QrErrorCorrectLevel.levels) {
       var radio = new InputElement(type: 'radio')
-          ..id = 'error_$v'
-          ..name = 'error-level'
-          ..onChange.listen(_errorClick)
-          ..dataset[_errorLevelIdKey] = v.toString();
+        ..id = 'error_$v'
+        ..name = 'error-level'
+        ..onChange.listen(_errorClick)
+        ..dataset[_errorLevelIdKey] = v.toString();
       if (v == _errorCorrectLevel) {
         radio.attributes['checked'] = 'checked';
       }
       errorDiv.children.add(radio);
 
       var label = new LabelElement()
-          ..innerHtml = QrErrorCorrectLevel.getName(v)
-          ..htmlFor = radio.id
-          ..classes.add('btn');
+        ..innerHtml = QrErrorCorrectLevel.getName(v)
+        ..htmlFor = radio.id
+        ..classes.add('btn');
       errorDiv.children.add(label);
     }
   }

@@ -49,8 +49,16 @@ const List<List<int>> _PATTERN_POSITION_TABLE = const [
   const [6, 30, 58, 86, 114, 142, 170]
 ];
 
-const int G15 = (1 << 10) | (1 << 8) | (1 << 5) | (1 << 4) | (1 << 2) | (1 << 1) | (1 << 0);
-const int G18 = (1 << 12) | (1 << 11) | (1 << 10) | (1 << 9) | (1 << 8) | (1 << 5) | (1 << 2) | (1 << 0);
+const int G15 =
+    (1 << 10) | (1 << 8) | (1 << 5) | (1 << 4) | (1 << 2) | (1 << 1) | (1 << 0);
+const int G18 = (1 << 12) |
+    (1 << 11) |
+    (1 << 10) |
+    (1 << 9) |
+    (1 << 8) |
+    (1 << 5) |
+    (1 << 2) |
+    (1 << 0);
 const int G15_MASK = (1 << 14) | (1 << 12) | (1 << 10) | (1 << 4) | (1 << 1);
 
 int getBCHTypeInfo(int data) {
@@ -132,7 +140,6 @@ int getLengthInBits(int mode, int type) {
       default:
         throw 'mode:$mode';
     }
-
   } else if (type < 27) {
 
     // 10 - 26
@@ -148,7 +155,6 @@ int getLengthInBits(int mode, int type) {
       default:
         throw 'mode:$mode';
     }
-
   } else if (type < 41) {
 
     // 27 - 40
@@ -164,7 +170,6 @@ int getLengthInBits(int mode, int type) {
       default:
         throw 'mode:$mode';
     }
-
   } else {
     throw 'type:$type';
   }
@@ -178,20 +183,16 @@ num getLostPoint(QrCode qrCode) {
 
   // LEVEL1
   for (row = 0; row < moduleCount; row++) {
-
     for (col = 0; col < moduleCount; col++) {
-
       var sameCount = 0;
       var dark = qrCode.isDark(row, col);
 
       for (var r = -1; r <= 1; r++) {
-
         if (row + r < 0 || moduleCount <= row + r) {
           continue;
         }
 
         for (var c = -1; c <= 1; c++) {
-
           if (col + c < 0 || moduleCount <= col + c) {
             continue;
           }
@@ -229,7 +230,13 @@ num getLostPoint(QrCode qrCode) {
   // LEVEL3
   for (row = 0; row < moduleCount; row++) {
     for (col = 0; col < moduleCount - 6; col++) {
-      if (qrCode.isDark(row, col) && !qrCode.isDark(row, col + 1) && qrCode.isDark(row, col + 2) && qrCode.isDark(row, col + 3) && qrCode.isDark(row, col + 4) && !qrCode.isDark(row, col + 5) && qrCode.isDark(row, col + 6)) {
+      if (qrCode.isDark(row, col) &&
+          !qrCode.isDark(row, col + 1) &&
+          qrCode.isDark(row, col + 2) &&
+          qrCode.isDark(row, col + 3) &&
+          qrCode.isDark(row, col + 4) &&
+          !qrCode.isDark(row, col + 5) &&
+          qrCode.isDark(row, col + 6)) {
         lostPoint += 40;
       }
     }
@@ -237,7 +244,13 @@ num getLostPoint(QrCode qrCode) {
 
   for (col = 0; col < moduleCount; col++) {
     for (row = 0; row < moduleCount - 6; row++) {
-      if (qrCode.isDark(row, col) && !qrCode.isDark(row + 1, col) && qrCode.isDark(row + 2, col) && qrCode.isDark(row + 3, col) && qrCode.isDark(row + 4, col) && !qrCode.isDark(row + 5, col) && qrCode.isDark(row + 6, col)) {
+      if (qrCode.isDark(row, col) &&
+          !qrCode.isDark(row + 1, col) &&
+          qrCode.isDark(row + 2, col) &&
+          qrCode.isDark(row + 3, col) &&
+          qrCode.isDark(row + 4, col) &&
+          !qrCode.isDark(row + 5, col) &&
+          qrCode.isDark(row + 6, col)) {
         lostPoint += 40;
       }
     }

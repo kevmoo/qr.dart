@@ -14,7 +14,8 @@ class QrPolynomial {
       offset++;
     }
 
-    final List<int> values = qrMath.getZeroedList(thing.length - offset + shift);
+    final List<int> values =
+        qrMath.getZeroedList(thing.length - offset + shift);
 
     for (var i = 0; i < thing.length - offset; i++) {
       values[i] = thing[i + offset];

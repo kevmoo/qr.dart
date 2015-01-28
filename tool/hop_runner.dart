@@ -11,7 +11,6 @@ import 'package:hop_unittest/hop_unittest.dart';
 import '../test/harness_console.dart' as test_console;
 
 void main(List<String> args) {
-
   addTask('test', createUnitTestTask(test_console.main));
 
   //
@@ -30,16 +29,16 @@ Future<List<String>> _getLibs(Iterable<String> parentDirs) {
   final files = new List<String>();
 
   return Future.forEach(parentDirs, (String d) {
-    return new Directory(d).list()
-      .where((FileSystemEntity fse) => fse is File)
-      .map((File file) => file.path)
-      .where((String p) => p.endsWith('.dart'))
-      .toList()
-      .then((source) {
-        files.addAll(source);
-      });
-    })
-    .then((_) => files);
+    return new Directory(d)
+        .list()
+        .where((FileSystemEntity fse) => fse is File)
+        .map((File file) => file.path)
+        .where((String p) => p.endsWith('.dart'))
+        .toList()
+        .then((source) {
+      files.addAll(source);
+    });
+  }).then((_) => files);
 }
 
 Future<bool> _ghPages(TaskContext ctx) =>
