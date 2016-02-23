@@ -1,3 +1,4 @@
 packages
 pubspec.lock
 !build/web/packages
+.packages
