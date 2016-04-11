@@ -28,7 +28,7 @@ class QrCode {
       : this.typeNumber = typeNumber,
         moduleCount = typeNumber * 4 + 17,
         _modules = new List<List<bool>>() {
-    requireArgument(typeNumber > 0 && typeNumber < 11, 'typeNumber');
+    requireArgument(typeNumber > 0 && typeNumber < 41, 'typeNumber');
     requireArgument(QrErrorCorrectLevel.levels.indexOf(errorCorrectLevel) >= 0,
         'errorCorrectLevel');
 
