@@ -1,7 +1,6 @@
 import 'package:bot/bot.dart';
-import 'package:test/test.dart';
-
 import 'package:qr/qr.dart';
+import 'package:test/test.dart';
 
 void main() {
   test('simple', _testSimple);
