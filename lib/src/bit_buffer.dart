@@ -6,17 +6,21 @@ class QrBitBuffer extends Object with ListMixin<bool> {
 
   QrBitBuffer() : _buffer = new List<int>();
 
+  @override
   void operator []=(int index, bool value) =>
       throw new UnsupportedError('cannot change');
 
+  @override
   bool operator [](int index) {
     final bufIndex = index ~/ 8;
     return ((_buffer[bufIndex] >> (7 - index % 8)) & 1) == 1;
   }
 
+  @override
   int get length => _length;
 
-  void set length(int value) => throw new UnsupportedError('Cannot change');
+  @override
+  set length(int value) => throw new UnsupportedError('Cannot change');
 
   int getByte(int index) => _buffer[index];
 

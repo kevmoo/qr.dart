@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'package:bot/bot.dart';
 
 import 'bit_buffer.dart';
-import 'mode.dart' as QrMode;
+import 'mode.dart' as qr_mode;
 
 class QrByte {
-  final int mode = QrMode.MODE_8BIT_BYTE;
+  final int mode = qr_mode.mode8bitByte;
   final List<int> _data;
 
   factory QrByte(String input) {

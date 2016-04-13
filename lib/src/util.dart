@@ -1,10 +1,10 @@
-import 'mask_pattern.dart' as QrMaskPattern;
-import 'math.dart' as QrMath;
-import 'mode.dart' as QrMode;
+import 'mask_pattern.dart' as qr_mask_pattern;
+import 'math.dart' as qr_math;
+import 'mode.dart' as qr_mode;
 import 'polynomial.dart';
 import 'qr_code.dart';
 
-const List<List<int>> _PATTERN_POSITION_TABLE = const [
+const List<List<int>> _patternPositionTable = const [
   const [],
   const [6, 18],
   const [6, 22],
@@ -47,9 +47,9 @@ const List<List<int>> _PATTERN_POSITION_TABLE = const [
   const [6, 30, 58, 86, 114, 142, 170]
 ];
 
-const int G15 =
+const int g15 =
     (1 << 10) | (1 << 8) | (1 << 5) | (1 << 4) | (1 << 2) | (1 << 1) | (1 << 0);
-const int G18 = (1 << 12) |
+const int g18 = (1 << 12) |
     (1 << 11) |
     (1 << 10) |
     (1 << 9) |
@@ -57,20 +57,20 @@ const int G18 = (1 << 12) |
     (1 << 5) |
     (1 << 2) |
     (1 << 0);
-const int G15_MASK = (1 << 14) | (1 << 12) | (1 << 10) | (1 << 4) | (1 << 1);
+const int g15Mask = (1 << 14) | (1 << 12) | (1 << 10) | (1 << 4) | (1 << 1);
 
 int getBCHTypeInfo(int data) {
   var d = data << 10;
-  while (getBCHDigit(d) - getBCHDigit(G15) >= 0) {
-    d ^= (G15 << (getBCHDigit(d) - getBCHDigit(G15)));
+  while (getBCHDigit(d) - getBCHDigit(g15) >= 0) {
+    d ^= (g15 << (getBCHDigit(d) - getBCHDigit(g15)));
   }
-  return ((data << 10) | d) ^ G15_MASK;
+  return ((data << 10) | d) ^ g15Mask;
 }
 
 int getBCHTypeNumber(int data) {
   var d = data << 12;
-  while (getBCHDigit(d) - getBCHDigit(G18) >= 0) {
-    d ^= (G18 << (getBCHDigit(d) - getBCHDigit(G18)));
+  while (getBCHDigit(d) - getBCHDigit(g18) >= 0) {
+    d ^= (g18 << (getBCHDigit(d) - getBCHDigit(g18)));
   }
   return (data << 12) | d;
 }
@@ -87,25 +87,25 @@ int getBCHDigit(int data) {
 }
 
 List<int> getPatternPosition(int typeNumber) =>
-    _PATTERN_POSITION_TABLE[typeNumber - 1];
+    _patternPositionTable[typeNumber - 1];
 
 bool getMask(int maskPattern, int i, int j) {
   switch (maskPattern) {
-    case QrMaskPattern.PATTERN000:
+    case qr_mask_pattern.pattern000:
       return (i + j) % 2 == 0;
-    case QrMaskPattern.PATTERN001:
+    case qr_mask_pattern.pattern001:
       return i % 2 == 0;
-    case QrMaskPattern.PATTERN010:
+    case qr_mask_pattern.pattern010:
       return j % 3 == 0;
-    case QrMaskPattern.PATTERN011:
+    case qr_mask_pattern.pattern011:
       return (i + j) % 3 == 0;
-    case QrMaskPattern.PATTERN100:
+    case qr_mask_pattern.pattern100:
       return ((i ~/ 2) + (j ~/ 3)) % 2 == 0;
-    case QrMaskPattern.PATTERN101:
+    case qr_mask_pattern.pattern101:
       return (i * j) % 2 + (i * j) % 3 == 0;
-    case QrMaskPattern.PATTERN110:
+    case qr_mask_pattern.pattern110:
       return ((i * j) % 2 + (i * j) % 3) % 2 == 0;
-    case QrMaskPattern.PATTERN111:
+    case qr_mask_pattern.pattern111:
       return ((i * j) % 3 + (i + j) % 2) % 2 == 0;
     default:
       throw 'bad maskPattern:$maskPattern';
@@ -116,7 +116,7 @@ QrPolynomial getErrorCorrectPolynomial(int errorCorrectLength) {
   var a = new QrPolynomial([1], 0);
 
   for (var i = 0; i < errorCorrectLength; i++) {
-    a = a.multiply(new QrPolynomial([1, QrMath.gexp(i)], 0));
+    a = a.multiply(new QrPolynomial([1, qr_math.gexp(i)], 0));
   }
 
   return a;
@@ -126,13 +126,13 @@ int getLengthInBits(int mode, int type) {
   if (1 <= type && type < 10) {
     // 1 - 9
     switch (mode) {
-      case QrMode.MODE_NUMBER:
+      case qr_mode.modeNumber:
         return 10;
-      case QrMode.MODE_ALPHA_NUM:
+      case qr_mode.modeAlphaNum:
         return 9;
-      case QrMode.MODE_8BIT_BYTE:
+      case qr_mode.mode8bitByte:
         return 8;
-      case QrMode.MODE_KANJI:
+      case qr_mode.modeKanji:
         return 8;
       default:
         throw 'mode:$mode';
@@ -140,13 +140,13 @@ int getLengthInBits(int mode, int type) {
   } else if (type < 27) {
     // 10 - 26
     switch (mode) {
-      case QrMode.MODE_NUMBER:
+      case qr_mode.modeNumber:
         return 12;
-      case QrMode.MODE_ALPHA_NUM:
+      case qr_mode.modeAlphaNum:
         return 11;
-      case QrMode.MODE_8BIT_BYTE:
+      case qr_mode.mode8bitByte:
         return 16;
-      case QrMode.MODE_KANJI:
+      case qr_mode.modeKanji:
         return 10;
       default:
         throw 'mode:$mode';
@@ -154,13 +154,13 @@ int getLengthInBits(int mode, int type) {
   } else if (type < 41) {
     // 27 - 40
     switch (mode) {
-      case QrMode.MODE_NUMBER:
+      case qr_mode.modeNumber:
         return 14;
-      case QrMode.MODE_ALPHA_NUM:
+      case qr_mode.modeAlphaNum:
         return 13;
-      case QrMode.MODE_8BIT_BYTE:
+      case qr_mode.mode8bitByte:
         return 16;
-      case QrMode.MODE_KANJI:
+      case qr_mode.modeKanji:
         return 12;
       default:
         throw 'mode:$mode';

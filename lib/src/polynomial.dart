@@ -1,11 +1,9 @@
 import 'dart:typed_data';
 
-import 'math.dart' as qrMath;
+import 'math.dart' as qr_math;
 
 class QrPolynomial {
   final Uint8List _myThings;
-
-  QrPolynomial._internal(this._myThings);
 
   factory QrPolynomial(List<int> thing, int shift) {
     var offset = 0;
@@ -14,7 +12,7 @@ class QrPolynomial {
       offset++;
     }
 
-    final List<int> values = qrMath.getByteList(thing.length - offset + shift);
+    final List<int> values = qr_math.getByteList(thing.length - offset + shift);
 
     for (var i = 0; i < thing.length - offset; i++) {
       values[i] = thing[i + offset];
@@ -23,16 +21,18 @@ class QrPolynomial {
     return new QrPolynomial._internal(values);
   }
 
-  operator [](int index) => _myThings[index];
+  QrPolynomial._internal(this._myThings);
+
+  int operator [](int index) => _myThings[index];
 
   int get length => _myThings.length;
 
   QrPolynomial multiply(QrPolynomial e) {
-    final List<int> foo = qrMath.getByteList(length + e.length - 1);
+    final List<int> foo = qr_math.getByteList(length + e.length - 1);
 
     for (var i = 0; i < length; i++) {
       for (var j = 0; j < e.length; j++) {
-        foo[i + j] ^= qrMath.gexp(qrMath.glog(this[i]) + qrMath.glog(e[j]));
+        foo[i + j] ^= qr_math.gexp(qr_math.glog(this[i]) + qr_math.glog(e[j]));
       }
     }
 
@@ -44,16 +44,16 @@ class QrPolynomial {
       return this;
     }
 
-    var ratio = qrMath.glog(this[0]) - qrMath.glog(e[0]);
+    var ratio = qr_math.glog(this[0]) - qr_math.glog(e[0]);
 
-    var thing = qrMath.getByteList(length);
+    var thing = qr_math.getByteList(length);
 
     for (int i = 0; i < length; i++) {
       thing[i] = this[i];
     }
 
     for (int i = 0; i < e.length; i++) {
-      thing[i] ^= qrMath.gexp(qrMath.glog(e[i]) + ratio);
+      thing[i] ^= qr_math.gexp(qr_math.glog(e[i]) + ratio);
     }
 
     // recursive call

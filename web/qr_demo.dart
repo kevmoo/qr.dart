@@ -102,7 +102,7 @@ class QrDemo {
 
   String get value => _value;
 
-  void set value(String input) {
+  set value(String input) {
     _value = input;
     _update();
   }
@@ -132,7 +132,7 @@ class QrDemo {
     _qrMapper.source = t;
   }
 
-  void _onFrame(double highResTime) {
+  void _onFrame(num highResTime) {
     _frameRequested = false;
 
     _ctx.clearRect(0, 0, _canvas.width, _canvas.height);

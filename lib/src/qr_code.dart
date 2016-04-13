@@ -6,10 +6,10 @@ import 'bit_buffer.dart';
 import 'byte.dart';
 import 'error_correct_level.dart';
 import 'input_too_long_exception.dart';
-import 'math.dart' as QrMath;
+import 'math.dart' as qr_math;
 import 'polynomial.dart';
 import 'rs_block.dart';
-import 'util.dart' as QrUtil;
+import 'util.dart' as qr_util;
 
 class QrCode {
   final int typeNumber;
@@ -74,7 +74,7 @@ class QrCode {
     for (var i = 0; i < 8; i++) {
       _makeImpl(true, i);
 
-      var lostPoint = QrUtil.getLostPoint(this);
+      var lostPoint = qr_util.getLostPoint(this);
 
       if (i == 0 || minLostPoint > lostPoint) {
         minLostPoint = lostPoint;
@@ -102,7 +102,7 @@ class QrCode {
   }
 
   void _setupPositionAdjustPattern() {
-    var pos = QrUtil.getPatternPosition(typeNumber);
+    var pos = qr_util.getPatternPosition(typeNumber);
 
     for (var i = 0; i < pos.length; i++) {
       for (var j = 0; j < pos.length; j++) {
@@ -127,7 +127,7 @@ class QrCode {
   }
 
   void _setupTypeNumber(bool test) {
-    var bits = QrUtil.getBCHTypeNumber(this.typeNumber);
+    var bits = qr_util.getBCHTypeNumber(this.typeNumber);
 
     for (int i = 0; i < 18; i++) {
       final bool mod = (!test && ((bits >> i) & 1) == 1);
@@ -142,7 +142,7 @@ class QrCode {
 
   void _setupTypeInfo(bool test, maskPattern) {
     var data = (this.errorCorrectLevel << 3) | maskPattern;
-    var bits = QrUtil.getBCHTypeInfo(data);
+    var bits = qr_util.getBCHTypeInfo(data);
 
     var i, mod;
 
@@ -194,7 +194,7 @@ class QrCode {
               dark = (((data[byteIndex] >> bitIndex) & 1) == 1);
             }
 
-            var mask = QrUtil.getMask(maskPattern, row, col - c);
+            var mask = qr_util.getMask(maskPattern, row, col - c);
 
             if (mask) {
               dark = !dark;
@@ -241,8 +241,8 @@ class QrCode {
   }
 }
 
-const int _PAD0 = 0xEC;
-const int _PAD1 = 0x11;
+const int _pad0 = 0xEC;
+const int _pad1 = 0x11;
 
 List<int> _createData(
     int typeNumber, int errorCorrectLevel, List<QrByte> dataList) {
@@ -253,7 +253,7 @@ List<int> _createData(
   for (int i = 0; i < dataList.length; i++) {
     var data = dataList[i];
     buffer.put(data.mode, 4);
-    buffer.put(data.length, QrUtil.getLengthInBits(data.mode, typeNumber));
+    buffer.put(data.length, qr_util.getLengthInBits(data.mode, typeNumber));
     data.write(buffer);
   }
 
@@ -285,12 +285,12 @@ List<int> _createData(
     if (buffer.length >= totalDataCount * 8) {
       break;
     }
-    buffer.put(_PAD0, 8);
+    buffer.put(_pad0, 8);
 
     if (buffer.length >= totalDataCount * 8) {
       break;
     }
-    buffer.put(_PAD1, 8);
+    buffer.put(_pad1, 8);
   }
 
   return _createBytes(buffer, rsBlocks);
@@ -302,7 +302,7 @@ List<int> _createBytes(QrBitBuffer buffer, rsBlocks) {
   var maxDcCount = 0;
   var maxEcCount = 0;
 
-  var dcdata = new List<List>(rsBlocks.length);
+  var dcdata = new List<List<int>>(rsBlocks.length);
   var ecdata = new List<List>(rsBlocks.length);
 
   for (int r = 0; r < rsBlocks.length; r++) {
@@ -312,18 +312,18 @@ List<int> _createBytes(QrBitBuffer buffer, rsBlocks) {
     maxDcCount = math.max(maxDcCount, dcCount);
     maxEcCount = math.max(maxEcCount, ecCount);
 
-    dcdata[r] = QrMath.getByteList(dcCount);
+    dcdata[r] = qr_math.getByteList(dcCount);
 
     for (int i = 0; i < dcdata[r].length; i++) {
       dcdata[r][i] = 0xff & buffer.getByte(i + offset);
     }
     offset += dcCount;
 
-    var rsPoly = QrUtil.getErrorCorrectPolynomial(ecCount);
+    var rsPoly = qr_util.getErrorCorrectPolynomial(ecCount);
     var rawPoly = new QrPolynomial(dcdata[r], rsPoly.length - 1);
 
     var modPoly = rawPoly.mod(rsPoly);
-    ecdata[r] = QrMath.getByteList(rsPoly.length - 1);
+    ecdata[r] = qr_math.getByteList(rsPoly.length - 1);
 
     for (int i = 0; i < ecdata[r].length; i++) {
       var modIndex = i + modPoly.length - ecdata[r].length;
@@ -331,7 +331,7 @@ List<int> _createBytes(QrBitBuffer buffer, rsBlocks) {
     }
   }
 
-  var data = [];
+  var data = <int>[];
 
   for (int i = 0; i < maxDcCount; i++) {
     for (int r = 0; r < rsBlocks.length; r++) {
