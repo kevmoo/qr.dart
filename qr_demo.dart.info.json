@@ -1008,7 +1008,7 @@
       "50": {
         "id": "library/50",
         "kind": "library",
-        "name": "qr.bit_buffer",
+        "name": "<unnamed>",
         "size": 650,
         "children": [
           "class/1426"
@@ -1018,7 +1018,7 @@
       "51": {
         "id": "library/51",
         "kind": "library",
-        "name": "qr.error_correct_level",
+        "name": "<unnamed>",
         "size": 155,
         "children": [
           "class/1427"
@@ -1028,8 +1028,8 @@
       "52": {
         "id": "library/52",
         "kind": "library",
-        "name": "qr.code",
-        "size": 5461,
+        "name": "<unnamed>",
+        "size": 5480,
         "children": [
           "function/1142",
           "function/1143",
@@ -1042,7 +1042,7 @@
       "53": {
         "id": "library/53",
         "kind": "library",
-        "name": "qr.byte",
+        "name": "<unnamed>",
         "size": 140,
         "children": [
           "class/1429"
@@ -1052,7 +1052,7 @@
       "54": {
         "id": "library/54",
         "kind": "library",
-        "name": "qr.mode",
+        "name": "<unnamed>",
         "size": 0,
         "children": [
           "field/886",
@@ -1065,7 +1065,7 @@
       "55": {
         "id": "library/55",
         "kind": "library",
-        "name": "qr.input_too_long_exception",
+        "name": "<unnamed>",
         "size": 85,
         "children": [
           "class/1430"
@@ -1075,7 +1075,7 @@
       "56": {
         "id": "library/56",
         "kind": "library",
-        "name": "qr.math",
+        "name": "<unnamed>",
         "size": 771,
         "children": [
           "function/1163",
@@ -1091,7 +1091,7 @@
       "57": {
         "id": "library/57",
         "kind": "library",
-        "name": "qr.polynomial",
+        "name": "<unnamed>",
         "size": 1226,
         "children": [
           "class/1431"
@@ -1101,7 +1101,7 @@
       "58": {
         "id": "library/58",
         "kind": "library",
-        "name": "qr.rs_block",
+        "name": "<unnamed>",
         "size": 783,
         "children": [
           "function/1174",
@@ -1113,7 +1113,7 @@
       "59": {
         "id": "library/59",
         "kind": "library",
-        "name": "qr.util",
+        "name": "<unnamed>",
         "size": 2769,
         "children": [
           "function/1177",
@@ -1134,7 +1134,7 @@
       "60": {
         "id": "library/60",
         "kind": "library",
-        "name": "qr.mask_pattern",
+        "name": "<unnamed>",
         "size": 0,
         "children": [
           "field/903",
@@ -10343,7 +10343,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "w8:[function(a){var z,y,x,w,v\nz=J.U6(a)\ny=M.ty(z.WH(a,0),z.WH(a,1))\nz=z.WH(a,2)\nY.wG(z,\"input\")\ny.f.push(new T.eK(4,C.Qk.WJ(z)))\ny.e=null\ny.JQ(!1,y.kO())\nx=H.L([],[P.a2])\nz=y.c\nif(typeof z!==\"number\")return H.pY(z)\nw=0\nfor(;w<z;++w)for(v=0;v<z;++v)x.push(y.Tb(v,w))\nreturn x},\"$1\",\"Kc\",2,0,19]\n",
+        "code": "w8:[function(a){var z,y,x,w,v\nz=J.U6(a)\ny=D.ty(z.WH(a,0),z.WH(a,1))\nz=z.WH(a,2)\nY.wG(z,\"input\")\ny.f.push(new V.eK(4,C.Qk.WJ(z)))\ny.e=null\ny.JQ(!1,y.kO())\nx=H.L([],[P.a2])\nz=y.c\nif(typeof z!==\"number\")return H.pY(z)\nw=0\nfor(;w<z;++w)for(v=0;v<z;++v)x.push(y.Tb(v,w))\nreturn x},\"$1\",\"Kc\",2,0,19]\n",
         "type": "(List) -> List<bool>",
         "measurements": null
       },
@@ -10458,7 +10458,7 @@
           "factory": false,
           "external": false
         },
-        "returnType": "void",
+        "returnType": "dynamic",
         "inferredReturnType": "[null]",
         "parameters": [
           {
@@ -10470,7 +10470,7 @@
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 2,
         "code": null,
-        "type": "(String) -> void",
+        "type": "(String) -> dynamic",
         "measurements": null
       },
       "5": {
@@ -10602,13 +10602,13 @@
           {
             "name": "highResTime",
             "type": "[null|subclass=Object]",
-            "declaredType": "double"
+            "declaredType": "num"
           }
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
         "code": "vF:[function(a){var z,y,x,w,v,u,t,s,r,q\nthis.y=!1\nz=this.d\ny=this.b\nx=J.w(y)\nz.clearRect(0,0,x.gq9(y),x.gfg(y))\nw=J.Hm(this.x)\nif(typeof w!==\"number\")H.vh(H.t(w))\nv=C.CD.yu(Math.sqrt(w))\nu=C.jn.xG(P.LU(x.gq9(y),x.gfg(y)),1.1*v)\nw=this.a\nY.De(E.xm(u),\"value\",null)\nw.a=u\nif(w.Li())this.q3()\nt=new E.Ng(1,0,0,1,0,0)\ns=x.gq9(y)\nif(typeof s!==\"number\")return H.pY(s)\ny=x.gfg(y)\nif(typeof y!==\"number\")return H.pY(y)\nt.QI(0,0.5*s,0.5*y)\nw=w.b\ny=t.a\nif(typeof w!==\"number\")return H.pY(w)\nt.a=y*w\nt.b*=w\nt.c*=w\nt.d*=w\nw=-0.5*v\nt.QI(0,w,w)\nz.save()\nY.wG(z,\"ctx\")\nY.wG(t,\"tx\")\nz.setTransform(t.a,t.b,t.c,t.d,t.e,t.f)\ny=J.Hm(this.x)\nif(typeof y!==\"number\")return y.C()\nif(y>0)for(r=0;r<v;++r)for(y=r*v,q=0;q<v;++q)if(J.w2(this.x,y+q)===!0)z.fillRect(r,q,1,1)\nz.restore()},\"$1\",\"gll\",2,0,18]\n",
-        "type": "(double) -> void",
+        "type": "(num) -> void",
         "measurements": null
       },
       "11": {
@@ -44286,7 +44286,7 @@
         "id": "function/1142",
         "kind": "function",
         "name": "_createBytes",
-        "size": 783,
+        "size": 802,
         "outputUnit": "outputUnit/0",
         "coverageId": "2941",
         "parent": "library/52",
@@ -44313,7 +44313,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "vX:function(a,b){var z,y,x,w,v,u,t,s,r,q,p,o,n,m,l,k,j,i,h,g,f\nz=H.L(new Array(b.length),[P.z])\ny=H.L(new Array(b.length),[P.z])\nfor(x=y.length,w=z.length,v=a.a,u=0,t=0,s=0,r=0;r<b.length;++r){q=b[r]\np=q.b\no=q.a-p\nt=P.A5(t,p)\ns=P.A5(s,o)\nq=new Uint8Array(p)\nif(r>=w)return H.Cw(z,r)\nz[r]=q\nfor(n=v.length,m=0;m<p;++m){l=m+u\nif(l<0||l>=n)return H.Cw(v,l)\nq[m]=255&v[l]}u+=p\nk=G.yC(o)\nq=k.a.length-1\nj=F.yU(z[r],q).vP(k)\nn=new Uint8Array(q)\nif(r>=x)return H.Cw(y,r)\ny[r]=n\nfor(l=j.a,i=l.length,m=0;m<q;++m){h=m+i-q\nif(h>=0){if(h>=i)return H.Cw(l,h)\ng=l[h]}else g=0\nn[m]=g}}f=[]\nfor(m=0;m<t;++m)for(r=0;r<b.length;++r){if(r>=w)return H.Cw(z,r)\nv=z[r]\nif(m<v.length)f.push(v[m])}for(m=0;m<s;++m)for(r=0;r<b.length;++r){if(r>=x)return H.Cw(y,r)\nw=y[r]\nif(m<w.length)f.push(w[m])}return f}\n",
+        "code": "vX:function(a,b){var z,y,x,w,v,u,t,s,r,q,p,o,n,m,l,k,j,i,h,g,f\nz=H.L(new Array(b.length),[[P.z,P.KN]])\ny=H.L(new Array(b.length),[P.z])\nfor(x=y.length,w=z.length,v=a.a,u=0,t=0,s=0,r=0;r<b.length;++r){q=b[r]\np=q.b\no=q.a-p\nt=P.A5(t,p)\ns=P.A5(s,o)\nq=new Uint8Array(p)\nif(r>=w)return H.Cw(z,r)\nz[r]=q\nfor(n=v.length,m=0;m<p;++m){l=m+u\nif(l<0||l>=n)return H.Cw(v,l)\nq[m]=255&v[l]}u+=p\nk=M.yC(o)\nq=k.a.length-1\nj=D.yU(z[r],q).vP(k)\nn=new Uint8Array(q)\nif(r>=x)return H.Cw(y,r)\ny[r]=n\nfor(l=j.a,i=l.length,m=0;m<q;++m){h=m+i-q\nif(h>=0){if(h>=i)return H.Cw(l,h)\ng=l[h]}else g=0\nn[m]=g}}f=H.L([],[P.KN])\nfor(m=0;m<t;++m)for(r=0;r<b.length;++r){if(r>=w)return H.Cw(z,r)\nv=z[r]\nif(m<v.length)f.push(v[m])}for(m=0;m<s;++m)for(r=0;r<b.length;++r){if(r>=x)return H.Cw(y,r)\nw=y[r]\nif(m<w.length)f.push(w[m])}return f}\n",
         "type": "(QrBitBuffer, dynamic) -> List<int>",
         "measurements": null
       },
@@ -44353,7 +44353,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "Mt:function(a,b,c){var z,y,x,w,v,u,t\nz=A.Kf(a,b)\ny=new M.eL(H.L([],[P.KN]),0)\nfor(x=0;x<c.length;++x){w=c[x]\nv=w.a\ny.Dp(v,4)\ny.Dp(w.b.length,G.mt(v,a))\nw.KF(y)}for(v=z.length,u=0,x=0;x<v;++x)u+=z[x].b\nt=u*8\nv=y.b\nif(v>t){v=y.gA(y)\nthrow H.J(new L.KM(v,t,\"Input too long. \"+v+\" > \"+t))}if(v+4<=t)y.Dp(0,4)\nfor(;C.jn.zY(y.b,8)!==0;)y.Ge(!1)\nfor(;!0;){if(y.b>=t)break\ny.Dp(236,8)\nif(y.b>=t)break\ny.Dp(17,8)}return M.vX(y,z)}\n",
+        "code": "Mt:function(a,b,c){var z,y,x,w,v,u,t\nz=Y.Kf(a,b)\ny=new Q.eL(H.L([],[P.KN]),0)\nfor(x=0;x<c.length;++x){w=c[x]\nv=w.a\ny.Dp(v,4)\ny.Dp(w.b.length,M.mt(v,a))\nw.KF(y)}for(v=z.length,u=0,x=0;x<v;++x)u+=z[x].b\nt=u*8\nv=y.b\nif(v>t){v=y.gA(y)\nthrow H.J(new V.KM(v,t,\"Input too long. \"+v+\" > \"+t))}if(v+4<=t)y.Dp(0,4)\nfor(;C.jn.zY(y.b,8)!==0;)y.Ge(!1)\nfor(;!0;){if(y.b>=t)break\ny.Dp(236,8)\nif(y.b>=t)break\ny.Dp(17,8)}return D.vX(y,z)}\n",
         "type": "(int, int, List<QrByte>) -> List<int>",
         "measurements": null
       },
@@ -44388,7 +44388,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "ty:function(a,b){var z=H.L([],[T.eK])\nz=new M.pR(a,b,J.p(J.kc(a,4),17),H.L([],[[P.z,P.a2]]),null,z)\nz.GR(a,b)\nreturn z}\n",
+        "code": "ty:function(a,b){var z=H.L([],[V.eK])\nz=new D.pR(a,b,J.p(J.kc(a,4),17),H.L([],[[P.z,P.a2]]),null,z)\nz.GR(a,b)\nreturn z}\n",
         "type": "(int, int) -> dynamic",
         "measurements": null
       },
@@ -44536,7 +44536,7 @@
         "parameters": [],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "kO:function(){var z,y,x,w\nfor(z=0,y=0,x=0;x<8;++x){this.JQ(!0,x)\nw=G.dq(this)\nif(x===0||z>w){y=x\nz=w}}return y}\n",
+        "code": "kO:function(){var z,y,x,w\nfor(z=0,y=0,x=0;x<8;++x){this.JQ(!0,x)\nw=M.dq(this)\nif(x===0||z>w){y=x\nz=w}}return y}\n",
         "type": "() -> int",
         "measurements": null
       },
@@ -44614,7 +44614,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "cA:function(a){var z,y,x,w,v,u,t,s\nz=G.wT(this.a)\nfor(y=this.d,x=this.c,w=!a,v=0;v<18;++v){u=w&&(C.jn.p3(z,v)&1)===1\nt=C.jn.BU(v,3)\nif(t>=y.length)return H.Cw(y,t)\nt=y[t]\ns=C.jn.zY(v,3)\nif(typeof x!==\"number\")return H.pY(x)\nJ.B2(t,s+x-8-3,u)}for(v=0;v<18;++v){u=w&&(C.jn.p3(z,v)&1)===1\nt=C.jn.zY(v,3)\nif(typeof x!==\"number\")return H.pY(x)\nt=t+x-8-3\nif(t>>>0!==t||t>=y.length)return H.Cw(y,t)\nJ.B2(y[t],C.jn.BU(v,3),u)}}\n",
+        "code": "cA:function(a){var z,y,x,w,v,u,t,s\nz=M.wT(this.a)\nfor(y=this.d,x=this.c,w=!a,v=0;v<18;++v){u=w&&(C.jn.p3(z,v)&1)===1\nt=C.jn.BU(v,3)\nif(t>=y.length)return H.Cw(y,t)\nt=y[t]\ns=C.jn.zY(v,3)\nif(typeof x!==\"number\")return H.pY(x)\nJ.B2(t,s+x-8-3,u)}for(v=0;v<18;++v){u=w&&(C.jn.p3(z,v)&1)===1\nt=C.jn.zY(v,3)\nif(typeof x!==\"number\")return H.pY(x)\nt=t+x-8-3\nif(t>>>0!==t||t>=y.length)return H.Cw(y,t)\nJ.B2(y[t],C.jn.BU(v,3),u)}}\n",
         "type": "(bool) -> void",
         "measurements": null
       },
@@ -44649,7 +44649,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "Pv:function(a,b){var z,y,x,w,v,u,t,s,r,q\nz=this.b\nif(typeof z!==\"number\")return z.yE()\ny=G.Xz((z<<3|b)>>>0)\nfor(z=this.d,x=this.c,w=J.Wx(x),v=!a,u=0;u<15;++u){t=v&&(C.jn.p3(y,u)&1)===1\nif(u<6){if(u>=z.length)return H.Cw(z,u)\nJ.B2(z[u],8,t)}else if(u<8){s=u+1\nif(s>=z.length)return H.Cw(z,s)\nJ.B2(z[s],8,t)}else{s=J.p(w.HN(x,15),u)\nif(s>>>0!==s||s>=z.length)return H.Cw(z,s)\nJ.B2(z[s],8,t)}}for(u=0;u<15;++u){t=v&&(C.jn.p3(y,u)&1)===1\nif(u<8){if(8>=z.length)return H.Cw(z,8)\nJ.B2(z[8],J.Fi(w.HN(x,u),1),t)}else{s=z.length\nr=15-u\nq=z[8]\nif(u<9){if(8>=s)return H.Cw(z,8)\nJ.B2(q,r-1+1,t)}else{if(8>=s)return H.Cw(z,8)\nJ.B2(q,r-1,t)}}}x=w.HN(x,8)\nif(x>>>0!==x||x>=z.length)return H.Cw(z,x)\nJ.B2(z[x],8,v)}\n",
+        "code": "Pv:function(a,b){var z,y,x,w,v,u,t,s,r,q\nz=this.b\nif(typeof z!==\"number\")return z.yE()\ny=M.Xz((z<<3|b)>>>0)\nfor(z=this.d,x=this.c,w=J.Wx(x),v=!a,u=0;u<15;++u){t=v&&(C.jn.p3(y,u)&1)===1\nif(u<6){if(u>=z.length)return H.Cw(z,u)\nJ.B2(z[u],8,t)}else if(u<8){s=u+1\nif(s>=z.length)return H.Cw(z,s)\nJ.B2(z[s],8,t)}else{s=J.p(w.HN(x,15),u)\nif(s>>>0!==s||s>=z.length)return H.Cw(z,s)\nJ.B2(z[s],8,t)}}for(u=0;u<15;++u){t=v&&(C.jn.p3(y,u)&1)===1\nif(u<8){if(8>=z.length)return H.Cw(z,8)\nJ.B2(z[8],J.Fi(w.HN(x,u),1),t)}else{s=z.length\nr=15-u\nq=z[8]\nif(u<9){if(8>=s)return H.Cw(z,8)\nJ.B2(q,r-1+1,t)}else{if(8>=s)return H.Cw(z,8)\nJ.B2(q,r-1,t)}}}x=w.HN(x,8)\nif(x>>>0!==x||x>=z.length)return H.Cw(z,x)\nJ.B2(z[x],8,v)}\n",
         "type": "(bool, dynamic) -> void",
         "measurements": null
       },
@@ -44684,7 +44684,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "Yj:function(a,b){var z,y,x,w,v,u,t,s,r,q,p,o,n\nz=this.c\ny=J.Wx(z)\nx=y.HN(z,1)\nfor(w=y.HN(z,1),v=this.d,u=-1,t=7,s=0;r=J.Wx(w),r.C(w,0);w=r.HN(w,2)){if(r.DN(w,6))w=r.HN(w,1)\nfor(r=J.Wx(w);!0;){for(q=0;q<2;++q){if(x>>>0!==x||x>=v.length)return H.Cw(v,x)\nif(J.w2(v[x],r.HN(w,q))==null){p=a.length\nif(s<p){if(s<0)return H.Cw(a,s)\no=(C.jn.bf(a[s],t)&1)===1}else o=!1\nif(G.Hk(b,x,r.HN(w,q)))o=!o\nif(x>=v.length)return H.Cw(v,x)\nJ.B2(v[x],r.HN(w,q),o);--t\nif(t===-1){++s\nt=7}}}x=J.p(x,u)\np=J.Wx(x)\nif(p.B(x,0)||y.Ct(z,x)){x=p.HN(x,u)\nn=-u\nu=n\nbreak}}}}\n",
+        "code": "Yj:function(a,b){var z,y,x,w,v,u,t,s,r,q,p,o,n\nz=this.c\ny=J.Wx(z)\nx=y.HN(z,1)\nfor(w=y.HN(z,1),v=this.d,u=-1,t=7,s=0;r=J.Wx(w),r.C(w,0);w=r.HN(w,2)){if(r.DN(w,6))w=r.HN(w,1)\nfor(r=J.Wx(w);!0;){for(q=0;q<2;++q){if(x>>>0!==x||x>=v.length)return H.Cw(v,x)\nif(J.w2(v[x],r.HN(w,q))==null){p=a.length\nif(s<p){if(s<0)return H.Cw(a,s)\no=(C.jn.bf(a[s],t)&1)===1}else o=!1\nif(M.Hk(b,x,r.HN(w,q)))o=!o\nif(x>=v.length)return H.Cw(v,x)\nJ.B2(v[x],r.HN(w,q),o);--t\nif(t===-1){++s\nt=7}}}x=J.p(x,u)\np=J.Wx(x)\nif(p.B(x,0)||y.Ct(z,x)){x=p.HN(x,u)\nn=-u\nu=n\nbreak}}}}\n",
         "type": "(List<int>, dynamic) -> void",
         "measurements": null
       },
@@ -44719,7 +44719,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "JQ:function(a,b){var z,y\nthis.us(0,0)\nz=this.c\ny=J.Wx(z)\nthis.us(y.HN(z,7),0)\nthis.us(0,y.HN(z,7))\nthis.nX()\nthis.TT()\nthis.Pv(a,b)\nz=this.a\nif(J.Yg(z,7))this.cA(a)\ny=this.e\nif(y==null){z=M.Mt(z,this.b,this.f)\nthis.e=z}else z=y\nthis.Yj(z,b)}\n",
+        "code": "JQ:function(a,b){var z,y\nthis.us(0,0)\nz=this.c\ny=J.Wx(z)\nthis.us(y.HN(z,7),0)\nthis.us(0,y.HN(z,7))\nthis.nX()\nthis.TT()\nthis.Pv(a,b)\nz=this.a\nif(J.Yg(z,7))this.cA(a)\ny=this.e\nif(y==null){z=D.Mt(z,this.b,this.f)\nthis.e=z}else z=y\nthis.Yj(z,b)}\n",
         "type": "(bool, int) -> void",
         "measurements": null
       },
@@ -44840,10 +44840,45 @@
       "1160": {
         "id": "function/1160",
         "kind": "function",
-        "name": "InputTooLongException._internal",
+        "name": "InputTooLongException",
         "size": 0,
         "outputUnit": "outputUnit/0",
         "coverageId": "24757",
+        "parent": "class/1430",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": true,
+          "external": false
+        },
+        "returnType": null,
+        "inferredReturnType": "[exact=InputTooLongException]",
+        "parameters": [
+          {
+            "name": "providedInput",
+            "type": "[subclass=JSPositiveInt]",
+            "declaredType": "int"
+          },
+          {
+            "name": "inputLimit",
+            "type": "[subclass=JSPositiveInt]",
+            "declaredType": "int"
+          }
+        ],
+        "sideEffects": "Depends on nothing, Changes [] field static.",
+        "inlinedCount": 1,
+        "code": null,
+        "type": "(int, int) -> InputTooLongException",
+        "measurements": null
+      },
+      "1161": {
+        "id": "function/1161",
+        "kind": "function",
+        "name": "InputTooLongException._internal",
+        "size": 0,
+        "outputUnit": "outputUnit/0",
+        "coverageId": "24758",
         "parent": "class/1430",
         "children": [],
         "modifiers": {
@@ -44875,41 +44910,6 @@
         "inlinedCount": 1,
         "code": null,
         "type": "(int, int, String) -> dynamic",
-        "measurements": null
-      },
-      "1161": {
-        "id": "function/1161",
-        "kind": "function",
-        "name": "InputTooLongException",
-        "size": 0,
-        "outputUnit": "outputUnit/0",
-        "coverageId": "24758",
-        "parent": "class/1430",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": true,
-          "external": false
-        },
-        "returnType": null,
-        "inferredReturnType": "[exact=InputTooLongException]",
-        "parameters": [
-          {
-            "name": "providedInput",
-            "type": "[subclass=JSPositiveInt]",
-            "declaredType": "int"
-          },
-          {
-            "name": "inputLimit",
-            "type": "[subclass=JSPositiveInt]",
-            "declaredType": "int"
-          }
-        ],
-        "sideEffects": "Depends on nothing, Changes [] field static.",
-        "inlinedCount": 1,
-        "code": null,
-        "type": "(int, int) -> InputTooLongException",
         "measurements": null
       },
       "1162": {
@@ -45077,40 +45077,10 @@
       "1168": {
         "id": "function/1168",
         "kind": "function",
-        "name": "QrPolynomial._internal",
-        "size": 0,
-        "outputUnit": "outputUnit/0",
-        "coverageId": "24793",
-        "parent": "class/1431",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": null,
-        "inferredReturnType": "[exact=QrPolynomial]",
-        "parameters": [
-          {
-            "name": "_myThings",
-            "type": "Container mask: [subclass=JSPositiveInt] length: null type: [exact=NativeUint8List]",
-            "declaredType": "null"
-          }
-        ],
-        "sideEffects": "Depends on nothing, Changes nothing.",
-        "inlinedCount": 1,
-        "code": null,
-        "type": "(Uint8List) -> dynamic",
-        "measurements": null
-      },
-      "1169": {
-        "id": "function/1169",
-        "kind": "function",
         "name": "QrPolynomial",
         "size": 241,
         "outputUnit": "outputUnit/0",
-        "coverageId": "24794",
+        "coverageId": "24793",
         "parent": "class/1431",
         "children": [],
         "modifiers": {
@@ -45135,8 +45105,38 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "yU:function(a,b){var z,y,x,w,v,u,t\nz=a.length\ny=0\nwhile(!0){if(!(y<z&&a[y]===0))break;++y}z=z-y+b\nx=new Uint8Array(z)\nfor(w=a.length,v=w-y,u=0;u<v;++u){t=u+y\nif(t>=w)return H.Cw(a,t)\nt=a[t]\nif(u>=z)return H.Cw(x,u)\nx[u]=t}return new F.E4(x)}\n",
+        "code": "yU:function(a,b){var z,y,x,w,v,u,t\nz=a.length\ny=0\nwhile(!0){if(!(y<z&&a[y]===0))break;++y}z=z-y+b\nx=new Uint8Array(z)\nfor(w=a.length,v=w-y,u=0;u<v;++u){t=u+y\nif(t>=w)return H.Cw(a,t)\nt=a[t]\nif(u>=z)return H.Cw(x,u)\nx[u]=t}return new D.E4(x)}\n",
         "type": "(List<int>, int) -> QrPolynomial",
+        "measurements": null
+      },
+      "1169": {
+        "id": "function/1169",
+        "kind": "function",
+        "name": "QrPolynomial._internal",
+        "size": 0,
+        "outputUnit": "outputUnit/0",
+        "coverageId": "24794",
+        "parent": "class/1431",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": null,
+        "inferredReturnType": "[exact=QrPolynomial]",
+        "parameters": [
+          {
+            "name": "_myThings",
+            "type": "Container mask: [subclass=JSPositiveInt] length: null type: [exact=NativeUint8List]",
+            "declaredType": "null"
+          }
+        ],
+        "sideEffects": "Depends on nothing, Changes nothing.",
+        "inlinedCount": 1,
+        "code": null,
+        "type": "(Uint8List) -> dynamic",
         "measurements": null
       },
       "1170": {
@@ -45154,7 +45154,7 @@
           "factory": false,
           "external": false
         },
-        "returnType": "dynamic",
+        "returnType": "int",
         "inferredReturnType": "[subclass=JSPositiveInt]",
         "parameters": [
           {
@@ -45166,7 +45166,7 @@
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 7,
         "code": "WH:function(a,b){var z=this.a\nif(b>>>0!==b||b>=z.length)return H.Cw(z,b)\nreturn z[b]}\n",
-        "type": "(int) -> dynamic",
+        "type": "(int) -> int",
         "measurements": null
       },
       "1171": {
@@ -45219,7 +45219,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "tv:function(a){var z,y,x,w,v,u,t,s,r,q,p,o,n\nz=this.a\ny=z.length\nx=a.a\nw=x.length\nv=H.z3(y+w-1)\nu=new Uint8Array(v)\nfor(t=0;t<y;++t)for(s=0;s<w;++s){r=t+s\nif(r>=v)return H.Cw(u,r)\nq=u[r]\np=z[t]\nif(p<1)H.vh(\"glog(\"+p+\")\")\no=$.$get$Ia()\nif(p>=o.length)return H.Cw(o,p)\np=o[p]\nn=x[s]\nif(n<1)H.vh(\"glog(\"+n+\")\")\nif(n>=o.length)return H.Cw(o,n)\nu[r]=(q^O.rN(p+o[n]))>>>0}return F.yU(u,0)}\n",
+        "code": "tv:function(a){var z,y,x,w,v,u,t,s,r,q,p,o,n\nz=this.a\ny=z.length\nx=a.a\nw=x.length\nv=H.z3(y+w-1)\nu=new Uint8Array(v)\nfor(t=0;t<y;++t)for(s=0;s<w;++s){r=t+s\nif(r>=v)return H.Cw(u,r)\nq=u[r]\np=z[t]\nif(p<1)H.vh(\"glog(\"+p+\")\")\no=$.$get$Ia()\nif(p>=o.length)return H.Cw(o,p)\np=o[p]\nn=x[s]\nif(n<1)H.vh(\"glog(\"+n+\")\")\nif(n>=o.length)return H.Cw(o,n)\nu[r]=(q^K.rN(p+o[n]))>>>0}return D.yU(u,0)}\n",
         "type": "(QrPolynomial) -> QrPolynomial",
         "measurements": null
       },
@@ -45249,7 +45249,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "vP:function(a){var z,y,x,w,v,u,t,s,r\nz=this.a\ny=z.length\nx=a.a\nw=x.length\nif(y-w<0)return this\nif(0>=y)return H.Cw(z,0)\nv=O.zx(z[0])\nif(0>=w)return H.Cw(x,0)\nu=v-O.zx(x[0])\nv=H.z3(y)\nt=new Uint8Array(v)\nfor(s=0;s<y;++s){r=z[s]\nif(s>=v)return H.Cw(t,s)\nt[s]=r}for(s=0;s<w;++s){if(s>=v)return H.Cw(t,s)\nz=t[s]\ny=x[s]\nif(y<1)H.vh(\"glog(\"+y+\")\")\nr=$.$get$Ia()\nif(y>=r.length)return H.Cw(r,y)\nt[s]=(z^O.rN(r[y]+u))>>>0}return F.yU(t,0).vP(a)}\n",
+        "code": "vP:function(a){var z,y,x,w,v,u,t,s,r\nz=this.a\ny=z.length\nx=a.a\nw=x.length\nif(y-w<0)return this\nif(0>=y)return H.Cw(z,0)\nv=K.zx(z[0])\nif(0>=w)return H.Cw(x,0)\nu=v-K.zx(x[0])\nv=H.z3(y)\nt=new Uint8Array(v)\nfor(s=0;s<y;++s){r=z[s]\nif(s>=v)return H.Cw(t,s)\nt[s]=r}for(s=0;s<w;++s){if(s>=v)return H.Cw(t,s)\nz=t[s]\ny=x[s]\nif(y<1)H.vh(\"glog(\"+y+\")\")\nr=$.$get$Ia()\nif(y>=r.length)return H.Cw(r,y)\nt[s]=(z^K.rN(r[y]+u))>>>0}return D.yU(t,0).vP(a)}\n",
         "type": "(QrPolynomial) -> QrPolynomial",
         "measurements": null
       },
@@ -45354,7 +45354,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "Kf:function(a,b){var z,y,x,w,v,u,t,s,r,q,p\nz=A.Uo(a,b)\ny=z.length\nx=y/3|0\nw=H.L([],[A.dI])\nfor(v=0;v<x;++v){u=v*3\nif(u>=y)return H.Cw(z,u)\nt=z[u]\ns=u+1\nif(s>=y)return H.Cw(z,s)\nr=z[s]\nu+=2\nif(u>=y)return H.Cw(z,u)\nq=z[u]\nfor(p=0;p<t;++p)w.push(new A.dI(r,q))}return w}\n",
+        "code": "Kf:function(a,b){var z,y,x,w,v,u,t,s,r,q,p\nz=Y.Uo(a,b)\ny=z.length\nx=y/3|0\nw=H.L([],[Y.dI])\nfor(v=0;v<x;++v){u=v*3\nif(u>=y)return H.Cw(z,u)\nt=z[u]\ns=u+1\nif(s>=y)return H.Cw(z,s)\nr=z[s]\nu+=2\nif(u>=y)return H.Cw(z,u)\nq=z[u]\nfor(p=0;p<t;++p)w.push(new Y.dI(r,q))}return w}\n",
         "type": "(int, int) -> List<QrRsBlock>",
         "measurements": null
       },
@@ -45449,7 +45449,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "yC:function(a){var z,y\nz=F.yU([1],0)\nfor(y=0;y<a;++y)z=z.tv(F.yU([1,O.rN(y)],0))\nreturn z}\n",
+        "code": "yC:function(a){var z,y\nz=D.yU([1],0)\nfor(y=0;y<a;++y)z=z.tv(D.yU([1,K.rN(y)],0))\nreturn z}\n",
         "type": "(int) -> QrPolynomial",
         "measurements": null
       },
@@ -45579,7 +45579,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "wT:function(a){var z,y\nif(typeof a!==\"number\")return a.yE()\nz=a<<12>>>0\nfor(y=z;G.uN(y)-G.uN(7973)>=0;)y=(y^C.jn.yE(7973,G.uN(y)-G.uN(7973)))>>>0\nreturn(z|y)>>>0}\n",
+        "code": "wT:function(a){var z,y\nif(typeof a!==\"number\")return a.yE()\nz=a<<12>>>0\nfor(y=z;M.uN(y)-M.uN(7973)>=0;)y=(y^C.jn.yE(7973,M.uN(y)-M.uN(7973)))>>>0\nreturn(z|y)>>>0}\n",
         "type": "(int) -> int",
         "measurements": null
       },
@@ -45609,7 +45609,7 @@
         ],
         "sideEffects": "Depends on [] field store static store, Changes [] field static.",
         "inlinedCount": 0,
-        "code": "Xz:function(a){var z,y\nz=a<<10>>>0\nfor(y=z;G.uN(y)-G.uN(1335)>=0;)y=(y^C.jn.yE(1335,G.uN(y)-G.uN(1335)))>>>0\nreturn((z|y)^21522)>>>0}\n",
+        "code": "Xz:function(a){var z,y\nz=a<<10>>>0\nfor(y=z;M.uN(y)-M.uN(1335)>=0;)y=(y^C.jn.yE(1335,M.uN(y)-M.uN(1335)))>>>0\nreturn((z|y)^21522)>>>0}\n",
         "type": "(int) -> int",
         "measurements": null
       }
@@ -57461,7 +57461,7 @@
       "876": {
         "id": "field/876",
         "kind": "field",
-        "name": "_PAD1",
+        "name": "_pad1",
         "size": 0,
         "outputUnit": "outputUnit/0",
         "coverageId": "2939",
@@ -57475,7 +57475,7 @@
       "877": {
         "id": "field/877",
         "kind": "field",
-        "name": "_PAD0",
+        "name": "_pad0",
         "size": 0,
         "outputUnit": "outputUnit/0",
         "coverageId": "2938",
@@ -57593,7 +57593,7 @@
       "886": {
         "id": "field/886",
         "kind": "field",
-        "name": "MODE_KANJI",
+        "name": "modeKanji",
         "size": 0,
         "outputUnit": "outputUnit/0",
         "coverageId": "2966",
@@ -57607,7 +57607,7 @@
       "887": {
         "id": "field/887",
         "kind": "field",
-        "name": "MODE_8BIT_BYTE",
+        "name": "mode8bitByte",
         "size": 0,
         "outputUnit": "outputUnit/0",
         "coverageId": "2965",
@@ -57621,7 +57621,7 @@
       "888": {
         "id": "field/888",
         "kind": "field",
-        "name": "MODE_ALPHA_NUM",
+        "name": "modeAlphaNum",
         "size": 0,
         "outputUnit": "outputUnit/0",
         "coverageId": "2964",
@@ -57635,7 +57635,7 @@
       "889": {
         "id": "field/889",
         "kind": "field",
-        "name": "MODE_NUMBER",
+        "name": "modeNumber",
         "size": 0,
         "outputUnit": "outputUnit/0",
         "coverageId": "2963",
@@ -57768,7 +57768,7 @@
       "899": {
         "id": "field/899",
         "kind": "field",
-        "name": "G15_MASK",
+        "name": "g15Mask",
         "size": 0,
         "outputUnit": "outputUnit/0",
         "coverageId": "3001",
@@ -57782,7 +57782,7 @@
       "900": {
         "id": "field/900",
         "kind": "field",
-        "name": "G18",
+        "name": "g18",
         "size": 0,
         "outputUnit": "outputUnit/0",
         "coverageId": "3000",
@@ -57796,7 +57796,7 @@
       "901": {
         "id": "field/901",
         "kind": "field",
-        "name": "G15",
+        "name": "g15",
         "size": 0,
         "outputUnit": "outputUnit/0",
         "coverageId": "2999",
@@ -57810,7 +57810,7 @@
       "902": {
         "id": "field/902",
         "kind": "field",
-        "name": "_PATTERN_POSITION_TABLE",
+        "name": "_patternPositionTable",
         "size": 0,
         "outputUnit": "outputUnit/0",
         "coverageId": "2998",
@@ -57825,7 +57825,7 @@
       "903": {
         "id": "field/903",
         "kind": "field",
-        "name": "PATTERN111",
+        "name": "pattern111",
         "size": 0,
         "outputUnit": "outputUnit/0",
         "coverageId": "3025",
@@ -57839,7 +57839,7 @@
       "904": {
         "id": "field/904",
         "kind": "field",
-        "name": "PATTERN110",
+        "name": "pattern110",
         "size": 0,
         "outputUnit": "outputUnit/0",
         "coverageId": "3024",
@@ -57853,7 +57853,7 @@
       "905": {
         "id": "field/905",
         "kind": "field",
-        "name": "PATTERN101",
+        "name": "pattern101",
         "size": 0,
         "outputUnit": "outputUnit/0",
         "coverageId": "3023",
@@ -57867,7 +57867,7 @@
       "906": {
         "id": "field/906",
         "kind": "field",
-        "name": "PATTERN100",
+        "name": "pattern100",
         "size": 0,
         "outputUnit": "outputUnit/0",
         "coverageId": "3022",
@@ -57881,7 +57881,7 @@
       "907": {
         "id": "field/907",
         "kind": "field",
-        "name": "PATTERN011",
+        "name": "pattern011",
         "size": 0,
         "outputUnit": "outputUnit/0",
         "coverageId": "3021",
@@ -57895,7 +57895,7 @@
       "908": {
         "id": "field/908",
         "kind": "field",
-        "name": "PATTERN010",
+        "name": "pattern010",
         "size": 0,
         "outputUnit": "outputUnit/0",
         "coverageId": "3020",
@@ -57909,7 +57909,7 @@
       "909": {
         "id": "field/909",
         "kind": "field",
-        "name": "PATTERN001",
+        "name": "pattern001",
         "size": 0,
         "outputUnit": "outputUnit/0",
         "coverageId": "3019",
@@ -57923,7 +57923,7 @@
       "910": {
         "id": "field/910",
         "kind": "field",
-        "name": "PATTERN000",
+        "name": "pattern000",
         "size": 0,
         "outputUnit": "outputUnit/0",
         "coverageId": "3018",
@@ -81411,7 +81411,7 @@
         "mask": "null"
       },
       {
-        "id": "function/1169",
+        "id": "function/1168",
         "mask": "null"
       },
       {
@@ -81517,7 +81517,7 @@
         "mask": "inlined"
       },
       {
-        "id": "function/1161",
+        "id": "function/1160",
         "mask": "inlined"
       },
       {
@@ -82701,9 +82701,9 @@
         "mask": "[exact=QrBitBuffer]"
       }
     ],
-    "function/1161": [
+    "function/1160": [
       {
-        "id": "function/1160",
+        "id": "function/1161",
         "mask": "inlined"
       }
     ],
@@ -82803,7 +82803,7 @@
         "mask": "inlined"
       }
     ],
-    "function/1169": [
+    "function/1168": [
       {
         "id": "function/306",
         "mask": "null"
@@ -82813,7 +82813,7 @@
         "mask": "inlined"
       },
       {
-        "id": "function/1168",
+        "id": "function/1169",
         "mask": "inlined"
       }
     ],
@@ -82859,7 +82859,7 @@
         "mask": "null"
       },
       {
-        "id": "function/1169",
+        "id": "function/1168",
         "mask": "null"
       },
       {
@@ -82929,7 +82929,7 @@
         "mask": "null"
       },
       {
-        "id": "function/1169",
+        "id": "function/1168",
         "mask": "null"
       },
       {
@@ -83119,7 +83119,7 @@
     ],
     "function/1179": [
       {
-        "id": "function/1169",
+        "id": "function/1168",
         "mask": "null"
       },
       {
@@ -86351,7 +86351,7 @@
       "function/1176",
       "function/1134",
       "function/1178",
-      "function/1161",
+      "function/1160",
       "field/877",
       "field/876",
       "function/1142",
@@ -86375,7 +86375,7 @@
       "function/409",
       "function/1167",
       "function/1179",
-      "function/1169",
+      "function/1168",
       "function/1138",
       "field/895",
       "function/1170",
@@ -86388,15 +86388,15 @@
       "function/1166",
       "function/1167",
       "function/1165",
-      "function/1169",
+      "function/1168",
       "function/306",
       "function/528",
       "function/297",
       "field/894"
     ],
-    "function/1169": [
+    "function/1168": [
       "function/1167",
-      "function/1168",
+      "function/1169",
       "function/306"
     ],
     "function/1167": [],
@@ -86423,11 +86423,11 @@
     ],
     "function/1179": [
       "function/1172",
-      "function/1169",
+      "function/1168",
       "function/1165"
     ],
-    "function/1161": [
-      "function/1160"
+    "function/1160": [
+      "function/1161"
     ],
     "function/1178": [
       "field/889",
@@ -87340,7 +87340,7 @@
       "function/297",
       "field/894",
       "function/1165",
-      "function/1169"
+      "function/1168"
     ],
     "function/1177": [
       "function/500",
@@ -87559,7 +87559,7 @@
       "id": "outputUnit/0",
       "kind": "outputUnit",
       "name": null,
-      "size": 160706,
+      "size": 160725,
       "imports": [
         null
       ]
@@ -87570,11 +87570,11 @@
   "dump_minor_version": "6",
   "program": {
     "entrypoint": "function/10",
-    "size": 160706,
+    "size": 160725,
     "dart2jsVersion": null,
-    "compilationMoment": "2016-04-13 13:43:02.902438",
-    "compilationDuration": "0:00:07.627882",
-    "toJsonDuration": 44,
+    "compilationMoment": "2016-04-13 13:55:13.304732",
+    "compilationDuration": "0:00:07.264067",
+    "toJsonDuration": 51,
     "dumpInfoDuration": "0",
     "noSuchMethodEnabled": false,
     "minified": true
