@@ -1,4 +1,5 @@
-import 'package:bot/bot.dart';
+import 'dart:math' as math;
+
 import 'package:qr/qr.dart';
 import 'package:test/test.dart';
 
@@ -49,12 +50,14 @@ void _testComplex() {
           [true, false, false, false, false, false, false, false, false]));
 }
 
+final _rnd = new math.Random();
+
 void _testSimple() {
   final bb = new QrBitBuffer();
   final sampleBits = new List<bool>();
 
   for (int i = 0; i < 100; i++) {
-    final b = rnd.nextBool();
+    final b = _rnd.nextBool();
     sampleBits.add(b);
     bb.putBit(b);
   }
