@@ -126,7 +126,6 @@ QrPolynomial getErrorCorrectPolynomial(int errorCorrectLength) {
 
 int getLengthInBits(int mode, int type) {
   if (1 <= type && type < 10) {
-
     // 1 - 9
     switch (mode) {
       case QrMode.MODE_NUMBER:
@@ -141,7 +140,6 @@ int getLengthInBits(int mode, int type) {
         throw 'mode:$mode';
     }
   } else if (type < 27) {
-
     // 10 - 26
     switch (mode) {
       case QrMode.MODE_NUMBER:
@@ -156,7 +154,6 @@ int getLengthInBits(int mode, int type) {
         throw 'mode:$mode';
     }
   } else if (type < 41) {
-
     // 27 - 40
     switch (mode) {
       case QrMode.MODE_NUMBER:

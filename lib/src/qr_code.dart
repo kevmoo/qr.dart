@@ -297,6 +297,7 @@ List<int> _createData(
 
   return _createBytes(buffer, rsBlocks);
 }
+
 List<int> _createBytes(QrBitBuffer buffer, rsBlocks) {
   var offset = 0;
 

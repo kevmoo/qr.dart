@@ -46,8 +46,10 @@ void _testComplex() {
 
   bb = new QrBitBuffer();
   bb.put(256, 9);
-  expect(bb, orderedEquals(
-      [true, false, false, false, false, false, false, false, false]));
+  expect(
+      bb,
+      orderedEquals(
+          [true, false, false, false, false, false, false, false, false]));
 }
 
 void _testSimple() {
