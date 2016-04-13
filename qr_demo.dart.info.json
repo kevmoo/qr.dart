@@ -88509,9 +88509,9 @@
     "entrypoint": "function/11",
     "size": 164984,
     "dart2jsVersion": null,
-    "compilationMoment": "2016-04-13 14:07:10.962625",
-    "compilationDuration": "0:00:07.582266",
-    "toJsonDuration": 47,
+    "compilationMoment": "2016-04-13 14:13:21.232531",
+    "compilationDuration": "0:00:07.414859",
+    "toJsonDuration": 49,
     "dumpInfoDuration": "0",
     "noSuchMethodEnabled": false,
     "minified": true
