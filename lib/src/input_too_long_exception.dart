@@ -1,5 +1,3 @@
-library qr.input_too_long_exception;
-
 class InputTooLongException implements Exception {
   final int providedInput;
   final int inputLimit;

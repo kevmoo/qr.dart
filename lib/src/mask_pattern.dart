@@ -1,5 +1,3 @@
-library qr.mask_pattern;
-
 const int PATTERN000 = 0;
 const int PATTERN001 = 1;
 const int PATTERN010 = 2;

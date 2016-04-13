@@ -1,5 +1,3 @@
-library qr.byte;
-
 import 'dart:convert';
 
 import 'package:bot/bot.dart';

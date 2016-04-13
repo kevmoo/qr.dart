@@ -1,5 +1,3 @@
-library qr.error_correct_level;
-
 class QrErrorCorrectLevel {
   static const int L = 1;
   static const int M = 0;

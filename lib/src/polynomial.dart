@@ -1,5 +1,3 @@
-library qr.polynomial;
-
 import 'dart:typed_data';
 
 import 'math.dart' as qrMath;

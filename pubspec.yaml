@@ -8,11 +8,8 @@ dependencies:
   bot: '>=0.26.0 <0.28.0'
   bot_web: '>=0.21.0 <0.23.0'
 dev_dependencies:
-  bot_test: '>=0.1.5 <0.2.0'
   browser: '>=0.9.0 <0.11.0'
-  hop: '>=0.28.3+2 <0.32.0'
-  hop_git: '>=0.1.0 <0.2.0'
-  hop_unittest: '>=0.1.0 <0.2.0'
+  test: any
 transformers:
 - $dart2js:
     commandLineOptions: [--dump-info, --no-frequency-based-minification]

@@ -1,5 +1,3 @@
-library qr.math;
-
 import 'dart:typed_data';
 
 final Uint8List _logTable = _createLogTable();

@@ -1,5 +1,3 @@
-library qr.util;
-
 import 'mask_pattern.dart' as QrMaskPattern;
 import 'math.dart' as QrMath;
 import 'mode.dart' as QrMode;

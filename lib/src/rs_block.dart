@@ -1,5 +1,3 @@
-library qr.rs_block;
-
 import 'error_correct_level.dart';
 
 class QrRsBlock {

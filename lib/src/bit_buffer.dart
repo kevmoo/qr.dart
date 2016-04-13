@@ -1,5 +1,3 @@
-library qr.bit_buffer;
-
 import 'dart:collection';
 
 class QrBitBuffer extends Object with ListMixin<bool> {

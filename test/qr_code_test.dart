@@ -1,7 +1,5 @@
-library qr.qr_code_test;
-
 import 'package:qr/qr.dart';
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 
 void main() {
   test('simple', () {

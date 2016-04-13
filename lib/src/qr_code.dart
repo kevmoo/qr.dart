@@ -1,5 +1,3 @@
-library qr.code;
-
 import 'dart:math' as math;
 
 import 'package:bot/bot.dart';
