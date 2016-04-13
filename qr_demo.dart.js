@@ -1776,14 +1776,12 @@ z.Jy(a,b)
 return z}}},YS:{"^":"Mh;a"},vE:{"^":"WU;e,f,a,b,c,d"}}],["","",,E,{"^":"",
 xm:function(a){var z=!(a==1/0||a==-1/0)&&!isNaN(a)
 return z},
-Ng:{"^":"Mh;DL:a<,b,c,d,e,f",
+Ng:{"^":"Mh;a,b,c,d,e,f",
 QI:function(a,b,c){this.e=this.e+(b*this.a+c*this.c)
 this.f=this.f+(b*this.b+c*this.d)
 return this},
-DN:function(a,b){var z
-if(b==null)return!1
-z=this.a===b.gDL()&&this.c===b.c&&this.e===b.e&&this.b===b.b&&this.d===b.d&&this.f===b.f
-return z},
+DN:function(a,b){if(b==null)return!1
+return b instanceof E.Ng&&this.a===b.a&&this.c===b.c&&this.e===b.e&&this.b===b.b&&this.d===b.d&&this.f===b.f},
 giO:function(a){return 0},
 Z:function(a){return C.Nm.zV([this.a,this.b,this.c,this.d,this.e,this.f],", ")}},
 yN:{"^":"Mh;a,b,c",
