@@ -13,3 +13,6 @@ dev_dependencies:
   hop: '>=0.28.3+2 <0.32.0'
   hop_git: '>=0.1.0 <0.2.0'
   hop_unittest: '>=0.1.0 <0.2.0'
+transformers:
+- $dart2js:
+    commandLineOptions: [--dump-info, --no-frequency-based-minification]
