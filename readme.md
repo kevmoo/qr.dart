@@ -1,8 +1,8 @@
-![QR.DART](https://raw.githubusercontent.com/kevmoo/qr.dart/master/web/dartqr.png)
+![QR.DART](https://raw.githubusercontent.com/kevmoo/qr.dart/master/example/dartqr.png)
 # qr.dart
 ## A demo of generating QR codes in Dart.
 
-[![](https://drone.io/kevmoo/qr.dart/status.png)](https://drone.io/kevmoo/qr.dart/latest)
+[![Build Status](https://travis-ci.org/kevmoo/qr.dart.svg?branch=master)](https://travis-ci.org/kevmoo/qr.dart)
 
 # Authors
  * [Kevin Moore](https://github.com/kevmoo) ([@kevmoo](http://twitter.com/kevmoo))
