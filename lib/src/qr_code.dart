@@ -1,7 +1,5 @@
 import 'dart:math' as math;
 
-import 'package:bot/bot.dart';
-
 import 'bit_buffer.dart';
 import 'byte.dart';
 import 'error_correct_level.dart';
@@ -23,9 +21,9 @@ class QrCode {
       : this.typeNumber = typeNumber,
         moduleCount = typeNumber * 4 + 17,
         _modules = new List<List<bool>>() {
-    requireArgument(typeNumber > 0 && typeNumber < 41, 'typeNumber');
-    requireArgument(QrErrorCorrectLevel.levels.indexOf(errorCorrectLevel) >= 0,
-        'errorCorrectLevel');
+    RangeError.checkValueInInterval(typeNumber, 1, 40, 'typeNumber');
+    RangeError.checkValidIndex(
+        errorCorrectLevel, QrErrorCorrectLevel.levels, 'errorCorrectLevel');
 
     for (var row = 0; row < moduleCount; row++) {
       _modules.add(new List<bool>(moduleCount));

@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:bot/bot.dart';
-
 import 'bit_buffer.dart';
 import 'mode.dart' as qr_mode;
 
@@ -10,8 +8,6 @@ class QrByte {
   final List<int> _data;
 
   factory QrByte(String input) {
-    requireArgumentNotNull(input, 'input');
-
     var charUnits = UTF8.encode(input);
 
     return new QrByte._internal(charUnits);
