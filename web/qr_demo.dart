@@ -46,7 +46,7 @@ class QrDemo {
   QrDemo(CanvasElement canvas, DivElement typeDiv, DivElement errorDiv)
       : _canvas = canvas,
         _ctx = canvas.context2D,
-        _qrMapper = new ThrottledStream(_calc),
+        _qrMapper = new ThrottledStream<List<int>, List<bool>>(_calc),
         _scale = new BungeeNum(1) {
     _ctx.fillStyle = 'black';
 
