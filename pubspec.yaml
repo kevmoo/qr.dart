@@ -12,4 +12,9 @@ dev_dependencies:
 transformers:
 - dart_to_js_script_rewriter
 - $dart2js:
-    commandLineOptions: [--dump-info, --no-frequency-based-minification]
+    commandLineOptions:
+    - --show-package-warnings
+    - --dump-info
+    - --no-frequency-based-minification
+    - --trust-type-annotations
+    - --trust-primitives
