@@ -1,4 +1,4 @@
-qr.dart is a QR code generation library written in Dart.
+*QR - Dart* is a QR code generation library written in Dart.
 
 [![Build Status](https://travis-ci.org/kevmoo/qr.dart.svg?branch=master)](https://travis-ci.org/kevmoo/qr.dart)
 
@@ -38,11 +38,11 @@ Now you can use your `_qrCode` instance to render a graphical representation of 
 
 ```dart
 for (int x = 0; x < _qrCode.moduleCount; x++) {
-	for (int y = 0; y < _qrCode.moduleCount; y++) {
-		if (_qrCode.isDark(y, x)) {
-			// render a dark square on the canvas
-		}
-	}
+  for (int y = 0; y < _qrCode.moduleCount; y++) {
+    if (_qrCode.isDark(y, x)) {
+      // render a dark square on the canvas
+    }
+  }
 }
 ```
 
@@ -52,7 +52,7 @@ See the `example` directory for further details.
 
 The following libraries use qr.dart to generate QR codes for you out of the box:
 
-[qr.flutter](https://github.com/lukef/qr.flutter) - A Flutter Widget to render QR codes
+[QR - Flutter](https://github.com/lukef/qr.flutter) - A Flutter Widget to render QR codes
 
 # Demo
 
