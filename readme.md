@@ -26,7 +26,7 @@ To start, import the dependency in your code:
 import 'package:qr/qr.dart';
 ```
 
-Next, define your QR code data you should do so as such:
+To build your QR code data you should do so as such:
 
 ```dart
 final _qrCode = new QrCode(4, QrErrorCorrectLevel.L);
