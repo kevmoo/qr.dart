@@ -1,4 +1,4 @@
-*QR - Dart* is a QR code generation library written in Dart.
+**QR - Dart** is a QR code generation library written in Dart.
 
 [![Build Status](https://travis-ci.org/kevmoo/qr.dart.svg?branch=master)](https://travis-ci.org/kevmoo/qr.dart)
 
