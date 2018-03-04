@@ -29,17 +29,17 @@ import 'package:qr/qr.dart';
 To build your QR code data you should do so as such:
 
 ```dart
-final _qrCode = new QrCode(4, QrErrorCorrectLevel.L);
-_qrCode.addData("Hello, world in QR form!");
-_qrCode.make();
+final qrCode = new QrCode(4, QrErrorCorrectLevel.L);
+qrCode.addData("Hello, world in QR form!");
+qrCode.make();
 ```
 
 Now you can use your `_qrCode` instance to render a graphical representation of the QR code. A basic implementation would be as such:
 
 ```dart
-for (int x = 0; x < _qrCode.moduleCount; x++) {
-  for (int y = 0; y < _qrCode.moduleCount; y++) {
-    if (_qrCode.isDark(y, x)) {
+for (int x = 0; x < qrCode.moduleCount; x++) {
+  for (int y = 0; y < qrCode.moduleCount; y++) {
+    if (qrCode.isDark(y, x)) {
       // render a dark square on the canvas
     }
   }
