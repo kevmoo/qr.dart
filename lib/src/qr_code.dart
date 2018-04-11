@@ -75,7 +75,7 @@ class QrCode {
       var lostPoint = qr_util.getLostPoint(this);
 
       if (i == 0 || minLostPoint > lostPoint) {
-        minLostPoint = lostPoint;
+        minLostPoint = lostPoint.toInt();
         pattern = i;
       }
     }
