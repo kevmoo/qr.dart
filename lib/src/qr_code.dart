@@ -66,7 +66,7 @@ class QrCode {
   }
 
   int _getBestMaskPattern() {
-    var minLostPoint = 0;
+    var minLostPoint = 0.0;
     var pattern = 0;
 
     for (var i = 0; i < 8; i++) {

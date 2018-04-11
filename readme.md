@@ -1,4 +1,4 @@
-**QR - Dart** is a QR code generation library written in Dart.
+A QR code generation library for Dart and Flutter.
 
 [![Build Status](https://travis-ci.org/kevmoo/qr.dart.svg?branch=master)](https://travis-ci.org/kevmoo/qr.dart)
 
@@ -6,17 +6,6 @@
 
 - Supports QR code versions 1 - 40
 - Error correction / redundancy
-
-# Installing
-
-You can install the package by adding the following lines to your `pubspec.yaml`:
-
-```yaml
-dependencies:
-  qr: "^0.1.0+1"
-```
-
-After adding the dependency to your `pubspec.yaml` you can run: `pub get` or `flutter packages get` if you're using Flutter.
 
 # Getting started
 
