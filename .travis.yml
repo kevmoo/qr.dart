@@ -5,9 +5,9 @@ dart:
   - stable
 
 dart_task:
-  test: --platform vm,chrome
-  dartfmt:
-  dartanalyzer:
+  - test: "--platform vm,chrome"
+  - dartfmt:
+  - dartanalyzer:
 
 # Only building master means that we don't run two builds for each pull request.
 branches:
