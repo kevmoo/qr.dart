@@ -7,7 +7,7 @@ class QrErrorCorrectLevel {
   // thesee *are* in order of lowest to highest quality...I think
   // all I know for sure: you can create longer messages w/ item N than N+1
   // I assume this correcsponds to more error correction for N+1
-  static const List<int> levels = const [L, M, Q, H];
+  static const List<int> levels = [L, M, Q, H];
 
   static String getName(int level) {
     switch (level) {
@@ -20,7 +20,7 @@ class QrErrorCorrectLevel {
       case H:
         return 'High';
       default:
-        throw 'not supported';
+        throw ArgumentError('level $level not supported');
     }
   }
 }

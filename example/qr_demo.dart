@@ -2,14 +2,17 @@ import 'dart:async';
 import 'dart:html';
 import 'dart:math' as math;
 
-import 'package:bot/bot.dart';
 import 'package:qr/qr.dart';
 
+import 'affine_transform.dart';
+import 'bot.dart';
+import 'throttled_stream.dart';
+
 void main() {
-  final CanvasElement canvas = querySelector("#content");
+  final CanvasElement canvas = querySelector('#content');
   final DivElement typeDiv = querySelector('#type-div');
   final DivElement errorDiv = querySelector('#error-div');
-  final demo = new QrDemo(canvas, typeDiv, errorDiv);
+  final demo = QrDemo(canvas, typeDiv, errorDiv);
 
   final InputElement input = querySelector('#input');
 
@@ -32,7 +35,7 @@ class QrDemo {
   static const String _errorLevelIdKey = 'error-value';
   final BungeeNum _scale;
   final CanvasElement _canvas;
-  final ThrottledStream<dynamic, List<bool>> _qrMapper;
+  final ThrottledStream<List<Object>, List<bool>> _qrMapper;
   final CanvasRenderingContext2D _ctx;
 
   String _value = '';
@@ -46,8 +49,8 @@ class QrDemo {
   QrDemo(CanvasElement canvas, DivElement typeDiv, DivElement errorDiv)
       : _canvas = canvas,
         _ctx = canvas.context2D,
-        _qrMapper = new ThrottledStream<List<int>, List<bool>>(_calc),
-        _scale = new BungeeNum(1) {
+        _qrMapper = ThrottledStream<List<Object>, List<bool>>(_calc),
+        _scale = BungeeNum(1) {
     _ctx.fillStyle = 'black';
 
     _qrMapper.outputStream.listen((args) {
@@ -58,8 +61,8 @@ class QrDemo {
     //
     // Type Div
     //
-    for (int i = 1; i <= 10; i++) {
-      var radio = new InputElement(type: 'radio')
+    for (var i = 1; i <= 10; i++) {
+      var radio = InputElement(type: 'radio')
         ..id = 'type_$i'
         ..name = 'type'
         ..onChange.listen(_levelClick)
@@ -69,8 +72,8 @@ class QrDemo {
       }
       typeDiv.children.add(radio);
 
-      var label = new LabelElement()
-        ..innerHtml = "$i"
+      var label = LabelElement()
+        ..innerHtml = '$i'
         ..htmlFor = radio.id
         ..classes.add('btn');
       typeDiv.children.add(label);
@@ -80,7 +83,7 @@ class QrDemo {
     // Error Correct Levels
     //
     for (final v in QrErrorCorrectLevel.levels) {
-      var radio = new InputElement(type: 'radio')
+      var radio = InputElement(type: 'radio')
         ..id = 'error_$v'
         ..name = 'error-level'
         ..onChange.listen(_errorClick)
@@ -90,7 +93,7 @@ class QrDemo {
       }
       errorDiv.children.add(radio);
 
-      var label = new LabelElement()
+      var label = LabelElement()
         ..innerHtml = QrErrorCorrectLevel.getName(v)
         ..htmlFor = radio.id
         ..classes.add('btn');
@@ -147,21 +150,18 @@ class QrDemo {
       requestFrame();
     }
 
-    final tx = new AffineTransform();
-
-    // first, center drawing on center of canvas
-    tx.translate(0.5 * _canvas.width, 0.5 * _canvas.height);
-
-    tx.scale(_scale.current, _scale.current);
-    tx.translate(-0.5 * size, -0.5 * size);
+    final tx = AffineTransform()
+      ..translate(0.5 * _canvas.width, 0.5 * _canvas.height)
+      ..scale(_scale.current, _scale.current)
+      ..translate(-0.5 * size, -0.5 * size);
 
     _ctx.save();
     _setTransform(_ctx, tx);
 
-    if (_squares.length > 0) {
+    if (_squares.isNotEmpty) {
       assert(_squares.length == size * size);
-      for (int x = 0; x < size; x++) {
-        for (int y = 0; y < size; y++) {
+      for (var x = 0; x < size; x++) {
+        for (var y = 0; y < size; y++) {
           if (_squares[x * size + y]) {
             _ctx.fillRect(x, y, 1, 1);
           }
@@ -173,14 +173,14 @@ class QrDemo {
 }
 
 List<bool> _calc(List input) {
-  final code = new QrCode(input[0], input[1]);
-  code.addData(input[2]);
-  code.make();
+  final code = QrCode(input[0] as int, input[1] as int)
+    ..addData(input[2] as String)
+    ..make();
 
-  final List<bool> squares = new List<bool>();
+  final squares = <bool>[];
 
-  for (int x = 0; x < code.moduleCount; x++) {
-    for (int y = 0; y < code.moduleCount; y++) {
+  for (var x = 0; x < code.moduleCount; x++) {
+    for (var y = 0; y < code.moduleCount; y++) {
       squares.add(code.isDark(y, x));
     }
   }
@@ -189,9 +189,6 @@ List<bool> _calc(List input) {
 }
 
 void _setTransform(CanvasRenderingContext2D ctx, AffineTransform tx) {
-  requireArgumentNotNull(ctx, 'ctx');
-  requireArgumentNotNull(tx, 'tx');
-
   ctx.setTransform(
       tx.scaleX, tx.shearY, tx.shearX, tx.scaleY, tx.translateX, tx.translateY);
 }

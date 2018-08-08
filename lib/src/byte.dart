@@ -10,7 +10,7 @@ class QrByte {
   factory QrByte(String input) {
     var charUnits = utf8.encode(input);
 
-    return new QrByte._internal(charUnits);
+    return QrByte._internal(charUnits);
   }
 
   QrByte._internal(this._data);
@@ -18,7 +18,7 @@ class QrByte {
   int get length => _data.length;
 
   void write(QrBitBuffer buffer) {
-    for (final int v in _data) {
+    for (final v in _data) {
       buffer.put(v, 8);
     }
   }

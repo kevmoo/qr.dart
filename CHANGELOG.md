@@ -1,3 +1,7 @@
+## 1.0.1
+
+* Support Dart 2 stable.
+
 ## 1.0.0
 
 * Require at least Dart SDK `2.0.0-dev.17`.

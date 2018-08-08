@@ -4,47 +4,47 @@ import 'mode.dart' as qr_mode;
 import 'polynomial.dart';
 import 'qr_code.dart';
 
-const List<List<int>> _patternPositionTable = const [
-  const [],
-  const [6, 18],
-  const [6, 22],
-  const [6, 26],
-  const [6, 30],
-  const [6, 34],
-  const [6, 22, 38],
-  const [6, 24, 42],
-  const [6, 26, 46],
-  const [6, 28, 50],
-  const [6, 30, 54],
-  const [6, 32, 58],
-  const [6, 34, 62],
-  const [6, 26, 46, 66],
-  const [6, 26, 48, 70],
-  const [6, 26, 50, 74],
-  const [6, 30, 54, 78],
-  const [6, 30, 56, 82],
-  const [6, 30, 58, 86],
-  const [6, 34, 62, 90],
-  const [6, 28, 50, 72, 94],
-  const [6, 26, 50, 74, 98],
-  const [6, 30, 54, 78, 102],
-  const [6, 28, 54, 80, 106],
-  const [6, 32, 58, 84, 110],
-  const [6, 30, 58, 86, 114],
-  const [6, 34, 62, 90, 118],
-  const [6, 26, 50, 74, 98, 122],
-  const [6, 30, 54, 78, 102, 126],
-  const [6, 26, 52, 78, 104, 130],
-  const [6, 30, 56, 82, 108, 134],
-  const [6, 34, 60, 86, 112, 138],
-  const [6, 30, 58, 86, 114, 142],
-  const [6, 34, 62, 90, 118, 146],
-  const [6, 30, 54, 78, 102, 126, 150],
-  const [6, 24, 50, 76, 102, 128, 154],
-  const [6, 28, 54, 80, 106, 132, 158],
-  const [6, 32, 58, 84, 110, 136, 162],
-  const [6, 26, 54, 82, 110, 138, 166],
-  const [6, 30, 58, 86, 114, 142, 170]
+const List<List<int>> _patternPositionTable = [
+  [],
+  [6, 18],
+  [6, 22],
+  [6, 26],
+  [6, 30],
+  [6, 34],
+  [6, 22, 38],
+  [6, 24, 42],
+  [6, 26, 46],
+  [6, 28, 50],
+  [6, 30, 54],
+  [6, 32, 58],
+  [6, 34, 62],
+  [6, 26, 46, 66],
+  [6, 26, 48, 70],
+  [6, 26, 50, 74],
+  [6, 30, 54, 78],
+  [6, 30, 56, 82],
+  [6, 30, 58, 86],
+  [6, 34, 62, 90],
+  [6, 28, 50, 72, 94],
+  [6, 26, 50, 74, 98],
+  [6, 30, 54, 78, 102],
+  [6, 28, 54, 80, 106],
+  [6, 32, 58, 84, 110],
+  [6, 30, 58, 86, 114],
+  [6, 34, 62, 90, 118],
+  [6, 26, 50, 74, 98, 122],
+  [6, 30, 54, 78, 102, 126],
+  [6, 26, 52, 78, 104, 130],
+  [6, 30, 56, 82, 108, 134],
+  [6, 34, 60, 86, 112, 138],
+  [6, 30, 58, 86, 114, 142],
+  [6, 34, 62, 90, 118, 146],
+  [6, 30, 54, 78, 102, 126, 150],
+  [6, 24, 50, 76, 102, 128, 154],
+  [6, 28, 54, 80, 106, 132, 158],
+  [6, 32, 58, 84, 110, 136, 162],
+  [6, 26, 54, 82, 110, 138, 166],
+  [6, 30, 58, 86, 114, 142, 170]
 ];
 
 const int g15 =
@@ -108,15 +108,15 @@ bool getMask(int maskPattern, int i, int j) {
     case qr_mask_pattern.pattern111:
       return ((i * j) % 3 + (i + j) % 2) % 2 == 0;
     default:
-      throw 'bad maskPattern:$maskPattern';
+      throw ArgumentError('bad maskPattern:$maskPattern');
   }
 }
 
 QrPolynomial getErrorCorrectPolynomial(int errorCorrectLength) {
-  var a = new QrPolynomial([1], 0);
+  var a = QrPolynomial([1], 0);
 
   for (var i = 0; i < errorCorrectLength; i++) {
-    a = a.multiply(new QrPolynomial([1, qr_math.gexp(i)], 0));
+    a = a.multiply(QrPolynomial([1, qr_math.gexp(i)], 0));
   }
 
   return a;
@@ -135,7 +135,7 @@ int getLengthInBits(int mode, int type) {
       case qr_mode.modeKanji:
         return 8;
       default:
-        throw 'mode:$mode';
+        throw ArgumentError('mode:$mode');
     }
   } else if (type < 27) {
     // 10 - 26
@@ -149,7 +149,7 @@ int getLengthInBits(int mode, int type) {
       case qr_mode.modeKanji:
         return 10;
       default:
-        throw 'mode:$mode';
+        throw ArgumentError('mode:$mode');
     }
   } else if (type < 41) {
     // 27 - 40
@@ -163,14 +163,14 @@ int getLengthInBits(int mode, int type) {
       case qr_mode.modeKanji:
         return 12;
       default:
-        throw 'mode:$mode';
+        throw ArgumentError('mode:$mode');
     }
   } else {
-    throw 'type:$type';
+    throw ArgumentError('type:$type');
   }
 }
 
-num getLostPoint(QrCode qrCode) {
+double getLostPoint(QrCode qrCode) {
   var moduleCount = qrCode.moduleCount;
 
   var lostPoint = 0.0;

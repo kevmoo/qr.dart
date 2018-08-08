@@ -12,13 +12,13 @@ class QrPolynomial {
       offset++;
     }
 
-    final List<int> values = qr_math.getByteList(thing.length - offset + shift);
+    final values = qr_math.getByteList(thing.length - offset + shift);
 
     for (var i = 0; i < thing.length - offset; i++) {
       values[i] = thing[i + offset];
     }
 
-    return new QrPolynomial._internal(values);
+    return QrPolynomial._internal(values);
   }
 
   QrPolynomial._internal(this._myThings);
@@ -36,7 +36,7 @@ class QrPolynomial {
       }
     }
 
-    return new QrPolynomial(foo, 0);
+    return QrPolynomial(foo, 0);
   }
 
   QrPolynomial mod(QrPolynomial e) {
@@ -48,15 +48,15 @@ class QrPolynomial {
 
     var thing = qr_math.getByteList(length);
 
-    for (int i = 0; i < length; i++) {
+    for (var i = 0; i < length; i++) {
       thing[i] = this[i];
     }
 
-    for (int i = 0; i < e.length; i++) {
+    for (var i = 0; i < e.length; i++) {
       thing[i] ^= qr_math.gexp(qr_math.glog(e[i]) + ratio);
     }
 
     // recursive call
-    return (new QrPolynomial(thing, 0)).mod(e);
+    return QrPolynomial(thing, 0).mod(e);
   }
 }

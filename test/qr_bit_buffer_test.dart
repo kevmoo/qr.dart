@@ -10,12 +10,10 @@ void main() {
 }
 
 void _testGetByte() {
-  var bb = new QrBitBuffer();
-  bb.put(12, 8);
+  var bb = QrBitBuffer()..put(12, 8);
   expect(bb.getByte(0), equals(12));
 
-  bb = new QrBitBuffer();
-  bb.put(42, 8);
+  bb = QrBitBuffer()..put(42, 8);
   expect(bb.getByte(0), equals(42));
 
   bb.put(19, 8);
@@ -23,40 +21,35 @@ void _testGetByte() {
 }
 
 void _testComplex() {
-  var bb = new QrBitBuffer();
-  bb.put(0, 8);
+  var bb = QrBitBuffer()..put(0, 8);
   expect(bb,
       orderedEquals([false, false, false, false, false, false, false, false]));
 
-  bb = new QrBitBuffer();
-  bb.put(1, 8);
+  bb = QrBitBuffer()..put(1, 8);
   expect(bb,
       orderedEquals([false, false, false, false, false, false, false, true]));
 
-  bb = new QrBitBuffer();
-  bb.put(255, 8);
+  bb = QrBitBuffer()..put(255, 8);
   expect(bb, orderedEquals([true, true, true, true, true, true, true, true]));
 
-  bb = new QrBitBuffer();
-  bb.put(256, 8);
+  bb = QrBitBuffer()..put(256, 8);
   expect(bb,
       orderedEquals([false, false, false, false, false, false, false, false]));
 
-  bb = new QrBitBuffer();
-  bb.put(256, 9);
+  bb = QrBitBuffer()..put(256, 9);
   expect(
       bb,
       orderedEquals(
           [true, false, false, false, false, false, false, false, false]));
 }
 
-final _rnd = new math.Random();
+final _rnd = math.Random();
 
 void _testSimple() {
-  final bb = new QrBitBuffer();
-  final sampleBits = new List<bool>();
+  final bb = QrBitBuffer();
+  final sampleBits = <bool>[];
 
-  for (int i = 0; i < 100; i++) {
+  for (var i = 0; i < 100; i++) {
     final b = _rnd.nextBool();
     sampleBits.add(b);
     bb.putBit(b);

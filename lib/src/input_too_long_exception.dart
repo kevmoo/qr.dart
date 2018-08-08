@@ -4,10 +4,9 @@ class InputTooLongException implements Exception {
   final String message;
 
   factory InputTooLongException(int providedInput, int inputLimit) {
-    final String message = "Input too long. $providedInput > $inputLimit";
+    final message = 'Input too long. $providedInput > $inputLimit';
 
-    return new InputTooLongException._internal(
-        providedInput, inputLimit, message);
+    return InputTooLongException._internal(providedInput, inputLimit, message);
   }
 
   InputTooLongException._internal(
