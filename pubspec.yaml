@@ -7,7 +7,7 @@ description: >-
 homepage: https://github.com/kevmoo/qr.dart/
 
 environment:
-  sdk: '>=2.0.0 <3.0.0'
+  sdk: '>=2.2.0 <3.0.0'
 
 dependencies:
   meta: ^1.1.0
