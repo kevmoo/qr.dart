@@ -1,7 +1,7 @@
 import 'dart:async';
 
 class ThrottledStream<S, T> {
-  final _AsyncMethod<S, T> _asyncMethod;
+  final FutureOr<T> Function(S source) _asyncMethod;
   final StreamController<T> _controller = StreamController.broadcast();
 
   S _source;
@@ -10,7 +10,7 @@ class ThrottledStream<S, T> {
   Future<T> _outputFuture;
   bool _forceUpdate = false;
 
-  ThrottledStream(T asyncMethod(S source)) : _asyncMethod = asyncMethod;
+  ThrottledStream(this._asyncMethod);
 
   Stream<T> get outputStream => _controller.stream;
 
@@ -40,6 +40,7 @@ class ThrottledStream<S, T> {
             _forceUpdate = false;
             _outputValue = output;
             _controller.add(output);
+            return output;
           })
           .catchError(_controller.addError)
           .whenComplete(() {
@@ -49,5 +50,3 @@ class ThrottledStream<S, T> {
     }
   }
 }
-
-typedef FutureOr<T> _AsyncMethod<S, T>(S source);

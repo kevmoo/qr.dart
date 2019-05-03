@@ -4,9 +4,9 @@ import 'dart:math' as math;
 
 import 'package:qr/qr.dart';
 
-import 'affine_transform.dart';
-import 'bot.dart';
-import 'throttled_stream.dart';
+import 'src/affine_transform.dart';
+import 'src/bot.dart';
+import 'src/throttled_stream.dart';
 
 void main() {
   final canvas = querySelector('#content') as CanvasElement;
