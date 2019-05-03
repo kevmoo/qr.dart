@@ -22,17 +22,6 @@ class QrCode {
   QrCode(this.typeNumber, this.errorCorrectLevel)
       : moduleCount = typeNumber * 4 + 17,
         _modules = <List<bool>>[] {
-    _init();
-  }
-
-  factory QrCode.fromData(
-      {@required String data, @required int errorCorrectLevel}) {
-    var dataList = [QrByte(data)];
-    var typeNumber = _calculateTypeNumberFromData(errorCorrectLevel, dataList);
-    return QrCode(typeNumber, errorCorrectLevel);
-  }
-
-  _init() {
     RangeError.checkValueInInterval(typeNumber, 1, 40, 'typeNumber');
     RangeError.checkValidIndex(
         errorCorrectLevel, QrErrorCorrectLevel.levels, 'errorCorrectLevel');
@@ -40,6 +29,13 @@ class QrCode {
     for (var row = 0; row < moduleCount; row++) {
       _modules.add(List<bool>(moduleCount));
     }
+  }
+
+  factory QrCode.fromData(
+      {@required String data, @required int errorCorrectLevel}) {
+    var dataList = [QrByte(data)];
+    var typeNumber = _calculateTypeNumberFromData(errorCorrectLevel, dataList);
+    return QrCode(typeNumber, errorCorrectLevel);
   }
 
   static int _calculateTypeNumberFromData(
