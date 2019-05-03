@@ -12,38 +12,33 @@ import 'rs_block.dart';
 import 'util.dart' as qr_util;
 
 class QrCode {
-  int _typeNumber;
+  final int typeNumber;
   final int errorCorrectLevel;
-  int _moduleCount;
+  final int moduleCount;
   final List<List<bool>> _modules;
   List<int> _dataCache;
   final List<QrByte> _dataList = <QrByte>[];
 
-  int get typeNumber => _typeNumber;
-
-  int get moduleCount => _moduleCount;
-
-  QrCode(this._typeNumber, this.errorCorrectLevel)
-      : _moduleCount = _typeNumber * 4 + 17,
+  QrCode(this.typeNumber, this.errorCorrectLevel)
+      : moduleCount = typeNumber * 4 + 17,
         _modules = <List<bool>>[] {
     _init();
   }
 
-  QrCode.fromData({@required String data, @required this.errorCorrectLevel})
-      : _modules = <List<bool>>[] {
-    addData(data);
-    _typeNumber = _calculateTypeNumberFromData(errorCorrectLevel, _dataList);
-    _moduleCount = _typeNumber * 4 + 17;
-    _init();
+  factory QrCode.fromData(
+      {@required String data, @required int errorCorrectLevel}) {
+    var dataList = [QrByte(data)];
+    var typeNumber = _calculateTypeNumberFromData(errorCorrectLevel, dataList);
+    return QrCode(typeNumber, errorCorrectLevel);
   }
 
   _init() {
-    RangeError.checkValueInInterval(_typeNumber, 1, 40, 'typeNumber');
+    RangeError.checkValueInInterval(typeNumber, 1, 40, 'typeNumber');
     RangeError.checkValidIndex(
         errorCorrectLevel, QrErrorCorrectLevel.levels, 'errorCorrectLevel');
 
-    for (var row = 0; row < _moduleCount; row++) {
-      _modules.add(List<bool>(_moduleCount));
+    for (var row = 0; row < moduleCount; row++) {
+      _modules.add(List<bool>(moduleCount));
     }
   }
 
@@ -71,7 +66,7 @@ class QrCode {
   }
 
   bool isDark(int row, int col) {
-    if (row < 0 || _moduleCount <= row || col < 0 || _moduleCount <= col) {
+    if (row < 0 || moduleCount <= row || col < 0 || moduleCount <= col) {
       throw ArgumentError('$row , $col');
     }
     return _modules[row][col];
@@ -89,10 +84,10 @@ class QrCode {
 
   void _setupPositionProbePattern(int row, int col) {
     for (var r = -1; r <= 7; r++) {
-      if (row + r <= -1 || _moduleCount <= row + r) continue;
+      if (row + r <= -1 || moduleCount <= row + r) continue;
 
       for (var c = -1; c <= 7; c++) {
-        if (col + c <= -1 || _moduleCount <= col + c) continue;
+        if (col + c <= -1 || moduleCount <= col + c) continue;
 
         if ((0 <= r && r <= 6 && (c == 0 || c == 6)) ||
             (0 <= c && c <= 6 && (r == 0 || r == 6)) ||
@@ -124,14 +119,14 @@ class QrCode {
   }
 
   void _setupTimingPattern() {
-    for (var r = 8; r < _moduleCount - 8; r++) {
+    for (var r = 8; r < moduleCount - 8; r++) {
       if (_modules[r][6] != null) {
         continue;
       }
       _modules[r][6] = (r % 2 == 0);
     }
 
-    for (var c = 8; c < _moduleCount - 8; c++) {
+    for (var c = 8; c < moduleCount - 8; c++) {
       if (_modules[6][c] != null) {
         continue;
       }
@@ -140,7 +135,7 @@ class QrCode {
   }
 
   void _setupPositionAdjustPattern() {
-    var pos = qr_util.getPatternPosition(_typeNumber);
+    var pos = qr_util.getPatternPosition(typeNumber);
 
     for (var i = 0; i < pos.length; i++) {
       for (var j = 0; j < pos.length; j++) {
@@ -165,16 +160,16 @@ class QrCode {
   }
 
   void _setupTypeNumber(bool test) {
-    var bits = qr_util.getBCHTypeNumber(_typeNumber);
+    var bits = qr_util.getBCHTypeNumber(typeNumber);
 
     for (var i = 0; i < 18; i++) {
       final mod = (!test && ((bits >> i) & 1) == 1);
-      _modules[i ~/ 3][i % 3 + _moduleCount - 8 - 3] = mod;
+      _modules[i ~/ 3][i % 3 + moduleCount - 8 - 3] = mod;
     }
 
     for (var i = 0; i < 18; i++) {
       final mod = (!test && ((bits >> i) & 1) == 1);
-      _modules[i % 3 + _moduleCount - 8 - 3][i ~/ 3] = mod;
+      _modules[i % 3 + moduleCount - 8 - 3][i ~/ 3] = mod;
     }
   }
 
@@ -194,7 +189,7 @@ class QrCode {
       } else if (i < 8) {
         _modules[i + 1][8] = mod;
       } else {
-        _modules[_moduleCount - 15 + i][8] = mod;
+        _modules[moduleCount - 15 + i][8] = mod;
       }
     }
 
@@ -203,7 +198,7 @@ class QrCode {
       mod = (!test && ((bits >> i) & 1) == 1);
 
       if (i < 8) {
-        _modules[8][_moduleCount - i - 1] = mod;
+        _modules[8][moduleCount - i - 1] = mod;
       } else if (i < 9) {
         _modules[8][15 - i - 1 + 1] = mod;
       } else {
@@ -212,16 +207,16 @@ class QrCode {
     }
 
     // fixed module
-    _modules[_moduleCount - 8][8] = (!test);
+    _modules[moduleCount - 8][8] = (!test);
   }
 
   void _mapData(List<int> data, int maskPattern) {
     var inc = -1;
-    var row = _moduleCount - 1;
+    var row = moduleCount - 1;
     var bitIndex = 7;
     var byteIndex = 0;
 
-    for (var col = _moduleCount - 1; col > 0; col -= 2) {
+    for (var col = moduleCount - 1; col > 0; col -= 2) {
       if (col == 6) col--;
 
       while (true) {
@@ -251,7 +246,7 @@ class QrCode {
 
         row += inc;
 
-        if (row < 0 || _moduleCount <= row) {
+        if (row < 0 || moduleCount <= row) {
           row -= inc;
           inc = -inc;
           break;
@@ -262,17 +257,17 @@ class QrCode {
 
   void _makeImpl(bool test, int maskPattern) {
     _setupPositionProbePattern(0, 0);
-    _setupPositionProbePattern(_moduleCount - 7, 0);
-    _setupPositionProbePattern(0, _moduleCount - 7);
+    _setupPositionProbePattern(moduleCount - 7, 0);
+    _setupPositionProbePattern(0, moduleCount - 7);
     _setupPositionAdjustPattern();
     _setupTimingPattern();
     _setupTypeInfo(test, maskPattern);
 
-    if (_typeNumber >= 7) {
+    if (typeNumber >= 7) {
       _setupTypeNumber(test);
     }
 
-    _dataCache ??= _createData(_typeNumber, errorCorrectLevel, _dataList);
+    _dataCache ??= _createData(typeNumber, errorCorrectLevel, _dataList);
 
     _mapData(_dataCache, maskPattern);
   }
