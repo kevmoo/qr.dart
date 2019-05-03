@@ -1,5 +1,7 @@
 import 'dart:math' as math;
 
+import 'package:meta/meta.dart';
+
 import 'bit_buffer.dart';
 import 'byte.dart';
 import 'error_correct_level.dart';
@@ -27,6 +29,36 @@ class QrCode {
     for (var row = 0; row < moduleCount; row++) {
       _modules.add(List<bool>(moduleCount));
     }
+  }
+
+  factory QrCode.fromData(
+      {@required String data, @required int errorCorrectLevel}) {
+    var dataList = [QrByte(data)];
+    var typeNumber = _calculateTypeNumberFromData(errorCorrectLevel, dataList);
+    return QrCode(typeNumber, errorCorrectLevel);
+  }
+
+  static int _calculateTypeNumberFromData(
+      int errorCorrectLevel, List<QrByte> dataList) {
+    int typeNumber;
+    for (typeNumber = 1; typeNumber < 40; typeNumber++) {
+      var rsBlocks = QrRsBlock.getRSBlocks(typeNumber, errorCorrectLevel);
+
+      var buffer = QrBitBuffer();
+      var totalDataCount = 0;
+      for (var i = 0; i < rsBlocks.length; i++) {
+        totalDataCount += rsBlocks[i].dataCount;
+      }
+
+      for (var i = 0; i < dataList.length; i++) {
+        var data = dataList[i];
+        buffer.put(data.mode, 4);
+        buffer.put(data.length, qr_util.getLengthInBits(data.mode, typeNumber));
+        data.write(buffer);
+      }
+      if (buffer.length <= totalDataCount * 8) break;
+    }
+    return typeNumber;
   }
 
   bool isDark(int row, int col) {
