@@ -8,7 +8,7 @@ class BungeeNum {
   num current;
   num _velocity;
 
-  BungeeNum(this.target, [num current]) : this.current = current ?? target;
+  BungeeNum(this.target, [num current]) : current = current ?? target;
 
   bool update() {
     if (_velocity == null) {

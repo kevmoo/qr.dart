@@ -52,8 +52,9 @@ class QrCode {
 
       for (var i = 0; i < dataList.length; i++) {
         var data = dataList[i];
-        buffer.put(data.mode, 4);
-        buffer.put(data.length, qr_util.getLengthInBits(data.mode, typeNumber));
+        buffer
+          ..put(data.mode, 4)
+          ..put(data.length, qr_util.getLengthInBits(data.mode, typeNumber));
         data.write(buffer);
       }
       if (buffer.length <= totalDataCount * 8) break;

@@ -9,14 +9,11 @@ import 'bot.dart';
 import 'throttled_stream.dart';
 
 void main() {
-  final CanvasElement canvas = querySelector('#content');
-  final DivElement typeDiv = querySelector('#type-div');
-  final DivElement errorDiv = querySelector('#error-div');
-  final demo = QrDemo(canvas, typeDiv, errorDiv);
-
-  final InputElement input = querySelector('#input');
-
-  demo.value = input.value;
+  final canvas = querySelector('#content') as CanvasElement;
+  final typeDiv = querySelector('#type-div') as DivElement;
+  final errorDiv = querySelector('#error-div') as DivElement;
+  final input = querySelector('#input') as InputElement;
+  final demo = QrDemo(canvas, typeDiv, errorDiv)..value = input.value;
 
   input.onKeyUp.listen((KeyboardEvent args) {
     demo.value = input.value;
@@ -118,13 +115,13 @@ class QrDemo {
   }
 
   void _levelClick(Event args) {
-    final InputElement source = args.target;
+    final source = args.target as InputElement;
     _typeNumber = int.parse(source.dataset[_typeRadioIdKey]);
     _update();
   }
 
   void _errorClick(Event args) {
-    final InputElement source = args.target;
+    final source = args.target as InputElement;
     _errorCorrectLevel = int.parse(source.dataset[_errorLevelIdKey]);
     _update();
   }
