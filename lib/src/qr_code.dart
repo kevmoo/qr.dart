@@ -19,6 +19,7 @@ class QrCode {
   List<int> _dataCache;
   final List<QrByte> _dataList = <QrByte>[];
 
+  @visibleForTesting
   List<List<bool>> get modules => _modules;
 
   QrCode(this.typeNumber, this.errorCorrectLevel)
