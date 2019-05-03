@@ -19,6 +19,8 @@ class QrCode {
   List<int> _dataCache;
   final List<QrByte> _dataList = <QrByte>[];
 
+  List<List<bool>> get modules => _modules;
+
   QrCode(this.typeNumber, this.errorCorrectLevel)
       : moduleCount = typeNumber * 4 + 17,
         _modules = <List<bool>>[] {
@@ -33,9 +35,9 @@ class QrCode {
 
   factory QrCode.fromData(
       {@required String data, @required int errorCorrectLevel}) {
-    var dataList = [QrByte(data)];
-    var typeNumber = _calculateTypeNumberFromData(errorCorrectLevel, dataList);
-    return QrCode(typeNumber, errorCorrectLevel);
+    var typeNumber =
+        _calculateTypeNumberFromData(errorCorrectLevel, [QrByte(data)]);
+    return QrCode(typeNumber, errorCorrectLevel)..addData(data);
   }
 
   static int _calculateTypeNumberFromData(
