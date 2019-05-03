@@ -70,7 +70,7 @@ class QrDemo {
     //
     // Type Div
     //
-    for (var i = 1; i <= 40; i++) {
+    for (var i = 1; i <= 10; i++) {
       var radio = InputElement(type: 'radio')
         ..id = 'type_$i'
         ..name = 'type'
