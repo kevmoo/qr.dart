@@ -1,12 +1,9 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:qr/qr.dart';
 import 'package:test/test.dart';
 
-void main() {
-  var data = jsonDecode(File('test/qr_code_test.json').readAsStringSync());
+import 'qr_code_test_data.dart';
 
+void main() {
   test('simple', () {
     for (var typeNumber = 1; typeNumber <= 40; typeNumber++) {
       for (var quality in QrErrorCorrectLevel.levels) {
@@ -15,7 +12,7 @@ void main() {
           ..make();
         for (var i = 0; i < qr.modules.length; i++) {
           expect(encodeBoolListToString(qr.modules[i]),
-              data[typeNumber.toString()][quality.toString()][i]);
+              qrCodeTestData[typeNumber.toString()][quality.toString()][i]);
         }
       }
     }
@@ -27,7 +24,7 @@ void main() {
         ..make();
       for (var i = 0; i < qr.modules.length; i++) {
         expect(encodeBoolListToString(qr.modules[i]),
-            data[1.toString()][quality.toString()][i]);
+            qrCodeTestData[1.toString()][quality.toString()][i]);
       }
     }
   });

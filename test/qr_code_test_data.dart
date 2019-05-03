@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+var qrCodeTestData = jsonDecode(r'''
 {
   "1": {
     "0": [
@@ -16240,3 +16243,4 @@
     ]
   }
 }
+''');
