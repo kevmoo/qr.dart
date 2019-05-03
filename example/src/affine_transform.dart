@@ -20,7 +20,7 @@ class AffineTransform {
         _shY = shearY;
 
   factory AffineTransform.fromRotate(num theta, num x, num y) {
-    return AffineTransform().setToRotation(theta, x, y);
+    return AffineTransform()..setToRotation(theta, x, y);
   }
 
   factory AffineTransform.fromScale(num sx, num sy) {
@@ -47,40 +47,6 @@ class AffineTransform {
 
   num get determinant => _scX * _scY - _shX * _shY;
 
-  AffineTransform updateValues(
-      {num translateX,
-      num translateY,
-      num scaleX,
-      num scaleY,
-      num shearX,
-      num shearY}) {
-    if (translateX != null) {
-      _tX = translateX;
-    }
-
-    if (translateY != null) {
-      _tY = translateY;
-    }
-
-    if (scaleX != null) {
-      _scX = scaleX;
-    }
-
-    if (scaleY != null) {
-      _scY = scaleY;
-    }
-
-    if (shearX != null) {
-      _shX = shearX;
-    }
-
-    if (shearY != null) {
-      _shY = shearY;
-    }
-
-    return this;
-  }
-
   bool get isIdentity {
     return _scX == 1 &&
         _shY == 0 &&
@@ -90,15 +56,14 @@ class AffineTransform {
         _tY == 0;
   }
 
-  AffineTransform scale(num sx, num sy) {
+  void scale(num sx, num sy) {
     _scX *= sx;
     _shY *= sx;
     _shX *= sy;
     _scY *= sy;
-    return this;
   }
 
-  AffineTransform concatenate(AffineTransform tx) {
+  void concatenate(AffineTransform tx) {
     var m0 = _scX;
     var m1 = _shX;
     _scX = tx._scX * m0 + tx._shY * m1;
@@ -110,47 +75,43 @@ class AffineTransform {
     _shY = tx._scX * m0 + tx._shY * m1;
     _scY = tx._shX * m0 + tx._scY * m1;
     _tY += tx._tX * m0 + tx._tY * m1;
-    return this;
   }
 
-  AffineTransform rotate(num theta, num x, num y) {
-    return concatenate(AffineTransform.fromRotate(theta, x, y));
+  void rotate(num theta, num x, num y) {
+    concatenate(AffineTransform.fromRotate(theta, x, y));
   }
 
-  AffineTransform translate(num dx, num dy) {
+  void translate(num dx, num dy) {
     _tX += dx * _scX + dy * _shX;
     _tY += dx * _shY + dy * _scY;
-    return this;
   }
 
-  AffineTransform setToScale(num sx, num sy) {
-    return setTransform(sx, 0, 0, sy, 0, 0);
+  void setToScale(num sx, num sy) {
+    setTransform(sx, 0, 0, sy, 0, 0);
   }
 
-  AffineTransform setToRotation(num theta, num x, num y) {
+  void setToRotation(num theta, num x, num y) {
     var cos = math.cos(theta);
     var sin = math.sin(theta);
-    return setTransform(
+    setTransform(
         cos, sin, -sin, cos, x - x * cos + y * sin, y - x * sin - y * cos);
   }
 
-  AffineTransform setToTranslation(num dx, num dy) {
-    return setTransform(1, 0, 0, 1, dx, dy);
+  void setToTranslation(num dx, num dy) {
+    setTransform(1, 0, 0, 1, dx, dy);
   }
 
-  AffineTransform setFromTransfrom(AffineTransform tx) {
-    return setTransform(tx._scX, tx._shY, tx._shX, tx._scY, tx._tX, tx._tY);
+  void setFromTransfrom(AffineTransform tx) {
+    setTransform(tx._scX, tx._shY, tx._shX, tx._scY, tx._tX, tx._tY);
   }
 
-  AffineTransform setTransform(
-      num m00, num m10, num m01, num m11, num m02, num m12) {
+  void setTransform(num m00, num m10, num m01, num m11, num m02, num m12) {
     _scX = m00;
     _shY = m10;
     _shX = m01;
     _scY = m11;
     _tX = m02;
     _tY = m12;
-    return this;
   }
 
   Coordinate transformCoordinate([math.Point point = const Coordinate()]) {

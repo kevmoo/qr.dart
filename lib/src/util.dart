@@ -62,7 +62,7 @@ const int g15Mask = (1 << 14) | (1 << 12) | (1 << 10) | (1 << 4) | (1 << 1);
 int getBCHTypeInfo(int data) {
   var d = data << 10;
   while (getBCHDigit(d) - getBCHDigit(g15) >= 0) {
-    d ^= (g15 << (getBCHDigit(d) - getBCHDigit(g15)));
+    d ^= g15 << (getBCHDigit(d) - getBCHDigit(g15));
   }
   return ((data << 10) | d) ^ g15Mask;
 }
@@ -70,7 +70,7 @@ int getBCHTypeInfo(int data) {
 int getBCHTypeNumber(int data) {
   var d = data << 12;
   while (getBCHDigit(d) - getBCHDigit(g18) >= 0) {
-    d ^= (g18 << (getBCHDigit(d) - getBCHDigit(g18)));
+    d ^= g18 << (getBCHDigit(d) - getBCHDigit(g18));
   }
   return (data << 12) | d;
 }
@@ -203,7 +203,7 @@ double getLostPoint(QrCode qrCode) {
       }
 
       if (sameCount > 5) {
-        lostPoint += (3 + sameCount - 5);
+        lostPoint += 3 + sameCount - 5;
       }
     }
   }
@@ -263,7 +263,5 @@ double getLostPoint(QrCode qrCode) {
   }
 
   var ratio = (100 * darkCount / moduleCount / moduleCount - 50).abs() / 5;
-  lostPoint += ratio * 10;
-
-  return lostPoint;
+  return lostPoint + ratio * 10;
 }

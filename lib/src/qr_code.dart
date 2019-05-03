@@ -120,14 +120,14 @@ class QrCode {
       if (_modules[r][6] != null) {
         continue;
       }
-      _modules[r][6] = (r % 2 == 0);
+      _modules[r][6] = r % 2 == 0;
     }
 
     for (var c = 8; c < moduleCount - 8; c++) {
       if (_modules[6][c] != null) {
         continue;
       }
-      _modules[6][c] = (c % 2 == 0);
+      _modules[6][c] = c % 2 == 0;
     }
   }
 
@@ -160,12 +160,12 @@ class QrCode {
     var bits = qr_util.getBCHTypeNumber(typeNumber);
 
     for (var i = 0; i < 18; i++) {
-      final mod = (!test && ((bits >> i) & 1) == 1);
+      final mod = !test && ((bits >> i) & 1) == 1;
       _modules[i ~/ 3][i % 3 + moduleCount - 8 - 3] = mod;
     }
 
     for (var i = 0; i < 18; i++) {
-      final mod = (!test && ((bits >> i) & 1) == 1);
+      final mod = !test && ((bits >> i) & 1) == 1;
       _modules[i % 3 + moduleCount - 8 - 3][i ~/ 3] = mod;
     }
   }
@@ -179,7 +179,7 @@ class QrCode {
 
     // vertical
     for (i = 0; i < 15; i++) {
-      mod = (!test && ((bits >> i) & 1) == 1);
+      mod = !test && ((bits >> i) & 1) == 1;
 
       if (i < 6) {
         _modules[i][8] = mod;
@@ -192,7 +192,7 @@ class QrCode {
 
     // horizontal
     for (i = 0; i < 15; i++) {
-      mod = (!test && ((bits >> i) & 1) == 1);
+      mod = !test && ((bits >> i) & 1) == 1;
 
       if (i < 8) {
         _modules[8][moduleCount - i - 1] = mod;
@@ -204,7 +204,7 @@ class QrCode {
     }
 
     // fixed module
-    _modules[moduleCount - 8][8] = (!test);
+    _modules[moduleCount - 8][8] = !test;
   }
 
   void _mapData(List<int> data, int maskPattern) {
@@ -216,13 +216,13 @@ class QrCode {
     for (var col = moduleCount - 1; col > 0; col -= 2) {
       if (col == 6) col--;
 
-      while (true) {
+      for (;;) {
         for (var c = 0; c < 2; c++) {
           if (_modules[row][col - c] == null) {
             var dark = false;
 
             if (byteIndex < data.length) {
-              dark = (((data[byteIndex] >> bitIndex) & 1) == 1);
+              dark = ((data[byteIndex] >> bitIndex) & 1) == 1;
             }
 
             var mask = qr_util.getMask(maskPattern, row, col - c);
@@ -311,7 +311,7 @@ List<int> _createData(
   }
 
   // padding
-  while (true) {
+  for (;;) {
     if (buffer.length >= totalDataCount * 8) {
       break;
     }

@@ -19,7 +19,7 @@ class BungeeNum {
 
     final force = target - current;
 
-    _velocity += (force * 0.05);
+    _velocity += force * 0.05;
 
     current += _velocity;
 

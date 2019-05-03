@@ -14,7 +14,7 @@ void main() {
 
   test('fromData', () {
     for (var quality in QrErrorCorrectLevel.levels) {
-      QrCode.fromData(data: 'shanna!', errorCorrectLevel: quality)..make();
+      QrCode.fromData(data: 'shanna!', errorCorrectLevel: quality).make();
     }
   });
 }
