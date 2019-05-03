@@ -1,5 +1,5 @@
 name: qr
-version: 1.0.1
+version: 1.1.0
 author: Kevin Moore <github@j832.com>
 description: >-
   A QR code generation library for Dart and Flutter.
@@ -8,6 +8,9 @@ homepage: https://github.com/kevmoo/qr.dart/
 
 environment:
   sdk: '>=2.0.0-dev.17 <3.0.0'
+
+dependencies:
+  meta: ^1.1.0
 
 dev_dependencies:
   build_runner: ^0.10.0
