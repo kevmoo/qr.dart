@@ -1,3 +1,7 @@
+## 1.1.0
+
+* Add fromData QrCode factory that allows QrCode initiation without providing typeNumber.
+
 ## 1.0.1
 
 * Support Dart 2 stable.
