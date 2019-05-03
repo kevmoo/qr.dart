@@ -3,37 +3,21 @@ import 'dart:html';
 import 'dart:math' as math;
 
 import 'package:qr/qr.dart';
+import 'package:stream_transform/stream_transform.dart';
 
-import 'src/affine_transform.dart';
-import 'src/bot.dart';
-import 'src/throttled_stream.dart';
+import 'affine_transform.dart';
+import 'bot.dart';
 
-void main() {
-  final canvas = querySelector('#content') as CanvasElement;
-  final typeDiv = querySelector('#type-div') as DivElement;
-  final errorDiv = querySelector('#error-div') as DivElement;
-  final input = querySelector('#input') as InputElement;
-  final demo = QrDemo(canvas, typeDiv, errorDiv)..value = input.value;
-
-  input.onKeyUp.listen((KeyboardEvent args) {
-    demo.value = input.value;
-  });
-
-  demo.output.listen((data) {
-    input.style.background = '';
-  }, onError: (error) {
-    input.style.background = 'red';
-    print(error);
-  });
-}
+const String _typeRadioIdKey = 'type-value';
+const String _errorLevelIdKey = 'error-value';
 
 class QrDemo {
-  static const String _typeRadioIdKey = 'type-value';
-  static const String _errorLevelIdKey = 'error-value';
-  final BungeeNum _scale;
+  final _scale = BungeeNum(1);
   final CanvasElement _canvas;
-  final ThrottledStream<List<Object>, List<bool>> _qrMapper;
   final CanvasRenderingContext2D _ctx;
+  final StreamController<List<Object>> _inputValues;
+
+  final Stream<List<bool>> output;
 
   String _value = '';
   int _typeNumber = 10;
@@ -43,15 +27,43 @@ class QrDemo {
 
   bool _frameRequested = false;
 
-  QrDemo(CanvasElement canvas, DivElement typeDiv, DivElement errorDiv)
-      : _canvas = canvas,
+  factory QrDemo() {
+    final canvas = querySelector('#content') as CanvasElement;
+    final typeDiv = querySelector('#type-div') as DivElement;
+    final errorDiv = querySelector('#error-div') as DivElement;
+    final input = querySelector('#input') as InputElement;
+
+    final controller = StreamController<List<Object>>();
+
+    final demo = QrDemo._(canvas, typeDiv, errorDiv, controller)
+      ..value = input.value;
+
+    input.onKeyUp.listen((KeyboardEvent args) {
+      demo.value = input.value;
+    });
+
+    demo.output.listen((data) {
+      input.style.background = '';
+    }, onError: (error) {
+      input.style.background = 'red';
+      print(error);
+    });
+
+    return demo;
+  }
+
+  QrDemo._(
+    CanvasElement canvas,
+    DivElement typeDiv,
+    DivElement errorDiv,
+    this._inputValues,
+  )   : _canvas = canvas,
         _ctx = canvas.context2D,
-        _qrMapper = ThrottledStream<List<Object>, List<bool>>(_calc),
-        _scale = BungeeNum(1) {
+        output = _inputValues.stream.transform(asyncMapSample(_calc)) {
     _ctx.fillStyle = 'black';
 
-    _qrMapper.outputStream.listen((args) {
-      _squares = _qrMapper.outputValue;
+    output.listen((value) {
+      _squares = value;
       requestFrame();
     });
 
@@ -98,8 +110,6 @@ class QrDemo {
     }
   }
 
-  Stream get output => _qrMapper.outputStream;
-
   String get value => _value;
 
   set value(String input) {
@@ -129,7 +139,7 @@ class QrDemo {
   void _update() {
     final t = [_typeNumber, _errorCorrectLevel, _value];
 
-    _qrMapper.source = t;
+    _inputValues.add(t);
   }
 
   void _onFrame(num highResTime) {
@@ -169,7 +179,7 @@ class QrDemo {
   }
 }
 
-List<bool> _calc(List input) {
+Future<List<bool>> _calc(List input) async {
   final code = QrCode(input[0] as int, input[1] as int)
     ..addData(input[2] as String)
     ..make();

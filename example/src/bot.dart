@@ -1,6 +1,4 @@
-num lerp(num a, num b, num x) {
-  return a + x * (b - a);
-}
+num lerp(num a, num b, num x) => a + x * (b - a);
 
 // TODO: test!
 class BungeeNum {
