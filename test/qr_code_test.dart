@@ -1,4 +1,5 @@
-import 'package:qr/qr.dart';
+import 'package:qr/src/error_correct_level.dart';
+import 'package:qr/src/qr_code.dart';
 import 'package:test/test.dart';
 
 import 'qr_code_test_data.dart';
@@ -10,8 +11,8 @@ void main() {
         var qr = QrCode(typeNumber, quality)
           ..addData('shanna!')
           ..make();
-        for (var i = 0; i < qr.modules.length; i++) {
-          expect(encodeBoolListToString(qr.modules[i]),
+        for (var i = 0; i < qrModules(qr).length; i++) {
+          expect(encodeBoolListToString(qrModules(qr)[i]),
               qrCodeTestData[typeNumber.toString()][quality.toString()][i]);
         }
       }
@@ -22,8 +23,8 @@ void main() {
     for (var quality in QrErrorCorrectLevel.levels) {
       var qr = QrCode.fromData(data: 'shanna!', errorCorrectLevel: quality)
         ..make();
-      for (var i = 0; i < qr.modules.length; i++) {
-        expect(encodeBoolListToString(qr.modules[i]),
+      for (var i = 0; i < qrModules(qr).length; i++) {
+        expect(encodeBoolListToString(qrModules(qr)[i]),
             qrCodeTestData[1.toString()][quality.toString()][i]);
       }
     }
