@@ -1,6 +1,7 @@
 ## 1.1.1
 
 - Require Dart SDK `>=2.2.0 <3.0.0`.
+- Fix a bug that fromData doesn't add supplied data. 
 
 ## 1.1.0
 
