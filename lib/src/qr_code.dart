@@ -11,6 +11,9 @@ import 'polynomial.dart';
 import 'rs_block.dart';
 import 'util.dart' as qr_util;
 
+@visibleForTesting
+List<List<bool>> qrModules(QrCode qrCode) => qrCode._modules;
+
 class QrCode {
   final int typeNumber;
   final int errorCorrectLevel;
@@ -18,9 +21,6 @@ class QrCode {
   final List<List<bool>> _modules;
   List<int> _dataCache;
   final List<QrByte> _dataList = <QrByte>[];
-
-  @visibleForTesting
-  List<List<bool>> get modules => _modules;
 
   QrCode(this.typeNumber, this.errorCorrectLevel)
       : moduleCount = typeNumber * 4 + 17,
