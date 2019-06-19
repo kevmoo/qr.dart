@@ -1,6 +1,7 @@
 ## 1.2.0
 
-- Expose `InputTooLongException` exception so that applications and libraries can check for data length errors.
+- Expose `InputTooLongException` exception so that applications and libraries 
+  can check for data length errors.
 
 ## 1.1.1
 
@@ -9,7 +10,8 @@
 
 ## 1.1.0
 
-* Add fromData QrCode factory that allows QrCode initiation without providing typeNumber.
+- Add `fromData` QrCode factory that allows QrCode initiation without providing 
+  `typeNumber`.
 
 ## 1.0.1
 
