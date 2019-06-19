@@ -1,4 +1,4 @@
-## 1.2
+## 1.2.0
 
 - Expose `InputTooLongException` exception so that applications and libraries can check for data length errors.
 
