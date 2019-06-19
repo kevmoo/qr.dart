@@ -1,3 +1,7 @@
+## 1.2
+
+- Expose `InputTooLongException` exception so that applications and libraries can check for data length errors.
+
 ## 1.1.1
 
 - Require Dart SDK `>=2.1.0 <3.0.0`.
