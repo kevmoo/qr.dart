@@ -1,3 +1,7 @@
+## 1.2.1
+
+- Require Dart SDK `>=2.6.0 <3.0.0`.
+
 ## 1.2.0
 
 - Expose `InputTooLongException` exception so that applications and libraries 

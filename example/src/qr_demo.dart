@@ -59,7 +59,7 @@ class QrDemo {
     this._inputValues,
   )   : _canvas = canvas,
         _ctx = canvas.context2D,
-        output = _inputValues.stream.transform(asyncMapSample(_calc)) {
+        output = _inputValues.stream.asyncMapSample(_calc) {
     _ctx.fillStyle = 'black';
 
     output.listen((value) {
