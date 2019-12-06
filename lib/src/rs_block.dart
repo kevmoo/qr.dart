@@ -4,7 +4,7 @@ class QrRsBlock {
   final int totalCount;
   final int dataCount;
 
-  QrRsBlock(this.totalCount, this.dataCount);
+  QrRsBlock._(this.totalCount, this.dataCount);
 
   static List<QrRsBlock> getRSBlocks(int typeNumber, int errorCorrectLevel) {
     final rsBlock = _getRsBlockTable(typeNumber, errorCorrectLevel);
@@ -19,7 +19,7 @@ class QrRsBlock {
       var dataCount = rsBlock[i * 3 + 2];
 
       for (var j = 0; j < count; j++) {
-        list.add(QrRsBlock(totalCount, dataCount));
+        list.add(QrRsBlock._(totalCount, dataCount));
       }
     }
 

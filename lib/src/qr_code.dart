@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+import 'dart:typed_data';
 
 import 'package:meta/meta.dart';
 
@@ -6,7 +7,9 @@ import 'bit_buffer.dart';
 import 'byte.dart';
 import 'error_correct_level.dart';
 import 'input_too_long_exception.dart';
+import 'mask_pattern.dart' as qr_mask_pattern;
 import 'math.dart' as qr_math;
+import 'mode.dart' as qr_mode;
 import 'polynomial.dart';
 import 'rs_block.dart';
 import 'util.dart' as qr_util;
@@ -57,7 +60,7 @@ class QrCode {
         var data = dataList[i];
         buffer
           ..put(data.mode, 4)
-          ..put(data.length, qr_util.getLengthInBits(data.mode, typeNumber));
+          ..put(data.length, _lengthInBits(data.mode, typeNumber));
         data.write(buffer);
       }
       if (buffer.length <= totalDataCount * 8) break;
@@ -107,7 +110,7 @@ class QrCode {
     for (var i = 0; i < 8; i++) {
       _makeImpl(true, i);
 
-      var lostPoint = qr_util.getLostPoint(this);
+      var lostPoint = _lostPoint(this);
 
       if (i == 0 || minLostPoint > lostPoint) {
         minLostPoint = lostPoint;
@@ -135,7 +138,7 @@ class QrCode {
   }
 
   void _setupPositionAdjustPattern() {
-    var pos = qr_util.getPatternPosition(typeNumber);
+    var pos = qr_util.patternPosition(typeNumber);
 
     for (var i = 0; i < pos.length; i++) {
       for (var j = 0; j < pos.length; j++) {
@@ -160,7 +163,7 @@ class QrCode {
   }
 
   void _setupTypeNumber(bool test) {
-    var bits = qr_util.getBCHTypeNumber(typeNumber);
+    var bits = qr_util.bchTypeNumber(typeNumber);
 
     for (var i = 0; i < 18; i++) {
       final mod = !test && ((bits >> i) & 1) == 1;
@@ -175,7 +178,7 @@ class QrCode {
 
   void _setupTypeInfo(bool test, int maskPattern) {
     var data = (errorCorrectLevel << 3) | maskPattern;
-    var bits = qr_util.getBCHTypeInfo(data);
+    var bits = qr_util.bchTypeInfo(data);
 
     int i;
     bool mod;
@@ -228,7 +231,7 @@ class QrCode {
               dark = ((data[byteIndex] >> bitIndex) & 1) == 1;
             }
 
-            var mask = qr_util.getMask(maskPattern, row, col - c);
+            var mask = _mask(maskPattern, row, col - c);
 
             if (mask) {
               dark = !dark;
@@ -286,7 +289,7 @@ List<int> _createData(
     var data = dataList[i];
     buffer
       ..put(data.mode, 4)
-      ..put(data.length, qr_util.getLengthInBits(data.mode, typeNumber));
+      ..put(data.length, _lengthInBits(data.mode, typeNumber));
     data.write(buffer);
   }
 
@@ -347,18 +350,18 @@ List<int> _createBytes(QrBitBuffer buffer, List<QrRsBlock> rsBlocks) {
     maxDcCount = math.max(maxDcCount, dcCount);
     maxEcCount = math.max(maxEcCount, ecCount);
 
-    dcdata[r] = qr_math.getByteList(dcCount);
+    dcdata[r] = Uint8List(dcCount);
 
     for (var i = 0; i < dcdata[r].length; i++) {
       dcdata[r][i] = 0xff & buffer.getByte(i + offset);
     }
     offset += dcCount;
 
-    var rsPoly = qr_util.getErrorCorrectPolynomial(ecCount);
+    var rsPoly = _errorCorrectPolynomial(ecCount);
     var rawPoly = QrPolynomial(dcdata[r], rsPoly.length - 1);
 
     var modPoly = rawPoly.mod(rsPoly);
-    ecdata[r] = qr_math.getByteList(rsPoly.length - 1);
+    ecdata[r] = Uint8List(rsPoly.length - 1);
 
     for (var i = 0; i < ecdata[r].length; i++) {
       var modIndex = i + modPoly.length - ecdata[r].length;
@@ -385,4 +388,181 @@ List<int> _createBytes(QrBitBuffer buffer, List<QrRsBlock> rsBlocks) {
   }
 
   return data;
+}
+
+bool _mask(int maskPattern, int i, int j) {
+  switch (maskPattern) {
+    case qr_mask_pattern.pattern000:
+      return (i + j) % 2 == 0;
+    case qr_mask_pattern.pattern001:
+      return i % 2 == 0;
+    case qr_mask_pattern.pattern010:
+      return j % 3 == 0;
+    case qr_mask_pattern.pattern011:
+      return (i + j) % 3 == 0;
+    case qr_mask_pattern.pattern100:
+      return ((i ~/ 2) + (j ~/ 3)) % 2 == 0;
+    case qr_mask_pattern.pattern101:
+      return (i * j) % 2 + (i * j) % 3 == 0;
+    case qr_mask_pattern.pattern110:
+      return ((i * j) % 2 + (i * j) % 3) % 2 == 0;
+    case qr_mask_pattern.pattern111:
+      return ((i * j) % 3 + (i + j) % 2) % 2 == 0;
+    default:
+      throw ArgumentError('bad maskPattern:$maskPattern');
+  }
+}
+
+int _lengthInBits(int mode, int type) {
+  if (1 <= type && type < 10) {
+    // 1 - 9
+    switch (mode) {
+      case qr_mode.modeNumber:
+        return 10;
+      case qr_mode.modeAlphaNum:
+        return 9;
+      case qr_mode.mode8bitByte:
+        return 8;
+      case qr_mode.modeKanji:
+        return 8;
+      default:
+        throw ArgumentError('mode:$mode');
+    }
+  } else if (type < 27) {
+    // 10 - 26
+    switch (mode) {
+      case qr_mode.modeNumber:
+        return 12;
+      case qr_mode.modeAlphaNum:
+        return 11;
+      case qr_mode.mode8bitByte:
+        return 16;
+      case qr_mode.modeKanji:
+        return 10;
+      default:
+        throw ArgumentError('mode:$mode');
+    }
+  } else if (type < 41) {
+    // 27 - 40
+    switch (mode) {
+      case qr_mode.modeNumber:
+        return 14;
+      case qr_mode.modeAlphaNum:
+        return 13;
+      case qr_mode.mode8bitByte:
+        return 16;
+      case qr_mode.modeKanji:
+        return 12;
+      default:
+        throw ArgumentError('mode:$mode');
+    }
+  } else {
+    throw ArgumentError('type:$type');
+  }
+}
+
+double _lostPoint(QrCode qrCode) {
+  var moduleCount = qrCode.moduleCount;
+
+  var lostPoint = 0.0;
+  int row, col;
+
+  // LEVEL1
+  for (row = 0; row < moduleCount; row++) {
+    for (col = 0; col < moduleCount; col++) {
+      var sameCount = 0;
+      var dark = qrCode.isDark(row, col);
+
+      for (var r = -1; r <= 1; r++) {
+        if (row + r < 0 || moduleCount <= row + r) {
+          continue;
+        }
+
+        for (var c = -1; c <= 1; c++) {
+          if (col + c < 0 || moduleCount <= col + c) {
+            continue;
+          }
+
+          if (r == 0 && c == 0) {
+            continue;
+          }
+
+          if (dark == qrCode.isDark(row + r, col + c)) {
+            sameCount++;
+          }
+        }
+      }
+
+      if (sameCount > 5) {
+        lostPoint += 3 + sameCount - 5;
+      }
+    }
+  }
+
+  // LEVEL2
+  for (row = 0; row < moduleCount - 1; row++) {
+    for (col = 0; col < moduleCount - 1; col++) {
+      var count = 0;
+      if (qrCode.isDark(row, col)) count++;
+      if (qrCode.isDark(row + 1, col)) count++;
+      if (qrCode.isDark(row, col + 1)) count++;
+      if (qrCode.isDark(row + 1, col + 1)) count++;
+      if (count == 0 || count == 4) {
+        lostPoint += 3;
+      }
+    }
+  }
+
+  // LEVEL3
+  for (row = 0; row < moduleCount; row++) {
+    for (col = 0; col < moduleCount - 6; col++) {
+      if (qrCode.isDark(row, col) &&
+          !qrCode.isDark(row, col + 1) &&
+          qrCode.isDark(row, col + 2) &&
+          qrCode.isDark(row, col + 3) &&
+          qrCode.isDark(row, col + 4) &&
+          !qrCode.isDark(row, col + 5) &&
+          qrCode.isDark(row, col + 6)) {
+        lostPoint += 40;
+      }
+    }
+  }
+
+  for (col = 0; col < moduleCount; col++) {
+    for (row = 0; row < moduleCount - 6; row++) {
+      if (qrCode.isDark(row, col) &&
+          !qrCode.isDark(row + 1, col) &&
+          qrCode.isDark(row + 2, col) &&
+          qrCode.isDark(row + 3, col) &&
+          qrCode.isDark(row + 4, col) &&
+          !qrCode.isDark(row + 5, col) &&
+          qrCode.isDark(row + 6, col)) {
+        lostPoint += 40;
+      }
+    }
+  }
+
+  // LEVEL4
+  var darkCount = 0;
+
+  for (col = 0; col < moduleCount; col++) {
+    for (row = 0; row < moduleCount; row++) {
+      if (qrCode.isDark(row, col)) {
+        darkCount++;
+      }
+    }
+  }
+
+  var ratio = (100 * darkCount / moduleCount / moduleCount - 50).abs() / 5;
+  return lostPoint + ratio * 10;
+}
+
+QrPolynomial _errorCorrectPolynomial(int errorCorrectLength) {
+  var a = QrPolynomial([1], 0);
+
+  for (var i = 0; i < errorCorrectLength; i++) {
+    a = a.multiply(QrPolynomial([1, qr_math.gexp(i)], 0));
+  }
+
+  return a;
 }
