@@ -81,6 +81,12 @@ class QrCode {
     _dataCache = null;
   }
 
+  void addByteData(ByteData data) {
+    var newData = QrByte.fromByteData(data);
+    _dataList.add(newData);
+    _dataCache = null;
+  }
+
   void make() {
     _makeImpl(false, _getBestMaskPattern());
   }
