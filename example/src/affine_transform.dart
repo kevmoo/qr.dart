@@ -216,7 +216,7 @@ class Coordinate<T extends num> extends math.Point<T> {
 
   @override
   Coordinate<T> operator +(math.Point<T> other) =>
-      Coordinate<T>(x + other.x, y + other.y);
+      Coordinate<T>(x + other.x as T, y + other.y as T);
 
   Vector toVector() => Vector(x, y);
 
@@ -224,7 +224,7 @@ class Coordinate<T extends num> extends math.Point<T> {
 
   static Vector<T> difference<T extends num>(
           math.Point<T> a, math.Point<T> b) =>
-      Vector<T>(a.x - b.x, a.y - b.y);
+      Vector<T>(a.x - b.x as T, a.y - b.y as T);
 
   static bool valid(math.Point point) =>
       isValidNumber(point.x) && isValidNumber(point.y);
@@ -239,7 +239,7 @@ class Vector<T extends num> extends Coordinate<T> {
 
   @override
   Vector<T> operator +(math.Point<T> other) =>
-      Vector<T>(x + other.x, y + other.y);
+      Vector<T>(x + other.x as T, y + other.y as T);
 
   @override
   Vector<T> operator *(num magnitude) => scale(magnitude);
