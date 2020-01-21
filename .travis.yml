@@ -6,13 +6,18 @@ dart:
 
 dart_task:
   - test: "--platform vm,chrome"
-  - dartanalyzer: --fatal-infos --fatal-warnings .
 
 matrix:
   include:
   # Only validate formatting using the dev release
   - dart: dev
     dart_task: dartfmt
+  - dart: 2.6.0
+    dart_task:
+      dartanalyzer: --fatal-warnings .
+  - dart: dev
+    dart_task:
+      dartanalyzer: --fatal-warnings --fatal-hints .
 
 # Only building master means that we don't run two builds for each pull request.
 branches:
