@@ -79,8 +79,8 @@ class QrCode {
 
   void addByteData(ByteData data) => _addToList(QrByte.fromByteData(data));
 
-  void _addToList(newData) {
-    _dataList.add(newData);
+  void _addToList(QrByte data) {
+    _dataList.add(data);
     _dataCache = null;
   }
 
