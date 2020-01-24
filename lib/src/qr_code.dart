@@ -76,13 +76,14 @@ class QrCode {
   }
 
   void addData(String data) {
-    var newData = QrByte(data);
-    _dataList.add(newData);
-    _dataCache = null;
+    _addToList(QrByte(data));
   }
 
   void addByteData(ByteData data) {
-    var newData = QrByte.fromByteData(data);
+    _addToList(QrByte.fromByteData(data));
+  }
+
+  void _addToList(newData) {
     _dataList.add(newData);
     _dataCache = null;
   }
