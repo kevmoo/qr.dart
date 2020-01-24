@@ -14,9 +14,8 @@ class QrByte {
     return QrByte._internal(charUnits);
   }
 
-  factory QrByte.fromByteData(ByteData input) {
-    return QrByte._internal(input.buffer.asUint8List().toList());
-  }
+  factory QrByte.fromByteData(ByteData input) =>
+      QrByte._internal(input.buffer.asUint8List().toList());
 
   QrByte._internal(this._data);
 

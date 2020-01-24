@@ -75,13 +75,9 @@ class QrCode {
     return _modules[row][col];
   }
 
-  void addData(String data) {
-    _addToList(QrByte(data));
-  }
+  void addData(String data) => _addToList(QrByte(data));
 
-  void addByteData(ByteData data) {
-    _addToList(QrByte.fromByteData(data));
-  }
+  void addByteData(ByteData data) => _addToList(QrByte.fromByteData(data));
 
   void _addToList(newData) {
     _dataList.add(newData);
