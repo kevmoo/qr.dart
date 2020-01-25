@@ -1,4 +1,4 @@
-## 1.2.2
+## 1.3.0
 
 - Support for generating QR which includes ByteData
 
