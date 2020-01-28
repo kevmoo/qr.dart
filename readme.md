@@ -43,6 +43,8 @@ The following libraries use qr.dart to generate QR codes for you out of the box:
 
 [QR - Flutter](https://github.com/lukef/qr.flutter) - A Flutter Widget to render QR codes
 
+[QR - AngularDart](https://github.com/gazialankus/qr.angulardart) - An AngularDart component to render QR codes
+
 # Demo
 
 A working demo can be found here: [https://kevmoo.github.io/qr.dart/](https://kevmoo.github.io/qr.dart/)
