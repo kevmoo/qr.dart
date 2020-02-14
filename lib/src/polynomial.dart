@@ -44,9 +44,9 @@ class QrPolynomial {
       return this;
     }
 
-    var ratio = qr_math.glog(this[0]) - qr_math.glog(e[0]);
+    final ratio = qr_math.glog(this[0]) - qr_math.glog(e[0]);
 
-    var value = Uint8List(length);
+    final value = Uint8List(length);
 
     for (var i = 0; i < length; i++) {
       value[i] = this[i];

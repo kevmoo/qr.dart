@@ -14,9 +14,9 @@ class QrRsBlock {
     final list = <QrRsBlock>[];
 
     for (var i = 0; i < length; i++) {
-      var count = rsBlock[i * 3 + 0];
-      var totalCount = rsBlock[i * 3 + 1];
-      var dataCount = rsBlock[i * 3 + 2];
+      final count = rsBlock[i * 3 + 0];
+      final totalCount = rsBlock[i * 3 + 1];
+      final dataCount = rsBlock[i * 3 + 2];
 
       for (var j = 0; j < count; j++) {
         list.add(QrRsBlock._(totalCount, dataCount));

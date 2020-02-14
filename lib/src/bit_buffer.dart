@@ -32,7 +32,7 @@ class QrBitBuffer extends Object with ListMixin<bool> {
   }
 
   void putBit(bool bit) {
-    var bufIndex = _length ~/ 8;
+    final bufIndex = _length ~/ 8;
     if (_buffer.length <= bufIndex) {
       _buffer.add(0);
     }
