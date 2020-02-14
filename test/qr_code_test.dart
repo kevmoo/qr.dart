@@ -8,7 +8,7 @@ void main() {
   test('simple', () {
     for (var typeNumber = 1; typeNumber <= 40; typeNumber++) {
       for (var quality in QrErrorCorrectLevel.levels) {
-        var qr = QrCode(typeNumber, quality)
+        final qr = QrCode(typeNumber, quality)
           ..addData('shanna!')
           ..make();
         for (var i = 0; i < qrModules(qr).length; i++) {
@@ -21,7 +21,7 @@ void main() {
 
   test('fromData', () {
     for (var quality in QrErrorCorrectLevel.levels) {
-      var qr = QrCode.fromData(data: 'shanna!', errorCorrectLevel: quality)
+      final qr = QrCode.fromData(data: 'shanna!', errorCorrectLevel: quality)
         ..make();
       for (var i = 0; i < qrModules(qr).length; i++) {
         expect(encodeBoolListToString(qrModules(qr)[i]),

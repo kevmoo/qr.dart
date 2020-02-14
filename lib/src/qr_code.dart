@@ -39,7 +39,7 @@ class QrCode {
 
   factory QrCode.fromData(
       {@required String data, @required int errorCorrectLevel}) {
-    var typeNumber =
+    final typeNumber =
         _calculateTypeNumberFromData(errorCorrectLevel, [QrByte(data)]);
     return QrCode(typeNumber, errorCorrectLevel)..addData(data);
   }
@@ -48,16 +48,16 @@ class QrCode {
       int errorCorrectLevel, List<QrByte> dataList) {
     int typeNumber;
     for (typeNumber = 1; typeNumber < 40; typeNumber++) {
-      var rsBlocks = QrRsBlock.getRSBlocks(typeNumber, errorCorrectLevel);
+      final rsBlocks = QrRsBlock.getRSBlocks(typeNumber, errorCorrectLevel);
 
-      var buffer = QrBitBuffer();
+      final buffer = QrBitBuffer();
       var totalDataCount = 0;
       for (var i = 0; i < rsBlocks.length; i++) {
         totalDataCount += rsBlocks[i].dataCount;
       }
 
       for (var i = 0; i < dataList.length; i++) {
-        var data = dataList[i];
+        final data = dataList[i];
         buffer
           ..put(data.mode, 4)
           ..put(data.length, _lengthInBits(data.mode, typeNumber));
@@ -113,7 +113,7 @@ class QrCode {
     for (var i = 0; i < 8; i++) {
       _makeImpl(true, i);
 
-      var lostPoint = _lostPoint(this);
+      final lostPoint = _lostPoint(this);
 
       if (i == 0 || minLostPoint > lostPoint) {
         minLostPoint = lostPoint;
@@ -141,12 +141,12 @@ class QrCode {
   }
 
   void _setupPositionAdjustPattern() {
-    var pos = qr_util.patternPosition(typeNumber);
+    final pos = qr_util.patternPosition(typeNumber);
 
     for (var i = 0; i < pos.length; i++) {
       for (var j = 0; j < pos.length; j++) {
-        var row = pos[i];
-        var col = pos[j];
+        final row = pos[i];
+        final col = pos[j];
 
         if (_modules[row][col] != null) {
           continue;
@@ -166,7 +166,7 @@ class QrCode {
   }
 
   void _setupTypeNumber(bool test) {
-    var bits = qr_util.bchTypeNumber(typeNumber);
+    final bits = qr_util.bchTypeNumber(typeNumber);
 
     for (var i = 0; i < 18; i++) {
       final mod = !test && ((bits >> i) & 1) == 1;
@@ -180,8 +180,8 @@ class QrCode {
   }
 
   void _setupTypeInfo(bool test, int maskPattern) {
-    var data = (errorCorrectLevel << 3) | maskPattern;
-    var bits = qr_util.bchTypeInfo(data);
+    final data = (errorCorrectLevel << 3) | maskPattern;
+    final bits = qr_util.bchTypeInfo(data);
 
     int i;
     bool mod;
@@ -234,7 +234,7 @@ class QrCode {
               dark = ((data[byteIndex] >> bitIndex) & 1) == 1;
             }
 
-            var mask = _mask(maskPattern, row, col - c);
+            final mask = _mask(maskPattern, row, col - c);
 
             if (mask) {
               dark = !dark;
@@ -284,12 +284,12 @@ const int _pad1 = 0x11;
 
 List<int> _createData(
     int typeNumber, int errorCorrectLevel, List<QrByte> dataList) {
-  var rsBlocks = QrRsBlock.getRSBlocks(typeNumber, errorCorrectLevel);
+  final rsBlocks = QrRsBlock.getRSBlocks(typeNumber, errorCorrectLevel);
 
   final buffer = QrBitBuffer();
 
   for (var i = 0; i < dataList.length; i++) {
-    var data = dataList[i];
+    final data = dataList[i];
     buffer
       ..put(data.mode, 4)
       ..put(data.length, _lengthInBits(data.mode, typeNumber));
@@ -343,12 +343,12 @@ List<int> _createBytes(QrBitBuffer buffer, List<QrRsBlock> rsBlocks) {
   var maxDcCount = 0;
   var maxEcCount = 0;
 
-  var dcdata = List<List<int>>(rsBlocks.length);
-  var ecdata = List<List<int>>(rsBlocks.length);
+  final dcdata = List<List<int>>(rsBlocks.length);
+  final ecdata = List<List<int>>(rsBlocks.length);
 
   for (var r = 0; r < rsBlocks.length; r++) {
-    var dcCount = rsBlocks[r].dataCount;
-    var ecCount = rsBlocks[r].totalCount - dcCount;
+    final dcCount = rsBlocks[r].dataCount;
+    final ecCount = rsBlocks[r].totalCount - dcCount;
 
     maxDcCount = math.max(maxDcCount, dcCount);
     maxEcCount = math.max(maxEcCount, ecCount);
@@ -360,19 +360,19 @@ List<int> _createBytes(QrBitBuffer buffer, List<QrRsBlock> rsBlocks) {
     }
     offset += dcCount;
 
-    var rsPoly = _errorCorrectPolynomial(ecCount);
-    var rawPoly = QrPolynomial(dcdata[r], rsPoly.length - 1);
+    final rsPoly = _errorCorrectPolynomial(ecCount);
+    final rawPoly = QrPolynomial(dcdata[r], rsPoly.length - 1);
 
-    var modPoly = rawPoly.mod(rsPoly);
+    final modPoly = rawPoly.mod(rsPoly);
     ecdata[r] = Uint8List(rsPoly.length - 1);
 
     for (var i = 0; i < ecdata[r].length; i++) {
-      var modIndex = i + modPoly.length - ecdata[r].length;
+      final modIndex = i + modPoly.length - ecdata[r].length;
       ecdata[r][i] = (modIndex >= 0) ? modPoly[modIndex] : 0;
     }
   }
 
-  var data = <int>[];
+  final data = <int>[];
 
   for (var i = 0; i < maxDcCount; i++) {
     for (var r = 0; r < rsBlocks.length; r++) {
@@ -465,7 +465,7 @@ int _lengthInBits(int mode, int type) {
 }
 
 double _lostPoint(QrCode qrCode) {
-  var moduleCount = qrCode.moduleCount;
+  final moduleCount = qrCode.moduleCount;
 
   var lostPoint = 0.0;
   int row, col;
@@ -474,7 +474,7 @@ double _lostPoint(QrCode qrCode) {
   for (row = 0; row < moduleCount; row++) {
     for (col = 0; col < moduleCount; col++) {
       var sameCount = 0;
-      var dark = qrCode.isDark(row, col);
+      final dark = qrCode.isDark(row, col);
 
       for (var r = -1; r <= 1; r++) {
         if (row + r < 0 || moduleCount <= row + r) {
@@ -556,7 +556,7 @@ double _lostPoint(QrCode qrCode) {
     }
   }
 
-  var ratio = (100 * darkCount / moduleCount / moduleCount - 50).abs() / 5;
+  final ratio = (100 * darkCount / moduleCount / moduleCount - 50).abs() / 5;
   return lostPoint + ratio * 10;
 }
 

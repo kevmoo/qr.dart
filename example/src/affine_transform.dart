@@ -91,8 +91,8 @@ class AffineTransform {
   }
 
   void setToRotation(num theta, num x, num y) {
-    var cos = math.cos(theta);
-    var sin = math.sin(theta);
+    final cos = math.cos(theta);
+    final sin = math.sin(theta);
     setTransform(
         cos, sin, -sin, cos, x - x * cos + y * sin, y - x * sin - y * cos);
   }
@@ -115,14 +115,14 @@ class AffineTransform {
   }
 
   Coordinate transformCoordinate([math.Point point = const Coordinate()]) {
-    var x = point.x * _scX + point.y * _shX + _tX;
-    var y = point.x * _shY + point.y * _scY + _tY;
+    final x = point.x * _scX + point.y * _shX + _tX;
+    final y = point.x * _shY + point.y * _scY + _tY;
 
     return Coordinate(x, y);
   }
 
   AffineTransform createInverse() {
-    var det = determinant;
+    final det = determinant;
     return AffineTransform(_scY / det, -_shY / det, -_shX / det, _scX / det,
         (_shX * _tY - _scY * _tX) / det, (_shY * _tX - _scX * _tY) / det);
   }
@@ -254,10 +254,10 @@ class Vector<T extends num> extends Coordinate<T> {
   num getAngle(Vector other) => other.angle - angle;
 
   Vector rotate(num angle) {
-    var cos = math.cos(angle);
-    var sin = math.sin(angle);
-    var newX = x * cos - y * sin;
-    var newY = y * cos + x * sin;
+    final cos = math.cos(angle);
+    final sin = math.sin(angle);
+    final newX = x * cos - y * sin;
+    final newY = y * cos + x * sin;
     return Vector(newX, newY);
   }
 

@@ -24,7 +24,7 @@ int gexp(int n) {
 }
 
 Uint8List _createExpTable() {
-  var list = Uint8List(256);
+  final list = Uint8List(256);
   for (var i = 0; i < 8; i++) {
     list[i] = 1 << i;
   }
@@ -35,7 +35,7 @@ Uint8List _createExpTable() {
 }
 
 Uint8List _createLogTable() {
-  var list = Uint8List(256);
+  final list = Uint8List(256);
   for (var i = 0; i < 255; i++) {
     list[_expTable[i]] = i;
   }

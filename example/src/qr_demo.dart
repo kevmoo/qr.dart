@@ -71,7 +71,7 @@ class QrDemo {
     // Type Div
     //
     for (var i = 1; i <= 10; i++) {
-      var radio = InputElement(type: 'radio')
+      final radio = InputElement(type: 'radio')
         ..id = 'type_$i'
         ..name = 'type'
         ..onChange.listen(_levelClick)
@@ -81,7 +81,7 @@ class QrDemo {
       }
       typeDiv.children.add(radio);
 
-      var label = LabelElement()
+      final label = LabelElement()
         ..innerHtml = '$i'
         ..htmlFor = radio.id
         ..classes.add('btn');
@@ -92,7 +92,7 @@ class QrDemo {
     // Error Correct Levels
     //
     for (final v in QrErrorCorrectLevel.levels) {
-      var radio = InputElement(type: 'radio')
+      final radio = InputElement(type: 'radio')
         ..id = 'error_$v'
         ..name = 'error-level'
         ..onChange.listen(_errorClick)
@@ -102,7 +102,7 @@ class QrDemo {
       }
       errorDiv.children.add(radio);
 
-      var label = LabelElement()
+      final label = LabelElement()
         ..innerHtml = QrErrorCorrectLevel.getName(v)
         ..htmlFor = radio.id
         ..classes.add('btn');
