@@ -157,7 +157,7 @@ class QrDemo {
       requestFrame();
     }
 
-    final tx = AffineTransform()
+    final tx = AffineTransform.identity()
       ..translate(0.5 * _canvas.width, 0.5 * _canvas.height)
       ..scale(_scale.current, _scale.current)
       ..translate(-0.5 * size, -0.5 * size);
