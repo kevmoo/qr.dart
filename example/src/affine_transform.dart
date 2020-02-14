@@ -5,31 +5,30 @@ import 'bot.dart';
 class AffineTransform {
   num _scX, _shY, _shX, _scY, _tX, _tY;
 
+  factory AffineTransform.identity() => AffineTransform(1, 0, 0, 1, 0, 0);
+
   AffineTransform(
-      [num scaleX = 1,
-      num shearY = 0,
-      num shearX = 0,
-      num scaleY = 1,
-      num translateX = 0,
-      num translateY = 0])
-      : _scX = scaleX,
+    num scaleX,
+    num shearY,
+    num shearX,
+    num scaleY,
+    num translateX,
+    num translateY,
+  )   : _scX = scaleX,
         _scY = scaleY,
         _tX = translateX,
         _tY = translateY,
         _shX = shearX,
         _shY = shearY;
 
-  factory AffineTransform.fromRotate(num theta, num x, num y) {
-    return AffineTransform()..setToRotation(theta, x, y);
-  }
+  factory AffineTransform.fromRotate(num theta, num x, num y) =>
+      AffineTransform.identity()..setToRotation(theta, x, y);
 
-  factory AffineTransform.fromScale(num sx, num sy) {
-    return AffineTransform(sx, 0, 0, sy, 0, 0);
-  }
+  factory AffineTransform.fromScale(num sx, num sy) =>
+      AffineTransform(sx, 0, 0, sy, 0, 0);
 
-  factory AffineTransform.fromTranslat(num x, num y) {
-    return AffineTransform(1, 0, 0, 1, x, y);
-  }
+  factory AffineTransform.fromTranslat(num x, num y) =>
+      AffineTransform(1, 0, 0, 1, x, y);
 
   num get scaleX => _scX;
 
@@ -47,14 +46,8 @@ class AffineTransform {
 
   num get determinant => _scX * _scY - _shX * _shY;
 
-  bool get isIdentity {
-    return _scX == 1 &&
-        _shY == 0 &&
-        _shX == 0 &&
-        _scY == 1 &&
-        _tX == 0 &&
-        _tY == 0;
-  }
+  bool get isIdentity =>
+      _scX == 1 && _shY == 0 && _shX == 0 && _scY == 1 && _tX == 0 && _tY == 0;
 
   void scale(num sx, num sy) {
     _scX *= sx;
@@ -138,20 +131,17 @@ class AffineTransform {
     return AffineTransform(m00, m10, m01, m11, m02, m12);
   }
 
-  AffineTransform clone() {
-    return AffineTransform(_scX, _shY, _shX, _scY, _tX, _tY);
-  }
+  AffineTransform clone() => AffineTransform(_scX, _shY, _shX, _scY, _tX, _tY);
 
   @override
-  bool operator ==(Object other) {
-    return other is AffineTransform &&
-        _scX == other._scX &&
-        _shX == other._shX &&
-        _tX == other._tX &&
-        _shY == other._shY &&
-        _scY == other._scY &&
-        _tY == other._tY;
-  }
+  bool operator ==(Object other) =>
+      other is AffineTransform &&
+      _scX == other._scX &&
+      _shX == other._shX &&
+      _tX == other._tX &&
+      _shY == other._shY &&
+      _scY == other._scY &&
+      _tY == other._tY;
 
   @override
   int get hashCode => 0;
@@ -161,9 +151,8 @@ class AffineTransform {
       [scaleX, shearY, shearX, scaleY, translateX, translateY].join(', ');
 }
 
-bool isValidNumber(num value) {
-  return value != null && !value.isInfinite && !value.isNaN;
-}
+bool isValidNumber(num value) =>
+    value != null && !value.isInfinite && !value.isNaN;
 
 class Size {
   final num width, height;
@@ -171,17 +160,15 @@ class Size {
   const Size(this.width, this.height);
 
   @override
-  bool operator ==(Object other) {
-    return other is Size && width == other.width && height == other.height;
-  }
+  bool operator ==(Object other) =>
+      other is Size && width == other.width && height == other.height;
 
   num get area => width * height;
 
   num get aspectRatio => width / height;
 
-  bool fitsInside(Size target) {
-    return width <= target.width && height <= target.height;
-  }
+  bool fitsInside(Size target) =>
+      width <= target.width && height <= target.height;
 
   bool isEmpty() => area == 0;
 
@@ -261,7 +248,6 @@ class Vector<T extends num> extends Coordinate<T> {
     return Vector(newX, newY);
   }
 
-  Vector rotateAroundPoint(Coordinate<T> axisPoint, num angle) {
-    return (this - axisPoint).rotate(angle) + axisPoint;
-  }
+  Vector rotateAroundPoint(Coordinate<T> axisPoint, num angle) =>
+      (this - axisPoint).rotate(angle) + axisPoint;
 }
