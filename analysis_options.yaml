@@ -74,4 +74,3 @@ linter:
   - unnecessary_statements
   - unnecessary_string_interpolations
   - void_checks
-
