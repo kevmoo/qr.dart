@@ -12,7 +12,7 @@ void main() {
           ..addData('shanna!')
           ..make();
         for (var i = 0; i < qrModules(qr).length; i++) {
-          expect(encodeBoolListToString(qrModules(qr)[i]),
+          expect(_encodeBoolListToString(qrModules(qr)[i]),
               qrCodeTestData[typeNumber.toString()][quality.toString()][i]);
         }
       }
@@ -24,17 +24,12 @@ void main() {
       final qr = QrCode.fromData(data: 'shanna!', errorCorrectLevel: quality)
         ..make();
       for (var i = 0; i < qrModules(qr).length; i++) {
-        expect(encodeBoolListToString(qrModules(qr)[i]),
+        expect(_encodeBoolListToString(qrModules(qr)[i]),
             qrCodeTestData[1.toString()][quality.toString()][i]);
       }
     }
   });
 }
 
-String encodeBoolListToString(List<bool> l) {
-  var r = '';
-  for (var i = 0; i < l.length; i++) {
-    r += l[i] ? '1' : '0';
-  }
-  return r;
-}
+String _encodeBoolListToString(List<bool> source) =>
+    source.map((e) => e ? '1' : '0').join();
