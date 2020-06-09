@@ -129,14 +129,14 @@ class QrCode {
       if (_modules[r][6] != null) {
         continue;
       }
-      _modules[r][6] = r % 2 == 0;
+      _modules[r][6] = r.isEven;
     }
 
     for (var c = 8; c < moduleCount - 8; c++) {
       if (_modules[6][c] != null) {
         continue;
       }
-      _modules[6][c] = c % 2 == 0;
+      _modules[6][c] = c.isEven;
     }
   }
 
@@ -396,21 +396,21 @@ List<int> _createBytes(QrBitBuffer buffer, List<QrRsBlock> rsBlocks) {
 bool _mask(int maskPattern, int i, int j) {
   switch (maskPattern) {
     case qr_mask_pattern.pattern000:
-      return (i + j) % 2 == 0;
+      return (i + j).isEven;
     case qr_mask_pattern.pattern001:
-      return i % 2 == 0;
+      return i.isEven;
     case qr_mask_pattern.pattern010:
       return j % 3 == 0;
     case qr_mask_pattern.pattern011:
       return (i + j) % 3 == 0;
     case qr_mask_pattern.pattern100:
-      return ((i ~/ 2) + (j ~/ 3)) % 2 == 0;
+      return ((i ~/ 2) + (j ~/ 3)).isEven;
     case qr_mask_pattern.pattern101:
       return (i * j) % 2 + (i * j) % 3 == 0;
     case qr_mask_pattern.pattern110:
-      return ((i * j) % 2 + (i * j) % 3) % 2 == 0;
+      return ((i * j) % 2 + (i * j) % 3).isEven;
     case qr_mask_pattern.pattern111:
-      return ((i * j) % 3 + (i + j) % 2) % 2 == 0;
+      return ((i * j) % 3 + (i + j) % 2).isEven;
     default:
       throw ArgumentError('bad maskPattern:$maskPattern');
   }

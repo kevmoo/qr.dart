@@ -16243,4 +16243,4 @@ final qrCodeTestData = jsonDecode(r'''
     ]
   }
 }
-''');
+''') as Map;
