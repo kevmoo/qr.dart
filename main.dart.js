@@ -1980,16 +1980,16 @@ for(k=0;k<p;++k)for(n=0;n<b.length;++n){c=s[n]
 if(k<c.length)d.push(c[k])}for(k=0;k<o;++k)for(n=0;n<b.length;++n){c=r[n]
 if(k<c.length)d.push(c[k])}return d},
 YW:function(a,b,c){var t
-switch(a){case 0:return C.jn.zY(b+c,2)===0
-case 1:return C.jn.zY(b,2)===0
+switch(a){case 0:return(b+c&1)===0
+case 1:return(b&1)===0
 case 2:return C.jn.zY(c,3)===0
 case 3:return C.jn.zY(b+c,3)===0
-case 4:return C.jn.zY(C.jn.BU(b,2)+C.jn.BU(c,3),2)===0
+case 4:return(C.jn.BU(b,2)+C.jn.BU(c,3)&1)===0
 case 5:t=b*c
 return C.jn.zY(t,2)+C.jn.zY(t,3)===0
 case 6:t=b*c
-return C.jn.zY(C.jn.zY(t,2)+C.jn.zY(t,3),2)===0
-case 7:return C.jn.zY(C.jn.zY(b*c,3)+C.jn.zY(b+c,2),2)===0
+return(C.jn.zY(t,2)+C.jn.zY(t,3)&1)===0
+case 7:return(C.jn.zY(b*c,3)+C.jn.zY(b+c,2)&1)===0
 default:throw H.b(P.xY("bad maskPattern:"+a))}},
 ch:function(a,b){if(1<=b&&b<10)switch(a){case 1:return 10
 case 2:return 9
@@ -3808,9 +3808,9 @@ t=q}}return s},
 TT:function(){var t,s,r,q,p
 for(t=this.c-8,s=this.d,r=8;r<t;++r){q=s[r]
 if(q[6]!=null)continue
-q[6]=r%2===0}for(p=8;p<t;++p){q=s[6]
+q[6]=(r&1)===0}for(p=8;p<t;++p){q=s[6]
 if(q[p]!=null)continue
-q[p]=p%2===0}},
+q[p]=(p&1)===0}},
 nX:function(){var t,s,r,q,p,o,n,m,l,k,j,i,h,g,f=C.YL[this.a-1]
 for(t=f.length,s=this.d,r=0;r<t;++r)for(q=0;q<t;++q){p=f[r]
 o=f[q]

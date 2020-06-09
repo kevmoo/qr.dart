@@ -329,7 +329,7 @@
         "children": [
           "class/192865528"
         ],
-        "canonicalUri": "file:///private/var/folders/c0/jv6k5x0j57vcwkdx6rcjgj3w0071_k/T/scratch_spacevCvGky/example/src/affine_transform.dart"
+        "canonicalUri": "file:///private/var/folders/c0/jv6k5x0j57vcwkdx6rcjgj3w0071_k/T/scratch_space2EEaK7/example/src/affine_transform.dart"
       },
       "404362352": {
         "id": "library/404362352",
@@ -345,7 +345,7 @@
         "id": "library/406699212",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 5340,
+        "size": 5304,
         "children": [
           "class/835022063",
           "function/33917756",
@@ -459,7 +459,7 @@
         "children": [
           "class/760201257"
         ],
-        "canonicalUri": "file:///private/var/folders/c0/jv6k5x0j57vcwkdx6rcjgj3w0071_k/T/scratch_spacevCvGky/example/src/bot.dart"
+        "canonicalUri": "file:///private/var/folders/c0/jv6k5x0j57vcwkdx6rcjgj3w0071_k/T/scratch_space2EEaK7/example/src/bot.dart"
       },
       "507917402": {
         "id": "library/507917402",
@@ -930,7 +930,7 @@
           "function/107012894",
           "function/393892004"
         ],
-        "canonicalUri": "file:///private/var/folders/c0/jv6k5x0j57vcwkdx6rcjgj3w0071_k/T/scratch_spacevCvGky/example/src/qr_demo.dart"
+        "canonicalUri": "file:///private/var/folders/c0/jv6k5x0j57vcwkdx6rcjgj3w0071_k/T/scratch_space2EEaK7/example/src/qr_demo.dart"
       },
       "1038137564": {
         "id": "library/1038137564",
@@ -1037,7 +1037,7 @@
         "children": [
           "function/343410597"
         ],
-        "canonicalUri": "file:///private/var/folders/c0/jv6k5x0j57vcwkdx6rcjgj3w0071_k/T/scratch_spacevCvGky/example/main.dart"
+        "canonicalUri": "file:///private/var/folders/c0/jv6k5x0j57vcwkdx6rcjgj3w0071_k/T/scratch_space2EEaK7/example/main.dart"
       }
     },
     "class": {
@@ -4184,7 +4184,9 @@
         "modifiers": {
           "abstract": false
         },
-        "children": []
+        "children": [
+          "function/818972782"
+        ]
       },
       "540398347": {
         "id": "class/540398347",
@@ -6410,7 +6412,7 @@
         "id": "class/835022063",
         "kind": "class",
         "name": "QrCode",
-        "size": 2472,
+        "size": 2476,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/406699212",
         "modifiers": {
@@ -12037,7 +12039,7 @@
         "id": "function/122639441",
         "kind": "function",
         "name": "_mask",
-        "size": 435,
+        "size": 395,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/406699212",
         "children": [],
@@ -12068,7 +12070,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "YW:function(a,b,c){var t\nswitch(a){case 0:return C.jn.zY(b+c,2)===0\ncase 1:return C.jn.zY(b,2)===0\ncase 2:return C.jn.zY(c,3)===0\ncase 3:return C.jn.zY(b+c,3)===0\ncase 4:return C.jn.zY(C.jn.BU(b,2)+C.jn.BU(c,3),2)===0\ncase 5:t=b*c\nreturn C.jn.zY(t,2)+C.jn.zY(t,3)===0\ncase 6:t=b*c\nreturn C.jn.zY(C.jn.zY(t,2)+C.jn.zY(t,3),2)===0\ncase 7:return C.jn.zY(C.jn.zY(b*c,3)+C.jn.zY(b+c,2),2)===0\ndefault:throw H.b(P.xY(\"bad maskPattern:\"+a))}}",
+        "code": "YW:function(a,b,c){var t\nswitch(a){case 0:return(b+c&1)===0\ncase 1:return(b&1)===0\ncase 2:return C.jn.zY(c,3)===0\ncase 3:return C.jn.zY(b+c,3)===0\ncase 4:return(C.jn.BU(b,2)+C.jn.BU(c,3)&1)===0\ncase 5:t=b*c\nreturn C.jn.zY(t,2)+C.jn.zY(t,3)===0\ncase 6:t=b*c\nreturn(C.jn.zY(t,2)+C.jn.zY(t,3)&1)===0\ncase 7:return(C.jn.zY(b*c,3)+C.jn.zY(b+c,2)&1)===0\ndefault:throw H.b(P.xY(\"bad maskPattern:\"+a))}}",
         "type": "bool* Function(int*,int*,int*)"
       },
       "123297685": {
@@ -12563,7 +12565,7 @@
         "id": "function/142208143",
         "kind": "function",
         "name": "_setupTimingPattern",
-        "size": 169,
+        "size": 173,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/835022063",
         "children": [],
@@ -12578,7 +12580,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "TT:function(){var t,s,r,q,p\nfor(t=this.c-8,s=this.d,r=8;r<t;++r){q=s[r]\nif(q[6]!=null)continue\nq[6]=r%2===0}for(p=8;p<t;++p){q=s[6]\nif(q[p]!=null)continue\nq[p]=p%2===0}}",
+        "code": "TT:function(){var t,s,r,q,p\nfor(t=this.c-8,s=this.d,r=8;r<t;++r){q=s[r]\nif(q[6]!=null)continue\nq[6]=(r&1)===0}for(p=8;p<t;++p){q=s[6]\nif(q[p]!=null)continue\nq[p]=(p&1)===0}}",
         "type": "void Function()"
       },
       "143567266": {
@@ -34903,6 +34905,28 @@
         "code": "gA:function(a){return a.length}",
         "type": "int Function()"
       },
+      "818972782": {
+        "id": "function/818972782",
+        "kind": "function",
+        "name": "isEven",
+        "size": 0,
+        "outputUnit": "outputUnit/669725655",
+        "parent": "class/535478555",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "bool",
+        "inferredReturnType": "[exact=JSBool]",
+        "parameters": [],
+        "sideEffects": "SideEffects(reads nothing; writes nothing)",
+        "inlinedCount": 7,
+        "code": "",
+        "type": "bool Function()"
+      },
       "820169204": {
         "id": "function/820169204",
         "kind": "function",
@@ -54149,6 +54173,30 @@
         "mask": null
       },
       {
+        "id": "function/818972782",
+        "mask": null
+      },
+      {
+        "id": "function/818972782",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/818972782",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/818972782",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/818972782",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/818972782",
+        "mask": "inlined"
+      },
+      {
         "id": "function/857809232",
         "mask": null
       },
@@ -55165,6 +55213,18 @@
       {
         "id": "field/595039293",
         "mask": null
+      },
+      {
+        "id": "function/818972782",
+        "mask": null
+      },
+      {
+        "id": "function/818972782",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/818972782",
+        "mask": "inlined"
       }
     ],
     "function/143741280": [
@@ -79484,7 +79544,7 @@
       "id": "outputUnit/669725655",
       "kind": "outputUnit",
       "name": "main",
-      "size": 153503,
+      "size": 153467,
       "filename": "main.dart.js",
       "imports": []
     }
@@ -79494,11 +79554,11 @@
   "dump_minor_version": 1,
   "program": {
     "entrypoint": "function/343410597",
-    "size": 153503,
+    "size": 153467,
     "dart2jsVersion": "2.9.0-14.0.dev",
-    "compilationMoment": "2020-06-09 10:38:24.623572",
-    "compilationDuration": 3432805,
-    "toJsonDuration": 11000,
+    "compilationMoment": "2020-06-09 10:39:53.295355",
+    "compilationDuration": 2093687,
+    "toJsonDuration": 7000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
     "isRuntimeTypeUsed": false,
