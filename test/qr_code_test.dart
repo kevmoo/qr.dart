@@ -35,7 +35,7 @@ void main() {
   test('fromUint8List', () {
     for (var quality in QrErrorCorrectLevel.levels) {
       final qr = QrCode.fromUint8List(
-          data: Uint8List.fromList([115,104,97,110,110,97,33]),
+          data: Uint8List.fromList([115, 104, 97, 110, 110, 97, 33]),
           errorCorrectLevel: quality)
         ..make();
       for (var i = 0; i < qrModules(qr).length; i++) {
