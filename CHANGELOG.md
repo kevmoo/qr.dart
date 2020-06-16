@@ -1,6 +1,7 @@
 ## 1.3.0
 
-- Support for generating QR which includes ByteData
+- Added `QrCode.addByteData`.
+- Added `QrCode.fromUint8List`.
 
 ## 1.2.1
 
