@@ -6,21 +6,15 @@ import 'mode.dart' as qr_mode;
 
 class QrByte {
   final int mode = qr_mode.mode8bitByte;
-  final List<int> _data;
+  final Uint8List _data;
 
-  factory QrByte(String input) {
-    final charUnits = utf8.encode(input);
+  factory QrByte(String input) =>
+      QrByte.fromUint8List(utf8.encoder.convert(input));
 
-    return QrByte._internal(charUnits);
-  }
-
-  factory QrByte.fromUint8List(Uint8List input) =>
-      QrByte._internal(input.toList());
+  QrByte.fromUint8List(Uint8List input) : _data = input;
 
   factory QrByte.fromByteData(ByteData input) =>
-      QrByte._internal(input.buffer.asUint8List().toList());
-
-  QrByte._internal(this._data);
+      QrByte.fromUint8List(input.buffer.asUint8List());
 
   int get length => _data.length;
 
