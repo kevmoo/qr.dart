@@ -256,7 +256,6 @@
           "class/666609002",
           "class/923794385",
           "class/972068581",
-          "class/1068918135",
           "function/116632210",
           "function/231262607",
           "function/1039237657"
@@ -329,7 +328,7 @@
         "children": [
           "class/192865528"
         ],
-        "canonicalUri": "file:///private/var/folders/c0/jv6k5x0j57vcwkdx6rcjgj3w0071_k/T/scratch_space2EEaK7/example/src/affine_transform.dart"
+        "canonicalUri": "file:///private/var/folders/c0/jv6k5x0j57vcwkdx6rcjgj3w0071_k/T/scratch_spaceB6llns/example/src/affine_transform.dart"
       },
       "404362352": {
         "id": "library/404362352",
@@ -459,7 +458,7 @@
         "children": [
           "class/760201257"
         ],
-        "canonicalUri": "file:///private/var/folders/c0/jv6k5x0j57vcwkdx6rcjgj3w0071_k/T/scratch_space2EEaK7/example/src/bot.dart"
+        "canonicalUri": "file:///private/var/folders/c0/jv6k5x0j57vcwkdx6rcjgj3w0071_k/T/scratch_spaceB6llns/example/src/bot.dart"
       },
       "507917402": {
         "id": "library/507917402",
@@ -830,7 +829,6 @@
           "class/466061502",
           "class/500662026",
           "class/518228506",
-          "class/644348892",
           "class/692496355",
           "class/722522722",
           "class/742137989",
@@ -846,7 +844,6 @@
           "field/193563302",
           "field/199575132",
           "field/203897729",
-          "field/417944821",
           "field/546650141",
           "function/10463749",
           "function/64968119",
@@ -930,7 +927,7 @@
           "function/107012894",
           "function/393892004"
         ],
-        "canonicalUri": "file:///private/var/folders/c0/jv6k5x0j57vcwkdx6rcjgj3w0071_k/T/scratch_space2EEaK7/example/src/qr_demo.dart"
+        "canonicalUri": "file:///private/var/folders/c0/jv6k5x0j57vcwkdx6rcjgj3w0071_k/T/scratch_spaceB6llns/example/src/qr_demo.dart"
       },
       "1038137564": {
         "id": "library/1038137564",
@@ -1037,7 +1034,7 @@
         "children": [
           "function/343410597"
         ],
-        "canonicalUri": "file:///private/var/folders/c0/jv6k5x0j57vcwkdx6rcjgj3w0071_k/T/scratch_space2EEaK7/example/main.dart"
+        "canonicalUri": "file:///private/var/folders/c0/jv6k5x0j57vcwkdx6rcjgj3w0071_k/T/scratch_spaceB6llns/example/main.dart"
       }
     },
     "class": {
@@ -4422,9 +4419,9 @@
         "children": [
           "field/358898050",
           "field/969333747",
+          "function/20606873",
           "function/321046911",
           "function/628393790",
-          "function/644671766",
           "function/740066005"
         ]
       },
@@ -4990,20 +4987,6 @@
           "field/924001250",
           "function/268212636",
           "function/505296423"
-        ]
-      },
-      "644348892": {
-        "id": "class/644348892",
-        "kind": "class",
-        "name": "CastErrorImplementation",
-        "size": 0,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "library/966364039",
-        "modifiers": {
-          "abstract": false
-        },
-        "children": [
-          "field/880706814"
         ]
       },
       "654155003": {
@@ -8067,20 +8050,6 @@
         },
         "children": []
       },
-      "1068918135": {
-        "id": "class/1068918135",
-        "kind": "class",
-        "name": "Codec",
-        "size": 0,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "library/223393735",
-        "modifiers": {
-          "abstract": true
-        },
-        "children": [
-          "function/958880925"
-        ]
-      },
       "1070435853": {
         "id": "class/1070435853",
         "kind": "class",
@@ -8712,6 +8681,34 @@
         "inlinedCount": 0,
         "code": "kR:function(a,b,c,d,e,f,g){var t,s,r,q,p,o,n=this\nif(c){n.EP(a,b)\nwindow\nt=\"Removing element due to corrupted attributes on <\"+d+\">\"\nif(typeof console!=\"undefined\")window.console.warn(t)\nreturn}if(!n.a.i0(a)){n.EP(a,b)\nwindow\nt=\"Removing disallowed element <\"+H.d(e)+\"> from \"+H.d(b)\nif(typeof console!=\"undefined\")window.console.warn(t)\nreturn}if(g!=null)if(!n.a.Eb(a,\"is\",g)){n.EP(a,b)\nwindow\nt=\"Removing disallowed type extension <\"+H.d(e)+' is=\"'+g+'\">'\nif(typeof console!=\"undefined\")window.console.warn(t)\nreturn}t=f.gvc()\ns=H.VM(t.slice(0),H.t6(t).C(\"jd<1>\"))\nfor(r=f.gvc().length-1,t=f.a;r>=0;--r){q=s[r]\np=n.a\no=J.cH(q)\nH.hN(q)\nif(!p.Eb(a,o,t.getAttribute(q))){window\np=\"Removing disallowed attribute <\"+H.d(e)+\" \"+q+'=\"'+H.d(t.getAttribute(q))+'\">'\nif(typeof console!=\"undefined\")window.console.warn(p)\nt.removeAttribute(q)}}if(u.f.b(a))n.Pn(a.content)}",
         "type": "void Function(Element,Node?,bool,String,String,Map<dynamic,dynamic>,String?)"
+      },
+      "20606873": {
+        "id": "function/20606873",
+        "kind": "function",
+        "name": "QrByte.fromUint8List",
+        "size": 0,
+        "outputUnit": "outputUnit/669725655",
+        "parent": "class/565189644",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "dynamic",
+        "inferredReturnType": "[exact=QrByte]",
+        "parameters": [
+          {
+            "name": "input",
+            "type": "[exact=NativeUint8List]",
+            "declaredType": "Uint8List*"
+          }
+        ],
+        "sideEffects": "SideEffects(reads nothing; writes nothing)",
+        "inlinedCount": 1,
+        "code": "",
+        "type": "dynamic Function(Uint8List*)"
       },
       "21938161": {
         "id": "function/21938161",
@@ -28992,7 +28989,7 @@
         "returnType": "int*",
         "inferredReturnType": "[subclass=JSUInt32]",
         "parameters": [],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "sideEffects": "SideEffects(reads anything; writes nothing)",
         "inlinedCount": 1,
         "code": "gA:function(a){return this.b.length}",
         "type": "int* Function()"
@@ -29665,34 +29662,6 @@
         "inlinedCount": 7,
         "code": "",
         "type": "void Function(void Function())"
-      },
-      "644671766": {
-        "id": "function/644671766",
-        "kind": "function",
-        "name": "QrByte._internal",
-        "size": 0,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/565189644",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "dynamic",
-        "inferredReturnType": "[exact=QrByte]",
-        "parameters": [
-          {
-            "name": "_data",
-            "type": "[exact=NativeUint8List]",
-            "declaredType": "List<int*>*"
-          }
-        ],
-        "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 1,
-        "code": "",
-        "type": "dynamic Function(List<int*>*)"
       },
       "647368947": {
         "id": "function/647368947",
@@ -39221,34 +39190,6 @@
         "code": "",
         "type": "bool Function(JSArray<dynamic>)"
       },
-      "958880925": {
-        "id": "function/958880925",
-        "kind": "function",
-        "name": "encode",
-        "size": 0,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/1068918135",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "Codec.T",
-        "inferredReturnType": "[exact=NativeUint8List]",
-        "parameters": [
-          {
-            "name": "input",
-            "type": "[null|exact=JSString]",
-            "declaredType": "Codec.S"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 1,
-        "code": "",
-        "type": "Codec.T Function(Object?)"
-      },
       "958926970": {
         "id": "function/958926970",
         "kind": "function",
@@ -44376,7 +44317,7 @@
         "children": [],
         "inferredType": "[exact=NativeUint8List]",
         "code": "",
-        "type": "List<int*>*"
+        "type": "Uint8List*"
       },
       "359397062": {
         "id": "field/359397062",
@@ -44629,18 +44570,6 @@
         "inferredType": "[null|exact=JSString]",
         "code": "",
         "type": "String?"
-      },
-      "417944821": {
-        "id": "field/417944821",
-        "kind": "field",
-        "name": "_inTypeAssertion",
-        "size": 0,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "library/966364039",
-        "children": [],
-        "inferredType": "[exact=JSBool]",
-        "code": "",
-        "type": "bool"
       },
       "419220233": {
         "id": "field/419220233",
@@ -45995,18 +45924,6 @@
         "parent": "class/324980341",
         "children": [],
         "inferredType": "[null|exact=JSString]",
-        "code": "",
-        "type": "String"
-      },
-      "880706814": {
-        "id": "field/880706814",
-        "kind": "field",
-        "name": "_message",
-        "size": 0,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/644348892",
-        "children": [],
-        "inferredType": "[exact=JSString]",
         "code": "",
         "type": "String"
       },
@@ -71823,11 +71740,11 @@
     ],
     "function/740066005": [
       {
-        "id": "function/644671766",
+        "id": "function/20606873",
         "mask": "inlined"
       },
       {
-        "id": "function/958880925",
+        "id": "function/241648555",
         "mask": "inlined"
       }
     ],
@@ -76389,12 +76306,6 @@
         "mask": "inlined"
       }
     ],
-    "function/958880925": [
-      {
-        "id": "function/241648555",
-        "mask": "inlined"
-      }
-    ],
     "function/959492039": [
       {
         "id": "field/146902950",
@@ -79555,9 +79466,9 @@
   "program": {
     "entrypoint": "function/343410597",
     "size": 153467,
-    "dart2jsVersion": "2.9.0-14.0.dev",
-    "compilationMoment": "2020-06-09 10:39:53.295355",
-    "compilationDuration": 2093687,
+    "dart2jsVersion": "2.9.0-16.0.dev",
+    "compilationMoment": "2020-06-16 10:06:08.366036",
+    "compilationDuration": 1987116,
     "toJsonDuration": 7000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
