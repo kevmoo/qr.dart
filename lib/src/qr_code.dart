@@ -44,6 +44,14 @@ class QrCode {
     return QrCode(typeNumber, errorCorrectLevel)..addData(data);
   }
 
+  factory QrCode.fromUint8List(
+      {@required Uint8List data, @required int errorCorrectLevel}) {
+    final typeNumber = _calculateTypeNumberFromData(
+        errorCorrectLevel, [QrByte.fromUint8List(data)]);
+    return QrCode(typeNumber, errorCorrectLevel)
+      .._addToList(QrByte.fromUint8List(data));
+  }
+
   static int _calculateTypeNumberFromData(
       int errorCorrectLevel, List<QrByte> dataList) {
     int typeNumber;

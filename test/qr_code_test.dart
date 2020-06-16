@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:qr/src/error_correct_level.dart';
 import 'package:qr/src/qr_code.dart';
 import 'package:test/test.dart';
@@ -22,6 +24,19 @@ void main() {
   test('fromData', () {
     for (var quality in QrErrorCorrectLevel.levels) {
       final qr = QrCode.fromData(data: 'shanna!', errorCorrectLevel: quality)
+        ..make();
+      for (var i = 0; i < qrModules(qr).length; i++) {
+        expect(_encodeBoolListToString(qrModules(qr)[i]),
+            qrCodeTestData[1.toString()][quality.toString()][i]);
+      }
+    }
+  });
+
+  test('fromUint8List', () {
+    for (var quality in QrErrorCorrectLevel.levels) {
+      final qr = QrCode.fromUint8List(
+          data: Uint8List.fromList([115, 104, 97, 110, 110, 97, 33]),
+          errorCorrectLevel: quality)
         ..make();
       for (var i = 0; i < qrModules(qr).length; i++) {
         expect(_encodeBoolListToString(qrModules(qr)[i]),
