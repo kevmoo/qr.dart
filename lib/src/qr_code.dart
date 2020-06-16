@@ -37,23 +37,33 @@ class QrCode {
     }
   }
 
-  factory QrCode.fromData(
-      {@required String data, @required int errorCorrectLevel}) {
-    final typeNumber =
-        _calculateTypeNumberFromData(errorCorrectLevel, [QrByte(data)]);
+  factory QrCode.fromData({
+    @required String data,
+    @required int errorCorrectLevel,
+  }) {
+    final typeNumber = _calculateTypeNumberFromData(
+      errorCorrectLevel,
+      [QrByte(data)],
+    );
     return QrCode(typeNumber, errorCorrectLevel)..addData(data);
   }
 
-  factory QrCode.fromUint8List(
-      {@required Uint8List data, @required int errorCorrectLevel}) {
+  factory QrCode.fromUint8List({
+    @required Uint8List data,
+    @required int errorCorrectLevel,
+  }) {
     final typeNumber = _calculateTypeNumberFromData(
-        errorCorrectLevel, [QrByte.fromUint8List(data)]);
+      errorCorrectLevel,
+      [QrByte.fromUint8List(data)],
+    );
     return QrCode(typeNumber, errorCorrectLevel)
       .._addToList(QrByte.fromUint8List(data));
   }
 
   static int _calculateTypeNumberFromData(
-      int errorCorrectLevel, List<QrByte> dataList) {
+    int errorCorrectLevel,
+    List<QrByte> dataList,
+  ) {
     int typeNumber;
     for (typeNumber = 1; typeNumber < 40; typeNumber++) {
       final rsBlocks = QrRsBlock.getRSBlocks(typeNumber, errorCorrectLevel);
