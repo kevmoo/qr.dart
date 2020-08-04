@@ -2,7 +2,7 @@ language: dart
 
 dart:
   - dev
-  - 2.6.0
+  - 2.7.0
 
 dart_task:
   - test: "--platform vm,chrome"
@@ -12,7 +12,7 @@ matrix:
   # Only validate formatting using the dev release
   - dart: dev
     dart_task: dartfmt
-  - dart: 2.6.0
+  - dart: 2.7.0
     dart_task:
       dartanalyzer: --fatal-warnings .
   - dart: dev

@@ -1,3 +1,7 @@
+## 1.3.1-dev
+
+- Require Dart SDK `>=2.7.0 <3.0.0`.
+
 ## 1.3.0
 
 - Added `QrCode.addByteData`.
