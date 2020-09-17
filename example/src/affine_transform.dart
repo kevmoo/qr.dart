@@ -151,8 +151,7 @@ class AffineTransform {
       [scaleX, shearY, shearX, scaleY, translateX, translateY].join(', ');
 }
 
-bool isValidNumber(num value) =>
-    value != null && !value.isInfinite && !value.isNaN;
+bool isValidNumber(num value) => !value.isInfinite && !value.isNaN;
 
 class Size {
   final num width, height;
@@ -193,46 +192,43 @@ class Size {
   int get hashCode => width.hashCode ^ 37 * height.hashCode;
 }
 
-class Coordinate<T extends num> extends math.Point<T> {
-  const Coordinate([T x, T y]) : super(x, y);
+class Coordinate extends math.Point {
+  const Coordinate([num x = 0, num y = 0]) : super(x, y);
 
   bool get isValid => isValidNumber(x) && isValidNumber(y);
 
   @override
-  Vector<T> operator -(math.Point<T> other) => difference(this, other);
+  Vector operator -(math.Point other) => difference(this, other);
 
   @override
-  Coordinate<T> operator +(math.Point<T> other) =>
-      Coordinate<T>(x + other.x as T, y + other.y as T);
+  Coordinate operator +(math.Point other) =>
+      Coordinate(x + other.x, y + other.y);
 
   Vector toVector() => Vector(x, y);
 
   Size toSize() => Size(x, y);
 
-  static Vector<T> difference<T extends num>(
-          math.Point<T> a, math.Point<T> b) =>
-      Vector<T>(a.x - b.x as T, a.y - b.y as T);
+  static Vector difference<T extends num>(math.Point<T> a, math.Point<T> b) =>
+      Vector(a.x - b.x as T, a.y - b.y as T);
 
   static bool valid(math.Point point) =>
       isValidNumber(point.x) && isValidNumber(point.y);
 }
 
-class Vector<T extends num> extends Coordinate<T> {
-  const Vector([T x, T y]) : super(x, y);
+class Vector extends Coordinate {
+  const Vector([num x = 0, num y = 0]) : super(x, y);
 
   Vector get normal => scale(1 / magnitude);
 
   double get angle => math.atan2(y, x);
 
   @override
-  Vector<T> operator +(math.Point<T> other) =>
-      Vector<T>(x + other.x as T, y + other.y as T);
+  Vector operator +(math.Point other) => Vector(x + other.x, y + other.y);
 
   @override
-  Vector<T> operator *(num magnitude) => scale(magnitude);
+  Vector operator *(num magnitude) => scale(magnitude);
 
-  Vector<T> scale(num magnitude) =>
-      Vector<T>(x * magnitude as T, y * magnitude as T);
+  Vector scale(num magnitude) => Vector(x * magnitude, y * magnitude);
 
   num dot(Vector other) => x * other.x + y * other.y;
 
@@ -248,6 +244,6 @@ class Vector<T extends num> extends Coordinate<T> {
     return Vector(newX, newY);
   }
 
-  Vector rotateAroundPoint(Coordinate<T> axisPoint, num angle) =>
+  Vector rotateAroundPoint(Coordinate axisPoint, num angle) =>
       (this - axisPoint).rotate(angle) + axisPoint;
 }

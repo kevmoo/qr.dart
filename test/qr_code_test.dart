@@ -52,5 +52,5 @@ void main() {
   });
 }
 
-String _encodeBoolListToString(List<bool> source) =>
-    source.map((e) => e ? '1' : '0').join();
+String _encodeBoolListToString(List<bool?> source) =>
+    source.map((e) => e! ? '1' : '0').join();
