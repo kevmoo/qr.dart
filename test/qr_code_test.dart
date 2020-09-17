@@ -53,4 +53,4 @@ void main() {
 }
 
 String _encodeBoolListToString(List<bool?> source) =>
-    source.map((e) => e! ? '1' : '0').join();
+    source.cast<bool>().map((e) => e ? '1' : '0').join();
