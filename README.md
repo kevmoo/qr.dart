@@ -48,7 +48,3 @@ The following libraries use qr.dart to generate QR codes for you out of the box:
 # Demo
 
 A working demo can be found here: [https://kevmoo.github.io/qr.dart/](https://kevmoo.github.io/qr.dart/)
-
-
-# Authors
- * [Kevin Moore](https://github.com/kevmoo) ([@kevmoo](http://twitter.com/kevmoo))
