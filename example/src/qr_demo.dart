@@ -23,7 +23,7 @@ class QrDemo {
   int _typeNumber = 10;
   int _errorCorrectLevel = QrErrorCorrectLevel.M;
 
-  List<bool> _squares;
+  late List<bool> _squares;
 
   bool _frameRequested = false;
 
@@ -33,13 +33,13 @@ class QrDemo {
     final errorDiv = querySelector('#error-div') as DivElement;
     final input = querySelector('#input') as InputElement;
 
-    final controller = StreamController<List<Object>>();
+    final controller = StreamController<List<Object>>.broadcast();
 
     final demo = QrDemo._(canvas, typeDiv, errorDiv, controller)
-      ..value = input.value;
+      ..value = input.value!;
 
     input.onKeyUp.listen((KeyboardEvent args) {
-      demo.value = input.value;
+      demo.value = input.value!;
     });
 
     demo.output.listen((data) {
@@ -126,13 +126,13 @@ class QrDemo {
 
   void _levelClick(Event args) {
     final source = args.target as InputElement;
-    _typeNumber = int.parse(source.dataset[_typeRadioIdKey]);
+    _typeNumber = int.parse(source.dataset[_typeRadioIdKey]!);
     _update();
   }
 
   void _errorClick(Event args) {
     final source = args.target as InputElement;
-    _errorCorrectLevel = int.parse(source.dataset[_errorLevelIdKey]);
+    _errorCorrectLevel = int.parse(source.dataset[_errorLevelIdKey]!);
     _update();
   }
 
@@ -145,10 +145,10 @@ class QrDemo {
   void _onFrame(num highResTime) {
     _frameRequested = false;
 
-    _ctx.clearRect(0, 0, _canvas.width, _canvas.height);
+    _ctx.clearRect(0, 0, _canvas.width!, _canvas.height!);
 
     final size = math.sqrt(_squares.length).toInt();
-    final minDimension = math.min(_canvas.width, _canvas.height);
+    final minDimension = math.min(_canvas.width!, _canvas.height!);
     final scale = minDimension ~/ (1.1 * size);
 
     _scale.target = scale;
@@ -158,7 +158,7 @@ class QrDemo {
     }
 
     final tx = AffineTransform.identity()
-      ..translate(0.5 * _canvas.width, 0.5 * _canvas.height)
+      ..translate(0.5 * _canvas.width!, 0.5 * _canvas.height!)
       ..scale(_scale.current, _scale.current)
       ..translate(-0.5 * size, -0.5 * size);
 

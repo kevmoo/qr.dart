@@ -15,31 +15,31 @@ import 'rs_block.dart';
 import 'util.dart' as qr_util;
 
 @visibleForTesting
-List<List<bool>> qrModules(QrCode qrCode) => qrCode._modules;
+List<List<bool?>> qrModules(QrCode qrCode) => qrCode._modules;
 
 class QrCode {
   final int typeNumber;
   final int errorCorrectLevel;
   final int moduleCount;
-  final List<List<bool>> _modules;
-  List<int> _dataCache;
+  final List<List<bool?>> _modules;
+  List<int>? _dataCache;
   final List<QrByte> _dataList = <QrByte>[];
 
   QrCode(this.typeNumber, this.errorCorrectLevel)
       : moduleCount = typeNumber * 4 + 17,
-        _modules = <List<bool>>[] {
+        _modules = <List<bool?>>[] {
     RangeError.checkValueInInterval(typeNumber, 1, 40, 'typeNumber');
     RangeError.checkValidIndex(
         errorCorrectLevel, QrErrorCorrectLevel.levels, 'errorCorrectLevel');
 
     for (var row = 0; row < moduleCount; row++) {
-      _modules.add(List<bool>(moduleCount));
+      _modules.add(List<bool?>.filled(moduleCount, null));
     }
   }
 
   factory QrCode.fromData({
-    @required String data,
-    @required int errorCorrectLevel,
+    required String data,
+    required int errorCorrectLevel,
   }) {
     final typeNumber = _calculateTypeNumberFromData(
       errorCorrectLevel,
@@ -49,8 +49,8 @@ class QrCode {
   }
 
   factory QrCode.fromUint8List({
-    @required Uint8List data,
-    @required int errorCorrectLevel,
+    required Uint8List data,
+    required int errorCorrectLevel,
   }) {
     final typeNumber = _calculateTypeNumberFromData(
       errorCorrectLevel,
@@ -90,7 +90,7 @@ class QrCode {
     if (row < 0 || moduleCount <= row || col < 0 || moduleCount <= col) {
       throw ArgumentError('$row , $col');
     }
-    return _modules[row][col];
+    return _modules[row][col]!;
   }
 
   void addData(String data) => _addToList(QrByte(data));
@@ -293,7 +293,7 @@ class QrCode {
 
     _dataCache ??= _createData(typeNumber, errorCorrectLevel, _dataList);
 
-    _mapData(_dataCache, maskPattern);
+    _mapData(_dataCache!, maskPattern);
   }
 }
 
@@ -361,8 +361,8 @@ List<int> _createBytes(QrBitBuffer buffer, List<QrRsBlock> rsBlocks) {
   var maxDcCount = 0;
   var maxEcCount = 0;
 
-  final dcdata = List<List<int>>(rsBlocks.length);
-  final ecdata = List<List<int>>(rsBlocks.length);
+  final dcData = List<List<int>?>.filled(rsBlocks.length, null);
+  final ecData = List<List<int>?>.filled(rsBlocks.length, null);
 
   for (var r = 0; r < rsBlocks.length; r++) {
     final dcCount = rsBlocks[r].dataCount;
@@ -371,22 +371,22 @@ List<int> _createBytes(QrBitBuffer buffer, List<QrRsBlock> rsBlocks) {
     maxDcCount = math.max(maxDcCount, dcCount);
     maxEcCount = math.max(maxEcCount, ecCount);
 
-    dcdata[r] = Uint8List(dcCount);
+    final dcItem = dcData[r] = Uint8List(dcCount);
 
-    for (var i = 0; i < dcdata[r].length; i++) {
-      dcdata[r][i] = 0xff & buffer.getByte(i + offset);
+    for (var i = 0; i < dcItem.length; i++) {
+      dcItem[i] = 0xff & buffer.getByte(i + offset);
     }
     offset += dcCount;
 
     final rsPoly = _errorCorrectPolynomial(ecCount);
-    final rawPoly = QrPolynomial(dcdata[r], rsPoly.length - 1);
+    final rawPoly = QrPolynomial(dcItem, rsPoly.length - 1);
 
     final modPoly = rawPoly.mod(rsPoly);
-    ecdata[r] = Uint8List(rsPoly.length - 1);
+    final ecItem = ecData[r] = Uint8List(rsPoly.length - 1);
 
-    for (var i = 0; i < ecdata[r].length; i++) {
-      final modIndex = i + modPoly.length - ecdata[r].length;
-      ecdata[r][i] = (modIndex >= 0) ? modPoly[modIndex] : 0;
+    for (var i = 0; i < ecItem.length; i++) {
+      final modIndex = i + modPoly.length - ecItem.length;
+      ecItem[i] = (modIndex >= 0) ? modPoly[modIndex] : 0;
     }
   }
 
@@ -394,16 +394,16 @@ List<int> _createBytes(QrBitBuffer buffer, List<QrRsBlock> rsBlocks) {
 
   for (var i = 0; i < maxDcCount; i++) {
     for (var r = 0; r < rsBlocks.length; r++) {
-      if (i < dcdata[r].length) {
-        data.add(dcdata[r][i]);
+      if (i < dcData[r]!.length) {
+        data.add(dcData[r]![i]);
       }
     }
   }
 
   for (var i = 0; i < maxEcCount; i++) {
     for (var r = 0; r < rsBlocks.length; r++) {
-      if (i < ecdata[r].length) {
-        data.add(ecdata[r][i]);
+      if (i < ecData[r]!.length) {
+        data.add(ecData[r]![i]);
       }
     }
   }
