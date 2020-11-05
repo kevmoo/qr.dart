@@ -1,4 +1,4 @@
-## 1.3.1-dev
+## 1.4.0-nullsafety-dev
 
 - Require Dart SDK `>=2.7.0 <3.0.0`.
 
