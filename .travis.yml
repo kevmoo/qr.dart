@@ -1,7 +1,7 @@
 language: dart
 
 dart:
-- dev
+  - dev
 
 dart_task:
 - dartfmt
@@ -10,8 +10,8 @@ dart_task:
 
 # Only building master means that we don't run two builds for each pull request.
 branches:
-  only: [master, null_safety]
+  only: [master]
 
 cache:
-  directories:
-  - $HOME/.pub-cache
+ directories:
+   - $HOME/.pub-cache
