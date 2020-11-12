@@ -9,7 +9,7 @@ on:
     - cron: '0 0 * * 0'
 
 jobs:
-  analyze_format:
+  ci:
     runs-on: ubuntu-latest
     steps:
     - uses: cedx/setup-dart@v2
