@@ -1,5 +1,5 @@
 name: qr
-version: 1.4.0-nullsafety-dev
+version: 2.0.0-nullsafety
 description: >-
   A QR code generation library for Dart and Flutter.
   Supports QR code version 1 through 40, error correction and redundancy.
