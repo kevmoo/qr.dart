@@ -1,6 +1,7 @@
-## 1.4.0-nullsafety-dev
+## 2.0.0-nullsafety
 
-- Require Dart SDK `>=2.7.0 <3.0.0`.
+- Migrated to null safety.
+- Require Dart SDK `>=2.12.0 <3.0.0`.
 
 ## 1.3.0
 
