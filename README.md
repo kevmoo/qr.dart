@@ -1,6 +1,6 @@
 A QR code generation library for Dart and Flutter.
 
-[![Build Status](https://travis-ci.org/kevmoo/qr.dart.svg?branch=master)](https://travis-ci.org/kevmoo/qr.dart)
+[![CI](https://github.com/kevmoo/qr.dart/workflows/ci/badge.svg)](https://github.com/kevmoo/qr.dart/actions?query=workflow%3A%22ci%22)
 
 # Features
 
