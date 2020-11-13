@@ -1,0 +1,24 @@
+name: ci
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+  schedule:
+    # “At 00:00 (UTC) on Sunday.”
+    - cron: '0 0 * * 0'
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: cedx/setup-dart@v2
+      with:
+        release-channel: dev
+    - uses: actions/checkout@v2
+
+    - run: pub get
+
+    - run: dart format --output=none --set-exit-if-changed .
+    - run: dart analyze --fatal-warnings --fatal-infos .
+    - run: dart test -p vm,chrome
