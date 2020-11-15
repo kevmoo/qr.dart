@@ -3,6 +3,7 @@ import 'dart:html';
 import 'dart:math' as math;
 
 import 'package:qr/qr.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:stream_transform/stream_transform.dart';
 
 import 'affine_transform.dart';
