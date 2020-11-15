@@ -16,7 +16,6 @@ jobs:
       with:
         release-channel: dev
     - run: dart --version
-    - run: export
     - uses: actions/checkout@v2
 
     - run: pub get
