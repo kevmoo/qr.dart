@@ -102,8 +102,9 @@ class QrCode {
     _dataCache = null;
   }
 
-  void make() {
-    _makeImpl(false, _getBestMaskPattern());
+  void make([int? maskPattern]) {
+    assert(maskPattern == null || (maskPattern >= 0 && maskPattern <= 7));
+    _makeImpl(false, maskPattern ?? _getBestMaskPattern());
   }
 
   void _setupPositionProbePattern(int row, int col) {
