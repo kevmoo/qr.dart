@@ -87,21 +87,6 @@ void main() {
         ..make(8);
     }, throwsA(isA<AssertionError>()));
   });
-
-  test('''
-      WHEN provided mask pattern is NULL,
-      SHOULD use the mask pattern from _getBestMaskPattern()
-  ''', () {
-    final qr = QrCode(1, QrErrorCorrectLevel.L)
-      ..addData('shanna!')
-      ..make(null);
-    for (var i = 0; i < qrModules(qr).length; i++) {
-      expect(
-        _encodeBoolListToString(qrModules(qr)[i]),
-        qrCodeTestData['1']['1'][i],
-      );
-    }
-  });
 }
 
 String _encodeBoolListToString(List<bool?> source) =>
