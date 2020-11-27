@@ -3,6 +3,9 @@
 - Migrated to null safety.
 - Require Dart SDK `>=2.12.0 <3.0.0`.
 
+## 1.4.0
+- Expose Mask Pattern as a parameter of QrCode.make()
+
 ## 1.3.0
 
 - Added `QrCode.addByteData`.
