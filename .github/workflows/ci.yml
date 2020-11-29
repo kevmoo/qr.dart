@@ -8,10 +8,20 @@ on:
     # “At 00:00 (UTC) on Sunday.”
     - cron: '0 0 * * 0'
 
+env:
+  PUB_ENVIRONMENT: bot.github
+
 jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
+    - name: Cache Pub hosted dependencies
+      uses: actions/cache@v2
+      with:
+        path: "~/.pub-cache/hosted"
+        key: "pub-cache-hosted;dart:dev"
+        restore-keys: |
+          pub-cache-hosted
     - uses: cedx/setup-dart@v2
       with:
         release-channel: dev
