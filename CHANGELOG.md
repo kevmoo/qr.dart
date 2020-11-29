@@ -1,3 +1,7 @@
+## 2.0.0-nullsafety.1
+
+- Expose Mask Pattern as a parameter of QrCode.make()
+
 ## 2.0.0-nullsafety
 
 - Migrated to null safety.

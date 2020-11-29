@@ -5,6 +5,7 @@ import 'package:qr/src/qr_code.dart';
 import 'package:test/test.dart';
 
 import 'qr_code_test_data.dart';
+import 'qr_code_test_data_with_mask.dart';
 
 void main() {
   test('simple', () {
@@ -49,6 +50,42 @@ void main() {
         );
       }
     }
+  });
+
+  test('WHEN mask pattern is provided, SHOULD make a masked QR Code', () {
+    for (var mask = 0; mask <= 7; mask++) {
+      final qr = QrCode(1, QrErrorCorrectLevel.L)
+        ..addData('shanna!')
+        ..make(mask);
+      for (var i = 0; i < qrModules(qr).length; i++) {
+        expect(
+          _encodeBoolListToString(qrModules(qr)[i]),
+          qrCodeTestDataWithMask[mask.toString()][i],
+        );
+      }
+    }
+  });
+
+  test('''
+      WHEN provided mask pattern is smaller than 0,
+      SHOULD throw an AssertionError
+  ''', () {
+    expect(() {
+      QrCode(1, QrErrorCorrectLevel.L)
+        ..addData('shanna!')
+        ..make(-1);
+    }, throwsA(isA<AssertionError>()));
+  });
+
+  test('''
+      WHEN provided mask pattern is bigger than 7,
+      SHOULD throw an AssertionError
+  ''', () {
+    expect(() {
+      QrCode(1, QrErrorCorrectLevel.L)
+        ..addData('shanna!')
+        ..make(8);
+    }, throwsA(isA<AssertionError>()));
   });
 }
 
