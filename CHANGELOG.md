@@ -1,10 +1,11 @@
+## 2.0.0-nullsafety.1
+
+- Expose Mask Pattern as a parameter of QrCode.make()
+
 ## 2.0.0-nullsafety
 
 - Migrated to null safety.
 - Require Dart SDK `>=2.12.0 <3.0.0`.
-
-## 1.4.0
-- Expose Mask Pattern as a parameter of QrCode.make()
 
 ## 1.3.0
 
