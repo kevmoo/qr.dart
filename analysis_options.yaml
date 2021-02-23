@@ -9,6 +9,7 @@ linter:
   - avoid_bool_literals_in_conditional_expressions
   - avoid_catching_errors
   - avoid_classes_with_only_static_members
+  - avoid_dynamic_calls
   - avoid_function_literals_in_foreach_calls
   - avoid_private_typedef_functions
   - avoid_redundant_argument_values
