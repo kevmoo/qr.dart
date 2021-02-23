@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_dynamic_calls
+
 import 'dart:typed_data';
 
 import 'package:qr/src/error_correct_level.dart';
