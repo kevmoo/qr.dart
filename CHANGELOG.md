@@ -1,3 +1,5 @@
+## 2.0.1-dev
+
 ## 2.0.0
 
 - Expose Mask Pattern as a parameter of QrCode.make()
