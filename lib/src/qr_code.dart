@@ -97,6 +97,13 @@ class QrCode {
 
   void addByteData(ByteData data) => _addToList(QrByte.fromByteData(data));
 
+  /// Add QR Numeric Mode data from a string of digits.
+  ///
+  /// It is an error if the [numberString] contains anything other than the
+  /// digits 0 through 9.
+  void addNumeric(String numberString) =>
+      _addToList(QrNumeric.fromString(numberString));
+
   void _addToList(QrByte data) {
     _dataList.add(data);
     _dataCache = null;

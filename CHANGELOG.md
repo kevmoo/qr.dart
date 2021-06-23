@@ -1,3 +1,7 @@
+## 2.1.0
+
+- Added numeric mode support via `addNumeric`
+
 ## 2.0.1-dev
 
 ## 2.0.0
