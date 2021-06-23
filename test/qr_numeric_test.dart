@@ -56,6 +56,19 @@ void main() {
         37);
   });
 
+  test('triple (even) numeric', () {
+    final qr = QrNumeric.fromString('371');
+    expect(qr.mode, 1);
+    expect(qr.length, 3);
+    final buffer = QrBitBuffer();
+    qr.write(buffer);
+    expect(buffer.length, 10, reason: 'n*3+1 = 10');
+    expect(
+        buffer.getRange(0, 10).map<int>((e) => e ? 1 : 0).fold<int>(
+            0, (previousValue, element) => (previousValue << 1) | element),
+        371);
+  });
+
   test('throws on invalid input', () {
     expect(() => QrNumeric.fromString('hello'), throwsArgumentError);
   });
