@@ -352,8 +352,6 @@ List<int> _createData(
     }
     buffer.put(_pad0, 8);
 
-    // Bug!
-    // ignore: invariant_booleans
     if (buffer.length >= totalDataCount * 8) {
       break;
     }

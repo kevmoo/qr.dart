@@ -3,7 +3,6 @@ import 'dart:html';
 import 'dart:math' as math;
 
 import 'package:qr/qr.dart';
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:stream_transform/stream_transform.dart';
 
 import 'affine_transform.dart';
@@ -16,7 +15,7 @@ class QrDemo {
   final _scale = BungeeNum(1);
   final CanvasElement _canvas;
   final CanvasRenderingContext2D _ctx;
-  final StreamController<List<Object>> _inputValues;
+  final StreamController<_Config> _inputValues;
 
   final Stream<List<bool>> output;
 
@@ -34,7 +33,7 @@ class QrDemo {
     final errorDiv = querySelector('#error-div') as DivElement;
     final input = querySelector('#input') as InputElement;
 
-    final controller = StreamController<List<Object>>.broadcast();
+    final controller = StreamController<_Config>.broadcast();
 
     final demo = QrDemo._(canvas, typeDiv, errorDiv, controller)
       ..value = input.value!;
@@ -138,9 +137,7 @@ class QrDemo {
   }
 
   void _update() {
-    final t = [_typeNumber, _errorCorrectLevel, _value];
-
-    _inputValues.add(t);
+    _inputValues.add(_Config(_typeNumber, _errorCorrectLevel, _value));
   }
 
   void _onFrame(num highResTime) {
@@ -180,10 +177,26 @@ class QrDemo {
   }
 }
 
-Future<List<bool>> _calc(List input) async {
-  final code = QrCode(input[0] as int, input[1] as int)
-    ..addData(input[2] as String)
-    ..make();
+final _digit = RegExp(r'^\d+$');
+
+class _Config {
+  final int type;
+  final int level;
+  final String input;
+
+  _Config(this.type, this.level, this.input);
+}
+
+Future<List<bool>> _calc(_Config config) async {
+  final code = QrCode(config.type, config.level);
+  final data = config.input;
+
+  if (_digit.hasMatch(data)) {
+    code.addNumeric(data);
+  } else {
+    code.addData(data);
+  }
+  code.make();
 
   final squares = <bool>[];
 
