@@ -10,7 +10,6 @@ import 'input_too_long_exception.dart';
 import 'math.dart' as qr_math;
 import 'mode.dart' as qr_mode;
 import 'polynomial.dart';
-import 'qr_image.dart';
 import 'rs_block.dart';
 
 class QrCode {
@@ -19,9 +18,6 @@ class QrCode {
   final int moduleCount;
   List<int>? _dataCache;
   final List<QrByte> _dataList = <QrByte>[];
-
-  @visibleForTesting
-  QrImage? lastImage;
 
   QrCode(this.typeNumber, this.errorCorrectLevel)
       : moduleCount = typeNumber * 4 + 17 {
@@ -79,17 +75,6 @@ class QrCode {
     return typeNumber;
   }
 
-  @Deprecated('use QrImage.isDark')
-  bool isDark(int row, int col) {
-    if (row < 0 || moduleCount <= row || col < 0 || moduleCount <= col) {
-      throw ArgumentError('$row , $col');
-    }
-    if (lastImage == null) {
-      make();
-    }
-    return lastImage!.isDark(row, col);
-  }
-
   void addData(String data) => _addToList(QrByte(data));
 
   void addByteData(ByteData data) => _addToList(QrByte.fromByteData(data));
@@ -104,16 +89,6 @@ class QrCode {
   void _addToList(QrByte data) {
     _dataList.add(data);
     _dataCache = null;
-  }
-
-  @Deprecated('use QrImage()')
-  QrImage make([int? maskPattern]) {
-    if (maskPattern == null) {
-      lastImage = QrImage(this);
-    } else {
-      lastImage = QrImage.withMaskPattern(this, maskPattern);
-    }
-    return lastImage!;
   }
 
   @internal
