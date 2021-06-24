@@ -1,7 +1,6 @@
 import 'dart:convert';
 
-final qrCodeTestData = jsonDecode(
-        r'''
+final qrCodeTestData = jsonDecode(r'''
 {
   "1": {
     "0": [
@@ -16244,5 +16243,4 @@ final qrCodeTestData = jsonDecode(
     ]
   }
 }
-''')
-    as Map;
+''') as Map;
