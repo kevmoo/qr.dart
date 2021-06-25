@@ -17,7 +17,7 @@ class QrCode {
   final int errorCorrectLevel;
   final int moduleCount;
   List<int>? _dataCache;
-  final List<QrByte> _dataList = <QrByte>[];
+  final _dataList = <QrDatum>[];
 
   QrCode(this.typeNumber, this.errorCorrectLevel)
       : moduleCount = typeNumber * 4 + 17 {
@@ -51,7 +51,7 @@ class QrCode {
 
   static int _calculateTypeNumberFromData(
     int errorCorrectLevel,
-    List<QrByte> dataList,
+    List<QrDatum> dataList,
   ) {
     int typeNumber;
     for (typeNumber = 1; typeNumber < 40; typeNumber++) {
@@ -86,7 +86,10 @@ class QrCode {
   void addNumeric(String numberString) =>
       _addToList(QrNumeric.fromString(numberString));
 
-  void _addToList(QrByte data) {
+  void addAlphaNumeric(String alphaNumeric) =>
+      _addToList(QrAlphaNumeric.fromString(alphaNumeric));
+
+  void _addToList(QrDatum data) {
     _dataList.add(data);
     _dataCache = null;
   }
@@ -100,7 +103,7 @@ const int _pad0 = 0xEC;
 const int _pad1 = 0x11;
 
 List<int> _createData(
-    int typeNumber, int errorCorrectLevel, List<QrByte> dataList) {
+    int typeNumber, int errorCorrectLevel, List<QrDatum> dataList) {
   final rsBlocks = QrRsBlock.getRSBlocks(typeNumber, errorCorrectLevel);
 
   final buffer = QrBitBuffer();
