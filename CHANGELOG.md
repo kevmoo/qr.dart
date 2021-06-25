@@ -1,3 +1,9 @@
+## 3.0.0
+
+- `QrImage` added to handle image bits.
+- `QrCode.make()` removed
+- `QrCode.isDark()` moved to `QrImage`
+
 ## 2.1.0
 
 - Added numeric mode support via `addNumeric`

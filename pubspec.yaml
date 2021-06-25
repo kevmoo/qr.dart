@@ -1,12 +1,12 @@
 name: qr
-version: 2.1.0
+version: 3.0.0
 description: >-
   A QR code generation library for Dart and Flutter.
   Supports QR code version 1 through 40, error correction and redundancy.
 repository: https://github.com/kevmoo/qr.dart
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=2.13.3 <3.0.0'
 
 dependencies:
   meta: ^1.3.0

@@ -196,13 +196,13 @@ Future<List<bool>> _calc(_Config config) async {
   } else {
     code.addData(data);
   }
-  code.make();
+  final image = QrImage(code);
 
   final squares = <bool>[];
 
   for (var x = 0; x < code.moduleCount; x++) {
     for (var y = 0; y < code.moduleCount; y++) {
-      squares.add(code.isDark(y, x));
+      squares.add(image.isDark(y, x));
     }
   }
 
