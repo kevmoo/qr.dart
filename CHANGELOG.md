@@ -1,12 +1,9 @@
-## 3.1.0
-
-- Added alpha numeric mode support via `addAlphaNumeric`
-
 ## 3.0.0
 
 - `QrImage` added to handle image bits.
 - `QrCode.make()` removed
 - `QrCode.isDark()` moved to `QrImage`
+- Added alpha numeric mode support via `addAlphaNumeric`
 
 ## 2.1.0
 
