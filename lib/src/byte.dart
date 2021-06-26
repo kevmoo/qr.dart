@@ -4,7 +4,14 @@ import 'dart:typed_data';
 import 'bit_buffer.dart';
 import 'mode.dart' as qr_mode;
 
-class QrByte {
+abstract class QrDatum {
+  int get mode;
+  int get length;
+  void write(QrBitBuffer buffer);
+}
+
+class QrByte implements QrDatum {
+  @override
   final int mode = qr_mode.mode8bitByte;
   final Uint8List _data;
 
@@ -16,8 +23,10 @@ class QrByte {
   factory QrByte.fromByteData(ByteData input) =>
       QrByte.fromUint8List(input.buffer.asUint8List());
 
+  @override
   int get length => _data.length;
 
+  @override
   void write(QrBitBuffer buffer) {
     for (final v in _data) {
       buffer.put(v, 8);
@@ -26,7 +35,7 @@ class QrByte {
 }
 
 /// Encodes numbers (0-9) 10 bits per 3 digits.
-class QrNumeric implements QrByte {
+class QrNumeric implements QrDatum {
   factory QrNumeric.fromString(String numberString) {
     final newList = Uint8List(numberString.length);
     var count = 0;
@@ -41,7 +50,6 @@ class QrNumeric implements QrByte {
 
   QrNumeric._(this._data);
 
-  @override
   final Uint8List _data;
 
   @override
@@ -70,4 +78,57 @@ class QrNumeric implements QrByte {
   // This is still the *number of characters to encode*, not encoded length.
   @override
   int get length => _data.length;
+}
+
+/// Encodes numbers (0-9) 10 bits per 3 digits.
+class QrAlphaNumeric implements QrDatum {
+  static const alphaNumTable = r'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:';
+  // Note: '-' anywhere in this string is a range character.
+  static late final validationRegex =
+      RegExp(r'^[-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+./:]+$');
+  static final encodeArray = () {
+    final array = List<int?>.filled(91, null);
+    for (var i = 0; i < alphaNumTable.length; i++) {
+      final char = alphaNumTable.codeUnitAt(i);
+      array[char] = i;
+    }
+    return array;
+  }();
+
+  final String _string;
+
+  factory QrAlphaNumeric.fromString(String alphaNumeric) {
+    if (!alphaNumeric.contains(validationRegex)) {
+      throw ArgumentError('String does not contain valid ALPHA-NUM '
+          'character set: $alphaNumeric');
+    }
+    return QrAlphaNumeric._(alphaNumeric);
+  }
+
+  QrAlphaNumeric._(this._string);
+
+  @override
+  final int mode = qr_mode.modeAlphaNum;
+
+  @override
+  void write(QrBitBuffer buffer) {
+    // Walk through the list of number; attempting to encode up to 2 at a time.
+    // Write (N *5 + 1) bits.
+    final leftOver = _string.length % 2;
+
+    final efficientGrab = _string.length - leftOver;
+    for (var i = 0; i < efficientGrab; i += 2) {
+      final encoded = encodeArray[_string.codeUnitAt(i)]! * 45 +
+          encodeArray[_string.codeUnitAt(i + 1)]!;
+      buffer.put(encoded, 11);
+    }
+    if (leftOver > 0) {
+      // N*5 + 1 = 6
+      buffer.put(encodeArray[_string.codeUnitAt(_string.length - 1)]!, 6);
+    }
+  }
+
+  // This is still the *number of characters to encode*, not encoded length.
+  @override
+  int get length => _string.length;
 }
