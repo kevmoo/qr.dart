@@ -1,3 +1,4 @@
+// ignore: avoid_classes_with_only_static_members
 class QrErrorCorrectLevel {
   static const int L = 1;
   static const int M = 0;
