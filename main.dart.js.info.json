@@ -654,6 +654,7 @@
           "class/175705485",
           "class/188328408",
           "class/217690375",
+          "class/271560487",
           "class/274441186",
           "class/293821936",
           "class/351911148",
@@ -846,9 +847,7 @@
         "name": "dart2js._embedded_names",
         "size": 0,
         "children": [
-          "class/73206861",
-          "class/251751824",
-          "class/716671121"
+          "class/251751824"
         ],
         "canonicalUri": "dart:_js_embedded_names"
       },
@@ -1453,21 +1452,6 @@
           "function/359145645",
           "function/430236296",
           "function/628041230"
-        ]
-      },
-      "73206861": {
-        "id": "class/73206861",
-        "kind": "class",
-        "name": "JsGetName",
-        "size": 0,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "library/965528565",
-        "modifiers": {
-          "abstract": false
-        },
-        "children": [
-          "field/190934046",
-          "field/1019580176"
         ]
       },
       "75905357": {
@@ -2784,6 +2768,21 @@
           "abstract": false
         },
         "children": []
+      },
+      "271560487": {
+        "id": "class/271560487",
+        "kind": "class",
+        "name": "_Enum",
+        "size": 0,
+        "outputUnit": "outputUnit/669725655",
+        "parent": "library/631335891",
+        "modifiers": {
+          "abstract": true
+        },
+        "children": [
+          "field/391061175",
+          "field/430256605"
+        ]
       },
       "274441186": {
         "id": "class/274441186",
@@ -5381,21 +5380,6 @@
           "function/139466901",
           "function/381820847",
           "function/535201058"
-        ]
-      },
-      "716671121": {
-        "id": "class/716671121",
-        "kind": "class",
-        "name": "JsBuiltin",
-        "size": 0,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "library/965528565",
-        "modifiers": {
-          "abstract": false
-        },
-        "children": [
-          "field/153611669",
-          "field/936474054"
         ]
       },
       "716879929": {
@@ -23729,7 +23713,7 @@
           "external": false
         },
         "returnType": "#A/*free*/",
-        "inferredReturnType": "[sentinel|subtype=List]",
+        "inferredReturnType": "[subtype=List]",
         "parameters": [
           {
             "name": "value",
@@ -45616,18 +45600,6 @@
         "code": "s($,\"Kq\",\"Sn\",function(){return A.cM(A.S7({\ntoString:function(){return\"$receiver$\"}}))})",
         "type": "TypeErrorDecoder"
       },
-      "153611669": {
-        "id": "field/153611669",
-        "kind": "field",
-        "name": "index",
-        "size": 0,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/716671121",
-        "children": [],
-        "inferredType": "[exact=JSUInt31]",
-        "code": "",
-        "type": "int"
-      },
       "153843292": {
         "id": "field/153843292",
         "kind": "field",
@@ -45803,18 +45775,6 @@
         "size": 0,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/948502579",
-        "children": [],
-        "inferredType": "[exact=JSString]",
-        "code": "",
-        "type": "String"
-      },
-      "190934046": {
-        "id": "field/190934046",
-        "kind": "field",
-        "name": "_name",
-        "size": 0,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/73206861",
         "children": [],
         "inferredType": "[exact=JSString]",
         "code": "",
@@ -46744,6 +46704,18 @@
         "code": "",
         "type": "void Function()?"
       },
+      "391061175": {
+        "id": "field/391061175",
+        "kind": "field",
+        "name": "index",
+        "size": 0,
+        "outputUnit": "outputUnit/669725655",
+        "parent": "class/271560487",
+        "children": [],
+        "inferredType": "[exact=JSUInt31]",
+        "code": "",
+        "type": "int"
+      },
       "395100362": {
         "id": "field/395100362",
         "kind": "field",
@@ -46875,6 +46847,18 @@
         "inferredType": "[null|exact=JSString]",
         "code": "",
         "type": "String?"
+      },
+      "430256605": {
+        "id": "field/430256605",
+        "kind": "field",
+        "name": "_name",
+        "size": 0,
+        "outputUnit": "outputUnit/669725655",
+        "parent": "class/271560487",
+        "children": [],
+        "inferredType": "[exact=JSString]",
+        "code": "",
+        "type": "String"
       },
       "430387875": {
         "id": "field/430387875",
@@ -48654,18 +48638,6 @@
         "code": "s($,\"Wc\",\"ut\",function(){return A.xg()})",
         "type": "Function"
       },
-      "936474054": {
-        "id": "field/936474054",
-        "kind": "field",
-        "name": "_name",
-        "size": 0,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/716671121",
-        "children": [],
-        "inferredType": "[exact=JSString]",
-        "code": "",
-        "type": "String"
-      },
       "938157619": {
         "id": "field/938157619",
         "kind": "field",
@@ -48977,18 +48949,6 @@
         "inferredType": "[subtype=StackTrace]",
         "code": "",
         "type": "StackTrace"
-      },
-      "1019580176": {
-        "id": "field/1019580176",
-        "kind": "field",
-        "name": "index",
-        "size": 0,
-        "outputUnit": "outputUnit/669725655",
-        "parent": "class/73206861",
-        "children": [],
-        "inferredType": "[exact=JSUInt31]",
-        "code": "",
-        "type": "int"
       },
       "1022934707": {
         "id": "field/1022934707",
@@ -85706,10 +85666,10 @@
   "program": {
     "entrypoint": "function/564306678",
     "size": 149020,
-    "dart2jsVersion": "2.15.0-116.0.dev",
-    "compilationMoment": "2021-09-21 16:16:56.854381",
-    "compilationDuration": 2408868,
-    "toJsonDuration": 8000,
+    "dart2jsVersion": "2.15.0-139.0.dev",
+    "compilationMoment": "2021-09-23 07:51:22.975982",
+    "compilationDuration": 2083245,
+    "toJsonDuration": 7000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
     "isRuntimeTypeUsed": true,
