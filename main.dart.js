@@ -4266,7 +4266,7 @@ $S:15}
 A.XL.prototype={
 $1(a){var s=this.a.style
 s.background="red"
-A.qw(J.A(a))},
+A.qw(A.cb(J.A(a),"object.toString()",t.N))},
 $S:2}
 A.WC.prototype={
 $1(a){var s=this.a

@@ -957,7 +957,7 @@
         "id": "library/1028067980",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 3739,
+        "size": 3769,
         "children": [
           "class/603344292",
           "class/1058055649",
@@ -8072,7 +8072,7 @@
         "id": "class/1058055649",
         "kind": "class",
         "name": "QrDemo",
-        "size": 2510,
+        "size": 2540,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/1028067980",
         "modifiers": {
@@ -28964,7 +28964,7 @@
         "id": "function/579590994",
         "kind": "function",
         "name": "call",
-        "size": 57,
+        "size": 87,
         "outputUnit": "outputUnit/669725655",
         "parent": "closure/121408497",
         "children": [],
@@ -28985,7 +28985,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "$1(a){var s=this.a.style\ns.background=\"red\"\nA.qw(J.A(a))}",
+        "code": "$1(a){var s=this.a.style\ns.background=\"red\"\nA.qw(A.cb(J.A(a),\"object.toString()\",t.N))}",
         "type": "Null Function(dynamic)"
       },
       "580139231": {
@@ -35318,7 +35318,7 @@
         "id": "function/755698121",
         "kind": "function",
         "name": "QrDemo",
-        "size": 636,
+        "size": 666,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/1058055649",
         "children": [
@@ -51036,7 +51036,7 @@
         "id": "closure/121408497",
         "kind": "closure",
         "name": "QrDemo_QrDemo_closure",
-        "size": 112,
+        "size": 142,
         "outputUnit": "outputUnit/669725655",
         "parent": "function/755698121",
         "function": "function/579590994"
@@ -71626,6 +71626,10 @@
         "mask": "[null|subclass=Object]"
       },
       {
+        "id": "function/53371910",
+        "mask": null
+      },
+      {
         "id": "function/540467195",
         "mask": "[null|subclass=Object]"
       },
@@ -71720,6 +71724,10 @@
       {
         "id": "function/962973203",
         "mask": "[null|subclass=Object]"
+      },
+      {
+        "id": "function/982751380",
+        "mask": null
       },
       {
         "id": "function/991909617",
@@ -85655,7 +85663,7 @@
       "id": "outputUnit/669725655",
       "kind": "outputUnit",
       "name": "main",
-      "size": 149020,
+      "size": 149050,
       "filename": "main.dart.js",
       "imports": []
     }
@@ -85665,10 +85673,10 @@
   "dump_minor_version": 1,
   "program": {
     "entrypoint": "function/564306678",
-    "size": 149020,
-    "dart2jsVersion": "2.15.0-139.0.dev",
-    "compilationMoment": "2021-09-23 07:51:22.975982",
-    "compilationDuration": 2083245,
+    "size": 149050,
+    "dart2jsVersion": "2.15.0-150.0.dev",
+    "compilationMoment": "2021-09-28 09:15:20.057523",
+    "compilationDuration": 2047638,
     "toJsonDuration": 7000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
