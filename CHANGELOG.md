@@ -1,3 +1,5 @@
+## 3.0.1-dev
+
 ## 3.0.0
 
 - `QrImage` added to handle image bits.
