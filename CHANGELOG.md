@@ -1,5 +1,3 @@
-## 3.0.1-dev
-
 ## 3.0.0
 
 - `QrImage` added to handle image bits.
@@ -10,8 +8,6 @@
 ## 2.1.0
 
 - Added numeric mode support via `addNumeric`
-
-## 2.0.1-dev
 
 ## 2.0.0
 
