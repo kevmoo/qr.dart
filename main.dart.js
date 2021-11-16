@@ -36,8 +36,9 @@ return a[b]}}function lazyFinal(a,b,c,d){var s=a
 a[b]=s
 a[c]=function(){if(a[b]===s){var r=d()
 if(a[b]!==s)A.FP(b)
-a[b]=r}a[c]=function(){return this[b]}
-return a[b]}}function makeConstList(a){a.immutable$list=Array
+a[b]=r}var q=a[b]
+a[c]=function(){return q}
+return q}}function makeConstList(a){a.immutable$list=Array
 a.fixed$length=Array
 return a}function convertToFastObject(a){function t(){}t.prototype=a
 new t()
