@@ -17,7 +17,7 @@
         "id": "library/85591458",
         "kind": "library",
         "name": "dart.dom.html",
-        "size": 14863,
+        "size": 14845,
         "children": [
           "class/5605510",
           "class/6212434",
@@ -775,7 +775,7 @@
         "id": "library/797541132",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 1695,
+        "size": 1691,
         "children": [
           "function/546985980"
         ],
@@ -2033,7 +2033,7 @@
         "id": "class/154158031",
         "kind": "class",
         "name": "_ValidatingTreeSanitizer",
-        "size": 2828,
+        "size": 2824,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/85591458",
         "modifiers": {
@@ -7503,7 +7503,7 @@
         "id": "class/992156986",
         "kind": "class",
         "name": "Element",
-        "size": 1397,
+        "size": 1387,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/85591458",
         "modifiers": {
@@ -24613,7 +24613,7 @@
         "id": "function/465286731",
         "kind": "function",
         "name": "_Html5NodeValidator",
-        "size": 115,
+        "size": 111,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/337756919",
         "children": [],
@@ -24634,7 +24634,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Ek(a){var s=document\ns=s.createElement(\"a\")\ns.toString\ns=new A.mk(s,window.location)\ns=new A.JQ(s)\ns.R(a)\nreturn s}",
+        "code": "Ek(a){var s=document.createElement(\"a\")\ns.toString\ns=new A.mk(s,window.location)\ns=new A.JQ(s)\ns.R(a)\nreturn s}",
         "type": "dynamic Function({UriPolicy? uriPolicy})"
       },
       "466484160": {
@@ -27945,7 +27945,7 @@
         "id": "function/546985980",
         "kind": "function",
         "name": "AggregateSample|aggregateSample",
-        "size": 1695,
+        "size": 1691,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/797541132",
         "children": [
@@ -35162,7 +35162,7 @@
         "id": "function/749953455",
         "kind": "function",
         "name": "setInnerHtml",
-        "size": 84,
+        "size": 74,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/992156986",
         "children": [],
@@ -35183,7 +35183,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "YC(a,b){var s\na.textContent=null\ns=a.appendChild(this.r6(a,b,null,null))\ns.toString}",
+        "code": "YC(a,b){a.textContent=null\na.appendChild(this.r6(a,b,null,null)).toString}",
         "type": "void Function(String?,{NodeTreeSanitizer? treeSanitizer,NodeValidator? validator})"
       },
       "749970393": {
@@ -36795,7 +36795,7 @@
         "id": "function/802888386",
         "kind": "function",
         "name": "_sanitizeUntrustedElement",
-        "size": 1136,
+        "size": 1132,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/154158031",
         "children": [],
@@ -36821,7 +36821,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "I4(a,b){var s,r,q,p,o,n,m,l=!0,k=null,j=null\ntry{k=J.ig(a)\nj=k.a.getAttribute(\"is\")\np=function(c){if(!(c.attributes instanceof NamedNodeMap))return true\nif(c.id==\"lastChild\"||c.name==\"lastChild\"||c.id==\"previousSibling\"||c.name==\"previousSibling\"||c.id==\"children\"||c.name==\"children\")return true\nvar i=c.childNodes\nif(c.lastChild&&c.lastChild!==i[i.length-1])return true\nif(c.children)if(!(c.children instanceof HTMLCollection||c.children instanceof NodeList))return true\nvar h=0\nif(c.children)h=c.children.length\nfor(var g=0;g<h;g++){var f=c.children[g]\nif(f.id==\"attributes\"||f.name==\"attributes\"||f.id==\"lastChild\"||f.name==\"lastChild\"||f.id==\"previousSibling\"||f.name==\"previousSibling\"||f.id==\"children\"||f.name==\"children\")return true}return false}(a)\np.toString\ns=p\nif(s)o=!0\nelse{p=!(a.attributes instanceof NamedNodeMap)\np.toString\no=p}l=o}catch(n){}r=\"element unprintable\"\ntry{r=J.A(a)}catch(n){}try{q=A.rS(a)\nthis.kR(a,b,l,r,q,k,j)}catch(n){if(A.Ru(n) instanceof A.AT)throw n\nelse{this.EP(a,b)\np=window\np.toString\np=\"Removing corrupted element \"+A.d(r)\nm=typeof console!=\"undefined\"\nm.toString\nif(m)window.console.warn(p)}}}",
+        "code": "I4(a,b){var s,r,q,p,o,n,m,l=!0,k=null,j=null\ntry{k=J.ig(a)\nj=k.a.getAttribute(\"is\")\np=function(c){if(!(c.attributes instanceof NamedNodeMap))return true\nif(c.id==\"lastChild\"||c.name==\"lastChild\"||c.id==\"previousSibling\"||c.name==\"previousSibling\"||c.id==\"children\"||c.name==\"children\")return true\nvar i=c.childNodes\nif(c.lastChild&&c.lastChild!==i[i.length-1])return true\nif(c.children)if(!(c.children instanceof HTMLCollection||c.children instanceof NodeList))return true\nvar h=0\nif(c.children)h=c.children.length\nfor(var g=0;g<h;g++){var f=c.children[g]\nif(f.id==\"attributes\"||f.name==\"attributes\"||f.id==\"lastChild\"||f.name==\"lastChild\"||f.id==\"previousSibling\"||f.name==\"previousSibling\"||f.id==\"children\"||f.name==\"children\")return true}return false}(a)\np.toString\ns=p\nif(s)o=!0\nelse{p=!(a.attributes instanceof NamedNodeMap)\np.toString\no=p}l=o}catch(n){}r=\"element unprintable\"\ntry{r=J.A(a)}catch(n){}try{q=A.rS(a)\nthis.kR(a,b,l,r,q,k,j)}catch(n){if(A.Ru(n) instanceof A.AT)throw n\nelse{this.EP(a,b)\nwindow.toString\np=\"Removing corrupted element \"+A.d(r)\nm=typeof console!=\"undefined\"\nm.toString\nif(m)window.console.warn(p)}}}",
         "type": "void Function(dynamic,Node?)"
       },
       "804345018": {
@@ -38100,7 +38100,7 @@
         "id": "function/850519948",
         "kind": "function",
         "name": "call",
-        "size": 219,
+        "size": 215,
         "outputUnit": "outputUnit/669725655",
         "parent": "closure/552866819",
         "children": [],
@@ -38115,7 +38115,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "$0(){var s=A.QI([],t.M),r=this.a\nif(!r.d)s.push(r.r.Gv())\nr.r=null\nr=r.f\nr.yy(0)\nif(!!s.fixed$length)A.v(A.u0(\"removeWhere\"))\nB.Nm.LP(s,new A.ax(),!0)\nif(s.length===0)return null\nr=t.H\nreturn A.pH(s,r).W7(new A.av(),r)}",
+        "code": "$0(){var s=A.QI([],t.M),r=this.a\nif(!r.d)s.push(r.r.Gv())\nr.r=null\nr.f.yy(0)\nif(!!s.fixed$length)A.v(A.u0(\"removeWhere\"))\nB.Nm.LP(s,new A.ax(),!0)\nif(s.length===0)return null\nr=t.H\nreturn A.pH(s,r).W7(new A.av(),r)}",
         "type": "Future<void>? Function()"
       },
       "852141617": {
@@ -51492,7 +51492,7 @@
         "id": "closure/552866819",
         "kind": "closure",
         "name": "AggregateSample_aggregateSample__closure",
-        "size": 297,
+        "size": 293,
         "outputUnit": "outputUnit/669725655",
         "parent": "function/546985980",
         "function": "function/850519948"
@@ -85617,7 +85617,7 @@
       "id": "outputUnit/669725655",
       "kind": "outputUnit",
       "name": "main",
-      "size": 147972,
+      "size": 147950,
       "filename": "main.dart.js",
       "imports": []
     }
@@ -85627,10 +85627,10 @@
   "dump_minor_version": 1,
   "program": {
     "entrypoint": "function/564306678",
-    "size": 147972,
-    "dart2jsVersion": "2.16.0-42.0.dev",
-    "compilationMoment": "2021-11-26 14:12:26.283359",
-    "compilationDuration": 2289359,
+    "size": 147950,
+    "dart2jsVersion": "2.16.0-55.0.dev",
+    "compilationMoment": "2021-11-30 14:53:44.139643",
+    "compilationDuration": 2442604,
     "toJsonDuration": 7000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,

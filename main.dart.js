@@ -1708,8 +1708,7 @@ JE(a,b,c,d){var s=A.aF(new A.vN(c),t.B)
 s=new A.xC(a,b,s,!1)
 s.D()
 return s},
-Ek(a){var s=document
-s=s.createElement("a")
+Ek(a){var s=document.createElement("a")
 s.toString
 s=new A.mk(s,window.location)
 s=new A.JQ(s)
@@ -3522,10 +3521,8 @@ c.Pn(p)
 document.adoptNode(p).toString
 return p},
 AH(a,b,c){return this.r6(a,b,c,null)},
-YC(a,b){var s
-a.textContent=null
-s=a.appendChild(this.r6(a,b,null,null))
-s.toString},
+YC(a,b){a.textContent=null
+a.appendChild(this.r6(a,b,null,null)).toString},
 gns(a){var s=a.tagName
 s.toString
 return s},
@@ -3803,8 +3800,7 @@ o=p}l=o}catch(n){}r="element unprintable"
 try{r=J.A(a)}catch(n){}try{q=A.rS(a)
 this.kR(a,b,l,r,q,k,j)}catch(n){if(A.Ru(n) instanceof A.AT)throw n
 else{this.EP(a,b)
-p=window
-p.toString
+window.toString
 p="Removing corrupted element "+A.d(r)
 m=typeof console!="undefined"
 m.toString
@@ -4071,8 +4067,7 @@ A.CY.prototype={
 $0(){var s=A.QI([],t.M),r=this.a
 if(!r.d)s.push(r.r.Gv())
 r.r=null
-r=r.f
-r.yy(0)
+r.f.yy(0)
 if(!!s.fixed$length)A.v(A.u0("removeWhere"))
 B.Nm.LP(s,new A.ax(),!0)
 if(s.length===0)return null
