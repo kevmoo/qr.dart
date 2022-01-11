@@ -2477,20 +2477,20 @@ A.Eq.prototype={
 Z(a){return"RuntimeError: "+this.a}}
 A.N5.prototype={
 gA(a){return this.a},
-gvc(){return new A.i5(this,A.Lh(this).C("i5<1>"))},
-q(a,b){var s,r,q,p,o=this,n=null
-if(typeof b=="string"){s=o.b
-if(s==null)return n
-r=o.j2(s,b)
-q=r==null?n:r.b
-return q}else if(typeof b=="number"&&(b&0x3ffffff)===b){p=o.c
-if(p==null)return n
-r=o.j2(p,b)
-q=r==null?n:r.b
-return q}else return o.aa(b)},
+gvc(){return new A.i5(this,this.$ti.C("i5<1>"))},
+q(a,b){var s,r,q,p,o=null
+if(typeof b=="string"){s=this.b
+if(s==null)return o
+r=s[b]
+q=r==null?o:r.b
+return q}else if(typeof b=="number"&&(b&0x3ffffff)===b){p=this.c
+if(p==null)return o
+r=p[b]
+q=r==null?o:r.b
+return q}else return this.aa(b)},
 aa(a){var s,r,q=this.d
 if(q==null)return null
-s=this.Bt(q,J.jg(a)&0x3ffffff)
+s=q[J.jg(a)&0x3ffffff]
 r=this.Fh(s,a)
 if(r<0)return null
 return s[r].b},
@@ -2500,8 +2500,8 @@ m.EH(s==null?m.b=m.zK():s,b,c)}else if(typeof b=="number"&&(b&0x3ffffff)===b){r=
 m.EH(r==null?m.c=m.zK():r,b,c)}else{q=m.d
 if(q==null)q=m.d=m.zK()
 p=J.jg(b)&0x3ffffff
-o=m.Bt(q,p)
-if(o==null)m.EI(q,p,[m.Hn(b,c)])
+o=q[p]
+if(o==null)q[p]=[m.Hn(b,c)]
 else{n=m.Fh(o,b)
 if(n>=0)o[n].b=c
 else o.push(m.Hn(b,c))}}},
@@ -2509,8 +2509,8 @@ aN(a,b){var s=this,r=s.e,q=s.r
 for(;r!=null;){b.$2(r.a,r.b)
 if(q!==s.r)throw A.b(A.a(s))
 r=r.c}},
-EH(a,b,c){var s=this.j2(a,b)
-if(s==null)this.EI(a,b,this.Hn(b,c))
+EH(a,b,c){var s=a[b]
+if(s==null)a[b]=this.Hn(b,c)
 else s.b=c},
 GY(){this.r=this.r+1&67108863},
 Hn(a,b){var s,r=this,q=new A.vh(a,b)
@@ -2527,14 +2527,10 @@ s=a.length
 for(r=0;r<s;++r)if(J.cf(a[r].a,b))return r
 return-1},
 Z(a){return A.nO(this)},
-j2(a,b){return a[b]},
-Bt(a,b){return a[b]},
-EI(a,b,c){a[b]=c},
-rn(a,b){delete a[b]},
-zK(){var s="<non-identifier-key>",r=Object.create(null)
-this.EI(r,s,r)
-this.rn(r,s)
-return r}}
+zK(){var s=Object.create(null)
+s["<non-identifier-key>"]=s
+delete s["<non-identifier-key>"]
+return s}}
 A.vh.prototype={}
 A.i5.prototype={
 gA(a){return this.a.a},
