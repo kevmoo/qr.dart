@@ -499,7 +499,7 @@
         "id": "library/511127087",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 159,
+        "size": 160,
         "children": [
           "class/872190842"
         ],
@@ -965,7 +965,7 @@
         "id": "library/1028067980",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 3732,
+        "size": 3733,
         "children": [
           "class/603344292",
           "class/1058055649",
@@ -997,7 +997,7 @@
         "id": "library/1052666095",
         "kind": "library",
         "name": "dart.async",
-        "size": 21742,
+        "size": 21744,
         "children": [
           "class/32494041",
           "class/80405414",
@@ -4733,7 +4733,7 @@
         "id": "class/611525899",
         "kind": "class",
         "name": "_AsyncRun",
-        "size": 408,
+        "size": 409,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/1052666095",
         "modifiers": {
@@ -6028,7 +6028,7 @@
         "id": "class/784178238",
         "kind": "class",
         "name": "_Future",
-        "size": 3432,
+        "size": 3433,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/1052666095",
         "modifiers": {
@@ -8056,7 +8056,7 @@
         "id": "class/1058055649",
         "kind": "class",
         "name": "QrDemo",
-        "size": 2520,
+        "size": 2521,
         "outputUnit": "outputUnit/669725655",
         "parent": "library/1028067980",
         "modifiers": {
@@ -9283,7 +9283,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "QW(a,b,c,d){var s,r,q,p=d.a,o=p.a\no.href=c\ns=o.hostname\np=p.b\nif(s==p.hostname){r=o.port\nq=p.port\nq.toString\nif(r===q){r=o.protocol\np=p.protocol\np.toString\np=r===p}else p=!1}else p=!1\nif(!p)if(s===\"\")if(o.port===\"\"){p=o.protocol\np=p===\":\"||p===\"\"}else p=!1\nelse p=!1\nelse p=!0\nreturn p}\nl(A,\"V4\",4,null,[\"$4\"],[\"QW\"],16,0)",
+        "code": "QW(a,b,c,d){var s,r,q,p=d.a,o=p.a\no.href=c\ns=o.hostname\np=p.b\nif(s==p.hostname){r=o.port\nq=p.port\nq.toString\nif(r===q){r=o.protocol\np=p.protocol\np.toString\np=r===p}else p=!1}else p=!1\nif(!p)if(s===\"\")if(o.port===\"\"){p=o.protocol\np=p===\":\"||p===\"\"}else p=!1\nelse p=!1\nelse p=!0\nreturn p}\nl(A,\"V4\",4,null,[\"$4\"],[\"QW\"],14,0)",
         "type": "bool Function(Element,String,String,_Html5NodeValidator)"
       },
       "30570662": {
@@ -9484,7 +9484,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Z0(a,b){A.Si(a,b)}\nq(A,\"Cr\",\"Z0\",3)",
+        "code": "Z0(a,b){A.Si(a,b)}\nq(A,\"Cr\",\"Z0\",2)",
         "type": "void Function(Object,StackTrace)"
       },
       "33492639": {
@@ -13678,7 +13678,7 @@
         "id": "function/165003912",
         "kind": "function",
         "name": "_initializeScheduleImmediate",
-        "size": 623,
+        "size": 624,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/611525899",
         "children": [
@@ -14731,7 +14731,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "zg(a){var s=t.S.a(J.re(a)),r=s.getAttribute(\"data-\"+new A.Sy(new A.i7(s)).OU(\"error-value\"))\nr.toString\nthis.w=A.QA(r)\nthis.T()}\nk(j,\"gV3\",\"zg\",4)",
+        "code": "zg(a){var s=t.S.a(J.re(a)),r=s.getAttribute(\"data-\"+new A.Sy(new A.i7(s)).OU(\"error-value\"))\nr.toString\nthis.w=A.QA(r)\nthis.T()}\nk(j,\"gV3\",\"zg\",3)",
         "type": "void Function(Event)"
       },
       "193743728": {
@@ -14904,7 +14904,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "dF(a){var s,r,q,p,o,n,m,l,k,j=this,i=\"_squares\"\nj.y=!1\ns=j.c\nr=j.b\nq=r.width\nq.toString\np=r.height\np.toString\ns.clearRect(0,0,q,p)\no=B.CD.yu(Math.sqrt(J.Hm(A.yb(j.x,i))))\np=r.width\np.toString\nq=r.height\nq.toString\nn=j.a\nn.a=B.jn.xG(Math.min(p,q),1.1*o)\nif(n.Li())j.q3()\nm=new A.Ng(1,0,0,1,0,0)\nq=r.width\nq.toString\nr=r.height\nr.toString\nm.QI(0,0.5*q,0.5*r)\nn=n.b\nm.a*=n\nm.b*=n\nm.c*=n\nm.d*=n\nn=-0.5*o\nm.QI(0,n,n)\ns.save()\ns.setTransform(m.a,m.b,m.c,m.d,m.e,m.f)\nif(J.RS(A.yb(j.x,i)))for(l=0;l<o;++l)for(r=l*o,k=0;k<o;++k)if(J.x9(A.yb(j.x,i),r+k))s.fillRect(l,k,1,1)\ns.restore()}\nk(j,\"gll\",\"dF\",31)",
+        "code": "dF(a){var s,r,q,p,o,n,m,l,k,j=this,i=\"_squares\"\nj.y=!1\ns=j.c\nr=j.b\nq=r.width\nq.toString\np=r.height\np.toString\ns.clearRect(0,0,q,p)\no=B.CD.yu(Math.sqrt(J.Hm(A.yb(j.x,i))))\np=r.width\np.toString\nq=r.height\nq.toString\nn=j.a\nn.a=B.jn.xG(Math.min(p,q),1.1*o)\nif(n.Li())j.q3()\nm=new A.Ng(1,0,0,1,0,0)\nq=r.width\nq.toString\nr=r.height\nr.toString\nm.QI(0,0.5*q,0.5*r)\nn=n.b\nm.a*=n\nm.b*=n\nm.c*=n\nm.d*=n\nn=-0.5*o\nm.QI(0,n,n)\ns.save()\ns.setTransform(m.a,m.b,m.c,m.d,m.e,m.f)\nif(J.RS(A.yb(j.x,i)))for(l=0;l<o;++l)for(r=l*o,k=0;k<o;++k)if(J.x9(A.yb(j.x,i),r+k))s.fillRect(l,k,1,1)\ns.restore()}\nk(j,\"gll\",\"dF\",29)",
         "type": "void Function(num)"
       },
       "199171849": {
@@ -15456,7 +15456,7 @@
         "id": "function/217153098",
         "kind": "function",
         "name": "pause",
-        "size": 112,
+        "size": 111,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/780019487",
         "children": [],
@@ -15477,7 +15477,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "nB(a,b){this.b+=4}\nyy(a){return this.nB(a,null)}\nn(j=A.EM.prototype,\"gX0\",1,0,null,[\"$1\",\"$0\"],[\"nB\",\"yy\"],10,0,0)",
+        "code": "nB(a,b){this.b+=4}\nyy(a){return this.nB(a,null)}\nn(j=A.EM.prototype,\"gX0\",1,0,null,[\"$1\",\"$0\"],[\"nB\",\"yy\"],9,0,0)",
         "type": "void Function([Future<void>?])"
       },
       "217362042": {
@@ -16457,7 +16457,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "fD(a,b){A.cb(a,\"error\",t.K)\nif(!this.gt())throw A.b(this.V())\nif(b==null)b=A.v0(a)\nthis.y7(a,b)}\nQj(a){return this.fD(a,null)}\nn(j,\"gGj\",0,1,null,[\"$2\",\"$1\"],[\"fD\",\"Qj\"],5,0,0)",
+        "code": "fD(a,b){A.cb(a,\"error\",t.K)\nif(!this.gt())throw A.b(this.V())\nif(b==null)b=A.v0(a)\nthis.y7(a,b)}\nQj(a){return this.fD(a,null)}\nn(j,\"gGj\",0,1,null,[\"$2\",\"$1\"],[\"fD\",\"Qj\"],4,0,0)",
         "type": "void Function(Object,[StackTrace?])"
       },
       "249771766": {
@@ -21772,7 +21772,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "fD(a,b){var s,r=this\nA.cb(a,\"error\",t.K)\nif(r.b>=4)throw A.b(r.Jz())\nif(b==null)b=A.v0(a)\ns=r.b\nif((s&1)!==0)r.y7(a,b)\nelse if((s&3)===0)r.zN().i(0,new A.WG(a,b))}\nQj(a){return this.fD(a,null)}\nn(j,\"gGj\",0,1,null,[\"$2\",\"$1\"],[\"fD\",\"Qj\"],5,0,0)",
+        "code": "fD(a,b){var s,r=this\nA.cb(a,\"error\",t.K)\nif(r.b>=4)throw A.b(r.Jz())\nif(b==null)b=A.v0(a)\ns=r.b\nif((s&1)!==0)r.y7(a,b)\nelse if((s&3)===0)r.zN().i(0,new A.WG(a,b))}\nQj(a){return this.fD(a,null)}\nn(j,\"gGj\",0,1,null,[\"$2\",\"$1\"],[\"fD\",\"Qj\"],4,0,0)",
         "type": "void Function(Object,[StackTrace?])"
       },
       "383109511": {
@@ -22117,7 +22117,7 @@
         "id": "function/391273984",
         "kind": "function",
         "name": "getName",
-        "size": 159,
+        "size": 160,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/872190842",
         "children": [],
@@ -22138,7 +22138,7 @@
         ],
         "sideEffects": "SideEffects(reads nothing; writes anything)",
         "inlinedCount": 0,
-        "code": "HS(a){switch(a){case 1:return\"Low\"\ncase 0:return\"Medium\"\ncase 3:return\"Quality\"\ncase 2:return\"High\"\ndefault:throw A.b(A.xY(\"level \"+a+\" not supported\",null))}}",
+        "code": "HS(a){switch(a){case 1:return\"Low\"\ncase 0:return\"Medium\"\ncase 3:return\"Quartile\"\ncase 2:return\"High\"\ndefault:throw A.b(A.xY(\"level \"+a+\" not supported\",null))}}",
         "type": "String Function(int)"
       },
       "392765672": {
@@ -22407,7 +22407,7 @@
         "parameters": [
           {
             "name": "object",
-            "type": "[null|subclass=Object]",
+            "type": "[subclass=Object]",
             "declaredType": "Object?"
           }
         ],
@@ -22925,7 +22925,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "w8(a){return A.xG(a)}\ns(A,\"Kc\",\"w8\",27)",
+        "code": "w8(a){return A.xG(a)}\ns(A,\"Kc\",\"w8\",24)",
         "type": "Future<List<bool>> Function(_Config)"
       },
       "415070376": {
@@ -26989,7 +26989,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "i(a,b){if(!this.gt())throw A.b(this.V())\nthis.M(b)}\no(j=A.WV.prototype,\"gL\",\"i\",8)",
+        "code": "i(a,b){if(!this.gt())throw A.b(this.V())\nthis.M(b)}\no(j=A.WV.prototype,\"gL\",\"i\",7)",
         "type": "void Function(Object?)"
       },
       "528985088": {
@@ -28072,7 +28072,7 @@
         "id": "function/553149607",
         "kind": "function",
         "name": "_chainForeignFuture",
-        "size": 452,
+        "size": 453,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/784178238",
         "children": [
@@ -28783,7 +28783,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "v(a,b){var s=this.I()\nthis.Y(A.Tl(a,b))\nA.HZ(this,s)}\nm(A.vs.prototype,\"gFa\",\"v\",3)",
+        "code": "v(a,b){var s=this.I()\nthis.Y(A.Tl(a,b))\nA.HZ(this,s)}\nm(A.vs.prototype,\"gFa\",\"v\",2)",
         "type": "void Function(Object,StackTrace)"
       },
       "574562160": {
@@ -29071,13 +29071,13 @@
           {
             "name": "error",
             "type": "[null|subclass=Object]",
-            "declaredType": "dynamic"
+            "declaredType": "Object"
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
         "code": "$1(a){var s=this.a.style\ns.background=\"red\"\nA.qw(A.d(a))}",
-        "type": "Null Function(dynamic)"
+        "type": "Null Function(Object)"
       },
       "580139231": {
         "id": "function/580139231",
@@ -29497,7 +29497,7 @@
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 0,
-        "code": "qD(a,b,c,d){return!0}\nl(A,\"pS\",4,null,[\"$4\"],[\"qD\"],16,0)",
+        "code": "qD(a,b,c,d){return!0}\nl(A,\"pS\",4,null,[\"$4\"],[\"qD\"],14,0)",
         "type": "bool Function(Element,String,String,_Html5NodeValidator)"
       },
       "589675001": {
@@ -32847,7 +32847,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "yB(a){var s=t.S.a(J.re(a)),r=s.getAttribute(\"data-\"+new A.Sy(new A.i7(s)).OU(\"type-value\"))\nr.toString\nthis.r=A.QA(r)\nthis.T()}\nk(j=A.by.prototype,\"gHk\",\"yB\",4)",
+        "code": "yB(a){var s=t.S.a(J.re(a)),r=s.getAttribute(\"data-\"+new A.Sy(new A.i7(s)).OU(\"type-value\"))\nr.toString\nthis.r=A.QA(r)\nthis.T()}\nk(j=A.by.prototype,\"gHk\",\"yB\",3)",
         "type": "void Function(Event)"
       },
       "685033221": {
@@ -35409,7 +35409,7 @@
         "id": "function/755698121",
         "kind": "function",
         "name": "QrDemo",
-        "size": 636,
+        "size": 637,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/1058055649",
         "children": [
@@ -36609,7 +36609,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "i(a,b){var s=this,r=s.b\nif(r>=4)throw A.b(s.Jz())\nif((r&1)!==0)s.M(b)\nelse if((r&3)===0)s.zN().i(0,new A.LV(b))}\no(j=A.Kd.prototype,\"gL\",\"i\",8)",
+        "code": "i(a,b){var s=this,r=s.b\nif(r>=4)throw A.b(s.Jz())\nif((r&1)!==0)s.M(b)\nelse if((r&3)===0)s.zN().i(0,new A.LV(b))}\no(j=A.Kd.prototype,\"gL\",\"i\",7)",
         "type": "void Function(Object?)"
       },
       "800967564": {
@@ -40251,7 +40251,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Dx(a,b,c){c.fD(a,b)}\nl(A,\"Na\",3,null,[\"$1$3\",\"$3\"],[\"Dx\",function(a,b,c){return A.Dx(a,b,c,t.z)}],35,0)",
+        "code": "Dx(a,b,c){c.fD(a,b)}\nl(A,\"Na\",3,null,[\"$1$3\",\"$3\"],[\"Dx\",function(a,b,c){return A.Dx(a,b,c,t.z)}],36,0)",
         "type": "void Function<#A extends Object?>(Object,StackTrace,EventSink<#A>)"
       },
       "919454713": {
@@ -44218,7 +44218,7 @@
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 0,
-        "code": "rD(a,b){return a}\nl(A,\"XA\",2,null,[\"$1$2\",\"$2\"],[\"rD\",function(a,b){return A.rD(a,b,t.z)}],34,0)",
+        "code": "rD(a,b){return a}\nl(A,\"XA\",2,null,[\"$1$2\",\"$2\"],[\"rD\",function(a,b){return A.rD(a,b,t.z)}],35,0)",
         "type": "#A Function<#A extends Object?>(#A,dynamic)"
       },
       "1040907014": {
@@ -44698,7 +44698,7 @@
         "id": "function/1056628789",
         "kind": "function",
         "name": "pause",
-        "size": 248,
+        "size": 247,
         "outputUnit": "outputUnit/669725655",
         "parent": "class/604138865",
         "children": [],
@@ -44719,7 +44719,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "nB(a,b){var s,r,q=this,p=q.e\nif((p&8)!==0)return\ns=(p+128|4)>>>0\nq.e=s\nif(p<128){r=q.r\nif(r!=null)if(r.a===1)r.a=3}if((p&4)===0&&(s&32)===0)q.P1(q.gb9())}\nyy(a){return this.nB(a,null)}\nn(j=A.KA.prototype,\"gX0\",1,0,null,[\"$1\",\"$0\"],[\"nB\",\"yy\"],10,0,0)",
+        "code": "nB(a,b){var s,r,q=this,p=q.e\nif((p&8)!==0)return\ns=(p+128|4)>>>0\nq.e=s\nif(p<128){r=q.r\nif(r!=null)if(r.a===1)r.a=3}if((p&4)===0&&(s&32)===0)q.P1(q.gb9())}\nyy(a){return this.nB(a,null)}\nn(j=A.KA.prototype,\"gX0\",1,0,null,[\"$1\",\"$0\"],[\"nB\",\"yy\"],9,0,0)",
         "type": "void Function([Future<void>?])"
       },
       "1057423644": {
@@ -51202,7 +51202,7 @@
         "id": "closure/121408497",
         "kind": "closure",
         "name": "QrDemo_QrDemo_closure",
-        "size": 112,
+        "size": 113,
         "outputUnit": "outputUnit/669725655",
         "parent": "function/755698121",
         "function": "function/579590994"
@@ -51472,7 +51472,7 @@
         "id": "closure/607767883",
         "kind": "closure",
         "name": "_AsyncRun__initializeScheduleImmediate_internalCallback",
-        "size": 96,
+        "size": 97,
         "outputUnit": "outputUnit/669725655",
         "parent": "function/165003912",
         "function": "function/426855684"
@@ -51715,7 +51715,7 @@
         "id": "closure/953553118",
         "kind": "closure",
         "name": "_Future__chainForeignFuture_closure",
-        "size": 149,
+        "size": 150,
         "outputUnit": "outputUnit/669725655",
         "parent": "function/553149607",
         "function": "function/797212862"
@@ -59541,15 +59541,15 @@
       },
       {
         "id": "function/101782780",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/101782780",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/101782780",
         "mask": null
+      },
+      {
+        "id": "function/101782780",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/101782780",
+        "mask": "inlined"
       },
       {
         "id": "function/101782780",
@@ -59589,11 +59589,11 @@
       },
       {
         "id": "function/271036865",
-        "mask": null
+        "mask": "inlined"
       },
       {
         "id": "function/271036865",
-        "mask": "inlined"
+        "mask": null
       },
       {
         "id": "function/346305693",
@@ -59625,11 +59625,11 @@
       },
       {
         "id": "function/439085880",
-        "mask": null
+        "mask": "inlined"
       },
       {
         "id": "function/439085880",
-        "mask": "inlined"
+        "mask": null
       },
       {
         "id": "function/465133022",
@@ -61355,11 +61355,11 @@
       },
       {
         "id": "function/830002994",
-        "mask": null
+        "mask": "[subclass=Object]"
       },
       {
         "id": "function/830002994",
-        "mask": "[subclass=Object]"
+        "mask": null
       },
       {
         "id": "function/842507496",
@@ -75773,11 +75773,11 @@
       },
       {
         "id": "function/606572177",
-        "mask": null
+        "mask": "inlined"
       },
       {
         "id": "function/606572177",
-        "mask": "inlined"
+        "mask": null
       },
       {
         "id": "function/628393790",
@@ -85587,7 +85587,7 @@
       "id": "outputUnit/669725655",
       "kind": "outputUnit",
       "name": "main",
-      "size": 148128,
+      "size": 147805,
       "filename": "main.dart.js",
       "imports": []
     }
@@ -85597,11 +85597,11 @@
   "dump_minor_version": 1,
   "program": {
     "entrypoint": "function/564306678",
-    "size": 148128,
-    "dart2jsVersion": "2.17.0-169.0.dev",
-    "compilationMoment": "2022-03-10 07:58:46.951241",
-    "compilationDuration": 2309699,
-    "toJsonDuration": 8000,
+    "size": 147805,
+    "dart2jsVersion": "2.17.0-266.0.dev",
+    "compilationMoment": "2022-04-12 10:05:06.613300",
+    "compilationDuration": 2822486,
+    "toJsonDuration": 10000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
     "isRuntimeTypeUsed": true,
