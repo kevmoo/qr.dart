@@ -23,7 +23,8 @@ final qrCode = QrCode(4, QrErrorCorrectLevel.L)
 final qrImage = QrImage(qrCode);
 ```
 
-Now you can use your `qrImage` instance to render a graphical representation of the QR code. A basic implementation would be as such:
+Now you can use your `qrImage` instance to render a graphical representation of
+the QR code. A basic implementation would be as such:
 
 ```dart
 for (var x = 0; x < qrImage.moduleCount; x++) {
@@ -41,10 +42,13 @@ See the `example` directory for further details.
 
 The following libraries use qr.dart to generate QR codes for you out of the box:
 
-[QR - Flutter](https://github.com/lukef/qr.flutter) - A Flutter Widget to render QR codes
+[qr_flutter](https://pub.dev/packages/qr_flutter) - A Flutter Widget to render
+QR codes
 
-[QR - AngularDart](https://github.com/gazialankus/qr.angulardart) - An AngularDart component to render QR codes
+[barcode](https://pub.dev/packages/barcode) - A package that supports many types
+of scannable codes, include QR.
 
 # Demo
 
-A working demo can be found here: [https://kevmoo.github.io/qr.dart/](https://kevmoo.github.io/qr.dart/)
+A working demo can be found here:
+[kevmoo.github.io/qr.dart](https://kevmoo.github.io/qr.dart/)
