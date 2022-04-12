@@ -1,3 +1,7 @@
+## 3.0.1
+
+- Fix example in `README.md`.
+
 ## 3.0.0
 
 - `QrImage` added to handle image bits.
