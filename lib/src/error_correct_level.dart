@@ -17,7 +17,7 @@ class QrErrorCorrectLevel {
       case M:
         return 'Medium';
       case Q:
-        return 'Quality';
+        return 'Quartile';
       case H:
         return 'High';
       default:
