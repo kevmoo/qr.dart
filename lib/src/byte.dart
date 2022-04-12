@@ -84,7 +84,7 @@ class QrNumeric implements QrDatum {
 class QrAlphaNumeric implements QrDatum {
   static const alphaNumTable = r'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:';
   // Note: '-' anywhere in this string is a range character.
-  static late final validationRegex =
+  static final validationRegex =
       RegExp(r'^[-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+./:]+$');
   static final encodeArray = () {
     final array = List<int?>.filled(91, null);

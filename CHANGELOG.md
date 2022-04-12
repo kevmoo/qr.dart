@@ -1,6 +1,7 @@
 ## 3.0.1
 
 - Fix example in `README.md`.
+- Require Dart 2.16 or greater.
 
 ## 3.0.0
 

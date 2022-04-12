@@ -44,7 +44,7 @@ class QrDemo {
 
     demo.output.listen((data) {
       input.style.background = '';
-    }, onError: (error) {
+    }, onError: (Object error) {
       input.style.background = 'red';
       print(error);
     });
