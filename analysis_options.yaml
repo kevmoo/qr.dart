@@ -25,7 +25,6 @@ linter:
   - comment_references
   - depend_on_referenced_packages
   - directives_ordering
-  - invariant_booleans
   - join_return_with_assignment
   - library_private_types_in_public_api
   - lines_longer_than_80_chars
