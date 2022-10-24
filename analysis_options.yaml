@@ -23,18 +23,13 @@ linter:
   - cancel_subscriptions
   - cascade_invocations
   - comment_references
-  - depend_on_referenced_packages
   - directives_ordering
   - join_return_with_assignment
-  - library_private_types_in_public_api
   - lines_longer_than_80_chars
   - literal_only_boolean_expressions
   - missing_whitespace_between_adjacent_strings
   - no_adjacent_strings_in_list
-  - no_leading_underscores_for_library_prefixes
-  - no_leading_underscores_for_local_identifiers
   - no_runtimeType_toString
-  - null_check_on_nullable_type_parameter
   - omit_local_variable_types
   - only_throw_errors
   - package_api_docs
@@ -43,21 +38,20 @@ linter:
   - prefer_const_declarations
   - prefer_expression_function_bodies
   - prefer_final_locals
-  - prefer_interpolation_to_compose_strings
   - prefer_relative_imports
   - prefer_single_quotes
+  - require_trailing_commas
   - sort_pub_dependencies
   - test_types_in_equals
   - throw_in_finally
   - type_annotate_public_apis
   - unawaited_futures
   - unnecessary_await_in_return
-  - unnecessary_constructor_name
   - unnecessary_lambdas
-  - unnecessary_late
-  - unnecessary_null_aware_assignments
-  - unnecessary_nullable_for_final_variable_declarations
   - unnecessary_parenthesis
   - unnecessary_statements
+  - use_if_null_to_convert_nulls_to_bools
   - use_is_even_rather_than_modulo
+  - use_raw_strings
   - use_string_buffers
+  - use_super_parameters

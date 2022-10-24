@@ -87,7 +87,13 @@ class AffineTransform {
     final cos = math.cos(theta);
     final sin = math.sin(theta);
     setTransform(
-        cos, sin, -sin, cos, x - x * cos + y * sin, y - x * sin - y * cos);
+      cos,
+      sin,
+      -sin,
+      cos,
+      x - x * cos + y * sin,
+      y - x * sin - y * cos,
+    );
   }
 
   void setToTranslation(num dx, num dy) {
@@ -116,8 +122,14 @@ class AffineTransform {
 
   AffineTransform createInverse() {
     final det = determinant;
-    return AffineTransform(_scY / det, -_shY / det, -_shX / det, _scX / det,
-        (_shX * _tY - _scY * _tX) / det, (_shY * _tX - _scX * _tY) / det);
+    return AffineTransform(
+      _scY / det,
+      -_shY / det,
+      -_shX / det,
+      _scX / det,
+      (_shX * _tY - _scY * _tX) / det,
+      (_shY * _tX - _scX * _tY) / det,
+    );
   }
 
   AffineTransform lerpTx(AffineTransform other, num x) {
@@ -193,7 +205,7 @@ class Size {
 }
 
 class Coordinate extends math.Point {
-  const Coordinate([num x = 0, num y = 0]) : super(x, y);
+  const Coordinate([super.x = 0, super.y = 0]);
 
   bool get isValid => isValidNumber(x) && isValidNumber(y);
 
@@ -216,7 +228,7 @@ class Coordinate extends math.Point {
 }
 
 class Vector extends Coordinate {
-  const Vector([num x = 0, num y = 0]) : super(x, y);
+  const Vector([super.x, super.y]);
 
   Vector get normal => scale(1 / magnitude);
 

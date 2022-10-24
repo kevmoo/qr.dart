@@ -23,7 +23,10 @@ class QrCode {
       : moduleCount = typeNumber * 4 + 17 {
     RangeError.checkValueInInterval(typeNumber, 1, 40, 'typeNumber');
     RangeError.checkValidIndex(
-        errorCorrectLevel, QrErrorCorrectLevel.levels, 'errorCorrectLevel');
+      errorCorrectLevel,
+      QrErrorCorrectLevel.levels,
+      'errorCorrectLevel',
+    );
   }
 
   factory QrCode.fromData({
@@ -103,7 +106,10 @@ const int _pad0 = 0xEC;
 const int _pad1 = 0x11;
 
 List<int> _createData(
-    int typeNumber, int errorCorrectLevel, List<QrDatum> dataList) {
+  int typeNumber,
+  int errorCorrectLevel,
+  List<QrDatum> dataList,
+) {
   final rsBlocks = QrRsBlock.getRSBlocks(typeNumber, errorCorrectLevel);
 
   final buffer = QrBitBuffer();

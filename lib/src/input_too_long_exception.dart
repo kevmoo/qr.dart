@@ -10,7 +10,10 @@ class InputTooLongException implements Exception {
   }
 
   InputTooLongException._internal(
-      this.providedInput, this.inputLimit, this.message);
+    this.providedInput,
+    this.inputLimit,
+    this.message,
+  );
 
   @override
   String toString() => 'QrInputTooLongException: $message';

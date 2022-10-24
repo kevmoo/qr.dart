@@ -42,9 +42,12 @@ void main() {
 
   test('fromUint8List', () {
     for (var quality in QrErrorCorrectLevel.levels) {
-      final qr = QrImage(QrCode.fromUint8List(
+      final qr = QrImage(
+        QrCode.fromUint8List(
           data: Uint8List.fromList([115, 104, 97, 110, 110, 97, 33]),
-          errorCorrectLevel: quality));
+          errorCorrectLevel: quality,
+        ),
+      );
       final modules = qr.qrModules;
       for (var i = 0; i < modules.length; i++) {
         expect(
@@ -58,7 +61,9 @@ void main() {
   test('WHEN mask pattern is provided, SHOULD make a masked QR Code', () {
     for (var mask = 0; mask <= 7; mask++) {
       final qr = QrImage.withMaskPattern(
-          QrCode(1, QrErrorCorrectLevel.L)..addData('shanna!'), mask);
+        QrCode(1, QrErrorCorrectLevel.L)..addData('shanna!'),
+        mask,
+      );
       final modules = qr.qrModules;
       for (var i = 0; i < modules.length; i++) {
         expect(
@@ -73,20 +78,30 @@ void main() {
       WHEN provided mask pattern is smaller than 0,
       SHOULD throw an AssertionError
   ''', () {
-    expect(() {
-      QrImage.withMaskPattern(
-          QrCode(1, QrErrorCorrectLevel.L)..addData('shanna!'), -1);
-    }, throwsA(isA<AssertionError>()));
+    expect(
+      () {
+        QrImage.withMaskPattern(
+          QrCode(1, QrErrorCorrectLevel.L)..addData('shanna!'),
+          -1,
+        );
+      },
+      throwsA(isA<AssertionError>()),
+    );
   });
 
   test('''
       WHEN provided mask pattern is bigger than 7,
       SHOULD throw an AssertionError
   ''', () {
-    expect(() {
-      QrImage.withMaskPattern(
-          QrCode(1, QrErrorCorrectLevel.L)..addData('shanna!'), 8);
-    }, throwsA(isA<AssertionError>()));
+    expect(
+      () {
+        QrImage.withMaskPattern(
+          QrCode(1, QrErrorCorrectLevel.L)..addData('shanna!'),
+          8,
+        );
+      },
+      throwsA(isA<AssertionError>()),
+    );
   });
 }
 
