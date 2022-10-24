@@ -1,5 +1,7 @@
 A QR code generation library for Dart and Flutter.
 
+[![Pub Package](https://img.shields.io/pub/v/qr.svg)](https://pub.dev/packages/qr)
+[![package publisher](https://img.shields.io/pub/publisher/qr.svg)](https://pub.dev/packages/qr/publisher)
 [![CI](https://github.com/kevmoo/qr.dart/workflows/ci/badge.svg)](https://github.com/kevmoo/qr.dart/actions?query=workflow%3A%22ci%22)
 
 # Features

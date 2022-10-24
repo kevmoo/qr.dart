@@ -39,7 +39,8 @@ List<int> _getRsBlockTable(int typeNumber, int errorCorrectLevel) {
       return _rsBlockTable[(typeNumber - 1) * 4 + 3];
     default:
       throw ArgumentError(
-          'bad rs block @ typeNumber: $typeNumber/errorCorrectLevel:$errorCorrectLevel');
+        'bad rs block @ typeNumber: $typeNumber/errorCorrectLevel:$errorCorrectLevel',
+      );
   }
 }
 

@@ -22,25 +22,33 @@ void _testGetByte() {
 
 void _testComplex() {
   var bb = QrBitBuffer()..put(0, 8);
-  expect(bb,
-      orderedEquals([false, false, false, false, false, false, false, false]));
+  expect(
+    bb,
+    orderedEquals([false, false, false, false, false, false, false, false]),
+  );
 
   bb = QrBitBuffer()..put(1, 8);
-  expect(bb,
-      orderedEquals([false, false, false, false, false, false, false, true]));
+  expect(
+    bb,
+    orderedEquals([false, false, false, false, false, false, false, true]),
+  );
 
   bb = QrBitBuffer()..put(255, 8);
   expect(bb, orderedEquals([true, true, true, true, true, true, true, true]));
 
   bb = QrBitBuffer()..put(256, 8);
-  expect(bb,
-      orderedEquals([false, false, false, false, false, false, false, false]));
+  expect(
+    bb,
+    orderedEquals([false, false, false, false, false, false, false, false]),
+  );
 
   bb = QrBitBuffer()..put(256, 9);
   expect(
-      bb,
-      orderedEquals(
-          [true, false, false, false, false, false, false, false, false]));
+    bb,
+    orderedEquals(
+      [true, false, false, false, false, false, false, false, false],
+    ),
+  );
 }
 
 final _rnd = math.Random();

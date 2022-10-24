@@ -42,12 +42,15 @@ class QrDemo {
       demo.value = input.value!;
     });
 
-    demo.output.listen((data) {
-      input.style.background = '';
-    }, onError: (Object error) {
-      input.style.background = 'red';
-      print(error);
-    });
+    demo.output.listen(
+      (data) {
+        input.style.background = '';
+      },
+      onError: (Object error) {
+        input.style.background = 'red';
+        print(error);
+      },
+    );
 
     return demo;
   }
@@ -211,5 +214,11 @@ Future<List<bool>> _calc(_Config config) async {
 
 void _setTransform(CanvasRenderingContext2D ctx, AffineTransform tx) {
   ctx.setTransform(
-      tx.scaleX, tx.shearY, tx.shearX, tx.scaleY, tx.translateX, tx.translateY);
+    tx.scaleX,
+    tx.shearY,
+    tx.shearX,
+    tx.scaleY,
+    tx.translateX,
+    tx.translateY,
+  );
 }

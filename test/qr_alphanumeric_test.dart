@@ -5,7 +5,8 @@ import 'package:test/test.dart';
 void main() {
   test('full character map', () {
     final qr = QrAlphaNumeric.fromString(
-        r'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:');
+      r'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:',
+    );
     expect(qr.mode, 2);
     expect(qr.length, 45);
     final buffer = QrBitBuffer();
@@ -56,20 +57,29 @@ void main() {
     qr.write(buffer);
     expect(buffer.length, 11, reason: 'n*5+1 = 11');
     expect(
-        buffer.getRange(0, 11).map<int>((e) => e ? 1 : 0).fold<int>(
-            0, (previousValue, element) => (previousValue << 1) | element),
-        170);
+      buffer.getRange(0, 11).map<int>((e) => e ? 1 : 0).fold<int>(
+            0,
+            (previousValue, element) => (previousValue << 1) | element,
+          ),
+      170,
+    );
   });
 
   test('throws on invalid input', () {
     for (var character in 'abcdefghijklmnopqrstuvwxyz'.split('')) {
-      expect(() => QrAlphaNumeric.fromString(character), throwsArgumentError,
-          reason: 'lower case $character is invalid');
+      expect(
+        () => QrAlphaNumeric.fromString(character),
+        throwsArgumentError,
+        reason: 'lower case $character is invalid',
+      );
     }
 
     for (var character in '!@#^&()_=[]{}\'";?<>,|~`'.split('')) {
-      expect(() => QrAlphaNumeric.fromString(character), throwsArgumentError,
-          reason: 'special character $character is invalid');
+      expect(
+        () => QrAlphaNumeric.fromString(character),
+        throwsArgumentError,
+        reason: 'special character $character is invalid',
+      );
     }
   });
 }
