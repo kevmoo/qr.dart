@@ -180,6 +180,7 @@
         "name": "dart._js_names",
         "size": 0,
         "children": [
+          "function/dart:_js_names::getSpecializedTestTag",
           "function/dart:_js_names::unmangleGlobalNameIfPreservedAnyways"
         ],
         "canonicalUri": "dart:_js_names"
@@ -247,7 +248,7 @@
         "id": "library/dart:_rti::",
         "kind": "library",
         "name": "rti",
-        "size": 17631,
+        "size": 17649,
         "children": [
           "class/dart:_rti::Rti",
           "class/dart:_rti::TypeRule",
@@ -18752,6 +18753,35 @@
         "type": "dynamic Function(dynamic)",
         "functionKind": 0
       },
+      "dart:_js_names::getSpecializedTestTag": {
+        "id": "function/dart:_js_names::getSpecializedTestTag",
+        "kind": "function",
+        "name": "getSpecializedTestTag",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "library/dart:_js_names::",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "Object",
+        "inferredReturnType": "[exact=JSString]",
+        "parameters": [
+          {
+            "name": "name",
+            "type": "[exact=JSString]",
+            "declaredType": "String"
+          }
+        ],
+        "sideEffects": "SideEffects(reads nothing; writes nothing)",
+        "inlinedCount": 1,
+        "code": "",
+        "type": "Object Function(String)",
+        "functionKind": 0
+      },
       "dart:_js_names::unmangleGlobalNameIfPreservedAnyways": {
         "id": "function/dart:_js_names::unmangleGlobalNameIfPreservedAnyways",
         "kind": "function",
@@ -21351,7 +21381,7 @@
         "id": "function/dart:_rti::_Parser.handleIdentifier",
         "kind": "function",
         "name": "handleIdentifier",
-        "size": 358,
+        "size": 367,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:_rti::_Parser",
         "children": [],
@@ -21392,7 +21422,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "R8(a,b,c,d,e){var s,r,q,p,o,n,m=b+1\nfor(s=c.length;m<s;++m){r=c.charCodeAt(m)\nif(r===46){if(e)break\ne=!0}else{if(!((((r|32)>>>0)-97&65535)<26||r===95||r===36))q=r>=48&&r<=57\nelse q=!0\nif(!q)break}}p=c.substring(b,m)\nif(e){s=a.u\no=a.e\nif(o.x===10)o=o.y\nn=A.Qo(s,o.y)[p]\nif(n==null)A.v('No \"'+p+'\" in \"'+A.mD(o)+'\"')\nd.push(A.c(s,o,n))}else d.push(p)\nreturn m}",
+        "code": "R8(a,b,c,d,e){var s,r,q,p,o,n,m=b+1\nfor(s=c.length;m<s;++m){r=c.charCodeAt(m)\nif(r===46){if(e)break\ne=!0}else{if(!((((r|32)>>>0)-97&65535)<26||r===95||r===36||r===124))q=r>=48&&r<=57\nelse q=!0\nif(!q)break}}p=c.substring(b,m)\nif(e){s=a.u\no=a.e\nif(o.x===10)o=o.y\nn=A.Qo(s,o.y)[p]\nif(n==null)A.v('No \"'+p+'\" in \"'+A.mD(o)+'\"')\nd.push(A.c(s,o,n))}else d.push(p)\nreturn m}",
         "type": "int Function(Object?,int,String,Object?,bool)",
         "functionKind": 0
       },
@@ -21614,7 +21644,7 @@
         "id": "function/dart:_rti::_Parser.parse",
         "kind": "function",
         "name": "parse",
-        "size": 1444,
+        "size": 1453,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:_rti::_Parser",
         "children": [],
@@ -21635,7 +21665,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "eT(a){var s,r,q,p,o,n,m,l,k,j=a.r,i=a.s\nfor(s=j.length,r=0;r<s;){q=j.charCodeAt(r)\nif(q>=48&&q<=57)r=A.A(r+1,q,j,i)\nelse if((((q|32)>>>0)-97&65535)<26||q===95||q===36)r=A.R8(a,r,j,i,!1)\nelse if(q===46)r=A.R8(a,r,j,i,!0)\nelse{++r\nswitch(q){case 44:break\ncase 58:i.push(!1)\nbreak\ncase 33:i.push(!0)\nbreak\ncase 59:i.push(A.KQ(a.u,a.e,i.pop()))\nbreak\ncase 94:i.push(A.Hc(a.u,i.pop()))\nbreak\ncase 35:i.push(A.mZ(a.u,5,\"#\"))\nbreak\ncase 64:i.push(A.mZ(a.u,2,\"@\"))\nbreak\ncase 126:i.push(A.mZ(a.u,3,\"~\"))\nbreak\ncase 60:i.push(a.p)\na.p=i.length\nbreak\ncase 62:p=a.u\no=i.splice(a.p)\nA.rT(a.u,a.e,o)\na.p=i.pop()\nn=i.pop()\nif(typeof n==\"string\")i.push(A.Q2(p,n,o))\nelse{m=A.KQ(p,a.e,n)\nswitch(m.x){case 12:i.push(A.DS(p,m,o,a.n))\nbreak\ndefault:i.push(A.ap(p,m,o))\nbreak}}break\ncase 38:A.I3(a,i)\nbreak\ncase 42:p=a.u\ni.push(A.G(p,A.KQ(p,a.e,i.pop()),a.n))\nbreak\ncase 63:p=a.u\ni.push(A.Bc(p,A.KQ(p,a.e,i.pop()),a.n))\nbreak\ncase 47:p=a.u\ni.push(A.LN(p,A.KQ(p,a.e,i.pop()),a.n))\nbreak\ncase 40:i.push(-3)\ni.push(a.p)\na.p=i.length\nbreak\ncase 41:A.Mt(a,i)\nbreak\ncase 91:i.push(a.p)\na.p=i.length\nbreak\ncase 93:o=i.splice(a.p)\nA.rT(a.u,a.e,o)\na.p=i.pop()\ni.push(o)\ni.push(-1)\nbreak\ncase 123:i.push(a.p)\na.p=i.length\nbreak\ncase 125:o=i.splice(a.p)\nA.y(a.u,a.e,o)\na.p=i.pop()\ni.push(o)\ni.push(-2)\nbreak\ncase 43:l=j.indexOf(\"(\",r)\ni.push(j.substring(r,l))\ni.push(-4)\ni.push(a.p)\na.p=i.length\nr=l+1\nbreak\ndefault:throw\"Bad character \"+q}}}k=i.pop()\nreturn A.KQ(a.u,a.e,k)}",
+        "code": "eT(a){var s,r,q,p,o,n,m,l,k,j=a.r,i=a.s\nfor(s=j.length,r=0;r<s;){q=j.charCodeAt(r)\nif(q>=48&&q<=57)r=A.A(r+1,q,j,i)\nelse if((((q|32)>>>0)-97&65535)<26||q===95||q===36||q===124)r=A.R8(a,r,j,i,!1)\nelse if(q===46)r=A.R8(a,r,j,i,!0)\nelse{++r\nswitch(q){case 44:break\ncase 58:i.push(!1)\nbreak\ncase 33:i.push(!0)\nbreak\ncase 59:i.push(A.KQ(a.u,a.e,i.pop()))\nbreak\ncase 94:i.push(A.Hc(a.u,i.pop()))\nbreak\ncase 35:i.push(A.mZ(a.u,5,\"#\"))\nbreak\ncase 64:i.push(A.mZ(a.u,2,\"@\"))\nbreak\ncase 126:i.push(A.mZ(a.u,3,\"~\"))\nbreak\ncase 60:i.push(a.p)\na.p=i.length\nbreak\ncase 62:p=a.u\no=i.splice(a.p)\nA.rT(a.u,a.e,o)\na.p=i.pop()\nn=i.pop()\nif(typeof n==\"string\")i.push(A.Q2(p,n,o))\nelse{m=A.KQ(p,a.e,n)\nswitch(m.x){case 12:i.push(A.DS(p,m,o,a.n))\nbreak\ndefault:i.push(A.ap(p,m,o))\nbreak}}break\ncase 38:A.I3(a,i)\nbreak\ncase 42:p=a.u\ni.push(A.G(p,A.KQ(p,a.e,i.pop()),a.n))\nbreak\ncase 63:p=a.u\ni.push(A.Bc(p,A.KQ(p,a.e,i.pop()),a.n))\nbreak\ncase 47:p=a.u\ni.push(A.LN(p,A.KQ(p,a.e,i.pop()),a.n))\nbreak\ncase 40:i.push(-3)\ni.push(a.p)\na.p=i.length\nbreak\ncase 41:A.Mt(a,i)\nbreak\ncase 91:i.push(a.p)\na.p=i.length\nbreak\ncase 93:o=i.splice(a.p)\nA.rT(a.u,a.e,o)\na.p=i.pop()\ni.push(o)\ni.push(-1)\nbreak\ncase 123:i.push(a.p)\na.p=i.length\nbreak\ncase 125:o=i.splice(a.p)\nA.y(a.u,a.e,o)\na.p=i.pop()\ni.push(o)\ni.push(-2)\nbreak\ncase 43:l=j.indexOf(\"(\",r)\ni.push(j.substring(r,l))\ni.push(-4)\ni.push(a.p)\na.p=i.length\nr=l+1\nbreak\ndefault:throw\"Bad character \"+q}}}k=i.pop()\nreturn A.KQ(a.u,a.e,k)}",
         "type": "Rti Function(Object?)",
         "functionKind": 0
       },
@@ -27230,7 +27260,7 @@
         "inferredReturnType": "[null|subclass=Object]",
         "parameters": [],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 12,
+        "inlinedCount": 13,
         "code": "",
         "type": "Object? Function()",
         "functionKind": 0
@@ -27380,7 +27410,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 2,
+        "inlinedCount": 3,
         "code": "q7(a){return A.Ew(v.typeUniverse,a,!1)}",
         "type": "Rti Function(String)",
         "functionKind": 0
@@ -67696,12 +67726,20 @@
         "mask": null
       },
       {
-        "id": "function/dart:_rti::Rti._getInterfaceName",
+        "id": "function/dart:_js_names::getSpecializedTestTag",
         "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_js_names::getSpecializedTestTag",
+        "mask": null
       },
       {
         "id": "function/dart:_rti::Rti._getInterfaceName",
         "mask": null
+      },
+      {
+        "id": "function/dart:_rti::Rti._getInterfaceName",
+        "mask": "inlined"
       },
       {
         "id": "function/dart:_rti::Rti._getInterfaceTypeArguments",
@@ -67713,11 +67751,11 @@
       },
       {
         "id": "function/dart:_rti::Rti._getKind",
-        "mask": null
+        "mask": "inlined"
       },
       {
         "id": "function/dart:_rti::Rti._getKind",
-        "mask": "inlined"
+        "mask": null
       },
       {
         "id": "function/dart:_rti::Rti._getKind",
@@ -67737,11 +67775,11 @@
       },
       {
         "id": "function/dart:_rti::Rti._getStarArgument",
-        "mask": "inlined"
+        "mask": null
       },
       {
         "id": "function/dart:_rti::Rti._getStarArgument",
-        "mask": null
+        "mask": "inlined"
       },
       {
         "id": "function/dart:_rti::Rti._setSpecializedTestResource",
@@ -67917,6 +67955,14 @@
       },
       {
         "id": "function/dart:_rti::_theUniverse",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_rti::findType",
+        "mask": null
+      },
+      {
+        "id": "function/dart:_rti::findType",
         "mask": "inlined"
       }
     ],
@@ -69778,6 +69824,10 @@
       {
         "id": "function/dart:_rti::_theUniverse",
         "mask": null
+      },
+      {
+        "id": "function/dart:_rti::_theUniverse",
+        "mask": "inlined"
       },
       {
         "id": "function/dart:_rti::_theUniverse",
@@ -89257,7 +89307,7 @@
       "id": "outputUnit/main",
       "kind": "outputUnit",
       "name": "main",
-      "size": 149307,
+      "size": 149325,
       "filename": "main.dart.js",
       "imports": []
     }
@@ -89267,11 +89317,11 @@
   "dump_minor_version": 1,
   "program": {
     "entrypoint": "function/org-dartlang-app:///example/main.dart::main",
-    "size": 149307,
-    "ramUsage": "231.234 MB",
-    "dart2jsVersion": "2.19.0-318.0.dev",
-    "compilationMoment": "2022-10-24 13:31:32.988451",
-    "compilationDuration": 1019116,
+    "size": 149325,
+    "ramUsage": "225.359 MB",
+    "dart2jsVersion": "2.19.0-353.0.dev",
+    "compilationMoment": "2022-11-01 11:23:30.990687",
+    "compilationDuration": 926778,
     "toJsonDuration": 3000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
