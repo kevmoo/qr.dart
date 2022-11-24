@@ -248,7 +248,7 @@
         "id": "library/dart:_rti::",
         "kind": "library",
         "name": "rti",
-        "size": 17649,
+        "size": 17655,
         "children": [
           "class/dart:_rti::Rti",
           "class/dart:_rti::TypeRule",
@@ -469,7 +469,7 @@
         "id": "library/dart:core::",
         "kind": "library",
         "name": "dart.core",
-        "size": 4760,
+        "size": 4736,
         "children": [
           "class/dart:core::ArgumentError",
           "class/dart:core::AssertionError",
@@ -519,7 +519,7 @@
         "id": "library/dart:html::",
         "kind": "library",
         "name": "dart.dom.html",
-        "size": 14855,
+        "size": 14858,
         "children": [
           "class/dart:html::AbortPaymentEvent",
           "class/dart:html::AnchorElement",
@@ -2619,7 +2619,8 @@
           "function/dart:_rti::Rti._setPrimary",
           "function/dart:_rti::Rti._setRest",
           "function/dart:_rti::Rti._setSpecializedTestResource",
-          "function/dart:_rti::Rti.allocate"
+          "function/dart:_rti::Rti.allocate",
+          "function/dart:_rti::Rti.getLegacyErasedRecipe"
         ],
         "supers": []
       },
@@ -4280,9 +4281,10 @@
         "children": [
           "field/dart:core::IndexError.indexable",
           "field/dart:core::IndexError.length",
-          "function/dart:core::IndexError.IndexError",
+          "function/dart:core::IndexError.IndexError.withLength",
           "function/dart:core::IndexError._errorExplanation",
-          "function/dart:core::IndexError._errorName"
+          "function/dart:core::IndexError._errorName",
+          "function/dart:core::IndexError.check"
         ],
         "supers": [
           "class/dart:core::ArgumentError",
@@ -5687,7 +5689,7 @@
         "id": "class/dart:html::HtmlCollection",
         "kind": "class",
         "name": "HtmlCollection",
-        "size": 243,
+        "size": 244,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:html::",
         "modifiers": {
@@ -6291,7 +6293,7 @@
         "id": "class/dart:html::NodeList",
         "kind": "class",
         "name": "NodeList",
-        "size": 243,
+        "size": 244,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:html::",
         "modifiers": {
@@ -7802,7 +7804,7 @@
         "id": "class/dart:html::_NamedNodeMap",
         "kind": "class",
         "name": "_NamedNodeMap",
-        "size": 243,
+        "size": 244,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:html::",
         "modifiers": {
@@ -17624,7 +17626,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "HY(a,b){var s,r=\"index\"\nif(!A.ok(b))return new A.AT(!0,b,r,null)\ns=J.Hm(a)\nif(b<0||b>=s)return A.Cf(b,a,r,null,s)\nreturn A.O7(b,r)}",
+        "code": "HY(a,b){var s,r=\"index\"\nif(!A.ok(b))return new A.AT(!0,b,r,null)\ns=J.Hm(a)\nif(b<0||b>=s)return A.xF(b,s,a,null,r)\nreturn A.O7(b,r)}",
         "type": "Error Function(dynamic,dynamic)",
         "functionKind": 0
       },
@@ -19670,7 +19672,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads field; writes nothing)",
-        "inlinedCount": 11,
+        "inlinedCount": 12,
         "code": "mD(a){return a.at}",
         "type": "String Function(Rti)",
         "functionKind": 0
@@ -20723,6 +20725,35 @@
         "inlinedCount": 10,
         "code": "",
         "type": "Rti Function()",
+        "functionKind": 0
+      },
+      "dart:_rti::Rti.getLegacyErasedRecipe": {
+        "id": "function/dart:_rti::Rti.getLegacyErasedRecipe",
+        "kind": "function",
+        "name": "getLegacyErasedRecipe",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:_rti::Rti",
+        "children": [],
+        "modifiers": {
+          "static": true,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "String",
+        "inferredReturnType": "[exact=JSString]",
+        "parameters": [
+          {
+            "name": "rti",
+            "type": "[exact=Rti]",
+            "declaredType": "Rti"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 1,
+        "code": "",
+        "type": "String Function(Rti)",
         "functionKind": 0
       },
       "dart:_rti::TypeRule.lookupSupertype": {
@@ -24772,7 +24803,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 103,
+        "inlinedCount": 104,
         "code": "",
         "type": "Rti Function(Object?)",
         "functionKind": 0
@@ -24830,7 +24861,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 40,
+        "inlinedCount": 41,
         "code": "",
         "type": "String Function(Object?)",
         "functionKind": 0
@@ -27298,7 +27329,7 @@
         "id": "function/dart:_rti::closureFunctionType",
         "kind": "function",
         "name": "closureFunctionType",
-        "size": 92,
+        "size": 98,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:_rti::",
         "children": [],
@@ -27319,7 +27350,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "JS(a){var s=a.$S\nif(s!=null){if(typeof s==\"number\")return A.Bp(s)\nreturn a.$S()}return null}",
+        "code": "JS(a){var s,r=a.$S\nif(r!=null){if(typeof r==\"number\")return A.Bp(r)\ns=a.$S()\nreturn s}return null}",
         "type": "Rti? Function(Object?)",
         "functionKind": 0
       },
@@ -38568,11 +38599,11 @@
         "type": "String Function()",
         "functionKind": 2
       },
-      "dart:core::IndexError.IndexError": {
-        "id": "function/dart:core::IndexError.IndexError",
+      "dart:core::IndexError.IndexError.withLength": {
+        "id": "function/dart:core::IndexError.IndexError.withLength",
         "kind": "function",
-        "name": "IndexError",
-        "size": 85,
+        "name": "IndexError.withLength",
+        "size": 61,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:core::IndexError",
         "children": [],
@@ -38591,14 +38622,14 @@
             "declaredType": "int"
           },
           {
-            "name": "indexable",
-            "type": "[subclass=Object]",
-            "declaredType": "dynamic"
+            "name": "length",
+            "type": "[subclass=JSInt]",
+            "declaredType": "int"
           },
           {
-            "name": "name",
-            "type": "[null|exact=JSString]",
-            "declaredType": "String?"
+            "name": "indexable",
+            "type": "[subclass=Object]",
+            "declaredType": "Object?"
           },
           {
             "name": "message",
@@ -38606,15 +38637,15 @@
             "declaredType": "String?"
           },
           {
-            "name": "length",
-            "type": "[null|subclass=JSInt]",
-            "declaredType": "int?"
+            "name": "name",
+            "type": "[null|exact=JSString]",
+            "declaredType": "String?"
           }
         ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 0,
-        "code": "Cf(a,b,c,d,e){var s=e==null?J.Hm(b):e\nreturn new A.eY(s,!0,a,c,\"Index out of range\")}",
-        "type": "dynamic Function(int,dynamic,[String?,String?,int?])",
+        "code": "xF(a,b,c,d,e){return new A.eY(b,!0,a,e,\"Index out of range\")}",
+        "type": "dynamic Function(int,int,{Object? indexable,String? message,String? name})",
         "functionKind": 3
       },
       "dart:core::IndexError._errorExplanation": {
@@ -38663,6 +38694,55 @@
         "type": "String Function()",
         "functionKind": 2
       },
+      "dart:core::IndexError.check": {
+        "id": "function/dart:core::IndexError.check",
+        "kind": "function",
+        "name": "check",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:core::IndexError",
+        "children": [],
+        "modifiers": {
+          "static": true,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "int",
+        "inferredReturnType": "[subclass=JSInt]",
+        "parameters": [
+          {
+            "name": "index",
+            "type": "[subclass=JSInt]",
+            "declaredType": "int"
+          },
+          {
+            "name": "length",
+            "type": "[subclass=JSUInt32]",
+            "declaredType": "int"
+          },
+          {
+            "name": "indexable",
+            "type": "Container([exact=JSUnmodifiableArray], element: [exact=JSUInt31], length: 4)",
+            "declaredType": "Object?"
+          },
+          {
+            "name": "message",
+            "type": "[null]",
+            "declaredType": "String?"
+          },
+          {
+            "name": "name",
+            "type": "Value([exact=JSString], value: \"errorCorrectLevel\")",
+            "declaredType": "String?"
+          }
+        ],
+        "sideEffects": "SideEffects(reads nothing; writes nothing)",
+        "inlinedCount": 1,
+        "code": "",
+        "type": "int Function(int,int,{Object? indexable,String? message,String? name})",
+        "functionKind": 0
+      },
       "dart:core::Iterable.elementAt": {
         "id": "function/dart:core::Iterable.elementAt",
         "kind": "function",
@@ -38688,7 +38768,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "F(a,b){var s,r,q\nA.k1(b,\"index\")\nfor(s=this.gkz(this),r=0;s.G();){q=s.gl()\nif(b===r)return q;++r}throw A.b(A.Cf(b,this,\"index\",null,r))}",
+        "code": "F(a,b){var s,r,q\nA.k1(b,\"index\")\nfor(s=this.gkz(this),r=0;s.G();){q=s.gl()\nif(b===r)return q;++r}throw A.b(A.xF(b,r,this,null,\"index\"))}",
         "type": "Iterable.E Function(int)",
         "functionKind": 2
       },
@@ -41256,7 +41336,7 @@
         "id": "function/dart:html::HtmlCollection.[]",
         "kind": "function",
         "name": "[]",
-        "size": 115,
+        "size": 116,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:html::HtmlCollection",
         "children": [],
@@ -41275,9 +41355,9 @@
             "declaredType": "int"
           }
         ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "sideEffects": "SideEffects(reads anything; writes nothing)",
         "inlinedCount": 0,
-        "code": "q(a,b){var s=b>>>0!==b||b>=a.length\ns.toString\nif(s)throw A.b(A.Cf(b,a,null,null,null))\ns=a[b]\ns.toString\nreturn s}",
+        "code": "q(a,b){var s=a.length,r=b>>>0!==b||b>=s\nr.toString\nif(r)throw A.b(A.xF(b,s,a,null,null))\ns=a[b]\ns.toString\nreturn s}",
         "type": "Node Function(int)",
         "functionKind": 2
       },
@@ -41304,7 +41384,7 @@
             "declaredType": "int"
           }
         ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "sideEffects": "SideEffects(reads anything; writes nothing)",
         "inlinedCount": 0,
         "code": "F(a,b){return a[b]}",
         "type": "Node Function(int)",
@@ -41527,7 +41607,7 @@
         "id": "function/dart:html::NodeList.[]",
         "kind": "function",
         "name": "[]",
-        "size": 115,
+        "size": 116,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:html::NodeList",
         "children": [],
@@ -41546,9 +41626,9 @@
             "declaredType": "int"
           }
         ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "sideEffects": "SideEffects(reads anything; writes nothing)",
         "inlinedCount": 0,
-        "code": "q(a,b){var s=b>>>0!==b||b>=a.length\ns.toString\nif(s)throw A.b(A.Cf(b,a,null,null,null))\ns=a[b]\ns.toString\nreturn s}",
+        "code": "q(a,b){var s=a.length,r=b>>>0!==b||b>=s\nr.toString\nif(r)throw A.b(A.xF(b,s,a,null,null))\ns=a[b]\ns.toString\nreturn s}",
         "type": "Node Function(int)",
         "functionKind": 2
       },
@@ -41575,7 +41655,7 @@
             "declaredType": "int"
           }
         ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "sideEffects": "SideEffects(reads anything; writes nothing)",
         "inlinedCount": 0,
         "code": "F(a,b){return a[b]}",
         "type": "Node Function(int)",
@@ -43740,7 +43820,7 @@
         "id": "function/dart:html::_NamedNodeMap.[]",
         "kind": "function",
         "name": "[]",
-        "size": 115,
+        "size": 116,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:html::_NamedNodeMap",
         "children": [],
@@ -43759,9 +43839,9 @@
             "declaredType": "int"
           }
         ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "sideEffects": "SideEffects(reads anything; writes nothing)",
         "inlinedCount": 0,
-        "code": "q(a,b){var s=b>>>0!==b||b>=a.length\ns.toString\nif(s)throw A.b(A.Cf(b,a,null,null,null))\ns=a[b]\ns.toString\nreturn s}",
+        "code": "q(a,b){var s=a.length,r=b>>>0!==b||b>=s\nr.toString\nif(r)throw A.b(A.xF(b,s,a,null,null))\ns=a[b]\ns.toString\nreturn s}",
         "type": "Node Function(int)",
         "functionKind": 2
       },
@@ -43788,7 +43868,7 @@
             "declaredType": "int"
           }
         ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "sideEffects": "SideEffects(reads anything; writes nothing)",
         "inlinedCount": 0,
         "code": "F(a,b){return a[b]}",
         "type": "Node Function(int)",
@@ -50982,7 +51062,7 @@
         "children": [],
         "inferredType": "[subclass=Object]",
         "code": "",
-        "type": "dynamic"
+        "type": "Object?"
       },
       "dart:core::IndexError.length": {
         "id": "field/dart:core::IndexError.length",
@@ -60600,7 +60680,7 @@
         "mask": null
       },
       {
-        "id": "function/dart:core::IndexError.IndexError",
+        "id": "function/dart:core::IndexError.IndexError.withLength",
         "mask": null
       },
       {
@@ -62130,6 +62210,10 @@
       {
         "id": "function/dart:_rti::_Utils.asString",
         "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_rti::_Utils.asString",
+        "mask": "inlined"
       }
     ],
     "function/dart:_rti::Rti._getFunctionParameters": [
@@ -62899,6 +62983,12 @@
       },
       {
         "id": "function/dart:_rti::Rti.Rti",
+        "mask": "inlined"
+      }
+    ],
+    "function/dart:_rti::Rti.getLegacyErasedRecipe": [
+      {
+        "id": "function/dart:_rti::Rti._getCanonicalRecipe",
         "mask": "inlined"
       }
     ],
@@ -69732,6 +69822,10 @@
         "mask": "inlined"
       },
       {
+        "id": "function/dart:_rti::_Utils.asRti",
+        "mask": "inlined"
+      },
+      {
         "id": "function/dart:_rti::getTypeFromTypesTable",
         "mask": null
       }
@@ -69775,6 +69869,14 @@
       },
       {
         "id": "function/dart:_rti::Rti._setCachedRuntimeType",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_rti::Rti.getLegacyErasedRecipe",
+        "mask": null
+      },
+      {
+        "id": "function/dart:_rti::Rti.getLegacyErasedRecipe",
         "mask": "inlined"
       },
       {
@@ -80282,128 +80384,6 @@
         "mask": null
       }
     ],
-    "function/dart:core::IndexError.IndexError": [
-      {
-        "id": "field/dart:core::IndexError.length",
-        "mask": "[subclass=Object]"
-      },
-      {
-        "id": "function/dart:_interceptors::JSArray.length",
-        "mask": "[subclass=Object]"
-      },
-      {
-        "id": "function/dart:_interceptors::JSString.length",
-        "mask": "[subclass=Object]"
-      },
-      {
-        "id": "function/dart:_interceptors::getNativeInterceptor",
-        "mask": null
-      },
-      {
-        "id": "function/dart:_internal::CodeUnits.length",
-        "mask": "[subclass=Object]"
-      },
-      {
-        "id": "function/dart:_internal::MappedListIterable.length",
-        "mask": "[subclass=Object]"
-      },
-      {
-        "id": "function/dart:_js_helper::JsLinkedHashMap.length",
-        "mask": "[subclass=Object]"
-      },
-      {
-        "id": "function/dart:_js_helper::LinkedHashMapKeyIterable.length",
-        "mask": "[subclass=Object]"
-      },
-      {
-        "id": "function/dart:_native_typed_data::NativeTypedArray.length",
-        "mask": "[subclass=Object]"
-      },
-      {
-        "id": "function/dart:_native_typed_data::NativeUint8List.length",
-        "mask": "[subclass=Object]"
-      },
-      {
-        "id": "function/dart:async::Stream.length",
-        "mask": "[subclass=Object]"
-      },
-      {
-        "id": "function/dart:collection::MapMixin.length",
-        "mask": "[subclass=Object]"
-      },
-      {
-        "id": "function/dart:collection::_LinkedHashSet.length",
-        "mask": "[subclass=Object]"
-      },
-      {
-        "id": "function/dart:core::Iterable.length",
-        "mask": "[subclass=Object]"
-      },
-      {
-        "id": "function/dart:core::StringBuffer.length",
-        "mask": "[subclass=Object]"
-      },
-      {
-        "id": "function/dart:html::CharacterData.length",
-        "mask": "[subclass=Object]"
-      },
-      {
-        "id": "function/dart:html::CssStyleDeclaration.length",
-        "mask": "[subclass=Object]"
-      },
-      {
-        "id": "function/dart:html::DomTokenList.length",
-        "mask": "[subclass=Object]"
-      },
-      {
-        "id": "function/dart:html::FormElement.length",
-        "mask": "[subclass=Object]"
-      },
-      {
-        "id": "function/dart:html::HtmlCollection.length",
-        "mask": "[subclass=Object]"
-      },
-      {
-        "id": "function/dart:html::NodeList.length",
-        "mask": "[subclass=Object]"
-      },
-      {
-        "id": "function/dart:html::SelectElement.length",
-        "mask": "[subclass=Object]"
-      },
-      {
-        "id": "function/dart:html::_ChildNodeListLazy.length",
-        "mask": "[subclass=Object]"
-      },
-      {
-        "id": "function/dart:html::_DataAttributeMap.length",
-        "mask": "[subclass=Object]"
-      },
-      {
-        "id": "function/dart:html::_ElementAttributeMap.length",
-        "mask": "[subclass=Object]"
-      },
-      {
-        "id": "function/dart:html::_NamedNodeMap.length",
-        "mask": "[subclass=Object]"
-      },
-      {
-        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.length",
-        "mask": "[subclass=Object]"
-      },
-      {
-        "id": "function/package:qr/src/byte.dart::QrByte.length",
-        "mask": "[subclass=Object]"
-      },
-      {
-        "id": "function/package:qr/src/byte.dart::QrNumeric.length",
-        "mask": "[subclass=Object]"
-      },
-      {
-        "id": "function/package:qr/src/polynomial.dart::QrPolynomial.length",
-        "mask": "[subclass=Object]"
-      }
-    ],
     "function/dart:core::IndexError._errorExplanation": [
       {
         "id": "field/dart:core::ArgumentError.invalidValue",
@@ -80472,7 +80452,7 @@
         "mask": "[subtype=Iterator]"
       },
       {
-        "id": "function/dart:core::IndexError.IndexError",
+        "id": "function/dart:core::IndexError.IndexError.withLength",
         "mask": null
       },
       {
@@ -81758,6 +81738,12 @@
       {
         "id": "function/dart:core::RangeError.RangeError.range",
         "mask": null
+      }
+    ],
+    "function/dart:core::RangeError.checkValidIndex": [
+      {
+        "id": "function/dart:core::IndexError.check",
+        "mask": "inlined"
       }
     ],
     "function/dart:core::RangeError.checkValidRange": [
@@ -83162,7 +83148,7 @@
         "mask": null
       },
       {
-        "id": "function/dart:core::IndexError.IndexError",
+        "id": "function/dart:core::IndexError.IndexError.withLength",
         "mask": null
       }
     ],
@@ -83430,7 +83416,7 @@
         "mask": null
       },
       {
-        "id": "function/dart:core::IndexError.IndexError",
+        "id": "function/dart:core::IndexError.IndexError.withLength",
         "mask": null
       }
     ],
@@ -84688,7 +84674,7 @@
         "mask": null
       },
       {
-        "id": "function/dart:core::IndexError.IndexError",
+        "id": "function/dart:core::IndexError.IndexError.withLength",
         "mask": null
       }
     ],
@@ -89307,7 +89293,7 @@
       "id": "outputUnit/main",
       "kind": "outputUnit",
       "name": "main",
-      "size": 149325,
+      "size": 149310,
       "filename": "main.dart.js",
       "imports": []
     }
@@ -89317,11 +89303,11 @@
   "dump_minor_version": 1,
   "program": {
     "entrypoint": "function/org-dartlang-app:///example/main.dart::main",
-    "size": 149325,
-    "ramUsage": "225.359 MB",
-    "dart2jsVersion": "2.19.0-353.0.dev",
-    "compilationMoment": "2022-11-01 11:23:30.990687",
-    "compilationDuration": 926778,
+    "size": 149310,
+    "ramUsage": "224.438 MB",
+    "dart2jsVersion": "2.19.0-421.0.dev",
+    "compilationMoment": "2022-11-24 11:18:57.613286",
+    "compilationDuration": 928899,
     "toJsonDuration": 3000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
