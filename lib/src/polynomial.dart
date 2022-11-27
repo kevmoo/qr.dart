@@ -41,6 +41,7 @@ class QrPolynomial {
 
   QrPolynomial mod(QrPolynomial e) {
     if (length - e.length < 0) {
+      // ignore: avoid_returning_this
       return this;
     }
 
