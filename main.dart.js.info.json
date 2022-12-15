@@ -4,10 +4,10 @@
   "program": {
     "entrypoint": "function/org-dartlang-app:///example/main.dart::main",
     "size": 149397,
-    "ramUsage": "224.313 MB",
-    "dart2jsVersion": "2.19.0-440.0.dev",
-    "compilationMoment": "2022-11-30 08:45:42.310208",
-    "compilationDuration": 974771,
+    "ramUsage": "224.484 MB",
+    "dart2jsVersion": "3.0.0-24.0.dev",
+    "compilationMoment": "2022-12-15 13:18:17.766577",
+    "compilationDuration": 952186,
     "toJsonDuration": 3000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
@@ -10849,7 +10849,7 @@
           "static": false,
           "const": false,
           "factory": false,
-          "external": false
+          "external": true
         },
         "returnType": "bool",
         "inferredReturnType": "[exact=JSBool]",
