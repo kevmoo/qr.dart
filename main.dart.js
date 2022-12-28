@@ -2168,7 +2168,7 @@ for(;a>=256;)a-=255
 return $.Wd()[a]},
 D6(){var s,r=new Uint8Array(256)
 for(s=0;s<8;++s)r[s]=B.jn.iK(1,s)
-for(s=8;s<256;++s)r[s]=(r[s-4]^r[s-5]^r[s-6]^r[s-8])>>>0
+for(s=8;s<256;++s)r[s]=r[s-4]^r[s-5]^r[s-6]^r[s-8]
 return r},
 jM(){var s,r=new Uint8Array(256)
 for(s=0;s<255;++s)r[$.Wd()[s]]=s
@@ -3942,7 +3942,7 @@ Dp(a,b){var s
 for(s=0;s<b;++s)this.Ge((B.jn.HZ(a,b-s-1)&1)===1)},
 Ge(a){var s=this,r=B.jn.BU(s.b,8),q=s.a
 if(q.length<=r)q.push(0)
-if(a)q[r]=(q[r]|B.jn.p(128,B.jn.zY(s.b,8)))>>>0;++s.b},
+if(a)q[r]=q[r]|B.jn.p(128,B.jn.zY(s.b,8));++s.b},
 $izM:1}
 A.OY.prototype={}
 A.eK.prototype={

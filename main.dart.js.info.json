@@ -3,11 +3,11 @@
   "dump_minor_version": 1,
   "program": {
     "entrypoint": "function/org-dartlang-app:///example/main.dart::main",
-    "size": 149286,
-    "ramUsage": "224.469 MB",
-    "dart2jsVersion": "3.0.0-46.0.dev",
-    "compilationMoment": "2022-12-20 09:43:39.016034",
-    "compilationDuration": 928342,
+    "size": 149274,
+    "ramUsage": "227.938 MB",
+    "dart2jsVersion": "3.0.0-55.0.dev",
+    "compilationMoment": "2022-12-27 19:19:33.247190",
+    "compilationDuration": 972756,
     "toJsonDuration": 3000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
@@ -946,7 +946,7 @@
         "id": "library/package:qr/src/bit_buffer.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 400,
+        "size": 394,
         "children": [
           "class/package:qr/src/bit_buffer.dart::QrBitBuffer"
         ],
@@ -988,7 +988,7 @@
         "id": "library/package:qr/src/math.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 384,
+        "size": 378,
         "children": [
           "field/package:qr/src/math.dart::_expTable",
           "field/package:qr/src/math.dart::_logTable",
@@ -9287,7 +9287,7 @@
         "id": "class/package:qr/src/bit_buffer.dart::QrBitBuffer",
         "kind": "class",
         "name": "QrBitBuffer",
-        "size": 349,
+        "size": 343,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/bit_buffer.dart::",
         "modifiers": {
@@ -45854,7 +45854,7 @@
         "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.putBit",
         "kind": "function",
         "name": "putBit",
-        "size": 119,
+        "size": 113,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/bit_buffer.dart::QrBitBuffer",
         "children": [],
@@ -45875,7 +45875,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Ge(a){var s=this,r=B.jn.BU(s.b,8),q=s.a\nif(q.length<=r)q.push(0)\nif(a)q[r]=(q[r]|B.jn.p(128,B.jn.zY(s.b,8)))>>>0;++s.b}",
+        "code": "Ge(a){var s=this,r=B.jn.BU(s.b,8),q=s.a\nif(q.length<=r)q.push(0)\nif(a)q[r]=q[r]|B.jn.p(128,B.jn.zY(s.b,8));++s.b}",
         "type": "void Function(bool)",
         "functionKind": 2
       },
@@ -46228,7 +46228,7 @@
         "id": "function/package:qr/src/math.dart::_createExpTable",
         "kind": "function",
         "name": "_createExpTable",
-        "size": 133,
+        "size": 127,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/math.dart::",
         "children": [],
@@ -46243,7 +46243,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "D6(){var s,r=new Uint8Array(256)\nfor(s=0;s<8;++s)r[s]=B.jn.iK(1,s)\nfor(s=8;s<256;++s)r[s]=(r[s-4]^r[s-5]^r[s-6]^r[s-8])>>>0\nreturn r}",
+        "code": "D6(){var s,r=new Uint8Array(256)\nfor(s=0;s<8;++s)r[s]=B.jn.iK(1,s)\nfor(s=8;s<256;++s)r[s]=r[s-4]^r[s-5]^r[s-6]^r[s-8]\nreturn r}",
         "type": "Uint8List Function()",
         "functionKind": 0
       },
@@ -84099,7 +84099,7 @@
       "id": "outputUnit/main",
       "kind": "outputUnit",
       "name": "main",
-      "size": 149286,
+      "size": 149274,
       "filename": "main.dart.js",
       "imports": []
     }
