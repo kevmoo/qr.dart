@@ -4,11 +4,11 @@
   "program": {
     "entrypoint": "function/org-dartlang-app:///example/main.dart::main",
     "size": 149274,
-    "ramUsage": "224.484 MB",
-    "dart2jsVersion": "3.0.0-75.0.dev",
-    "compilationMoment": "2023-01-05 11:51:57.596942",
-    "compilationDuration": 961678,
-    "toJsonDuration": 3000,
+    "ramUsage": "223.984 MB",
+    "dart2jsVersion": "3.0.0-89.0.dev",
+    "compilationMoment": "2023-01-06 09:08:10.428507",
+    "compilationDuration": 1010504,
+    "toJsonDuration": 6000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
     "isRuntimeTypeUsed": true,
@@ -12647,7 +12647,7 @@
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 1,
         "code": "",
-        "type": "int Function(int,int,[int])",
+        "type": "int Function(int,int,int)",
         "functionKind": 0
       },
       "dart:_internal::SystemHash.hash3": {
@@ -12691,7 +12691,7 @@
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 1,
         "code": "",
-        "type": "int Function(int,int,int,[int])",
+        "type": "int Function(int,int,int,int)",
         "functionKind": 0
       },
       "dart:_internal::SystemHash.hash4": {
@@ -12740,7 +12740,7 @@
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 1,
         "code": "",
-        "type": "int Function(int,int,int,int,[int])",
+        "type": "int Function(int,int,int,int,int)",
         "functionKind": 0
       },
       "dart:_internal::SystemHash.hash5": {
@@ -12794,7 +12794,7 @@
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 1,
         "code": "",
-        "type": "int Function(int,int,int,int,int,[int])",
+        "type": "int Function(int,int,int,int,int,int)",
         "functionKind": 0
       },
       "dart:_internal::SystemHash.hash6": {
@@ -12853,7 +12853,7 @@
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 1,
         "code": "",
-        "type": "int Function(int,int,int,int,int,int,[int])",
+        "type": "int Function(int,int,int,int,int,int,int)",
         "functionKind": 0
       },
       "dart:_internal::SystemHash.hash7": {
@@ -12917,7 +12917,7 @@
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 1,
         "code": "",
-        "type": "int Function(int,int,int,int,int,int,int,[int])",
+        "type": "int Function(int,int,int,int,int,int,int,int)",
         "functionKind": 0
       },
       "dart:_internal::SystemHash.hash8": {
@@ -12986,7 +12986,7 @@
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 1,
         "code": "",
-        "type": "int Function(int,int,int,int,int,int,int,int,[int])",
+        "type": "int Function(int,int,int,int,int,int,int,int,int)",
         "functionKind": 0
       },
       "dart:_internal::SystemHash.hash9": {
@@ -13060,7 +13060,7 @@
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 1,
         "code": "",
-        "type": "int Function(int,int,int,int,int,int,int,int,int,[int])",
+        "type": "int Function(int,int,int,int,int,int,int,int,int,int)",
         "functionKind": 0
       },
       "dart:_internal::SystemHash.hash10": {
@@ -13139,7 +13139,7 @@
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 1,
         "code": "",
-        "type": "int Function(int,int,int,int,int,int,int,int,int,int,[int])",
+        "type": "int Function(int,int,int,int,int,int,int,int,int,int,int)",
         "functionKind": 0
       },
       "dart:_internal::SystemHash.hash11": {
@@ -13223,7 +13223,7 @@
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 1,
         "code": "",
-        "type": "int Function(int,int,int,int,int,int,int,int,int,int,int,[int])",
+        "type": "int Function(int,int,int,int,int,int,int,int,int,int,int,int)",
         "functionKind": 0
       },
       "dart:_internal::SystemHash.hash12": {
@@ -13312,7 +13312,7 @@
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 1,
         "code": "",
-        "type": "int Function(int,int,int,int,int,int,int,int,int,int,int,int,[int])",
+        "type": "int Function(int,int,int,int,int,int,int,int,int,int,int,int,int)",
         "functionKind": 0
       },
       "dart:_internal::SystemHash.hash13": {
@@ -13406,7 +13406,7 @@
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 1,
         "code": "",
-        "type": "int Function(int,int,int,int,int,int,int,int,int,int,int,int,int,[int])",
+        "type": "int Function(int,int,int,int,int,int,int,int,int,int,int,int,int,int)",
         "functionKind": 0
       },
       "dart:_internal::SystemHash.hash14": {
@@ -13505,7 +13505,7 @@
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 1,
         "code": "",
-        "type": "int Function(int,int,int,int,int,int,int,int,int,int,int,int,int,int,[int])",
+        "type": "int Function(int,int,int,int,int,int,int,int,int,int,int,int,int,int,int)",
         "functionKind": 0
       },
       "dart:_internal::SystemHash.hash15": {
@@ -13609,7 +13609,7 @@
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 1,
         "code": "",
-        "type": "int Function(int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,[int])",
+        "type": "int Function(int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int)",
         "functionKind": 0
       },
       "dart:_internal::SystemHash.hash16": {
@@ -13718,7 +13718,7 @@
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 1,
         "code": "",
-        "type": "int Function(int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,[int])",
+        "type": "int Function(int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int)",
         "functionKind": 0
       },
       "dart:_internal::SystemHash.hash17": {
@@ -13832,7 +13832,7 @@
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 1,
         "code": "",
-        "type": "int Function(int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,[int])",
+        "type": "int Function(int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int)",
         "functionKind": 0
       },
       "dart:_internal::SystemHash.hash18": {
@@ -13951,7 +13951,7 @@
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 1,
         "code": "",
-        "type": "int Function(int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,[int])",
+        "type": "int Function(int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int)",
         "functionKind": 0
       },
       "dart:_internal::SystemHash.hash19": {
@@ -14075,7 +14075,7 @@
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 1,
         "code": "",
-        "type": "int Function(int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,[int])",
+        "type": "int Function(int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int)",
         "functionKind": 0
       },
       "dart:_internal::SystemHash.hash20": {
@@ -14204,7 +14204,7 @@
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 1,
         "code": "",
-        "type": "int Function(int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,[int])",
+        "type": "int Function(int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int,int)",
         "functionKind": 0
       },
       "dart:_internal::WhereIterable.WhereIterable": {
