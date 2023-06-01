@@ -27,22 +27,16 @@ class QrRsBlock {
   }
 }
 
-List<int> _getRsBlockTable(int typeNumber, int errorCorrectLevel) {
-  switch (errorCorrectLevel) {
-    case QrErrorCorrectLevel.L:
-      return _rsBlockTable[(typeNumber - 1) * 4 + 0];
-    case QrErrorCorrectLevel.M:
-      return _rsBlockTable[(typeNumber - 1) * 4 + 1];
-    case QrErrorCorrectLevel.Q:
-      return _rsBlockTable[(typeNumber - 1) * 4 + 2];
-    case QrErrorCorrectLevel.H:
-      return _rsBlockTable[(typeNumber - 1) * 4 + 3];
-    default:
-      throw ArgumentError(
-        'bad rs block @ typeNumber: $typeNumber/errorCorrectLevel:$errorCorrectLevel',
-      );
-  }
-}
+List<int> _getRsBlockTable(int typeNumber, int errorCorrectLevel) =>
+    switch (errorCorrectLevel) {
+      QrErrorCorrectLevel.L => _rsBlockTable[(typeNumber - 1) * 4 + 0],
+      QrErrorCorrectLevel.M => _rsBlockTable[(typeNumber - 1) * 4 + 1],
+      QrErrorCorrectLevel.Q => _rsBlockTable[(typeNumber - 1) * 4 + 2],
+      QrErrorCorrectLevel.H => _rsBlockTable[(typeNumber - 1) * 4 + 3],
+      _ => throw ArgumentError(
+          'bad rs block @ typeNumber: $typeNumber/errorCorrectLevel:$errorCorrectLevel',
+        )
+    };
 
 const List<List<int>> _rsBlockTable = [
   // L

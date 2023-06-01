@@ -236,28 +236,17 @@ class QrImage {
   }
 }
 
-bool _mask(int maskPattern, int i, int j) {
-  switch (maskPattern) {
-    case qr_mask_pattern.pattern000:
-      return (i + j).isEven;
-    case qr_mask_pattern.pattern001:
-      return i.isEven;
-    case qr_mask_pattern.pattern010:
-      return j % 3 == 0;
-    case qr_mask_pattern.pattern011:
-      return (i + j) % 3 == 0;
-    case qr_mask_pattern.pattern100:
-      return ((i ~/ 2) + (j ~/ 3)).isEven;
-    case qr_mask_pattern.pattern101:
-      return (i * j) % 2 + (i * j) % 3 == 0;
-    case qr_mask_pattern.pattern110:
-      return ((i * j) % 2 + (i * j) % 3).isEven;
-    case qr_mask_pattern.pattern111:
-      return ((i * j) % 3 + (i + j) % 2).isEven;
-    default:
-      throw ArgumentError('bad maskPattern:$maskPattern');
-  }
-}
+bool _mask(int maskPattern, int i, int j) => switch (maskPattern) {
+      qr_mask_pattern.pattern000 => (i + j).isEven,
+      qr_mask_pattern.pattern001 => i.isEven,
+      qr_mask_pattern.pattern010 => j % 3 == 0,
+      qr_mask_pattern.pattern011 => (i + j) % 3 == 0,
+      qr_mask_pattern.pattern100 => ((i ~/ 2) + (j ~/ 3)).isEven,
+      qr_mask_pattern.pattern101 => (i * j) % 2 + (i * j) % 3 == 0,
+      qr_mask_pattern.pattern110 => ((i * j) % 2 + (i * j) % 3).isEven,
+      qr_mask_pattern.pattern111 => ((i * j) % 3 + (i + j) % 2).isEven,
+      _ => throw ArgumentError('bad maskPattern:$maskPattern')
+    };
 
 double _lostPoint(QrImage qrImage) {
   final moduleCount = qrImage.moduleCount;
