@@ -217,46 +217,31 @@ List<int> _createBytes(QrBitBuffer buffer, List<QrRsBlock> rsBlocks) {
 int _lengthInBits(int mode, int type) {
   if (1 <= type && type < 10) {
     // 1 - 9
-    switch (mode) {
-      case qr_mode.modeNumber:
-        return 10;
-      case qr_mode.modeAlphaNum:
-        return 9;
-      case qr_mode.mode8bitByte:
-        return 8;
-      case qr_mode.modeKanji:
-        return 8;
-      default:
-        throw ArgumentError('mode:$mode');
-    }
+    return switch (mode) {
+      qr_mode.modeNumber => 10,
+      qr_mode.modeAlphaNum => 9,
+      qr_mode.mode8bitByte => 8,
+      qr_mode.modeKanji => 8,
+      _ => throw ArgumentError('mode:$mode')
+    };
   } else if (type < 27) {
     // 10 - 26
-    switch (mode) {
-      case qr_mode.modeNumber:
-        return 12;
-      case qr_mode.modeAlphaNum:
-        return 11;
-      case qr_mode.mode8bitByte:
-        return 16;
-      case qr_mode.modeKanji:
-        return 10;
-      default:
-        throw ArgumentError('mode:$mode');
-    }
+    return switch (mode) {
+      qr_mode.modeNumber => 12,
+      qr_mode.modeAlphaNum => 11,
+      qr_mode.mode8bitByte => 16,
+      qr_mode.modeKanji => 10,
+      _ => throw ArgumentError('mode:$mode')
+    };
   } else if (type < 41) {
     // 27 - 40
-    switch (mode) {
-      case qr_mode.modeNumber:
-        return 14;
-      case qr_mode.modeAlphaNum:
-        return 13;
-      case qr_mode.mode8bitByte:
-        return 16;
-      case qr_mode.modeKanji:
-        return 12;
-      default:
-        throw ArgumentError('mode:$mode');
-    }
+    return switch (mode) {
+      qr_mode.modeNumber => 14,
+      qr_mode.modeAlphaNum => 13,
+      qr_mode.mode8bitByte => 16,
+      qr_mode.modeKanji => 12,
+      _ => throw ArgumentError('mode:$mode')
+    };
   } else {
     throw ArgumentError('type:$type');
   }

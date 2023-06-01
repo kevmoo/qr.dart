@@ -10,18 +10,11 @@ class QrErrorCorrectLevel {
   // I assume this correcsponds to more error correction for N+1
   static const List<int> levels = [L, M, Q, H];
 
-  static String getName(int level) {
-    switch (level) {
-      case L:
-        return 'Low';
-      case M:
-        return 'Medium';
-      case Q:
-        return 'Quartile';
-      case H:
-        return 'High';
-      default:
-        throw ArgumentError('level $level not supported');
-    }
-  }
+  static String getName(int level) => switch (level) {
+        L => 'Low',
+        M => 'Medium',
+        Q => 'Quartile',
+        H => 'High',
+        _ => throw ArgumentError('level $level not supported')
+      };
 }
