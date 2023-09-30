@@ -3,41 +3,28 @@ import 'dart:typed_data';
 final Uint8List _logTable = _createLogTable();
 final Uint8List _expTable = _createExpTable();
 
-int glog(int n) {
-  if (n < 1) {
-    throw ArgumentError('glog($n)');
-  }
+int glog(int n) => (n > 0) ? _logTable[n] : throw ArgumentError('glog($n)');
 
-  return _logTable[n];
-}
+int gexp(int n) => _expTable[n % 255];
 
-int gexp(int n) {
-  while (n < 0) {
-    n += 255;
+Uint8List _createExpTable() => Uint8List.fromList(_createExpIter().toList());
+Iterable<int> _createExpIter() sync* {
+  var value = 1, _ = 256;
+  while (0 < _--) {
+    yield value;
+    value <<= 1;
+    if (value > 0xFE) {
+      value ^= 0x1D;
+    }
+    value %= 256;
   }
-
-  while (n >= 256) {
-    n -= 255;
-  }
-
-  return _expTable[n];
-}
-
-Uint8List _createExpTable() {
-  final list = Uint8List(256);
-  for (var i = 0; i < 8; i++) {
-    list[i] = 1 << i;
-  }
-  for (var i = 8; i < 256; i++) {
-    list[i] = list[i - 4] ^ list[i - 5] ^ list[i - 6] ^ list[i - 8];
-  }
-  return list;
 }
 
 Uint8List _createLogTable() {
-  final list = Uint8List(256);
-  for (var i = 0; i < 255; i++) {
-    list[_expTable[i]] = i;
+  final list = List.filled(256, 0);
+  var i = 0;
+  for (var element in _expTable) {
+    list[element] = i++;
   }
-  return list;
+  return Uint8List.fromList(list);
 }
