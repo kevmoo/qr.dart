@@ -1,15 +1,17 @@
 import 'dart:async';
-import 'dart:html';
+import 'dart:js_interop';
+import 'dart:js_interop_unsafe';
 import 'dart:math' as math;
 
 import 'package:qr/qr.dart';
 import 'package:stream_transform/stream_transform.dart';
+import 'package:web/helpers.dart';
 
 import 'affine_transform.dart';
 import 'bot.dart';
 
-const String _typeRadioIdKey = 'type-value';
-const String _errorLevelIdKey = 'error-value';
+const String _typeRadioIdKey = 'type_value';
+const String _errorLevelIdKey = 'error_value';
 
 class QrDemo {
   final _scale = BungeeNum(1);
@@ -29,17 +31,17 @@ class QrDemo {
 
   factory QrDemo() {
     final canvas = querySelector('#content') as CanvasElement;
-    final typeDiv = querySelector('#type-div') as DivElement;
-    final errorDiv = querySelector('#error-div') as DivElement;
-    final input = querySelector('#input') as InputElement;
+    final typeDiv = querySelector('#type-div') as HTMLDivElement;
+    final errorDiv = querySelector('#error-div') as HTMLDivElement;
+    final input = querySelector('#input') as HTMLInputElement;
 
     final controller = StreamController<_Config>.broadcast();
 
     final demo = QrDemo._(canvas, typeDiv, errorDiv, controller)
-      ..value = input.value!;
+      ..value = input.value;
 
     input.onKeyUp.listen((KeyboardEvent args) {
-      demo.value = input.value!;
+      demo.value = input.value;
     });
 
     demo.output.listen(
@@ -57,13 +59,13 @@ class QrDemo {
 
   QrDemo._(
     CanvasElement canvas,
-    DivElement typeDiv,
-    DivElement errorDiv,
+    HTMLDivElement typeDiv,
+    HTMLDivElement errorDiv,
     this._inputValues,
   )   : _canvas = canvas,
         _ctx = canvas.context2D,
         output = _inputValues.stream.asyncMapSample(_calc) {
-    _ctx.fillStyle = 'black';
+    _ctx.fillStyle = 'black'.toJS;
 
     output.listen((value) {
       _squares = value;
@@ -74,42 +76,44 @@ class QrDemo {
     // Type Div
     //
     for (var i = 1; i <= 10; i++) {
-      final radio = InputElement(type: 'radio')
+      final radio = (document.createElement('INPUT') as HTMLInputElement)
+        ..type = 'radio'
         ..id = 'type_$i'
         ..name = 'type'
         ..onChange.listen(_levelClick)
         ..dataset[_typeRadioIdKey] = i.toString();
       if (i == _typeNumber) {
-        radio.attributes['checked'] = 'checked';
+        radio.checked = true;
       }
-      typeDiv.children.add(radio);
+      typeDiv.appendChild(radio);
 
-      final label = LabelElement()
-        ..innerHtml = '$i'
+      final label = (document.createElement('label') as HTMLLabelElement)
+        ..innerHTML = '$i'
         ..htmlFor = radio.id
-        ..classes.add('btn');
-      typeDiv.children.add(label);
+        ..classList.add('btn');
+      typeDiv.appendChild(label);
     }
 
     //
     // Error Correct Levels
     //
     for (final v in QrErrorCorrectLevel.levels) {
-      final radio = InputElement(type: 'radio')
+      final radio = (document.createElement('input') as HTMLInputElement)
+        ..type = 'radio'
         ..id = 'error_$v'
         ..name = 'error-level'
         ..onChange.listen(_errorClick)
         ..dataset[_errorLevelIdKey] = v.toString();
       if (v == _errorCorrectLevel) {
-        radio.attributes['checked'] = 'checked';
+        radio.checked = true;
       }
-      errorDiv.children.add(radio);
+      errorDiv.appendChild(radio);
 
-      final label = LabelElement()
-        ..innerHtml = QrErrorCorrectLevel.getName(v)
+      final label = (document.createElement('label') as HTMLLabelElement)
+        ..innerHTML = QrErrorCorrectLevel.getName(v)
         ..htmlFor = radio.id
-        ..classes.add('btn');
-      errorDiv.children.add(label);
+        ..classList.add('btn');
+      errorDiv.appendChild(label);
     }
   }
 
@@ -123,18 +127,18 @@ class QrDemo {
   void requestFrame() {
     if (!_frameRequested) {
       _frameRequested = true;
-      window.requestAnimationFrame(_onFrame);
+      window.requestAnimationFrame(_onFrame.toJS);
     }
   }
 
   void _levelClick(Event args) {
-    final source = args.target as InputElement;
+    final source = args.target as HTMLInputElement;
     _typeNumber = int.parse(source.dataset[_typeRadioIdKey]!);
     _update();
   }
 
   void _errorClick(Event args) {
-    final source = args.target as InputElement;
+    final source = args.target as HTMLInputElement;
     _errorCorrectLevel = int.parse(source.dataset[_errorLevelIdKey]!);
     _update();
   }
@@ -146,10 +150,10 @@ class QrDemo {
   void _onFrame(num highResTime) {
     _frameRequested = false;
 
-    _ctx.clearRect(0, 0, _canvas.width!, _canvas.height!);
+    _ctx.clearRect(0, 0, _canvas.width, _canvas.height);
 
     final size = math.sqrt(_squares.length).toInt();
-    final minDimension = math.min(_canvas.width!, _canvas.height!);
+    final minDimension = math.min(_canvas.width, _canvas.height);
     final scale = minDimension ~/ (1.1 * size);
 
     _scale.target = scale;
@@ -159,7 +163,7 @@ class QrDemo {
     }
 
     final tx = AffineTransform.identity()
-      ..translate(0.5 * _canvas.width!, 0.5 * _canvas.height!)
+      ..translate(0.5 * _canvas.width, 0.5 * _canvas.height)
       ..scale(_scale.current, _scale.current)
       ..translate(-0.5 * size, -0.5 * size);
 
@@ -214,11 +218,20 @@ Future<List<bool>> _calc(_Config config) async {
 
 void _setTransform(CanvasRenderingContext2D ctx, AffineTransform tx) {
   ctx.setTransform(
-    tx.scaleX,
+    tx.scaleX.toJS,
     tx.shearY,
     tx.shearX,
     tx.scaleY,
     tx.translateX,
     tx.translateY,
   );
+}
+
+extension on DOMStringMap {
+  void operator []=(String key, String? value) {
+    (this as JSObject)[key] = value?.toJS;
+  }
+
+  String? operator [](String key) =>
+      ((this as JSObject)[key] as JSString?)?.toDart;
 }
