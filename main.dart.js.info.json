@@ -3,12 +3,12 @@
   "dump_minor_version": 1,
   "program": {
     "entrypoint": "function/org-dartlang-app:///example/main.dart::main",
-    "size": 119106,
-    "ramUsage": "261.500 MB",
-    "dart2jsVersion": "3.3.0-189.0.dev",
-    "compilationMoment": "2023-12-04 17:12:01.689482",
-    "compilationDuration": 1717746,
-    "toJsonDuration": 2000,
+    "size": 119103,
+    "ramUsage": "270.266 MB",
+    "dart2jsVersion": "3.3.0-198.0.dev",
+    "compilationMoment": "2023-12-06 11:03:53.337411",
+    "compilationDuration": 1824832,
+    "toJsonDuration": 3000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
     "isRuntimeTypeUsed": true,
@@ -528,7 +528,7 @@
         "id": "library/dart:core::",
         "kind": "library",
         "name": "dart.core",
-        "size": 4883,
+        "size": 4880,
         "children": [
           "class/dart:core::ArgumentError",
           "class/dart:core::AssertionError",
@@ -8688,7 +8688,7 @@
         "id": "class/dart:core::Null",
         "kind": "class",
         "name": "Null",
-        "size": 108,
+        "size": 105,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:core::",
         "modifiers": {
@@ -68208,7 +68208,7 @@
         "id": "function/dart:core::Null.hashCode",
         "kind": "function",
         "name": "hashCode",
-        "size": 46,
+        "size": 43,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:core::Null",
         "children": [],
@@ -68223,7 +68223,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "gM(a){return A.u.prototype.gM.call(this,this)}",
+        "code": "gM(a){return A.u.prototype.gM.call(this,0)}",
         "type": "int Function()",
         "functionKind": 2
       },
@@ -71612,7 +71612,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "qL(a){var s,r,q,p,o,n=new Uint8Array(a.length)\nfor(s=new A.qj(a),s=new A.a7(s,s.gB(s)),r=A.Lh(s).c,q=0;s.G();q=o){p=s.d\nif(p==null)p=r.a(p)\nif(p<48||p>57)throw A.b(A.xY(\"string can only contain alpha numeric 0-9\",null))\no=q+1\nn[q]=p-48}return new A.Dw(n)}",
+        "code": "qL(a){var s,r,q,p,o,n=new Uint8Array(a.length)\nfor(s=new A.qj(a),s=new A.a7(s,s.gB(0)),r=A.Lh(s).c,q=0;s.G();q=o){p=s.d\nif(p==null)p=r.a(p)\nif(p<48||p>57)throw A.b(A.xY(\"string can only contain alpha numeric 0-9\",null))\no=q+1\nn[q]=p-48}return new A.Dw(n)}",
         "type": "QrNumeric Function(String)",
         "functionKind": 3
       },
@@ -106486,7 +106486,7 @@
       "id": "outputUnit/main",
       "kind": "outputUnit",
       "name": "main",
-      "size": 119106,
+      "size": 119103,
       "filename": "main.dart.js",
       "imports": []
     }
