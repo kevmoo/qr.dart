@@ -5,7 +5,7 @@ import 'dart:math' as math;
 
 import 'package:qr/qr.dart';
 import 'package:stream_transform/stream_transform.dart';
-import 'package:web/helpers.dart';
+import 'package:web/web.dart';
 
 import 'affine_transform.dart';
 import 'bot.dart';
@@ -15,7 +15,7 @@ const String _errorLevelIdKey = 'error_value';
 
 class QrDemo {
   final _scale = BungeeNum(1);
-  final CanvasElement _canvas;
+  final HTMLCanvasElement _canvas;
   final CanvasRenderingContext2D _ctx;
   final StreamController<_Config> _inputValues;
 
@@ -30,10 +30,10 @@ class QrDemo {
   bool _frameRequested = false;
 
   factory QrDemo() {
-    final canvas = querySelector('#content') as CanvasElement;
-    final typeDiv = querySelector('#type-div') as HTMLDivElement;
-    final errorDiv = querySelector('#error-div') as HTMLDivElement;
-    final input = querySelector('#input') as HTMLInputElement;
+    final canvas = document.querySelector('#content') as HTMLCanvasElement;
+    final typeDiv = document.querySelector('#type-div') as HTMLDivElement;
+    final errorDiv = document.querySelector('#error-div') as HTMLDivElement;
+    final input = document.querySelector('#input') as HTMLInputElement;
 
     final controller = StreamController<_Config>.broadcast();
 
@@ -58,7 +58,7 @@ class QrDemo {
   }
 
   QrDemo._(
-    CanvasElement canvas,
+    HTMLCanvasElement canvas,
     HTMLDivElement typeDiv,
     HTMLDivElement errorDiv,
     this._inputValues,
