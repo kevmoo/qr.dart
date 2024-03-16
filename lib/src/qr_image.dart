@@ -124,18 +124,9 @@ class QrImage {
   }
 
   void _setupTimingPattern() {
-    for (var r = 8; r < moduleCount - 8; r++) {
-      if (_modules[r][6] != null) {
-        continue;
-      }
-      _modules[r][6] = r.isEven;
-    }
-
-    for (var c = 8; c < moduleCount - 8; c++) {
-      if (_modules[6][c] != null) {
-        continue;
-      }
-      _modules[6][c] = c.isEven;
+    for (var i = 8; i < moduleCount - 8; i++) {
+      _modules[i][6] ??= i.isEven;
+      _modules[6][i] ??= i.isEven;
     }
   }
 
