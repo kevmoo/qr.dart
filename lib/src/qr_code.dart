@@ -214,38 +214,30 @@ List<int> _createBytes(QrBitBuffer buffer, List<QrRsBlock> rsBlocks) {
   return data;
 }
 
-int _lengthInBits(int mode, int type) {
-  if (1 <= type && type < 10) {
-    // 1 - 9
-    return switch (mode) {
-      qr_mode.modeNumber => 10,
-      qr_mode.modeAlphaNum => 9,
-      qr_mode.mode8bitByte => 8,
-      qr_mode.modeKanji => 8,
-      _ => throw ArgumentError('mode:$mode')
+int _lengthInBits(int mode, int type) => switch (type) {
+      > 0 && < 10 => switch (mode) {
+          qr_mode.modeNumber => 10,
+          qr_mode.modeAlphaNum => 9,
+          qr_mode.mode8bitByte => 8,
+          qr_mode.modeKanji => 8,
+          _ => throw ArgumentError('mode:$mode')
+        },
+      < 27 => switch (mode) {
+          qr_mode.modeNumber => 12,
+          qr_mode.modeAlphaNum => 11,
+          qr_mode.mode8bitByte => 16,
+          qr_mode.modeKanji => 10,
+          _ => throw ArgumentError('mode:$mode')
+        },
+      < 41 => switch (mode) {
+          qr_mode.modeNumber => 14,
+          qr_mode.modeAlphaNum => 13,
+          qr_mode.mode8bitByte => 16,
+          qr_mode.modeKanji => 12,
+          _ => throw ArgumentError('mode:$mode')
+        },
+      _ => throw ArgumentError('type:$type')
     };
-  } else if (type < 27) {
-    // 10 - 26
-    return switch (mode) {
-      qr_mode.modeNumber => 12,
-      qr_mode.modeAlphaNum => 11,
-      qr_mode.mode8bitByte => 16,
-      qr_mode.modeKanji => 10,
-      _ => throw ArgumentError('mode:$mode')
-    };
-  } else if (type < 41) {
-    // 27 - 40
-    return switch (mode) {
-      qr_mode.modeNumber => 14,
-      qr_mode.modeAlphaNum => 13,
-      qr_mode.mode8bitByte => 16,
-      qr_mode.modeKanji => 12,
-      _ => throw ArgumentError('mode:$mode')
-    };
-  } else {
-    throw ArgumentError('type:$type');
-  }
-}
 
 QrPolynomial _errorCorrectPolynomial(int errorCorrectLength) {
   var a = QrPolynomial([1], 0);
