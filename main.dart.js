@@ -1900,7 +1900,7 @@ break $label2$2}if(4===a){s=16
 break $label2$2}if(8===a){s=12
 break $label2$2}s=A.vh(A.xY("mode:"+a,r))}return s}else throw A.b(A.xY("type:"+b,r))},
 K8(a){var s,r=t.t,q=A.yU(A.QI([1],r),0)
-for(s=0;s<a;++s)q=q.tv(A.yU(A.QI([1,A.yo(s)],r),0))
+for(s=0;s<a;++s)q=q.tv(A.yU(A.QI([1,$.Wd()[B.jn.zY(s,255)]],r),0))
 return q},
 pR:function pR(a,b,c,d){var _=this
 _.a=a
@@ -2157,11 +2157,7 @@ break $label0$0}if(0===a){s="Medium"
 break $label0$0}if(3===a){s="Quartile"
 break $label0$0}if(2===a){s="High"
 break $label0$0}s=A.vh(A.xY("level "+a+" not supported",null))}return s},
-zx(a){if(a<1)throw A.b(A.xY("glog("+a+")",null))
-return $.FZ()[a]},
-yo(a){for(;a<0;)a+=255
-for(;a>=256;)a-=255
-return $.Wd()[a]},
+zx(a){return a>=1?$.FZ()[a]:A.vh(A.xY("glog("+a+")",null))},
 A9(){var s,r=new Uint8Array(256)
 for(s=0;s<8;++s)r[s]=B.jn.iK(1,s)
 for(s=8;s<256;++s)r[s]=r[s-4]^r[s-5]^r[s-6]^r[s-8]
@@ -3460,16 +3456,14 @@ A.Tw.prototype={
 "["(a){return"QrInputTooLongException: "+this.c}}
 A.E4.prototype={
 gB(a){return this.a.length},
-tv(a){var s,r,q,p,o,n,m,l=this.a,k=l.length,j=a.a,i=j.length,h=new Uint8Array(k+i-1)
-for(s=0;s<k;++s)for(r=0;r<i;++r){q=s+r
-p=h[q]
-o=l[s]
-if(o<1)A.vh(A.xY("glog("+o+")",null))
-n=$.FZ()
-o=n[o]
-m=j[r]
-if(m<1)A.vh(A.xY("glog("+m+")",null))
-h[q]=(p^A.yo(o+n[m]))>>>0}return A.yU(h,0)},
+tv(a){var s,r,q,p,o,n,m=this.a,l=m.length,k=a.a,j=k.length,i=new Uint8Array(l+j-1)
+for(s=0;s<l;++s)for(r=0;r<j;++r){q=s+r
+p=i[q]
+o=m[s]
+o=o>=1?$.FZ()[o]:A.vh(A.xY("glog("+o+")",null))
+n=k[r]
+n=n>=1?$.FZ()[n]:A.vh(A.xY("glog("+n+")",null))
+i[q]=(p^$.Wd()[B.jn.zY(o+n,255)])>>>0}return A.yU(i,0)},
 vP(a){var s,r,q,p=this.a,o=p.length,n=a.a,m=n.length
 if(o-m<0)return this
 s=A.zx(p[0])-A.zx(n[0])
@@ -3477,8 +3471,8 @@ r=new Uint8Array(o)
 for(q=0;q<o;++q)r[q]=p[q]
 for(q=0;q<m;++q){p=r[q]
 o=n[q]
-if(o<1)A.vh(A.xY("glog("+o+")",null))
-r[q]=(p^A.yo($.FZ()[o]+s))>>>0}return A.yU(r,0).vP(a)}}
+o=o>=1?$.FZ()[o]:A.vh(A.xY("glog("+o+")",null))
+r[q]=(p^$.Wd()[B.jn.zY(o+s,255)])>>>0}return A.yU(r,0).vP(a)}}
 A.pR.prototype={
 gQm(){var s=this,r=s.d
 return r==null?s.d=A.fV(s.a,s.b,s.e):r}}

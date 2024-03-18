@@ -3,11 +3,11 @@
   "dump_minor_version": 1,
   "program": {
     "entrypoint": "function/org-dartlang-app:///example/main.dart::main",
-    "size": 119166,
+    "size": 119143,
     "ramUsage": "0.000 MB",
     "dart2jsVersion": "3.4.0-243.0.dev",
-    "compilationMoment": "2024-03-18 18:55:12.775007",
-    "compilationDuration": 1816743,
+    "compilationMoment": "2024-03-18 18:56:00.904480",
+    "compilationDuration": 1879399,
     "toJsonDuration": 8000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
@@ -713,7 +713,7 @@
         "id": "library/package:qr/src/math.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 378,
+        "size": 311,
         "children": [
           "field/package:qr/src/math.dart::_expTable",
           "field/package:qr/src/math.dart::_logTable",
@@ -728,7 +728,7 @@
         "id": "library/package:qr/src/polynomial.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 772,
+        "size": 803,
         "children": [
           "class/package:qr/src/polynomial.dart::QrPolynomial"
         ],
@@ -738,7 +738,7 @@
         "id": "library/package:qr/src/qr_code.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 1826,
+        "size": 1841,
         "children": [
           "class/package:qr/src/qr_code.dart::QrCode",
           "function/package:qr/src/qr_code.dart::_createBytes",
@@ -4459,7 +4459,7 @@
         "id": "class/package:qr/src/polynomial.dart::QrPolynomial",
         "kind": "class",
         "name": "QrPolynomial",
-        "size": 627,
+        "size": 658,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/polynomial.dart::",
         "modifiers": {
@@ -38673,7 +38673,7 @@
         "id": "function/package:qr/src/math.dart::gexp",
         "kind": "function",
         "name": "gexp",
-        "size": 60,
+        "size": 0,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/math.dart::",
         "children": [],
@@ -38693,8 +38693,8 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "yo(a){for(;a<0;)a+=255\nfor(;a>=256;)a-=255\nreturn $.Wd()[a]}",
+        "inlinedCount": 3,
+        "code": "",
         "type": "int Function(int)",
         "functionKind": 0
       },
@@ -38702,7 +38702,7 @@
         "id": "function/package:qr/src/math.dart::glog",
         "kind": "function",
         "name": "glog",
-        "size": 66,
+        "size": 59,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/math.dart::",
         "children": [],
@@ -38723,7 +38723,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 3,
-        "code": "zx(a){if(a<1)throw A.b(A.xY(\"glog(\"+a+\")\",null))\nreturn $.FZ()[a]}",
+        "code": "zx(a){return a>=1?$.FZ()[a]:A.vh(A.xY(\"glog(\"+a+\")\",null))}",
         "type": "int Function(int)",
         "functionKind": 0
       },
@@ -38846,7 +38846,7 @@
         "id": "function/package:qr/src/polynomial.dart::QrPolynomial.mod",
         "kind": "function",
         "name": "mod",
-        "size": 267,
+        "size": 284,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/polynomial.dart::QrPolynomial",
         "children": [],
@@ -38867,7 +38867,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "vP(a){var s,r,q,p=this.a,o=p.length,n=a.a,m=n.length\nif(o-m<0)return this\ns=A.zx(p[0])-A.zx(n[0])\nr=new Uint8Array(o)\nfor(q=0;q<o;++q)r[q]=p[q]\nfor(q=0;q<m;++q){p=r[q]\no=n[q]\nif(o<1)A.vh(A.xY(\"glog(\"+o+\")\",null))\nr[q]=(p^A.yo($.FZ()[o]+s))>>>0}return A.yU(r,0).vP(a)}",
+        "code": "vP(a){var s,r,q,p=this.a,o=p.length,n=a.a,m=n.length\nif(o-m<0)return this\ns=A.zx(p[0])-A.zx(n[0])\nr=new Uint8Array(o)\nfor(q=0;q<o;++q)r[q]=p[q]\nfor(q=0;q<m;++q){p=r[q]\no=n[q]\no=o>=1?$.FZ()[o]:A.vh(A.xY(\"glog(\"+o+\")\",null))\nr[q]=(p^$.Wd()[B.jn.zY(o+s,255)])>>>0}return A.yU(r,0).vP(a)}",
         "type": "QrPolynomial Function(QrPolynomial)",
         "functionKind": 2
       },
@@ -38875,7 +38875,7 @@
         "id": "function/package:qr/src/polynomial.dart::QrPolynomial.multiply",
         "kind": "function",
         "name": "multiply",
-        "size": 280,
+        "size": 294,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/polynomial.dart::QrPolynomial",
         "children": [],
@@ -38896,7 +38896,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "tv(a){var s,r,q,p,o,n,m,l=this.a,k=l.length,j=a.a,i=j.length,h=new Uint8Array(k+i-1)\nfor(s=0;s<k;++s)for(r=0;r<i;++r){q=s+r\np=h[q]\no=l[s]\nif(o<1)A.vh(A.xY(\"glog(\"+o+\")\",null))\nn=$.FZ()\no=n[o]\nm=j[r]\nif(m<1)A.vh(A.xY(\"glog(\"+m+\")\",null))\nh[q]=(p^A.yo(o+n[m]))>>>0}return A.yU(h,0)}",
+        "code": "tv(a){var s,r,q,p,o,n,m=this.a,l=m.length,k=a.a,j=k.length,i=new Uint8Array(l+j-1)\nfor(s=0;s<l;++s)for(r=0;r<j;++r){q=s+r\np=i[q]\no=m[s]\no=o>=1?$.FZ()[o]:A.vh(A.xY(\"glog(\"+o+\")\",null))\nn=k[r]\nn=n>=1?$.FZ()[n]:A.vh(A.xY(\"glog(\"+n+\")\",null))\ni[q]=(p^$.Wd()[B.jn.zY(o+n,255)])>>>0}return A.yU(i,0)}",
         "type": "QrPolynomial Function(QrPolynomial)",
         "functionKind": 2
       },
@@ -39121,7 +39121,7 @@
         "id": "function/package:qr/src/qr_code.dart::_errorCorrectPolynomial",
         "kind": "function",
         "name": "_errorCorrectPolynomial",
-        "size": 101,
+        "size": 116,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/qr_code.dart::",
         "children": [],
@@ -39142,7 +39142,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "K8(a){var s,r=t.t,q=A.yU(A.QI([1],r),0)\nfor(s=0;s<a;++s)q=q.tv(A.yU(A.QI([1,A.yo(s)],r),0))\nreturn q}",
+        "code": "K8(a){var s,r=t.t,q=A.yU(A.QI([1],r),0)\nfor(s=0;s<a;++s)q=q.tv(A.yU(A.QI([1,$.Wd()[B.jn.zY(s,255)]],r),0))\nreturn q}",
         "type": "QrPolynomial Function(int)",
         "functionKind": 0
       },
@@ -71699,17 +71699,12 @@
         "id": "function/dart:_native_typed_data::_checkLength"
       }
     ],
-    "function/package:qr/src/math.dart::gexp": [
-      {
-        "id": "field/package:qr/src/math.dart::_expTable"
-      }
-    ],
     "function/package:qr/src/math.dart::glog": [
       {
         "id": "field/package:qr/src/math.dart::_logTable"
       },
       {
-        "id": "function/dart:_js_helper::wrapException"
+        "id": "function/dart:_js_helper::throwExpression"
       },
       {
         "id": "function/dart:core::ArgumentError.ArgumentError"
@@ -71744,10 +71739,16 @@
     ],
     "function/package:qr/src/polynomial.dart::QrPolynomial.mod": [
       {
+        "id": "field/package:qr/src/math.dart::_expTable"
+      },
+      {
         "id": "field/package:qr/src/math.dart::_logTable"
       },
       {
         "id": "field/package:qr/src/polynomial.dart::QrPolynomial._values"
+      },
+      {
+        "id": "function/dart:_interceptors::JSNumber.%"
       },
       {
         "id": "function/dart:_js_helper::throwExpression"
@@ -71767,6 +71768,10 @@
       },
       {
         "id": "function/dart:core::ArgumentError.ArgumentError"
+      },
+      {
+        "id": "function/package:qr/src/math.dart::gexp",
+        "mask": "inlined"
       },
       {
         "id": "function/package:qr/src/math.dart::gexp"
@@ -71832,10 +71837,16 @@
     ],
     "function/package:qr/src/polynomial.dart::QrPolynomial.multiply": [
       {
+        "id": "field/package:qr/src/math.dart::_expTable"
+      },
+      {
         "id": "field/package:qr/src/math.dart::_logTable"
       },
       {
         "id": "field/package:qr/src/polynomial.dart::QrPolynomial._values"
+      },
+      {
+        "id": "function/dart:_interceptors::JSNumber.%"
       },
       {
         "id": "function/dart:_js_helper::throwExpression"
@@ -71855,6 +71866,10 @@
       },
       {
         "id": "function/dart:core::ArgumentError.ArgumentError"
+      },
+      {
+        "id": "function/package:qr/src/math.dart::gexp",
+        "mask": "inlined"
       },
       {
         "id": "function/package:qr/src/math.dart::gexp"
@@ -72143,10 +72158,20 @@
     ],
     "function/package:qr/src/qr_code.dart::_errorCorrectPolynomial": [
       {
+        "id": "field/package:qr/src/math.dart::_expTable"
+      },
+      {
+        "id": "function/dart:_interceptors::JSNumber.%"
+      },
+      {
         "id": "function/dart:_rti::_setArrayType"
       },
       {
         "id": "function/dart:_rti::findType"
+      },
+      {
+        "id": "function/package:qr/src/math.dart::gexp",
+        "mask": "inlined"
       },
       {
         "id": "function/package:qr/src/math.dart::gexp"
@@ -73643,7 +73668,7 @@
       "id": "outputUnit/main",
       "kind": "outputUnit",
       "name": "main",
-      "size": 119166,
+      "size": 119143,
       "filename": "main.dart.js",
       "imports": []
     }
