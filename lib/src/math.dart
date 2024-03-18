@@ -3,13 +3,7 @@ import 'dart:typed_data';
 final Uint8List _logTable = _createLogTable();
 final Uint8List _expTable = _createExpTable();
 
-int glog(int n) {
-  if (n < 1) {
-    throw ArgumentError('glog($n)');
-  }
-
-  return _logTable[n];
-}
+int glog(int n) => (n >= 1) ? _logTable[n] : throw ArgumentError('glog($n)');
 
 int gexp(int n) {
   while (n < 0) {
