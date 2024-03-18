@@ -5,17 +5,7 @@ final Uint8List _expTable = _createExpTable();
 
 int glog(int n) => (n >= 1) ? _logTable[n] : throw ArgumentError('glog($n)');
 
-int gexp(int n) {
-  while (n < 0) {
-    n += 255;
-  }
-
-  while (n >= 256) {
-    n -= 255;
-  }
-
-  return _expTable[n];
-}
+int gexp(int n) => _expTable[n % 255];
 
 Uint8List _createExpTable() {
   final list = Uint8List(256);
