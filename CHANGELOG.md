@@ -1,6 +1,7 @@
-## 3.0.2-wip
+## 3.0.2
 
-- Require Dart 3.3 or greater.
+- Require package `web: ^1.0.0`.
+- Require Dart 3.4 or greater.
 
 ## 3.0.1
 

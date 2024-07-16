@@ -46,7 +46,7 @@ jobs:
       matrix:
         # Add macos-latest and/or windows-latest if relevant for this package.
         os: [ubuntu-latest]
-        sdk: [3.3, dev]
+        sdk: [3.4, dev]
     steps:
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
       - uses: dart-lang/setup-dart@0a8a0fc875eb934c15d08629302413c671d3f672
