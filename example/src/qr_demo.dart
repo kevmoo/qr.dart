@@ -88,7 +88,7 @@ class QrDemo {
       typeDiv.appendChild(radio);
 
       final label = (document.createElement('label') as HTMLLabelElement)
-        ..innerHTML = '$i'
+        ..innerHTML = '$i'.toJS
         ..htmlFor = radio.id
         ..classList.add('btn');
       typeDiv.appendChild(label);
@@ -110,7 +110,7 @@ class QrDemo {
       errorDiv.appendChild(radio);
 
       final label = (document.createElement('label') as HTMLLabelElement)
-        ..innerHTML = QrErrorCorrectLevel.getName(v)
+        ..innerHTML = QrErrorCorrectLevel.getName(v).toJS
         ..htmlFor = radio.id
         ..classList.add('btn');
       errorDiv.appendChild(label);
