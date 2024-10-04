@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:js_interop';
-import 'dart:js_interop_unsafe';
 import 'dart:math' as math;
 
 import 'package:qr/qr.dart';
@@ -133,13 +132,13 @@ class QrDemo {
 
   void _levelClick(Event args) {
     final source = args.target as HTMLInputElement;
-    _typeNumber = int.parse(source.dataset[_typeRadioIdKey]!);
+    _typeNumber = int.parse(source.dataset[_typeRadioIdKey]);
     _update();
   }
 
   void _errorClick(Event args) {
     final source = args.target as HTMLInputElement;
-    _errorCorrectLevel = int.parse(source.dataset[_errorLevelIdKey]!);
+    _errorCorrectLevel = int.parse(source.dataset[_errorLevelIdKey]);
     _update();
   }
 
@@ -225,13 +224,4 @@ void _setTransform(CanvasRenderingContext2D ctx, AffineTransform tx) {
     tx.translateX,
     tx.translateY,
   );
-}
-
-extension on DOMStringMap {
-  void operator []=(String key, String? value) {
-    (this as JSObject)[key] = value?.toJS;
-  }
-
-  String? operator [](String key) =>
-      ((this as JSObject)[key] as JSString?)?.toDart;
 }
