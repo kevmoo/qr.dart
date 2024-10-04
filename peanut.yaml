@@ -5,7 +5,7 @@ directories:
 builder-options:
   build_web_compilers|entrypoint:
     dart2js_args:
-    - --dump-info
+    - --stage=dump-info-all
     - --no-frequency-based-minification
     - --no-source-maps
     - -O4
