@@ -1,13 +1,3 @@
 # Configuration for https://pub.dev/packages/peanut
 directories:
 - example
-
-builder-options:
-  build_web_compilers|entrypoint:
-    dart2js_args:
-    - --stage=dump-info-all
-    - --no-frequency-based-minification
-    - --no-source-maps
-    - -O4
-  build_web_compilers|dart2js_archive_extractor:
-    filter_outputs: false

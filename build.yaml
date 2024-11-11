@@ -1,0 +1,23 @@
+# This is JUST for the example!
+# See https://github.com/dart-lang/build/tree/master/build_web_compilers#configuration
+targets:
+  $default:
+    builders:
+      build_web_compilers|dart2js_archive_extractor:
+        options:
+          filter_outputs: false
+      build_web_compilers|entrypoint:
+        generate_for:
+          - example/**.dart
+        options:
+          compilers:
+            dart2wasm:
+              args:
+                - -O4
+                - --no-strip-wasm
+            dart2js:
+              args:
+                - --stage=dump-info-all
+                - --no-source-maps
+                - --show-package-warnings
+                - -O4
