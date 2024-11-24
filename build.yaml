@@ -19,5 +19,6 @@ targets:
               args:
                 - --stage=dump-info-all
                 - --no-source-maps
+                - --no-frequency-based-minification
                 - --show-package-warnings
                 - -O4
