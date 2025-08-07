@@ -3,7 +3,6 @@
 import 'dart:typed_data';
 
 import 'package:qr/src/error_correct_level.dart';
-import 'package:qr/src/input_too_long_exception.dart';
 import 'package:qr/src/qr_code.dart';
 import 'package:qr/src/qr_image.dart';
 import 'package:test/test.dart';
