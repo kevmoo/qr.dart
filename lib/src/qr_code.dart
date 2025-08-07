@@ -33,11 +33,30 @@ class QrCode {
     required String data,
     required int errorCorrectLevel,
   }) {
+    final List<QrDatum> dataList;
+    // Automatically determine mode here
+    if (RegExp(r'^[0-9]+$').hasMatch(data)) {
+      // Numeric mode for numbers only
+      dataList = [QrNumeric.fromString(data)];
+    } else if (RegExp(r'^[0-9A-Z $%*+\-./:]+$').hasMatch(data)) {
+      // Alphanumeric mode for alphanumeric characters only
+      dataList = [QrAlphaNumeric.fromString(data)];
+    } else {
+      // Default to byte mode for other characters
+      dataList = [QrByte(data)];
+    }
+
     final typeNumber = _calculateTypeNumberFromData(
       errorCorrectLevel,
-      [QrByte(data)],
+      dataList,
     );
-    return QrCode(typeNumber, errorCorrectLevel)..addData(data);
+
+    final qrCode = QrCode(typeNumber, errorCorrectLevel);
+    // Add all data to the QR code
+    for (final datum in dataList) {
+      qrCode._addToList(datum);
+    }
+    return qrCode;
   }
 
   factory QrCode.fromUint8List({

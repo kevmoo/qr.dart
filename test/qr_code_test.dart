@@ -3,6 +3,7 @@
 import 'dart:typed_data';
 
 import 'package:qr/src/error_correct_level.dart';
+import 'package:qr/src/input_too_long_exception.dart';
 import 'package:qr/src/qr_code.dart';
 import 'package:qr/src/qr_image.dart';
 import 'package:test/test.dart';
@@ -102,6 +103,46 @@ void main() {
       },
       throwsA(isA<AssertionError>()),
     );
+  });
+  group('QrCode.fromData Automatic Mode Detection', () {
+    // Numeric Mode
+    test('should use Numeric Mode for numbers and select the smallest version',
+        () {
+      // 9 numeric characters fit within the maximum capacity of Numeric Mode
+      // for version 1 (H level).
+      final qr = QrCode.fromData(
+        data: '123456789',
+        errorCorrectLevel: QrErrorCorrectLevel.H,
+      );
+      expect(qr.typeNumber, 1);
+    });
+
+    // Alphanumeric Mode
+    test('should use Alphanumeric Mode and select the smallest version', () {
+      // 13 alphanumeric characters exceed the max capacity of version 1 (H level, 7 chars)
+      // but fit within the capacity of version 2 (H level, 16 chars).
+      final qr = QrCode.fromData(
+        data: 'HELLO WORLD A',
+        errorCorrectLevel: QrErrorCorrectLevel.H,
+      );
+      expect(qr.typeNumber, 2);
+    });
+
+    // Byte Mode
+    test(
+        'should use Byte Mode for non-alphanumeric characters and select the smallest version',
+        () {
+      // Kanji characters are encoded in UTF-8 Byte Mode because Kanji Mode is not implemented.
+      // '機械学習' (4 characters) is 12 bytes in UTF-8.
+      // According to the `_rsBlockTable`, the data capacity for version 2 (H level) is 16 bytes,
+      // so 12 bytes fit.
+      // Therefore, the library should correctly choose version 2.
+      final qr = QrCode.fromData(
+        data: '機械学習',
+        errorCorrectLevel: QrErrorCorrectLevel.H,
+      );
+      expect(qr.typeNumber, 2);
+    });
   });
 }
 
