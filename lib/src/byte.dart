@@ -36,6 +36,8 @@ class QrByte implements QrDatum {
 
 /// Encodes numbers (0-9) 10 bits per 3 digits.
 class QrNumeric implements QrDatum {
+  static final RegExp validationRegex = RegExp(r'^[0-9]+$');
+
   factory QrNumeric.fromString(String numberString) {
     final newList = Uint8List(numberString.length);
     var count = 0;

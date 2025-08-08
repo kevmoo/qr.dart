@@ -35,10 +35,10 @@ class QrCode {
   }) {
     final List<QrDatum> dataList;
     // Automatically determine mode here
-    if (RegExp(r'^[0-9]+$').hasMatch(data)) {
+    if (QrNumeric.validationRegex.hasMatch(data)) {
       // Numeric mode for numbers only
       dataList = [QrNumeric.fromString(data)];
-    } else if (RegExp(r'^[0-9A-Z $%*+\-./:]+$').hasMatch(data)) {
+    } else if (QrAlphaNumeric.validationRegex.hasMatch(data)) {
       // Alphanumeric mode for alphanumeric characters only
       dataList = [QrAlphaNumeric.fromString(data)];
     } else {
