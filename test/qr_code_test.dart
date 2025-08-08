@@ -28,8 +28,9 @@ void main() {
 
   test('fromData', () {
     for (var quality in QrErrorCorrectLevel.levels) {
-      final qr =
-          QrImage(QrCode.fromData(data: 'shanna!', errorCorrectLevel: quality));
+      final qr = QrImage(
+        QrCode.fromData(data: 'shanna!', errorCorrectLevel: quality),
+      );
       final modules = qr.qrModules;
       for (var i = 0; i < modules.length; i++) {
         expect(
@@ -74,35 +75,35 @@ void main() {
     }
   });
 
-  test('''
+  test(
+    '''
       WHEN provided mask pattern is smaller than 0,
       SHOULD throw an AssertionError
-  ''', () {
-    expect(
-      () {
+  ''',
+    () {
+      expect(() {
         QrImage.withMaskPattern(
           QrCode(1, QrErrorCorrectLevel.L)..addData('shanna!'),
           -1,
         );
-      },
-      throwsA(isA<AssertionError>()),
-    );
-  });
+      }, throwsA(isA<AssertionError>()));
+    },
+  );
 
-  test('''
+  test(
+    '''
       WHEN provided mask pattern is bigger than 7,
       SHOULD throw an AssertionError
-  ''', () {
-    expect(
-      () {
+  ''',
+    () {
+      expect(() {
         QrImage.withMaskPattern(
           QrCode(1, QrErrorCorrectLevel.L)..addData('shanna!'),
           8,
         );
-      },
-      throwsA(isA<AssertionError>()),
-    );
-  });
+      }, throwsA(isA<AssertionError>()));
+    },
+  );
   group('QrCode.fromData Automatic Mode Detection', () {
     // Numeric Mode
     test('should use Numeric Mode for numbers', () {

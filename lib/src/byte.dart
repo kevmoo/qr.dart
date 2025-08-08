@@ -86,8 +86,9 @@ class QrNumeric implements QrDatum {
 class QrAlphaNumeric implements QrDatum {
   static const alphaNumTable = r'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:';
   // Note: '-' anywhere in this string is a range character.
-  static final validationRegex =
-      RegExp(r'^[-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+./:]+$');
+  static final validationRegex = RegExp(
+    r'^[-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+./:]+$',
+  );
   static final encodeArray = () {
     final array = List<int?>.filled(91, null);
     for (var i = 0; i < alphaNumTable.length; i++) {
@@ -101,8 +102,10 @@ class QrAlphaNumeric implements QrDatum {
 
   factory QrAlphaNumeric.fromString(String alphaNumeric) {
     if (!alphaNumeric.contains(validationRegex)) {
-      throw ArgumentError('String does not contain valid ALPHA-NUM '
-          'character set: $alphaNumeric');
+      throw ArgumentError(
+        'String does not contain valid ALPHA-NUM '
+        'character set: $alphaNumeric',
+      );
     }
     return QrAlphaNumeric._(alphaNumeric);
   }
@@ -120,7 +123,8 @@ class QrAlphaNumeric implements QrDatum {
 
     final efficientGrab = _string.length - leftOver;
     for (var i = 0; i < efficientGrab; i += 2) {
-      final encoded = encodeArray[_string.codeUnitAt(i)]! * 45 +
+      final encoded =
+          encodeArray[_string.codeUnitAt(i)]! * 45 +
           encodeArray[_string.codeUnitAt(i + 1)]!;
       buffer.put(encoded, 11);
     }

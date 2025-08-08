@@ -11,28 +11,40 @@ void main() {
     qr.write(buffer);
     expect(buffer.length, 34);
     expect(
-      buffer.getRange(0, 10).map<int>((e) => e ? 1 : 0).fold<int>(
+      buffer
+          .getRange(0, 10)
+          .map<int>((e) => e ? 1 : 0)
+          .fold<int>(
             0,
             (previousValue, element) => (previousValue << 1) | element,
           ),
       123,
     );
     expect(
-      buffer.getRange(10, 20).map<int>((e) => e ? 1 : 0).fold<int>(
+      buffer
+          .getRange(10, 20)
+          .map<int>((e) => e ? 1 : 0)
+          .fold<int>(
             0,
             (previousValue, element) => (previousValue << 1) | element,
           ),
       456,
     );
     expect(
-      buffer.getRange(20, 30).map<int>((e) => e ? 1 : 0).fold<int>(
+      buffer
+          .getRange(20, 30)
+          .map<int>((e) => e ? 1 : 0)
+          .fold<int>(
             0,
             (previousValue, element) => (previousValue << 1) | element,
           ),
       789,
     );
     expect(
-      buffer.getRange(30, 34).map<int>((e) => e ? 1 : 0).fold<int>(
+      buffer
+          .getRange(30, 34)
+          .map<int>((e) => e ? 1 : 0)
+          .fold<int>(
             0,
             (previousValue, element) => (previousValue << 1) | element,
           ),
@@ -48,7 +60,10 @@ void main() {
     qr.write(buffer);
     expect(buffer.length, 4);
     expect(
-      buffer.getRange(0, 4).map<int>((e) => e ? 1 : 0).fold<int>(
+      buffer
+          .getRange(0, 4)
+          .map<int>((e) => e ? 1 : 0)
+          .fold<int>(
             0,
             (previousValue, element) => (previousValue << 1) | element,
           ),
@@ -64,7 +79,10 @@ void main() {
     qr.write(buffer);
     expect(buffer.length, 7, reason: 'n*3+1 = 7');
     expect(
-      buffer.getRange(0, 7).map<int>((e) => e ? 1 : 0).fold<int>(
+      buffer
+          .getRange(0, 7)
+          .map<int>((e) => e ? 1 : 0)
+          .fold<int>(
             0,
             (previousValue, element) => (previousValue << 1) | element,
           ),
@@ -80,7 +98,10 @@ void main() {
     qr.write(buffer);
     expect(buffer.length, 10, reason: 'n*3+1 = 10');
     expect(
-      buffer.getRange(0, 10).map<int>((e) => e ? 1 : 0).fold<int>(
+      buffer
+          .getRange(0, 10)
+          .map<int>((e) => e ? 1 : 0)
+          .fold<int>(
             0,
             (previousValue, element) => (previousValue << 1) | element,
           ),

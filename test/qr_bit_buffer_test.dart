@@ -45,9 +45,17 @@ void _testComplex() {
   bb = QrBitBuffer()..put(256, 9);
   expect(
     bb,
-    orderedEquals(
-      [true, false, false, false, false, false, false, false, false],
-    ),
+    orderedEquals([
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+    ]),
   );
 }
 

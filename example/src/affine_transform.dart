@@ -14,12 +14,12 @@ class AffineTransform {
     num scaleY,
     num translateX,
     num translateY,
-  )   : _scX = scaleX,
-        _scY = scaleY,
-        _tX = translateX,
-        _tY = translateY,
-        _shX = shearX,
-        _shY = shearY;
+  ) : _scX = scaleX,
+      _scY = scaleY,
+      _tX = translateX,
+      _tY = translateY,
+      _shX = shearX,
+      _shY = shearY;
 
   factory AffineTransform.fromRotate(num theta, num x, num y) =>
       AffineTransform.identity()..setToRotation(theta, x, y);
