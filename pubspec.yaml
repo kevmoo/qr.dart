@@ -1,5 +1,5 @@
 name: qr
-version: 3.0.3-wip
+version: 3.1.0-wip
 description: >-
   A QR code generation library for Dart and Flutter.
   Supports QR code version 1 through 40, error correction and redundancy.

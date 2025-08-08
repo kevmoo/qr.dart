@@ -33,29 +33,25 @@ class QrCode {
     required String data,
     required int errorCorrectLevel,
   }) {
-    final List<QrDatum> dataList;
+    final QrDatum datum;
     // Automatically determine mode here
     if (QrNumeric.validationRegex.hasMatch(data)) {
       // Numeric mode for numbers only
-      dataList = [QrNumeric.fromString(data)];
+      datum = QrNumeric.fromString(data);
     } else if (QrAlphaNumeric.validationRegex.hasMatch(data)) {
       // Alphanumeric mode for alphanumeric characters only
-      dataList = [QrAlphaNumeric.fromString(data)];
+      datum = QrAlphaNumeric.fromString(data);
     } else {
       // Default to byte mode for other characters
-      dataList = [QrByte(data)];
+      datum = QrByte(data);
     }
 
     final typeNumber = _calculateTypeNumberFromData(
       errorCorrectLevel,
-      dataList,
+      datum,
     );
 
-    final qrCode = QrCode(typeNumber, errorCorrectLevel);
-    // Add all data to the QR code
-    for (final datum in dataList) {
-      qrCode._addToList(datum);
-    }
+    final qrCode = QrCode(typeNumber, errorCorrectLevel).._addToList(datum);
     return qrCode;
   }
 
@@ -65,7 +61,7 @@ class QrCode {
   }) {
     final typeNumber = _calculateTypeNumberFromData(
       errorCorrectLevel,
-      [QrByte.fromUint8List(data)],
+      QrByte.fromUint8List(data),
     );
     return QrCode(typeNumber, errorCorrectLevel)
       .._addToList(QrByte.fromUint8List(data));
@@ -73,25 +69,21 @@ class QrCode {
 
   static int _calculateTypeNumberFromData(
     int errorCorrectLevel,
-    List<QrDatum> dataList,
+    QrDatum data,
   ) {
     int typeNumber;
     for (typeNumber = 1; typeNumber < 40; typeNumber++) {
       final rsBlocks = QrRsBlock.getRSBlocks(typeNumber, errorCorrectLevel);
 
-      final buffer = QrBitBuffer();
       var totalDataCount = 0;
       for (var i = 0; i < rsBlocks.length; i++) {
         totalDataCount += rsBlocks[i].dataCount;
       }
 
-      for (var i = 0; i < dataList.length; i++) {
-        final data = dataList[i];
-        buffer
-          ..put(data.mode, 4)
-          ..put(data.length, _lengthInBits(data.mode, typeNumber));
-        data.write(buffer);
-      }
+      final buffer = QrBitBuffer()
+        ..put(data.mode, 4)
+        ..put(data.length, _lengthInBits(data.mode, typeNumber));
+      data.write(buffer);
       if (buffer.length <= totalDataCount * 8) break;
     }
     return typeNumber;
