@@ -3,6 +3,7 @@ import 'dart:js_interop';
 import 'dart:math' as math;
 
 import 'package:qr/qr.dart';
+import 'package:qr/src/byte.dart';
 import 'package:stream_transform/stream_transform.dart';
 import 'package:web/web.dart';
 
@@ -183,8 +184,6 @@ class QrDemo {
   }
 }
 
-final _digit = RegExp(r'^\d+$');
-
 class _Config {
   final int type;
   final int level;
@@ -197,7 +196,7 @@ Future<List<bool>> _calc(_Config config) async {
   final code = QrCode(config.type, config.level);
   final data = config.input;
 
-  if (_digit.hasMatch(data)) {
+  if (QrNumeric.validationRegex.hasMatch(data)) {
     code.addNumeric(data);
   } else {
     code.addData(data);

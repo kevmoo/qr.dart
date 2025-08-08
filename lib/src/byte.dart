@@ -36,13 +36,15 @@ class QrByte implements QrDatum {
 
 /// Encodes numbers (0-9) 10 bits per 3 digits.
 class QrNumeric implements QrDatum {
+  static final RegExp validationRegex = RegExp(r'^[0-9]+$');
+
   factory QrNumeric.fromString(String numberString) {
+    if (!validationRegex.hasMatch(numberString)) {
+      throw ArgumentError('string can only contain digits 0-9');
+    }
     final newList = Uint8List(numberString.length);
     var count = 0;
     for (var char in numberString.codeUnits) {
-      if (char < 0x30 || char > 0x39) {
-        throw ArgumentError('string can only contain alpha numeric 0-9');
-      }
       newList[count++] = char - 0x30;
     }
     return QrNumeric._(newList);

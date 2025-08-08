@@ -103,6 +103,39 @@ void main() {
       throwsA(isA<AssertionError>()),
     );
   });
+  group('QrCode.fromData Automatic Mode Detection', () {
+    // Numeric Mode
+    test('should use Numeric Mode for numbers', () {
+      // 9 numeric chars fit version 1 (H level).
+      final qr = QrCode.fromData(
+        data: '123456789',
+        errorCorrectLevel: QrErrorCorrectLevel.H,
+      );
+      expect(qr.typeNumber, 1);
+    });
+
+    // Alphanumeric Mode
+    test('should use Alphanumeric Mode', () {
+      // 13 alphanumeric chars exceed version 1 (7 chars) but fit
+      // version 2 (H level, 16 chars).
+      final qr = QrCode.fromData(
+        data: 'HELLO WORLD A',
+        errorCorrectLevel: QrErrorCorrectLevel.H,
+      );
+      expect(qr.typeNumber, 2);
+    });
+
+    // Byte Mode
+    test('should use Byte Mode for non-alphanumeric chars', () {
+      // Kanji characters are UTF-8 encoded.
+      // '機械学習' (12 bytes) fits version 2 (H level, 16 bytes).
+      final qr = QrCode.fromData(
+        data: '機械学習',
+        errorCorrectLevel: QrErrorCorrectLevel.H,
+      );
+      expect(qr.typeNumber, 2);
+    });
+  });
 }
 
 String _encodeBoolListToString(List<bool?> source) =>
