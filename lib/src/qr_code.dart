@@ -20,7 +20,7 @@ class QrCode {
   final _dataList = <QrDatum>[];
 
   QrCode(this.typeNumber, this.errorCorrectLevel)
-      : moduleCount = typeNumber * 4 + 17 {
+    : moduleCount = typeNumber * 4 + 17 {
     RangeError.checkValueInInterval(typeNumber, 1, 40, 'typeNumber');
     RangeError.checkValidIndex(
       errorCorrectLevel,
@@ -46,10 +46,7 @@ class QrCode {
       datum = QrByte(data);
     }
 
-    final typeNumber = _calculateTypeNumberFromData(
-      errorCorrectLevel,
-      datum,
-    );
+    final typeNumber = _calculateTypeNumberFromData(errorCorrectLevel, datum);
 
     final qrCode = QrCode(typeNumber, errorCorrectLevel).._addToList(datum);
     return qrCode;
@@ -67,10 +64,7 @@ class QrCode {
       .._addToList(QrByte.fromUint8List(data));
   }
 
-  static int _calculateTypeNumberFromData(
-    int errorCorrectLevel,
-    QrDatum data,
-  ) {
+  static int _calculateTypeNumberFromData(int errorCorrectLevel, QrDatum data) {
     int typeNumber;
     for (typeNumber = 1; typeNumber < 40; typeNumber++) {
       final rsBlocks = QrRsBlock.getRSBlocks(typeNumber, errorCorrectLevel);
@@ -233,7 +227,7 @@ int _lengthInBits(int mode, int type) {
       qr_mode.modeAlphaNum => 9,
       qr_mode.mode8bitByte => 8,
       qr_mode.modeKanji => 8,
-      _ => throw ArgumentError('mode:$mode')
+      _ => throw ArgumentError('mode:$mode'),
     };
   } else if (type < 27) {
     // 10 - 26
@@ -242,7 +236,7 @@ int _lengthInBits(int mode, int type) {
       qr_mode.modeAlphaNum => 11,
       qr_mode.mode8bitByte => 16,
       qr_mode.modeKanji => 10,
-      _ => throw ArgumentError('mode:$mode')
+      _ => throw ArgumentError('mode:$mode'),
     };
   } else if (type < 41) {
     // 27 - 40
@@ -251,7 +245,7 @@ int _lengthInBits(int mode, int type) {
       qr_mode.modeAlphaNum => 13,
       qr_mode.mode8bitByte => 16,
       qr_mode.modeKanji => 12,
-      _ => throw ArgumentError('mode:$mode')
+      _ => throw ArgumentError('mode:$mode'),
     };
   } else {
     throw ArgumentError('type:$type');

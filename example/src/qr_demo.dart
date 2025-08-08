@@ -62,9 +62,9 @@ class QrDemo {
     HTMLDivElement typeDiv,
     HTMLDivElement errorDiv,
     this._inputValues,
-  )   : _canvas = canvas,
-        _ctx = canvas.context2D,
-        output = _inputValues.stream.asyncMapSample(_calc) {
+  ) : _canvas = canvas,
+      _ctx = canvas.context2D,
+      output = _inputValues.stream.asyncMapSample(_calc) {
     _ctx.fillStyle = 'black'.toJS;
 
     output.listen((value) {

@@ -1,6 +1,7 @@
 ## 3.1.0-wip
 
 - `QrCode.fromData` now intelligently picks the right mode.
+- Require `sdk: ^3.8.0`.
 
 ## 3.0.2
 

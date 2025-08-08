@@ -43,7 +43,8 @@ const List<List<int>> _patternPositionTable = [
 
 const int _g15 =
     (1 << 10) | (1 << 8) | (1 << 5) | (1 << 4) | (1 << 2) | (1 << 1) | (1 << 0);
-const int _g18 = (1 << 12) |
+const int _g18 =
+    (1 << 12) |
     (1 << 11) |
     (1 << 10) |
     (1 << 9) |
