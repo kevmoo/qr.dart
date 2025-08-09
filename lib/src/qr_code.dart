@@ -66,7 +66,7 @@ class QrCode {
 
   static int _calculateTypeNumberFromData(int errorCorrectLevel, QrDatum data) {
     int typeNumber;
-    for (typeNumber = 1; typeNumber < 40; typeNumber++) {
+    for (typeNumber = 1; typeNumber <= 40; typeNumber++) {
       final rsBlocks = QrRsBlock.getRSBlocks(typeNumber, errorCorrectLevel);
 
       var totalDataCount = 0;
@@ -78,9 +78,22 @@ class QrCode {
         ..put(data.mode, 4)
         ..put(data.length, _lengthInBits(data.mode, typeNumber));
       data.write(buffer);
-      if (buffer.length <= totalDataCount * 8) break;
+      if (buffer.length <= totalDataCount * 8) return typeNumber;
     }
-    return typeNumber;
+
+    // If we reach here, the data is too long for any QR Code version.
+    final lastVersionRsBlocks = QrRsBlock.getRSBlocks(40, errorCorrectLevel);
+    var lastVersionTotalBits = 0;
+    for (var rsBlock in lastVersionRsBlocks) {
+      lastVersionTotalBits += rsBlock.dataCount * 8;
+    }
+
+    final buffer = QrBitBuffer()
+      ..put(data.mode, 4)
+      ..put(data.length, _lengthInBits(data.mode, 40));
+    data.write(buffer);
+
+    throw InputTooLongException(buffer.length, lastVersionTotalBits);
   }
 
   void addData(String data) => _addToList(QrByte(data));
