@@ -3,9 +3,6 @@
 import 'dart:typed_data';
 
 import 'package:qr/qr.dart';
-import 'package:qr/src/error_correct_level.dart';
-import 'package:qr/src/qr_code.dart';
-import 'package:qr/src/qr_image.dart';
 import 'package:test/test.dart';
 
 import 'qr_code_test_data.dart';
@@ -140,37 +137,43 @@ void main() {
   });
 
   group('_calculateTypeNumberFromData - Version 40 Boundary Handling', () {
-    test('''
+    test(
+      '''
       should generate a QrCode with version 40
       for data slightly exceeding version 39 capacity
-      ''', () {
-      // 2952 bytes exceeds v39 (L) capacity of 2951.
-      final largeData = '|' * 2952;
+      ''',
+      () {
+        // 2952 bytes exceeds v39 (L) capacity of 2951.
+        final largeData = '|' * 2952;
 
-      final qrCode = QrCode.fromData(
-        data: largeData,
-        errorCorrectLevel: QrErrorCorrectLevel.L,
-      );
+        final qrCode = QrCode.fromData(
+          data: largeData,
+          errorCorrectLevel: QrErrorCorrectLevel.L,
+        );
 
-      expect(qrCode.typeNumber, 40);
-    });
+        expect(qrCode.typeNumber, 40);
+      },
+    );
 
-    test('''
+    test(
+      '''
       should throw InputTooLongException 
       for data exceeding version 40 capacity
-      ''', () {
-      // Data size (2954 bytes) exceeds v40 capacity (2953 bytes).
-      final excessivelyLargeData = '|' * 2954;
+      ''',
+      () {
+        // Data size (2954 bytes) exceeds v40 capacity (2953 bytes).
+        final excessivelyLargeData = '|' * 2954;
 
-      // An exception should be thrown for data exceeding the capacity
-      expect(
-        () => QrCode.fromData(
-          data: excessivelyLargeData,
-          errorCorrectLevel: QrErrorCorrectLevel.L,
-        ),
-        throwsA(isA<InputTooLongException>()),
-      );
-    });
+        // An exception should be thrown for data exceeding the capacity
+        expect(
+          () => QrCode.fromData(
+            data: excessivelyLargeData,
+            errorCorrectLevel: QrErrorCorrectLevel.L,
+          ),
+          throwsA(isA<InputTooLongException>()),
+        );
+      },
+    );
   });
 }
 
