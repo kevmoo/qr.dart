@@ -64,23 +64,39 @@ class QrCode {
       .._addToList(QrByte.fromUint8List(data));
   }
 
-  static int _calculateTypeNumberFromData(int errorCorrectLevel, QrDatum data) {
-    int typeNumber;
-    for (typeNumber = 1; typeNumber < 40; typeNumber++) {
-      final rsBlocks = QrRsBlock.getRSBlocks(typeNumber, errorCorrectLevel);
+  static int _calculateTotalDataBits(int typeNumber, int errorCorrectLevel) {
+    final rsBlocks = QrRsBlock.getRSBlocks(typeNumber, errorCorrectLevel);
+    var totalDataBits = 0;
+    for (var rsBlock in rsBlocks) {
+      totalDataBits += rsBlock.dataCount * 8;
+    }
+    return totalDataBits;
+  }
 
-      var totalDataCount = 0;
-      for (var i = 0; i < rsBlocks.length; i++) {
-        totalDataCount += rsBlocks[i].dataCount;
-      }
+  static int _calculateTypeNumberFromData(int errorCorrectLevel, QrDatum data) {
+    for (var typeNumber = 1; typeNumber <= 40; typeNumber++) {
+      final totalDataBits = _calculateTotalDataBits(
+        typeNumber,
+        errorCorrectLevel,
+      );
 
       final buffer = QrBitBuffer()
         ..put(data.mode, 4)
         ..put(data.length, _lengthInBits(data.mode, typeNumber));
       data.write(buffer);
-      if (buffer.length <= totalDataCount * 8) break;
+
+      if (buffer.length <= totalDataBits) return typeNumber;
     }
-    return typeNumber;
+
+    // If we reach here, the data is too long for any QR Code version.
+    final buffer = QrBitBuffer()
+      ..put(data.mode, 4)
+      ..put(data.length, _lengthInBits(data.mode, 40));
+    data.write(buffer);
+
+    final maxBits = _calculateTotalDataBits(40, errorCorrectLevel);
+
+    throw InputTooLongException(buffer.length, maxBits);
   }
 
   void addData(String data) {
@@ -143,19 +159,14 @@ List<int> _createData(
 
   // HUH?
   // ç≈ëÂÉfÅ[É^êîÇåvéZ
-  var totalDataCount = 0;
-  for (var i = 0; i < rsBlocks.length; i++) {
-    totalDataCount += rsBlocks[i].dataCount;
-  }
-
-  final totalByteCount = totalDataCount * 8;
-  if (buffer.length > totalByteCount) {
-    throw InputTooLongException(buffer.length, totalByteCount);
-  }
+  final totalDataBits = QrCode._calculateTotalDataBits(
+    typeNumber,
+    errorCorrectLevel,
+  );
 
   // HUH?
   // èIí[ÉRÅ[Éh
-  if (buffer.length + 4 <= totalByteCount) {
+  if (buffer.length + 4 <= totalDataBits) {
     buffer.put(0, 4);
   }
 
@@ -165,7 +176,7 @@ List<int> _createData(
   }
 
   // padding
-  final bitDataCount = totalDataCount * 8;
+  final bitDataCount = totalDataBits;
   var count = 0;
   for (;;) {
     if (buffer.length >= bitDataCount) {
