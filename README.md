@@ -40,6 +40,91 @@ for (var x = 0; x < qrImage.moduleCount; x++) {
 
 See the `example` directory for further details.
 
+## Minimalistic concrete example
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:qr/qr.dart';
+
+class QrCodeGenWidget extends StatefulWidget {
+  final String data;
+  final double size;
+
+  const QrCodeGenWidget({
+    super.key,
+    required this.data,
+    required this.size,
+  });
+
+  @override
+  State<QrCodeGenWidget> createState() => _QrCodeGenWidgetState();
+}
+
+class _QrCodeGenWidgetState extends State<QrCodeGenWidget> {
+  late var _qrImage = QrImage(
+    QrCode.fromData(
+      data: widget.data,
+      errorCorrectLevel: QrErrorCorrectLevel.L,
+    ),
+  );
+
+  @override
+  void didUpdateWidget(QrCodeGenWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.data != oldWidget.data) {
+      _qrImage = QrImage(
+        QrCode.fromData(
+          data: widget.data,
+          errorCorrectLevel: QrErrorCorrectLevel.L,
+        ),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomPaint(
+      size: Size.square(widget.size),
+      isComplex: false,
+      willChange: false,
+      painter: _QrPainter(qrImage: _qrImage),
+    );
+  }
+}
+
+class _QrPainter extends CustomPainter {
+  final QrImage qrImage;
+
+  _QrPainter({required this.qrImage});
+
+  @override
+  bool shouldRepaint(covariant _QrPainter oldDelegate) {
+    return oldDelegate.qrImage != qrImage;
+  }
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = Colors.black
+      ..isAntiAlias = false;
+
+    canvas.scale(size.height / qrImage.moduleCount);
+
+    for (var x = 0; x < qrImage.moduleCount; x++) {
+      for (var y = 0; y < qrImage.moduleCount; y++) {
+        if (qrImage.isDark(y, x)) {
+          canvas.drawRect(
+            Rect.fromLTWH(x.toDouble(), y.toDouble(), 1, 1),
+            paint,
+          );
+        }
+      }
+    }
+  }
+}
+
+```
+
 # Pre-made UI libraries
 
 The following libraries use qr.dart to generate QR codes for you out of the box:
