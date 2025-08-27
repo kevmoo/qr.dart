@@ -136,6 +136,31 @@ void main() {
     });
   });
 
+  group('QrCode.addData Automatic Mode Detection', () {
+    // Numeric Mode
+    test('should use Numeric Mode for numbers', () {
+      // 9 numeric characters fit version 1 (H level).
+      final qr = QrCode(1, QrErrorCorrectLevel.H)..addData('123456789');
+      expect(qr.typeNumber, 1);
+    });
+
+    // Alphanumeric Mode
+    test('should use Alphanumeric Mode', () {
+      // 13 alphanumeric characters exceed version 1 (7 chars) but fit
+      // version 2 (H level, 16 chars).
+      final qr = QrCode(2, QrErrorCorrectLevel.H)..addData('HELLO WORLD A');
+      expect(qr.typeNumber, 2);
+    });
+
+    // Byte Mode
+    test('should use Byte Mode for non-alphanumeric characters', () {
+      // Kanji characters are UTF-8 encoded.
+      // '機械学習' (12 bytes) fits version 2 (H level, 16 bytes).
+      final qr = QrCode(2, QrErrorCorrectLevel.H)..addData('機械学習');
+      expect(qr.typeNumber, 2);
+    });
+  });
+
   group('_calculateTypeNumberFromData - Version 40 Boundary Handling', () {
     test('generate v40 for data exceeding v39 capacity', () {
       // 2952 bytes exceeds v39 (L) capacity of 2951.

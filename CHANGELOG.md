@@ -1,6 +1,7 @@
 ## 3.1.0-wip
 
-- `QrCode.fromData` now intelligently picks the right mode.
+- `QrCode.fromData` and `QrCode.addData` 
+  now intelligently pick the right mode.
 - Require `sdk: ^3.8.0`.
 - Throws `InputTooLongException` for data that exceeds QR code version 40 capacity,
   preventing the generation of invalid QR codes.
