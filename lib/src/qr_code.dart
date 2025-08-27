@@ -83,7 +83,21 @@ class QrCode {
     return typeNumber;
   }
 
-  void addData(String data) => _addToList(QrByte(data));
+  void addData(String data) {
+    final QrDatum datum;
+    // Automatically determine mode here, just like QrCode.fromData
+    if (QrNumeric.validationRegex.hasMatch(data)) {
+      // Numeric mode for numbers only
+      datum = QrNumeric.fromString(data);
+    } else if (QrAlphaNumeric.validationRegex.hasMatch(data)) {
+      // Alphanumeric mode for alphanumeric characters only
+      datum = QrAlphaNumeric.fromString(data);
+    } else {
+      // Default to byte mode for other characters
+      datum = QrByte(data);
+    }
+    _addToList(datum);
+  }
 
   void addByteData(ByteData data) => _addToList(QrByte.fromByteData(data));
 
