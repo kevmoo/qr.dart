@@ -50,6 +50,9 @@ QR codes
 [barcode](https://pub.dev/packages/barcode) - A package that supports many types
 of scannable codes, include QR.
 
+[qr_image_exporter](https://pub.dev/packages/qr_image_exporter) - A library to 
+export QR codes as PNG image data.
+
 # Demo
 
 A working demo can be found here:
