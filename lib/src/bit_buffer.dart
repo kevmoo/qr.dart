@@ -25,10 +25,21 @@ class QrBitBuffer extends Object with ListMixin<bool> {
   int getByte(int index) => _buffer[index];
 
   void put(int number, int length) {
+    var bitIndex = _length;
+    final neededBytes = (bitIndex + length + 7) ~/ 8;
+    while (_buffer.length < neededBytes) {
+      _buffer.add(0);
+    }
+
     for (var i = 0; i < length; i++) {
       final bit = ((number >> (length - i - 1)) & 1) == 1;
-      putBit(bit);
+      if (bit) {
+        final bufIndex = bitIndex ~/ 8;
+        _buffer[bufIndex] |= 0x80 >> (bitIndex % 8);
+      }
+      bitIndex++;
     }
+    _length = bitIndex;
   }
 
   void putBit(bool bit) {

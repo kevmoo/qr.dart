@@ -28,36 +28,45 @@ class QrPolynomial {
   int get length => _values.length;
 
   QrPolynomial multiply(QrPolynomial e) {
-    final List<int> foo = Uint8List(length + e.length - 1);
+    final foo = Uint8List(length + e.length - 1);
 
     for (var i = 0; i < length; i++) {
+      final v1 = _values[i];
+      if (v1 == 0) continue;
+      final log1 = qr_math.glog(v1);
       for (var j = 0; j < e.length; j++) {
-        foo[i + j] ^= qr_math.gexp(qr_math.glog(this[i]) + qr_math.glog(e[j]));
+        final v2 = e[j];
+        if (v2 == 0) continue;
+        foo[i + j] ^= qr_math.gexp(log1 + qr_math.glog(v2));
       }
     }
 
-    return QrPolynomial(foo, 0);
+    return QrPolynomial._internal(foo);
   }
 
   QrPolynomial mod(QrPolynomial e) {
     if (length - e.length < 0) {
-      // ignore: avoid_returning_this
       return this;
     }
 
-    final ratio = qr_math.glog(this[0]) - qr_math.glog(e[0]);
+    final values = Uint8List.fromList(_values);
+    var offset = 0;
 
-    final value = Uint8List(length);
+    while (values.length - offset >= e.length) {
+      final v = values[offset];
+      if (v == 0) {
+        offset++;
+        continue;
+      }
+      final ratio = qr_math.glog(v) - qr_math.glog(e[0]);
 
-    for (var i = 0; i < length; i++) {
-      value[i] = this[i];
+      for (var i = 0; i < e.length; i++) {
+        final eVal = e[i];
+        if (eVal == 0) continue;
+        values[offset + i] ^= qr_math.gexp(qr_math.glog(eVal) + ratio);
+      }
     }
 
-    for (var i = 0; i < e.length; i++) {
-      value[i] ^= qr_math.gexp(qr_math.glog(e[i]) + ratio);
-    }
-
-    // recursive call
-    return QrPolynomial(value, 0).mod(e);
+    return QrPolynomial(values.sublist(offset), 0);
   }
 }
