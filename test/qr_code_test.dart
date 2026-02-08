@@ -14,12 +14,10 @@ void main() {
       for (var quality in QrErrorCorrectLevel.levels) {
         final qr = QrImage(QrCode(typeNumber, quality)..addData('shanna!'));
         final modules = qr.qrModules;
-        for (var i = 0; i < modules.length; i++) {
-          expect(
-            _encodeBoolListToString(modules[i]),
-            qrCodeTestData[typeNumber.toString()][quality.toString()][i],
-          );
-        }
+        expect(
+          modules.map(_encodeBoolListToString),
+          qrCodeTestData[typeNumber.toString()][quality.toString()],
+        );
       }
     }
   });
@@ -30,12 +28,10 @@ void main() {
         QrCode.fromData(data: 'shanna!', errorCorrectLevel: quality),
       );
       final modules = qr.qrModules;
-      for (var i = 0; i < modules.length; i++) {
-        expect(
-          _encodeBoolListToString(modules[i]),
-          qrCodeTestData['1'][quality.toString()][i],
-        );
-      }
+      expect(
+        modules.map(_encodeBoolListToString),
+        qrCodeTestData['1'][quality.toString()],
+      );
     }
   });
 
@@ -48,12 +44,10 @@ void main() {
         ),
       );
       final modules = qr.qrModules;
-      for (var i = 0; i < modules.length; i++) {
-        expect(
-          _encodeBoolListToString(modules[i]),
-          qrCodeTestData['1'][quality.toString()][i],
-        );
-      }
+      expect(
+        modules.map(_encodeBoolListToString),
+        qrCodeTestData['1'][quality.toString()],
+      );
     }
   });
 
@@ -64,12 +58,10 @@ void main() {
         mask,
       );
       final modules = qr.qrModules;
-      for (var i = 0; i < modules.length; i++) {
-        expect(
-          _encodeBoolListToString(modules[i]),
-          qrCodeTestDataWithMask[mask.toString()][i],
-        );
-      }
+      expect(
+        modules.map(_encodeBoolListToString),
+        qrCodeTestDataWithMask[mask.toString()],
+      );
     }
   });
 

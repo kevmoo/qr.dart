@@ -11,7 +11,7 @@ void main() {
     expect(qr.length, 45);
     final buffer = QrBitBuffer();
     qr.write(buffer);
-    expect(buffer.length, 248);
+    expect(buffer, hasLength(248));
     expect(
       buffer.map<String>((e) => e ? '1' : '0').join(),
       '00000000001'
@@ -46,7 +46,7 @@ void main() {
     expect(qr.length, 1);
     final buffer = QrBitBuffer();
     qr.write(buffer);
-    expect(buffer.length, 6);
+    expect(buffer, hasLength(6));
     expect(buffer.map<String>((e) => e ? '1' : '0').join(), '100101');
   });
 
@@ -56,7 +56,7 @@ void main() {
     expect(qr.length, 2);
     final buffer = QrBitBuffer();
     qr.write(buffer);
-    expect(buffer.length, 11, reason: 'n*5+1 = 11');
+    expect(buffer, hasLength(11), reason: 'n*5+1 = 11');
     expect(
       buffer
           .getRange(0, 11)

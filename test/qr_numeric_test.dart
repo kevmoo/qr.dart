@@ -9,7 +9,7 @@ void main() {
     expect(qr.length, 10);
     final buffer = QrBitBuffer();
     qr.write(buffer);
-    expect(buffer.length, 34);
+    expect(buffer, hasLength(34));
     expect(
       buffer
           .getRange(0, 10)
@@ -58,7 +58,7 @@ void main() {
     expect(qr.length, 1);
     final buffer = QrBitBuffer();
     qr.write(buffer);
-    expect(buffer.length, 4);
+    expect(buffer, hasLength(4));
     expect(
       buffer
           .getRange(0, 4)
@@ -77,7 +77,7 @@ void main() {
     expect(qr.length, 2);
     final buffer = QrBitBuffer();
     qr.write(buffer);
-    expect(buffer.length, 7, reason: 'n*3+1 = 7');
+    expect(buffer, hasLength(7), reason: 'n*3+1 = 7');
     expect(
       buffer
           .getRange(0, 7)
@@ -96,7 +96,7 @@ void main() {
     expect(qr.length, 3);
     final buffer = QrBitBuffer();
     qr.write(buffer);
-    expect(buffer.length, 10, reason: 'n*3+1 = 10');
+    expect(buffer, hasLength(10), reason: 'n*3+1 = 10');
     expect(
       buffer
           .getRange(0, 10)

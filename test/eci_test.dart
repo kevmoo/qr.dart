@@ -103,7 +103,7 @@ void _testEci(int value, List<int> expectedBytes) {
   final buffer = QrBitBuffer();
   QrEci(value).write(buffer);
 
-  expect(buffer.length, expectedBytes.length * 8);
+  expect(buffer, hasLength(expectedBytes.length * 8));
   for (var i = 0; i < expectedBytes.length; i++) {
     expect(buffer.getByte(i), expectedBytes[i], reason: 'Byte $i mismatch');
   }
