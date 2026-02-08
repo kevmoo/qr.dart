@@ -3,7 +3,7 @@ import 'dart:js_interop';
 import 'dart:math' as math;
 
 import 'package:qr/qr.dart';
-import 'package:qr/src/byte.dart';
+
 import 'package:stream_transform/stream_transform.dart';
 import 'package:web/web.dart';
 
@@ -233,16 +233,7 @@ Future<List<bool>> _calc(_Config config) async {
   final code = QrCode(config.type, config.level);
   final data = config.input;
 
-  if (QrNumeric.validationRegex.hasMatch(data)) {
-    code.addNumeric(data);
-  } else if (QrAlphaNumeric.validationRegex.hasMatch(data)) {
-    code.addAlphaNumeric(data);
-  } else {
-    if (data.codeUnits.any((c) => c > 255)) {
-      code.addECI(QrEciValue.utf8);
-    }
-    code.addData(data);
-  }
+  code.addData(data);
   final image = QrImage(code);
 
   final squares = <bool>[];

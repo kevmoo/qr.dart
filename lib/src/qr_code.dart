@@ -34,25 +34,7 @@ class QrCode {
     required String data,
     required int errorCorrectLevel,
   }) {
-    final datumList = <QrDatum>[];
-    // Automatically determine mode here
-    if (QrNumeric.validationRegex.hasMatch(data)) {
-      // Numeric mode for numbers only
-      datumList.add(QrNumeric.fromString(data));
-    } else if (QrAlphaNumeric.validationRegex.hasMatch(data)) {
-      // Alphanumeric mode for alphanumeric characters only
-      datumList.add(QrAlphaNumeric.fromString(data));
-    } else {
-      // Default to byte mode for other characters
-      // Check if we need ECI (if there are chars > 255)
-      // Actually, standard ISO-8859-1 is 0-255.
-      // Emojis and other UTF-8 chars will definitely trigger this.
-      final hasNonLatin1 = data.codeUnits.any((c) => c > 255);
-      if (hasNonLatin1) {
-        datumList.add(QrEci(26)); // UTF-8
-      }
-      datumList.add(QrByte(data));
-    }
+    final datumList = QrDatum.toDatums(data);
 
     final typeNumber = _calculateTypeNumberFromData(
       errorCorrectLevel,
@@ -120,19 +102,9 @@ class QrCode {
   }
 
   void addData(String data) {
-    final QrDatum datum;
-    // Automatically determine mode here, just like QrCode.fromData
-    if (QrNumeric.validationRegex.hasMatch(data)) {
-      // Numeric mode for numbers only
-      datum = QrNumeric.fromString(data);
-    } else if (QrAlphaNumeric.validationRegex.hasMatch(data)) {
-      // Alphanumeric mode for alphanumeric characters only
-      datum = QrAlphaNumeric.fromString(data);
-    } else {
-      // Default to byte mode for other characters
-      datum = QrByte(data);
+    for (final datum in QrDatum.toDatums(data)) {
+      _addToList(datum);
     }
-    _addToList(datum);
   }
 
   void addByteData(ByteData data) => _addToList(QrByte.fromByteData(data));

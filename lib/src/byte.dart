@@ -2,12 +2,31 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'bit_buffer.dart';
+import 'eci.dart';
 import 'mode.dart' as qr_mode;
 
 abstract class QrDatum {
   int get mode;
   int get length;
   void write(QrBitBuffer buffer);
+
+  static List<QrDatum> toDatums(String data) {
+    if (QrNumeric.validationRegex.hasMatch(data)) {
+      return [QrNumeric.fromString(data)];
+    }
+    if (QrAlphaNumeric.validationRegex.hasMatch(data)) {
+      return [QrAlphaNumeric.fromString(data)];
+    }
+    // Default to byte mode for other characters
+    // Check if we need ECI (if there are chars > 255)
+    // Actually, standard ISO-8859-1 is 0-255.
+    // Emojis and other UTF-8 chars will definitely trigger this.
+    final hasNonLatin1 = data.codeUnits.any((c) => c > 255);
+    if (hasNonLatin1) {
+      return [QrEci(26), QrByte(data)]; // UTF-8
+    }
+    return [QrByte(data)];
+  }
 }
 
 class QrByte implements QrDatum {
