@@ -158,6 +158,10 @@ List<int> _createData(
     errorCorrectLevel,
   );
 
+  if (buffer.length > totalDataBits) {
+    throw InputTooLongException(buffer.length, totalDataBits);
+  }
+
   // HUH?
   // èIí[ÉRÅ[Éh
   if (buffer.length + 4 <= totalDataBits) {

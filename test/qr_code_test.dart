@@ -170,6 +170,14 @@ void main() {
       );
     });
   });
+
+  group('QrCode.addData size checks', () {
+    test('should throw if data exceeds capacity for fixed version', () {
+      final code = QrCode(1, QrErrorCorrectLevel.L)..addData('|' * 30);
+
+      expect(() => code.dataCache, throwsA(isA<InputTooLongException>()));
+    });
+  });
 }
 
 String _encodeBoolListToString(List<bool?> source) =>
