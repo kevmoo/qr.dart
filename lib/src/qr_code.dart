@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 
 import 'bit_buffer.dart';
 import 'byte.dart';
+import 'eci.dart';
 import 'error_correct_level.dart';
 import 'input_too_long_exception.dart';
 import 'math.dart' as qr_math;
@@ -126,6 +127,8 @@ class QrCode {
 
   void addAlphaNumeric(String alphaNumeric) =>
       _addToList(QrAlphaNumeric.fromString(alphaNumeric));
+
+  void addECI(int eciValue) => _addToList(QrEci(eciValue));
 
   void _addToList(QrDatum data) {
     _dataList.add(data);
@@ -252,6 +255,7 @@ int _lengthInBits(int mode, int type) {
       qr_mode.modeAlphaNum => 9,
       qr_mode.mode8bitByte => 8,
       qr_mode.modeKanji => 8,
+      qr_mode.modeEci => 0,
       _ => throw ArgumentError('mode:$mode'),
     };
   } else if (type < 27) {
@@ -261,6 +265,7 @@ int _lengthInBits(int mode, int type) {
       qr_mode.modeAlphaNum => 11,
       qr_mode.mode8bitByte => 16,
       qr_mode.modeKanji => 10,
+      qr_mode.modeEci => 0,
       _ => throw ArgumentError('mode:$mode'),
     };
   } else if (type < 41) {
@@ -270,6 +275,7 @@ int _lengthInBits(int mode, int type) {
       qr_mode.modeAlphaNum => 13,
       qr_mode.mode8bitByte => 16,
       qr_mode.modeKanji => 12,
+      qr_mode.modeEci => 0,
       _ => throw ArgumentError('mode:$mode'),
     };
   } else {

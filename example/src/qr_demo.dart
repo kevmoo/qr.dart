@@ -199,7 +199,9 @@ Future<List<bool>> _calc(_Config config) async {
   if (QrNumeric.validationRegex.hasMatch(data)) {
     code.addNumeric(data);
   } else {
-    code.addData(data);
+    code
+      ..addECI(QrEciValue.utf8)
+      ..addData(data);
   }
   final image = QrImage(code);
 
