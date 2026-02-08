@@ -208,14 +208,24 @@ class QrDemo {
           size + borderBlocks * 2,
           size + borderBlocks * 2,
         )
-        ..fillStyle = 'black'.toJS;
+        ..fillStyle = 'black'.toJS
+        ..beginPath();
       for (var x = 0; x < size; x++) {
-        for (var y = 0; y < size; y++) {
+        var y = 0;
+        while (y < size) {
           if (_squares[x * size + y]) {
-            _ctx.fillRect(x, y, 1, 1);
+            final startY = y;
+            y++;
+            while (y < size && _squares[x * size + y]) {
+              y++;
+            }
+            _ctx.rect(x, startY, 1, y - startY);
+          } else {
+            y++;
           }
         }
       }
+      _ctx.fill();
     }
     _ctx.restore();
   }
