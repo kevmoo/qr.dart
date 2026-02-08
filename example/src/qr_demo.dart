@@ -201,14 +201,14 @@ class QrDemo {
 
       // Draw white background
       _ctx.fillStyle = 'white'.toJS;
-      _ctx.fillRect(
-        -borderBlocks,
-        -borderBlocks,
-        size + borderBlocks * 2,
-        size + borderBlocks * 2,
-      );
-
-      _ctx.fillStyle = 'black'.toJS;
+      _ctx
+        ..fillRect(
+          -borderBlocks,
+          -borderBlocks,
+          size + borderBlocks * 2,
+          size + borderBlocks * 2,
+        )
+        ..fillStyle = 'black'.toJS;
       for (var x = 0; x < size; x++) {
         for (var y = 0; y < size; y++) {
           if (_squares[x * size + y]) {
@@ -235,10 +235,13 @@ Future<List<bool>> _calc(_Config config) async {
 
   if (QrNumeric.validationRegex.hasMatch(data)) {
     code.addNumeric(data);
+  } else if (QrAlphaNumeric.validationRegex.hasMatch(data)) {
+    code.addAlphaNumeric(data);
   } else {
-    code
-      ..addECI(QrEciValue.utf8)
-      ..addData(data);
+    if (data.codeUnits.any((c) => c > 255)) {
+      code.addECI(QrEciValue.utf8);
+    }
+    code.addData(data);
   }
   final image = QrImage(code);
 

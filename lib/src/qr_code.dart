@@ -34,22 +34,35 @@ class QrCode {
     required String data,
     required int errorCorrectLevel,
   }) {
-    final QrDatum datum;
+    final datumList = <QrDatum>[];
     // Automatically determine mode here
     if (QrNumeric.validationRegex.hasMatch(data)) {
       // Numeric mode for numbers only
-      datum = QrNumeric.fromString(data);
+      datumList.add(QrNumeric.fromString(data));
     } else if (QrAlphaNumeric.validationRegex.hasMatch(data)) {
       // Alphanumeric mode for alphanumeric characters only
-      datum = QrAlphaNumeric.fromString(data);
+      datumList.add(QrAlphaNumeric.fromString(data));
     } else {
       // Default to byte mode for other characters
-      datum = QrByte(data);
+      // Check if we need ECI (if there are chars > 255)
+      // Actually, standard ISO-8859-1 is 0-255.
+      // Emojis and other UTF-8 chars will definitely trigger this.
+      final hasNonLatin1 = data.codeUnits.any((c) => c > 255);
+      if (hasNonLatin1) {
+        datumList.add(QrEci(26)); // UTF-8
+      }
+      datumList.add(QrByte(data));
     }
 
-    final typeNumber = _calculateTypeNumberFromData(errorCorrectLevel, datum);
+    final typeNumber = _calculateTypeNumberFromData(
+      errorCorrectLevel,
+      datumList,
+    );
 
-    final qrCode = QrCode(typeNumber, errorCorrectLevel).._addToList(datum);
+    final qrCode = QrCode(typeNumber, errorCorrectLevel);
+    for (final datum in datumList) {
+      qrCode._addToList(datum);
+    }
     return qrCode;
   }
 
@@ -57,12 +70,9 @@ class QrCode {
     required Uint8List data,
     required int errorCorrectLevel,
   }) {
-    final typeNumber = _calculateTypeNumberFromData(
-      errorCorrectLevel,
-      QrByte.fromUint8List(data),
-    );
-    return QrCode(typeNumber, errorCorrectLevel)
-      .._addToList(QrByte.fromUint8List(data));
+    final datum = QrByte.fromUint8List(data);
+    final typeNumber = _calculateTypeNumberFromData(errorCorrectLevel, [datum]);
+    return QrCode(typeNumber, errorCorrectLevel).._addToList(datum);
   }
 
   static int _calculateTotalDataBits(int typeNumber, int errorCorrectLevel) {
@@ -74,26 +84,35 @@ class QrCode {
     return totalDataBits;
   }
 
-  static int _calculateTypeNumberFromData(int errorCorrectLevel, QrDatum data) {
+  static int _calculateTypeNumberFromData(
+    int errorCorrectLevel,
+    List<QrDatum> data,
+  ) {
     for (var typeNumber = 1; typeNumber <= 40; typeNumber++) {
       final totalDataBits = _calculateTotalDataBits(
         typeNumber,
         errorCorrectLevel,
       );
 
-      final buffer = QrBitBuffer()
-        ..put(data.mode, 4)
-        ..put(data.length, _lengthInBits(data.mode, typeNumber));
-      data.write(buffer);
+      final buffer = QrBitBuffer();
+      for (final datum in data) {
+        buffer
+          ..put(datum.mode, 4)
+          ..put(datum.length, _lengthInBits(datum.mode, typeNumber));
+        datum.write(buffer);
+      }
 
       if (buffer.length <= totalDataBits) return typeNumber;
     }
 
     // If we reach here, the data is too long for any QR Code version.
-    final buffer = QrBitBuffer()
-      ..put(data.mode, 4)
-      ..put(data.length, _lengthInBits(data.mode, 40));
-    data.write(buffer);
+    final buffer = QrBitBuffer();
+    for (final datum in data) {
+      buffer
+        ..put(datum.mode, 4)
+        ..put(datum.length, _lengthInBits(datum.mode, 40));
+      datum.write(buffer);
+    }
 
     final maxBits = _calculateTotalDataBits(40, errorCorrectLevel);
 
