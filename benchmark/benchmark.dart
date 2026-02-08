@@ -49,4 +49,25 @@ void main() {
   QrCodeBenchmark().report();
   LargeQrCodeBenchmark().report();
   QrImageBenchmark().report();
+  LargeQrImageBenchmark().report();
+}
+
+class LargeQrImageBenchmark extends BenchmarkBase {
+  late final QrCode _qrCode;
+
+  LargeQrImageBenchmark() : super('LargeQrImage');
+
+  @override
+  void setup() {
+    final largeData = List.generate(1000, (i) => 'a').join();
+    _qrCode = QrCode.fromData(
+      data: largeData,
+      errorCorrectLevel: QrErrorCorrectLevel.M,
+    );
+  }
+
+  @override
+  void run() {
+    QrImage(_qrCode);
+  }
 }

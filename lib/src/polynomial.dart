@@ -49,24 +49,54 @@ class QrPolynomial {
       return this;
     }
 
-    final values = Uint8List.fromList(_values);
-    var offset = 0;
+    // Use a copy of _values that we will mutate
+    // We only need the part that will remain after modulo?
+    // Actually, standard polynomial division.
+    // We can work on a copy of `this._values` and zero out leading terms.
 
-    while (values.length - offset >= e.length) {
-      final v = values[offset];
-      if (v == 0) {
-        offset++;
-        continue;
-      }
+    final values = Uint8List.fromList(_values);
+
+    for (var i = 0; i < values.length - e.length + 1; i++) {
+      final v = values[i];
+      if (v == 0) continue;
+
       final ratio = qr_math.glog(v) - qr_math.glog(e[0]);
 
-      for (var i = 0; i < e.length; i++) {
-        final eVal = e[i];
+      for (var j = 0; j < e.length; j++) {
+        final eVal = e[j];
         if (eVal == 0) continue;
-        values[offset + i] ^= qr_math.gexp(qr_math.glog(eVal) + ratio);
+        values[i + j] ^= qr_math.gexp(qr_math.glog(eVal) + ratio);
       }
     }
 
-    return QrPolynomial(values.sublist(offset), 0);
+    // The result is the remainder, which is the last e.length - 1 coefficients?
+    // Wait, the degree of remainder is less than degree of divisor (e).
+    // e.length is e.degree + 1.
+    // So remainder length is e.length - 1.
+
+    // Find where the remainder starts.
+    // In the loop above, we zeroed out terms from 0 to
+    // `values.length - e.length`.
+    // So the remainder starts at values.length - e.length + 1?
+    // No, we iterated i from 0 to diff.
+    // The loop eliminates the term at `i`.
+    // The last `i` is `values.length - e.length`.
+    // After that, the terms from `0` to `values.length - e.length` should be 0.
+    // The remainder is at the end.
+
+    // Note: The original implementation used `offset` to skip leading zeros.
+    // `offset` increased when `values[offset] == 0`.
+    // My loop enforces `values[i]` becomes 0 (arithmetically, though likely not
+    // exactly 0 due to XOR, wait XOR equal things is 0).
+
+    // Let's manually increment offset to match original logic if needed,
+    // or just slice the end.
+    // The remainder should fit in e.length - 1.
+
+    // We can just return the tail.
+    // But we need to handle leading zeros in the result too?
+    // `QrPolynomial` constructor handles leading zeros.
+
+    return QrPolynomial(values.sublist(values.length - e.length + 1), 0);
   }
 }

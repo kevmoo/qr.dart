@@ -73,35 +73,25 @@ void main() {
     }
   });
 
-  test(
-    '''
-      WHEN provided mask pattern is smaller than 0,
-      SHOULD throw an AssertionError
-  ''',
-    () {
-      expect(() {
-        QrImage.withMaskPattern(
-          QrCode(1, QrErrorCorrectLevel.L)..addData('shanna!'),
-          -1,
-        );
-      }, throwsA(isA<AssertionError>()));
-    },
-  );
+  test('WHEN provided mask pattern is smaller than 0, '
+      'SHOULD throw an AssertionError', () {
+    expect(() {
+      QrImage.withMaskPattern(
+        QrCode(1, QrErrorCorrectLevel.L)..addData('shanna!'),
+        -1,
+      );
+    }, throwsA(isA<AssertionError>()));
+  });
 
-  test(
-    '''
-      WHEN provided mask pattern is bigger than 7,
-      SHOULD throw an AssertionError
-  ''',
-    () {
-      expect(() {
-        QrImage.withMaskPattern(
-          QrCode(1, QrErrorCorrectLevel.L)..addData('shanna!'),
-          8,
-        );
-      }, throwsA(isA<AssertionError>()));
-    },
-  );
+  test('WHEN provided mask pattern is bigger than 7, '
+      'SHOULD throw an AssertionError', () {
+    expect(() {
+      QrImage.withMaskPattern(
+        QrCode(1, QrErrorCorrectLevel.L)..addData('shanna!'),
+        8,
+      );
+    }, throwsA(isA<AssertionError>()));
+  });
   group('QrCode.fromData Automatic Mode Detection', () {
     // Numeric Mode
     test('should use Numeric Mode for numbers', () {

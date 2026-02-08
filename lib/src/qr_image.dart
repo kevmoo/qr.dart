@@ -21,36 +21,45 @@ class QrImage {
 
   /// Generates a QrImage with the best mask pattern encoding [qrCode].
   factory QrImage(QrCode qrCode) {
-    var minLostPoint = 0.0;
-    int? bestMaskPattern;
-    Uint8List? bestData;
-
     // Create a template with invariant patterns
     final template = QrImage._template(qrCode);
     final moduleCount = template.moduleCount;
     final dataSize = moduleCount * moduleCount;
 
-    // Try all 8 mask patterns
-    for (var i = 0; i < 8; i++) {
-      // Copy template
-      final data = Uint8List(dataSize)..setRange(0, dataSize, template._data);
+    // Step 1: Clone template to working buffer and place data (no mask)
+    final dataMap = Uint8List(dataSize)..setRange(0, dataSize, template._data);
 
-      final testImage = QrImage._fromData(qrCode, i, data)
-        // Run mapData (variant part)
-        .._mapData(qrCode.dataCache, i);
+    // Create a temporary QrImage to use its _placeData method
+    // We pass 0 as maskPattern, but we will modify _placeData to NOT mask.
+    QrImage._fromData(qrCode, 0, dataMap)._placeData(qrCode.dataCache);
+
+    final workingBuffer = Uint8List(dataSize);
+    var minLostPoint = double.maxFinite;
+    var bestMaskPattern = 0;
+    Uint8List? bestData; // We need to store the best result.
+
+    // Step 2: Try all 8 masks
+    for (var i = 0; i < 8; i++) {
+      // Copy pre-placed data to working buffer
+      workingBuffer.setRange(0, dataSize, dataMap);
+
+      final testImage = QrImage._fromData(qrCode, i, workingBuffer)
+        // Apply mask (XOR)
+        .._applyMask(i, template._data);
 
       final lostPoint = _lostPoint(testImage);
 
-      if (i == 0 || minLostPoint > lostPoint) {
+      if (lostPoint < minLostPoint) {
         minLostPoint = lostPoint;
         bestMaskPattern = i;
-        bestData = data;
+        // Copy working buffer to bestData
+        bestData ??= Uint8List(dataSize);
+        bestData.setRange(0, dataSize, workingBuffer);
       }
     }
 
-    // Re-create the final image with the best mask
-    // Reuse bestData and just update the format info to be non-test (real bits)
-    final finalImage = QrImage._fromData(qrCode, bestMaskPattern!, bestData!)
+    final finalImage = QrImage._fromData(qrCode, bestMaskPattern, bestData!)
+      // Final setup with correct format info (not test, so actual pixels)
       .._setupTypeInfo(bestMaskPattern, false);
     if (finalImage.typeNumber >= 7) {
       finalImage._setupTypeNumber(false);
@@ -127,7 +136,8 @@ class QrImage {
 
   void _makeImpl(int maskPattern, List<int> dataCache, bool test) {
     // If not testing, we do full setup.
-    // If testing (template), this method is NOT called directly, but manually in _template.
+    // If testing (template), this method is NOT called directly, but manually
+    // in _template.
     // However, withMaskPattern calls this.
     _resetModules();
     _setupPositionProbePattern(0, 0);
@@ -143,6 +153,13 @@ class QrImage {
 
     _mapData(dataCache, maskPattern);
   }
+
+  // ... (existing constructors)
+
+  // Refactored _mapData to JUST call _placeData then _applyMask?
+  // No, original _mapData did both.
+
+  // Implemented below...
 
   void _setupPositionProbePattern(int row, int col) {
     for (var r = -1; r <= 7; r++) {
@@ -298,6 +315,73 @@ class QrImage {
       }
     }
   }
+
+  void _placeData(List<int> data) {
+    var inc = -1;
+    var row = moduleCount - 1;
+    var bitIndex = 7;
+    var byteIndex = 0;
+
+    for (var col = moduleCount - 1; col > 0; col -= 2) {
+      if (col == 6) col--;
+
+      for (;;) {
+        for (var c = 0; c < 2; c++) {
+          if (_data[row * moduleCount + (col - c)] == _pixelUnassigned) {
+            var dark = false;
+
+            if (byteIndex < data.length) {
+              dark = ((data[byteIndex] >> bitIndex) & 1) == 1;
+            }
+
+            _set(row, col - c, dark);
+            bitIndex--;
+
+            if (bitIndex == -1) {
+              byteIndex++;
+              bitIndex = 7;
+            }
+          }
+        }
+
+        row += inc;
+
+        if (row < 0 || moduleCount <= row) {
+          row -= inc;
+          inc = -inc;
+          break;
+        }
+      }
+    }
+  }
+
+  void _applyMask(int maskPattern, Uint8List templateData) {
+    var inc = -1;
+    var row = moduleCount - 1;
+
+    for (var col = moduleCount - 1; col > 0; col -= 2) {
+      if (col == 6) col--;
+
+      for (;;) {
+        for (var c = 0; c < 2; c++) {
+          if (templateData[row * moduleCount + (col - c)] == _pixelUnassigned) {
+            final mask = _mask(maskPattern, row, col - c);
+            if (mask) {
+              _data[row * moduleCount + (col - c)] ^= _pixelDark ^ _pixelLight;
+            }
+          }
+        }
+
+        row += inc;
+
+        if (row < 0 || moduleCount <= row) {
+          row -= inc;
+          inc = -inc;
+          break;
+        }
+      }
+    }
+  }
 }
 
 bool _mask(int maskPattern, int i, int j) {
@@ -327,35 +411,50 @@ double _lostPoint(QrImage qrImage) {
   final moduleCount = qrImage.moduleCount;
   final data = qrImage._data;
   var lostPoint = 0.0;
-  int row, col;
 
-  // Level 1: adjacent modules with same color, >5 consecutive
-  // Reverting to original implementation which checks 3x3 neighbors
-  for (row = 0; row < moduleCount; row++) {
-    for (col = 0; col < moduleCount; col++) {
+  // Cache data length for faster access (though it's final)
+  // Accessing local vars is faster.
+
+  // Level 1
+  for (var row = 0; row < moduleCount; row++) {
+    for (var col = 0; col < moduleCount; col++) {
       var sameCount = 0;
-      final isDark = data[row * moduleCount + col] == QrImage._pixelDark;
+      final currentIdx = row * moduleCount + col;
+      final isDark = data[currentIdx] == QrImage._pixelDark;
 
-      for (var r = -1; r <= 1; r++) {
-        if (row + r < 0 || moduleCount <= row + r) {
-          continue;
+      // Check all 8 neighbors
+      // Top row
+      if (row > 0) {
+        final upIdx = currentIdx - moduleCount;
+        if (col > 0 && (data[upIdx - 1] == QrImage._pixelDark) == isDark) {
+          sameCount++;
         }
+        if ((data[upIdx] == QrImage._pixelDark) == isDark) sameCount++;
+        if (col < moduleCount - 1 &&
+            (data[upIdx + 1] == QrImage._pixelDark) == isDark) {
+          sameCount++;
+        }
+      }
 
-        for (var c = -1; c <= 1; c++) {
-          if (col + c < 0 || moduleCount <= col + c) {
-            continue;
-          }
+      // Middle row (left/right)
+      if (col > 0 && (data[currentIdx - 1] == QrImage._pixelDark) == isDark) {
+        sameCount++;
+      }
+      if (col < moduleCount - 1 &&
+          (data[currentIdx + 1] == QrImage._pixelDark) == isDark) {
+        sameCount++;
+      }
 
-          if (r == 0 && c == 0) {
-            continue;
-          }
-
-          final otherIsDark =
-              data[(row + r) * moduleCount + (col + c)] == QrImage._pixelDark;
-
-          if (isDark == otherIsDark) {
-            sameCount++;
-          }
+      // Bottom row
+      if (row < moduleCount - 1) {
+        final downIdx = currentIdx + moduleCount;
+        if (col > 0 && (data[downIdx - 1] == QrImage._pixelDark) == isDark) {
+          sameCount++;
+        }
+        if ((data[downIdx] == QrImage._pixelDark) == isDark) sameCount++;
+        if (col < moduleCount - 1 &&
+            (data[downIdx + 1] == QrImage._pixelDark) == isDark) {
+          sameCount++;
         }
       }
 
@@ -366,12 +465,13 @@ double _lostPoint(QrImage qrImage) {
   }
 
   // Level 2: 2x2 blocks of same color
-  for (row = 0; row < moduleCount - 1; row++) {
-    for (col = 0; col < moduleCount - 1; col++) {
-      final p00 = data[row * moduleCount + col];
-      final p01 = data[row * moduleCount + col + 1];
-      final p10 = data[(row + 1) * moduleCount + col];
-      final p11 = data[(row + 1) * moduleCount + col + 1];
+  for (var row = 0; row < moduleCount - 1; row++) {
+    for (var col = 0; col < moduleCount - 1; col++) {
+      final idx = row * moduleCount + col;
+      final p00 = data[idx];
+      final p01 = data[idx + 1];
+      final p10 = data[idx + moduleCount];
+      final p11 = data[idx + moduleCount + 1];
 
       if (p00 == p01 && p00 == p10 && p00 == p11) {
         lostPoint += 3;
@@ -381,9 +481,8 @@ double _lostPoint(QrImage qrImage) {
 
   // Level 3: 1:1:3:1:1 pattern
   // Dark, Light, Dark, Dark, Dark, Light, Dark
-  // Pattern: D L D D D L D
-  for (row = 0; row < moduleCount; row++) {
-    for (col = 0; col < moduleCount - 6; col++) {
+  for (var row = 0; row < moduleCount; row++) {
+    for (var col = 0; col < moduleCount - 6; col++) {
       final idx = row * moduleCount + col;
       if (data[idx] == QrImage._pixelDark &&
           data[idx + 1] == QrImage._pixelLight &&
@@ -398,15 +497,16 @@ double _lostPoint(QrImage qrImage) {
   }
 
   // Check cols
-  for (col = 0; col < moduleCount; col++) {
-    for (row = 0; row < moduleCount - 6; row++) {
-      if (data[row * moduleCount + col] == QrImage._pixelDark &&
-          data[(row + 1) * moduleCount + col] == QrImage._pixelLight &&
-          data[(row + 2) * moduleCount + col] == QrImage._pixelDark &&
-          data[(row + 3) * moduleCount + col] == QrImage._pixelDark &&
-          data[(row + 4) * moduleCount + col] == QrImage._pixelDark &&
-          data[(row + 5) * moduleCount + col] == QrImage._pixelLight &&
-          data[(row + 6) * moduleCount + col] == QrImage._pixelDark) {
+  for (var col = 0; col < moduleCount; col++) {
+    for (var row = 0; row < moduleCount - 6; row++) {
+      final idx = row * moduleCount + col;
+      if (data[idx] == QrImage._pixelDark &&
+          data[idx + moduleCount] == QrImage._pixelLight &&
+          data[idx + 2 * moduleCount] == QrImage._pixelDark &&
+          data[idx + 3 * moduleCount] == QrImage._pixelDark &&
+          data[idx + 4 * moduleCount] == QrImage._pixelDark &&
+          data[idx + 5 * moduleCount] == QrImage._pixelLight &&
+          data[idx + 6 * moduleCount] == QrImage._pixelDark) {
         lostPoint += 40;
       }
     }
@@ -419,7 +519,5 @@ double _lostPoint(QrImage qrImage) {
   }
 
   final ratio = (100 * darkCount / moduleCount / moduleCount - 50).abs() / 5;
-  lostPoint += ratio * 10;
-
-  return lostPoint;
+  return lostPoint + ratio * 10;
 }
