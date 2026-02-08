@@ -37,8 +37,15 @@ class QrDemo {
 
     final controller = StreamController<_Config>.broadcast();
 
+    final copyBtn = document.querySelector('#copy-btn') as HTMLButtonElement;
+    final downloadBtn =
+        document.querySelector('#download-btn') as HTMLButtonElement;
+
     final demo = QrDemo._(canvas, typeDiv, errorDiv, controller)
       ..value = input.value;
+
+    copyBtn.onClick.listen((_) => demo._copyToClipboard());
+    downloadBtn.onClick.listen((_) => demo._downloadImage());
 
     input.onKeyUp.listen((KeyboardEvent args) {
       demo.value = input.value;
@@ -55,6 +62,22 @@ class QrDemo {
     );
 
     return demo;
+  }
+
+  void _copyToClipboard() {
+    _canvas.toBlob(
+      (Blob blob) {
+        final item = ClipboardItem({'image/png': blob}.jsify() as JSObject);
+        window.navigator.clipboard.write([item].toJS);
+      }.toJS,
+    );
+  }
+
+  void _downloadImage() {
+    document.createElement('a') as HTMLAnchorElement
+      ..href = _canvas.toDataURL()
+      ..download = 'qr_code.png'
+      ..click();
   }
 
   QrDemo._(

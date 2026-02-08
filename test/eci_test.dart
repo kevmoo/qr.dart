@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:qr/qr.dart';
 import 'package:qr/src/mode.dart' as qr_mode;
 import 'package:test/test.dart';
