@@ -13,19 +13,22 @@ import 'bot.dart';
 const String _typeRadioIdKey = 'type_value';
 const String _errorLevelIdKey = 'error_value';
 
+enum _FrameState { qr, error, question }
+
 class QrDemo {
   final _scale = BungeeNum(1);
   final HTMLCanvasElement _canvas;
   final CanvasRenderingContext2D _ctx;
   final StreamController<_Config> _inputValues;
 
-  final Stream<List<bool>> output;
+  final Stream<List<bool>?> output;
 
   String _value = '';
   int _typeNumber = 10;
   int _errorCorrectLevel = QrErrorCorrectLevel.M;
 
-  late List<bool> _squares;
+  List<bool> _squares = [];
+  _FrameState _state = _FrameState.qr;
 
   bool _frameRequested = false;
 
@@ -41,8 +44,7 @@ class QrDemo {
     final downloadBtn =
         document.querySelector('#download-btn') as HTMLButtonElement;
 
-    final demo = QrDemo._(canvas, typeDiv, errorDiv, controller)
-      ..value = input.value;
+    final demo = QrDemo._(canvas, typeDiv, errorDiv, controller);
 
     copyBtn.onClick.listen((_) => demo._copyToClipboard());
     downloadBtn.onClick.listen((_) => demo._downloadImage());
@@ -54,12 +56,25 @@ class QrDemo {
     demo.output.listen(
       (data) {
         input.style.background = '';
+        if (data == null) {
+          demo._state = _FrameState.question;
+        } else {
+          demo
+            .._state = _FrameState.qr
+            .._squares = data;
+        }
+        demo.requestFrame();
       },
       onError: (Object error) {
         input.style.background = 'red';
         print(error);
+        demo
+          .._state = _FrameState.error
+          ..requestFrame();
       },
     );
+
+    demo.value = input.value;
 
     return demo;
   }
@@ -89,11 +104,6 @@ class QrDemo {
       _ctx = canvas.context2D,
       output = _inputValues.stream.asyncMapSample(_calc) {
     _ctx.fillStyle = 'black'.toJS;
-
-    output.listen((value) {
-      _squares = value;
-      requestFrame();
-    });
 
     //
     // Type Div
@@ -175,6 +185,25 @@ class QrDemo {
 
     _ctx.clearRect(0, 0, _canvas.width, _canvas.height);
 
+    if (_state == _FrameState.qr) {
+      _drawQr();
+    } else {
+      _drawBigMark(_state == _FrameState.question ? '?' : '!');
+    }
+  }
+
+  void _drawBigMark(String text) {
+    _ctx
+      ..save()
+      ..font = '400px sans-serif'
+      ..fillStyle = 'red'.toJS
+      ..textAlign = 'center'
+      ..textBaseline = 'middle'
+      ..fillText(text, _canvas.width / 2, _canvas.height / 2)
+      ..restore();
+  }
+
+  void _drawQr() {
     // 2 blocks of padding on each side
     const borderBlocks = 2;
 
@@ -200,8 +229,8 @@ class QrDemo {
       assert(_squares.length == size * size);
 
       // Draw white background
-      _ctx.fillStyle = 'white'.toJS;
       _ctx
+        ..fillStyle = 'white'.toJS
         ..fillRect(
           -borderBlocks,
           -borderBlocks,
@@ -239,7 +268,10 @@ class _Config {
   _Config(this.type, this.level, this.input);
 }
 
-Future<List<bool>> _calc(_Config config) async {
+Future<List<bool>?> _calc(_Config config) async {
+  if (config.input.trim().isEmpty) {
+    return null;
+  }
   final code = QrCode(config.type, config.level);
   final data = config.input;
 
