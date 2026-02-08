@@ -175,9 +175,12 @@ class QrDemo {
 
     _ctx.clearRect(0, 0, _canvas.width, _canvas.height);
 
+    // 2 blocks of padding on each side
+    const borderBlocks = 2;
+
     final size = math.sqrt(_squares.length).toInt();
     final minDimension = math.min(_canvas.width, _canvas.height);
-    final scale = minDimension ~/ (1.1 * size);
+    final scale = minDimension ~/ (1.1 * (size + borderBlocks * 2));
 
     _scale.target = scale;
 
@@ -195,6 +198,17 @@ class QrDemo {
 
     if (_squares.isNotEmpty) {
       assert(_squares.length == size * size);
+
+      // Draw white background
+      _ctx.fillStyle = 'white'.toJS;
+      _ctx.fillRect(
+        -borderBlocks,
+        -borderBlocks,
+        size + borderBlocks * 2,
+        size + borderBlocks * 2,
+      );
+
+      _ctx.fillStyle = 'black'.toJS;
       for (var x = 0; x < size; x++) {
         for (var y = 0; y < size; y++) {
           if (_squares[x * size + y]) {
