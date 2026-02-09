@@ -1,3 +1,6 @@
+/// A growable sequence of bits.
+///
+/// Used internally to construct the data bit stream for a QR code.
 class QrBitBuffer extends Iterable<bool> {
   final _buffer = <int>[];
   int _length = 0;

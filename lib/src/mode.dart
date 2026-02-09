@@ -1,8 +1,18 @@
+/// The encoding mode of a QR code segment.
 enum QrMode {
+  /// Numeric mode (0-9). Most efficient.
   numeric(1),
+
+  /// Alphanumeric mode (0-9, A-Z, space, %, *, +, -, ., /, :).
   alphaNumeric(2),
+
+  /// Byte mode (8-bit data).
   byte(4),
+
+  /// Kanji mode (Shift-JIS).
   kanji(8),
+
+  /// Extended Channel Interpretation (ECI) mode.
   eci(7);
 
   final int value;
