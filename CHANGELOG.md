@@ -1,10 +1,15 @@
 ## 3.1.0-wip
 
-- `QrCode.fromData` and `QrCode.addData` 
-  now intelligently pick the right mode.
-- Require `sdk: ^3.8.0`.
+- Added Extended Channel Interpretation (ECI) support.
+  - New `QrEci` class.
+  - `QrCode.addECI` method.
+- Performance improvements for QR code generation.
+  - `QrImage` generation is ~50% faster.
+  - `LargeQrCode` generation is ~40% faster.
+- `QrCode.fromData` and `QrCode.addData` now intelligently pick the right mode.
 - Throws `InputTooLongException` for data that exceeds QR code version 40 capacity,
   preventing the generation of invalid QR codes.
+- Require `sdk: ^3.8.0`.
 
 ## 3.0.2
 

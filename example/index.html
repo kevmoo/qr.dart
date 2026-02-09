@@ -11,6 +11,7 @@
 </head>
 <body>
 <canvas height='600' id='content' width='600'></canvas>
+<div id='status'></div>
 <input type='text' id='input' placeholder='Type your message in here...'></input>
 <div class='setting'>
   <span>Size:</span>
@@ -19,6 +20,13 @@
 <div class='setting'>
   <span>Error Correction:</span>
   <div id='error-div' class='button-group'></div>
+</div>
+<div class='setting'>
+  <span>Actions:</span>
+  <div class='button-group'>
+    <button id='copy-btn' class='btn'>Copy</button>
+    <button id='download-btn' class='btn'>Download</button>
+  </div>
 </div>
 
 <div class="github-button-wrapper">

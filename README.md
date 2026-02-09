@@ -8,6 +8,8 @@ A QR code generation library for Dart and Flutter.
 
 - Supports QR code versions 1 - 40
 - Error correction / redundancy
+- ECI (Extended Channel Interpretation) support
+
 
 # Getting started
 
@@ -23,6 +25,14 @@ To build your QR code data you should do so as such:
 final qrCode = QrCode(4, QrErrorCorrectLevel.L)
   ..addData('Hello, world in QR form!');
 final qrImage = QrImage(qrCode);
+```
+
+To enable Extended Channel Interpretation (ECI) mode, you can use the `addECI` method:
+
+```dart
+final qrCode = QrCode(4, QrErrorCorrectLevel.L)
+  ..addECI(QrEciValue.utf8)
+  ..addData('Hello, world in QR form!');
 ```
 
 Now you can use your `qrImage` instance to render a graphical representation of

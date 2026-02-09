@@ -6,7 +6,10 @@ class QrRsBlock {
 
   QrRsBlock._(this.totalCount, this.dataCount);
 
-  static List<QrRsBlock> getRSBlocks(int typeNumber, int errorCorrectLevel) {
+  static List<QrRsBlock> getRSBlocks(
+    int typeNumber,
+    QrErrorCorrectLevel errorCorrectLevel,
+  ) {
     final rsBlock = _getRsBlockTable(typeNumber, errorCorrectLevel);
 
     final length = rsBlock.length ~/ 3;
@@ -29,15 +32,12 @@ class QrRsBlock {
 
 List<int> _getRsBlockTable(
   int typeNumber,
-  int errorCorrectLevel,
+  QrErrorCorrectLevel errorCorrectLevel,
 ) => switch (errorCorrectLevel) {
-  QrErrorCorrectLevel.L => _rsBlockTable[(typeNumber - 1) * 4 + 0],
-  QrErrorCorrectLevel.M => _rsBlockTable[(typeNumber - 1) * 4 + 1],
-  QrErrorCorrectLevel.Q => _rsBlockTable[(typeNumber - 1) * 4 + 2],
-  QrErrorCorrectLevel.H => _rsBlockTable[(typeNumber - 1) * 4 + 3],
-  _ => throw ArgumentError(
-    'bad rs block @ typeNumber: $typeNumber/errorCorrectLevel:$errorCorrectLevel',
-  ),
+  QrErrorCorrectLevel.low => _rsBlockTable[(typeNumber - 1) * 4 + 0],
+  QrErrorCorrectLevel.medium => _rsBlockTable[(typeNumber - 1) * 4 + 1],
+  QrErrorCorrectLevel.quartile => _rsBlockTable[(typeNumber - 1) * 4 + 2],
+  QrErrorCorrectLevel.high => _rsBlockTable[(typeNumber - 1) * 4 + 3],
 };
 
 const List<List<int>> _rsBlockTable = [

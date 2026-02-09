@@ -3,7 +3,7 @@ import 'dart:js_interop';
 import 'dart:math' as math;
 
 import 'package:qr/qr.dart';
-import 'package:qr/src/byte.dart';
+
 import 'package:stream_transform/stream_transform.dart';
 import 'package:web/web.dart';
 
@@ -13,19 +13,22 @@ import 'bot.dart';
 const String _typeRadioIdKey = 'type_value';
 const String _errorLevelIdKey = 'error_value';
 
+enum _FrameState { qr, error, question }
+
 class QrDemo {
   final _scale = BungeeNum(1);
   final HTMLCanvasElement _canvas;
   final CanvasRenderingContext2D _ctx;
   final StreamController<_Config> _inputValues;
 
-  final Stream<List<bool>> output;
+  final Stream<List<bool>?> output;
 
   String _value = '';
   int _typeNumber = 10;
-  int _errorCorrectLevel = QrErrorCorrectLevel.M;
+  QrErrorCorrectLevel _errorCorrectLevel = QrErrorCorrectLevel.medium;
 
-  late List<bool> _squares;
+  List<bool> _squares = [];
+  _FrameState _state = _FrameState.qr;
 
   bool _frameRequested = false;
 
@@ -34,11 +37,18 @@ class QrDemo {
     final typeDiv = document.querySelector('#type-div') as HTMLDivElement;
     final errorDiv = document.querySelector('#error-div') as HTMLDivElement;
     final input = document.querySelector('#input') as HTMLInputElement;
+    final statusDiv = document.querySelector('#status') as HTMLDivElement;
 
     final controller = StreamController<_Config>.broadcast();
 
-    final demo = QrDemo._(canvas, typeDiv, errorDiv, controller)
-      ..value = input.value;
+    final copyBtn = document.querySelector('#copy-btn') as HTMLButtonElement;
+    final downloadBtn =
+        document.querySelector('#download-btn') as HTMLButtonElement;
+
+    final demo = QrDemo._(canvas, typeDiv, errorDiv, controller);
+
+    copyBtn.onClick.listen((_) => demo._copyToClipboard());
+    downloadBtn.onClick.listen((_) => demo._downloadImage());
 
     input.onKeyUp.listen((KeyboardEvent args) {
       demo.value = input.value;
@@ -47,14 +57,49 @@ class QrDemo {
     demo.output.listen(
       (data) {
         input.style.background = '';
+        statusDiv.style.color = '';
+        if (data == null) {
+          demo._state = _FrameState.question;
+          statusDiv.innerText = 'Type something to encode';
+        } else {
+          demo
+            .._state = _FrameState.qr
+            .._squares = data;
+          final byteCount = demo.value.length;
+          statusDiv.innerText = 'Input size: $byteCount bytes';
+        }
+        demo.requestFrame();
       },
       onError: (Object error) {
         input.style.background = 'red';
+        statusDiv.style.color = 'red';
+        statusDiv.innerText = 'Input too long';
         print(error);
+        demo
+          .._state = _FrameState.error
+          ..requestFrame();
       },
     );
 
+    demo.value = input.value;
+
     return demo;
+  }
+
+  void _copyToClipboard() {
+    _canvas.toBlob(
+      (Blob blob) {
+        final item = ClipboardItem({'image/png': blob}.jsify() as JSObject);
+        window.navigator.clipboard.write([item].toJS);
+      }.toJS,
+    );
+  }
+
+  void _downloadImage() {
+    document.createElement('a') as HTMLAnchorElement
+      ..href = _canvas.toDataURL()
+      ..download = 'qr_code.png'
+      ..click();
   }
 
   QrDemo._(
@@ -66,11 +111,6 @@ class QrDemo {
       _ctx = canvas.context2D,
       output = _inputValues.stream.asyncMapSample(_calc) {
     _ctx.fillStyle = 'black'.toJS;
-
-    output.listen((value) {
-      _squares = value;
-      requestFrame();
-    });
 
     //
     // Type Div
@@ -94,25 +134,27 @@ class QrDemo {
       typeDiv.appendChild(label);
     }
 
-    //
     // Error Correct Levels
     //
-    for (final v in QrErrorCorrectLevel.levels) {
+    final sortedLevels = QrErrorCorrectLevel.values.toList()
+      ..sort((a, b) => a.recoveryRate.compareTo(b.recoveryRate));
+    for (final v in sortedLevels) {
       final radio = (document.createElement('input') as HTMLInputElement)
         ..type = 'radio'
         ..id = 'error_$v'
         ..name = 'error-level'
         ..onChange.listen(_errorClick)
-        ..dataset[_errorLevelIdKey] = v.toString();
+        ..dataset[_errorLevelIdKey] = v.index.toString();
       if (v == _errorCorrectLevel) {
         radio.checked = true;
       }
       errorDiv.appendChild(radio);
 
       final label = (document.createElement('label') as HTMLLabelElement)
-        ..innerHTML = QrErrorCorrectLevel.getName(v).toJS
+        ..innerHTML = v.name.toCapitalized.toJS
         ..htmlFor = radio.id
-        ..classList.add('btn');
+        ..classList.add('btn')
+        ..title = 'Recover up to ${v.recoveryRate}% of data';
       errorDiv.appendChild(label);
     }
   }
@@ -139,7 +181,9 @@ class QrDemo {
 
   void _errorClick(Event args) {
     final source = args.target as HTMLInputElement;
-    _errorCorrectLevel = int.parse(source.dataset[_errorLevelIdKey]);
+    _errorCorrectLevel = QrErrorCorrectLevel.values.firstWhere(
+      (v) => v.index.toString() == source.dataset[_errorLevelIdKey],
+    );
     _update();
   }
 
@@ -152,9 +196,33 @@ class QrDemo {
 
     _ctx.clearRect(0, 0, _canvas.width, _canvas.height);
 
+    if (_state == _FrameState.qr) {
+      _drawQr();
+    } else {
+      _drawBigMark(_state == _FrameState.question ? '?' : '!');
+    }
+  }
+
+  void _drawBigMark(String text) {
+    _ctx
+      ..save()
+      ..fillStyle = '#eeeeee'.toJS
+      ..fillRect(0, 0, _canvas.width, _canvas.height)
+      ..font = '400px monospace'
+      ..fillStyle = 'red'.toJS
+      ..textAlign = 'center'
+      ..textBaseline = 'middle'
+      ..fillText(text, _canvas.width / 2, _canvas.height / 2 + 50)
+      ..restore();
+  }
+
+  void _drawQr() {
+    // 2 blocks of padding on each side
+    const borderBlocks = 2;
+
     final size = math.sqrt(_squares.length).toInt();
     final minDimension = math.min(_canvas.width, _canvas.height);
-    final scale = minDimension ~/ (1.1 * size);
+    final scale = minDimension ~/ (1.1 * (size + borderBlocks * 2));
 
     _scale.target = scale;
 
@@ -172,13 +240,34 @@ class QrDemo {
 
     if (_squares.isNotEmpty) {
       assert(_squares.length == size * size);
+
+      // Draw white background
+      _ctx
+        ..fillStyle = 'white'.toJS
+        ..fillRect(
+          -borderBlocks,
+          -borderBlocks,
+          size + borderBlocks * 2,
+          size + borderBlocks * 2,
+        )
+        ..fillStyle = 'black'.toJS
+        ..beginPath();
       for (var x = 0; x < size; x++) {
-        for (var y = 0; y < size; y++) {
+        var y = 0;
+        while (y < size) {
           if (_squares[x * size + y]) {
-            _ctx.fillRect(x, y, 1, 1);
+            final startY = y;
+            y++;
+            while (y < size && _squares[x * size + y]) {
+              y++;
+            }
+            _ctx.rect(x, startY, 1, y - startY);
+          } else {
+            y++;
           }
         }
       }
+      _ctx.fill();
     }
     _ctx.restore();
   }
@@ -186,21 +275,20 @@ class QrDemo {
 
 class _Config {
   final int type;
-  final int level;
+  final QrErrorCorrectLevel level;
   final String input;
 
   _Config(this.type, this.level, this.input);
 }
 
-Future<List<bool>> _calc(_Config config) async {
+Future<List<bool>?> _calc(_Config config) async {
+  if (config.input.trim().isEmpty) {
+    return null;
+  }
   final code = QrCode(config.type, config.level);
   final data = config.input;
 
-  if (QrNumeric.validationRegex.hasMatch(data)) {
-    code.addNumeric(data);
-  } else {
-    code.addData(data);
-  }
+  code.addData(data);
   final image = QrImage(code);
 
   final squares = <bool>[];
@@ -223,4 +311,8 @@ void _setTransform(CanvasRenderingContext2D ctx, AffineTransform tx) {
     tx.translateX,
     tx.translateY,
   );
+}
+
+extension _StringHelper on String {
+  String get toCapitalized => '${this[0].toUpperCase()}${substring(1)}';
 }

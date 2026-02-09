@@ -1,5 +1,4 @@
 import 'package:qr/qr.dart';
-import 'package:qr/src/byte.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -7,11 +6,11 @@ void main() {
     final qr = QrAlphaNumeric.fromString(
       r'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:',
     );
-    expect(qr.mode, 2);
+    expect(qr.mode, QrMode.alphaNumeric);
     expect(qr.length, 45);
     final buffer = QrBitBuffer();
     qr.write(buffer);
-    expect(buffer.length, 248);
+    expect(buffer, hasLength(248));
     expect(
       buffer.map<String>((e) => e ? '1' : '0').join(),
       '00000000001'
@@ -42,21 +41,21 @@ void main() {
 
   test('single alphanumeric', () {
     final qr = QrAlphaNumeric.fromString(r'$');
-    expect(qr.mode, 2);
+    expect(qr.mode, QrMode.alphaNumeric);
     expect(qr.length, 1);
     final buffer = QrBitBuffer();
     qr.write(buffer);
-    expect(buffer.length, 6);
+    expect(buffer, hasLength(6));
     expect(buffer.map<String>((e) => e ? '1' : '0').join(), '100101');
   });
 
   test('double (even) alphanumeric', () {
     final qr = QrAlphaNumeric.fromString('3Z');
-    expect(qr.mode, 2);
+    expect(qr.mode, QrMode.alphaNumeric);
     expect(qr.length, 2);
     final buffer = QrBitBuffer();
     qr.write(buffer);
-    expect(buffer.length, 11, reason: 'n*5+1 = 11');
+    expect(buffer, hasLength(11), reason: 'n*5+1 = 11');
     expect(
       buffer
           .getRange(0, 11)

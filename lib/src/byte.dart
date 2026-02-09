@@ -2,17 +2,47 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'bit_buffer.dart';
-import 'mode.dart' as qr_mode;
+import 'eci.dart';
+import 'mode.dart';
 
+/// A piece of data to be encoded in a QR code.
+///
+/// Use [toDatums] to parse a string into optimal segments.
 abstract class QrDatum {
-  int get mode;
+  QrMode get mode;
   int get length;
   void write(QrBitBuffer buffer);
+
+  /// Parses [data] into a list of [QrDatum] segments, optimizing for the
+  /// most efficient encoding modes (Numeric, Alphanumeric, Byte).
+  ///
+  /// Automatically handles UTF-8 characters by using [QrEci] and [QrByte]
+  /// segments if necessary.
+  static List<QrDatum> toDatums(String data) {
+    if (QrNumeric.validationRegex.hasMatch(data)) {
+      return [QrNumeric.fromString(data)];
+    }
+    if (QrAlphaNumeric.validationRegex.hasMatch(data)) {
+      return [QrAlphaNumeric.fromString(data)];
+    }
+    // Default to byte mode for other characters
+    // Check if we need ECI (if there are chars > 255)
+    // Actually, standard ISO-8859-1 is 0-255.
+    // Emojis and other UTF-8 chars will definitely trigger this.
+    final hasNonLatin1 = data.codeUnits.any((c) => c > 255);
+    if (hasNonLatin1) {
+      return [QrEci(26), QrByte(data)]; // UTF-8
+    }
+    return [QrByte(data)];
+  }
 }
 
+/// Represents data encoded in Byte mode (8-bit).
+///
+/// Supports ISO-8859-1 and UTF-8 (when preceded by an ECI segment).
 class QrByte implements QrDatum {
   @override
-  final int mode = qr_mode.mode8bitByte;
+  final QrMode mode = QrMode.byte;
   final Uint8List _data;
 
   factory QrByte(String input) =>
@@ -34,13 +64,20 @@ class QrByte implements QrDatum {
   }
 }
 
-/// Encodes numbers (0-9) 10 bits per 3 digits.
+/// Encodes numeric data (digits 0-9).
+///
+/// Compresses 3 digits into 10 bits.
+/// Most efficient mode for decimal numbers.
 class QrNumeric implements QrDatum {
   static final RegExp validationRegex = RegExp(r'^[0-9]+$');
 
   factory QrNumeric.fromString(String numberString) {
     if (!validationRegex.hasMatch(numberString)) {
-      throw ArgumentError('string can only contain digits 0-9');
+      throw ArgumentError.value(
+        numberString,
+        'numberString',
+        'string can only contain digits 0-9',
+      );
     }
     final newList = Uint8List(numberString.length);
     var count = 0;
@@ -55,7 +92,7 @@ class QrNumeric implements QrDatum {
   final Uint8List _data;
 
   @override
-  final int mode = qr_mode.modeNumber;
+  final QrMode mode = QrMode.numeric;
 
   @override
   void write(QrBitBuffer buffer) {
@@ -82,7 +119,10 @@ class QrNumeric implements QrDatum {
   int get length => _data.length;
 }
 
-/// Encodes numbers (0-9) 10 bits per 3 digits.
+/// Encodes alphanumeric data (uppercase letters, digits, and specific symbols).
+///
+/// Supported characters: 0-9, A-Z, space, $, %, *, +, -, ., /, :
+/// Compresses 2 characters into 11 bits.
 class QrAlphaNumeric implements QrDatum {
   static const alphaNumTable = r'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:';
   // Note: '-' anywhere in this string is a range character.
@@ -102,9 +142,10 @@ class QrAlphaNumeric implements QrDatum {
 
   factory QrAlphaNumeric.fromString(String alphaNumeric) {
     if (!alphaNumeric.contains(validationRegex)) {
-      throw ArgumentError(
-        'String does not contain valid ALPHA-NUM '
-        'character set: $alphaNumeric',
+      throw ArgumentError.value(
+        alphaNumeric,
+        'alphaNumeric',
+        'String does not contain valid ALPHA-NUM character set',
       );
     }
     return QrAlphaNumeric._(alphaNumeric);
@@ -113,7 +154,7 @@ class QrAlphaNumeric implements QrDatum {
   QrAlphaNumeric._(this._string);
 
   @override
-  final int mode = qr_mode.modeAlphaNum;
+  final QrMode mode = QrMode.alphaNumeric;
 
   @override
   void write(QrBitBuffer buffer) {

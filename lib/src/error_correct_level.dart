@@ -1,20 +1,27 @@
-// ignore: avoid_classes_with_only_static_members
-class QrErrorCorrectLevel {
-  static const int L = 1;
-  static const int M = 0;
-  static const int Q = 3;
-  static const int H = 2;
+/// QR Code error correction level.
+///
+/// Recover capacity:
+/// * [low] : ~7%
+/// * [medium] : ~15%
+/// * [quartile] : ~25%
+/// * [high] : ~30%
+enum QrErrorCorrectLevel {
+  // NOTE: the order here MATTERS.
+  // The index maps to the QR standard.
 
-  // thesee *are* in order of lowest to highest quality...I think
-  // all I know for sure: you can create longer messages w/ item N than N+1
-  // I assume this correcsponds to more error correction for N+1
-  static const List<int> levels = [L, M, Q, H];
+  /// Level M (Medium) ~15% error correction.
+  medium(15),
 
-  static String getName(int level) => switch (level) {
-    L => 'Low',
-    M => 'Medium',
-    Q => 'Quartile',
-    H => 'High',
-    _ => throw ArgumentError('level $level not supported'),
-  };
+  /// Level L (Low) ~7% error correction.
+  low(7),
+
+  /// Level H (High) ~30% error correction.
+  high(30),
+
+  /// Level Q (Quartile) ~25% error correction.
+  quartile(25);
+
+  final int recoveryRate;
+
+  const QrErrorCorrectLevel(this.recoveryRate);
 }

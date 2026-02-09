@@ -5,66 +5,61 @@ import 'package:meta/meta.dart';
 
 import 'bit_buffer.dart';
 import 'byte.dart';
+import 'eci.dart';
 import 'error_correct_level.dart';
 import 'input_too_long_exception.dart';
 import 'math.dart' as qr_math;
-import 'mode.dart' as qr_mode;
+
 import 'polynomial.dart';
 import 'rs_block.dart';
 
 class QrCode {
   final int typeNumber;
-  final int errorCorrectLevel;
+  final QrErrorCorrectLevel errorCorrectLevel;
   final int moduleCount;
   List<int>? _dataCache;
   final _dataList = <QrDatum>[];
 
   QrCode(this.typeNumber, this.errorCorrectLevel)
     : moduleCount = typeNumber * 4 + 17 {
+    // The typeNumber is now calculated internally by the factories,
+    // so this check is only needed if QrCode is instantiated directly.
+    // However, the factories ensure a valid typeNumber is passed.
+    // Keeping it for direct instantiation safety.
     RangeError.checkValueInInterval(typeNumber, 1, 40, 'typeNumber');
-    RangeError.checkValidIndex(
-      errorCorrectLevel,
-      QrErrorCorrectLevel.levels,
-      'errorCorrectLevel',
-    );
   }
 
   factory QrCode.fromData({
     required String data,
-    required int errorCorrectLevel,
+    required QrErrorCorrectLevel errorCorrectLevel,
   }) {
-    final QrDatum datum;
-    // Automatically determine mode here
-    if (QrNumeric.validationRegex.hasMatch(data)) {
-      // Numeric mode for numbers only
-      datum = QrNumeric.fromString(data);
-    } else if (QrAlphaNumeric.validationRegex.hasMatch(data)) {
-      // Alphanumeric mode for alphanumeric characters only
-      datum = QrAlphaNumeric.fromString(data);
-    } else {
-      // Default to byte mode for other characters
-      datum = QrByte(data);
+    final datumList = QrDatum.toDatums(data);
+
+    final typeNumber = _calculateTypeNumberFromData(
+      errorCorrectLevel,
+      datumList,
+    );
+
+    final qrCode = QrCode(typeNumber, errorCorrectLevel);
+    for (final datum in datumList) {
+      qrCode._addToList(datum);
     }
-
-    final typeNumber = _calculateTypeNumberFromData(errorCorrectLevel, datum);
-
-    final qrCode = QrCode(typeNumber, errorCorrectLevel).._addToList(datum);
     return qrCode;
   }
 
   factory QrCode.fromUint8List({
     required Uint8List data,
-    required int errorCorrectLevel,
+    required QrErrorCorrectLevel errorCorrectLevel,
   }) {
-    final typeNumber = _calculateTypeNumberFromData(
-      errorCorrectLevel,
-      QrByte.fromUint8List(data),
-    );
-    return QrCode(typeNumber, errorCorrectLevel)
-      .._addToList(QrByte.fromUint8List(data));
+    final datum = QrByte.fromUint8List(data);
+    final typeNumber = _calculateTypeNumberFromData(errorCorrectLevel, [datum]);
+    return QrCode(typeNumber, errorCorrectLevel).._addToList(datum);
   }
 
-  static int _calculateTotalDataBits(int typeNumber, int errorCorrectLevel) {
+  static int _calculateTotalDataBits(
+    int typeNumber,
+    QrErrorCorrectLevel errorCorrectLevel,
+  ) {
     final rsBlocks = QrRsBlock.getRSBlocks(typeNumber, errorCorrectLevel);
     var totalDataBits = 0;
     for (var rsBlock in rsBlocks) {
@@ -73,26 +68,35 @@ class QrCode {
     return totalDataBits;
   }
 
-  static int _calculateTypeNumberFromData(int errorCorrectLevel, QrDatum data) {
+  static int _calculateTypeNumberFromData(
+    QrErrorCorrectLevel errorCorrectLevel,
+    List<QrDatum> data,
+  ) {
     for (var typeNumber = 1; typeNumber <= 40; typeNumber++) {
       final totalDataBits = _calculateTotalDataBits(
         typeNumber,
         errorCorrectLevel,
       );
 
-      final buffer = QrBitBuffer()
-        ..put(data.mode, 4)
-        ..put(data.length, _lengthInBits(data.mode, typeNumber));
-      data.write(buffer);
+      final buffer = QrBitBuffer();
+      for (final datum in data) {
+        buffer
+          ..put(datum.mode.value, 4)
+          ..put(datum.length, datum.mode.getLengthBits(typeNumber));
+        datum.write(buffer);
+      }
 
       if (buffer.length <= totalDataBits) return typeNumber;
     }
 
     // If we reach here, the data is too long for any QR Code version.
-    final buffer = QrBitBuffer()
-      ..put(data.mode, 4)
-      ..put(data.length, _lengthInBits(data.mode, 40));
-    data.write(buffer);
+    final buffer = QrBitBuffer();
+    for (final datum in data) {
+      buffer
+        ..put(datum.mode.value, 4)
+        ..put(datum.length, datum.mode.getLengthBits(40));
+      datum.write(buffer);
+    }
 
     final maxBits = _calculateTotalDataBits(40, errorCorrectLevel);
 
@@ -100,19 +104,9 @@ class QrCode {
   }
 
   void addData(String data) {
-    final QrDatum datum;
-    // Automatically determine mode here, just like QrCode.fromData
-    if (QrNumeric.validationRegex.hasMatch(data)) {
-      // Numeric mode for numbers only
-      datum = QrNumeric.fromString(data);
-    } else if (QrAlphaNumeric.validationRegex.hasMatch(data)) {
-      // Alphanumeric mode for alphanumeric characters only
-      datum = QrAlphaNumeric.fromString(data);
-    } else {
-      // Default to byte mode for other characters
-      datum = QrByte(data);
+    for (final datum in QrDatum.toDatums(data)) {
+      _addToList(datum);
     }
-    _addToList(datum);
   }
 
   void addByteData(ByteData data) => _addToList(QrByte.fromByteData(data));
@@ -126,6 +120,8 @@ class QrCode {
 
   void addAlphaNumeric(String alphaNumeric) =>
       _addToList(QrAlphaNumeric.fromString(alphaNumeric));
+
+  void addECI(int eciValue) => _addToList(QrEci(eciValue));
 
   void _addToList(QrDatum data) {
     _dataList.add(data);
@@ -142,7 +138,7 @@ const int _pad1 = 0x11;
 
 List<int> _createData(
   int typeNumber,
-  int errorCorrectLevel,
+  QrErrorCorrectLevel errorCorrectLevel,
   List<QrDatum> dataList,
 ) {
   final rsBlocks = QrRsBlock.getRSBlocks(typeNumber, errorCorrectLevel);
@@ -152,8 +148,8 @@ List<int> _createData(
   for (var i = 0; i < dataList.length; i++) {
     final data = dataList[i];
     buffer
-      ..put(data.mode, 4)
-      ..put(data.length, _lengthInBits(data.mode, typeNumber));
+      ..put(data.mode.value, 4)
+      ..put(data.length, data.mode.getLengthBits(typeNumber));
     data.write(buffer);
   }
 
@@ -163,6 +159,10 @@ List<int> _createData(
     typeNumber,
     errorCorrectLevel,
   );
+
+  if (buffer.length > totalDataBits) {
+    throw InputTooLongException(buffer.length, totalDataBits);
+  }
 
   // HUH?
   // èIí[ÉRÅ[Éh
@@ -242,39 +242,6 @@ List<int> _createBytes(QrBitBuffer buffer, List<QrRsBlock> rsBlocks) {
   }
 
   return data;
-}
-
-int _lengthInBits(int mode, int type) {
-  if (1 <= type && type < 10) {
-    // 1 - 9
-    return switch (mode) {
-      qr_mode.modeNumber => 10,
-      qr_mode.modeAlphaNum => 9,
-      qr_mode.mode8bitByte => 8,
-      qr_mode.modeKanji => 8,
-      _ => throw ArgumentError('mode:$mode'),
-    };
-  } else if (type < 27) {
-    // 10 - 26
-    return switch (mode) {
-      qr_mode.modeNumber => 12,
-      qr_mode.modeAlphaNum => 11,
-      qr_mode.mode8bitByte => 16,
-      qr_mode.modeKanji => 10,
-      _ => throw ArgumentError('mode:$mode'),
-    };
-  } else if (type < 41) {
-    // 27 - 40
-    return switch (mode) {
-      qr_mode.modeNumber => 14,
-      qr_mode.modeAlphaNum => 13,
-      qr_mode.mode8bitByte => 16,
-      qr_mode.modeKanji => 12,
-      _ => throw ArgumentError('mode:$mode'),
-    };
-  } else {
-    throw ArgumentError('type:$type');
-  }
 }
 
 QrPolynomial _errorCorrectPolynomial(int errorCorrectLength) {
