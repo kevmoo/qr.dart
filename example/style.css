@@ -6,6 +6,14 @@ canvas {
   border-radius: var(--pico-border-radius);
 }
 
+.validation-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--pico-border-radius);
+  display: block;
+  margin: 0 auto;
+}
+
 #status {
   text-align: center;
   margin-top: 10px;

@@ -17,6 +17,8 @@ enum _FrameState { qr, error, question }
 class QrDemo {
   final HTMLCanvasElement _canvas;
   final CanvasRenderingContext2D _ctx;
+  final HTMLImageElement _errorImg;
+  final HTMLImageElement _waitingImg;
   final HTMLButtonElement _copyBtn;
   final HTMLButtonElement _downloadBtn;
   final StreamController<_Config> _inputValues;
@@ -34,6 +36,10 @@ class QrDemo {
 
   factory QrDemo() {
     final canvas = document.querySelector('#content') as HTMLCanvasElement;
+    final errorImg =
+        document.querySelector('#validation-error') as HTMLImageElement;
+    final waitingImg =
+        document.querySelector('#validation-waiting') as HTMLImageElement;
     final typeDiv = document.querySelector('#type-div') as HTMLDivElement;
     final errorDiv = document.querySelector('#error-div') as HTMLDivElement;
     final input = document.querySelector('#input') as HTMLInputElement;
@@ -47,6 +53,8 @@ class QrDemo {
 
     final demo = QrDemo._(
       canvas,
+      errorImg,
+      waitingImg,
       typeDiv,
       errorDiv,
       copyBtn,
@@ -114,6 +122,8 @@ class QrDemo {
 
   QrDemo._(
     HTMLCanvasElement canvas,
+    this._errorImg,
+    this._waitingImg,
     HTMLDivElement typeDiv,
     HTMLDivElement errorDiv,
     this._copyBtn,
@@ -209,26 +219,14 @@ class QrDemo {
   void _onFrame(num highResTime) {
     _frameRequested = false;
 
-    _ctx.clearRect(0, 0, _canvas.width, _canvas.height);
+    _canvas.hidden = (_state != _FrameState.qr).toJS;
+    _errorImg.hidden = (_state != _FrameState.error).toJS;
+    _waitingImg.hidden = (_state != _FrameState.question).toJS;
 
     if (_state == _FrameState.qr) {
+      _ctx.clearRect(0, 0, _canvas.width, _canvas.height);
       _drawQr();
-    } else {
-      _drawBigMark(_state == _FrameState.question ? '?' : '!');
     }
-  }
-
-  void _drawBigMark(String text) {
-    _ctx
-      ..save()
-      ..fillStyle = '#eeeeee'.toJS
-      ..fillRect(0, 0, _canvas.width, _canvas.height)
-      ..font = '400px monospace'
-      ..fillStyle = 'red'.toJS
-      ..textAlign = 'center'
-      ..textBaseline = 'middle'
-      ..fillText(text, _canvas.width / 2, _canvas.height / 2 + 50)
-      ..restore();
   }
 
   void _drawQr() {
