@@ -15,24 +15,23 @@ import 'rs_block.dart';
 
 class QrCode {
   final int typeNumber;
-  final int errorCorrectLevel;
+  final QrErrorCorrectLevel errorCorrectLevel;
   final int moduleCount;
   List<int>? _dataCache;
   final _dataList = <QrDatum>[];
 
   QrCode(this.typeNumber, this.errorCorrectLevel)
     : moduleCount = typeNumber * 4 + 17 {
+    // The typeNumber is now calculated internally by the factories,
+    // so this check is only needed if QrCode is instantiated directly.
+    // However, the factories ensure a valid typeNumber is passed.
+    // Keeping it for direct instantiation safety.
     RangeError.checkValueInInterval(typeNumber, 1, 40, 'typeNumber');
-    RangeError.checkValidIndex(
-      errorCorrectLevel,
-      QrErrorCorrectLevel.levels,
-      'errorCorrectLevel',
-    );
   }
 
   factory QrCode.fromData({
     required String data,
-    required int errorCorrectLevel,
+    required QrErrorCorrectLevel errorCorrectLevel,
   }) {
     final datumList = QrDatum.toDatums(data);
 
@@ -50,14 +49,17 @@ class QrCode {
 
   factory QrCode.fromUint8List({
     required Uint8List data,
-    required int errorCorrectLevel,
+    required QrErrorCorrectLevel errorCorrectLevel,
   }) {
     final datum = QrByte.fromUint8List(data);
     final typeNumber = _calculateTypeNumberFromData(errorCorrectLevel, [datum]);
     return QrCode(typeNumber, errorCorrectLevel).._addToList(datum);
   }
 
-  static int _calculateTotalDataBits(int typeNumber, int errorCorrectLevel) {
+  static int _calculateTotalDataBits(
+    int typeNumber,
+    QrErrorCorrectLevel errorCorrectLevel,
+  ) {
     final rsBlocks = QrRsBlock.getRSBlocks(typeNumber, errorCorrectLevel);
     var totalDataBits = 0;
     for (var rsBlock in rsBlocks) {
@@ -67,7 +69,7 @@ class QrCode {
   }
 
   static int _calculateTypeNumberFromData(
-    int errorCorrectLevel,
+    QrErrorCorrectLevel errorCorrectLevel,
     List<QrDatum> data,
   ) {
     for (var typeNumber = 1; typeNumber <= 40; typeNumber++) {
@@ -136,7 +138,7 @@ const int _pad1 = 0x11;
 
 List<int> _createData(
   int typeNumber,
-  int errorCorrectLevel,
+  QrErrorCorrectLevel errorCorrectLevel,
   List<QrDatum> dataList,
 ) {
   final rsBlocks = QrRsBlock.getRSBlocks(typeNumber, errorCorrectLevel);

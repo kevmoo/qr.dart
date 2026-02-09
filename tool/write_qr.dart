@@ -115,10 +115,10 @@ void main(List<String> args) {
   }
 }
 
-int _parseCorrection(String label) => switch (label) {
-  'L' => QrErrorCorrectLevel.L,
-  'M' => QrErrorCorrectLevel.M,
-  'Q' => QrErrorCorrectLevel.Q,
-  'H' => QrErrorCorrectLevel.H,
-  _ => QrErrorCorrectLevel.L,
+QrErrorCorrectLevel _parseCorrection(String label) => switch (label) {
+  'L' => QrErrorCorrectLevel.low,
+  'M' => QrErrorCorrectLevel.medium,
+  'Q' => QrErrorCorrectLevel.quartile,
+  'H' => QrErrorCorrectLevel.high,
+  _ => QrErrorCorrectLevel.low,
 };

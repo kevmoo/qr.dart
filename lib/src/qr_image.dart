@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:meta/meta.dart';
 
+import 'error_correct_level.dart';
 import 'mask_pattern.dart';
 import 'qr_code.dart';
 import 'util.dart' as qr_util;
@@ -14,7 +15,7 @@ class QrImage {
 
   final int moduleCount;
   final int typeNumber;
-  final int errorCorrectLevel;
+  final QrErrorCorrectLevel errorCorrectLevel;
   final int maskPattern;
 
   final Uint8List _data;
@@ -224,7 +225,7 @@ class QrImage {
   }
 
   void _setupTypeInfo(int maskPattern, bool test) {
-    final data = (errorCorrectLevel << 3) | maskPattern;
+    final data = (errorCorrectLevel.index << 3) | maskPattern;
     final bits = qr_util.bchTypeInfo(data);
 
     int i;

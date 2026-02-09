@@ -73,7 +73,7 @@ void main() {
   });
 
   test('validates emoji', () {
-    final code = QrCode(1, QrErrorCorrectLevel.L)..addData('🙃');
+    final code = QrCode(1, QrErrorCorrectLevel.low)..addData('🙃');
 
     // Validate bitstream structure:
     // Header: Mode 7 (0111) + Value 26 (00011010) + Mode 4 (0100) + Length 4 (00000100)

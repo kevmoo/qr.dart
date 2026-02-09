@@ -25,7 +25,7 @@ class QrDemo {
 
   String _value = '';
   int _typeNumber = 10;
-  int _errorCorrectLevel = QrErrorCorrectLevel.M;
+  QrErrorCorrectLevel _errorCorrectLevel = QrErrorCorrectLevel.medium;
 
   List<bool> _squares = [];
   _FrameState _state = _FrameState.qr;
@@ -137,7 +137,7 @@ class QrDemo {
     //
     // Error Correct Levels
     //
-    for (final v in QrErrorCorrectLevel.levels) {
+    for (final v in QrErrorCorrectLevel.values) {
       final radio = (document.createElement('input') as HTMLInputElement)
         ..type = 'radio'
         ..id = 'error_$v'
@@ -150,7 +150,7 @@ class QrDemo {
       errorDiv.appendChild(radio);
 
       final label = (document.createElement('label') as HTMLLabelElement)
-        ..innerHTML = QrErrorCorrectLevel.getName(v).toJS
+        ..innerHTML = v.name.toJS
         ..htmlFor = radio.id
         ..classList.add('btn');
       errorDiv.appendChild(label);
@@ -179,7 +179,9 @@ class QrDemo {
 
   void _errorClick(Event args) {
     final source = args.target as HTMLInputElement;
-    _errorCorrectLevel = int.parse(source.dataset[_errorLevelIdKey]);
+    _errorCorrectLevel = QrErrorCorrectLevel.values.firstWhere(
+      (v) => v.index.toString() == source.dataset[_errorLevelIdKey],
+    );
     _update();
   }
 
@@ -271,7 +273,7 @@ class QrDemo {
 
 class _Config {
   final int type;
-  final int level;
+  final QrErrorCorrectLevel level;
   final String input;
 
   _Config(this.type, this.level, this.input);

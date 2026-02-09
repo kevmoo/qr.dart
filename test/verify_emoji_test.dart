@@ -6,7 +6,7 @@ void main() {
     const emojiString = '👩🏽❤️💋👨🏾';
     final qr = QrCode.fromData(
       data: emojiString,
-      errorCorrectLevel: QrErrorCorrectLevel.L,
+      errorCorrectLevel: QrErrorCorrectLevel.low,
     );
     expect(qr.typeNumber, 2);
     expect(qr.typeNumber, greaterThan(0));
@@ -24,7 +24,7 @@ void main() {
 
     final qr = QrCode.fromData(
       data: complexEmoji,
-      errorCorrectLevel: QrErrorCorrectLevel.L,
+      errorCorrectLevel: QrErrorCorrectLevel.low,
     );
     expect(qr.typeNumber, greaterThan(0));
     // Verify it didn't throw and created a valid QR structure

@@ -8,7 +8,7 @@ class QrCodeBenchmark extends BenchmarkBase {
   void run() {
     QrCode.fromData(
       data: 'https://www.google.com/search?q=dart+lang',
-      errorCorrectLevel: QrErrorCorrectLevel.M,
+      errorCorrectLevel: QrErrorCorrectLevel.medium,
     );
   }
 }
@@ -22,7 +22,10 @@ class LargeQrCodeBenchmark extends BenchmarkBase {
 
   @override
   void run() {
-    QrCode.fromData(data: _largeData, errorCorrectLevel: QrErrorCorrectLevel.M);
+    QrCode.fromData(
+      data: _largeData,
+      errorCorrectLevel: QrErrorCorrectLevel.medium,
+    );
   }
 }
 
@@ -35,7 +38,7 @@ class QrImageBenchmark extends BenchmarkBase {
   void setup() {
     _qrCode = QrCode.fromData(
       data: 'https://www.google.com/search?q=dart+lang',
-      errorCorrectLevel: QrErrorCorrectLevel.M,
+      errorCorrectLevel: QrErrorCorrectLevel.medium,
     );
   }
 
@@ -62,7 +65,7 @@ class LargeQrImageBenchmark extends BenchmarkBase {
     final largeData = List.generate(1000, (i) => 'a').join();
     _qrCode = QrCode.fromData(
       data: largeData,
-      errorCorrectLevel: QrErrorCorrectLevel.M,
+      errorCorrectLevel: QrErrorCorrectLevel.medium,
     );
   }
 
