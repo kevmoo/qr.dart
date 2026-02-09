@@ -1,6 +1,4 @@
 import 'package:qr/qr.dart';
-import 'package:qr/src/byte.dart';
-import 'package:qr/src/mode.dart';
 import 'package:test/test.dart';
 
 void main() {
