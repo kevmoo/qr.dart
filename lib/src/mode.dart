@@ -11,7 +11,7 @@ enum QrMode {
 
   int getLengthBits(int type) {
     if (this == eci) return 0;
-    if (type < 1 || type > 40) throw ArgumentError('type:$type');
+    if (type < 1 || type > 40) throw RangeError.range(type, 1, 40, 'type');
 
     if (type < 10) {
       // 1 - 9

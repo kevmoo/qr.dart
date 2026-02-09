@@ -1,7 +1,7 @@
 import 'bit_buffer.dart';
 import 'byte.dart';
 
-import 'mode.dart' as qr_mode;
+import 'mode.dart';
 
 /// Extended Channel Interpretation (ECI) mode data.
 ///
@@ -11,7 +11,7 @@ class QrEci implements QrDatum {
 
   factory QrEci(int value) {
     if (value < 0 || value > 999999) {
-      throw ArgumentError('ECI value must be between 0 and 999999');
+      throw RangeError.range(value, 0, 999999, 'value');
     }
     return QrEci._(value);
   }
@@ -19,7 +19,7 @@ class QrEci implements QrDatum {
   QrEci._(this.value);
 
   @override
-  qr_mode.QrMode get mode => qr_mode.QrMode.eci;
+  QrMode get mode => QrMode.eci;
 
   @override
   int get length => 0; // ECI segments do not have a length field

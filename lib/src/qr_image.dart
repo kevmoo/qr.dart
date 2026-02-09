@@ -2,7 +2,7 @@ import 'dart:typed_data';
 
 import 'package:meta/meta.dart';
 
-import 'mask_pattern.dart' as qr_mask_pattern;
+import 'mask_pattern.dart';
 import 'qr_code.dart';
 import 'util.dart' as qr_util;
 
@@ -45,7 +45,7 @@ class QrImage {
 
       final testImage = QrImage._fromData(qrCode, i, workingBuffer)
         // Apply mask (XOR)
-        .._applyMask(qr_mask_pattern.QrMaskPattern.values[i], template._data);
+        .._applyMask(QrMaskPattern.values[i], template._data);
 
       final lostPoint = _lostPoint(testImage);
 
@@ -124,8 +124,11 @@ class QrImage {
   }
 
   bool isDark(int row, int col) {
-    if (row < 0 || moduleCount <= row || col < 0 || moduleCount <= col) {
-      throw ArgumentError('$row , $col');
+    if (row < 0 || moduleCount <= row) {
+      throw RangeError.range(row, 0, moduleCount - 1, 'row');
+    }
+    if (col < 0 || moduleCount <= col) {
+      throw RangeError.range(col, 0, moduleCount - 1, 'col');
     }
     return _data[row * moduleCount + col] == _pixelDark;
   }
@@ -289,8 +292,7 @@ class QrImage {
               dark = ((data[byteIndex] >> bitIndex) & 1) == 1;
             }
 
-            final mask = qr_mask_pattern.QrMaskPattern.values[maskPattern]
-                .check(row, col - c);
+            final mask = QrMaskPattern.values[maskPattern].check(row, col - c);
 
             if (mask) {
               dark = !dark;
@@ -356,10 +358,7 @@ class QrImage {
     }
   }
 
-  void _applyMask(
-    qr_mask_pattern.QrMaskPattern maskPattern,
-    Uint8List templateData,
-  ) {
+  void _applyMask(QrMaskPattern maskPattern, Uint8List templateData) {
     var inc = -1;
     var row = moduleCount - 1;
 

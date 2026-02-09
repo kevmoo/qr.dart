@@ -15,6 +15,6 @@ class QrErrorCorrectLevel {
     M => 'Medium',
     Q => 'Quartile',
     H => 'High',
-    _ => throw ArgumentError('level $level not supported'),
+    _ => throw ArgumentError.value(level, 'level', 'Level not supported'),
   };
 }

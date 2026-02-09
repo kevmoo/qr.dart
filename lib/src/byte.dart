@@ -3,10 +3,10 @@ import 'dart:typed_data';
 
 import 'bit_buffer.dart';
 import 'eci.dart';
-import 'mode.dart' as qr_mode;
+import 'mode.dart';
 
 abstract class QrDatum {
-  qr_mode.QrMode get mode;
+  QrMode get mode;
   int get length;
   void write(QrBitBuffer buffer);
 
@@ -31,7 +31,7 @@ abstract class QrDatum {
 
 class QrByte implements QrDatum {
   @override
-  final qr_mode.QrMode mode = qr_mode.QrMode.byte;
+  final QrMode mode = QrMode.byte;
   final Uint8List _data;
 
   factory QrByte(String input) =>
@@ -59,7 +59,11 @@ class QrNumeric implements QrDatum {
 
   factory QrNumeric.fromString(String numberString) {
     if (!validationRegex.hasMatch(numberString)) {
-      throw ArgumentError('string can only contain digits 0-9');
+      throw ArgumentError.value(
+        numberString,
+        'numberString',
+        'string can only contain digits 0-9',
+      );
     }
     final newList = Uint8List(numberString.length);
     var count = 0;
@@ -74,7 +78,7 @@ class QrNumeric implements QrDatum {
   final Uint8List _data;
 
   @override
-  final qr_mode.QrMode mode = qr_mode.QrMode.numeric;
+  final QrMode mode = QrMode.numeric;
 
   @override
   void write(QrBitBuffer buffer) {
@@ -121,9 +125,10 @@ class QrAlphaNumeric implements QrDatum {
 
   factory QrAlphaNumeric.fromString(String alphaNumeric) {
     if (!alphaNumeric.contains(validationRegex)) {
-      throw ArgumentError(
-        'String does not contain valid ALPHA-NUM '
-        'character set: $alphaNumeric',
+      throw ArgumentError.value(
+        alphaNumeric,
+        'alphaNumeric',
+        'String does not contain valid ALPHA-NUM character set',
       );
     }
     return QrAlphaNumeric._(alphaNumeric);
@@ -132,7 +137,7 @@ class QrAlphaNumeric implements QrDatum {
   QrAlphaNumeric._(this._string);
 
   @override
-  final qr_mode.QrMode mode = qr_mode.QrMode.alphaNumeric;
+  final QrMode mode = QrMode.alphaNumeric;
 
   @override
   void write(QrBitBuffer buffer) {
