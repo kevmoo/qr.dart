@@ -1,5 +1,6 @@
 import 'package:qr/qr.dart';
 import 'package:qr/src/byte.dart';
+import 'package:qr/src/mode.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -7,7 +8,7 @@ void main() {
     final qr = QrAlphaNumeric.fromString(
       r'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:',
     );
-    expect(qr.mode, 2);
+    expect(qr.mode, QrMode.alphaNumeric);
     expect(qr.length, 45);
     final buffer = QrBitBuffer();
     qr.write(buffer);
@@ -42,7 +43,7 @@ void main() {
 
   test('single alphanumeric', () {
     final qr = QrAlphaNumeric.fromString(r'$');
-    expect(qr.mode, 2);
+    expect(qr.mode, QrMode.alphaNumeric);
     expect(qr.length, 1);
     final buffer = QrBitBuffer();
     qr.write(buffer);
@@ -52,7 +53,7 @@ void main() {
 
   test('double (even) alphanumeric', () {
     final qr = QrAlphaNumeric.fromString('3Z');
-    expect(qr.mode, 2);
+    expect(qr.mode, QrMode.alphaNumeric);
     expect(qr.length, 2);
     final buffer = QrBitBuffer();
     qr.write(buffer);

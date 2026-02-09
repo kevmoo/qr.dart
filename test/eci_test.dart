@@ -45,7 +45,7 @@ void main() {
 
     test('properties', () {
       final eci = QrEci(123);
-      expect(eci.mode, qr_mode.modeEci);
+      expect(eci.mode, qr_mode.QrMode.eci);
       expect(eci.length, 0);
     });
 

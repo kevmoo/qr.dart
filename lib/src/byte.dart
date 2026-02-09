@@ -6,7 +6,7 @@ import 'eci.dart';
 import 'mode.dart' as qr_mode;
 
 abstract class QrDatum {
-  int get mode;
+  qr_mode.QrMode get mode;
   int get length;
   void write(QrBitBuffer buffer);
 
@@ -31,7 +31,7 @@ abstract class QrDatum {
 
 class QrByte implements QrDatum {
   @override
-  final int mode = qr_mode.mode8bitByte;
+  final qr_mode.QrMode mode = qr_mode.QrMode.byte;
   final Uint8List _data;
 
   factory QrByte(String input) =>
@@ -74,7 +74,7 @@ class QrNumeric implements QrDatum {
   final Uint8List _data;
 
   @override
-  final int mode = qr_mode.modeNumber;
+  final qr_mode.QrMode mode = qr_mode.QrMode.numeric;
 
   @override
   void write(QrBitBuffer buffer) {
@@ -132,7 +132,7 @@ class QrAlphaNumeric implements QrDatum {
   QrAlphaNumeric._(this._string);
 
   @override
-  final int mode = qr_mode.modeAlphaNum;
+  final qr_mode.QrMode mode = qr_mode.QrMode.alphaNumeric;
 
   @override
   void write(QrBitBuffer buffer) {

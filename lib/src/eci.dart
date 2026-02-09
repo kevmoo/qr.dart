@@ -19,7 +19,7 @@ class QrEci implements QrDatum {
   QrEci._(this.value);
 
   @override
-  int get mode => qr_mode.modeEci;
+  qr_mode.QrMode get mode => qr_mode.QrMode.eci;
 
   @override
   int get length => 0; // ECI segments do not have a length field

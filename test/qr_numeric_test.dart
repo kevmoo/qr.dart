@@ -1,11 +1,12 @@
 import 'package:qr/qr.dart';
 import 'package:qr/src/byte.dart';
+import 'package:qr/src/mode.dart';
 import 'package:test/test.dart';
 
 void main() {
   test('all digits 1 through 0', () {
     final qr = QrNumeric.fromString('1234567890');
-    expect(qr.mode, 1);
+    expect(qr.mode, QrMode.numeric);
     expect(qr.length, 10);
     final buffer = QrBitBuffer();
     qr.write(buffer);
@@ -54,7 +55,7 @@ void main() {
 
   test('single numeric', () {
     final qr = QrNumeric.fromString('5');
-    expect(qr.mode, 1);
+    expect(qr.mode, QrMode.numeric);
     expect(qr.length, 1);
     final buffer = QrBitBuffer();
     qr.write(buffer);
@@ -73,7 +74,7 @@ void main() {
 
   test('double numeric', () {
     final qr = QrNumeric.fromString('37');
-    expect(qr.mode, 1);
+    expect(qr.mode, QrMode.numeric);
     expect(qr.length, 2);
     final buffer = QrBitBuffer();
     qr.write(buffer);
@@ -92,7 +93,7 @@ void main() {
 
   test('triple (even) numeric', () {
     final qr = QrNumeric.fromString('371');
-    expect(qr.mode, 1);
+    expect(qr.mode, QrMode.numeric);
     expect(qr.length, 3);
     final buffer = QrBitBuffer();
     qr.write(buffer);

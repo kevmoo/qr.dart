@@ -9,7 +9,7 @@ import 'eci.dart';
 import 'error_correct_level.dart';
 import 'input_too_long_exception.dart';
 import 'math.dart' as qr_math;
-import 'mode.dart' as qr_mode;
+
 import 'polynomial.dart';
 import 'rs_block.dart';
 
@@ -79,8 +79,8 @@ class QrCode {
       final buffer = QrBitBuffer();
       for (final datum in data) {
         buffer
-          ..put(datum.mode, 4)
-          ..put(datum.length, _lengthInBits(datum.mode, typeNumber));
+          ..put(datum.mode.value, 4)
+          ..put(datum.length, datum.mode.getLengthBits(typeNumber));
         datum.write(buffer);
       }
 
@@ -91,8 +91,8 @@ class QrCode {
     final buffer = QrBitBuffer();
     for (final datum in data) {
       buffer
-        ..put(datum.mode, 4)
-        ..put(datum.length, _lengthInBits(datum.mode, 40));
+        ..put(datum.mode.value, 4)
+        ..put(datum.length, datum.mode.getLengthBits(40));
       datum.write(buffer);
     }
 
@@ -146,8 +146,8 @@ List<int> _createData(
   for (var i = 0; i < dataList.length; i++) {
     final data = dataList[i];
     buffer
-      ..put(data.mode, 4)
-      ..put(data.length, _lengthInBits(data.mode, typeNumber));
+      ..put(data.mode.value, 4)
+      ..put(data.length, data.mode.getLengthBits(typeNumber));
     data.write(buffer);
   }
 
@@ -240,42 +240,6 @@ List<int> _createBytes(QrBitBuffer buffer, List<QrRsBlock> rsBlocks) {
   }
 
   return data;
-}
-
-int _lengthInBits(int mode, int type) {
-  if (1 <= type && type < 10) {
-    // 1 - 9
-    return switch (mode) {
-      qr_mode.modeNumber => 10,
-      qr_mode.modeAlphaNum => 9,
-      qr_mode.mode8bitByte => 8,
-      qr_mode.modeKanji => 8,
-      qr_mode.modeEci => 0,
-      _ => throw ArgumentError('mode:$mode'),
-    };
-  } else if (type < 27) {
-    // 10 - 26
-    return switch (mode) {
-      qr_mode.modeNumber => 12,
-      qr_mode.modeAlphaNum => 11,
-      qr_mode.mode8bitByte => 16,
-      qr_mode.modeKanji => 10,
-      qr_mode.modeEci => 0,
-      _ => throw ArgumentError('mode:$mode'),
-    };
-  } else if (type < 41) {
-    // 27 - 40
-    return switch (mode) {
-      qr_mode.modeNumber => 14,
-      qr_mode.modeAlphaNum => 13,
-      qr_mode.mode8bitByte => 16,
-      qr_mode.modeKanji => 12,
-      qr_mode.modeEci => 0,
-      _ => throw ArgumentError('mode:$mode'),
-    };
-  } else {
-    throw ArgumentError('type:$type');
-  }
 }
 
 QrPolynomial _errorCorrectPolynomial(int errorCorrectLength) {

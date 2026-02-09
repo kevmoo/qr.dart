@@ -45,7 +45,7 @@ class QrImage {
 
       final testImage = QrImage._fromData(qrCode, i, workingBuffer)
         // Apply mask (XOR)
-        .._applyMask(i, template._data);
+        .._applyMask(qr_mask_pattern.QrMaskPattern.values[i], template._data);
 
       final lostPoint = _lostPoint(testImage);
 
@@ -289,7 +289,8 @@ class QrImage {
               dark = ((data[byteIndex] >> bitIndex) & 1) == 1;
             }
 
-            final mask = _mask(maskPattern, row, col - c);
+            final mask = qr_mask_pattern.QrMaskPattern.values[maskPattern]
+                .check(row, col - c);
 
             if (mask) {
               dark = !dark;
@@ -355,7 +356,10 @@ class QrImage {
     }
   }
 
-  void _applyMask(int maskPattern, Uint8List templateData) {
+  void _applyMask(
+    qr_mask_pattern.QrMaskPattern maskPattern,
+    Uint8List templateData,
+  ) {
     var inc = -1;
     var row = moduleCount - 1;
 
@@ -365,7 +369,7 @@ class QrImage {
       for (;;) {
         for (var c = 0; c < 2; c++) {
           if (templateData[row * moduleCount + (col - c)] == _pixelUnassigned) {
-            final mask = _mask(maskPattern, row, col - c);
+            final mask = maskPattern.check(row, col - c);
             if (mask) {
               _data[row * moduleCount + (col - c)] ^= _pixelDark ^ _pixelLight;
             }
@@ -381,29 +385,6 @@ class QrImage {
         }
       }
     }
-  }
-}
-
-bool _mask(int maskPattern, int i, int j) {
-  switch (maskPattern) {
-    case qr_mask_pattern.pattern000:
-      return (i + j).isEven;
-    case qr_mask_pattern.pattern001:
-      return i.isEven;
-    case qr_mask_pattern.pattern010:
-      return j % 3 == 0;
-    case qr_mask_pattern.pattern011:
-      return (i + j) % 3 == 0;
-    case qr_mask_pattern.pattern100:
-      return ((i ~/ 2) + (j ~/ 3)).isEven;
-    case qr_mask_pattern.pattern101:
-      return (i * j) % 2 + (i * j) % 3 == 0;
-    case qr_mask_pattern.pattern110:
-      return ((i * j) % 2 + (i * j) % 3).isEven;
-    case qr_mask_pattern.pattern111:
-      return ((i * j) % 3 + (i + j) % 2).isEven;
-    default:
-      throw ArgumentError('bad maskPattern:$maskPattern');
   }
 }
 
