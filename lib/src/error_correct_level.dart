@@ -10,14 +10,18 @@ enum QrErrorCorrectLevel {
   // The index maps to the QR standard.
 
   /// Level M (Medium) ~15% error correction.
-  medium,
+  medium(15),
 
   /// Level L (Low) ~7% error correction.
-  low,
+  low(7),
 
   /// Level H (High) ~30% error correction.
-  high,
+  high(30),
 
   /// Level Q (Quartile) ~25% error correction.
-  quartile,
+  quartile(25);
+
+  final int recoveryRate;
+
+  const QrErrorCorrectLevel(this.recoveryRate);
 }

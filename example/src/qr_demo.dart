@@ -134,10 +134,11 @@ class QrDemo {
       typeDiv.appendChild(label);
     }
 
-    //
     // Error Correct Levels
     //
-    for (final v in QrErrorCorrectLevel.values) {
+    final sortedLevels = QrErrorCorrectLevel.values.toList()
+      ..sort((a, b) => a.recoveryRate.compareTo(b.recoveryRate));
+    for (final v in sortedLevels) {
       final radio = (document.createElement('input') as HTMLInputElement)
         ..type = 'radio'
         ..id = 'error_$v'
