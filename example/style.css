@@ -52,7 +52,30 @@ canvas {
   border-color: var(--pico-primary-background);
 }
 
-.github-button-wrapper {
+/* Footer */
+footer {
   text-align: center;
   margin-top: var(--pico-spacing);
+  padding-bottom: var(--pico-spacing);
+}
+
+.github-button-wrapper a {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.github-button-wrapper svg {
+  vertical-align: middle;
+}
+
+.tech-stack {
+  margin-bottom: var(--pico-spacing);
+  font-size: 0.9em;
+  color: var(--pico-muted-color);
+}
+
+.tech-stack p {
+  margin-bottom: 0.2rem;
 }
