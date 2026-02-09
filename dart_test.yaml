@@ -1,0 +1,3 @@
+tags:
+  require-zbar:
+    skip: "Requires zbar installed"
