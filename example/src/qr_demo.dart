@@ -17,6 +17,8 @@ enum _FrameState { qr, error, question }
 class QrDemo {
   final HTMLCanvasElement _canvas;
   final CanvasRenderingContext2D _ctx;
+  final HTMLButtonElement _copyBtn;
+  final HTMLButtonElement _downloadBtn;
   final StreamController<_Config> _inputValues;
 
   final Stream<List<bool>?> output;
@@ -43,7 +45,14 @@ class QrDemo {
     final downloadBtn =
         document.querySelector('#download-btn') as HTMLButtonElement;
 
-    final demo = QrDemo._(canvas, typeDiv, errorDiv, controller);
+    final demo = QrDemo._(
+      canvas,
+      typeDiv,
+      errorDiv,
+      copyBtn,
+      downloadBtn,
+      controller,
+    );
 
     copyBtn.onClick.listen((_) => demo._copyToClipboard());
     downloadBtn.onClick.listen((_) => demo._downloadImage());
@@ -59,9 +68,11 @@ class QrDemo {
         if (data == null) {
           demo._state = _FrameState.question;
           statusDiv.innerText = 'Type something to encode';
+          demo._enableButtons(false);
         } else {
           demo
             .._state = _FrameState.qr
+            .._enableButtons(true)
             .._squares = data;
           final byteCount = demo.value.length;
           statusDiv.innerText = 'Input size: $byteCount bytes';
@@ -75,6 +86,7 @@ class QrDemo {
         print(error);
         demo
           .._state = _FrameState.error
+          .._enableButtons(false)
           ..requestFrame();
       },
     );
@@ -104,6 +116,8 @@ class QrDemo {
     HTMLCanvasElement canvas,
     HTMLDivElement typeDiv,
     HTMLDivElement errorDiv,
+    this._copyBtn,
+    this._downloadBtn,
     this._inputValues,
   ) : _canvas = canvas,
       _ctx = canvas.context2D,
@@ -155,6 +169,11 @@ class QrDemo {
         ..title = 'Recover up to ${v.recoveryRate}% of data';
       errorDiv.appendChild(label);
     }
+  }
+
+  void _enableButtons(bool enable) {
+    _copyBtn.disabled = !enable;
+    _downloadBtn.disabled = !enable;
   }
 
   String get value => _value;
