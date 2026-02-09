@@ -100,6 +100,7 @@ class QrDemo {
     );
 
     demo.value = input.value;
+    input.focus();
 
     return demo;
   }
