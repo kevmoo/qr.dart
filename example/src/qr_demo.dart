@@ -141,8 +141,7 @@ class QrDemo {
 
       final label = (document.createElement('label') as HTMLLabelElement)
         ..innerHTML = '$i'.toJS
-        ..htmlFor = radio.id
-        ..classList.add('btn');
+        ..htmlFor = radio.id;
       typeDiv.appendChild(label);
     }
 
@@ -165,7 +164,6 @@ class QrDemo {
       final label = (document.createElement('label') as HTMLLabelElement)
         ..innerHTML = v.name.toCapitalized.toJS
         ..htmlFor = radio.id
-        ..classList.add('btn')
         ..title = 'Recover up to ${v.recoveryRate}% of data';
       errorDiv.appendChild(label);
     }

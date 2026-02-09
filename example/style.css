@@ -1,55 +1,58 @@
-input#input, canvas, .setting {
-  margin: 20px auto;
-  display: block;
-  width: 600px;
-}
-
-input#input {
-  height: 35px;
-  line-height: 35px;
-  margin: 0 auto;
-  text-align: center;
-  font-size:30px;
+/* Cleaned up for Pico.css */
+canvas {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--pico-muted-border-color);
+  border-radius: var(--pico-border-radius);
 }
 
 #status {
   text-align: center;
-  margin: 10px auto;
+  margin-top: 10px;
   font-family: monospace;
+  min-height: 1.5em;
 }
 
-.setting span {
-  width: 120px;
-  display: block;
-  float: left;
-  margin-right: 5px;
-  text-align: right;
-  padding-top: 6px;
+/* Custom layout tweaks */
+.setting {
+  margin-bottom: var(--pico-spacing);
 }
 
-input[type='radio'] {
+/* Radio button styling for settings */
+#type-div, #error-div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+/* Hide default radio buttons but keep label functionality */
+#type-div input[type='radio'],
+#error-div input[type='radio'] {
   display: none;
 }
 
-[type=radio]:checked + label {
-  background: #ddd;
-}
-
-label {
-  display: inline-block;
-  min-width: 15px;
-  margin: 0 5px 0 1px;
-  text-align: center;
-}
-
+/* Style labels as clickable badges/buttons */
+#type-div label,
 #error-div label {
-  min-width: 85px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid var(--pico-primary-border);
+  border-radius: var(--pico-border-radius);
+  background-color: var(--pico-card-background-color);
+  color: var(--pico-color);
+  font-size: 0.9em;
+  margin: 0;
+}
+
+/* Selected state for radio labels - checked selector trick */
+#type-div input[type='radio']:checked + label,
+#error-div input[type='radio']:checked + label {
+  background-color: var(--pico-primary-background);
+  color: var(--pico-primary-inverse);
+  border-color: var(--pico-primary-background);
 }
 
 .github-button-wrapper {
-  width: 139px;
-  height: 30px;
-  margin: 0 auto;
-  display: block;
-  clear: both;
+  text-align: center;
+  margin-top: var(--pico-spacing);
 }
