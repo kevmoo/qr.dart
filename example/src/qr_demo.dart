@@ -8,7 +8,6 @@ import 'package:stream_transform/stream_transform.dart';
 import 'package:web/web.dart';
 
 import 'affine_transform.dart';
-import 'bot.dart';
 
 const String _typeRadioIdKey = 'type_value';
 const String _errorLevelIdKey = 'error_value';
@@ -16,9 +15,12 @@ const String _errorLevelIdKey = 'error_value';
 enum _FrameState { qr, error, question }
 
 class QrDemo {
-  final _scale = BungeeNum(1);
   final HTMLCanvasElement _canvas;
   final CanvasRenderingContext2D _ctx;
+  final HTMLImageElement _errorImg;
+  final HTMLImageElement _waitingImg;
+  final HTMLButtonElement _copyBtn;
+  final HTMLButtonElement _downloadBtn;
   final StreamController<_Config> _inputValues;
 
   final Stream<List<bool>?> output;
@@ -34,6 +36,10 @@ class QrDemo {
 
   factory QrDemo() {
     final canvas = document.querySelector('#content') as HTMLCanvasElement;
+    final errorImg =
+        document.querySelector('#validation-error') as HTMLImageElement;
+    final waitingImg =
+        document.querySelector('#validation-waiting') as HTMLImageElement;
     final typeDiv = document.querySelector('#type-div') as HTMLDivElement;
     final errorDiv = document.querySelector('#error-div') as HTMLDivElement;
     final input = document.querySelector('#input') as HTMLInputElement;
@@ -45,7 +51,16 @@ class QrDemo {
     final downloadBtn =
         document.querySelector('#download-btn') as HTMLButtonElement;
 
-    final demo = QrDemo._(canvas, typeDiv, errorDiv, controller);
+    final demo = QrDemo._(
+      canvas,
+      errorImg,
+      waitingImg,
+      typeDiv,
+      errorDiv,
+      copyBtn,
+      downloadBtn,
+      controller,
+    );
 
     copyBtn.onClick.listen((_) => demo._copyToClipboard());
     downloadBtn.onClick.listen((_) => demo._downloadImage());
@@ -61,9 +76,11 @@ class QrDemo {
         if (data == null) {
           demo._state = _FrameState.question;
           statusDiv.innerText = 'Type something to encode';
+          demo._enableButtons(false);
         } else {
           demo
             .._state = _FrameState.qr
+            .._enableButtons(true)
             .._squares = data;
           final byteCount = demo.value.length;
           statusDiv.innerText = 'Input size: $byteCount bytes';
@@ -77,11 +94,13 @@ class QrDemo {
         print(error);
         demo
           .._state = _FrameState.error
+          .._enableButtons(false)
           ..requestFrame();
       },
     );
 
     demo.value = input.value;
+    input.focus();
 
     return demo;
   }
@@ -104,8 +123,12 @@ class QrDemo {
 
   QrDemo._(
     HTMLCanvasElement canvas,
+    this._errorImg,
+    this._waitingImg,
     HTMLDivElement typeDiv,
     HTMLDivElement errorDiv,
+    this._copyBtn,
+    this._downloadBtn,
     this._inputValues,
   ) : _canvas = canvas,
       _ctx = canvas.context2D,
@@ -129,8 +152,7 @@ class QrDemo {
 
       final label = (document.createElement('label') as HTMLLabelElement)
         ..innerHTML = '$i'.toJS
-        ..htmlFor = radio.id
-        ..classList.add('btn');
+        ..htmlFor = radio.id;
       typeDiv.appendChild(label);
     }
 
@@ -153,10 +175,14 @@ class QrDemo {
       final label = (document.createElement('label') as HTMLLabelElement)
         ..innerHTML = v.name.toCapitalized.toJS
         ..htmlFor = radio.id
-        ..classList.add('btn')
         ..title = 'Recover up to ${v.recoveryRate}% of data';
       errorDiv.appendChild(label);
     }
+  }
+
+  void _enableButtons(bool enable) {
+    _copyBtn.disabled = !enable;
+    _downloadBtn.disabled = !enable;
   }
 
   String get value => _value;
@@ -194,45 +220,27 @@ class QrDemo {
   void _onFrame(num highResTime) {
     _frameRequested = false;
 
-    _ctx.clearRect(0, 0, _canvas.width, _canvas.height);
+    _canvas.hidden = (_state != _FrameState.qr).toJS;
+    _errorImg.hidden = (_state != _FrameState.error).toJS;
+    _waitingImg.hidden = (_state != _FrameState.question).toJS;
 
     if (_state == _FrameState.qr) {
+      _ctx.clearRect(0, 0, _canvas.width, _canvas.height);
       _drawQr();
-    } else {
-      _drawBigMark(_state == _FrameState.question ? '?' : '!');
     }
-  }
-
-  void _drawBigMark(String text) {
-    _ctx
-      ..save()
-      ..fillStyle = '#eeeeee'.toJS
-      ..fillRect(0, 0, _canvas.width, _canvas.height)
-      ..font = '400px monospace'
-      ..fillStyle = 'red'.toJS
-      ..textAlign = 'center'
-      ..textBaseline = 'middle'
-      ..fillText(text, _canvas.width / 2, _canvas.height / 2 + 50)
-      ..restore();
   }
 
   void _drawQr() {
     // 2 blocks of padding on each side
-    const borderBlocks = 2;
+    const borderBlocks = 0.5;
 
     final size = math.sqrt(_squares.length).toInt();
     final minDimension = math.min(_canvas.width, _canvas.height);
     final scale = minDimension ~/ (1.1 * (size + borderBlocks * 2));
 
-    _scale.target = scale;
-
-    if (_scale.update()) {
-      requestFrame();
-    }
-
     final tx = AffineTransform.identity()
       ..translate(0.5 * _canvas.width, 0.5 * _canvas.height)
-      ..scale(_scale.current, _scale.current)
+      ..scale(scale, scale)
       ..translate(-0.5 * size, -0.5 * size);
 
     _ctx.save();
