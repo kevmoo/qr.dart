@@ -65,8 +65,8 @@ class QrDemo {
           demo
             .._state = _FrameState.qr
             .._squares = data;
-          final bytes = demo.value.length;
-          statusDiv.innerText = 'Input size: $bytes bytes';
+          final byteCount = demo.value.length;
+          statusDiv.innerText = 'Input size: $byteCount bytes';
         }
         demo.requestFrame();
       },
@@ -153,7 +153,8 @@ class QrDemo {
       final label = (document.createElement('label') as HTMLLabelElement)
         ..innerHTML = v.name.toJS
         ..htmlFor = radio.id
-        ..classList.add('btn');
+        ..classList.add('btn')
+        ..title = 'Recover up to ${v.recoveryRate}% of data';
       errorDiv.appendChild(label);
     }
   }
