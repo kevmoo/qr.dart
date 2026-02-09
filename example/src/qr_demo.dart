@@ -151,7 +151,7 @@ class QrDemo {
       errorDiv.appendChild(radio);
 
       final label = (document.createElement('label') as HTMLLabelElement)
-        ..innerHTML = v.name.toJS
+        ..innerHTML = v.name.toCapitalized.toJS
         ..htmlFor = radio.id
         ..classList.add('btn')
         ..title = 'Recover up to ${v.recoveryRate}% of data';
@@ -311,4 +311,8 @@ void _setTransform(CanvasRenderingContext2D ctx, AffineTransform tx) {
     tx.translateX,
     tx.translateY,
   );
+}
+
+extension _StringHelper on String {
+  String get toCapitalized => '${this[0].toUpperCase()}${substring(1)}';
 }
