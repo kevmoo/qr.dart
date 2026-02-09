@@ -8,7 +8,6 @@ import 'package:stream_transform/stream_transform.dart';
 import 'package:web/web.dart';
 
 import 'affine_transform.dart';
-import 'bot.dart';
 
 const String _typeRadioIdKey = 'type_value';
 const String _errorLevelIdKey = 'error_value';
@@ -16,7 +15,6 @@ const String _errorLevelIdKey = 'error_value';
 enum _FrameState { qr, error, question }
 
 class QrDemo {
-  final _scale = BungeeNum(1);
   final HTMLCanvasElement _canvas;
   final CanvasRenderingContext2D _ctx;
   final StreamController<_Config> _inputValues;
@@ -224,15 +222,9 @@ class QrDemo {
     final minDimension = math.min(_canvas.width, _canvas.height);
     final scale = minDimension ~/ (1.1 * (size + borderBlocks * 2));
 
-    _scale.target = scale;
-
-    if (_scale.update()) {
-      requestFrame();
-    }
-
     final tx = AffineTransform.identity()
       ..translate(0.5 * _canvas.width, 0.5 * _canvas.height)
-      ..scale(_scale.current, _scale.current)
+      ..scale(scale, scale)
       ..translate(-0.5 * size, -0.5 * size);
 
     _ctx.save();

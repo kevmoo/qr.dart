@@ -1,7 +1,5 @@
 import 'dart:math' as math;
 
-import 'bot.dart';
-
 class AffineTransform {
   num _scX, _shY, _shX, _scY, _tX, _tY;
 
@@ -130,17 +128,6 @@ class AffineTransform {
       (_shX * _tY - _scY * _tX) / det,
       (_shY * _tX - _scX * _tY) / det,
     );
-  }
-
-  AffineTransform lerpTx(AffineTransform other, num x) {
-    final m00 = lerp(scaleX, other.scaleX, x);
-    final m10 = lerp(shearY, other.shearY, x);
-    final m01 = lerp(shearX, other.shearX, x);
-    final m11 = lerp(scaleY, other.scaleY, x);
-    final m02 = lerp(translateX, other.translateX, x);
-    final m12 = lerp(translateY, other.translateY, x);
-
-    return AffineTransform(m00, m10, m01, m11, m02, m12);
   }
 
   AffineTransform clone() => AffineTransform(_scX, _shY, _shX, _scY, _tX, _tY);
