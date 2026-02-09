@@ -218,7 +218,7 @@ class QrDemo {
 
   void _drawQr() {
     // 2 blocks of padding on each side
-    const borderBlocks = 2;
+    const borderBlocks = 1;
 
     final size = math.sqrt(_squares.length).toInt();
     final minDimension = math.min(_canvas.width, _canvas.height);
