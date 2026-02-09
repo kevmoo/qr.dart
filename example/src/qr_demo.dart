@@ -143,7 +143,7 @@ class QrDemo {
         ..id = 'error_$v'
         ..name = 'error-level'
         ..onChange.listen(_errorClick)
-        ..dataset[_errorLevelIdKey] = v.toString();
+        ..dataset[_errorLevelIdKey] = v.index.toString();
       if (v == _errorCorrectLevel) {
         radio.checked = true;
       }
