@@ -12,6 +12,12 @@ input#input {
   font-size:30px;
 }
 
+#status {
+  text-align: center;
+  margin: 10px auto;
+  font-family: monospace;
+}
+
 .setting span {
   width: 120px;
   display: block;

@@ -37,6 +37,7 @@ class QrDemo {
     final typeDiv = document.querySelector('#type-div') as HTMLDivElement;
     final errorDiv = document.querySelector('#error-div') as HTMLDivElement;
     final input = document.querySelector('#input') as HTMLInputElement;
+    final statusDiv = document.querySelector('#status') as HTMLDivElement;
 
     final controller = StreamController<_Config>.broadcast();
 
@@ -56,17 +57,23 @@ class QrDemo {
     demo.output.listen(
       (data) {
         input.style.background = '';
+        statusDiv.style.color = '';
         if (data == null) {
           demo._state = _FrameState.question;
+          statusDiv.innerText = 'Type something to encode';
         } else {
           demo
             .._state = _FrameState.qr
             .._squares = data;
+          final bytes = demo.value.length;
+          statusDiv.innerText = 'Input size: $bytes bytes';
         }
         demo.requestFrame();
       },
       onError: (Object error) {
         input.style.background = 'red';
+        statusDiv.style.color = 'red';
+        statusDiv.innerText = 'Input too long';
         print(error);
         demo
           .._state = _FrameState.error
@@ -195,11 +202,13 @@ class QrDemo {
   void _drawBigMark(String text) {
     _ctx
       ..save()
-      ..font = '400px sans-serif'
+      ..fillStyle = '#eeeeee'.toJS
+      ..fillRect(0, 0, _canvas.width, _canvas.height)
+      ..font = '400px monospace'
       ..fillStyle = 'red'.toJS
       ..textAlign = 'center'
       ..textBaseline = 'middle'
-      ..fillText(text, _canvas.width / 2, _canvas.height / 2)
+      ..fillText(text, _canvas.width / 2, _canvas.height / 2 + 50)
       ..restore();
   }
 
