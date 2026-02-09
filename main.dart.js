@@ -6,16 +6,9 @@ function relativeURL(ref) {
   return new URL(ref, base).toString();
 }
 
-function supportsWasmGC() {
-  // This attempts to instantiate a wasm module that only will validate if the
-  // final WasmGC spec is implemented in the browser.
-  //
-  // Copied from https://github.com/GoogleChromeLabs/wasm-feature-detect/blob/main/src/detectors/gc/index.js
-  const bytes = [0, 97, 115, 109, 1, 0, 0, 0, 1, 5, 1, 95, 1, 120, 0];
-  return 'WebAssembly' in self && WebAssembly.validate(new Uint8Array(bytes));
-}
-
-if (supportsWasmGC()) {
+const searchParams = new URLSearchParams(window.location.search);
+const forceJS = searchParams.get('force_js');
+if (!forceJS && (WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,0,0,1,5,1,95,1,120,0])))) {
 
 let { compileStreaming } = await import("./main.mjs");
 
