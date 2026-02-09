@@ -2123,39 +2123,41 @@ _.c=c
 _.d=d
 _.e=e
 _.f=f},
-yN:function yN(a,b){this.a=a
-this.b=b
-this.c=null},
-w(){var s,r,q,p,o,n,m,l,k=v.G,j=k.document.querySelector("#content")
-if(j==null)j=A.AN(j)
-s=k.document.querySelector("#type-div")
+w(){var s,r,q,p,o,n,m,l,k,j,i=v.G,h=i.document.querySelector("#content")
+if(h==null)h=A.AN(h)
+s=i.document.querySelector("#validation-error")
 if(s==null)s=A.AN(s)
-r=k.document.querySelector("#error-div")
+r=i.document.querySelector("#validation-waiting")
 if(r==null)r=A.AN(r)
-q=k.document.querySelector("#input")
+q=i.document.querySelector("#type-div")
 if(q==null)q=A.AN(q)
-p=k.document.querySelector("#status")
+p=i.document.querySelector("#error-div")
 if(p==null)p=A.AN(p)
-o=A.bK(!1,t.r)
-n=k.document.querySelector("#copy-btn")
+o=i.document.querySelector("#input")
+if(o==null)o=A.AN(o)
+n=i.document.querySelector("#status")
 if(n==null)n=A.AN(n)
-m=k.document.querySelector("#download-btn")
-if(m==null)m=A.AN(m)
-l=A.jc(j,s,r,o)
-A.JE(n,"click",new A.m9(l),!1)
-A.JE(m,"click",new A.Fr(l),!1)
-A.JE(q,"keyup",new A.XL(l,q),!1)
-l.e.k(new A.KX(q,p,l),new A.BQ(q,p,l))
-l.f=q.value
-l.T()
-return l},
-jc(a,b,c,d){var s,r,q=A.QI([],t.u),p=a.getContext("2d")
+m=A.bK(!1,t.r)
+l=i.document.querySelector("#copy-btn")
+if(l==null)l=A.AN(l)
+k=i.document.querySelector("#download-btn")
+if(k==null)k=A.AN(k)
+j=A.jc(h,s,r,q,p,l,k,m)
+A.JE(l,"click",new A.m9(j),!1)
+A.JE(k,"click",new A.Fr(j),!1)
+A.JE(o,"keyup",new A.XL(j,o),!1)
+j.w.k(new A.KX(o,n,j),new A.BQ(o,n,j))
+j.x=o.value
+j.T()
+o.focus()
+return j},
+jc(a,b,c,d,e,f,g,h){var s,r,q=A.QI([],t.u),p=a.getContext("2d")
 if(p==null)p=A.AN(p)
 s=t.r
 r=A.x2(!1,t.H)
 r.i(0,null)
-q=new A.by(new A.yN(1,1),a,p,d,A.eI(A.Cd(new A.Gm(d,A.Lh(d).C("Gm<1>")),A.HV(A.XA(),s),!0,A.A7(),new A.u8(r,A.Lh(r).C("u8<1>")),s,s),A.Kc(),r.ght(r),s,t.E),B.yC,q,B.JB)
-q.p(a,b,c,d)
+q=new A.by(a,p,b,c,f,g,h,A.eI(A.Cd(new A.Gm(h,A.Lh(h).C("Gm<1>")),A.HV(A.XA(),s),!0,A.A7(),new A.u8(r,A.Lh(r).C("u8<1>")),s,s),A.Kc(),r.ght(r),s,t.E),B.yC,q,B.JB)
+q.p(a,b,c,d,e,f,g,h)
 return q},
 w8(a){return A.xG(a)},
 xG(a){var s=0,r=A.FX(t.E),q,p,o,n,m,l,k,j,i,h,g
@@ -2179,18 +2181,21 @@ case 1:return A.yC(q,r)}})
 return A.DI($async$w8,r)},
 Xt:function Xt(a,b){this.a=a
 this.b=b},
-by:function by(a,b,c,d,e,f,g,h){var _=this
+by:function by(a,b,c,d,e,f,g,h,i,j,k){var _=this
 _.a=a
 _.b=b
 _.c=c
 _.d=d
 _.e=e
-_.f=""
-_.r=10
-_.w=f
-_.x=g
-_.y=h
-_.z=!1},
+_.f=f
+_.r=g
+_.w=h
+_.x=""
+_.y=10
+_.z=i
+_.Q=j
+_.as=k
+_.at=!1},
 m9:function m9(a){this.a=a},
 Fr:function Fr(a){this.a=a},
 XL:function XL(a,b){this.a=a
@@ -3217,7 +3222,7 @@ r.e=s
 if(s<256)q.t2(r)}},
 M(a){var s=this,r=s.e
 s.e=(r|64)>>>0
-s.d.V(s.a,a)
+s.d.m(s.a,a)
 s.e=(s.e&4294967231)>>>0
 s.Iy((r&4)!==0)},
 y7(a,b){var s,r=this,q=r.e,p=new A.Vo(r,a,b)
@@ -3260,7 +3265,7 @@ s=q.b
 p=this.b
 r=q.d
 if(t.k.b(s))r.z8(s,p,this.c)
-else r.V(s,p)
+else r.m(s,p)
 q.e=(q.e&4294967231)>>>0},
 $S:0}
 A.qB.prototype={
@@ -3335,7 +3340,7 @@ try{if(B.NU===$.X3){a.$1(b)
 return}A.yv(null,null,this,a,b)}catch(q){s=A.Ru(q)
 r=A.ts(q)
 A.Si(s,r)}},
-V(a,b){return this.Dl(a,b,t.z)},
+m(a,b){return this.Dl(a,b,t.z)},
 p6(a,b,c){var s,r,q
 try{if(B.NU===$.X3){a.$2(b,c)
 return}A.Qx(null,null,this,a,b,c)}catch(q){s=A.Ru(q)
@@ -3363,7 +3368,7 @@ A.Vp.prototype={
 $0(){return this.a.bH(this.b)},
 $S:0}
 A.OR.prototype={
-$1(a){return this.a.V(this.b,a)},
+$1(a){return this.a.m(this.b,a)},
 $S(){return this.c.C("~(0)")}}
 A.Ev.prototype={
 $0(){A.kM(this.a,this.b)},
@@ -3966,23 +3971,12 @@ return b instanceof A.Ng&&s.a===b.a&&s.c===b.c&&s.e===b.e&&s.b===b.b&&s.d===b.d&
 giO(a){return 0},
 "["(a){var s=this
 return B.Nm.H(A.QI([s.a,s.b,s.c,s.d,s.e,s.f],t.a),", ")}}
-A.yN.prototype={
-m(){var s,r,q=this,p=q.c
-p=p==null?q.c=0:q.c=p*0.8
-s=q.a
-r=q.b
-p=q.c=p+(s-r)*0.05
-r+=p
-q.b=r
-if(Math.abs(r-s)<0.01&&Math.abs(p)<0.01){q.b=s
-q.c=null
-return!1}else return!0}}
 A.Xt.prototype={
 q(){return"_FrameState."+this.b}}
 A.by.prototype={
-LT(){this.b.toBlob(A.k6(new A.JA()))},
-p(a,b,c,d){var s,r,q,p,o,n,m,l,k,j,i=this
-i.c.fillStyle="black"
+LT(){this.a.toBlob(A.k6(new A.JA()))},
+p(a,b,c,d,e,f,g,h){var s,r,q,p,o,n,m,l,k,j,i=this
+i.b.fillStyle="black"
 for(s=v.G,r=i.gHk(),q=1;q<=10;++q){p=s.document.createElement("INPUT")
 p.type="radio"
 o=""+q
@@ -3990,13 +3984,12 @@ p.id="type_"+o
 p.name="type"
 A.JE(p,"change",r,!1)
 p.dataset.type_value=B.jn["["](q)
-if(q===i.r)p.checked=!0
-b.appendChild(p)
+if(q===i.y)p.checked=!0
+d.appendChild(p)
 n=s.document.createElement("label")
 n.innerHTML=o
 n.htmlFor=p.id
-n.classList.add("btn")
-b.appendChild(n)}m=A.QI(B.TZ.slice(0),t.B)
+d.appendChild(n)}m=A.QI(B.TZ.slice(0),t.B)
 B.Nm.GT(m,new A.WC())
 for(r=m.length,o=i.gV3(),l=0;l<m.length;m.length===r||(0,A.l)(m),++l){k=m[l]
 p=s.document.createElement("input")
@@ -4005,78 +3998,67 @@ p.id="error_"+k["["](0)
 p.name="error-level"
 A.JE(p,"change",o,!1)
 p.dataset.error_value=B.jn["["](k.a)
-if(k===i.w)p.checked=!0
-c.appendChild(p)
+if(k===i.z)p.checked=!0
+e.appendChild(p)
 n=s.document.createElement("label")
 j=k.b
 n.innerHTML=j[0].toUpperCase()+B.xB.yn(j,1)
 n.htmlFor=p.id
-n.classList.add("btn")
 n.title="Recover up to "+k.c+"% of data"
-c.appendChild(n)}},
-j(){if(!this.z){this.z=!0
+e.appendChild(n)}},
+V(a){var s=!a
+this.e.disabled=s
+this.f.disabled=s},
+j(){if(!this.at){this.at=!0
 v.G.window.requestAnimationFrame(A.k6(this.gU()))}},
 AS(a){var s=a.target
 if(s==null)s=A.AN(s)
-this.r=A.QA(s.dataset.type_value)
+this.y=A.QA(s.dataset.type_value)
 this.T()},
 zg(a){var s=a.target
-this.w=B.Nm.XG(B.TZ,new A.to(s==null?A.AN(s):s))
+this.z=B.Nm.XG(B.TZ,new A.to(s==null?A.AN(s):s))
 this.T()},
 T(){var s=this
-s.d.i(0,new A.oy(s.r,s.w,s.f))},
-dF(a){var s,r,q,p=this
-p.z=!1
-s=p.c
-r=p.b
-s.clearRect(0,0,r.width,r.height)
-q=p.y
-if(q===B.JB)p.L()
-else{q=q===B.bA?"?":"!"
-s.save()
-s.fillStyle="#eeeeee"
-s.fillRect(0,0,r.width,r.height)
-s.font="400px monospace"
-s.fillStyle="red"
-s.textAlign="center"
-s.textBaseline="middle"
-s.fillText(q,r.width/2,r.height/2+50)
-s.restore()}},
-L(){var s,r,q,p,o=this,n=B.CD.h(Math.sqrt(J.Hm(o.x))),m=o.b,l=m.width,k=m.height,j=n+4,i=o.a
-i.a=B.jn.v(Math.min(A.E0(l),A.E0(k)),1.1*j)
-if(i.m())o.j()
-s=new A.Ng(1,0,0,1,0,0)
-s.J(0.5*m.width,0.5*m.height)
-m=i.b
-s.a*=m
-s.b*=m
-s.c*=m
-s.d*=m
-m=-0.5*n
-s.J(m,m)
-m=o.c
-m.save()
-m.setTransform.apply(m,[s.a,s.b,s.c,s.d,s.e,s.f])
-if(J.RS(o.x)){m.fillStyle="white"
-m.fillRect(-2,-2,j,j)
-m.fillStyle="black"
-m.beginPath()
-for(r=0;r<n;++r)for(l=r*n,q=0;q<n;){p=q+1
-if(J.x9(o.x,l+q)){for(;;){if(!(p<n&&J.x9(o.x,l+p)))break;++p}m.rect(r,q,1,p-q)
-q=p}else q=p}m.fill()}m.restore()}}
+s.r.i(0,new A.oy(s.y,s.z,s.x))},
+dF(a){var s,r=this
+r.at=!1
+s=r.a
+s.hidden=r.as!==B.JB
+r.c.hidden=r.as!==B.cV
+r.d.hidden=r.as!==B.bA
+if(r.as===B.JB){r.b.clearRect(0,0,s.width,s.height)
+r.L()}},
+L(){var s,r,q,p=this,o=B.CD.h(Math.sqrt(J.Hm(p.Q))),n=p.a,m=n.width,l=n.height,k=o+1,j=B.jn.v(Math.min(A.E0(m),A.E0(l)),1.1*k),i=new A.Ng(1,0,0,1,0,0)
+i.J(0.5*n.width,0.5*n.height)
+i.a*=j
+i.b*=j
+i.c*=j
+i.d*=j
+n=-0.5*o
+i.J(n,n)
+n=p.b
+n.save()
+n.setTransform.apply(n,[i.a,i.b,i.c,i.d,i.e,i.f])
+if(J.RS(p.Q)){n.fillStyle="white"
+n.fillRect(-0.5,-0.5,k,k)
+n.fillStyle="black"
+n.beginPath()
+for(s=0;s<o;++s)for(m=s*o,r=0;r<o;){q=r+1
+if(J.x9(p.Q,m+r)){for(;;){if(!(q<o&&J.x9(p.Q,m+q)))break;++q}n.rect(s,r,1,q-r)
+r=q}else r=q}n.fill()}n.restore()}}
 A.m9.prototype={
 $1(a){return this.a.LT()},
 $S:2}
 A.Fr.prototype={
 $1(a){var s=v.G.document.createElement("a")
-s.href=this.a.b.toDataURL()
+s.href=this.a.a.toDataURL()
 s.download="qr_code.png"
 s.click()
 return null},
 $S:2}
 A.XL.prototype={
 $1(a){var s=this.a
-s.f=this.b.value
+s.x=this.b.value
 s.T()},
 $S:2}
 A.KX.prototype={
@@ -4085,10 +4067,12 @@ this.a.style.background=""
 s=this.b
 s.style.color=""
 r=this.c
-if(a==null){r.y=B.bA
-s.innerText="Type something to encode"}else{r.y=B.JB
-r.x=a
-s.innerText="Input size: "+r.f.length+" bytes"}r.j()},
+if(a==null){r.as=B.bA
+s.innerText="Type something to encode"
+r.V(!1)}else{r.as=B.JB
+r.V(!0)
+r.Q=a
+s.innerText="Input size: "+r.x.length+" bytes"}r.j()},
 $S:25}
 A.BQ.prototype={
 $1(a){var s
@@ -4098,7 +4082,8 @@ s.style.color="red"
 s.innerText="Input too long"
 A.qw(A.d(a))
 s=this.c
-s.y=B.cV
+s.as=B.cV
+s.V(!1)
 s.j()},
 $S:26}
 A.JA.prototype={
@@ -4155,7 +4140,7 @@ k(j,"gV3","zg",2)
 k(j,"gU","dF",24)
 s(A,"A7","MN",3)})();(function inheritance(){var s=hunkHelpers.mixin,r=hunkHelpers.inherit,q=hunkHelpers.inheritMany
 r(A.j,null)
-q(A.j,[A.FK,J.vB,A.rY,J.m,A.Ge,A.ar,A.L,A.zl,A.cX,A.a7,A.MH,A.SU,A.Re,A.Zr,A.te,A.bq,A.XO,A.il,A.db,A.N6,A.VR,A.Jc,A.ET,A.lY,A.W3,A.ih,A.OH,A.qh,A.KA,A.WV,A.ru,A.Pf,A.Fe,A.vs,A.OM,A.Kd,A.VT,A.of,A.fI,A.yR,A.B3,A.EM,A.xI,A.m0,A.t3,A.zF,A.Rw,A.ck,A.VS,A.CD,A.aE,A.c8,A.Zd,A.v,A.R5,A.eK,A.Dw,A.HO,A.wO,A.Tw,A.E4,A.pR,A.P2,A.dI,A.Fk,A.xC,A.Ng,A.yN,A.by,A.oy])
+q(A.j,[A.FK,J.vB,A.rY,J.m,A.Ge,A.ar,A.L,A.zl,A.cX,A.a7,A.MH,A.SU,A.Re,A.Zr,A.te,A.bq,A.XO,A.il,A.db,A.N6,A.VR,A.Jc,A.ET,A.lY,A.W3,A.ih,A.OH,A.qh,A.KA,A.WV,A.ru,A.Pf,A.Fe,A.vs,A.OM,A.Kd,A.VT,A.of,A.fI,A.yR,A.B3,A.EM,A.xI,A.m0,A.t3,A.zF,A.Rw,A.ck,A.VS,A.CD,A.aE,A.c8,A.Zd,A.v,A.R5,A.eK,A.Dw,A.HO,A.wO,A.Tw,A.E4,A.pR,A.P2,A.dI,A.Fk,A.xC,A.Ng,A.by,A.oy])
 q(J.vB,[J.yE,J.PE,J.MF,J.rQ,J.PD,J.qI,J.Dr])
 q(J.MF,[J.zh,J.jd,A.WZ,A.eH])
 q(J.zh,[J.iC,J.kd,J.c5])

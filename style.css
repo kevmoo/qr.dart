@@ -1,55 +1,110 @@
-input#input, canvas, .setting {
-  margin: 20px auto;
-  display: block;
-  width: 600px;
+/* Cleaned up for Pico.css */
+canvas {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--pico-muted-border-color);
+  border-radius: var(--pico-border-radius);
 }
 
-input#input {
-  height: 35px;
-  line-height: 35px;
+.validation-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--pico-border-radius);
+  display: block;
   margin: 0 auto;
-  text-align: center;
-  font-size:30px;
 }
 
 #status {
   text-align: center;
-  margin: 10px auto;
+  margin-top: 10px;
   font-family: monospace;
+  min-height: 1.5em;
 }
 
-.setting span {
-  width: 120px;
-  display: block;
-  float: left;
-  margin-right: 5px;
-  text-align: right;
-  padding-top: 6px;
+/* Custom layout tweaks */
+.setting {
+  margin-bottom: var(--pico-spacing);
 }
 
-input[type='radio'] {
+/* Radio button styling for settings */
+#type-div, #error-div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+/* Hide default radio buttons but keep label functionality */
+#type-div input[type='radio'],
+#error-div input[type='radio'] {
   display: none;
 }
 
-[type=radio]:checked + label {
-  background: #ddd;
-}
-
-label {
-  display: inline-block;
-  min-width: 15px;
-  margin: 0 5px 0 1px;
-  text-align: center;
-}
-
+/* Style labels as clickable badges/buttons */
+#type-div label,
 #error-div label {
-  min-width: 85px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid var(--pico-primary-border);
+  border-radius: var(--pico-border-radius);
+  background-color: var(--pico-card-background-color);
+  color: var(--pico-color);
+  font-size: 0.9em;
+  margin: 0;
 }
 
-.github-button-wrapper {
-  width: 139px;
-  height: 30px;
-  margin: 0 auto;
-  display: block;
-  clear: both;
+/* Selected state for radio labels - checked selector trick */
+#type-div input[type='radio']:checked + label,
+#error-div input[type='radio']:checked + label {
+  background-color: var(--pico-primary-background);
+  color: var(--pico-primary-inverse);
+  border-color: var(--pico-primary-background);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: var(--pico-spacing);
+  padding-bottom: var(--pico-spacing);
+}
+
+.github-button-wrapper a {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.github-button-wrapper svg {
+  vertical-align: middle;
+}
+
+.tech-stack {
+  margin-bottom: var(--pico-spacing);
+  font-size: 0.9em;
+  color: var(--pico-muted-color);
+}
+
+.tech-stack p {
+  margin-bottom: 0.2rem;
+}
+
+/* Input focus animation */
+@keyframes input-pulse {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--pico-primary-background), transparent 60%);
+  }
+  70% {
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--pico-primary-background), transparent 100%);
+  }
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--pico-primary-background), transparent 100%);
+  }
+}
+
+#input {
+  animation: input-pulse 2s infinite;
+}
+
+#input:focus {
+  animation: none;
 }
