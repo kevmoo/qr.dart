@@ -1,3 +1,4 @@
-# Configuration for https://pub.dev/packages/peanut
 directories:
 - example
+
+post-build-dart-script: tool/post_build.dart
