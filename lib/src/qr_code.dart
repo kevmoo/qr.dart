@@ -12,6 +12,7 @@ import 'math.dart' as qr_math;
 
 import 'polynomial.dart';
 import 'rs_block.dart';
+import 'validation_result.dart';
 
 class QrCode {
   final int typeNumber;
@@ -54,6 +55,59 @@ class QrCode {
     final datum = QrByte.fromUint8List(data);
     final typeNumber = _calculateTypeNumberFromData(errorCorrectLevel, [datum]);
     return QrCode(typeNumber, errorCorrectLevel).._addToList(datum);
+  }
+
+  static QrValidationResult fromDataAndValidation({
+    required String data,
+    required int typeNumber,
+    required QrErrorCorrectLevel errorCorrectLevel,
+  }) {
+    final datumList = QrDatum.toDatums(data);
+
+    // 1. Validate Types
+    var validTypes = <int>[];
+    try {
+      final minType = _calculateTypeNumberFromData(
+        errorCorrectLevel,
+        datumList,
+      );
+      // If minType is valid, all types >= minType are valid (up to 40)
+      validTypes = List.generate(40 - minType + 1, (i) => minType + i);
+    } on InputTooLongException {
+      // No types are valid for this error level
+    }
+
+    // 2. Validate Error Levels
+    final validErrorLevels = <QrErrorCorrectLevel>[];
+    for (final level in QrErrorCorrectLevel.values) {
+      try {
+        final minTypeForLevel = _calculateTypeNumberFromData(level, datumList);
+        if (minTypeForLevel <= typeNumber) {
+          validErrorLevels.add(level);
+        }
+      } on InputTooLongException {
+        // This level is invalid for this input length at ANY type (???)
+        // Wait, _calculateTypeNumberFromData finds the MINIMUM type.
+        // If it throws, it means even Type 40 isn't big enough.
+        // So yes, if it throws, this level is invalid for this input.
+      }
+    }
+
+    // 3. Generate Code if valid
+    QrCode? code;
+    if (validTypes.contains(typeNumber) &&
+        validErrorLevels.contains(errorCorrectLevel)) {
+      code = QrCode(typeNumber, errorCorrectLevel);
+      for (final datum in datumList) {
+        code._addToList(datum);
+      }
+    }
+
+    return QrValidationResult(
+      qrCode: code,
+      validTypeNumbers: validTypes,
+      validErrorCorrectLevels: validErrorLevels,
+    );
   }
 
   static int _calculateTotalDataBits(
