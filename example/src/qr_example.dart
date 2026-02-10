@@ -14,7 +14,7 @@ const String _errorLevelIdKey = 'error_value';
 
 enum _FrameState { qr, error, question }
 
-class QrDemo {
+class QrExample {
   final HTMLCanvasElement _canvas;
   final CanvasRenderingContext2D _ctx;
   final HTMLImageElement _errorImg;
@@ -34,7 +34,7 @@ class QrDemo {
 
   bool _frameRequested = false;
 
-  factory QrDemo() {
+  factory QrExample() {
     final canvas = document.querySelector('#content') as HTMLCanvasElement;
     final errorImg =
         document.querySelector('#validation-error') as HTMLImageElement;
@@ -51,7 +51,7 @@ class QrDemo {
     final downloadBtn =
         document.querySelector('#download-btn') as HTMLButtonElement;
 
-    final demo = QrDemo._(
+    final demo = QrExample._(
       canvas,
       errorImg,
       waitingImg,
@@ -121,7 +121,7 @@ class QrDemo {
       ..click();
   }
 
-  QrDemo._(
+  QrExample._(
     HTMLCanvasElement canvas,
     this._errorImg,
     this._waitingImg,
