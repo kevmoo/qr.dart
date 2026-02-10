@@ -16,11 +16,9 @@ Future<void> main(List<String> args) async {
     exit(1);
   }
 
-  print('Files in staging directory ${stagingDir.path}:');
   final files = stagingDir.listSync(recursive: true);
   var depsFileFound = false;
   for (final file in files) {
-    print(' - ${file.path}');
     if (file is File && file.path.endsWith('.deps')) {
       print('Deleting ${file.path}...');
       file.deleteSync();
@@ -71,7 +69,7 @@ Future<void> main(List<String> args) async {
   // Shorten SHA for display
   final shortSha = gitInfo.substring(0, 7);
   final replacement =
-      '<code>$version • <a href="https://github.com/kevmoo/qr.dart/commit/'
+      '<code class="build-info">$version • <a href="https://github.com/kevmoo/qr.dart/commit/'
       '$gitInfo">$shortSha</a></code>';
 
   // Replace placeholder

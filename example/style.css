@@ -88,6 +88,20 @@ footer {
   margin-bottom: 0.2rem;
 }
 
+/* Build Info - smaller and separated */
+.build-info {
+  display: block;
+  margin-top: 2rem;
+  font-size: 0.75em;
+  color: var(--pico-muted-color);
+  background: transparent;
+  border: none;
+}
+.build-info a {
+  color: inherit;
+  text-decoration: underline;
+}
+
 /* Input focus animation */
 @keyframes input-pulse {
   0% {
