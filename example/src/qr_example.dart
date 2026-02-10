@@ -178,6 +178,7 @@ class QrExample {
         ..title = 'Recover up to ${v.recoveryRate}% of data';
       errorDiv.appendChild(label);
     }
+    _validate();
   }
 
   void _enableButtons(bool enable) {
@@ -214,7 +215,56 @@ class QrExample {
   }
 
   void _update() {
+    _validate();
     _inputValues.add(_Config(_typeNumber, _errorCorrectLevel, _value));
+  }
+
+  void _validate() {
+    final result = QrCode.fromDataAndValidation(
+      data: _value,
+      typeNumber: _typeNumber,
+      errorCorrectLevel: _errorCorrectLevel,
+    );
+
+    // Update Type buttons
+    for (var i = 1; i <= 10; i++) {
+      final radio = document.getElementById('type_$i') as HTMLInputElement?;
+      if (radio == null) continue;
+
+      final label =
+          document.querySelector('label[for="${radio.id}"]')
+              as HTMLLabelElement?;
+      if (label == null) continue;
+
+      if (result.validTypeNumbers.contains(i)) {
+        label.classList.remove('invalid-option');
+      } else {
+        label.classList.add('invalid-option');
+      }
+    }
+
+    // Update Error Level buttons
+    for (final level in QrErrorCorrectLevel.values) {
+      final radio =
+          document.getElementById('error_$level') as HTMLInputElement?;
+      if (radio == null) continue;
+
+      final label =
+          document.querySelector('label[for="${radio.id}"]')
+              as HTMLLabelElement?;
+      if (label == null) continue;
+
+      // For error levels, we check if this specific level is valid for the
+      // current data.
+      // We might need to check if it's valid for the *current type* too,
+      // but fromDataAndValidation returns validErrorCorrectLevels which are
+      // valid for the *current type* and *current data*.
+      if (result.validErrorCorrectLevels.contains(level)) {
+        label.classList.remove('invalid-option');
+      } else {
+        label.classList.add('invalid-option');
+      }
+    }
   }
 
   void _onFrame(num highResTime) {
