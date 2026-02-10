@@ -52,7 +52,7 @@ of scannable codes, include QR.
 
 # Exporting
 
-The following libraries can be used to export QR codes to a specific format:
+The following packages can be used to export QR codes directory to an image:
 
 * [qr_image_exporter](https://pub.dev/packages/qr_image_exporter) - A library to 
   export QR codes as PNG image data.
