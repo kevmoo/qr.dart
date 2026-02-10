@@ -21,6 +21,7 @@ Reference `CONTRIBUTING.md` for web development information.
 ## General
 - Keep changes minimal and focused.
 - Follow existing patterns in the codebase.
+- Always check analyzer for lints and fix them.
 
 ### Troubleshooting
 If `dart run build_runner serve` fails with "address in use", you can search for the process using the port (e.g. 8080) using `witr`.

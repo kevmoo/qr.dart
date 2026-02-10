@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:path/path.dart' as p;
 
+const _placeholder = '<!-- BUILD_INFO -->';
+
 Future<void> main(List<String> args) async {
   if (args.isEmpty) {
     print('No arguments passed to script.');
@@ -32,6 +34,20 @@ Future<void> main(List<String> args) async {
     print('Cleanup complete.');
   }
 
+  if (!_isWorkingTreeClean()) {
+    print('Skipping build info injection: working tree is dirty.');
+    return;
+  }
+
+  final currentBranch = _runGit(['branch', '--show-current']);
+  if (currentBranch != 'master') {
+    print(
+      'Skipping build info injection: '
+      'current branch is "$currentBranch" (expected "master").',
+    );
+    return;
+  }
+
   final htmlFilePath = p.join(stagingDir.path, 'index.html');
   final htmlFile = File(htmlFilePath);
 
@@ -47,32 +63,22 @@ Future<void> main(List<String> args) async {
   // Get Tool version - in this case Dart version
   final version = 'Dart version ${Platform.version.split(' ').first}';
 
-  // Get git SHA and dirty state
-  final clean = _isWorkingTreeClean();
-
-  // NO POINT in including a SHA if it's invalid
-  final gitInfo = clean ? _runGit(['rev-parse', 'HEAD']) : 'DIRTY';
+  final gitInfo = _runGit(['rev-parse', 'HEAD']);
 
   // If clean, link to the commit
   // Assuming GitHub repo structure: https://github.com/kevmoo/qr.dart/commit/<SHA>
-  // We can hardcode this or try to parse remote origin url but simpler is better.
-  // The user post said: "The commit SHA should like to the code repository" "like" -> "link"
 
-  String replacement;
-  if (clean) {
-    // Shorten SHA for display
-    final shortSha = gitInfo.substring(0, 7);
-    replacement =
-        '<code>$version • <a href="https://github.com/kevmoo/qr.dart/commit/$gitInfo">$shortSha</a></code>';
-  } else {
-    replacement = '<code>$version • DIRTY</code>';
-  }
+  // Shorten SHA for display
+  final shortSha = gitInfo.substring(0, 7);
+  final replacement =
+      '<code>$version • <a href="https://github.com/kevmoo/qr.dart/commit/'
+      '$gitInfo">$shortSha</a></code>';
 
-  // Replace <!-- BUILD_INFO -->
-  final newContent = contents.replaceAll('<!-- BUILD_INFO -->', replacement);
+  // Replace placeholder
+  final newContent = contents.replaceAll(_placeholder, replacement);
 
   if (newContent == contents) {
-    print('WARNING: <!-- BUILD_INFO --> placeholder not found in index.html');
+    print('WARNING: $_placeholder placeholder not found in index.html');
   } else {
     print('Injected build info into index.html');
     htmlFile.writeAsStringSync(newContent);
@@ -83,7 +89,8 @@ String _runGit(List<String> args) {
   final result = Process.runSync('git', args);
 
   if (result.exitCode != 0) {
-    // If git fails, maybe just return empty or throw? Content said "ProcessException"
+    // If git fails, maybe just return empty or throw?
+    // Content said "ProcessException"
     throw ProcessException(
       'git',
       args,
