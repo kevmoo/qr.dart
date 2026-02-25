@@ -14,6 +14,8 @@ const String _errorLevelIdKey = 'error_value';
 
 enum _FrameState { qr, error, question }
 
+const _maxTypeNumber = 10;
+
 class QrExample {
   final HTMLCanvasElement _canvas;
   final CanvasRenderingContext2D _ctx;
@@ -26,7 +28,7 @@ class QrExample {
   final Stream<List<bool>?> output;
 
   String _value = '';
-  int _typeNumber = 10;
+  int _typeNumber = _maxTypeNumber;
   QrErrorCorrectLevel _errorCorrectLevel = QrErrorCorrectLevel.medium;
 
   List<bool> _squares = [];
@@ -135,7 +137,7 @@ class QrExample {
     _ctx.fillStyle = 'black'.toJS;
 
     // Type Div
-    for (var i = 1; i <= 10; i++) {
+    for (var i = 1; i <= _maxTypeNumber; i++) {
       final radio = (document.createElement('INPUT') as HTMLInputElement)
         ..type = 'radio'
         ..id = 'type_$i'
@@ -234,7 +236,7 @@ class QrExample {
       label.classList.toggle('invalid-option', !isValid);
     }
 
-    for (var i = 1; i <= 10; i++) {
+    for (var i = 1; i <= _maxTypeNumber; i++) {
       update('type_$i', result.validTypeNumbers.contains(i));
     }
 
