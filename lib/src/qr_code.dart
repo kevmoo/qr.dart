@@ -64,29 +64,49 @@ class QrCode {
   }) {
     final datumList = QrDatum.toDatums(data);
 
+    int calculateRequiredBits(int type) {
+      final buffer = QrBitBuffer();
+      for (final datum in datumList) {
+        buffer
+          ..put(datum.mode.value, 4)
+          ..put(datum.length, datum.mode.getLengthBits(type));
+        datum.write(buffer);
+      }
+      return buffer.length;
+    }
+
+    // Required bits only changes at types 10 and 27.
+    final requiredBitsFor1 = calculateRequiredBits(1);
+    final requiredBitsFor10 = calculateRequiredBits(10);
+    final requiredBitsFor27 = calculateRequiredBits(27);
+
+    int getRequiredBits(int type) {
+      if (type < 10) return requiredBitsFor1;
+      if (type < 27) return requiredBitsFor10;
+      return requiredBitsFor27;
+    }
+
     // 1. Validate Types
-    var validTypes = <int>[];
-    try {
-      final minType = _calculateTypeNumberFromData(
-        errorCorrectLevel,
-        datumList,
-      );
-      // If minType is valid, all types >= minType are valid (up to 40)
-      validTypes = List.generate(40 - minType + 1, (i) => minType + i);
-    } on InputTooLongException {
-      // No types are valid for this error level
+    final validTypes = <int>[];
+    for (var type = 1; type <= 40; type++) {
+      final required = getRequiredBits(type);
+      final capacity = _calculateTotalDataBits(type, errorCorrectLevel);
+      if (required <= capacity) {
+        // Found minType, all subsequent types are also valid.
+        for (var t = type; t <= 40; t++) {
+          validTypes.add(t);
+        }
+        break;
+      }
     }
 
     // 2. Validate Error Levels
     final validErrorLevels = <QrErrorCorrectLevel>[];
     for (final level in QrErrorCorrectLevel.values) {
-      try {
-        final minTypeForLevel = _calculateTypeNumberFromData(level, datumList);
-        if (minTypeForLevel <= typeNumber) {
-          validErrorLevels.add(level);
-        }
-      } on InputTooLongException {
-        // This level is invalid for this input length at any type.
+      final requiredForType = getRequiredBits(typeNumber);
+      final capacity = _calculateTotalDataBits(typeNumber, level);
+      if (requiredForType <= capacity) {
+        validErrorLevels.add(level);
       }
     }
 
