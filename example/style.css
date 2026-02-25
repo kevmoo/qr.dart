@@ -124,7 +124,6 @@ footer {
 }
 
 /* Invalid option style */
-/* Invalid option style */
 #type-div .invalid-option,
 #error-div .invalid-option {
   border-color: var(--pico-del-color);
