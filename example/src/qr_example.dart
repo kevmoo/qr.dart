@@ -134,9 +134,7 @@ class QrExample {
       output = _inputValues.stream.asyncMapSample(_calc) {
     _ctx.fillStyle = 'black'.toJS;
 
-    //
     // Type Div
-    //
     for (var i = 1; i <= 10; i++) {
       final radio = (document.createElement('INPUT') as HTMLInputElement)
         ..type = 'radio'
@@ -156,7 +154,6 @@ class QrExample {
     }
 
     // Error Correct Levels
-    //
     final sortedLevels = QrErrorCorrectLevel.values.toList()
       ..sort((a, b) => a.recoveryRate.compareTo(b.recoveryRate));
     for (final v in sortedLevels) {
@@ -225,39 +222,24 @@ class QrExample {
       errorCorrectLevel: _errorCorrectLevel,
     );
 
-    // Update Type buttons
-    for (var i = 1; i <= 10; i++) {
-      final radio = document.getElementById('type_$i') as HTMLInputElement?;
-      if (radio == null) continue;
+    void update(String id, bool isValid) {
+      final radio = document.getElementById(id) as HTMLInputElement?;
+      if (radio == null) return;
 
       final label =
           document.querySelector('label[for="${radio.id}"]')
               as HTMLLabelElement?;
-      if (label == null) continue;
+      if (label == null) return;
 
-      if (result.validTypeNumbers.contains(i)) {
-        label.classList.remove('invalid-option');
-      } else {
-        label.classList.add('invalid-option');
-      }
+      label.classList.toggle('invalid-option', !isValid);
     }
 
-    // Update Error Level buttons
+    for (var i = 1; i <= 10; i++) {
+      update('type_$i', result.validTypeNumbers.contains(i));
+    }
+
     for (final level in QrErrorCorrectLevel.values) {
-      final radio =
-          document.getElementById('error_$level') as HTMLInputElement?;
-      if (radio == null) continue;
-
-      final label =
-          document.querySelector('label[for="${radio.id}"]')
-              as HTMLLabelElement?;
-      if (label == null) continue;
-
-      if (result.validErrorCorrectLevels.contains(level)) {
-        label.classList.remove('invalid-option');
-      } else {
-        label.classList.add('invalid-option');
-      }
+      update('error_$level', result.validErrorCorrectLevels.contains(level));
     }
   }
 
