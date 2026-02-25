@@ -207,8 +207,7 @@ List<int> _createData(
     data.write(buffer);
   }
 
-  // HUH?
-  // ç≈ëÂÉfÅ[É^êîÇåvéZ
+  // Calculate maximum data bits
   final totalDataBits = QrCode._calculateTotalDataBits(
     typeNumber,
     errorCorrectLevel,
@@ -218,8 +217,7 @@ List<int> _createData(
     throw InputTooLongException(buffer.length, totalDataBits);
   }
 
-  // HUH?
-  // èIí[ÉRÅ[Éh
+  // Terminator code
   if (buffer.length + 4 <= totalDataBits) {
     buffer.put(0, 4);
   }

@@ -45,14 +45,10 @@ void main() {
   });
 
   test('fromDataAndValidation validates error levels', () {
-    // Find an input that fits in Type 5-L but not Type 5-H
-    // Type 5-L: 134 data bytes? (Check table if needed, or just experiment)
-    // Type 5-H: 46 data bytes?
-    // Let's us 100 bytes.
-    final data = 'A' * 100;
-
-    // Let's pick a type that is on the boundary.
-    // Actually, let's just see what validErrorLevels returns for a fixed type.
+    // 120 chars 'A' results in 675 bits (84.375 bytes) in Alphanumeric mode.
+    // This fits in Type 5-L (108 bytes) and 5-M (86 bytes),
+    // but not 5-Q (62 bytes) or 5-H (46 bytes).
+    final data = 'A' * 120;
 
     final result = QrCode.fromDataAndValidation(
       data: data,
@@ -60,13 +56,10 @@ void main() {
       errorCorrectLevel: QrErrorCorrectLevel.low,
     );
 
-    // If 100 bytes fits in 5-L, it should be valid
-    // If it doesn't fit in 5-H, H should be missing from validErrorLevels
-
-    if (result.isValid) {
-      expect(result.validErrorCorrectLevels, contains(QrErrorCorrectLevel.low));
-      // It might or might not contain High depending on exact capacity.
-      // But we can check that it returns a subset of levels.
-    }
+    expect(result.isValid, isTrue);
+    expect(
+      result.validErrorCorrectLevels,
+      unorderedEquals([QrErrorCorrectLevel.low, QrErrorCorrectLevel.medium]),
+    );
   });
 }
