@@ -122,3 +122,18 @@ footer {
 #input:focus {
   animation: none;
 }
+
+/* Invalid option style */
+#type-div .invalid-option,
+#error-div .invalid-option {
+  border-color: var(--pico-del-color);
+  color: var(--pico-del-color);
+  background-color: color-mix(in srgb, var(--pico-del-color), transparent 75%);
+  opacity: 0.7;
+}
+
+#type-div .invalid-option:hover,
+#error-div .invalid-option:hover {
+  opacity: 1;
+  background-color: color-mix(in srgb, var(--pico-del-color), transparent 70%);
+}
