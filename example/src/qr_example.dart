@@ -90,7 +90,7 @@ class QrExample {
       onError: (Object error) {
         input.style.background = 'red';
         statusDiv.style.color = 'red';
-        statusDiv.innerText = 'Input too long';
+        statusDiv.innerText = 'Input too long (${demo.value.length} bytes)';
         print(error);
         demo
           .._state = _FrameState.error
