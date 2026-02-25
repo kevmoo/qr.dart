@@ -1,5 +1,5 @@
-import 'src/qr_demo.dart';
+import 'src/qr_example.dart';
 
 void main() {
-  QrDemo();
+  QrExample();
 }

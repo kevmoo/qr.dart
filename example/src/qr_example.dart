@@ -14,7 +14,9 @@ const String _errorLevelIdKey = 'error_value';
 
 enum _FrameState { qr, error, question }
 
-class QrDemo {
+const _maxTypeNumber = 10;
+
+class QrExample {
   final HTMLCanvasElement _canvas;
   final CanvasRenderingContext2D _ctx;
   final HTMLImageElement _errorImg;
@@ -26,7 +28,7 @@ class QrDemo {
   final Stream<List<bool>?> output;
 
   String _value = '';
-  int _typeNumber = 10;
+  int _typeNumber = _maxTypeNumber;
   QrErrorCorrectLevel _errorCorrectLevel = QrErrorCorrectLevel.medium;
 
   List<bool> _squares = [];
@@ -34,7 +36,7 @@ class QrDemo {
 
   bool _frameRequested = false;
 
-  factory QrDemo() {
+  factory QrExample() {
     final canvas = document.querySelector('#content') as HTMLCanvasElement;
     final errorImg =
         document.querySelector('#validation-error') as HTMLImageElement;
@@ -51,7 +53,7 @@ class QrDemo {
     final downloadBtn =
         document.querySelector('#download-btn') as HTMLButtonElement;
 
-    final demo = QrDemo._(
+    final demo = QrExample._(
       canvas,
       errorImg,
       waitingImg,
@@ -90,8 +92,7 @@ class QrDemo {
       onError: (Object error) {
         input.style.background = 'red';
         statusDiv.style.color = 'red';
-        statusDiv.innerText = 'Input too long';
-        print(error);
+        statusDiv.innerText = 'Input too long (${demo.value.length} bytes)';
         demo
           .._state = _FrameState.error
           .._enableButtons(false)
@@ -121,7 +122,7 @@ class QrDemo {
       ..click();
   }
 
-  QrDemo._(
+  QrExample._(
     HTMLCanvasElement canvas,
     this._errorImg,
     this._waitingImg,
@@ -135,10 +136,8 @@ class QrDemo {
       output = _inputValues.stream.asyncMapSample(_calc) {
     _ctx.fillStyle = 'black'.toJS;
 
-    //
     // Type Div
-    //
-    for (var i = 1; i <= 10; i++) {
+    for (var i = 1; i <= _maxTypeNumber; i++) {
       final radio = (document.createElement('INPUT') as HTMLInputElement)
         ..type = 'radio'
         ..id = 'type_$i'
@@ -157,7 +156,6 @@ class QrDemo {
     }
 
     // Error Correct Levels
-    //
     final sortedLevels = QrErrorCorrectLevel.values.toList()
       ..sort((a, b) => a.recoveryRate.compareTo(b.recoveryRate));
     for (final v in sortedLevels) {
@@ -178,6 +176,7 @@ class QrDemo {
         ..title = 'Recover up to ${v.recoveryRate}% of data';
       errorDiv.appendChild(label);
     }
+    _validate();
   }
 
   void _enableButtons(bool enable) {
@@ -214,7 +213,36 @@ class QrDemo {
   }
 
   void _update() {
+    _validate();
     _inputValues.add(_Config(_typeNumber, _errorCorrectLevel, _value));
+  }
+
+  void _validate() {
+    final result = QrCode.fromDataAndValidation(
+      data: _value,
+      typeNumber: _typeNumber,
+      errorCorrectLevel: _errorCorrectLevel,
+    );
+
+    void update(String id, bool isValid) {
+      final radio = document.getElementById(id) as HTMLInputElement?;
+      if (radio == null) return;
+
+      final label =
+          document.querySelector('label[for="${radio.id}"]')
+              as HTMLLabelElement?;
+      if (label == null) return;
+
+      label.classList.toggle('invalid-option', !isValid);
+    }
+
+    for (var i = 1; i <= _maxTypeNumber; i++) {
+      update('type_$i', result.validTypeNumbers.contains(i));
+    }
+
+    for (final level in QrErrorCorrectLevel.values) {
+      update('error_$level', result.validErrorCorrectLevels.contains(level));
+    }
   }
 
   void _onFrame(num highResTime) {

@@ -12,6 +12,7 @@ import 'math.dart' as qr_math;
 
 import 'polynomial.dart';
 import 'rs_block.dart';
+import 'validation_result.dart';
 
 class QrCode {
   final int typeNumber;
@@ -54,6 +55,76 @@ class QrCode {
     final datum = QrByte.fromUint8List(data);
     final typeNumber = _calculateTypeNumberFromData(errorCorrectLevel, [datum]);
     return QrCode(typeNumber, errorCorrectLevel).._addToList(datum);
+  }
+
+  static QrValidationResult fromDataAndValidation({
+    required String data,
+    required int typeNumber,
+    required QrErrorCorrectLevel errorCorrectLevel,
+  }) {
+    final datumList = QrDatum.toDatums(data);
+
+    int calculateRequiredBits(int type) {
+      final buffer = QrBitBuffer();
+      for (final datum in datumList) {
+        buffer
+          ..put(datum.mode.value, 4)
+          ..put(datum.length, datum.mode.getLengthBits(type));
+        datum.write(buffer);
+      }
+      return buffer.length;
+    }
+
+    // Required bits only changes at types 10 and 27.
+    final requiredBitsFor1 = calculateRequiredBits(1);
+    final requiredBitsFor10 = calculateRequiredBits(10);
+    final requiredBitsFor27 = calculateRequiredBits(27);
+
+    int getRequiredBits(int type) {
+      if (type < 10) return requiredBitsFor1;
+      if (type < 27) return requiredBitsFor10;
+      return requiredBitsFor27;
+    }
+
+    // 1. Validate Types
+    final validTypes = <int>[];
+    for (var type = 1; type <= 40; type++) {
+      final required = getRequiredBits(type);
+      final capacity = _calculateTotalDataBits(type, errorCorrectLevel);
+      if (required <= capacity) {
+        // Found minType, all subsequent types are also valid.
+        for (var t = type; t <= 40; t++) {
+          validTypes.add(t);
+        }
+        break;
+      }
+    }
+
+    // 2. Validate Error Levels
+    final validErrorLevels = <QrErrorCorrectLevel>[];
+    for (final level in QrErrorCorrectLevel.values) {
+      final requiredForType = getRequiredBits(typeNumber);
+      final capacity = _calculateTotalDataBits(typeNumber, level);
+      if (requiredForType <= capacity) {
+        validErrorLevels.add(level);
+      }
+    }
+
+    // 3. Generate Code if valid
+    QrCode? code;
+    if (validTypes.contains(typeNumber) &&
+        validErrorLevels.contains(errorCorrectLevel)) {
+      code = QrCode(typeNumber, errorCorrectLevel);
+      for (final datum in datumList) {
+        code._addToList(datum);
+      }
+    }
+
+    return QrValidationResult(
+      qrCode: code,
+      validTypeNumbers: validTypes,
+      validErrorCorrectLevels: validErrorLevels,
+    );
   }
 
   static int _calculateTotalDataBits(
@@ -153,8 +224,7 @@ List<int> _createData(
     data.write(buffer);
   }
 
-  // HUH?
-  // ç≈ëÂÉfÅ[É^êîÇåvéZ
+  // Calculate maximum data bits
   final totalDataBits = QrCode._calculateTotalDataBits(
     typeNumber,
     errorCorrectLevel,
@@ -164,8 +234,7 @@ List<int> _createData(
     throw InputTooLongException(buffer.length, totalDataBits);
   }
 
-  // HUH?
-  // èIí[ÉRÅ[Éh
+  // Terminator code
   if (buffer.length + 4 <= totalDataBits) {
     buffer.put(0, 4);
   }

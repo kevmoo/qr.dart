@@ -7,3 +7,4 @@ export 'src/input_too_long_exception.dart';
 export 'src/mode.dart';
 export 'src/qr_code.dart';
 export 'src/qr_image.dart';
+export 'src/validation_result.dart';

@@ -10,6 +10,8 @@
 - Throws `InputTooLongException` for data that exceeds QR code version 40 capacity,
   preventing the generation of invalid QR codes.
 - Require `sdk: ^3.8.0`.
+- Added `QrCode.fromDataAndValidation` to validate QR code data without generating the full code.
+- Added `QrValidationResult` class.
 
 ## 3.0.2
 
