@@ -49,11 +49,6 @@ class QrPolynomial {
       return this;
     }
 
-    // Use a copy of _values that we will mutate
-    // We only need the part that will remain after modulo?
-    // Actually, standard polynomial division.
-    // We can work on a copy of `this._values` and zero out leading terms.
-
     final values = Uint8List.fromList(_values);
 
     for (var i = 0; i < values.length - e.length + 1; i++) {
@@ -68,11 +63,6 @@ class QrPolynomial {
         values[i + j] ^= qr_math.gexp(qr_math.glog(eVal) + ratio);
       }
     }
-
-    // The result is the remainder, which is the last e.length - 1 coefficients?
-    // Wait, the degree of remainder is less than degree of divisor (e).
-    // e.length is e.degree + 1.
-    // So remainder length is e.length - 1.
 
     // Find where the remainder starts.
     // In the loop above, we zeroed out terms from 0 to

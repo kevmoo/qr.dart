@@ -86,10 +86,7 @@ class QrCode {
           validErrorLevels.add(level);
         }
       } on InputTooLongException {
-        // This level is invalid for this input length at ANY type (???)
-        // Wait, _calculateTypeNumberFromData finds the MINIMUM type.
-        // If it throws, it means even Type 40 isn't big enough.
-        // So yes, if it throws, this level is invalid for this input.
+        // This level is invalid for this input length at any type.
       }
     }
 

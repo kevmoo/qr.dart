@@ -91,7 +91,6 @@ class QrExample {
         input.style.background = 'red';
         statusDiv.style.color = 'red';
         statusDiv.innerText = 'Input too long (${demo.value.length} bytes)';
-        print(error);
         demo
           .._state = _FrameState.error
           .._enableButtons(false)
@@ -254,11 +253,6 @@ class QrExample {
               as HTMLLabelElement?;
       if (label == null) continue;
 
-      // For error levels, we check if this specific level is valid for the
-      // current data.
-      // We might need to check if it's valid for the *current type* too,
-      // but fromDataAndValidation returns validErrorCorrectLevels which are
-      // valid for the *current type* and *current data*.
       if (result.validErrorCorrectLevels.contains(level)) {
         label.classList.remove('invalid-option');
       } else {
