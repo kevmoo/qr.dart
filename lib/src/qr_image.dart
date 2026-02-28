@@ -401,42 +401,27 @@ double _lostPoint(QrImage qrImage) {
     for (var col = 0; col < moduleCount; col++) {
       var sameCount = 0;
       final currentIdx = row * moduleCount + col;
-      final isDark = data[currentIdx] == QrImage._pixelDark;
+      final p00 = data[currentIdx];
 
       // Check all 8 neighbors
       // Top row
       if (row > 0) {
         final upIdx = currentIdx - moduleCount;
-        if (col > 0 && (data[upIdx - 1] == QrImage._pixelDark) == isDark) {
-          sameCount++;
-        }
-        if ((data[upIdx] == QrImage._pixelDark) == isDark) sameCount++;
-        if (col < moduleCount - 1 &&
-            (data[upIdx + 1] == QrImage._pixelDark) == isDark) {
-          sameCount++;
-        }
+        if (col > 0 && data[upIdx - 1] == p00) sameCount++;
+        if (data[upIdx] == p00) sameCount++;
+        if (col < moduleCount - 1 && data[upIdx + 1] == p00) sameCount++;
       }
 
       // Middle row (left/right)
-      if (col > 0 && (data[currentIdx - 1] == QrImage._pixelDark) == isDark) {
-        sameCount++;
-      }
-      if (col < moduleCount - 1 &&
-          (data[currentIdx + 1] == QrImage._pixelDark) == isDark) {
-        sameCount++;
-      }
+      if (col > 0 && data[currentIdx - 1] == p00) sameCount++;
+      if (col < moduleCount - 1 && data[currentIdx + 1] == p00) sameCount++;
 
       // Bottom row
       if (row < moduleCount - 1) {
         final downIdx = currentIdx + moduleCount;
-        if (col > 0 && (data[downIdx - 1] == QrImage._pixelDark) == isDark) {
-          sameCount++;
-        }
-        if ((data[downIdx] == QrImage._pixelDark) == isDark) sameCount++;
-        if (col < moduleCount - 1 &&
-            (data[downIdx + 1] == QrImage._pixelDark) == isDark) {
-          sameCount++;
-        }
+        if (col > 0 && data[downIdx - 1] == p00) sameCount++;
+        if (data[downIdx] == p00) sameCount++;
+        if (col < moduleCount - 1 && data[downIdx + 1] == p00) sameCount++;
       }
 
       if (sameCount > 5) {
