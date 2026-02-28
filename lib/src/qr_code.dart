@@ -292,20 +292,28 @@ List<int> _createBytes(QrBitBuffer buffer, List<QrRsBlock> rsBlocks) {
     }
   }
 
-  final data = <int>[];
+  var totalCount = 0;
+  for (var i = 0; i < rsBlocks.length; i++) {
+    totalCount += rsBlocks[i].totalCount;
+  }
+
+  final data = Uint8List(totalCount);
+  var dataPtr = 0;
 
   for (var i = 0; i < maxDcCount; i++) {
     for (var r = 0; r < rsBlocks.length; r++) {
-      if (i < dcData[r]!.length) {
-        data.add(dcData[r]![i]);
+      final dcItem = dcData[r]!;
+      if (i < dcItem.length) {
+        data[dataPtr++] = dcItem[i];
       }
     }
   }
 
   for (var i = 0; i < maxEcCount; i++) {
     for (var r = 0; r < rsBlocks.length; r++) {
-      if (i < ecData[r]!.length) {
-        data.add(ecData[r]![i]);
+      final ecItem = ecData[r]!;
+      if (i < ecItem.length) {
+        data[dataPtr++] = ecItem[i];
       }
     }
   }
