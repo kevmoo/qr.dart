@@ -69,7 +69,9 @@ void main() {
   });
 
   test('throws on invalid input', () {
-    for (var character in 'abcdefghijklmnopqrstuvwxyz'.split('')) {
+    const lowerCase = 'abcdefghijklmnopqrstuvwxyz';
+    for (var i = 0; i < lowerCase.length; i++) {
+      final character = lowerCase[i];
       expect(
         () => QrAlphaNumeric.fromString(character),
         throwsArgumentError,
@@ -77,7 +79,9 @@ void main() {
       );
     }
 
-    for (var character in '!@#^&()_=[]{}\'";?<>,|~`'.split('')) {
+    const specialChars = '!@#^&()_=[]{}\'";?<>,|~`';
+    for (var i = 0; i < specialChars.length; i++) {
+      final character = specialChars[i];
       expect(
         () => QrAlphaNumeric.fromString(character),
         throwsArgumentError,
