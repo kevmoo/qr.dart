@@ -12,7 +12,7 @@ void main() {
     qr.write(buffer);
     expect(buffer, hasLength(248));
     expect(
-      buffer.map<String>((e) => e ? '1' : '0').join(),
+      buffer.map<String>((bool e) => e ? '1' : '0').join(),
       '00000000001'
       '00001011101'
       '00010111001'
@@ -46,7 +46,21 @@ void main() {
     final buffer = QrBitBuffer();
     qr.write(buffer);
     expect(buffer, hasLength(6));
-    expect(buffer.map<String>((e) => e ? '1' : '0').join(), '100101');
+    expect(buffer.map<String>((bool e) => e ? '1' : '0').join(), '100101');
+  });
+
+  test('triple alphanumeric', () {
+    final qr = QrAlphaNumeric.fromString('ABC');
+    expect(qr.mode, QrMode.alphaNumeric);
+    expect(qr.length, 3);
+    final buffer = QrBitBuffer();
+    qr.write(buffer);
+    expect(buffer, hasLength(17), reason: '(1*11) + 6 = 17');
+    expect(
+      buffer.map<String>((bool e) => e ? '1' : '0').join(),
+      '00111001101' // 461
+      '001100', // 12
+    );
   });
 
   test('double (even) alphanumeric', () {
@@ -59,10 +73,10 @@ void main() {
     expect(
       buffer
           .getRange(0, 11)
-          .map<int>((e) => e ? 1 : 0)
+          .map<int>((bool e) => e ? 1 : 0)
           .fold<int>(
             0,
-            (previousValue, element) => (previousValue << 1) | element,
+            (int previousValue, int element) => (previousValue << 1) | element,
           ),
       170,
     );
