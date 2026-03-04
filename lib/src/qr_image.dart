@@ -405,70 +405,68 @@ double _lostPoint(QrImage qrImage) {
       final p00 = data[currentIdx];
 
       if (p00 == QrImage._pixelDark) darkCount++;
- 
--      // Level 1: Check all 8 neighbors
-+      // Level 1
-+      // Check all 8 neighbors
-+      // Top row
-       if (row > 0) {
-         final upIdx = currentIdx - moduleCount;
-         if (col > 0 && data[upIdx - 1] == p00) sameCount++;
-         if (data[upIdx] == p00) sameCount++;
-         if (col < moduleCount - 1 && data[upIdx + 1] == p00) sameCount++;
-       }
- 
-+      // Middle row (left/right)
-       if (col > 0 && data[currentIdx - 1] == p00) sameCount++;
-       if (col < moduleCount - 1 && data[currentIdx + 1] == p00) sameCount++;
- 
-+      // Bottom row
-       if (row < moduleCount - 1) {
-         final downIdx = currentIdx + moduleCount;
-         if (col > 0 && data[downIdx - 1] == p00) sameCount++;
-         if (data[downIdx] == p00) sameCount++;
-         if (col < moduleCount - 1 && data[downIdx + 1] == p00) sameCount++;
-       }
- 
-       if (sameCount > 5) {
-         lostPoint += 3 + sameCount - 5;
-       }
- 
-       // Level 2: 2x2 blocks of same color
-       if (row < moduleCount - 1 && col < moduleCount - 1) {
-         if (p00 == data[currentIdx + 1] &&
-             p00 == data[currentIdx + moduleCount] &&
-             p00 == data[currentIdx + moduleCount + 1]) {
-           lostPoint += 3;
-         }
-       }
- 
-       // Level 3: 1:1:3:1:1 pattern
-+      // Dark, Light, Dark, Dark, Dark, Light, Dark
-       if (p00 == QrImage._pixelDark) {
-         if (col < moduleCount - 6 &&
-             data[currentIdx + 1] == QrImage._pixelLight &&
-             data[currentIdx + 2] == QrImage._pixelDark &&
-             data[currentIdx + 3] == QrImage._pixelDark &&
-             data[currentIdx + 4] == QrImage._pixelDark &&
-             data[currentIdx + 5] == QrImage._pixelLight &&
-             data[currentIdx + 6] == QrImage._pixelDark) {
-           lostPoint += 40;
-         }
-         if (row < moduleCount - 6 &&
-             data[currentIdx + moduleCount] == QrImage._pixelLight &&
-             data[currentIdx + 2 * moduleCount] == QrImage._pixelDark &&
-             data[currentIdx + 3 * moduleCount] == QrImage._pixelDark &&
-             data[currentIdx + 4 * moduleCount] == QrImage._pixelDark &&
-             data[currentIdx + 5 * moduleCount] == QrImage._pixelLight &&
-             data[currentIdx + 6 * moduleCount] == QrImage._pixelDark) {
-           lostPoint += 40;
-         }
-       }
-     }
-   }
- 
--  final ratio = (100 * darkCount / moduleCount / moduleCount - 50).abs() / 5;
-+  // Level 4: Dark ratio
-+  final ratio = (100 * darkCount / moduleCount / moduleCount - 50).abs() / 5;
-   return lostPoint + ratio * 10;
- }
+
+      // Level 1
+      // Check all 8 neighbors
+      // Top row
+      if (row > 0) {
+        final upIdx = currentIdx - moduleCount;
+        if (col > 0 && data[upIdx - 1] == p00) sameCount++;
+        if (data[upIdx] == p00) sameCount++;
+        if (col < moduleCount - 1 && data[upIdx + 1] == p00) sameCount++;
+      }
+
+      // Middle row (left/right)
+      if (col > 0 && data[currentIdx - 1] == p00) sameCount++;
+      if (col < moduleCount - 1 && data[currentIdx + 1] == p00) sameCount++;
+
+      // Bottom row
+      if (row < moduleCount - 1) {
+        final downIdx = currentIdx + moduleCount;
+        if (col > 0 && data[downIdx - 1] == p00) sameCount++;
+        if (data[downIdx] == p00) sameCount++;
+        if (col < moduleCount - 1 && data[downIdx + 1] == p00) sameCount++;
+      }
+
+      if (sameCount > 5) {
+        lostPoint += 3 + sameCount - 5;
+      }
+
+      // Level 2: 2x2 blocks of same color
+      if (row < moduleCount - 1 && col < moduleCount - 1) {
+        if (p00 == data[currentIdx + 1] &&
+            p00 == data[currentIdx + moduleCount] &&
+            p00 == data[currentIdx + moduleCount + 1]) {
+          lostPoint += 3;
+        }
+      }
+
+      // Level 3: 1:1:3:1:1 pattern
+      // Dark, Light, Dark, Dark, Dark, Light, Dark
+      if (p00 == QrImage._pixelDark) {
+        if (col < moduleCount - 6 &&
+            data[currentIdx + 1] == QrImage._pixelLight &&
+            data[currentIdx + 2] == QrImage._pixelDark &&
+            data[currentIdx + 3] == QrImage._pixelDark &&
+            data[currentIdx + 4] == QrImage._pixelDark &&
+            data[currentIdx + 5] == QrImage._pixelLight &&
+            data[currentIdx + 6] == QrImage._pixelDark) {
+          lostPoint += 40;
+        }
+        if (row < moduleCount - 6 &&
+            data[currentIdx + moduleCount] == QrImage._pixelLight &&
+            data[currentIdx + 2 * moduleCount] == QrImage._pixelDark &&
+            data[currentIdx + 3 * moduleCount] == QrImage._pixelDark &&
+            data[currentIdx + 4 * moduleCount] == QrImage._pixelDark &&
+            data[currentIdx + 5 * moduleCount] == QrImage._pixelLight &&
+            data[currentIdx + 6 * moduleCount] == QrImage._pixelDark) {
+          lostPoint += 40;
+        }
+      }
+    }
+  }
+
+  // Level 4: Dark ratio
+  final ratio = (100 * darkCount / moduleCount / moduleCount - 50).abs() / 5;
+  return lostPoint + ratio * 10;
+}

@@ -73,10 +73,9 @@ class QrNumeric implements QrDatum {
 
   factory QrNumeric.fromString(String numberString) {
     if (!validationRegex.hasMatch(numberString)) {
-      final value =
-          numberString.length > 10
-              ? '${numberString.substring(0, 10)}...'
-              : numberString;
+      final value = numberString.length > 10
+          ? '${numberString.substring(0, 10)}...'
+          : numberString;
       throw ArgumentError.value(
         value,
         'numberString',
@@ -146,10 +145,9 @@ class QrAlphaNumeric implements QrDatum {
 
   factory QrAlphaNumeric.fromString(String alphaNumeric) {
     if (!alphaNumeric.contains(validationRegex)) {
-      final value =
-          alphaNumeric.length > 10
-              ? '${alphaNumeric.substring(0, 10)}...'
-              : alphaNumeric;
+      final value = alphaNumeric.length > 10
+          ? '${alphaNumeric.substring(0, 10)}...'
+          : alphaNumeric;
       throw ArgumentError.value(
         value,
         'alphaNumeric',

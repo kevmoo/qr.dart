@@ -1,3 +1,4 @@
+import 'package:characters/characters.dart';
 import 'package:qr/qr.dart';
 import 'package:test/test.dart';
 
@@ -83,20 +84,17 @@ void main() {
   });
 
   test('throws on invalid input', () {
-    for (var character in 'abcdefghijklmnopqrstuvwxyz'.split('')) {
-      expect(
-        () => QrAlphaNumeric.fromString(character),
-        throwsArgumentError,
-        reason: 'lower case $character is invalid',
-      );
-    }
-
-    for (var character in '!@#^&()_=[]{}\'";?<>,|~`'.split('')) {
-      expect(
-        () => QrAlphaNumeric.fromString(character),
-        throwsArgumentError,
-        reason: 'special character $character is invalid',
-      );
-    }
+    _checkInvalid('abcdefghijklmnopqrstuvwxyz', 'lower case');
+    _checkInvalid('!@#^&()_=[]{}\'";?<>,|~`', 'special character');
   });
+}
+
+void _checkInvalid(String input, String description) {
+  for (final character in input.characters) {
+    expect(
+      () => QrAlphaNumeric.fromString(character),
+      throwsArgumentError,
+      reason: '$description $character is invalid',
+    );
+  }
 }

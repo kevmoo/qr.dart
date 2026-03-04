@@ -9,6 +9,7 @@ environment:
   sdk: ^3.8.0
 
 dependencies:
+  characters: ^1.4.1
   meta: ^1.7.0
 
 dev_dependencies:
