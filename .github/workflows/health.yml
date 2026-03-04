@@ -9,5 +9,6 @@ jobs:
     uses: dart-lang/ecosystem/.github/workflows/health.yaml@main
     with:
       sdk: stable
+      checks: "changelog,coverage,breaking,do-not-submit,leaking,unused-dependencies"
     permissions:
       pull-requests: write
