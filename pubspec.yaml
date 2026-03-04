@@ -9,7 +9,6 @@ environment:
   sdk: ^3.8.0
 
 dependencies:
-  characters: ^1.4.1
   meta: ^1.7.0
 
 dev_dependencies:
@@ -17,6 +16,7 @@ dev_dependencies:
   benchmark_harness: ^2.0.0
   build_runner: ^2.2.1
   build_web_compilers: ^4.1.4
+  characters: ^1.4.1
   dart_flutter_team_lints: ^3.0.0
   path: ^1.9.1
   stream_transform: ^2.0.0
