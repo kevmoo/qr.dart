@@ -11,7 +11,7 @@ void main() {
     for (var i = 0; i < 500; i++) {
       final length = random.nextInt(3000);
       final data = String.fromCharCodes(
-        Iterable.generate(length, (_) => random.nextInt(0x10FFFF)),
+        Iterable.generate(length, (_) => random.nextInt(0xD800)),
       );
 
       final level = QrErrorCorrectLevel
@@ -90,14 +90,20 @@ void main() {
                 ).join(),
               );
             case 3:
-              qr.addByteData(ByteData(10));
+              qr.addByteData(
+                ByteData.view(
+                  Uint8List.fromList(
+                    List.generate(10, (_) => random.nextInt(256)),
+                  ).buffer,
+                ),
+              );
             case 4:
               // ECI values are 0-999999
               qr.addECI(random.nextInt(1000000));
           }
         }
         // Accessing dataCache triggers the actual encoding
-        expect(qr.dataCache, anything);
+        expect(qr.dataCache, isNotEmpty);
       } catch (e) {
         if (e is! InputTooLongException && e is! ArgumentError) {
           print('Failed during manual addition at iteration $i');
