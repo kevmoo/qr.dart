@@ -1,3 +1,8 @@
+/// The eight QR Code mask patterns defined in ISO/IEC 18004.
+///
+/// Masking is applied to the data and error correction modules of a QR Code
+/// to ensure there are not large areas of the same color or patterns that look
+/// like the alignment or position detection patterns, making decoding easier.
 enum QrMaskPattern {
   pattern000,
   pattern001,
