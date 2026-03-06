@@ -28,13 +28,15 @@ class QrPolynomial {
   int get length => _values.length;
 
   QrPolynomial multiply(QrPolynomial e) {
-    final foo = Uint8List(length + e.length - 1);
+    final eLength = e.length;
+    final valLength = length;
+    final foo = Uint8List(valLength + eLength - 1);
 
-    for (var i = 0; i < length; i++) {
+    for (var i = 0; i < valLength; i++) {
       final v1 = _values[i];
       if (v1 == 0) continue;
       final log1 = qr_math.glog(v1);
-      for (var j = 0; j < e.length; j++) {
+      for (var j = 0; j < eLength; j++) {
         final v2 = e[j];
         if (v2 == 0) continue;
         foo[i + j] ^= qr_math.gexp(log1 + qr_math.glog(v2));
@@ -45,19 +47,23 @@ class QrPolynomial {
   }
 
   QrPolynomial mod(QrPolynomial e) {
-    if (length - e.length < 0) {
+    final eLength = e.length;
+    final valLength = length;
+    if (valLength - eLength < 0) {
       return this;
     }
 
     final values = Uint8List.fromList(_values);
+    final iterLimit = valLength - eLength + 1;
+    final e0Log = qr_math.glog(e[0]);
 
-    for (var i = 0; i < values.length - e.length + 1; i++) {
+    for (var i = 0; i < iterLimit; i++) {
       final v = values[i];
       if (v == 0) continue;
 
-      final ratio = qr_math.glog(v) - qr_math.glog(e[0]);
+      final ratio = qr_math.glog(v) - e0Log;
 
-      for (var j = 0; j < e.length; j++) {
+      for (var j = 0; j < eLength; j++) {
         final eVal = e[j];
         if (eVal == 0) continue;
         values[i + j] ^= qr_math.gexp(qr_math.glog(eVal) + ratio);
@@ -66,12 +72,12 @@ class QrPolynomial {
 
     // Find where the remainder starts.
     // In the loop above, we zeroed out terms from 0 to
-    // `values.length - e.length`.
-    // So the remainder starts at values.length - e.length + 1?
+    // `valLength - eLength`.
+    // So the remainder starts at valLength - eLength + 1?
     // No, we iterated i from 0 to diff.
     // The loop eliminates the term at `i`.
-    // The last `i` is `values.length - e.length`.
-    // After that, the terms from `0` to `values.length - e.length` should be 0.
+    // The last `i` is `valLength - eLength`.
+    // After that, the terms from `0` to `valLength - eLength` should be 0.
     // The remainder is at the end.
 
     // Note: The original implementation used `offset` to skip leading zeros.
@@ -81,12 +87,12 @@ class QrPolynomial {
 
     // Let's manually increment offset to match original logic if needed,
     // or just slice the end.
-    // The remainder should fit in e.length - 1.
+    // The remainder should fit in eLength - 1.
 
     // We can just return the tail.
     // But we need to handle leading zeros in the result too?
     // `QrPolynomial` constructor handles leading zeros.
 
-    return QrPolynomial(values.sublist(values.length - e.length + 1), 0);
+    return QrPolynomial(values.sublist(valLength - eLength + 1), 0);
   }
 }

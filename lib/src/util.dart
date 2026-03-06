@@ -56,29 +56,18 @@ const _g15Mask = (1 << 14) | (1 << 12) | (1 << 10) | (1 << 4) | (1 << 1);
 
 int bchTypeInfo(int data) {
   var d = data << 10;
-  while (_bchDigit(d) - _bchDigit(_g15) >= 0) {
-    d ^= _g15 << (_bchDigit(d) - _bchDigit(_g15));
+  while (d.bitLength >= 11) {
+    d ^= _g15 << (d.bitLength - 11);
   }
   return ((data << 10) | d) ^ _g15Mask;
 }
 
 int bchTypeNumber(int data) {
   var d = data << 12;
-  while (_bchDigit(d) - _bchDigit(_g18) >= 0) {
-    d ^= _g18 << (_bchDigit(d) - _bchDigit(_g18));
+  while (d.bitLength >= 13) {
+    d ^= _g18 << (d.bitLength - 13);
   }
   return (data << 12) | d;
-}
-
-int _bchDigit(int data) {
-  var digit = 0;
-
-  while (data != 0) {
-    digit++;
-    data >>= 1;
-  }
-
-  return digit;
 }
 
 List<int> patternPosition(int typeNumber) =>
