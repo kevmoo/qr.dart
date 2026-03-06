@@ -3,11 +3,11 @@
   "dump_minor_version": 1,
   "program": {
     "entrypoint": "function/org-dartlang-app:///example/main.dart::main",
-    "size": 129343,
+    "size": 129408,
     "ramUsage": "N/A MB",
-    "dart2jsVersion": "3.12.0-199.0.dev",
-    "compilationMoment": "2026-03-03 18:04:54.433499",
-    "compilationDuration": 729703,
+    "dart2jsVersion": "3.12.0-210.1.beta",
+    "compilationMoment": "2026-03-05 17:14:10.418163",
+    "compilationDuration": 752164,
     "toJsonDuration": 1000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
@@ -33,7 +33,7 @@
         "id": "library/dart:_interceptors::",
         "kind": "library",
         "name": "_interceptors",
-        "size": 8092,
+        "size": 8201,
         "children": [
           "class/dart:_interceptors::ArrayIterator",
           "class/dart:_interceptors::Interceptor",
@@ -749,7 +749,7 @@
         "id": "library/package:qr/src/math.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 252,
+        "size": 313,
         "children": [
           "field/package:qr/src/math.dart::_expTable",
           "field/package:qr/src/math.dart::_logTable",
@@ -774,7 +774,7 @@
         "id": "library/package:qr/src/polynomial.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 1012,
+        "size": 976,
         "children": [
           "class/package:qr/src/polynomial.dart::QrPolynomial"
         ],
@@ -820,9 +820,8 @@
         "id": "library/package:qr/src/util.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 283,
+        "size": 214,
         "children": [
-          "function/package:qr/src/util.dart::_bchDigit",
           "function/package:qr/src/util.dart::bchTypeInfo",
           "function/package:qr/src/util.dart::bchTypeNumber",
           "function/package:qr/src/util.dart::patternPosition"
@@ -1058,13 +1057,15 @@
         "id": "class/dart:_interceptors::JSInt",
         "kind": "class",
         "name": "JSInt",
-        "size": 84,
+        "size": 193,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:_interceptors::",
         "modifiers": {
           "abstract": false
         },
         "children": [
+          "function/dart:_interceptors::JSInt._clz32",
+          "function/dart:_interceptors::JSInt.bitLength",
           "function/dart:_interceptors::JSInt.isEven",
           "function/dart:_interceptors::JSInt.runtimeType"
         ],
@@ -4946,7 +4947,7 @@
         "id": "class/package:qr/src/polynomial.dart::QrPolynomial",
         "kind": "class",
         "name": "QrPolynomial",
-        "size": 869,
+        "size": 833,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/polynomial.dart::",
         "modifiers": {
@@ -6370,6 +6371,58 @@
         "inlinedCount": 0,
         "code": "\"[\"(a){return String(a)}",
         "type": "String Function()",
+        "functionKind": 2
+      },
+      "dart:_interceptors::JSInt._clz32": {
+        "id": "function/dart:_interceptors::JSInt._clz32",
+        "kind": "function",
+        "name": "_clz32",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:_interceptors::JSInt",
+        "children": [],
+        "modifiers": {
+          "static": true,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "int",
+        "inferredReturnType": "[exact=JSUInt31|powerset={I}{O}{N}]",
+        "parameters": [
+          {
+            "name": "uint32",
+            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 1,
+        "code": "",
+        "type": "int Function(int)",
+        "functionKind": 0
+      },
+      "dart:_interceptors::JSInt.bitLength": {
+        "id": "function/dart:_interceptors::JSInt.bitLength",
+        "kind": "function",
+        "name": "bitLength",
+        "size": 107,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:_interceptors::JSInt",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "int",
+        "inferredReturnType": "[subclass=JSInt|powerset={I}{O}{N}]",
+        "parameters": [],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "gcd(a){var s,r=a<0?-a-1:a,q=r\nfor(s=32;q>=4294967296;){q=this.Y(q,4294967296)\ns+=32}return s-Math.clz32(q)}",
+        "type": "int Function()",
         "functionKind": 2
       },
       "dart:_interceptors::JSInt.isEven": {
@@ -41502,7 +41555,7 @@
         "id": "function/package:qr/src/math.dart::glog",
         "kind": "function",
         "name": "glog",
-        "size": 0,
+        "size": 61,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/math.dart::",
         "children": [],
@@ -41522,8 +41575,8 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 5,
-        "code": "",
+        "inlinedCount": 4,
+        "code": "lm(a){return a>=1?$.ez()[a]:A.vh(A.L3(a,\"n\",\"must be >= 1\"))}",
         "type": "int Function(int)",
         "functionKind": 0
       },
@@ -41689,7 +41742,7 @@
         "inferredReturnType": "[subclass=JSUInt32|powerset={I}{O}{N}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes nothing)",
-        "inlinedCount": 12,
+        "inlinedCount": 7,
         "code": "gB(a){return this.a.length}",
         "type": "int Function()",
         "functionKind": 2
@@ -41698,7 +41751,7 @@
         "id": "function/package:qr/src/polynomial.dart::QrPolynomial.mod",
         "kind": "function",
         "name": "mod",
-        "size": 457,
+        "size": 421,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/polynomial.dart::QrPolynomial",
         "children": [],
@@ -41719,7 +41772,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "vP(a){var s,r,q,p,o,n,m,l,k,j,i=\"must be >= 1\",h=this.a,g=a.a,f=g.length\nif(h.length-f<0)return this\ns=new Uint8Array(A.XF(h))\nfor(h=s.length-f+1,r=s.$flags|0,q=0;q<h;++q){p=s[q]\nif(p===0)continue\no=p>=1?$.ez()[p]:A.vh(A.L3(p,\"n\",i))\nn=g[0]\nm=o-(n>=1?$.ez()[n]:A.vh(A.L3(n,\"n\",i)))\nfor(l=0;l<f;++l){k=g[l]\nif(k===0)continue\no=q+l\nn=s[o]\nj=k>=1?$.ez()[k]:A.vh(A.L3(k,\"n\",i))\nj=$.Wd()[B.jn.O(j+m,255)]\nr&2&&A.cW(s)\ns[o]=(n^j)>>>0}}return A.yU(B.NA.Jk(s,h),0)}",
+        "code": "vP(a){var s,r,q,p,o,n,m,l,k,j,i=\"must be >= 1\",h=a.a,g=h.length,f=this.a,e=f.length-g\nif(e<0)return this\ns=new Uint8Array(A.XF(f))\nr=e+1\nq=A.lm(h[0])\nfor(f=s.$flags|0,p=0;p<r;++p){o=s[p]\nif(o===0)continue\nn=(o>=1?$.ez()[o]:A.vh(A.L3(o,\"n\",i)))-q\nfor(m=0;m<g;++m){l=h[m]\nif(l===0)continue\ne=p+m\nk=s[e]\nj=l>=1?$.ez()[l]:A.vh(A.L3(l,\"n\",i))\nj=$.Wd()[B.jn.O(j+n,255)]\nf&2&&A.cW(s)\ns[e]=(k^j)>>>0}}return A.yU(B.NA.Jk(s,r),0)}",
         "type": "QrPolynomial Function(QrPolynomial)",
         "functionKind": 2
       },
@@ -41748,7 +41801,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "tv(a){var s,r,q,p,o,n,m,l,k=\"must be >= 1\",j=this.a,i=j.length,h=a.a,g=h.length,f=new Uint8Array(i+g-1)\nfor(s=0;s<i;++s){r=j[s]\nif(r===0)continue\nq=r>=1?$.ez()[r]:A.vh(A.L3(r,\"n\",k))\nfor(p=0;p<g;++p){o=h[p]\nif(o===0)continue\nn=s+p\nm=f[n]\nl=o>=1?$.ez()[o]:A.vh(A.L3(o,\"n\",k))\nf[n]=(m^$.Wd()[B.jn.O(q+l,255)])>>>0}}return new A.E4(f)}",
+        "code": "tv(a){var s,r,q,p,o,n,m,l,k=\"must be >= 1\",j=a.a,i=j.length,h=this.a,g=h.length,f=new Uint8Array(g+i-1)\nfor(s=0;s<g;++s){r=h[s]\nif(r===0)continue\nq=r>=1?$.ez()[r]:A.vh(A.L3(r,\"n\",k))\nfor(p=0;p<i;++p){o=j[p]\nif(o===0)continue\nn=s+p\nm=f[n]\nl=o>=1?$.ez()[o]:A.vh(A.L3(o,\"n\",k))\nf[n]=(m^$.Wd()[B.jn.O(q+l,255)])>>>0}}return new A.E4(f)}",
         "type": "QrPolynomial Function(QrPolynomial)",
         "functionKind": 2
       },
@@ -42633,40 +42686,11 @@
         "type": "List<int> Function(int,QrErrorCorrectLevel)",
         "functionKind": 0
       },
-      "package:qr/src/util.dart::_bchDigit": {
-        "id": "function/package:qr/src/util.dart::_bchDigit",
-        "kind": "function",
-        "name": "_bchDigit",
-        "size": 49,
-        "outputUnit": "outputUnit/main",
-        "parent": "library/package:qr/src/util.dart::",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "int",
-        "inferredReturnType": "[subclass=JSPositiveInt|powerset={I}{O}{N}]",
-        "parameters": [
-          {
-            "name": "data",
-            "type": "[subclass=JSUInt32|powerset={I}{O}{N}]",
-            "declaredType": "int"
-          }
-        ],
-        "sideEffects": "SideEffects(reads nothing; writes anything)",
-        "inlinedCount": 0,
-        "code": "YT(a){var s\nfor(s=0;a!==0;){++s\na=a>>>1}return s}",
-        "type": "int Function(int)",
-        "functionKind": 0
-      },
       "package:qr/src/util.dart::bchTypeInfo": {
         "id": "function/package:qr/src/util.dart::bchTypeInfo",
         "kind": "function",
         "name": "bchTypeInfo",
-        "size": 121,
+        "size": 111,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/util.dart::",
         "children": [],
@@ -42685,9 +42709,9 @@
             "declaredType": "int"
           }
         ],
-        "sideEffects": "SideEffects(reads nothing; writes anything)",
+        "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "n0(a){var s,r=a<<10>>>0\nfor(s=r;A.YT(s)-A.YT(1335)>=0;)s=(s^B.jn.v(1335,A.YT(s)-A.YT(1335)))>>>0\nreturn((r|s)^21522)>>>0}",
+        "code": "n0(a){var s,r=a<<10>>>0\nfor(s=r;B.jn.gcd(s)>=11;)s=(s^B.jn.v(1335,B.jn.gcd(s)-11))>>>0\nreturn((r|s)^21522)>>>0}",
         "type": "int Function(int)",
         "functionKind": 0
       },
@@ -42695,7 +42719,7 @@
         "id": "function/package:qr/src/util.dart::bchTypeNumber",
         "kind": "function",
         "name": "bchTypeNumber",
-        "size": 113,
+        "size": 103,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/util.dart::",
         "children": [],
@@ -42714,9 +42738,9 @@
             "declaredType": "int"
           }
         ],
-        "sideEffects": "SideEffects(reads nothing; writes anything)",
+        "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Pa(a){var s,r=a<<12>>>0\nfor(s=r;A.YT(s)-A.YT(7973)>=0;)s=(s^B.jn.v(7973,A.YT(s)-A.YT(7973)))>>>0\nreturn(r|s)>>>0}",
+        "code": "Pa(a){var s,r=a<<12>>>0\nfor(s=r;B.jn.gcd(s)>=13;)s=(s^B.jn.v(7973,B.jn.gcd(s)-13))>>>0\nreturn(r|s)>>>0}",
         "type": "int Function(int)",
         "functionKind": 0
       },
@@ -44764,7 +44788,7 @@
         "parent": "class/dart:_js_helper::TypeErrorDecoder",
         "children": [],
         "inferredType": "[exact=TypeErrorDecoder|powerset={N}{O}{N}]",
-        "code": "s($,\"lm\",\"Sn\",()=>A.cM(A.S7({\ntoString:function(){return\"$receiver$\"}})))",
+        "code": "s($,\"U2\",\"Sn\",()=>A.cM(A.S7({\ntoString:function(){return\"$receiver$\"}})))",
         "type": "TypeErrorDecoder"
       },
       "dart:_js_helper::TypeErrorDecoder.notClosurePattern": {
@@ -51846,6 +51870,18 @@
       },
       {
         "id": "function/dart:_rti::findType"
+      }
+    ],
+    "function/dart:_interceptors::JSInt.bitLength": [
+      {
+        "id": "function/dart:_interceptors::JSInt._clz32",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_interceptors::JSInt._clz32"
+      },
+      {
+        "id": "function/dart:_interceptors::JSNumber._tdivFast"
       }
     ],
     "function/dart:_interceptors::JSInt.runtimeType": [
@@ -71588,6 +71624,17 @@
         "id": "function/dart:_native_typed_data::_checkLength"
       }
     ],
+    "function/package:qr/src/math.dart::glog": [
+      {
+        "id": "field/package:qr/src/math.dart::_logTable"
+      },
+      {
+        "id": "function/dart:_js_helper::throwExpression"
+      },
+      {
+        "id": "function/dart:core::ArgumentError.ArgumentError.value"
+      }
+    ],
     "function/package:qr/src/mode.dart::QrMode._enumToString": [
       {
         "id": "field/dart:core::_Enum._name"
@@ -72517,18 +72564,18 @@
     ],
     "function/package:qr/src/util.dart::bchTypeInfo": [
       {
-        "id": "function/dart:_interceptors::JSNumber.<<"
+        "id": "function/dart:_interceptors::JSInt.bitLength"
       },
       {
-        "id": "function/package:qr/src/util.dart::_bchDigit"
+        "id": "function/dart:_interceptors::JSNumber.<<"
       }
     ],
     "function/package:qr/src/util.dart::bchTypeNumber": [
       {
-        "id": "function/dart:_interceptors::JSNumber.<<"
+        "id": "function/dart:_interceptors::JSInt.bitLength"
       },
       {
-        "id": "function/package:qr/src/util.dart::_bchDigit"
+        "id": "function/dart:_interceptors::JSNumber.<<"
       }
     ],
     "function/package:stream_transform/src/aggregate_sample.dart::AggregateSample|aggregateSample": [
@@ -73309,7 +73356,7 @@
       "id": "outputUnit/main",
       "kind": "outputUnit",
       "name": "main",
-      "size": 129343,
+      "size": 129408,
       "filename": "main.dart2js.js",
       "imports": []
     }

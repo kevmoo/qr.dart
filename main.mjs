@@ -262,8 +262,6 @@ class CompiledApp {
       _259: x0 => x0.fill(),
       _260: x0 => x0.restore(),
       _261: (x0,x1,x2,x3,x4,x5,x6) => x0.setTransform(x1,x2,x3,x4,x5,x6),
-      _272: a => a.length,
-      _274: (a, i) => a[i],
       _280: o => {
         if (o === null || o === undefined) return 0;
         if (o instanceof Uint8Array) return 1;
