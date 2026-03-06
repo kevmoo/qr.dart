@@ -1,25 +1,27 @@
+/// The eight QR Code mask patterns defined in ISO/IEC 18004.
+///
+/// Masking is applied to the data and error correction modules of a QR Code
+/// to ensure there are not large areas of the same color or patterns that look
+/// like the alignment or position detection patterns, making decoding easier.
 enum QrMaskPattern {
-  pattern000(_check000),
-  pattern001(_check001),
-  pattern010(_check010),
-  pattern011(_check011),
-  pattern100(_check100),
-  pattern101(_check101),
-  pattern110(_check110),
-  pattern111(_check111);
+  pattern000,
+  pattern001,
+  pattern010,
+  pattern011,
+  pattern100,
+  pattern101,
+  pattern110,
+  pattern111;
 
-  final bool Function(int i, int j) _check;
-
-  const QrMaskPattern(this._check);
-
-  bool check(int i, int j) => _check(i, j);
+  /// Checks if a module at (i, j) should be masked.
+  bool check(int i, int j) => switch (this) {
+    pattern000 => (i + j).isEven,
+    pattern001 => i.isEven,
+    pattern010 => j % 3 == 0,
+    pattern011 => (i + j) % 3 == 0,
+    pattern100 => ((i ~/ 2) + (j ~/ 3)).isEven,
+    pattern101 => ((i * j) % 2 + (i * j) % 3) == 0,
+    pattern110 => (((i * j) % 2) + ((i * j) % 3)).isEven,
+    pattern111 => (((i * j) % 3) + ((i + j) % 2)).isEven,
+  };
 }
-
-bool _check000(int i, int j) => (i + j).isEven;
-bool _check001(int i, int j) => i.isEven;
-bool _check010(int i, int j) => j % 3 == 0;
-bool _check011(int i, int j) => (i + j) % 3 == 0;
-bool _check100(int i, int j) => ((i ~/ 2) + (j ~/ 3)).isEven;
-bool _check101(int i, int j) => ((i * j) % 2 + (i * j) % 3) == 0;
-bool _check110(int i, int j) => (((i * j) % 2) + ((i * j) % 3)).isEven;
-bool _check111(int i, int j) => (((i * j) % 3) + ((i + j) % 2)).isEven;
