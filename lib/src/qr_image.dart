@@ -32,7 +32,7 @@ class QrImage {
 
     // Create a temporary QrImage to use its _placeData method
     // We pass 0 as maskPattern, but we will modify _placeData to NOT mask.
-    QrImage._fromData(qrCode, 0, dataMap)._placeData(qrCode.dataCache);
+    QrImage._fromData(qrCode, 0, dataMap)._mapData(qrCode.dataCache);
 
     final workingBuffer = Uint8List(dataSize);
     var minLostPoint = double.maxFinite;
@@ -275,7 +275,7 @@ class QrImage {
     }
   }
 
-  void _mapData(List<int> data, int? maskPattern) {
+  void _mapData(List<int> data, [int? maskPattern]) {
     var inc = -1;
     var row = moduleCount - 1;
     var bitIndex = 7;
@@ -293,16 +293,10 @@ class QrImage {
               dark = ((data[byteIndex] >> bitIndex) & 1) == 1;
             }
 
-            if (maskPattern != null) {
-              final mask = QrMaskPattern.values[maskPattern].check(
-                row,
-                col - c,
-              );
-              if (mask) {
-                dark = !dark;
-              }
+            if (maskPattern != null &&
+                QrMaskPattern.values[maskPattern].check(row, col - c)) {
+              dark = !dark;
             }
-
             _set(row, col - c, dark);
             bitIndex--;
 
@@ -322,10 +316,6 @@ class QrImage {
         }
       }
     }
-  }
-
-  void _placeData(List<int> data) {
-    _mapData(data, null);
   }
 
   void _applyMask(QrMaskPattern maskPattern, Uint8List templateData) {
