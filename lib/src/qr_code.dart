@@ -130,48 +130,45 @@ class QrCode {
   static int _calculateTotalDataBits(
     int typeNumber,
     QrErrorCorrectLevel errorCorrectLevel,
-  ) {
-    final rsBlocks = QrRsBlock.getRSBlocks(typeNumber, errorCorrectLevel);
-    var totalDataBits = 0;
-    for (var rsBlock in rsBlocks) {
-      totalDataBits += rsBlock.dataCount * 8;
-    }
-    return totalDataBits;
-  }
+  ) => QrRsBlock.getTotalDataBits(typeNumber, errorCorrectLevel);
 
   static int _calculateTypeNumberFromData(
     QrErrorCorrectLevel errorCorrectLevel,
     List<QrDatum> data,
   ) {
+    int getRequiredBits(int typeNumber) {
+      var bits = 0;
+      for (final datum in data) {
+        bits += 4 + datum.mode.getLengthBits(typeNumber) + datum.bitLength;
+      }
+      return bits;
+    }
+
+    // Required bits only changes at types 10 and 27.
+    final requiredBitsFor1 = getRequiredBits(1);
+    final requiredBitsFor10 = getRequiredBits(10);
+    final requiredBitsFor27 = getRequiredBits(27);
+
     for (var typeNumber = 1; typeNumber <= 40; typeNumber++) {
       final totalDataBits = _calculateTotalDataBits(
         typeNumber,
         errorCorrectLevel,
       );
 
-      final buffer = QrBitBuffer();
-      for (final datum in data) {
-        buffer
-          ..put(datum.mode.value, 4)
-          ..put(datum.length, datum.mode.getLengthBits(typeNumber));
-        datum.write(buffer);
+      final int requiredBits;
+      if (typeNumber < 10) {
+        requiredBits = requiredBitsFor1;
+      } else if (typeNumber < 27) {
+        requiredBits = requiredBitsFor10;
+      } else {
+        requiredBits = requiredBitsFor27;
       }
 
-      if (buffer.length <= totalDataBits) return typeNumber;
-    }
-
-    // If we reach here, the data is too long for any QR Code version.
-    final buffer = QrBitBuffer();
-    for (final datum in data) {
-      buffer
-        ..put(datum.mode.value, 4)
-        ..put(datum.length, datum.mode.getLengthBits(40));
-      datum.write(buffer);
+      if (requiredBits <= totalDataBits) return typeNumber;
     }
 
     final maxBits = _calculateTotalDataBits(40, errorCorrectLevel);
-
-    throw InputTooLongException(buffer.length, maxBits);
+    throw InputTooLongException(requiredBitsFor27, maxBits);
   }
 
   void addData(String data) {
@@ -214,6 +211,12 @@ List<int> _createData(
 ) {
   final rsBlocks = QrRsBlock.getRSBlocks(typeNumber, errorCorrectLevel);
 
+  // Calculate maximum data bits
+  var totalDataBits = 0;
+  for (var rsBlock in rsBlocks) {
+    totalDataBits += rsBlock.dataCount * 8;
+  }
+
   final buffer = QrBitBuffer();
 
   for (var i = 0; i < dataList.length; i++) {
@@ -223,12 +226,6 @@ List<int> _createData(
       ..put(data.length, data.mode.getLengthBits(typeNumber));
     data.write(buffer);
   }
-
-  // Calculate maximum data bits
-  final totalDataBits = QrCode._calculateTotalDataBits(
-    typeNumber,
-    errorCorrectLevel,
-  );
 
   if (buffer.length > totalDataBits) {
     throw InputTooLongException(buffer.length, totalDataBits);

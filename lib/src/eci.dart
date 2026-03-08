@@ -25,6 +25,13 @@ class QrEci implements QrDatum {
   int get length => 0; // ECI segments do not have a length field
 
   @override
+  int get bitLength {
+    if (value < 128) return 8;
+    if (value < 16384) return 16;
+    return 24;
+  }
+
+  @override
   void write(QrBitBuffer buffer) {
     if (value < 128) {
       // 0xxxxxxx
