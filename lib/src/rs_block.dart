@@ -28,6 +28,19 @@ class QrRsBlock {
 
     return list;
   }
+
+  static int getTotalDataBits(
+    int typeNumber,
+    QrErrorCorrectLevel errorCorrectLevel,
+  ) {
+    final rsBlock = _getRsBlockTable(typeNumber, errorCorrectLevel);
+    final length = rsBlock.length ~/ 3;
+    var totalDataBits = 0;
+    for (var i = 0; i < length; i++) {
+      totalDataBits += rsBlock[i * 3 + 0] * rsBlock[i * 3 + 2] * 8;
+    }
+    return totalDataBits;
+  }
 }
 
 List<int> _getRsBlockTable(
