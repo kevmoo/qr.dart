@@ -3,7 +3,6 @@ import 'dart:typed_data';
 import 'package:meta/meta.dart';
 
 import 'error_correct_level.dart';
-import 'mask_pattern.dart';
 import 'qr_code.dart';
 import 'util.dart' as qr_util;
 
@@ -30,8 +29,8 @@ class QrImage {
     // Step 1: Clone template to working buffer and place data (no mask)
     final dataMap = Uint8List(dataSize)..setRange(0, dataSize, template._data);
 
-    // Create a temporary QrImage to use its _placeData method
-    // We pass 0 as maskPattern, but we will modify _placeData to NOT mask.
+    // Create a temporary QrImage to use its _mapData method
+    // We pass 0 as maskPattern, but we will modify _mapData to NOT mask.
     QrImage._fromData(qrCode, 0, dataMap)._mapData(qrCode.dataCache);
 
     final workingBuffer = Uint8List(dataSize);
@@ -46,7 +45,7 @@ class QrImage {
 
       final testImage = QrImage._fromData(qrCode, i, workingBuffer)
         // Apply mask (XOR)
-        .._applyMask(QrMaskPattern.values[i], template._data);
+        .._applyMask(i, template._data); // pass int mask
 
       final lostPoint = _lostPoint(testImage);
 
@@ -157,13 +156,6 @@ class QrImage {
 
     _mapData(dataCache, maskPattern);
   }
-
-  // ... (existing constructors)
-
-  // Refactored _mapData to JUST call _placeData then _applyMask?
-  // No, original _mapData did both.
-
-  // Implemented below...
 
   void _setupPositionProbePattern(int row, int col) {
     for (var r = -1; r <= 7; r++) {
@@ -280,6 +272,7 @@ class QrImage {
     var row = moduleCount - 1;
     var bitIndex = 7;
     var byteIndex = 0;
+    final mpIndex = maskPattern;
 
     for (var col = moduleCount - 1; col > 0; col -= 2) {
       if (col == 6) col--;
@@ -293,10 +286,23 @@ class QrImage {
               dark = ((data[byteIndex] >> bitIndex) & 1) == 1;
             }
 
-            if (maskPattern != null &&
-                QrMaskPattern.values[maskPattern].check(row, col - c)) {
+            final cCol = col - c;
+            final mask = switch (mpIndex) {
+              0 => (row + cCol).isEven,
+              1 => row.isEven,
+              2 => cCol % 3 == 0,
+              3 => (row + cCol) % 3 == 0,
+              4 => ((row ~/ 2) + (cCol ~/ 3)).isEven,
+              5 => ((row * cCol) % 2 + (row * cCol) % 3) == 0,
+              6 => (((row * cCol) % 2) + ((row * cCol) % 3)).isEven,
+              7 => (((row * cCol) % 3) + ((row + cCol) % 2)).isEven,
+              _ => false,
+            };
+
+            if (mask) {
               dark = !dark;
             }
+
             _set(row, col - c, dark);
             bitIndex--;
 
@@ -318,7 +324,7 @@ class QrImage {
     }
   }
 
-  void _applyMask(QrMaskPattern maskPattern, Uint8List templateData) {
+  void _applyMask(int mpIndex, Uint8List templateData) {
     var inc = -1;
     var row = moduleCount - 1;
 
@@ -327,10 +333,22 @@ class QrImage {
 
       for (;;) {
         for (var c = 0; c < 2; c++) {
-          if (templateData[row * moduleCount + (col - c)] == _pixelUnassigned) {
-            final mask = maskPattern.check(row, col - c);
+          final cCol = col - c;
+          final idx = row * moduleCount + cCol;
+          if (templateData[idx] == _pixelUnassigned) {
+            final mask = switch (mpIndex) {
+              0 => (row + cCol).isEven,
+              1 => row.isEven,
+              2 => cCol % 3 == 0,
+              3 => (row + cCol) % 3 == 0,
+              4 => ((row ~/ 2) + (cCol ~/ 3)).isEven,
+              5 => ((row * cCol) % 2 + (row * cCol) % 3) == 0,
+              6 => (((row * cCol) % 2) + ((row * cCol) % 3)).isEven,
+              7 => (((row * cCol) % 3) + ((row + cCol) % 2)).isEven,
+              _ => false,
+            };
             if (mask) {
-              _data[row * moduleCount + (col - c)] ^= _pixelDark ^ _pixelLight;
+              _data[idx] ^= _pixelDark ^ _pixelLight;
             }
           }
         }
@@ -352,15 +370,13 @@ double _lostPoint(QrImage qrImage) {
   final data = qrImage._data;
   var lostPoint = 0.0;
 
-  // Cache data length for faster access (though it's final)
-  // Accessing local vars is faster.
-
   var darkCount = 0;
 
   for (var row = 0; row < moduleCount; row++) {
+    final rowIdx = row * moduleCount;
     for (var col = 0; col < moduleCount; col++) {
       var sameCount = 0;
-      final currentIdx = row * moduleCount + col;
+      final currentIdx = rowIdx + col;
       final p00 = data[currentIdx];
 
       if (p00 == QrImage._pixelDark) darkCount++;
