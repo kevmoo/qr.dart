@@ -11,6 +11,7 @@ import 'mode.dart';
 abstract class QrDatum {
   QrMode get mode;
   int get length;
+  int get bitLength;
   void write(QrBitBuffer buffer);
 
   /// Parses [data] into a list of [QrDatum] segments, optimizing for the
@@ -55,6 +56,9 @@ class QrByte implements QrDatum {
 
   @override
   int get length => _data.length;
+
+  @override
+  int get bitLength => _data.length * 8;
 
   @override
   void write(QrBitBuffer buffer) {
@@ -120,6 +124,18 @@ class QrNumeric implements QrDatum {
   // This is still the *number of characters to encode*, not encoded length.
   @override
   int get length => _data.length;
+
+  @override
+  int get bitLength {
+    final leftOver = _data.length % 3;
+    var bits = (_data.length ~/ 3) * 10;
+    if (leftOver == 1) {
+      bits += 4;
+    } else if (leftOver == 2) {
+      bits += 7;
+    }
+    return bits;
+  }
 }
 
 /// Encodes alphanumeric data (uppercase letters, digits, and specific symbols).
@@ -184,4 +200,14 @@ class QrAlphaNumeric implements QrDatum {
   // This is still the *number of characters to encode*, not encoded length.
   @override
   int get length => _string.length;
+
+  @override
+  int get bitLength {
+    final leftOver = _string.length % 2;
+    var bits = (_string.length ~/ 2) * 11;
+    if (leftOver == 1) {
+      bits += 6;
+    }
+    return bits;
+  }
 }
