@@ -29,9 +29,9 @@ class QrImage {
     // Step 1: Clone template to working buffer and place data (no mask)
     final dataMap = Uint8List(dataSize)..setRange(0, dataSize, template._data);
 
-    // Create a temporary QrImage to use its _placeData method
-    // We pass 0 as maskPattern, but we will modify _placeData to NOT mask.
-    QrImage._fromData(qrCode, 0, dataMap)._placeData(qrCode.dataCache);
+    // Create a temporary QrImage to use its _mapData method
+    // We pass 0 as maskPattern, but we will modify _mapData to NOT mask.
+    QrImage._fromData(qrCode, 0, dataMap)._mapData(qrCode.dataCache);
 
     final workingBuffer = Uint8List(dataSize);
     var minLostPoint = double.maxFinite;
@@ -316,49 +316,6 @@ class QrImage {
         row += inc;
 
         if (row < 0 || moduleCount <= row) {
-          row -= inc;
-          inc = -inc;
-          break;
-        }
-      }
-    }
-  }
-
-  void _placeData(List<int> data) {
-    var inc = -1;
-    var row = moduleCount - 1;
-    var bitIndex = 7;
-    var byteIndex = 0;
-    final moduleCount2 = moduleCount;
-    final localData = _data;
-
-    for (var col = moduleCount2 - 1; col > 0; col -= 2) {
-      if (col == 6) col--;
-
-      for (;;) {
-        for (var c = 0; c < 2; c++) {
-          final cCol = col - c;
-          final idx = row * moduleCount2 + cCol;
-          if (localData[idx] == _pixelUnassigned) {
-            var dark = false;
-
-            if (byteIndex < data.length) {
-              dark = ((data[byteIndex] >> bitIndex) & 1) == 1;
-            }
-
-            localData[idx] = dark ? _pixelDark : _pixelLight;
-            bitIndex--;
-
-            if (bitIndex == -1) {
-              byteIndex++;
-              bitIndex = 7;
-            }
-          }
-        }
-
-        row += inc;
-
-        if (row < 0 || moduleCount2 <= row) {
           row -= inc;
           inc = -inc;
           break;
