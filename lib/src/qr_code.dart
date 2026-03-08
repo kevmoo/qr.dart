@@ -65,14 +65,11 @@ class QrCode {
     final datumList = QrDatum.toDatums(data);
 
     int calculateRequiredBits(int type) {
-      final buffer = QrBitBuffer();
+      var bits = 0;
       for (final datum in datumList) {
-        buffer
-          ..put(datum.mode.value, 4)
-          ..put(datum.length, datum.mode.getLengthBits(type));
-        datum.write(buffer);
+        bits += 4 + datum.mode.getLengthBits(type) + datum.bitLength;
       }
-      return buffer.length;
+      return bits;
     }
 
     // Required bits only changes at types 10 and 27.

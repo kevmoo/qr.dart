@@ -49,10 +49,24 @@ class QrImageBenchmark extends BenchmarkBase {
 }
 
 void main() {
+  ValidationBenchmark().report();
   QrCodeBenchmark().report();
   LargeQrCodeBenchmark().report();
   QrImageBenchmark().report();
   LargeQrImageBenchmark().report();
+}
+
+class ValidationBenchmark extends BenchmarkBase {
+  ValidationBenchmark() : super('Validation');
+
+  @override
+  void run() {
+    QrCode.fromDataAndValidation(
+      data: 'https://www.google.com/search?q=dart+lang',
+      typeNumber: 4,
+      errorCorrectLevel: QrErrorCorrectLevel.medium,
+    );
+  }
 }
 
 class LargeQrImageBenchmark extends BenchmarkBase {
