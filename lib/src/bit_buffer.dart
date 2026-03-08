@@ -1,8 +1,10 @@
+import 'dart:typed_data';
+
 /// A growable sequence of bits.
 ///
 /// Used internally to construct the data bit stream for a QR code.
 class QrBitBuffer extends Iterable<bool> {
-  final _buffer = <int>[];
+  Uint8List _buffer = Uint8List(32);
   int _length = 0;
 
   QrBitBuffer();
@@ -22,6 +24,18 @@ class QrBitBuffer extends Iterable<bool> {
 
   int getByte(int index) => _buffer[index];
 
+  void _ensureCapacity(int neededBytes) {
+    if (_buffer.length < neededBytes) {
+      var newLength = _buffer.length * 2;
+      while (newLength < neededBytes) {
+        newLength *= 2;
+      }
+      final newBuffer = Uint8List(newLength)
+        ..setRange(0, _buffer.length, _buffer);
+      _buffer = newBuffer;
+    }
+  }
+
   void put(int number, int length) {
     if (length == 0) return;
 
@@ -31,9 +45,7 @@ class QrBitBuffer extends Iterable<bool> {
     // Ensure capacity
     // Optimization: bitshift >> 3 is faster than ~/ 8
     final neededBytes = (endBitIndex + 7) >> 3;
-    while (_buffer.length < neededBytes) {
-      _buffer.add(0);
-    }
+    _ensureCapacity(neededBytes);
 
     // Optimization for byte-aligned writes of 8 bits (common case)
     if (length == 8 && (bitIndex & 7) == 0 && number >= 0 && number <= 255) {
@@ -67,9 +79,7 @@ class QrBitBuffer extends Iterable<bool> {
   void putBit(bool bit) {
     // Optimization: bitshift >> 3 is faster than ~/ 8
     final bufIndex = _length >> 3;
-    if (_buffer.length <= bufIndex) {
-      _buffer.add(0);
-    }
+    _ensureCapacity(bufIndex + 1);
 
     if (bit) {
       // Optimization: bitwise AND is faster than modulo % 8
