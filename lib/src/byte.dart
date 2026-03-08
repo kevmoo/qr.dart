@@ -128,8 +128,7 @@ class QrNumeric implements QrDatum {
   @override
   int get bitLength {
     final leftOver = _data.length % 3;
-    final efficientGrab = _data.length - leftOver;
-    var bits = (efficientGrab ~/ 3) * 10;
+    var bits = (_data.length ~/ 3) * 10;
     if (leftOver == 1) {
       bits += 4;
     } else if (leftOver == 2) {
@@ -205,8 +204,7 @@ class QrAlphaNumeric implements QrDatum {
   @override
   int get bitLength {
     final leftOver = _string.length % 2;
-    final efficientGrab = _string.length - leftOver;
-    var bits = (efficientGrab ~/ 2) * 11;
+    var bits = (_string.length ~/ 2) * 11;
     if (leftOver == 1) {
       bits += 6;
     }

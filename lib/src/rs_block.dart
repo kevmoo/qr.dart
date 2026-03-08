@@ -37,7 +37,9 @@ class QrRsBlock {
     final length = rsBlock.length ~/ 3;
     var totalDataBits = 0;
     for (var i = 0; i < length; i++) {
-      totalDataBits += rsBlock[i * 3 + 0] * rsBlock[i * 3 + 2] * 8;
+      final count = rsBlock[i * 3 + 0];
+      final dataCount = rsBlock[i * 3 + 2];
+      totalDataBits += count * dataCount * 8;
     }
     return totalDataBits;
   }
