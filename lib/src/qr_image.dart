@@ -275,7 +275,7 @@ class QrImage {
     }
   }
 
-  void _mapData(List<int> data, int maskPattern) {
+  void _mapData(List<int> data, int? maskPattern) {
     var inc = -1;
     var row = moduleCount - 1;
     var bitIndex = 7;
@@ -293,10 +293,14 @@ class QrImage {
               dark = ((data[byteIndex] >> bitIndex) & 1) == 1;
             }
 
-            final mask = QrMaskPattern.values[maskPattern].check(row, col - c);
-
-            if (mask) {
-              dark = !dark;
+            if (maskPattern != null) {
+              final mask = QrMaskPattern.values[maskPattern].check(
+                row,
+                col - c,
+              );
+              if (mask) {
+                dark = !dark;
+              }
             }
 
             _set(row, col - c, dark);
@@ -321,42 +325,7 @@ class QrImage {
   }
 
   void _placeData(List<int> data) {
-    var inc = -1;
-    var row = moduleCount - 1;
-    var bitIndex = 7;
-    var byteIndex = 0;
-
-    for (var col = moduleCount - 1; col > 0; col -= 2) {
-      if (col == 6) col--;
-
-      for (;;) {
-        for (var c = 0; c < 2; c++) {
-          if (_data[row * moduleCount + (col - c)] == _pixelUnassigned) {
-            var dark = false;
-
-            if (byteIndex < data.length) {
-              dark = ((data[byteIndex] >> bitIndex) & 1) == 1;
-            }
-
-            _set(row, col - c, dark);
-            bitIndex--;
-
-            if (bitIndex == -1) {
-              byteIndex++;
-              bitIndex = 7;
-            }
-          }
-        }
-
-        row += inc;
-
-        if (row < 0 || moduleCount <= row) {
-          row -= inc;
-          inc = -inc;
-          break;
-        }
-      }
-    }
+    _mapData(data, null);
   }
 
   void _applyMask(QrMaskPattern maskPattern, Uint8List templateData) {
