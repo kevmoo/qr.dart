@@ -123,6 +123,30 @@ article {
   margin-bottom: var(--pico-spacing);
 }
 
+.setting-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.setting-header label {
+  margin-bottom: 0;
+}
+
+.auto-checkbox {
+  font-weight: 500;
+  font-size: 0.9em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.auto-checkbox input[type='checkbox'] {
+  margin: 0;
+}
+
 #type-div {
   display: grid;
   grid-template-columns: repeat(5, max-content);

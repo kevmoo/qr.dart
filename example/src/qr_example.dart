@@ -138,9 +138,8 @@ class QrExample {
     _ctx.fillStyle = 'black'.toJS;
 
     // Auto Size Checkbox
-    // Auto Size Checkbox
-    final autoCheck = document.getElementById('type_auto') as HTMLInputElement;
-    autoCheck.checked = _autoType;
+    final autoCheck = document.getElementById('type_auto') as HTMLInputElement
+      ..checked = _autoType;
     autoCheck.onChange.listen((Event _) {
       _autoType = autoCheck.checked;
       _update();
