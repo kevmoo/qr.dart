@@ -3,11 +3,11 @@
   "dump_minor_version": 1,
   "program": {
     "entrypoint": "function/org-dartlang-app:///example/main.dart::main",
-    "size": 129377,
+    "size": 130130,
     "ramUsage": "N/A MB",
     "dart2jsVersion": "3.12.0-210.1.beta",
-    "compilationMoment": "2026-03-08 18:27:21.605063",
-    "compilationDuration": 769268,
+    "compilationMoment": "2026-03-09 08:13:18.731999",
+    "compilationDuration": 773327,
     "toJsonDuration": 1000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
@@ -33,7 +33,7 @@
         "id": "library/dart:_interceptors::",
         "kind": "library",
         "name": "_interceptors",
-        "size": 8207,
+        "size": 8259,
         "children": [
           "class/dart:_interceptors::ArrayIterator",
           "class/dart:_interceptors::Interceptor",
@@ -94,12 +94,15 @@
           "class/dart:_internal::SkipIterator",
           "class/dart:_internal::SubListIterable",
           "class/dart:_internal::SystemHash",
+          "class/dart:_internal::TakeIterable",
+          "class/dart:_internal::TakeIterator",
           "class/dart:_internal::UnmodifiableListBase",
           "class/dart:_internal::UnmodifiableListMixin",
           "field/dart:_internal::_toStringVisiting",
           "field/dart:_internal::nullFuture",
           "function/dart:_internal::checkNotNullable",
           "function/dart:_internal::isToStringVisiting",
+          "function/dart:_internal::makeListFixedLength",
           "function/dart:_internal::toStringVisiting",
           "function/dart:_internal::unsafeCast"
         ],
@@ -109,7 +112,7 @@
         "id": "library/dart:_js_helper::",
         "kind": "library",
         "name": "_js_helper",
-        "size": 17466,
+        "size": 17660,
         "children": [
           "class/dart:_js_helper::BoundClosure",
           "class/dart:_js_helper::Closure",
@@ -517,7 +520,7 @@
         "id": "library/dart:core::",
         "kind": "library",
         "name": "dart.core",
-        "size": 5261,
+        "size": 5376,
         "children": [
           "class/dart:core::ArgumentError",
           "class/dart:core::AssertionError",
@@ -536,6 +539,7 @@
           "class/dart:core::StackOverflowError",
           "class/dart:core::StackTrace",
           "class/dart:core::StateError",
+          "class/dart:core::String",
           "class/dart:core::StringBuffer",
           "class/dart:core::TypeError",
           "class/dart:core::UnimplementedError",
@@ -658,7 +662,7 @@
         "id": "library/org-dartlang-app:///example/src/qr_example.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 5591,
+        "size": 5947,
         "children": [
           "class/org-dartlang-app:///example/src/qr_example.dart::QrExample",
           "class/org-dartlang-app:///example/src/qr_example.dart::_Config",
@@ -674,10 +678,9 @@
         "id": "library/package:qr/src/bit_buffer.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 746,
+        "size": 821,
         "children": [
-          "class/package:qr/src/bit_buffer.dart::QrBitBuffer",
-          "class/package:qr/src/bit_buffer.dart::_QrBitBufferIterator"
+          "class/package:qr/src/bit_buffer.dart::QrBitBuffer"
         ],
         "canonicalUri": "package:qr/src/bit_buffer.dart"
       },
@@ -765,7 +768,7 @@
         "id": "library/package:qr/src/qr_code.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 2240,
+        "size": 2226,
         "children": [
           "class/package:qr/src/qr_code.dart::QrCode",
           "function/package:qr/src/qr_code.dart::_createBytes",
@@ -958,7 +961,7 @@
         "id": "class/dart:_interceptors::JSArray",
         "kind": "class",
         "name": "JSArray",
-        "size": 1116,
+        "size": 1168,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:_interceptors::",
         "modifiers": {
@@ -978,6 +981,7 @@
           "function/dart:_interceptors::JSArray.checkMutable",
           "function/dart:_interceptors::JSArray.contains",
           "function/dart:_interceptors::JSArray.elementAt",
+          "function/dart:_interceptors::JSArray.first",
           "function/dart:_interceptors::JSArray.firstWhere",
           "function/dart:_interceptors::JSArray.hashCode",
           "function/dart:_interceptors::JSArray.isEmpty",
@@ -1156,7 +1160,8 @@
           "function/dart:_interceptors::JSString.trim"
         ],
         "supers": [
-          "class/dart:_interceptors::Interceptor"
+          "class/dart:_interceptors::Interceptor",
+          "class/dart:core::String"
         ]
       },
       "dart:_interceptors::JSUnmodifiableArray": {
@@ -1615,6 +1620,39 @@
         ],
         "supers": []
       },
+      "dart:_internal::TakeIterable": {
+        "id": "class/dart:_internal::TakeIterable",
+        "kind": "class",
+        "name": "TakeIterable",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "library/dart:_internal::",
+        "modifiers": {
+          "abstract": false
+        },
+        "children": [
+          "field/dart:_internal::TakeIterable._iterable"
+        ],
+        "supers": [
+          "class/dart:core::Iterable"
+        ]
+      },
+      "dart:_internal::TakeIterator": {
+        "id": "class/dart:_internal::TakeIterator",
+        "kind": "class",
+        "name": "TakeIterator",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "library/dart:_internal::",
+        "modifiers": {
+          "abstract": false
+        },
+        "children": [
+          "field/dart:_internal::TakeIterator._iterator",
+          "field/dart:_internal::TakeIterator._remaining"
+        ],
+        "supers": []
+      },
       "dart:_internal::UnmodifiableListBase": {
         "id": "class/dart:_internal::UnmodifiableListBase",
         "kind": "class",
@@ -2004,6 +2042,7 @@
           "function/dart:_js_helper::Primitives.parseInt",
           "function/dart:_js_helper::Primitives.safeToString",
           "function/dart:_js_helper::Primitives.stringConcatUnchecked",
+          "function/dart:_js_helper::Primitives.stringFromNativeUint8List",
           "function/dart:_js_helper::Primitives.stringSafeToString",
           "function/dart:_js_helper::Primitives.trySetStackTrace"
         ],
@@ -3905,6 +3944,7 @@
           "function/dart:collection::ListBase.last",
           "function/dart:collection::ListBase.listToString",
           "function/dart:collection::ListBase.map",
+          "function/dart:collection::ListBase.take",
           "function/dart:collection::ListBase.toString"
         ],
         "supers": [
@@ -4286,7 +4326,9 @@
           "abstract": true
         },
         "children": [
-          "function/dart:core::List.List.filled"
+          "function/dart:core::List.List._fixedOf",
+          "function/dart:core::List.List.filled",
+          "function/dart:core::List.List.of"
         ],
         "supers": [
           "class/dart:core::Iterable"
@@ -4420,6 +4462,24 @@
         "supers": [
           "class/dart:core::Error"
         ]
+      },
+      "dart:core::String": {
+        "id": "class/dart:core::String",
+        "kind": "class",
+        "name": "String",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "library/dart:core::",
+        "modifiers": {
+          "abstract": true
+        },
+        "children": [
+          "function/dart:core::String.String.fromCharCodes",
+          "function/dart:core::String._stringFromIterable",
+          "function/dart:core::String._stringFromJSArray",
+          "function/dart:core::String._stringFromUint8List"
+        ],
+        "supers": []
       },
       "dart:core::StringBuffer": {
         "id": "class/dart:core::StringBuffer",
@@ -4623,13 +4683,15 @@
         "id": "class/org-dartlang-app:///example/src/qr_example.dart::QrExample",
         "kind": "class",
         "name": "QrExample",
-        "size": 3818,
+        "size": 4106,
         "outputUnit": "outputUnit/main",
         "parent": "library/org-dartlang-app:///example/src/qr_example.dart::",
         "modifiers": {
           "abstract": false
         },
         "children": [
+          "field/org-dartlang-app:///example/src/qr_example.dart::QrExample._autoCheckElement",
+          "field/org-dartlang-app:///example/src/qr_example.dart::QrExample._autoType",
           "field/org-dartlang-app:///example/src/qr_example.dart::QrExample._canvas",
           "field/org-dartlang-app:///example/src/qr_example.dart::QrExample._copyBtn",
           "field/org-dartlang-app:///example/src/qr_example.dart::QrExample._ctx",
@@ -4700,7 +4762,7 @@
         "id": "class/package:qr/src/bit_buffer.dart::QrBitBuffer",
         "kind": "class",
         "name": "QrBitBuffer",
-        "size": 581,
+        "size": 821,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/bit_buffer.dart::",
         "modifiers": {
@@ -4711,33 +4773,10 @@
           "field/package:qr/src/bit_buffer.dart::QrBitBuffer._length",
           "function/package:qr/src/bit_buffer.dart::QrBitBuffer.QrBitBuffer",
           "function/package:qr/src/bit_buffer.dart::QrBitBuffer._ensureCapacity",
-          "function/package:qr/src/bit_buffer.dart::QrBitBuffer._getBit",
           "function/package:qr/src/bit_buffer.dart::QrBitBuffer.getBytes",
-          "function/package:qr/src/bit_buffer.dart::QrBitBuffer.iterator",
           "function/package:qr/src/bit_buffer.dart::QrBitBuffer.length",
           "function/package:qr/src/bit_buffer.dart::QrBitBuffer.put",
-          "function/package:qr/src/bit_buffer.dart::QrBitBuffer.putBit"
-        ],
-        "supers": [
-          "class/dart:core::Iterable"
-        ]
-      },
-      "package:qr/src/bit_buffer.dart::_QrBitBufferIterator": {
-        "id": "class/package:qr/src/bit_buffer.dart::_QrBitBufferIterator",
-        "kind": "class",
-        "name": "_QrBitBufferIterator",
-        "size": 165,
-        "outputUnit": "outputUnit/main",
-        "parent": "library/package:qr/src/bit_buffer.dart::",
-        "modifiers": {
-          "abstract": false
-        },
-        "children": [
-          "field/package:qr/src/bit_buffer.dart::_QrBitBufferIterator._buffer",
-          "field/package:qr/src/bit_buffer.dart::_QrBitBufferIterator._currentIndex",
-          "function/package:qr/src/bit_buffer.dart::_QrBitBufferIterator._QrBitBufferIterator",
-          "function/package:qr/src/bit_buffer.dart::_QrBitBufferIterator.current",
-          "function/package:qr/src/bit_buffer.dart::_QrBitBufferIterator.moveNext"
+          "function/package:qr/src/bit_buffer.dart::QrBitBuffer.toString"
         ],
         "supers": []
       },
@@ -5900,6 +5939,29 @@
         "type": "JSArray.E Function(int)",
         "functionKind": 2
       },
+      "dart:_interceptors::JSArray.first": {
+        "id": "function/dart:_interceptors::JSArray.first",
+        "kind": "function",
+        "name": "first",
+        "size": 50,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:_interceptors::JSArray",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "JSArray.E",
+        "inferredReturnType": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]",
+        "parameters": [],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "gn(a){if(a.length>0)return a[0]\nthrow A.b(A.Wp())}",
+        "type": "JSArray.E Function()",
+        "functionKind": 2
+      },
       "dart:_interceptors::JSArray.firstWhere": {
         "id": "function/dart:_interceptors::JSArray.firstWhere",
         "kind": "function",
@@ -5970,7 +6032,7 @@
         "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes nothing)",
-        "inlinedCount": 3,
+        "inlinedCount": 4,
         "code": "",
         "type": "bool Function()",
         "functionKind": 2
@@ -5993,7 +6055,7 @@
         "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes nothing)",
-        "inlinedCount": 0,
+        "inlinedCount": 1,
         "code": "gor(a){return a.length!==0}",
         "type": "bool Function()",
         "functionKind": 2
@@ -6126,7 +6188,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes anything)",
-        "inlinedCount": 2,
+        "inlinedCount": 3,
         "code": "",
         "type": "List<#A> Function<#A extends Object?>(List<#A>)",
         "functionKind": 0
@@ -10366,6 +10428,35 @@
         "type": "bool Function(Object)",
         "functionKind": 0
       },
+      "dart:_internal::makeListFixedLength": {
+        "id": "function/dart:_internal::makeListFixedLength",
+        "kind": "function",
+        "name": "makeListFixedLength",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "library/dart:_internal::",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "List<#A/*free*/>",
+        "inferredReturnType": "[exact=JSFixedArray|powerset={I}{F}{M}]",
+        "parameters": [
+          {
+            "name": "growableList",
+            "type": "[exact=JSExtendableArray|powerset={I}{G}{M}]",
+            "declaredType": "List<makeListFixedLength.T>"
+          }
+        ],
+        "sideEffects": "SideEffects(reads nothing; writes anything)",
+        "inlinedCount": 1,
+        "code": "",
+        "type": "List<#A> Function<#A extends Object?>(List<#A>)",
+        "functionKind": 0
+      },
       "dart:_internal::nullFuture.nullFuture_closure.call": {
         "id": "function/dart:_internal::nullFuture.nullFuture_closure.call",
         "kind": "function",
@@ -12699,6 +12790,45 @@
         "type": "String Function(String,String)",
         "functionKind": 0
       },
+      "dart:_js_helper::Primitives.stringFromNativeUint8List": {
+        "id": "function/dart:_js_helper::Primitives.stringFromNativeUint8List",
+        "kind": "function",
+        "name": "stringFromNativeUint8List",
+        "size": 194,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:_js_helper::Primitives",
+        "children": [],
+        "modifiers": {
+          "static": true,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "String",
+        "inferredReturnType": "[exact=JSString|powerset={I}{O}{I}]",
+        "parameters": [
+          {
+            "name": "charCodes",
+            "type": "Container([exact=NativeUint8List|powerset={I}{O}{M}], element: [exact=JSUInt31|powerset={I}{O}{N}], length: null, powerset: {I}{O}{M})",
+            "declaredType": "NativeUint8List"
+          },
+          {
+            "name": "start",
+            "type": "[exact=JSUInt31|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          },
+          {
+            "name": "end",
+            "type": "[subclass=JSUInt32|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "fw(a,b,c){var s,r,q,p\nif(c<=500&&b===0&&c===a.length)return String.fromCharCode.apply(null,a)\nfor(s=b,r=\"\";s<c;s=q){q=s+500\np=q<c?q:c\nr+=String.fromCharCode.apply(null,a.subarray(s,p))}return r}",
+        "type": "String Function(NativeUint8List,int,int)",
+        "functionKind": 0
+      },
       "dart:_js_helper::Primitives.stringSafeToString": {
         "id": "function/dart:_js_helper::Primitives.stringSafeToString",
         "kind": "function",
@@ -14931,7 +15061,7 @@
         "inferredReturnType": "[subclass=JavaScriptObject|powerset={I}{GFUO}{IMN}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 19,
+        "inlinedCount": 21,
         "code": "",
         "type": "Object Function()",
         "functionKind": 0
@@ -16096,7 +16226,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes anything)",
-        "inlinedCount": 15,
+        "inlinedCount": 16,
         "code": "",
         "type": "NativeUint8List Function(int)",
         "functionKind": 3
@@ -16212,7 +16342,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 15,
+        "inlinedCount": 16,
         "code": "",
         "type": "NativeUint8List Function(int)",
         "functionKind": 0
@@ -16425,7 +16555,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes anything)",
-        "inlinedCount": 15,
+        "inlinedCount": 16,
         "code": "",
         "type": "int Function(dynamic)",
         "functionKind": 0
@@ -34633,6 +34763,35 @@
         "type": "Iterable<#A> Function<#A extends Object?>(#A Function(ListBase.E))",
         "functionKind": 2
       },
+      "dart:collection::ListBase.take": {
+        "id": "function/dart:collection::ListBase.take",
+        "kind": "function",
+        "name": "take",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:collection::ListBase",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "Iterable<ListBase.E>",
+        "inferredReturnType": "[exact=SubListIterable|powerset={N}{O}{N}]",
+        "parameters": [
+          {
+            "name": "count",
+            "type": "[empty|powerset=empty]",
+            "declaredType": "int"
+          }
+        ],
+        "sideEffects": "SideEffects(reads field; writes nothing)",
+        "inlinedCount": 1,
+        "code": "",
+        "type": "Iterable<ListBase.E> Function(int)",
+        "functionKind": 2
+      },
       "dart:collection::ListBase.toString": {
         "id": "function/dart:collection::ListBase.toString",
         "kind": "function",
@@ -35623,7 +35782,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "n(a){var s,r,q=A.jB(0,null,a.length)\nif(q===0)return new Uint8Array(0)\ns=new Uint8Array(q*3)\nr=new A.Rw(s)\nif(r.m(a,0,q)!==q)r.H()\nreturn B.NA.aM(s,0,r.b)}",
+        "code": "L(a){var s,r,q=A.jB(0,null,a.length)\nif(q===0)return new Uint8Array(0)\ns=new Uint8Array(q*3)\nr=new A.Rw(s)\nif(r.m(a,0,q)!==q)r.H()\nreturn B.NA.aM(s,0,r.b)}",
         "type": "Uint8List Function(Object?,[int,int?])",
         "functionKind": 2
       },
@@ -36166,7 +36325,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads field; writes nothing)",
-        "inlinedCount": 1,
+        "inlinedCount": 3,
         "code": "",
         "type": "String Function(Enum)",
         "functionKind": 0
@@ -36753,6 +36912,35 @@
         "type": "String Function()",
         "functionKind": 2
       },
+      "dart:core::List.List._fixedOf": {
+        "id": "function/dart:core::List.List._fixedOf",
+        "kind": "function",
+        "name": "List._fixedOf",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:core::List",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": true,
+          "external": false
+        },
+        "returnType": "List<#A/*free*/>",
+        "inferredReturnType": "[exact=JSFixedArray|powerset={I}{F}{M}]",
+        "parameters": [
+          {
+            "name": "elements",
+            "type": "[subtype=Iterable|powerset={IN}{O}{MN}]",
+            "declaredType": "Iterable<List.E>"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 1,
+        "code": "",
+        "type": "List<#A> Function<#A extends Object?>(Iterable<#A>)",
+        "functionKind": 3
+      },
       "dart:core::List.List.filled": {
         "id": "function/dart:core::List.List.filled",
         "kind": "function",
@@ -36790,6 +36978,40 @@
         "inlinedCount": 0,
         "code": "O8(a,b,c,d){var s,r=J.Qi(a,d)\nif(a!==0&&b!=null)for(s=0;s<a;++s)r[s]=b\nreturn r}",
         "type": "List<#A> Function<#A extends Object?>(int,#A,{bool growable})",
+        "functionKind": 3
+      },
+      "dart:core::List.List.of": {
+        "id": "function/dart:core::List.List.of",
+        "kind": "function",
+        "name": "List.of",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:core::List",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": true,
+          "external": false
+        },
+        "returnType": "List<#A/*free*/>",
+        "inferredReturnType": "Union([exact=JSExtendableArray|powerset={I}{G}{M}], [exact=JSFixedArray|powerset={I}{F}{M}], powerset: {I}{GF}{M})",
+        "parameters": [
+          {
+            "name": "elements",
+            "type": "[subtype=Iterable|powerset={IN}{O}{MN}]",
+            "declaredType": "Iterable<List.E>"
+          },
+          {
+            "name": "growable",
+            "type": "Value([exact=JSBool|powerset={I}{O}{N}], value: true, powerset: {I}{O}{N})",
+            "declaredType": "bool"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 1,
+        "code": "",
+        "type": "List<#A> Function<#A extends Object?>(Iterable<#A>,{bool growable})",
         "functionKind": 3
       },
       "dart:core::Null.hashCode": {
@@ -37411,6 +37633,152 @@
         "code": "\"[\"(a){return\"Bad state: \"+this.a}",
         "type": "String Function()",
         "functionKind": 2
+      },
+      "dart:core::String.String.fromCharCodes": {
+        "id": "function/dart:core::String.String.fromCharCodes",
+        "kind": "function",
+        "name": "String.fromCharCodes",
+        "size": 54,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:core::String",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": true,
+          "external": false
+        },
+        "returnType": "String",
+        "inferredReturnType": "[exact=JSString|powerset={I}{O}{I}]",
+        "parameters": [
+          {
+            "name": "charCodes",
+            "type": "Container([exact=NativeUint8List|powerset={I}{O}{M}], element: [exact=JSUInt31|powerset={I}{O}{N}], length: null, powerset: {I}{O}{M})",
+            "declaredType": "Iterable<int>"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "HM(a){var s\nA.k1(0,\"start\")\ns=A.Nz(a,0,null)\nreturn s}",
+        "type": "String Function(Iterable<int>,[int,int?])",
+        "functionKind": 3
+      },
+      "dart:core::String._stringFromIterable": {
+        "id": "function/dart:core::String._stringFromIterable",
+        "kind": "function",
+        "name": "_stringFromIterable",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:core::String",
+        "children": [],
+        "modifiers": {
+          "static": true,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "String",
+        "inferredReturnType": "[exact=JSString|powerset={I}{O}{I}]",
+        "parameters": [
+          {
+            "name": "charCodes",
+            "type": "Container([exact=NativeUint8List|powerset={I}{O}{M}], element: [exact=JSUInt31|powerset={I}{O}{N}], length: null, powerset: {I}{O}{M})",
+            "declaredType": "Iterable<int>"
+          },
+          {
+            "name": "start",
+            "type": "[exact=JSUInt31|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          },
+          {
+            "name": "end",
+            "type": "[null|powerset={null}]",
+            "declaredType": "int?"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 1,
+        "code": "",
+        "type": "String Function(Iterable<int>,int,int?)",
+        "functionKind": 0
+      },
+      "dart:core::String._stringFromJSArray": {
+        "id": "function/dart:core::String._stringFromJSArray",
+        "kind": "function",
+        "name": "_stringFromJSArray",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:core::String",
+        "children": [],
+        "modifiers": {
+          "static": true,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "String",
+        "inferredReturnType": "[exact=JSString|powerset={I}{O}{I}]",
+        "parameters": [
+          {
+            "name": "list",
+            "type": "[subclass=JSArray|powerset={I}{GFU}{IM}]",
+            "declaredType": "JSArray<dynamic>"
+          },
+          {
+            "name": "start",
+            "type": "[exact=JSUInt31|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          },
+          {
+            "name": "endOrNull",
+            "type": "[null|powerset={null}]",
+            "declaredType": "int?"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 1,
+        "code": "",
+        "type": "String Function(JSArray<dynamic>,int,int?)",
+        "functionKind": 0
+      },
+      "dart:core::String._stringFromUint8List": {
+        "id": "function/dart:core::String._stringFromUint8List",
+        "kind": "function",
+        "name": "_stringFromUint8List",
+        "size": 61,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:core::String",
+        "children": [],
+        "modifiers": {
+          "static": true,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "String",
+        "inferredReturnType": "[exact=JSString|powerset={I}{O}{I}]",
+        "parameters": [
+          {
+            "name": "charCodes",
+            "type": "Container([exact=NativeUint8List|powerset={I}{O}{M}], element: [exact=JSUInt31|powerset={I}{O}{N}], length: null, powerset: {I}{O}{M})",
+            "declaredType": "NativeUint8List"
+          },
+          {
+            "name": "start",
+            "type": "[exact=JSUInt31|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          },
+          {
+            "name": "endOrNull",
+            "type": "[null|powerset={null}]",
+            "declaredType": "int?"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "Nz(a,b,c){var s=a.length\nif(b>=s)return\"\"\nreturn A.fw(a,b,s)}",
+        "type": "String Function(NativeUint8List,int,int?)",
+        "functionKind": 0
       },
       "dart:core::StringBuffer.StringBuffer": {
         "id": "function/dart:core::StringBuffer.StringBuffer",
@@ -38451,7 +38819,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 24,
+        "inlinedCount": 26,
         "code": "",
         "type": "#A Function<#A extends Object?>(Object,Object,Object?)",
         "functionKind": 0
@@ -38724,12 +39092,12 @@
           },
           {
             "name": "value",
-            "type": "Union([exact=JSBool|powerset={I}{O}{N}], [exact=JSString|powerset={I}{O}{I}], powerset: {I}{O}{IN})",
+            "type": "Union([exact=JSString|powerset={I}{O}{I}], [subtype=bool|powerset={IN}{O}{N}], powerset: {IN}{O}{IN})",
             "declaredType": "_setPropertyUnchecked.T?"
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 32,
+        "inlinedCount": 35,
         "code": "",
         "type": "#A Function<#A extends Object?>(Object,Object,#A?)",
         "functionKind": 0
@@ -38802,7 +39170,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes nothing)",
-        "inlinedCount": 44,
+        "inlinedCount": 47,
         "code": "",
         "type": "#A Function<#A extends Object?>(Object,Object)",
         "functionKind": 0
@@ -39349,7 +39717,7 @@
         "id": "function/org-dartlang-app:///example/src/qr_example.dart::QrExample.QrExample",
         "kind": "function",
         "name": "QrExample",
-        "size": 1716,
+        "size": 1717,
         "outputUnit": "outputUnit/main",
         "parent": "class/org-dartlang-app:///example/src/qr_example.dart::QrExample",
         "children": [
@@ -39370,7 +39738,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "t(){var s,r,q,p,o,n,m,l,k,j,i=v.G,h=i.document.querySelector(\"#content\")\nif(h==null)h=A.AN(h)\ns=i.document.querySelector(\"#validation-error\")\nif(s==null)s=A.AN(s)\nr=i.document.querySelector(\"#validation-waiting\")\nif(r==null)r=A.AN(r)\nq=i.document.querySelector(\"#type-div\")\nif(q==null)q=A.AN(q)\np=i.document.querySelector(\"#error-div\")\nif(p==null)p=A.AN(p)\no=i.document.querySelector(\"#input\")\nif(o==null)o=A.AN(o)\nn=i.document.querySelector(\"#status\")\nif(n==null)n=A.AN(n)\nm=A.bK(!1,t.r)\nl=i.document.querySelector(\"#copy-btn\")\nif(l==null)l=A.AN(l)\nk=i.document.querySelector(\"#download-btn\")\nif(k==null)k=A.AN(k)\nj=A.i3(h,s,r,q,p,l,k,m)\nA.JE(l,\"click\",new A.dd(j),!1)\nA.JE(k,\"click\",new A.aB(j),!1)\nA.JE(o,\"keyup\",new A.oN(j,o),!1)\nj.w.k(new A.qx(o,n,j),new A.rd(o,n,j))\nj.x=o.value\nj.T()\no.focus()\nreturn j}",
+        "code": "t(){var s,r,q,p,o,n,m,l,k,j,i=v.G,h=i.document.querySelector(\"#content\")\nif(h==null)h=A.AN(h)\ns=i.document.querySelector(\"#validation-error\")\nif(s==null)s=A.AN(s)\nr=i.document.querySelector(\"#validation-waiting\")\nif(r==null)r=A.AN(r)\nq=i.document.querySelector(\"#type-div\")\nif(q==null)q=A.AN(q)\np=i.document.querySelector(\"#error-div\")\nif(p==null)p=A.AN(p)\no=i.document.querySelector(\"#input\")\nif(o==null)o=A.AN(o)\nn=i.document.querySelector(\"#status\")\nif(n==null)n=A.AN(n)\nm=A.bK(!1,t.r)\nl=i.document.querySelector(\"#copy-btn\")\nif(l==null)l=A.AN(l)\nk=i.document.querySelector(\"#download-btn\")\nif(k==null)k=A.AN(k)\nj=A.i3(h,s,r,q,p,l,k,m)\nA.JE(l,\"click\",new A.dd(j),!1)\nA.JE(k,\"click\",new A.aB(j),!1)\nA.JE(o,\"keyup\",new A.oN(j,o),!1)\nj.x.k(new A.qx(o,n,j),new A.rd(o,n,j))\nj.y=o.value\nj.T()\no.focus()\nreturn j}",
         "type": "QrExample Function()",
         "functionKind": 3
       },
@@ -39457,7 +39825,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "$1(a){var s=this.a\ns.x=this.b.value\ns.T()}",
+        "code": "$1(a){var s=this.a\ns.y=this.b.value\ns.T()}",
         "type": "void Function(JSObject)",
         "functionKind": 2
       },
@@ -39465,7 +39833,7 @@
         "id": "function/org-dartlang-app:///example/src/qr_example.dart::QrExample.QrExample.QrExample_QrExample_closure.call%2",
         "kind": "function",
         "name": "call",
-        "size": 229,
+        "size": 230,
         "outputUnit": "outputUnit/main",
         "parent": "closure/org-dartlang-app:///example/src/qr_example.dart::QrExample.QrExample.QrExample_QrExample_closure%2",
         "children": [],
@@ -39486,7 +39854,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "$1(a){var s,r\nthis.a.style.background=\"\"\ns=this.b\ns.style.color=\"\"\nr=this.c\nif(a==null){r.as=B.bA\ns.innerText=\"Type something to encode\"\nr.tS(!1)}else{r.as=B.JB\nr.tS(!0)\nr.Q=a\ns.innerText=\"Input size: \"+r.x.length+\" bytes\"}r.j()}",
+        "code": "$1(a){var s,r\nthis.a.style.background=\"\"\ns=this.b\ns.style.color=\"\"\nr=this.c\nif(a==null){r.ax=B.bA\ns.innerText=\"Type something to encode\"\nr.tS(!1)}else{r.ax=B.JB\nr.tS(!0)\nr.at=a\ns.innerText=\"Input size: \"+r.y.length+\" bytes\"}r.j()}",
         "type": "void Function(List<bool>?)",
         "functionKind": 2
       },
@@ -39515,7 +39883,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "$1(a){var s,r\nthis.a.style.background=\"red\"\ns=this.b\ns.style.color=\"red\"\nr=this.c\ns.innerText=\"Input too long (\"+r.x.length+\" bytes)\"\nr.as=B.cV\nr.tS(!1)\nr.j()}",
+        "code": "$1(a){var s,r\nthis.a.style.background=\"red\"\ns=this.b\ns.style.color=\"red\"\nr=this.c\ns.innerText=\"Input too long (\"+r.y.length+\" bytes)\"\nr.ax=B.cV\nr.tS(!1)\nr.j()}",
         "type": "Null Function(Object)",
         "functionKind": 2
       },
@@ -39523,11 +39891,12 @@
         "id": "function/org-dartlang-app:///example/src/qr_example.dart::QrExample.QrExample._",
         "kind": "function",
         "name": "QrExample._",
-        "size": 391,
+        "size": 555,
         "outputUnit": "outputUnit/main",
         "parent": "class/org-dartlang-app:///example/src/qr_example.dart::QrExample",
         "children": [
-          "closure/org-dartlang-app:///example/src/qr_example.dart::QrExample.QrExample._.QrExample$__closure"
+          "closure/org-dartlang-app:///example/src/qr_example.dart::QrExample.QrExample._.QrExample$__closure",
+          "closure/org-dartlang-app:///example/src/qr_example.dart::QrExample.QrExample._.QrExample$__closure%0"
         ],
         "modifiers": {
           "static": false,
@@ -39581,7 +39950,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "i3(a,b,c,d,e,f,g,h){var s,r,q=A.QI([],t.u),p=a.getContext(\"2d\")\nif(p==null)p=A.AN(p)\ns=t.r\nr=A.x2(!1,t.H)\nr.i(0,null)\nq=new A.q9(a,p,b,c,f,g,h,A.eI(A.Cd(new A.Gm(h,A.Lh(h).C(\"Gm<1>\")),A.HV(A.XA(),s),!0,A.A7(),new A.u8(r,A.Lh(r).C(\"u8<1>\")),s,s),A.wr(),r.ght(r),s,t.E),B.yC,q,B.JB)\nq.PJ(a,b,c,d,e,f,g,h)\nreturn q}",
+        "code": "i3(a,b,c,d,e,f,g,h){var s,r,q,p=A.QI([],t.u),o=a.getContext(\"2d\")\nif(o==null)o=A.AN(o)\ns=v.G.document.getElementById(\"type_auto\")\nif(s==null)s=A.AN(s)\nr=t.r\nq=A.x2(!1,t.H)\nq.i(0,null)\np=new A.q9(a,o,b,c,f,g,h,s,A.eI(A.Cd(new A.Gm(h,A.Lh(h).C(\"Gm<1>\")),A.HV(A.XA(),r),!0,A.A7(),new A.u8(q,A.Lh(q).C(\"u8<1>\")),r,r),A.wr(),q.ght(q),r,t.E),B.Jd,p,B.JB)\np.PJ(a,b,c,d,e,f,g,h)\nreturn p}",
         "type": "dynamic Function(JSObject,JSObject,JSObject,JSObject,JSObject,JSObject,JSObject,StreamController<_Config>)",
         "functionKind": 3
       },
@@ -39589,9 +39958,38 @@
         "id": "function/org-dartlang-app:///example/src/qr_example.dart::QrExample.QrExample._.QrExample$__closure.call",
         "kind": "function",
         "name": "call",
-        "size": 32,
+        "size": 41,
         "outputUnit": "outputUnit/main",
         "parent": "closure/org-dartlang-app:///example/src/qr_example.dart::QrExample.QrExample._.QrExample$__closure",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "void",
+        "inferredReturnType": "[null|powerset={null}]",
+        "parameters": [
+          {
+            "name": "_#wc0#formal",
+            "type": "[subclass=JavaScriptObject|powerset={I}{GFUO}{IMN}]",
+            "declaredType": "JSObject"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "$1(a){var s=this.a\ns.Q=s.w.checked\ns.T()}",
+        "type": "void Function(JSObject)",
+        "functionKind": 2
+      },
+      "org-dartlang-app:///example/src/qr_example.dart::QrExample.QrExample._.QrExample$__closure.call%0": {
+        "id": "function/org-dartlang-app:///example/src/qr_example.dart::QrExample.QrExample._.QrExample$__closure.call%0",
+        "kind": "function",
+        "name": "call",
+        "size": 32,
+        "outputUnit": "outputUnit/main",
+        "parent": "closure/org-dartlang-app:///example/src/qr_example.dart::QrExample.QrExample._.QrExample$__closure%0",
         "children": [],
         "modifiers": {
           "static": false,
@@ -39700,7 +40098,7 @@
         "id": "function/org-dartlang-app:///example/src/qr_example.dart::QrExample._drawQr",
         "kind": "function",
         "name": "_drawQr",
-        "size": 544,
+        "size": 549,
         "outputUnit": "outputUnit/main",
         "parent": "class/org-dartlang-app:///example/src/qr_example.dart::QrExample",
         "children": [],
@@ -39715,7 +40113,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "L(){var s,r,q,p=this,o=B.CD.yu(Math.sqrt(J.Hm(p.Q))),n=p.a,m=n.width,l=n.height,k=o+1,j=B.jn.v(Math.min(A.E0(m),A.E0(l)),1.1*k),i=new A.Ng(1,0,0,1,0,0)\ni.QI(0.5*n.width,0.5*n.height)\ni.a*=j\ni.b*=j\ni.c*=j\ni.d*=j\nn=-0.5*o\ni.QI(n,n)\nn=p.b\nn.save()\nn.setTransform.apply(n,[i.a,i.b,i.c,i.d,i.e,i.f])\nif(J.RS(p.Q)){n.fillStyle=\"white\"\nn.fillRect(-0.5,-0.5,k,k)\nn.fillStyle=\"black\"\nn.beginPath()\nfor(s=0;s<o;++s)for(m=s*o,r=0;r<o;){q=r+1\nif(J.x9(p.Q,m+r)){for(;;){if(!(q<o&&J.x9(p.Q,m+q)))break;++q}n.rect(s,r,1,q-r)\nr=q}else r=q}n.fill()}n.restore()}",
+        "code": "cB(){var s,r,q,p=this,o=B.CD.yu(Math.sqrt(J.Hm(p.at))),n=p.a,m=n.width,l=n.height,k=o+1,j=B.jn.v(Math.min(A.E0(m),A.E0(l)),1.1*k),i=new A.Ng(1,0,0,1,0,0)\ni.QI(0.5*n.width,0.5*n.height)\ni.a*=j\ni.b*=j\ni.c*=j\ni.d*=j\nn=-0.5*o\ni.QI(n,n)\nn=p.b\nn.save()\nn.setTransform.apply(n,[i.a,i.b,i.c,i.d,i.e,i.f])\nif(J.RS(p.at)){n.fillStyle=\"white\"\nn.fillRect(-0.5,-0.5,k,k)\nn.fillStyle=\"black\"\nn.beginPath()\nfor(s=0;s<o;++s)for(m=s*o,r=0;r<o;){q=r+1\nif(J.x9(p.at,m+r)){for(;;){if(!(q<o&&J.x9(p.at,m+q)))break;++q}n.rect(s,r,1,q-r)\nr=q}else r=q}n.fill()}n.restore()}",
         "type": "void Function()",
         "functionKind": 2
       },
@@ -39752,7 +40150,7 @@
         "id": "function/org-dartlang-app:///example/src/qr_example.dart::QrExample._errorClick",
         "kind": "function",
         "name": "_errorClick",
-        "size": 209,
+        "size": 210,
         "outputUnit": "outputUnit/main",
         "parent": "class/org-dartlang-app:///example/src/qr_example.dart::QrExample",
         "children": [
@@ -39775,7 +40173,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "zg(a){var s=a.target\nthis.z=B.Nm.XG(B.TZ,new A.Wx(s==null?A.AN(s):s))\nthis.T()}\nk(j,\"gV3\",\"zg\",1)",
+        "code": "zg(a){var s=a.target\nthis.as=B.Nm.XG(B.TZ,new A.Wx(s==null?A.AN(s):s))\nthis.T()}\nk(j,\"gV3\",\"zg\",1)",
         "type": "void Function(JSObject)",
         "functionKind": 2
       },
@@ -39812,7 +40210,7 @@
         "id": "function/org-dartlang-app:///example/src/qr_example.dart::QrExample._levelClick",
         "kind": "function",
         "name": "_levelClick",
-        "size": 117,
+        "size": 140,
         "outputUnit": "outputUnit/main",
         "parent": "class/org-dartlang-app:///example/src/qr_example.dart::QrExample",
         "children": [],
@@ -39833,7 +40231,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "AS(a){var s=a.target\nif(s==null)s=A.AN(s)\nthis.y=A.QA(s.dataset.type_value)\nthis.T()}\nk(j=A.q9.prototype,\"gHk\",\"AS\",1)",
+        "code": "AS(a){var s=this,r=a.target\nif(r==null)r=A.AN(r)\ns.z=A.QA(r.dataset.type_value)\ns.Q=!1\ns.w.checked=!1\ns.T()}\nk(j=A.q9.prototype,\"gHk\",\"AS\",1)",
         "type": "void Function(JSObject)",
         "functionKind": 2
       },
@@ -39841,7 +40239,7 @@
         "id": "function/org-dartlang-app:///example/src/qr_example.dart::QrExample._onFrame",
         "kind": "function",
         "name": "_onFrame",
-        "size": 176,
+        "size": 177,
         "outputUnit": "outputUnit/main",
         "parent": "class/org-dartlang-app:///example/src/qr_example.dart::QrExample",
         "children": [],
@@ -39862,7 +40260,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "dF(a){var s,r=this\nr.at=!1\ns=r.a\ns.hidden=r.as!==B.JB\nr.c.hidden=r.as!==B.cV\nr.d.hidden=r.as!==B.bA\nif(r.as===B.JB){r.b.clearRect(0,0,s.width,s.height)\nr.L()}}\nk(j,\"gU\",\"dF\",25)",
+        "code": "dF(a){var s,r=this\nr.ay=!1\ns=r.a\ns.hidden=r.ax!==B.JB\nr.c.hidden=r.ax!==B.cV\nr.d.hidden=r.ax!==B.bA\nif(r.ax===B.JB){r.b.clearRect(0,0,s.width,s.height)\nr.cB()}}\nk(j,\"gU\",\"dF\",25)",
         "type": "void Function(num)",
         "functionKind": 2
       },
@@ -39870,7 +40268,7 @@
         "id": "function/org-dartlang-app:///example/src/qr_example.dart::QrExample._update",
         "kind": "function",
         "name": "_update",
-        "size": 52,
+        "size": 53,
         "outputUnit": "outputUnit/main",
         "parent": "class/org-dartlang-app:///example/src/qr_example.dart::QrExample",
         "children": [],
@@ -39885,7 +40283,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "T(){var s=this\ns.D()\ns.r.i(0,new A.oy(s.y,s.z,s.x))}",
+        "code": "T(){var s=this\ns.D()\ns.r.i(0,new A.oy(s.z,s.as,s.y))}",
         "type": "void Function()",
         "functionKind": 2
       },
@@ -39893,7 +40291,7 @@
         "id": "function/org-dartlang-app:///example/src/qr_example.dart::QrExample._validate",
         "kind": "function",
         "name": "_validate",
-        "size": 418,
+        "size": 525,
         "outputUnit": "outputUnit/main",
         "parent": "class/org-dartlang-app:///example/src/qr_example.dart::QrExample",
         "children": [
@@ -39910,7 +40308,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "D(){var s,r,q,p=this.x,o=this.y,n=A.aP(p,this.z,o),m=new A.Pd()\nfor(p=n.b,s=1;s<=10;++s)m.$2(\"type_\"+s,B.Nm.I(p,s))\nfor(p=n.c,r=0;r<4;++r){q=B.TZ[r]\nm.$2(\"error_\"+q[\"[\"](0),B.Nm.I(p,q))}}",
+        "code": "D(){var s,r,q,p,o,n=this,m=n.y,l=n.z,k=A.aP(m,n.as,l)\nif(n.Q&&k.b.length!==0){m=B.Nm.gn(k.b)\nn.z=m\ns=v.G.document.getElementById(\"type_\"+m)\nif(s!=null)s.checked=!0}r=new A.Pd()\nfor(m=k.b,q=1;q<=10;++q)r.$2(\"type_\"+q,B.Nm.I(m,q))\nfor(m=k.c,p=0;p<4;++p){o=B.TZ[p]\nr.$2(\"error_\"+o.b,B.Nm.I(m,o))}}",
         "type": "void Function()",
         "functionKind": 2
       },
@@ -39967,7 +40365,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "j(){if(!this.at){this.at=!0\nv.G.window.requestAnimationFrame(A.k6(this.gU()))}}",
+        "code": "j(){if(!this.ay){this.ay=!0\nv.G.window.requestAnimationFrame(A.k6(this.gU()))}}",
         "type": "void Function()",
         "functionKind": 2
       },
@@ -40219,7 +40617,7 @@
         "parameters": [
           {
             "name": "neededBytes",
-            "type": "[subclass=JSPositiveInt|powerset={I}{O}{N}]",
+            "type": "[subclass=JSUInt32|powerset={I}{O}{N}]",
             "declaredType": "int"
           }
         ],
@@ -40227,35 +40625,6 @@
         "inlinedCount": 0,
         "code": "Wn(a){var s,r,q=this.a,p=q.length\nif(p<a){s=p===0?4:p*2\nwhile(s<a)s*=2\nr=new Uint8Array(s)\nB.NA.vg(r,0,p,q)\nthis.a=r}}",
         "type": "void Function(int)",
-        "functionKind": 2
-      },
-      "package:qr/src/bit_buffer.dart::QrBitBuffer._getBit": {
-        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer._getBit",
-        "kind": "function",
-        "name": "_getBit",
-        "size": 0,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/package:qr/src/bit_buffer.dart::QrBitBuffer",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "bool",
-        "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
-        "parameters": [
-          {
-            "name": "index",
-            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
-            "declaredType": "int"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 1,
-        "code": "",
-        "type": "bool Function(int)",
         "functionKind": 2
       },
       "package:qr/src/bit_buffer.dart::QrBitBuffer.getBytes": {
@@ -40292,29 +40661,6 @@
         "type": "Uint8List Function(int,int)",
         "functionKind": 2
       },
-      "package:qr/src/bit_buffer.dart::QrBitBuffer.iterator": {
-        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.iterator",
-        "kind": "function",
-        "name": "iterator",
-        "size": 29,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/package:qr/src/bit_buffer.dart::QrBitBuffer",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "Iterator<bool>",
-        "inferredReturnType": "[exact=_QrBitBufferIterator|powerset={N}{O}{N}]",
-        "parameters": [],
-        "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 0,
-        "code": "gkz(a){return new A.R5(this)}",
-        "type": "Iterator<bool> Function()",
-        "functionKind": 2
-      },
       "package:qr/src/bit_buffer.dart::QrBitBuffer.length": {
         "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.length",
         "kind": "function",
@@ -40330,10 +40676,10 @@
           "external": false
         },
         "returnType": "int",
-        "inferredReturnType": "[subclass=JSPositiveInt|powerset={I}{O}{N}]",
+        "inferredReturnType": "[subclass=JSInt|powerset={I}{O}{N}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads field; writes nothing)",
-        "inlinedCount": 6,
+        "inlinedCount": 5,
         "code": "gB(a){return this.b}",
         "type": "int Function()",
         "functionKind": 2
@@ -40342,7 +40688,7 @@
         "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.put",
         "kind": "function",
         "name": "put",
-        "size": 350,
+        "size": 368,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/bit_buffer.dart::QrBitBuffer",
         "children": [],
@@ -40362,21 +40708,21 @@
           },
           {
             "name": "length",
-            "type": "[exact=JSUInt31|powerset={I}{O}{N}]",
+            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
             "declaredType": "int"
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Dp(a,b){var s,r,q,p,o,n,m,l,k,j,i,h,g=this\nif(b===0)return\ns=g.b\nr=s+b\ng.Wn(r+7>>>3)\nif(b===8&&(s&7)===0&&a>=0&&a<=255){q=g.a\nq.$flags&2&&A.cW(q)\nq[s>>>3]=a\ng.b=r\nreturn}for(q=g.a,p=q.$flags|0,o=b;o>0;o=k){n=B.jn.wG(s,3)\nm=8-(s&7)\nl=o<m?o:m\nk=o-l\nj=B.jn.HZ(a,k)\ni=B.jn.yE(1,l)\nh=q[n]\ni=B.jn.yE((j&i-1)>>>0,m-l)\np&2&&A.cW(q)\nq[n]=(h|i)>>>0\ns+=l}g.b=r}",
+        "code": "Dp(a,b){var s,r,q,p,o,n,m,l,k,j,i,h,g=this\nif(b===0)return\ns=g.b\nr=s+b\ng.Wn(B.jn.wG(r+7,3))\nif(b===8&&(s&7)===0&&a>=0&&a<=255){q=g.a\np=B.jn.wG(s,3)\nq.$flags&2&&A.cW(q)\nq[p]=a\ng.b=r\nreturn}for(q=g.a,p=q.$flags|0,o=b;o>0;o=k){n=B.jn.wG(s,3)\nm=8-(s&7)\nl=o<m?o:m\nk=o-l\nj=B.jn.HZ(a,k)\ni=B.jn.yE(1,l)\nh=q[n]\ni=B.jn.yE((j&i-1)>>>0,m-l)\np&2&&A.cW(q)\nq[n]=(h|i)>>>0\ns+=l}g.b=r}",
         "type": "void Function(int,int)",
         "functionKind": 2
       },
-      "package:qr/src/bit_buffer.dart::QrBitBuffer.putBit": {
-        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.putBit",
+      "package:qr/src/bit_buffer.dart::QrBitBuffer.toString": {
+        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.toString",
         "kind": "function",
-        "name": "putBit",
-        "size": 0,
+        "name": "toString",
+        "size": 251,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/bit_buffer.dart::QrBitBuffer",
         "children": [],
@@ -40386,94 +40732,13 @@
           "factory": false,
           "external": false
         },
-        "returnType": "void",
-        "inferredReturnType": "[null|powerset={null}]",
-        "parameters": [
-          {
-            "name": "bit",
-            "type": "Value([exact=JSBool|powerset={I}{O}{N}], value: false, powerset: {I}{O}{N})",
-            "declaredType": "bool"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 1,
-        "code": "",
-        "type": "void Function(bool)",
-        "functionKind": 2
-      },
-      "package:qr/src/bit_buffer.dart::_QrBitBufferIterator._QrBitBufferIterator": {
-        "id": "function/package:qr/src/bit_buffer.dart::_QrBitBufferIterator._QrBitBufferIterator",
-        "kind": "function",
-        "name": "_QrBitBufferIterator",
-        "size": 0,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/package:qr/src/bit_buffer.dart::_QrBitBufferIterator",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "dynamic",
-        "inferredReturnType": "[exact=_QrBitBufferIterator|powerset={N}{O}{N}]",
-        "parameters": [
-          {
-            "name": "_buffer",
-            "type": "[exact=QrBitBuffer|powerset={N}{O}{N}]",
-            "declaredType": "QrBitBuffer"
-          }
-        ],
-        "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 1,
-        "code": "",
-        "type": "dynamic Function(QrBitBuffer)",
-        "functionKind": 3
-      },
-      "package:qr/src/bit_buffer.dart::_QrBitBufferIterator.current": {
-        "id": "function/package:qr/src/bit_buffer.dart::_QrBitBufferIterator.current",
-        "kind": "function",
-        "name": "current",
-        "size": 76,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/package:qr/src/bit_buffer.dart::_QrBitBufferIterator",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "bool",
-        "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
+        "returnType": "String",
+        "inferredReturnType": "[exact=JSString|powerset={I}{O}{I}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "gl(){var s=this.b,r=B.jn.wG(s,3)\nreturn(B.jn.bf(this.a.a[r],7-(s&7))&1)===1}",
-        "type": "bool Function()",
-        "functionKind": 2
-      },
-      "package:qr/src/bit_buffer.dart::_QrBitBufferIterator.moveNext": {
-        "id": "function/package:qr/src/bit_buffer.dart::_QrBitBufferIterator.moveNext",
-        "kind": "function",
-        "name": "moveNext",
-        "size": 28,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/package:qr/src/bit_buffer.dart::_QrBitBufferIterator",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "bool",
-        "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
-        "parameters": [],
-        "sideEffects": "SideEffects(reads field; writes field)",
-        "inlinedCount": 0,
-        "code": "G(){return++this.b<this.a.b}",
-        "type": "bool Function()",
+        "code": "\"[\"(a){var s,r,q,p,o,n,m,l=this.b,k=new Uint8Array(l),j=B.jn.wG(l,3)\nfor(s=this.a,r=0,q=0;q<j;++q){p=s[q]\nfor(o=7;o>=0;--o,r=n){n=r+1\nk[r]=(B.jn.bf(p,o)&1)+48}}m=l&7\nif(m>0){p=s[j]\nfor(q=0;q<m;++q,r=n){n=r+1\nk[r]=(B.jn.bf(p,7-q)&1)+48}}return A.HM(k)}",
+        "type": "String Function()",
         "functionKind": 2
       },
       "package:qr/src/byte.dart::QrAlphaNumeric.QrAlphaNumeric._": {
@@ -40792,7 +41057,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "mV(a){var s=$.Lw()\nif(s.b.test(a))return A.QI([A.qL(a)],t.v)\ns=$.ol()\nif(s.b.test(a)){if(!A.m2(a,s,0))A.vh(A.L3(a.length>10?B.xB.J(a,0,10)+\"...\":a,\"alphaNumeric\",\"String does not contain valid ALPHA-NUM character set\"))\nreturn A.QI([new A.HO(a)],t.v)}s=new A.qj(a)\nif(s.V(s,new A.cN()))return A.QI([new A.wO(26),new A.eK(B.Qk.n(a))],t.v)\nreturn A.QI([new A.eK(B.Qk.n(a))],t.v)}",
+        "code": "mV(a){var s=$.Lw()\nif(s.b.test(a))return A.QI([A.qL(a)],t.v)\ns=$.ol()\nif(s.b.test(a)){if(!A.m2(a,s,0))A.vh(A.L3(a.length>10?B.xB.J(a,0,10)+\"...\":a,\"alphaNumeric\",\"String does not contain valid ALPHA-NUM character set\"))\nreturn A.QI([new A.HO(a)],t.v)}s=new A.qj(a)\nif(s.V(s,new A.cN()))return A.QI([new A.wO(26),new A.eK(B.Qk.L(a))],t.v)\nreturn A.QI([new A.eK(B.Qk.L(a))],t.v)}",
         "type": "List<QrDatum> Function(String)",
         "functionKind": 0
       },
@@ -41156,7 +41421,7 @@
         "parameters": [
           {
             "name": "providedInput",
-            "type": "[subclass=JSPositiveInt|powerset={I}{O}{N}]",
+            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
             "declaredType": "int"
           },
           {
@@ -41190,7 +41455,7 @@
         "parameters": [
           {
             "name": "providedInput",
-            "type": "[subclass=JSPositiveInt|powerset={I}{O}{N}]",
+            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
             "declaredType": "int"
           },
           {
@@ -41849,7 +42114,7 @@
         "id": "function/package:qr/src/qr_code.dart::_createData",
         "kind": "function",
         "name": "_createData",
-        "size": 410,
+        "size": 396,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/qr_code.dart::",
         "children": [],
@@ -41880,7 +42145,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "fV(a,b,c){var s,r,q,p,o,n,m,l,k=A.Kf(a,b)\nfor(s=k.length,r=0,q=0;q<s;++q)r+=k[q].b*8\np=new A.eL(new Uint8Array(32))\nfor(o=0;o<c.length;++o){n=c[o]\np.Dp(n.gp().c,4)\np.Dp(n.gB(n),n.gp().S(a))\nn.KF(p)}s=p.b\nif(s>r)throw A.b(new A.Tw(\"Input too long. \"+s+\" > \"+r))\nif(s+4<=r)p.Dp(0,4)\nwhile(s=p.b,B.jn.Y(s,8)!==0){p.Wn((s>>>3)+1);++p.b}for(m=0;;m=l){if(p.b>=r)break\nl=m+1\np.Dp((m&1)===0?236:17,8)}return A.vX(p,k)}",
+        "code": "fV(a,b,c){var s,r,q,p,o,n,m,l,k,j=A.Kf(a,b)\nfor(s=j.length,r=0,q=0;q<s;++q)r+=j[q].b*8\np=new A.eL(new Uint8Array(32))\nfor(o=0;o<c.length;++o){n=c[o]\np.Dp(n.gp().c,4)\np.Dp(n.gB(n),n.gp().S(a))\nn.KF(p)}s=p.b\nif(s>r)throw A.b(new A.Tw(\"Input too long. \"+s+\" > \"+r))\nif(s+4<=r)p.Dp(0,4)\nm=8-B.jn.Y(p.b,8)\nif(m<8)p.Dp(0,m)\nfor(l=0;;l=k){if(p.b>=r)break\nk=l+1\np.Dp((l&1)===0?236:17,8)}return A.vX(p,j)}",
         "type": "List<int> Function(int,QrErrorCorrectLevel,List<QrDatum>)",
         "functionKind": 0
       },
@@ -43311,7 +43576,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads field; writes nothing)",
-        "inlinedCount": 2,
+        "inlinedCount": 3,
         "code": "",
         "type": "ElementStream<JSObject> Function(JSObject)",
         "functionKind": 0
@@ -43398,7 +43663,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads field; writes nothing)",
-        "inlinedCount": 5,
+        "inlinedCount": 6,
         "code": "",
         "type": "ElementStream<EventStreamProvider.T> Function(JSObject,{bool useCapture})",
         "functionKind": 2
@@ -43437,7 +43702,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 5,
+        "inlinedCount": 6,
         "code": "",
         "type": "dynamic Function(JSObject?,String,bool)",
         "functionKind": 3
@@ -43481,7 +43746,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 5,
+        "inlinedCount": 6,
         "code": "",
         "type": "StreamSubscription<_EventStream.T> Function(void Function(_EventStream.T)?,{bool? cancelOnError,void Function()? onDone,Function? onError})",
         "functionKind": 2
@@ -44012,7 +44277,43 @@
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:_internal::SubListIterable",
         "children": [],
-        "inferredType": "[exact=JSUInt31|powerset={I}{O}{N}]",
+        "inferredType": "[subclass=JSPositiveInt|powerset={I}{O}{N}]",
+        "code": "",
+        "type": "int"
+      },
+      "dart:_internal::TakeIterable._iterable": {
+        "id": "field/dart:_internal::TakeIterable._iterable",
+        "kind": "field",
+        "name": "_iterable",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:_internal::TakeIterable",
+        "children": [],
+        "inferredType": "[subclass=Iterable|powerset={N}{O}{N}]",
+        "code": "",
+        "type": "Iterable<TakeIterable.E>"
+      },
+      "dart:_internal::TakeIterator._iterator": {
+        "id": "field/dart:_internal::TakeIterator._iterator",
+        "kind": "field",
+        "name": "_iterator",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:_internal::TakeIterator",
+        "children": [],
+        "inferredType": "[subtype=Iterator|powerset={N}{O}{N}]",
+        "code": "",
+        "type": "Iterator<TakeIterator.E>"
+      },
+      "dart:_internal::TakeIterator._remaining": {
+        "id": "field/dart:_internal::TakeIterator._remaining",
+        "kind": "field",
+        "name": "_remaining",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:_internal::TakeIterator",
+        "children": [],
+        "inferredType": "[subclass=JSInt|powerset={I}{O}{N}]",
         "code": "",
         "type": "int"
       },
@@ -46574,6 +46875,30 @@
         "code": "",
         "type": "num"
       },
+      "org-dartlang-app:///example/src/qr_example.dart::QrExample._autoCheckElement": {
+        "id": "field/org-dartlang-app:///example/src/qr_example.dart::QrExample._autoCheckElement",
+        "kind": "field",
+        "name": "_autoCheckElement",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/org-dartlang-app:///example/src/qr_example.dart::QrExample",
+        "children": [],
+        "inferredType": "[subclass=JavaScriptObject|powerset={I}{GFUO}{IMN}]",
+        "code": "",
+        "type": "JSObject"
+      },
+      "org-dartlang-app:///example/src/qr_example.dart::QrExample._autoType": {
+        "id": "field/org-dartlang-app:///example/src/qr_example.dart::QrExample._autoType",
+        "kind": "field",
+        "name": "_autoType",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/org-dartlang-app:///example/src/qr_example.dart::QrExample",
+        "children": [],
+        "inferredType": "[subtype=bool|powerset={IN}{O}{N}]",
+        "code": "",
+        "type": "bool"
+      },
       "org-dartlang-app:///example/src/qr_example.dart::QrExample._canvas": {
         "id": "field/org-dartlang-app:///example/src/qr_example.dart::QrExample._canvas",
         "kind": "field",
@@ -46798,30 +47123,6 @@
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/bit_buffer.dart::QrBitBuffer",
         "children": [],
-        "inferredType": "[subclass=JSPositiveInt|powerset={I}{O}{N}]",
-        "code": "",
-        "type": "int"
-      },
-      "package:qr/src/bit_buffer.dart::_QrBitBufferIterator._buffer": {
-        "id": "field/package:qr/src/bit_buffer.dart::_QrBitBufferIterator._buffer",
-        "kind": "field",
-        "name": "_buffer",
-        "size": 0,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/package:qr/src/bit_buffer.dart::_QrBitBufferIterator",
-        "children": [],
-        "inferredType": "[exact=QrBitBuffer|powerset={N}{O}{N}]",
-        "code": "",
-        "type": "QrBitBuffer"
-      },
-      "package:qr/src/bit_buffer.dart::_QrBitBufferIterator._currentIndex": {
-        "id": "field/package:qr/src/bit_buffer.dart::_QrBitBufferIterator._currentIndex",
-        "kind": "field",
-        "name": "_currentIndex",
-        "size": 0,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/package:qr/src/bit_buffer.dart::_QrBitBufferIterator",
-        "children": [],
         "inferredType": "[subclass=JSInt|powerset={I}{O}{N}]",
         "code": "",
         "type": "int"
@@ -46992,7 +47293,7 @@
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/input_too_long_exception.dart::InputTooLongException",
         "children": [],
-        "inferredType": "[subclass=JSPositiveInt|powerset={I}{O}{N}]",
+        "inferredType": "[subclass=JSInt|powerset={I}{O}{N}]",
         "code": "",
         "type": "int"
       },
@@ -49728,7 +50029,7 @@
         "id": "closure/org-dartlang-app:///example/src/qr_example.dart::QrExample.QrExample.QrExample_QrExample_closure%2",
         "kind": "closure",
         "name": "QrExample_QrExample_closure",
-        "size": 307,
+        "size": 308,
         "outputUnit": "outputUnit/main",
         "parent": "function/org-dartlang-app:///example/src/qr_example.dart::QrExample.QrExample",
         "function": "function/org-dartlang-app:///example/src/qr_example.dart::QrExample.QrExample.QrExample_QrExample_closure.call%2"
@@ -49746,10 +50047,19 @@
         "id": "closure/org-dartlang-app:///example/src/qr_example.dart::QrExample.QrExample._.QrExample$__closure",
         "kind": "closure",
         "name": "QrExample$__closure",
-        "size": 79,
+        "size": 96,
         "outputUnit": "outputUnit/main",
         "parent": "function/org-dartlang-app:///example/src/qr_example.dart::QrExample.QrExample._",
         "function": "function/org-dartlang-app:///example/src/qr_example.dart::QrExample.QrExample._.QrExample$__closure.call"
+      },
+      "org-dartlang-app:///example/src/qr_example.dart::QrExample.QrExample._.QrExample$__closure%0": {
+        "id": "closure/org-dartlang-app:///example/src/qr_example.dart::QrExample.QrExample._.QrExample$__closure%0",
+        "kind": "closure",
+        "name": "QrExample$__closure",
+        "size": 79,
+        "outputUnit": "outputUnit/main",
+        "parent": "function/org-dartlang-app:///example/src/qr_example.dart::QrExample.QrExample._",
+        "function": "function/org-dartlang-app:///example/src/qr_example.dart::QrExample.QrExample._.QrExample$__closure.call%0"
       },
       "org-dartlang-app:///example/src/qr_example.dart::QrExample._copyToClipboard.QrExample__copyToClipboard_closure": {
         "id": "closure/org-dartlang-app:///example/src/qr_example.dart::QrExample._copyToClipboard.QrExample__copyToClipboard_closure",
@@ -50787,6 +51097,11 @@
         "id": "function/dart:_late_helper::throwLateFieldADI"
       }
     ],
+    "field/org-dartlang-app:///example/src/qr_example.dart::QrExample._autoCheckElement": [
+      {
+        "id": "function/dart:_late_helper::throwLateFieldADI"
+      }
+    ],
     "field/org-dartlang-app:///example/src/qr_example.dart::QrExample._canvas": [
       {
         "id": "function/dart:_late_helper::throwLateFieldADI"
@@ -50858,11 +51173,6 @@
       }
     ],
     "field/package:qr/src/bit_buffer.dart::QrBitBuffer._buffer": [
-      {
-        "id": "function/dart:_late_helper::throwLateFieldADI"
-      }
-    ],
-    "field/package:qr/src/bit_buffer.dart::_QrBitBufferIterator._buffer": [
       {
         "id": "function/dart:_late_helper::throwLateFieldADI"
       }
@@ -51350,6 +51660,14 @@
       {
         "id": "function/org-dartlang-app:///example/src/affine_transform.dart::AffineTransform.==",
         "mask": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]"
+      }
+    ],
+    "function/dart:_interceptors::JSArray.first": [
+      {
+        "id": "function/dart:_internal::IterableElementError.noElement"
+      },
+      {
+        "id": "function/dart:_js_helper::wrapException"
       }
     ],
     "function/dart:_interceptors::JSArray.firstWhere": [
@@ -52001,6 +52319,10 @@
         "mask": "[subclass=Object|powerset={IN}{GFUO}{IMN}]"
       },
       {
+        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.toString",
+        "mask": "[subclass=Object|powerset={IN}{GFUO}{IMN}]"
+      },
+      {
         "id": "function/package:qr/src/input_too_long_exception.dart::InputTooLongException.toString",
         "mask": "[subclass=Object|powerset={IN}{GFUO}{IMN}]"
       }
@@ -52464,10 +52786,6 @@
       {
         "id": "function/dart:collection::_HashMapKeyIterable.iterator",
         "mask": "[subclass=Iterable|powerset={N}{O}{N}]"
-      },
-      {
-        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.iterator",
-        "mask": "[subclass=Iterable|powerset={N}{O}{N}]"
       }
     ],
     "function/dart:_internal::MappedIterable.length": [
@@ -52492,10 +52810,6 @@
       },
       {
         "id": "function/dart:core::Iterable.length",
-        "mask": "[subclass=Iterable|powerset={N}{O}{N}]"
-      },
-      {
-        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.length",
         "mask": "[subclass=Iterable|powerset={N}{O}{N}]"
       }
     ],
@@ -52646,14 +52960,6 @@
       {
         "id": "function/dart:collection::_HashMapKeyIterator.moveNext",
         "mask": "[subtype=Iterator|powerset={N}{O}{N}]"
-      },
-      {
-        "id": "function/package:qr/src/bit_buffer.dart::_QrBitBufferIterator.current",
-        "mask": "[subtype=Iterator|powerset={N}{O}{N}]"
-      },
-      {
-        "id": "function/package:qr/src/bit_buffer.dart::_QrBitBufferIterator.moveNext",
-        "mask": "[subtype=Iterator|powerset={N}{O}{N}]"
       }
     ],
     "function/dart:_internal::MappedListIterable.elementAt": [
@@ -52746,6 +53052,12 @@
       },
       {
         "id": "function/dart:_internal::toStringVisiting"
+      }
+    ],
+    "function/dart:_internal::makeListFixedLength": [
+      {
+        "id": "function/dart:_interceptors::JSArray.markFixedList",
+        "mask": "inlined"
       }
     ],
     "function/dart:_internal::nullFuture.nullFuture_closure.call": [
@@ -53905,6 +54217,10 @@
       },
       {
         "id": "function/org-dartlang-app:///example/src/affine_transform.dart::AffineTransform.toString",
+        "mask": "[subclass=Object|powerset={IN}{GFUO}{IMN}]"
+      },
+      {
+        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.toString",
         "mask": "[subclass=Object|powerset={IN}{GFUO}{IMN}]"
       },
       {
@@ -55264,6 +55580,10 @@
       },
       {
         "id": "function/org-dartlang-app:///example/src/affine_transform.dart::AffineTransform.toString",
+        "mask": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]"
+      },
+      {
+        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.toString",
         "mask": "[null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}]"
       },
       {
@@ -68551,18 +68871,6 @@
       },
       {
         "id": "function/dart:core::RangeError.checkNotNegative"
-      },
-      {
-        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.iterator",
-        "mask": "[subclass=Iterable|powerset={N}{O}{N}]"
-      },
-      {
-        "id": "function/package:qr/src/bit_buffer.dart::_QrBitBufferIterator.current",
-        "mask": "[subtype=Iterator|powerset={N}{O}{N}]"
-      },
-      {
-        "id": "function/package:qr/src/bit_buffer.dart::_QrBitBufferIterator.moveNext",
-        "mask": "[subtype=Iterator|powerset={N}{O}{N}]"
       }
     ],
     "function/dart:core::Iterable.iterableToFullString": [
@@ -68723,14 +69031,6 @@
       {
         "id": "function/dart:collection::_HashMapKeyIterator.moveNext",
         "mask": "[subtype=Iterator|powerset={N}{O}{N}]"
-      },
-      {
-        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.iterator",
-        "mask": "[subclass=Iterable|powerset={N}{O}{N}]"
-      },
-      {
-        "id": "function/package:qr/src/bit_buffer.dart::_QrBitBufferIterator.moveNext",
-        "mask": "[subtype=Iterator|powerset={N}{O}{N}]"
       }
     ],
     "function/dart:core::Iterable.map": [
@@ -68749,9 +69049,21 @@
         "id": "function/dart:core::Iterable.iterableToShortString"
       }
     ],
+    "function/dart:core::List.List._fixedOf": [
+      {
+        "id": "function/dart:_internal::makeListFixedLength",
+        "mask": "inlined"
+      }
+    ],
     "function/dart:core::List.List.filled": [
       {
         "id": "function/dart:_interceptors::JSArray.JSArray.fixed"
+      }
+    ],
+    "function/dart:core::List.List.of": [
+      {
+        "id": "function/dart:core::List.List._fixedOf",
+        "mask": "inlined"
       }
     ],
     "function/dart:core::Null.hashCode": [
@@ -69011,6 +69323,58 @@
         "id": "field/dart:core::StateError.message"
       }
     ],
+    "function/dart:core::String.String.fromCharCodes": [
+      {
+        "id": "function/dart:_interceptors::JSArray.markFixedList"
+      },
+      {
+        "id": "function/dart:_internal::makeListFixedLength"
+      },
+      {
+        "id": "function/dart:collection::ListBase.take"
+      },
+      {
+        "id": "function/dart:core::List.List._fixedOf"
+      },
+      {
+        "id": "function/dart:core::List.List.of"
+      },
+      {
+        "id": "function/dart:core::RangeError.checkNotNegative"
+      },
+      {
+        "id": "function/dart:core::String._stringFromIterable",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:core::String._stringFromIterable"
+      },
+      {
+        "id": "function/dart:core::String._stringFromJSArray",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:core::String._stringFromJSArray"
+      },
+      {
+        "id": "function/dart:core::String._stringFromUint8List"
+      }
+    ],
+    "function/dart:core::String._stringFromIterable": [
+      {
+        "id": "function/dart:collection::ListBase.take",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:core::List.List.of",
+        "mask": "inlined"
+      }
+    ],
+    "function/dart:core::String._stringFromUint8List": [
+      {
+        "id": "function/dart:_js_helper::Primitives.stringFromNativeUint8List"
+      }
+    ],
     "function/dart:core::StringBuffer._writeAll": [
       {
         "id": "function/dart:_interceptors::ArrayIterator.current",
@@ -69182,18 +69546,6 @@
       },
       {
         "id": "function/dart:collection::_HashMapKeyIterator.moveNext",
-        "mask": "[subtype=Iterator|powerset={N}{O}{N}]"
-      },
-      {
-        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.iterator",
-        "mask": "[subclass=Iterable|powerset={N}{O}{N}]"
-      },
-      {
-        "id": "function/package:qr/src/bit_buffer.dart::_QrBitBufferIterator.current",
-        "mask": "[subtype=Iterator|powerset={N}{O}{N}]"
-      },
-      {
-        "id": "function/package:qr/src/bit_buffer.dart::_QrBitBufferIterator.moveNext",
         "mask": "[subtype=Iterator|powerset={N}{O}{N}]"
       }
     ],
@@ -69936,6 +70288,13 @@
         "id": "function/dart:_js_helper::instantiate1"
       },
       {
+        "id": "function/dart:_js_helper::staticInteropGlobalContext",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_js_helper::staticInteropGlobalContext"
+      },
+      {
         "id": "function/dart:_rti::Rti._eval"
       },
       {
@@ -69977,7 +70336,18 @@
         "id": "function/dart:async::_StreamController.stream"
       },
       {
+        "id": "function/dart:js_util::_callMethodUnchecked1",
+        "mask": "inlined"
+      },
+      {
         "id": "function/dart:js_util::_callMethodUnchecked1"
+      },
+      {
+        "id": "function/dart:js_util::getProperty",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:js_util::getProperty"
       },
       {
         "id": "function/package:stream_transform/src/aggregate_sample.dart::AggregateSample|aggregateSample"
@@ -70001,6 +70371,24 @@
       }
     ],
     "function/org-dartlang-app:///example/src/qr_example.dart::QrExample.QrExample._.QrExample$__closure.call": [
+      {
+        "id": "field/org-dartlang-app:///example/src/qr_example.dart::QrExample._autoCheckElement"
+      },
+      {
+        "id": "field/org-dartlang-app:///example/src/qr_example.dart::QrExample._autoType"
+      },
+      {
+        "id": "function/dart:js_util::getProperty",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:js_util::getProperty"
+      },
+      {
+        "id": "function/org-dartlang-app:///example/src/qr_example.dart::QrExample._update"
+      }
+    ],
+    "function/org-dartlang-app:///example/src/qr_example.dart::QrExample.QrExample._.QrExample$__closure.call%0": [
       {
         "id": "field/package:qr/src/error_correct_level.dart::QrErrorCorrectLevel.recoveryRate"
       },
@@ -70409,6 +70797,12 @@
     ],
     "function/org-dartlang-app:///example/src/qr_example.dart::QrExample._levelClick": [
       {
+        "id": "field/org-dartlang-app:///example/src/qr_example.dart::QrExample._autoCheckElement"
+      },
+      {
+        "id": "field/org-dartlang-app:///example/src/qr_example.dart::QrExample._autoType"
+      },
+      {
         "id": "field/org-dartlang-app:///example/src/qr_example.dart::QrExample._typeNumber"
       },
       {
@@ -70416,6 +70810,13 @@
       },
       {
         "id": "function/dart:core::int.parse"
+      },
+      {
+        "id": "function/dart:js_util::_setPropertyUnchecked",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:js_util::_setPropertyUnchecked"
       },
       {
         "id": "function/dart:js_util::getProperty",
@@ -70524,6 +70925,12 @@
     ],
     "function/org-dartlang-app:///example/src/qr_example.dart::QrExample._validate": [
       {
+        "id": "field/dart:core::_Enum._name"
+      },
+      {
+        "id": "field/org-dartlang-app:///example/src/qr_example.dart::QrExample._autoType"
+      },
+      {
         "id": "field/org-dartlang-app:///example/src/qr_example.dart::QrExample._errorCorrectLevel"
       },
       {
@@ -70542,13 +70949,58 @@
         "id": "function/dart:_interceptors::JSArray.contains"
       },
       {
+        "id": "function/dart:_interceptors::JSArray.first"
+      },
+      {
+        "id": "function/dart:_interceptors::JSArray.isEmpty"
+      },
+      {
+        "id": "function/dart:_interceptors::JSArray.isNotEmpty",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_interceptors::JSArray.isNotEmpty"
+      },
+      {
+        "id": "function/dart:_js_helper::staticInteropGlobalContext",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_js_helper::staticInteropGlobalContext"
+      },
+      {
         "id": "function/dart:_rti::_setArrayType"
       },
       {
         "id": "function/dart:_rti::findType"
       },
       {
-        "id": "function/dart:core::_Enum.toString"
+        "id": "function/dart:core::EnumName|get#name",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:core::EnumName|get#name"
+      },
+      {
+        "id": "function/dart:js_util::_callMethodUnchecked1",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:js_util::_callMethodUnchecked1"
+      },
+      {
+        "id": "function/dart:js_util::_setPropertyUnchecked",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:js_util::_setPropertyUnchecked"
+      },
+      {
+        "id": "function/dart:js_util::getProperty",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:js_util::getProperty"
       },
       {
         "id": "function/org-dartlang-app:///example/src/qr_example.dart::QrExample._validate.QrExample__validate_update.call"
@@ -70736,15 +71188,6 @@
         "mask": "inlined"
       }
     ],
-    "function/package:qr/src/bit_buffer.dart::QrBitBuffer.iterator": [
-      {
-        "id": "function/package:qr/src/bit_buffer.dart::_QrBitBufferIterator._QrBitBufferIterator",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/package:qr/src/bit_buffer.dart::_QrBitBufferIterator._QrBitBufferIterator"
-      }
-    ],
     "function/package:qr/src/bit_buffer.dart::QrBitBuffer.length": [
       {
         "id": "field/package:qr/src/bit_buffer.dart::QrBitBuffer._length"
@@ -70773,15 +71216,12 @@
         "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer._ensureCapacity"
       }
     ],
-    "function/package:qr/src/bit_buffer.dart::_QrBitBufferIterator.current": [
+    "function/package:qr/src/bit_buffer.dart::QrBitBuffer.toString": [
       {
         "id": "field/package:qr/src/bit_buffer.dart::QrBitBuffer._buffer"
       },
       {
-        "id": "field/package:qr/src/bit_buffer.dart::_QrBitBufferIterator._buffer"
-      },
-      {
-        "id": "field/package:qr/src/bit_buffer.dart::_QrBitBufferIterator._currentIndex"
+        "id": "field/package:qr/src/bit_buffer.dart::QrBitBuffer._length"
       },
       {
         "id": "function/dart:_interceptors::JSNumber._shrOtherPositive"
@@ -70790,29 +71230,20 @@
         "id": "function/dart:_interceptors::JSNumber._shrReceiverPositive"
       },
       {
-        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer._getBit",
+        "id": "function/dart:_native_typed_data::NativeUint8List.NativeUint8List",
         "mask": "inlined"
       },
       {
-        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer._getBit"
-      }
-    ],
-    "function/package:qr/src/bit_buffer.dart::_QrBitBufferIterator.moveNext": [
-      {
-        "id": "field/package:qr/src/bit_buffer.dart::QrBitBuffer._length"
+        "id": "function/dart:_native_typed_data::NativeUint8List.NativeUint8List"
       },
       {
-        "id": "field/package:qr/src/bit_buffer.dart::_QrBitBufferIterator._buffer"
+        "id": "function/dart:_native_typed_data::NativeUint8List._createLength"
       },
       {
-        "id": "field/package:qr/src/bit_buffer.dart::_QrBitBufferIterator._currentIndex"
+        "id": "function/dart:_native_typed_data::_checkLength"
       },
       {
-        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.length",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.length"
+        "id": "function/dart:core::String.String.fromCharCodes"
       }
     ],
     "function/package:qr/src/byte.dart::QrAlphaNumeric.QrAlphaNumeric.fromString": [
@@ -71774,9 +72205,6 @@
         "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.QrBitBuffer"
       },
       {
-        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer._ensureCapacity"
-      },
-      {
         "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.length",
         "mask": "inlined"
       },
@@ -71785,13 +72213,6 @@
       },
       {
         "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.put"
-      },
-      {
-        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.putBit",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.putBit"
       },
       {
         "id": "function/package:qr/src/byte.dart::QrAlphaNumeric.length",
@@ -73016,7 +73437,7 @@
       "id": "outputUnit/main",
       "kind": "outputUnit",
       "name": "main",
-      "size": 129377,
+      "size": 130130,
       "filename": "main.dart2js.js",
       "imports": []
     }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" prefix="og:http://ogp.me/ns#">
+<html lang="en" data-theme="light" prefix="og:http://ogp.me/ns#">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,6 +20,9 @@
   <meta name="twitter:description" content="Generate QR Codes instantly in your browser. Runs in your browser. Built with Dart.">
   <meta name="twitter:image" content="https://kevmoo.github.io/qr.dart/assets/og-image.png">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
   <link rel='stylesheet' type='text/css' href='style.css'/>
   <link rel="shortcut icon" href="favicon.ico"/>
@@ -45,7 +48,12 @@
         <article>
           <header>Settings</header>
           <div class='setting'>
-            <label>Size</label>
+            <div class='setting-header'>
+              <label>Size</label>
+              <label class='auto-checkbox' title='Automatically select the smallest size that can fit the data'>
+                <input type='checkbox' id='type_auto'> Auto
+              </label>
+            </div>
             <div id='type-div'></div>
           </div>
           <div class='setting'>
@@ -80,7 +88,7 @@
             kevmoo/qr.dart
           </a>
       </p>
-      <code class="build-info">Dart version 3.12.0-210.1.beta • <a href="https://github.com/kevmoo/qr.dart/commit/736a3b0aad7730839d502a4fcf4dfa505478db46">736a3b0</a></code>
+      <code class="build-info">Dart version 3.12.0-210.1.beta • <a href="https://github.com/kevmoo/qr.dart/commit/7e8fbe3748204da0d39e7796958b53b791e88823">7e8fbe3</a></code>
     </footer>
   </main>
 </body>
