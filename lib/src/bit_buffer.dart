@@ -72,14 +72,9 @@ final class QrBitBuffer {
     final fullBytes = _length >> 3;
     for (var i = 0; i < fullBytes; i++) {
       final byte = _buffer[i];
-      chars[charIndex++] = ((byte >> 7) & 1) + 48; // '0' is 48
-      chars[charIndex++] = ((byte >> 6) & 1) + 48;
-      chars[charIndex++] = ((byte >> 5) & 1) + 48;
-      chars[charIndex++] = ((byte >> 4) & 1) + 48;
-      chars[charIndex++] = ((byte >> 3) & 1) + 48;
-      chars[charIndex++] = ((byte >> 2) & 1) + 48;
-      chars[charIndex++] = ((byte >> 1) & 1) + 48;
-      chars[charIndex++] = (byte & 1) + 48;
+      for (var j = 7; j >= 0; j--) {
+        chars[charIndex++] = ((byte >> j) & 1) + 48; // '0' is 48
+      }
     }
 
     // Process remaining bits
