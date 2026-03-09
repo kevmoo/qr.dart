@@ -327,40 +327,226 @@ class QrImage {
   void _applyMask(int mpIndex, Uint8List templateData) {
     var inc = -1;
     var row = moduleCount - 1;
+    final toggle = _pixelDark ^ _pixelLight;
 
-    for (var col = moduleCount - 1; col > 0; col -= 2) {
-      if (col == 6) col--;
+    switch (mpIndex) {
+      case 0:
+        for (var col = moduleCount - 1; col > 0; col -= 2) {
+          if (col == 6) col--;
+          final cCol0 = col;
+          final cCol1 = col - 1;
+          for (;;) {
+            final rowIdx = row * moduleCount;
+            final idx0 = rowIdx + cCol0;
+            if (templateData[idx0] == _pixelUnassigned &&
+                (row + cCol0).isEven) {
+              _data[idx0] ^= toggle;
+            }
 
-      for (;;) {
-        for (var c = 0; c < 2; c++) {
-          final cCol = col - c;
-          final idx = row * moduleCount + cCol;
-          if (templateData[idx] == _pixelUnassigned) {
-            final mask = switch (mpIndex) {
-              0 => (row + cCol).isEven,
-              1 => row.isEven,
-              2 => cCol % 3 == 0,
-              3 => (row + cCol) % 3 == 0,
-              4 => ((row ~/ 2) + (cCol ~/ 3)).isEven,
-              5 => ((row * cCol) % 2 + (row * cCol) % 3) == 0,
-              6 => (((row * cCol) % 2) + ((row * cCol) % 3)).isEven,
-              7 => (((row * cCol) % 3) + ((row + cCol) % 2)).isEven,
-              _ => false,
-            };
-            if (mask) {
-              _data[idx] ^= _pixelDark ^ _pixelLight;
+            final idx1 = rowIdx + cCol1;
+            if (templateData[idx1] == _pixelUnassigned &&
+                (row + cCol1).isEven) {
+              _data[idx1] ^= toggle;
+            }
+            row += inc;
+            if (row < 0 || moduleCount <= row) {
+              row -= inc;
+              inc = -inc;
+              break;
             }
           }
         }
+        break;
+      case 1:
+        for (var col = moduleCount - 1; col > 0; col -= 2) {
+          if (col == 6) col--;
+          final cCol0 = col;
+          final cCol1 = col - 1;
+          for (;;) {
+            final rowIdx = row * moduleCount;
+            final idx0 = rowIdx + cCol0;
+            if (templateData[idx0] == _pixelUnassigned && row.isEven) {
+              _data[idx0] ^= toggle;
+            }
 
-        row += inc;
-
-        if (row < 0 || moduleCount <= row) {
-          row -= inc;
-          inc = -inc;
-          break;
+            final idx1 = rowIdx + cCol1;
+            if (templateData[idx1] == _pixelUnassigned && row.isEven) {
+              _data[idx1] ^= toggle;
+            }
+            row += inc;
+            if (row < 0 || moduleCount <= row) {
+              row -= inc;
+              inc = -inc;
+              break;
+            }
+          }
         }
-      }
+        break;
+      case 2:
+        for (var col = moduleCount - 1; col > 0; col -= 2) {
+          if (col == 6) col--;
+          final cCol0 = col;
+          final cCol1 = col - 1;
+          final isEven0 = cCol0 % 3 == 0;
+          final isEven1 = cCol1 % 3 == 0;
+          for (;;) {
+            final rowIdx = row * moduleCount;
+            final idx0 = rowIdx + cCol0;
+            if (templateData[idx0] == _pixelUnassigned && isEven0) {
+              _data[idx0] ^= toggle;
+            }
+
+            final idx1 = rowIdx + cCol1;
+            if (templateData[idx1] == _pixelUnassigned && isEven1) {
+              _data[idx1] ^= toggle;
+            }
+            row += inc;
+            if (row < 0 || moduleCount <= row) {
+              row -= inc;
+              inc = -inc;
+              break;
+            }
+          }
+        }
+        break;
+      case 3:
+        for (var col = moduleCount - 1; col > 0; col -= 2) {
+          if (col == 6) col--;
+          final cCol0 = col;
+          final cCol1 = col - 1;
+          for (;;) {
+            final rowIdx = row * moduleCount;
+            final idx0 = rowIdx + cCol0;
+            if (templateData[idx0] == _pixelUnassigned &&
+                (row + cCol0) % 3 == 0) {
+              _data[idx0] ^= toggle;
+            }
+
+            final idx1 = rowIdx + cCol1;
+            if (templateData[idx1] == _pixelUnassigned &&
+                (row + cCol1) % 3 == 0) {
+              _data[idx1] ^= toggle;
+            }
+            row += inc;
+            if (row < 0 || moduleCount <= row) {
+              row -= inc;
+              inc = -inc;
+              break;
+            }
+          }
+        }
+        break;
+      case 4:
+        for (var col = moduleCount - 1; col > 0; col -= 2) {
+          if (col == 6) col--;
+          final cCol0 = col;
+          final cCol1 = col - 1;
+          final colTerm0 = cCol0 ~/ 3;
+          final colTerm1 = cCol1 ~/ 3;
+          for (;;) {
+            final rowIdx = row * moduleCount;
+            final rowTerm = row ~/ 2;
+            final idx0 = rowIdx + cCol0;
+            if (templateData[idx0] == _pixelUnassigned &&
+                ((rowTerm) + (colTerm0)).isEven) {
+              _data[idx0] ^= toggle;
+            }
+
+            final idx1 = rowIdx + cCol1;
+            if (templateData[idx1] == _pixelUnassigned &&
+                ((rowTerm) + (colTerm1)).isEven) {
+              _data[idx1] ^= toggle;
+            }
+            row += inc;
+            if (row < 0 || moduleCount <= row) {
+              row -= inc;
+              inc = -inc;
+              break;
+            }
+          }
+        }
+        break;
+      case 5:
+        for (var col = moduleCount - 1; col > 0; col -= 2) {
+          if (col == 6) col--;
+          final cCol0 = col;
+          final cCol1 = col - 1;
+          for (;;) {
+            final rowIdx = row * moduleCount;
+            final idx0 = rowIdx + cCol0;
+            if (templateData[idx0] == _pixelUnassigned &&
+                ((row * cCol0) % 2 + (row * cCol0) % 3) == 0) {
+              _data[idx0] ^= toggle;
+            }
+
+            final idx1 = rowIdx + cCol1;
+            if (templateData[idx1] == _pixelUnassigned &&
+                ((row * cCol1) % 2 + (row * cCol1) % 3) == 0) {
+              _data[idx1] ^= toggle;
+            }
+            row += inc;
+            if (row < 0 || moduleCount <= row) {
+              row -= inc;
+              inc = -inc;
+              break;
+            }
+          }
+        }
+        break;
+      case 6:
+        for (var col = moduleCount - 1; col > 0; col -= 2) {
+          if (col == 6) col--;
+          final cCol0 = col;
+          final cCol1 = col - 1;
+          for (;;) {
+            final rowIdx = row * moduleCount;
+            final idx0 = rowIdx + cCol0;
+            if (templateData[idx0] == _pixelUnassigned &&
+                (((row * cCol0) % 2) + ((row * cCol0) % 3)).isEven) {
+              _data[idx0] ^= toggle;
+            }
+
+            final idx1 = rowIdx + cCol1;
+            if (templateData[idx1] == _pixelUnassigned &&
+                (((row * cCol1) % 2) + ((row * cCol1) % 3)).isEven) {
+              _data[idx1] ^= toggle;
+            }
+            row += inc;
+            if (row < 0 || moduleCount <= row) {
+              row -= inc;
+              inc = -inc;
+              break;
+            }
+          }
+        }
+        break;
+      case 7:
+        for (var col = moduleCount - 1; col > 0; col -= 2) {
+          if (col == 6) col--;
+          final cCol0 = col;
+          final cCol1 = col - 1;
+          for (;;) {
+            final rowIdx = row * moduleCount;
+            final idx0 = rowIdx + cCol0;
+            if (templateData[idx0] == _pixelUnassigned &&
+                (((row * cCol0) % 3) + ((row + cCol0) % 2)).isEven) {
+              _data[idx0] ^= toggle;
+            }
+
+            final idx1 = rowIdx + cCol1;
+            if (templateData[idx1] == _pixelUnassigned &&
+                (((row * cCol1) % 3) + ((row + cCol1) % 2)).isEven) {
+              _data[idx1] ^= toggle;
+            }
+            row += inc;
+            if (row < 0 || moduleCount <= row) {
+              row -= inc;
+              inc = -inc;
+              break;
+            }
+          }
+        }
+        break;
     }
   }
 }
@@ -404,7 +590,7 @@ double _lostPoint(QrImage qrImage) {
       }
 
       if (sameCount > 5) {
-        lostPoint += 3 + sameCount - 5;
+        lostPoint += sameCount - 2;
       }
 
       // Level 2: 2x2 blocks of same color

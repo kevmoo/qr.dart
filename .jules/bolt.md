@@ -1,0 +1,3 @@
+## 2024-11-20 - [Avoid Micro-Optimizations that Destroy Readability]
+**Learning:** In Dart, optimizing hot nested loops by lifting switch statements and manually unrolling loops can yield significant benchmark speedups (~30%), but doing so across 8 cases causes a massive explosion in code size and complexity, directly violating Bolt's mandate to not sacrifice code readability for micro-optimizations.
+**Action:** When an optimization strategy forces a massive code duplication to implement cleanly, look for alternative, localized optimizations (like algebraic simplifications within the existing loop) that provide a speedup without destroying maintainability.
