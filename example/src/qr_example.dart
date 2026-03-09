@@ -29,7 +29,8 @@ class QrExample {
 
   String _value = '';
   int _typeNumber = _maxTypeNumber;
-  QrErrorCorrectLevel _errorCorrectLevel = QrErrorCorrectLevel.medium;
+  bool _autoType = true;
+  QrErrorCorrectLevel _errorCorrectLevel = QrErrorCorrectLevel.high;
 
   List<bool> _squares = [];
   _FrameState _state = _FrameState.qr;
@@ -136,6 +137,15 @@ class QrExample {
       output = _inputValues.stream.asyncMapSample(_calc) {
     _ctx.fillStyle = 'black'.toJS;
 
+    // Auto Size Checkbox
+    // Auto Size Checkbox
+    final autoCheck = document.getElementById('type_auto') as HTMLInputElement;
+    autoCheck.checked = _autoType;
+    autoCheck.onChange.listen((Event _) {
+      _autoType = autoCheck.checked;
+      _update();
+    });
+
     // Type Div
     for (var i = 1; i <= _maxTypeNumber; i++) {
       final radio = (document.createElement('INPUT') as HTMLInputElement)
@@ -201,6 +211,8 @@ class QrExample {
   void _levelClick(Event args) {
     final source = args.target as HTMLInputElement;
     _typeNumber = int.parse(source.dataset[_typeRadioIdKey]);
+    _autoType = false;
+    (document.getElementById('type_auto') as HTMLInputElement).checked = false;
     _update();
   }
 
@@ -224,6 +236,15 @@ class QrExample {
       errorCorrectLevel: _errorCorrectLevel,
     );
 
+    if (_autoType && result.validTypeNumbers.isNotEmpty) {
+      _typeNumber = result.validTypeNumbers.first;
+      final radio =
+          document.getElementById('type_$_typeNumber') as HTMLInputElement?;
+      if (radio != null) {
+        radio.checked = true;
+      }
+    }
+
     void update(String id, bool isValid) {
       final radio = document.getElementById(id) as HTMLInputElement?;
       if (radio == null) return;
@@ -241,7 +262,10 @@ class QrExample {
     }
 
     for (final level in QrErrorCorrectLevel.values) {
-      update('error_$level', result.validErrorCorrectLevels.contains(level));
+      update(
+        'error_$level'.toLowerCase().replaceAll('qrerrorcorrectlevel.', ''),
+        result.validErrorCorrectLevels.contains(level),
+      );
     }
   }
 
