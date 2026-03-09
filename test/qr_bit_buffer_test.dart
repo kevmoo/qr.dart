@@ -22,41 +22,19 @@ void _testGetByte() {
 
 void _testComplex() {
   var bb = QrBitBuffer()..put(0, 8);
-  expect(
-    bb,
-    orderedEquals([false, false, false, false, false, false, false, false]),
-  );
+  expect(bb.toString(), '00000000');
 
   bb = QrBitBuffer()..put(1, 8);
-  expect(
-    bb,
-    orderedEquals([false, false, false, false, false, false, false, true]),
-  );
+  expect(bb.toString(), '00000001');
 
   bb = QrBitBuffer()..put(255, 8);
-  expect(bb, orderedEquals([true, true, true, true, true, true, true, true]));
+  expect(bb.toString(), '11111111');
 
   bb = QrBitBuffer()..put(256, 8);
-  expect(
-    bb,
-    orderedEquals([false, false, false, false, false, false, false, false]),
-  );
+  expect(bb.toString(), '00000000');
 
   bb = QrBitBuffer()..put(256, 9);
-  expect(
-    bb,
-    orderedEquals([
-      true,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-    ]),
-  );
+  expect(bb.toString(), '100000000');
 }
 
 final _rnd = math.Random();
@@ -68,8 +46,8 @@ void _testSimple() {
   for (var i = 0; i < 100; i++) {
     final b = _rnd.nextBool();
     sampleBits.add(b);
-    bb.putBit(b);
+    bb.put(b ? 1 : 0, 1);
   }
 
-  expect(bb, orderedEquals(sampleBits));
+  expect(bb.toString(), equals(sampleBits.map((b) => b ? '1' : '0').join()));
 }

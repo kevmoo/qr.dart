@@ -13,7 +13,7 @@ void main() {
     qr.write(buffer);
     expect(buffer, hasLength(248));
     expect(
-      buffer.map<String>((bool e) => e ? '1' : '0').join(),
+      buffer.toString(),
       '00000000001'
       '00001011101'
       '00010111001'
@@ -47,7 +47,7 @@ void main() {
     final buffer = QrBitBuffer();
     qr.write(buffer);
     expect(buffer, hasLength(6));
-    expect(buffer.map<String>((bool e) => e ? '1' : '0').join(), '100101');
+    expect(buffer.toString(), '100101');
   });
 
   test('triple alphanumeric', () {
@@ -58,7 +58,7 @@ void main() {
     qr.write(buffer);
     expect(buffer, hasLength(17), reason: '(1*11) + 6 = 17');
     expect(
-      buffer.map<String>((bool e) => e ? '1' : '0').join(),
+      buffer.toString(),
       '00111001101' // 461
       '001100', // 12
     );
@@ -71,16 +71,7 @@ void main() {
     final buffer = QrBitBuffer();
     qr.write(buffer);
     expect(buffer, hasLength(11), reason: 'n*5+1 = 11');
-    expect(
-      buffer
-          .getRange(0, 11)
-          .map<int>((bool e) => e ? 1 : 0)
-          .fold<int>(
-            0,
-            (int previousValue, int element) => (previousValue << 1) | element,
-          ),
-      170,
-    );
+    expect(buffer.toString(), '00010101010');
   });
 
   test('throws on invalid input', () {

@@ -17,21 +17,6 @@ class QrBitBufferPutBenchmark extends BenchmarkBase {
   }
 }
 
-class QrBitBufferPutBitBenchmark extends BenchmarkBase {
-  QrBitBufferPutBitBenchmark() : super('QrBitBuffer.putBit');
-
-  @override
-  void run() {
-    final buffer = QrBitBuffer();
-    for (var i = 0; i < 10000; i++) {
-      buffer
-        ..putBit(true)
-        ..putBit(false);
-    }
-  }
-}
-
 void main() {
   QrBitBufferPutBenchmark().report();
-  QrBitBufferPutBitBenchmark().report();
 }
