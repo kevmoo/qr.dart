@@ -54,5 +54,5 @@ jobs:
           sdk: ${{ matrix.sdk }}
       - id: install
         run: dart pub get
-      - run: dart test -p vm,chrome
+      - run: dart test -p vm,chrome -c dart2js,dart2wasm
         if: always() && steps.install.outcome == 'success'
