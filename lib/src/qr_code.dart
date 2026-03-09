@@ -267,11 +267,7 @@ List<int> _createBytes(QrBitBuffer buffer, List<QrRsBlock> rsBlocks) {
     maxDcCount = math.max(maxDcCount, dcCount);
     maxEcCount = math.max(maxEcCount, ecCount);
 
-    final dcItem = dcData[r] = Uint8List(dcCount);
-
-    for (var i = 0; i < dcItem.length; i++) {
-      dcItem[i] = buffer.getByte(i + offset);
-    }
+    final dcItem = dcData[r] = buffer.getBytes(offset, dcCount);
     offset += dcCount;
 
     final rsPoly = _errorCorrectPolynomial(ecCount);

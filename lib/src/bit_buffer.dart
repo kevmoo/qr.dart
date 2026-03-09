@@ -24,6 +24,10 @@ final class QrBitBuffer extends Iterable<bool> {
 
   int getByte(int index) => _buffer[index];
 
+  /// Returns a new [Uint8List] containing [length] bytes starting at [offset].
+  Uint8List getBytes(int offset, int length) =>
+      _buffer.sublist(offset, offset + length);
+
   void _ensureCapacity(int neededBytes) {
     if (_buffer.length < neededBytes) {
       var newLength = _buffer.isEmpty ? 4 : _buffer.length * 2;
