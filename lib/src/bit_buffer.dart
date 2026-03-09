@@ -1,13 +1,13 @@
 import 'dart:typed_data';
 
+import 'package:meta/meta.dart';
+
 /// A growable sequence of bits.
 ///
 /// Used internally to construct the data bit stream for a QR code.
-class QrBitBuffer extends Iterable<bool> {
+final class QrBitBuffer extends Iterable<bool> {
   Uint8List _buffer = Uint8List(32);
   int _length = 0;
-
-  QrBitBuffer();
 
   @override
   int get length => _length;
@@ -15,7 +15,7 @@ class QrBitBuffer extends Iterable<bool> {
   @override
   Iterator<bool> get iterator => _QrBitBufferIterator(this);
 
-  bool operator [](int index) {
+  bool _getBit(int index) {
     // Optimization: index >> 3 is faster than index ~/ 8
     // index & 7 is faster than index % 8
     final bufIndex = index >> 3;
@@ -89,10 +89,11 @@ class QrBitBuffer extends Iterable<bool> {
     _length++;
   }
 
+  @visibleForTesting
   List<bool> getRange(int start, int end) {
     final list = <bool>[];
     for (var i = start; i < end; i++) {
-      list.add(this[i]);
+      list.add(_getBit(i));
     }
     return list;
   }
@@ -105,7 +106,7 @@ class _QrBitBufferIterator implements Iterator<bool> {
   _QrBitBufferIterator(this._buffer);
 
   @override
-  bool get current => _buffer[_currentIndex];
+  bool get current => _buffer._getBit(_currentIndex);
 
   @override
   bool moveNext() {
