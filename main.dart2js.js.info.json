@@ -3,11 +3,11 @@
   "dump_minor_version": 1,
   "program": {
     "entrypoint": "function/org-dartlang-app:///example/main.dart::main",
-    "size": 129408,
+    "size": 129377,
     "ramUsage": "N/A MB",
     "dart2jsVersion": "3.12.0-210.1.beta",
-    "compilationMoment": "2026-03-05 17:14:10.418163",
-    "compilationDuration": 752164,
+    "compilationMoment": "2026-03-08 18:27:21.605063",
+    "compilationDuration": 769268,
     "toJsonDuration": 1000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
@@ -33,7 +33,7 @@
         "id": "library/dart:_interceptors::",
         "kind": "library",
         "name": "_interceptors",
-        "size": 8201,
+        "size": 8207,
         "children": [
           "class/dart:_interceptors::ArrayIterator",
           "class/dart:_interceptors::Interceptor",
@@ -75,7 +75,7 @@
         "id": "library/dart:_internal::",
         "kind": "library",
         "name": "dart._internal",
-        "size": 2154,
+        "size": 2157,
         "children": [
           "class/dart:_internal::CodeUnits",
           "class/dart:_internal::EfficientLengthIterable",
@@ -109,7 +109,7 @@
         "id": "library/dart:_js_helper::",
         "kind": "library",
         "name": "_js_helper",
-        "size": 17465,
+        "size": 17466,
         "children": [
           "class/dart:_js_helper::BoundClosure",
           "class/dart:_js_helper::Closure",
@@ -395,7 +395,7 @@
         "id": "library/dart:async::",
         "kind": "library",
         "name": "dart.async",
-        "size": 23046,
+        "size": 23041,
         "children": [
           "class/dart:async::AsyncError",
           "class/dart:async::Completer",
@@ -485,7 +485,7 @@
         "id": "library/dart:collection::",
         "kind": "library",
         "name": "dart.collection",
-        "size": 3460,
+        "size": 3463,
         "children": [
           "class/dart:collection::LinkedHashMap",
           "class/dart:collection::ListBase",
@@ -501,7 +501,7 @@
         "id": "library/dart:convert::",
         "kind": "library",
         "name": "dart.convert",
-        "size": 1211,
+        "size": 1209,
         "children": [
           "class/dart:convert::Converter",
           "class/dart:convert::Utf8Codec",
@@ -517,7 +517,7 @@
         "id": "library/dart:core::",
         "kind": "library",
         "name": "dart.core",
-        "size": 5259,
+        "size": 5261,
         "children": [
           "class/dart:core::ArgumentError",
           "class/dart:core::AssertionError",
@@ -583,7 +583,7 @@
         "id": "library/dart:js_util::",
         "kind": "library",
         "name": "dart.js_util",
-        "size": 812,
+        "size": 813,
         "children": [
           "function/dart:js_util::_callConstructorUnchecked1",
           "function/dart:js_util::_callDartFunctionFast1",
@@ -658,7 +658,7 @@
         "id": "library/org-dartlang-app:///example/src/qr_example.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 5594,
+        "size": 5591,
         "children": [
           "class/org-dartlang-app:///example/src/qr_example.dart::QrExample",
           "class/org-dartlang-app:///example/src/qr_example.dart::_Config",
@@ -674,7 +674,7 @@
         "id": "library/package:qr/src/bit_buffer.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 581,
+        "size": 746,
         "children": [
           "class/package:qr/src/bit_buffer.dart::QrBitBuffer",
           "class/package:qr/src/bit_buffer.dart::_QrBitBufferIterator"
@@ -685,7 +685,7 @@
         "id": "library/package:qr/src/byte.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 1899,
+        "size": 2112,
         "children": [
           "class/package:qr/src/byte.dart::QrAlphaNumeric",
           "class/package:qr/src/byte.dart::QrByte",
@@ -699,7 +699,7 @@
         "id": "library/package:qr/src/eci.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 185,
+        "size": 259,
         "children": [
           "class/package:qr/src/eci.dart::QrEci"
         ],
@@ -725,25 +725,6 @@
           "class/package:qr/src/input_too_long_exception.dart::InputTooLongException"
         ],
         "canonicalUri": "package:qr/src/input_too_long_exception.dart"
-      },
-      "package:qr/src/mask_pattern.dart::": {
-        "id": "library/package:qr/src/mask_pattern.dart::",
-        "kind": "library",
-        "name": "<unnamed>",
-        "size": 552,
-        "children": [
-          "class/package:qr/src/mask_pattern.dart::QrMaskPattern",
-          "classType/package:qr/src/mask_pattern.dart::QrMaskPattern",
-          "function/package:qr/src/mask_pattern.dart::_check000",
-          "function/package:qr/src/mask_pattern.dart::_check001",
-          "function/package:qr/src/mask_pattern.dart::_check010",
-          "function/package:qr/src/mask_pattern.dart::_check011",
-          "function/package:qr/src/mask_pattern.dart::_check100",
-          "function/package:qr/src/mask_pattern.dart::_check101",
-          "function/package:qr/src/mask_pattern.dart::_check110",
-          "function/package:qr/src/mask_pattern.dart::_check111"
-        ],
-        "canonicalUri": "package:qr/src/mask_pattern.dart"
       },
       "package:qr/src/math.dart::": {
         "id": "library/package:qr/src/math.dart::",
@@ -784,7 +765,7 @@
         "id": "library/package:qr/src/qr_code.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 2331,
+        "size": 2240,
         "children": [
           "class/package:qr/src/qr_code.dart::QrCode",
           "function/package:qr/src/qr_code.dart::_createBytes",
@@ -797,7 +778,7 @@
         "id": "library/package:qr/src/qr_image.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 3835,
+        "size": 4296,
         "children": [
           "class/package:qr/src/qr_image.dart::QrImage",
           "function/package:qr/src/qr_image.dart::_lostPoint"
@@ -808,7 +789,7 @@
         "id": "library/package:qr/src/rs_block.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 392,
+        "size": 490,
         "children": [
           "class/package:qr/src/rs_block.dart::QrRsBlock",
           "classType/package:qr/src/rs_block.dart::QrRsBlock",
@@ -820,7 +801,7 @@
         "id": "library/package:qr/src/util.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 214,
+        "size": 212,
         "children": [
           "function/package:qr/src/util.dart::bchTypeInfo",
           "function/package:qr/src/util.dart::bchTypeNumber",
@@ -977,7 +958,7 @@
         "id": "class/dart:_interceptors::JSArray",
         "kind": "class",
         "name": "JSArray",
-        "size": 1114,
+        "size": 1116,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:_interceptors::",
         "modifiers": {
@@ -1057,7 +1038,7 @@
         "id": "class/dart:_interceptors::JSInt",
         "kind": "class",
         "name": "JSInt",
-        "size": 193,
+        "size": 192,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:_interceptors::",
         "modifiers": {
@@ -1115,7 +1096,7 @@
         "id": "class/dart:_interceptors::JSNumber",
         "kind": "class",
         "name": "JSNumber",
-        "size": 1500,
+        "size": 1506,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:_interceptors::",
         "modifiers": {
@@ -1153,7 +1134,7 @@
         "id": "class/dart:_interceptors::JSString",
         "kind": "class",
         "name": "JSString",
-        "size": 620,
+        "size": 618,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:_interceptors::",
         "modifiers": {
@@ -1415,7 +1396,7 @@
         "id": "class/dart:_internal::ListIterable",
         "kind": "class",
         "name": "ListIterable",
-        "size": 189,
+        "size": 190,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:_internal::",
         "modifiers": {
@@ -1454,7 +1435,7 @@
         "id": "class/dart:_internal::MappedIterable",
         "kind": "class",
         "name": "MappedIterable",
-        "size": 184,
+        "size": 186,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:_internal::",
         "modifiers": {
@@ -1947,7 +1928,7 @@
         "id": "class/dart:_js_helper::LinkedHashMapKeysIterable",
         "kind": "class",
         "name": "LinkedHashMapKeysIterable",
-        "size": 132,
+        "size": 133,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:_js_helper::",
         "modifiers": {
@@ -3294,7 +3275,7 @@
         "id": "class/dart:async::_BufferingStreamSubscription",
         "kind": "class",
         "name": "_BufferingStreamSubscription",
-        "size": 2365,
+        "size": 2363,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:async::",
         "modifiers": {
@@ -3645,7 +3626,7 @@
         "id": "class/dart:async::_RootZone",
         "kind": "class",
         "name": "_RootZone",
-        "size": 1188,
+        "size": 1186,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:async::",
         "modifiers": {
@@ -3908,7 +3889,7 @@
         "id": "class/dart:collection::ListBase",
         "kind": "class",
         "name": "ListBase",
-        "size": 475,
+        "size": 476,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:collection::",
         "modifiers": {
@@ -3934,7 +3915,7 @@
         "id": "class/dart:collection::MapBase",
         "kind": "class",
         "name": "MapBase",
-        "size": 401,
+        "size": 402,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:collection::",
         "modifiers": {
@@ -3991,7 +3972,7 @@
         "id": "class/dart:collection::_HashMapKeyIterable",
         "kind": "class",
         "name": "_HashMapKeyIterable",
-        "size": 151,
+        "size": 152,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:collection::",
         "modifiers": {
@@ -4097,7 +4078,7 @@
         "id": "class/dart:convert::_Utf8Encoder",
         "kind": "class",
         "name": "_Utf8Encoder",
-        "size": 969,
+        "size": 967,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:convert::",
         "modifiers": {
@@ -4233,7 +4214,7 @@
         "id": "class/dart:core::FormatException",
         "kind": "class",
         "name": "FormatException",
-        "size": 230,
+        "size": 229,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:core::",
         "modifiers": {
@@ -4277,7 +4258,7 @@
         "id": "class/dart:core::Iterable",
         "kind": "class",
         "name": "Iterable",
-        "size": 314,
+        "size": 316,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:core::",
         "modifiers": {
@@ -4642,7 +4623,7 @@
         "id": "class/org-dartlang-app:///example/src/qr_example.dart::QrExample",
         "kind": "class",
         "name": "QrExample",
-        "size": 3821,
+        "size": 3818,
         "outputUnit": "outputUnit/main",
         "parent": "library/org-dartlang-app:///example/src/qr_example.dart::",
         "modifiers": {
@@ -4719,7 +4700,7 @@
         "id": "class/package:qr/src/bit_buffer.dart::QrBitBuffer",
         "kind": "class",
         "name": "QrBitBuffer",
-        "size": 416,
+        "size": 581,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/bit_buffer.dart::",
         "modifiers": {
@@ -4729,8 +4710,9 @@
           "field/package:qr/src/bit_buffer.dart::QrBitBuffer._buffer",
           "field/package:qr/src/bit_buffer.dart::QrBitBuffer._length",
           "function/package:qr/src/bit_buffer.dart::QrBitBuffer.QrBitBuffer",
-          "function/package:qr/src/bit_buffer.dart::QrBitBuffer.[]",
-          "function/package:qr/src/bit_buffer.dart::QrBitBuffer.getByte",
+          "function/package:qr/src/bit_buffer.dart::QrBitBuffer._ensureCapacity",
+          "function/package:qr/src/bit_buffer.dart::QrBitBuffer._getBit",
+          "function/package:qr/src/bit_buffer.dart::QrBitBuffer.getBytes",
           "function/package:qr/src/bit_buffer.dart::QrBitBuffer.iterator",
           "function/package:qr/src/bit_buffer.dart::QrBitBuffer.length",
           "function/package:qr/src/bit_buffer.dart::QrBitBuffer.put",
@@ -4763,7 +4745,7 @@
         "id": "class/package:qr/src/byte.dart::QrAlphaNumeric",
         "kind": "class",
         "name": "QrAlphaNumeric",
-        "size": 524,
+        "size": 605,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/byte.dart::",
         "modifiers": {
@@ -4776,6 +4758,7 @@
           "field/package:qr/src/byte.dart::QrAlphaNumeric.validationRegex",
           "function/package:qr/src/byte.dart::QrAlphaNumeric.QrAlphaNumeric._",
           "function/package:qr/src/byte.dart::QrAlphaNumeric.QrAlphaNumeric.fromString",
+          "function/package:qr/src/byte.dart::QrAlphaNumeric.bitLength",
           "function/package:qr/src/byte.dart::QrAlphaNumeric.length",
           "function/package:qr/src/byte.dart::QrAlphaNumeric.write"
         ],
@@ -4787,7 +4770,7 @@
         "id": "class/package:qr/src/byte.dart::QrByte",
         "kind": "class",
         "name": "QrByte",
-        "size": 168,
+        "size": 201,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/byte.dart::",
         "modifiers": {
@@ -4798,6 +4781,7 @@
           "field/package:qr/src/byte.dart::QrByte.mode",
           "function/package:qr/src/byte.dart::QrByte.QrByte",
           "function/package:qr/src/byte.dart::QrByte.QrByte.fromUint8List",
+          "function/package:qr/src/byte.dart::QrByte.bitLength",
           "function/package:qr/src/byte.dart::QrByte.length",
           "function/package:qr/src/byte.dart::QrByte.write"
         ],
@@ -4824,7 +4808,7 @@
         "id": "class/package:qr/src/byte.dart::QrNumeric",
         "kind": "class",
         "name": "QrNumeric",
-        "size": 288,
+        "size": 389,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/byte.dart::",
         "modifiers": {
@@ -4836,6 +4820,7 @@
           "field/package:qr/src/byte.dart::QrNumeric.validationRegex",
           "function/package:qr/src/byte.dart::QrNumeric.QrNumeric._",
           "function/package:qr/src/byte.dart::QrNumeric.QrNumeric.fromString",
+          "function/package:qr/src/byte.dart::QrNumeric.bitLength",
           "function/package:qr/src/byte.dart::QrNumeric.length",
           "function/package:qr/src/byte.dart::QrNumeric.write"
         ],
@@ -4847,7 +4832,7 @@
         "id": "class/package:qr/src/eci.dart::QrEci",
         "kind": "class",
         "name": "QrEci",
-        "size": 185,
+        "size": 259,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/eci.dart::",
         "modifiers": {
@@ -4857,6 +4842,7 @@
           "field/package:qr/src/eci.dart::QrEci.value",
           "function/package:qr/src/eci.dart::QrEci.QrEci",
           "function/package:qr/src/eci.dart::QrEci.QrEci._",
+          "function/package:qr/src/eci.dart::QrEci.bitLength",
           "function/package:qr/src/eci.dart::QrEci.length",
           "function/package:qr/src/eci.dart::QrEci.mode",
           "function/package:qr/src/eci.dart::QrEci.write"
@@ -4905,25 +4891,6 @@
           "class/dart:core::Exception"
         ]
       },
-      "package:qr/src/mask_pattern.dart::QrMaskPattern": {
-        "id": "class/package:qr/src/mask_pattern.dart::QrMaskPattern",
-        "kind": "class",
-        "name": "QrMaskPattern",
-        "size": 105,
-        "outputUnit": "outputUnit/main",
-        "parent": "library/package:qr/src/mask_pattern.dart::",
-        "modifiers": {
-          "abstract": false
-        },
-        "children": [
-          "field/package:qr/src/mask_pattern.dart::QrMaskPattern._check",
-          "function/package:qr/src/mask_pattern.dart::QrMaskPattern._enumToString",
-          "function/package:qr/src/mask_pattern.dart::QrMaskPattern.check"
-        ],
-        "supers": [
-          "class/dart:core::_Enum"
-        ]
-      },
       "package:qr/src/mode.dart::QrMode": {
         "id": "class/package:qr/src/mode.dart::QrMode",
         "kind": "class",
@@ -4968,7 +4935,7 @@
         "id": "class/package:qr/src/qr_code.dart::QrCode",
         "kind": "class",
         "name": "QrCode",
-        "size": 589,
+        "size": 545,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/qr_code.dart::",
         "modifiers": {
@@ -4993,7 +4960,7 @@
         "id": "class/package:qr/src/qr_image.dart::QrImage",
         "kind": "class",
         "name": "QrImage",
-        "size": 2459,
+        "size": 2924,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/qr_image.dart::",
         "modifiers": {
@@ -5009,7 +4976,7 @@
           "function/package:qr/src/qr_image.dart::QrImage.QrImage._fromData",
           "function/package:qr/src/qr_image.dart::QrImage.QrImage._template",
           "function/package:qr/src/qr_image.dart::QrImage._applyMask",
-          "function/package:qr/src/qr_image.dart::QrImage._placeData",
+          "function/package:qr/src/qr_image.dart::QrImage._mapData",
           "function/package:qr/src/qr_image.dart::QrImage._resetModules",
           "function/package:qr/src/qr_image.dart::QrImage._set",
           "function/package:qr/src/qr_image.dart::QrImage._setupPositionAdjustPattern",
@@ -5035,7 +5002,8 @@
           "field/package:qr/src/rs_block.dart::QrRsBlock.dataCount",
           "field/package:qr/src/rs_block.dart::QrRsBlock.totalCount",
           "function/package:qr/src/rs_block.dart::QrRsBlock.QrRsBlock._",
-          "function/package:qr/src/rs_block.dart::QrRsBlock.getRSBlocks"
+          "function/package:qr/src/rs_block.dart::QrRsBlock.getRSBlocks",
+          "function/package:qr/src/rs_block.dart::QrRsBlock.getTotalDataBits"
         ],
         "supers": []
       },
@@ -5373,14 +5341,6 @@
         "size": 0,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/error_correct_level.dart::"
-      },
-      "package:qr/src/mask_pattern.dart::QrMaskPattern": {
-        "id": "classType/package:qr/src/mask_pattern.dart::QrMaskPattern",
-        "kind": "classType",
-        "name": "QrMaskPattern",
-        "size": 0,
-        "outputUnit": "outputUnit/main",
-        "parent": "library/package:qr/src/mask_pattern.dart::"
       },
       "package:qr/src/rs_block.dart::QrRsBlock": {
         "id": "classType/package:qr/src/rs_block.dart::QrRsBlock",
@@ -5789,7 +5749,7 @@
         "id": "function/dart:_interceptors::JSArray.addAll",
         "kind": "function",
         "name": "addAll",
-        "size": 81,
+        "size": 82,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:_interceptors::JSArray",
         "children": [],
@@ -5810,7 +5770,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "FV(a,b){var s\na.$flags&1&&A.cW(a,\"addAll\",2)\nfor(s=b.gA(b);s.G();)a.push(s.gl())}",
+        "code": "FV(a,b){var s\na.$flags&1&&A.cW(a,\"addAll\",2)\nfor(s=b.gkz(b);s.G();)a.push(s.gl())}",
         "type": "void Function(Object?)",
         "functionKind": 2
       },
@@ -6042,7 +6002,7 @@
         "id": "function/dart:_interceptors::JSArray.iterator",
         "kind": "function",
         "name": "iterator",
-        "size": 50,
+        "size": 51,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:_interceptors::JSArray",
         "children": [],
@@ -6057,7 +6017,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes nothing)",
         "inlinedCount": 0,
-        "code": "gA(a){return new J.m(a,a.length,A.c(a).C(\"m<1>\"))}",
+        "code": "gkz(a){return new J.m(a,a.length,A.c(a).C(\"m<1>\"))}",
         "type": "Iterator<JSArray.E> Function()",
         "functionKind": 2
       },
@@ -6406,7 +6366,7 @@
         "id": "function/dart:_interceptors::JSInt.bitLength",
         "kind": "function",
         "name": "bitLength",
-        "size": 107,
+        "size": 106,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:_interceptors::JSInt",
         "children": [],
@@ -6421,7 +6381,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "gcd(a){var s,r=a<0?-a-1:a,q=r\nfor(s=32;q>=4294967296;){q=this.Y(q,4294967296)\ns+=32}return s-Math.clz32(q)}",
+        "code": "gh(a){var s,r=a<0?-a-1:a,q=r\nfor(s=32;q>=4294967296;){q=this.K(q,4294967296)\ns+=32}return s-Math.clz32(q)}",
         "type": "int Function()",
         "functionKind": 2
       },
@@ -6443,7 +6403,7 @@
         "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 8,
+        "inlinedCount": 13,
         "code": "",
         "type": "bool Function()",
         "functionKind": 2
@@ -6594,7 +6554,7 @@
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 0,
-        "code": "O(a,b){var s=a%b\nif(s===0)return 0\nif(s>0)return s\nreturn s+b}",
+        "code": "Y(a,b){var s=a%b\nif(s===0)return 0\nif(s>0)return s\nreturn s+b}",
         "type": "JSNumber Function(num)",
         "functionKind": 2
       },
@@ -6602,7 +6562,7 @@
         "id": "function/dart:_interceptors::JSNumber.<<",
         "kind": "function",
         "name": "<<",
-        "size": 56,
+        "size": 57,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:_interceptors::JSNumber",
         "children": [],
@@ -6623,7 +6583,7 @@
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 0,
-        "code": "v(a,b){if(b<0)throw A.b(A.tL(b))\nreturn b>31?0:a<<b>>>0}",
+        "code": "yE(a,b){if(b<0)throw A.b(A.tL(b))\nreturn b>31?0:a<<b>>>0}",
         "type": "num Function(num)",
         "functionKind": 2
       },
@@ -6631,7 +6591,7 @@
         "id": "function/dart:_interceptors::JSNumber.>>",
         "kind": "function",
         "name": ">>",
-        "size": 97,
+        "size": 99,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:_interceptors::JSNumber",
         "children": [],
@@ -6652,7 +6612,7 @@
         ],
         "sideEffects": "SideEffects(reads nothing; writes anything)",
         "inlinedCount": 0,
-        "code": "m(a,b){var s\nif(b<0)throw A.b(A.tL(b))\nif(a>0)s=this.U(a,b)\nelse{s=b>31?31:b\ns=a>>s>>>0}return s}",
+        "code": "HZ(a,b){var s\nif(b<0)throw A.b(A.tL(b))\nif(a>0)s=this.Uh(a,b)\nelse{s=b>31?31:b\ns=a>>s>>>0}return s}",
         "type": "num Function(num)",
         "functionKind": 2
       },
@@ -6718,7 +6678,7 @@
         "id": "function/dart:_interceptors::JSNumber._shrBothPositive",
         "kind": "function",
         "name": "_shrBothPositive",
-        "size": 27,
+        "size": 28,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:_interceptors::JSNumber",
         "children": [],
@@ -6739,7 +6699,7 @@
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 0,
-        "code": "U(a,b){return b>31?0:a>>>b}",
+        "code": "Uh(a,b){return b>31?0:a>>>b}",
         "type": "num Function(num)",
         "functionKind": 2
       },
@@ -6747,7 +6707,7 @@
         "id": "function/dart:_interceptors::JSNumber._shrOtherPositive",
         "kind": "function",
         "name": "_shrOtherPositive",
-        "size": 72,
+        "size": 73,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:_interceptors::JSNumber",
         "children": [],
@@ -6768,7 +6728,7 @@
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 1,
-        "code": "wG(a,b){var s\nif(a>0)s=this.U(a,b)\nelse{s=b>31?31:b\ns=a>>s>>>0}return s}",
+        "code": "wG(a,b){var s\nif(a>0)s=this.Uh(a,b)\nelse{s=b>31?31:b\ns=a>>s>>>0}return s}",
         "type": "num Function(num)",
         "functionKind": 2
       },
@@ -6776,7 +6736,7 @@
         "id": "function/dart:_interceptors::JSNumber._shrReceiverPositive",
         "kind": "function",
         "name": "_shrReceiverPositive",
-        "size": 53,
+        "size": 54,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:_interceptors::JSNumber",
         "children": [],
@@ -6797,7 +6757,7 @@
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 1,
-        "code": "bf(a,b){if(0>b)throw A.b(A.tL(b))\nreturn this.U(a,b)}",
+        "code": "bf(a,b){if(0>b)throw A.b(A.tL(b))\nreturn this.Uh(a,b)}",
         "type": "num Function(num)",
         "functionKind": 2
       },
@@ -6826,7 +6786,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 1,
-        "code": "Y(a,b){return(a|0)===a?a/b|0:this.J(a,b)}",
+        "code": "K(a,b){return(a|0)===a?a/b|0:this.X(a,b)}",
         "type": "int Function(num)",
         "functionKind": 2
       },
@@ -6855,7 +6815,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "J(a,b){var s=a/b\nif(s>=-2147483648&&s<=2147483647)return s|0\nif(s>0){if(s!==1/0)return Math.floor(s)}else if(s>-1/0)return Math.ceil(s)\nthrow A.b(A.u0(\"Result of truncating division is \"+A.L(s)+\": \"+A.L(a)+\" ~/ \"+A.L(b)))}",
+        "code": "X(a,b){var s=a/b\nif(s>=-2147483648&&s<=2147483647)return s|0\nif(s>0){if(s!==1/0)return Math.floor(s)}else if(s>-1/0)return Math.ceil(s)\nthrow A.b(A.u0(\"Result of truncating division is \"+A.L(s)+\": \"+A.L(a)+\" ~/ \"+A.L(b)))}",
         "type": "int Function(num)",
         "functionKind": 2
       },
@@ -7053,7 +7013,7 @@
         "id": "function/dart:_interceptors::JSNumber.toInt",
         "kind": "function",
         "name": "toInt",
-        "size": 148,
+        "size": 149,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:_interceptors::JSNumber",
         "children": [],
@@ -7068,7 +7028,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "h(a){var s\nif(a>=-2147483648&&a<=2147483647)return a|0\nif(isFinite(a)){s=a<0?Math.ceil(a):Math.floor(a)\nreturn s+0}throw A.b(A.u0(\"\"+a+\".toInt()\"))}",
+        "code": "yu(a){var s\nif(a>=-2147483648&&a<=2147483647)return a|0\nif(isFinite(a)){s=a<0?Math.ceil(a):Math.floor(a)\nreturn s+0}throw A.b(A.u0(\"\"+a+\".toInt()\"))}",
         "type": "int Function()",
         "functionKind": 2
       },
@@ -7122,7 +7082,7 @@
         "id": "function/dart:_interceptors::JSNumber.~/",
         "kind": "function",
         "name": "~/",
-        "size": 67,
+        "size": 66,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:_interceptors::JSNumber",
         "children": [],
@@ -7143,7 +7103,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "xG(a,b){if((a|0)===a)if(b>=1||b<-1)return a/b|0\nreturn this.J(a,b)}",
+        "code": "v(a,b){if((a|0)===a)if(b>=1||b<-1)return a/b|0\nreturn this.X(a,b)}",
         "type": "int Function(num)",
         "functionKind": 2
       },
@@ -7392,7 +7352,7 @@
         "id": "function/dart:_interceptors::JSString.substring",
         "kind": "function",
         "name": "substring",
-        "size": 84,
+        "size": 82,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:_interceptors::JSString",
         "children": [],
@@ -7418,7 +7378,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Nj(a,b,c){return a.substring(b,A.jB(b,c,a.length))}\nyn(a,b){return this.Nj(a,b,null)}",
+        "code": "J(a,b,c){return a.substring(b,A.jB(b,c,a.length))}\nyn(a,b){return this.J(a,b,null)}",
         "type": "String Function(int,[int?])",
         "functionKind": 2
       },
@@ -8184,7 +8144,7 @@
         "id": "function/dart:_internal::ListIterable.iterator",
         "kind": "function",
         "name": "iterator",
-        "size": 66,
+        "size": 67,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:_internal::ListIterable",
         "children": [],
@@ -8199,7 +8159,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "gA(a){var s=this\nreturn new A.a7(s,s.gB(s),A.Lh(s).C(\"a7<aL.E>\"))}",
+        "code": "gkz(a){var s=this\nreturn new A.a7(s,s.gB(s),A.Lh(s).C(\"a7<aL.E>\"))}",
         "type": "Iterator<ListIterable.E> Function()",
         "functionKind": 2
       },
@@ -8379,7 +8339,7 @@
         "id": "function/dart:_internal::MappedIterable.iterator",
         "kind": "function",
         "name": "iterator",
-        "size": 75,
+        "size": 77,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:_internal::MappedIterable",
         "children": [],
@@ -8394,7 +8354,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "gA(a){var s=this.a\nreturn new A.MH(s.gA(s),this.b,A.Lh(this).C(\"MH<1,2>\"))}",
+        "code": "gkz(a){var s=this.a\nreturn new A.MH(s.gkz(s),this.b,A.Lh(this).C(\"MH<1,2>\"))}",
         "type": "Iterator<MappedIterable.T> Function()",
         "functionKind": 2
       },
@@ -12299,7 +12259,7 @@
         "id": "function/dart:_js_helper::LinkedHashMapKeysIterable.iterator",
         "kind": "function",
         "name": "iterator",
-        "size": 46,
+        "size": 47,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:_js_helper::LinkedHashMapKeysIterable",
         "children": [],
@@ -12314,7 +12274,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads field; writes nothing)",
         "inlinedCount": 0,
-        "code": "gA(a){var s=this.a\nreturn new A.N6(s,s.r,s.e)}",
+        "code": "gkz(a){var s=this.a\nreturn new A.N6(s,s.r,s.e)}",
         "type": "Iterator<LinkedHashMapKeysIterable.E> Function()",
         "functionKind": 2
       },
@@ -16136,7 +16096,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes anything)",
-        "inlinedCount": 14,
+        "inlinedCount": 15,
         "code": "",
         "type": "NativeUint8List Function(int)",
         "functionKind": 3
@@ -16223,7 +16183,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 2,
+        "inlinedCount": 3,
         "code": "",
         "type": "NativeUint8List Function(dynamic)",
         "functionKind": 0
@@ -16252,7 +16212,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 14,
+        "inlinedCount": 15,
         "code": "",
         "type": "NativeUint8List Function(int)",
         "functionKind": 0
@@ -16332,7 +16292,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
+        "inlinedCount": 1,
         "code": "aM(a,b,c){return new Uint8Array(a.subarray(b,A.rM(b,c,a.length)))}\nJk(a,b){return this.aM(a,b,null)}",
         "type": "NativeUint8List Function(int,[int?])",
         "functionKind": 2
@@ -16465,7 +16425,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes anything)",
-        "inlinedCount": 14,
+        "inlinedCount": 15,
         "code": "",
         "type": "int Function(dynamic)",
         "functionKind": 0
@@ -26387,7 +26347,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "ZV(a){self.scheduleImmediate(A.tR(new A.Vs(a),0))}\ns(A,\"EX\",\"ZV\",5)",
+        "code": "ZV(a){self.scheduleImmediate(A.tR(new A.Vs(a),0))}\ns(A,\"EX\",\"ZV\",2)",
         "type": "void Function(void Function())",
         "functionKind": 0
       },
@@ -26441,7 +26401,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "oA(a){self.setImmediate(A.tR(new A.Ft(a),0))}\ns(A,\"yt\",\"oA\",5)",
+        "code": "oA(a){self.setImmediate(A.tR(new A.Ft(a),0))}\ns(A,\"yt\",\"oA\",2)",
         "type": "void Function(void Function())",
         "functionKind": 0
       },
@@ -26493,7 +26453,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Bz(a){A.QN(0,a)}\ns(A,\"qW\",\"Bz\",5)",
+        "code": "Bz(a){A.QN(0,a)}\ns(A,\"qW\",\"Bz\",2)",
         "type": "void Function(void Function())",
         "functionKind": 0
       },
@@ -27203,7 +27163,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "i(a,b){if(!this.gt())throw A.b(this.P())\nthis.M(b)}\no(j=A.WV.prototype,\"ght\",\"i\",7)",
+        "code": "i(a,b){if(!this.gt())throw A.b(this.P())\nthis.M(b)}\no(j=A.WV.prototype,\"ght\",\"i\",6)",
         "type": "void Function(Object?)",
         "functionKind": 2
       },
@@ -27237,7 +27197,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "fD(a,b){var s\nif(!this.gt())throw A.b(this.P())\ns=A.ux(a,b)\nthis.y7(s.a,s.b)}\nQj(a){return this.fD(a,null)}\nn(j,\"gGj\",0,1,null,[\"$2\",\"$1\"],[\"fD\",\"Qj\"],6,0,0)",
+        "code": "fD(a,b){var s\nif(!this.gt())throw A.b(this.P())\ns=A.ux(a,b)\nthis.y7(s.a,s.b)}\nQj(a){return this.fD(a,null)}\nn(j,\"gGj\",0,1,null,[\"$2\",\"$1\"],[\"fD\",\"Qj\"],5,0,0)",
         "type": "void Function(Object,[StackTrace?])",
         "functionKind": 2
       },
@@ -28162,7 +28122,7 @@
         "id": "function/dart:async::_BufferingStreamSubscription._sendData",
         "kind": "function",
         "name": "_sendData",
-        "size": 92,
+        "size": 91,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:async::_BufferingStreamSubscription",
         "children": [],
@@ -28183,7 +28143,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "M(a){var s=this,r=s.e\ns.e=(r|64)>>>0\ns.d.m1(s.a,a)\ns.e=(s.e&4294967231)>>>0\ns.Iy((r&4)!==0)}",
+        "code": "M(a){var s=this,r=s.e\ns.e=(r|64)>>>0\ns.d.A(s.a,a)\ns.e=(s.e&4294967231)>>>0\ns.Iy((r&4)!==0)}",
         "type": "void Function(Object?)",
         "functionKind": 2
       },
@@ -28239,7 +28199,7 @@
         "id": "function/dart:async::_BufferingStreamSubscription._sendError",
         "kind": "function",
         "name": "_sendError",
-        "size": 401,
+        "size": 400,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:async::_BufferingStreamSubscription",
         "children": [
@@ -28275,7 +28235,7 @@
         "id": "function/dart:async::_BufferingStreamSubscription._sendError._BufferingStreamSubscription__sendError_sendError.call",
         "kind": "function",
         "name": "call",
-        "size": 165,
+        "size": 164,
         "outputUnit": "outputUnit/main",
         "parent": "closure/dart:async::_BufferingStreamSubscription._sendError._BufferingStreamSubscription__sendError_sendError",
         "children": [],
@@ -28290,7 +28250,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "$0(){var s,r,q=this.a,p=q.e\nif((p&8)!==0&&(p&16)===0)return\nq.e=(p|64)>>>0\ns=q.b\np=this.b\nr=q.d\nif(t.k.b(s))r.z8(s,p,this.c)\nelse r.m1(s,p)\nq.e=(q.e&4294967231)>>>0}",
+        "code": "$0(){var s,r,q=this.a,p=q.e\nif((p&8)!==0&&(p&16)===0)return\nq.e=(p|64)>>>0\ns=q.b\np=this.b\nr=q.d\nif(t.k.b(s))r.z8(s,p,this.c)\nelse r.A(s,p)\nq.e=(q.e&4294967231)>>>0}",
         "type": "void Function()",
         "functionKind": 2
       },
@@ -28417,7 +28377,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "nB(a){var s,r,q=this,p=q.e\nif((p&8)!==0)return\ns=(p+256|4)>>>0\nq.e=s\nif(p<256){r=q.r\nif(r!=null)if(r.a===1)r.a=3}if((p&4)===0&&(s&64)===0)q.Ge(q.gb9())}\nyy(){return this.nB(null)}\nn(j=A.KA.prototype,\"gX0\",0,0,null,[\"$1\",\"$0\"],[\"nB\",\"yy\"],11,0,0)",
+        "code": "nB(a){var s,r,q=this,p=q.e\nif((p&8)!==0)return\ns=(p+256|4)>>>0\nq.e=s\nif(p<256){r=q.r\nif(r!=null)if(r.a===1)r.a=3}if((p&4)===0&&(s&64)===0)q.Ge(q.gb9())}\nyy(){return this.nB(null)}\nn(j=A.KA.prototype,\"gX0\",0,0,null,[\"$1\",\"$0\"],[\"nB\",\"yy\"],10,0,0)",
         "type": "void Function([Future<void>?])",
         "functionKind": 2
       },
@@ -29133,7 +29093,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "nB(a){var s=this.a\nif(s>=0)this.a=s+2}\nyy(){return this.nB(null)}\nn(j=A.EM.prototype,\"gX0\",0,0,null,[\"$1\",\"$0\"],[\"nB\",\"yy\"],11,0,0)",
+        "code": "nB(a){var s=this.a\nif(s>=0)this.a=s+2}\nyy(){return this.nB(null)}\nn(j=A.EM.prototype,\"gX0\",0,0,null,[\"$1\",\"$0\"],[\"nB\",\"yy\"],10,0,0)",
         "type": "void Function([Future<void>?])",
         "functionKind": 2
       },
@@ -29644,7 +29604,7 @@
         "id": "function/dart:async::_Future._completeError",
         "kind": "function",
         "name": "_completeError",
-        "size": 62,
+        "size": 61,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:async::_Future",
         "children": [],
@@ -29670,7 +29630,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 1,
-        "code": "ZL(a,b){this.SX(new A.OH(a,b))}\nm(A.vs.prototype,\"gFa\",\"ZL\",10)",
+        "code": "ZL(a,b){this.SX(new A.OH(a,b))}\nm(A.vs.prototype,\"gFa\",\"ZL\",9)",
         "type": "void Function(Object,StackTrace)",
         "functionKind": 2
       },
@@ -31499,7 +31459,7 @@
         "id": "function/dart:async::_RootZone.bindUnaryCallbackGuarded",
         "kind": "function",
         "name": "bindUnaryCallbackGuarded",
-        "size": 169,
+        "size": 168,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:async::_RootZone",
         "children": [
@@ -31530,7 +31490,7 @@
         "id": "function/dart:async::_RootZone.bindUnaryCallbackGuarded._RootZone_bindUnaryCallbackGuarded_closure.call",
         "kind": "function",
         "name": "call",
-        "size": 33,
+        "size": 32,
         "outputUnit": "outputUnit/main",
         "parent": "closure/dart:async::_RootZone.bindUnaryCallbackGuarded._RootZone_bindUnaryCallbackGuarded_closure",
         "children": [],
@@ -31551,7 +31511,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "$1(a){return this.a.m1(this.b,a)}",
+        "code": "$1(a){return this.a.A(this.b,a)}",
         "type": "void Function(bindUnaryCallbackGuarded.T)",
         "functionKind": 2
       },
@@ -31907,7 +31867,7 @@
         "id": "function/dart:async::_RootZone.runUnaryGuarded",
         "kind": "function",
         "name": "runUnaryGuarded",
-        "size": 150,
+        "size": 149,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:async::_RootZone",
         "children": [],
@@ -31933,7 +31893,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Dl(a,b){var s,r,q\ntry{if(B.NU===$.X3){a.$1(b)\nreturn}A.yv(null,null,this,a,b)}catch(q){s=A.Ru(q)\nr=A.ts(q)\nA.Si(s,r)}}\nm1(a,b){return this.Dl(a,b,t.z)}",
+        "code": "Dl(a,b){var s,r,q\ntry{if(B.NU===$.X3){a.$1(b)\nreturn}A.yv(null,null,this,a,b)}catch(q){s=A.Ru(q)\nr=A.ts(q)\nA.Si(s,r)}}\nA(a,b){return this.Dl(a,b,t.z)}",
         "type": "void Function<#A extends Object?>(void Function(#A),#A)",
         "functionKind": 2
       },
@@ -32465,7 +32425,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "i(a,b){var s=this,r=s.b\nif(r>=4)throw A.b(s.Jz())\nif((r&1)!==0)s.M(b)\nelse if((r&3)===0)s.zN().i(0,new A.LV(b))}\no(j=A.Kd.prototype,\"ght\",\"i\",7)",
+        "code": "i(a,b){var s=this,r=s.b\nif(r>=4)throw A.b(s.Jz())\nif((r&1)!==0)s.M(b)\nelse if((r&3)===0)s.zN().i(0,new A.LV(b))}\no(j=A.Kd.prototype,\"ght\",\"i\",6)",
         "type": "void Function(Object?)",
         "functionKind": 2
       },
@@ -32499,7 +32459,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "fD(a,b){var s,r,q=this\nif(q.b>=4)throw A.b(q.Jz())\ns=A.ux(a,b)\na=s.a\nb=s.b\nr=q.b\nif((r&1)!==0)q.y7(a,b)\nelse if((r&3)===0)q.zN().i(0,new A.WG(a,b))}\nQj(a){return this.fD(a,null)}\nn(j,\"gGj\",0,1,null,[\"$2\",\"$1\"],[\"fD\",\"Qj\"],6,0,0)",
+        "code": "fD(a,b){var s,r,q=this\nif(q.b>=4)throw A.b(q.Jz())\ns=A.ux(a,b)\na=s.a\nb=s.b\nr=q.b\nif((r&1)!==0)q.y7(a,b)\nelse if((r&3)===0)q.zN().i(0,new A.WG(a,b))}\nQj(a){return this.fD(a,null)}\nn(j,\"gGj\",0,1,null,[\"$2\",\"$1\"],[\"fD\",\"Qj\"],5,0,0)",
         "type": "void Function(Object,[StackTrace?])",
         "functionKind": 2
       },
@@ -33845,7 +33805,7 @@
         "id": "function/dart:async::_nullErrorHandler",
         "kind": "function",
         "name": "_nullErrorHandler",
-        "size": 35,
+        "size": 34,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:async::",
         "children": [],
@@ -33871,7 +33831,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Z0(a,b){A.Si(a,b)}\nq(A,\"Cr\",\"Z0\",10)",
+        "code": "Z0(a,b){A.Si(a,b)}\nq(A,\"Cr\",\"Z0\",9)",
         "type": "void Function(Object,StackTrace)",
         "functionKind": 0
       },
@@ -34541,7 +34501,7 @@
         "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes nothing)",
-        "inlinedCount": 1,
+        "inlinedCount": 2,
         "code": "",
         "type": "bool Function()",
         "functionKind": 2
@@ -34573,7 +34533,7 @@
         "id": "function/dart:collection::ListBase.iterator",
         "kind": "function",
         "name": "iterator",
-        "size": 57,
+        "size": 58,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:collection::ListBase",
         "children": [],
@@ -34588,7 +34548,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 1,
-        "code": "gA(a){return new A.a7(a,this.gB(a),A.z(a).C(\"a7<ar.E>\"))}",
+        "code": "gkz(a){return new A.a7(a,this.gB(a),A.z(a).C(\"a7<ar.E>\"))}",
         "type": "Iterator<ListBase.E> Function()",
         "functionKind": 2
       },
@@ -34700,7 +34660,7 @@
         "id": "function/dart:collection::MapBase.forEach",
         "kind": "function",
         "name": "forEach",
-        "size": 122,
+        "size": 123,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:collection::MapBase",
         "children": [],
@@ -34721,7 +34681,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "aN(a,b){var s,r,q,p\nfor(s=this.gvc(),s=s.gA(s),r=A.Lh(this).y[1];s.G();){q=s.gl()\np=this.W(0,q)\nb.$2(q,p==null?r.a(p):p)}}",
+        "code": "aN(a,b){var s,r,q,p\nfor(s=this.gvc(),s=s.gkz(s),r=A.Lh(this).y[1];s.G();){q=s.gl()\np=this.W(0,q)\nb.$2(q,p==null?r.a(p):p)}}",
         "type": "void Function(void Function(MapBase.K,MapBase.V))",
         "functionKind": 2
       },
@@ -35407,7 +35367,7 @@
         "id": "function/dart:collection::_HashMapKeyIterable.iterator",
         "kind": "function",
         "name": "iterator",
-        "size": 65,
+        "size": 66,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:collection::_HashMapKeyIterable",
         "children": [],
@@ -35422,7 +35382,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "gA(a){var s=this.a\nreturn new A.t3(s,s.Cf(),this.$ti.C(\"t3<1>\"))}",
+        "code": "gkz(a){var s=this.a\nreturn new A.t3(s,s.Cf(),this.$ti.C(\"t3<1>\"))}",
         "type": "Iterator<_HashMapKeyIterable.E> Function()",
         "functionKind": 2
       },
@@ -35663,7 +35623,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "n(a){var s,r,q=A.jB(0,null,a.length)\nif(q===0)return new Uint8Array(0)\ns=new Uint8Array(q*3)\nr=new A.Rw(s)\nif(r.X(a,0,q)!==q)r.H()\nreturn B.NA.aM(s,0,r.b)}",
+        "code": "n(a){var s,r,q=A.jB(0,null,a.length)\nif(q===0)return new Uint8Array(0)\ns=new Uint8Array(q*3)\nr=new A.Rw(s)\nif(r.m(a,0,q)!==q)r.H()\nreturn B.NA.aM(s,0,r.b)}",
         "type": "Uint8List Function(Object?,[int,int?])",
         "functionKind": 2
       },
@@ -35729,7 +35689,7 @@
         "id": "function/dart:convert::_Utf8Encoder._fillBuffer",
         "kind": "function",
         "name": "_fillBuffer",
-        "size": 559,
+        "size": 558,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:convert::_Utf8Encoder",
         "children": [],
@@ -35760,7 +35720,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "X(a,b,c){var s,r,q,p,o,n,m,l,k=this\nif(b!==c&&(a.charCodeAt(c-1)&64512)===55296)--c\nfor(s=k.c,r=s.$flags|0,q=s.length,p=b;p<c;++p){o=a.charCodeAt(p)\nif(o<=127){n=k.b\nif(n>=q)break\nk.b=n+1\nr&2&&A.cW(s)\ns[n]=o}else{n=o&64512\nif(n===55296){if(k.b+4>q)break\nm=p+1\nif(k.O6(o,a.charCodeAt(m)))p=m}else if(n===56320){if(k.b+3>q)break\nk.H()}else if(o<=2047){n=k.b\nl=n+1\nif(l>=q)break\nk.b=l\nr&2&&A.cW(s)\ns[n]=o>>>6|192\nk.b=l+1\ns[l]=o&63|128}else{n=k.b\nif(n+2>=q)break\nl=k.b=n+1\nr&2&&A.cW(s)\ns[n]=o>>>12|224\nn=k.b=l+1\ns[l]=o>>>6&63|128\nk.b=n+1\ns[n]=o&63|128}}}return p}",
+        "code": "m(a,b,c){var s,r,q,p,o,n,m,l,k=this\nif(b!==c&&(a.charCodeAt(c-1)&64512)===55296)--c\nfor(s=k.c,r=s.$flags|0,q=s.length,p=b;p<c;++p){o=a.charCodeAt(p)\nif(o<=127){n=k.b\nif(n>=q)break\nk.b=n+1\nr&2&&A.cW(s)\ns[n]=o}else{n=o&64512\nif(n===55296){if(k.b+4>q)break\nm=p+1\nif(k.O(o,a.charCodeAt(m)))p=m}else if(n===56320){if(k.b+3>q)break\nk.H()}else if(o<=2047){n=k.b\nl=n+1\nif(l>=q)break\nk.b=l\nr&2&&A.cW(s)\ns[n]=o>>>6|192\nk.b=l+1\ns[l]=o&63|128}else{n=k.b\nif(n+2>=q)break\nl=k.b=n+1\nr&2&&A.cW(s)\ns[n]=o>>>12|224\nn=k.b=l+1\ns[l]=o>>>6&63|128\nk.b=n+1\ns[n]=o&63|128}}}return p}",
         "type": "int Function(String,int,int)",
         "functionKind": 2
       },
@@ -35791,7 +35751,7 @@
         "id": "function/dart:convert::_Utf8Encoder._writeSurrogate",
         "kind": "function",
         "name": "_writeSurrogate",
-        "size": 246,
+        "size": 245,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:convert::_Utf8Encoder",
         "children": [],
@@ -35817,7 +35777,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "O6(a,b){var s,r,q,p,o=this\nif((b&64512)===56320){s=65536+((a&1023)<<10)|b&1023\nr=o.c\nq=o.b\np=o.b=q+1\nr.$flags&2&&A.cW(r)\nr[q]=s>>>18|240\nq=o.b=p+1\nr[p]=s>>>12&63|128\np=o.b=q+1\nr[q]=s>>>6&63|128\no.b=p+1\nr[p]=s&63|128\nreturn!0}else{o.H()\nreturn!1}}",
+        "code": "O(a,b){var s,r,q,p,o=this\nif((b&64512)===56320){s=65536+((a&1023)<<10)|b&1023\nr=o.c\nq=o.b\np=o.b=q+1\nr.$flags&2&&A.cW(r)\nr[q]=s>>>18|240\nq=o.b=p+1\nr[p]=s>>>12&63|128\np=o.b=q+1\nr[q]=s>>>6&63|128\no.b=p+1\nr[p]=s&63|128\nreturn!0}else{o.H()\nreturn!1}}",
         "type": "bool Function(int,int)",
         "functionKind": 2
       },
@@ -36456,7 +36416,7 @@
         "id": "function/dart:core::FormatException.toString",
         "kind": "function",
         "name": "toString",
-        "size": 170,
+        "size": 169,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:core::FormatException",
         "children": [],
@@ -36471,7 +36431,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "\"[\"(a){var s=this.a,r=\"\"!==s?\"FormatException: \"+s:\"FormatException\",q=this.b\nif(typeof q==\"string\"){if(q.length>78)q=B.xB.Nj(q,0,75)+\"...\"\nreturn r+\"\\n\"+q}else return r}",
+        "code": "\"[\"(a){var s=this.a,r=\"\"!==s?\"FormatException: \"+s:\"FormatException\",q=this.b\nif(typeof q==\"string\"){if(q.length>78)q=B.xB.J(q,0,75)+\"...\"\nreturn r+\"\\n\"+q}else return r}",
         "type": "String Function()",
         "functionKind": 2
       },
@@ -36592,7 +36552,7 @@
         "id": "function/dart:core::Iterable.elementAt",
         "kind": "function",
         "name": "elementAt",
-        "size": 126,
+        "size": 127,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:core::Iterable",
         "children": [],
@@ -36613,7 +36573,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "F(a,b){var s,r\nA.k1(b,\"index\")\ns=this.gA(this)\nfor(r=b;s.G();){if(r===0)return s.gl();--r}throw A.b(A.xF(b,b-r,this,\"index\"))}",
+        "code": "F(a,b){var s,r\nA.k1(b,\"index\")\ns=this.gkz(this)\nfor(r=b;s.G();){if(r===0)return s.gl();--r}throw A.b(A.xF(b,b-r,this,\"index\"))}",
         "type": "Iterable.E Function(int)",
         "functionKind": 2
       },
@@ -36722,7 +36682,7 @@
         "id": "function/dart:core::Iterable.length",
         "kind": "function",
         "name": "length",
-        "size": 56,
+        "size": 57,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:core::Iterable",
         "children": [],
@@ -36737,7 +36697,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "gB(a){var s,r=this.gA(this)\nfor(s=0;r.G();)++s\nreturn s}",
+        "code": "gB(a){var s,r=this.gkz(this)\nfor(s=0;r.G();)++s\nreturn s}",
         "type": "int Function()",
         "functionKind": 2
       },
@@ -37921,7 +37881,7 @@
         "id": "function/dart:core::_iterablePartsToStrings",
         "kind": "function",
         "name": "_iterablePartsToStrings",
-        "size": 617,
+        "size": 618,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:core::",
         "children": [],
@@ -37947,7 +37907,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Vr(a,b){var s,r,q,p,o,n,m,l=a.gA(a),k=0,j=0\nfor(;;){if(!(k<80||j<3))break\nif(!l.G())return\ns=A.L(l.gl())\nb.push(s)\nk+=s.length+2;++j}if(!l.G()){if(j<=5)return\nr=b.pop()\nq=b.pop()}else{p=l.gl();++j\nif(!l.G()){if(j<=4){b.push(A.L(p))\nreturn}r=A.L(p)\nq=b.pop()\nk+=r.length+2}else{o=l.gl();++j\nfor(;l.G();p=o,o=n){n=l.gl();++j\nif(j>100){for(;;){if(!(k>75&&j>3))break\nk-=b.pop().length+2;--j}b.push(\"...\")\nreturn}}q=A.L(p)\nr=A.L(o)\nk+=r.length+q.length+4}}if(j>b.length+2){k+=5\nm=\"...\"}else m=null\nfor(;;){if(!(k>80&&b.length>3))break\nk-=b.pop().length+2\nif(m==null){k+=5\nm=\"...\"}}if(m!=null)b.push(m)\nb.push(q)\nb.push(r)}",
+        "code": "Vr(a,b){var s,r,q,p,o,n,m,l=a.gkz(a),k=0,j=0\nfor(;;){if(!(k<80||j<3))break\nif(!l.G())return\ns=A.L(l.gl())\nb.push(s)\nk+=s.length+2;++j}if(!l.G()){if(j<=5)return\nr=b.pop()\nq=b.pop()}else{p=l.gl();++j\nif(!l.G()){if(j<=4){b.push(A.L(p))\nreturn}r=A.L(p)\nq=b.pop()\nk+=r.length+2}else{o=l.gl();++j\nfor(;l.G();p=o,o=n){n=l.gl();++j\nif(j>100){for(;;){if(!(k>75&&j>3))break\nk-=b.pop().length+2;--j}b.push(\"...\")\nreturn}}q=A.L(p)\nr=A.L(o)\nk+=r.length+q.length+4}}if(j>b.length+2){k+=5\nm=\"...\"}else m=null\nfor(;;){if(!(k>80&&b.length>3))break\nk-=b.pop().length+2\nif(m==null){k+=5\nm=\"...\"}}if(m!=null)b.push(m)\nb.push(q)\nb.push(r)}",
         "type": "void Function(Iterable<Object?>,List<String>)",
         "functionKind": 0
       },
@@ -38851,7 +38811,7 @@
         "id": "function/dart:js_util::jsify",
         "kind": "function",
         "name": "jsify",
-        "size": 391,
+        "size": 392,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:js_util::",
         "children": [
@@ -38882,7 +38842,7 @@
         "id": "function/dart:js_util::jsify.jsify__convert.call",
         "kind": "function",
         "name": "call",
-        "size": 272,
+        "size": 273,
         "outputUnit": "outputUnit/main",
         "parent": "closure/dart:js_util::jsify.jsify__convert",
         "children": [],
@@ -38903,7 +38863,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "$1(a){var s,r,q,p\nif(A.m6(a))return a\ns=this.a\nif(s.x4(a))return s.W(0,a)\nif(a instanceof A.il){r={}\ns.Y5(0,a,r)\nfor(s=a.gvc(),s=s.gA(s);s.G();){q=s.gl()\nr[q]=this.$1(a.W(0,q))}return r}else if(t.c.b(a)){p=[]\ns.Y5(0,a,p)\nB.Nm.FV(p,J.M1(a,this,t.z))\nreturn p}else return a}",
+        "code": "$1(a){var s,r,q,p\nif(A.m6(a))return a\ns=this.a\nif(s.x4(a))return s.W(0,a)\nif(a instanceof A.il){r={}\ns.Y5(0,a,r)\nfor(s=a.gvc(),s=s.gkz(s);s.G();){q=s.gl()\nr[q]=this.$1(a.W(0,q))}return r}else if(t.c.b(a)){p=[]\ns.Y5(0,a,p)\nB.Nm.FV(p,J.M1(a,this,t.z))\nreturn p}else return a}",
         "type": "Object? Function(Object?)",
         "functionKind": 2
       },
@@ -39740,7 +39700,7 @@
         "id": "function/org-dartlang-app:///example/src/qr_example.dart::QrExample._drawQr",
         "kind": "function",
         "name": "_drawQr",
-        "size": 545,
+        "size": 544,
         "outputUnit": "outputUnit/main",
         "parent": "class/org-dartlang-app:///example/src/qr_example.dart::QrExample",
         "children": [],
@@ -39755,7 +39715,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "cB(){var s,r,q,p=this,o=B.CD.h(Math.sqrt(J.Hm(p.Q))),n=p.a,m=n.width,l=n.height,k=o+1,j=B.jn.xG(Math.min(A.E0(m),A.E0(l)),1.1*k),i=new A.Ng(1,0,0,1,0,0)\ni.QI(0.5*n.width,0.5*n.height)\ni.a*=j\ni.b*=j\ni.c*=j\ni.d*=j\nn=-0.5*o\ni.QI(n,n)\nn=p.b\nn.save()\nn.setTransform.apply(n,[i.a,i.b,i.c,i.d,i.e,i.f])\nif(J.RS(p.Q)){n.fillStyle=\"white\"\nn.fillRect(-0.5,-0.5,k,k)\nn.fillStyle=\"black\"\nn.beginPath()\nfor(s=0;s<o;++s)for(m=s*o,r=0;r<o;){q=r+1\nif(J.x9(p.Q,m+r)){for(;;){if(!(q<o&&J.x9(p.Q,m+q)))break;++q}n.rect(s,r,1,q-r)\nr=q}else r=q}n.fill()}n.restore()}",
+        "code": "L(){var s,r,q,p=this,o=B.CD.yu(Math.sqrt(J.Hm(p.Q))),n=p.a,m=n.width,l=n.height,k=o+1,j=B.jn.v(Math.min(A.E0(m),A.E0(l)),1.1*k),i=new A.Ng(1,0,0,1,0,0)\ni.QI(0.5*n.width,0.5*n.height)\ni.a*=j\ni.b*=j\ni.c*=j\ni.d*=j\nn=-0.5*o\ni.QI(n,n)\nn=p.b\nn.save()\nn.setTransform.apply(n,[i.a,i.b,i.c,i.d,i.e,i.f])\nif(J.RS(p.Q)){n.fillStyle=\"white\"\nn.fillRect(-0.5,-0.5,k,k)\nn.fillStyle=\"black\"\nn.beginPath()\nfor(s=0;s<o;++s)for(m=s*o,r=0;r<o;){q=r+1\nif(J.x9(p.Q,m+r)){for(;;){if(!(q<o&&J.x9(p.Q,m+q)))break;++q}n.rect(s,r,1,q-r)\nr=q}else r=q}n.fill()}n.restore()}",
         "type": "void Function()",
         "functionKind": 2
       },
@@ -39815,7 +39775,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "zg(a){var s=a.target\nthis.z=B.Nm.XG(B.TZ,new A.Wx(s==null?A.AN(s):s))\nthis.T()}\nk(j,\"gV3\",\"zg\",2)",
+        "code": "zg(a){var s=a.target\nthis.z=B.Nm.XG(B.TZ,new A.Wx(s==null?A.AN(s):s))\nthis.T()}\nk(j,\"gV3\",\"zg\",1)",
         "type": "void Function(JSObject)",
         "functionKind": 2
       },
@@ -39873,7 +39833,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "AS(a){var s=a.target\nif(s==null)s=A.AN(s)\nthis.y=A.QA(s.dataset.type_value)\nthis.T()}\nk(j=A.q9.prototype,\"gHk\",\"AS\",2)",
+        "code": "AS(a){var s=a.target\nif(s==null)s=A.AN(s)\nthis.y=A.QA(s.dataset.type_value)\nthis.T()}\nk(j=A.q9.prototype,\"gHk\",\"AS\",1)",
         "type": "void Function(JSObject)",
         "functionKind": 2
       },
@@ -39881,7 +39841,7 @@
         "id": "function/org-dartlang-app:///example/src/qr_example.dart::QrExample._onFrame",
         "kind": "function",
         "name": "_onFrame",
-        "size": 178,
+        "size": 176,
         "outputUnit": "outputUnit/main",
         "parent": "class/org-dartlang-app:///example/src/qr_example.dart::QrExample",
         "children": [],
@@ -39902,7 +39862,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "dF(a){var s,r=this\nr.at=!1\ns=r.a\ns.hidden=r.as!==B.JB\nr.c.hidden=r.as!==B.cV\nr.d.hidden=r.as!==B.bA\nif(r.as===B.JB){r.b.clearRect(0,0,s.width,s.height)\nr.cB()}}\nk(j,\"gll\",\"dF\",25)",
+        "code": "dF(a){var s,r=this\nr.at=!1\ns=r.a\ns.hidden=r.as!==B.JB\nr.c.hidden=r.as!==B.cV\nr.d.hidden=r.as!==B.bA\nif(r.as===B.JB){r.b.clearRect(0,0,s.width,s.height)\nr.L()}}\nk(j,\"gU\",\"dF\",25)",
         "type": "void Function(num)",
         "functionKind": 2
       },
@@ -39992,7 +39952,7 @@
         "id": "function/org-dartlang-app:///example/src/qr_example.dart::QrExample.requestFrame",
         "kind": "function",
         "name": "requestFrame",
-        "size": 80,
+        "size": 79,
         "outputUnit": "outputUnit/main",
         "parent": "class/org-dartlang-app:///example/src/qr_example.dart::QrExample",
         "children": [],
@@ -40007,7 +39967,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "j(){if(!this.at){this.at=!0\nv.G.window.requestAnimationFrame(A.k6(this.gll()))}}",
+        "code": "j(){if(!this.at){this.at=!0\nv.G.window.requestAnimationFrame(A.k6(this.gU()))}}",
         "type": "void Function()",
         "functionKind": 2
       },
@@ -40235,15 +40195,44 @@
         "inferredReturnType": "[exact=QrBitBuffer|powerset={N}{O}{N}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 2,
+        "inlinedCount": 1,
         "code": "",
         "type": "dynamic Function()",
         "functionKind": 3
       },
-      "package:qr/src/bit_buffer.dart::QrBitBuffer.[]": {
-        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.[]",
+      "package:qr/src/bit_buffer.dart::QrBitBuffer._ensureCapacity": {
+        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer._ensureCapacity",
         "kind": "function",
-        "name": "[]",
+        "name": "_ensureCapacity",
+        "size": 118,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/package:qr/src/bit_buffer.dart::QrBitBuffer",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "void",
+        "inferredReturnType": "[null|powerset={null}]",
+        "parameters": [
+          {
+            "name": "neededBytes",
+            "type": "[subclass=JSPositiveInt|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "Wn(a){var s,r,q=this.a,p=q.length\nif(p<a){s=p===0?4:p*2\nwhile(s<a)s*=2\nr=new Uint8Array(s)\nB.NA.vg(r,0,p,q)\nthis.a=r}}",
+        "type": "void Function(int)",
+        "functionKind": 2
+      },
+      "package:qr/src/bit_buffer.dart::QrBitBuffer._getBit": {
+        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer._getBit",
+        "kind": "function",
+        "name": "_getBit",
         "size": 0,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/bit_buffer.dart::QrBitBuffer",
@@ -40269,10 +40258,10 @@
         "type": "bool Function(int)",
         "functionKind": 2
       },
-      "package:qr/src/bit_buffer.dart::QrBitBuffer.getByte": {
-        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.getByte",
+      "package:qr/src/bit_buffer.dart::QrBitBuffer.getBytes": {
+        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.getBytes",
         "kind": "function",
-        "name": "getByte",
+        "name": "getBytes",
         "size": 0,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/bit_buffer.dart::QrBitBuffer",
@@ -40283,26 +40272,31 @@
           "factory": false,
           "external": false
         },
-        "returnType": "int",
-        "inferredReturnType": "[subclass=JSInt|powerset={I}{O}{N}]",
+        "returnType": "Uint8List",
+        "inferredReturnType": "[exact=NativeUint8List|powerset={I}{O}{M}]",
         "parameters": [
           {
-            "name": "index",
+            "name": "offset",
             "type": "[subclass=JSPositiveInt|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          },
+          {
+            "name": "length",
+            "type": "[exact=JSUInt31|powerset={I}{O}{N}]",
             "declaredType": "int"
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 1,
         "code": "",
-        "type": "int Function(int)",
+        "type": "Uint8List Function(int,int)",
         "functionKind": 2
       },
       "package:qr/src/bit_buffer.dart::QrBitBuffer.iterator": {
         "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.iterator",
         "kind": "function",
         "name": "iterator",
-        "size": 28,
+        "size": 29,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/bit_buffer.dart::QrBitBuffer",
         "children": [],
@@ -40317,7 +40311,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 0,
-        "code": "gA(a){return new A.R5(this)}",
+        "code": "gkz(a){return new A.R5(this)}",
         "type": "Iterator<bool> Function()",
         "functionKind": 2
       },
@@ -40339,7 +40333,7 @@
         "inferredReturnType": "[subclass=JSPositiveInt|powerset={I}{O}{N}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads field; writes nothing)",
-        "inlinedCount": 7,
+        "inlinedCount": 6,
         "code": "gB(a){return this.b}",
         "type": "int Function()",
         "functionKind": 2
@@ -40348,7 +40342,7 @@
         "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.put",
         "kind": "function",
         "name": "put",
-        "size": 306,
+        "size": 350,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/bit_buffer.dart::QrBitBuffer",
         "children": [],
@@ -40374,7 +40368,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "L(a,b){var s,r,q,p,o,n,m,l,k,j,i,h=this\nif(b===0)return\ns=h.b\nr=s+b\nq=r+7>>>3\nfor(p=h.a;p.length<q;)p.push(0)\nif(b===8&&(s&7)===0&&a>=0&&a<=255){p[s>>>3]=a\nh.b=r\nreturn}for(o=b;o>0;o=k){n=B.jn.wG(s,3)\nm=8-(s&7)\nl=o<m?o:m\nk=o-l\nj=B.jn.m(a,k)\ni=B.jn.v(1,l)\np[n]=(p[n]|B.jn.v((j&i-1)>>>0,m-l))>>>0\ns+=l}h.b=r}",
+        "code": "Dp(a,b){var s,r,q,p,o,n,m,l,k,j,i,h,g=this\nif(b===0)return\ns=g.b\nr=s+b\ng.Wn(r+7>>>3)\nif(b===8&&(s&7)===0&&a>=0&&a<=255){q=g.a\nq.$flags&2&&A.cW(q)\nq[s>>>3]=a\ng.b=r\nreturn}for(q=g.a,p=q.$flags|0,o=b;o>0;o=k){n=B.jn.wG(s,3)\nm=8-(s&7)\nl=o<m?o:m\nk=o-l\nj=B.jn.HZ(a,k)\ni=B.jn.yE(1,l)\nh=q[n]\ni=B.jn.yE((j&i-1)>>>0,m-l)\np&2&&A.cW(q)\nq[n]=(h|i)>>>0\ns+=l}g.b=r}",
         "type": "void Function(int,int)",
         "functionKind": 2
       },
@@ -40455,7 +40449,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "gl(){var s=this.b\nreturn(B.jn.m(this.a.a[B.jn.Y(s,8)],7-B.jn.O(s,8))&1)===1}",
+        "code": "gl(){var s=this.b,r=B.jn.wG(s,3)\nreturn(B.jn.bf(this.a.a[r],7-(s&7))&1)===1}",
         "type": "bool Function()",
         "functionKind": 2
       },
@@ -40540,6 +40534,29 @@
         "type": "QrAlphaNumeric Function(String)",
         "functionKind": 3
       },
+      "package:qr/src/byte.dart::QrAlphaNumeric.bitLength": {
+        "id": "function/package:qr/src/byte.dart::QrAlphaNumeric.bitLength",
+        "kind": "function",
+        "name": "bitLength",
+        "size": 76,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/package:qr/src/byte.dart::QrAlphaNumeric",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "int",
+        "inferredReturnType": "[subclass=JSInt|powerset={I}{O}{N}]",
+        "parameters": [],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "gh(a){var s=this.a.length,r=B.jn.Y(s,2),q=B.jn.K(s,2)*11\nreturn r===1?q+6:q}",
+        "type": "int Function()",
+        "functionKind": 2
+      },
       "package:qr/src/byte.dart::QrAlphaNumeric.encodeArray.QrAlphaNumeric_encodeArray_closure.call": {
         "id": "function/package:qr/src/byte.dart::QrAlphaNumeric.encodeArray.QrAlphaNumeric_encodeArray_closure.call",
         "kind": "function",
@@ -40590,7 +40607,7 @@
         "id": "function/package:qr/src/byte.dart::QrAlphaNumeric.write",
         "kind": "function",
         "name": "write",
-        "size": 245,
+        "size": 248,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/byte.dart::QrAlphaNumeric",
         "children": [],
@@ -40611,7 +40628,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "K(a){var s,r,q,p,o=this.a,n=o.length,m=B.jn.O(n,2),l=n-m\nfor(s=0;s<l;s+=2){r=$.nM()\nq=J.U6(r)\np=q.W(r,o.charCodeAt(s))\np.toString\nr=q.W(r,o.charCodeAt(s+1))\nr.toString\na.L(p*45+r,11)}if(m>0){o=J.x9($.nM(),o.charCodeAt(n-1))\no.toString\na.L(o,6)}}",
+        "code": "KF(a){var s,r,q,p,o=this.a,n=o.length,m=B.jn.Y(n,2),l=n-m\nfor(s=0;s<l;s+=2){r=$.nM()\nq=J.U6(r)\np=q.W(r,o.charCodeAt(s))\np.toString\nr=q.W(r,o.charCodeAt(s+1))\nr.toString\na.Dp(p*45+r,11)}if(m>0){o=J.x9($.nM(),o.charCodeAt(n-1))\no.toString\na.Dp(o,6)}}",
         "type": "void Function(QrBitBuffer)",
         "functionKind": 2
       },
@@ -40673,6 +40690,29 @@
         "type": "dynamic Function(Uint8List)",
         "functionKind": 3
       },
+      "package:qr/src/byte.dart::QrByte.bitLength": {
+        "id": "function/package:qr/src/byte.dart::QrByte.bitLength",
+        "kind": "function",
+        "name": "bitLength",
+        "size": 29,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/package:qr/src/byte.dart::QrByte",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "int",
+        "inferredReturnType": "[subclass=JSPositiveInt|powerset={I}{O}{N}]",
+        "parameters": [],
+        "sideEffects": "SideEffects(reads anything; writes nothing)",
+        "inlinedCount": 0,
+        "code": "gh(a){return this.b.length*8}",
+        "type": "int Function()",
+        "functionKind": 2
+      },
       "package:qr/src/byte.dart::QrByte.length": {
         "id": "function/package:qr/src/byte.dart::QrByte.length",
         "kind": "function",
@@ -40700,7 +40740,7 @@
         "id": "function/package:qr/src/byte.dart::QrByte.write",
         "kind": "function",
         "name": "write",
-        "size": 63,
+        "size": 65,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/byte.dart::QrByte",
         "children": [],
@@ -40721,7 +40761,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "K(a){var s,r,q\nfor(s=this.b,r=s.length,q=0;q<r;++q)a.L(s[q],8)}",
+        "code": "KF(a){var s,r,q\nfor(s=this.b,r=s.length,q=0;q<r;++q)a.Dp(s[q],8)}",
         "type": "void Function(QrBitBuffer)",
         "functionKind": 2
       },
@@ -40729,7 +40769,7 @@
         "id": "function/package:qr/src/byte.dart::QrDatum.toDatums",
         "kind": "function",
         "name": "toDatums",
-        "size": 444,
+        "size": 443,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/byte.dart::QrDatum",
         "children": [
@@ -40752,7 +40792,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "mV(a){var s=$.Lw()\nif(s.b.test(a))return A.QI([A.qL(a)],t.v)\ns=$.ol()\nif(s.b.test(a)){if(!A.m2(a,s,0))A.vh(A.L3(a.length>10?B.xB.Nj(a,0,10)+\"...\":a,\"alphaNumeric\",\"String does not contain valid ALPHA-NUM character set\"))\nreturn A.QI([new A.HO(a)],t.v)}s=new A.qj(a)\nif(s.V(s,new A.cN()))return A.QI([new A.wO(26),new A.eK(B.Qk.n(a))],t.v)\nreturn A.QI([new A.eK(B.Qk.n(a))],t.v)}",
+        "code": "mV(a){var s=$.Lw()\nif(s.b.test(a))return A.QI([A.qL(a)],t.v)\ns=$.ol()\nif(s.b.test(a)){if(!A.m2(a,s,0))A.vh(A.L3(a.length>10?B.xB.J(a,0,10)+\"...\":a,\"alphaNumeric\",\"String does not contain valid ALPHA-NUM character set\"))\nreturn A.QI([new A.HO(a)],t.v)}s=new A.qj(a)\nif(s.V(s,new A.cN()))return A.QI([new A.wO(26),new A.eK(B.Qk.n(a))],t.v)\nreturn A.QI([new A.eK(B.Qk.n(a))],t.v)}",
         "type": "List<QrDatum> Function(String)",
         "functionKind": 0
       },
@@ -40818,7 +40858,7 @@
         "id": "function/package:qr/src/byte.dart::QrNumeric.QrNumeric.fromString",
         "kind": "function",
         "name": "QrNumeric.fromString",
-        "size": 329,
+        "size": 328,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/byte.dart::QrNumeric",
         "children": [],
@@ -40839,9 +40879,32 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "qL(a){var s,r,q,p,o,n=$.Lw()\nif(!n.b.test(a))throw A.b(A.L3(a.length>10?B.xB.Nj(a,0,10)+\"...\":a,\"numberString\",\"string can only contain digits 0-9\"))\ns=new Uint8Array(a.length)\nfor(n=new A.qj(a),r=t.V,n=new A.a7(n,n.gB(0),r.C(\"a7<ar.E>\")),r=r.C(\"ar.E\"),q=0;n.G();q=o){p=n.d\nif(p==null)p=r.a(p)\no=q+1\ns[q]=p-48}return new A.Dw(s)}",
+        "code": "qL(a){var s,r,q,p,o,n=$.Lw()\nif(!n.b.test(a))throw A.b(A.L3(a.length>10?B.xB.J(a,0,10)+\"...\":a,\"numberString\",\"string can only contain digits 0-9\"))\ns=new Uint8Array(a.length)\nfor(n=new A.qj(a),r=t.V,n=new A.a7(n,n.gB(0),r.C(\"a7<ar.E>\")),r=r.C(\"ar.E\"),q=0;n.G();q=o){p=n.d\nif(p==null)p=r.a(p)\no=q+1\ns[q]=p-48}return new A.Dw(s)}",
         "type": "QrNumeric Function(String)",
         "functionKind": 3
+      },
+      "package:qr/src/byte.dart::QrNumeric.bitLength": {
+        "id": "function/package:qr/src/byte.dart::QrNumeric.bitLength",
+        "kind": "function",
+        "name": "bitLength",
+        "size": 95,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/package:qr/src/byte.dart::QrNumeric",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "int",
+        "inferredReturnType": "[subclass=JSPositiveInt|powerset={I}{O}{N}]",
+        "parameters": [],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "gh(a){var s=this.a.length,r=B.jn.Y(s,3),q=(s/3|0)*10\nif(r===1)q+=4\nelse if(r===2)q+=7\nreturn q}",
+        "type": "int Function()",
+        "functionKind": 2
       },
       "package:qr/src/byte.dart::QrNumeric.length": {
         "id": "function/package:qr/src/byte.dart::QrNumeric.length",
@@ -40870,7 +40933,7 @@
         "id": "function/package:qr/src/byte.dart::QrNumeric.write",
         "kind": "function",
         "name": "write",
-        "size": 183,
+        "size": 187,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/byte.dart::QrNumeric",
         "children": [],
@@ -40891,7 +40954,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "K(a){var s,r=this.a,q=r.length,p=B.jn.O(q,3),o=q-p\nfor(s=0;s<o;s+=3)a.L(r[s]*100+r[s+1]*10+r[s+2],10)\nif(p>1)a.L(r[q-2]*10+r[q-1],7)\nelse if(p>0){if(q===0)A.vh(A.Wp())\na.L(r[q-1],4)}}",
+        "code": "KF(a){var s,r=this.a,q=r.length,p=B.jn.Y(q,3),o=q-p\nfor(s=0;s<o;s+=3)a.Dp(r[s]*100+r[s+1]*10+r[s+2],10)\nif(p>1)a.Dp(r[q-2]*10+r[q-1],7)\nelse if(p>0){if(q===0)A.vh(A.Wp())\na.Dp(r[q-1],4)}}",
         "type": "void Function(QrBitBuffer)",
         "functionKind": 2
       },
@@ -40953,6 +41016,29 @@
         "type": "dynamic Function(int)",
         "functionKind": 3
       },
+      "package:qr/src/eci.dart::QrEci.bitLength": {
+        "id": "function/package:qr/src/eci.dart::QrEci.bitLength",
+        "kind": "function",
+        "name": "bitLength",
+        "size": 68,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/package:qr/src/eci.dart::QrEci",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "int",
+        "inferredReturnType": "[exact=JSUInt31|powerset={I}{O}{N}]",
+        "parameters": [],
+        "sideEffects": "SideEffects(reads field; writes nothing)",
+        "inlinedCount": 0,
+        "code": "gh(a){var s=this.a\nif(s<128)return 8\nif(s<16384)return 16\nreturn 24}",
+        "type": "int Function()",
+        "functionKind": 2
+      },
       "package:qr/src/eci.dart::QrEci.length": {
         "id": "function/package:qr/src/eci.dart::QrEci.length",
         "kind": "function",
@@ -41003,7 +41089,7 @@
         "id": "function/package:qr/src/eci.dart::QrEci.write",
         "kind": "function",
         "name": "write",
-        "size": 92,
+        "size": 96,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/eci.dart::QrEci",
         "children": [],
@@ -41024,7 +41110,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "K(a){var s=this.a\nif(s<128)a.L(s,8)\nelse if(s<16384)a.L(s|32768,16)\nelse a.L(s|12582912,24)}",
+        "code": "KF(a){var s=this.a\nif(s<128)a.Dp(s,8)\nelse if(s<16384)a.Dp(s|32768,16)\nelse a.Dp(s|12582912,24)}",
         "type": "void Function(QrBitBuffer)",
         "functionKind": 2
       },
@@ -41146,335 +41232,6 @@
         "code": "\"[\"(a){return\"QrInputTooLongException: \"+this.c}",
         "type": "String Function()",
         "functionKind": 2
-      },
-      "package:qr/src/mask_pattern.dart::QrMaskPattern._enumToString": {
-        "id": "function/package:qr/src/mask_pattern.dart::QrMaskPattern._enumToString",
-        "kind": "function",
-        "name": "_enumToString",
-        "size": 34,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/package:qr/src/mask_pattern.dart::QrMaskPattern",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "String",
-        "inferredReturnType": "[exact=JSString|powerset={I}{O}{I}]",
-        "parameters": [],
-        "sideEffects": "SideEffects(reads field; writes anything)",
-        "inlinedCount": 0,
-        "code": "q(){return\"QrMaskPattern.\"+this.b}",
-        "type": "String Function()",
-        "functionKind": 2
-      },
-      "package:qr/src/mask_pattern.dart::QrMaskPattern.check": {
-        "id": "function/package:qr/src/mask_pattern.dart::QrMaskPattern.check",
-        "kind": "function",
-        "name": "check",
-        "size": 0,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/package:qr/src/mask_pattern.dart::QrMaskPattern",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "bool",
-        "inferredReturnType": "[subtype=bool|powerset={IN}{O}{N}]",
-        "parameters": [
-          {
-            "name": "i",
-            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
-            "declaredType": "int"
-          },
-          {
-            "name": "j",
-            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
-            "declaredType": "int"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 1,
-        "code": "",
-        "type": "bool Function(int,int)",
-        "functionKind": 2
-      },
-      "package:qr/src/mask_pattern.dart::_check000": {
-        "id": "function/package:qr/src/mask_pattern.dart::_check000",
-        "kind": "function",
-        "name": "_check000",
-        "size": 42,
-        "outputUnit": "outputUnit/main",
-        "parent": "library/package:qr/src/mask_pattern.dart::",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "bool",
-        "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
-        "parameters": [
-          {
-            "name": "i",
-            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
-            "declaredType": "int"
-          },
-          {
-            "name": "j",
-            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
-            "declaredType": "int"
-          }
-        ],
-        "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 0,
-        "code": "FG(a,b){return(a+b&1)===0}\nq(A,\"Fb\",\"FG\",1)",
-        "type": "bool Function(int,int)",
-        "functionKind": 0
-      },
-      "package:qr/src/mask_pattern.dart::_check001": {
-        "id": "function/package:qr/src/mask_pattern.dart::_check001",
-        "kind": "function",
-        "name": "_check001",
-        "size": 40,
-        "outputUnit": "outputUnit/main",
-        "parent": "library/package:qr/src/mask_pattern.dart::",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "bool",
-        "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
-        "parameters": [
-          {
-            "name": "i",
-            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
-            "declaredType": "int"
-          },
-          {
-            "name": "j",
-            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
-            "declaredType": "int"
-          }
-        ],
-        "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 0,
-        "code": "bw(a,b){return(a&1)===0}\nq(A,\"Ml\",\"bw\",1)",
-        "type": "bool Function(int,int)",
-        "functionKind": 0
-      },
-      "package:qr/src/mask_pattern.dart::_check010": {
-        "id": "function/package:qr/src/mask_pattern.dart::_check010",
-        "kind": "function",
-        "name": "_check010",
-        "size": 47,
-        "outputUnit": "outputUnit/main",
-        "parent": "library/package:qr/src/mask_pattern.dart::",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "bool",
-        "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
-        "parameters": [
-          {
-            "name": "i",
-            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
-            "declaredType": "int"
-          },
-          {
-            "name": "j",
-            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
-            "declaredType": "int"
-          }
-        ],
-        "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 0,
-        "code": "En(a,b){return B.jn.O(b,3)===0}\nq(A,\"Y3\",\"En\",1)",
-        "type": "bool Function(int,int)",
-        "functionKind": 0
-      },
-      "package:qr/src/mask_pattern.dart::_check011": {
-        "id": "function/package:qr/src/mask_pattern.dart::_check011",
-        "kind": "function",
-        "name": "_check011",
-        "size": 49,
-        "outputUnit": "outputUnit/main",
-        "parent": "library/package:qr/src/mask_pattern.dart::",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "bool",
-        "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
-        "parameters": [
-          {
-            "name": "i",
-            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
-            "declaredType": "int"
-          },
-          {
-            "name": "j",
-            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
-            "declaredType": "int"
-          }
-        ],
-        "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 0,
-        "code": "FH(a,b){return B.jn.O(a+b,3)===0}\nq(A,\"C1\",\"FH\",1)",
-        "type": "bool Function(int,int)",
-        "functionKind": 0
-      },
-      "package:qr/src/mask_pattern.dart::_check100": {
-        "id": "function/package:qr/src/mask_pattern.dart::_check100",
-        "kind": "function",
-        "name": "_check100",
-        "size": 62,
-        "outputUnit": "outputUnit/main",
-        "parent": "library/package:qr/src/mask_pattern.dart::",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "bool",
-        "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
-        "parameters": [
-          {
-            "name": "i",
-            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
-            "declaredType": "int"
-          },
-          {
-            "name": "j",
-            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
-            "declaredType": "int"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "o7(a,b){return(B.jn.Y(a,2)+B.jn.Y(b,3)&1)===0}\nq(A,\"zK\",\"o7\",1)",
-        "type": "bool Function(int,int)",
-        "functionKind": 0
-      },
-      "package:qr/src/mask_pattern.dart::_check101": {
-        "id": "function/package:qr/src/mask_pattern.dart::_check101",
-        "kind": "function",
-        "name": "_check101",
-        "size": 69,
-        "outputUnit": "outputUnit/main",
-        "parent": "library/package:qr/src/mask_pattern.dart::",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "bool",
-        "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
-        "parameters": [
-          {
-            "name": "i",
-            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
-            "declaredType": "int"
-          },
-          {
-            "name": "j",
-            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
-            "declaredType": "int"
-          }
-        ],
-        "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 0,
-        "code": "Xi(a,b){var s=a*b\nreturn B.jn.O(s,2)+B.jn.O(s,3)===0}\nq(A,\"Rf\",\"Xi\",1)",
-        "type": "bool Function(int,int)",
-        "functionKind": 0
-      },
-      "package:qr/src/mask_pattern.dart::_check110": {
-        "id": "function/package:qr/src/mask_pattern.dart::_check110",
-        "kind": "function",
-        "name": "_check110",
-        "size": 72,
-        "outputUnit": "outputUnit/main",
-        "parent": "library/package:qr/src/mask_pattern.dart::",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "bool",
-        "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
-        "parameters": [
-          {
-            "name": "i",
-            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
-            "declaredType": "int"
-          },
-          {
-            "name": "j",
-            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
-            "declaredType": "int"
-          }
-        ],
-        "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 0,
-        "code": "Nz(a,b){var s=a*b\nreturn(B.jn.O(s,2)+B.jn.O(s,3)&1)===0}\nq(A,\"kq\",\"Nz\",1)",
-        "type": "bool Function(int,int)",
-        "functionKind": 0
-      },
-      "package:qr/src/mask_pattern.dart::_check111": {
-        "id": "function/package:qr/src/mask_pattern.dart::_check111",
-        "kind": "function",
-        "name": "_check111",
-        "size": 66,
-        "outputUnit": "outputUnit/main",
-        "parent": "library/package:qr/src/mask_pattern.dart::",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "bool",
-        "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
-        "parameters": [
-          {
-            "name": "i",
-            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
-            "declaredType": "int"
-          },
-          {
-            "name": "j",
-            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
-            "declaredType": "int"
-          }
-        ],
-        "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 0,
-        "code": "Yg(a,b){return(B.jn.O(a*b,3)+B.jn.O(a+b,2)&1)===0}\nq(A,\"rG\",\"Yg\",1)",
-        "type": "bool Function(int,int)",
-        "functionKind": 0
       },
       "package:qr/src/math.dart::_createExpTable": {
         "id": "function/package:qr/src/math.dart::_createExpTable",
@@ -41719,7 +41476,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 4,
+        "inlinedCount": 1,
         "code": "",
         "type": "int Function(int)",
         "functionKind": 2
@@ -41772,7 +41529,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "vP(a){var s,r,q,p,o,n,m,l,k,j,i=\"must be >= 1\",h=a.a,g=h.length,f=this.a,e=f.length-g\nif(e<0)return this\ns=new Uint8Array(A.XF(f))\nr=e+1\nq=A.lm(h[0])\nfor(f=s.$flags|0,p=0;p<r;++p){o=s[p]\nif(o===0)continue\nn=(o>=1?$.ez()[o]:A.vh(A.L3(o,\"n\",i)))-q\nfor(m=0;m<g;++m){l=h[m]\nif(l===0)continue\ne=p+m\nk=s[e]\nj=l>=1?$.ez()[l]:A.vh(A.L3(l,\"n\",i))\nj=$.Wd()[B.jn.O(j+n,255)]\nf&2&&A.cW(s)\ns[e]=(k^j)>>>0}}return A.yU(B.NA.Jk(s,r),0)}",
+        "code": "vP(a){var s,r,q,p,o,n,m,l,k,j,i=\"must be >= 1\",h=a.a,g=h.length,f=this.a,e=f.length-g\nif(e<0)return this\ns=new Uint8Array(A.XF(f))\nr=e+1\nq=A.lm(h[0])\nfor(f=s.$flags|0,p=0;p<r;++p){o=s[p]\nif(o===0)continue\nn=(o>=1?$.ez()[o]:A.vh(A.L3(o,\"n\",i)))-q\nfor(m=0;m<g;++m){l=h[m]\nif(l===0)continue\ne=p+m\nk=s[e]\nj=l>=1?$.ez()[l]:A.vh(A.L3(l,\"n\",i))\nj=$.Wd()[B.jn.Y(j+n,255)]\nf&2&&A.cW(s)\ns[e]=(k^j)>>>0}}return A.yU(B.NA.Jk(s,r),0)}",
         "type": "QrPolynomial Function(QrPolynomial)",
         "functionKind": 2
       },
@@ -41801,7 +41558,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "tv(a){var s,r,q,p,o,n,m,l,k=\"must be >= 1\",j=a.a,i=j.length,h=this.a,g=h.length,f=new Uint8Array(g+i-1)\nfor(s=0;s<g;++s){r=h[s]\nif(r===0)continue\nq=r>=1?$.ez()[r]:A.vh(A.L3(r,\"n\",k))\nfor(p=0;p<i;++p){o=j[p]\nif(o===0)continue\nn=s+p\nm=f[n]\nl=o>=1?$.ez()[o]:A.vh(A.L3(o,\"n\",k))\nf[n]=(m^$.Wd()[B.jn.O(q+l,255)])>>>0}}return new A.E4(f)}",
+        "code": "tv(a){var s,r,q,p,o,n,m,l,k=\"must be >= 1\",j=a.a,i=j.length,h=this.a,g=h.length,f=new Uint8Array(g+i-1)\nfor(s=0;s<g;++s){r=h[s]\nif(r===0)continue\nq=r>=1?$.ez()[r]:A.vh(A.L3(r,\"n\",k))\nfor(p=0;p<i;++p){o=j[p]\nif(o===0)continue\nn=s+p\nm=f[n]\nl=o>=1?$.ez()[o]:A.vh(A.L3(o,\"n\",k))\nf[n]=(m^$.Wd()[B.jn.Y(q+l,255)])>>>0}}return new A.E4(f)}",
         "type": "QrPolynomial Function(QrPolynomial)",
         "functionKind": 2
       },
@@ -41872,7 +41629,7 @@
         "id": "function/package:qr/src/qr_code.dart::QrCode._calculateTotalDataBits",
         "kind": "function",
         "name": "_calculateTotalDataBits",
-        "size": 82,
+        "size": 0,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/qr_code.dart::QrCode",
         "children": [],
@@ -41897,8 +41654,8 @@
           }
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "VW(a,b){var s,r,q,p=A.Kf(a,b)\nfor(s=p.length,r=0,q=0;q<s;++q)r+=p[q].b*8\nreturn r}",
+        "inlinedCount": 2,
+        "code": "",
         "type": "int Function(int,QrErrorCorrectLevel)",
         "functionKind": 0
       },
@@ -41958,7 +41715,7 @@
         "id": "function/package:qr/src/qr_code.dart::QrCode.fromDataAndValidation",
         "kind": "function",
         "name": "fromDataAndValidation",
-        "size": 783,
+        "size": 739,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/qr_code.dart::QrCode",
         "children": [
@@ -41992,7 +41749,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "aP(a,b,c){var s,r,q,p,o,n,m,l,k=A.mV(a),j=new A.ON(k),i=new A.N3(j.$1(1),j.$1(10),j.$1(27)),h=A.QI([],t.t)\nfor(s=1;s<=40;++s)if(i.$1(s)<=A.VW(s,b)){for(r=s;r<=40;++r)h.push(r)\nbreak}q=A.QI([],t.B)\nfor(p=0;p<4;++p){o=B.TZ[p]\nif(i.$1(c)<=A.VW(c,o))q.push(o)}if(B.Nm.I(h,c)&&B.Nm.I(q,b)){n=A.ty(c,b)\nfor(m=k.length,l=n.e,p=0;p<k.length;k.length===m||(0,A.q)(k),++p){l.push(k[p])\nn.d=null}}return new A.OQ(h,q)}",
+        "code": "aP(a,b,c){var s,r,q,p,o,n,m,l,k=A.mV(a),j=new A.ON(k),i=new A.N3(j.$1(1),j.$1(10),j.$1(27)),h=A.QI([],t.t)\nfor(s=1;s<=40;++s)if(i.$1(s)<=A.Dk(s,b)){for(r=s;r<=40;++r)h.push(r)\nbreak}q=A.QI([],t.B)\nfor(p=0;p<4;++p){o=B.TZ[p]\nif(i.$1(c)<=A.Dk(c,o))q.push(o)}if(B.Nm.I(h,c)&&B.Nm.I(q,b)){n=A.ty(c,b)\nfor(m=k.length,l=n.e,p=0;p<k.length;k.length===m||(0,A.q)(k),++p){l.push(k[p])\nn.d=null}}return new A.OQ(h,q)}",
         "type": "QrValidationResult Function({String data,QrErrorCorrectLevel errorCorrectLevel,int typeNumber})",
         "functionKind": 0
       },
@@ -42000,7 +41757,7 @@
         "id": "function/package:qr/src/qr_code.dart::QrCode.fromDataAndValidation.QrCode_fromDataAndValidation_calculateRequiredBits.call",
         "kind": "function",
         "name": "call",
-        "size": 178,
+        "size": 134,
         "outputUnit": "outputUnit/main",
         "parent": "closure/package:qr/src/qr_code.dart::QrCode.fromDataAndValidation.QrCode_fromDataAndValidation_calculateRequiredBits",
         "children": [],
@@ -42011,7 +41768,7 @@
           "external": false
         },
         "returnType": "int",
-        "inferredReturnType": "[subclass=JSPositiveInt|powerset={I}{O}{N}]",
+        "inferredReturnType": "[subclass=JSInt|powerset={I}{O}{N}]",
         "parameters": [
           {
             "name": "type",
@@ -42021,7 +41778,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "$1(a){var s,r,q,p,o=new A.eL(A.QI([],t.t))\nfor(s=this.a,r=s.length,q=0;q<s.length;s.length===r||(0,A.q)(s),++q){p=s[q]\no.L(p.gp().c,4)\no.L(p.gB(p),p.gp().S(a))\np.K(o)}return o.b}",
+        "code": "$1(a){var s,r,q,p,o\nfor(s=this.a,r=s.length,q=0,p=0;p<s.length;s.length===r||(0,A.q)(s),++p){o=s[p]\nq+=4+o.gp().S(a)+o.gh(o)}return q}",
         "type": "int Function(int)",
         "functionKind": 2
       },
@@ -42040,7 +41797,7 @@
           "external": false
         },
         "returnType": "int",
-        "inferredReturnType": "[subclass=JSPositiveInt|powerset={I}{O}{N}]",
+        "inferredReturnType": "[subclass=JSInt|powerset={I}{O}{N}]",
         "parameters": [
           {
             "name": "type",
@@ -42058,7 +41815,7 @@
         "id": "function/package:qr/src/qr_code.dart::_createBytes",
         "kind": "function",
         "name": "_createBytes",
-        "size": 638,
+        "size": 656,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/qr_code.dart::",
         "children": [],
@@ -42084,7 +41841,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "vX(a3,a4){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0=t.cl,a1=A.O8(a4.length,null,!1,a0),a2=A.O8(a4.length,null,!1,a0)\nfor(a0=a3.a,s=0,r=0,q=0,p=0;o=a4.length,p<o;++p){o=a4[p]\nn=o.b\nm=o.a-n\nr=Math.max(r,n)\nq=Math.max(q,m)\nl=new Uint8Array(n)\na1[p]=l\nfor(k=0;k<n;++k)l[k]=a0[k+s]&255\ns+=n\nj=A.K8(m)\no=j.a.length-1\ni=A.yU(l,o).vP(j)\nh=new Uint8Array(o)\na2[p]=h\nfor(g=i.a,f=g.length,k=0;k<o;++k){e=k+f-o\nh[k]=e>=0?g[e]:0}}for(d=0,k=0;k<o;++k)d+=a4[k].a\nc=new Uint8Array(d)\nfor(b=0,k=0;k<r;++k)for(p=0;p<o;++p){l=a1[p]\nif(k<l.length){a=b+1\nc[b]=l[k]\nb=a}}for(k=0;k<q;++k)for(p=0;p<o;++p){h=a2[p]\nif(k<h.length){a=b+1\nc[b]=h[k]\nb=a}}return c}",
+        "code": "vX(a3,a4){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0=t.cl,a1=A.O8(a4.length,null,!1,a0),a2=A.O8(a4.length,null,!1,a0)\nfor(s=0,r=0,q=0,p=0;a0=a4.length,p<a0;++p,s=m){a0=a4[p]\no=a0.b\nn=a0.a-o\nr=Math.max(r,o)\nq=Math.max(q,n)\na0=a3.a\nm=s+o\nl=new Uint8Array(a0.subarray(s,A.rM(s,m,a0.length)))\na1[p]=l\nk=A.K8(n)\na0=k.a.length-1\nj=A.yU(l,a0).vP(k)\ni=new Uint8Array(a0)\na2[p]=i\nfor(h=j.a,g=h.length,f=0;f<a0;++f){e=f+g-a0\ni[f]=e>=0?h[e]:0}}for(d=0,f=0;f<a0;++f)d+=a4[f].a\nc=new Uint8Array(d)\nfor(b=0,f=0;f<r;++f)for(p=0;p<a0;++p){l=a1[p]\nif(f<l.length){a=b+1\nc[b]=l[f]\nb=a}}for(f=0;f<q;++f)for(p=0;p<a0;++p){i=a2[p]\nif(f<i.length){a=b+1\nc[b]=i[f]\nb=a}}return c}",
         "type": "List<int> Function(QrBitBuffer,List<QrRsBlock>)",
         "functionKind": 0
       },
@@ -42092,7 +41849,7 @@
         "id": "function/package:qr/src/qr_code.dart::_createData",
         "kind": "function",
         "name": "_createData",
-        "size": 393,
+        "size": 410,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/qr_code.dart::",
         "children": [],
@@ -42123,7 +41880,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "fV(a,b,c){var s,r,q,p,o,n,m,l=A.Kf(a,b),k=A.QI([],t.t),j=new A.eL(k)\nfor(s=0;s<c.length;++s){r=c[s]\nj.L(r.gp().c,4)\nj.L(r.gB(r),r.gp().S(a))\nr.K(j)}q=A.VW(a,b)\np=j.b\nif(p>q)throw A.b(new A.Tw(\"Input too long. \"+p+\" > \"+q))\nif(p+4<=q)j.L(0,4)\nwhile(p=j.b,B.jn.O(p,8)!==0){o=B.jn.Y(p,8)\nif(k.length<=o)k.push(0);++j.b}for(n=0;;n=m){if(j.b>=q)break\nm=n+1\nj.L((n&1)===0?236:17,8)}return A.vX(j,l)}",
+        "code": "fV(a,b,c){var s,r,q,p,o,n,m,l,k=A.Kf(a,b)\nfor(s=k.length,r=0,q=0;q<s;++q)r+=k[q].b*8\np=new A.eL(new Uint8Array(32))\nfor(o=0;o<c.length;++o){n=c[o]\np.Dp(n.gp().c,4)\np.Dp(n.gB(n),n.gp().S(a))\nn.KF(p)}s=p.b\nif(s>r)throw A.b(new A.Tw(\"Input too long. \"+s+\" > \"+r))\nif(s+4<=r)p.Dp(0,4)\nwhile(s=p.b,B.jn.Y(s,8)!==0){p.Wn((s>>>3)+1);++p.b}for(m=0;;m=l){if(p.b>=r)break\nl=m+1\np.Dp((m&1)===0?236:17,8)}return A.vX(p,k)}",
         "type": "List<int> Function(int,QrErrorCorrectLevel,List<QrDatum>)",
         "functionKind": 0
       },
@@ -42152,7 +41909,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "K8(a){var s,r=t.t,q=A.yU(A.QI([1],r),0)\nfor(s=0;s<a;++s)q=q.tv(A.yU(A.QI([1,$.Wd()[B.jn.O(s,255)]],r),0))\nreturn q}",
+        "code": "K8(a){var s,r=t.t,q=A.yU(A.QI([1],r),0)\nfor(s=0;s<a;++s)q=q.tv(A.yU(A.QI([1,$.Wd()[B.jn.Y(s,255)]],r),0))\nreturn q}",
         "type": "QrPolynomial Function(int)",
         "functionKind": 0
       },
@@ -42160,7 +41917,7 @@
         "id": "function/package:qr/src/qr_image.dart::QrImage.QrImage",
         "kind": "function",
         "name": "QrImage",
-        "size": 546,
+        "size": 540,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/qr_image.dart::QrImage",
         "children": [],
@@ -42181,7 +41938,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "LW(a){var s,r,q,p,o,n,m,l,k,j,i,h=a.c,g=a.a,f=a.b,e=h*h,d=new Uint8Array(e),c=new A.P2(h,g,f,d)\nB.NA.du(d,0,e,0)\nc.us(0,0)\ns=h-7\nc.us(s,0)\nc.us(0,s)\nc.nX()\nc.TT()\nc.Pv(0,!0)\nif(g>=7)c.cA(!0)\nr=new Uint8Array(e)\nB.NA.vg(r,0,e,d)\ns=A.HQ(a,0,r)\nq=a.d\ns.rA(q==null?a.d=A.fV(g,f,a.e):q)\np=new Uint8Array(e)\nfor(o=17976931348623157e292,n=0,m=null,l=0;l<8;++l){B.NA.vg(p,0,e,r)\nk=new A.P2(h,g,f,p)\nk.PT(B.w3[l],d)\nj=A.x8(k)\nif(j<o){if(m==null)m=new Uint8Array(e)\nB.NA.vg(m,0,e,p)\nn=l\no=j}}m.toString\ni=A.HQ(a,n,m)\ni.Pv(n,!1)\nif(i.b>=7)i.cA(!1)\nreturn i}",
+        "code": "LW(a){var s,r,q,p,o,n,m,l,k,j,i,h=a.c,g=a.a,f=a.b,e=h*h,d=new Uint8Array(e),c=new A.P2(h,g,f,d)\nB.NA.du(d,0,e,0)\nc.us(0,0)\ns=h-7\nc.us(s,0)\nc.us(0,s)\nc.nX()\nc.TT()\nc.Pv(0,!0)\nif(g>=7)c.cA(!0)\nr=new Uint8Array(e)\nB.NA.vg(r,0,e,d)\ns=A.HQ(a,0,r)\nq=a.d\ns.NQ(q==null?a.d=A.fV(g,f,a.e):q)\np=new Uint8Array(e)\nfor(o=17976931348623157e292,n=0,m=null,l=0;l<8;++l){B.NA.vg(p,0,e,r)\nk=new A.P2(h,g,f,p)\nk.PT(l,d)\nj=A.x8(k)\nif(j<o){if(m==null)m=new Uint8Array(e)\nB.NA.vg(m,0,e,p)\nn=l\no=j}}m.toString\ni=A.HQ(a,n,m)\ni.Pv(n,!1)\nif(i.b>=7)i.cA(!1)\nreturn i}",
         "type": "QrImage Function(QrCode)",
         "functionKind": 3
       },
@@ -42257,7 +42014,7 @@
         "id": "function/package:qr/src/qr_image.dart::QrImage._applyMask",
         "kind": "function",
         "name": "_applyMask",
-        "size": 252,
+        "size": 696,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/qr_image.dart::QrImage",
         "children": [],
@@ -42271,9 +42028,9 @@
         "inferredReturnType": "[null|powerset={null}]",
         "parameters": [
           {
-            "name": "maskPattern",
-            "type": "[exact=QrMaskPattern|powerset={N}{O}{N}]",
-            "declaredType": "QrMaskPattern"
+            "name": "mpIndex",
+            "type": "[subclass=JSPositiveInt|powerset={I}{O}{N}]",
+            "declaredType": "int"
           },
           {
             "name": "templateData",
@@ -42283,15 +42040,15 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "PT(a,b){var s,r,q,p,o,n,m,l,k,j,i=this.a,h=i-1\nfor(s=a.c,r=this.e,q=r.$flags|0,p=h,o=-1;p>0;p-=2){if(p===6)--p\nfor(;;){for(n=h*i,m=0;m<2;++m){l=p-m\nk=n+l\nif(b[k]===0)if(s.$2(h,l)){l=r[k]\nq&2&&A.cW(r)\nr[k]=l^3}}h+=o\nif(h<0||i<=h){h-=o\nj=-o\no=j\nbreak}}}}",
-        "type": "void Function(QrMaskPattern,Uint8List)",
+        "code": "PT(a2,a3){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0=this.a,a1=a0-1\nfor(s=7===a2,r=6===a2,q=5===a2,p=4===a2,o=3===a2,n=2===a2,m=1===a2,l=0===a2,k=this.e,j=k.$flags|0,i=a1,h=-1;i>0;i-=2){if(i===6)--i\nfor(;;){for(g=a1*a0,f=(a1&1)===0,e=0;e<2;++e){d=i-e\nc=g+d\nif(a3[c]===0){A:{if(l){b=(a1+d&1)===0\nbreak A}if(m){b=f\nbreak A}if(n){b=B.jn.Y(d,3)===0\nbreak A}if(o){b=B.jn.Y(a1+d,3)===0\nbreak A}if(p){b=(B.jn.K(a1,2)+B.jn.K(d,3)&1)===0\nbreak A}if(q){b=a1*d\nb=B.jn.Y(b,2)+B.jn.Y(b,3)===0\nbreak A}if(r){b=a1*d\nb=(B.jn.Y(b,2)+B.jn.Y(b,3)&1)===0\nbreak A}if(s){b=(B.jn.Y(a1*d,3)+B.jn.Y(a1+d,2)&1)===0\nbreak A}b=!1\nbreak A}if(b){b=k[c]\nj&2&&A.cW(k)\nk[c]=b^3}}}a1+=h\nif(a1<0||a0<=a1){a1-=h\na=-h\nh=a\nbreak}}}}",
+        "type": "void Function(int,Uint8List)",
         "functionKind": 2
       },
-      "package:qr/src/qr_image.dart::QrImage._placeData": {
-        "id": "function/package:qr/src/qr_image.dart::QrImage._placeData",
+      "package:qr/src/qr_image.dart::QrImage._mapData": {
+        "id": "function/package:qr/src/qr_image.dart::QrImage._mapData",
         "kind": "function",
-        "name": "_placeData",
-        "size": 294,
+        "name": "_mapData",
+        "size": 311,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/qr_image.dart::QrImage",
         "children": [],
@@ -42312,8 +42069,8 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "rA(a){var s,r,q,p,o,n,m,l,k,j,i,h=this.a,g=h-1\nfor(s=this.e,r=a.length,q=g,p=-1,o=7,n=0;q>0;q-=2){if(q===6)--q\nfor(;;){for(m=g*h,l=0;l<2;++l){k=m+(q-l)\nif(s[k]===0){j=n<r&&(B.jn.bf(a[n],o)&1)===1?2:1\ns.$flags&2&&A.cW(s)\ns[k]=j;--o\nif(o===-1){++n\no=7}}}g+=p\nif(g<0||h<=g){g-=p\ni=-p\np=i\nbreak}}}}",
-        "type": "void Function(List<int>)",
+        "code": "NQ(a){var s,r,q,p,o,n,m,l,k,j,i,h,g=this.a,f=g-1\nfor(s=this.e,r=a.length,q=f,p=-1,o=7,n=0;q>0;q-=2){if(q===6)--q\nfor(;;){for(m=f*g,l=0;l<2;++l){k=m+(q-l)\nif(s[k]===0){j=n<r&&(B.jn.bf(a[n],o)&1)===1\nA:{break A}i=j?2:1\ns.$flags&2&&A.cW(s)\ns[k]=i;--o\nif(o===-1){++n\no=7}}}f+=p\nif(f<0||g<=f){f-=p\nh=-p\np=h\nbreak}}}}",
+        "type": "void Function(List<int>,[int?])",
         "functionKind": 2
       },
       "package:qr/src/qr_image.dart::QrImage._resetModules": {
@@ -42462,7 +42219,7 @@
         "id": "function/package:qr/src/qr_image.dart::QrImage._setupTypeInfo",
         "kind": "function",
         "name": "_setupTypeInfo",
-        "size": 473,
+        "size": 475,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/qr_image.dart::QrImage",
         "children": [],
@@ -42488,7 +42245,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Pv(a,b){var s,r,q,p,o,n,m,l,k,j=this,i=A.n0((j.c.a<<3|a)>>>0)\nfor(s=j.a,r=s-15,q=j.e,p=!b,o=q.$flags|0,n=0;n<15;++n){m=p&&(B.jn.U(i,n)&1)===1\nif(n<6){l=m?2:1\no&2&&A.cW(q)\nq[n*s+8]=l}else if(n<8){l=m?2:1\no&2&&A.cW(q)\nq[(n+1)*s+8]=l}else{l=m?2:1\no&2&&A.cW(q)\nq[(r+n)*s+8]=l}}for(r=8*s,n=0;n<15;++n){m=p&&(B.jn.U(i,n)&1)===1\nif(n<8){l=m?2:1\no&2&&A.cW(q)\nq[r+(s-n-1)]=l}else{l=15-n-1\nif(n<9){k=m?2:1\no&2&&A.cW(q)\nq[r+(l+1)]=k}else{k=m?2:1\no&2&&A.cW(q)\nq[r+l]=k}}}j.HE(s-8,8,p)}",
+        "code": "Pv(a,b){var s,r,q,p,o,n,m,l,k,j=this,i=A.n0((j.c.a<<3|a)>>>0)\nfor(s=j.a,r=s-15,q=j.e,p=!b,o=q.$flags|0,n=0;n<15;++n){m=p&&(B.jn.Uh(i,n)&1)===1\nif(n<6){l=m?2:1\no&2&&A.cW(q)\nq[n*s+8]=l}else if(n<8){l=m?2:1\no&2&&A.cW(q)\nq[(n+1)*s+8]=l}else{l=m?2:1\no&2&&A.cW(q)\nq[(r+n)*s+8]=l}}for(r=8*s,n=0;n<15;++n){m=p&&(B.jn.Uh(i,n)&1)===1\nif(n<8){l=m?2:1\no&2&&A.cW(q)\nq[r+(s-n-1)]=l}else{l=15-n-1\nif(n<9){k=m?2:1\no&2&&A.cW(q)\nq[r+(l+1)]=k}else{k=m?2:1\no&2&&A.cW(q)\nq[r+l]=k}}}j.HE(s-8,8,p)}",
         "type": "void Function(int,bool)",
         "functionKind": 2
       },
@@ -42496,7 +42253,7 @@
         "id": "function/package:qr/src/qr_image.dart::QrImage._setupTypeNumber",
         "kind": "function",
         "name": "_setupTypeNumber",
-        "size": 301,
+        "size": 303,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/qr_image.dart::QrImage",
         "children": [],
@@ -42517,7 +42274,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "cA(a){var s,r,q,p,o,n,m,l,k=A.Pa(this.b)\nfor(s=this.a,r=this.e,q=!a,p=0;p<18;++p){o=q&&(B.jn.U(k,p)&1)===1\nn=B.jn.Y(p,3)\nm=B.jn.O(p,3)\nl=o?2:1\nr.$flags&2&&A.cW(r)\nr[n*s+(m+s-8-3)]=l}for(p=0;p<18;++p){o=q&&(B.jn.U(k,p)&1)===1\nn=B.jn.O(p,3)\nm=B.jn.Y(p,3)\nl=o?2:1\nr.$flags&2&&A.cW(r)\nr[(n+s-8-3)*s+m]=l}}",
+        "code": "cA(a){var s,r,q,p,o,n,m,l,k=A.Pa(this.b)\nfor(s=this.a,r=this.e,q=!a,p=0;p<18;++p){o=q&&(B.jn.Uh(k,p)&1)===1\nn=B.jn.K(p,3)\nm=B.jn.Y(p,3)\nl=o?2:1\nr.$flags&2&&A.cW(r)\nr[n*s+(m+s-8-3)]=l}for(p=0;p<18;++p){o=q&&(B.jn.Uh(k,p)&1)===1\nn=B.jn.Y(p,3)\nm=B.jn.K(p,3)\nl=o?2:1\nr.$flags&2&&A.cW(r)\nr[(n+s-8-3)*s+m]=l}}",
         "type": "void Function(bool)",
         "functionKind": 2
       },
@@ -42559,7 +42316,7 @@
         "id": "function/package:qr/src/qr_image.dart::_lostPoint",
         "kind": "function",
         "name": "_lostPoint",
-        "size": 789,
+        "size": 791,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/qr_image.dart::",
         "children": [],
@@ -42580,7 +42337,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "x8(a6){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2,a3,a4=a6.a,a5=a6.e\nfor(s=a4-1,r=a4-6,q=2*a4,p=3*a4,o=4*a4,n=5*a4,m=6*a4,l=0,k=0,j=0;j<a4;++j)for(i=j<s,h=j>0,g=j*a4,f=j<r,e=0;e<a4;++e){d=g+e\nc=a5[d]\nb=c===2\nif(b)++k\nif(h){a=d-a4\na0=e>0&&a5[a-1]===c?1:0\nif(a5[a]===c)++a0\nif(e<s&&a5[a+1]===c)++a0}else a0=0\na1=e>0\nif(a1&&a5[d-1]===c)++a0\na2=e<s\nif(a2&&a5[d+1]===c)++a0\nif(i){a3=d+a4\nif(a1&&a5[a3-1]===c)++a0\nif(a5[a3]===c)++a0\nif(a2&&a5[a3+1]===c)++a0}if(a0>5)l+=3+a0-5\nif(i&&a2){if(c===a5[d+1]){a1=d+a4\na1=c===a5[a1]&&c===a5[a1+1]}else a1=!1\nif(a1)l+=3}if(b){if(e<r&&a5[d+1]===1&&a5[d+2]===2&&a5[d+3]===2&&a5[d+4]===2&&a5[d+5]===1&&a5[d+6]===2)l+=40\nif(f&&a5[d+a4]===1&&a5[d+q]===2&&a5[d+p]===2&&a5[d+o]===2&&a5[d+n]===1&&a5[d+m]===2)l+=40}}return l+Math.abs(100*k/a4/a4-50)/5*10}",
+        "code": "x8(a6){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2,a3,a4=a6.a,a5=a6.e\nfor(s=a4-1,r=a4-6,q=2*a4,p=3*a4,o=4*a4,n=5*a4,m=6*a4,l=0,k=0,j=0;j<a4;++j){i=j*a4\nfor(h=j<s,g=j>0,f=j<r,e=0;e<a4;++e){d=i+e\nc=a5[d]\nb=c===2\nif(b)++k\nif(g){a=d-a4\na0=e>0&&a5[a-1]===c?1:0\nif(a5[a]===c)++a0\nif(e<s&&a5[a+1]===c)++a0}else a0=0\na1=e>0\nif(a1&&a5[d-1]===c)++a0\na2=e<s\nif(a2&&a5[d+1]===c)++a0\nif(h){a3=d+a4\nif(a1&&a5[a3-1]===c)++a0\nif(a5[a3]===c)++a0\nif(a2&&a5[a3+1]===c)++a0}if(a0>5)l+=3+a0-5\nif(h&&a2){if(c===a5[d+1]){a1=d+a4\na1=c===a5[a1]&&c===a5[a1+1]}else a1=!1\nif(a1)l+=3}if(b){if(e<r&&a5[d+1]===1&&a5[d+2]===2&&a5[d+3]===2&&a5[d+4]===2&&a5[d+5]===1&&a5[d+6]===2)l+=40\nif(f&&a5[d+a4]===1&&a5[d+q]===2&&a5[d+p]===2&&a5[d+o]===2&&a5[d+n]===1&&a5[d+m]===2)l+=40}}}return l+Math.abs(100*k/a4/a4-50)/5*10}",
         "type": "double Function(QrImage)",
         "functionKind": 0
       },
@@ -42652,6 +42409,40 @@
         "type": "List<QrRsBlock> Function(int,QrErrorCorrectLevel)",
         "functionKind": 0
       },
+      "package:qr/src/rs_block.dart::QrRsBlock.getTotalDataBits": {
+        "id": "function/package:qr/src/rs_block.dart::QrRsBlock.getTotalDataBits",
+        "kind": "function",
+        "name": "getTotalDataBits",
+        "size": 98,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/package:qr/src/rs_block.dart::QrRsBlock",
+        "children": [],
+        "modifiers": {
+          "static": true,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "int",
+        "inferredReturnType": "[subclass=JSPositiveInt|powerset={I}{O}{N}]",
+        "parameters": [
+          {
+            "name": "typeNumber",
+            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          },
+          {
+            "name": "errorCorrectLevel",
+            "type": "[exact=QrErrorCorrectLevel|powerset={N}{O}{N}]",
+            "declaredType": "QrErrorCorrectLevel"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "Dk(a,b){var s,r,q,p=A.Uo(a,b),o=p.length/3|0\nfor(s=0,r=0;r<o;++r){q=r*3\ns+=p[q]*p[q+2]*8}return s}",
+        "type": "int Function(int,QrErrorCorrectLevel)",
+        "functionKind": 0
+      },
       "package:qr/src/rs_block.dart::_getRsBlockTable": {
         "id": "function/package:qr/src/rs_block.dart::_getRsBlockTable",
         "kind": "function",
@@ -42690,7 +42481,7 @@
         "id": "function/package:qr/src/util.dart::bchTypeInfo",
         "kind": "function",
         "name": "bchTypeInfo",
-        "size": 111,
+        "size": 110,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/util.dart::",
         "children": [],
@@ -42711,7 +42502,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "n0(a){var s,r=a<<10>>>0\nfor(s=r;B.jn.gcd(s)>=11;)s=(s^B.jn.v(1335,B.jn.gcd(s)-11))>>>0\nreturn((r|s)^21522)>>>0}",
+        "code": "n0(a){var s,r=a<<10>>>0\nfor(s=r;B.jn.gh(s)>=11;)s=(s^B.jn.yE(1335,B.jn.gh(s)-11))>>>0\nreturn((r|s)^21522)>>>0}",
         "type": "int Function(int)",
         "functionKind": 0
       },
@@ -42719,7 +42510,7 @@
         "id": "function/package:qr/src/util.dart::bchTypeNumber",
         "kind": "function",
         "name": "bchTypeNumber",
-        "size": 103,
+        "size": 102,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/util.dart::",
         "children": [],
@@ -42740,7 +42531,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Pa(a){var s,r=a<<12>>>0\nfor(s=r;B.jn.gcd(s)>=13;)s=(s^B.jn.v(7973,B.jn.gcd(s)-13))>>>0\nreturn(r|s)>>>0}",
+        "code": "Pa(a){var s,r=a<<12>>>0\nfor(s=r;B.jn.gh(s)>=13;)s=(s^B.jn.yE(7973,B.jn.gh(s)-13))>>>0\nreturn(r|s)>>>0}",
         "type": "int Function(int)",
         "functionKind": 0
       },
@@ -43247,7 +43038,7 @@
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 0,
-        "code": "r5(a,b){return a}\nl(A,\"XA\",2,null,[\"$1$2\",\"$2\"],[\"r5\",function(a,b){return A.r5(a,b,t.z)}],35,0)",
+        "code": "r5(a,b){return a}\nl(A,\"XA\",2,null,[\"$1$2\",\"$2\"],[\"r5\",function(a,b){return A.r5(a,b,t.z)}],34,0)",
         "type": "#A Function<#A extends Object?>(#A,dynamic)",
         "functionKind": 0
       },
@@ -43315,7 +43106,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Dx(a,b,c){c.fD(a,b)}\nl(A,\"Na\",3,null,[\"$1$3\",\"$3\"],[\"Dx\",function(a,b,c){return A.Dx(a,b,c,t.z)}],36,0)",
+        "code": "Dx(a,b,c){c.fD(a,b)}\nl(A,\"Na\",3,null,[\"$1$3\",\"$3\"],[\"Dx\",function(a,b,c){return A.Dx(a,b,c,t.z)}],35,0)",
         "type": "void Function<#A extends Object?>(Object,StackTrace,EventSink<#A>)",
         "functionKind": 0
       },
@@ -46995,9 +46786,9 @@
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/bit_buffer.dart::QrBitBuffer",
         "children": [],
-        "inferredType": "Container([exact=JSExtendableArray|powerset={I}{G}{M}], element: [subclass=JSInt|powerset={I}{O}{N}], length: null, powerset: {I}{G}{M})",
+        "inferredType": "Container([exact=NativeUint8List|powerset={I}{O}{M}], element: [exact=JSUInt31|powerset={I}{O}{N}], length: null, powerset: {I}{O}{M})",
         "code": "",
-        "type": "List<int>"
+        "type": "Uint8List"
       },
       "package:qr/src/bit_buffer.dart::QrBitBuffer._length": {
         "id": "field/package:qr/src/bit_buffer.dart::QrBitBuffer._length",
@@ -47204,18 +46995,6 @@
         "inferredType": "[subclass=JSPositiveInt|powerset={I}{O}{N}]",
         "code": "",
         "type": "int"
-      },
-      "package:qr/src/mask_pattern.dart::QrMaskPattern._check": {
-        "id": "field/package:qr/src/mask_pattern.dart::QrMaskPattern._check",
-        "kind": "field",
-        "name": "_check",
-        "size": 0,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/package:qr/src/mask_pattern.dart::QrMaskPattern",
-        "children": [],
-        "inferredType": "[subtype=Function|powerset={IN}{O}{N}]",
-        "code": "",
-        "type": "bool Function(int,int)"
       },
       "package:qr/src/math.dart::_expTable": {
         "id": "field/package:qr/src/math.dart::_expTable",
@@ -47731,14 +47510,6 @@
         "outputUnit": "outputUnit/main",
         "code": "B.FZ=s([12,33,11,4,34,12],t.t)"
       },
-      "B.Fc=new A.Tu(A.Ml(),1,\"pattern001\")": {
-        "id": "constant/B.Fc=new A.Tu(A.Ml(),1,\"pattern001\")",
-        "kind": "constant",
-        "name": "",
-        "size": 36,
-        "outputUnit": "outputUnit/main",
-        "code": "B.Fc=new A.Tu(A.Ml(),1,\"pattern001\")"
-      },
       "B.Fy=s([17,50,22,1,51,23],t.t)": {
         "id": "constant/B.Fy=s([17,50,22,1,51,23],t.t)",
         "kind": "constant",
@@ -47867,14 +47638,6 @@
         "outputUnit": "outputUnit/main",
         "code": "B.JB=new A.Xt(0,\"qr\")"
       },
-      "B.JD=new A.Tu(A.kq(),6,\"pattern110\")": {
-        "id": "constant/B.JD=new A.Tu(A.kq(),6,\"pattern110\")",
-        "kind": "constant",
-        "name": "",
-        "size": 36,
-        "outputUnit": "outputUnit/main",
-        "code": "B.JD=new A.Tu(A.kq(),6,\"pattern110\")"
-      },
       "B.JO=s([2,116,92,2,117,93],t.t)": {
         "id": "constant/B.JO=s([2,116,92,2,117,93],t.t)",
         "kind": "constant",
@@ -47915,13 +47678,13 @@
         "outputUnit": "outputUnit/main",
         "code": "B.Jm=s([18,75,47,31,76,48],t.t)"
       },
-      "B.K4=s([B.J3,B.wP,B.fM,B.p9,B.z1,B.SH,B.c3,B.af,B.Uk,B.Bb,B.QR,B.M9,B.vL,B.Us,B.k6,B.Uc,B.G0,B.pN,B.NM,B.Br,B.b5,B.zk,B.kX,B.hY,B.vY,B.oB,B.xs,B.XD,B.JV,B.kk,B.Zy,B.zQ,B.mp,B.U7,B.Yo,B.pe,B.t6,B.TA,B.nN,B.PQ,B.GZ,B.ln,B.iS,B.du,B.JO,B.fv,B.IA,B.d7,B.Yv,B.bK,B.cQ,B.FZ,B.zl,B.ud,B.L9,B.Uo,B.k8,B.Qz,B.Vq,B.R7,B.Rk,B.ZF,B.Ty,B.TF,B.Cl,B.eV,B.DO,B.pU,B.K6,B.VX,B.Fy,B.Cr,B.cF,B.Er,B.U8,B.AB,B.fr,B.D0,B.rV,B.fq,B.Vk,B.he,B.WW,B.eC,B.Qr,B.wg,B.uH,B.fN,B.fy,B.Ne,B.rd,B.aE,B.e5,B.jb,B.kw,B.Jj,B.nJ,B.qx,B.N8,B.yK,B.Rg,B.pB,B.mx,B.oq,B.GR,B.mE,B.y2,B.pC,B.Cn,B.Wo,B.Yc,B.e2,B.Y0,B.fn,B.r8,B.Pf,B.Qm,B.ak,B.dO,B.LH,B.Im,B.XS,B.y3,B.ww,B.BJ,B.FD,B.iR,B.WL,B.Eh,B.pM,B.dF,B.N6,B.zw,B.yT,B.GI,B.GG,B.wK,B.aU,B.xY,B.iz,B.RD,B.Wa,B.on,B.uR,B.nF,B.L1,B.dG,B.Oi,B.MW,B.oA,B.CS,B.HH,B.Hm,B.Kn,B.j6,B.TV,B.TR,B.Jm,B.Kb,B.Ua],t.p)": {
-        "id": "constant/B.K4=s([B.J3,B.wP,B.fM,B.p9,B.z1,B.SH,B.c3,B.af,B.Uk,B.Bb,B.QR,B.M9,B.vL,B.Us,B.k6,B.Uc,B.G0,B.pN,B.NM,B.Br,B.b5,B.zk,B.kX,B.hY,B.vY,B.oB,B.xs,B.XD,B.JV,B.kk,B.Zy,B.zQ,B.mp,B.U7,B.Yo,B.pe,B.t6,B.TA,B.nN,B.PQ,B.GZ,B.ln,B.iS,B.du,B.JO,B.fv,B.IA,B.d7,B.Yv,B.bK,B.cQ,B.FZ,B.zl,B.ud,B.L9,B.Uo,B.k8,B.Qz,B.Vq,B.R7,B.Rk,B.ZF,B.Ty,B.TF,B.Cl,B.eV,B.DO,B.pU,B.K6,B.VX,B.Fy,B.Cr,B.cF,B.Er,B.U8,B.AB,B.fr,B.D0,B.rV,B.fq,B.Vk,B.he,B.WW,B.eC,B.Qr,B.wg,B.uH,B.fN,B.fy,B.Ne,B.rd,B.aE,B.e5,B.jb,B.kw,B.Jj,B.nJ,B.qx,B.N8,B.yK,B.Rg,B.pB,B.mx,B.oq,B.GR,B.mE,B.y2,B.pC,B.Cn,B.Wo,B.Yc,B.e2,B.Y0,B.fn,B.r8,B.Pf,B.Qm,B.ak,B.dO,B.LH,B.Im,B.XS,B.y3,B.ww,B.BJ,B.FD,B.iR,B.WL,B.Eh,B.pM,B.dF,B.N6,B.zw,B.yT,B.GI,B.GG,B.wK,B.aU,B.xY,B.iz,B.RD,B.Wa,B.on,B.uR,B.nF,B.L1,B.dG,B.Oi,B.MW,B.oA,B.CS,B.HH,B.Hm,B.Kn,B.j6,B.TV,B.TR,B.Jm,B.Kb,B.Ua],t.p)",
+      "B.K4=s([B.J3,B.wP,B.fM,B.p9,B.z1,B.SH,B.c3,B.af,B.Uk,B.Bb,B.QR,B.M9,B.vL,B.Us,B.k6,B.Uc,B.G0,B.pN,B.NM,B.Br,B.b5,B.zk,B.tI,B.hY,B.vY,B.oB,B.xs,B.XD,B.JV,B.kk,B.Zy,B.zQ,B.mp,B.U7,B.Yo,B.pe,B.t6,B.TA,B.nN,B.PQ,B.GZ,B.ln,B.iS,B.du,B.JO,B.fv,B.IA,B.d7,B.Yv,B.bK,B.cQ,B.FZ,B.zl,B.ud,B.L9,B.Uo,B.k8,B.Qz,B.Vq,B.R7,B.Rk,B.ZF,B.Ty,B.TF,B.Cl,B.eV,B.DO,B.pU,B.K6,B.VX,B.Fy,B.Cr,B.cF,B.Er,B.U8,B.AB,B.fr,B.D0,B.rV,B.fq,B.Vk,B.he,B.WW,B.eC,B.Qr,B.wg,B.uH,B.fN,B.fy,B.Ne,B.rd,B.aE,B.e5,B.jb,B.kw,B.Jj,B.nJ,B.qx,B.N8,B.yK,B.Rg,B.pB,B.mx,B.oq,B.GR,B.mE,B.y2,B.pC,B.Cn,B.Wo,B.Yc,B.e2,B.Y0,B.fn,B.r8,B.Pf,B.Qm,B.ak,B.dO,B.LH,B.Im,B.XS,B.y3,B.ww,B.BJ,B.FD,B.iR,B.WL,B.Eh,B.pM,B.dF,B.N6,B.zw,B.yT,B.GI,B.GG,B.wK,B.aU,B.xY,B.iz,B.RD,B.Wa,B.on,B.uR,B.nF,B.L1,B.dG,B.Oi,B.MW,B.oA,B.CS,B.HH,B.Hm,B.Kn,B.j6,B.TV,B.TR,B.Jm,B.Kb,B.Ua],t.p)": {
+        "id": "constant/B.K4=s([B.J3,B.wP,B.fM,B.p9,B.z1,B.SH,B.c3,B.af,B.Uk,B.Bb,B.QR,B.M9,B.vL,B.Us,B.k6,B.Uc,B.G0,B.pN,B.NM,B.Br,B.b5,B.zk,B.tI,B.hY,B.vY,B.oB,B.xs,B.XD,B.JV,B.kk,B.Zy,B.zQ,B.mp,B.U7,B.Yo,B.pe,B.t6,B.TA,B.nN,B.PQ,B.GZ,B.ln,B.iS,B.du,B.JO,B.fv,B.IA,B.d7,B.Yv,B.bK,B.cQ,B.FZ,B.zl,B.ud,B.L9,B.Uo,B.k8,B.Qz,B.Vq,B.R7,B.Rk,B.ZF,B.Ty,B.TF,B.Cl,B.eV,B.DO,B.pU,B.K6,B.VX,B.Fy,B.Cr,B.cF,B.Er,B.U8,B.AB,B.fr,B.D0,B.rV,B.fq,B.Vk,B.he,B.WW,B.eC,B.Qr,B.wg,B.uH,B.fN,B.fy,B.Ne,B.rd,B.aE,B.e5,B.jb,B.kw,B.Jj,B.nJ,B.qx,B.N8,B.yK,B.Rg,B.pB,B.mx,B.oq,B.GR,B.mE,B.y2,B.pC,B.Cn,B.Wo,B.Yc,B.e2,B.Y0,B.fn,B.r8,B.Pf,B.Qm,B.ak,B.dO,B.LH,B.Im,B.XS,B.y3,B.ww,B.BJ,B.FD,B.iR,B.WL,B.Eh,B.pM,B.dF,B.N6,B.zw,B.yT,B.GI,B.GG,B.wK,B.aU,B.xY,B.iz,B.RD,B.Wa,B.on,B.uR,B.nF,B.L1,B.dG,B.Oi,B.MW,B.oA,B.CS,B.HH,B.Hm,B.Kn,B.j6,B.TV,B.TR,B.Jm,B.Kb,B.Ua],t.p)",
         "kind": "constant",
         "name": "",
         "size": 813,
         "outputUnit": "outputUnit/main",
-        "code": "B.K4=s([B.J3,B.wP,B.fM,B.p9,B.z1,B.SH,B.c3,B.af,B.Uk,B.Bb,B.QR,B.M9,B.vL,B.Us,B.k6,B.Uc,B.G0,B.pN,B.NM,B.Br,B.b5,B.zk,B.kX,B.hY,B.vY,B.oB,B.xs,B.XD,B.JV,B.kk,B.Zy,B.zQ,B.mp,B.U7,B.Yo,B.pe,B.t6,B.TA,B.nN,B.PQ,B.GZ,B.ln,B.iS,B.du,B.JO,B.fv,B.IA,B.d7,B.Yv,B.bK,B.cQ,B.FZ,B.zl,B.ud,B.L9,B.Uo,B.k8,B.Qz,B.Vq,B.R7,B.Rk,B.ZF,B.Ty,B.TF,B.Cl,B.eV,B.DO,B.pU,B.K6,B.VX,B.Fy,B.Cr,B.cF,B.Er,B.U8,B.AB,B.fr,B.D0,B.rV,B.fq,B.Vk,B.he,B.WW,B.eC,B.Qr,B.wg,B.uH,B.fN,B.fy,B.Ne,B.rd,B.aE,B.e5,B.jb,B.kw,B.Jj,B.nJ,B.qx,B.N8,B.yK,B.Rg,B.pB,B.mx,B.oq,B.GR,B.mE,B.y2,B.pC,B.Cn,B.Wo,B.Yc,B.e2,B.Y0,B.fn,B.r8,B.Pf,B.Qm,B.ak,B.dO,B.LH,B.Im,B.XS,B.y3,B.ww,B.BJ,B.FD,B.iR,B.WL,B.Eh,B.pM,B.dF,B.N6,B.zw,B.yT,B.GI,B.GG,B.wK,B.aU,B.xY,B.iz,B.RD,B.Wa,B.on,B.uR,B.nF,B.L1,B.dG,B.Oi,B.MW,B.oA,B.CS,B.HH,B.Hm,B.Kn,B.j6,B.TV,B.TR,B.Jm,B.Kb,B.Ua],t.p)"
+        "code": "B.K4=s([B.J3,B.wP,B.fM,B.p9,B.z1,B.SH,B.c3,B.af,B.Uk,B.Bb,B.QR,B.M9,B.vL,B.Us,B.k6,B.Uc,B.G0,B.pN,B.NM,B.Br,B.b5,B.zk,B.tI,B.hY,B.vY,B.oB,B.xs,B.XD,B.JV,B.kk,B.Zy,B.zQ,B.mp,B.U7,B.Yo,B.pe,B.t6,B.TA,B.nN,B.PQ,B.GZ,B.ln,B.iS,B.du,B.JO,B.fv,B.IA,B.d7,B.Yv,B.bK,B.cQ,B.FZ,B.zl,B.ud,B.L9,B.Uo,B.k8,B.Qz,B.Vq,B.R7,B.Rk,B.ZF,B.Ty,B.TF,B.Cl,B.eV,B.DO,B.pU,B.K6,B.VX,B.Fy,B.Cr,B.cF,B.Er,B.U8,B.AB,B.fr,B.D0,B.rV,B.fq,B.Vk,B.he,B.WW,B.eC,B.Qr,B.wg,B.uH,B.fN,B.fy,B.Ne,B.rd,B.aE,B.e5,B.jb,B.kw,B.Jj,B.nJ,B.qx,B.N8,B.yK,B.Rg,B.pB,B.mx,B.oq,B.GR,B.mE,B.y2,B.pC,B.Cn,B.Wo,B.Yc,B.e2,B.Y0,B.fn,B.r8,B.Pf,B.Qm,B.ak,B.dO,B.LH,B.Im,B.XS,B.y3,B.ww,B.BJ,B.FD,B.iR,B.WL,B.Eh,B.pM,B.dF,B.N6,B.zw,B.yT,B.GI,B.GG,B.wK,B.aU,B.xY,B.iz,B.RD,B.Wa,B.on,B.uR,B.nF,B.L1,B.dG,B.Oi,B.MW,B.oA,B.CS,B.HH,B.Hm,B.Kn,B.j6,B.TV,B.TR,B.Jm,B.Kb,B.Ua],t.p)"
       },
       "B.K6=s([5,150,120,1,151,121],t.t)": {
         "id": "constant/B.K6=s([5,150,120,1,151,121],t.t)",
@@ -48138,22 +47901,6 @@
         "size": 31,
         "outputUnit": "outputUnit/main",
         "code": "B.Pf=s([19,45,15,26,46,16],t.t)"
-      },
-      "B.Ph=new A.Tu(A.rG(),7,\"pattern111\")": {
-        "id": "constant/B.Ph=new A.Tu(A.rG(),7,\"pattern111\")",
-        "kind": "constant",
-        "name": "",
-        "size": 36,
-        "outputUnit": "outputUnit/main",
-        "code": "B.Ph=new A.Tu(A.rG(),7,\"pattern111\")"
-      },
-      "B.Pq=new A.Tu(A.zK(),4,\"pattern100\")": {
-        "id": "constant/B.Pq=new A.Tu(A.zK(),4,\"pattern100\")",
-        "kind": "constant",
-        "name": "",
-        "size": 36,
-        "outputUnit": "outputUnit/main",
-        "code": "B.Pq=new A.Tu(A.zK(),4,\"pattern100\")"
       },
       "B.QR=s([2,35,17],t.t)": {
         "id": "constant/B.QR=s([2,35,17],t.t)",
@@ -48411,14 +48158,6 @@
         "outputUnit": "outputUnit/main",
         "code": "B.VX=s([9,69,43,4,70,44],t.t)"
       },
-      "B.VY=new A.Tu(A.Rf(),5,\"pattern101\")": {
-        "id": "constant/B.VY=new A.Tu(A.Rf(),5,\"pattern101\")",
-        "kind": "constant",
-        "name": "",
-        "size": 36,
-        "outputUnit": "outputUnit/main",
-        "code": "B.VY=new A.Tu(A.Rf(),5,\"pattern101\")"
-      },
       "B.Vg=s([6,30,54],t.t)": {
         "id": "constant/B.Vg=s([6,30,54],t.t)",
         "kind": "constant",
@@ -48450,14 +48189,6 @@
         "size": 15,
         "outputUnit": "outputUnit/main",
         "code": "B.Vr=A.xq(\"oI\")"
-      },
-      "B.W6=new A.Tu(A.Y3(),2,\"pattern010\")": {
-        "id": "constant/B.W6=new A.Tu(A.Y3(),2,\"pattern010\")",
-        "kind": "constant",
-        "name": "",
-        "size": 36,
-        "outputUnit": "outputUnit/main",
-        "code": "B.W6=new A.Tu(A.Y3(),2,\"pattern010\")"
       },
       "B.WL=s([19,45,15,35,46,16],t.t)": {
         "id": "constant/B.WL=s([19,45,15,35,46,16],t.t)",
@@ -48498,14 +48229,6 @@
         "size": 30,
         "outputUnit": "outputUnit/main",
         "code": "B.Wo=s([3,73,45,23,74,46],t.t)"
-      },
-      "B.Wy=new A.Tu(A.C1(),3,\"pattern011\")": {
-        "id": "constant/B.Wy=new A.Tu(A.C1(),3,\"pattern011\")",
-        "kind": "constant",
-        "name": "",
-        "size": 36,
-        "outputUnit": "outputUnit/main",
-        "code": "B.Wy=new A.Tu(A.C1(),3,\"pattern011\")"
       },
       "B.X1=s([6,26,50,74],t.t)": {
         "id": "constant/B.X1=s([6,26,50,74],t.t)",
@@ -48987,14 +48710,6 @@
         "outputUnit": "outputUnit/main",
         "code": "B.k8=s([5,109,87,1,110,88],t.t)"
       },
-      "B.kX=s([4,43,19],t.t)": {
-        "id": "constant/B.kX=s([4,43,19],t.t)",
-        "kind": "constant",
-        "name": "",
-        "size": 21,
-        "outputUnit": "outputUnit/main",
-        "code": "B.kX=s([4,43,19],t.t)"
-      },
       "B.kk=s([2,60,38,2,61,39],t.t)": {
         "id": "constant/B.kk=s([2,60,38,2,61,39],t.t)",
         "kind": "constant",
@@ -49291,13 +49006,13 @@
         "outputUnit": "outputUnit/main",
         "code": "B.t6=s([2,86,68,2,87,69],t.t)"
       },
-      "B.tI=new A.Tu(A.Fb(),0,\"pattern000\")": {
-        "id": "constant/B.tI=new A.Tu(A.Fb(),0,\"pattern000\")",
+      "B.tI=s([4,43,19],t.t)": {
+        "id": "constant/B.tI=s([4,43,19],t.t)",
         "kind": "constant",
         "name": "",
-        "size": 36,
+        "size": 21,
         "outputUnit": "outputUnit/main",
-        "code": "B.tI=new A.Tu(A.Fb(),0,\"pattern000\")"
+        "code": "B.tI=s([4,43,19],t.t)"
       },
       "B.tN=s([6,32,58,84,110],t.t)": {
         "id": "constant/B.tN=s([6,32,58,84,110],t.t)",
@@ -49386,14 +49101,6 @@
         "size": 21,
         "outputUnit": "outputUnit/main",
         "code": "B.vY=s([2,98,78],t.t)"
-      },
-      "B.w3=s([B.tI,B.Fc,B.W6,B.Wy,B.Pq,B.VY,B.JD,B.Ph],A.q7(\"jd<Tu>\"))": {
-        "id": "constant/B.w3=s([B.tI,B.Fc,B.W6,B.Wy,B.Pq,B.VY,B.JD,B.Ph],A.q7(\"jd<Tu>\"))",
-        "kind": "constant",
-        "name": "",
-        "size": 64,
-        "outputUnit": "outputUnit/main",
-        "code": "B.w3=s([B.tI,B.Fc,B.W6,B.Wy,B.Pq,B.VY,B.JD,B.Ph],A.q7(\"jd<Tu>\"))"
       },
       "B.wK=s([12,151,121,7,152,122],t.t)": {
         "id": "constant/B.wK=s([12,151,121,7,152,122],t.t)",
@@ -49733,7 +49440,7 @@
         "id": "closure/dart:async::_BufferingStreamSubscription._sendError._BufferingStreamSubscription__sendError_sendError",
         "kind": "closure",
         "name": "_BufferingStreamSubscription__sendError_sendError",
-        "size": 242,
+        "size": 241,
         "outputUnit": "outputUnit/main",
         "parent": "function/dart:async::_BufferingStreamSubscription._sendError",
         "function": "function/dart:async::_BufferingStreamSubscription._sendError._BufferingStreamSubscription__sendError_sendError.call"
@@ -49877,7 +49584,7 @@
         "id": "closure/dart:async::_RootZone.bindUnaryCallbackGuarded._RootZone_bindUnaryCallbackGuarded_closure",
         "kind": "closure",
         "name": "_RootZone_bindUnaryCallbackGuarded_closure",
-        "size": 135,
+        "size": 134,
         "outputUnit": "outputUnit/main",
         "parent": "function/dart:async::_RootZone.bindUnaryCallbackGuarded",
         "function": "function/dart:async::_RootZone.bindUnaryCallbackGuarded._RootZone_bindUnaryCallbackGuarded_closure.call"
@@ -49985,7 +49692,7 @@
         "id": "closure/dart:js_util::jsify.jsify__convert",
         "kind": "closure",
         "name": "jsify__convert",
-        "size": 328,
+        "size": 329,
         "outputUnit": "outputUnit/main",
         "parent": "function/dart:js_util::jsify",
         "function": "function/dart:js_util::jsify.jsify__convert.call"
@@ -50093,7 +49800,7 @@
         "id": "closure/package:qr/src/qr_code.dart::QrCode.fromDataAndValidation.QrCode_fromDataAndValidation_calculateRequiredBits",
         "kind": "closure",
         "name": "QrCode_fromDataAndValidation_calculateRequiredBits",
-        "size": 234,
+        "size": 190,
         "outputUnit": "outputUnit/main",
         "parent": "function/package:qr/src/qr_code.dart::QrCode.fromDataAndValidation",
         "function": "function/package:qr/src/qr_code.dart::QrCode.fromDataAndValidation.QrCode_fromDataAndValidation_calculateRequiredBits.call"
@@ -51238,11 +50945,6 @@
       }
     ],
     "field/package:qr/src/input_too_long_exception.dart::InputTooLongException.providedInput": [
-      {
-        "id": "function/dart:_late_helper::throwLateFieldADI"
-      }
-    ],
-    "field/package:qr/src/mask_pattern.dart::QrMaskPattern._check": [
       {
         "id": "function/dart:_late_helper::throwLateFieldADI"
       }
@@ -69413,10 +69115,6 @@
         "mask": "[subclass=_Enum|powerset={N}{O}{N}]"
       },
       {
-        "id": "function/package:qr/src/mask_pattern.dart::QrMaskPattern._enumToString",
-        "mask": "[subclass=_Enum|powerset={N}{O}{N}]"
-      },
-      {
         "id": "function/package:qr/src/mode.dart::QrMode._enumToString",
         "mask": "[subclass=_Enum|powerset={N}{O}{N}]"
       }
@@ -70998,6 +70696,46 @@
         "mask": "inlined"
       }
     ],
+    "function/package:qr/src/bit_buffer.dart::QrBitBuffer.QrBitBuffer": [
+      {
+        "id": "function/dart:_native_typed_data::NativeUint8List.NativeUint8List",
+        "mask": "inlined"
+      }
+    ],
+    "function/package:qr/src/bit_buffer.dart::QrBitBuffer._ensureCapacity": [
+      {
+        "id": "field/package:qr/src/bit_buffer.dart::QrBitBuffer._buffer"
+      },
+      {
+        "id": "function/dart:_native_typed_data::NativeTypedArrayOfInt.setRange"
+      },
+      {
+        "id": "function/dart:_native_typed_data::NativeUint8List.NativeUint8List",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_native_typed_data::NativeUint8List.NativeUint8List"
+      },
+      {
+        "id": "function/dart:_native_typed_data::NativeUint8List._createLength"
+      },
+      {
+        "id": "function/dart:_native_typed_data::_checkLength"
+      },
+      {
+        "id": "function/dart:collection::ListBase.isEmpty",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:collection::ListBase.isEmpty"
+      }
+    ],
+    "function/package:qr/src/bit_buffer.dart::QrBitBuffer.getBytes": [
+      {
+        "id": "function/dart:_native_typed_data::NativeUint8List.sublist",
+        "mask": "inlined"
+      }
+    ],
     "function/package:qr/src/bit_buffer.dart::QrBitBuffer.iterator": [
       {
         "id": "function/package:qr/src/bit_buffer.dart::_QrBitBufferIterator._QrBitBufferIterator",
@@ -71027,6 +70765,12 @@
       },
       {
         "id": "function/dart:_interceptors::JSNumber._shrOtherPositive"
+      },
+      {
+        "id": "function/dart:_js_helper::throwUnsupportedOperation"
+      },
+      {
+        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer._ensureCapacity"
       }
     ],
     "function/package:qr/src/bit_buffer.dart::_QrBitBufferIterator.current": [
@@ -71040,20 +70784,17 @@
         "id": "field/package:qr/src/bit_buffer.dart::_QrBitBufferIterator._currentIndex"
       },
       {
-        "id": "function/dart:_interceptors::JSNumber.%"
+        "id": "function/dart:_interceptors::JSNumber._shrOtherPositive"
       },
       {
-        "id": "function/dart:_interceptors::JSNumber.>>"
+        "id": "function/dart:_interceptors::JSNumber._shrReceiverPositive"
       },
       {
-        "id": "function/dart:_interceptors::JSNumber._tdivFast"
-      },
-      {
-        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.[]",
+        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer._getBit",
         "mask": "inlined"
       },
       {
-        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.[]"
+        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer._getBit"
       }
     ],
     "function/package:qr/src/bit_buffer.dart::_QrBitBufferIterator.moveNext": [
@@ -71082,6 +70823,17 @@
       {
         "id": "function/package:qr/src/byte.dart::QrAlphaNumeric.QrAlphaNumeric._",
         "mask": "inlined"
+      }
+    ],
+    "function/package:qr/src/byte.dart::QrAlphaNumeric.bitLength": [
+      {
+        "id": "field/package:qr/src/byte.dart::QrAlphaNumeric._string"
+      },
+      {
+        "id": "function/dart:_interceptors::JSNumber.%"
+      },
+      {
+        "id": "function/dart:_interceptors::JSNumber._tdivFast"
       }
     ],
     "function/package:qr/src/byte.dart::QrAlphaNumeric.encodeArray.QrAlphaNumeric_encodeArray_closure.call": [
@@ -71162,6 +70914,11 @@
       {
         "id": "function/package:qr/src/byte.dart::QrByte.QrByte.fromUint8List",
         "mask": "inlined"
+      }
+    ],
+    "function/package:qr/src/byte.dart::QrByte.bitLength": [
+      {
+        "id": "field/package:qr/src/byte.dart::QrByte._data"
       }
     ],
     "function/package:qr/src/byte.dart::QrByte.length": [
@@ -71450,6 +71207,14 @@
         "id": "function/package:qr/src/byte.dart::QrNumeric.QrNumeric._"
       }
     ],
+    "function/package:qr/src/byte.dart::QrNumeric.bitLength": [
+      {
+        "id": "field/package:qr/src/byte.dart::QrNumeric._data"
+      },
+      {
+        "id": "function/dart:_interceptors::JSNumber.%"
+      }
+    ],
     "function/package:qr/src/byte.dart::QrNumeric.length": [
       {
         "id": "field/package:qr/src/byte.dart::QrNumeric._data"
@@ -71485,6 +71250,11 @@
         "mask": "inlined"
       }
     ],
+    "function/package:qr/src/eci.dart::QrEci.bitLength": [
+      {
+        "id": "field/package:qr/src/eci.dart::QrEci.value"
+      }
+    ],
     "function/package:qr/src/eci.dart::QrEci.mode": [
       {
         "id": "function/dart:_rti::findType"
@@ -71512,80 +71282,6 @@
     "function/package:qr/src/input_too_long_exception.dart::InputTooLongException.toString": [
       {
         "id": "field/package:qr/src/input_too_long_exception.dart::InputTooLongException.message"
-      }
-    ],
-    "function/package:qr/src/mask_pattern.dart::QrMaskPattern._enumToString": [
-      {
-        "id": "field/dart:core::_Enum._name"
-      }
-    ],
-    "function/package:qr/src/mask_pattern.dart::_check000": [
-      {
-        "id": "function/dart:_interceptors::JSInt.isEven",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:_interceptors::JSInt.isEven"
-      }
-    ],
-    "function/package:qr/src/mask_pattern.dart::_check001": [
-      {
-        "id": "function/dart:_interceptors::JSInt.isEven",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:_interceptors::JSInt.isEven"
-      }
-    ],
-    "function/package:qr/src/mask_pattern.dart::_check010": [
-      {
-        "id": "function/dart:_interceptors::JSNumber.%"
-      }
-    ],
-    "function/package:qr/src/mask_pattern.dart::_check011": [
-      {
-        "id": "function/dart:_interceptors::JSNumber.%"
-      }
-    ],
-    "function/package:qr/src/mask_pattern.dart::_check100": [
-      {
-        "id": "function/dart:_interceptors::JSInt.isEven",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:_interceptors::JSInt.isEven"
-      },
-      {
-        "id": "function/dart:_interceptors::JSNumber._tdivFast"
-      }
-    ],
-    "function/package:qr/src/mask_pattern.dart::_check101": [
-      {
-        "id": "function/dart:_interceptors::JSNumber.%"
-      }
-    ],
-    "function/package:qr/src/mask_pattern.dart::_check110": [
-      {
-        "id": "function/dart:_interceptors::JSInt.isEven",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:_interceptors::JSInt.isEven"
-      },
-      {
-        "id": "function/dart:_interceptors::JSNumber.%"
-      }
-    ],
-    "function/package:qr/src/mask_pattern.dart::_check111": [
-      {
-        "id": "function/dart:_interceptors::JSInt.isEven",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:_interceptors::JSInt.isEven"
-      },
-      {
-        "id": "function/dart:_interceptors::JSNumber.%"
       }
     ],
     "function/package:qr/src/math.dart::_createExpTable": [
@@ -71745,13 +71441,6 @@
         "id": "function/package:qr/src/polynomial.dart::QrPolynomial.QrPolynomial"
       },
       {
-        "id": "function/package:qr/src/polynomial.dart::QrPolynomial.[]",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/package:qr/src/polynomial.dart::QrPolynomial.[]"
-      },
-      {
         "id": "function/package:qr/src/polynomial.dart::QrPolynomial.length",
         "mask": "inlined"
       },
@@ -71813,13 +71502,6 @@
         "id": "function/package:qr/src/polynomial.dart::QrPolynomial.QrPolynomial._internal"
       },
       {
-        "id": "function/package:qr/src/polynomial.dart::QrPolynomial.[]",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/package:qr/src/polynomial.dart::QrPolynomial.[]"
-      },
-      {
         "id": "function/package:qr/src/polynomial.dart::QrPolynomial.length",
         "mask": "inlined"
       },
@@ -71842,14 +71524,6 @@
       },
       {
         "id": "function/dart:core::RangeError.checkValueInInterval"
-      }
-    ],
-    "function/package:qr/src/qr_code.dart::QrCode._calculateTotalDataBits": [
-      {
-        "id": "field/package:qr/src/rs_block.dart::QrRsBlock.dataCount"
-      },
-      {
-        "id": "function/package:qr/src/rs_block.dart::QrRsBlock.getRSBlocks"
       }
     ],
     "function/package:qr/src/qr_code.dart::QrCode.addData": [
@@ -71906,6 +71580,10 @@
         "id": "function/package:qr/src/qr_code.dart::QrCode._addToList"
       },
       {
+        "id": "function/package:qr/src/qr_code.dart::QrCode._calculateTotalDataBits",
+        "mask": "inlined"
+      },
+      {
         "id": "function/package:qr/src/qr_code.dart::QrCode._calculateTotalDataBits"
       },
       {
@@ -71913,6 +71591,9 @@
       },
       {
         "id": "function/package:qr/src/qr_code.dart::QrCode.fromDataAndValidation.QrCode_fromDataAndValidation_getRequiredBits.call"
+      },
+      {
+        "id": "function/package:qr/src/rs_block.dart::QrRsBlock.getTotalDataBits"
       },
       {
         "id": "function/package:qr/src/validation_result.dart::QrValidationResult.QrValidationResult",
@@ -71923,9 +71604,6 @@
       }
     ],
     "function/package:qr/src/qr_code.dart::QrCode.fromDataAndValidation.QrCode_fromDataAndValidation_calculateRequiredBits.call": [
-      {
-        "id": "field/package:qr/src/bit_buffer.dart::QrBitBuffer._length"
-      },
       {
         "id": "field/package:qr/src/byte.dart::QrAlphaNumeric.mode",
         "mask": "Union([exact=QrAlphaNumeric|powerset={N}{O}{N}], [exact=QrByte|powerset={N}{O}{N}], [exact=QrEci|powerset={N}{O}{N}], [exact=QrNumeric|powerset={N}{O}{N}], powerset: {N}{O}{N})"
@@ -71939,68 +71617,26 @@
         "mask": "Union([exact=QrAlphaNumeric|powerset={N}{O}{N}], [exact=QrByte|powerset={N}{O}{N}], [exact=QrEci|powerset={N}{O}{N}], [exact=QrNumeric|powerset={N}{O}{N}], powerset: {N}{O}{N})"
       },
       {
-        "id": "field/package:qr/src/mode.dart::QrMode.value"
-      },
-      {
         "id": "function/dart:_js_helper::throwConcurrentModificationError"
       },
       {
-        "id": "function/dart:_rti::_setArrayType"
-      },
-      {
-        "id": "function/dart:_rti::findType"
-      },
-      {
-        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.QrBitBuffer",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.QrBitBuffer"
-      },
-      {
-        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.length",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.length"
-      },
-      {
-        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.put"
-      },
-      {
-        "id": "function/package:qr/src/byte.dart::QrAlphaNumeric.length",
+        "id": "function/package:qr/src/byte.dart::QrAlphaNumeric.bitLength",
         "mask": "Union([exact=QrAlphaNumeric|powerset={N}{O}{N}], [exact=QrByte|powerset={N}{O}{N}], [exact=QrEci|powerset={N}{O}{N}], [exact=QrNumeric|powerset={N}{O}{N}], powerset: {N}{O}{N})"
       },
       {
-        "id": "function/package:qr/src/byte.dart::QrAlphaNumeric.write",
+        "id": "function/package:qr/src/byte.dart::QrByte.bitLength",
         "mask": "Union([exact=QrAlphaNumeric|powerset={N}{O}{N}], [exact=QrByte|powerset={N}{O}{N}], [exact=QrEci|powerset={N}{O}{N}], [exact=QrNumeric|powerset={N}{O}{N}], powerset: {N}{O}{N})"
       },
       {
-        "id": "function/package:qr/src/byte.dart::QrByte.length",
+        "id": "function/package:qr/src/byte.dart::QrNumeric.bitLength",
         "mask": "Union([exact=QrAlphaNumeric|powerset={N}{O}{N}], [exact=QrByte|powerset={N}{O}{N}], [exact=QrEci|powerset={N}{O}{N}], [exact=QrNumeric|powerset={N}{O}{N}], powerset: {N}{O}{N})"
       },
       {
-        "id": "function/package:qr/src/byte.dart::QrByte.write",
-        "mask": "Union([exact=QrAlphaNumeric|powerset={N}{O}{N}], [exact=QrByte|powerset={N}{O}{N}], [exact=QrEci|powerset={N}{O}{N}], [exact=QrNumeric|powerset={N}{O}{N}], powerset: {N}{O}{N})"
-      },
-      {
-        "id": "function/package:qr/src/byte.dart::QrNumeric.length",
-        "mask": "Union([exact=QrAlphaNumeric|powerset={N}{O}{N}], [exact=QrByte|powerset={N}{O}{N}], [exact=QrEci|powerset={N}{O}{N}], [exact=QrNumeric|powerset={N}{O}{N}], powerset: {N}{O}{N})"
-      },
-      {
-        "id": "function/package:qr/src/byte.dart::QrNumeric.write",
-        "mask": "Union([exact=QrAlphaNumeric|powerset={N}{O}{N}], [exact=QrByte|powerset={N}{O}{N}], [exact=QrEci|powerset={N}{O}{N}], [exact=QrNumeric|powerset={N}{O}{N}], powerset: {N}{O}{N})"
-      },
-      {
-        "id": "function/package:qr/src/eci.dart::QrEci.length",
+        "id": "function/package:qr/src/eci.dart::QrEci.bitLength",
         "mask": "Union([exact=QrAlphaNumeric|powerset={N}{O}{N}], [exact=QrByte|powerset={N}{O}{N}], [exact=QrEci|powerset={N}{O}{N}], [exact=QrNumeric|powerset={N}{O}{N}], powerset: {N}{O}{N})"
       },
       {
         "id": "function/package:qr/src/eci.dart::QrEci.mode",
-        "mask": "Union([exact=QrAlphaNumeric|powerset={N}{O}{N}], [exact=QrByte|powerset={N}{O}{N}], [exact=QrEci|powerset={N}{O}{N}], [exact=QrNumeric|powerset={N}{O}{N}], powerset: {N}{O}{N})"
-      },
-      {
-        "id": "function/package:qr/src/eci.dart::QrEci.write",
         "mask": "Union([exact=QrAlphaNumeric|powerset={N}{O}{N}], [exact=QrByte|powerset={N}{O}{N}], [exact=QrEci|powerset={N}{O}{N}], [exact=QrNumeric|powerset={N}{O}{N}], powerset: {N}{O}{N})"
       },
       {
@@ -72028,10 +71664,19 @@
         "id": "function/dart:_native_typed_data::NativeUint8List.NativeUint8List"
       },
       {
+        "id": "function/dart:_native_typed_data::NativeUint8List._create1"
+      },
+      {
         "id": "function/dart:_native_typed_data::NativeUint8List._createLength"
       },
       {
+        "id": "function/dart:_native_typed_data::NativeUint8List.sublist"
+      },
+      {
         "id": "function/dart:_native_typed_data::_checkLength"
+      },
+      {
+        "id": "function/dart:_native_typed_data::_checkValidRange"
       },
       {
         "id": "function/dart:_rti::findType"
@@ -72047,11 +71692,11 @@
         "id": "function/dart:math::max"
       },
       {
-        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.getByte",
+        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.getBytes",
         "mask": "inlined"
       },
       {
-        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.getByte"
+        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.getBytes"
       },
       {
         "id": "function/package:qr/src/polynomial.dart::QrPolynomial.QrPolynomial"
@@ -72097,6 +71742,9 @@
         "id": "field/package:qr/src/mode.dart::QrMode.value"
       },
       {
+        "id": "field/package:qr/src/rs_block.dart::QrRsBlock.dataCount"
+      },
+      {
         "id": "function/dart:_interceptors::JSInt.isEven",
         "mask": "inlined"
       },
@@ -72107,16 +71755,16 @@
         "id": "function/dart:_interceptors::JSNumber.%"
       },
       {
-        "id": "function/dart:_interceptors::JSNumber._tdivFast"
-      },
-      {
         "id": "function/dart:_js_helper::wrapException"
       },
       {
-        "id": "function/dart:_rti::_setArrayType"
+        "id": "function/dart:_native_typed_data::NativeUint8List.NativeUint8List"
       },
       {
-        "id": "function/dart:_rti::findType"
+        "id": "function/dart:_native_typed_data::NativeUint8List._createLength"
+      },
+      {
+        "id": "function/dart:_native_typed_data::_checkLength"
       },
       {
         "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.QrBitBuffer",
@@ -72124,6 +71772,9 @@
       },
       {
         "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.QrBitBuffer"
+      },
+      {
+        "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer._ensureCapacity"
       },
       {
         "id": "function/package:qr/src/bit_buffer.dart::QrBitBuffer.length",
@@ -72190,9 +71841,6 @@
       },
       {
         "id": "function/package:qr/src/mode.dart::QrMode.getLengthBits"
-      },
-      {
-        "id": "function/package:qr/src/qr_code.dart::QrCode._calculateTotalDataBits"
       },
       {
         "id": "function/package:qr/src/qr_code.dart::_createBytes"
@@ -72264,9 +71912,6 @@
         "id": "function/dart:_native_typed_data::_checkLength"
       },
       {
-        "id": "function/dart:_rti::findType"
-      },
-      {
         "id": "function/dart:collection::ListBase.fillRange"
       },
       {
@@ -72297,7 +71942,7 @@
         "id": "function/package:qr/src/qr_image.dart::QrImage._applyMask"
       },
       {
-        "id": "function/package:qr/src/qr_image.dart::QrImage._placeData"
+        "id": "function/package:qr/src/qr_image.dart::QrImage._mapData"
       },
       {
         "id": "function/package:qr/src/qr_image.dart::QrImage._resetModules"
@@ -72340,31 +71985,41 @@
     ],
     "function/package:qr/src/qr_image.dart::QrImage._applyMask": [
       {
-        "id": "field/package:qr/src/mask_pattern.dart::QrMaskPattern._check"
-      },
-      {
         "id": "field/package:qr/src/qr_image.dart::QrImage._data"
       },
       {
         "id": "field/package:qr/src/qr_image.dart::QrImage.moduleCount"
       },
       {
-        "id": "function/dart:_js_helper::throwUnsupportedOperation"
-      },
-      {
-        "id": "function/package:qr/src/mask_pattern.dart::QrMaskPattern.check",
+        "id": "function/dart:_interceptors::JSInt.isEven",
         "mask": "inlined"
       },
       {
-        "id": "function/package:qr/src/mask_pattern.dart::QrMaskPattern.check"
+        "id": "function/dart:_interceptors::JSInt.isEven"
+      },
+      {
+        "id": "function/dart:_interceptors::JSNumber.%"
+      },
+      {
+        "id": "function/dart:_interceptors::JSNumber._tdivFast"
+      },
+      {
+        "id": "function/dart:_js_helper::throwUnsupportedOperation"
       }
     ],
-    "function/package:qr/src/qr_image.dart::QrImage._placeData": [
+    "function/package:qr/src/qr_image.dart::QrImage._mapData": [
       {
         "id": "field/package:qr/src/qr_image.dart::QrImage._data"
       },
       {
         "id": "field/package:qr/src/qr_image.dart::QrImage.moduleCount"
+      },
+      {
+        "id": "function/dart:_interceptors::JSInt.isEven",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_interceptors::JSInt.isEven"
       },
       {
         "id": "function/dart:_interceptors::JSNumber._shrReceiverPositive"
@@ -72550,6 +72205,11 @@
       {
         "id": "function/package:qr/src/rs_block.dart::QrRsBlock.QrRsBlock._"
       },
+      {
+        "id": "function/package:qr/src/rs_block.dart::_getRsBlockTable"
+      }
+    ],
+    "function/package:qr/src/rs_block.dart::QrRsBlock.getTotalDataBits": [
       {
         "id": "function/package:qr/src/rs_block.dart::_getRsBlockTable"
       }
@@ -73356,7 +73016,7 @@
       "id": "outputUnit/main",
       "kind": "outputUnit",
       "name": "main",
-      "size": 129408,
+      "size": 129377,
       "filename": "main.dart2js.js",
       "imports": []
     }
