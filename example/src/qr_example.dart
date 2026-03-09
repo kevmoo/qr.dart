@@ -24,6 +24,7 @@ class QrExample {
   final HTMLButtonElement _copyBtn;
   final HTMLButtonElement _downloadBtn;
   final StreamController<_Config> _inputValues;
+  final HTMLInputElement _autoCheckElement;
 
   final Stream<List<bool>?> output;
 
@@ -134,14 +135,15 @@ class QrExample {
     this._inputValues,
   ) : _canvas = canvas,
       _ctx = canvas.context2D,
+      _autoCheckElement =
+          document.getElementById('type_auto') as HTMLInputElement,
       output = _inputValues.stream.asyncMapSample(_calc) {
     _ctx.fillStyle = 'black'.toJS;
 
     // Auto Size Checkbox
-    final autoCheck = document.getElementById('type_auto') as HTMLInputElement
-      ..checked = _autoType;
-    autoCheck.onChange.listen((Event _) {
-      _autoType = autoCheck.checked;
+    _autoCheckElement.checked = _autoType;
+    _autoCheckElement.onChange.listen((Event _) {
+      _autoType = _autoCheckElement.checked;
       _update();
     });
 
@@ -211,7 +213,7 @@ class QrExample {
     final source = args.target as HTMLInputElement;
     _typeNumber = int.parse(source.dataset[_typeRadioIdKey]);
     _autoType = false;
-    (document.getElementById('type_auto') as HTMLInputElement).checked = false;
+    _autoCheckElement.checked = false;
     _update();
   }
 
