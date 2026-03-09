@@ -270,7 +270,7 @@ List<int> _createBytes(QrBitBuffer buffer, List<QrRsBlock> rsBlocks) {
     final dcItem = dcData[r] = Uint8List(dcCount);
 
     for (var i = 0; i < dcItem.length; i++) {
-      dcItem[i] = 0xff & buffer.getByte(i + offset);
+      dcItem[i] = buffer.getByte(i + offset);
     }
     offset += dcCount;
 
