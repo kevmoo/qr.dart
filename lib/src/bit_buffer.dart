@@ -1,26 +1,13 @@
 import 'dart:typed_data';
 
-import 'package:meta/meta.dart';
-
 /// A growable sequence of bits.
 ///
 /// Used internally to construct the data bit stream for a QR code.
-final class QrBitBuffer extends Iterable<bool> {
+final class QrBitBuffer {
   Uint8List _buffer = Uint8List(32);
   int _length = 0;
 
-  @override
   int get length => _length;
-
-  @override
-  Iterator<bool> get iterator => _QrBitBufferIterator(this);
-
-  bool _getBit(int index) {
-    // Optimization: index >> 3 is faster than index ~/ 8
-    // index & 7 is faster than index % 8
-    final bufIndex = index >> 3;
-    return ((_buffer[bufIndex] >> (7 - (index & 7))) & 1) == 1;
-  }
 
   int getByte(int index) => _buffer[index];
 
@@ -28,20 +15,16 @@ final class QrBitBuffer extends Iterable<bool> {
   Uint8List getBytes(int offset, int length) =>
       _buffer.sublist(offset, offset + length);
 
-  void _ensureCapacity(int neededBytes) {
-    if (_buffer.length < neededBytes) {
-      var newLength = _buffer.isEmpty ? 4 : _buffer.length * 2;
-      while (newLength < neededBytes) {
-        newLength *= 2;
-      }
-      final newBuffer = Uint8List(newLength)
-        ..setRange(0, _buffer.length, _buffer);
-      _buffer = newBuffer;
-    }
-  }
-
+  /// Appends [length] bits from [number] to the buffer.
+  ///
+  /// The [number] must be non-negative. If [number] requires more than [length]
+  /// bits to represent, it will be truncated and only the lowest [length] bits
+  /// will be written.
   void put(int number, int length) {
     if (length == 0) return;
+
+    assert(length > 0, 'length must be strictly positive');
+    assert(number >= 0, 'number must be non-negative');
 
     var bitIndex = _length;
     final endBitIndex = bitIndex + length;
@@ -80,41 +63,41 @@ final class QrBitBuffer extends Iterable<bool> {
     _length = endBitIndex;
   }
 
-  void putBit(bool bit) {
-    // Optimization: bitshift >> 3 is faster than ~/ 8
-    final bufIndex = _length >> 3;
-    _ensureCapacity(bufIndex + 1);
+  @override
+  String toString() {
+    final chars = Uint8List(_length);
+    var charIndex = 0;
 
-    if (bit) {
-      // Optimization: bitwise AND is faster than modulo % 8
-      _buffer[bufIndex] |= 0x80 >> (_length & 7);
+    // Process full bytes
+    final fullBytes = _length >> 3;
+    for (var i = 0; i < fullBytes; i++) {
+      final byte = _buffer[i];
+      for (var j = 7; j >= 0; j--) {
+        chars[charIndex++] = ((byte >> j) & 1) + 48; // '0' is 48
+      }
     }
 
-    _length++;
-  }
-
-  @visibleForTesting
-  List<bool> getRange(int start, int end) {
-    final list = <bool>[];
-    for (var i = start; i < end; i++) {
-      list.add(_getBit(i));
+    // Process remaining bits
+    final remainingBits = _length & 7;
+    if (remainingBits > 0) {
+      final byte = _buffer[fullBytes];
+      for (var i = 0; i < remainingBits; i++) {
+        chars[charIndex++] = ((byte >> (7 - i)) & 1) + 48;
+      }
     }
-    return list;
+
+    return String.fromCharCodes(chars);
   }
-}
 
-class _QrBitBufferIterator implements Iterator<bool> {
-  final QrBitBuffer _buffer;
-  int _currentIndex = -1;
-
-  _QrBitBufferIterator(this._buffer);
-
-  @override
-  bool get current => _buffer._getBit(_currentIndex);
-
-  @override
-  bool moveNext() {
-    _currentIndex++;
-    return _currentIndex < _buffer.length;
+  void _ensureCapacity(int neededBytes) {
+    if (_buffer.length < neededBytes) {
+      var newLength = _buffer.isEmpty ? 4 : _buffer.length * 2;
+      while (newLength < neededBytes) {
+        newLength *= 2;
+      }
+      final newBuffer = Uint8List(newLength)
+        ..setRange(0, _buffer.length, _buffer);
+      _buffer = newBuffer;
+    }
   }
 }

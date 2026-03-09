@@ -234,8 +234,9 @@ List<int> _createData(
   }
 
   // padding
-  while (buffer.length % 8 != 0) {
-    buffer.putBit(false);
+  final paddingBits = 8 - (buffer.length % 8);
+  if (paddingBits < 8) {
+    buffer.put(0, paddingBits);
   }
 
   // padding

@@ -10,44 +10,11 @@ void main() {
     qr.write(buffer);
     expect(buffer, hasLength(34));
     expect(
-      buffer
-          .getRange(0, 10)
-          .map<int>((e) => e ? 1 : 0)
-          .fold<int>(
-            0,
-            (previousValue, element) => (previousValue << 1) | element,
-          ),
-      123,
-    );
-    expect(
-      buffer
-          .getRange(10, 20)
-          .map<int>((e) => e ? 1 : 0)
-          .fold<int>(
-            0,
-            (previousValue, element) => (previousValue << 1) | element,
-          ),
-      456,
-    );
-    expect(
-      buffer
-          .getRange(20, 30)
-          .map<int>((e) => e ? 1 : 0)
-          .fold<int>(
-            0,
-            (previousValue, element) => (previousValue << 1) | element,
-          ),
-      789,
-    );
-    expect(
-      buffer
-          .getRange(30, 34)
-          .map<int>((e) => e ? 1 : 0)
-          .fold<int>(
-            0,
-            (previousValue, element) => (previousValue << 1) | element,
-          ),
-      0,
+      buffer.toString(),
+      '0001111011'
+      '0111001000'
+      '1100010101'
+      '0000',
     );
   });
 
@@ -58,16 +25,7 @@ void main() {
     final buffer = QrBitBuffer();
     qr.write(buffer);
     expect(buffer, hasLength(4));
-    expect(
-      buffer
-          .getRange(0, 4)
-          .map<int>((e) => e ? 1 : 0)
-          .fold<int>(
-            0,
-            (previousValue, element) => (previousValue << 1) | element,
-          ),
-      5,
-    );
+    expect(buffer.toString(), '0101');
   });
 
   test('double numeric', () {
@@ -77,16 +35,7 @@ void main() {
     final buffer = QrBitBuffer();
     qr.write(buffer);
     expect(buffer, hasLength(7), reason: 'n*3+1 = 7');
-    expect(
-      buffer
-          .getRange(0, 7)
-          .map<int>((e) => e ? 1 : 0)
-          .fold<int>(
-            0,
-            (previousValue, element) => (previousValue << 1) | element,
-          ),
-      37,
-    );
+    expect(buffer.toString(), '0100101');
   });
 
   test('triple (even) numeric', () {
@@ -96,16 +45,7 @@ void main() {
     final buffer = QrBitBuffer();
     qr.write(buffer);
     expect(buffer, hasLength(10), reason: 'n*3+1 = 10');
-    expect(
-      buffer
-          .getRange(0, 10)
-          .map<int>((e) => e ? 1 : 0)
-          .fold<int>(
-            0,
-            (previousValue, element) => (previousValue << 1) | element,
-          ),
-      371,
-    );
+    expect(buffer.toString(), '0101110011');
   });
 
   test('throws on invalid input', () {
