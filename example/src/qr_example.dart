@@ -24,12 +24,14 @@ class QrExample {
   final HTMLButtonElement _copyBtn;
   final HTMLButtonElement _downloadBtn;
   final StreamController<_Config> _inputValues;
+  final HTMLInputElement _autoCheckElement;
 
   final Stream<List<bool>?> output;
 
   String _value = '';
   int _typeNumber = _maxTypeNumber;
-  QrErrorCorrectLevel _errorCorrectLevel = QrErrorCorrectLevel.medium;
+  bool _autoType = true;
+  QrErrorCorrectLevel _errorCorrectLevel = QrErrorCorrectLevel.high;
 
   List<bool> _squares = [];
   _FrameState _state = _FrameState.qr;
@@ -133,8 +135,17 @@ class QrExample {
     this._inputValues,
   ) : _canvas = canvas,
       _ctx = canvas.context2D,
+      _autoCheckElement =
+          document.getElementById('type_auto') as HTMLInputElement,
       output = _inputValues.stream.asyncMapSample(_calc) {
     _ctx.fillStyle = 'black'.toJS;
+
+    // Auto Size Checkbox
+    _autoCheckElement.checked = _autoType;
+    _autoCheckElement.onChange.listen((Event _) {
+      _autoType = _autoCheckElement.checked;
+      _update();
+    });
 
     // Type Div
     for (var i = 1; i <= _maxTypeNumber; i++) {
@@ -161,7 +172,7 @@ class QrExample {
     for (final v in sortedLevels) {
       final radio = (document.createElement('input') as HTMLInputElement)
         ..type = 'radio'
-        ..id = 'error_$v'
+        ..id = 'error_${v.name}'
         ..name = 'error-level'
         ..onChange.listen(_errorClick)
         ..dataset[_errorLevelIdKey] = v.index.toString();
@@ -201,6 +212,8 @@ class QrExample {
   void _levelClick(Event args) {
     final source = args.target as HTMLInputElement;
     _typeNumber = int.parse(source.dataset[_typeRadioIdKey]);
+    _autoType = false;
+    _autoCheckElement.checked = false;
     _update();
   }
 
@@ -224,6 +237,15 @@ class QrExample {
       errorCorrectLevel: _errorCorrectLevel,
     );
 
+    if (_autoType && result.validTypeNumbers.isNotEmpty) {
+      _typeNumber = result.validTypeNumbers.first;
+      final radio =
+          document.getElementById('type_$_typeNumber') as HTMLInputElement?;
+      if (radio != null) {
+        radio.checked = true;
+      }
+    }
+
     void update(String id, bool isValid) {
       final radio = document.getElementById(id) as HTMLInputElement?;
       if (radio == null) return;
@@ -241,7 +263,10 @@ class QrExample {
     }
 
     for (final level in QrErrorCorrectLevel.values) {
-      update('error_$level', result.validErrorCorrectLevels.contains(level));
+      update(
+        'error_${level.name}',
+        result.validErrorCorrectLevels.contains(level),
+      );
     }
   }
 
