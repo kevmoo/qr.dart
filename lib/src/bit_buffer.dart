@@ -26,7 +26,7 @@ class QrBitBuffer extends Iterable<bool> {
 
   void _ensureCapacity(int neededBytes) {
     if (_buffer.length < neededBytes) {
-      var newLength = _buffer.length * 2;
+      var newLength = _buffer.isEmpty ? 4 : _buffer.length * 2;
       while (newLength < neededBytes) {
         newLength *= 2;
       }
