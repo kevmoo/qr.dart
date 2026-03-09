@@ -170,7 +170,7 @@ class QrExample {
     for (final v in sortedLevels) {
       final radio = (document.createElement('input') as HTMLInputElement)
         ..type = 'radio'
-        ..id = 'error_$v'
+        ..id = 'error_${v.name}'
         ..name = 'error-level'
         ..onChange.listen(_errorClick)
         ..dataset[_errorLevelIdKey] = v.index.toString();
@@ -262,7 +262,7 @@ class QrExample {
 
     for (final level in QrErrorCorrectLevel.values) {
       update(
-        'error_$level'.toLowerCase().replaceAll('qrerrorcorrectlevel.', ''),
+        'error_${level.name}',
         result.validErrorCorrectLevels.contains(level),
       );
     }
