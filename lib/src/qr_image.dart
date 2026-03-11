@@ -287,17 +287,10 @@ class QrImage {
             }
 
             final cCol = col - c;
-            final mask = switch (mpIndex) {
-              0 => (row + cCol).isEven,
-              1 => row.isEven,
-              2 => cCol % 3 == 0,
-              3 => (row + cCol) % 3 == 0,
-              4 => ((row ~/ 2) + (cCol ~/ 3)).isEven,
-              5 => ((row * cCol) % 2 + (row * cCol) % 3) == 0,
-              6 => (((row * cCol) % 2) + ((row * cCol) % 3)).isEven,
-              7 => (((row * cCol) % 3) + ((row + cCol) % 2)).isEven,
-              _ => false,
-            };
+            var mask = false;
+            if (mpIndex != null) {
+              mask = _getMaskFunction(mpIndex)(row, cCol);
+            }
 
             if (mask) {
               dark = !dark;
@@ -325,21 +318,7 @@ class QrImage {
   }
 
   void _applyMask(int mpIndex, Uint8List templateData) {
-    final maskFunction = switch (mpIndex) {
-      0 => (int r, int c) => (r + c).isEven,
-      1 => (int r, int c) => r.isEven,
-      2 => (int r, int c) => c % 3 == 0,
-      3 => (int r, int c) => (r + c) % 3 == 0,
-      4 => (int r, int c) => ((r ~/ 2) + (c ~/ 3)).isEven,
-      5 => (int r, int c) => ((r * c) % 2 + (r * c) % 3) == 0,
-      6 => (int r, int c) => (((r * c) % 2) + ((r * c) % 3)).isEven,
-      7 => (int r, int c) => (((r * c) % 3) + ((r + c) % 2)).isEven,
-      _ => null,
-    };
-
-    if (maskFunction == null) {
-      return;
-    }
+    final maskFunction = _getMaskFunction(mpIndex);
 
     var idx = 0;
     for (var row = 0; row < moduleCount; row++) {
@@ -431,4 +410,24 @@ double _lostPoint(QrImage qrImage) {
   // Level 4: Dark ratio
   final ratio = (100 * darkCount / moduleCount / moduleCount - 50).abs() / 5;
   return lostPoint + ratio * 10;
+}
+
+typedef _MaskFunction = bool Function(int r, int c);
+
+_MaskFunction _getMaskFunction(int maskPattern) {
+  return switch (maskPattern) {
+    0 => (int r, int c) => (r + c).isEven,
+    1 => (int r, int c) => r.isEven,
+    2 => (int r, int c) => c % 3 == 0,
+    3 => (int r, int c) => (r + c) % 3 == 0,
+    4 => (int r, int c) => ((r ~/ 2) + (c ~/ 3)).isEven,
+    5 => (int r, int c) => ((r * c) % 2 + (r * c) % 3) == 0,
+    6 => (int r, int c) => (((r * c) % 2) + ((r * c) % 3)).isEven,
+    7 => (int r, int c) => (((r * c) % 3) + ((r + c) % 2)).isEven,
+    _ => throw ArgumentError.value(
+      maskPattern,
+      'maskPattern',
+      'Invalid mask pattern',
+    ),
+  };
 }
