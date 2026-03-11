@@ -412,22 +412,19 @@ double _lostPoint(QrImage qrImage) {
   return lostPoint + ratio * 10;
 }
 
-typedef _MaskFunction = bool Function(int r, int c);
-
-_MaskFunction _getMaskFunction(int maskPattern) {
-  return switch (maskPattern) {
-    0 => (int r, int c) => (r + c).isEven,
-    1 => (int r, int c) => r.isEven,
-    2 => (int r, int c) => c % 3 == 0,
-    3 => (int r, int c) => (r + c) % 3 == 0,
-    4 => (int r, int c) => ((r ~/ 2) + (c ~/ 3)).isEven,
-    5 => (int r, int c) => ((r * c) % 2 + (r * c) % 3) == 0,
-    6 => (int r, int c) => (((r * c) % 2) + ((r * c) % 3)).isEven,
-    7 => (int r, int c) => (((r * c) % 3) + ((r + c) % 2)).isEven,
-    _ => throw ArgumentError.value(
-      maskPattern,
-      'maskPattern',
-      'Invalid mask pattern',
-    ),
-  };
-}
+bool Function(int r, int c) _getMaskFunction(int maskPattern) =>
+    switch (maskPattern) {
+      0 => (int r, int c) => (r + c).isEven,
+      1 => (int r, int c) => r.isEven,
+      2 => (int r, int c) => c % 3 == 0,
+      3 => (int r, int c) => (r + c) % 3 == 0,
+      4 => (int r, int c) => ((r ~/ 2) + (c ~/ 3)).isEven,
+      5 => (int r, int c) => ((r * c) % 2 + (r * c) % 3) == 0,
+      6 => (int r, int c) => (((r * c) % 2) + ((r * c) % 3)).isEven,
+      7 => (int r, int c) => (((r * c) % 3) + ((r + c) % 2)).isEven,
+      _ => throw ArgumentError.value(
+        maskPattern,
+        'maskPattern',
+        'Invalid mask pattern',
+      ),
+    };
