@@ -325,42 +325,76 @@ class QrImage {
   }
 
   void _applyMask(int mpIndex, Uint8List templateData) {
-    var inc = -1;
-    var row = moduleCount - 1;
-
-    for (var col = moduleCount - 1; col > 0; col -= 2) {
-      if (col == 6) col--;
-
-      for (;;) {
-        for (var c = 0; c < 2; c++) {
-          final cCol = col - c;
-          final idx = row * moduleCount + cCol;
-          if (templateData[idx] == _pixelUnassigned) {
-            final mask = switch (mpIndex) {
-              0 => (row + cCol).isEven,
-              1 => row.isEven,
-              2 => cCol % 3 == 0,
-              3 => (row + cCol) % 3 == 0,
-              4 => ((row ~/ 2) + (cCol ~/ 3)).isEven,
-              5 => ((row * cCol) % 2 + (row * cCol) % 3) == 0,
-              6 => (((row * cCol) % 2) + ((row * cCol) % 3)).isEven,
-              7 => (((row * cCol) % 3) + ((row + cCol) % 2)).isEven,
-              _ => false,
-            };
-            if (mask) {
+    var idx = 0;
+    switch (mpIndex) {
+      case 0:
+        for (var row = 0; row < moduleCount; row++) {
+          for (var col = 0; col < moduleCount; col++, idx++) {
+            if (templateData[idx] == _pixelUnassigned && (row + col).isEven) {
               _data[idx] ^= _pixelDark ^ _pixelLight;
             }
           }
         }
-
-        row += inc;
-
-        if (row < 0 || moduleCount <= row) {
-          row -= inc;
-          inc = -inc;
-          break;
+      case 1:
+        for (var row = 0; row < moduleCount; row++) {
+          for (var col = 0; col < moduleCount; col++, idx++) {
+            if (templateData[idx] == _pixelUnassigned && row.isEven) {
+              _data[idx] ^= _pixelDark ^ _pixelLight;
+            }
+          }
         }
-      }
+      case 2:
+        for (var row = 0; row < moduleCount; row++) {
+          for (var col = 0; col < moduleCount; col++, idx++) {
+            if (templateData[idx] == _pixelUnassigned && col % 3 == 0) {
+              _data[idx] ^= _pixelDark ^ _pixelLight;
+            }
+          }
+        }
+      case 3:
+        for (var row = 0; row < moduleCount; row++) {
+          for (var col = 0; col < moduleCount; col++, idx++) {
+            if (templateData[idx] == _pixelUnassigned && (row + col) % 3 == 0) {
+              _data[idx] ^= _pixelDark ^ _pixelLight;
+            }
+          }
+        }
+      case 4:
+        for (var row = 0; row < moduleCount; row++) {
+          for (var col = 0; col < moduleCount; col++, idx++) {
+            if (templateData[idx] == _pixelUnassigned &&
+                ((row ~/ 2) + (col ~/ 3)).isEven) {
+              _data[idx] ^= _pixelDark ^ _pixelLight;
+            }
+          }
+        }
+      case 5:
+        for (var row = 0; row < moduleCount; row++) {
+          for (var col = 0; col < moduleCount; col++, idx++) {
+            if (templateData[idx] == _pixelUnassigned &&
+                ((row * col) % 2 + (row * col) % 3) == 0) {
+              _data[idx] ^= _pixelDark ^ _pixelLight;
+            }
+          }
+        }
+      case 6:
+        for (var row = 0; row < moduleCount; row++) {
+          for (var col = 0; col < moduleCount; col++, idx++) {
+            if (templateData[idx] == _pixelUnassigned &&
+                (((row * col) % 2) + ((row * col) % 3)).isEven) {
+              _data[idx] ^= _pixelDark ^ _pixelLight;
+            }
+          }
+        }
+      case 7:
+        for (var row = 0; row < moduleCount; row++) {
+          for (var col = 0; col < moduleCount; col++, idx++) {
+            if (templateData[idx] == _pixelUnassigned &&
+                (((row * col) % 3) + ((row + col) % 2)).isEven) {
+              _data[idx] ^= _pixelDark ^ _pixelLight;
+            }
+          }
+        }
     }
   }
 }
