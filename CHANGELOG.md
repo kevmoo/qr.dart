@@ -6,6 +6,7 @@
 - Performance improvements for QR code generation.
   - `QrImage` generation is ~50% faster.
   - `LargeQrCode` generation is ~40% faster.
+  - `LargeQrImage` generation is ~10-15% faster due to loop unswitching in `_applyMask`.
 - `QrCode.fromData` and `QrCode.addData` now intelligently pick the right mode.
 - Throws `InputTooLongException` for data that exceeds QR code version 40 capacity,
   preventing the generation of invalid QR codes.

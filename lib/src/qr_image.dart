@@ -289,33 +289,22 @@ class QrImage {
             final cCol = col - c;
             var mask = false;
             if (mpIndex != null) {
-              switch (mpIndex) {
-                case 0:
-                  mask = (row + cCol).isEven;
-                  break;
-                case 1:
-                  mask = row.isEven;
-                  break;
-                case 2:
-                  mask = cCol % 3 == 0;
-                  break;
-                case 3:
-                  mask = (row + cCol) % 3 == 0;
-                  break;
-                case 4:
-                  mask = ((row ~/ 2) + (cCol ~/ 3)).isEven;
-                  break;
-                case 5:
-                  mask = ((row * cCol) % 2 + (row * cCol) % 3) == 0;
-                  break;
-                case 6:
-                  final rxc = row * cCol;
-                  mask = ((rxc % 2) + (rxc % 3)).isEven;
-                  break;
-                case 7:
-                  mask = (((row * cCol) % 3) + ((row + cCol) % 2)).isEven;
-                  break;
-              }
+              final rxc = row * cCol;
+              mask = switch (mpIndex) {
+                0 => (row + cCol).isEven,
+                1 => row.isEven,
+                2 => cCol % 3 == 0,
+                3 => (row + cCol) % 3 == 0,
+                4 => ((row ~/ 2) + (cCol ~/ 3)).isEven,
+                5 => (rxc % 2 + rxc % 3) == 0,
+                6 => ((rxc % 2) + (rxc % 3)).isEven,
+                7 => ((rxc % 3) + ((row + cCol) % 2)).isEven,
+                _ => throw ArgumentError.value(
+                  mpIndex,
+                  'maskPattern',
+                  'Invalid mask pattern',
+                ),
+              };
             }
 
             if (mask) {
