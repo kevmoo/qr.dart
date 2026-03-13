@@ -491,4 +491,3 @@ double _lostPoint(QrImage qrImage) {
   final ratio = (100 * darkCount / moduleCount / moduleCount - 50).abs() / 5;
   return lostPoint + ratio * 10;
 }
-
