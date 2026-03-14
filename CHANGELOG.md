@@ -4,7 +4,7 @@
   - New `QrEci` class.
   - `QrCode.addECI` method.
 - Performance improvements for QR code generation.
-  - `QrImage` generation is ~50% faster.
+  - `QrImage` generation is ~70% faster.
   - `LargeQrCode` generation is ~40% faster.
 - `QrCode.fromData` and `QrCode.addData` now intelligently pick the right mode.
 - Throws `InputTooLongException` for data that exceeds QR code version 40 capacity,

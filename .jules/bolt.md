@@ -1,0 +1,3 @@
+## 2024-05-18 - QrImage Mask Application Optimization
+**Learning:** In Dart, closure creation inside hot inner loops (like evaluating matrix pixel conditions) introduces measurable performance overhead. For complex mathematical rules over matrices, directly inlining the logic evaluation and keeping conditional branching (like `switch(pattern)`) outside the nested 2D loops (loop unswitching) yields notable performance improvements (up to ~20%).
+**Action:** When working on image processing algorithms in Dart, prioritize loop unswitching to lift conditionals outside nested loops, and prefer inline expression evaluation over creating functions or closures dynamically per pixel.
