@@ -1,5 +1,6 @@
 ## 3.1.0-wip
 
+- Optimized `QrImage` applying mask logic for a measurable speed boost.
 - Added Extended Channel Interpretation (ECI) support.
   - New `QrEci` class.
   - `QrCode.addECI` method.
