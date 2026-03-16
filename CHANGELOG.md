@@ -1,5 +1,6 @@
 ## 3.1.0-wip
 
+- Refactored masking in QrImage to avoid closure allocation and evaluation overhead for a small performance gain.
 - Added Extended Channel Interpretation (ECI) support.
   - New `QrEci` class.
   - `QrCode.addECI` method.
