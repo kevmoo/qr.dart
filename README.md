@@ -70,4 +70,4 @@ The following packages can be used to export QR codes directory to an image:
 # Demo
 
 A working demo can be found here:
-[kevmoo.github.io/qr.dart](https://kevmoo.github.io/qr.dart/)
+[qr.kevmoo.com](https://qr.kevmoo.com/)
