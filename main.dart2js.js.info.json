@@ -3,11 +3,11 @@
   "dump_minor_version": 1,
   "program": {
     "entrypoint": "function/org-dartlang-app:///example/main.dart::main",
-    "size": 130130,
+    "size": 130644,
     "ramUsage": "N/A MB",
-    "dart2jsVersion": "3.12.0-210.1.beta",
-    "compilationMoment": "2026-03-09 08:13:18.731999",
-    "compilationDuration": 773327,
+    "dart2jsVersion": "3.12.0-254.0.dev",
+    "compilationMoment": "2026-03-17 12:10:07.522146",
+    "compilationDuration": 827785,
     "toJsonDuration": 1000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
@@ -398,7 +398,7 @@
         "id": "library/dart:async::",
         "kind": "library",
         "name": "dart.async",
-        "size": 23041,
+        "size": 23043,
         "children": [
           "class/dart:async::AsyncError",
           "class/dart:async::Completer",
@@ -781,9 +781,10 @@
         "id": "library/package:qr/src/qr_image.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 4296,
+        "size": 4762,
         "children": [
           "class/package:qr/src/qr_image.dart::QrImage",
+          "function/package:qr/src/qr_image.dart::_getMaskFunction",
           "function/package:qr/src/qr_image.dart::_lostPoint"
         ],
         "canonicalUri": "package:qr/src/qr_image.dart"
@@ -3165,7 +3166,7 @@
         "id": "class/dart:async::_AsyncRun",
         "kind": "class",
         "name": "_AsyncRun",
-        "size": 410,
+        "size": 411,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:async::",
         "modifiers": {
@@ -3525,7 +3526,7 @@
         "id": "class/dart:async::_Future",
         "kind": "class",
         "name": "_Future",
-        "size": 3380,
+        "size": 3381,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:async::",
         "modifiers": {
@@ -4999,7 +5000,7 @@
         "id": "class/package:qr/src/qr_image.dart::QrImage",
         "kind": "class",
         "name": "QrImage",
-        "size": 2924,
+        "size": 2378,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/qr_image.dart::",
         "modifiers": {
@@ -6465,7 +6466,7 @@
         "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 13,
+        "inlinedCount": 8,
         "code": "",
         "type": "bool Function()",
         "functionKind": 2
@@ -26341,7 +26342,7 @@
         "id": "function/dart:async::_AsyncRun._initializeScheduleImmediate",
         "kind": "function",
         "name": "_initializeScheduleImmediate",
-        "size": 625,
+        "size": 626,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:async::_AsyncRun",
         "children": [
@@ -26477,7 +26478,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "ZV(a){self.scheduleImmediate(A.tR(new A.Vs(a),0))}\ns(A,\"EX\",\"ZV\",2)",
+        "code": "ZV(a){self.scheduleImmediate(A.tR(new A.Vs(a),0))}\ns(A,\"EX\",\"ZV\",3)",
         "type": "void Function(void Function())",
         "functionKind": 0
       },
@@ -26531,7 +26532,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "oA(a){self.setImmediate(A.tR(new A.Ft(a),0))}\ns(A,\"yt\",\"oA\",2)",
+        "code": "oA(a){self.setImmediate(A.tR(new A.Ft(a),0))}\ns(A,\"yt\",\"oA\",3)",
         "type": "void Function(void Function())",
         "functionKind": 0
       },
@@ -26583,7 +26584,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Bz(a){A.QN(0,a)}\ns(A,\"qW\",\"Bz\",2)",
+        "code": "Bz(a){A.QN(0,a)}\ns(A,\"qW\",\"Bz\",3)",
         "type": "void Function(void Function())",
         "functionKind": 0
       },
@@ -27293,7 +27294,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "i(a,b){if(!this.gt())throw A.b(this.P())\nthis.M(b)}\no(j=A.WV.prototype,\"ght\",\"i\",6)",
+        "code": "i(a,b){if(!this.gt())throw A.b(this.P())\nthis.M(b)}\no(j=A.WV.prototype,\"ght\",\"i\",7)",
         "type": "void Function(Object?)",
         "functionKind": 2
       },
@@ -27327,7 +27328,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "fD(a,b){var s\nif(!this.gt())throw A.b(this.P())\ns=A.ux(a,b)\nthis.y7(s.a,s.b)}\nQj(a){return this.fD(a,null)}\nn(j,\"gGj\",0,1,null,[\"$2\",\"$1\"],[\"fD\",\"Qj\"],5,0,0)",
+        "code": "fD(a,b){var s\nif(!this.gt())throw A.b(this.P())\ns=A.ux(a,b)\nthis.y7(s.a,s.b)}\nQj(a){return this.fD(a,null)}\nn(j,\"gGj\",0,1,null,[\"$2\",\"$1\"],[\"fD\",\"Qj\"],6,0,0)",
         "type": "void Function(Object,[StackTrace?])",
         "functionKind": 2
       },
@@ -30093,7 +30094,7 @@
         "id": "function/dart:async::_Future._propagateToListeners",
         "kind": "function",
         "name": "_propagateToListeners",
-        "size": 2019,
+        "size": 2020,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:async::_Future",
         "children": [
@@ -32555,7 +32556,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "i(a,b){var s=this,r=s.b\nif(r>=4)throw A.b(s.Jz())\nif((r&1)!==0)s.M(b)\nelse if((r&3)===0)s.zN().i(0,new A.LV(b))}\no(j=A.Kd.prototype,\"ght\",\"i\",6)",
+        "code": "i(a,b){var s=this,r=s.b\nif(r>=4)throw A.b(s.Jz())\nif((r&1)!==0)s.M(b)\nelse if((r&3)===0)s.zN().i(0,new A.LV(b))}\no(j=A.Kd.prototype,\"ght\",\"i\",7)",
         "type": "void Function(Object?)",
         "functionKind": 2
       },
@@ -32589,7 +32590,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "fD(a,b){var s,r,q=this\nif(q.b>=4)throw A.b(q.Jz())\ns=A.ux(a,b)\na=s.a\nb=s.b\nr=q.b\nif((r&1)!==0)q.y7(a,b)\nelse if((r&3)===0)q.zN().i(0,new A.WG(a,b))}\nQj(a){return this.fD(a,null)}\nn(j,\"gGj\",0,1,null,[\"$2\",\"$1\"],[\"fD\",\"Qj\"],5,0,0)",
+        "code": "fD(a,b){var s,r,q=this\nif(q.b>=4)throw A.b(q.Jz())\ns=A.ux(a,b)\na=s.a\nb=s.b\nr=q.b\nif((r&1)!==0)q.y7(a,b)\nelse if((r&3)===0)q.zN().i(0,new A.WG(a,b))}\nQj(a){return this.fD(a,null)}\nn(j,\"gGj\",0,1,null,[\"$2\",\"$1\"],[\"fD\",\"Qj\"],6,0,0)",
         "type": "void Function(Object,[StackTrace?])",
         "functionKind": 2
       },
@@ -33904,7 +33905,7 @@
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 0,
-        "code": "tC(a){return a!=null}\ns(A,\"XJ\",\"tC\",33)",
+        "code": "tC(a){return a!=null}\ns(A,\"XJ\",\"tC\",34)",
         "type": "bool Function(Object?)",
         "functionKind": 0
       },
@@ -40173,7 +40174,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "zg(a){var s=a.target\nthis.as=B.Nm.XG(B.TZ,new A.Wx(s==null?A.AN(s):s))\nthis.T()}\nk(j,\"gV3\",\"zg\",1)",
+        "code": "zg(a){var s=a.target\nthis.as=B.Nm.XG(B.TZ,new A.Wx(s==null?A.AN(s):s))\nthis.T()}\nk(j,\"gV3\",\"zg\",2)",
         "type": "void Function(JSObject)",
         "functionKind": 2
       },
@@ -40231,7 +40232,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "AS(a){var s=this,r=a.target\nif(r==null)r=A.AN(r)\ns.z=A.QA(r.dataset.type_value)\ns.Q=!1\ns.w.checked=!1\ns.T()}\nk(j=A.q9.prototype,\"gHk\",\"AS\",1)",
+        "code": "AS(a){var s=this,r=a.target\nif(r==null)r=A.AN(r)\ns.z=A.QA(r.dataset.type_value)\ns.Q=!1\ns.w.checked=!1\ns.T()}\nk(j=A.q9.prototype,\"gHk\",\"AS\",2)",
         "type": "void Function(JSObject)",
         "functionKind": 2
       },
@@ -40260,7 +40261,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "dF(a){var s,r=this\nr.ay=!1\ns=r.a\ns.hidden=r.ax!==B.JB\nr.c.hidden=r.ax!==B.cV\nr.d.hidden=r.ax!==B.bA\nif(r.ax===B.JB){r.b.clearRect(0,0,s.width,s.height)\nr.cB()}}\nk(j,\"gU\",\"dF\",25)",
+        "code": "dF(a){var s,r=this\nr.ay=!1\ns=r.a\ns.hidden=r.ax!==B.JB\nr.c.hidden=r.ax!==B.cV\nr.d.hidden=r.ax!==B.bA\nif(r.ax===B.JB){r.b.clearRect(0,0,s.width,s.height)\nr.cB()}}\nk(j,\"gU\",\"dF\",27)",
         "type": "void Function(num)",
         "functionKind": 2
       },
@@ -40537,7 +40538,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "w8(a){return A.xG(a)}\ns(A,\"wr\",\"w8\",24)",
+        "code": "w8(a){return A.xG(a)}\ns(A,\"wr\",\"w8\",25)",
         "type": "Future<List<bool>?> Function(_Config)",
         "functionKind": 0
       },
@@ -42279,7 +42280,7 @@
         "id": "function/package:qr/src/qr_image.dart::QrImage._applyMask",
         "kind": "function",
         "name": "_applyMask",
-        "size": 696,
+        "size": 161,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/qr_image.dart::QrImage",
         "children": [],
@@ -42305,7 +42306,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "PT(a2,a3){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0=this.a,a1=a0-1\nfor(s=7===a2,r=6===a2,q=5===a2,p=4===a2,o=3===a2,n=2===a2,m=1===a2,l=0===a2,k=this.e,j=k.$flags|0,i=a1,h=-1;i>0;i-=2){if(i===6)--i\nfor(;;){for(g=a1*a0,f=(a1&1)===0,e=0;e<2;++e){d=i-e\nc=g+d\nif(a3[c]===0){A:{if(l){b=(a1+d&1)===0\nbreak A}if(m){b=f\nbreak A}if(n){b=B.jn.Y(d,3)===0\nbreak A}if(o){b=B.jn.Y(a1+d,3)===0\nbreak A}if(p){b=(B.jn.K(a1,2)+B.jn.K(d,3)&1)===0\nbreak A}if(q){b=a1*d\nb=B.jn.Y(b,2)+B.jn.Y(b,3)===0\nbreak A}if(r){b=a1*d\nb=(B.jn.Y(b,2)+B.jn.Y(b,3)&1)===0\nbreak A}if(s){b=(B.jn.Y(a1*d,3)+B.jn.Y(a1+d,2)&1)===0\nbreak A}b=!1\nbreak A}if(b){b=k[c]\nj&2&&A.cW(k)\nk[c]=b^3}}}a1+=h\nif(a1<0||a0<=a1){a1-=h\na=-h\nh=a\nbreak}}}}",
+        "code": "PT(a,b){var s,r,q,p,o,n,m,l=A.PD(a)\nfor(s=this.a,r=this.e,q=r.$flags|0,p=0,o=0;o<s;++o)for(n=0;n<s;++n,++p)if(b[p]===0&&l.$2(o,n)){m=r[p]\nq&2&&A.cW(r)\nr[p]=m^3}}",
         "type": "void Function(int,Uint8List)",
         "functionKind": 2
       },
@@ -42313,7 +42314,7 @@
         "id": "function/package:qr/src/qr_image.dart::QrImage._mapData",
         "kind": "function",
         "name": "_mapData",
-        "size": 311,
+        "size": 300,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/qr_image.dart::QrImage",
         "children": [],
@@ -42334,7 +42335,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "NQ(a){var s,r,q,p,o,n,m,l,k,j,i,h,g=this.a,f=g-1\nfor(s=this.e,r=a.length,q=f,p=-1,o=7,n=0;q>0;q-=2){if(q===6)--q\nfor(;;){for(m=f*g,l=0;l<2;++l){k=m+(q-l)\nif(s[k]===0){j=n<r&&(B.jn.bf(a[n],o)&1)===1\nA:{break A}i=j?2:1\ns.$flags&2&&A.cW(s)\ns[k]=i;--o\nif(o===-1){++n\no=7}}}f+=p\nif(f<0||g<=f){f-=p\nh=-p\np=h\nbreak}}}}",
+        "code": "NQ(a){var s,r,q,p,o,n,m,l,k,j,i,h,g=this.a,f=g-1\nfor(s=this.e,r=a.length,q=f,p=-1,o=7,n=0;q>0;q-=2){if(q===6)--q\nfor(;;){for(m=f*g,l=0;l<2;++l){k=m+(q-l)\nif(s[k]===0){j=n<r&&(B.jn.bf(a[n],o)&1)===1\ni=j?2:1\ns.$flags&2&&A.cW(s)\ns[k]=i;--o\nif(o===-1){++n\no=7}}}f+=p\nif(f<0||g<=f){f-=p\nh=-p\np=h\nbreak}}}}",
         "type": "void Function(List<int>,[int?])",
         "functionKind": 2
       },
@@ -42574,6 +42575,316 @@
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 1,
         "code": "",
+        "type": "bool Function(int,int)",
+        "functionKind": 2
+      },
+      "package:qr/src/qr_image.dart::_getMaskFunction": {
+        "id": "function/package:qr/src/qr_image.dart::_getMaskFunction",
+        "kind": "function",
+        "name": "_getMaskFunction",
+        "size": 1012,
+        "outputUnit": "outputUnit/main",
+        "parent": "library/package:qr/src/qr_image.dart::",
+        "children": [
+          "closure/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure",
+          "closure/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure%0",
+          "closure/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure%1",
+          "closure/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure%2",
+          "closure/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure%3",
+          "closure/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure%4",
+          "closure/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure%5",
+          "closure/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure%6"
+        ],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "bool Function(int,int)",
+        "inferredReturnType": "[subtype=Function|powerset={IN}{O}{N}]",
+        "parameters": [
+          {
+            "name": "maskPattern",
+            "type": "[subclass=JSPositiveInt|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          }
+        ],
+        "sideEffects": "SideEffects(reads nothing; writes nothing)",
+        "inlinedCount": 0,
+        "code": "PD(a){var s\nA:{if(0===a){s=new A.DG()\nbreak A}if(1===a){s=new A.eO()\nbreak A}if(2===a){s=new A.wx()\nbreak A}if(3===a){s=new A.km()\nbreak A}if(4===a){s=new A.qC()\nbreak A}if(5===a){s=new A.Um()\nbreak A}if(6===a){s=new A.Ct()\nbreak A}if(7===a){s=new A.lM()\nbreak A}s=A.vh(A.L3(a,\"maskPattern\",\"Invalid mask pattern\"))}return s}",
+        "type": "bool Function(int,int) Function(int)",
+        "functionKind": 0
+      },
+      "package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call": {
+        "id": "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call",
+        "kind": "function",
+        "name": "call",
+        "size": 26,
+        "outputUnit": "outputUnit/main",
+        "parent": "closure/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "bool",
+        "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
+        "parameters": [
+          {
+            "name": "r",
+            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          },
+          {
+            "name": "c",
+            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          }
+        ],
+        "sideEffects": "SideEffects(reads nothing; writes nothing)",
+        "inlinedCount": 0,
+        "code": "$2(a,b){return(a+b&1)===0}",
+        "type": "bool Function(int,int)",
+        "functionKind": 2
+      },
+      "package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%0": {
+        "id": "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%0",
+        "kind": "function",
+        "name": "call",
+        "size": 24,
+        "outputUnit": "outputUnit/main",
+        "parent": "closure/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure%0",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "bool",
+        "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
+        "parameters": [
+          {
+            "name": "r",
+            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          },
+          {
+            "name": "c",
+            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          }
+        ],
+        "sideEffects": "SideEffects(reads nothing; writes nothing)",
+        "inlinedCount": 0,
+        "code": "$2(a,b){return(a&1)===0}",
+        "type": "bool Function(int,int)",
+        "functionKind": 2
+      },
+      "package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%1": {
+        "id": "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%1",
+        "kind": "function",
+        "name": "call",
+        "size": 31,
+        "outputUnit": "outputUnit/main",
+        "parent": "closure/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure%1",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "bool",
+        "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
+        "parameters": [
+          {
+            "name": "r",
+            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          },
+          {
+            "name": "c",
+            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          }
+        ],
+        "sideEffects": "SideEffects(reads nothing; writes nothing)",
+        "inlinedCount": 0,
+        "code": "$2(a,b){return B.jn.Y(b,3)===0}",
+        "type": "bool Function(int,int)",
+        "functionKind": 2
+      },
+      "package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%2": {
+        "id": "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%2",
+        "kind": "function",
+        "name": "call",
+        "size": 33,
+        "outputUnit": "outputUnit/main",
+        "parent": "closure/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure%2",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "bool",
+        "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
+        "parameters": [
+          {
+            "name": "r",
+            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          },
+          {
+            "name": "c",
+            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          }
+        ],
+        "sideEffects": "SideEffects(reads nothing; writes nothing)",
+        "inlinedCount": 0,
+        "code": "$2(a,b){return B.jn.Y(a+b,3)===0}",
+        "type": "bool Function(int,int)",
+        "functionKind": 2
+      },
+      "package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%3": {
+        "id": "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%3",
+        "kind": "function",
+        "name": "call",
+        "size": 46,
+        "outputUnit": "outputUnit/main",
+        "parent": "closure/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure%3",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "bool",
+        "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
+        "parameters": [
+          {
+            "name": "r",
+            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          },
+          {
+            "name": "c",
+            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "$2(a,b){return(B.jn.K(a,2)+B.jn.K(b,3)&1)===0}",
+        "type": "bool Function(int,int)",
+        "functionKind": 2
+      },
+      "package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%4": {
+        "id": "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%4",
+        "kind": "function",
+        "name": "call",
+        "size": 53,
+        "outputUnit": "outputUnit/main",
+        "parent": "closure/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure%4",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "bool",
+        "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
+        "parameters": [
+          {
+            "name": "r",
+            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          },
+          {
+            "name": "c",
+            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          }
+        ],
+        "sideEffects": "SideEffects(reads nothing; writes nothing)",
+        "inlinedCount": 0,
+        "code": "$2(a,b){var s=a*b\nreturn B.jn.Y(s,2)+B.jn.Y(s,3)===0}",
+        "type": "bool Function(int,int)",
+        "functionKind": 2
+      },
+      "package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%5": {
+        "id": "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%5",
+        "kind": "function",
+        "name": "call",
+        "size": 56,
+        "outputUnit": "outputUnit/main",
+        "parent": "closure/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure%5",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "bool",
+        "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
+        "parameters": [
+          {
+            "name": "r",
+            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          },
+          {
+            "name": "c",
+            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          }
+        ],
+        "sideEffects": "SideEffects(reads nothing; writes nothing)",
+        "inlinedCount": 0,
+        "code": "$2(a,b){var s=a*b\nreturn(B.jn.Y(s,2)+B.jn.Y(s,3)&1)===0}",
+        "type": "bool Function(int,int)",
+        "functionKind": 2
+      },
+      "package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%6": {
+        "id": "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%6",
+        "kind": "function",
+        "name": "call",
+        "size": 50,
+        "outputUnit": "outputUnit/main",
+        "parent": "closure/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure%6",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "bool",
+        "inferredReturnType": "[exact=JSBool|powerset={I}{O}{N}]",
+        "parameters": [
+          {
+            "name": "r",
+            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          },
+          {
+            "name": "c",
+            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          }
+        ],
+        "sideEffects": "SideEffects(reads nothing; writes nothing)",
+        "inlinedCount": 0,
+        "code": "$2(a,b){return(B.jn.Y(a*b,3)+B.jn.Y(a+b,2)&1)===0}",
         "type": "bool Function(int,int)",
         "functionKind": 2
       },
@@ -43303,7 +43614,7 @@
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 0,
-        "code": "r5(a,b){return a}\nl(A,\"XA\",2,null,[\"$1$2\",\"$2\"],[\"r5\",function(a,b){return A.r5(a,b,t.z)}],34,0)",
+        "code": "r5(a,b){return a}\nl(A,\"XA\",2,null,[\"$1$2\",\"$2\"],[\"r5\",function(a,b){return A.r5(a,b,t.z)}],35,0)",
         "type": "#A Function<#A extends Object?>(#A,dynamic)",
         "functionKind": 0
       },
@@ -43332,7 +43643,7 @@
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 0,
-        "code": "MN(a){}\ns(A,\"A7\",\"MN\",3)",
+        "code": "MN(a){}\ns(A,\"A7\",\"MN\",4)",
         "type": "void Function(dynamic)",
         "functionKind": 0
       },
@@ -43371,7 +43682,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Dx(a,b,c){c.fD(a,b)}\nl(A,\"Na\",3,null,[\"$1$3\",\"$3\"],[\"Dx\",function(a,b,c){return A.Dx(a,b,c,t.z)}],35,0)",
+        "code": "Dx(a,b,c){c.fD(a,b)}\nl(A,\"Na\",3,null,[\"$1$3\",\"$3\"],[\"Dx\",function(a,b,c){return A.Dx(a,b,c,t.z)}],36,0)",
         "type": "void Function<#A extends Object?>(Object,StackTrace,EventSink<#A>)",
         "functionKind": 0
       },
@@ -49705,7 +50016,7 @@
         "id": "closure/dart:async::_AsyncRun._initializeScheduleImmediate._AsyncRun__initializeScheduleImmediate_internalCallback",
         "kind": "closure",
         "name": "_AsyncRun__initializeScheduleImmediate_internalCallback",
-        "size": 96,
+        "size": 97,
         "outputUnit": "outputUnit/main",
         "parent": "function/dart:async::_AsyncRun._initializeScheduleImmediate",
         "function": "function/dart:async::_AsyncRun._initializeScheduleImmediate._AsyncRun__initializeScheduleImmediate_internalCallback.call"
@@ -49822,7 +50133,7 @@
         "id": "closure/dart:async::_Future._propagateToListeners._Future__propagateToListeners_handleWhenCompleteCallback_closure",
         "kind": "closure",
         "name": "_Future__propagateToListeners_handleWhenCompleteCallback_closure",
-        "size": 90,
+        "size": 91,
         "outputUnit": "outputUnit/main",
         "parent": "function/dart:async::_Future._propagateToListeners",
         "function": "function/dart:async::_Future._propagateToListeners._Future__propagateToListeners_handleWhenCompleteCallback_closure.call"
@@ -50123,6 +50434,78 @@
         "outputUnit": "outputUnit/main",
         "parent": "function/package:qr/src/qr_code.dart::QrCode.fromDataAndValidation",
         "function": "function/package:qr/src/qr_code.dart::QrCode.fromDataAndValidation.QrCode_fromDataAndValidation_getRequiredBits.call"
+      },
+      "package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure": {
+        "id": "closure/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure",
+        "kind": "closure",
+        "name": "_getMaskFunction_closure",
+        "size": 72,
+        "outputUnit": "outputUnit/main",
+        "parent": "function/package:qr/src/qr_image.dart::_getMaskFunction",
+        "function": "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call"
+      },
+      "package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure%0": {
+        "id": "closure/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure%0",
+        "kind": "closure",
+        "name": "_getMaskFunction_closure",
+        "size": 70,
+        "outputUnit": "outputUnit/main",
+        "parent": "function/package:qr/src/qr_image.dart::_getMaskFunction",
+        "function": "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%0"
+      },
+      "package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure%1": {
+        "id": "closure/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure%1",
+        "kind": "closure",
+        "name": "_getMaskFunction_closure",
+        "size": 77,
+        "outputUnit": "outputUnit/main",
+        "parent": "function/package:qr/src/qr_image.dart::_getMaskFunction",
+        "function": "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%1"
+      },
+      "package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure%2": {
+        "id": "closure/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure%2",
+        "kind": "closure",
+        "name": "_getMaskFunction_closure",
+        "size": 79,
+        "outputUnit": "outputUnit/main",
+        "parent": "function/package:qr/src/qr_image.dart::_getMaskFunction",
+        "function": "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%2"
+      },
+      "package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure%3": {
+        "id": "closure/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure%3",
+        "kind": "closure",
+        "name": "_getMaskFunction_closure",
+        "size": 92,
+        "outputUnit": "outputUnit/main",
+        "parent": "function/package:qr/src/qr_image.dart::_getMaskFunction",
+        "function": "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%3"
+      },
+      "package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure%4": {
+        "id": "closure/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure%4",
+        "kind": "closure",
+        "name": "_getMaskFunction_closure",
+        "size": 99,
+        "outputUnit": "outputUnit/main",
+        "parent": "function/package:qr/src/qr_image.dart::_getMaskFunction",
+        "function": "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%4"
+      },
+      "package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure%5": {
+        "id": "closure/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure%5",
+        "kind": "closure",
+        "name": "_getMaskFunction_closure",
+        "size": 102,
+        "outputUnit": "outputUnit/main",
+        "parent": "function/package:qr/src/qr_image.dart::_getMaskFunction",
+        "function": "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%5"
+      },
+      "package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure%6": {
+        "id": "closure/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure%6",
+        "kind": "closure",
+        "name": "_getMaskFunction_closure",
+        "size": 96,
+        "outputUnit": "outputUnit/main",
+        "parent": "function/package:qr/src/qr_image.dart::_getMaskFunction",
+        "function": "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%6"
       },
       "package:stream_transform/src/aggregate_sample.dart::AggregateSample|aggregateSample.AggregateSample_aggregateSample__closure": {
         "id": "closure/package:stream_transform/src/aggregate_sample.dart::AggregateSample|aggregateSample.AggregateSample_aggregateSample__closure",
@@ -72412,20 +72795,10 @@
         "id": "field/package:qr/src/qr_image.dart::QrImage.moduleCount"
       },
       {
-        "id": "function/dart:_interceptors::JSInt.isEven",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:_interceptors::JSInt.isEven"
-      },
-      {
-        "id": "function/dart:_interceptors::JSNumber.%"
-      },
-      {
-        "id": "function/dart:_interceptors::JSNumber._tdivFast"
-      },
-      {
         "id": "function/dart:_js_helper::throwUnsupportedOperation"
+      },
+      {
+        "id": "function/package:qr/src/qr_image.dart::_getMaskFunction"
       }
     ],
     "function/package:qr/src/qr_image.dart::QrImage._mapData": [
@@ -72434,13 +72807,6 @@
       },
       {
         "id": "field/package:qr/src/qr_image.dart::QrImage.moduleCount"
-      },
-      {
-        "id": "function/dart:_interceptors::JSInt.isEven",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/dart:_interceptors::JSInt.isEven"
       },
       {
         "id": "function/dart:_interceptors::JSNumber._shrReceiverPositive"
@@ -72602,6 +72968,110 @@
       },
       {
         "id": "function/package:qr/src/util.dart::bchTypeNumber"
+      }
+    ],
+    "function/package:qr/src/qr_image.dart::_getMaskFunction": [
+      {
+        "id": "function/dart:_js_helper::throwExpression"
+      },
+      {
+        "id": "function/dart:_rti::_setArrayType"
+      },
+      {
+        "id": "function/dart:core::ArgumentError.ArgumentError.value"
+      },
+      {
+        "id": "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call"
+      },
+      {
+        "id": "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%0"
+      },
+      {
+        "id": "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%1"
+      },
+      {
+        "id": "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%2"
+      },
+      {
+        "id": "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%3"
+      },
+      {
+        "id": "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%4"
+      },
+      {
+        "id": "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%5"
+      },
+      {
+        "id": "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%6"
+      }
+    ],
+    "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call": [
+      {
+        "id": "function/dart:_interceptors::JSInt.isEven",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_interceptors::JSInt.isEven"
+      }
+    ],
+    "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%0": [
+      {
+        "id": "function/dart:_interceptors::JSInt.isEven",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_interceptors::JSInt.isEven"
+      }
+    ],
+    "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%1": [
+      {
+        "id": "function/dart:_interceptors::JSNumber.%"
+      }
+    ],
+    "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%2": [
+      {
+        "id": "function/dart:_interceptors::JSNumber.%"
+      }
+    ],
+    "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%3": [
+      {
+        "id": "function/dart:_interceptors::JSInt.isEven",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_interceptors::JSInt.isEven"
+      },
+      {
+        "id": "function/dart:_interceptors::JSNumber._tdivFast"
+      }
+    ],
+    "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%4": [
+      {
+        "id": "function/dart:_interceptors::JSNumber.%"
+      }
+    ],
+    "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%5": [
+      {
+        "id": "function/dart:_interceptors::JSInt.isEven",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_interceptors::JSInt.isEven"
+      },
+      {
+        "id": "function/dart:_interceptors::JSNumber.%"
+      }
+    ],
+    "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%6": [
+      {
+        "id": "function/dart:_interceptors::JSInt.isEven",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_interceptors::JSInt.isEven"
+      },
+      {
+        "id": "function/dart:_interceptors::JSNumber.%"
       }
     ],
     "function/package:qr/src/qr_image.dart::_lostPoint": [
@@ -73437,7 +73907,7 @@
       "id": "outputUnit/main",
       "kind": "outputUnit",
       "name": "main",
-      "size": 130130,
+      "size": 130644,
       "filename": "main.dart2js.js",
       "imports": []
     }
