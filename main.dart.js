@@ -19,10 +19,13 @@ const forceJS = (() => {
 })();
 if (!forceJS && (WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,0,0,1,5,1,95,1,120,0])))) {
 
+function loadDeferredModules(modules, handleWasmBytes) {
+  return Promise.all(modules.map((m) => fetch(relativeURL(`./${m}`)).then((b) => handleWasmBytes(m, b))));
+}
 let { compileStreaming } = await import(relativeURL("./main.mjs"));
 
 let app = await compileStreaming(fetch(relativeURL("main.wasm")));
-let module = await app.instantiate({});
+let module = await app.instantiate({}, {loadDeferredModules: loadDeferredModules});
 module.invokeMain();
 
 } else {
