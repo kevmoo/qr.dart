@@ -12,7 +12,7 @@ import 'payload.dart';
 import 'polynomial.dart';
 import 'rs_block.dart';
 
-class QrCode {
+final class QrCode {
   final int typeNumber;
   final QrErrorCorrectLevel errorCorrectLevel;
   final int moduleCount;

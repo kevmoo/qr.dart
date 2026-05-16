@@ -7,7 +7,7 @@ import 'qr_code.dart';
 import 'util.dart' as qr_util;
 
 /// Renders the encoded data from a [QrCode] in a portable format.
-class QrImage {
+final class QrImage {
   static const _pixelUnassigned = 0;
   static const _pixelLight = 1;
   static const _pixelDark = 2;

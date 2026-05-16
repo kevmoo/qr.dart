@@ -1,11 +1,11 @@
 package:qr/qr.dart:
-  InputTooLongException (class extends Object implements Exception):
+  InputTooLongException (class extends Object implements Exception, final):
     new (constructor: InputTooLongException Function(int, int))
     inputLimit (getter: int)
     message (getter: String)
     providedInput (getter: int)
     toString (method: String Function())
-  QrCode (class extends Object):
+  QrCode (class extends Object, final):
     new (constructor: QrCode Function({QrErrorCorrectLevel errorCorrectLevel, int minTypeNumber, required QrPayload payload}))
     errorCorrectLevel (getter: QrErrorCorrectLevel)
     moduleCount (getter: int)
@@ -48,7 +48,7 @@ package:qr/qr.dart:
     quartile (static getter: QrErrorCorrectLevel)
     values (static getter: List<QrErrorCorrectLevel>)
     recoveryRate (getter: int)
-  QrImage (class extends Object):
+  QrImage (class extends Object, final):
     new (constructor: QrImage Function(QrCode))
     withMaskPattern (constructor: QrImage Function(QrCode, int))
     errorCorrectLevel (getter: QrErrorCorrectLevel)
@@ -57,7 +57,7 @@ package:qr/qr.dart:
     qrModules (getter: List<List<bool?>>)
     typeNumber (getter: int)
     isDark (method: bool Function(int, int))
-  QrPayload (class extends Object):
+  QrPayload (class extends Object, final):
     new (constructor: QrPayload Function())
     fromString (constructor: QrPayload Function(String))
     fromTypedData (constructor: QrPayload Function(TypedData))

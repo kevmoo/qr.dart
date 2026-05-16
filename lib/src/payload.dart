@@ -11,7 +11,7 @@ import 'ecivalue.dart';
 ///
 /// Manages segments of data (Numeric, Alphanumeric, Byte, ECI) independently of
 /// QR code version or error correction level.
-class QrPayload {
+final class QrPayload {
   final _dataList = <QrDatum>[];
 
   /// Creates an empty payload.

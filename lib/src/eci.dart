@@ -6,7 +6,7 @@ import 'mode.dart';
 /// Extended Channel Interpretation (ECI) mode data.
 ///
 /// Use this to specify a different character encoding for the following data.
-class QrEci implements QrDatum {
+final class QrEci implements QrDatum {
   final int value;
 
   factory QrEci(int value) {

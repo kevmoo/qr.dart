@@ -6,11 +6,13 @@
 - **Breaking Change**: Removed `dataCache` getter from `QrCode`.
 - **Breaking Change**: `QrCode` is now immutable. Removed `addData`, `addByteData`, `addNumeric`, `addAlphaNumeric`, and `addECI` from `QrCode`.
 - **Breaking Change**: Consolidated `QrCode` constructors into a single public factory constructor taking `QrPayload`, `errorCorrectLevel`, and an optional `minTypeNumber`. Removed `QrCode.fromData`, `QrCode.fromUint8List`, and `QrCode.fromPayload`.
-- Added `QrPayload` class as a standalone accumulator for multi-part data and encoding modes (Numeric, Alphanumeric, Byte, ECI).
+- **Breaking Change**: Replaced `Uint8List` and `ByteData` in public API signatures with `TypedData`.
+- **Breaking Change**: Marked all public classes (`QrCode`, `QrImage`, `QrPayload`, `QrValidationResult`, `InputTooLongException`) as `final class` to enforce structural immutability and prevent external subtyping.
+- Added `QrPayload` class as a standalone accumulator for multi-part data and encoding modes (Numeric, Alphanumeric, Byte, ECI). Includes constructors `fromString`, `fromTypedData`, and methods `addString`, `addTypedData`, `addNumeric`, `addAlphaNumeric`, `addECI`.
 - Added Extended Channel Interpretation (ECI) support via `QrPayload.addECI` and the `QrEciValue` extension type.
 - Added `QrValidationResult.fromPayload` factory constructor to validate QR code payloads and predict valid configurations.
 - Added `QrValidationResult` class returned by validation constructor.
-- `QrPayload.fromData` and `QrPayload.addData` now intelligently pick the right mode.
+- `QrPayload.fromString` and `QrPayload.addString` now intelligently pick the right mode.
 - Throws `InputTooLongException` for data that exceeds QR code version 40 capacity, preventing the generation of invalid QR codes.
 - Performance improvements for QR code generation.
   - `QrImage` generation is ~50% faster.
