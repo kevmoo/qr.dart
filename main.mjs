@@ -92,25 +92,28 @@ class CompiledApp {
 
     // Imports
     const dart2wasm = {
-            AB: (x0,x1) => { x0.type = x1 },
-      AC: Function.prototype.call.bind(DataView.prototype.getUint16),
-      AD: (b, o) => new DataView(b, o),
+            AB: () => globalThis.window,
+      AC: () => globalThis.document,
+      AD: o => o instanceof Uint8ClampedArray,
       B: s => printToConsole(s),
-      BB: (x0,x1) => { x0.fillStyle = x1 },
-      BC: Function.prototype.call.bind(DataView.prototype.setInt16),
-      BD: (b, o, l) => new DataView(b, o, l),
-      C: Function.prototype.call.bind(Number.prototype.toString),
-      CB: s => s.trim(),
-      CC: (o, start, length) => new Int16Array(o.buffer, o.byteOffset + start, length),
-      CD: o => o.byteOffset,
-      D: Function.prototype.call.bind(BigInt.prototype.toString),
-      DB: (x0,x1) => x0.getContext(x1),
-      DC: Function.prototype.call.bind(DataView.prototype.getInt16),
-      DD: o => {
+      BB: b => !!b,
+      BC: (x0,x1) => { x0.checked = x1 },
+      BD: o => {
         if (o === null || o === undefined) return 0;
-        if (o instanceof Float64Array) return 1;
+        if (o instanceof Uint8Array) return 1;
         return 2;
       },
+      C: Function.prototype.call.bind(Number.prototype.toString),
+      CB: (x0,x1) => { x0.disabled = x1 },
+      CC: (x0,x1,x2,x3) => x0.addEventListener(x1,x2,x3),
+      CD: o => {
+        if (o === null || o === undefined) return 0;
+        if (o instanceof Int8Array) return 1;
+        return 2;
+      },
+      D: Function.prototype.call.bind(BigInt.prototype.toString),
+      DB: (x0,x1) => { x0.innerText = x1 },
+      DC: (module,f) => finalizeWrapper(f, function(x0) { return module.exports.F(f,arguments.length,x0) }),
       E: (exn) => {
         let stackString = exn.toString();
         let frames = stackString.split('\n');
@@ -120,41 +123,23 @@ class CompiledApp {
         }
         return frames.slice(drop).join('\n');
       },
-      EB: x0 => x0.checked,
-      EC: (o, start, length) => new Uint8ClampedArray(o.buffer, o.byteOffset + start, length),
-      ED: o => {
-        if (o === null || o === undefined) return 0;
-        if (o instanceof Float32Array) return 1;
-        return 2;
-      },
+      EB: (x0,x1) => { x0.color = x1 },
+      EC: x0 => x0.random(),
       F: () => new Error().stack,
-      FB: () => globalThis.document,
-      FC: Function.prototype.call.bind(DataView.prototype.getUint8),
-      FD: o => {
-        if (o === null || o === undefined) return 0;
-        if (o instanceof Uint32Array) return 1;
-        return 2;
-      },
+      FB: (x0,x1) => { x0.background = x1 },
+      FC: () => globalThis.Math,
       G: s => JSON.stringify(s),
-      GB: (module,f) => finalizeWrapper(f, function(x0) { return module.exports.D(f,arguments.length,x0) }),
-      GC: Function.prototype.call.bind(DataView.prototype.setInt8),
-      GD: o => {
-        if (o === null || o === undefined) return 0;
-        if (o instanceof Int32Array) return 1;
-        return 2;
-      },
+      GB: x0 => x0.style,
+      GC: (x0,x1) => { x0.fillStyle = x1 },
       H: Function.prototype.call.bind(Number.prototype.toString),
-      HB: (x0,x1) => x0.requestAnimationFrame(x1),
-      HC: (o, start, length) => new Int8Array(o.buffer, o.byteOffset + start, length),
-      HD: o => o instanceof Uint16Array,
+      HB: (l, r) => l === r,
+      HC: (x0,x1) => x0.getContext(x1),
       I: Function.prototype.call.bind(String.prototype.indexOf),
-      IB: (x0,x1,x2,x3,x4) => x0.clearRect(x1,x2,x3,x4),
-      IC: Function.prototype.call.bind(DataView.prototype.getInt8),
-      ID: o => o instanceof Int16Array,
+      IB: (x0,x1) => { x0.hidden = x1 },
+      IC: x0 => x0.checked,
       J: (s, p, i) => s.lastIndexOf(p, i),
-      JB: x0 => x0.save(),
-      JC: o => o.length,
-      JD: o => o instanceof Uint8ClampedArray,
+      JB: (x0,x1) => x0.querySelector(x1),
+      JC: x0 => x0.toDataURL(),
       K: (exn) => {
         if (exn instanceof Error) {
           return exn.stack;
@@ -162,16 +147,170 @@ class CompiledApp {
           return null;
         }
       },
-      KB: o => o,
-      KC: (o, i) => o[i],
-      KD: o => {
-        if (o === null || o === undefined) return 0;
-        if (o instanceof Uint8Array) return 1;
+      KB: (x0,x1,x2) => x0.toggle(x1,x2),
+      KC: x0 => x0.click(),
+      L: o => o === undefined,
+      LB: o => {
+        if (o === undefined || o === null) return 0;
+        if (typeof o === 'boolean') return 1;
         return 2;
       },
-      L: o => o === undefined,
-      LB: (x0,x1,x2,x3,x4) => x0.fillRect(x1,x2,x3,x4),
-      LC: o => {
+      LC: (x0,x1) => { x0.download = x1 },
+      M: o => String(o),
+      MB: x0 => x0.classList,
+      MC: (x0,x1) => { x0.href = x1 },
+      N: (x0,x1) => x0.createElement(x1),
+      NB: Function.prototype.call.bind(DataView.prototype.setUint8),
+      NC: (module,f) => finalizeWrapper(f, function(x0) { return module.exports.G(f,arguments.length,x0) }),
+      O: (x0,x1) => x0.appendChild(x1),
+      OB: Function.prototype.call.bind(DataView.prototype.setFloat64),
+      OC: (x0,x1) => x0.toBlob(x1),
+      P: x0 => x0.focus(),
+      PB: Function.prototype.call.bind(DataView.prototype.setFloat32),
+      PC: x0 => new ClipboardItem(x0),
+      Q: (x0,x1) => x0.getElementById(x1),
+      QB: (t, s) => t.set(s),
+      QC: (x0,x1) => x0.write(x1),
+      R: (module,f) => finalizeWrapper(f, function(x0) { return module.exports.C(f,arguments.length,x0) }),
+      RB: (o, start, length) => new Float64Array(o.buffer, o.byteOffset + start, length),
+      RC: x0 => new Array(x0),
+      S: (x0,x1) => x0.requestAnimationFrame(x1),
+      SB: (o, start, length) => new Float32Array(o.buffer, o.byteOffset + start, length),
+      SC: o => [o],
+      T: o => o,
+      TB: (o, start, length) => new Int32Array(o.buffer, o.byteOffset + start, length),
+      TC: (o0, o1) => [o0, o1],
+      U: o => {
+        if (o === undefined || o === null) return 0;
+        if (typeof o === 'number') return 1;
+        return 2;
+      },
+      UB: (o, start, length) => new Uint32Array(o.buffer, o.byteOffset + start, length),
+      UC: (o0, o1, o2) => [o0, o1, o2],
+      V: (x0,x1,x2,x3,x4) => x0.clearRect(x1,x2,x3,x4),
+      VB: (o, start, length) => new Int16Array(o.buffer, o.byteOffset + start, length),
+      VC: (o0, o1, o2, o3) => [o0, o1, o2, o3],
+      W: x0 => x0.save(),
+      WB: (o, start, length) => new Uint16Array(o.buffer, o.byteOffset + start, length),
+      WC: (x0,x1,x2) => { x0[x1] = x2 },
+      X: o => o,
+      XB: (o, start, length) => new Uint8ClampedArray(o.buffer, o.byteOffset + start, length),
+      XC: x0 => x0.clipboard,
+      Y: (x0,x1,x2,x3,x4) => x0.fillRect(x1,x2,x3,x4),
+      YB: (o, start, length) => new Int8Array(o.buffer, o.byteOffset + start, length),
+      YC: x0 => x0.navigator,
+      Z: x0 => x0.beginPath(),
+      ZB: (o, start, length) => new Uint8Array(o.buffer, o.byteOffset + start, length),
+      ZC: () => ({}),
+      a: (x0,x1,x2,x3,x4) => x0.rect(x1,x2,x3,x4),
+      aB: Function.prototype.call.bind(DataView.prototype.setInt32),
+      aC: (o, p, v) => o[p] = v,
+      b: x0 => x0.fill(),
+      bB: Function.prototype.call.bind(DataView.prototype.setUint32),
+      bC: () => [],
+      c: x0 => x0.restore(),
+      cB: Function.prototype.call.bind(DataView.prototype.setInt16),
+      cC: (a, i) => a.push(i),
+      d: (x0,x1,x2,x3,x4,x5,x6) => x0.setTransform(x1,x2,x3,x4,x5,x6),
+      dB: Function.prototype.call.bind(DataView.prototype.setUint16),
+      dC: x0 => new Int8Array(x0),
+      e: x0 => x0.height,
+      eB: Function.prototype.call.bind(DataView.prototype.setInt8),
+      eC: x0 => new Uint8Array(x0),
+      f: x0 => x0.width,
+      fB: o => o.buffer,
+      fC: (jsArray, jsArrayOffset, wasmArray, wasmArrayOffset, length) => {
+        const getValue = dartInstance.exports.$wasmI8ArrayGet;
+        for (let i = 0; i < length; i++) {
+          jsArray[jsArrayOffset + i] = getValue(wasmArray, wasmArrayOffset + i);
+        }
+      },
+      g: o => o,
+      gB: (jsArray, jsArrayOffset, wasmArray, wasmArrayOffset, length) => {
+        const setValue = dartInstance.exports.$wasmI8ArraySet;
+        for (let i = 0; i < length; i++) {
+          setValue(wasmArray, wasmArrayOffset + i, jsArray[jsArrayOffset + i]);
+        }
+      },
+      gC: x0 => new Uint8ClampedArray(x0),
+      h: o => typeof o === 'function' && o[jsWrappedDartFunctionSymbol] === true,
+      hB: x0 => x0.flags,
+      hC: x0 => new Int16Array(x0),
+      i: f => f.dartFunction,
+      iB: (s, m) => {
+        try {
+          return new RegExp(s, m);
+        } catch (e) {
+          return String(e);
+        }
+      },
+      iC: x0 => new Uint16Array(x0),
+      j: (module,f) => finalizeWrapper(f, function(x0) { return module.exports.D(f,arguments.length,x0) }),
+      jB: o => o instanceof RegExp,
+      jC: x0 => new Int32Array(x0),
+      k: (module,f) => finalizeWrapper(f, function(x0,x1) { return module.exports.E(f,arguments.length,x0,x1) }),
+      kB: (x0,x1) => x0.test(x1),
+      kC: x0 => new Uint32Array(x0),
+      l: (p, s, f) => p.then(s, (e) => f(e, e === undefined)),
+      lB: s => s.trim(),
+      lC: x0 => new Float32Array(x0),
+      m: (c) =>
+      queueMicrotask(() => dartInstance.exports.$invokeCallback(c)),
+      mB: x0 => x0.value,
+      mC: x0 => new Float64Array(x0),
+      n: Function.prototype.call.bind(Object.getOwnPropertyDescriptor(DataView.prototype, 'byteLength').get),
+      nB: (x0,x1) => { x0.title = x1 },
+      nC: x0 => new ArrayBuffer(x0),
+      o: (o) => new DataView(o.buffer, o.byteOffset, o.byteLength),
+      oB: s => s.toUpperCase(),
+      oC: (x0,x1,x2) => new Uint8Array(x0,x1,x2),
+      p: Function.prototype.call.bind(DataView.prototype.getFloat64),
+      pB: Object.is,
+      pC: (x0,x1,x2) => new DataView(x0,x1,x2),
+      q: Function.prototype.call.bind(DataView.prototype.getFloat32),
+      qB: x0 => x0.target,
+      qC: (o, p) => o[p],
+      r: Function.prototype.call.bind(DataView.prototype.getUint32),
+      rB: (x0,x1) => x0[x1],
+      rC: (b, o) => new DataView(b, o),
+      s: Function.prototype.call.bind(DataView.prototype.getInt32),
+      sB: (x0,x1) => { x0.htmlFor = x1 },
+      sC: (b, o, l) => new DataView(b, o, l),
+      t: Function.prototype.call.bind(DataView.prototype.getUint16),
+      tB: x0 => x0.id,
+      tC: o => o.byteOffset,
+      u: Function.prototype.call.bind(DataView.prototype.getInt16),
+      uB: (x0,x1) => { x0.innerHTML = x1 },
+      uC: o => {
+        if (o === null || o === undefined) return 0;
+        if (o instanceof Float64Array) return 1;
+        return 2;
+      },
+      v: Function.prototype.call.bind(DataView.prototype.getUint8),
+      vB: (x0,x1,x2) => { x0[x1] = x2 },
+      vC: o => {
+        if (o === null || o === undefined) return 0;
+        if (o instanceof Float32Array) return 1;
+        return 2;
+      },
+      w: Function.prototype.call.bind(DataView.prototype.getInt8),
+      wB: x0 => x0.dataset,
+      wC: o => {
+        if (o === null || o === undefined) return 0;
+        if (o instanceof Uint32Array) return 1;
+        return 2;
+      },
+      x: o => o.length,
+      xB: (x0,x1) => { x0.name = x1 },
+      xC: o => {
+        if (o === null || o === undefined) return 0;
+        if (o instanceof Int32Array) return 1;
+        return 2;
+      },
+      y: (o, i) => o[i],
+      yB: (x0,x1) => { x0.id = x1 },
+      yC: o => o instanceof Uint16Array,
+      z: o => {
         if (o === undefined) return 1;
         var type = typeof o;
         if (type === 'boolean') return 2;
@@ -199,156 +338,8 @@ class CompiledApp {
         if (o instanceof Promise) return 18;
         return 19;
       },
-      LD: o => {
-        if (o === null || o === undefined) return 0;
-        if (o instanceof Int8Array) return 1;
-        return 2;
-      },
-      M: o => String(o),
-      MB: x0 => x0.beginPath(),
-      MC: () => globalThis.window,
-      N: (x0,x1) => x0.querySelector(x1),
-      NB: (x0,x1,x2,x3,x4) => x0.rect(x1,x2,x3,x4),
-      NC: (x0,x1) => { x0.disabled = x1 },
-      O: x0 => x0.focus(),
-      OB: x0 => x0.fill(),
-      OC: (x0,x1) => { x0.innerText = x1 },
-      P: (x0,x1) => x0.getElementById(x1),
-      PB: x0 => x0.restore(),
-      PC: (x0,x1) => { x0.color = x1 },
-      Q: (l, r) => l === r,
-      QB: (x0,x1,x2,x3,x4,x5,x6) => x0.setTransform(x1,x2,x3,x4,x5,x6),
-      QC: (x0,x1) => { x0.background = x1 },
-      R: b => !!b,
-      RB: x0 => x0.height,
-      RC: x0 => x0.style,
-      S: (x0,x1) => { x0.checked = x1 },
-      SB: x0 => x0.width,
-      SC: x0 => x0.toDataURL(),
-      T: (jsArray, jsArrayOffset, wasmArray, wasmArrayOffset, length) => {
-        const setValue = dartInstance.exports.$wasmI8ArraySet;
-        for (let i = 0; i < length; i++) {
-          setValue(wasmArray, wasmArrayOffset + i, jsArray[jsArrayOffset + i]);
-        }
-      },
-      TB: (x0,x1) => { x0.hidden = x1 },
-      TC: x0 => x0.click(),
-      U: (o, start, length) => new Uint8Array(o.buffer, o.byteOffset + start, length),
-      UB: o => typeof o === 'function' && o[jsWrappedDartFunctionSymbol] === true,
-      UC: (x0,x1) => { x0.download = x1 },
-      V: x0 => x0.flags,
-      VB: f => f.dartFunction,
-      VC: (x0,x1) => { x0.href = x1 },
-      W: (s, m) => {
-        try {
-          return new RegExp(s, m);
-        } catch (e) {
-          return String(e);
-        }
-      },
-      WB: (module,f) => finalizeWrapper(f, function(x0) { return module.exports.E(f,arguments.length,x0) }),
-      WC: (module,f) => finalizeWrapper(f, function(x0) { return module.exports.G(f,arguments.length,x0) }),
-      X: o => o instanceof RegExp,
-      XB: (module,f) => finalizeWrapper(f, function(x0,x1) { return module.exports.F(f,arguments.length,x0,x1) }),
-      XC: (x0,x1) => x0.toBlob(x1),
-      Y: (string, times) => string.repeat(times),
-      YB: (p, s, f) => p.then(s, (e) => f(e, e === undefined)),
-      YC: x0 => new ClipboardItem(x0),
-      Z: (x0,x1) => x0.test(x1),
-      ZB: Function.prototype.call.bind(Object.getOwnPropertyDescriptor(DataView.prototype, 'byteLength').get),
-      ZC: (x0,x1) => x0.write(x1),
-      a: o => o,
-      aB: o => o.buffer,
-      aC: x0 => new Array(x0),
-      b: o => {
-        if (o === undefined || o === null) return 0;
-        if (typeof o === 'boolean') return 1;
-        return 2;
-      },
-      bB: (o) => new DataView(o.buffer, o.byteOffset, o.byteLength),
-      bC: o => [o],
-      c: (x0,x1,x2) => x0.toggle(x1,x2),
-      cB: Function.prototype.call.bind(DataView.prototype.setFloat64),
-      cC: (o0, o1) => [o0, o1],
-      d: x0 => x0.classList,
-      dB: x0 => x0.unicode,
-      dC: (o0, o1, o2) => [o0, o1, o2],
-      e: x0 => x0.id,
-      eB: x0 => x0.index,
-      eC: (o0, o1, o2, o3) => [o0, o1, o2, o3],
-      f: x0 => x0.value,
-      fB: (x0,x1) => x0[x1],
-      fC: (x0,x1,x2) => { x0[x1] = x2 },
-      g: (x0,x1,x2,x3) => x0.addEventListener(x1,x2,x3),
-      gB: (x0,x1) => x0.exec(x1),
-      gC: x0 => x0.clipboard,
-      h: (module,f) => finalizeWrapper(f, function(x0) { return module.exports.C(f,arguments.length,x0) }),
-      hB: (x0,x1) => { x0.lastIndex = x1 },
-      hC: x0 => x0.navigator,
-      i: (c) =>
-      queueMicrotask(() => dartInstance.exports.$invokeCallback(c)),
-      iB: x0 => x0.dotAll,
-      iC: () => ({}),
-      j: x0 => x0.random(),
-      jB: x0 => x0.ignoreCase,
-      jC: (o, p, v) => o[p] = v,
-      k: o => o,
-      kB: x0 => x0.multiline,
-      kC: () => [],
-      l: o => {
-        if (o === undefined || o === null) return 0;
-        if (typeof o === 'number') return 1;
-        return 2;
-      },
-      lB: (t, s) => t.set(s),
-      lC: (a, i) => a.push(i),
-      m: () => globalThis.Math,
-      mB: (o, start, length) => new Float64Array(o.buffer, o.byteOffset + start, length),
-      mC: x0 => new Int8Array(x0),
-      n: (x0,x1) => x0.createElement(x1),
-      nB: Function.prototype.call.bind(DataView.prototype.getFloat64),
-      nC: x0 => new Uint8Array(x0),
-      o: (x0,x1) => x0.appendChild(x1),
-      oB: Function.prototype.call.bind(DataView.prototype.setFloat32),
-      oC: (jsArray, jsArrayOffset, wasmArray, wasmArrayOffset, length) => {
-        const getValue = dartInstance.exports.$wasmI8ArrayGet;
-        for (let i = 0; i < length; i++) {
-          jsArray[jsArrayOffset + i] = getValue(wasmArray, wasmArrayOffset + i);
-        }
-      },
-      p: (x0,x1) => { x0.title = x1 },
-      pB: (o, start, length) => new Float32Array(o.buffer, o.byteOffset + start, length),
-      pC: x0 => new Uint8ClampedArray(x0),
-      q: s => s.toUpperCase(),
-      qB: Function.prototype.call.bind(DataView.prototype.getFloat32),
-      qC: x0 => new Int16Array(x0),
-      r: Object.is,
-      rB: (o, start, length) => new Uint32Array(o.buffer, o.byteOffset + start, length),
-      rC: x0 => new Uint16Array(x0),
-      s: x0 => x0.target,
-      sB: Function.prototype.call.bind(DataView.prototype.setUint8),
-      sC: x0 => new Int32Array(x0),
-      t: (x0,x1) => x0[x1],
-      tB: Function.prototype.call.bind(DataView.prototype.setUint32),
-      tC: x0 => new Uint32Array(x0),
-      u: (x0,x1) => { x0.htmlFor = x1 },
-      uB: Function.prototype.call.bind(DataView.prototype.getUint32),
-      uC: x0 => new Float32Array(x0),
-      v: (x0,x1) => { x0.innerHTML = x1 },
-      vB: Function.prototype.call.bind(DataView.prototype.setInt32),
-      vC: x0 => new Float64Array(x0),
-      w: (x0,x1,x2) => { x0[x1] = x2 },
-      wB: (o, start, length) => new Int32Array(o.buffer, o.byteOffset + start, length),
-      wC: x0 => new ArrayBuffer(x0),
-      x: x0 => x0.dataset,
-      xB: Function.prototype.call.bind(DataView.prototype.getInt32),
-      xC: (x0,x1,x2) => new Uint8Array(x0,x1,x2),
-      y: (x0,x1) => { x0.name = x1 },
-      yB: Function.prototype.call.bind(DataView.prototype.setUint16),
-      yC: (x0,x1,x2) => new DataView(x0,x1,x2),
-      z: (x0,x1) => { x0.id = x1 },
-      zB: (o, start, length) => new Uint16Array(o.buffer, o.byteOffset + start, length),
-      zC: (o, p) => o[p],
+      zB: (x0,x1) => { x0.type = x1 },
+      zC: o => o instanceof Int16Array,
 
     };
 
