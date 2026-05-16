@@ -1730,7 +1730,8 @@ wO:function wO(a){this.a=a},
 Ad:function Ad(a,b,c){this.c=a
 this.a=b
 this.b=c},
-Tw:function Tw(a){this.c=a},
+Tw:function Tw(a,b){this.a=a
+this.b=b},
 q6:function q6(a,b,c){this.c=a
 this.a=b
 this.b=c},
@@ -1752,7 +1753,7 @@ q=A.AG(b,27)
 for(p=c;p<=40;++p){o=A.Dk(p,a)
 if(p<10)n=s
 else n=p<27?r:q
-if(n<=o)return p}throw A.b(new A.Tw("Input too long. "+q+" > "+A.Dk(40,a)))},
+if(n<=o)return p}throw A.b(new A.Tw(q,A.Dk(40,a)))},
 fV(a,b,c){var s,r,q,p,o,n,m,l,k,j=A.Kf(a,b)
 for(s=j.length,r=0,q=0;q<s;++q)r+=j[q].b*8
 p=new A.eL(new Uint8Array(32))
@@ -3160,7 +3161,7 @@ $io1:1}
 A.Ad.prototype={
 p(){return"QrErrorCorrectLevel."+this.b}}
 A.Tw.prototype={
-"["(a){return"QrInputTooLongException: "+this.c}}
+"["(a){return"Input too long. "+this.a+" > "+this.b}}
 A.q6.prototype={
 p(){return"QrMode."+this.b},
 bx(a){var s,r=null

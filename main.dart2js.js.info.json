@@ -3,11 +3,11 @@
   "dump_minor_version": 1,
   "program": {
     "entrypoint": "function/org-dartlang-app:///example/main.dart::main",
-    "size": 114868,
+    "size": 114858,
     "ramUsage": "N/A MB",
     "dart2jsVersion": "3.13.0-104.0.dev",
-    "compilationMoment": "2026-05-16 10:53:44.363429",
-    "compilationDuration": 754364,
+    "compilationMoment": "2026-05-16 16:17:04.448422",
+    "compilationDuration": 754345,
     "toJsonDuration": 1000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
@@ -691,9 +691,10 @@
         "id": "library/package:qr/src/input_too_long_exception.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 97,
+        "size": 112,
         "children": [
-          "class/package:qr/src/input_too_long_exception.dart::InputTooLongException"
+          "class/package:qr/src/input_too_long_exception.dart::InputTooLongException",
+          "function/package:qr/src/input_too_long_exception.dart::createExp"
         ],
         "canonicalUri": "package:qr/src/input_too_long_exception.dart"
       },
@@ -748,7 +749,7 @@
         "id": "library/package:qr/src/qr_code.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 1428,
+        "size": 1403,
         "children": [
           "class/package:qr/src/qr_code.dart::QrCode",
           "function/package:qr/src/qr_code.dart::_createBytes",
@@ -4410,18 +4411,16 @@
         "id": "class/package:qr/src/input_too_long_exception.dart::InputTooLongException",
         "kind": "class",
         "name": "InputTooLongException",
-        "size": 97,
+        "size": 112,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/input_too_long_exception.dart::",
         "modifiers": {
           "abstract": false
         },
         "children": [
+          "field/package:qr/src/input_too_long_exception.dart::InputTooLongException.inputBits",
           "field/package:qr/src/input_too_long_exception.dart::InputTooLongException.inputLimit",
-          "field/package:qr/src/input_too_long_exception.dart::InputTooLongException.message",
-          "field/package:qr/src/input_too_long_exception.dart::InputTooLongException.providedInput",
-          "function/package:qr/src/input_too_long_exception.dart::InputTooLongException.InputTooLongException",
-          "function/package:qr/src/input_too_long_exception.dart::InputTooLongException.InputTooLongException._internal",
+          "function/package:qr/src/input_too_long_exception.dart::InputTooLongException.InputTooLongException._",
           "function/package:qr/src/input_too_long_exception.dart::InputTooLongException.toString"
         ],
         "supers": [
@@ -35277,44 +35276,10 @@
         "type": "String Function()",
         "functionKind": 2
       },
-      "package:qr/src/input_too_long_exception.dart::InputTooLongException.InputTooLongException": {
-        "id": "function/package:qr/src/input_too_long_exception.dart::InputTooLongException.InputTooLongException",
+      "package:qr/src/input_too_long_exception.dart::InputTooLongException.InputTooLongException._": {
+        "id": "function/package:qr/src/input_too_long_exception.dart::InputTooLongException.InputTooLongException._",
         "kind": "function",
-        "name": "InputTooLongException",
-        "size": 0,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/package:qr/src/input_too_long_exception.dart::InputTooLongException",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": true,
-          "external": false
-        },
-        "returnType": "InputTooLongException",
-        "inferredReturnType": "[exact=InputTooLongException|powerset={N}{O}{N}]",
-        "parameters": [
-          {
-            "name": "providedInput",
-            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
-            "declaredType": "int"
-          },
-          {
-            "name": "inputLimit",
-            "type": "[subclass=JSPositiveInt|powerset={I}{O}{N}]",
-            "declaredType": "int"
-          }
-        ],
-        "sideEffects": "SideEffects(reads nothing; writes anything)",
-        "inlinedCount": 1,
-        "code": "",
-        "type": "InputTooLongException Function(int,int)",
-        "functionKind": 3
-      },
-      "package:qr/src/input_too_long_exception.dart::InputTooLongException.InputTooLongException._internal": {
-        "id": "function/package:qr/src/input_too_long_exception.dart::InputTooLongException.InputTooLongException._internal",
-        "kind": "function",
-        "name": "InputTooLongException._internal",
+        "name": "InputTooLongException._",
         "size": 0,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/input_too_long_exception.dart::InputTooLongException",
@@ -35329,7 +35294,7 @@
         "inferredReturnType": "[exact=InputTooLongException|powerset={N}{O}{N}]",
         "parameters": [
           {
-            "name": "providedInput",
+            "name": "inputBits",
             "type": "[subclass=JSInt|powerset={I}{O}{N}]",
             "declaredType": "int"
           },
@@ -35337,24 +35302,19 @@
             "name": "inputLimit",
             "type": "[subclass=JSPositiveInt|powerset={I}{O}{N}]",
             "declaredType": "int"
-          },
-          {
-            "name": "message",
-            "type": "[exact=JSString|powerset={I}{O}{I}]",
-            "declaredType": "String"
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 1,
         "code": "",
-        "type": "dynamic Function(int,int,String)",
+        "type": "dynamic Function(int,int)",
         "functionKind": 3
       },
       "package:qr/src/input_too_long_exception.dart::InputTooLongException.toString": {
         "id": "function/package:qr/src/input_too_long_exception.dart::InputTooLongException.toString",
         "kind": "function",
         "name": "toString",
-        "size": 48,
+        "size": 52,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/input_too_long_exception.dart::InputTooLongException",
         "children": [],
@@ -35369,9 +35329,43 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads field; writes anything)",
         "inlinedCount": 0,
-        "code": "\"[\"(a){return\"QrInputTooLongException: \"+this.c}",
+        "code": "\"[\"(a){return\"Input too long. \"+this.a+\" > \"+this.b}",
         "type": "String Function()",
         "functionKind": 2
+      },
+      "package:qr/src/input_too_long_exception.dart::createExp": {
+        "id": "function/package:qr/src/input_too_long_exception.dart::createExp",
+        "kind": "function",
+        "name": "createExp",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "library/package:qr/src/input_too_long_exception.dart::",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "InputTooLongException",
+        "inferredReturnType": "[exact=InputTooLongException|powerset={N}{O}{N}]",
+        "parameters": [
+          {
+            "name": "inputBits",
+            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          },
+          {
+            "name": "inputLimit",
+            "type": "[subclass=JSPositiveInt|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          }
+        ],
+        "sideEffects": "SideEffects(reads nothing; writes nothing)",
+        "inlinedCount": 1,
+        "code": "",
+        "type": "InputTooLongException Function(int,int)",
+        "functionKind": 0
       },
       "package:qr/src/math.dart::_createExpTable": {
         "id": "function/package:qr/src/math.dart::_createExpTable",
@@ -35957,7 +35951,7 @@
         "id": "function/package:qr/src/qr_code.dart::QrCode._calculateTypeNumberFromPayload",
         "kind": "function",
         "name": "_calculateTypeNumberFromPayload",
-        "size": 228,
+        "size": 203,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/qr_code.dart::QrCode",
         "children": [],
@@ -35988,7 +35982,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "yQ(a,b,c){var s,r,q,p,o,n\nA.wA(c,1,40,\"minTypeNumber\")\ns=A.AG(b,1)\nr=A.AG(b,10)\nq=A.AG(b,27)\nfor(p=c;p<=40;++p){o=A.Dk(p,a)\nif(p<10)n=s\nelse n=p<27?r:q\nif(n<=o)return p}throw A.b(new A.Tw(\"Input too long. \"+q+\" > \"+A.Dk(40,a)))}",
+        "code": "yQ(a,b,c){var s,r,q,p,o,n\nA.wA(c,1,40,\"minTypeNumber\")\ns=A.AG(b,1)\nr=A.AG(b,10)\nq=A.AG(b,27)\nfor(p=c;p<=40;++p){o=A.Dk(p,a)\nif(p<10)n=s\nelse n=p<27?r:q\nif(n<=o)return p}throw A.b(new A.Tw(q,A.Dk(40,a)))}",
         "type": "int Function(QrErrorCorrectLevel,QrPayload,int)",
         "functionKind": 0
       },
@@ -40672,6 +40666,18 @@
         "code": "",
         "type": "int"
       },
+      "package:qr/src/input_too_long_exception.dart::InputTooLongException.inputBits": {
+        "id": "field/package:qr/src/input_too_long_exception.dart::InputTooLongException.inputBits",
+        "kind": "field",
+        "name": "inputBits",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/package:qr/src/input_too_long_exception.dart::InputTooLongException",
+        "children": [],
+        "inferredType": "[subclass=JSInt|powerset={I}{O}{N}]",
+        "code": "",
+        "type": "int"
+      },
       "package:qr/src/input_too_long_exception.dart::InputTooLongException.inputLimit": {
         "id": "field/package:qr/src/input_too_long_exception.dart::InputTooLongException.inputLimit",
         "kind": "field",
@@ -40681,30 +40687,6 @@
         "parent": "class/package:qr/src/input_too_long_exception.dart::InputTooLongException",
         "children": [],
         "inferredType": "[subclass=JSPositiveInt|powerset={I}{O}{N}]",
-        "code": "",
-        "type": "int"
-      },
-      "package:qr/src/input_too_long_exception.dart::InputTooLongException.message": {
-        "id": "field/package:qr/src/input_too_long_exception.dart::InputTooLongException.message",
-        "kind": "field",
-        "name": "message",
-        "size": 0,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/package:qr/src/input_too_long_exception.dart::InputTooLongException",
-        "children": [],
-        "inferredType": "[exact=JSString|powerset={I}{O}{I}]",
-        "code": "",
-        "type": "String"
-      },
-      "package:qr/src/input_too_long_exception.dart::InputTooLongException.providedInput": {
-        "id": "field/package:qr/src/input_too_long_exception.dart::InputTooLongException.providedInput",
-        "kind": "field",
-        "name": "providedInput",
-        "size": 0,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/package:qr/src/input_too_long_exception.dart::InputTooLongException",
-        "children": [],
-        "inferredType": "[subclass=JSInt|powerset={I}{O}{N}]",
         "code": "",
         "type": "int"
       },
@@ -44350,17 +44332,12 @@
         "id": "function/dart:_late_helper::throwLateFieldADI"
       }
     ],
+    "field/package:qr/src/input_too_long_exception.dart::InputTooLongException.inputBits": [
+      {
+        "id": "function/dart:_late_helper::throwLateFieldADI"
+      }
+    ],
     "field/package:qr/src/input_too_long_exception.dart::InputTooLongException.inputLimit": [
-      {
-        "id": "function/dart:_late_helper::throwLateFieldADI"
-      }
-    ],
-    "field/package:qr/src/input_too_long_exception.dart::InputTooLongException.message": [
-      {
-        "id": "function/dart:_late_helper::throwLateFieldADI"
-      }
-    ],
-    "field/package:qr/src/input_too_long_exception.dart::InputTooLongException.providedInput": [
       {
         "id": "function/dart:_late_helper::throwLateFieldADI"
       }
@@ -61628,15 +61605,18 @@
         "id": "field/dart:core::_Enum._name"
       }
     ],
-    "function/package:qr/src/input_too_long_exception.dart::InputTooLongException.InputTooLongException": [
-      {
-        "id": "function/package:qr/src/input_too_long_exception.dart::InputTooLongException.InputTooLongException._internal",
-        "mask": "inlined"
-      }
-    ],
     "function/package:qr/src/input_too_long_exception.dart::InputTooLongException.toString": [
       {
-        "id": "field/package:qr/src/input_too_long_exception.dart::InputTooLongException.message"
+        "id": "field/package:qr/src/input_too_long_exception.dart::InputTooLongException.inputBits"
+      },
+      {
+        "id": "field/package:qr/src/input_too_long_exception.dart::InputTooLongException.inputLimit"
+      }
+    ],
+    "function/package:qr/src/input_too_long_exception.dart::createExp": [
+      {
+        "id": "function/package:qr/src/input_too_long_exception.dart::InputTooLongException.InputTooLongException._",
+        "mask": "inlined"
       }
     ],
     "function/package:qr/src/math.dart::_createExpTable": [
@@ -61935,14 +61915,14 @@
         "id": "function/dart:core::RangeError.checkValueInInterval"
       },
       {
-        "id": "function/package:qr/src/input_too_long_exception.dart::InputTooLongException.InputTooLongException",
+        "id": "function/package:qr/src/input_too_long_exception.dart::InputTooLongException.InputTooLongException._"
+      },
+      {
+        "id": "function/package:qr/src/input_too_long_exception.dart::createExp",
         "mask": "inlined"
       },
       {
-        "id": "function/package:qr/src/input_too_long_exception.dart::InputTooLongException.InputTooLongException"
-      },
-      {
-        "id": "function/package:qr/src/input_too_long_exception.dart::InputTooLongException.InputTooLongException._internal"
+        "id": "function/package:qr/src/input_too_long_exception.dart::createExp"
       },
       {
         "id": "function/package:qr/src/payload.dart::QrPayloadInternal|calculateRequiredBits"
@@ -62790,7 +62770,7 @@
       "id": "outputUnit/main",
       "kind": "outputUnit",
       "name": "main",
-      "size": 114868,
+      "size": 114858,
       "filename": "main.dart2js.js",
       "imports": []
     }
