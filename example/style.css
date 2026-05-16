@@ -149,10 +149,14 @@ article {
 
 #type-div {
   display: grid;
-  grid-template-columns: repeat(5, max-content);
+  grid-template-columns: repeat(6, max-content);
   gap: 8px;
   justify-items: center;
   max-width: fit-content;
+}
+
+#type_6 + label {
+  grid-column: 1;
 }
 
 #error-div {

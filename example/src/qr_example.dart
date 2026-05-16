@@ -1,111 +1,112 @@
-import 'dart:async';
 import 'dart:js_interop';
 import 'dart:math' as math;
 
 import 'package:qr/qr.dart';
-
-import 'package:stream_transform/stream_transform.dart';
 import 'package:web/web.dart';
 
 import 'affine_transform.dart';
+import 'example_model.dart';
 
 const String _typeRadioIdKey = 'type_value';
 const String _errorLevelIdKey = 'error_value';
 
-enum _FrameState { qr, error, question }
+final class QrExample {
+  final _model = ExampleModel();
 
-const _maxTypeNumber = 10;
+  final _canvas = document.querySelector('#content') as HTMLCanvasElement;
+  final _errorImg =
+      document.querySelector('#validation-error') as HTMLImageElement;
+  final _waitingImg =
+      document.querySelector('#validation-waiting') as HTMLImageElement;
+  final _copyBtn = document.querySelector('#copy-btn') as HTMLButtonElement;
+  final _downloadBtn =
+      document.querySelector('#download-btn') as HTMLButtonElement;
+  final _autoCheckElement =
+      document.getElementById('type_auto') as HTMLInputElement;
+  final _input = document.querySelector('#input') as HTMLInputElement;
+  final _statusDiv = document.querySelector('#status') as HTMLDivElement;
+  final _typeDiv = document.querySelector('#type-div') as HTMLDivElement;
+  final _errorDiv = document.querySelector('#error-div') as HTMLDivElement;
+  final _overflowRadio = document.createElement('input') as HTMLInputElement;
+  final _overflowLabel = document.createElement('label') as HTMLLabelElement;
 
-class QrExample {
-  final HTMLCanvasElement _canvas;
-  final CanvasRenderingContext2D _ctx;
-  final HTMLImageElement _errorImg;
-  final HTMLImageElement _waitingImg;
-  final HTMLButtonElement _copyBtn;
-  final HTMLButtonElement _downloadBtn;
-  final StreamController<_Config> _inputValues;
-  final HTMLInputElement _autoCheckElement;
-
-  final Stream<List<bool>?> output;
-
-  String _value = '';
-  int _typeNumber = _maxTypeNumber;
-  bool _autoType = true;
-  QrErrorCorrectLevel _errorCorrectLevel = QrErrorCorrectLevel.high;
-
-  List<bool> _squares = [];
-  _FrameState _state = _FrameState.qr;
+  late final _ctx = _canvas.context2D;
 
   bool _frameRequested = false;
 
-  factory QrExample() {
-    final canvas = document.querySelector('#content') as HTMLCanvasElement;
-    final errorImg =
-        document.querySelector('#validation-error') as HTMLImageElement;
-    final waitingImg =
-        document.querySelector('#validation-waiting') as HTMLImageElement;
-    final typeDiv = document.querySelector('#type-div') as HTMLDivElement;
-    final errorDiv = document.querySelector('#error-div') as HTMLDivElement;
-    final input = document.querySelector('#input') as HTMLInputElement;
-    final statusDiv = document.querySelector('#status') as HTMLDivElement;
+  QrExample() {
+    _ctx.fillStyle = 'black'.toJS;
 
-    final controller = StreamController<_Config>.broadcast();
+    _copyBtn.onClick.listen((_) => _copyToClipboard());
+    _downloadBtn.onClick.listen((_) => _downloadImage());
 
-    final copyBtn = document.querySelector('#copy-btn') as HTMLButtonElement;
-    final downloadBtn =
-        document.querySelector('#download-btn') as HTMLButtonElement;
-
-    final demo = QrExample._(
-      canvas,
-      errorImg,
-      waitingImg,
-      typeDiv,
-      errorDiv,
-      copyBtn,
-      downloadBtn,
-      controller,
-    );
-
-    copyBtn.onClick.listen((_) => demo._copyToClipboard());
-    downloadBtn.onClick.listen((_) => demo._downloadImage());
-
-    input.onKeyUp.listen((KeyboardEvent args) {
-      demo.value = input.value;
+    _input.onKeyUp.listen((KeyboardEvent args) {
+      _model.value = _input.value;
     });
 
-    demo.output.listen(
-      (data) {
-        input.style.background = '';
-        statusDiv.style.color = '';
-        if (data == null) {
-          demo._state = _FrameState.question;
-          statusDiv.innerText = 'Type something to encode';
-          demo._enableButtons(false);
-        } else {
-          demo
-            .._state = _FrameState.qr
-            .._enableButtons(true)
-            .._squares = data;
-          final byteCount = demo.value.length;
-          statusDiv.innerText = 'Input size: $byteCount bytes';
-        }
-        demo.requestFrame();
-      },
-      onError: (Object error) {
-        input.style.background = 'red';
-        statusDiv.style.color = 'red';
-        statusDiv.innerText = 'Input too long (${demo.value.length} bytes)';
-        demo
-          .._state = _FrameState.error
-          .._enableButtons(false)
-          ..requestFrame();
-      },
-    );
+    _model.changes.listen((_) => _onModelChange());
 
-    demo.value = input.value;
-    input.focus();
+    // Auto Size Checkbox
+    _autoCheckElement.checked = _model.autoType;
+    _autoCheckElement.onChange.listen((Event _) {
+      _model.autoType = _autoCheckElement.checked;
+    });
 
-    return demo;
+    // Type Div
+    for (var i = 1; i <= ExampleModel.maxTypeNumber; i++) {
+      final radio = (document.createElement('INPUT') as HTMLInputElement)
+        ..type = 'radio'
+        ..id = 'type_$i'
+        ..name = 'type'
+        ..onChange.listen(_levelClick)
+        ..dataset[_typeRadioIdKey] = i.toString();
+      if (i == _model.typeNumber) {
+        radio.checked = true;
+      }
+      _typeDiv.appendChild(radio);
+
+      final label = (document.createElement('label') as HTMLLabelElement)
+        ..innerHTML = '$i'.toJS
+        ..htmlFor = radio.id;
+      _typeDiv.appendChild(label);
+    }
+
+    _overflowRadio
+      ..type = 'radio'
+      ..id = 'type_overflow'
+      ..name = 'type'
+      ..onChange.listen(_levelClick);
+
+    _overflowLabel.htmlFor = _overflowRadio.id;
+
+    _typeDiv.appendChild(_overflowRadio);
+    _typeDiv.appendChild(_overflowLabel);
+
+    // Error Correct Levels
+    final sortedLevels = QrErrorCorrectLevel.values.toList()
+      ..sort((a, b) => a.recoveryRate.compareTo(b.recoveryRate));
+    for (final v in sortedLevels) {
+      final radio = (document.createElement('input') as HTMLInputElement)
+        ..type = 'radio'
+        ..id = 'error_${v.name}'
+        ..name = 'error-level'
+        ..onChange.listen(_errorClick)
+        ..dataset[_errorLevelIdKey] = v.index.toString();
+      if (v == _model.errorCorrectLevel) {
+        radio.checked = true;
+      }
+      _errorDiv.appendChild(radio);
+
+      final label = (document.createElement('label') as HTMLLabelElement)
+        ..innerHTML = v.name.toCapitalized.toJS
+        ..htmlFor = radio.id
+        ..title = 'Recover up to ${v.recoveryRate}% of data';
+      _errorDiv.appendChild(label);
+    }
+
+    _model.value = _input.value;
+    _input.focus();
+    _onModelChange();
   }
 
   void _copyToClipboard() {
@@ -124,126 +125,51 @@ class QrExample {
       ..click();
   }
 
-  QrExample._(
-    HTMLCanvasElement canvas,
-    this._errorImg,
-    this._waitingImg,
-    HTMLDivElement typeDiv,
-    HTMLDivElement errorDiv,
-    this._copyBtn,
-    this._downloadBtn,
-    this._inputValues,
-  ) : _canvas = canvas,
-      _ctx = canvas.context2D,
-      _autoCheckElement =
-          document.getElementById('type_auto') as HTMLInputElement,
-      output = _inputValues.stream.asyncMapSample(_calc) {
-    _ctx.fillStyle = 'black'.toJS;
-
-    // Auto Size Checkbox
-    _autoCheckElement.checked = _autoType;
-    _autoCheckElement.onChange.listen((Event _) {
-      _autoType = _autoCheckElement.checked;
-      _update();
-    });
-
-    // Type Div
-    for (var i = 1; i <= _maxTypeNumber; i++) {
-      final radio = (document.createElement('INPUT') as HTMLInputElement)
-        ..type = 'radio'
-        ..id = 'type_$i'
-        ..name = 'type'
-        ..onChange.listen(_levelClick)
-        ..dataset[_typeRadioIdKey] = i.toString();
-      if (i == _typeNumber) {
-        radio.checked = true;
-      }
-      typeDiv.appendChild(radio);
-
-      final label = (document.createElement('label') as HTMLLabelElement)
-        ..innerHTML = '$i'.toJS
-        ..htmlFor = radio.id;
-      typeDiv.appendChild(label);
-    }
-
-    // Error Correct Levels
-    final sortedLevels = QrErrorCorrectLevel.values.toList()
-      ..sort((a, b) => a.recoveryRate.compareTo(b.recoveryRate));
-    for (final v in sortedLevels) {
-      final radio = (document.createElement('input') as HTMLInputElement)
-        ..type = 'radio'
-        ..id = 'error_${v.name}'
-        ..name = 'error-level'
-        ..onChange.listen(_errorClick)
-        ..dataset[_errorLevelIdKey] = v.index.toString();
-      if (v == _errorCorrectLevel) {
-        radio.checked = true;
-      }
-      errorDiv.appendChild(radio);
-
-      final label = (document.createElement('label') as HTMLLabelElement)
-        ..innerHTML = v.name.toCapitalized.toJS
-        ..htmlFor = radio.id
-        ..title = 'Recover up to ${v.recoveryRate}% of data';
-      errorDiv.appendChild(label);
-    }
-    _validate();
-  }
-
   void _enableButtons(bool enable) {
     _copyBtn.disabled = !enable;
     _downloadBtn.disabled = !enable;
   }
 
-  String get value => _value;
-
-  set value(String input) {
-    _value = input;
-    _update();
-  }
-
-  void requestFrame() {
-    if (!_frameRequested) {
-      _frameRequested = true;
-      window.requestAnimationFrame(_onFrame.toJS);
-    }
-  }
-
   void _levelClick(Event args) {
     final source = args.target as HTMLInputElement;
-    _typeNumber = int.parse(source.dataset[_typeRadioIdKey]);
-    _autoType = false;
-    _autoCheckElement.checked = false;
-    _update();
+    final type = int.tryParse(source.dataset[_typeRadioIdKey]);
+    if (type != null) {
+      _model.typeNumber = type;
+      _autoCheckElement.checked = false;
+    }
   }
 
   void _errorClick(Event args) {
     final source = args.target as HTMLInputElement;
-    _errorCorrectLevel = QrErrorCorrectLevel.values.firstWhere(
+    _model.errorCorrectLevel = QrErrorCorrectLevel.values.firstWhere(
       (v) => v.index.toString() == source.dataset[_errorLevelIdKey],
     );
-    _update();
   }
 
-  void _update() {
-    _validate();
-    _inputValues.add(_Config(_typeNumber, _errorCorrectLevel, _value));
-  }
+  void _onModelChange() {
+    // Sync UI state
+    _autoCheckElement.checked = _model.autoType;
 
-  void _validate() {
-    final result = QrValidationResult.fromPayload(
-      payload: QrPayload.fromString(_value),
-      typeNumber: _typeNumber,
-      errorCorrectLevel: _errorCorrectLevel,
-    );
-
-    if (_autoType && result.validTypeNumbers.isNotEmpty) {
-      _typeNumber = result.validTypeNumbers.first;
+    if (_model.autoType) {
       final radio =
-          document.getElementById('type_$_typeNumber') as HTMLInputElement?;
+          document.getElementById('type_${_model.typeNumber}')
+              as HTMLInputElement?;
       if (radio != null) {
         radio.checked = true;
       }
+    }
+
+    if (_model.typeNumber > ExampleModel.maxTypeNumber) {
+      _overflowRadio
+        ..dataset[_typeRadioIdKey] = _model.typeNumber.toString()
+        ..checked = true
+        ..hidden = false.toJS;
+      _overflowLabel
+        ..innerHTML = '${_model.typeNumber}'.toJS
+        ..hidden = false.toJS;
+    } else {
+      _overflowRadio.hidden = true.toJS;
+      _overflowLabel.hidden = true.toJS;
     }
 
     void update(String id, bool isValid) {
@@ -258,36 +184,61 @@ class QrExample {
       label.classList.toggle('invalid-option', !isValid);
     }
 
-    for (var i = 1; i <= _maxTypeNumber; i++) {
-      update('type_$i', result.validTypeNumbers.contains(i));
+    for (var i = 1; i <= ExampleModel.maxTypeNumber; i++) {
+      update('type_$i', _model.validTypeNumbers.contains(i));
     }
 
     for (final level in QrErrorCorrectLevel.values) {
       update(
         'error_${level.name}',
-        result.validErrorCorrectLevels.contains(level),
+        _model.validErrorCorrectLevels.contains(level),
       );
+    }
+
+    _input.style.background = '';
+    _statusDiv.style.color = '';
+
+    switch (_model.state) {
+      case ExampleState.question:
+        _statusDiv.innerText = 'Type something to encode';
+        _enableButtons(false);
+      case ExampleState.error:
+        _input.style.background = 'red';
+        _statusDiv.style.color = 'red';
+        _statusDiv.innerText = 'Input too long (${_model.byteCount} bytes)';
+        _enableButtons(false);
+      case ExampleState.qr:
+        _enableButtons(true);
+        _statusDiv.innerText = 'Input size: ${_model.byteCount} bytes';
+    }
+
+    requestFrame();
+  }
+
+  void requestFrame() {
+    if (!_frameRequested) {
+      _frameRequested = true;
+      window.requestAnimationFrame(_onFrame.toJS);
     }
   }
 
   void _onFrame(num highResTime) {
     _frameRequested = false;
 
-    _canvas.hidden = (_state != _FrameState.qr).toJS;
-    _errorImg.hidden = (_state != _FrameState.error).toJS;
-    _waitingImg.hidden = (_state != _FrameState.question).toJS;
+    _canvas.hidden = (_model.state != ExampleState.qr).toJS;
+    _errorImg.hidden = (_model.state != ExampleState.error).toJS;
+    _waitingImg.hidden = (_model.state != ExampleState.question).toJS;
 
-    if (_state == _FrameState.qr) {
+    if (_model.state == ExampleState.qr) {
       _ctx.clearRect(0, 0, _canvas.width, _canvas.height);
       _drawQr();
     }
   }
 
   void _drawQr() {
-    // 2 blocks of padding on each side
     const borderBlocks = 0.5;
 
-    final size = math.sqrt(_squares.length).toInt();
+    final size = _model.moduleCount;
     final minDimension = math.min(_canvas.width, _canvas.height);
     final scale = minDimension ~/ (1.1 * (size + borderBlocks * 2));
 
@@ -299,10 +250,9 @@ class QrExample {
     _ctx.save();
     _setTransform(_ctx, tx);
 
-    if (_squares.isNotEmpty) {
-      assert(_squares.length == size * size);
+    if (_model.squares.isNotEmpty) {
+      assert(_model.squares.length == size * size);
 
-      // Draw white background
       _ctx
         ..fillStyle = 'white'.toJS
         ..fillRect(
@@ -316,10 +266,10 @@ class QrExample {
       for (var x = 0; x < size; x++) {
         var y = 0;
         while (y < size) {
-          if (_squares[x * size + y]) {
+          if (_model.squares[x * size + y]) {
             final startY = y;
             y++;
-            while (y < size && _squares[x * size + y]) {
+            while (y < size && _model.squares[x * size + y]) {
               y++;
             }
             _ctx.rect(x, startY, 1, y - startY);
@@ -332,37 +282,6 @@ class QrExample {
     }
     _ctx.restore();
   }
-}
-
-class _Config {
-  final int type;
-  final QrErrorCorrectLevel level;
-  final String input;
-
-  _Config(this.type, this.level, this.input);
-}
-
-Future<List<bool>?> _calc(_Config config) async {
-  if (config.input.trim().isEmpty) {
-    return null;
-  }
-  final payload = QrPayload.fromString(config.input);
-  final code = QrCode(
-    payload: payload,
-    errorCorrectLevel: config.level,
-    minTypeNumber: config.type,
-  );
-  final image = QrImage(code);
-
-  final squares = <bool>[];
-
-  for (var x = 0; x < code.moduleCount; x++) {
-    for (var y = 0; y < code.moduleCount; y++) {
-      squares.add(image.isDark(y, x));
-    }
-  }
-
-  return squares;
 }
 
 void _setTransform(CanvasRenderingContext2D ctx, AffineTransform tx) {
