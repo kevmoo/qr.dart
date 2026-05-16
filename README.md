@@ -1,4 +1,4 @@
-A QR code generation library for Dart and Flutter.
+A QR code generation package for Dart.
 
 [![Pub Package](https://img.shields.io/pub/v/qr.svg)](https://pub.dev/packages/qr)
 [![package publisher](https://img.shields.io/pub/publisher/qr.svg)](https://pub.dev/packages/qr/publisher)
@@ -9,6 +9,10 @@ A QR code generation library for Dart and Flutter.
 - Supports QR code versions 1 - 40
 - Error correction / redundancy
 - ECI (Extended Channel Interpretation) support
+
+# Demo
+
+A rich, HTML demo can be found here: [qr.kevmoo.com](https://qr.kevmoo.com/).
 
 # Getting started
 
@@ -56,24 +60,9 @@ for (var x = 0; x < qrImage.moduleCount; x++) {
 
 See the `example` directory for further details.
 
-# Pre-made UI libraries
+# Packages that use `package:qr`
 
-The following libraries use qr.dart to generate QR codes for you out of the box:
-
-[qr_flutter](https://pub.dev/packages/qr_flutter) - A Flutter Widget to render
+- [pretty_qr_code](https://pub.dev/packages/pretty_qr_code) - A Flutter Widget to render
 QR codes
-
-[barcode](https://pub.dev/packages/barcode) - A package that supports many types
-of scannable codes, include QR.
-
-# Exporting
-
-The following packages can be used to export QR codes directory to an image:
-
-* [qr_image_exporter](https://pub.dev/packages/qr_image_exporter) - A library to
-  export QR codes as PNG image data.
-
-# Demo
-
-A working demo can be found here:
-[qr.kevmoo.com](https://qr.kevmoo.com/)
+- [qr_image_exporter](https://pub.dev/packages/qr_image_exporter) - A library to
+export QR codes as PNG image data.
