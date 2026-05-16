@@ -182,7 +182,13 @@ void main() {
           payload: QrPayload.fromString(excessivelyLargeData),
           errorCorrectLevel: QrErrorCorrectLevel.low,
         ),
-        throwsA(isA<InputTooLongException>()),
+        throwsA(
+          isA<InputTooLongException>().having(
+            (e) => e.toString(),
+            'toString()',
+            'QrInputTooLongException: Input too long. 23652 > 23648',
+          ),
+        ),
       );
     });
   });

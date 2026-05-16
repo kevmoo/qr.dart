@@ -64,8 +64,23 @@ void main(List<String> args) {
     // If user explicitly asked for a version, we might want
     // `new QrCode(version, correction)..addData(text)`.
 
+    final payload = QrPayload.fromString(text);
+    if (results.wasParsed('version')) {
+      final validation = QrValidationResult.fromPayload(
+        payload: payload,
+        typeNumber: versionInput,
+        errorCorrectLevel: correction,
+      );
+      if (!validation.isValid) {
+        throw Exception(
+          'Input too long for version $versionInput with error '
+          'correction $correctionLabel.',
+        );
+      }
+    }
+
     final qr = QrCode(
-      payload: QrPayload.fromString(text),
+      payload: payload,
       errorCorrectLevel: correction,
       minTypeNumber: results.wasParsed('version') ? versionInput : 1,
     );

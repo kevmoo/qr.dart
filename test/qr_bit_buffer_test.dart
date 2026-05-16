@@ -7,6 +7,7 @@ void main() {
   test('simple', _testSimple);
   test('complex', _testComplex);
   test('getByte', _testGetByte);
+  test('buffer expansion', _testBufferExpansion);
 }
 
 void _testGetByte() {
@@ -50,4 +51,9 @@ void _testSimple() {
   }
 
   expect(bb.toString(), equals(sampleBits.map((b) => b ? '1' : '0').join()));
+}
+
+void _testBufferExpansion() {
+  final buffer = QrBitBuffer()..put(0, 10000);
+  expect(buffer.length, 10000);
 }

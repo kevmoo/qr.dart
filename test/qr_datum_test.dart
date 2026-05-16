@@ -1,5 +1,6 @@
 import 'package:qr/src/byte.dart';
 import 'package:qr/src/eci.dart';
+import 'package:qr/src/mode.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -41,6 +42,15 @@ void main() {
       expect(datums[0], isA<QrEci>());
       expect((datums[0] as QrEci).value, 26);
       expect(datums[1], isA<QrByte>());
+    });
+  });
+
+  group('QrMode getLengthBits', () {
+    test('Kanji and ECI', () {
+      expect(QrMode.kanji.getLengthBits(1), 8);
+      expect(QrMode.kanji.getLengthBits(10), 10);
+      expect(QrMode.kanji.getLengthBits(27), 12);
+      expect(QrMode.eci.getLengthBits(1), 0);
     });
   });
 }
