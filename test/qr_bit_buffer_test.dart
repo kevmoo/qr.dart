@@ -1,6 +1,6 @@
 import 'dart:math' as math;
 
-import 'package:qr/qr.dart';
+import 'package:qr/src/bit_buffer.dart';
 import 'package:test/test.dart';
 
 void main() {

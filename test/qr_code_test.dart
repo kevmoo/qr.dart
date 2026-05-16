@@ -3,6 +3,7 @@
 import 'dart:typed_data';
 
 import 'package:qr/qr.dart';
+import 'package:qr/src/qr_code.dart';
 import 'package:test/test.dart';
 
 import 'qr_code_test_data.dart';
@@ -175,7 +176,7 @@ void main() {
     test('should throw if data exceeds capacity for fixed version', () {
       final code = QrCode(1, QrErrorCorrectLevel.low)..addData('|' * 30);
 
-      expect(() => code.dataCache, throwsA(isA<InputTooLongException>()));
+      expect(() => getDataCache(code), throwsA(isA<InputTooLongException>()));
     });
   });
 }

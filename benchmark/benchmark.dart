@@ -61,7 +61,7 @@ class ValidationBenchmark extends BenchmarkBase {
 
   @override
   void run() {
-    QrCode.fromDataAndValidation(
+    fromDataAndValidation(
       data: 'https://www.google.com/search?q=dart+lang',
       typeNumber: 4,
       errorCorrectLevel: QrErrorCorrectLevel.medium,

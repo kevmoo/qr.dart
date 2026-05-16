@@ -31,7 +31,7 @@ class QrImage {
 
     // Create a temporary QrImage to use its _mapData method
     // We pass 0 as maskPattern, but we will modify _mapData to NOT mask.
-    QrImage._fromData(qrCode, 0, dataMap)._mapData(qrCode.dataCache);
+    QrImage._fromData(qrCode, 0, dataMap)._mapData(getDataCache(qrCode));
 
     final workingBuffer = Uint8List(dataSize);
     var minLostPoint = double.maxFinite;
@@ -75,7 +75,7 @@ class QrImage {
       typeNumber = qrCode.typeNumber,
       errorCorrectLevel = qrCode.errorCorrectLevel,
       _data = Uint8List(qrCode.moduleCount * qrCode.moduleCount) {
-    _makeImpl(maskPattern, qrCode.dataCache, false);
+    _makeImpl(maskPattern, getDataCache(qrCode), false);
   }
 
   /// Internal constructor for template creation

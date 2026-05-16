@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   test('fromDataAndValidation returns valid result for simple input', () {
-    final result = QrCode.fromDataAndValidation(
+    final result = fromDataAndValidation(
       data: 'Hello World',
       typeNumber: 1,
       errorCorrectLevel: QrErrorCorrectLevel.medium,
@@ -27,7 +27,7 @@ void main() {
     // Let's use a long string that definitely fits in Type 5 but not Type 1.
     final data = 'A' * 50;
 
-    final result = QrCode.fromDataAndValidation(
+    final result = fromDataAndValidation(
       data: data,
       typeNumber: 1,
       errorCorrectLevel: QrErrorCorrectLevel.high,
@@ -50,7 +50,7 @@ void main() {
     // but not 5-Q (62 bytes) or 5-H (46 bytes).
     final data = 'A' * 120;
 
-    final result = QrCode.fromDataAndValidation(
+    final result = fromDataAndValidation(
       data: data,
       typeNumber: 5,
       errorCorrectLevel: QrErrorCorrectLevel.low,

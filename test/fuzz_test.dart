@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:qr/qr.dart';
+import 'package:qr/src/qr_code.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -20,7 +21,7 @@ void main() {
       try {
         final qr = QrCode.fromData(data: data, errorCorrectLevel: level);
         // Ensure we can at least generate the data cache without crashing
-        expect(qr.dataCache, isNotEmpty);
+        expect(getDataCache(qr), isNotEmpty);
 
         // Also test random mask patterns
         final mask = random.nextInt(8);
@@ -48,7 +49,7 @@ void main() {
 
       try {
         final qr = QrCode.fromUint8List(data: data, errorCorrectLevel: level);
-        expect(qr.dataCache, isNotEmpty);
+        expect(getDataCache(qr), isNotEmpty);
       } catch (e) {
         if (e is! InputTooLongException) {
           print('Failed with input bytes of length $length at iteration $i');
@@ -99,11 +100,11 @@ void main() {
               );
             case 4:
               // ECI values are 0-999999
-              qr.addECI(random.nextInt(1000000));
+              qr.addECI(QrEciValue(random.nextInt(1000000)));
           }
         }
         // Accessing dataCache triggers the actual encoding
-        expect(qr.dataCache, isNotEmpty);
+        expect(getDataCache(qr), isNotEmpty);
       } catch (e) {
         if (e is! InputTooLongException && e is! ArgumentError) {
           print('Failed during manual addition at iteration $i');

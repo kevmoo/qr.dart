@@ -231,7 +231,7 @@ class QrExample {
   }
 
   void _validate() {
-    final result = QrCode.fromDataAndValidation(
+    final result = fromDataAndValidation(
       data: _value,
       typeNumber: _typeNumber,
       errorCorrectLevel: _errorCorrectLevel,

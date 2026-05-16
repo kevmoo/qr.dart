@@ -1,17 +1,18 @@
-## 3.1.0-wip
+## 4.0.0-wip
 
-- Added Extended Channel Interpretation (ECI) support.
-  - New `QrEci` class.
-  - `QrCode.addECI` method.
+- **Breaking Change**: Removed `QrBitBuffer` from public exports to tighten the API surface.
+- **Breaking Change**: `QrErrorCorrectLevel` is now an enum (`low`, `medium`, `quartile`, `high`) instead of a class with integer constants (`L`, `M`, `Q`, `H`).
+- **Breaking Change**: `QrCode` and `QrImage` constructors and properties now use the `QrErrorCorrectLevel` enum instead of integers.
+- **Breaking Change**: Removed `dataCache` getter from `QrCode`.
+- Added Extended Channel Interpretation (ECI) support via `QrCode.addECI` and the `QrEciValue` extension type.
+- Added top-level `fromDataAndValidation` function to validate QR code data and predict valid configurations.
+- Added `QrValidationResult` class returned by `fromDataAndValidation`.
+- `QrCode.fromData` and `QrCode.addData` now intelligently pick the right mode.
+- Throws `InputTooLongException` for data that exceeds QR code version 40 capacity, preventing the generation of invalid QR codes.
 - Performance improvements for QR code generation.
   - `QrImage` generation is ~50% faster.
   - `LargeQrCode` generation is ~40% faster.
-- `QrCode.fromData` and `QrCode.addData` now intelligently pick the right mode.
-- Throws `InputTooLongException` for data that exceeds QR code version 40 capacity,
-  preventing the generation of invalid QR codes.
 - Require `sdk: ^3.8.0`.
-- Added `QrCode.fromDataAndValidation` to validate QR code data without generating the full code.
-- Added `QrValidationResult` class.
 
 ## 3.0.2
 
