@@ -6,7 +6,7 @@ void main() {
     'QrValidationResult.fromPayload returns valid result for simple input',
     () {
       final result = QrValidationResult.fromPayload(
-        payload: QrPayload.fromData('Hello World'),
+        payload: QrPayload.fromString('Hello World'),
         typeNumber: 1,
         errorCorrectLevel: QrErrorCorrectLevel.medium,
       );
@@ -31,7 +31,7 @@ void main() {
     final data = 'A' * 50;
 
     final result = QrValidationResult.fromPayload(
-      payload: QrPayload.fromData(data),
+      payload: QrPayload.fromString(data),
       typeNumber: 1,
       errorCorrectLevel: QrErrorCorrectLevel.high,
     );
@@ -54,7 +54,7 @@ void main() {
     final data = 'A' * 120;
 
     final result = QrValidationResult.fromPayload(
-      payload: QrPayload.fromData(data),
+      payload: QrPayload.fromString(data),
       typeNumber: 5,
       errorCorrectLevel: QrErrorCorrectLevel.low,
     );

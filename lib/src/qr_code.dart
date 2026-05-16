@@ -19,62 +19,40 @@ class QrCode {
   final QrPayload payload;
   List<int>? _dataCache;
 
-  QrCode(this.typeNumber, this.errorCorrectLevel, this.payload)
-    : moduleCount = typeNumber * 4 + 17 {
-    RangeError.checkValueInInterval(typeNumber, 1, 40, 'typeNumber');
-    final requiredBits = payload.calculateRequiredBits(typeNumber);
-    final capacity = QrRsBlock.getTotalDataBits(typeNumber, errorCorrectLevel);
-    if (requiredBits > capacity) {
-      final maxBits = QrRsBlock.getTotalDataBits(40, errorCorrectLevel);
-      throw InputTooLongException(requiredBits, maxBits);
-    }
-  }
-
-  factory QrCode.fromData({
-    required String data,
-    required QrErrorCorrectLevel errorCorrectLevel,
-  }) {
-    final payload = QrPayload.fromData(data);
-    final typeNumber = _calculateTypeNumberFromPayload(
-      errorCorrectLevel,
-      payload,
-    );
-    return QrCode(typeNumber, errorCorrectLevel, payload);
-  }
-
-  factory QrCode.fromUint8List({
-    required Uint8List data,
-    required QrErrorCorrectLevel errorCorrectLevel,
-  }) {
-    final payload = QrPayload.fromUint8List(data);
-    final typeNumber = _calculateTypeNumberFromPayload(
-      errorCorrectLevel,
-      payload,
-    );
-    return QrCode(typeNumber, errorCorrectLevel, payload);
-  }
-
-  factory QrCode.fromPayload({
+  /// Creates a [QrCode] from a [payload] and [errorCorrectLevel].
+  ///
+  /// Automatically calculates the minimum QR code version needed to fit the
+  /// data. If [minTypeNumber] is specified (1-40), the sizing loop starts at
+  /// that version, guaranteeing that the generated QR code will be at least
+  /// that size.
+  factory QrCode({
     required QrPayload payload,
-    required QrErrorCorrectLevel errorCorrectLevel,
+    QrErrorCorrectLevel errorCorrectLevel = QrErrorCorrectLevel.medium,
+    int minTypeNumber = 1,
   }) {
     final typeNumber = _calculateTypeNumberFromPayload(
       errorCorrectLevel,
       payload,
+      minTypeNumber,
     );
-    return QrCode(typeNumber, errorCorrectLevel, payload);
+    return QrCode._(typeNumber, errorCorrectLevel, payload);
   }
+
+  QrCode._(this.typeNumber, this.errorCorrectLevel, this.payload)
+    : moduleCount = typeNumber * 4 + 17;
 
   static int _calculateTypeNumberFromPayload(
     QrErrorCorrectLevel errorCorrectLevel,
     QrPayload payload,
+    int minTypeNumber,
   ) {
+    RangeError.checkValueInInterval(minTypeNumber, 1, 40, 'minTypeNumber');
     // Required bits only changes at types 10 and 27.
     final requiredBitsFor1 = payload.calculateRequiredBits(1);
     final requiredBitsFor10 = payload.calculateRequiredBits(10);
     final requiredBitsFor27 = payload.calculateRequiredBits(27);
 
-    for (var typeNumber = 1; typeNumber <= 40; typeNumber++) {
+    for (var typeNumber = minTypeNumber; typeNumber <= 40; typeNumber++) {
       final totalDataBits = QrRsBlock.getTotalDataBits(
         typeNumber,
         errorCorrectLevel,

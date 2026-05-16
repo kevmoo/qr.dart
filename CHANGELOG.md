@@ -5,6 +5,7 @@
 - **Breaking Change**: `QrCode` and `QrImage` constructors and properties now use the `QrErrorCorrectLevel` enum instead of integers.
 - **Breaking Change**: Removed `dataCache` getter from `QrCode`.
 - **Breaking Change**: `QrCode` is now immutable. Removed `addData`, `addByteData`, `addNumeric`, `addAlphaNumeric`, and `addECI` from `QrCode`.
+- **Breaking Change**: Consolidated `QrCode` constructors into a single public factory constructor taking `QrPayload`, `errorCorrectLevel`, and an optional `minTypeNumber`. Removed `QrCode.fromData`, `QrCode.fromUint8List`, and `QrCode.fromPayload`.
 - Added `QrPayload` class as a standalone accumulator for multi-part data and encoding modes (Numeric, Alphanumeric, Byte, ECI).
 - Added Extended Channel Interpretation (ECI) support via `QrPayload.addECI` and the `QrEciValue` extension type.
 - Added `QrValidationResult.fromPayload` factory constructor to validate QR code payloads and predict valid configurations.

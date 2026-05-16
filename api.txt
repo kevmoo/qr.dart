@@ -6,10 +6,7 @@ package:qr/qr.dart:
     providedInput (getter: int)
     toString (method: String Function())
   QrCode (class extends Object):
-    new (constructor: QrCode Function(int, QrErrorCorrectLevel, QrPayload))
-    fromData (constructor: QrCode Function({required String data, required QrErrorCorrectLevel errorCorrectLevel}))
-    fromPayload (constructor: QrCode Function({required QrErrorCorrectLevel errorCorrectLevel, required QrPayload payload}))
-    fromUint8List (constructor: QrCode Function({required Uint8List data, required QrErrorCorrectLevel errorCorrectLevel}))
+    new (constructor: QrCode Function({QrErrorCorrectLevel errorCorrectLevel, int minTypeNumber, required QrPayload payload}))
     errorCorrectLevel (getter: QrErrorCorrectLevel)
     moduleCount (getter: int)
     payload (getter: QrPayload)
@@ -62,13 +59,13 @@ package:qr/qr.dart:
     isDark (method: bool Function(int, int))
   QrPayload (class extends Object):
     new (constructor: QrPayload Function())
-    fromData (constructor: QrPayload Function(String))
-    fromUint8List (constructor: QrPayload Function(Uint8List))
+    fromString (constructor: QrPayload Function(String))
+    fromTypedData (constructor: QrPayload Function(TypedData))
     addAlphaNumeric (method: void Function(String))
-    addByteData (method: void Function(ByteData))
-    addData (method: void Function(String))
     addECI (method: void Function(QrEciValue))
     addNumeric (method: void Function(String))
+    addString (method: void Function(String))
+    addTypedData (method: void Function(TypedData))
   QrValidationResult (class extends Object, final):
     fromPayload (constructor: QrValidationResult Function({required QrErrorCorrectLevel errorCorrectLevel, required QrPayload payload, required int typeNumber}))
     isValid (getter: bool)
@@ -83,5 +80,4 @@ dart:core:
   bool (referenced)
   int (referenced)
 dart:typed_data:
-  ByteData (referenced)
-  Uint8List (referenced)
+  TypedData (referenced)

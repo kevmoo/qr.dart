@@ -19,7 +19,10 @@ void main() {
           .values[random.nextInt(QrErrorCorrectLevel.values.length)];
 
       try {
-        final qr = QrCode.fromData(data: data, errorCorrectLevel: level);
+        final qr = QrCode(
+          payload: QrPayload.fromString(data),
+          errorCorrectLevel: level,
+        );
         // Ensure we can at least generate the data cache without crashing
         expect(getDataCache(qr), isNotEmpty);
 
@@ -48,7 +51,10 @@ void main() {
           .values[random.nextInt(QrErrorCorrectLevel.values.length)];
 
       try {
-        final qr = QrCode.fromUint8List(data: data, errorCorrectLevel: level);
+        final qr = QrCode(
+          payload: QrPayload.fromTypedData(data),
+          errorCorrectLevel: level,
+        );
         expect(getDataCache(qr), isNotEmpty);
       } catch (e) {
         if (e is! InputTooLongException) {
@@ -72,7 +78,7 @@ void main() {
           final choice = random.nextInt(5);
           switch (choice) {
             case 0:
-              payload.addData(
+              payload.addString(
                 String.fromCharCodes(
                   List.generate(10, (_) => random.nextInt(128)),
                 ),
@@ -91,7 +97,7 @@ void main() {
                 ).join(),
               );
             case 3:
-              payload.addByteData(
+              payload.addTypedData(
                 ByteData.view(
                   Uint8List.fromList(
                     List.generate(10, (_) => random.nextInt(256)),
@@ -103,7 +109,11 @@ void main() {
               payload.addECI(QrEciValue(random.nextInt(1000000)));
           }
         }
-        final qr = QrCode(type, level, payload);
+        final qr = QrCode(
+          payload: payload,
+          errorCorrectLevel: level,
+          minTypeNumber: type,
+        );
         expect(getDataCache(qr), isNotEmpty);
       } catch (e) {
         if (e is! InputTooLongException && e is! ArgumentError) {

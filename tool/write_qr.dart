@@ -64,12 +64,11 @@ void main(List<String> args) {
     // If user explicitly asked for a version, we might want
     // `new QrCode(version, correction)..addData(text)`.
 
-    QrCode qr;
-    if (results.wasParsed('version')) {
-      qr = QrCode(versionInput, correction, QrPayload.fromData(text));
-    } else {
-      qr = QrCode.fromData(data: text, errorCorrectLevel: correction);
-    }
+    final qr = QrCode(
+      payload: QrPayload.fromString(text),
+      errorCorrectLevel: correction,
+      minTypeNumber: results.wasParsed('version') ? versionInput : 1,
+    );
 
     final qrImage = QrImage(qr);
 

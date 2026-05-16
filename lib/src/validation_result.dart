@@ -72,7 +72,11 @@ final class QrValidationResult {
     QrCode? code;
     if (validTypes.contains(typeNumber) &&
         validErrorLevels.contains(errorCorrectLevel)) {
-      code = QrCode(typeNumber, errorCorrectLevel, payload);
+      code = QrCode(
+        payload: payload,
+        errorCorrectLevel: errorCorrectLevel,
+        minTypeNumber: typeNumber,
+      );
     }
 
     return QrValidationResult._(

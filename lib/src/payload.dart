@@ -19,22 +19,22 @@ class QrPayload {
 
   /// Creates a payload and populates it with [data], optimizing for the most
   /// efficient encoding modes.
-  factory QrPayload.fromData(String data) => QrPayload()..addData(data);
+  factory QrPayload.fromString(String data) => QrPayload()..addString(data);
 
   /// Creates a payload from binary [data].
-  factory QrPayload.fromUint8List(Uint8List data) =>
-      QrPayload().._addToList(QrByte.fromUint8List(data));
+  factory QrPayload.fromTypedData(TypedData data) =>
+      QrPayload().._addToList(QrByte.fromByteData(data));
 
   /// Adds [data] to the payload, automatically splitting it into optimal
   /// segments.
-  void addData(String data) {
+  void addString(String data) {
     for (final datum in QrDatum.toDatums(data)) {
       _addToList(datum);
     }
   }
 
   /// Adds binary [data] to the payload.
-  void addByteData(ByteData data) => _addToList(QrByte.fromByteData(data));
+  void addTypedData(TypedData data) => _addToList(QrByte.fromByteData(data));
 
   /// Adds QR Numeric Mode data from a string of digits.
   ///
