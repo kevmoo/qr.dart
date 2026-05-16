@@ -1,5 +1,8 @@
+import 'dart:typed_data';
+
 import 'package:qr/src/byte.dart';
 import 'package:qr/src/eci.dart';
+import 'package:qr/src/mode.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -41,6 +44,26 @@ void main() {
       expect(datums[0], isA<QrEci>());
       expect((datums[0] as QrEci).value, 26);
       expect(datums[1], isA<QrByte>());
+    });
+  });
+
+  group('QrMode getLengthBits', () {
+    test('Kanji and ECI', () {
+      expect(QrMode.kanji.getLengthBits(1), 8);
+      expect(QrMode.kanji.getLengthBits(10), 10);
+      expect(QrMode.kanji.getLengthBits(27), 12);
+      expect(QrMode.eci.getLengthBits(1), 0);
+      expect(QrMode.eci.getLengthBits(10), 0);
+      expect(QrMode.eci.getLengthBits(27), 0);
+    });
+  });
+
+  group('QrByte.fromByteData', () {
+    test('respects TypedData sub-views', () {
+      final fullList = Uint8List.fromList([1, 2, 3, 4, 5, 6, 7, 8]);
+      final subView = Uint8List.sublistView(fullList, 2, 5); // [3, 4, 5]
+      final qrByte = QrByte.fromByteData(subView);
+      expect(qrByte.length, 3);
     });
   });
 }

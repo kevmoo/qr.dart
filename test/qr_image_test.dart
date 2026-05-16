@@ -6,8 +6,10 @@ void main() {
   late int moduleCount;
 
   setUpAll(() {
-    const typeNumber = 1;
-    final qrCode = QrCode(typeNumber, QrErrorCorrectLevel.low)..addData('test');
+    final qrCode = QrCode(
+      payload: QrPayload.fromString('test'),
+      errorCorrectLevel: QrErrorCorrectLevel.low,
+    );
     qrImage = QrImage(qrCode);
     moduleCount = qrImage.moduleCount;
   });

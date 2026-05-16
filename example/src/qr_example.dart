@@ -231,8 +231,8 @@ class QrExample {
   }
 
   void _validate() {
-    final result = QrCode.fromDataAndValidation(
-      data: _value,
+    final result = QrValidationResult.fromPayload(
+      payload: QrPayload.fromString(_value),
       typeNumber: _typeNumber,
       errorCorrectLevel: _errorCorrectLevel,
     );
@@ -346,10 +346,12 @@ Future<List<bool>?> _calc(_Config config) async {
   if (config.input.trim().isEmpty) {
     return null;
   }
-  final code = QrCode(config.type, config.level);
-  final data = config.input;
-
-  code.addData(data);
+  final payload = QrPayload.fromString(config.input);
+  final code = QrCode(
+    payload: payload,
+    errorCorrectLevel: config.level,
+    minTypeNumber: config.type,
+  );
   final image = QrImage(code);
 
   final squares = <bool>[];

@@ -1,4 +1,6 @@
-import 'package:qr/qr.dart';
+import 'package:qr/src/bit_buffer.dart';
+import 'package:qr/src/byte.dart';
+import 'package:qr/src/mode.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -32,6 +34,7 @@ void main() {
     final qr = QrNumeric.fromString('37');
     expect(qr.mode, QrMode.numeric);
     expect(qr.length, 2);
+    expect(qr.bitLength, 7);
     final buffer = QrBitBuffer();
     qr.write(buffer);
     expect(buffer, hasLength(7), reason: 'n*3+1 = 7');

@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:qr/qr.dart';
+import 'package:qr/src/qr_code.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -18,9 +19,12 @@ void main() {
           .values[random.nextInt(QrErrorCorrectLevel.values.length)];
 
       try {
-        final qr = QrCode.fromData(data: data, errorCorrectLevel: level);
+        final qr = QrCode(
+          payload: QrPayload.fromString(data),
+          errorCorrectLevel: level,
+        );
         // Ensure we can at least generate the data cache without crashing
-        expect(qr.dataCache, isNotEmpty);
+        expect(getDataCache(qr), isNotEmpty);
 
         // Also test random mask patterns
         final mask = random.nextInt(8);
@@ -47,8 +51,11 @@ void main() {
           .values[random.nextInt(QrErrorCorrectLevel.values.length)];
 
       try {
-        final qr = QrCode.fromUint8List(data: data, errorCorrectLevel: level);
-        expect(qr.dataCache, isNotEmpty);
+        final qr = QrCode(
+          payload: QrPayload.fromTypedData(data),
+          errorCorrectLevel: level,
+        );
+        expect(getDataCache(qr), isNotEmpty);
       } catch (e) {
         if (e is! InputTooLongException) {
           print('Failed with input bytes of length $length at iteration $i');
@@ -63,7 +70,7 @@ void main() {
       final type = random.nextInt(40) + 1;
       final level = QrErrorCorrectLevel
           .values[random.nextInt(QrErrorCorrectLevel.values.length)];
-      final qr = QrCode(type, level);
+      final payload = QrPayload();
 
       try {
         final numAdditions = random.nextInt(10);
@@ -71,17 +78,17 @@ void main() {
           final choice = random.nextInt(5);
           switch (choice) {
             case 0:
-              qr.addData(
+              payload.addString(
                 String.fromCharCodes(
                   List.generate(10, (_) => random.nextInt(128)),
                 ),
               );
             case 1:
-              qr.addNumeric(
+              payload.addNumeric(
                 List.generate(10, (_) => random.nextInt(10)).join(),
               );
             case 2:
-              qr.addAlphaNumeric(
+              payload.addAlphaNumeric(
                 List.generate(
                   10,
                   (_) =>
@@ -90,7 +97,7 @@ void main() {
                 ).join(),
               );
             case 3:
-              qr.addByteData(
+              payload.addTypedData(
                 ByteData.view(
                   Uint8List.fromList(
                     List.generate(10, (_) => random.nextInt(256)),
@@ -99,11 +106,15 @@ void main() {
               );
             case 4:
               // ECI values are 0-999999
-              qr.addECI(random.nextInt(1000000));
+              payload.addECI(QrEciValue(random.nextInt(1000000)));
           }
         }
-        // Accessing dataCache triggers the actual encoding
-        expect(qr.dataCache, isNotEmpty);
+        final qr = QrCode(
+          payload: payload,
+          errorCorrectLevel: level,
+          minTypeNumber: type,
+        );
+        expect(getDataCache(qr), isNotEmpty);
       } catch (e) {
         if (e is! InputTooLongException && e is! ArgumentError) {
           print('Failed during manual addition at iteration $i');

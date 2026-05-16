@@ -7,7 +7,7 @@ import 'qr_code.dart';
 import 'util.dart' as qr_util;
 
 /// Renders the encoded data from a [QrCode] in a portable format.
-class QrImage {
+final class QrImage {
   static const _pixelUnassigned = 0;
   static const _pixelLight = 1;
   static const _pixelDark = 2;
@@ -31,7 +31,7 @@ class QrImage {
 
     // Create a temporary QrImage to use its _mapData method
     // We pass 0 as maskPattern, but we will modify _mapData to NOT mask.
-    QrImage._fromData(qrCode, 0, dataMap)._mapData(qrCode.dataCache);
+    QrImage._fromData(qrCode, 0, dataMap)._mapData(getDataCache(qrCode));
 
     final workingBuffer = Uint8List(dataSize);
     var minLostPoint = double.maxFinite;
@@ -75,7 +75,7 @@ class QrImage {
       typeNumber = qrCode.typeNumber,
       errorCorrectLevel = qrCode.errorCorrectLevel,
       _data = Uint8List(qrCode.moduleCount * qrCode.moduleCount) {
-    _makeImpl(maskPattern, qrCode.dataCache, false);
+    _makeImpl(maskPattern, getDataCache(qrCode), false);
   }
 
   /// Internal constructor for template creation
@@ -336,6 +336,9 @@ double _lostPoint(QrImage qrImage) {
   final data = qrImage._data;
   var lostPoint = 0.0;
 
+  // TODO: When min SDK is bumped to 3.13.0, consider storing the module grid
+  // as packed 32-bit bitboards (for dart2js compatibility) to calculate
+  // darkCount instantly via hardware-accelerated `int.oneBitCount`.
   var darkCount = 0;
 
   for (var row = 0; row < moduleCount; row++) {

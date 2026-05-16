@@ -20,7 +20,6 @@ enum QrMode {
   const QrMode(this.value);
 
   int getLengthBits(int type) {
-    if (this == eci) return 0;
     if (type < 1 || type > 40) throw RangeError.range(type, 1, 40, 'type');
 
     if (type < 10) {

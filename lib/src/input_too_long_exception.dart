@@ -1,4 +1,4 @@
-class InputTooLongException implements Exception {
+final class InputTooLongException implements Exception {
   final int providedInput;
   final int inputLimit;
   final String message;

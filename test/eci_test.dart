@@ -1,7 +1,10 @@
 // ignore_for_file: lines_longer_than_80_chars
 
 import 'package:qr/qr.dart';
+import 'package:qr/src/bit_buffer.dart';
+import 'package:qr/src/eci.dart';
 import 'package:qr/src/mode.dart' as qr_mode;
+import 'package:qr/src/qr_code.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -73,7 +76,10 @@ void main() {
   });
 
   test('validates emoji', () {
-    final code = QrCode(1, QrErrorCorrectLevel.low)..addData('🙃');
+    final code = QrCode(
+      payload: QrPayload.fromString('🙃'),
+      errorCorrectLevel: QrErrorCorrectLevel.low,
+    );
 
     // Validate bitstream structure:
     // Header: Mode 7 (0111) + Value 26 (00011010) + Mode 4 (0100) + Length 4 (00000100)
@@ -91,7 +97,7 @@ void main() {
     ];
 
     // Verify the full data cache (19 Data Codewords for Version 1-L)
-    expect(code.dataCache.sublist(0, 19), expectedData);
+    expect(getDataCache(code).sublist(0, 19), expectedData);
 
     final image = QrImage(code);
     expect(image.moduleCount, 21); // Version 1 is 21x21

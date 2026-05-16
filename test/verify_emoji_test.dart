@@ -4,8 +4,8 @@ import 'package:test/test.dart';
 void main() {
   test('Generate QR with Emoji', () {
     const emojiString = '👩🏽❤️💋👨🏾';
-    final qr = QrCode.fromData(
-      data: emojiString,
+    final qr = QrCode(
+      payload: QrPayload.fromString(emojiString),
       errorCorrectLevel: QrErrorCorrectLevel.low,
     );
     expect(qr.typeNumber, 2);
@@ -22,8 +22,8 @@ void main() {
         '\u{1F469}\u{1F3FD}\u{200D}\u{2764}\u{FE0F}\u{200D}'
         '\u{1F48B}\u{200D}\u{1F468}\u{1F3FE}';
 
-    final qr = QrCode.fromData(
-      data: complexEmoji,
+    final qr = QrCode(
+      payload: QrPayload.fromString(complexEmoji),
       errorCorrectLevel: QrErrorCorrectLevel.low,
     );
     expect(qr.typeNumber, greaterThan(0));

@@ -33,48 +33,44 @@ void main() {
 
   for (final config in configurations) {
     for (final input in inputs) {
-      test(
-        'Generate QR with config $config and input "$input"',
-        () async {
-          final bmpPath = p.join(
-            tempDir.path,
-            'test_${config.hashCode}_${input.hashCode}.bmp',
-          );
-          final args = [
-            'tool/write_qr.dart',
-            '-o',
-            bmpPath,
-            if (config.version != null) ...['-v', config.version.toString()],
-            if (config.correction != null) ...['-c', config.correction!],
-            '--scale',
-            '10',
-            input,
-          ];
+      test('Generate QR with config $config and input "$input"', () async {
+        final bmpPath = p.join(
+          tempDir.path,
+          'test_${config.hashCode}_${input.hashCode}.bmp',
+        );
+        final args = [
+          'tool/write_qr.dart',
+          '-o',
+          bmpPath,
+          if (config.version != null) ...['-v', config.version.toString()],
+          if (config.correction != null) ...['-c', config.correction!],
+          '--scale',
+          '10',
+          input,
+        ];
 
-          final process = await TestProcess.start('dart', args);
-          await process.shouldExit(0);
+        final process = await TestProcess.start('dart', args);
+        await process.shouldExit(0);
 
-          expect(
-            File(bmpPath).existsSync(),
-            isTrue,
-            reason: 'BMP file should be created',
-          );
+        expect(
+          File(bmpPath).existsSync(),
+          isTrue,
+          reason: 'BMP file should be created',
+        );
 
-          // Validate with zbarimg
-          // zbarimg output format: QR-Code:content
-          final zbar = await TestProcess.start('zbarimg', ['--quiet', bmpPath]);
-          await zbar.shouldExit(0);
-          final output = (await zbar.stdout.rest.toList()).join('\n').trim();
+        // Validate with zbarimg
+        // zbarimg output format: QR-Code:content
+        final zbar = await TestProcess.start('zbarimg', ['--quiet', bmpPath]);
+        await zbar.shouldExit(0);
+        final output = (await zbar.stdout.rest.toList()).join('\n').trim();
 
-          if (output != 'QR-Code:$input') {
-            print('zbarimg failed to match input.');
-            print('Input: $input');
-            print('Output: "$output"');
-          }
-          expect(output, 'QR-Code:$input');
-        },
-        timeout: const Timeout(Duration(seconds: 20)),
-      );
+        if (output != 'QR-Code:$input') {
+          print('zbarimg failed to match input.');
+          print('Input: $input');
+          print('Output: "$output"');
+        }
+        expect(output, 'QR-Code:$input');
+      }, timeout: const Timeout(Duration(seconds: 20)));
     }
   }
 

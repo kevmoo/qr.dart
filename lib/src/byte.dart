@@ -8,7 +8,7 @@ import 'mode.dart';
 /// A piece of data to be encoded in a QR code.
 ///
 /// Use [toDatums] to parse a string into optimal segments.
-abstract class QrDatum {
+abstract interface class QrDatum {
   QrMode get mode;
   int get length;
   int get bitLength;
@@ -41,7 +41,7 @@ abstract class QrDatum {
 /// Represents data encoded in Byte mode (8-bit).
 ///
 /// Supports ISO-8859-1 and UTF-8 (when preceded by an ECI segment).
-class QrByte implements QrDatum {
+final class QrByte implements QrDatum {
   @override
   final QrMode mode = QrMode.byte;
   final Uint8List _data;
@@ -51,8 +51,9 @@ class QrByte implements QrDatum {
 
   QrByte.fromUint8List(Uint8List input) : _data = input;
 
-  factory QrByte.fromByteData(ByteData input) =>
-      QrByte.fromUint8List(input.buffer.asUint8List());
+  factory QrByte.fromByteData(TypedData input) => QrByte.fromUint8List(
+    input.buffer.asUint8List(input.offsetInBytes, input.lengthInBytes),
+  );
 
   @override
   int get length => _data.length;
@@ -72,7 +73,7 @@ class QrByte implements QrDatum {
 ///
 /// Compresses 3 digits into 10 bits.
 /// Most efficient mode for decimal numbers.
-class QrNumeric implements QrDatum {
+final class QrNumeric implements QrDatum {
   static final RegExp validationRegex = RegExp(r'^[0-9]+$');
 
   factory QrNumeric.fromString(String numberString) {
@@ -142,7 +143,7 @@ class QrNumeric implements QrDatum {
 ///
 /// Supported characters: 0-9, A-Z, space, $, %, *, +, -, ., /, :
 /// Compresses 2 characters into 11 bits.
-class QrAlphaNumeric implements QrDatum {
+final class QrAlphaNumeric implements QrDatum {
   static const alphaNumTable = r'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:';
   // Note: '-' anywhere in this string is a range character.
   static final validationRegex = RegExp(

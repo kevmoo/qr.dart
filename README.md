@@ -10,7 +10,6 @@ A QR code generation library for Dart and Flutter.
 - Error correction / redundancy
 - ECI (Extended Channel Interpretation) support
 
-
 # Getting started
 
 To start, import the dependency in your code:
@@ -22,17 +21,24 @@ import 'package:qr/qr.dart';
 To build your QR code data you should do so as such:
 
 ```dart
-final qrCode = QrCode(4, QrErrorCorrectLevel.L)
-  ..addData('Hello, world in QR form!');
+final qrCode = QrCode(
+  payload: QrPayload.fromString('Hello, world in QR form!'),
+  errorCorrectLevel: QrErrorCorrectLevel.low,
+);
 final qrImage = QrImage(qrCode);
 ```
 
-To enable Extended Channel Interpretation (ECI) mode, you can use the `addECI` method:
+To enable Extended Channel Interpretation (ECI) mode or build multi-part data, you can use `QrPayload`:
 
 ```dart
-final qrCode = QrCode(4, QrErrorCorrectLevel.L)
+final payload = QrPayload()
   ..addECI(QrEciValue.utf8)
-  ..addData('Hello, world in QR form!');
+  ..addString('Hello, world in QR form!');
+
+final qrCode = QrCode(
+  payload: payload,
+  errorCorrectLevel: QrErrorCorrectLevel.low,
+);
 ```
 
 Now you can use your `qrImage` instance to render a graphical representation of
@@ -64,7 +70,7 @@ of scannable codes, include QR.
 
 The following packages can be used to export QR codes directory to an image:
 
-* [qr_image_exporter](https://pub.dev/packages/qr_image_exporter) - A library to 
+* [qr_image_exporter](https://pub.dev/packages/qr_image_exporter) - A library to
   export QR codes as PNG image data.
 
 # Demo
