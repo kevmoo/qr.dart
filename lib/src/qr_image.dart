@@ -336,6 +336,9 @@ double _lostPoint(QrImage qrImage) {
   final data = qrImage._data;
   var lostPoint = 0.0;
 
+  // TODO: When min SDK is bumped to 3.13.0, consider storing the module grid
+  // as packed 32-bit bitboards (for dart2js compatibility) to calculate
+  // darkCount instantly via hardware-accelerated `int.oneBitCount`.
   var darkCount = 0;
 
   for (var row = 0; row < moduleCount; row++) {
