@@ -151,9 +151,9 @@ final class QrExample {
     _autoCheckElement.checked = _model.autoType;
 
     if (_model.autoType) {
-      final radio = document.getElementById(
-        'type_${_model.typeNumber}',
-      ) as HTMLInputElement?;
+      final radio =
+          document.getElementById('type_${_model.typeNumber}')
+              as HTMLInputElement?;
       if (radio != null) {
         radio.checked = true;
       }
@@ -176,9 +176,9 @@ final class QrExample {
       final radio = document.getElementById(id) as HTMLInputElement?;
       if (radio == null) return;
 
-      final label = document.querySelector(
-        'label[for="${radio.id}"]',
-      ) as HTMLLabelElement?;
+      final label =
+          document.querySelector('label[for="${radio.id}"]')
+              as HTMLLabelElement?;
       if (label == null) return;
 
       label.classList.toggle('invalid-option', !isValid);

@@ -2,7 +2,8 @@ import 'dart:convert';
 
 // QR Code Test Data for text 'shanna!' for all seven masks.
 // (version 1, low error correction)
-final qrCodeTestDataWithMask = jsonDecode(r'''
+final qrCodeTestDataWithMask =
+    jsonDecode(r'''
 {
   "0": [
     "111111100101101111111",
@@ -189,4 +190,5 @@ final qrCodeTestDataWithMask = jsonDecode(r'''
     "111111101001100101010"
   ]
 }
-''') as Map;
+''')
+        as Map;

@@ -17,7 +17,7 @@
 - Performance improvements for QR code generation.
   - `QrImage` generation is ~50% faster.
   - `LargeQrCode` generation is ~40% faster.
-- Require `sdk: ^3.8.0`.
+- Require `sdk: ^3.11.0`.
 
 ## 3.0.2
 

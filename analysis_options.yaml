@@ -27,6 +27,6 @@ linter:
   - prefer_final_locals
   - require_trailing_commas
   - unnecessary_await_in_return
-  - use_if_null_to_convert_nulls_to_bools
+  - unnecessary_ignore
   - use_raw_strings
   - use_string_buffers
