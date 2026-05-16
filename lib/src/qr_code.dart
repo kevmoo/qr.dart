@@ -5,12 +5,10 @@ import 'package:meta/meta.dart';
 
 import 'bit_buffer.dart';
 import 'byte.dart';
-import 'eci.dart';
-import 'ecivalue.dart';
 import 'error_correct_level.dart';
 import 'input_too_long_exception.dart';
 import 'math.dart' as qr_math;
-
+import 'payload.dart';
 import 'polynomial.dart';
 import 'rs_block.dart';
 
@@ -18,61 +16,63 @@ class QrCode {
   final int typeNumber;
   final QrErrorCorrectLevel errorCorrectLevel;
   final int moduleCount;
+  final QrPayload payload;
   List<int>? _dataCache;
-  final _dataList = <QrDatum>[];
 
-  QrCode(this.typeNumber, this.errorCorrectLevel)
+  QrCode(this.typeNumber, this.errorCorrectLevel, this.payload)
     : moduleCount = typeNumber * 4 + 17 {
-    // The typeNumber is now calculated internally by the factories,
-    // so this check is only needed if QrCode is instantiated directly.
-    // However, the factories ensure a valid typeNumber is passed.
-    // Keeping it for direct instantiation safety.
     RangeError.checkValueInInterval(typeNumber, 1, 40, 'typeNumber');
+    final requiredBits = payload.calculateRequiredBits(typeNumber);
+    final capacity = QrRsBlock.getTotalDataBits(typeNumber, errorCorrectLevel);
+    if (requiredBits > capacity) {
+      final maxBits = QrRsBlock.getTotalDataBits(40, errorCorrectLevel);
+      throw InputTooLongException(requiredBits, maxBits);
+    }
   }
 
   factory QrCode.fromData({
     required String data,
     required QrErrorCorrectLevel errorCorrectLevel,
   }) {
-    final datumList = QrDatum.toDatums(data);
-
-    final typeNumber = _calculateTypeNumberFromData(
+    final payload = QrPayload.fromData(data);
+    final typeNumber = _calculateTypeNumberFromPayload(
       errorCorrectLevel,
-      datumList,
+      payload,
     );
-
-    final qrCode = QrCode(typeNumber, errorCorrectLevel);
-    for (final datum in datumList) {
-      qrCode._addToList(datum);
-    }
-    return qrCode;
+    return QrCode(typeNumber, errorCorrectLevel, payload);
   }
 
   factory QrCode.fromUint8List({
     required Uint8List data,
     required QrErrorCorrectLevel errorCorrectLevel,
   }) {
-    final datum = QrByte.fromUint8List(data);
-    final typeNumber = _calculateTypeNumberFromData(errorCorrectLevel, [datum]);
-    return QrCode(typeNumber, errorCorrectLevel).._addToList(datum);
+    final payload = QrPayload.fromUint8List(data);
+    final typeNumber = _calculateTypeNumberFromPayload(
+      errorCorrectLevel,
+      payload,
+    );
+    return QrCode(typeNumber, errorCorrectLevel, payload);
   }
 
-  static int _calculateTypeNumberFromData(
-    QrErrorCorrectLevel errorCorrectLevel,
-    List<QrDatum> data,
-  ) {
-    int getRequiredBits(int typeNumber) {
-      var bits = 0;
-      for (final datum in data) {
-        bits += 4 + datum.mode.getLengthBits(typeNumber) + datum.bitLength;
-      }
-      return bits;
-    }
+  factory QrCode.fromPayload({
+    required QrPayload payload,
+    required QrErrorCorrectLevel errorCorrectLevel,
+  }) {
+    final typeNumber = _calculateTypeNumberFromPayload(
+      errorCorrectLevel,
+      payload,
+    );
+    return QrCode(typeNumber, errorCorrectLevel, payload);
+  }
 
+  static int _calculateTypeNumberFromPayload(
+    QrErrorCorrectLevel errorCorrectLevel,
+    QrPayload payload,
+  ) {
     // Required bits only changes at types 10 and 27.
-    final requiredBitsFor1 = getRequiredBits(1);
-    final requiredBitsFor10 = getRequiredBits(10);
-    final requiredBitsFor27 = getRequiredBits(27);
+    final requiredBitsFor1 = payload.calculateRequiredBits(1);
+    final requiredBitsFor10 = payload.calculateRequiredBits(10);
+    final requiredBitsFor27 = payload.calculateRequiredBits(27);
 
     for (var typeNumber = 1; typeNumber <= 40; typeNumber++) {
       final totalDataBits = QrRsBlock.getTotalDataBits(
@@ -95,45 +95,13 @@ class QrCode {
     final maxBits = QrRsBlock.getTotalDataBits(40, errorCorrectLevel);
     throw InputTooLongException(requiredBitsFor27, maxBits);
   }
-
-  void addData(String data) {
-    for (final datum in QrDatum.toDatums(data)) {
-      _addToList(datum);
-    }
-  }
-
-  void addByteData(ByteData data) => _addToList(QrByte.fromByteData(data));
-
-  /// Add QR Numeric Mode data from a string of digits.
-  ///
-  /// It is an error if the [numberString] contains anything other than the
-  /// digits 0 through 9.
-  void addNumeric(String numberString) =>
-      _addToList(QrNumeric.fromString(numberString));
-
-  void addAlphaNumeric(String alphaNumeric) =>
-      _addToList(QrAlphaNumeric.fromString(alphaNumeric));
-
-  /// Add Extended Channel Interpretation (ECI) mode data.
-  ///
-  /// Use this to specify a different character encoding for subsequent data.
-  /// Common values are available as constants on [QrEciValue].
-  void addECI(QrEciValue eciValue) => _addToList(QrEci(eciValue));
-
-  void _addToList(QrDatum data) {
-    _dataList.add(data);
-    _dataCache = null;
-  }
 }
-
-@internal
-void addToList(QrCode code, QrDatum datum) => code._addToList(datum);
 
 @internal
 List<int> getDataCache(QrCode code) => code._dataCache ??= _createData(
   code.typeNumber,
   code.errorCorrectLevel,
-  code._dataList,
+  code.payload.dataList,
 );
 
 const int _pad0 = 0xEC;

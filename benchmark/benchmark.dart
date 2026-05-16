@@ -61,8 +61,8 @@ class ValidationBenchmark extends BenchmarkBase {
 
   @override
   void run() {
-    fromDataAndValidation(
-      data: 'https://www.google.com/search?q=dart+lang',
+    QrValidationResult.fromPayload(
+      payload: QrPayload.fromData('https://www.google.com/search?q=dart+lang'),
       typeNumber: 4,
       errorCorrectLevel: QrErrorCorrectLevel.medium,
     );

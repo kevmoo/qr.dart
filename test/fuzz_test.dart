@@ -64,7 +64,7 @@ void main() {
       final type = random.nextInt(40) + 1;
       final level = QrErrorCorrectLevel
           .values[random.nextInt(QrErrorCorrectLevel.values.length)];
-      final qr = QrCode(type, level);
+      final payload = QrPayload();
 
       try {
         final numAdditions = random.nextInt(10);
@@ -72,17 +72,17 @@ void main() {
           final choice = random.nextInt(5);
           switch (choice) {
             case 0:
-              qr.addData(
+              payload.addData(
                 String.fromCharCodes(
                   List.generate(10, (_) => random.nextInt(128)),
                 ),
               );
             case 1:
-              qr.addNumeric(
+              payload.addNumeric(
                 List.generate(10, (_) => random.nextInt(10)).join(),
               );
             case 2:
-              qr.addAlphaNumeric(
+              payload.addAlphaNumeric(
                 List.generate(
                   10,
                   (_) =>
@@ -91,7 +91,7 @@ void main() {
                 ).join(),
               );
             case 3:
-              qr.addByteData(
+              payload.addByteData(
                 ByteData.view(
                   Uint8List.fromList(
                     List.generate(10, (_) => random.nextInt(256)),
@@ -100,10 +100,10 @@ void main() {
               );
             case 4:
               // ECI values are 0-999999
-              qr.addECI(QrEciValue(random.nextInt(1000000)));
+              payload.addECI(QrEciValue(random.nextInt(1000000)));
           }
         }
-        // Accessing dataCache triggers the actual encoding
+        final qr = QrCode(type, level, payload);
         expect(getDataCache(qr), isNotEmpty);
       } catch (e) {
         if (e is! InputTooLongException && e is! ArgumentError) {

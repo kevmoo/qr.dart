@@ -66,7 +66,7 @@ void main(List<String> args) {
 
     QrCode qr;
     if (results.wasParsed('version')) {
-      qr = QrCode(versionInput, correction)..addData(text);
+      qr = QrCode(versionInput, correction, QrPayload.fromData(text));
     } else {
       qr = QrCode.fromData(data: text, errorCorrectLevel: correction);
     }

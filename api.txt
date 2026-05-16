@@ -1,5 +1,4 @@
 package:qr/qr.dart:
-  fromDataAndValidation (function: QrValidationResult Function({required String data, required QrErrorCorrectLevel errorCorrectLevel, required int typeNumber}))
   InputTooLongException (class extends Object implements Exception):
     new (constructor: InputTooLongException Function(int, int))
     inputLimit (getter: int)
@@ -7,17 +6,14 @@ package:qr/qr.dart:
     providedInput (getter: int)
     toString (method: String Function())
   QrCode (class extends Object):
-    new (constructor: QrCode Function(int, QrErrorCorrectLevel))
+    new (constructor: QrCode Function(int, QrErrorCorrectLevel, QrPayload))
     fromData (constructor: QrCode Function({required String data, required QrErrorCorrectLevel errorCorrectLevel}))
+    fromPayload (constructor: QrCode Function({required QrErrorCorrectLevel errorCorrectLevel, required QrPayload payload}))
     fromUint8List (constructor: QrCode Function({required Uint8List data, required QrErrorCorrectLevel errorCorrectLevel}))
     errorCorrectLevel (getter: QrErrorCorrectLevel)
     moduleCount (getter: int)
+    payload (getter: QrPayload)
     typeNumber (getter: int)
-    addAlphaNumeric (method: void Function(String))
-    addByteData (method: void Function(ByteData))
-    addData (method: void Function(String))
-    addECI (method: void Function(QrEciValue))
-    addNumeric (method: void Function(String))
   QrEciValue (extension type implements int):
     ascii (static getter: QrEciValue)
     big5 (static getter: QrEciValue)
@@ -64,7 +60,17 @@ package:qr/qr.dart:
     qrModules (getter: List<List<bool?>>)
     typeNumber (getter: int)
     isDark (method: bool Function(int, int))
+  QrPayload (class extends Object):
+    new (constructor: QrPayload Function())
+    fromData (constructor: QrPayload Function(String))
+    fromUint8List (constructor: QrPayload Function(Uint8List))
+    addAlphaNumeric (method: void Function(String))
+    addByteData (method: void Function(ByteData))
+    addData (method: void Function(String))
+    addECI (method: void Function(QrEciValue))
+    addNumeric (method: void Function(String))
   QrValidationResult (class extends Object, final):
+    fromPayload (constructor: QrValidationResult Function({required QrErrorCorrectLevel errorCorrectLevel, required QrPayload payload, required int typeNumber}))
     isValid (getter: bool)
     qrCode (getter: QrCode?)
     validErrorCorrectLevels (getter: List<QrErrorCorrectLevel>)

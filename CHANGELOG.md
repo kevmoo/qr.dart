@@ -4,10 +4,12 @@
 - **Breaking Change**: `QrErrorCorrectLevel` is now an enum (`low`, `medium`, `quartile`, `high`) instead of a class with integer constants (`L`, `M`, `Q`, `H`).
 - **Breaking Change**: `QrCode` and `QrImage` constructors and properties now use the `QrErrorCorrectLevel` enum instead of integers.
 - **Breaking Change**: Removed `dataCache` getter from `QrCode`.
-- Added Extended Channel Interpretation (ECI) support via `QrCode.addECI` and the `QrEciValue` extension type.
-- Added top-level `fromDataAndValidation` function to validate QR code data and predict valid configurations.
-- Added `QrValidationResult` class returned by `fromDataAndValidation`.
-- `QrCode.fromData` and `QrCode.addData` now intelligently pick the right mode.
+- **Breaking Change**: `QrCode` is now immutable. Removed `addData`, `addByteData`, `addNumeric`, `addAlphaNumeric`, and `addECI` from `QrCode`.
+- Added `QrPayload` class as a standalone accumulator for multi-part data and encoding modes (Numeric, Alphanumeric, Byte, ECI).
+- Added Extended Channel Interpretation (ECI) support via `QrPayload.addECI` and the `QrEciValue` extension type.
+- Added `QrValidationResult.fromPayload` factory constructor to validate QR code payloads and predict valid configurations.
+- Added `QrValidationResult` class returned by validation constructor.
+- `QrPayload.fromData` and `QrPayload.addData` now intelligently pick the right mode.
 - Throws `InputTooLongException` for data that exceeds QR code version 40 capacity, preventing the generation of invalid QR codes.
 - Performance improvements for QR code generation.
   - `QrImage` generation is ~50% faster.
