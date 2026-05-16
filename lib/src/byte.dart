@@ -51,8 +51,9 @@ final class QrByte implements QrDatum {
 
   QrByte.fromUint8List(Uint8List input) : _data = input;
 
-  factory QrByte.fromByteData(TypedData input) =>
-      QrByte.fromUint8List(input.buffer.asUint8List());
+  factory QrByte.fromByteData(TypedData input) => QrByte.fromUint8List(
+    input.buffer.asUint8List(input.offsetInBytes, input.lengthInBytes),
+  );
 
   @override
   int get length => _data.length;
