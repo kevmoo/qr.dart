@@ -186,7 +186,7 @@ void main() {
           isA<InputTooLongException>().having(
             (e) => e.toString(),
             'toString()',
-            'QrInputTooLongException: Input too long. 23652 > 23648',
+            'Input too long. 23652 > 23648',
           ),
         ),
       );

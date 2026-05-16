@@ -1,9 +1,12 @@
 name: qr
-version: 4.0.0-wip
+version: 4.0.0
 description: >-
-  A QR code generation library for Dart and Flutter.
+  A QR code generation library for Dart.
   Supports QR code version 1 through 40, error correction and redundancy.
 repository: https://github.com/kevmoo/qr.dart
+screenshots:
+  - description: 'Rich interactive QR Code generation demo'
+    path: example/assets/qr_kevmoo_screen_shot.webp
 
 environment:
   sdk: ^3.11.0

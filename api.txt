@@ -1,9 +1,7 @@
 package:qr/qr.dart:
   InputTooLongException (class extends Object implements Exception, final):
-    new (constructor: InputTooLongException Function(int, int))
+    inputBits (getter: int)
     inputLimit (getter: int)
-    message (getter: String)
-    providedInput (getter: int)
     toString (method: String Function())
   QrCode (class extends Object, final):
     new (constructor: QrCode Function({QrErrorCorrectLevel errorCorrectLevel, int minTypeNumber, required QrPayload payload}))

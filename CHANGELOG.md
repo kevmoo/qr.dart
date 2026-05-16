@@ -1,4 +1,4 @@
-## 4.0.0-wip
+## 4.0.0
 
 - **Breaking Change**: Removed `QrBitBuffer` from public exports to tighten the API surface.
 - **Breaking Change**: `QrErrorCorrectLevel` is now an enum (`low`, `medium`, `quartile`, `high`) instead of a class with integer constants (`L`, `M`, `Q`, `H`).
