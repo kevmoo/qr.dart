@@ -32,6 +32,7 @@ final class QrValidationResult {
     required int typeNumber,
     required QrErrorCorrectLevel errorCorrectLevel,
   }) {
+    RangeError.checkValueInInterval(typeNumber, 1, 40, 'typeNumber');
     // Required bits only changes at types 10 and 27.
     final requiredBitsFor1 = payload.calculateRequiredBits(1);
     final requiredBitsFor10 = payload.calculateRequiredBits(10);
@@ -76,8 +77,8 @@ final class QrValidationResult {
 
     return QrValidationResult._(
       qrCode: code,
-      validTypeNumbers: validTypes,
-      validErrorCorrectLevels: validErrorLevels,
+      validTypeNumbers: List.unmodifiable(validTypes),
+      validErrorCorrectLevels: List.unmodifiable(validErrorLevels),
     );
   }
 
