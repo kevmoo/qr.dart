@@ -1,3 +1,5 @@
+[![Dart QR Code Generator](example/assets/og-image.webp)](https://github.com/kevmoo/qr.dart)
+
 A QR code generation package for Dart.
 
 [![Pub Package](https://img.shields.io/pub/v/qr.svg)](https://pub.dev/packages/qr)
