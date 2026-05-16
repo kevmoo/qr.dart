@@ -132,8 +132,11 @@ final class QrExample {
 
   void _levelClick(Event args) {
     final source = args.target as HTMLInputElement;
-    _model.typeNumber = int.parse(source.dataset[_typeRadioIdKey]);
-    _autoCheckElement.checked = false;
+    final type = int.tryParse(source.dataset[_typeRadioIdKey]);
+    if (type != null) {
+      _model.typeNumber = type;
+      _autoCheckElement.checked = false;
+    }
   }
 
   void _errorClick(Event args) {
