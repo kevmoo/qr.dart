@@ -3,12 +3,12 @@
   "dump_minor_version": 1,
   "program": {
     "entrypoint": "function/org-dartlang-app:///example/main.dart::main",
-    "size": 130644,
+    "size": 130950,
     "ramUsage": "N/A MB",
-    "dart2jsVersion": "3.13.0-103.1.beta",
-    "compilationMoment": "2026-05-10 20:44:40.508989",
-    "compilationDuration": 796083,
-    "toJsonDuration": 1000,
+    "dart2jsVersion": "3.13.0-104.0.dev",
+    "compilationMoment": "2026-05-15 23:01:50.093466",
+    "compilationDuration": 812407,
+    "toJsonDuration": 2000,
     "dumpInfoDuration": 0,
     "noSuchMethodEnabled": false,
     "isRuntimeTypeUsed": true,
@@ -102,6 +102,7 @@
           "field/dart:_internal::nullFuture",
           "function/dart:_internal::checkNotNullable",
           "function/dart:_internal::isToStringVisiting",
+          "function/dart:_internal::makeFixedListUnmodifiable",
           "function/dart:_internal::makeListFixedLength",
           "function/dart:_internal::toStringVisiting",
           "function/dart:_internal::unsafeCast"
@@ -520,7 +521,7 @@
         "id": "library/dart:core::",
         "kind": "library",
         "name": "dart.core",
-        "size": 5376,
+        "size": 5620,
         "children": [
           "class/dart:core::ArgumentError",
           "class/dart:core::AssertionError",
@@ -587,7 +588,7 @@
         "id": "library/dart:js_util::",
         "kind": "library",
         "name": "dart.js_util",
-        "size": 813,
+        "size": 814,
         "children": [
           "function/dart:js_util::_callConstructorUnchecked1",
           "function/dart:js_util::_callDartFunctionFast1",
@@ -662,7 +663,7 @@
         "id": "library/org-dartlang-app:///example/src/qr_example.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 5947,
+        "size": 6033,
         "children": [
           "class/org-dartlang-app:///example/src/qr_example.dart::QrExample",
           "class/org-dartlang-app:///example/src/qr_example.dart::_Config",
@@ -748,11 +749,23 @@
         "id": "library/package:qr/src/mode.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 580,
+        "size": 561,
         "children": [
           "class/package:qr/src/mode.dart::QrMode"
         ],
         "canonicalUri": "package:qr/src/mode.dart"
+      },
+      "package:qr/src/payload.dart::": {
+        "id": "library/package:qr/src/payload.dart::",
+        "kind": "library",
+        "name": "<unnamed>",
+        "size": 290,
+        "children": [
+          "class/package:qr/src/payload.dart::QrPayload",
+          "function/package:qr/src/payload.dart::QrPayloadInternal|calculateRequiredBits",
+          "function/package:qr/src/payload.dart::QrPayloadInternal|get#dataList"
+        ],
+        "canonicalUri": "package:qr/src/payload.dart"
       },
       "package:qr/src/polynomial.dart::": {
         "id": "library/package:qr/src/polynomial.dart::",
@@ -768,12 +781,13 @@
         "id": "library/package:qr/src/qr_code.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 2226,
+        "size": 1423,
         "children": [
           "class/package:qr/src/qr_code.dart::QrCode",
           "function/package:qr/src/qr_code.dart::_createBytes",
           "function/package:qr/src/qr_code.dart::_createData",
-          "function/package:qr/src/qr_code.dart::_errorCorrectPolynomial"
+          "function/package:qr/src/qr_code.dart::_errorCorrectPolynomial",
+          "function/package:qr/src/qr_code.dart::getDataCache"
         ],
         "canonicalUri": "package:qr/src/qr_code.dart"
       },
@@ -781,7 +795,7 @@
         "id": "library/package:qr/src/qr_image.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 4762,
+        "size": 4764,
         "children": [
           "class/package:qr/src/qr_image.dart::QrImage",
           "function/package:qr/src/qr_image.dart::_getMaskFunction",
@@ -817,7 +831,7 @@
         "id": "library/package:qr/src/validation_result.dart::",
         "kind": "library",
         "name": "<unnamed>",
-        "size": 59,
+        "size": 544,
         "children": [
           "class/package:qr/src/validation_result.dart::QrValidationResult"
         ],
@@ -992,6 +1006,7 @@
           "function/dart:_interceptors::JSArray.length",
           "function/dart:_interceptors::JSArray.map",
           "function/dart:_interceptors::JSArray.markFixedList",
+          "function/dart:_interceptors::JSArray.markUnmodifiableList",
           "function/dart:_interceptors::JSArray.sort",
           "function/dart:_interceptors::JSArray.toList",
           "function/dart:_interceptors::JSArray.toString"
@@ -4329,7 +4344,9 @@
         "children": [
           "function/dart:core::List.List._fixedOf",
           "function/dart:core::List.List.filled",
-          "function/dart:core::List.List.of"
+          "function/dart:core::List.List.from",
+          "function/dart:core::List.List.of",
+          "function/dart:core::List.List.unmodifiable"
         ],
         "supers": [
           "class/dart:core::Iterable"
@@ -4684,7 +4701,7 @@
         "id": "class/org-dartlang-app:///example/src/qr_example.dart::QrExample",
         "kind": "class",
         "name": "QrExample",
-        "size": 4106,
+        "size": 4141,
         "outputUnit": "outputUnit/main",
         "parent": "library/org-dartlang-app:///example/src/qr_example.dart::",
         "modifiers": {
@@ -4935,7 +4952,7 @@
         "id": "class/package:qr/src/mode.dart::QrMode",
         "kind": "class",
         "name": "QrMode",
-        "size": 580,
+        "size": 561,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/mode.dart::",
         "modifiers": {
@@ -4949,6 +4966,25 @@
         "supers": [
           "class/dart:core::_Enum"
         ]
+      },
+      "package:qr/src/payload.dart::QrPayload": {
+        "id": "class/package:qr/src/payload.dart::QrPayload",
+        "kind": "class",
+        "name": "QrPayload",
+        "size": 157,
+        "outputUnit": "outputUnit/main",
+        "parent": "library/package:qr/src/payload.dart::",
+        "modifiers": {
+          "abstract": false
+        },
+        "children": [
+          "field/package:qr/src/payload.dart::QrPayload._dataList",
+          "function/package:qr/src/payload.dart::QrPayload.QrPayload",
+          "function/package:qr/src/payload.dart::QrPayload.QrPayload.fromString",
+          "function/package:qr/src/payload.dart::QrPayload._addToList",
+          "function/package:qr/src/payload.dart::QrPayload.addString"
+        ],
+        "supers": []
       },
       "package:qr/src/polynomial.dart::QrPolynomial": {
         "id": "class/package:qr/src/polynomial.dart::QrPolynomial",
@@ -4975,7 +5011,7 @@
         "id": "class/package:qr/src/qr_code.dart::QrCode",
         "kind": "class",
         "name": "QrCode",
-        "size": 545,
+        "size": 89,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/qr_code.dart::",
         "modifiers": {
@@ -4983,16 +5019,13 @@
         },
         "children": [
           "field/package:qr/src/qr_code.dart::QrCode._dataCache",
-          "field/package:qr/src/qr_code.dart::QrCode._dataList",
           "field/package:qr/src/qr_code.dart::QrCode.errorCorrectLevel",
           "field/package:qr/src/qr_code.dart::QrCode.moduleCount",
+          "field/package:qr/src/qr_code.dart::QrCode.payload",
           "field/package:qr/src/qr_code.dart::QrCode.typeNumber",
           "function/package:qr/src/qr_code.dart::QrCode.QrCode",
-          "function/package:qr/src/qr_code.dart::QrCode._addToList",
-          "function/package:qr/src/qr_code.dart::QrCode._calculateTotalDataBits",
-          "function/package:qr/src/qr_code.dart::QrCode.addData",
-          "function/package:qr/src/qr_code.dart::QrCode.dataCache",
-          "function/package:qr/src/qr_code.dart::QrCode.fromDataAndValidation"
+          "function/package:qr/src/qr_code.dart::QrCode.QrCode._",
+          "function/package:qr/src/qr_code.dart::QrCode._calculateTypeNumberFromPayload"
         ],
         "supers": []
       },
@@ -5051,7 +5084,7 @@
         "id": "class/package:qr/src/validation_result.dart::QrValidationResult",
         "kind": "class",
         "name": "QrValidationResult",
-        "size": 59,
+        "size": 201,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/validation_result.dart::",
         "modifiers": {
@@ -5061,7 +5094,8 @@
           "field/package:qr/src/validation_result.dart::QrValidationResult.qrCode",
           "field/package:qr/src/validation_result.dart::QrValidationResult.validErrorCorrectLevels",
           "field/package:qr/src/validation_result.dart::QrValidationResult.validTypeNumbers",
-          "function/package:qr/src/validation_result.dart::QrValidationResult.QrValidationResult"
+          "function/package:qr/src/validation_result.dart::QrValidationResult.QrValidationResult._",
+          "function/package:qr/src/validation_result.dart::QrValidationResult.QrValidationResult.fromPayload"
         ],
         "supers": []
       },
@@ -5907,7 +5941,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "I(a,b){var s\nfor(s=0;s<a.length;++s)if(J.cf(a[s],b))return!0\nreturn!1}",
+        "code": "U(a,b){var s\nfor(s=0;s<a.length;++s)if(J.cf(a[s],b))return!0\nreturn!1}",
         "type": "bool Function(Object?)",
         "functionKind": 2
       },
@@ -6189,9 +6223,38 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes anything)",
-        "inlinedCount": 3,
+        "inlinedCount": 4,
         "code": "",
         "type": "List<#A> Function<#A extends Object?>(List<#A>)",
+        "functionKind": 0
+      },
+      "dart:_interceptors::JSArray.markUnmodifiableList": {
+        "id": "function/dart:_interceptors::JSArray.markUnmodifiableList",
+        "kind": "function",
+        "name": "markUnmodifiableList",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:_interceptors::JSArray",
+        "children": [],
+        "modifiers": {
+          "static": true,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "List<#A/*free*/>",
+        "inferredReturnType": "[exact=JSUnmodifiableArray|powerset={I}{U}{I}]",
+        "parameters": [
+          {
+            "name": "list",
+            "type": "Container([exact=JSFixedArray|powerset={I}{F}{M}], element: [null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}], length: null, powerset: {I}{F}{M})",
+            "declaredType": "List<dynamic>"
+          }
+        ],
+        "sideEffects": "SideEffects(reads nothing; writes anything)",
+        "inlinedCount": 1,
+        "code": "",
+        "type": "List<#A> Function<#A extends Object?>(List<dynamic>)",
         "functionKind": 0
       },
       "dart:_interceptors::JSArray.sort": {
@@ -10429,6 +10492,35 @@
         "type": "bool Function(Object)",
         "functionKind": 0
       },
+      "dart:_internal::makeFixedListUnmodifiable": {
+        "id": "function/dart:_internal::makeFixedListUnmodifiable",
+        "kind": "function",
+        "name": "makeFixedListUnmodifiable",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "library/dart:_internal::",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "List<#A/*free*/>",
+        "inferredReturnType": "[exact=JSUnmodifiableArray|powerset={I}{U}{I}]",
+        "parameters": [
+          {
+            "name": "fixedLengthList",
+            "type": "Container([exact=JSFixedArray|powerset={I}{F}{M}], element: [null|subclass=Object|powerset={null}{IN}{GFUO}{IMN}], length: null, powerset: {I}{F}{M})",
+            "declaredType": "List<makeFixedListUnmodifiable.T>"
+          }
+        ],
+        "sideEffects": "SideEffects(reads nothing; writes anything)",
+        "inlinedCount": 1,
+        "code": "",
+        "type": "List<#A> Function<#A extends Object?>(List<#A>)",
+        "functionKind": 0
+      },
       "dart:_internal::makeListFixedLength": {
         "id": "function/dart:_internal::makeListFixedLength",
         "kind": "function",
@@ -10453,7 +10545,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes anything)",
-        "inlinedCount": 1,
+        "inlinedCount": 2,
         "code": "",
         "type": "List<#A> Function<#A extends Object?>(List<#A>)",
         "functionKind": 0
@@ -36981,6 +37073,40 @@
         "type": "List<#A> Function<#A extends Object?>(int,#A,{bool growable})",
         "functionKind": 3
       },
+      "dart:core::List.List.from": {
+        "id": "function/dart:core::List.List.from",
+        "kind": "function",
+        "name": "List.from",
+        "size": 134,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:core::List",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": true,
+          "external": false
+        },
+        "returnType": "List<#A/*free*/>",
+        "inferredReturnType": "Union([exact=JSExtendableArray|powerset={I}{G}{M}], [exact=JSFixedArray|powerset={I}{F}{M}], powerset: {I}{GF}{M})",
+        "parameters": [
+          {
+            "name": "elements",
+            "type": "Container([exact=JSExtendableArray|powerset={I}{G}{M}], element: Union([exact=QrErrorCorrectLevel|powerset={N}{O}{N}], [subclass=JSPositiveInt|powerset={I}{O}{N}], powerset: {IN}{O}{N}), length: null, powerset: {I}{G}{M})",
+            "declaredType": "Iterable<dynamic>"
+          },
+          {
+            "name": "growable",
+            "type": "Value([exact=JSBool|powerset={I}{O}{N}], value: false, powerset: {I}{O}{N})",
+            "declaredType": "bool"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "PW(a,b,c){var s,r,q=A.QI([],c.C(\"jd<0>\"))\nfor(s=a.length,r=0;r<a.length;a.length===s||(0,A.q)(a),++r)q.push(a[r])\nq.$flags=1\nreturn q}",
+        "type": "List<#A> Function<#A extends Object?>(Iterable<dynamic>,{bool growable})",
+        "functionKind": 3
+      },
       "dart:core::List.List.of": {
         "id": "function/dart:core::List.List.of",
         "kind": "function",
@@ -37013,6 +37139,35 @@
         "inlinedCount": 1,
         "code": "",
         "type": "List<#A> Function<#A extends Object?>(Iterable<#A>,{bool growable})",
+        "functionKind": 3
+      },
+      "dart:core::List.List.unmodifiable": {
+        "id": "function/dart:core::List.List.unmodifiable",
+        "kind": "function",
+        "name": "List.unmodifiable",
+        "size": 47,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/dart:core::List",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": true,
+          "external": false
+        },
+        "returnType": "List<#A/*free*/>",
+        "inferredReturnType": "[exact=JSUnmodifiableArray|powerset={I}{U}{I}]",
+        "parameters": [
+          {
+            "name": "elements",
+            "type": "Container([exact=JSExtendableArray|powerset={I}{G}{M}], element: Union([exact=QrErrorCorrectLevel|powerset={N}{O}{N}], [subclass=JSPositiveInt|powerset={I}{O}{N}], powerset: {IN}{O}{N}), length: null, powerset: {I}{G}{M})",
+            "declaredType": "Iterable<dynamic>"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "AF(a,b){var s=A.PW(a,!1,b)\ns.$flags=3\nreturn s}",
+        "type": "List<#A> Function<#A extends Object?>(Iterable<dynamic>)",
         "functionKind": 3
       },
       "dart:core::Null.hashCode": {
@@ -37085,7 +37240,7 @@
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 26,
+        "inlinedCount": 25,
         "code": "Hf(a,b){return this===b}",
         "type": "bool Function(Object)",
         "functionKind": 2
@@ -37399,7 +37554,7 @@
         "id": "function/dart:core::RangeError.checkValueInInterval",
         "kind": "function",
         "name": "checkValueInInterval",
-        "size": 0,
+        "size": 63,
         "outputUnit": "outputUnit/main",
         "parent": "class/dart:core::RangeError",
         "children": [],
@@ -37429,13 +37584,13 @@
           },
           {
             "name": "name",
-            "type": "Value([exact=JSString|powerset={I}{O}{I}], value: \"typeNumber\", powerset: {I}{O}{I})",
+            "type": "[exact=JSString|powerset={I}{O}{I}]",
             "declaredType": "String?"
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
-        "inlinedCount": 1,
-        "code": "",
+        "inlinedCount": 0,
+        "code": "wA(a,b,c,d){if(a<b||a>c)throw A.b(A.TE(a,b,c,d,null))\nreturn a}",
         "type": "int Function(int,int,int,[String?,String?])",
         "functionKind": 0
       },
@@ -39039,7 +39194,7 @@
         "id": "function/dart:js_util::_noJsifyRequired",
         "kind": "function",
         "name": "_noJsifyRequired",
-        "size": 182,
+        "size": 183,
         "outputUnit": "outputUnit/main",
         "parent": "library/dart:js_util::",
         "children": [],
@@ -39060,7 +39215,7 @@
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 0,
-        "code": "m6(a){return a==null||A.y(a)||typeof a==\"number\"||typeof a==\"string\"||t.U.b(a)||t.bX.b(a)||t.ca.b(a)||t.O.b(a)||t.h.b(a)||t.e.b(a)||t.bk.b(a)||t.F.b(a)||t.q.b(a)||t.J.b(a)||t.Y.b(a)}",
+        "code": "m6(a){return a==null||A.y(a)||typeof a==\"number\"||typeof a==\"string\"||t.U.b(a)||t.bX.b(a)||t.ca.b(a)||t.O.b(a)||t.c0.b(a)||t.e.b(a)||t.bk.b(a)||t.F.b(a)||t.q.b(a)||t.J.b(a)||t.Y.b(a)}",
         "type": "bool Function(Object?)",
         "functionKind": 0
       },
@@ -40240,7 +40395,7 @@
         "id": "function/org-dartlang-app:///example/src/qr_example.dart::QrExample._onFrame",
         "kind": "function",
         "name": "_onFrame",
-        "size": 177,
+        "size": 178,
         "outputUnit": "outputUnit/main",
         "parent": "class/org-dartlang-app:///example/src/qr_example.dart::QrExample",
         "children": [],
@@ -40261,7 +40416,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "dF(a){var s,r=this\nr.ay=!1\ns=r.a\ns.hidden=r.ax!==B.JB\nr.c.hidden=r.ax!==B.cV\nr.d.hidden=r.ax!==B.bA\nif(r.ax===B.JB){r.b.clearRect(0,0,s.width,s.height)\nr.cB()}}\nk(j,\"gU\",\"dF\",27)",
+        "code": "dF(a){var s,r=this\nr.ay=!1\ns=r.a\ns.hidden=r.ax!==B.JB\nr.c.hidden=r.ax!==B.cV\nr.d.hidden=r.ax!==B.bA\nif(r.ax===B.JB){r.b.clearRect(0,0,s.width,s.height)\nr.cB()}}\nk(j,\"gll\",\"dF\",27)",
         "type": "void Function(num)",
         "functionKind": 2
       },
@@ -40292,7 +40447,7 @@
         "id": "function/org-dartlang-app:///example/src/qr_example.dart::QrExample._validate",
         "kind": "function",
         "name": "_validate",
-        "size": 525,
+        "size": 559,
         "outputUnit": "outputUnit/main",
         "parent": "class/org-dartlang-app:///example/src/qr_example.dart::QrExample",
         "children": [
@@ -40309,7 +40464,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "D(){var s,r,q,p,o,n=this,m=n.y,l=n.z,k=A.aP(m,n.as,l)\nif(n.Q&&k.b.length!==0){m=B.Nm.gn(k.b)\nn.z=m\ns=v.G.document.getElementById(\"type_\"+m)\nif(s!=null)s.checked=!0}r=new A.Pd()\nfor(m=k.b,q=1;q<=10;++q)r.$2(\"type_\"+q,B.Nm.I(m,q))\nfor(m=k.c,p=0;p<4;++p){o=B.TZ[p]\nr.$2(\"error_\"+o.b,B.Nm.I(m,o))}}",
+        "code": "D(){var s,r,q,p,o,n,m=this,l=m.y,k=new A.At(A.QI([],t.v))\nk.I(l)\nl=m.z\ns=A.Lw(m.as,k,l)\nif(m.Q&&s.b.length!==0){l=B.Nm.gn(s.b)\nm.z=l\nr=v.G.document.getElementById(\"type_\"+l)\nif(r!=null)r.checked=!0}q=new A.Pd()\nfor(l=s.b,p=1;p<=10;++p)q.$2(\"type_\"+p,B.Nm.U(l,p))\nfor(l=s.c,o=0;o<4;++o){n=B.TZ[o]\nq.$2(\"error_\"+n.b,B.Nm.U(l,n))}}",
         "type": "void Function()",
         "functionKind": 2
       },
@@ -40351,7 +40506,7 @@
         "id": "function/org-dartlang-app:///example/src/qr_example.dart::QrExample.requestFrame",
         "kind": "function",
         "name": "requestFrame",
-        "size": 79,
+        "size": 80,
         "outputUnit": "outputUnit/main",
         "parent": "class/org-dartlang-app:///example/src/qr_example.dart::QrExample",
         "children": [],
@@ -40366,7 +40521,7 @@
         "parameters": [],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "j(){if(!this.ay){this.ay=!0\nv.G.window.requestAnimationFrame(A.k6(this.gU()))}}",
+        "code": "j(){if(!this.ay){this.ay=!0\nv.G.window.requestAnimationFrame(A.k6(this.gll()))}}",
         "type": "void Function()",
         "functionKind": 2
       },
@@ -40680,7 +40835,7 @@
         "inferredReturnType": "[subclass=JSInt|powerset={I}{O}{N}]",
         "parameters": [],
         "sideEffects": "SideEffects(reads field; writes nothing)",
-        "inlinedCount": 5,
+        "inlinedCount": 3,
         "code": "gB(a){return this.b}",
         "type": "int Function()",
         "functionKind": 2
@@ -41058,7 +41213,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "mV(a){var s=$.Lw()\nif(s.b.test(a))return A.QI([A.qL(a)],t.v)\ns=$.ol()\nif(s.b.test(a)){if(!A.m2(a,s,0))A.vh(A.L3(a.length>10?B.xB.J(a,0,10)+\"...\":a,\"alphaNumeric\",\"String does not contain valid ALPHA-NUM character set\"))\nreturn A.QI([new A.HO(a)],t.v)}s=new A.qj(a)\nif(s.V(s,new A.cN()))return A.QI([new A.wO(26),new A.eK(B.Qk.L(a))],t.v)\nreturn A.QI([new A.eK(B.Qk.L(a))],t.v)}",
+        "code": "mV(a){var s=$.QD()\nif(s.b.test(a))return A.QI([A.qL(a)],t.v)\ns=$.ol()\nif(s.b.test(a)){if(!A.m2(a,s,0))A.vh(A.L3(a.length>10?B.xB.J(a,0,10)+\"...\":a,\"alphaNumeric\",\"String does not contain valid ALPHA-NUM character set\"))\nreturn A.QI([new A.HO(a)],t.v)}s=new A.qj(a)\nif(s.V(s,new A.cN()))return A.QI([new A.wO(26),new A.eK(B.Qk.L(a))],t.v)\nreturn A.QI([new A.eK(B.Qk.L(a))],t.v)}",
         "type": "List<QrDatum> Function(String)",
         "functionKind": 0
       },
@@ -41145,7 +41300,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "qL(a){var s,r,q,p,o,n=$.Lw()\nif(!n.b.test(a))throw A.b(A.L3(a.length>10?B.xB.J(a,0,10)+\"...\":a,\"numberString\",\"string can only contain digits 0-9\"))\ns=new Uint8Array(a.length)\nfor(n=new A.qj(a),r=t.V,n=new A.a7(n,n.gB(0),r.C(\"a7<ar.E>\")),r=r.C(\"ar.E\"),q=0;n.G();q=o){p=n.d\nif(p==null)p=r.a(p)\no=q+1\ns[q]=p-48}return new A.Dw(s)}",
+        "code": "qL(a){var s,r,q,p,o,n=$.QD()\nif(!n.b.test(a))throw A.b(A.L3(a.length>10?B.xB.J(a,0,10)+\"...\":a,\"numberString\",\"string can only contain digits 0-9\"))\ns=new Uint8Array(a.length)\nfor(n=new A.qj(a),r=t.V,n=new A.a7(n,n.gB(0),r.C(\"a7<ar.E>\")),r=r.C(\"ar.E\"),q=0;n.G();q=o){p=n.d\nif(p==null)p=r.a(p)\no=q+1\ns[q]=p-48}return new A.Dw(s)}",
         "type": "QrNumeric Function(String)",
         "functionKind": 3
       },
@@ -41630,7 +41785,7 @@
         "id": "function/package:qr/src/mode.dart::QrMode.getLengthBits",
         "kind": "function",
         "name": "getLengthBits",
-        "size": 480,
+        "size": 461,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/mode.dart::QrMode",
         "children": [],
@@ -41651,9 +41806,182 @@
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
         "inlinedCount": 0,
-        "code": "S(a){var s,r=this,q=null\nif(r===B.uM)return 0\nif(a<1||a>40)throw A.b(A.TE(a,1,40,\"type\",q))\nif(a<10){s=8\nswitch(r.a){case 0:s=10\nbreak\ncase 1:s=9\nbreak\ncase 2:break\ncase 3:break\ncase 4:s=0\nbreak\ndefault:s=q}return s}else if(a<27){switch(r.a){case 0:s=12\nbreak\ncase 1:s=11\nbreak\ncase 2:s=16\nbreak\ncase 3:s=10\nbreak\ncase 4:s=0\nbreak\ndefault:s=q}return s}else{switch(r.a){case 0:s=14\nbreak\ncase 1:s=13\nbreak\ncase 2:s=16\nbreak\ncase 3:s=12\nbreak\ncase 4:s=0\nbreak\ndefault:s=q}return s}}",
+        "code": "S(a){var s,r=null\nif(a<1||a>40)throw A.b(A.TE(a,1,40,\"type\",r))\nif(a<10){s=8\nswitch(this.a){case 0:s=10\nbreak\ncase 1:s=9\nbreak\ncase 2:break\ncase 3:break\ncase 4:s=0\nbreak\ndefault:s=r}return s}else if(a<27){switch(this.a){case 0:s=12\nbreak\ncase 1:s=11\nbreak\ncase 2:s=16\nbreak\ncase 3:s=10\nbreak\ncase 4:s=0\nbreak\ndefault:s=r}return s}else{switch(this.a){case 0:s=14\nbreak\ncase 1:s=13\nbreak\ncase 2:s=16\nbreak\ncase 3:s=12\nbreak\ncase 4:s=0\nbreak\ndefault:s=r}return s}}",
         "type": "int Function(int)",
         "functionKind": 2
+      },
+      "package:qr/src/payload.dart::QrPayload.QrPayload": {
+        "id": "function/package:qr/src/payload.dart::QrPayload.QrPayload",
+        "kind": "function",
+        "name": "QrPayload",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/package:qr/src/payload.dart::QrPayload",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "dynamic",
+        "inferredReturnType": "[exact=QrPayload|powerset={N}{O}{N}]",
+        "parameters": [],
+        "sideEffects": "SideEffects(reads nothing; writes nothing)",
+        "inlinedCount": 2,
+        "code": "",
+        "type": "dynamic Function()",
+        "functionKind": 3
+      },
+      "package:qr/src/payload.dart::QrPayload.QrPayload.fromString": {
+        "id": "function/package:qr/src/payload.dart::QrPayload.QrPayload.fromString",
+        "kind": "function",
+        "name": "QrPayload.fromString",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/package:qr/src/payload.dart::QrPayload",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": true,
+          "external": false
+        },
+        "returnType": "QrPayload",
+        "inferredReturnType": "[exact=QrPayload|powerset={N}{O}{N}]",
+        "parameters": [
+          {
+            "name": "data",
+            "type": "[exact=JSString|powerset={I}{O}{I}]",
+            "declaredType": "String"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 2,
+        "code": "",
+        "type": "QrPayload Function(String)",
+        "functionKind": 3
+      },
+      "package:qr/src/payload.dart::QrPayload._addToList": {
+        "id": "function/package:qr/src/payload.dart::QrPayload._addToList",
+        "kind": "function",
+        "name": "_addToList",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/package:qr/src/payload.dart::QrPayload",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "void",
+        "inferredReturnType": "[null|powerset={null}]",
+        "parameters": [
+          {
+            "name": "data",
+            "type": "[subtype=QrDatum|powerset={N}{O}{N}]",
+            "declaredType": "QrDatum"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 1,
+        "code": "",
+        "type": "void Function(QrDatum)",
+        "functionKind": 2
+      },
+      "package:qr/src/payload.dart::QrPayload.addString": {
+        "id": "function/package:qr/src/payload.dart::QrPayload.addString",
+        "kind": "function",
+        "name": "addString",
+        "size": 108,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/package:qr/src/payload.dart::QrPayload",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "void",
+        "inferredReturnType": "[null|powerset={null}]",
+        "parameters": [
+          {
+            "name": "data",
+            "type": "[exact=JSString|powerset={I}{O}{I}]",
+            "declaredType": "String"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "I(a){var s,r,q,p\nfor(s=A.mV(a),r=s.length,q=this.a,p=0;p<s.length;s.length===r||(0,A.q)(s),++p)q.push(s[p])}",
+        "type": "void Function(String)",
+        "functionKind": 2
+      },
+      "package:qr/src/payload.dart::QrPayloadInternal|calculateRequiredBits": {
+        "id": "function/package:qr/src/payload.dart::QrPayloadInternal|calculateRequiredBits",
+        "kind": "function",
+        "name": "QrPayloadInternal|calculateRequiredBits",
+        "size": 133,
+        "outputUnit": "outputUnit/main",
+        "parent": "library/package:qr/src/payload.dart::",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "int",
+        "inferredReturnType": "[subclass=JSInt|powerset={I}{O}{N}]",
+        "parameters": [
+          {
+            "name": "#this",
+            "type": "[exact=QrPayload|powerset={N}{O}{N}]",
+            "declaredType": "QrPayload"
+          },
+          {
+            "name": "typeNumber",
+            "type": "[exact=JSUInt31|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "AG(a,b){var s,r,q,p,o\nfor(s=a.a,r=s.length,q=0,p=0;p<s.length;s.length===r||(0,A.q)(s),++p){o=s[p]\nq+=4+o.gp().S(b)+o.gh(o)}return q}",
+        "type": "int Function(QrPayload,int)",
+        "functionKind": 0
+      },
+      "package:qr/src/payload.dart::QrPayloadInternal|get#dataList": {
+        "id": "function/package:qr/src/payload.dart::QrPayloadInternal|get#dataList",
+        "kind": "function",
+        "name": "QrPayloadInternal|get#dataList",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "library/package:qr/src/payload.dart::",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "List<QrDatum>",
+        "inferredReturnType": "Container([exact=JSExtendableArray|powerset={I}{G}{M}], element: [subtype=QrDatum|powerset={N}{O}{N}], length: null, powerset: {I}{G}{M})",
+        "parameters": [
+          {
+            "name": "#this",
+            "type": "[exact=QrPayload|powerset={N}{O}{N}]",
+            "declaredType": "QrPayload"
+          }
+        ],
+        "sideEffects": "SideEffects(reads field; writes nothing)",
+        "inlinedCount": 1,
+        "code": "",
+        "type": "List<QrDatum> Function(QrPayload)",
+        "functionKind": 0
       },
       "package:qr/src/polynomial.dart::QrPolynomial.QrPolynomial": {
         "id": "function/package:qr/src/polynomial.dart::QrPolynomial.QrPolynomial",
@@ -41832,7 +42160,46 @@
         "id": "function/package:qr/src/qr_code.dart::QrCode.QrCode",
         "kind": "function",
         "name": "QrCode",
-        "size": 107,
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/package:qr/src/qr_code.dart::QrCode",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": true,
+          "external": false
+        },
+        "returnType": "QrCode",
+        "inferredReturnType": "[exact=QrCode|powerset={N}{O}{N}]",
+        "parameters": [
+          {
+            "name": "errorCorrectLevel",
+            "type": "[exact=QrErrorCorrectLevel|powerset={N}{O}{N}]",
+            "declaredType": "QrErrorCorrectLevel"
+          },
+          {
+            "name": "minTypeNumber",
+            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          },
+          {
+            "name": "payload",
+            "type": "[exact=QrPayload|powerset={N}{O}{N}]",
+            "declaredType": "QrPayload"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 2,
+        "code": "",
+        "type": "QrCode Function({QrErrorCorrectLevel errorCorrectLevel,int minTypeNumber,QrPayload payload})",
+        "functionKind": 3
+      },
+      "package:qr/src/qr_code.dart::QrCode.QrCode._": {
+        "id": "function/package:qr/src/qr_code.dart::QrCode.QrCode._",
+        "kind": "function",
+        "name": "QrCode._",
+        "size": 0,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/qr_code.dart::QrCode",
         "children": [],
@@ -41854,228 +42221,57 @@
             "name": "errorCorrectLevel",
             "type": "[exact=QrErrorCorrectLevel|powerset={N}{O}{N}]",
             "declaredType": "QrErrorCorrectLevel"
-          }
-        ],
-        "sideEffects": "SideEffects(reads field; writes nothing)",
-        "inlinedCount": 0,
-        "code": "ty(a,b){var s=A.QI([],t.v)\nif(a<1||a>40)A.vh(A.TE(a,1,40,\"typeNumber\",null))\nreturn new A.pR(a,b,a*4+17,s)}",
-        "type": "dynamic Function(int,QrErrorCorrectLevel)",
-        "functionKind": 3
-      },
-      "package:qr/src/qr_code.dart::QrCode._addToList": {
-        "id": "function/package:qr/src/qr_code.dart::QrCode._addToList",
-        "kind": "function",
-        "name": "_addToList",
-        "size": 0,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/package:qr/src/qr_code.dart::QrCode",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "void",
-        "inferredReturnType": "[null|powerset={null}]",
-        "parameters": [
-          {
-            "name": "data",
-            "type": "[subtype=QrDatum|powerset={N}{O}{N}]",
-            "declaredType": "QrDatum"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 2,
-        "code": "",
-        "type": "void Function(QrDatum)",
-        "functionKind": 2
-      },
-      "package:qr/src/qr_code.dart::QrCode._calculateTotalDataBits": {
-        "id": "function/package:qr/src/qr_code.dart::QrCode._calculateTotalDataBits",
-        "kind": "function",
-        "name": "_calculateTotalDataBits",
-        "size": 0,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/package:qr/src/qr_code.dart::QrCode",
-        "children": [],
-        "modifiers": {
-          "static": true,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "int",
-        "inferredReturnType": "[subclass=JSPositiveInt|powerset={I}{O}{N}]",
-        "parameters": [
-          {
-            "name": "typeNumber",
-            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
-            "declaredType": "int"
           },
           {
-            "name": "errorCorrectLevel",
-            "type": "[exact=QrErrorCorrectLevel|powerset={N}{O}{N}]",
-            "declaredType": "QrErrorCorrectLevel"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 2,
-        "code": "",
-        "type": "int Function(int,QrErrorCorrectLevel)",
-        "functionKind": 0
-      },
-      "package:qr/src/qr_code.dart::QrCode.addData": {
-        "id": "function/package:qr/src/qr_code.dart::QrCode.addData",
-        "kind": "function",
-        "name": "addData",
-        "size": 123,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/package:qr/src/qr_code.dart::QrCode",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "void",
-        "inferredReturnType": "[null|powerset={null}]",
-        "parameters": [
-          {
-            "name": "data",
-            "type": "[exact=JSString|powerset={I}{O}{I}]",
-            "declaredType": "String"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "Y0(a){var s,r,q,p\nfor(s=A.mV(a),r=s.length,q=this.e,p=0;p<s.length;s.length===r||(0,A.q)(s),++p){q.push(s[p])\nthis.d=null}}",
-        "type": "void Function(String)",
-        "functionKind": 2
-      },
-      "package:qr/src/qr_code.dart::QrCode.dataCache": {
-        "id": "function/package:qr/src/qr_code.dart::QrCode.dataCache",
-        "kind": "function",
-        "name": "dataCache",
-        "size": 0,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/package:qr/src/qr_code.dart::QrCode",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "List<int>",
-        "inferredReturnType": "Container([exact=NativeUint8List|powerset={I}{O}{M}], element: [exact=JSUInt31|powerset={I}{O}{N}], length: null, powerset: {I}{O}{M})",
-        "parameters": [],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 1,
-        "code": "",
-        "type": "List<int> Function()",
-        "functionKind": 2
-      },
-      "package:qr/src/qr_code.dart::QrCode.fromDataAndValidation": {
-        "id": "function/package:qr/src/qr_code.dart::QrCode.fromDataAndValidation",
-        "kind": "function",
-        "name": "fromDataAndValidation",
-        "size": 739,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/package:qr/src/qr_code.dart::QrCode",
-        "children": [
-          "closure/package:qr/src/qr_code.dart::QrCode.fromDataAndValidation.QrCode_fromDataAndValidation_calculateRequiredBits",
-          "closure/package:qr/src/qr_code.dart::QrCode.fromDataAndValidation.QrCode_fromDataAndValidation_getRequiredBits"
-        ],
-        "modifiers": {
-          "static": true,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "QrValidationResult",
-        "inferredReturnType": "[exact=QrValidationResult|powerset={N}{O}{N}]",
-        "parameters": [
-          {
-            "name": "data",
-            "type": "[exact=JSString|powerset={I}{O}{I}]",
-            "declaredType": "String"
-          },
-          {
-            "name": "errorCorrectLevel",
-            "type": "[exact=QrErrorCorrectLevel|powerset={N}{O}{N}]",
-            "declaredType": "QrErrorCorrectLevel"
-          },
-          {
-            "name": "typeNumber",
-            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
-            "declaredType": "int"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "aP(a,b,c){var s,r,q,p,o,n,m,l,k=A.mV(a),j=new A.ON(k),i=new A.N3(j.$1(1),j.$1(10),j.$1(27)),h=A.QI([],t.t)\nfor(s=1;s<=40;++s)if(i.$1(s)<=A.Dk(s,b)){for(r=s;r<=40;++r)h.push(r)\nbreak}q=A.QI([],t.B)\nfor(p=0;p<4;++p){o=B.TZ[p]\nif(i.$1(c)<=A.Dk(c,o))q.push(o)}if(B.Nm.I(h,c)&&B.Nm.I(q,b)){n=A.ty(c,b)\nfor(m=k.length,l=n.e,p=0;p<k.length;k.length===m||(0,A.q)(k),++p){l.push(k[p])\nn.d=null}}return new A.OQ(h,q)}",
-        "type": "QrValidationResult Function({String data,QrErrorCorrectLevel errorCorrectLevel,int typeNumber})",
-        "functionKind": 0
-      },
-      "package:qr/src/qr_code.dart::QrCode.fromDataAndValidation.QrCode_fromDataAndValidation_calculateRequiredBits.call": {
-        "id": "function/package:qr/src/qr_code.dart::QrCode.fromDataAndValidation.QrCode_fromDataAndValidation_calculateRequiredBits.call",
-        "kind": "function",
-        "name": "call",
-        "size": 134,
-        "outputUnit": "outputUnit/main",
-        "parent": "closure/package:qr/src/qr_code.dart::QrCode.fromDataAndValidation.QrCode_fromDataAndValidation_calculateRequiredBits",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "int",
-        "inferredReturnType": "[subclass=JSInt|powerset={I}{O}{N}]",
-        "parameters": [
-          {
-            "name": "type",
-            "type": "[exact=JSUInt31|powerset={I}{O}{N}]",
-            "declaredType": "int"
-          }
-        ],
-        "sideEffects": "SideEffects(reads anything; writes anything)",
-        "inlinedCount": 0,
-        "code": "$1(a){var s,r,q,p,o\nfor(s=this.a,r=s.length,q=0,p=0;p<s.length;s.length===r||(0,A.q)(s),++p){o=s[p]\nq+=4+o.gp().S(a)+o.gh(o)}return q}",
-        "type": "int Function(int)",
-        "functionKind": 2
-      },
-      "package:qr/src/qr_code.dart::QrCode.fromDataAndValidation.QrCode_fromDataAndValidation_getRequiredBits.call": {
-        "id": "function/package:qr/src/qr_code.dart::QrCode.fromDataAndValidation.QrCode_fromDataAndValidation_getRequiredBits.call",
-        "kind": "function",
-        "name": "call",
-        "size": 64,
-        "outputUnit": "outputUnit/main",
-        "parent": "closure/package:qr/src/qr_code.dart::QrCode.fromDataAndValidation.QrCode_fromDataAndValidation_getRequiredBits",
-        "children": [],
-        "modifiers": {
-          "static": false,
-          "const": false,
-          "factory": false,
-          "external": false
-        },
-        "returnType": "int",
-        "inferredReturnType": "[subclass=JSInt|powerset={I}{O}{N}]",
-        "parameters": [
-          {
-            "name": "type",
-            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
-            "declaredType": "int"
+            "name": "payload",
+            "type": "[exact=QrPayload|powerset={N}{O}{N}]",
+            "declaredType": "QrPayload"
           }
         ],
         "sideEffects": "SideEffects(reads nothing; writes nothing)",
+        "inlinedCount": 2,
+        "code": "",
+        "type": "dynamic Function(int,QrErrorCorrectLevel,QrPayload)",
+        "functionKind": 3
+      },
+      "package:qr/src/qr_code.dart::QrCode._calculateTypeNumberFromPayload": {
+        "id": "function/package:qr/src/qr_code.dart::QrCode._calculateTypeNumberFromPayload",
+        "kind": "function",
+        "name": "_calculateTypeNumberFromPayload",
+        "size": 228,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/package:qr/src/qr_code.dart::QrCode",
+        "children": [],
+        "modifiers": {
+          "static": true,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "int",
+        "inferredReturnType": "[subclass=JSInt|powerset={I}{O}{N}]",
+        "parameters": [
+          {
+            "name": "errorCorrectLevel",
+            "type": "[exact=QrErrorCorrectLevel|powerset={N}{O}{N}]",
+            "declaredType": "QrErrorCorrectLevel"
+          },
+          {
+            "name": "payload",
+            "type": "[exact=QrPayload|powerset={N}{O}{N}]",
+            "declaredType": "QrPayload"
+          },
+          {
+            "name": "minTypeNumber",
+            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "$1(a){if(a<10)return this.a\nif(a<27)return this.b\nreturn this.c}",
-        "type": "int Function(int)",
-        "functionKind": 2
+        "code": "yQ(a,b,c){var s,r,q,p,o,n\nA.wA(c,1,40,\"minTypeNumber\")\ns=A.AG(b,1)\nr=A.AG(b,10)\nq=A.AG(b,27)\nfor(p=c;p<=40;++p){o=A.Dk(p,a)\nif(p<10)n=s\nelse n=p<27?r:q\nif(n<=o)return p}throw A.b(new A.Tw(\"Input too long. \"+q+\" > \"+A.Dk(40,a)))}",
+        "type": "int Function(QrErrorCorrectLevel,QrPayload,int)",
+        "functionKind": 0
       },
       "package:qr/src/qr_code.dart::_createBytes": {
         "id": "function/package:qr/src/qr_code.dart::_createBytes",
@@ -42115,7 +42311,7 @@
         "id": "function/package:qr/src/qr_code.dart::_createData",
         "kind": "function",
         "name": "_createData",
-        "size": 396,
+        "size": 335,
         "outputUnit": "outputUnit/main",
         "parent": "library/package:qr/src/qr_code.dart::",
         "children": [],
@@ -42146,7 +42342,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "fV(a,b,c){var s,r,q,p,o,n,m,l,k,j=A.Kf(a,b)\nfor(s=j.length,r=0,q=0;q<s;++q)r+=j[q].b*8\np=new A.eL(new Uint8Array(32))\nfor(o=0;o<c.length;++o){n=c[o]\np.Dp(n.gp().c,4)\np.Dp(n.gB(n),n.gp().S(a))\nn.KF(p)}s=p.b\nif(s>r)throw A.b(new A.Tw(\"Input too long. \"+s+\" > \"+r))\nif(s+4<=r)p.Dp(0,4)\nm=8-B.jn.Y(p.b,8)\nif(m<8)p.Dp(0,m)\nfor(l=0;;l=k){if(p.b>=r)break\nk=l+1\np.Dp((l&1)===0?236:17,8)}return A.vX(p,j)}",
+        "code": "fV(a,b,c){var s,r,q,p,o,n,m,l,k,j=A.Kf(a,b)\nfor(s=j.length,r=0,q=0;q<s;++q)r+=j[q].b*8\np=new A.eL(new Uint8Array(32))\nfor(o=0;o<c.length;++o){n=c[o]\np.Dp(n.gp().c,4)\np.Dp(n.gB(n),n.gp().S(a))\nn.KF(p)}if(p.b+4<=r)p.Dp(0,4)\nm=8-B.jn.Y(p.b,8)\nif(m<8)p.Dp(0,m)\nfor(l=0;;l=k){if(p.b>=r)break\nk=l+1\np.Dp((l&1)===0?236:17,8)}return A.vX(p,j)}",
         "type": "List<int> Function(int,QrErrorCorrectLevel,List<QrDatum>)",
         "functionKind": 0
       },
@@ -42179,11 +42375,40 @@
         "type": "QrPolynomial Function(int)",
         "functionKind": 0
       },
+      "package:qr/src/qr_code.dart::getDataCache": {
+        "id": "function/package:qr/src/qr_code.dart::getDataCache",
+        "kind": "function",
+        "name": "getDataCache",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "library/package:qr/src/qr_code.dart::",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "List<int>",
+        "inferredReturnType": "Container([exact=NativeUint8List|powerset={I}{O}{M}], element: [exact=JSUInt31|powerset={I}{O}{N}], length: null, powerset: {I}{O}{M})",
+        "parameters": [
+          {
+            "name": "code",
+            "type": "[exact=QrCode|powerset={N}{O}{N}]",
+            "declaredType": "QrCode"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 1,
+        "code": "",
+        "type": "List<int> Function(QrCode)",
+        "functionKind": 0
+      },
       "package:qr/src/qr_image.dart::QrImage.QrImage": {
         "id": "function/package:qr/src/qr_image.dart::QrImage.QrImage",
         "kind": "function",
         "name": "QrImage",
-        "size": 540,
+        "size": 542,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/qr_image.dart::QrImage",
         "children": [],
@@ -42204,7 +42429,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "LW(a){var s,r,q,p,o,n,m,l,k,j,i,h=a.c,g=a.a,f=a.b,e=h*h,d=new Uint8Array(e),c=new A.P2(h,g,f,d)\nB.NA.du(d,0,e,0)\nc.us(0,0)\ns=h-7\nc.us(s,0)\nc.us(0,s)\nc.nX()\nc.TT()\nc.Pv(0,!0)\nif(g>=7)c.cA(!0)\nr=new Uint8Array(e)\nB.NA.vg(r,0,e,d)\ns=A.HQ(a,0,r)\nq=a.d\ns.NQ(q==null?a.d=A.fV(g,f,a.e):q)\np=new Uint8Array(e)\nfor(o=17976931348623157e292,n=0,m=null,l=0;l<8;++l){B.NA.vg(p,0,e,r)\nk=new A.P2(h,g,f,p)\nk.PT(l,d)\nj=A.x8(k)\nif(j<o){if(m==null)m=new Uint8Array(e)\nB.NA.vg(m,0,e,p)\nn=l\no=j}}m.toString\ni=A.HQ(a,n,m)\ni.Pv(n,!1)\nif(i.b>=7)i.cA(!1)\nreturn i}",
+        "code": "LW(a){var s,r,q,p,o,n,m,l,k,j,i,h=a.c,g=a.a,f=a.b,e=h*h,d=new Uint8Array(e),c=new A.P2(h,g,f,d)\nB.NA.du(d,0,e,0)\nc.us(0,0)\ns=h-7\nc.us(s,0)\nc.us(0,s)\nc.nX()\nc.TT()\nc.Pv(0,!0)\nif(g>=7)c.cA(!0)\nr=new Uint8Array(e)\nB.NA.vg(r,0,e,d)\ns=A.HQ(a,0,r)\nq=a.e\ns.NQ(q==null?a.e=A.fV(g,f,a.d.a):q)\np=new Uint8Array(e)\nfor(o=17976931348623157e292,n=0,m=null,l=0;l<8;++l){B.NA.vg(p,0,e,r)\nk=new A.P2(h,g,f,p)\nk.PT(l,d)\nj=A.x8(k)\nif(j<o){if(m==null)m=new Uint8Array(e)\nB.NA.vg(m,0,e,p)\nn=l\no=j}}m.toString\ni=A.HQ(a,n,m)\ni.Pv(n,!1)\nif(i.b>=7)i.cA(!1)\nreturn i}",
         "type": "QrImage Function(QrCode)",
         "functionKind": 3
       },
@@ -42511,7 +42736,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "Pv(a,b){var s,r,q,p,o,n,m,l,k,j=this,i=A.n0((j.c.a<<3|a)>>>0)\nfor(s=j.a,r=s-15,q=j.e,p=!b,o=q.$flags|0,n=0;n<15;++n){m=p&&(B.jn.Uh(i,n)&1)===1\nif(n<6){l=m?2:1\no&2&&A.cW(q)\nq[n*s+8]=l}else if(n<8){l=m?2:1\no&2&&A.cW(q)\nq[(n+1)*s+8]=l}else{l=m?2:1\no&2&&A.cW(q)\nq[(r+n)*s+8]=l}}for(r=8*s,n=0;n<15;++n){m=p&&(B.jn.Uh(i,n)&1)===1\nif(n<8){l=m?2:1\no&2&&A.cW(q)\nq[r+(s-n-1)]=l}else{l=15-n-1\nif(n<9){k=m?2:1\no&2&&A.cW(q)\nq[r+(l+1)]=k}else{k=m?2:1\no&2&&A.cW(q)\nq[r+l]=k}}}j.HE(s-8,8,p)}",
+        "code": "Pv(a,b){var s,r,q,p,o,n,m,l,k,j=this,i=A.N3((j.c.a<<3|a)>>>0)\nfor(s=j.a,r=s-15,q=j.e,p=!b,o=q.$flags|0,n=0;n<15;++n){m=p&&(B.jn.Uh(i,n)&1)===1\nif(n<6){l=m?2:1\no&2&&A.cW(q)\nq[n*s+8]=l}else if(n<8){l=m?2:1\no&2&&A.cW(q)\nq[(n+1)*s+8]=l}else{l=m?2:1\no&2&&A.cW(q)\nq[(r+n)*s+8]=l}}for(r=8*s,n=0;n<15;++n){m=p&&(B.jn.Uh(i,n)&1)===1\nif(n<8){l=m?2:1\no&2&&A.cW(q)\nq[r+(s-n-1)]=l}else{l=15-n-1\nif(n<9){k=m?2:1\no&2&&A.cW(q)\nq[r+(l+1)]=k}else{k=m?2:1\no&2&&A.cW(q)\nq[r+l]=k}}}j.HE(s-8,8,p)}",
         "type": "void Function(int,bool)",
         "functionKind": 2
       },
@@ -43078,7 +43303,7 @@
         ],
         "sideEffects": "SideEffects(reads anything; writes anything)",
         "inlinedCount": 0,
-        "code": "n0(a){var s,r=a<<10>>>0\nfor(s=r;B.jn.gh(s)>=11;)s=(s^B.jn.yE(1335,B.jn.gh(s)-11))>>>0\nreturn((r|s)^21522)>>>0}",
+        "code": "N3(a){var s,r=a<<10>>>0\nfor(s=r;B.jn.gh(s)>=11;)s=(s^B.jn.yE(1335,B.jn.gh(s)-11))>>>0\nreturn((r|s)^21522)>>>0}",
         "type": "int Function(int)",
         "functionKind": 0
       },
@@ -43140,17 +43365,17 @@
         "type": "List<int> Function(int)",
         "functionKind": 0
       },
-      "package:qr/src/validation_result.dart::QrValidationResult.QrValidationResult": {
-        "id": "function/package:qr/src/validation_result.dart::QrValidationResult.QrValidationResult",
+      "package:qr/src/validation_result.dart::QrValidationResult.QrValidationResult._": {
+        "id": "function/package:qr/src/validation_result.dart::QrValidationResult.QrValidationResult._",
         "kind": "function",
-        "name": "QrValidationResult",
+        "name": "QrValidationResult._",
         "size": 0,
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/validation_result.dart::QrValidationResult",
         "children": [],
         "modifiers": {
           "static": false,
-          "const": false,
+          "const": true,
           "factory": false,
           "external": false
         },
@@ -43164,12 +43389,12 @@
           },
           {
             "name": "validErrorCorrectLevels",
-            "type": "Container([exact=JSExtendableArray|powerset={I}{G}{M}], element: [exact=QrErrorCorrectLevel|powerset={N}{O}{N}], length: null, powerset: {I}{G}{M})",
+            "type": "[exact=JSUnmodifiableArray|powerset={I}{U}{I}]",
             "declaredType": "List<QrErrorCorrectLevel>"
           },
           {
             "name": "validTypeNumbers",
-            "type": "Container([exact=JSExtendableArray|powerset={I}{G}{M}], element: [subclass=JSPositiveInt|powerset={I}{O}{N}], length: null, powerset: {I}{G}{M})",
+            "type": "[exact=JSUnmodifiableArray|powerset={I}{U}{I}]",
             "declaredType": "List<int>"
           }
         ],
@@ -43178,6 +43403,76 @@
         "code": "",
         "type": "dynamic Function({QrCode? qrCode,List<QrErrorCorrectLevel> validErrorCorrectLevels,List<int> validTypeNumbers})",
         "functionKind": 3
+      },
+      "package:qr/src/validation_result.dart::QrValidationResult.QrValidationResult.fromPayload": {
+        "id": "function/package:qr/src/validation_result.dart::QrValidationResult.QrValidationResult.fromPayload",
+        "kind": "function",
+        "name": "QrValidationResult.fromPayload",
+        "size": 485,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/package:qr/src/validation_result.dart::QrValidationResult",
+        "children": [
+          "closure/package:qr/src/validation_result.dart::QrValidationResult.QrValidationResult.fromPayload.QrValidationResult_QrValidationResult$fromPayload_getRequiredBits"
+        ],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": true,
+          "external": false
+        },
+        "returnType": "QrValidationResult",
+        "inferredReturnType": "[exact=QrValidationResult|powerset={N}{O}{N}]",
+        "parameters": [
+          {
+            "name": "errorCorrectLevel",
+            "type": "[exact=QrErrorCorrectLevel|powerset={N}{O}{N}]",
+            "declaredType": "QrErrorCorrectLevel"
+          },
+          {
+            "name": "payload",
+            "type": "[exact=QrPayload|powerset={N}{O}{N}]",
+            "declaredType": "QrPayload"
+          },
+          {
+            "name": "typeNumber",
+            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          }
+        ],
+        "sideEffects": "SideEffects(reads anything; writes anything)",
+        "inlinedCount": 0,
+        "code": "Lw(a,b,c){var s,r,q,p,o,n,m\nA.wA(c,1,40,\"typeNumber\")\ns=new A.HJ(A.AG(b,1),A.AG(b,10),A.AG(b,27))\nr=A.QI([],t.t)\nfor(q=1;q<=40;++q)if(s.$1(q)<=A.Dk(q,a)){for(p=q;p<=40;++p)r.push(p)\nbreak}o=A.QI([],t.B)\nfor(n=0;n<4;++n){m=B.TZ[n]\nif(s.$1(c)<=A.Dk(c,m))o.push(m)}if(B.Nm.U(r,c)&&B.Nm.U(o,a))A.yQ(a,b,c)\nreturn new A.OQ(A.AF(r,t.S),A.AF(o,t.h))}",
+        "type": "QrValidationResult Function({QrErrorCorrectLevel errorCorrectLevel,QrPayload payload,int typeNumber})",
+        "functionKind": 3
+      },
+      "package:qr/src/validation_result.dart::QrValidationResult.QrValidationResult.fromPayload.QrValidationResult_QrValidationResult$fromPayload_getRequiredBits.call": {
+        "id": "function/package:qr/src/validation_result.dart::QrValidationResult.QrValidationResult.fromPayload.QrValidationResult_QrValidationResult$fromPayload_getRequiredBits.call",
+        "kind": "function",
+        "name": "call",
+        "size": 64,
+        "outputUnit": "outputUnit/main",
+        "parent": "closure/package:qr/src/validation_result.dart::QrValidationResult.QrValidationResult.fromPayload.QrValidationResult_QrValidationResult$fromPayload_getRequiredBits",
+        "children": [],
+        "modifiers": {
+          "static": false,
+          "const": false,
+          "factory": false,
+          "external": false
+        },
+        "returnType": "int",
+        "inferredReturnType": "[subclass=JSInt|powerset={I}{O}{N}]",
+        "parameters": [
+          {
+            "name": "type",
+            "type": "[subclass=JSInt|powerset={I}{O}{N}]",
+            "declaredType": "int"
+          }
+        ],
+        "sideEffects": "SideEffects(reads nothing; writes nothing)",
+        "inlinedCount": 0,
+        "code": "$1(a){if(a<10)return this.a\nif(a<27)return this.b\nreturn this.c}",
+        "type": "int Function(int)",
+        "functionKind": 2
       },
       "package:stream_transform/src/aggregate_sample.dart::AggregateSample|aggregateSample": {
         "id": "function/package:stream_transform/src/aggregate_sample.dart::AggregateSample|aggregateSample",
@@ -47545,7 +47840,7 @@
         "parent": "class/package:qr/src/byte.dart::QrNumeric",
         "children": [],
         "inferredType": "[exact=JSSyntaxRegExp|powerset={N}{O}{N}]",
-        "code": "s($,\"aJ\",\"Lw\",()=>A.nu(\"^[0-9]+$\"))",
+        "code": "s($,\"aJ\",\"QD\",()=>A.nu(\"^[0-9]+$\"))",
         "type": "RegExp"
       },
       "package:qr/src/eci.dart::QrEci.value": {
@@ -47644,6 +47939,18 @@
         "code": "",
         "type": "int"
       },
+      "package:qr/src/payload.dart::QrPayload._dataList": {
+        "id": "field/package:qr/src/payload.dart::QrPayload._dataList",
+        "kind": "field",
+        "name": "_dataList",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/package:qr/src/payload.dart::QrPayload",
+        "children": [],
+        "inferredType": "Container([exact=JSExtendableArray|powerset={I}{G}{M}], element: [subtype=QrDatum|powerset={N}{O}{N}], length: null, powerset: {I}{G}{M})",
+        "code": "",
+        "type": "List<QrDatum>"
+      },
       "package:qr/src/polynomial.dart::QrPolynomial._values": {
         "id": "field/package:qr/src/polynomial.dart::QrPolynomial._values",
         "kind": "field",
@@ -47668,18 +47975,6 @@
         "code": "",
         "type": "List<int>?"
       },
-      "package:qr/src/qr_code.dart::QrCode._dataList": {
-        "id": "field/package:qr/src/qr_code.dart::QrCode._dataList",
-        "kind": "field",
-        "name": "_dataList",
-        "size": 0,
-        "outputUnit": "outputUnit/main",
-        "parent": "class/package:qr/src/qr_code.dart::QrCode",
-        "children": [],
-        "inferredType": "Container([exact=JSExtendableArray|powerset={I}{G}{M}], element: [subtype=QrDatum|powerset={N}{O}{N}], length: null, powerset: {I}{G}{M})",
-        "code": "",
-        "type": "List<QrDatum>"
-      },
       "package:qr/src/qr_code.dart::QrCode.errorCorrectLevel": {
         "id": "field/package:qr/src/qr_code.dart::QrCode.errorCorrectLevel",
         "kind": "field",
@@ -47703,6 +47998,18 @@
         "inferredType": "[subclass=JSInt|powerset={I}{O}{N}]",
         "code": "",
         "type": "int"
+      },
+      "package:qr/src/qr_code.dart::QrCode.payload": {
+        "id": "field/package:qr/src/qr_code.dart::QrCode.payload",
+        "kind": "field",
+        "name": "payload",
+        "size": 0,
+        "outputUnit": "outputUnit/main",
+        "parent": "class/package:qr/src/qr_code.dart::QrCode",
+        "children": [],
+        "inferredType": "[exact=QrPayload|powerset={N}{O}{N}]",
+        "code": "",
+        "type": "QrPayload"
       },
       "package:qr/src/qr_code.dart::QrCode.typeNumber": {
         "id": "field/package:qr/src/qr_code.dart::QrCode.typeNumber",
@@ -47820,7 +48127,7 @@
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/validation_result.dart::QrValidationResult",
         "children": [],
-        "inferredType": "Container([exact=JSExtendableArray|powerset={I}{G}{M}], element: [exact=QrErrorCorrectLevel|powerset={N}{O}{N}], length: null, powerset: {I}{G}{M})",
+        "inferredType": "[exact=JSUnmodifiableArray|powerset={I}{U}{I}]",
         "code": "",
         "type": "List<QrErrorCorrectLevel>"
       },
@@ -47832,7 +48139,7 @@
         "outputUnit": "outputUnit/main",
         "parent": "class/package:qr/src/validation_result.dart::QrValidationResult",
         "children": [],
-        "inferredType": "Container([exact=JSExtendableArray|powerset={I}{G}{M}], element: [subclass=JSPositiveInt|powerset={I}{O}{N}], length: null, powerset: {I}{G}{M})",
+        "inferredType": "[exact=JSUnmodifiableArray|powerset={I}{U}{I}]",
         "code": "",
         "type": "List<int>"
       },
@@ -50417,24 +50724,6 @@
         "parent": "function/package:qr/src/byte.dart::QrDatum.toDatums",
         "function": "function/package:qr/src/byte.dart::QrDatum.toDatums.QrDatum_toDatums_closure.call"
       },
-      "package:qr/src/qr_code.dart::QrCode.fromDataAndValidation.QrCode_fromDataAndValidation_calculateRequiredBits": {
-        "id": "closure/package:qr/src/qr_code.dart::QrCode.fromDataAndValidation.QrCode_fromDataAndValidation_calculateRequiredBits",
-        "kind": "closure",
-        "name": "QrCode_fromDataAndValidation_calculateRequiredBits",
-        "size": 190,
-        "outputUnit": "outputUnit/main",
-        "parent": "function/package:qr/src/qr_code.dart::QrCode.fromDataAndValidation",
-        "function": "function/package:qr/src/qr_code.dart::QrCode.fromDataAndValidation.QrCode_fromDataAndValidation_calculateRequiredBits.call"
-      },
-      "package:qr/src/qr_code.dart::QrCode.fromDataAndValidation.QrCode_fromDataAndValidation_getRequiredBits": {
-        "id": "closure/package:qr/src/qr_code.dart::QrCode.fromDataAndValidation.QrCode_fromDataAndValidation_getRequiredBits",
-        "kind": "closure",
-        "name": "QrCode_fromDataAndValidation_getRequiredBits",
-        "size": 142,
-        "outputUnit": "outputUnit/main",
-        "parent": "function/package:qr/src/qr_code.dart::QrCode.fromDataAndValidation",
-        "function": "function/package:qr/src/qr_code.dart::QrCode.fromDataAndValidation.QrCode_fromDataAndValidation_getRequiredBits.call"
-      },
       "package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure": {
         "id": "closure/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure",
         "kind": "closure",
@@ -50506,6 +50795,15 @@
         "outputUnit": "outputUnit/main",
         "parent": "function/package:qr/src/qr_image.dart::_getMaskFunction",
         "function": "function/package:qr/src/qr_image.dart::_getMaskFunction._getMaskFunction_closure.call%6"
+      },
+      "package:qr/src/validation_result.dart::QrValidationResult.QrValidationResult.fromPayload.QrValidationResult_QrValidationResult$fromPayload_getRequiredBits": {
+        "id": "closure/package:qr/src/validation_result.dart::QrValidationResult.QrValidationResult.fromPayload.QrValidationResult_QrValidationResult$fromPayload_getRequiredBits",
+        "kind": "closure",
+        "name": "QrValidationResult_QrValidationResult$fromPayload_getRequiredBits",
+        "size": 142,
+        "outputUnit": "outputUnit/main",
+        "parent": "function/package:qr/src/validation_result.dart::QrValidationResult.QrValidationResult.fromPayload",
+        "function": "function/package:qr/src/validation_result.dart::QrValidationResult.QrValidationResult.fromPayload.QrValidationResult_QrValidationResult$fromPayload_getRequiredBits.call"
       },
       "package:stream_transform/src/aggregate_sample.dart::AggregateSample|aggregateSample.AggregateSample_aggregateSample__closure": {
         "id": "closure/package:stream_transform/src/aggregate_sample.dart::AggregateSample|aggregateSample.AggregateSample_aggregateSample__closure",
@@ -51663,12 +51961,12 @@
         "id": "function/dart:_late_helper::throwLateFieldADI"
       }
     ],
-    "field/package:qr/src/polynomial.dart::QrPolynomial._values": [
+    "field/package:qr/src/payload.dart::QrPayload._dataList": [
       {
         "id": "function/dart:_late_helper::throwLateFieldADI"
       }
     ],
-    "field/package:qr/src/qr_code.dart::QrCode._dataList": [
+    "field/package:qr/src/polynomial.dart::QrPolynomial._values": [
       {
         "id": "function/dart:_late_helper::throwLateFieldADI"
       }
@@ -51679,6 +51977,11 @@
       }
     ],
     "field/package:qr/src/qr_code.dart::QrCode.moduleCount": [
+      {
+        "id": "function/dart:_late_helper::throwLateFieldADI"
+      }
+    ],
+    "field/package:qr/src/qr_code.dart::QrCode.payload": [
       {
         "id": "function/dart:_late_helper::throwLateFieldADI"
       }
@@ -53435,6 +53738,12 @@
       },
       {
         "id": "function/dart:_internal::toStringVisiting"
+      }
+    ],
+    "function/dart:_internal::makeFixedListUnmodifiable": [
+      {
+        "id": "function/dart:_interceptors::JSArray.markUnmodifiableList",
+        "mask": "inlined"
       }
     ],
     "function/dart:_internal::makeListFixedLength": [
@@ -69443,10 +69752,46 @@
         "id": "function/dart:_interceptors::JSArray.JSArray.fixed"
       }
     ],
+    "function/dart:core::List.List.from": [
+      {
+        "id": "function/dart:_interceptors::JSArray.markFixedList"
+      },
+      {
+        "id": "function/dart:_internal::makeListFixedLength",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_internal::makeListFixedLength"
+      },
+      {
+        "id": "function/dart:_js_helper::throwConcurrentModificationError"
+      },
+      {
+        "id": "function/dart:_rti::Rti._eval"
+      },
+      {
+        "id": "function/dart:_rti::_setArrayType"
+      }
+    ],
     "function/dart:core::List.List.of": [
       {
         "id": "function/dart:core::List.List._fixedOf",
         "mask": "inlined"
+      }
+    ],
+    "function/dart:core::List.List.unmodifiable": [
+      {
+        "id": "function/dart:_interceptors::JSArray.markUnmodifiableList"
+      },
+      {
+        "id": "function/dart:_internal::makeFixedListUnmodifiable",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/dart:_internal::makeFixedListUnmodifiable"
+      },
+      {
+        "id": "function/dart:core::List.List.from"
       }
     ],
     "function/dart:core::Null.hashCode": [
@@ -69672,6 +70017,14 @@
       }
     ],
     "function/dart:core::RangeError.checkValidRange": [
+      {
+        "id": "function/dart:_js_helper::wrapException"
+      },
+      {
+        "id": "function/dart:core::RangeError.RangeError.range"
+      }
+    ],
+    "function/dart:core::RangeError.checkValueInInterval": [
       {
         "id": "function/dart:_js_helper::wrapException"
       },
@@ -71389,7 +71742,20 @@
         "id": "function/org-dartlang-app:///example/src/qr_example.dart::QrExample._validate.QrExample__validate_update.call"
       },
       {
-        "id": "function/package:qr/src/qr_code.dart::QrCode.fromDataAndValidation"
+        "id": "function/package:qr/src/payload.dart::QrPayload.QrPayload"
+      },
+      {
+        "id": "function/package:qr/src/payload.dart::QrPayload.QrPayload.fromString",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/package:qr/src/payload.dart::QrPayload.QrPayload.fromString"
+      },
+      {
+        "id": "function/package:qr/src/payload.dart::QrPayload.addString"
+      },
+      {
+        "id": "function/package:qr/src/validation_result.dart::QrValidationResult.QrValidationResult.fromPayload"
       }
     ],
     "function/org-dartlang-app:///example/src/qr_example.dart::QrExample._validate.QrExample__validate_update.call": [
@@ -71491,6 +71857,14 @@
       },
       {
         "id": "function/dart:async::_wrapJsFunctionForAsync"
+      },
+      {
+        "id": "function/package:qr/src/payload.dart::QrPayload.QrPayload.fromString",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/package:qr/src/qr_code.dart::QrCode.QrCode",
+        "mask": "inlined"
       },
       {
         "id": "function/package:qr/src/qr_image.dart::QrImage.isDark",
@@ -72158,17 +72532,74 @@
         "id": "function/dart:_js_helper::wrapException"
       },
       {
-        "id": "function/dart:_rti::findType"
+        "id": "function/dart:core::RangeError.RangeError.range"
+      }
+    ],
+    "function/package:qr/src/payload.dart::QrPayload.QrPayload.fromString": [
+      {
+        "id": "function/package:qr/src/payload.dart::QrPayload.QrPayload",
+        "mask": "inlined"
+      }
+    ],
+    "function/package:qr/src/payload.dart::QrPayload.addString": [
+      {
+        "id": "field/package:qr/src/payload.dart::QrPayload._dataList"
       },
       {
-        "id": "function/dart:core::Object.==",
+        "id": "function/dart:_js_helper::throwConcurrentModificationError"
+      },
+      {
+        "id": "function/package:qr/src/byte.dart::QrDatum.toDatums"
+      },
+      {
+        "id": "function/package:qr/src/payload.dart::QrPayload._addToList",
         "mask": "inlined"
       },
       {
-        "id": "function/dart:core::Object.=="
+        "id": "function/package:qr/src/payload.dart::QrPayload._addToList"
+      }
+    ],
+    "function/package:qr/src/payload.dart::QrPayloadInternal|calculateRequiredBits": [
+      {
+        "id": "field/package:qr/src/byte.dart::QrAlphaNumeric.mode",
+        "mask": "[subtype=QrDatum|powerset={N}{O}{N}]"
       },
       {
-        "id": "function/dart:core::RangeError.RangeError.range"
+        "id": "field/package:qr/src/byte.dart::QrByte.mode",
+        "mask": "[subtype=QrDatum|powerset={N}{O}{N}]"
+      },
+      {
+        "id": "field/package:qr/src/byte.dart::QrNumeric.mode",
+        "mask": "[subtype=QrDatum|powerset={N}{O}{N}]"
+      },
+      {
+        "id": "field/package:qr/src/payload.dart::QrPayload._dataList"
+      },
+      {
+        "id": "function/dart:_js_helper::throwConcurrentModificationError"
+      },
+      {
+        "id": "function/package:qr/src/byte.dart::QrAlphaNumeric.bitLength",
+        "mask": "[subtype=QrDatum|powerset={N}{O}{N}]"
+      },
+      {
+        "id": "function/package:qr/src/byte.dart::QrByte.bitLength",
+        "mask": "[subtype=QrDatum|powerset={N}{O}{N}]"
+      },
+      {
+        "id": "function/package:qr/src/byte.dart::QrNumeric.bitLength",
+        "mask": "[subtype=QrDatum|powerset={N}{O}{N}]"
+      },
+      {
+        "id": "function/package:qr/src/eci.dart::QrEci.bitLength",
+        "mask": "[subtype=QrDatum|powerset={N}{O}{N}]"
+      },
+      {
+        "id": "function/package:qr/src/eci.dart::QrEci.mode",
+        "mask": "[subtype=QrDatum|powerset={N}{O}{N}]"
+      },
+      {
+        "id": "function/package:qr/src/mode.dart::QrMode.getLengthBits"
       }
     ],
     "function/package:qr/src/polynomial.dart::QrPolynomial.QrPolynomial": [
@@ -72325,136 +72756,32 @@
     ],
     "function/package:qr/src/qr_code.dart::QrCode.QrCode": [
       {
-        "id": "function/dart:_js_helper::throwExpression"
-      },
+        "id": "function/package:qr/src/qr_code.dart::QrCode.QrCode._",
+        "mask": "inlined"
+      }
+    ],
+    "function/package:qr/src/qr_code.dart::QrCode._calculateTypeNumberFromPayload": [
       {
-        "id": "function/dart:_rti::_setArrayType"
-      },
-      {
-        "id": "function/dart:_rti::findType"
-      },
-      {
-        "id": "function/dart:core::RangeError.RangeError.range"
+        "id": "function/dart:_js_helper::wrapException"
       },
       {
         "id": "function/dart:core::RangeError.checkValueInInterval"
-      }
-    ],
-    "function/package:qr/src/qr_code.dart::QrCode.addData": [
-      {
-        "id": "field/package:qr/src/qr_code.dart::QrCode._dataCache"
       },
       {
-        "id": "field/package:qr/src/qr_code.dart::QrCode._dataList"
-      },
-      {
-        "id": "function/dart:_js_helper::throwConcurrentModificationError"
-      },
-      {
-        "id": "function/package:qr/src/byte.dart::QrDatum.toDatums"
-      },
-      {
-        "id": "function/package:qr/src/qr_code.dart::QrCode._addToList",
+        "id": "function/package:qr/src/input_too_long_exception.dart::InputTooLongException.InputTooLongException",
         "mask": "inlined"
       },
       {
-        "id": "function/package:qr/src/qr_code.dart::QrCode._addToList"
-      }
-    ],
-    "function/package:qr/src/qr_code.dart::QrCode.fromDataAndValidation": [
-      {
-        "id": "field/package:qr/src/qr_code.dart::QrCode._dataCache"
+        "id": "function/package:qr/src/input_too_long_exception.dart::InputTooLongException.InputTooLongException"
       },
       {
-        "id": "field/package:qr/src/qr_code.dart::QrCode._dataList"
+        "id": "function/package:qr/src/input_too_long_exception.dart::InputTooLongException.InputTooLongException._internal"
       },
       {
-        "id": "function/dart:_interceptors::JSArray.contains"
-      },
-      {
-        "id": "function/dart:_js_helper::throwConcurrentModificationError"
-      },
-      {
-        "id": "function/dart:_rti::_setArrayType"
-      },
-      {
-        "id": "function/dart:_rti::findType"
-      },
-      {
-        "id": "function/package:qr/src/byte.dart::QrDatum.toDatums"
-      },
-      {
-        "id": "function/package:qr/src/qr_code.dart::QrCode.QrCode"
-      },
-      {
-        "id": "function/package:qr/src/qr_code.dart::QrCode._addToList",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/package:qr/src/qr_code.dart::QrCode._addToList"
-      },
-      {
-        "id": "function/package:qr/src/qr_code.dart::QrCode._calculateTotalDataBits",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/package:qr/src/qr_code.dart::QrCode._calculateTotalDataBits"
-      },
-      {
-        "id": "function/package:qr/src/qr_code.dart::QrCode.fromDataAndValidation.QrCode_fromDataAndValidation_calculateRequiredBits.call"
-      },
-      {
-        "id": "function/package:qr/src/qr_code.dart::QrCode.fromDataAndValidation.QrCode_fromDataAndValidation_getRequiredBits.call"
+        "id": "function/package:qr/src/payload.dart::QrPayloadInternal|calculateRequiredBits"
       },
       {
         "id": "function/package:qr/src/rs_block.dart::QrRsBlock.getTotalDataBits"
-      },
-      {
-        "id": "function/package:qr/src/validation_result.dart::QrValidationResult.QrValidationResult",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/package:qr/src/validation_result.dart::QrValidationResult.QrValidationResult"
-      }
-    ],
-    "function/package:qr/src/qr_code.dart::QrCode.fromDataAndValidation.QrCode_fromDataAndValidation_calculateRequiredBits.call": [
-      {
-        "id": "field/package:qr/src/byte.dart::QrAlphaNumeric.mode",
-        "mask": "Union([exact=QrAlphaNumeric|powerset={N}{O}{N}], [exact=QrByte|powerset={N}{O}{N}], [exact=QrEci|powerset={N}{O}{N}], [exact=QrNumeric|powerset={N}{O}{N}], powerset: {N}{O}{N})"
-      },
-      {
-        "id": "field/package:qr/src/byte.dart::QrByte.mode",
-        "mask": "Union([exact=QrAlphaNumeric|powerset={N}{O}{N}], [exact=QrByte|powerset={N}{O}{N}], [exact=QrEci|powerset={N}{O}{N}], [exact=QrNumeric|powerset={N}{O}{N}], powerset: {N}{O}{N})"
-      },
-      {
-        "id": "field/package:qr/src/byte.dart::QrNumeric.mode",
-        "mask": "Union([exact=QrAlphaNumeric|powerset={N}{O}{N}], [exact=QrByte|powerset={N}{O}{N}], [exact=QrEci|powerset={N}{O}{N}], [exact=QrNumeric|powerset={N}{O}{N}], powerset: {N}{O}{N})"
-      },
-      {
-        "id": "function/dart:_js_helper::throwConcurrentModificationError"
-      },
-      {
-        "id": "function/package:qr/src/byte.dart::QrAlphaNumeric.bitLength",
-        "mask": "Union([exact=QrAlphaNumeric|powerset={N}{O}{N}], [exact=QrByte|powerset={N}{O}{N}], [exact=QrEci|powerset={N}{O}{N}], [exact=QrNumeric|powerset={N}{O}{N}], powerset: {N}{O}{N})"
-      },
-      {
-        "id": "function/package:qr/src/byte.dart::QrByte.bitLength",
-        "mask": "Union([exact=QrAlphaNumeric|powerset={N}{O}{N}], [exact=QrByte|powerset={N}{O}{N}], [exact=QrEci|powerset={N}{O}{N}], [exact=QrNumeric|powerset={N}{O}{N}], powerset: {N}{O}{N})"
-      },
-      {
-        "id": "function/package:qr/src/byte.dart::QrNumeric.bitLength",
-        "mask": "Union([exact=QrAlphaNumeric|powerset={N}{O}{N}], [exact=QrByte|powerset={N}{O}{N}], [exact=QrEci|powerset={N}{O}{N}], [exact=QrNumeric|powerset={N}{O}{N}], powerset: {N}{O}{N})"
-      },
-      {
-        "id": "function/package:qr/src/eci.dart::QrEci.bitLength",
-        "mask": "Union([exact=QrAlphaNumeric|powerset={N}{O}{N}], [exact=QrByte|powerset={N}{O}{N}], [exact=QrEci|powerset={N}{O}{N}], [exact=QrNumeric|powerset={N}{O}{N}], powerset: {N}{O}{N})"
-      },
-      {
-        "id": "function/package:qr/src/eci.dart::QrEci.mode",
-        "mask": "Union([exact=QrAlphaNumeric|powerset={N}{O}{N}], [exact=QrByte|powerset={N}{O}{N}], [exact=QrEci|powerset={N}{O}{N}], [exact=QrNumeric|powerset={N}{O}{N}], powerset: {N}{O}{N})"
-      },
-      {
-        "id": "function/package:qr/src/mode.dart::QrMode.getLengthBits"
       }
     ],
     "function/package:qr/src/qr_code.dart::_createBytes": [
@@ -72569,9 +72896,6 @@
         "id": "function/dart:_interceptors::JSNumber.%"
       },
       {
-        "id": "function/dart:_js_helper::wrapException"
-      },
-      {
         "id": "function/dart:_native_typed_data::NativeUint8List.NativeUint8List"
       },
       {
@@ -72634,16 +72958,6 @@
         "mask": "[subtype=QrDatum|powerset={N}{O}{N}]"
       },
       {
-        "id": "function/package:qr/src/input_too_long_exception.dart::InputTooLongException.InputTooLongException",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/package:qr/src/input_too_long_exception.dart::InputTooLongException.InputTooLongException"
-      },
-      {
-        "id": "function/package:qr/src/input_too_long_exception.dart::InputTooLongException.InputTooLongException._internal"
-      },
-      {
         "id": "function/package:qr/src/mode.dart::QrMode.getLengthBits"
       },
       {
@@ -72680,18 +72994,27 @@
         "id": "function/package:qr/src/polynomial.dart::QrPolynomial.multiply"
       }
     ],
+    "function/package:qr/src/qr_code.dart::getDataCache": [
+      {
+        "id": "function/package:qr/src/payload.dart::QrPayloadInternal|get#dataList",
+        "mask": "inlined"
+      }
+    ],
     "function/package:qr/src/qr_image.dart::QrImage.QrImage": [
       {
-        "id": "field/package:qr/src/qr_code.dart::QrCode._dataCache"
+        "id": "field/package:qr/src/payload.dart::QrPayload._dataList"
       },
       {
-        "id": "field/package:qr/src/qr_code.dart::QrCode._dataList"
+        "id": "field/package:qr/src/qr_code.dart::QrCode._dataCache"
       },
       {
         "id": "field/package:qr/src/qr_code.dart::QrCode.errorCorrectLevel"
       },
       {
         "id": "field/package:qr/src/qr_code.dart::QrCode.moduleCount"
+      },
+      {
+        "id": "field/package:qr/src/qr_code.dart::QrCode.payload"
       },
       {
         "id": "field/package:qr/src/qr_code.dart::QrCode.typeNumber"
@@ -72719,14 +73042,17 @@
         "id": "function/dart:collection::ListBase.fillRange"
       },
       {
-        "id": "function/package:qr/src/qr_code.dart::QrCode.dataCache",
-        "mask": "inlined"
-      },
-      {
-        "id": "function/package:qr/src/qr_code.dart::QrCode.dataCache"
+        "id": "function/package:qr/src/payload.dart::QrPayloadInternal|get#dataList"
       },
       {
         "id": "function/package:qr/src/qr_code.dart::_createData"
+      },
+      {
+        "id": "function/package:qr/src/qr_code.dart::getDataCache",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/package:qr/src/qr_code.dart::getDataCache"
       },
       {
         "id": "function/package:qr/src/qr_image.dart::QrImage.QrImage._fromData",
@@ -73127,6 +73453,52 @@
       },
       {
         "id": "function/dart:_interceptors::JSNumber.<<"
+      }
+    ],
+    "function/package:qr/src/validation_result.dart::QrValidationResult.QrValidationResult.fromPayload": [
+      {
+        "id": "function/dart:_interceptors::JSArray.contains"
+      },
+      {
+        "id": "function/dart:_rti::_setArrayType"
+      },
+      {
+        "id": "function/dart:_rti::findType"
+      },
+      {
+        "id": "function/dart:core::List.List.unmodifiable"
+      },
+      {
+        "id": "function/dart:core::RangeError.checkValueInInterval"
+      },
+      {
+        "id": "function/package:qr/src/payload.dart::QrPayloadInternal|calculateRequiredBits"
+      },
+      {
+        "id": "function/package:qr/src/qr_code.dart::QrCode.QrCode",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/package:qr/src/qr_code.dart::QrCode.QrCode"
+      },
+      {
+        "id": "function/package:qr/src/qr_code.dart::QrCode.QrCode._"
+      },
+      {
+        "id": "function/package:qr/src/qr_code.dart::QrCode._calculateTypeNumberFromPayload"
+      },
+      {
+        "id": "function/package:qr/src/rs_block.dart::QrRsBlock.getTotalDataBits"
+      },
+      {
+        "id": "function/package:qr/src/validation_result.dart::QrValidationResult.QrValidationResult._",
+        "mask": "inlined"
+      },
+      {
+        "id": "function/package:qr/src/validation_result.dart::QrValidationResult.QrValidationResult._"
+      },
+      {
+        "id": "function/package:qr/src/validation_result.dart::QrValidationResult.QrValidationResult.fromPayload.QrValidationResult_QrValidationResult$fromPayload_getRequiredBits.call"
       }
     ],
     "function/package:stream_transform/src/aggregate_sample.dart::AggregateSample|aggregateSample": [
@@ -73907,7 +74279,7 @@
       "id": "outputUnit/main",
       "kind": "outputUnit",
       "name": "main",
-      "size": 130644,
+      "size": 130950,
       "filename": "main.dart2js.js",
       "imports": []
     }

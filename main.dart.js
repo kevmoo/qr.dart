@@ -19,8 +19,16 @@ const forceJS = (() => {
 })();
 if (!forceJS && (WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,0,0,1,5,1,95,1,120,0])))) {
 
+const moduleLoadingCache = new Map();
+function getModuleBytes(m, callback) {
+  const cached = moduleLoadingCache.get(m);
+  if (!!cached) return cached;
+  const loadPromise = fetch(relativeURL(`./${m}`)).then((b) => callback(m, b));
+  moduleLoadingCache.set(m, loadPromise);
+  return loadPromise;
+}
 function loadDeferredModules(modules, handleWasmBytes) {
-  return Promise.all(modules.map((m) => fetch(relativeURL(`./${m}`)).then((b) => handleWasmBytes(m, b))));
+  return Promise.all(modules.map((m) => getModuleBytes(m, handleWasmBytes)));
 }
 let { compileStreaming } = await import(relativeURL("./main.mjs"));
 
