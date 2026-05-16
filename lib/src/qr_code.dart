@@ -71,7 +71,7 @@ final class QrCode {
     }
 
     final maxBits = QrRsBlock.getTotalDataBits(40, errorCorrectLevel);
-    throw InputTooLongException(requiredBitsFor27, maxBits);
+    throw createExp(requiredBitsFor27, maxBits);
   }
 }
 
