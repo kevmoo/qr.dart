@@ -51,6 +51,8 @@ void main() {
       expect(QrMode.kanji.getLengthBits(10), 10);
       expect(QrMode.kanji.getLengthBits(27), 12);
       expect(QrMode.eci.getLengthBits(1), 0);
+      expect(QrMode.eci.getLengthBits(10), 0);
+      expect(QrMode.eci.getLengthBits(27), 0);
     });
   });
 }

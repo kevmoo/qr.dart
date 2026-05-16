@@ -34,6 +34,7 @@ void main() {
     final qr = QrNumeric.fromString('37');
     expect(qr.mode, QrMode.numeric);
     expect(qr.length, 2);
+    expect(qr.bitLength, 7);
     final buffer = QrBitBuffer();
     qr.write(buffer);
     expect(buffer, hasLength(7), reason: 'n*3+1 = 7');

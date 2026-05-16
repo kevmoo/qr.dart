@@ -108,9 +108,7 @@ List<int> _createData(
     data.write(buffer);
   }
 
-  if (buffer.length > totalDataBits) {
-    throw InputTooLongException(buffer.length, totalDataBits);
-  }
+  assert(buffer.length <= totalDataBits, 'Buffer exceeded total data bits');
 
   // Terminator code
   if (buffer.length + 4 <= totalDataBits) {
