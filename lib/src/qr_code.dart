@@ -58,14 +58,11 @@ final class QrCode {
         errorCorrectLevel,
       );
 
-      final int requiredBits;
-      if (typeNumber < 10) {
-        requiredBits = requiredBitsFor1;
-      } else if (typeNumber < 27) {
-        requiredBits = requiredBitsFor10;
-      } else {
-        requiredBits = requiredBitsFor27;
-      }
+      final requiredBits = switch (typeNumber) {
+        < 10 => requiredBitsFor1,
+        < 27 => requiredBitsFor10,
+        _ => requiredBitsFor27,
+      };
 
       if (requiredBits <= totalDataBits) return typeNumber;
     }

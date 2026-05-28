@@ -2,7 +2,7 @@ import 'dart:typed_data';
 
 import 'math.dart' as qr_math;
 
-class QrPolynomial {
+final class QrPolynomial {
   final Uint8List _values;
 
   factory QrPolynomial(List<int> thing, int shift) {

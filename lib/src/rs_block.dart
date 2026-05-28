@@ -1,6 +1,6 @@
 import 'error_correct_level.dart';
 
-class QrRsBlock {
+final class QrRsBlock {
   final int totalCount;
   final int dataCount;
 
