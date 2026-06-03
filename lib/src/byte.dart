@@ -113,12 +113,11 @@ final class QrNumeric implements QrDatum {
       final encoded = _data[i] * 100 + _data[i + 1] * 10 + _data[i + 2];
       buffer.put(encoded, 10);
     }
-    if (leftOver > 1) {
-      // 2 bytes
-      buffer.put(_data[_data.length - 2] * 10 + _data[_data.length - 1], 7);
-    } else if (leftOver > 0) {
-      // 1 byte
-      buffer.put(_data.last, 4);
+    switch (leftOver) {
+      case 2:
+        buffer.put(_data[_data.length - 2] * 10 + _data[_data.length - 1], 7);
+      case 1:
+        buffer.put(_data.last, 4);
     }
   }
 
