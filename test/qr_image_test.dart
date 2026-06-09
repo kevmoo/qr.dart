@@ -1,5 +1,6 @@
+import 'package:checks/checks.dart';
 import 'package:qr/qr.dart';
-import 'package:test/test.dart';
+import 'package:test/scaffolding.dart';
 
 void main() {
   late QrImage qrImage;
@@ -15,28 +16,26 @@ void main() {
   });
 
   test('should throw RangeError when row is less than 0', () {
-    expect(() => qrImage.isDark(-1, 0), throwsRangeError);
+    check(() => qrImage.isDark(-1, 0)).throws<RangeError>();
   });
 
   test('should throw RangeError when row is greater than '
       'or equal to moduleCount', () {
-    expect(() => qrImage.isDark(moduleCount, 0), throwsRangeError);
+    check(() => qrImage.isDark(moduleCount, 0)).throws<RangeError>();
   });
 
   test('should throw RangeError when col is less than 0', () {
-    expect(() => qrImage.isDark(0, -1), throwsRangeError);
+    check(() => qrImage.isDark(0, -1)).throws<RangeError>();
   });
 
   test('should throw RangeError when col is greater than '
       'or equal to moduleCount', () {
-    expect(() => qrImage.isDark(0, moduleCount), throwsRangeError);
+    check(() => qrImage.isDark(0, moduleCount)).throws<RangeError>();
   });
 
   test('should not throw when row and col are within valid range', () {
-    expect(() => qrImage.isDark(0, 0), returnsNormally);
-    expect(
-      () => qrImage.isDark(moduleCount - 1, moduleCount - 1),
-      returnsNormally,
-    );
+    qrImage
+      ..isDark(0, 0)
+      ..isDark(moduleCount - 1, moduleCount - 1);
   });
 }

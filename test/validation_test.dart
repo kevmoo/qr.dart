@@ -1,5 +1,6 @@
+import 'package:checks/checks.dart';
 import 'package:qr/qr.dart';
-import 'package:test/test.dart';
+import 'package:test/scaffolding.dart';
 
 void main() {
   test(
@@ -11,15 +12,18 @@ void main() {
         errorCorrectLevel: QrErrorCorrectLevel.medium,
       );
 
-      expect(result.isValid, isTrue);
-      expect(result.qrCode, isNotNull);
-      expect(result.qrCode!.typeNumber, 1);
-      expect(result.qrCode!.errorCorrectLevel, QrErrorCorrectLevel.medium);
-      expect(result.validTypeNumbers, contains(1));
-      expect(
+      check(result.isValid).isTrue();
+      check(
+        result.qrCode,
+      ).isNotNull().has((q) => q.typeNumber, 'typeNumber').equals(1);
+      check(result.qrCode)
+          .isNotNull()
+          .has((q) => q.errorCorrectLevel, 'errorCorrectLevel')
+          .equals(QrErrorCorrectLevel.medium);
+      check(result.validTypeNumbers).contains(1);
+      check(
         result.validErrorCorrectLevels,
-        contains(QrErrorCorrectLevel.medium),
-      );
+      ).contains(QrErrorCorrectLevel.medium);
     },
   );
 
@@ -36,15 +40,15 @@ void main() {
       errorCorrectLevel: QrErrorCorrectLevel.high,
     );
 
-    expect(result.isValid, isFalse);
-    expect(result.qrCode, isNull);
+    check(result.isValid).isFalse();
+    check(result.qrCode).isNull();
 
     // Type 1 should NOT be in valid types
-    expect(result.validTypeNumbers, isNot(contains(1)));
+    check(result.validTypeNumbers).not((it) => it.contains(1));
 
     // But some higher types SHOULD be valid
-    expect(result.validTypeNumbers, isNotEmpty);
-    expect(result.validTypeNumbers.last, 40);
+    check(result.validTypeNumbers).isNotEmpty();
+    check(result.validTypeNumbers.last).equals(40);
   });
 
   test('QrValidationResult.fromPayload validates error levels', () {
@@ -59,10 +63,9 @@ void main() {
       errorCorrectLevel: QrErrorCorrectLevel.low,
     );
 
-    expect(result.isValid, isTrue);
-    expect(
+    check(result.isValid).isTrue();
+    check(
       result.validErrorCorrectLevels,
-      unorderedEquals([QrErrorCorrectLevel.low, QrErrorCorrectLevel.medium]),
-    );
+    ).unorderedEquals([QrErrorCorrectLevel.low, QrErrorCorrectLevel.medium]);
   });
 }

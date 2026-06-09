@@ -3,8 +3,9 @@ library;
 
 import 'dart:io';
 
+import 'package:checks/checks.dart';
 import 'package:path/path.dart' as p;
-import 'package:test/test.dart';
+import 'package:test/scaffolding.dart';
 import 'package:test_process/test_process.dart';
 
 void main() {
@@ -52,11 +53,10 @@ void main() {
         final process = await TestProcess.start('dart', args);
         await process.shouldExit(0);
 
-        expect(
+        check(
+          because: 'BMP file should be created',
           File(bmpPath).existsSync(),
-          isTrue,
-          reason: 'BMP file should be created',
-        );
+        ).isTrue();
 
         // Validate with zbarimg
         // zbarimg output format: QR-Code:content
@@ -69,7 +69,7 @@ void main() {
           print('Input: $input');
           print('Output: "$output"');
         }
-        expect(output, 'QR-Code:$input');
+        check(output).equals('QR-Code:$input');
       }, timeout: const Timeout(Duration(seconds: 20)));
     }
   }
@@ -92,11 +92,10 @@ void main() {
 
     final process = await TestProcess.start('dart', args);
     await process.shouldExit(0);
-    expect(
+    check(
+      because: 'BMP file should be created',
       File(bmpPath).existsSync(),
-      isTrue,
-      reason: 'BMP file should be created',
-    );
+    ).isTrue();
 
     final zbar = await TestProcess.start('zbarimg', ['--quiet', bmpPath]);
     await zbar.shouldExit(0);
@@ -107,7 +106,7 @@ void main() {
       print('Input: $input');
       print('Output: "$output"');
     }
-    expect(output, 'QR-Code:$input');
+    check(output).equals('QR-Code:$input');
   });
 
   test('Error case: Missing output argument', () async {
@@ -117,10 +116,9 @@ void main() {
     ]);
     await process.shouldExit(1);
     final output = await process.stdout.next;
-    expect(
+    check(
       output,
-      contains('Error: Invalid argument(s): Option output is mandatory.'),
-    );
+    ).contains('Error: Invalid argument(s): Option output is mandatory.');
   });
 
   test('Error case: Invalid version', () async {

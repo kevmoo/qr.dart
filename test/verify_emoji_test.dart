@@ -1,5 +1,6 @@
+import 'package:checks/checks.dart';
 import 'package:qr/qr.dart';
-import 'package:test/test.dart';
+import 'package:test/scaffolding.dart';
 
 void main() {
   test('Generate QR with Emoji', () {
@@ -8,8 +9,8 @@ void main() {
       payload: QrPayload.fromString(emojiString),
       errorCorrectLevel: QrErrorCorrectLevel.low,
     );
-    expect(qr.typeNumber, 2);
-    expect(qr.typeNumber, greaterThan(0));
+    check(qr.typeNumber).equals(2);
+    check(qr.typeNumber).isGreaterThan(0);
     // Verify we have multiple segments (ECI + Byte)
     // iterate over modules or check internal structure if possible
     // (but it's private)
@@ -26,7 +27,7 @@ void main() {
       payload: QrPayload.fromString(complexEmoji),
       errorCorrectLevel: QrErrorCorrectLevel.low,
     );
-    expect(qr.typeNumber, greaterThan(0));
+    check(qr.typeNumber).isGreaterThan(0);
     // Verify it didn't throw and created a valid QR structure
     // The exact type number depends on the overhead of ECI + Byte mode
 
@@ -36,6 +37,6 @@ void main() {
 
     // We can't easily peek into _dataList, but we can verify the module count
     // implies it's not empty
-    expect(qr.moduleCount, greaterThan(21));
+    check(qr.moduleCount).isGreaterThan(21);
   });
 }

@@ -2,10 +2,11 @@
 
 import 'dart:typed_data';
 
+import 'package:checks/checks.dart';
 import 'package:qr/qr.dart';
 import 'package:qr/src/mode.dart';
 import 'package:qr/src/payload.dart';
-import 'package:test/test.dart';
+import 'package:test/scaffolding.dart';
 
 import 'qr_code_test_data.dart';
 import 'qr_code_test_data_with_mask.dart';
@@ -22,9 +23,9 @@ void main() {
           ),
         );
         final modules = qr.qrModules;
-        expect(
-          modules.map(_encodeBoolListToString),
-          qrCodeTestData[typeNumber.toString()][quality.index.toString()],
+        check(modules.map(_encodeBoolListToString)).deepEquals(
+          qrCodeTestData[typeNumber.toString()][quality.index.toString()]
+              as List,
         );
       }
     }
@@ -39,10 +40,9 @@ void main() {
         ),
       );
       final modules = qr.qrModules;
-      expect(
+      check(
         modules.map(_encodeBoolListToString),
-        qrCodeTestData['1'][quality.index.toString()],
-      );
+      ).deepEquals(qrCodeTestData['1'][quality.index.toString()] as List);
     }
   });
 
@@ -57,10 +57,9 @@ void main() {
         ),
       );
       final modules = qr.qrModules;
-      expect(
+      check(
         modules.map(_encodeBoolListToString),
-        qrCodeTestData['1'][quality.index.toString()],
-      );
+      ).deepEquals(qrCodeTestData['1'][quality.index.toString()] as List);
     }
   });
 
@@ -74,16 +73,15 @@ void main() {
         mask,
       );
       final modules = qr.qrModules;
-      expect(
+      check(
         modules.map(_encodeBoolListToString),
-        qrCodeTestDataWithMask[mask.toString()],
-      );
+      ).deepEquals(qrCodeTestDataWithMask[mask.toString()] as List);
     }
   });
 
   test('WHEN provided mask pattern is smaller than 0, '
       'SHOULD throw an AssertionError', () {
-    expect(() {
+    check(() {
       QrImage.withMaskPattern(
         QrCode(
           payload: QrPayload.fromString('shanna!'),
@@ -91,12 +89,12 @@ void main() {
         ),
         -1,
       );
-    }, throwsA(isA<AssertionError>()));
+    }).throws<AssertionError>();
   });
 
   test('WHEN provided mask pattern is bigger than 7, '
       'SHOULD throw an AssertionError', () {
-    expect(() {
+    check(() {
       QrImage.withMaskPattern(
         QrCode(
           payload: QrPayload.fromString('shanna!'),
@@ -104,7 +102,7 @@ void main() {
         ),
         8,
       );
-    }, throwsA(isA<AssertionError>()));
+    }).throws<AssertionError>();
   });
   group('QrCode auto-sizing', () {
     // Numeric Mode
@@ -114,7 +112,7 @@ void main() {
         payload: QrPayload.fromString('123456789'),
         errorCorrectLevel: QrErrorCorrectLevel.high,
       );
-      expect(qr.typeNumber, 1);
+      check(qr.typeNumber).equals(1);
     });
 
     // Alphanumeric Mode
@@ -125,7 +123,7 @@ void main() {
         payload: QrPayload.fromString('HELLO WORLD A'),
         errorCorrectLevel: QrErrorCorrectLevel.high,
       );
-      expect(qr.typeNumber, 2);
+      check(qr.typeNumber).equals(2);
     });
 
     // Byte Mode
@@ -136,7 +134,7 @@ void main() {
         payload: QrPayload.fromString('機械学習'),
         errorCorrectLevel: QrErrorCorrectLevel.high,
       );
-      expect(qr.typeNumber, 2);
+      check(qr.typeNumber).equals(2);
     });
   });
 
@@ -144,19 +142,19 @@ void main() {
     // Numeric Mode
     test('should use Numeric Mode for numbers', () {
       final payload = QrPayload.fromString('123456789');
-      expect(payload.dataList.single.mode, QrMode.numeric);
+      check(payload.dataList.single.mode).equals(QrMode.numeric);
     });
 
     // Alphanumeric Mode
     test('should use Alphanumeric Mode', () {
       final payload = QrPayload.fromString('HELLO WORLD A');
-      expect(payload.dataList.single.mode, QrMode.alphaNumeric);
+      check(payload.dataList.single.mode).equals(QrMode.alphaNumeric);
     });
 
     // Byte Mode
     test('should use Byte Mode for non-alphanumeric characters', () {
       final payload = QrPayload.fromString('機械学習');
-      expect(payload.dataList.last.mode, QrMode.byte);
+      check(payload.dataList.last.mode).equals(QrMode.byte);
     });
   });
 
@@ -170,26 +168,22 @@ void main() {
         errorCorrectLevel: QrErrorCorrectLevel.low,
       );
 
-      expect(qrCode.typeNumber, 40);
+      check(qrCode.typeNumber).equals(40);
     });
 
     test('throw InputTooLongException for data exceeding v40 capacity', () {
       // Data size (2954 bytes) exceeds v40 capacity (2953 bytes).
       final excessivelyLargeData = '|' * 2954;
 
-      expect(
-        () => QrCode(
-          payload: QrPayload.fromString(excessivelyLargeData),
-          errorCorrectLevel: QrErrorCorrectLevel.low,
-        ),
-        throwsA(
-          isA<InputTooLongException>().having(
-            (e) => e.toString(),
-            'toString()',
-            'Input too long. 23652 > 23648',
-          ),
-        ),
-      );
+      check(
+            () => QrCode(
+              payload: QrPayload.fromString(excessivelyLargeData),
+              errorCorrectLevel: QrErrorCorrectLevel.low,
+            ),
+          )
+          .throws<InputTooLongException>()
+          .has((e) => e.toString(), 'toString()')
+          .equals('Input too long. 23652 > 23648');
     });
   });
 }

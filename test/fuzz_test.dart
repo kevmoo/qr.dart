@@ -1,9 +1,10 @@
 import 'dart:math';
 import 'dart:typed_data';
 
+import 'package:checks/checks.dart';
 import 'package:qr/qr.dart';
 import 'package:qr/src/qr_code.dart';
-import 'package:test/test.dart';
+import 'package:test/scaffolding.dart';
 
 void main() {
   final random = Random(42); // Fixed seed for reproducibility
@@ -24,12 +25,12 @@ void main() {
           errorCorrectLevel: level,
         );
         // Ensure we can at least generate the data cache without crashing
-        expect(getDataCache(qr), isNotEmpty);
+        check(getDataCache(qr)).isNotEmpty();
 
         // Also test random mask patterns
         final mask = random.nextInt(8);
         final image = QrImage.withMaskPattern(qr, mask);
-        expect(image.qrModules, isNotEmpty);
+        check(image.qrModules).isNotEmpty();
       } catch (e) {
         // We expect InputTooLongException for large data, but nothing else
         if (e is! InputTooLongException) {
@@ -55,7 +56,7 @@ void main() {
           payload: QrPayload.fromTypedData(data),
           errorCorrectLevel: level,
         );
-        expect(getDataCache(qr), isNotEmpty);
+        check(getDataCache(qr)).isNotEmpty();
       } catch (e) {
         if (e is! InputTooLongException) {
           print('Failed with input bytes of length $length at iteration $i');
@@ -114,7 +115,7 @@ void main() {
           errorCorrectLevel: level,
           minTypeNumber: type,
         );
-        expect(getDataCache(qr), isNotEmpty);
+        check(getDataCache(qr)).isNotEmpty();
       } catch (e) {
         if (e is! InputTooLongException && e is! ArgumentError) {
           print('Failed during manual addition at iteration $i');

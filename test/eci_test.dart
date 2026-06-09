@@ -1,55 +1,56 @@
 // ignore_for_file: lines_longer_than_80_chars
 
+import 'package:checks/checks.dart';
 import 'package:qr/qr.dart';
 import 'package:qr/src/bit_buffer.dart';
 import 'package:qr/src/eci.dart';
 import 'package:qr/src/mode.dart' as qr_mode;
 import 'package:qr/src/qr_code.dart';
-import 'package:test/test.dart';
+import 'package:test/scaffolding.dart';
 
 void main() {
   group('QrEci', () {
     test('validates value range', () {
-      expect(() => QrEci(-1), throwsArgumentError);
-      expect(() => QrEci(1000000), throwsArgumentError);
-      expect(QrEci(0).value, 0);
-      expect(QrEci(999999).value, 999999);
+      check(() => QrEci(const QrEciValue(-1))).throws<ArgumentError>();
+      check(() => QrEci(const QrEciValue(1000000))).throws<ArgumentError>();
+      check<int>(QrEci(const QrEciValue(0)).value).equals(0);
+      check<int>(QrEci(const QrEciValue(999999)).value).equals(999999);
     });
 
     test('constants', () {
-      expect(QrEciValue.iso8859_1, 3);
-      expect(QrEciValue.iso8859_2, 4);
-      expect(QrEciValue.iso8859_3, 5);
-      expect(QrEciValue.iso8859_4, 6);
-      expect(QrEciValue.iso8859_5, 7);
-      expect(QrEciValue.iso8859_6, 8);
-      expect(QrEciValue.iso8859_7, 9);
-      expect(QrEciValue.iso8859_8, 10);
-      expect(QrEciValue.iso8859_9, 11);
-      expect(QrEciValue.iso8859_10, 12);
-      expect(QrEciValue.iso8859_11, 13);
-      expect(QrEciValue.iso8859_13, 15);
-      expect(QrEciValue.iso8859_14, 16);
-      expect(QrEciValue.iso8859_15, 17);
-      expect(QrEciValue.iso8859_16, 18);
-      expect(QrEciValue.shiftJis, 20);
-      expect(QrEciValue.windows1250, 21);
-      expect(QrEciValue.windows1251, 22);
-      expect(QrEciValue.windows1252, 23);
-      expect(QrEciValue.windows1256, 24);
-      expect(QrEciValue.utf16BE, 25);
-      expect(QrEciValue.utf8, 26);
-      expect(QrEciValue.ascii, 27);
-      expect(QrEciValue.big5, 28);
-      expect(QrEciValue.gb2312, 29);
-      expect(QrEciValue.eucKr, 30);
-      expect(QrEciValue.gbk, 31);
+      check<int>(QrEciValue.iso8859_1).equals(3);
+      check<int>(QrEciValue.iso8859_2).equals(4);
+      check<int>(QrEciValue.iso8859_3).equals(5);
+      check<int>(QrEciValue.iso8859_4).equals(6);
+      check<int>(QrEciValue.iso8859_5).equals(7);
+      check<int>(QrEciValue.iso8859_6).equals(8);
+      check<int>(QrEciValue.iso8859_7).equals(9);
+      check<int>(QrEciValue.iso8859_8).equals(10);
+      check<int>(QrEciValue.iso8859_9).equals(11);
+      check<int>(QrEciValue.iso8859_10).equals(12);
+      check<int>(QrEciValue.iso8859_11).equals(13);
+      check<int>(QrEciValue.iso8859_13).equals(15);
+      check<int>(QrEciValue.iso8859_14).equals(16);
+      check<int>(QrEciValue.iso8859_15).equals(17);
+      check<int>(QrEciValue.iso8859_16).equals(18);
+      check<int>(QrEciValue.shiftJis).equals(20);
+      check<int>(QrEciValue.windows1250).equals(21);
+      check<int>(QrEciValue.windows1251).equals(22);
+      check<int>(QrEciValue.windows1252).equals(23);
+      check<int>(QrEciValue.windows1256).equals(24);
+      check<int>(QrEciValue.utf16BE).equals(25);
+      check<int>(QrEciValue.utf8).equals(26);
+      check<int>(QrEciValue.ascii).equals(27);
+      check<int>(QrEciValue.big5).equals(28);
+      check<int>(QrEciValue.gb2312).equals(29);
+      check<int>(QrEciValue.eucKr).equals(30);
+      check<int>(QrEciValue.gbk).equals(31);
     });
 
     test('properties', () {
-      final eci = QrEci(123);
-      expect(eci.mode, qr_mode.QrMode.eci);
-      expect(eci.length, 0);
+      final eci = QrEci(const QrEciValue(123));
+      check(eci.mode).equals(qr_mode.QrMode.eci);
+      check(eci.length).equals(0);
     });
 
     test('encodes 0-127 (8 bits)', () {
@@ -97,21 +98,24 @@ void main() {
     ];
 
     // Verify the full data cache (19 Data Codewords for Version 1-L)
-    expect(getDataCache(code).sublist(0, 19), expectedData);
+    check(getDataCache(code).sublist(0, 19)).deepEquals(expectedData);
 
     final image = QrImage(code);
-    expect(image.moduleCount, 21); // Version 1 is 21x21
-    expect(_getModules(image), _expectedEmojiModules);
+    check(image.moduleCount).equals(21); // Version 1 is 21x21
+    check(_getModules(image)).deepEquals(_expectedEmojiModules);
   });
 }
 
 void _testEci(int value, List<int> expectedBytes) {
   final buffer = QrBitBuffer();
-  QrEci(value).write(buffer);
+  QrEci(QrEciValue(value)).write(buffer);
 
-  expect(buffer, hasLength(expectedBytes.length * 8));
+  check(buffer.length).equals(expectedBytes.length * 8);
   for (var i = 0; i < expectedBytes.length; i++) {
-    expect(buffer.getByte(i), expectedBytes[i], reason: 'Byte $i mismatch');
+    check(
+      because: 'Byte $i mismatch',
+      buffer.getByte(i),
+    ).equals(expectedBytes[i]);
   }
 }
 
