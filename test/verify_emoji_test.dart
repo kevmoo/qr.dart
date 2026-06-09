@@ -10,7 +10,6 @@ void main() {
       errorCorrectLevel: QrErrorCorrectLevel.low,
     );
     check(qr.typeNumber).equals(2);
-    check(qr.typeNumber).isGreaterThan(0);
     // Verify we have multiple segments (ECI + Byte)
     // iterate over modules or check internal structure if possible
     // (but it's private)

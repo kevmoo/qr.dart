@@ -34,8 +34,9 @@ void main() {
   });
 
   test('should not throw when row and col are within valid range', () {
-    qrImage
-      ..isDark(0, 0)
-      ..isDark(moduleCount - 1, moduleCount - 1);
+    check(() => qrImage.isDark(0, 0)).returnsNormally();
+    check(
+      () => qrImage.isDark(moduleCount - 1, moduleCount - 1),
+    ).returnsNormally();
   });
 }

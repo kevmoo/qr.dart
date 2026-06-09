@@ -13,11 +13,9 @@ void main() {
       );
 
       check(result.isValid).isTrue();
-      check(
-        result.qrCode,
-      ).isNotNull().has((q) => q.typeNumber, 'typeNumber').equals(1);
-      check(result.qrCode)
-          .isNotNull()
+      final qrCode = check(result.qrCode).isNotNull();
+      qrCode.has((q) => q.typeNumber, 'typeNumber').equals(1);
+      qrCode
           .has((q) => q.errorCorrectLevel, 'errorCorrectLevel')
           .equals(QrErrorCorrectLevel.medium);
       check(result.validTypeNumbers).contains(1);
