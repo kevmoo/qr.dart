@@ -11,10 +11,10 @@ import 'package:test/scaffolding.dart';
 void main() {
   group('QrEci', () {
     test('validates value range', () {
-      check(() => QrEci(const QrEciValue(-1))).throws<ArgumentError>();
-      check(() => QrEci(const QrEciValue(1000000))).throws<ArgumentError>();
-      check<int>(QrEci(const QrEciValue(0)).value).equals(0);
-      check<int>(QrEci(const QrEciValue(999999)).value).equals(999999);
+      check(() => QrEci(-1)).throws<RangeError>();
+      check(() => QrEci(1000000)).throws<RangeError>();
+      check(QrEci(0).value).equals(0);
+      check(QrEci(999999).value).equals(999999);
     });
 
     test('constants', () {
@@ -48,7 +48,7 @@ void main() {
     });
 
     test('properties', () {
-      final eci = QrEci(const QrEciValue(123));
+      final eci = QrEci(123);
       check(eci.mode).equals(qr_mode.QrMode.eci);
       check(eci.length).equals(0);
     });
@@ -108,7 +108,7 @@ void main() {
 
 void _testEci(int value, List<int> expectedBytes) {
   final buffer = QrBitBuffer();
-  QrEci(QrEciValue(value)).write(buffer);
+  QrEci(value).write(buffer);
 
   check(buffer.length).equals(expectedBytes.length * 8);
   for (var i = 0; i < expectedBytes.length; i++) {
