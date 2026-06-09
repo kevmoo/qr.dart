@@ -1,3 +1,7 @@
+## 4.0.1-dev
+
+- Migrate test suite to `package:checks`.
+
 ## 4.0.0
 
 - **Breaking Change**: Removed `QrBitBuffer` from public exports to tighten the API surface.

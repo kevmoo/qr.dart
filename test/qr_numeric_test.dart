@@ -1,18 +1,18 @@
+import 'package:checks/checks.dart';
 import 'package:qr/src/bit_buffer.dart';
 import 'package:qr/src/byte.dart';
 import 'package:qr/src/mode.dart';
-import 'package:test/test.dart';
+import 'package:test/scaffolding.dart';
 
 void main() {
   test('all digits 1 through 0', () {
     final qr = QrNumeric.fromString('1234567890');
-    expect(qr.mode, QrMode.numeric);
-    expect(qr.length, 10);
+    check(qr.mode).equals(QrMode.numeric);
+    check(qr.length).equals(10);
     final buffer = QrBitBuffer();
     qr.write(buffer);
-    expect(buffer, hasLength(34));
-    expect(
-      buffer.toString(),
+    check(buffer.length).equals(34);
+    check(buffer.toString()).equals(
       '0001111011'
       '0111001000'
       '1100010101'
@@ -22,36 +22,36 @@ void main() {
 
   test('single numeric', () {
     final qr = QrNumeric.fromString('5');
-    expect(qr.mode, QrMode.numeric);
-    expect(qr.length, 1);
+    check(qr.mode).equals(QrMode.numeric);
+    check(qr.length).equals(1);
     final buffer = QrBitBuffer();
     qr.write(buffer);
-    expect(buffer, hasLength(4));
-    expect(buffer.toString(), '0101');
+    check(buffer.length).equals(4);
+    check(buffer.toString()).equals('0101');
   });
 
   test('double numeric', () {
     final qr = QrNumeric.fromString('37');
-    expect(qr.mode, QrMode.numeric);
-    expect(qr.length, 2);
-    expect(qr.bitLength, 7);
+    check(qr.mode).equals(QrMode.numeric);
+    check(qr.length).equals(2);
+    check(qr.bitLength).equals(7);
     final buffer = QrBitBuffer();
     qr.write(buffer);
-    expect(buffer, hasLength(7), reason: 'n*3+1 = 7');
-    expect(buffer.toString(), '0100101');
+    check(because: 'n*3+1 = 7', buffer.length).equals(7);
+    check(buffer.toString()).equals('0100101');
   });
 
   test('triple (even) numeric', () {
     final qr = QrNumeric.fromString('371');
-    expect(qr.mode, QrMode.numeric);
-    expect(qr.length, 3);
+    check(qr.mode).equals(QrMode.numeric);
+    check(qr.length).equals(3);
     final buffer = QrBitBuffer();
     qr.write(buffer);
-    expect(buffer, hasLength(10), reason: 'n*3+1 = 10');
-    expect(buffer.toString(), '0101110011');
+    check(because: 'n*3+1 = 10', buffer.length).equals(10);
+    check(buffer.toString()).equals('0101110011');
   });
 
   test('throws on invalid input', () {
-    expect(() => QrNumeric.fromString('hello'), throwsArgumentError);
+    check(() => QrNumeric.fromString('hello')).throws<ArgumentError>();
   });
 }

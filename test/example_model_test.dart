@@ -1,5 +1,6 @@
+import 'package:checks/checks.dart';
 import 'package:qr/qr.dart';
-import 'package:test/test.dart';
+import 'package:test/scaffolding.dart';
 
 import '../example/src/example_model.dart';
 
@@ -7,11 +8,11 @@ void main() {
   group('ExampleModel', () {
     test('initial state is question', () {
       final model = ExampleModel();
-      expect(model.state, ExampleState.question);
-      expect(model.squares, isEmpty);
-      expect(model.moduleCount, 0);
-      expect(model.validTypeNumbers, hasLength(10));
-      expect(model.validErrorCorrectLevels, hasLength(4));
+      check(model.state).equals(ExampleState.question);
+      check(model.squares).isEmpty();
+      check(model.moduleCount).equals(0);
+      check(model.validTypeNumbers).length.equals(10);
+      check(model.validErrorCorrectLevels).length.equals(4);
     });
 
     test('valid input generates QR squares', () {
@@ -23,11 +24,11 @@ void main() {
       addTearDown(sub.cancel);
 
       model.value = 'Hello World';
-      expect(notified, isTrue);
-      expect(model.state, ExampleState.qr);
-      expect(model.squares, isNotEmpty);
-      expect(model.moduleCount, greaterThan(0));
-      expect(model.validTypeNumbers, contains(2));
+      check(notified).isTrue();
+      check(model.state).equals(ExampleState.qr);
+      check(model.squares).isNotEmpty();
+      check(model.moduleCount).isGreaterThan(0);
+      check(model.validTypeNumbers).contains(2);
     });
 
     test('input exceeding version limit transitions to error state', () {
@@ -36,18 +37,18 @@ void main() {
         ..typeNumber =
             1 // Force version 1
         ..value = 'A' * 100; // Exceeds version 1 capacity
-      expect(model.state, ExampleState.error);
-      expect(model.squares, isEmpty);
-      expect(model.moduleCount, 0);
+      check(model.state).equals(ExampleState.error);
+      check(model.squares).isEmpty();
+      check(model.moduleCount).equals(0);
     });
 
     test('autoType automatically bumps typeNumber when needed', () {
       final model = ExampleModel();
-      expect(model.autoType, isTrue);
+      check(model.autoType).isTrue();
 
       model.value = 'A' * 150; // Exceeds version 1 but fits in higher version
-      expect(model.state, ExampleState.qr);
-      expect(model.typeNumber, greaterThan(1));
+      check(model.state).equals(ExampleState.qr);
+      check(model.typeNumber).isGreaterThan(1);
     });
 
     test('getters, setters, and dispose', () {
@@ -58,11 +59,11 @@ void main() {
 
       model.changes.listen((_) {}).cancel();
 
-      expect(model.value, 'Test');
-      expect(model.byteCount, 4);
+      check(model.value).equals('Test');
+      check(model.byteCount).equals(4);
 
-      expect(model.errorCorrectLevel, QrErrorCorrectLevel.low);
-      expect(model.validErrorCorrectLevels, isNotEmpty);
+      check(model.errorCorrectLevel).equals(QrErrorCorrectLevel.low);
+      check(model.validErrorCorrectLevels).isNotEmpty();
     });
 
     test(
@@ -77,53 +78,47 @@ void main() {
           ..autoType = true
           ..value = 'A' * 50;
 
-        expect(model.state, ExampleState.qr);
-        expect(model.typeNumber, greaterThan(1));
-        expect(
-          model.validErrorCorrectLevels,
-          contains(QrErrorCorrectLevel.high),
-        );
+        check(model.state).equals(ExampleState.qr);
+        check(model.typeNumber).isGreaterThan(1);
+        check(model.validErrorCorrectLevels).contains(QrErrorCorrectLevel.high);
       },
     );
 
     test('clearing input with autoType enabled resets typeNumber to 1', () {
       final model = ExampleModel()..value = 'A' * 150;
-      expect(model.typeNumber, greaterThan(1));
+      check(model.typeNumber).isGreaterThan(1);
 
       model.value = '';
-      expect(model.typeNumber, 1);
+      check(model.typeNumber).equals(1);
     });
 
     test(
       'autoType maintains all validErrorCorrectLevels across version tiers',
       () {
         final model = ExampleModel();
-        expect(model.autoType, isTrue);
+        check(model.autoType).isTrue();
 
         // 60 characters exceeds Version 1 High capacity (7 chars)
         // but fits in Version 3 High.
         model.value = 'A' * 60;
 
-        expect(
-          model.validErrorCorrectLevels,
-          contains(QrErrorCorrectLevel.high),
-        );
+        check(model.validErrorCorrectLevels).contains(QrErrorCorrectLevel.high);
       },
     );
 
     test('autoType supports overflow versions beyond maxTypeNumber without '
         'blocking', () {
       final model = ExampleModel();
-      expect(model.autoType, isTrue);
+      check(model.autoType).isTrue();
 
       // 400 characters exceeds Version 10 High capacity (174 chars).
       // It fits in Version 14 High (458 chars).
       model.value = 'A' * 400;
 
-      expect(model.state, ExampleState.qr);
-      expect(model.typeNumber, 17);
-      expect(model.validTypeNumbers, contains(17));
-      expect(model.squares, isNotEmpty);
+      check(model.state).equals(ExampleState.qr);
+      check(model.typeNumber).equals(17);
+      check(model.validTypeNumbers).contains(17);
+      check(model.squares).isNotEmpty();
     });
   });
 }

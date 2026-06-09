@@ -1,21 +1,21 @@
 import 'package:characters/characters.dart';
+import 'package:checks/checks.dart';
 import 'package:qr/src/bit_buffer.dart';
 import 'package:qr/src/byte.dart';
 import 'package:qr/src/mode.dart';
-import 'package:test/test.dart';
+import 'package:test/scaffolding.dart';
 
 void main() {
   test('full character map', () {
     final qr = QrAlphaNumeric.fromString(
       r'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:',
     );
-    expect(qr.mode, QrMode.alphaNumeric);
-    expect(qr.length, 45);
+    check(qr.mode).equals(QrMode.alphaNumeric);
+    check(qr.length).equals(45);
     final buffer = QrBitBuffer();
     qr.write(buffer);
-    expect(buffer, hasLength(248));
-    expect(
-      buffer.toString(),
+    check(buffer.length).equals(248);
+    check(buffer.toString()).equals(
       '00000000001'
       '00001011101'
       '00010111001'
@@ -44,23 +44,22 @@ void main() {
 
   test('single alphanumeric', () {
     final qr = QrAlphaNumeric.fromString(r'$');
-    expect(qr.mode, QrMode.alphaNumeric);
-    expect(qr.length, 1);
+    check(qr.mode).equals(QrMode.alphaNumeric);
+    check(qr.length).equals(1);
     final buffer = QrBitBuffer();
     qr.write(buffer);
-    expect(buffer, hasLength(6));
-    expect(buffer.toString(), '100101');
+    check(buffer.length).equals(6);
+    check(buffer.toString()).equals('100101');
   });
 
   test('triple alphanumeric', () {
     final qr = QrAlphaNumeric.fromString('ABC');
-    expect(qr.mode, QrMode.alphaNumeric);
-    expect(qr.length, 3);
+    check(qr.mode).equals(QrMode.alphaNumeric);
+    check(qr.length).equals(3);
     final buffer = QrBitBuffer();
     qr.write(buffer);
-    expect(buffer, hasLength(17), reason: '(1*11) + 6 = 17');
-    expect(
-      buffer.toString(),
+    check(because: '(1*11) + 6 = 17', buffer.length).equals(17);
+    check(buffer.toString()).equals(
       '00111001101' // 461
       '001100', // 12
     );
@@ -68,12 +67,12 @@ void main() {
 
   test('double (even) alphanumeric', () {
     final qr = QrAlphaNumeric.fromString('3Z');
-    expect(qr.mode, QrMode.alphaNumeric);
-    expect(qr.length, 2);
+    check(qr.mode).equals(QrMode.alphaNumeric);
+    check(qr.length).equals(2);
     final buffer = QrBitBuffer();
     qr.write(buffer);
-    expect(buffer, hasLength(11), reason: 'n*5+1 = 11');
-    expect(buffer.toString(), '00010101010');
+    check(because: 'n*5+1 = 11', buffer.length).equals(11);
+    check(buffer.toString()).equals('00010101010');
   });
 
   test('throws on invalid input', () {
@@ -84,10 +83,9 @@ void main() {
 
 void _checkInvalid(String input, String description) {
   for (final character in input.characters) {
-    expect(
+    check(
+      because: '$description $character is invalid',
       () => QrAlphaNumeric.fromString(character),
-      throwsArgumentError,
-      reason: '$description $character is invalid',
-    );
+    ).throws<ArgumentError>();
   }
 }
