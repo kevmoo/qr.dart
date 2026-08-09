@@ -34,7 +34,8 @@ final qrCode = QrCode(
 final qrImage = QrImage(qrCode);
 ```
 
-To enable Extended Channel Interpretation (ECI) mode or build multi-part data, you can use `QrPayload`:
+To enable Extended Channel Interpretation (ECI) mode or build multi-part data,
+you can use `QrPayload`:
 
 ```dart
 final payload = QrPayload()
@@ -64,7 +65,7 @@ See the `example` directory for further details.
 
 # Packages that use `package:qr`
 
-- [pretty_qr_code](https://pub.dev/packages/pretty_qr_code) - A Flutter Widget to render
-QR codes
+- [pretty_qr_code](https://pub.dev/packages/pretty_qr_code) - A Flutter Widget
+  to render QR codes
 - [qr_image_exporter](https://pub.dev/packages/qr_image_exporter) - A library to
-export QR codes as PNG image data.
+  export QR codes as PNG image data.
