@@ -1,0 +1,28 @@
+name: Cognitive Complexity Audit
+
+on:
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+    steps:
+      - name: Checkout Codebase
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Dart SDK
+        uses: dart-lang/setup-dart@v1
+
+      - name: Run Complexity Scanner
+        uses: kevmoo/analytica.dart/packages/cognitive_complexity@main
+        with:
+          diff-base: origin/${{ github.base_ref }}
+          fail-threshold: 15
+          fail-on-increase: true

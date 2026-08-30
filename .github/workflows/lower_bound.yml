@@ -1,0 +1,25 @@
+name: Dependency Lower-Bound Validation
+
+on:
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+    steps:
+      - name: Checkout Codebase
+        uses: actions/checkout@v4
+
+      - name: Setup Dart SDK
+        uses: dart-lang/setup-dart@v1
+
+      - name: Run Lower-Bound Validator
+        uses: kevmoo/analytica.dart/packages/lower_bound@main
+        with:
+          format: 'github'
+          fail-on-error: 'true'

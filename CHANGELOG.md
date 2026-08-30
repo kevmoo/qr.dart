@@ -1,4 +1,4 @@
-## 4.0.1-dev
+## 4.0.1-wip
 
 - Migrate test suite to `package:checks`.
 
