@@ -1,0 +1,4 @@
+# Generated dartdoc output. Untracked locally, but `mdf` and prettier's `**/*.md`
+# glob walk the filesystem rather than the git index, so without this an
+# existing `dart doc` build makes local runs disagree with CI.
+doc/api/**
