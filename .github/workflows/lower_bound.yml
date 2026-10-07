@@ -19,7 +19,7 @@ jobs:
         uses: dart-lang/setup-dart@v1
 
       - name: Run Lower-Bound Validator
-        uses: kevmoo/analytica.dart/packages/lower_bound@main
+        uses: kevmoo/lower_bound.dart@main
         with:
           format: 'github'
           fail-on-error: 'true'
