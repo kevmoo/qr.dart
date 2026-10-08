@@ -1,20 +1,20 @@
-import 'package:benchmark_harness/benchmark_harness.dart';
+import 'package:bench_press/bench_press.dart';
 import 'package:qr/qr.dart';
 
-class QrCodeBenchmark extends BenchmarkBase {
+final class QrCodeBenchmark extends Benchmark {
   QrCodeBenchmark() : super('QrCode');
 
   @override
-  void run() {
+  void run() => Blackhole.consume(
     QrCode(
       payload: QrPayload.fromString(
         'https://www.google.com/search?q=dart+lang',
       ),
-    );
-  }
+    ),
+  );
 }
 
-class LargeQrCodeBenchmark extends BenchmarkBase {
+final class LargeQrCodeBenchmark extends Benchmark {
   final String _largeData;
 
   LargeQrCodeBenchmark()
@@ -22,13 +22,12 @@ class LargeQrCodeBenchmark extends BenchmarkBase {
       super('LargeQrCode');
 
   @override
-  void run() {
-    QrCode(payload: QrPayload.fromString(_largeData));
-  }
+  void run() =>
+      Blackhole.consume(QrCode(payload: QrPayload.fromString(_largeData)));
 }
 
-class QrImageBenchmark extends BenchmarkBase {
-  late final QrCode _qrCode;
+final class QrImageBenchmark extends Benchmark {
+  late QrCode _qrCode;
 
   QrImageBenchmark() : super('QrImage');
 
@@ -42,36 +41,34 @@ class QrImageBenchmark extends BenchmarkBase {
   }
 
   @override
-  void run() {
-    QrImage(_qrCode);
-  }
+  void run() => Blackhole.consume(QrImage(_qrCode));
 }
 
-void main() {
-  ValidationBenchmark().report();
-  QrCodeBenchmark().report();
-  LargeQrCodeBenchmark().report();
-  QrImageBenchmark().report();
-  LargeQrImageBenchmark().report();
-}
+Future<void> main(List<String> args) => mainBenchmarkSuite([
+  ValidationBenchmark(),
+  QrCodeBenchmark(),
+  LargeQrCodeBenchmark(),
+  QrImageBenchmark(),
+  LargeQrImageBenchmark(),
+], args);
 
-class ValidationBenchmark extends BenchmarkBase {
+final class ValidationBenchmark extends Benchmark {
   ValidationBenchmark() : super('Validation');
 
   @override
-  void run() {
+  void run() => Blackhole.consume(
     QrValidationResult.fromPayload(
       payload: QrPayload.fromString(
         'https://www.google.com/search?q=dart+lang',
       ),
       typeNumber: 4,
       errorCorrectLevel: QrErrorCorrectLevel.medium,
-    );
-  }
+    ),
+  );
 }
 
-class LargeQrImageBenchmark extends BenchmarkBase {
-  late final QrCode _qrCode;
+final class LargeQrImageBenchmark extends Benchmark {
+  late QrCode _qrCode;
 
   LargeQrImageBenchmark() : super('LargeQrImage');
 
@@ -82,7 +79,5 @@ class LargeQrImageBenchmark extends BenchmarkBase {
   }
 
   @override
-  void run() {
-    QrImage(_qrCode);
-  }
+  void run() => Blackhole.consume(QrImage(_qrCode));
 }

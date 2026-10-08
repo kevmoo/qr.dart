@@ -40,9 +40,8 @@ void main() {
         ),
       );
       final modules = qr.qrModules;
-      check(
-        modules.map(_encodeBoolListToString),
-      ).deepEquals(qrCodeTestData['1'][quality.index.toString()] as List);
+      check(modules.map(_encodeBoolListToString))
+          .deepEquals(qrCodeTestData['1'][quality.index.toString()] as List);
     }
   });
 
@@ -57,9 +56,8 @@ void main() {
         ),
       );
       final modules = qr.qrModules;
-      check(
-        modules.map(_encodeBoolListToString),
-      ).deepEquals(qrCodeTestData['1'][quality.index.toString()] as List);
+      check(modules.map(_encodeBoolListToString))
+          .deepEquals(qrCodeTestData['1'][quality.index.toString()] as List);
     }
   });
 
@@ -73,9 +71,8 @@ void main() {
         mask,
       );
       final modules = qr.qrModules;
-      check(
-        modules.map(_encodeBoolListToString),
-      ).deepEquals(qrCodeTestDataWithMask[mask.toString()] as List);
+      check(modules.map(_encodeBoolListToString))
+          .deepEquals(qrCodeTestDataWithMask[mask.toString()] as List);
     }
   });
 

@@ -1,4 +1,5 @@
 .packages
 .dart_tool
 .pub
+benchmark_results.json
 pubspec.lock
