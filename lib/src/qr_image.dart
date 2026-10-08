@@ -310,6 +310,9 @@ final class QrImage {
   }
 }
 
+// Per-module hot kernel (runs 8x over every module); kept inline for
+// performance. Extracting helpers regressed generation 39-66% AOT (#174).
+// cognitive_complexity:ignore
 double _lostPoint(QrImage qrImage) {
   final moduleCount = qrImage.moduleCount;
   final data = qrImage._data;
@@ -323,80 +326,75 @@ double _lostPoint(QrImage qrImage) {
   for (var row = 0; row < moduleCount; row++) {
     final rowIdx = row * moduleCount;
     for (var col = 0; col < moduleCount; col++) {
+      var sameCount = 0;
       final currentIdx = rowIdx + col;
       final p00 = data[currentIdx];
 
       if (p00 == QrImage._pixelDark) darkCount++;
 
-      // Level 1: 8-neighbor same-color count
-      lostPoint += _lossLevel1(qrImage, row, col);
+      // Level 1
+      // Check all 8 neighbors
+      // Top row
+      if (row > 0) {
+        final upIdx = currentIdx - moduleCount;
+        if (col > 0 && data[upIdx - 1] == p00) sameCount++;
+        if (data[upIdx] == p00) sameCount++;
+        if (col < moduleCount - 1 && data[upIdx + 1] == p00) sameCount++;
+      }
+
+      // Middle row (left/right)
+      if (col > 0 && data[currentIdx - 1] == p00) sameCount++;
+      if (col < moduleCount - 1 && data[currentIdx + 1] == p00) sameCount++;
+
+      // Bottom row
+      if (row < moduleCount - 1) {
+        final downIdx = currentIdx + moduleCount;
+        if (col > 0 && data[downIdx - 1] == p00) sameCount++;
+        if (data[downIdx] == p00) sameCount++;
+        if (col < moduleCount - 1 && data[downIdx + 1] == p00) sameCount++;
+      }
+
+      if (sameCount > 5) {
+        lostPoint += 3 + sameCount - 5;
+      }
 
       // Level 2: 2x2 blocks of same color
-      if (row < moduleCount - 1 &&
-          col < moduleCount - 1 &&
-          p00 == data[currentIdx + 1] &&
-          p00 == data[currentIdx + moduleCount] &&
-          p00 == data[currentIdx + moduleCount + 1]) {
-        lostPoint += 3;
+      if (row < moduleCount - 1 && col < moduleCount - 1) {
+        if (p00 == data[currentIdx + 1] &&
+            p00 == data[currentIdx + moduleCount] &&
+            p00 == data[currentIdx + moduleCount + 1]) {
+          lostPoint += 3;
+        }
       }
 
       // Level 3: 1:1:3:1:1 pattern
-      lostPoint += _lossLevel3(qrImage, row, col);
+      // Dark, Light, Dark, Dark, Dark, Light, Dark
+      if (p00 == QrImage._pixelDark) {
+        if (col < moduleCount - 6 &&
+            data[currentIdx + 1] == QrImage._pixelLight &&
+            data[currentIdx + 2] == QrImage._pixelDark &&
+            data[currentIdx + 3] == QrImage._pixelDark &&
+            data[currentIdx + 4] == QrImage._pixelDark &&
+            data[currentIdx + 5] == QrImage._pixelLight &&
+            data[currentIdx + 6] == QrImage._pixelDark) {
+          lostPoint += 40;
+        }
+        if (row < moduleCount - 6 &&
+            data[currentIdx + moduleCount] == QrImage._pixelLight &&
+            data[currentIdx + 2 * moduleCount] == QrImage._pixelDark &&
+            data[currentIdx + 3 * moduleCount] == QrImage._pixelDark &&
+            data[currentIdx + 4 * moduleCount] == QrImage._pixelDark &&
+            data[currentIdx + 5 * moduleCount] == QrImage._pixelLight &&
+            data[currentIdx + 6 * moduleCount] == QrImage._pixelDark) {
+          lostPoint += 40;
+        }
+      }
     }
   }
 
   // Level 4: Dark ratio
   final ratio = (100 * darkCount / moduleCount / moduleCount - 50).abs() / 5;
   return lostPoint + ratio * 10;
-}
-
-int _lossLevel1(QrImage qrImage, int row, int col) {
-  final moduleCount = qrImage.moduleCount;
-  final data = qrImage._data;
-  final p00 = data[row * moduleCount + col];
-  final rMin = row > 0 ? row - 1 : row;
-  final rMax = row < moduleCount - 1 ? row + 1 : row;
-  final cMin = col > 0 ? col - 1 : col;
-  final cMax = col < moduleCount - 1 ? col + 1 : col;
-
-  var sameCount = -1;
-  for (var r = rMin; r <= rMax; r++) {
-    final rowOffset = r * moduleCount;
-    for (var c = cMin; c <= cMax; c++) {
-      if (data[rowOffset + c] == p00) sameCount++;
-    }
-  }
-
-  return sameCount > 5 ? 3 + sameCount - 5 : 0;
-}
-
-int _lossLevel3(QrImage qrImage, int row, int col) {
-  final moduleCount = qrImage.moduleCount;
-  final data = qrImage._data;
-  final currentIdx = row * moduleCount + col;
-  if (data[currentIdx] != QrImage._pixelDark) return 0;
-
-  var loss = 0;
-  // Dark, Light, Dark, Dark, Dark, Light, Dark
-  if (col < moduleCount - 6 &&
-      data[currentIdx + 1] == QrImage._pixelLight &&
-      data[currentIdx + 2] == QrImage._pixelDark &&
-      data[currentIdx + 3] == QrImage._pixelDark &&
-      data[currentIdx + 4] == QrImage._pixelDark &&
-      data[currentIdx + 5] == QrImage._pixelLight &&
-      data[currentIdx + 6] == QrImage._pixelDark) {
-    loss += 40;
-  }
-  if (row < moduleCount - 6 &&
-      data[currentIdx + moduleCount] == QrImage._pixelLight &&
-      data[currentIdx + 2 * moduleCount] == QrImage._pixelDark &&
-      data[currentIdx + 3 * moduleCount] == QrImage._pixelDark &&
-      data[currentIdx + 4 * moduleCount] == QrImage._pixelDark &&
-      data[currentIdx + 5 * moduleCount] == QrImage._pixelLight &&
-      data[currentIdx + 6 * moduleCount] == QrImage._pixelDark) {
-    loss += 40;
-  }
-  return loss;
 }
 
 bool Function(int r, int c) _getMaskFunction(int maskPattern) =>
