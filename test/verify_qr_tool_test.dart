@@ -116,9 +116,8 @@ void main() {
     ]);
     await process.shouldExit(1);
     final output = await process.stdout.next;
-    check(
-      output,
-    ).contains('Error: Invalid argument(s): Option output is mandatory.');
+    check(output)
+        .contains('Error: Invalid argument(s): Option output is mandatory.');
   });
 
   test('Error case: Invalid version', () async {

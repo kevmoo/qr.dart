@@ -1,7 +1,7 @@
-import 'package:benchmark_harness/benchmark_harness.dart';
+import 'package:bench_press/bench_press.dart';
 import 'package:qr/src/bit_buffer.dart';
 
-class QrBitBufferPutBenchmark extends BenchmarkBase {
+final class QrBitBufferPutBenchmark extends Benchmark {
   QrBitBufferPutBenchmark() : super('QrBitBuffer.put');
 
   @override
@@ -14,9 +14,8 @@ class QrBitBufferPutBenchmark extends BenchmarkBase {
         ..put(3, 2)
         ..put(127, 7);
     }
+    Blackhole.consume(buffer);
   }
 }
 
-void main() {
-  QrBitBufferPutBenchmark().report();
-}
+void main(List<String> args) => mainBenchmark(QrBitBufferPutBenchmark(), args);

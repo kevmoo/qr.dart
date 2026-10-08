@@ -19,9 +19,8 @@ void main() {
           .has((q) => q.errorCorrectLevel, 'errorCorrectLevel')
           .equals(QrErrorCorrectLevel.medium);
       check(result.validTypeNumbers).contains(1);
-      check(
-        result.validErrorCorrectLevels,
-      ).contains(QrErrorCorrectLevel.medium);
+      check(result.validErrorCorrectLevels)
+          .contains(QrErrorCorrectLevel.medium);
     },
   );
 
@@ -62,8 +61,7 @@ void main() {
     );
 
     check(result.isValid).isTrue();
-    check(
-      result.validErrorCorrectLevels,
-    ).unorderedEquals([QrErrorCorrectLevel.low, QrErrorCorrectLevel.medium]);
+    check(result.validErrorCorrectLevels)
+        .unorderedEquals([QrErrorCorrectLevel.low, QrErrorCorrectLevel.medium]);
   });
 }
