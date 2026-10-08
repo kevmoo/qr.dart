@@ -1,3 +1,4 @@
+@TestOn('vm')
 @Tags(['require-zbar'])
 library;
 
