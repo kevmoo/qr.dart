@@ -150,16 +150,7 @@ List<int> _createBytes(QrBitBuffer buffer, List<QrRsBlock> rsBlocks) {
     final dcItem = dcData[r] = buffer.getBytes(offset, dcCount);
     offset += dcCount;
 
-    final rsPoly = _errorCorrectPolynomial(ecCount);
-    final rawPoly = QrPolynomial(dcItem, rsPoly.length - 1);
-
-    final modPoly = rawPoly.mod(rsPoly);
-    final ecItem = ecData[r] = Uint8List(rsPoly.length - 1);
-
-    for (var i = 0; i < ecItem.length; i++) {
-      final modIndex = i + modPoly.length - ecItem.length;
-      ecItem[i] = (modIndex >= 0) ? modPoly[modIndex] : 0;
-    }
+    ecData[r] = _computeErrorCorrectBytes(dcItem, ecCount);
   }
 
   var totalCount = 0;
@@ -189,6 +180,21 @@ List<int> _createBytes(QrBitBuffer buffer, List<QrRsBlock> rsBlocks) {
   }
 
   return data;
+}
+
+Uint8List _computeErrorCorrectBytes(Uint8List dcItem, int ecCount) {
+  final rsPoly = _errorCorrectPolynomial(ecCount);
+  final rawPoly = QrPolynomial(dcItem, rsPoly.length - 1);
+
+  final modPoly = rawPoly.mod(rsPoly);
+  final ecItem = Uint8List(rsPoly.length - 1);
+
+  for (var i = 0; i < ecItem.length; i++) {
+    final modIndex = i + modPoly.length - ecItem.length;
+    ecItem[i] = (modIndex >= 0) ? modPoly[modIndex] : 0;
+  }
+
+  return ecItem;
 }
 
 QrPolynomial _errorCorrectPolynomial(int errorCorrectLength) {
