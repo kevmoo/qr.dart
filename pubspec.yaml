@@ -15,6 +15,7 @@ dependencies:
   meta: ^1.7.0
 
 dev_dependencies:
+  api_summary: ^1.2.0
   args: ^2.1.0
   bench_press: ^0.4.1
   build_runner: ^2.2.1
