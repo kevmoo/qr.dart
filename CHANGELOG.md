@@ -1,6 +1,7 @@
 ## 4.0.1-wip
 
 - Migrate test suite to `package:checks`.
+- Verify public API surface in `test/api_test.dart`.
 - Require `sdk: ^3.13.0`.
 
 ## 4.0.0
