@@ -3,9 +3,9 @@ name: CI
 on:
   # Run on PRs and pushes to the default branch.
   push:
-    branches: [ master ]
+    branches: [ master, v3.0-stable ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, v3.0-stable ]
   schedule:
     - cron: "0 0 * * 0"
 
