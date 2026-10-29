@@ -64,4 +64,18 @@ void main() {
     check(result.validErrorCorrectLevels)
         .unorderedEquals([QrErrorCorrectLevel.low, QrErrorCorrectLevel.medium]);
   });
+
+  test('QrValidationResult.fromPayload validates version 15 high capacity', () {
+    // 150 byte-mode characters fit within version 15-H (220 bytes).
+    final result = QrValidationResult.fromPayload(
+      payload: QrPayload.fromString('x' * 150),
+      typeNumber: 15,
+      errorCorrectLevel: QrErrorCorrectLevel.high,
+    );
+
+    check(result.isValid).isTrue();
+    check(result.qrCode).isNotNull();
+    check(result.validTypeNumbers).contains(15);
+    check(result.validErrorCorrectLevels).contains(QrErrorCorrectLevel.high);
+  });
 }

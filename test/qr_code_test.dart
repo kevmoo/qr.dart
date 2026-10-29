@@ -133,6 +133,19 @@ void main() {
       );
       check(qr.typeNumber).equals(2);
     });
+
+    test(
+      'selects version 15 at high error correction above version 14 limit',
+      () {
+        // 200 byte-mode characters exceed version 14-H (195 bytes) and fit
+        // within version 15-H (220 bytes).
+        final qr = QrCode(
+          payload: QrPayload.fromString('x' * 200),
+          errorCorrectLevel: QrErrorCorrectLevel.high,
+        );
+        check(qr.typeNumber).equals(15);
+      },
+    );
   });
 
   group('QrPayload.fromData Automatic Mode Detection', () {
