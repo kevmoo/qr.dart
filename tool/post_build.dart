@@ -38,10 +38,10 @@ Future<void> main(List<String> args) async {
   }
 
   final currentBranch = _runGit(['branch', '--show-current']);
-  if (currentBranch != 'master') {
+  if (currentBranch != 'main') {
     print(
       'Skipping build info injection: '
-      'current branch is "$currentBranch" (expected "master").',
+      'current branch is "$currentBranch" (expected "main").',
     );
     return;
   }
