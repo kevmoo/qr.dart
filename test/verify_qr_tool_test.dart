@@ -213,7 +213,7 @@ Future<void> _verifyAllVersionBmps(Directory tempDir) async {
         minTypeNumber: version,
       );
       final bmpPath = p.join(dir.path, '$message.bmp');
-      File(bmpPath).writeAsBytesSync(_renderQrBmp(QrImage(qr), scale: 4));
+      File(bmpPath).writeAsBytesSync(_renderQrBmp(QrImage(qr)));
       paths.add(bmpPath);
       expected.add('QR-Code:$message');
     }
