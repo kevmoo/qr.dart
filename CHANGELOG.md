@@ -1,7 +1,7 @@
 ## 4.0.1-wip
 
-- Migrate test suite to `package:checks`.
-- Verify public API surface in `test/api_test.dart`.
+- Fix Reed-Solomon block table for QR version 15 at high error correction
+  (#179).
 - Require `sdk: ^3.13.0`.
 
 ## 4.0.0

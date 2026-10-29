@@ -51,9 +51,13 @@ jobs:
       - uses: dart-lang/setup-dart@65eb853c7ba17dde3be364c3d2858773e7144260
         with:
           sdk: ${{ matrix.sdk }}
+      - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends zbar-tools
+        if: runner.os == 'Linux'
       - id: install
         run: dart pub get
       - run: dart test -p vm,chrome -c dart2js,dart2wasm
         if: always() && steps.install.outcome == 'success'
+      - run: dart test -p vm -t require-zbar --run-skipped
+        if: always() && runner.os == 'Linux' && steps.install.outcome == 'success'
       - run: dart run bench_press validate benchmark/
         if: always() && steps.install.outcome == 'success'
