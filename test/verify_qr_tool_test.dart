@@ -3,11 +3,15 @@
 library;
 
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:checks/checks.dart';
 import 'package:path/path.dart' as p;
+import 'package:qr/qr.dart';
 import 'package:test/scaffolding.dart';
 import 'package:test_process/test_process.dart';
+
+import '../tool/src/bmp_encoder.dart';
 
 void main() {
   late Directory tempDir;
@@ -61,7 +65,11 @@ void main() {
 
         // Validate with zbarimg
         // zbarimg output format: QR-Code:content
-        final zbar = await TestProcess.start('zbarimg', ['--quiet', bmpPath]);
+        final zbar = await TestProcess.start('zbarimg', [
+          '--quiet',
+          '--nodbus',
+          bmpPath,
+        ]);
         await zbar.shouldExit(0);
         final output = (await zbar.stdout.rest.toList()).join('\n').trim();
 
@@ -98,7 +106,11 @@ void main() {
       File(bmpPath).existsSync(),
     ).isTrue();
 
-    final zbar = await TestProcess.start('zbarimg', ['--quiet', bmpPath]);
+    final zbar = await TestProcess.start('zbarimg', [
+      '--quiet',
+      '--nodbus',
+      bmpPath,
+    ]);
     await zbar.shouldExit(0);
     final output = (await zbar.stdout.rest.toList()).join('\n').trim();
 
@@ -164,4 +176,83 @@ void main() {
     ]);
     await process.shouldExit(1);
   });
+
+  test(
+    'decodes all 160 version and error correction combinations via zbarimg',
+    () => _verifyAllVersionBmps(tempDir),
+    timeout: const Timeout(Duration(seconds: 60)),
+  );
+}
+
+Future<void> _verifyAllVersionBmps(Directory tempDir) async {
+  final sweepDir = Directory(p.join(tempDir.path, 'sweep'))..createSync();
+  final (:paths, :expected) = _writeAllVersionBmps(sweepDir);
+
+  final result = await Process.run('zbarimg', [
+    '--quiet',
+    '--nodbus',
+    ...paths,
+  ]);
+  check(because: '${result.stderr}', result.exitCode).equals(0);
+
+  final decoded = (result.stdout as String).trim().split('\n');
+  check(decoded).deepEquals(expected);
+}
+
+({List<String> paths, List<String> expected}) _writeAllVersionBmps(
+  Directory dir,
+) {
+  final paths = <String>[];
+  final expected = <String>[];
+  for (var version = 1; version <= 40; version++) {
+    for (final level in QrErrorCorrectLevel.values) {
+      final message = 'v$version-${level.name}';
+      final qr = QrCode(
+        payload: QrPayload.fromString(message),
+        errorCorrectLevel: level,
+        minTypeNumber: version,
+      );
+      final bmpPath = p.join(dir.path, '$message.bmp');
+      File(bmpPath).writeAsBytesSync(_renderQrBmp(QrImage(qr), scale: 4));
+      paths.add(bmpPath);
+      expected.add('QR-Code:$message');
+    }
+  }
+  return (paths: paths, expected: expected);
+}
+
+Uint8List _renderQrBmp(QrImage qrImage, {int scale = 4, int padding = 4}) {
+  final size = qrImage.moduleCount;
+  final fullSize = size + padding * 2;
+  final dimension = fullSize * scale;
+  final pixels = List<bool>.filled(dimension * dimension, false);
+
+  for (var y = 0; y < size; y++) {
+    for (var x = 0; x < size; x++) {
+      if (qrImage.isDark(y, x)) {
+        _fillScaledModule(
+          pixels,
+          dimension: dimension,
+          moduleX: x + padding,
+          moduleY: y + padding,
+          scale: scale,
+        );
+      }
+    }
+  }
+
+  return encodeBmp(dimension, dimension, pixels);
+}
+
+void _fillScaledModule(
+  List<bool> pixels, {
+  required int dimension,
+  required int moduleX,
+  required int moduleY,
+  required int scale,
+}) {
+  for (var sy = 0; sy < scale; sy++) {
+    final rowOffset = (moduleY * scale + sy) * dimension + moduleX * scale;
+    pixels.fillRange(rowOffset, rowOffset + scale, true);
+  }
 }
