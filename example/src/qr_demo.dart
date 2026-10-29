@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:js_interop';
-import 'dart:js_interop_unsafe';
 import 'dart:math' as math;
 
 import 'package:qr/qr.dart';
@@ -81,7 +80,7 @@ class QrDemo {
         ..id = 'type_$i'
         ..name = 'type'
         ..onChange.listen(_levelClick)
-        ..dataset[_typeRadioIdKey] = i.toString();
+        ..setAttribute('data-$_typeRadioIdKey', i.toString());
       if (i == _typeNumber) {
         radio.checked = true;
       }
@@ -103,7 +102,7 @@ class QrDemo {
         ..id = 'error_$v'
         ..name = 'error-level'
         ..onChange.listen(_errorClick)
-        ..dataset[_errorLevelIdKey] = v.toString();
+        ..setAttribute('data-$_errorLevelIdKey', v.toString());
       if (v == _errorCorrectLevel) {
         radio.checked = true;
       }
@@ -133,13 +132,14 @@ class QrDemo {
 
   void _levelClick(Event args) {
     final source = args.target as HTMLInputElement;
-    _typeNumber = int.parse(source.dataset[_typeRadioIdKey]!);
+    _typeNumber = int.parse(source.getAttribute('data-$_typeRadioIdKey')!);
     _update();
   }
 
   void _errorClick(Event args) {
     final source = args.target as HTMLInputElement;
-    _errorCorrectLevel = int.parse(source.dataset[_errorLevelIdKey]!);
+    _errorCorrectLevel =
+        int.parse(source.getAttribute('data-$_errorLevelIdKey')!);
     _update();
   }
 
@@ -225,13 +225,4 @@ void _setTransform(CanvasRenderingContext2D ctx, AffineTransform tx) {
     tx.translateX,
     tx.translateY,
   );
-}
-
-extension on DOMStringMap {
-  void operator []=(String key, String? value) {
-    (this as JSObject)[key] = value?.toJS;
-  }
-
-  String? operator [](String key) =>
-      ((this as JSObject)[key] as JSString?)?.toDart;
 }

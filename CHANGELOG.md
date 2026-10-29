@@ -1,3 +1,8 @@
+## 3.0.3
+
+- Fix Reed-Solomon block table for QR version 15 at high error correction
+  (#179).
+
 ## 3.0.2
 
 - Require package `web: ^1.0.0`.

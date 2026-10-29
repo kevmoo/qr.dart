@@ -103,6 +103,18 @@ void main() {
       throwsA(isA<AssertionError>()),
     );
   });
+
+  test(
+    'fromData selects version 15 at high error correction above version 14 '
+    'limit',
+    () {
+      final qr = QrCode.fromData(
+        data: 'x' * 200,
+        errorCorrectLevel: QrErrorCorrectLevel.H,
+      );
+      expect(qr.typeNumber, 15);
+    },
+  );
 }
 
 String _encodeBoolListToString(List<bool?> source) =>
