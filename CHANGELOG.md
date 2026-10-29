@@ -1,4 +1,4 @@
-## 4.0.1-wip
+## 4.0.1
 
 - Fix Reed-Solomon block table for QR version 15 at high error correction
   (#179).
@@ -42,6 +42,11 @@
   - `QrImage` generation is ~50% faster.
   - `LargeQrCode` generation is ~40% faster.
 - Require `sdk: ^3.11.0`.
+
+## 3.0.3
+
+- Fix Reed-Solomon block table for QR version 15 at high error correction
+  (#179).
 
 ## 3.0.2
 
