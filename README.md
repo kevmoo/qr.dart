@@ -20,13 +20,13 @@ A rich, HTML demo can be found at: [qr.kevmoo.com](https://qr.kevmoo.com/).
 
 To start, import the dependency in your code:
 
-```dart
+```dart @example /test/readme_test.dart#import
 import 'package:qr/qr.dart';
 ```
 
 To build your QR code data you should do so as such:
 
-```dart
+```dart @example /test/readme_test.dart#getting-started
 final qrCode = QrCode(
   payload: QrPayload.fromString('Hello, world in QR form!'),
   errorCorrectLevel: QrErrorCorrectLevel.low,
@@ -37,7 +37,7 @@ final qrImage = QrImage(qrCode);
 To enable Extended Channel Interpretation (ECI) mode or build multi-part data,
 you can use `QrPayload`:
 
-```dart
+```dart @example /test/readme_test.dart#eci
 final payload = QrPayload()
   ..addECI(QrEciValue.utf8)
   ..addString('Hello, world in QR form!');
@@ -51,7 +51,7 @@ final qrCode = QrCode(
 Now you can use your `qrImage` instance to render a graphical representation of
 the QR code. A basic implementation would be as such:
 
-```dart
+```dart @example /test/readme_test.dart#render
 for (var x = 0; x < qrImage.moduleCount; x++) {
   for (var y = 0; y < qrImage.moduleCount; y++) {
     if (qrImage.isDark(y, x)) {

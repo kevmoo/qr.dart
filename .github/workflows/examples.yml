@@ -1,0 +1,18 @@
+name: Examples
+
+# Fails when a ```dart @example ...``` block in markdown no longer matches the
+# source it points at. Run `dart run example@ update` to refresh.
+# Deliberately NO `paths:` filter (see markdown.yml).
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  # Job ID is the check-run context name a branch ruleset would match on.
+  examples:
+    uses: google/dart-neats/.github/workflows/validate-examples.yml@e304f7e0ebd0531e832136b2300aded8a14584ba
