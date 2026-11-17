@@ -13,6 +13,7 @@ permissions:
   contents: read
 
 jobs:
-  # Job ID is the check-run context name a branch ruleset would match on.
+  # Calls a reusable workflow, so the check-run context a branch ruleset matches
+  # on is "examples / Validate markdown examples" (caller job / called job).
   examples:
     uses: google/dart-neats/.github/workflows/validate-examples.yml@e304f7e0ebd0531e832136b2300aded8a14584ba
