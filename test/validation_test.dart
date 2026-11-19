@@ -12,7 +12,7 @@ void main() {
         errorCorrectLevel: QrErrorCorrectLevel.medium,
       );
 
-      check(result.isValid).isTrue();
+      check(result.isValid).isTrue;
       final qrCode = check(result.qrCode).isNotNull();
       qrCode.has('typeNumber', (q) => q.typeNumber).equals(1);
       qrCode
@@ -37,14 +37,14 @@ void main() {
       errorCorrectLevel: QrErrorCorrectLevel.high,
     );
 
-    check(result.isValid).isFalse();
-    check(result.qrCode).isNull();
+    check(result.isValid).isFalse;
+    check(result.qrCode).isNull;
 
     // Type 1 should NOT be in valid types
-    check(result.validTypeNumbers).not((it) => it.contains(1));
+    check(result.validTypeNumbers).not(.it()..contains(1));
 
     // But some higher types SHOULD be valid
-    check(result.validTypeNumbers).isNotEmpty();
+    check(result.validTypeNumbers).isNotEmpty;
     check(result.validTypeNumbers.last).equals(40);
   });
 
@@ -60,7 +60,7 @@ void main() {
       errorCorrectLevel: QrErrorCorrectLevel.low,
     );
 
-    check(result.isValid).isTrue();
+    check(result.isValid).isTrue;
     check(result.validErrorCorrectLevels)
         .unorderedEquals([QrErrorCorrectLevel.low, QrErrorCorrectLevel.medium]);
   });
@@ -73,7 +73,7 @@ void main() {
       errorCorrectLevel: QrErrorCorrectLevel.high,
     );
 
-    check(result.isValid).isTrue();
+    check(result.isValid).isTrue;
     check(result.qrCode).isNotNull();
     check(result.validTypeNumbers).contains(15);
     check(result.validErrorCorrectLevels).contains(QrErrorCorrectLevel.high);

@@ -25,12 +25,12 @@ void main() {
           errorCorrectLevel: level,
         );
         // Ensure we can at least generate the data cache without crashing
-        check(getDataCache(qr)).isNotEmpty();
+        check(getDataCache(qr)).isNotEmpty;
 
         // Also test random mask patterns
         final mask = random.nextInt(8);
         final image = QrImage.withMaskPattern(qr, mask);
-        check(image.qrModules).isNotEmpty();
+        check(image.qrModules).isNotEmpty;
       } catch (e) {
         // We expect InputTooLongException for large data, but nothing else
         if (e is! InputTooLongException) {
@@ -56,7 +56,7 @@ void main() {
           payload: QrPayload.fromTypedData(data),
           errorCorrectLevel: level,
         );
-        check(getDataCache(qr)).isNotEmpty();
+        check(getDataCache(qr)).isNotEmpty;
       } catch (e) {
         if (e is! InputTooLongException) {
           print('Failed with input bytes of length $length at iteration $i');
@@ -115,7 +115,7 @@ void main() {
           errorCorrectLevel: level,
           minTypeNumber: type,
         );
-        check(getDataCache(qr)).isNotEmpty();
+        check(getDataCache(qr)).isNotEmpty;
       } catch (e) {
         if (e is! InputTooLongException && e is! ArgumentError) {
           print('Failed during manual addition at iteration $i');
