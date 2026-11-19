@@ -192,7 +192,7 @@ void main() {
             ),
           )
           .throws<InputTooLongException>()
-          .has((e) => e.toString(), 'toString()')
+          .has('toString()', (e) => e.toString())
           .equals('Input too long. 23652 > 23648');
     });
   });
