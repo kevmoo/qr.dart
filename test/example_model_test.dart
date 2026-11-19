@@ -9,7 +9,7 @@ void main() {
     test('initial state is question', () {
       final model = ExampleModel();
       check(model.state).equals(ExampleState.question);
-      check(model.squares).isEmpty();
+      check(model.squares).isEmpty;
       check(model.moduleCount).equals(0);
       check(model.validTypeNumbers).length.equals(10);
       check(model.validErrorCorrectLevels).length.equals(4);
@@ -24,9 +24,9 @@ void main() {
       addTearDown(sub.cancel);
 
       model.value = 'Hello World';
-      check(notified).isTrue();
+      check(notified).isTrue;
       check(model.state).equals(ExampleState.qr);
-      check(model.squares).isNotEmpty();
+      check(model.squares).isNotEmpty;
       check(model.moduleCount).isGreaterThan(0);
       check(model.validTypeNumbers).contains(2);
     });
@@ -38,13 +38,13 @@ void main() {
             1 // Force version 1
         ..value = 'A' * 100; // Exceeds version 1 capacity
       check(model.state).equals(ExampleState.error);
-      check(model.squares).isEmpty();
+      check(model.squares).isEmpty;
       check(model.moduleCount).equals(0);
     });
 
     test('autoType automatically bumps typeNumber when needed', () {
       final model = ExampleModel();
-      check(model.autoType).isTrue();
+      check(model.autoType).isTrue;
 
       model.value = 'A' * 150; // Exceeds version 1 but fits in higher version
       check(model.state).equals(ExampleState.qr);
@@ -63,7 +63,7 @@ void main() {
       check(model.byteCount).equals(4);
 
       check(model.errorCorrectLevel).equals(QrErrorCorrectLevel.low);
-      check(model.validErrorCorrectLevels).isNotEmpty();
+      check(model.validErrorCorrectLevels).isNotEmpty;
     });
 
     test(
@@ -96,7 +96,7 @@ void main() {
       'autoType maintains all validErrorCorrectLevels across version tiers',
       () {
         final model = ExampleModel();
-        check(model.autoType).isTrue();
+        check(model.autoType).isTrue;
 
         // 60 characters exceeds Version 1 High capacity (7 chars)
         // but fits in Version 3 High.
@@ -109,7 +109,7 @@ void main() {
     test('autoType supports overflow versions beyond maxTypeNumber without '
         'blocking', () {
       final model = ExampleModel();
-      check(model.autoType).isTrue();
+      check(model.autoType).isTrue;
 
       // 400 characters exceeds Version 10 High capacity (174 chars).
       // It fits in Version 14 High (458 chars).
@@ -118,7 +118,7 @@ void main() {
       check(model.state).equals(ExampleState.qr);
       check(model.typeNumber).equals(17);
       check(model.validTypeNumbers).contains(17);
-      check(model.squares).isNotEmpty();
+      check(model.squares).isNotEmpty;
     });
   });
 }

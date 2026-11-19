@@ -29,7 +29,7 @@ void main() {
     test('Byte (UTF-8 with ECI)', () {
       final datums = QrDatum.toDatums('Hello 🌍');
       check(datums).length.equals(2);
-      check(datums[0]).isA<QrEci>().has((e) => e.value, 'value').equals(26);
+      check(datums[0]).isA<QrEci>().has('value', (e) => e.value).equals(26);
       check(datums[1]).isA<QrByte>();
     });
 
@@ -41,7 +41,7 @@ void main() {
           '\u{1F48B}\u{200D}\u{1F468}\u{1F3FE}';
       final datums = QrDatum.toDatums(complexEmoji);
       check(datums).length.equals(2);
-      check(datums[0]).isA<QrEci>().has((e) => e.value, 'value').equals(26);
+      check(datums[0]).isA<QrEci>().has('value', (e) => e.value).equals(26);
       check(datums[1]).isA<QrByte>();
     });
   });

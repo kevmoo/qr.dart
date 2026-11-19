@@ -61,7 +61,7 @@ void main() {
         check(
           because: 'BMP file should be created',
           File(bmpPath).existsSync(),
-        ).isTrue();
+        ).isTrue;
 
         // Validate with zbarimg
         // zbarimg output format: QR-Code:content
@@ -104,7 +104,7 @@ void main() {
     check(
       because: 'BMP file should be created',
       File(bmpPath).existsSync(),
-    ).isTrue();
+    ).isTrue;
 
     final zbar = await TestProcess.start('zbarimg', [
       '--quiet',

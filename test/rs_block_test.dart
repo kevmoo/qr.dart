@@ -25,7 +25,7 @@ void _verifyBlockInvariants(
   int expectedCodewords,
 ) {
   final blocks = QrRsBlock.getRSBlocks(typeNumber, level);
-  check(blocks).isNotEmpty();
+  check(blocks).isNotEmpty;
 
   final totalCodewords = blocks.fold(0, (sum, b) => sum + b.totalCount);
   check(
