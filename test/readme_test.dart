@@ -1,5 +1,5 @@
 // Backs the code blocks in README.md. Keep in sync with
-// `dart run example@ update`.
+// `dart run snippets@ update`.
 import 'package:checks/checks.dart';
 // #region import
 import 'package:qr/qr.dart';
